@@ -1,6 +1,6 @@
 # [TFQ-0016] Add a Lean replay of the two-stage dressing or leave QM-213 as
 
-> **Stage**: `FINITE_QCD` | **Status**: `OPEN_OBLIGATION`  
+> **Stage**: `FINITE_QCD` | **Status**: `PROVED_LEAN`  
 > **UUID**: `e48544d7-d14e-5ebc-8e7e-ca7fdf7232a2`  
 > **Parent Derivation**: [TFQ-0015](tfq_0015_keep_the_substantial_versus_artificial_split_on_b_2_q_not_on_su_3.md)
 
@@ -11,7 +11,7 @@
 The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. It does not transport color generators, and no Lean twin of QM-213 was located in FiniteQM.lean.
 
 ### Governing Obligation
-Add a Lean replay of the two-stage dressing or leave QM-213 as a Rust and Python control.
+Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.
 
 ---
 
@@ -26,13 +26,16 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: two-stage Borel dressing is not in FiniteQM.lean`](../../lean4/)
+- [`CampaignTfq0016.two_stage_factorization`](../../lean4/CampaignTfq0016B2Dressing.lean)
+- [`CampaignTfq0016.UpperTri2.b2_semidirect_factorization`](../../lean4/CampaignTfq0016B2Dressing.lean)
+- [`CampaignTfq0016.stage2_reproduces_residual`](../../lean4/CampaignTfq0016B2Dressing.lean)
+- [`CampaignTfq0016.discrete_bianchi_identity`](../../lean4/CampaignTfq0016B2Dressing.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/nonabelian_dfm_control.py`](../../code/python/)
+- [`checks/independent/tfq-0016.py`](../../checks/independent/tfq-0016.py)
 
 ---
 

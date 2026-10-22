@@ -11,19 +11,19 @@ target:
     and no Lean twin of QM-213 was located in FiniteQM.lean.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Add a Lean replay of the two-stage dressing or leave QM-213 as a Rust and Python
-    control.
+  source_bottleneck: Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms
+    and independently verified in checks/independent/tfq-0016.py.
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md
-    sha256: 4170f535106f6b2173980d251b47537cdf5aae037299a1c13856c7139b7dafd7
+    sha256: e8b9e85fe70dc25ffa2a5ba6379270462c76e78b906aaf1e5ee26eff8ec81b11
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +31,264 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_qcd_tfq_0016_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: abbrev
+  name: E5
+  line: 252
+  signature_excerpt: abbrev E5
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: UpperTri2
+  line: 28
+  signature_excerpt: structure UpperTri2
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsInvertible
+  line: 63
+  signature_excerpt: 'def IsInvertible (x : UpperTri2) : Prop'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: V4
+  line: 244
+  signature_excerpt: abbrev V4
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u_T
+  line: 438
+  signature_excerpt: 'def u_T (U : E5 → UpperTri2) (v : V4) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u_N
+  line: 305
+  signature_excerpt: 'def u_N (U : E5 → UpperTri2) (v : V4) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: inv
+  line: 65
+  signature_excerpt: 'def inv (x : UpperTri2) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treeTransport
+  line: 281
+  signature_excerpt: |-
+    def treeTransport (U : E5 → UpperTri2) : V4 → UpperTri2
+      | 0 => 1
+      | 1 => U 0
+      | 2 => U 2
+      | 3 => U 3 * U 2
+
+    theorem treeTransport_invertible (U : E5 → UpperTri2) (hU : ∀ e, IsInvertible (U e)) :
+        ∀ v, IsInvertible (treeTransport U v)
+      | 0 => by
+        dsimp [treeTransport, IsInvertible]
+        decide
+      | 1 => hU 0
+      | 2 => hU 2
+      | 3 => ⟨mul_ne_zero (hU 3).1 (hU 2).1, mul_ne_zero (hU 3).2 (hU 2).2⟩
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: D_tree
+  line: 297
+  signature_excerpt: 'def D_tree (U : E5 → UpperTri2) (v : V4) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: torusProj
+  line: 122
+  signature_excerpt: 'def torusProj (x : UpperTri2) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unipotentPart
+  line: 125
+  signature_excerpt: 'def unipotentPart (x : UpperTri2) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: edgeTarget
+  line: 261
+  signature_excerpt: |-
+    def edgeTarget : E5 → V4
+      | 0 => 1
+      | 1 => 2
+      | 2 => 2
+      | 3 => 3
+      | 4 => 3
+
+    /-- Spanning tree T = {e0, e2, e3}. -/
+    def isTreeEdge : E5 → Prop
+      | 0 => True
+      | 1 => False
+      | 2 => True
+      | 3 => True
+      | 4 => False
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: U_stage1
+  line: 359
+  signature_excerpt: 'def U_stage1 (U : E5 → UpperTri2) (e : E5) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: edgeSource
+  line: 254
+  signature_excerpt: |-
+    def edgeSource : E5 → V4
+      | 0 => 0
+      | 1 => 1
+      | 2 => 0
+      | 3 => 2
+      | 4 => 1
+
+    def edgeTarget : E5 → V4
+      | 0 => 1
+      | 1 => 2
+      | 2 => 2
+      | 3 => 3
+      | 4 => 3
+
+    /-- Spanning tree T = {e0, e2, e3}. -/
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: U_full
+  line: 494
+  signature_excerpt: 'def U_full (U : E5 → UpperTri2) (e : E5) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: covariantDiff2
+  line: 546
+  signature_excerpt: 'def covariantDiff2 (A : R → R → R) (K : R → R → R → R) (u v w z : R) : R'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: two_stage_factorization
+  line: 451
+  signature_excerpt: |-
+    theorem two_stage_factorization (U : E5 → UpperTri2) (hU : ∀ e, IsInvertible (U e)) (v : V4) :
+        u_T U v * u_N U v = inv (treeTransport U v)
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: b2_semidirect_factorization
+  line: 157
+  signature_excerpt: |-
+    theorem b2_semidirect_factorization (x : UpperTri2) (h : IsInvertible x) :
+        x = torusProj x * unipotentPart x
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage2_reproduces_residual
+  line: 498
+  signature_excerpt: |-
+    theorem stage2_reproduces_residual (U : E5 → UpperTri2) (hU : ∀ e, IsInvertible (U e)) (e : E5) :
+        u_T U (edgeTarget e) * U_stage1 U e * inv (u_T U (edgeSource e)) = U_full U e
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: discrete_bianchi_identity
+  line: 559
+  signature_excerpt: |-
+    theorem discrete_bianchi_identity (A : R → R → R) (u v w z : R) :
+        covariantDiff2 A (curvature1 A) u v w z = 0
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization
+  availability: local
+  symbol: CampaignTfq0016.two_stage_factorization
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  declaration_status: declaration_found_not_proof_checked
+  line: 451
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization
+  availability: local
+  symbol: CampaignTfq0016.UpperTri2.b2_semidirect_factorization
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  declaration_status: declaration_found_not_proof_checked
+  line: 157
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual
+  availability: local
+  symbol: CampaignTfq0016.stage2_reproduces_residual
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  declaration_status: declaration_found_not_proof_checked
+  line: 498
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity
+  availability: local
+  symbol: CampaignTfq0016.discrete_bianchi_identity
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  declaration_status: declaration_found_not_proof_checked
+  line: 559
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +326,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
