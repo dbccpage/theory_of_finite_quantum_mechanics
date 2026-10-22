@@ -1,0 +1,322 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: CQFT-FINITE-STRICT-POSET-SPACELIKE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'lean4/CausalOrder.lean defines FiniteStrictPoset n (an irreflexive transitive relation
+    on Fin n) and spacelike separation (x differs from y and neither precedes the other). It establishes
+    spacelike_symm and spacelike_irrefl; on the named examples C1 (0<1, 0<2) and C2 (the four-element
+    diamond) it establishes c1_spacelike_1_2, c2_causal_0_3, order_independence_witness (C1 and its dual
+    differ) and the table entries c1_mu_spacelike_vanishes and c2_mu_top_bottom (value 1). Scope: three
+    decided examples, no general causal-set theory. The theorem named incomparability_not_transitive_c1
+    states only that e1 and e2 are spacelike in both orders and that e1 is not spacelike to itself; it
+    does not exhibit a failure of transitivity of spacelike separation. The table c2_mu is checked entry
+    by entry; the Lean file does not state the Mobius recursion for it.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The theorem name incomparability_not_transitive_c1 overstates its statement. A genuine
+    non-transitive example (the four-element N poset) is part of the finite net target of this stage.
+  source_refs:
+  - dag/derivations/31_causal_qft/tfq_2100_cqft_finite_strict_poset_spacelike.md
+  - code/python/src/general_relativity/causal_set.py
+  - code/python/src/qm/causal_order.py
+  paper_refs:
+  - dag/derivations/31_causal_qft/tfq_2100_cqft_finite_strict_poset_spacelike.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/31_causal_qft/tfq_2100_cqft_finite_strict_poset_spacelike.md
+    sha256: aecead3bd2112b2788afccaaf9afca67b2b4c8270791c2a8df55e3a89a96f9ef
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/causal_qft_cqft_finite_strict_poset_spacelike_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: FiniteStrictPoset
+  line: 5
+  signature_excerpt: 'structure FiniteStrictPoset (n : Nat)'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isSpacelike
+  line: 24
+  signature_excerpt: 'def isSpacelike {n : Nat} (P : FiniteStrictPoset n) (x y : Fin n) : Prop'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: C1
+  line: 55
+  signature_excerpt: 'def C1 : FiniteStrictPoset 3'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: e1
+  line: 68
+  signature_excerpt: 'def e1 : Fin 3'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: e2
+  line: 69
+  signature_excerpt: 'def e2 : Fin 3'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c1_rel
+  line: 49
+  signature_excerpt: 'def c1_rel (x y : Fin 3) : Prop'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c1_rel_bool
+  line: 46
+  signature_excerpt: 'def c1_rel_bool (x y : Fin 3) : Bool'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d0
+  line: 108
+  signature_excerpt: 'def d0 : Fin 4'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d3
+  line: 111
+  signature_excerpt: 'def d3 : Fin 4'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c1_mu
+  line: 152
+  signature_excerpt: 'def c1_mu (x y : Fin 3) : Int'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c2_mu
+  line: 169
+  signature_excerpt: 'def c2_mu (x y : Fin 4) : Int'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: spacelike_symm
+  line: 30
+  signature_excerpt: |-
+    theorem spacelike_symm {n : Nat} (P : FiniteStrictPoset n) (x y : Fin n) :
+        isSpacelike P x y ↔ isSpacelike P y x
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: spacelike_irrefl
+  line: 39
+  signature_excerpt: |-
+    theorem spacelike_irrefl {n : Nat} (P : FiniteStrictPoset n) (x : Fin n) :
+        ¬ isSpacelike P x x
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: c1_spacelike_1_2
+  line: 71
+  signature_excerpt: 'theorem c1_spacelike_1_2 : isSpacelike C1 e1 e2'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: c2_causal_0_3
+  line: 116
+  signature_excerpt: 'theorem c2_causal_0_3 : C2.rel d0 d3'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: c1_mu_spacelike_vanishes
+  line: 166
+  signature_excerpt: 'theorem c1_mu_spacelike_vanishes : c1_mu e1 e2 = 0'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: c2_mu_top_bottom
+  line: 182
+  signature_excerpt: 'theorem c2_mu_top_bottom : c2_mu d0 d3 = 1'
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: incomparability_not_transitive_c1
+  line: 80
+  signature_excerpt: |-
+    theorem incomparability_not_transitive_c1 :
+        isSpacelike C1 e1 e2 ∧ isSpacelike C1 e2 e1 ∧ ¬ isSpacelike C1 e1 e1
+  source: lean4/CausalOrder.lean
+  repository: this_repository
+  source_sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CausalOrder.lean::spacelike_symm
+  availability: local
+  symbol: spacelike_symm
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CausalOrder.lean::spacelike_irrefl
+  availability: local
+  symbol: spacelike_irrefl
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
+- original_ref: lean4/CausalOrder.lean::c1_spacelike_1_2
+  availability: local
+  symbol: c1_spacelike_1_2
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
+- original_ref: lean4/CausalOrder.lean::c2_causal_0_3
+  availability: local
+  symbol: c2_causal_0_3
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 116
+  role: source_lead_only
+- original_ref: lean4/CausalOrder.lean::order_independence_witness
+  availability: local
+  symbol: order_independence_witness
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 147
+  role: source_lead_only
+- original_ref: lean4/CausalOrder.lean::c1_mu_spacelike_vanishes
+  availability: local
+  symbol: c1_mu_spacelike_vanishes
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 166
+  role: source_lead_only
+- original_ref: lean4/CausalOrder.lean::c2_mu_top_bottom
+  availability: local
+  symbol: c2_mu_top_bottom
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 182
+  role: source_lead_only
+- original_ref: lean4/CausalOrder.lean::incomparability_not_transitive_c1
+  availability: local
+  symbol: incomparability_not_transitive_c1
+  path: lean4/CausalOrder.lean
+  repository: this_repository
+  sha256: fd2a03c73fd8f5afa5e21f024ca12b304902df85f6e5d68bd1e89f21ba44195f
+  declaration_status: declaration_found_not_proof_checked
+  line: 80
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads:
+- source: lean4/CausalOrder.lean
+  name: order_independence_witness
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
