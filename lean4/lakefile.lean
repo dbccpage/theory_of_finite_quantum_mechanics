@@ -530,3 +530,36 @@ lean_lib AuthIncompleteness where
 
 lean_lib QcSelfObstruction where
   roots := #[`QcConcatenation, `QcRepairQueue, `QcEntropySink, `QcSelfObstruction]
+
+-- PFP batch 01 (positions 152-177) Lean modules, sealed by dag/results/batches/20261021T132245Z_prompts_152_164
+-- and 20261021T175809Z_prompts_165_177. Not a default target: build with `lake build PfpBatch01`
+-- or one module at a time, e.g. `lake build AdmissionFloor`.
+lean_lib PfpBatch01 where
+  roots := #[
+    `PhaseBlindFiber,
+    `ResidualSectorWeights,
+    `U1SelectorSegment,
+    `RealificationJ,
+    `ObligationMonoid,
+    `SnCarrierPfp,
+    `AdmissionFloor,
+    `ChainRetraction,
+    `CollapseBarrier,
+    `DemandAccounting,
+    `FreeMonoidNoniso,
+    `HistoryReport,
+    `InertDiamond,
+    `OldImageInjective,
+    `PregenConstructive,
+    `PrimdiffAxioms,
+    `RefineSeparates,
+    `RootDiffStructure,
+    `SixOperations,
+    `SnOffImageRefusal,
+    `WdpBridgeObligations,
+    `WdpDegree1Window,
+    `WdpDiagnosticRouting,
+    `WdpGrowthNoRepair,
+    `WdpProtectedQuestions,
+    `WdpQuotientSequence
+  ]
