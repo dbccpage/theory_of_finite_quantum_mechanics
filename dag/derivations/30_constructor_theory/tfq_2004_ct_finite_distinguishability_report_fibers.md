@@ -19,7 +19,7 @@ The finite lemma is routine. Whether it deserves the name "distinguishable attri
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open finite target; source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22.
 
 ## What is imported
 
@@ -28,8 +28,8 @@ Open target stated in this change; no computation of it is recorded in the repos
 ## What is open
 
 - Lean statement and proof of the biconditional.
-- Exhaustive finite check.
-- An audit of the source's definition of distinguishable attributes.
+- Exhaustive finite check for |X|<=4 and |R|<=3.
+- Source definition of distinguishable variable audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 (mapping each attribute x in X to a distinct attribute psi_x of an information variable with side-effects).
 
 ## Finite target (precise statement)
 

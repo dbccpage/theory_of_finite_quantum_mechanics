@@ -11,7 +11,7 @@
 
 ## Statement
 
-Maldacena (arXiv November 1997, Adv. Theor. Math. Phys. 1998) conjectures a duality between large-N superconformal field theories and string or M-theory on anti-de Sitter backgrounds, with four-dimensional N=4 super Yang-Mills and type IIB string theory on AdS5 x S5 as the headline example. This node records the conjecture as published.
+Maldacena (1997, arXiv:hep-th/9711200, Section 2 eqs. (2.1)-(2.5) pp. 3-5, conjecture p. 9) takes the low-energy decoupling limit of N parallel D3-branes (eq. (2.1)) and conjectures that four-dimensional U(N) N=4 super-Yang-Mills theory is dual to type IIB string theory on AdS_5 x S^5 with radius R^2 / alpha' = sqrt(4 pi g_YM^2 N) (eq. (2.5)) and N units of five-form flux, alongside M2/M5-brane and AdS_3 counterparts in Sections 3-5. This node records the conjecture as published.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Record only. The duality is a conjecture supported by checks in the source liter
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full text of arXiv:hep-th/9711200 (Section 2 eqs. (2.1)-(2.5) pp. 3-5, conjecture p. 9) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

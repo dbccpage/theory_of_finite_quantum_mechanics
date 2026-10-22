@@ -11,15 +11,15 @@
 
 ## Statement
 
-Deutsch (2013) proposes to state physical laws as statements about which physical transformations (tasks) can be caused to happen and which cannot, in place of dynamical laws plus initial conditions. This node records the proposal as published. The repository has audited none of its derivations.
+Deutsch (2013, arXiv:1210.7439, Section 1.1 eqs. (1)-(2) pp. 2-4 and Section 1.2 p. 5) proposes to state physical laws as statements about which physical transformations (tasks) can be caused to happen and which cannot, in place of dynamical laws plus initial conditions, together with the composition principle (Section 1.2 p. 5), computation media (Section 2.6 eq. (9) pp. 13-14) and Einstein locality on composite substrates (Section 3.10 p. 33). This node records the proposal as published.
 
 ## Governing obligation
 
-Record only. Nothing in the paper is used as a premise of any repository result.
+Record only. Audited against arXiv:1210.7439; nothing in the paper is used as a premise of any repository result.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full text of arXiv:1210.7439 on 2026-10-22 (Section 1.1 eqs. (1)-(2) pp. 2-4, Section 1.2 p. 5, Section 2.6 eq. (9) pp. 13-14); recorded as an external source record without adopting its primitives in this repository.
 
 ## What is imported
 

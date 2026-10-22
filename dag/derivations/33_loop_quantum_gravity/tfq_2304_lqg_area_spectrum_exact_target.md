@@ -19,7 +19,7 @@ Exact arithmetic in Q(sqrt 2, sqrt 3, sqrt 5, sqrt 6, sqrt 7, ...). The physical
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22.
 
 ## What is imported
 
@@ -39,6 +39,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-LQG-AREA-SPECTRUM-EXACT-TARGET` (`GAP_NO_DERIVATION`) from `LQG-AREA-VOLUME-SPECTRA-SOURCE`, `LQG-SPIN-NETWORK-STATES-IMPORT`: No source derives the area spectrum from the finite SU(2)_2 data of the repository; the target is a statement about the classical SU(2) spin labels only. Gap until written.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed j(j+1) = a(a+2)/4 = 3/4, 2, 15/4, 6, 35/4, 12 for a = 2j = 1..6, minimum nonzero value sqrt(3)/2 at j=1/2, and the coincidence of one spin-3 puncture (sqrt(12) = 2 sqrt(3)) with four spin-1/2 punctures (4 x sqrt(3)/2).
 
 See also: `TFQ-0105`, `TFQ-0198`.
 

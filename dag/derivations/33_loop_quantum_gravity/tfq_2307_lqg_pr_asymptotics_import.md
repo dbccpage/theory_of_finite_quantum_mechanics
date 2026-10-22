@@ -11,7 +11,7 @@
 
 ## Statement
 
-Imported asymptotic form, as commonly stated: for large spins, with l = j + 1/2 the edge lengths, V the volume of the Euclidean tetrahedron with those lengths and theta its dihedral angles, the 6j symbol behaves like (12 pi V)^(-1/2) cos(sum over edges of (j + 1/2) theta + pi/4) when the tetrahedron exists, and decays exponentially when it does not. The phase is the Regge action of the tetrahedron. The wording and the hypotheses are those of the sources and are not audited here.
+Imported asymptotic form, audited against Roberts (1999, arXiv:math-ph/9812013, Theorem 1 eq. (2) p. 22 and Section 6.1 eqs. (12)-(13) p. 61): for large spins with edge lengths l_r = j_r + 1/2 = (a_r + 1)/2 (where a_r = 2 j_r), when the six lengths bound a non-degenerate Euclidean tetrahedron of positive volume V > 0 and exterior dihedral angles theta_r, the 6j symbol behaves asymptotically as (12 pi V)^{-1/2} cos(sum_{r=1}^6 (j_r + 1/2) theta_r + pi/4) (equivalently sqrt(2 / (3 pi V(a))) cos(sum_{r=1}^6 (a_r + 1) theta_r / 2 + pi/4) where V(a) = 8 V is the volume for side lengths a_r = 2 j_r), and decays exponentially when the Cayley-Menger squared volume is negative (Lorentzian tetrahedron, Section 6.2 p. 62). The phase is the Regge action of the tetrahedron.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ The asymptotic statement is a limit of real-valued quantities; the repository's 
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited against the full text of arXiv:math-ph/9812013 (Theorem 1 eq. (2) p. 22, Section 6.1 eqs. (12)-(13) p. 61) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 
@@ -30,7 +30,7 @@ Declared imported structure:
 
 ## What is open
 
-- Exact wording and hypotheses.
+- Wording, side-length scaling (V(2j) = 8 V(j)) and non-degenerate Euclidean tetrahedron hypothesis V > 0 audited against arXiv:math-ph/9812013 Theorem 1 eq. (2) p. 22 and Section 6.1 eqs. (12)-(13) p. 61.
 
 ## Connections to this repository
 

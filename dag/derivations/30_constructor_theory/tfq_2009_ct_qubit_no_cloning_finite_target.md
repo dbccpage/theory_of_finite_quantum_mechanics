@@ -19,7 +19,7 @@ Exact linear algebra on Gaussian rationals; statement (c) needs a Lean or Python
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22.
 
 ## What is imported
 
@@ -38,7 +38,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-CT-QUBIT-NO-CLONING-FINITE-TARGET` (`GAP_NO_DERIVATION`) from `CT-SUPERINFORMATION-MEDIUM-DEFINITION`, `FQ-DECLARED-QUANTUM-INTERFACE`: Partial real link: the declared finite quantum interface supplies the qubit. The target is open, so the route is a gap until the statements are formalized.
-- Authoring check (a throwaway enumeration, not a repository check) confirmed the nonzero image sum with entries of absolute value 1/2.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed that (|0><0|^{\otimes 2} + |1><1|^{\otimes 2}) - (|+><+|^{\otimes 2} + |-><-|^{\otimes 2}) has off-diagonal entry -1/2 on |00><11| and |11><00|, and that among the 64 subsets of the 6 Pauli eigenstates exactly 13 subsets (1 empty, 6 singletons, 3 antipodal pairs) have pairwise overlaps in {0, 1}.
 
 See also: `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER`.
 

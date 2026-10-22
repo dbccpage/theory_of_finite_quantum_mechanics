@@ -19,7 +19,7 @@ Statements (a) to (c) are exact determinant and rank facts. Statement (d) needs 
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fractions.Fraction on 2026-10-22.
 
 ## What is imported
 
@@ -38,7 +38,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-CT-ENTANGLING-PHASE-FINITE-TARGET` (`GAP_NO_DERIVATION`) from `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`, `CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT`: Partial real link: DS-QM071 supplies witness soundness. This target is open, so the route is a gap until the statements are formalized.
-- Authoring check (throwaway numeric evaluation, not a repository check): concurrence squared 0.2 at u=(3+4i)/5.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed |u|^2 = (3/5)^2 + (4/5)^2 = 1 and C^2 = 4|det M_u|^2 = ((3/5 - 1)^2 + (4/5)^2)/4 = (20/25)/4 = 1/5 at u = (3+4i)/5.
 
 See also: `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS`.
 

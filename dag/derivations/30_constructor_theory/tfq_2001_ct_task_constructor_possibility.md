@@ -11,7 +11,7 @@
 
 ## Statement
 
-Imported vocabulary, as the source describes it: a task is a set of input and output attribute pairs of a substrate; a constructor is a system that brings the output about and remains able to do so again; a task is possible when some constructor can perform it to any desired accuracy and not possible otherwise. The repository uses none of this vocabulary as a primitive.
+Imported vocabulary, audited against Deutsch (2013, Section 1.1 eqs. (1)-(2) pp. 2-4) and Deutsch-Marletto (2015, Section 2 pp. 6-8): a task is a set of ordered input/output attribute pairs of a substrate; a constructor causes the transformation and retains its ability to do so again; a task is possible when the laws of nature impose no limit short of perfection on how accurately it can be performed and how well a constructor can retain its ability to perform it again, and not possible otherwise; Principle I (Section 2 p. 8) states that the state of a composite substrate S1 + S2 is the pair of states on S1 and S2 and a construction on S1 changes only the S1 state. The repository uses none of this vocabulary as a primitive.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Taking the possible and not-possible partition of tasks as primitive is a differ
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited against the full text of arXiv:1210.7439 (Section 1.1 eqs. (1)-(2) pp. 2-4) and arXiv:1405.5563 (Section 2 pp. 6-8) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 
@@ -30,7 +30,7 @@ Declared imported structure:
 
 ## What is open
 
-- Wording against the paper text (this checkout holds no copy of the paper).
+- Audited against arXiv:1210.7439 Section 1.1 and arXiv:1405.5563 Section 2; no morphism to the Genesis primitive is established.
 
 ## Connections to this repository
 

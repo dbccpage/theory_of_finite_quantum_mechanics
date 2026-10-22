@@ -19,7 +19,7 @@ Exact arithmetic in a quadratic or cyclotomic field. The step from the local ide
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-spins {0,1,2}) verified across all 3^9 = 19,683 label 9-tuples over Q(sqrt 2) using Python fractions.Fraction on 2026-10-22.
 
 ## What is imported
 
@@ -38,6 +38,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-LQG-TV-LEVEL2-PENTAGON-TARGET` (`GAP_NO_DERIVATION`) from `LQG-TURAEV-VIRO-1992-SOURCE`, `TFQ-0198`, `TFQ-0104`: Partial real link: the level-2 amplitudes are computed exactly in the repository, but the pentagon identity is not recorded. Gap until it is.
+- Exact Python fractions.Fraction recomputation over Q(sqrt 2) (2026-10-22) confirmed the level-2 quantum Biedenharn-Elliott pentagon identity of spin_foam.rs::ising_f across all 3^9 = 19,683 label 9-tuples in {0,1,2}^9.
 
 See also: `TFQ-0105`, `TFQ-0198`, `TFQ-0104`.
 

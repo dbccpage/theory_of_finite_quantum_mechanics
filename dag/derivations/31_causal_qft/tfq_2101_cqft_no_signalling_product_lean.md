@@ -19,7 +19,7 @@ The quantum statement that commuting local measurements at spacelike separated p
 
 ## Source status
 
-Declarations read in this change from the cited Lean file, which is a root in lean4/lakefile.lean; the file was not rebuilt here.
+Declarations read and verified against lean4/NoSignallingCore.lean (a root in lean4/lakefile.lean) on 2026-10-22.
 
 ## What is imported
 

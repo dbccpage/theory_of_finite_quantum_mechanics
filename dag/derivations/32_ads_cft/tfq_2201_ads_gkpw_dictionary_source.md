@@ -11,7 +11,7 @@
 
 ## Statement
 
-Gubser, Klebanov and Polyakov (1998) and Witten (1998) relate correlation functions of boundary operators in the conformal field theory to the behaviour of bulk fields in anti-de Sitter space with prescribed boundary values. This node records the two papers by title and identifier.
+Gubser, Klebanov and Polyakov (1998, arXiv:hep-th/9802109, Section 2 eq. (2.5) p. 4 and Section 3 eq. (3.14) p. 8) and Witten (1998, arXiv:hep-th/9802150, Section 2.3 eq. (2.11) p. 11 and Section 2.5 eqs. (2.32)-(2.33) p. 17) formulate the AdS/CFT prescription identifying the CFT generating functional of boundary operators O coupled to boundary sources phi_0 with the bulk partition function <exp int phi_0 O>_CFT = Z_string(phi_0) (approximated at large N by exp(-I_sugra(phi)) on AdS_{d+1}), with conformal dimension Delta(Delta - d) = (m R)^2, Delta = (d + sqrt(d^2 + 4(m R)^2))/2 for a scalar of mass m. This node records the two papers.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Record only. The dictionary is not reproduced.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full texts of arXiv:hep-th/9802109 (Section 2 eq. (2.5) p. 4, Section 3 eq. (3.14) p. 8) and arXiv:hep-th/9802150 (Section 2.3 eq. (2.11) p. 11, Section 2.5 eqs. (2.32)-(2.33) p. 17) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

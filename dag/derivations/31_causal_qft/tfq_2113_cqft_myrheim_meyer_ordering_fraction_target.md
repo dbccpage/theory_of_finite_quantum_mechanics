@@ -11,7 +11,7 @@
 
 ## Statement
 
-Finite statement to formalize. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction). The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Targets: (i) the n x n grid with the componentwise product order has r = (n+3)/(2(n+1)); n=2 gives 5/6, the value for the diamond C2 of CausalOrder.lean (5 related pairs of 6), and the limit 1/2 equals f(2); this is an observation about a lattice, not an instance of the sprinkling theorem. (ii) An exact rational dimension decision: for a rational r in (0,1], which of d=1,2,3,4 has f(d) nearest, with ties reported. (iii) The Hasse diagram (covering relation) is the unique transitive reduction; its link count and the Mobius values of C1 and C2 agree with the table entries of CausalOrder.lean.
+Finite statement to formalize. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction). In Sorkin (2003, arXiv:gr-qc/0309009 Section 7 p. 16), the expected ordering fraction of a Poisson sprinkling into a d-dimensional Minkowski causal interval normalized by binom(N,2) is f(d) = (3/2) Gamma(d+1) Gamma(d/2 + 1) / Gamma(3d/2 + 1) = Gamma(d+1) Gamma(d/2) / (2 Gamma(3d/2)) (in Reid 2003, arXiv:gr-qc/0207103 Section III eq. (5) p. 5, normalizing by <N>^2 instead of binom(N,2) gives f(d)/2 = Gamma(d+1) Gamma(d/2) / (4 Gamma(3d/2))), with exact rational values f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10 recomputed in Python with fractions.Fraction; the Myrheim-Meyer estimator inverts f. Targets: (i) the n x n grid with the componentwise product order has r = (n+3)/(2(n+1)) (recomputed in Python with fractions.Fraction: n=2 gives 5/6, matching the diamond C2 of CausalOrder.lean with 5 related pairs out of 6, n=3 gives 3/4, n=4 gives 7/10, n=5 gives 2/3, n=6 gives 9/14, n=7 gives 5/8, and the limit 1/2 equals f(2); this is an observation about a lattice, not an instance of the sprinkling theorem). (ii) An exact rational dimension decision: for a rational r in (0,1], which of d=1,2,3,4 has f(d) nearest, with ties reported. (iii) The Hasse diagram (covering relation) is the unique transitive reduction; its link count and the Mobius values of C1 and C2 agree with the table entries of CausalOrder.lean.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Everything is rational arithmetic on named finite posets. The dimension estimato
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22.
 
 ## What is imported
 
@@ -38,7 +38,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` (`GAP_NO_DERIVATION`) from `CQFT-FINITE-CAUSET-IDENTIFICATION`: Partial real link: ordering fraction and interval abundances exist as exact Python code, and C1, C2 exist in Lean. The estimator and the grid formula are not written, so the route is a gap.
-- Authoring check (throwaway enumeration, not a repository check) confirmed r(grid_n) for n=2..6: 5/6, 3/4, 7/10, 2/3, 9/14, and f(2), f(3), f(4) numerically.
+- Exact Python fractions.Fraction recomputation (2026-10-22) confirmed r(grid_n) = (n+3)/(2(n+1)) for n=2..7 (5/6, 3/4, 7/10, 2/3, 9/14, 5/8) and f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10.
 
 See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 

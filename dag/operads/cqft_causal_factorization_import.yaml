@@ -3,17 +3,24 @@ node_id: CQFT-CAUSAL-FACTORIZATION-IMPORT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Imported property, in its standard form: the scattering matrix S(g) as a functional
-    of the coupling g satisfies S(g1+g2) = S(g1) S(g2) whenever the support of g1 lies in the causal future
-    of the support of g2, and renormalization is the extension of operator-valued distributions subject
-    to a support condition. The repository has neither operator-valued distributions nor a time ordering
-    on a spacetime.'
+  source_statement: 'Imported property, audited and corrected against Epstein and Glaser (1973, Section
+    1.1 condition (C.A.) pp. 214-215, Section 2.1 condition (Caus. 1) eq. (9) p. 218, Section 2.2 eq.
+    (30) p. 223) and Brunetti and Fredenhagen (2000, arXiv:math-ph/9903028, Section 1 eq. (2) p. 4 and
+    Section 3 Condition P3 p. 15): the scattering operator satisfies V(g, h1+h2) = S(g)^{-1} S(g+h1+h2)
+    = V(g, h1) V(g, h2) (and at g=0, S(g1+g2) = S(g1) S(g2)) whenever supp h1 does not intersect the causal
+    past of supp h2, written supp h1 cap (supp h2 + V^-) = empty (which includes spacelike separation
+    as well as causal future separation, not only supp h1 inside the causal future of supp h2). Equivalently
+    at each order n, the time-ordered operator-valued distributions factorize as T(P union Q) = T(P) T(Q)
+    whenever {x_i : i in P} cap ({x_j : j in Q} + V^-) = empty (eq. (30) p. 223; Condition P3 p. 15),
+    and renormalization reduces to extending time-ordered products across the total diagonal. The repository
+    has neither operator-valued distributions nor a continuum Minkowski causal cone.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - operator-valued distributions (assumption)
   - time ordering on spacetime (assumption)
-  source_bottleneck: The standard form is recalled from the literature; the exact formulation in the cited
-    paper is to be audited.
+  source_bottleneck: Audited against Epstein-Glaser (1973) eqs. (9), (30) and Brunetti-Fredenhagen (2000)
+    eq. (2) and Condition P3. The continuum distribution extension has no counterpart in the repository's
+    finite posets.
   source_refs:
   - dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md
   - external:numdam:AIHPA_1973__19_3_211_0
@@ -26,7 +33,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md
-    sha256: d46ab5581eacb4bbd83e5c1c81326c7f069d913e49e90c979a05e4dfb5315b0c
+    sha256: 0570d4c3d7868b0b56a25702a8fa11febcca555a0e21f1dfe2bcf5029cfa1e8b
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

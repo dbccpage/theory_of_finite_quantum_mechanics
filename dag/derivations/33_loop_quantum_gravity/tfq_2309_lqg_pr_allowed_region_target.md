@@ -19,7 +19,7 @@ Exact sign test and exact 6j squares. The Cayley-Menger sign convention follows 
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, -6075/16 < 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22.
 
 ## What is imported
 

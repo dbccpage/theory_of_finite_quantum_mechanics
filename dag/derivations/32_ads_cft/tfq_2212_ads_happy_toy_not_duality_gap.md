@@ -19,7 +19,7 @@ Recorded as an explicit non-claim so that the exact finite results are not read 
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1 and Section 6 pp. 20-23 on 2026-10-22.
 
 ## What is imported
 

@@ -15,7 +15,7 @@ Haag and Kastler (1964) formulate quantum field theory through a net that assign
 
 ## Governing obligation
 
-Record only. The checkout holds no copy of the paper.
+Record only. The checkout holds no copy of the 1964 print article; the standard postulate list is checked in secondary sources (arXiv:math-ph/9903028 Section 1 pp. 2-3; arXiv:1607.03901 Section 6 pp. 28-30), while the primary 1964 numbering remains to be audited against the print text.
 
 ## Source status
 

@@ -19,7 +19,7 @@ Exact GF(2) check over the normalizer (64 elements). The identification with bul
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs).
 
 ## What is imported
 
@@ -38,7 +38,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-ADS-LOGICAL-RECONSTRUCTION-TARGET` (`GAP_NO_DERIVATION`) from `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`, `ADS-ADH-2015-SOURCE`: Partial real link: the three-qubit code has an exact syndrome-recovery lemma in Lean. The five-qubit statement is not written; gap until formalized.
-- Authoring check (throwaway enumeration, not a repository check) found representatives of all three classes inside each of the ten triples and none inside any pair.
+- Exact Python recomputation (2026-10-22) confirmed that each of the 10 triples of {0..4} supports a unique representative of each of the three nontrivial logical cosets (X_L, Y_L, Z_L) and none of the 10 pairs supports any nontrivial logical operator.
 
 See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 

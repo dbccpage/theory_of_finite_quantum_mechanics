@@ -11,15 +11,15 @@
 
 ## Statement
 
-Epstein and Glaser (1973) give an inductive construction of the renormalized perturbation series of quantum field theory in which, at each order, finite terms satisfying the requirements of locality arise automatically; the method became known as causal perturbation theory and is equivalent in result to the Bogoliubov-Parasiuk-Hepp prescriptions. This node records the abstract.
+Epstein and Glaser (1973, Ann. Inst. H. Poincare A 19, 211-295, Abstract p. 211, Section 1.1 pp. 214-215, Section 2.1 eq. (9) p. 218, Section 2.2 eq. (30) p. 223, and Section 5 pp. 231-237) give an inductive construction of the perturbation series S(g) = 1 + sum_{n>=1} (i^n / n!) int T_n(x_1,...,x_n) g(x_1)...g(x_n) dx in which each order T_n is constructed from lower orders by causal factorization outside the total diagonal and by splitting causal distributions with scaling degree bounds on the diagonal. This node records the paper as published.
 
 ## Governing obligation
 
-Record only. The checkout holds no copy of the paper.
+Record only. Audited against the Numdam full text (AIHPA_1973__19_3_211_0); nothing in the paper is used as a premise of a repository theorem.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv, DOI or Numdam record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full Numdam PDF of Epstein and Glaser (1973, Ann. Inst. H. Poincare A 19, 211-295, Sections 1-5 pp. 211-237) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

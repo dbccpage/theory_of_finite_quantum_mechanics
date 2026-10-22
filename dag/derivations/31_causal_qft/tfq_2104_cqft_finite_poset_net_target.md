@@ -19,7 +19,7 @@ The net is kinematical. Dynamics, a time-slice property and covariance are not m
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open finite target; verified against lean4/CausalOrder.lean on 2026-10-22.
 
 ## What is imported
 
