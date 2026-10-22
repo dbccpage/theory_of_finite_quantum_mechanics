@@ -9,10 +9,12 @@ target:
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - stated Hubbard model and protected symmetry hypotheses
-  source_bottleneck: Prove the required determinant pairing and Hamiltonian-to-representation equality
-    for each stated model, including boundary cases.
+  source_bottleneck: Determinant pairing nonnegativity is narrowed to the stated half-filled bipartite
+    and attractive spin-balanced hypotheses; outside those protections, negative witnesses 15721 and 1281
+    refute unconditional determinant positivity.
   source_refs:
   - dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md
+  - dag/derivations/independent/fsp-hubbard-protected-representations.md
   - papers/core/fsp/README.md
   - papers/core/fsp/docs/sql_meron_hubbard.md
   paper_refs:
@@ -31,9 +33,108 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_hubbard_protected_representations_conditional.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: structure
+  name: DeterminantPair
+  line: 95
+  signature_excerpt: 'structure DeterminantPair (F : Type*)'
+  source: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: hubbard_determinant_positivity_is_restricted
+  line: 168
+  signature_excerpt: |-
+    theorem hubbard_determinant_positivity_is_restricted :
+        (∀ (d_up d_down det_P : ℚ),
+          0 < det_P → d_down = d_up / det_P → 0 ≤ d_up * d_down) ∧
+        (∀ (C d : ℚ),
+          0 ≤ C → 0 ≤ C * (d * d)) ∧
+        (witness_doped_ring.weight < 0) ∧
+        (witness_triangle.weight < 0) ∧
+        (¬ (∀ (p : DeterminantPair ℚ), 0 ≤ p.weight))
+  source: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: not_unconditional_positivity
+  line: 158
+  signature_excerpt: |-
+    theorem not_unconditional_positivity :
+        ¬ (∀ (p : DeterminantPair ℚ), 0 ≤ p.weight)
+  source: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: half_filled_bipartite_weight_nonneg
+  line: 72
+  signature_excerpt: |-
+    theorem half_filled_bipartite_weight_nonneg {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
+        (d_up d_down det_P : F) (h_det_pos : 0 < det_P) (h_pair : d_down = d_up / det_P) :
+        0 ≤ d_up * d_down
+  source: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: attractive_weight_nonneg
+  line: 42
+  signature_excerpt: |-
+    theorem attractive_weight_nonneg {R : Type*} [CommRing R] [LinearOrder R] [IsStrictOrderedRing R]
+        (C d : R) (hC : 0 ≤ C) : 0 ≤ C * (d * d)
+  source: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  source_sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted
+  availability: local
+  symbol: CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted
+  path: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  declaration_status: declaration_found_not_proof_checked
+  line: 168
+  role: source_lead_only
+- original_ref: lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.not_unconditional_positivity
+  availability: local
+  symbol: CampaignFspHubbardProtected.not_unconditional_positivity
+  path: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  declaration_status: declaration_found_not_proof_checked
+  line: 158
+  role: source_lead_only
+- original_ref: lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg
+  availability: local
+  symbol: CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg
+  path: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  declaration_status: declaration_found_not_proof_checked
+  line: 72
+  role: source_lead_only
+- original_ref: lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.attractive_weight_nonneg
+  availability: local
+  symbol: CampaignFspHubbardProtected.attractive_weight_nonneg
+  path: lean4/CampaignFspHubbardProtected.lean
+  repository: this_repository
+  sha256: 82b4fd045d735cec117e06cb8afa5a3b32ff18680b0156b9367d9c25f330c366
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +174,6 @@ operad_slots:
     - stated Hubbard model and protected symmetry hypotheses
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

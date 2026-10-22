@@ -17794,15 +17794,21 @@
       "statement": "Hubbard determinant positivity is restricted to the package stated half-filled bipartite or attractive spin-balanced hypotheses; exact negative fields outside those protections remain distinct witnesses.",
       "source": [
         "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md",
+        "dag/derivations/independent/fsp-hubbard-protected-representations.md",
         "papers/core/fsp/README.md",
         "papers/core/fsp/docs/sql_meron_hubbard.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted",
+        "lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.not_unconditional_positivity",
+        "lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg",
+        "lean4/CampaignFspHubbardProtected.lean::CampaignFspHubbardProtected.attractive_weight_nonneg"
+      ],
       "rust": [],
       "imported_structure": [
         "stated Hubbard model and protected symmetry hypotheses"
       ],
-      "bottleneck": "Prove the required determinant pairing and Hamiltonian-to-representation equality for each stated model, including boundary cases.",
+      "bottleneck": "Determinant pairing nonnegativity is narrowed to the stated half-filled bipartite and attractive spin-balanced hypotheses; outside those protections, negative witnesses 15721 and 1281 refute unconditional determinant positivity.",
       "tags": [
         "application-branch",
         "TFQ-0408",

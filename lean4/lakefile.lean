@@ -583,3 +583,9 @@ lean_lib FrontierTargets where
     `FrontierClassical6j,
     `FrontierPrAllowedRegion
   ]
+
+-- Campaign target: FSP-HUBBARD-PROTECTED-REPRESENTATIONS.
+-- Not a default target: build with `lake build CampaignFspHubbardProtected`.
+lean_lib CampaignFspHubbardProtected where
+  roots := #[`CampaignFspHubbardProtected]
+
