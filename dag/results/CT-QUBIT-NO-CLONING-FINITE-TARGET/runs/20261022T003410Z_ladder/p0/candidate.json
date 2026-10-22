@@ -1,0 +1,139 @@
+{
+  "task_id": "CT-QUBIT-NO-CLONING-FINITE-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "8f1e34c85a647d989669fda8bace2b9a93f04ff24cbf1943cfbc4724d4439f48",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No existing SRC declaration is relevant to qubit cloning; all refs are proposed_new",
+        "Lean formalization of Herm(2) over Q(i) and CPTP maps not grounded",
+        "Fidelity monotonicity for CPTP maps on rays needs a formal proof",
+        "Link to the imported definition of superinformation medium is a reading of definitions",
+        "Exact form of the R_identity_resolution statement needs cleanup (both sides equal the identity)",
+        "Six-state subset enumeration for the maximal-cloneable claim not done",
+        "generator basis_copy_Z unverified: no existing declaration cited",
+        "generator basis_copy_X unverified: no existing declaration cited",
+        "generator diag_clone_map unverified: no existing declaration cited",
+        "relation R_Z_clone unverified: no existing declaration cited",
+        "relation R_X_clone unverified: no existing declaration cited",
+        "relation R_identity_resolution unverified: no existing declaration cited",
+        "relation R_clone_gap unverified: no existing declaration cited",
+        "near_miss NM_Z_union_X unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_nonorth_overlap unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-F94B67803DAD",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_ab: Z and X are each cloneable by CPTP maps; their union is not cloneable by any linear map",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "CT-QUBIT-NO-CLONING-FINITE-TARGET"
+      },
+      {
+        "id": "NEG-1F25708D170B",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_c: For two pure qubit rays with overlap squared p=|<a|b>|^2, a CPTP clone requires p^2=p (fidelity cannot decrease, so p <= p^2 and p^2<=p), hence p in {0,1}; a subset is cloneable iff pairwise equal or orthogonal; maximal cloneable subsets are the three antipodal pairs",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "CT-QUBIT-NO-CLONING-FINITE-TARGET"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing SRC declaration is relevant to qubit cloning; all refs are proposed_new",
+      "Lean formalization of Herm(2) over Q(i) and CPTP maps not grounded",
+      "Fidelity monotonicity for CPTP maps on rays needs a formal proof",
+      "Link to the imported definition of superinformation medium is a reading of definitions",
+      "Exact form of the R_identity_resolution statement needs cleanup (both sides equal the identity)",
+      "Six-state subset enumeration for the maximal-cloneable claim not done",
+      "generator basis_copy_Z unverified: no existing declaration cited",
+      "generator basis_copy_X unverified: no existing declaration cited",
+      "generator diag_clone_map unverified: no existing declaration cited",
+      "relation R_Z_clone unverified: no existing declaration cited",
+      "relation R_X_clone unverified: no existing declaration cited",
+      "relation R_identity_resolution unverified: no existing declaration cited",
+      "relation R_clone_gap unverified: no existing declaration cited",
+      "near_miss NM_Z_union_X unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_nonorth_overlap unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_overlap_sq",
+        "expr": "1/2",
+        "value": "1/2",
+        "host_evidence": {
+          "recomputed": "1/2"
+        }
+      },
+      {
+        "id": "N_overlap_fourth",
+        "expr": "(1/2)^2",
+        "value": "1/4",
+        "host_evidence": {
+          "recomputed": "1/4"
+        }
+      },
+      {
+        "id": "N_gram_diff",
+        "expr": "1/2 - 0",
+        "value": "1/2",
+        "host_evidence": {
+          "recomputed": "1/2"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,81 @@
+{
+  "task_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "e30a75dac5cb2e5281e2134a8c271484ae3a0619d1e995cd5f7d76bca8c57fc2",
+  "candidate_sha256": "76c77127da78bd2a1bd475753fd05f16f21f3597a6dfdbf624096487c2fc99c1",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 1,
+    "failed_total": 1,
+    "failure_rate": 0.5,
+    "failures_by_class": {
+      "vacuous_proof": 1
+    },
+    "unverifiable": 6,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T00:35:05Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-1442E8FC8AE8",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_sq_rational: For twice-spins at most 6, sixj_squared is a rational given by Racah's single sum with exact integer factorials, and sixj is its signed square root",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Nothing in SRC; no existing citation can be made for the classical 6j or its symmetries",
+      "The pentagon coherence in H023 concerns Cyclo12 recoupling amplitudes and is not the classical Biedenharn-Elliott identity, so it is not cited as licensing",
+      "Lean skeletons are placeholders and need real definitions",
+      "Sign convention for the 6j (Racah phase (-1)^(sum)) must be fixed",
+      "Exact enumeration of all cases is not yet done",
+      "No composition can be listed without a licensing relation",
+      "Numeric claim N_zero_spins is trivial: {0 0 0; 0 0 0}=1; no further exact values were computed",
+      "generator G_sixj_squared unverified: no existing declaration cited",
+      "generator G_sixj unverified: no existing declaration cited",
+      "relation R_tet_sym unverified: no existing declaration cited",
+      "relation R_orth unverified: no existing declaration cited",
+      "relation R_BE unverified: no existing declaration cited",
+      "near_miss NM_q_deformed unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_zero_spins",
+        "expr": "1",
+        "value": "1",
+        "host_evidence": {
+          "recomputed": "1"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "task_id": "LQG-PR-ALLOWED-REGION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a3e83ab5bd500126aab4cfceef5bcd436761589f78293777deed8efa5afc3bd0",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "The enumeration count of admissible tuples is not computed",
+        "Exact 6j squares are not computed here",
+        "The sign convention of TFQ-0084 is not visible and must be verified",
+        "The V^2=0 boundary is not classified by the target",
+        "The Rust code is f64 only; an exact Rat implementation is needed",
+        "The tuple-to-edge assignment convention (which spins are opposite) is not fixed",
+        "generator exact_cm_det_rat unverified: no existing declaration cited",
+        "generator six_j_squared_exact unverified: no existing declaration cited",
+        "relation r_288V2 unverified: no existing declaration cited",
+        "relation r_classify unverified: no existing declaration cited",
+        "lemma l_classification_finite unverified: Lean elaboration disabled",
+        "near_miss nm_float unverified: semantic near miss; P4 host check decides",
+        "near_miss nm_using_j unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-915E6B31E73D",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "cm_matrix: (EdgeLengths) -> BorderedMatrix5 [cayley_menger_matrix]",
+        "evidence": "rust fn cayley_menger_matrix takes 3 parameters; the claim says 1",
+        "decl_key": "cayley_menger_matrix",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-PR-ALLOWED-REGION-TARGET"
+      },
+      {
+        "id": "NEG-0B94503ACD89",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "cm_det: (EdgeLengths) -> CMDeterminant [cayley_menger_determinant]",
+        "evidence": "rust fn cayley_menger_determinant takes 3 parameters; the claim says 1",
+        "decl_key": "cayley_menger_determinant",
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-PR-ALLOWED-REGION-TARGET"
+      }
+    ],
+    "open_obligations": [
+      "The enumeration count of admissible tuples is not computed",
+      "Exact 6j squares are not computed here",
+      "The sign convention of TFQ-0084 is not visible and must be verified",
+      "The V^2=0 boundary is not classified by the target",
+      "The Rust code is f64 only; an exact Rat implementation is needed",
+      "The tuple-to-edge assignment convention (which spins are opposite) is not fixed",
+      "generator exact_cm_det_rat unverified: no existing declaration cited",
+      "generator six_j_squared_exact unverified: no existing declaration cited",
+      "relation r_288V2 unverified: no existing declaration cited",
+      "relation r_classify unverified: no existing declaration cited",
+      "lemma l_classification_finite unverified: Lean elaboration disabled",
+      "near_miss nm_float unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_using_j unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

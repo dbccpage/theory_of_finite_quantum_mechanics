@@ -1,0 +1,162 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "basis_copy_Z",
+      "inputs": [
+        "Herm2"
+      ],
+      "output": "Herm4",
+      "arity": 1,
+      "carrier": "Herm(2) over Q(i) to Herm(4); rho -> sum_k <k|rho|k> |kk><kk| (computational-basis copy)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "basis_copy_X",
+      "inputs": [
+        "Herm2"
+      ],
+      "output": "Herm4",
+      "arity": 1,
+      "carrier": "Herm(2) over Q(i) to Herm(4); rho -> sum_{s=+,-} <s|rho|s> |ss><ss| (X-basis copy)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "diag_clone_map",
+      "inputs": [
+        "Herm2"
+      ],
+      "output": "Herm4",
+      "arity": 1,
+      "carrier": "Herm(2) to Herm(4); rho -> rho tensor rho (nonlinear, the target of cloning, not a CPTP generator)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_Z_clone",
+      "statement": "basis_copy_Z(|k><k|) = |k><k| tensor |k><k| for k in {0,1}",
+      "hypotheses": "exact arithmetic over Q(i)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_X_clone",
+      "statement": "basis_copy_X(|s><s|) = |s><s| tensor |s><s| for s in {+,-}",
+      "hypotheses": "exact arithmetic over Q(i)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_identity_resolution",
+      "statement": "|0><0|+|1><1| = |+><+|+|-><-| = I/... (both equal identity in Herm(2))",
+      "hypotheses": "|+-> = (|0> +- |1>)/sqrt2; rank-one projectors have rational entries 1/2",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_clone_gap",
+      "statement": "(|0><0|+|1><1|)^{tensor2} - (|+><+|+|-><-|)^{tensor2}: sum_k |kk><kk| differs from the Z-side image by the nonzero matrix with entries 1/2 on |00><11| and |11><00|, so no linear map clones all four",
+      "hypotheses": "linearity of the cloning map",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_ab",
+      "statement": "Z and X are each cloneable by CPTP maps; their union is not cloneable by any linear map",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "R_Z_clone",
+        "R_X_clone",
+        "R_identity_resolution",
+        "R_clone_gap"
+      ],
+      "lean_skeleton": "theorem union_not_cloneable : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L_c",
+      "statement": "For two pure qubit rays with overlap squared p=|<a|b>|^2, a CPTP clone requires p^2=p (fidelity cannot decrease, so p <= p^2 and p^2<=p), hence p in {0,1}; a subset is cloneable iff pairwise equal or orthogonal; maximal cloneable subsets are the three antipodal pairs",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "L_ab"
+      ],
+      "lean_skeleton": "theorem cloneable_iff_pairwise : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_Z_union_X",
+      "claim": "Z union X is cloneable since each is individually cloneable",
+      "rejecting_invariant": "linearity: the identity-resolution relation forces the same image on both decompositions, but the diagonal images differ by the 1/2 Gram entry on |00><11|"
+    },
+    {
+      "id": "NM_nonorth_overlap",
+      "claim": "|0> and |+> can be cloned together",
+      "rejecting_invariant": "overlap squared 1/2 is not equal to its square 1/4; fidelity monotonicity under CPTP violated"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N_overlap_sq",
+      "expr": "1/2",
+      "value": "1/2"
+    },
+    {
+      "id": "N_overlap_fourth",
+      "expr": "(1/2)^2",
+      "value": "1/4"
+    },
+    {
+      "id": "N_gram_diff",
+      "expr": "1/2 - 0",
+      "value": "1/2"
+    }
+  ],
+  "open_obligations": [
+    "No existing SRC declaration is relevant to qubit cloning; all refs are proposed_new",
+    "Lean formalization of Herm(2) over Q(i) and CPTP maps not grounded",
+    "Fidelity monotonicity for CPTP maps on rays needs a formal proof",
+    "Link to the imported definition of superinformation medium is a reading of definitions",
+    "Exact form of the R_identity_resolution statement needs cleanup (both sides equal the identity)",
+    "Six-state subset enumeration for the maximal-cloneable claim not done"
+  ]
+}

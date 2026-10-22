@@ -1,0 +1,152 @@
+{
+  "task_id": "LQG-AREA-SPECTRUM-EXACT-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "962439d170a232b61e6b5af0b3b510323ce1dfe79984098126fbe83c6f15a303",
+  "candidate_sha256": "54219fba4a78f3a7149cdb9803987f3f74760dba7737ba2c6ff8a71288ed0fc8",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS",
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 5,
+    "failure_rate": 0.625,
+    "failures_by_class": {
+      "composition_type_mismatch": 3,
+      "vacuous_proof": 2
+    },
+    "unverifiable": 9,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T00:35:12Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-85153189B460",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_area_sum . slot 0 <- g_spin_term via r_term_values",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-AREA-SPECTRUM-EXACT-TARGET"
+      },
+      {
+        "id": "NEG-85153189B460",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_area_sum . slot 1 <- g_spin_term via r_term_values",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-AREA-SPECTRUM-EXACT-TARGET"
+      },
+      {
+        "id": "NEG-F9A2D0E97FBE",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_squarefree_reduce . slot 0 <- g_area_sum via r_equal_iff_reduced",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-AREA-SPECTRUM-EXACT-TARGET"
+      },
+      {
+        "id": "NEG-F9B32565D458",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_min_level: Smallest nonzero level over at most four punctures with j<=3 is sqrt3/2, since every term is >= sqrt3/2",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-AREA-SPECTRUM-EXACT-TARGET"
+      },
+      {
+        "id": "NEG-0BB83083D4AC",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_equal_iff: Equal area iff equal squarefree-reduced coefficient vectors",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-AREA-SPECTRUM-EXACT-TARGET"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No existing declarations cited; Mathlib linear independence of square roots of squarefree integers must be located or proved",
+      "Full enumeration table of levels for at most four punctures not computed here",
+      "Counting of distinct levels and degeneracies not produced",
+      "Lean skeletons are sorry placeholders",
+      "Exact formalization of multiset and reduction to squarefree form not written",
+      "generator g_spin_term unverified: no existing declaration cited",
+      "generator g_area_sum unverified: no existing declaration cited",
+      "generator g_squarefree_reduce unverified: no existing declaration cited",
+      "relation r_term_values unverified: no existing declaration cited",
+      "relation r_lin_indep unverified: no existing declaration cited",
+      "relation r_equal_iff_reduced unverified: no existing declaration cited",
+      "lemma l_degeneracy_example unverified: Lean elaboration disabled",
+      "near_miss nm_sqrt_additive unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_spin1_two_half unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_deg_coeff",
+        "expr": "4*1/2",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      },
+      {
+        "id": "n_j3_radicand",
+        "expr": "3*(3+1)",
+        "value": "12",
+        "host_evidence": {
+          "recomputed": "12"
+        }
+      },
+      {
+        "id": "n_j52_radicand_times4",
+        "expr": "4*(5/2)*(7/2)",
+        "value": "35",
+        "host_evidence": {
+          "recomputed": "35"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

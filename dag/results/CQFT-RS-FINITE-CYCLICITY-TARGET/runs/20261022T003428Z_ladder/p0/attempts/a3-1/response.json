@@ -1,0 +1,83 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R1",
+      "statement": "For a unit vector Omega in H=(C^2)^{⊗n} and site set A, A(A)Omega = H iff the reduced state of Omega on A^c has full rank 2^|A^c| iff Omega is separating for A(A^c). Equivalently A(A)Omega = H_A tensor range of the complementary marginal, of dimension 2^|A| r, where r is the Schmidt rank across A and A^c.",
+      "hypotheses": "Omega a unit vector over Q(i); A a subset of the n sites; A(A) the full matrix algebra on A acting as M tensor identity.",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L1",
+      "statement": "Dimension of A(A)Omega is 2^|A| * r, where r is the Schmidt rank of Omega across A and A^c. It is the rank of the reduced state on A^c.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [],
+      "lean_skeleton": "theorem dim_orbit_eq (n : ℕ) : True := by trivial -- placeholder; the real statement needs a definition of A(A)Omega that is not available",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L2",
+      "statement": "A(A)Omega = H iff the Schmidt rank r across A and A^c equals 2^|A^c|. This is equivalent to the reduced state on A^c having full rank, and to Omega being separating for A(A^c).",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "L1"
+      ],
+      "lean_skeleton": "theorem cyclic_iff_full_rank (n : ℕ) : True := by trivial -- placeholder",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "N1",
+      "claim": "The three-qubit GHZ vector is cyclic for some single site.",
+      "rejecting_invariant": "The marginal on the two remaining sites has rank 2, not 4, so the Schmidt rank across a single site is 2 and 2*2=4 is less than 8."
+    },
+    {
+      "id": "N2",
+      "claim": "A product vector is cyclic for a proper subset A of the sites.",
+      "rejecting_invariant": "Schmidt rank across A and A^c is 1, so the marginal on A^c has rank 1, which is less than 2^|A^c| when A^c is nonempty."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "C1",
+      "expr": "2*2",
+      "value": "4"
+    },
+    {
+      "id": "C2",
+      "expr": "2^3",
+      "value": "8"
+    },
+    {
+      "id": "C3",
+      "expr": "4*2",
+      "value": "8"
+    }
+  ],
+  "open_obligations": [
+    "No existing declaration formalizes A(A)Omega, the reduced state, or separating vectors; all are proposed_new.",
+    "The Lean proof of the general-n equivalence is open, and the skeletons are placeholders.",
+    "The GHZ and W pair-cyclicity ranks need exact computation: a pair has a single complementary site, so full rank means a rank-2 marginal.",
+    "The relation of TensorSchmidt.exists_schmidt_bases to the Schmidt decomposition over Q(i) is not established; it is stated over C.",
+    "No generators are grounded; the OpenSet declarations are not related to the quantum target."
+  ]
+}
