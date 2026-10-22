@@ -1,0 +1,216 @@
+{
+  "schema_id": "omega.pfp.llm-ladder.run-receipt.v1",
+  "authority_effect": "None",
+  "node_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+  "stage": "P0",
+  "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T003706Z_ladder",
+  "finished_utc": "2026-10-22T00:37:28Z",
+  "provider_calls_policy": "This run called external model providers; the receipt below lists every call. That differs from the historical batch policy \"external_provider_calls: 0\" (dag/pfp/batch_tools/selection.py); the difference is intentional and recorded here. Provider replies are untrusted proposals: only the host-verified entries in operad_delta.yaml count, and no theorem is accepted.",
+  "external_provider_calls": 2,
+  "free_calls": 0,
+  "paid_calls": 2,
+  "policy": {
+    "min_verified": 2,
+    "max_failure_rate": 0.5,
+    "feedback": true,
+    "feedback_arm": true
+  },
+  "tiers_configured": [
+    {
+      "id": 3,
+      "name": "sonnet",
+      "attempts_before_escalation": 2,
+      "models": [
+        "claude-sonnet-5-5"
+      ]
+    }
+  ],
+  "run_cap_usd": 0.15,
+  "summary": {
+    "node_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+    "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T003706Z_ladder",
+    "stage": "P0",
+    "status": "not_accepted",
+    "stop_reason": "ladder_exhausted",
+    "accepted_attempt": null,
+    "best_attempt": "a3-1",
+    "attempts": [
+      {
+        "attempt_id": "a3-1",
+        "tier": 3,
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 5,
+        "known_pos_injected": 4,
+        "input_sha256": "55428257ff422cb12f536d7d5d3ed3baa281c8ec171b820e5089519d0fd418f0",
+        "injected_neg_ids": [
+          "NEG-0689548DABB6",
+          "NEG-67462B6AB8D9",
+          "NEG-1442E8FC8AE8",
+          "NEG-0B94503ACD89",
+          "NEG-915E6B31E73D"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 1,
+        "failure_rate": 1.0,
+        "failures_by_class": {
+          "vacuous_proof": 1
+        },
+        "unverifiable": 7,
+        "input_tokens": 3602,
+        "output_tokens": 1180,
+        "cost_microusd": 19004,
+        "request_id": "req_011CgGLhZrvGBrrNEsPYxqk1",
+        "latency_s": 7.564,
+        "stop_reason": "end_turn",
+        "served_model": "claude-sonnet-5-5",
+        "structured_mode": "json_schema",
+        "lean": "not_needed",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-81FB392F047F"
+        ]
+      },
+      {
+        "attempt_id": "a3-2",
+        "tier": 3,
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "guided": true,
+        "known_neg_injected": 6,
+        "known_pos_injected": 4,
+        "input_sha256": "0f241ba3306e2e4566e68152dd85d8e7d814811a309bbfacbcc467b3398c37b1",
+        "injected_neg_ids": [
+          "NEG-0689548DABB6",
+          "NEG-67462B6AB8D9",
+          "NEG-1442E8FC8AE8",
+          "NEG-0B94503ACD89",
+          "NEG-915E6B31E73D",
+          "NEG-81FB392F047F"
+        ],
+        "status": "rejected",
+        "verified_total": 0,
+        "failures_total": 1,
+        "failure_rate": 1.0,
+        "failures_by_class": {
+          "vacuous_proof": 1
+        },
+        "unverifiable": 8,
+        "input_tokens": 3682,
+        "output_tokens": 1434,
+        "cost_microusd": 21704,
+        "request_id": "req_011CgGLi9fAM4t1vhqtmSmox",
+        "latency_s": 12.575,
+        "stop_reason": "end_turn",
+        "served_model": "claude-sonnet-5-5",
+        "structured_mode": "json_schema",
+        "lean": "skipped",
+        "abstained": false,
+        "negative_entries": [
+          "NEG-B039F70B3A54"
+        ]
+      }
+    ],
+    "totals_by_tier": {
+      "3": {
+        "calls": 2,
+        "sent": 2,
+        "input_tokens": 7284,
+        "output_tokens": 2614,
+        "cost_microusd": 40708,
+        "errors": 0,
+        "refused_before_dispatch": 0
+      }
+    },
+    "feedback": true,
+    "spend_microusd": 40708,
+    "spend_usd": 0.040708,
+    "hallucinations_by_class": {
+      "vacuous_proof": 2
+    },
+    "hallucinations_by_model": {
+      "claude-sonnet-5-5": {
+        "vacuous_proof": 2
+      }
+    },
+    "verified": {
+      "generators": 0,
+      "relations": 0,
+      "compositions": 0,
+      "lemmas": 0,
+      "numeric": 0
+    }
+  },
+  "calls": [
+    {
+      "call_id": "a3-1:3018fcf6",
+      "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T003706Z_ladder",
+      "attempt_id": "a3-1",
+      "tier": 3,
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 5000,
+      "started_utc": "2026-10-22T00:37:06Z",
+      "status": "ok",
+      "estimated_input_tokens": 2930,
+      "estimate_microusd": 55860,
+      "served_model": "claude-sonnet-5-5",
+      "input_tokens": 3602,
+      "output_tokens": 1180,
+      "cost_microusd": 19004,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGLhZrvGBrrNEsPYxqk1",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 7.564,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    },
+    {
+      "call_id": "a3-2:3f5feab4",
+      "run_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET/20261022T003706Z_ladder",
+      "attempt_id": "a3-2",
+      "tier": 3,
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "family": "anthropic",
+      "effort": "medium",
+      "max_tokens": 5000,
+      "started_utc": "2026-10-22T00:37:15Z",
+      "status": "ok",
+      "estimated_input_tokens": 3016,
+      "estimate_microusd": 56032,
+      "served_model": "claude-sonnet-5-5",
+      "input_tokens": 3682,
+      "output_tokens": 1434,
+      "cost_microusd": 21704,
+      "cost_source": "price_table",
+      "request_id": "req_011CgGLi9fAM4t1vhqtmSmox",
+      "stop_reason": "end_turn",
+      "stop_category": null,
+      "truncated": false,
+      "latency_s": 12.575,
+      "streamed": false,
+      "structured_mode": "json_schema",
+      "http_status": null,
+      "backoff_events": []
+    }
+  ],
+  "budget_week_after": {
+    "week": "2026-W43",
+    "anthropic_microusd": 10.825872,
+    "anthropic_cap_microusd": 150.0,
+    "paid_other_microusd": 0.000449,
+    "paid_other_cap_microusd": 10.0
+  },
+  "redaction": "Key values are redacted from every field; the scan test (test_ladder.py) re-checks the files."
+}
