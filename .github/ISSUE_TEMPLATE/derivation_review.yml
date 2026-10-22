@@ -1,0 +1,118 @@
+name: Derivation review
+description: Report an independent review of a node, its Lean file, its independent check or its derivation note.
+title: "Review: <node id or file>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reading this critically. The process, the verdict scale and the way credit is given are in [REVIEWING.md](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/main/REVIEWING.md).
+        This issue is public and is the record of your review. A favourable review does not change a node's status by itself. Choose **N** for anything you did not assess.
+  - type: input
+    id: node
+    attributes:
+      label: Node id or file
+      description: A node id from dag/derivation_dag.json (for example L1-IMP-HILBERT-INNER-PRODUCT), or a file path if you reviewed a tool.
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit reviewed
+      description: Output of git rev-parse HEAD in the checkout you read, or the commit hash shown on GitHub.
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: Reviewer background
+      description: One or two lines on the expertise relevant to this node (field, level, what you have worked on). You may be as brief or as general as you like.
+    validations:
+      required: true
+  - type: dropdown
+    id: statement
+    attributes:
+      label: Verdict on the statement (statement fidelity)
+      description: Does the node statement say what its source says, and does the Lean declaration or proof state what the node says?
+      options:
+        - "A: agree"
+        - "B: agree with remarks"
+        - "C: disagree"
+        - "N: not assessed"
+    validations:
+      required: true
+  - type: dropdown
+    id: proof
+    attributes:
+      label: Verdict on the proof (proof correctness)
+      description: Is the Lean declaration or the paper proof valid for the statement it addresses?
+      options:
+        - "A: agree"
+        - "B: agree with remarks"
+        - "C: disagree"
+        - "N: not assessed"
+    validations:
+      required: true
+  - type: dropdown
+    id: prose
+    attributes:
+      label: Verdict on the prose (clarity of the derivation note)
+      description: Can a specialist follow the note, and does it say what is assumed, proved and open?
+      options:
+        - "A: agree"
+        - "B: agree with remarks"
+        - "C: disagree"
+        - "N: not assessed"
+    validations:
+      required: true
+  - type: dropdown
+    id: code
+    attributes:
+      label: Verdict on the code (independent check or certifier)
+      description: Does the independent check or certifier compute what the node says, with exact arithmetic?
+      options:
+        - "A: agree"
+        - "B: agree with remarks"
+        - "C: disagree"
+        - "N: not assessed"
+    validations:
+      required: true
+  - type: dropdown
+    id: overclaiming
+    attributes:
+      label: Verdict on overclaiming
+      description: Does anything say more than the evidence supports (a label, a name, a general word for a fixed instance)?
+      options:
+        - "A: nothing overstated that I found"
+        - "B: minor overstatement"
+        - "C: material overstatement"
+        - "N: not assessed"
+    validations:
+      required: true
+  - type: dropdown
+    id: recommendation
+    attributes:
+      label: Recommendation on the node's status label
+      options:
+        - Label supported
+        - Label too strong
+        - Label too weak
+        - Cannot say
+    validations:
+      required: true
+  - type: textarea
+    id: issues
+    attributes:
+      label: Specific issues
+      description: One per item. Give a file and line or declaration name, say what is wrong or unclear, and say what you think the correct statement or status is. For verdict A, say what you read.
+    validations:
+      required: true
+  - type: textarea
+    id: other
+    attributes:
+      label: Other remarks
+      description: Optional. Views on the physics, the interpretation, the literature or attribution belong here, separate from the verdicts above.
+  - type: input
+    id: credit
+    attributes:
+      label: How should you be credited?
+      description: The name and affiliation to show in docs/reviewers.md, or "anonymous". Leave blank to be listed by your GitHub handle.
