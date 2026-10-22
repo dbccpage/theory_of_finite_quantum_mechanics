@@ -115,6 +115,8 @@ class CompiledPacket:
     input_sha256: str
     meta: dict = field(default_factory=dict)
     target_statement: str = ''
+    allowed_refs: set | None = None
+    credited_paths: set | None = None
 
     def estimated_tokens(self) -> int:
         return estimate_tokens(self.system + self.user + json.dumps(self.schema))
@@ -155,6 +157,8 @@ IDENTIFIER = re.compile(r'[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+|[a-z]+[A-Z][A-Z
 # A word that occurs in the stem of more than this many source files ("test", "omega", "contract", "genesis"...) says nothing
 # about which file a statement is about.
 STEM_DOC_FREQUENCY_LIMIT = 300   # in this repo: drops contract, omega, test(s), math, wdp, mub, quantum, theory, physics; keeps primitive, boundary, genesis
+STRUCTURAL_STEM_STOP = {'boundary', 'contract', 'primitive', 'genesis', 'engine', 'lattice', 'manifold', 'gauge',
+                        'sector', 'state', 'system', 'model', 'verify', 'check', 'audit', 'test', 'tests'}
 MAX_FILE_CANDIDATES = 4        # a bare file name that resolves to more files than this is too ambiguous to offer
 NAMED_FILE_DECLS = 10
 
@@ -172,7 +176,7 @@ def _distinctive(index: DeclIndex, tokens: set) -> set:
             for token in _tokens(Path(path).stem):
                 frequency[token] = frequency.get(token, 0) + 1
         index._stem_frequency = frequency
-    return {t for t in tokens if frequency.get(t, 0) <= STEM_DOC_FREQUENCY_LIMIT}
+    return {t for t in tokens if t not in STRUCTURAL_STEM_STOP and frequency.get(t, 0) <= STEM_DOC_FREQUENCY_LIMIT}
 
 
 def named_files(index: DeclIndex, text: str, preferred=()) -> list:
@@ -351,7 +355,26 @@ def compile_p0(root, node_id, *, attempt_id, policy, index: DeclIndex | None = N
             'neg_entry_ids': [e['id'] for e in negatives]}
     meta.update(groundability(root, node_id, collection, index, statement, bottleneck_text, len(src_lines),
                               sum(1 for score, _, _ in candidates if score >= STRONG_SCORE), len(positives)))
-    return CompiledPacket(node_id, 'P0', attempt_id, SYSTEM_P0, '\n'.join(lines) + '\n', P0_SCHEMA, digest, meta, statement)
+    node_obj = dag_node(root, node_id) or {}
+    anchors = [anchor_path(a) for a in (node_obj.get('lean') or []) + (node_obj.get('rust') or []) + (node_obj.get('python') or []) if a]
+    named = named_files(index, '%s\n%s\n%s' % (statement or '', bottleneck_text or '', node_code_text(node_obj)), preferred=set(anchors))
+    cand_sources = [item.get('source') for item in (collection.get('operation_candidates') or []) + (collection.get('relation_candidates') or []) if item.get('source')]
+    credited_paths = {p for _, p, _ in candidates} | set(anchors) | set(named) | set(cand_sources)
+    allowed_refs = {(p, d['full']) for _, p, d in candidates} | {(p, d['name']) for _, p, d in candidates}
+    for p in set(anchors) | set(named) | set(cand_sources):
+        for d in (index.file_entry(p) or {}).get('table', []):
+            allowed_refs.add((p, d['full']))
+            allowed_refs.add((p, d['name']))
+    for row_pos in positives:
+        ev = (row_pos.get('item') or {}).get('host_evidence') or {}
+        ev_p, ev_d = ev.get('path'), ev.get('decl')
+        if ev_p and ev_d:
+            allowed_refs.add((ev_p, ev_d))
+            allowed_refs.add((ev_p, ev_d.split('.')[-1]))
+            if row_pos.get('node_id') == node_id:
+                credited_paths.add(ev_p)
+    return CompiledPacket(node_id, 'P0', attempt_id, SYSTEM_P0, '\n'.join(lines) + '\n', P0_SCHEMA, digest, meta, statement,
+                          allowed_refs=allowed_refs, credited_paths=credited_paths)
 
 
 def staged_baseline_tokens(root, node_id) -> int | None:

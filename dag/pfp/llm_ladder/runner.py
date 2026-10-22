@@ -252,7 +252,9 @@ class LadderRunner:
             note = ' (truncated at max_tokens)' if result.truncated else ''
             report.failures.append(Failure('unparseable_reply', 'reply', 'reply', (result.text or '')[:120], (error or '') + note))
             return report, None
-        return self.verifier.verify_p0(response, packet.schema, target_statement=packet.target_statement), response
+        return self.verifier.verify_p0(response, packet.schema, target_statement=packet.target_statement,
+                                       allowed_refs=packet.allowed_refs,
+                                       credited_paths=packet.credited_paths), response
 
     # ------------------------------------------------------------------ records
     def _finish(self, node_id, run_id, run_name, writer, attempts, texts, gateway, accepted, stop_reason, first_packet,
