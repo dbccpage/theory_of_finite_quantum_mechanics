@@ -6,7 +6,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 |---|---|
 | `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 219 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 53 |
-| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file or it records a failure | 0 |
+| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 0 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 13 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 55 |
@@ -300,7 +300,7 @@ PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none 
 
 ## `receipt_not_current` (0)
 
-A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file or it records a failure. Ordered by downstream nodes, most first.
+A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit. Ordered by downstream nodes, most first.
 
 None.
 

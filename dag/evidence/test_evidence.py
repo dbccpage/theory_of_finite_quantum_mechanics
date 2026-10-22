@@ -149,25 +149,89 @@ def test_grade_rules_on_synthetic_evidence():
 
 
 def test_receipt_acceptance_rules():
-    base = {"exit_code": 0, "axiom_audit_passed": True, "admission_scan_passed": True,
-            "source_unchanged_during_build": True, "built_successfully": True, "axioms_standard": True}
+    base = {"exit_code": 0, "axiom_audit_passed": True, "axioms_standard": True}
     assert be.receipt_ok(base, True)
     assert not be.receipt_ok(base, False)
     assert not be.receipt_ok({**base, "exit_code": 1}, True)
     assert not be.receipt_ok({**base, "axiom_audit_passed": False}, True)
     assert not be.receipt_ok({**base, "axioms_standard": False}, True)
+    # an absent audit flag is not a pass
+    assert not be.receipt_ok({**base, "axiom_audit_passed": None}, True)
+    assert not be.receipt_ok({"exit_code": 0, "axioms_standard": True}, True)
     assert be.parse_axiom_output("'A.b' depends on axioms: [propext,\n Quot.sound]\n'A.c' does not depend on any axioms") == {
         "A.b": ["Quot.sound", "propext"], "A.c": []}
-    assert be.decl_matches("A.b", "A.b") and be.decl_matches("Ns.A.b", "A.b") and not be.decl_matches("A.b", "A.c")
 
 
-def test_leaf_rule_matches_the_validator():
-    assert be.leaf_of("Ns.Mod.name") == "name"
-    assert be.leaf_of("x") == "x"
-    path, symbol, where = be.parse_ref("lean4/X.lean::Ns.t")
-    assert (path, symbol, where) == ("lean4/X.lean", "Ns.t", None)
-    assert be.parse_ref("papers/a.md:1-45") == ("papers/a.md", None, "1-45")
-    assert be.parse_ref("dag/a.md#ANCHOR-1") == ("dag/a.md", None, "ANCHOR-1")
+def test_every_indexed_receipt_records_a_passed_axiom_audit_or_is_not_credited():
+    builder = be.Builder()
+    for receipt in builder.receipts:
+        if receipt["axiom_audit_passed"] is not True:
+            assert not be.receipt_ok(receipt, True), receipt["id"]
+
+
+def test_declaration_names_match_in_one_direction_and_ambiguity_is_recorded():
+    pair = ["ChainRetraction.TwoPoints.cls_ne_zero", "ChainRetraction.Triangle.cls_ne_zero"]
+    assert be.matching_names("ChainRetraction.TwoPoints.cls_ne_zero", pair) == ["ChainRetraction.TwoPoints.cls_ne_zero"]
+    assert be.matching_names("ChainRetraction.Triangle.cls_ne_zero", pair) == ["ChainRetraction.Triangle.cls_ne_zero"]
+    assert be.matching_names("cls_ne_zero", pair) == sorted(pair)  # two hits: ambiguous
+    assert be.matching_names("Ns.A.b", ["A.b"]) == []  # the receipt name may not be the longer-prefix fragment
+    assert be.matching_names("A.b", ["Ns.A.b", "A.c"]) == ["Ns.A.b"]
+    # the real receipt holds both declarations
+    names = set(receipt_names("pfp_batch01_lean_replay.json"))
+    assert set(pair) <= names
+    builder = be.Builder()
+    unique = builder.make_item("lean4/ChainRetraction.lean::ChainRetraction.TwoPoints.cls_ne_zero", "test", True)
+    ambiguous = builder.make_item("lean4/ChainRetraction.lean::cls_ne_zero", "test", True)
+    assert unique["decl_listed"] and not unique["decl_ambiguous"] and unique["decl_axioms"] is not None
+    assert ambiguous["decl_ambiguous"] and not ambiguous["decl_listed"] and ambiguous["decl_axioms"] is None
+
+
+def test_descendant_counts_are_unique_and_survive_a_cycle():
+    nodes = {n: {} for n in "abcd"}
+    routes = [{"inputs": ["a"], "output": "b"}, {"inputs": ["a", "b"], "output": "c"},
+              {"inputs": ["b"], "output": "c"}, {"inputs": ["c"], "output": "d"}]
+    assert be.descendant_counts(nodes, routes) == {"a": 3, "b": 2, "c": 1, "d": 0}
+    cyclic = routes + [{"inputs": ["d"], "output": "a"}]
+    assert set(be.descendant_counts(nodes, cyclic)) == set(nodes)  # no crash; validate_derivation_dag.py rejects cycles
+
+
+def test_the_validator_owns_citation_parsing():
+    assert validator.symbol_leaf("Ns.Mod.name") == "name"
+    assert validator.symbol_leaf("x::y.z") == "z"
+    assert be.split_citation("lean4/X.lean::Ns.t") == ("lean4/X.lean", "Ns.t", None)
+    assert be.split_citation("papers/a.md:1-45") == ("papers/a.md", None, "1-45")
+    assert be.split_citation("dag/a.md#ANCHOR-1") == ("dag/a.md", None, "ANCHOR-1")
+    assert be.split_citation("external:arXiv:1503.06237") == ("external:arXiv:1503.06237", None, None)
+    assert not hasattr(be, "parse_ref") and not hasattr(be, "leaf_of")
+
+
+def test_the_renderer_is_pure():
+    import builtins
+    import pathlib
+    import render_evidence as render
+    statements = {n["id"]: n for n in dag()["nodes"]}
+    banned = ("open", "read_text", "read_bytes")
+    saved = {name: getattr(pathlib.Path, name) for name in banned[1:]}
+    saved_open = builtins.open
+
+    def refuse(*a, **k):
+        raise AssertionError("the renderer must not read files")
+
+    builtins.open = refuse
+    for name in banned[1:]:
+        setattr(pathlib.Path, name, refuse)
+    try:
+        pages = render.render_pages(document(), statements)
+    finally:
+        builtins.open = saved_open
+        for name, fn in saved.items():
+            setattr(pathlib.Path, name, fn)
+    assert {k: v for k, v in outputs().items() if k != be.MAP_REL} == pages
+
+
+def test_module_sizes_stay_under_the_limit():
+    for name in ("build_evidence.py", "render_evidence.py"):
+        assert len((HERE / name).read_text(encoding="utf-8").splitlines()) < 1000, name
 
 
 # ------------------------------------------------------------------ chosen nodes, checked independently
@@ -175,6 +239,13 @@ def test_leaf_rule_matches_the_validator():
 def receipt_entries(name: str) -> list[dict]:
     data = json.loads((ROOT / "dag/research" / name).read_text(encoding="utf-8"))
     return data["lean_replay"]["results"]
+
+
+def receipt_names(name: str) -> list[str]:
+    names: list[str] = []
+    for entry in receipt_entries(name):
+        names += list(entry.get("axioms", {})) + list(entry.get("anchors", []))
+    return names
 
 
 def test_frontier_nodes_follow_their_receipt():
@@ -201,7 +272,7 @@ def test_five_qubit_perfect_tensor_is_e3_or_higher():
 def test_pfp_batch_nodes_are_credited_through_their_receipt():
     for entry in receipt_entries("pfp_batch01_lean_replay.json"):
         current = hashlib.sha256((ROOT / entry["source"]).read_bytes()).hexdigest()
-        if current == entry["sha256"] and entry["exit_code"] == 0:
+        if current == entry["sha256"] and entry["exit_code"] == 0 and entry.get("axiom_audit_passed") is True:
             assert at_least(rows()[entry["dag_node"]]["grade"], "E3"), entry["dag_node"]
 
 
@@ -236,7 +307,7 @@ def test_proved_lean_with_only_external_lean_is_flagged():
         if node["status"] != "PROVED_LEAN" or not node["lean"]:
             continue
         in_repo = [r for r in node["lean"]
-                   if not r.startswith(be.EXTERNAL_PREFIXES) and (root / be.parse_ref(r)[0]).exists()]
+                   if not r.startswith(be.EXTERNAL_PREFIXES) and (root / validator.split_ref(r)[0]).exists()]
         if not in_repo:
             expected.add(node["id"])
     listed = {m["node"] for m in document()["mismatches"] if m["kind"] == "proved_lean_external_only"}
