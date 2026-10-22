@@ -1,0 +1,160 @@
+{
+  "task_id": "CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a4-2",
+  "input_sha256": "d7dbb4dbb92c57027cbd4dec765b050739a294a7acdd0b88b095063aea918866",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"ordered_product\",\"inputs\":[\"LinearExtension\",\"MatrixFamily\"],\"output\":\"Matrix\",\"arity\":2,\"carrier\":\"For a listing [x1,...,xn] of P and a family A : P -> Matrix (Fin d) (Fin d) Q, returns A_x1 * ... * A_xn, i.e. the list product of the mapped list\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"adjacent_swap\",\"inputs\":[\"LinearExtension\",\"SwapIndex\"],\"output\":\"LinearExtension\",\"arity\":2,\"carrier\":\"Swaps positions i and i+1 of a linear extension; it is defined only when the two elements are incomparable (spacelike), so the result is again a linear extension\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"swap_commute\",\"statement\":\"ordered_product(adjacent_swap(L,i), A) = ordered_product(L, A) whenever A_{L_i} * A_{L_{i+1}} = A_{L_{i+1}} * A_{L_i}\",\"hypotheses\":\"L_i and L_{i+1} are incomparable in P; A commutes on spacelike pairs\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"swap_connected\",\"statement\":\"Any two linear extensions of a finite strict poset are connected by a finite chain of adjacent swaps of incomparable elements\",\"hypotheses\":\"P is a finite strict partial order\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"pauli_anticommute_sign\",\"statement\":\"For the Pauli matrices, X*Z = -(Z*X). So swapping two spacelike elements that carry X and Z negates the ordered product\",\"hypotheses\":\"A_x = X and A_y = Z with x,y incomparable\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[{\"outer\":\"ordered_product\",\"slot\":0,\"inner\":\"adjacent_swap\",\"licensing_relation\":\"swap_commute\"}],\"lemmas\":[{\"id\":\"list_prod_adjacent_swap\",\"statement\":\"In any monoid, if a*b = b*a then (l1 ++ a :: b :: l2).prod = (l1 ++ b :: a :: l2).prod. This is the elementary swap lemma for general n\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"swap_commute\"],\"lean_skeleton\":\"theorem list_prod_adjacent_swap {M : Type*} [Monoid M] (l₁ l₂ : List M) (a b : M) (h : a * b = b * a) : (l₁ ++ a :: b :: l₂).prod = (l₁ ++ b :: a :: l₂).prod := by\\n  simp only [List.prod_append, List.prod_cons]\\n  rw [← mul_assoc a b, h, mul_assoc]\",\"claims_proved\":true,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"ordered_product_linext_invariant\",\"statement\":\"For a finite strict poset P and A : P -> Matrix with A x * A y = A y * A x for all incomparable x,y, any two linear extensions L, L' satisfy (L.map A).prod = (L'.map A).prod\",\"relation_to_target\":\"restates\",\"depends_on\":[\"list_prod_adjacent_swap\",\"swap_connected\"],\"lean_skeleton\":\"theorem ordered_product_linext_invariant {P : Type*} [PartialOrder P] [Fintype P] {d : ℕ} (A : P → Matrix (Fin d) (Fin d) ℚ) (hA : ∀ x y, ¬ x ≤ y → ¬ y ≤ x → A x * A y = A y * A x) (L L' : List P) (hL : L.Nodup ∧ (∀ x, x ∈ L) ∧ L.Sorted (fun x y => ¬ y < x)) (hL' : L'.Nodup ∧ (∀ x, x ∈ L') ∧ L'.Sorted (fun x y => ¬ y < x)) : (L.map A).prod = (L'.map A).prod := by\\n  sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"born_linear_extension_pun\",\"claim\":\"BornFable.OrderedQUnit.linear_extension (lean4/BornLinearExtension.lean) proves the poset linear-extension statement\",\"rejecting_invariant\":\"That theorem extends an effect valuation to a Q-linear functional on an order-unit space. It shares only the name 'linear extension' and has nothing to do with listings of a poset, so it cannot license any step here\"},{\"id\":\"anticommuting_independence\",\"claim\":\"The ordered product is independent of the linear extension even when spacelike elements carry anticommuting matrices\",\"rejecting_invariant\":\"On the antichain {x,y} with A_x = X and A_y = Z, the two linear extensions give XZ and ZX = -XZ, and XZ is nonzero. The products differ by the sign -1\"},{\"id\":\"epstein_glaser_equivalence\",\"claim\":\"The finite lemma is the Epstein-Glaser causal factorization\",\"rejecting_invariant\":\"It is only an analogy. The distribution extension and the UV content have no finite counterpart\"}],\"numeric_claims\":[{\"id\":\"diamond_linext_count\",\"expr\":\"1*2*1\",\"value\":\"2\"},{\"id\":\"N_poset_linext_count\",\"expr\":\"2 + 3\",\"value\":\"5\"},{\"id\":\"antichain2_linext_count\",\"expr\":\"2*1\",\"value\":\"2\"},{\"id\":\"pauli_swap_sign\",\"expr\":\"(-1)*1\",\"value\":\"-1\"}],\"open_obligations\":[\"Lean proof of swap_connected for a general finite strict poset (bubble-sort or induction on the number of inversions between L and L')\",\"sorry-free proof of ordered_product_linext_invariant from list_prod_adjacent_swap and swap_connected\",\"Exact decide/norm_num checks of the Pauli matrix products over all 2 diamond and all 5 N-poset linear extensions, using a concrete Pauli assignment that commutes on the spacelike pairs\",\"Explicit Lean check that X*Z = -(Z*X) for the 2x2 Pauli matrices over Q (Y needs Gaussian rationals, or use only X and Z)\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "ordered_product",
+        "inputs": [
+          "LinearExtension",
+          "MatrixFamily"
+        ],
+        "output": "Matrix",
+        "arity": 2,
+        "carrier": "For a listing [x1,...,xn] of P and a family A : P -> Matrix (Fin d) (Fin d) Q, returns A_x1 * ... * A_xn, i.e. the list product of the mapped list",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "adjacent_swap",
+        "inputs": [
+          "LinearExtension",
+          "SwapIndex"
+        ],
+        "output": "LinearExtension",
+        "arity": 2,
+        "carrier": "Swaps positions i and i+1 of a linear extension; it is defined only when the two elements are incomparable (spacelike), so the result is again a linear extension",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "swap_commute",
+        "statement": "ordered_product(adjacent_swap(L,i), A) = ordered_product(L, A) whenever A_{L_i} * A_{L_{i+1}} = A_{L_{i+1}} * A_{L_i}",
+        "hypotheses": "L_i and L_{i+1} are incomparable in P; A commutes on spacelike pairs",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "swap_connected",
+        "statement": "Any two linear extensions of a finite strict poset are connected by a finite chain of adjacent swaps of incomparable elements",
+        "hypotheses": "P is a finite strict partial order",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "pauli_anticommute_sign",
+        "statement": "For the Pauli matrices, X*Z = -(Z*X). So swapping two spacelike elements that carry X and Z negates the ordered product",
+        "hypotheses": "A_x = X and A_y = Z with x,y incomparable",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "ordered_product",
+        "slot": 0,
+        "inner": "adjacent_swap",
+        "licensing_relation": "swap_commute"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "list_prod_adjacent_swap",
+        "statement": "In any monoid, if a*b = b*a then (l1 ++ a :: b :: l2).prod = (l1 ++ b :: a :: l2).prod. This is the elementary swap lemma for general n",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "swap_commute"
+        ],
+        "lean_skeleton": "theorem list_prod_adjacent_swap {M : Type*} [Monoid M] (l₁ l₂ : List M) (a b : M) (h : a * b = b * a) : (l₁ ++ a :: b :: l₂).prod = (l₁ ++ b :: a :: l₂).prod := by\n  simp only [List.prod_append, List.prod_cons]\n  rw [← mul_assoc a b, h, mul_assoc]",
+        "claims_proved": true,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "ordered_product_linext_invariant",
+        "statement": "For a finite strict poset P and A : P -> Matrix with A x * A y = A y * A x for all incomparable x,y, any two linear extensions L, L' satisfy (L.map A).prod = (L'.map A).prod",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "list_prod_adjacent_swap",
+          "swap_connected"
+        ],
+        "lean_skeleton": "theorem ordered_product_linext_invariant {P : Type*} [PartialOrder P] [Fintype P] {d : ℕ} (A : P → Matrix (Fin d) (Fin d) ℚ) (hA : ∀ x y, ¬ x ≤ y → ¬ y ≤ x → A x * A y = A y * A x) (L L' : List P) (hL : L.Nodup ∧ (∀ x, x ∈ L) ∧ L.Sorted (fun x y => ¬ y < x)) (hL' : L'.Nodup ∧ (∀ x, x ∈ L') ∧ L'.Sorted (fun x y => ¬ y < x)) : (L.map A).prod = (L'.map A).prod := by\n  sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "born_linear_extension_pun",
+        "claim": "BornFable.OrderedQUnit.linear_extension (lean4/BornLinearExtension.lean) proves the poset linear-extension statement",
+        "rejecting_invariant": "That theorem extends an effect valuation to a Q-linear functional on an order-unit space. It shares only the name 'linear extension' and has nothing to do with listings of a poset, so it cannot license any step here"
+      },
+      {
+        "id": "anticommuting_independence",
+        "claim": "The ordered product is independent of the linear extension even when spacelike elements carry anticommuting matrices",
+        "rejecting_invariant": "On the antichain {x,y} with A_x = X and A_y = Z, the two linear extensions give XZ and ZX = -XZ, and XZ is nonzero. The products differ by the sign -1"
+      },
+      {
+        "id": "epstein_glaser_equivalence",
+        "claim": "The finite lemma is the Epstein-Glaser causal factorization",
+        "rejecting_invariant": "It is only an analogy. The distribution extension and the UV content have no finite counterpart"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "diamond_linext_count",
+        "expr": "1*2*1",
+        "value": "2"
+      },
+      {
+        "id": "N_poset_linext_count",
+        "expr": "2 + 3",
+        "value": "5"
+      },
+      {
+        "id": "antichain2_linext_count",
+        "expr": "2*1",
+        "value": "2"
+      },
+      {
+        "id": "pauli_swap_sign",
+        "expr": "(-1)*1",
+        "value": "-1"
+      }
+    ],
+    "open_obligations": [
+      "Lean proof of swap_connected for a general finite strict poset (bubble-sort or induction on the number of inversions between L and L')",
+      "sorry-free proof of ordered_product_linext_invariant from list_prod_adjacent_swap and swap_connected",
+      "Exact decide/norm_num checks of the Pauli matrix products over all 2 diamond and all 5 N-poset linear extensions, using a concrete Pauli assignment that commutes on the spacelike pairs",
+      "Explicit Lean check that X*Z = -(Z*X) for the 2x2 Pauli matrices over Q (Y needs Gaussian rationals, or use only X and Z)"
+    ]
+  }
+}

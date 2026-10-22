@@ -1,0 +1,317 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a4-2",
+  "input_sha256": "8889ec70ff8768dbc9aa05ff3c67b22564f34ccdce1f4d94109b2b208982ab3c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. The Lean skeleton may use sorry; set claims_proved true only for a sorry-free proof.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Empty arrays are allowed. List what you could not ground in open_obligations. AuthorityEffect: None.",
+  "user_prompt": "@PFP/1 task=LQG-6J-EXACT-AND-PENTAGON-TARGET stage=P0 attempt=a4-2 in=8889ec70 guided=yes\n@TARGET [OPEN] Finite statement to formalize. For the Wigner 6j symbol with all twice-spins at most 6, the square is a rational number given by Racah's single-sum formula with exact integer factorials, and the symbol is the signed square root. Checks: (i) invariance under the 24 tetrahedral symmetries; (ii) orthogonality sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y'); (iii) the Biedenharn-Elliott (pentagon) identity for all admissible labels in the range. Exact arithmetic in the rationals and one square root per symbol.\n@BOTTLENECK Exact enumeration with big integers. The classical 6j is not the q-deformed 6j at level 2 recorded in TFQ-0105; the q to 1 limit is not part of the target.\n@ASSUME none declared\n@SRC none found by the host; cite nothing as existing\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:G_vertexAmplitude (TetSpins)->Cyclo12 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude\n r:R_vacuum vertexAmplitude vacuumSpins = 1 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude\n r:R_inadmissible_vanishes inadmissible tetrahedral labels give zero amplitude src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes\n r:R_pentagon finite pentagon coherence of recoupling amplitudes, a finite algebraic identity only src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] tetrahedral_amplitude -- Do not state that arity/signature for tetrahedral_amplitude.\n [vacuous_proof] L_no_continuum: The finite cyclotomic amplitudes (Z[zeta_12], labels 0,1,2) carry no continuum SU(2)/SL(2,C),  -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_sq_rational: For twice-spins at most 6, sixj_squared is a rational given by Racah's single sum with exact in -- Do not present a sorry/axiom/tautology as a proof.\n [wrong_signature] cayley_menger_determinant -- Do not state that arity/signature for cayley_menger_determinant.\n [wrong_signature] cayley_menger_matrix -- Do not state that arity/signature for cayley_menger_matrix.\n [vacuous_proof] L_sixj_sq_racah: For twice-spins at most 6, the square of sixj equals the rational given by Racah's single sum -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_orth: Sum over x of (2x+1)(2y+1){a b x;c d y}{a b x;c d y'} = delta(y,y') for admissible y,y' -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] g_cm_det_rational . slot 0 <- g_sq_len via r_v2_from_cm -- Do not compose operations whose colours do not match.\n [vacuous_proof] L_sign_classification: For admissible 6-tuples of twice-spins at most 8, classify each tuple as allowed (CM>0) -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_tetra_sym_check: For all admissible 6-tuples of twice-spins at most 6, the Racah square is unchanged under e -- Do not present a sorry/axiom/tautology as a proof.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 0,
+    "known_neg_injected": 10,
+    "known_pos_injected": 4,
+    "neighbours": [
+      "LQG-PONZANO-REGGE-1968-SOURCE",
+      "LQG-PR-ALLOWED-REGION-TARGET",
+      "TFQ-0198"
+    ],
+    "feedback": true,
+    "index_position": 648,
+    "neg_entry_ids": [
+      "NEG-0689548DABB6",
+      "NEG-67462B6AB8D9",
+      "NEG-1442E8FC8AE8",
+      "NEG-0B94503ACD89",
+      "NEG-915E6B31E73D",
+      "NEG-81FB392F047F",
+      "NEG-B039F70B3A54",
+      "NEG-1E0861534F6D",
+      "NEG-3D1187BFC5DF",
+      "NEG-2056DEFADC87"
+    ]
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

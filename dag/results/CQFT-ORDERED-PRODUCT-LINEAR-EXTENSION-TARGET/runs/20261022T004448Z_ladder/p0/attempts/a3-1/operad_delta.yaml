@@ -1,0 +1,51 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-DDA17ADA9FB8
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: ordered_product . slot 2 <- adjacent_swap via swap_commute
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET
+- id: NEG-B14BB27102DD
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'linext_independence_fixed: For a finite strict poset P and matrices A_x commuting on all incomparable
+    pairs, the ordered product is the same for all linear extensions.'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET
+counterexamples: []
+open_obligations:
+- No existing declarations in the SRC list concern ordered products; all generators, relations and lemmas
+  are proposed_new.
+- Lean proof of the swap lemma for general n and of connectivity of linear extensions under adjacent swaps
+  is not done.
+- Exact Pauli checks for the diamond and N poset are not computed.
+- The N poset linear extension count was not verified here.
+- Epstein-Glaser relation remains an analogy only.
+- 'generator ordered_product unverified: no existing declaration cited'
+- 'generator adjacent_swap unverified: no existing declaration cited'
+- 'relation swap_commute unverified: no existing declaration cited'
+- 'relation linext_connected_by_swaps unverified: no existing declaration cited'
+- 'lemma swap_lemma_list unverified: Lean elaboration disabled'
+- 'near_miss anticommute_sign unverified: semantic near miss; P4 host check decides'
+- 'near_miss comparable_swap unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: diamond_extensions
+  expr: '2'
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+verified_lemma_statements: []
