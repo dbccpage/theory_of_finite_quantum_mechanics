@@ -3,30 +3,32 @@ node_id: CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Finite statement to formalize. For a FiniteStrictPoset P and matrices A_x (x in P)
-    on a common finite space, the ordered product along a linear extension (a listing of P in which x<y
-    puts x before y) is the same for every linear extension whenever A_x and A_y commute for all spacelike
-    pairs x,y, because any two linear extensions differ by swaps of adjacent spacelike elements. Exact
-    checks: all linear extensions of the diamond C2 (two of them) and of the N poset, with Pauli matrices;
-    and the sign flip when two spacelike elements carry anticommuting Pauli matrices. This is the finite
-    counterpart of causal factorization. The distribution extension and the ultraviolet content of the
-    Epstein-Glaser construction have no finite counterpart.'
+  source_statement: 'Formalized finite statement. For a FiniteStrictPoset P and elements A_x (x in P)
+    in a monoid, the ordered product along a linear extension (a listing of P in which x<y puts x before
+    y) is preserved under any chain of adjacent spacelike swaps whenever A_x and A_y commute for all spacelike
+    pairs x,y. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset
+    (five of them), connectedness of the two C2 extensions by an adjacent spacelike swap, and the sign
+    flip on 2x2 Pauli matrices when two spacelike elements carry anticommuting matrices X and Z. The distribution
+    extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: The elementary swap lemma needs a Lean proof for general n. The relation to Epstein-Glaser
-    is an analogy.
+  source_bottleneck: 'Checked in Lean 4 for general adjacent spacelike swap chains and on the C2 and N
+    posets. The relation to Epstein-Glaser causal factorization is an analogy: distribution splitting
+    and renormalization have no finite counterpart here.'
   source_refs:
   - dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md
   - lean4/CausalOrder.lean
+  - lean4/FrontierLinearExtension.lean
+  - dag/research/frontier_targets_lean_replay.json
   paper_refs:
   - dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md
-    sha256: 89b4e40aebb560a22d6b7a2e30d16f9284504aac4c027b412dff2ce5cfc31099
+    sha256: 488db1d3f433280a0d43abca11f7a5b67b19603c8accab65f52ab917e89040a6
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -34,9 +36,323 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/causal_qft_cqft_ordered_product_linear_extension_target_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: orderedProd
+  line: 33
+  signature_excerpt: |-
+    def orderedProd {α M : Type*} [One M] [Mul M] (A : α → M) : List α → M
+      | [] => 1
+      | x :: xs => A x * orderedProd A xs
+
+    theorem orderedProd_append {α M : Type*} [Monoid M] (A : α → M) (L₁ L₂ : List α) :
+        orderedProd A (L₁ ++ L₂) = orderedProd A L₁ * orderedProd A L₂
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: AdjSpacelikeSwap
+  line: 45
+  signature_excerpt: 'def AdjSpacelikeSwap {n : Nat} (P : FiniteStrictPoset n) (L₁ L₂ : List (Fin n))
+    : Prop'
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: SpacelikeSwapChain
+  line: 52
+  signature_excerpt: |-
+    inductive SpacelikeSwapChain {n : Nat} (P : FiniteStrictPoset n) :
+        List (Fin n) → List (Fin n) → Prop
+      | refl (L : List (Fin n)) : SpacelikeSwapChain P L L
+      | step {L₁ L₂ L₃ : List (Fin n)} :
+          AdjSpacelikeSwap P L₁ L₂ → SpacelikeSwapChain P L₂ L₃ → SpacelikeSwapChain P L₁ L₃
+
+    /-- An adjacent swap of spacelike elements preserves `orderedProd A` whenever spacelike operators commute. -/
+    theorem orderedProd_eq_of_adjSpacelikeSwap {n : Nat} {M : Type*} [Monoid M]
+        (P : FiniteStrictPoset n) (A : Fin n → M)
+        (hcomm : ∀ x y : Fin n, isSpacelike P x y → A x * A y = A y * A x)
+        {L₁ L
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isLinearExtension
+  line: 90
+  signature_excerpt: 'def isLinearExtension {n : Nat} (P : FiniteStrictPoset n) (L : List (Fin n)) : Bool'
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nodupBool
+  line: 86
+  signature_excerpt: |-
+    def nodupBool {α : Type*} [DecidableEq α] : List α → Bool
+      | [] => true
+      | x :: xs => (xs.all fun y => decide (x ≠ y)) && nodupBool xs
+
+    def isLinearExtension {n : Nat} (P : FiniteStrictPoset n) (L : List (Fin n)) : Bool
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: respectsOrder
+  line: 82
+  signature_excerpt: |-
+    def respectsOrder {n : Nat} (P : FiniteStrictPoset n) : List (Fin n) → Bool
+      | [] => true
+      | x :: xs => (xs.all fun y => !(decide (P.rel y x))) && respectsOrder P xs
+
+    def nodupBool {α : Type*} [DecidableEq α] : List α → Bool
+      | [] => true
+      | x :: xs => (xs.all fun y => decide (x ≠ y)) && nodupBool xs
+
+    def isLinearExtension {n : Nat} (P : FiniteStrictPoset n) (L : List (Fin n)) : Bool
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: assignCommC2
+  line: 152
+  signature_excerpt: |-
+    def assignCommC2 : Fin 4 → Mat2Int
+      | ⟨0, _⟩ => pauliI
+      | ⟨1, _⟩ => pauliZ
+      | ⟨2, _⟩ => pauliZ
+      | ⟨3, _⟩ => pauliI
+
+    /-- Exact sign flip when spacelike elements `d1, d2` of `C2` carry anticommuting Pauli matrices
+    `X` and `Z`, and exact agreement when they carry commuting operators. -/
+    theorem c2_pauli_commuting_and_anticommuting_products :
+        orderedProd assignCommC2 [d0, d1, d2, d3] =
+          orderedProd assignCommC2 [d0, d2, d1, d3] ∧
+        orderedProd assignAnticommC2 [d0, d1, d2, d3] =
+          negMat2 (orderedProd assignAnticommC2 [d0, d2, d1, d3]) ∧
+        orderedProd assignAnticommC2 [d0, d1,
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: assignAnticommC2
+  line: 145
+  signature_excerpt: |-
+    def assignAnticommC2 : Fin 4 → Mat2Int
+      | ⟨0, _⟩ => pauliI
+      | ⟨1, _⟩ => pauliX
+      | ⟨2, _⟩ => pauliZ
+      | ⟨3, _⟩ => pauliI
+
+    /-- Assignment on `C2` placing commuting `Z` and `Z` on the spacelike pair `d1, d2`. -/
+    def assignCommC2 : Fin 4 → Mat2Int
+      | ⟨0, _⟩ => pauliI
+      | ⟨1, _⟩ => pauliZ
+      | ⟨2, _⟩ => pauliZ
+      | ⟨3, _⟩ => pauliI
+
+    /-- Exact sign flip when spacelike elements `d1, d2` of `C2` carry anticommuting Pauli matrices
+    `X` and `Z`, and exact agreement when they carry commuting operators. -/
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: negMat2
+  line: 134
+  signature_excerpt: 'def negMat2 (A : Mat2Int) : Mat2Int'
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 121
+  signature_excerpt: structure Mat2Int
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pauliI
+  line: 140
+  signature_excerpt: 'def pauliI : Mat2Int'
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pauliZ
+  line: 142
+  signature_excerpt: 'def pauliZ : Mat2Int'
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pauliX
+  line: 141
+  signature_excerpt: 'def pauliX : Mat2Int'
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mulMat2
+  line: 128
+  signature_excerpt: 'def mulMat2 (A B : Mat2Int) : Mat2Int'
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: orderedProd_append
+  line: 37
+  signature_excerpt: |-
+    theorem orderedProd_append {α M : Type*} [Monoid M] (A : α → M) (L₁ L₂ : List α) :
+        orderedProd A (L₁ ++ L₂) = orderedProd A L₁ * orderedProd A L₂
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: orderedProd_eq_of_adjSpacelikeSwap
+  line: 59
+  signature_excerpt: |-
+    theorem orderedProd_eq_of_adjSpacelikeSwap {n : Nat} {M : Type*} [Monoid M]
+        (P : FiniteStrictPoset n) (A : Fin n → M)
+        (hcomm : ∀ x y : Fin n, isSpacelike P x y → A x * A y = A y * A x)
+        {L₁ L₂ : List (Fin n)} (hswap : AdjSpacelikeSwap P L₁ L₂) :
+        orderedProd A L₁ = orderedProd A L₂
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: orderedProd_eq_of_spacelikeSwapChain
+  line: 70
+  signature_excerpt: |-
+    theorem orderedProd_eq_of_spacelikeSwapChain {n : Nat} {M : Type*} [Monoid M]
+        (P : FiniteStrictPoset n) (A : Fin n → M)
+        (hcomm : ∀ x y : Fin n, isSpacelike P x y → A x * A y = A y * A x)
+        {L₁ L₂ : List (Fin n)} (hchain : SpacelikeSwapChain P L₁ L₂) :
+        orderedProd A L₁ = orderedProd A L₂
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: linear_extensions_of_C2_and_N
+  line: 106
+  signature_excerpt: |-
+    theorem linear_extensions_of_C2_and_N :
+        allPerms4.length = 24 ∧
+        (allPerms4.filter (isLinearExtension C2)).length = 2 ∧
+        ([d0, d1, d2, d3] ∈ allPerms4.filter (isLinearExtension C2)) ∧
+        ([d0, d2, d1, d3] ∈ allPerms4.filter (isLinearExtension C2)) ∧
+        (allPerms4.filter (isLinearExtension posetN)).length = 5
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: c2_extensions_connected_by_swap
+  line: 115
+  signature_excerpt: |-
+    theorem c2_extensions_connected_by_swap :
+        SpacelikeSwapChain C2 [d0, d1, d2, d3] [d0, d2, d1, d3]
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: c2_pauli_commuting_and_anticommuting_products
+  line: 160
+  signature_excerpt: |-
+    theorem c2_pauli_commuting_and_anticommuting_products :
+        orderedProd assignCommC2 [d0, d1, d2, d3] =
+          orderedProd assignCommC2 [d0, d2, d1, d3] ∧
+        orderedProd assignAnticommC2 [d0, d1, d2, d3] =
+          negMat2 (orderedProd assignAnticommC2 [d0, d2, d1, d3]) ∧
+        orderedProd assignAnticommC2 [d0, d1, d2, d3] ≠
+          orderedProd assignAnticommC2 [d0, d2, d1, d3]
+  source: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  source_sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_append
+  availability: local
+  symbol: FrontierLinearExtension.orderedProd_append
+  path: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_eq_of_adjSpacelikeSwap
+  availability: local
+  symbol: FrontierLinearExtension.orderedProd_eq_of_adjSpacelikeSwap
+  path: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  declaration_status: declaration_found_not_proof_checked
+  line: 59
+  role: source_lead_only
+- original_ref: lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_eq_of_spacelikeSwapChain
+  availability: local
+  symbol: FrontierLinearExtension.orderedProd_eq_of_spacelikeSwapChain
+  path: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  declaration_status: declaration_found_not_proof_checked
+  line: 70
+  role: source_lead_only
+- original_ref: lean4/FrontierLinearExtension.lean::FrontierLinearExtension.linear_extensions_of_C2_and_N
+  availability: local
+  symbol: FrontierLinearExtension.linear_extensions_of_C2_and_N
+  path: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  declaration_status: declaration_found_not_proof_checked
+  line: 106
+  role: source_lead_only
+- original_ref: lean4/FrontierLinearExtension.lean::FrontierLinearExtension.c2_extensions_connected_by_swap
+  availability: local
+  symbol: FrontierLinearExtension.c2_extensions_connected_by_swap
+  path: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  declaration_status: declaration_found_not_proof_checked
+  line: 115
+  role: source_lead_only
+- original_ref: lean4/FrontierLinearExtension.lean::FrontierLinearExtension.c2_pauli_commuting_and_anticommuting_products
+  availability: local
+  symbol: FrontierLinearExtension.c2_pauli_commuting_and_anticommuting_products
+  path: lean4/FrontierLinearExtension.lean
+  repository: this_repository
+  sha256: 31d4eb6ee8e25cb2decc6c89f478accd26dbe97b8e7fbba357cdcbd4eb37c2bc
+  declaration_status: declaration_found_not_proof_checked
+  line: 160
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -74,8 +390,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

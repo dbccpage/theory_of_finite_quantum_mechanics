@@ -25551,16 +25551,24 @@
     {
       "id": "CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS",
       "stage": "CONSTRUCTOR_THEORY",
-      "status": "OPEN",
-      "source_status": "Open finite target; source definition of distinguishability audited against arXiv:1405.5563 Section 5 eq. (4) p. 11 on 2026-10-22.",
-      "statement": "Finite statement to formalize. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Target: a Lean lemma over Finset and an exhaustive check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierDistinguishability (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. For a finite set X and a report map q from X to R, two nonempty attributes A and B of X are separated by a deterministic task, meaning a function f from R to {0,1} with f(q(a))=0 on A and f(q(b))=1 on B, if and only if q(A) and q(B) are disjoint. The forward direction is the constancy-implies-factoring direction of PG-HISTORY-REPORT-CRITERION applied to the indicator of A on the union of A and B. Checked in Lean 4 over Finset together with an exhaustive decision check for |X|<=4 and |R|<=3. This matches the constructor-theoretic notion of distinguishable attributes only on its deterministic finite fragment: accuracy, repeatability and constructor existence are not modelled.",
       "source": [
-        "dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md"
+        "dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md",
+        "lean4/FrontierDistinguishability.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierDistinguishability.lean::FrontierDistinguishability.separatedByTask_imp_disjoint_image",
+        "lean4/FrontierDistinguishability.lean::FrontierDistinguishability.disjoint_image_imp_separatedByTask",
+        "lean4/FrontierDistinguishability.lean::FrontierDistinguishability.separatedByTask_iff_disjoint_image",
+        "lean4/FrontierDistinguishability.lean::FrontierDistinguishability.fiberConstant_indicator_of_disjoint_image",
+        "lean4/FrontierDistinguishability.lean::FrontierDistinguishability.exhaustive_distinguishability_check_le4_le3"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The finite lemma is routine. Whether it deserves the name \"distinguishable attributes\" in the source's sense depends on the imported definition, which this repository does not adopt.",
+      "bottleneck": "Checked in Lean 4 on Finset and exhaustively on |X|<=4, |R|<=3. Whether the finite condition deserves the name \"distinguishable attributes\" in the source's sense depends on the imported definition, which this repository does not adopt.",
       "tags": [
         "frontier-branch",
         "frontier:constructor_theory",
@@ -25672,17 +25680,30 @@
     {
       "id": "CT-QUBIT-NO-CLONING-FINITE-TARGET",
       "stage": "CONSTRUCTOR_THEORY",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; numeric and algebraic claims verified with exact Python fractions.Fraction arithmetic on 2026-10-22.",
-      "statement": "Finite statement to formalize over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the Gram entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierNoCloning (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement over Q(i). Take the qubit with the six Pauli eigenstates as rays. (a) The attributes Z={|0>,|1>} and X={|+>,|->} are each cloneable by a completely positive trace-preserving map (copy in the basis). (b) The union of Z and X is not cloneable: the exact relation |0><0|+|1><1| = |+><+|+|-><-| holds in Herm(2), and the images under rho to rho tensor rho differ by a nonzero matrix (the off-diagonal entry 1/2 on |00><11| and |11><00|), so no linear map clones all four. (c) A subset of the six states is cloneable if and only if any two of its members are equal or orthogonal; hence the maximal cloneable subsets are exactly the three antipodal pairs. Criterion for (c): completely positive trace-preserving maps cannot decrease fidelity, which forces the overlap squared to equal the overlap to the fourth power, so the overlap is 0 or 1; the converse is the basis copy.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md",
-        "lean4/Entanglement.lean"
+        "lean4/Entanglement.lean",
+        "lean4/FrontierNoCloning.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneZ_trace_preserving",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneZ_clones_Z_attribute",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneX_clones_X_attribute",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.cloneY_clones_Y_attribute",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.pauli_Z_X_completeness_identity",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.cloning_defect_ZX_off_diagonal_half",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.fidelity_monotonicity_forces_zero_or_one",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.pauli_overlap_idempotent_iff_equal_or_antipodal",
+        "lean4/FrontierNoCloning.lean::FrontierNoCloning.exhaustive_64_subsets_clonability_classification"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Exact linear algebra on Gaussian rationals; statement (c) needs a Lean or Python-Fraction formulation of the fidelity argument for rays. The link to the imported definition of a superinformation medium is a reading of definitions.",
+      "bottleneck": "Checked in Lean 4 over Q(i) for the six Pauli eigenstates and all 64 subsets. The link to the imported definition of a superinformation medium remains a definitional reading, not a characterization of quantum theory.",
       "tags": [
         "frontier-branch",
         "frontier:constructor_theory",
@@ -25802,18 +25823,31 @@
     {
       "id": "CT-ENTANGLING-PHASE-FINITE-TARGET",
       "stage": "CONSTRUCTOR_THEORY",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; exact Gaussian-rational value C^2 = 1/5 at u = (3+4i)/5 verified with Python fractions.Fraction on 2026-10-22.",
-      "statement": "Finite statement to formalize over Q(i). For u in Q(i) with |u|=1, the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), rank(A M B^T) <= rank(M), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 4x4 density matrix exists relative to the product family, in the form of DS-QM071. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierEntanglingPhase (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement over Q(i). For u in Q(i) with |u|=1, the two-qubit vector psi_u = (1,1,1,u)/2 has coefficient matrix M_u = [[1,1],[1,u]]/2 of determinant (u-1)/4. (a) psi_u is a product vector if and only if u=1. (b) The squared concurrence is 4|det M_u|^2 = |u-1|^2/4; for u=(3+4i)/5 it equals 1/5. (c) For all 2x2 matrices A and B over Q(i), det(A M B^T) = det(A) det(M) det(B), so local operations cannot raise the Schmidt rank of a product vector, while diag(1,1,1,u) applied to the product vector (1,1,1,1)/2 gives psi_u. (d) For u != 1 an exact separating functional on the 2x2 amplitude matrix exists relative to the product family, in the form of DS-QM071. The physical inference from such entanglement to a non-classical mediator is imported, not part of this target.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md",
         "lean4/Entanglement.lean",
-        "lean4/DualWitness.lean"
+        "lean4/DualWitness.lean",
+        "lean4/FrontierEntanglingPhase.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det_M_u",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.productState2_det_zero",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.psi_u_isProduct_iff",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.concurrenceSq_M_u",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.u_pythagorean_unit_and_concurrence",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.det2_local_action",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.local_op_cannot_raise_product_rank",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.diag_phase_maps_psi1_to_psiu",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.schmidtWitness_vanishes_on_product",
+        "lean4/FrontierEntanglingPhase.lean::FrontierEntanglingPhase.schmidtWitness_strictly_positive_for_u_ne_one"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Statements (a) to (c) are exact determinant and rank facts. Statement (d) needs the witness construction of DS-QM071 specialized to this family. No physical claim is attached.",
+      "bottleneck": "Statements (a) to (d) are checked in Lean 4 over Q(i). The physical inference from such entanglement to a non-classical mediator is imported and carries no proof here.",
       "tags": [
         "frontier-branch",
         "frontier:constructor_theory",
@@ -25828,7 +25862,7 @@
       "id": "CQFT-FINITE-STRICT-POSET-SPACELIKE",
       "stage": "CAUSAL_QFT",
       "status": "PROVED_LEAN",
-      "source_status": "Declarations read and verified against lean4/CausalOrder.lean (a root in lean4/lakefile.lean) and code/python/src/general_relativity/causal_set.py on 2026-10-22.",
+      "source_status": "Declarations read in this change from the cited Lean file, which is a root in lean4/lakefile.lean; the file was not rebuilt here.",
       "statement": "lean4/CausalOrder.lean defines FiniteStrictPoset n (an irreflexive transitive relation on Fin n) and spacelike separation (x differs from y and neither precedes the other). It establishes spacelike_symm and spacelike_irrefl; on the named examples C1 (0<1, 0<2) and C2 (the four-element diamond) it establishes c1_spacelike_1_2, c2_causal_0_3, order_independence_witness (C1 and its dual differ) and the table entries c1_mu_spacelike_vanishes and c2_mu_top_bottom (value 1). Scope: three decided examples, no general causal-set theory. The theorem named incomparability_not_transitive_c1 states only that e1 and e2 are spacelike in both orders and that e1 is not spacelike to itself; it does not exhibit a failure of transitivity of spacelike separation. The table c2_mu is checked entry by entry; the Lean file does not state the Mobius recursion for it.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2100_cqft_finite_strict_poset_spacelike.md",
@@ -25862,7 +25896,7 @@
       "id": "CQFT-NO-SIGNALLING-PRODUCT-LEAN",
       "stage": "CAUSAL_QFT",
       "status": "PROVED_LEAN",
-      "source_status": "Declarations read and verified against lean4/NoSignallingCore.lean (a root in lean4/lakefile.lean) on 2026-10-22.",
+      "source_status": "Declarations read in this change from the cited Lean file, which is a root in lean4/lakefile.lean; the file was not rebuilt here.",
       "statement": "lean4/NoSignallingCore.lean establishes, for natural-number-valued tables of the product form P x y a b = PA x a * PB y b in which each PB y sums to 1 over a listed outcome set, that the marginal on the first party does not depend on the second party's setting (product_noSignalling, marginalA_product), and that the table sig, in which the first outcome equals the second setting, has a setting-dependent marginal, so NoSignallingBA fails (sig_signals). Scope: product tables over the naturals with outcome lists; no quantum states, no commuting local observables, no relation to the posets of CausalOrder.lean.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2101_cqft_no_signalling_product_lean.md"
@@ -25939,17 +25973,27 @@
     {
       "id": "CQFT-FINITE-POSET-NET-TARGET",
       "stage": "CAUSAL_QFT",
-      "status": "OPEN",
-      "source_status": "Open finite target; verified against lean4/CausalOrder.lean on 2026-10-22.",
-      "statement": "Finite statement to formalize. For a FiniteStrictPoset P on n points put one qubit at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1 is spacelike to every point of O2, then A(O1) and A(O2) commute. (c) The spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) are immediate for tensor-product nets; the target records that the repository does not yet state them and that the content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierPosetNet (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. For a FiniteStrictPoset P on n points put one qubit at each point; for a subset O of P let A(O) be the matrices on the qubits in O, acting as identity elsewhere. (a) Isotony: O1 inside O2 gives A(O1) inside A(O2). (b) Locality: if every point of O1 is spacelike to every point of O2, then O1 and O2 are disjoint and A(O1) and A(O2) commute. (c) The spacelike relation is symmetric and irreflexive and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 0 and 1 are spacelike, 0 and 3 are spacelike, and 1<3 are related. Statements (a) and (b) hold for tensor-product nets; the content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md",
-        "lean4/CausalOrder.lean"
+        "lean4/CausalOrder.lean",
+        "lean4/FrontierPosetNet.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierPosetNet.lean::FrontierPosetNet.isotony",
+        "lean4/FrontierPosetNet.lean::FrontierPosetNet.disjoint_of_all_spacelike",
+        "lean4/FrontierPosetNet.lean::FrontierPosetNet.locality_commute_of_spacelike",
+        "lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_spacelike_0_1",
+        "lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_spacelike_0_3",
+        "lean4/FrontierPosetNet.lean::FrontierPosetNet.posetN_causal_1_3",
+        "lean4/FrontierPosetNet.lean::FrontierPosetNet.spacelike_not_transitive_on_posetN"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The net is kinematical. Dynamics, a time-slice property and covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.",
+      "bottleneck": "Checked in Lean 4 for finite poset tensor-product nets and the 4-element N poset. Dynamics, a time-slice property and Poincare covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -26014,16 +26058,25 @@
     {
       "id": "CQFT-RS-FINITE-CYCLICITY-TARGET",
       "stage": "CAUSAL_QFT",
-      "status": "OPEN",
-      "source_status": "Open finite target; algebraic instances verified with exact Python arithmetic on 2026-10-22.",
-      "statement": "Finite statement to formalize. Let H be the n-qubit space, A a set of sites, A(A) the matrices on A, and Omega a unit vector over Q(i). Then A(A)Omega equals H if and only if the reduced state of Omega on the complement of A has full rank 2^|A^c|, if and only if Omega is separating for A(A^c). Reason: with Schmidt rank r across A and its complement, A(A)Omega equals H_A tensor the range of the complementary marginal, of dimension 2^|A| r. Exact instances: a product vector is cyclic only for A equal to all sites; the three-qubit GHZ vector is not cyclic for any single site and is cyclic for every pair of sites; the three-qubit W vector is not cyclic for any single site and is cyclic for every pair. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. Let H = V_A tensor V_{A^c} be a bipartite finite space, A(A) the matrices on A acting as identity on A^c, and Omega a state vector with amplitude matrix M. Then A(A)Omega spans H if and only if the columns of M are linearly independent (full rank dim V_{A^c} on the complement), which implies Omega is separating for A(A^c). Exact instances over Q: a 3-qubit product vector is not cyclic for any single site or pair of sites; the three-qubit GHZ and W vectors are not cyclic for any single site and have invertible 2x2 reduced blocks for every pair of sites. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.",
       "source": [
-        "dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md"
+        "dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md",
+        "lean4/FrontierRsCyclicity.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.cyclic_of_fullComplementaryRank",
+        "lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.fullComplementaryRank_of_cyclic",
+        "lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.separating_of_fullComplementaryRank",
+        "lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.not_separating_of_right_kernel",
+        "lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w",
+        "lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Statement and instances are exact rank computations over Q(i). A Lean proof of the equivalence for general n is open. The relation to the continuum theorem is an analogy: finite dimension has no translation group or spectrum condition.",
+      "bottleneck": "Checked in Lean 4 for bipartite finite spaces and on the 3-qubit product, GHZ and W states. The relation to the continuum Reeh-Schlieder theorem is an analogy: finite dimension has no continuous translation group or spectrum condition.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -26087,17 +26140,26 @@
     {
       "id": "CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET",
       "stage": "CAUSAL_QFT",
-      "status": "OPEN",
-      "source_status": "Open finite target; verified against lean4/CausalOrder.lean on 2026-10-22.",
-      "statement": "Finite statement to formalize. For a FiniteStrictPoset P and matrices A_x (x in P) on a common finite space, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is the same for every linear extension whenever A_x and A_y commute for all spacelike pairs x,y, because any two linear extensions differ by swaps of adjacent spacelike elements. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset, with Pauli matrices; and the sign flip when two spacelike elements carry anticommuting Pauli matrices. This is the finite counterpart of causal factorization. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierLinearExtension (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. For a FiniteStrictPoset P and elements A_x (x in P) in a monoid, the ordered product along a linear extension (a listing of P in which x<y puts x before y) is preserved under any chain of adjacent spacelike swaps whenever A_x and A_y commute for all spacelike pairs x,y. Exact checks: all linear extensions of the diamond C2 (two of them) and of the N poset (five of them), connectedness of the two C2 extensions by an adjacent spacelike swap, and the sign flip on 2x2 Pauli matrices when two spacelike elements carry anticommuting matrices X and Z. The distribution extension and the ultraviolet content of the Epstein-Glaser construction have no finite counterpart.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md",
-        "lean4/CausalOrder.lean"
+        "lean4/CausalOrder.lean",
+        "lean4/FrontierLinearExtension.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_append",
+        "lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_eq_of_adjSpacelikeSwap",
+        "lean4/FrontierLinearExtension.lean::FrontierLinearExtension.orderedProd_eq_of_spacelikeSwapChain",
+        "lean4/FrontierLinearExtension.lean::FrontierLinearExtension.linear_extensions_of_C2_and_N",
+        "lean4/FrontierLinearExtension.lean::FrontierLinearExtension.c2_extensions_connected_by_swap",
+        "lean4/FrontierLinearExtension.lean::FrontierLinearExtension.c2_pauli_commuting_and_anticommuting_products"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The elementary swap lemma needs a Lean proof for general n. The relation to Epstein-Glaser is an analogy.",
+      "bottleneck": "Checked in Lean 4 for general adjacent spacelike swap chains and on the C2 and N posets. The relation to Epstein-Glaser causal factorization is an analogy: distribution splitting and renormalization have no finite counterpart here.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -26157,20 +26219,30 @@
     {
       "id": "CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET",
       "stage": "CAUSAL_QFT",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; source formulas audited against arXiv:gr-qc/0309009 Section 7 p. 16 and arXiv:gr-qc/0207103 Section III eqs. (4)-(5) pp. 4-5, and exact rational values f(1)=1, f(2)=1/2, f(3)=8/35, f(4)=1/10 and r(grid_n)=(n+3)/(2(n+1)) recomputed with Python fractions.Fraction on 2026-10-22.",
-      "statement": "Finite statement to formalize. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs (CausalSet.ordering_fraction). In Sorkin (2003, arXiv:gr-qc/0309009 Section 7 p. 16), the expected ordering fraction of a Poisson sprinkling into a d-dimensional Minkowski causal interval normalized by binom(N,2) is f(d) = (3/2) Gamma(d+1) Gamma(d/2 + 1) / Gamma(3d/2 + 1) = Gamma(d+1) Gamma(d/2) / (2 Gamma(3d/2)) (in Reid 2003, arXiv:gr-qc/0207103 Section III eq. (5) p. 5, normalizing by <N>^2 instead of binom(N,2) gives f(d)/2 = Gamma(d+1) Gamma(d/2) / (4 Gamma(3d/2))), with exact rational values f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10 recomputed in Python with fractions.Fraction; the Myrheim-Meyer estimator inverts f. Targets: (i) the n x n grid with the componentwise product order has r = (n+3)/(2(n+1)) (recomputed in Python with fractions.Fraction: n=2 gives 5/6, matching the diamond C2 of CausalOrder.lean with 5 related pairs out of 6, n=3 gives 3/4, n=4 gives 7/10, n=5 gives 2/3, n=6 gives 9/14, n=7 gives 5/8, and the limit 1/2 equals f(2); this is an observation about a lattice, not an instance of the sprinkling theorem). (ii) An exact rational dimension decision: for a rational r in (0,1], which of d=1,2,3,4 has f(d) nearest, with ties reported. (iii) The Hasse diagram (covering relation) is the unique transitive reduction; its link count and the Mobius values of C1 and C2 agree with the table entries of CausalOrder.lean.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierMyrheimMeyer (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. The ordering fraction of a finite causal set is the exact rational r = 2R/(n(n-1)), with R the number of strictly related pairs. The expected ordering fraction of a sprinkling into a d-dimensional Minkowski interval is f(d) = (3/2) d! (d/2)! / (3d/2)!, with f(1)=1, f(2)=1/2, f(3)=8/35 and f(4)=1/10; the Myrheim-Meyer estimator inverts f. Checked in Lean 4: (i) the n x n grid with the componentwise product order has 4 R(n) = n^2 (n-1)(n+3) and r(n) = (n+3)/(2(n+1)) for all n >= 2, with r(2)=5/6 matching the diamond C2 of CausalOrder.lean and r(n) - 1/2 = 1/(n+1); (ii) exact rational nearest-dimension checks over d in {1,2,3,4}; (iii) the Hasse covering relation is contained in every transitive-closure generator, its link counts on C1 (2) and C2 (4) and the Mobius recursions on C1 and C2 agree with the tables of CausalOrder.lean.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md",
         "external:arXiv:gr-qc/0207103",
         "external:arXiv:gr-qc/0309009",
         "lean4/CausalOrder.lean",
-        "code/python/src/general_relativity/causal_set.py"
+        "code/python/src/general_relativity/causal_set.py",
+        "lean4/FrontierMyrheimMeyer.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.gridStrictPairs_factorization",
+        "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.grid_ordering_fraction_closed_form",
+        "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.grid_ordering_fraction_minus_half",
+        "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement",
+        "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks",
+        "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.covers_subset_of_generating_subrelation",
+        "lean4/FrontierMyrheimMeyer.lean::FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Everything is rational arithmetic on named finite posets. The dimension estimator is a heuristic for sprinklings; the finite estimate on a small poset carries no manifold statement.",
+      "bottleneck": "Checked in Lean 4 over exact rationals and FiniteStrictPoset. The dimension estimator is a heuristic for continuum sprinklings; the finite value on a small poset carries no manifold statement.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -26382,21 +26454,28 @@
     {
       "id": "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET",
       "stage": "ADS_CFT",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22.",
-      "statement": "Finite statement to formalize. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Claim: this state is a perfect tensor, that is, every bipartition with at most three legs on one side has a maximally mixed marginal, equivalently every non-identity element of its 64-element stabilizer group has weight at least 4. Expected weight distribution: 1 element of weight 0, 45 of weight 4, 18 of weight 6 (the hexacode six-qubit state); all twenty 3|3 bipartitions have entropy 3 bits; the minimum weight of a nontrivial logical operator is 3.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierFiveQubitPerfectTensor (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. The [[5,1,3]] code of Laflamme, Miquel, Paz and Zurek has stabilizer generators XZZXI, IXZZX, XIXZZ, ZXIXZ and logical operators XXXXX and ZZZZZ. Its Choi state is the six-qubit stabilizer state with generators g tensor I (four of them), XXXXX tensor X and ZZZZZ tensor Z. Checked in Lean 4: this state is a perfect tensor; its 64-element stabilizer group has weight distribution 1 element of weight 0, 45 of weight 4, and 18 of weight 6 (the hexacode six-qubit state); all twenty 3|3 bipartitions have projective stabilizer rank 3 (entropy 3 bits); and the 192 nontrivial logical operators in the normalizer outside the stabilizer have minimum weight 3.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md",
         "external:arXiv:quant-ph/9602019",
         "external:arXiv:1503.06237",
         "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
         "lean4/H042ShorNineQubitCode.lean",
-        "lean4/H044SurfaceCodeToricTopology.lean"
+        "lean4/H044SurfaceCodeToricTopology.lean",
+        "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64",
+        "lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.choi_perfect_tensor_weight_distribution",
+        "lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.all_twenty_3_3_bipartitions_maximal_entropy",
+        "lean4/FrontierFiveQubitPerfectTensor.lean::FrontierFiveQubitPerfectTensor.five_qubit_logical_minimum_weight_3"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "GF(2) symplectic arithmetic over a 64-element group. The repository has stabilizer-code checks for other codes but not this one.",
+      "bottleneck": "Checked in Lean 4 by exhaustive GF(2) symplectic enumeration over the 64-element stabilizer group and the 20 bipartitions. A finite stabilizer enumeration is not a statement about AdS/CFT.",
       "tags": [
         "frontier-branch",
         "frontier:ads_cft",
@@ -26411,17 +26490,22 @@
     {
       "id": "ADS-HAPPY-ENTROPY-MINCUT-TARGET",
       "stage": "ADS_CFT",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 < 5 = mincut(A)).",
-      "statement": "Finite statement to formalize. Contract six copies of the perfect tensor of the previous target on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours. The edge-neighbours are not adjacent to each other, so the patch has 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs. Fix every bulk leg in the logical zero state. For every contiguous interval A of boundary legs, compute the entropy S(A) in bits by GF(2) rank and compare it with the minimal number of bonds cut by a curve separating A from its complement, listing the intervals with equality. The source states that the Ryu-Takayanagi formula holds exactly in many cases (regions whose minimal cut is a greedy geodesic), not for every region; the target is to determine which intervals satisfy it on this patch.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierHappyMincut (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, with 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs fixed in the logical zero state. Checked in Lean 4: the induced 20-qubit boundary stabilizer has 20 pairwise-commuting generators of full GF(2) rank 20; across all 380 proper contiguous boundary intervals A (20 lengths from 1 to 19 at 20 starting positions), the binary entropy S(A) equals the minimal bond-cut count of the planar dual graph on all 380 intervals.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md",
-        "external:arXiv:1503.06237"
+        "external:arXiv:1503.06237",
+        "lean4/FrontierHappyMincut.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierHappyMincut.lean::FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20",
+        "lean4/FrontierHappyMincut.lean::FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Exact GF(2) linear algebra on a 26-qubit stabilizer state. The bond-count cut is graph min-cut. The correspondence to a surface area is the imported formula and is not part of the target.",
+      "bottleneck": "Checked in Lean 4 by exact GF(2) rank elimination and dual-graph min-cut across all 380 proper contiguous boundary intervals of the 6-tensor pentagon patch. The correspondence to a continuum minimal-surface area is imported and not part of this target.",
       "tags": [
         "frontier-branch",
         "frontier:ads_cft",
@@ -26435,19 +26519,25 @@
     {
       "id": "ADS-LOGICAL-RECONSTRUCTION-TARGET",
       "stage": "ADS_CFT",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; recomputed in Python over the 64-element normalizer on 2026-10-22 (unique representative per logical class on each of the 10 triples, zero on each of the 10 pairs).",
-      "statement": "Finite statement to formalize. For the [[5,1,3]] code, each of the ten triples T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and their product), and no pair of qubits supports any nontrivial logical operator. Equivalent statement: erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierLogicalReconstruction (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. For the [[5,1,3]] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of each nontrivial logical class (the classes of XXXXX, ZZZZZ and YYYYY), and no 2-qubit subset supports any nontrivial logical operator. Equivalent statement also checked in Lean 4: all 105 nontrivial Pauli errors of weight at most 2 either anticommute with a stabilizer generator or belong to the stabilizer, so erasure of any two qubits is correctable. This is the smallest exact instance of the subregion-reconstruction picture of bulk operators.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md",
         "external:arXiv:1411.7041",
         "external:arXiv:quant-ph/9602019",
-        "lean4/H036ThreeQubitCodeSyndromeRecovery.lean"
+        "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+        "lean4/FrontierLogicalReconstruction.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes",
+        "lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.no_pair_supports_any_nontrivial_logical_class",
+        "lean4/FrontierLogicalReconstruction.lean::FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Exact GF(2) check over the normalizer (64 elements). The identification with bulk reconstruction is the picture of the source and is not part of the target.",
+      "bottleneck": "Checked in Lean 4 over the 64-element stabilizer group, all 10 triples, all 10 pairs, and all 105 two-qubit Pauli errors. The identification with bulk operator reconstruction in AdS/CFT is the imported picture of the source.",
       "tags": [
         "frontier-branch",
         "frontier:ads_cft",
@@ -26605,18 +26695,26 @@
     {
       "id": "LQG-AREA-SPECTRUM-EXACT-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22.",
-      "statement": "Finite statement to formalize. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, ..., 3}, each term is an exact algebraic number: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, sqrt(12)=2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Square roots of distinct squarefree positive integers are linearly independent over Q, so two multisets of punctures have equal area if and only if the sums agree after reducing each root to squarefree form. Targets: (i) the table of exact levels for at most four punctures with j<=3; (ii) the degeneracies, which arise from non-squarefree radicands and from the equality criterion, for example one puncture of spin 3 has the same area as four punctures of spin 1/2 (2 sqrt(3) = 4 x sqrt(3)/2); (iii) the smallest nonzero level is sqrt(3)/2.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term reduces to c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, and 2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Checked in Lean 4 on the 5-dimensional Q-module indexed by {2,3,6,15,35}: (i) the 209 nonempty puncture multisets of size at most 4 span 208 distinct reduced vectors; (ii) the unique collision is between one puncture of spin 3 and four punctures of spin 1/2 (both equal to 2 sqrt(3)); (iii) the smallest nonzero single-puncture level is j=1/2 with squared area 3/4.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md",
         "external:arXiv:gr-qc/9411005",
-        "external:arXiv:gr-qc/9602046"
+        "external:arXiv:gr-qc/9602046",
+        "lean4/FrontierAreaSpectrum.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.casimir_squarefree_factorizations",
+        "lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.spin3_equals_four_spin_half",
+        "lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.area_spectrum_table_and_unique_degeneracy",
+        "lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half",
+        "lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Exact arithmetic in Q(sqrt 2, sqrt 3, sqrt 5, sqrt 6, sqrt 7, ...). The physical constant, the Immirzi parameter and the gauge-invariance constraint on admissible puncture lists are not part of the target.",
+      "bottleneck": "Checked in Lean 4 on the 5-radical Q-module for up to 4 punctures with j<=3. Linear independence of squarefree square roots over R is encoded by working in the formal radical basis; the physical constant and Immirzi parameter are outside this target.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -26705,18 +26803,24 @@
     {
       "id": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; Racah single-sum rational squares and values for 2j <= 2 recomputed with Python fractions.Fraction on 2026-10-22.",
-      "statement": "Finite statement to formalize. For the Wigner 6j symbol with all twice-spins at most 6, the square is a rational number given by Racah's single-sum formula with exact integer factorials, and the symbol is the signed square root. Checks: (i) invariance under the 24 tetrahedral symmetries; (ii) orthogonality sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y'); (iii) the Biedenharn-Elliott (pentagon) identity for all admissible labels in the range. Exact arithmetic in the rationals and one square root per symbol.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierClassical6j (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. For the Wigner 6j symbol with all twice-spins at most 6, the signed squared value (sign(R) * R^2 * Delta^2) is an exact rational number given by Racah's single-sum formula with exact integer factorials. Checked in Lean 4: (i) invariance under the 24 tetrahedral column and pair-flip symmetries across all 3,418 admissible 6-tuples with twice-spins at most 6; (ii) the orthogonality relation sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y') across all 1,928 admissible tuples with twice-spins at most 6; (iii) the Biedenharn-Elliott (pentagon) identity across all 814 admissible 9-tuples with twice-spins at most 3 together with explicit spin <= 6 pentagon witnesses (including the uniform spin-3 bipyramid).",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md",
         "code/rust/src/general_relativity/spin_foam.rs",
-        "lean4/H023DiscreteSpinfoamAmplitudes.lean"
+        "lean4/H023DiscreteSpinfoamAmplitudes.lean",
+        "lean4/FrontierClassical6j.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierClassical6j.lean::FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6",
+        "lean4/FrontierClassical6j.lean::FrontierClassical6j.classical_6j_orthogonality_all_1928_le6",
+        "lean4/FrontierClassical6j.lean::FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Exact enumeration with big integers. The classical 6j is not the q-deformed 6j at level 2 recorded in TFQ-0105; the q to 1 limit is not part of the target.",
+      "bottleneck": "Checked in Lean 4 via exact integer Racah sums: 24-fold symmetry and orthogonality for all admissible labels with 2j<=6, and the Biedenharn-Elliott pentagon identity for all 814 admissible 9-tuples with 2j<=3 plus explicit 2j<=6 witnesses. The q->1 limit from level-2 recoupling is not part of this target.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -26731,18 +26835,23 @@
     {
       "id": "LQG-PR-ALLOWED-REGION-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, -6075/16 < 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22.",
-      "statement": "Finite statement to formalize. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant exactly in the rationals; 288 V^2 equals the determinant of the bordered 5x5 matrix of squared distances. Tuples with V^2 > 0 lie in the allowed region (a Euclidean tetrahedron exists) where the imported asymptotics predict oscillation; tuples with V^2 < 0 lie in the forbidden region where it predicts decay. Target: the exact classification for twice-spins at most 8 together with the exact value of the squared 6j symbol in each case. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant CM(l_e^2) = 288 V^2 exactly in the rationals. Checked in Lean 4 across all 10,825 admissible 6-tuples with twice-spins at most 8: 9,854 lie in the classically allowed region (CM > 0, where a Euclidean tetrahedron exists), 0 have CM = 0, and 971 lie in the classically forbidden region (CM < 0), together with exact rational values of the squared 6j symbol on allowed and forbidden witnesses. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md",
         "external:arXiv:math-ph/9812013",
-        "lean4/ReggePachnerWdw.lean"
+        "lean4/ReggePachnerWdw.lean",
+        "lean4/FrontierPrAllowedRegion.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierPrAllowedRegion.lean::FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8",
+        "lean4/FrontierPrAllowedRegion.lean::FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Exact sign test and exact 6j squares. The Cayley-Menger sign convention follows the P0 mining run of TFQ-0084; the asymptotic comparison is not exact.",
+      "bottleneck": "Checked in Lean 4 across all 10,825 admissible 6-tuples with 2j<=8. The asymptotic comparison with the Ponzano-Regge cosine/decay formulas is imported and outside this finite classification.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -26779,21 +26888,28 @@
     {
       "id": "LQG-TV-LEVEL2-PENTAGON-TARGET",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "status": "OPEN",
-      "source_status": "Open target stated in this branch; quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-spins {0,1,2}) verified across all 3^9 = 19,683 label 9-tuples over Q(sqrt 2) using Python fractions.Fraction on 2026-10-22.",
-      "statement": "Finite statement to formalize. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the data of spin_foam.rs live in Q(sqrt 2) and those of H023 and H024 in Z[zeta_12]. Check exactly the quantum Biedenharn-Elliott (pentagon) identity and the orthogonality relation of the quantum 6j symbols for all admissible labels. This is the algebraic content of invariance under the Pachner 2-3 move for the Turaev-Viro sum. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target would discharge only the identity on those labels, not invariance of a state sum on a triangulated manifold.",
+      "status": "PROVED_LEAN",
+      "source_status": "Checked in Lean 4.35.0 via lake build FrontierTvLevel2Pentagon (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.",
+      "statement": "Formalized finite statement. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the quantum dimensions and quantum 6j (Ising F-matrix) symbols live in Q(sqrt 2). Checked in Lean 4 in exact quadratic arithmetic over Q(sqrt 2): the 36 nonzero entries of the level-2 quantum 6j symbol, exact unitarity/orthogonality for all admissible 4-tuples, and the quantum Biedenharn-Elliott (pentagon) identity across all 3^9 = 19,683 label assignments. The repository's fence (TFQ-0105) refuses an admission of triangulation invariance; this target discharges only the algebraic identity on those labels, not invariance of a state sum on a triangulated manifold.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md",
         "external:doi:10.1016/0040-9383(92)90015-A",
         "code/rust/src/general_relativity/spin_foam.rs",
         "code/rust/src/qm/finite_spinfoam.rs",
         "lean4/H023DiscreteSpinfoamAmplitudes.lean",
-        "lean4/H024FourSimplexSpinfoamS4.lean"
+        "lean4/H024FourSimplexSpinfoamS4.lean",
+        "lean4/FrontierTvLevel2Pentagon.lean",
+        "dag/research/frontier_targets_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation",
+        "lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.isingF_nonzero_count_36",
+        "lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible",
+        "lean4/FrontierTvLevel2Pentagon.lean::FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Exact arithmetic in a quadratic or cyclotomic field. The step from the local identity to invariance on a triangulation is not part of the target.",
+      "bottleneck": "Checked in Lean 4 over Q(sqrt 2) across all 19,683 label assignments in {0,1/2,1}^9. The step from the local algebraic identity to 3-manifold triangulation invariance remains fenced by TFQ-0105.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -37650,8 +37766,13 @@
         "CT-TASK-CONSTRUCTOR-POSSIBILITY"
       ],
       "output": "CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: the parent Lean criterion gives one direction. The link to the imported notion is a definitional reading, not a derivation, so the route stays a gap until the lemma and the reading are written."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierDistinguishability.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md",
+        "lean4/FrontierDistinguishability.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-CT-DEUTSCH-MARLETTO-2015-SOURCE",
@@ -37712,8 +37833,13 @@
         "FQ-DECLARED-QUANTUM-INTERFACE"
       ],
       "output": "CT-QUBIT-NO-CLONING-FINITE-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: the declared finite quantum interface supplies the qubit. The target is open, so the route is a gap until the statements are formalized."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierNoCloning.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md",
+        "lean4/FrontierNoCloning.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-CT-PROBABILITY-2016-SOURCE",
@@ -37776,8 +37902,13 @@
         "CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT"
       ],
       "output": "CT-ENTANGLING-PHASE-FINITE-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: DS-QM071 supplies witness soundness. This target is open, so the route is a gap until the statements are formalized."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierEntanglingPhase.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/30_constructor_theory/tfq_2014_ct_entangling_phase_finite_target.md",
+        "lean4/FrontierEntanglingPhase.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-CQFT-FINITE-STRICT-POSET-SPACELIKE",
@@ -37838,8 +37969,13 @@
         "CQFT-LOCAL-NET-AXIOMS-IMPORT"
       ],
       "output": "CQFT-FINITE-POSET-NET-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: the poset and the spacelike relation exist in Lean. The net statements are not written, so the route is a gap."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierPosetNet.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/31_causal_qft/tfq_2104_cqft_finite_poset_net_target.md",
+        "lean4/FrontierPosetNet.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-CQFT-REEH-SCHLIEDER-1961-SOURCE",
@@ -37884,8 +38020,13 @@
         "CQFT-REEH-SCHLIEDER-THEOREM-IMPORT"
       ],
       "output": "CQFT-RS-FINITE-CYCLICITY-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Analogy only. No source derives the finite rank statement from the continuum property or the reverse; the finite statement is elementary linear algebra."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierRsCyclicity.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md",
+        "lean4/FrontierRsCyclicity.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-CQFT-EPSTEIN-GLASER-1973-SOURCE",
@@ -37921,8 +38062,13 @@
         "CQFT-FINITE-STRICT-POSET-SPACELIKE"
       ],
       "output": "CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Analogy plus a partial real link: the poset exists in Lean; the statement is not written. Gap until formalized."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierLinearExtension.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/31_causal_qft/tfq_2110_cqft_ordered_product_linear_extension_target.md",
+        "lean4/FrontierLinearExtension.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-CQFT-BLMS-1987-SOURCE",
@@ -37960,8 +38106,13 @@
         "CQFT-FINITE-CAUSET-IDENTIFICATION"
       ],
       "output": "CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: ordering fraction and interval abundances exist as exact Python code, and C1, C2 exist in Lean. The estimator and the grid formula are not written, so the route is a gap."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierMyrheimMeyer.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/31_causal_qft/tfq_2113_cqft_myrheim_meyer_ordering_fraction_target.md",
+        "lean4/FrontierMyrheimMeyer.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-ADS-MALDACENA-1997-SOURCE",
@@ -38078,8 +38229,13 @@
         "ADS-HAPPY-2015-SOURCE"
       ],
       "output": "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: sister stabilizer-code checks exist in Lean. This code is not among them, so the route is a gap until it is written."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierFiveQubitPerfectTensor.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/32_ads_cft/tfq_2208_ads_five_qubit_perfect_tensor_target.md",
+        "lean4/FrontierFiveQubitPerfectTensor.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-ADS-HAPPY-ENTROPY-MINCUT-TARGET",
@@ -38088,8 +38244,13 @@
         "ADS-RT-FORMULA-IMPORT"
       ],
       "output": "ADS-HAPPY-ENTROPY-MINCUT-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "No source here evaluates this patch. Gap until computed."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierHappyMincut.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md",
+        "lean4/FrontierHappyMincut.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-ADS-LOGICAL-RECONSTRUCTION-TARGET",
@@ -38098,8 +38259,13 @@
         "ADS-ADH-2015-SOURCE"
       ],
       "output": "ADS-LOGICAL-RECONSTRUCTION-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: the three-qubit code has an exact syndrome-recovery lemma in Lean. The five-qubit statement is not written; gap until formalized."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierLogicalReconstruction.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md",
+        "lean4/FrontierLogicalReconstruction.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-ADS-REGGE-AREA-RT-GAP",
@@ -38191,8 +38357,13 @@
         "LQG-SPIN-NETWORK-STATES-IMPORT"
       ],
       "output": "LQG-AREA-SPECTRUM-EXACT-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "No source derives the area spectrum from the finite SU(2)_2 data of the repository; the target is a statement about the classical SU(2) spin labels only. Gap until written."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierAreaSpectrum.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md",
+        "lean4/FrontierAreaSpectrum.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-LQG-PONZANO-REGGE-1968-SOURCE",
@@ -38242,8 +38413,13 @@
         "TFQ-0198"
       ],
       "output": "LQG-6J-EXACT-AND-PENTAGON-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: the repository computes exact quantum recoupling at level 2. The classical symbols are not computed, so the route is a gap."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierClassical6j.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md",
+        "lean4/FrontierClassical6j.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-LQG-PR-ALLOWED-REGION-TARGET",
@@ -38252,8 +38428,13 @@
         "LQG-PR-ASYMPTOTICS-IMPORT"
       ],
       "output": "LQG-PR-ALLOWED-REGION-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "No source classifies the finite labels. Gap until computed."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierPrAllowedRegion.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/33_loop_quantum_gravity/tfq_2309_lqg_pr_allowed_region_target.md",
+        "lean4/FrontierPrAllowedRegion.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-LQG-TURAEV-VIRO-1992-SOURCE",
@@ -38276,8 +38457,13 @@
         "TFQ-0104"
       ],
       "output": "LQG-TV-LEVEL2-PENTAGON-TARGET",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Partial real link: the level-2 amplitudes are computed exactly in the repository, but the pentagon identity is not recorded. Gap until it is."
+      "status": "DERIVED_LEAN",
+      "mechanism": "Formalized and checked in Lean 4 (lean4/FrontierTvLevel2Pentagon.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.",
+      "source": [
+        "dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md",
+        "lean4/FrontierTvLevel2Pentagon.lean",
+        "dag/research/frontier_targets_lean_replay.json"
+      ]
     },
     {
       "id": "FRO-R-LQG-EPRL-2007-SOURCE",

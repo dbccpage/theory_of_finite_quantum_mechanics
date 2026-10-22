@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Finite statement to formalize. Contract six copies of the perfect tensor of the previous target on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours. The edge-neighbours are not adjacent to each other, so the patch has 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs. Fix every bulk leg in the logical zero state. For every contiguous interval A of boundary legs, compute the entropy S(A) in bits by GF(2) rank and compare it with the minimal number of bonds cut by a curve separating A from its complement, listing the intervals with equality. The source states that the Ryu-Takayanagi formula holds exactly in many cases (regions whose minimal cut is a greedy geodesic), not for every region; the target is to determine which intervals satisfy it on this patch.
+  Formalized finite statement. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon tiling: one central tensor and its five edge-neighbours, with 20 dangling boundary legs (4 per outer tensor) and 6 bulk legs fixed in the logical zero state. Checked in Lean 4: the induced 20-qubit boundary stabilizer has 20 pairwise-commuting generators of full GF(2) rank 20; across all 380 proper contiguous boundary intervals A (20 lengths from 1 to 19 at 20 starting positions), the binary entropy S(A) equals the minimal bond-cut count of the planar dual graph on all 380 intervals.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Exact GF(2) linear algebra on a 26-qubit stabilizer state. The bond-count cut is graph min-cut. The correspondence to a surface area is the imported formula and is not part of the target.
+  Checked in Lean 4 by exact GF(2) rank elimination and dual-graph min-cut across all 380 proper contiguous boundary intervals of the 6-tensor pentagon patch. The correspondence to a continuum minimal-surface area is imported and not part of this target.
 
   Open ../operads/ads_happy_entropy_mincut_target.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

@@ -2,9 +2,9 @@
 
 dag/fragments/frontier_branches.json holds four branches that connect external programmes to the existing
 graph: CONSTRUCTOR_THEORY, CAUSAL_QFT, ADS_CFT and LOOP_QUANTUM_GRAVITY. Every external result is a node with status
-SOURCE_RECORD, IMPORTED_ASSUMPTION or OPEN (the two Lean anchors and the one definition read repository files and
-carry PROVED_LEAN or DEFINITION). A route that no source derives is GAP_NO_DERIVATION. Finite exactly checkable targets
-are OPEN nodes with a precise statement.
+SOURCE_RECORD, IMPORTED_ASSUMPTION or OPEN (the two Lean anchors, the one definition, and the 14 finite targets read
+repository files and carry PROVED_LEAN or DEFINITION). A route that no source derives is GAP_NO_DERIVATION. Finite
+exact targets carry PROVED_LEAN on their declared finite domain.
 
 derivation_dag.json (schema derivation_dag.v2) is the single source of the graph. This script owns:
 
@@ -168,9 +168,14 @@ def render_paper(node: dict, record: dict, fragment: dict, paths: dict[str, str]
     out += ['', '## What is open', '']
     out += [f'- {x}' for x in notes['open']] or ['- No further obligation is recorded beyond the governing obligation.']
     if notes['target']:
-        out += ['', '## Finite target (precise statement)', '', notes['target'], '',
-                'No check of this target is recorded in the repository. A run that mines or checks it must keep the '
-                'statement as written or narrow it.']
+        target_note = (
+            'Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and '
+            '`dag/research/frontier_targets_lean_replay.json`.'
+            if node['status'] == 'PROVED_LEAN'
+            else 'No check of this target is recorded in the repository. A run that mines or checks it must keep the '
+                 'statement as written or narrow it.'
+        )
+        out += ['', '## Finite target (precise statement)', '', notes['target'], '', target_note]
     out += ['', '## Connections to this repository', '']
     for r in routes_in:
         out.append(f'- Route `{r["id"]}` (`{r["status"]}`) from {", ".join("`" + i + "`" for i in r["inputs"])}: '

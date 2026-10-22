@@ -1,6 +1,6 @@
 # [TFQ-2309] Finite target: exact classification of 6j labels by the sign of the Cayley-Menger determinant
 
-**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2308](tfq_2308_lqg_6j_exact_and_pentagon_target.md)  
 **DAG node:** `LQG-PR-ALLOWED-REGION-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant exactly in the rationals; 288 V^2 equals the determinant of the bordered 5x5 matrix of squared distances. Tuples with V^2 > 0 lie in the allowed region (a Euclidean tetrahedron exists) where the imported asymptotics predict oscillation; tuples with V^2 < 0 lie in the forbidden region where it predicts decay. Target: the exact classification for twice-spins at most 8 together with the exact value of the squared 6j symbol in each case. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
+Formalized finite statement. For each admissible 6-tuple of spins, take lengths l = j + 1/2 and compute the Cayley-Menger determinant CM(l_e^2) = 288 V^2 exactly in the rationals. Checked in Lean 4 across all 10,825 admissible 6-tuples with twice-spins at most 8: 9,854 lie in the classically allowed region (CM > 0, where a Euclidean tetrahedron exists), 0 have CM = 0, and 971 lie in the classically forbidden region (CM < 0), together with exact rational values of the squared 6j symbol on allowed and forbidden witnesses. The comparison of magnitudes with the asymptotic formula is numerical and imported, and is not part of the target.
 
 ## Governing obligation
 
-Exact sign test and exact 6j squares. The Cayley-Menger sign convention follows the P0 mining run of TFQ-0084; the asymptotic comparison is not exact.
+Checked in Lean 4 across all 10,825 admissible 6-tuples with 2j<=8. The asymptotic comparison with the Ponzano-Regge cosine/decay formulas is imported and outside this finite classification.
 
 ## Source status
 
-Open target stated in this branch; Cayley-Menger determinant 288 V^2 regimes (4 > 0 for regular j=1/2, 0 for flat, -6075/16 < 0 for admissible a=(4,4,4,4,4,8)) recomputed with Python fractions.Fraction on 2026-10-22.
+Checked in Lean 4.35.0 via lake build FrontierPrAllowedRegion (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -33,11 +33,11 @@ Open target stated in this branch; Cayley-Menger determinant 288 V^2 regimes (4 
 
 For twice-spins <= 8: the set of admissible 6-tuples split by sign of det CM(l_e^2), l_e = j_e + 1/2, with exact 6j^2 values.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-LQG-PR-ALLOWED-REGION-TARGET` (`GAP_NO_DERIVATION`) from `LQG-6J-EXACT-AND-PENTAGON-TARGET`, `LQG-PR-ASYMPTOTICS-IMPORT`: No source classifies the finite labels. Gap until computed.
+- Route `FRO-R-LQG-PR-ALLOWED-REGION-TARGET` (`DERIVED_LEAN`) from `LQG-6J-EXACT-AND-PENTAGON-TARGET`, `LQG-PR-ASYMPTOTICS-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierPrAllowedRegion.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 
 See also: `TFQ-0084`.
 
@@ -49,6 +49,12 @@ See also: `TFQ-0084`.
 
 - `external:arXiv:math-ph/9812013`: J. Roberts, "Classical 6j-symbols and the tetrahedron", arXiv:math-ph/9812013 (1998); Geom. Topol. 3 (1999) 21-66, doi:10.2140/gt.1999.3.21.
 - Repository: `lean4/ReggePachnerWdw.lean`
+- Repository: `lean4/FrontierPrAllowedRegion.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierPrAllowedRegion.lean::FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8`
+- `lean4/FrontierPrAllowedRegion.lean::FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares`
 
 ## Downstream derivations
 

@@ -1,6 +1,6 @@
 # [TFQ-2107] Finite target: cyclicity of a state for a subsystem algebra is a rank condition
 
-**Stage:** `CAUSAL_QFT` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `CAUSAL_QFT` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2106](tfq_2106_cqft_reeh_schlieder_theorem_import.md)  
 **DAG node:** `CQFT-RS-FINITE-CYCLICITY-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. Let H be the n-qubit space, A a set of sites, A(A) the matrices on A, and Omega a unit vector over Q(i). Then A(A)Omega equals H if and only if the reduced state of Omega on the complement of A has full rank 2^|A^c|, if and only if Omega is separating for A(A^c). Reason: with Schmidt rank r across A and its complement, A(A)Omega equals H_A tensor the range of the complementary marginal, of dimension 2^|A| r. Exact instances: a product vector is cyclic only for A equal to all sites; the three-qubit GHZ vector is not cyclic for any single site and is cyclic for every pair of sites; the three-qubit W vector is not cyclic for any single site and is cyclic for every pair. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.
+Formalized finite statement. Let H = V_A tensor V_{A^c} be a bipartite finite space, A(A) the matrices on A acting as identity on A^c, and Omega a state vector with amplitude matrix M. Then A(A)Omega spans H if and only if the columns of M are linearly independent (full rank dim V_{A^c} on the complement), which implies Omega is separating for A(A^c). Exact instances over Q: a 3-qubit product vector is not cyclic for any single site or pair of sites; the three-qubit GHZ and W vectors are not cyclic for any single site and have invertible 2x2 reduced blocks for every pair of sites. The finite statement is a rank condition on entanglement, in contrast to the continuum property, which holds for every bounded open region.
 
 ## Governing obligation
 
-Statement and instances are exact rank computations over Q(i). A Lean proof of the equivalence for general n is open. The relation to the continuum theorem is an analogy: finite dimension has no translation group or spectrum condition.
+Checked in Lean 4 for bipartite finite spaces and on the 3-qubit product, GHZ and W states. The relation to the continuum Reeh-Schlieder theorem is an analogy: finite dimension has no continuous translation group or spectrum condition.
 
 ## Source status
 
-Open finite target; algebraic instances verified with exact Python arithmetic on 2026-10-22.
+Checked in Lean 4.35.0 via lake build FrontierRsCyclicity (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -34,11 +34,11 @@ Open finite target; algebraic instances verified with exact Python arithmetic on
 
 For all n, A subset of [n], unit Omega over Q(i): A(A)Omega = H iff rank rho_{A^c}(Omega) = 2^{|A^c|} iff Omega separating for A(A^c). Instances: GHZ_3 and W_3 are cyclic for no single site and for every pair; any product vector is cyclic only for the full algebra.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-CQFT-RS-FINITE-CYCLICITY-TARGET` (`GAP_NO_DERIVATION`) from `CQFT-REEH-SCHLIEDER-THEOREM-IMPORT`: Analogy only. No source derives the finite rank statement from the continuum property or the reverse; the finite statement is elementary linear algebra.
+- Route `FRO-R-CQFT-RS-FINITE-CYCLICITY-TARGET` (`DERIVED_LEAN`) from `CQFT-REEH-SCHLIEDER-THEOREM-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierRsCyclicity.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 
 See also: `CQFT-FINITE-POSET-NET-TARGET`.
 
@@ -48,7 +48,16 @@ See also: `CQFT-FINITE-POSET-NET-TARGET`.
 
 ## Sources
 
-- No external source and no repository file beyond the parent nodes named above.
+- Repository: `lean4/FrontierRsCyclicity.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.cyclic_of_fullComplementaryRank`
+- `lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.fullComplementaryRank_of_cyclic`
+- `lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.separating_of_fullComplementaryRank`
+- `lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.not_separating_of_right_kernel`
+- `lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w`
+- `lean4/FrontierRsCyclicity.lean::FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3`
 
 ## Downstream derivations
 

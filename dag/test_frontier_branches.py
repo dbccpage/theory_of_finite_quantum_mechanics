@@ -33,9 +33,12 @@ def test_fragment_counts_and_stages():
 def test_external_results_are_never_derived_statuses():
     for n in fragment()['nodes']:
         if n['status'] in ('PROVED_LEAN', 'DEFINITION'):
-            # Only repository declarations that were read: the two Lean anchors and the definition of a finite causal set.
-            assert n['id'] in LEAN_ANCHORS or n['id'] == 'CQFT-FINITE-CAUSET-IDENTIFICATION', n['id']
-            assert not any(s.startswith('external:') for s in n['source'][1:]) or n['status'] == 'DEFINITION'
+            # Only repository declarations: the two Lean anchors, the finite causal-set definition, and the 14 finite targets.
+            assert (n['id'] in LEAN_ANCHORS or n['id'] == 'CQFT-FINITE-CAUSET-IDENTIFICATION'
+                    or 'finite-target' in n['tags']), n['id']
+            assert not ({'external-source', 'external-import'} & set(n['tags'])), n['id']
+            if n['id'] in LEAN_ANCHORS:
+                assert not any(s.startswith('external:') for s in n['source'][1:])
         else:
             assert n['status'] in EXTERNAL_STATUSES, n['id']
         if n['status'] in ('SOURCE_RECORD', 'IMPORTED_ASSUMPTION'):
@@ -91,12 +94,13 @@ def test_routes_connect_each_stage_to_the_existing_graph_without_cycles():
 def test_lean_anchors_cite_declarations_that_exist():
     f = fragment()
     for n in f['nodes']:
-        if n['id'] in LEAN_ANCHORS:
+        if n['id'] in LEAN_ANCHORS or 'finite-target' in n['tags']:
             assert n['lean'] and n['status'] == 'PROVED_LEAN'
             for reference in n['lean']:
                 path, _, symbol = reference.partition('::')
+                leaf = symbol.split('.')[-1]
                 text = (ROOT / path).read_text(encoding='utf-8')
-                assert re.search(r'\b' + re.escape(symbol) + r'\b', text), reference
+                assert re.search(r'\b' + re.escape(leaf) + r'\b', text), reference
                 assert not re.search(r'\b(sorry|admit)\b', re.sub(r'/\-.*?\-/|--[^\n]*', '', text, flags=re.S)), path
 
 

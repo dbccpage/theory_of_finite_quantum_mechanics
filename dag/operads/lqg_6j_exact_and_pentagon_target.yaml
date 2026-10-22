@@ -3,29 +3,35 @@ node_id: LQG-6J-EXACT-AND-PENTAGON-TARGET
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Finite statement to formalize. For the Wigner 6j symbol with all twice-spins at most
-    6, the square is a rational number given by Racah''s single-sum formula with exact integer factorials,
-    and the symbol is the signed square root. Checks: (i) invariance under the 24 tetrahedral symmetries;
-    (ii) orthogonality sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y''} = delta(y,y''); (iii)
-    the Biedenharn-Elliott (pentagon) identity for all admissible labels in the range. Exact arithmetic
-    in the rationals and one square root per symbol.'
+  source_statement: 'Formalized finite statement. For the Wigner 6j symbol with all twice-spins at most
+    6, the signed squared value (sign(R) * R^2 * Delta^2) is an exact rational number given by Racah''s
+    single-sum formula with exact integer factorials. Checked in Lean 4: (i) invariance under the 24 tetrahedral
+    column and pair-flip symmetries across all 3,418 admissible 6-tuples with twice-spins at most 6; (ii)
+    the orthogonality relation sum over x of (2x+1)(2y+1) {a b x; c d y}{a b x; c d y''} = delta(y,y'')
+    across all 1,928 admissible tuples with twice-spins at most 6; (iii) the Biedenharn-Elliott (pentagon)
+    identity across all 814 admissible 9-tuples with twice-spins at most 3 together with explicit spin
+    <= 6 pentagon witnesses (including the uniform spin-3 bipyramid).'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Exact enumeration with big integers. The classical 6j is not the q-deformed 6j at
-    level 2 recorded in TFQ-0105; the q to 1 limit is not part of the target.
+  source_bottleneck: 'Checked in Lean 4 via exact integer Racah sums: 24-fold symmetry and orthogonality
+    for all admissible labels with 2j<=6, and the Biedenharn-Elliott pentagon identity for all 814 admissible
+    9-tuples with 2j<=3 plus explicit 2j<=6 witnesses. The q->1 limit from level-2 recoupling is not part
+    of this target.'
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md
   - code/rust/src/general_relativity/spin_foam.rs
   - lean4/H023DiscreteSpinfoamAmplitudes.lean
+  - lean4/FrontierClassical6j.lean
+  - dag/research/frontier_targets_lean_replay.json
   paper_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md
-    sha256: e535e2614672cb74e6b12666a36f6773ac5662685239345be4895d21464019b4
+    sha256: eac10e71e0676e8fccd3bd0b4aced89537b183c93245deec77440a8ded835664
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -33,9 +39,223 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/loop_quantum_gravity_lqg_6j_exact_and_pentagon_target_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: admissible6Tuples
+  line: 138
+  signature_excerpt: 'def admissible6Tuples (max2J : Nat) : List (Nat × Nat × Nat × Nat × Nat × Nat)'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: checkSymmetryAt
+  line: 155
+  signature_excerpt: 'def checkSymmetryAt (t : Nat × Nat × Nat × Nat × Nat × Nat) : Bool'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triAdm
+  line: 89
+  signature_excerpt: 'def triAdm (A B C : Nat) : Bool'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: racahSumRat
+  line: 100
+  signature_excerpt: 'def racahSumRat (a b c d e f : Nat) : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sixJSquaredRat
+  line: 130
+  signature_excerpt: 'def sixJSquaredRat (a b c d e f : Nat) : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eqv
+  line: 57
+  signature_excerpt: 'def eqv (a b : Frac) : Bool'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Frac
+  line: 30
+  signature_excerpt: structure Frac
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sixJAdm
+  line: 93
+  signature_excerpt: 'def sixJAdm (a b c d e f : Nat) : Bool'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: factInt
+  line: 71
+  signature_excerpt: |-
+    def factInt : Nat → Int
+      | 0 => 1
+      | 1 => 1
+      | 2 => 2
+      | 3 => 6
+      | 4 => 24
+      | 5 => 120
+      | 6 => 720
+      | 7 => 5040
+      | 8 => 40320
+      | 9 => 362880
+      | 10 => 3628800
+      | 11 => 39916800
+      | 12 => 479001600
+      | 13 => 6227020800
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: deltaSqRat
+  line: 96
+  signature_excerpt: 'def deltaSqRat (a b c : Nat) : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 37
+  signature_excerpt: 'def zero : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: one
+  line: 38
+  signature_excerpt: 'def one : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: add
+  line: 41
+  signature_excerpt: 'def add (a b : Frac) : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sub
+  line: 47
+  signature_excerpt: 'def sub (a b : Frac) : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul
+  line: 53
+  signature_excerpt: 'def mul (a b : Frac) : Frac'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: orthoTuplesInRange
+  line: 189
+  signature_excerpt: 'def orthoTuplesInRange (max2J : Nat) : List (Nat × Nat × Nat × Nat × Nat × Nat)'
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: tetrahedral_symmetry_all_3418_admissible_le6
+  line: 166
+  signature_excerpt: |-
+    theorem tetrahedral_symmetry_all_3418_admissible_le6 :
+        (admissible6Tuples 6).length = 3418 ∧
+        ((admissible6Tuples 6).all checkSymmetryAt) = true
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: classical_6j_orthogonality_all_1928_le6
+  line: 204
+  signature_excerpt: |-
+    theorem classical_6j_orthogonality_all_1928_le6 :
+        (orthoTuplesInRange 6).length = 1928 ∧
+        ((orthoTuplesInRange 6).all fun (a, b, c, d, y, yp) =>
+          checkOrthoTuple 6 a b c d y yp) = true
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: classical_6j_biedenharn_elliott_pentagon
+  line: 252
+  signature_excerpt: |-
+    theorem classical_6j_biedenharn_elliott_pentagon :
+        ((beTuplesInRange 3).all fun (a, b, c, d, e, f, p, q, r) =>
+          checkBiedenharnElliott 3 a b c d e f p q r) = true ∧
+        checkBiedenharnElliott 6 2 2 2 2 2 2 2 2 2 = true ∧
+        checkBiedenharnElliott 6 3 3 3 3 3 3 2 2 2 = true ∧
+        checkBiedenharnElliott 6 4 2 3 3 2 4 3 3 2 = true ∧
+        checkBiedenharnElliott 6 6 0 6 0 6 0 6 6 6 = true
+  source: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  source_sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/FrontierClassical6j.lean::FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6
+  availability: local
+  symbol: FrontierClassical6j.tetrahedral_symmetry_all_3418_admissible_le6
+  path: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  declaration_status: declaration_found_not_proof_checked
+  line: 166
+  role: source_lead_only
+- original_ref: lean4/FrontierClassical6j.lean::FrontierClassical6j.classical_6j_orthogonality_all_1928_le6
+  availability: local
+  symbol: FrontierClassical6j.classical_6j_orthogonality_all_1928_le6
+  path: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  declaration_status: declaration_found_not_proof_checked
+  line: 204
+  role: source_lead_only
+- original_ref: lean4/FrontierClassical6j.lean::FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon
+  availability: local
+  symbol: FrontierClassical6j.classical_6j_biedenharn_elliott_pentagon
+  path: lean4/FrontierClassical6j.lean
+  repository: this_repository
+  sha256: 46a223afed518f0b5fb71747b23efaf0984a8bc1daa9e2f94862756baa46284a
+  declaration_status: declaration_found_not_proof_checked
+  line: 252
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +293,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

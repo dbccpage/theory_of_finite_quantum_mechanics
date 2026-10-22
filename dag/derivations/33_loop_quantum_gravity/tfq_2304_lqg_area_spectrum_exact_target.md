@@ -1,6 +1,6 @@
 # [TFQ-2304] Finite target: exact area levels as sums of square roots
 
-**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `OPEN` | **AuthorityEffect:** None.
+**Stage:** `LOOP_QUANTUM_GRAVITY` | **Status:** `PROVED_LEAN` | **AuthorityEffect:** None.
 
 **Parent:** [TFQ-2303](tfq_2303_lqg_area_volume_spectra_source.md)  
 **DAG node:** `LQG-AREA-SPECTRUM-EXACT-TARGET`  
@@ -11,15 +11,15 @@
 
 ## Statement
 
-Finite statement to formalize. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, ..., 3}, each term is an exact algebraic number: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, sqrt(12)=2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Square roots of distinct squarefree positive integers are linearly independent over Q, so two multisets of punctures have equal area if and only if the sums agree after reducing each root to squarefree form. Targets: (i) the table of exact levels for at most four punctures with j<=3; (ii) the degeneracies, which arise from non-squarefree radicands and from the equality criterion, for example one puncture of spin 3 has the same area as four punctures of spin 1/2 (2 sqrt(3) = 4 x sqrt(3)/2); (iii) the smallest nonzero level is sqrt(3)/2.
+Formalized finite statement. With the dimensionless area a = sum over punctures of sqrt(j(j+1)) for spins j in {1/2, 1, 3/2, 2, 5/2, 3}, each term reduces to c_j sqrt(s_j) with squarefree radicand s_j in {2, 3, 6, 15, 35}: sqrt(3)/2, sqrt(2), sqrt(15)/2, sqrt(6), sqrt(35)/2, and 2 sqrt(3) for j=1/2, 1, 3/2, 2, 5/2, 3. Checked in Lean 4 on the 5-dimensional Q-module indexed by {2,3,6,15,35}: (i) the 209 nonempty puncture multisets of size at most 4 span 208 distinct reduced vectors; (ii) the unique collision is between one puncture of spin 3 and four punctures of spin 1/2 (both equal to 2 sqrt(3)); (iii) the smallest nonzero single-puncture level is j=1/2 with squared area 3/4.
 
 ## Governing obligation
 
-Exact arithmetic in Q(sqrt 2, sqrt 3, sqrt 5, sqrt 6, sqrt 7, ...). The physical constant, the Immirzi parameter and the gauge-invariance constraint on admissible puncture lists are not part of the target.
+Checked in Lean 4 on the 5-radical Q-module for up to 4 punctures with j<=3. Linear independence of squarefree square roots over R is encoded by working in the formal radical basis; the physical constant and Immirzi parameter are outside this target.
 
 ## Source status
 
-Open target stated in this branch; Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 15/4, 6, 35/4, 12} for j in {1/2..3} and the squarefree-radical degeneracy 2 sqrt(3) = 4 x (sqrt(3)/2) recomputed with Python fractions.Fraction on 2026-10-22.
+Checked in Lean 4.35.0 via lake build FrontierAreaSpectrum (library FrontierTargets in lean4/lakefile.lean); replay receipt in dag/research/frontier_targets_lean_replay.json.
 
 ## What is imported
 
@@ -34,11 +34,11 @@ Open target stated in this branch; Casimir values j(j+1) = a(a+2)/4 in {3/4, 2, 
 
 For puncture multisets with at most 4 elements and spins in {1/2,...,3}: area levels as exact sums of squarefree radicals; equal areas iff equal reduced sums; the pair (one puncture of spin 3) and (four punctures of spin 1/2) coincide; min nonzero level sqrt(3)/2.
 
-No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+Checked in Lean 4 on the declared finite domain; see the Lean 4 declarations read below and `dag/research/frontier_targets_lean_replay.json`.
 
 ## Connections to this repository
 
-- Route `FRO-R-LQG-AREA-SPECTRUM-EXACT-TARGET` (`GAP_NO_DERIVATION`) from `LQG-AREA-VOLUME-SPECTRA-SOURCE`, `LQG-SPIN-NETWORK-STATES-IMPORT`: No source derives the area spectrum from the finite SU(2)_2 data of the repository; the target is a statement about the classical SU(2) spin labels only. Gap until written.
+- Route `FRO-R-LQG-AREA-SPECTRUM-EXACT-TARGET` (`DERIVED_LEAN`) from `LQG-AREA-VOLUME-SPECTRA-SOURCE`, `LQG-SPIN-NETWORK-STATES-IMPORT`: Formalized and checked in Lean 4 (lean4/FrontierAreaSpectrum.lean) on the declared finite domain; external physical or continuum interpretations remain imported assumptions.
 - Exact Python fractions.Fraction recomputation (2026-10-22) confirmed j(j+1) = a(a+2)/4 = 3/4, 2, 15/4, 6, 35/4, 12 for a = 2j = 1..6, minimum nonzero value sqrt(3)/2 at j=1/2, and the coincidence of one spin-3 puncture (sqrt(12) = 2 sqrt(3)) with four spin-1/2 punctures (4 x sqrt(3)/2).
 
 See also: `TFQ-0105`, `TFQ-0198`.
@@ -51,6 +51,15 @@ See also: `TFQ-0105`, `TFQ-0198`.
 
 - `external:arXiv:gr-qc/9411005`: C. Rovelli and L. Smolin, "Discreteness of area and volume in quantum gravity", arXiv:gr-qc/9411005 (1994); Nucl. Phys. B 442 (1995) 593-622; erratum B 456 (1995) 753.
 - `external:arXiv:gr-qc/9602046`: A. Ashtekar and J. Lewandowski, "Quantum Theory of Gravity I: Area Operators", arXiv:gr-qc/9602046 (1996); Class. Quantum Grav. 14 (1997) A55-A82.
+- Repository: `lean4/FrontierAreaSpectrum.lean`
+- Repository: `dag/research/frontier_targets_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.casimir_squarefree_factorizations`
+- `lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.spin3_equals_four_spin_half`
+- `lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.area_spectrum_table_and_unique_degeneracy`
+- `lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half`
+- `lean4/FrontierAreaSpectrum.lean::FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing`
 
 ## Downstream derivations
 

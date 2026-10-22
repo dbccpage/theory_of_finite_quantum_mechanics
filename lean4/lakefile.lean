@@ -563,3 +563,23 @@ lean_lib PfpBatch01 where
     `WdpProtectedQuestions,
     `WdpQuotientSequence
   ]
+
+-- Finite frontier target Lean modules (Task 3: CT, CQFT, ADS, LQG finite targets).
+-- Not a default target: build with `lake build FrontierTargets` or per module.
+lean_lib FrontierTargets where
+  roots := #[
+    `FrontierDistinguishability,
+    `FrontierNoCloning,
+    `FrontierEntanglingPhase,
+    `FrontierPosetNet,
+    `FrontierRsCyclicity,
+    `FrontierLinearExtension,
+    `FrontierMyrheimMeyer,
+    `FrontierFiveQubitPerfectTensor,
+    `FrontierLogicalReconstruction,
+    `FrontierHappyMincut,
+    `FrontierAreaSpectrum,
+    `FrontierTvLevel2Pentagon,
+    `FrontierClassical6j,
+    `FrontierPrAllowedRegion
+  ]
