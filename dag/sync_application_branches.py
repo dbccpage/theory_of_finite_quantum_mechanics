@@ -8,7 +8,9 @@ for the application sections of the Markdown view. Pre-existing derivation paper
 preserved. The read-only views theory_of_finite_qm.jsonl and theory_of_finite_qm.md are then rendered
 from derivation_dag.json by dag/render_dag_views.py.
 
-Run order: sync_pfp_results.py, sync_unified_dag.py, this script, sync_pregenesis_to_wdp.py.
+Run order: sync_pfp_results.py, sync_unified_dag.py, this script, sync_pregenesis_to_wdp.py,
+sync_frontier_branches.py. The frontier block (nodes tagged frontier-branch, routes FRO-R-, records of
+source_slice frontier_branches, the frontier README section) is kept after the application block.
 --check detects stale generated data without writing.
 AuthorityEffect: None. Synchronization does not establish a mathematical claim.
 """
@@ -26,6 +28,8 @@ if str(HERE) not in sys.path:
 import render_dag_views as views  # noqa: E402
 
 MARKER = views.APP_MARKER
+FRONTIER_TAG = 'frontier-branch'
+FRONTIER_ROUTE_PREFIX = 'FRO-R-'
 json_text = views.json_text
 
 
@@ -46,9 +50,14 @@ def generated_files(root: Path):
     for n in dag['nodes']:
         if n['id'] in ids and 'application-branch' not in n['tags']:
             raise ValueError('application node collides with existing node: ' + n['id'])
-    dag['nodes'] = [n for n in dag['nodes'] if n['id'] not in ids] + nodes
+    # Frontier-branch nodes, routes and records (sync_frontier_branches.py) stay after the application block.
+    frontier_nodes = [n for n in dag['nodes'] if FRONTIER_TAG in n.get('tags', [])]
+    dag['nodes'] = [n for n in dag['nodes'] if n['id'] not in ids and FRONTIER_TAG not in n.get('tags', [])] \
+        + nodes + frontier_nodes
     route_ids = {r['id'] for r in routes}
-    dag['routes'] = [r for r in dag['routes'] if r['id'] not in route_ids] + routes
+    frontier_routes = [r for r in dag['routes'] if r['id'].startswith(FRONTIER_ROUTE_PREFIX)]
+    dag['routes'] = [r for r in dag['routes'] if r['id'] not in route_ids
+                     and not r['id'].startswith(FRONTIER_ROUTE_PREFIX)] + routes + frontier_routes
     for stage in fragment['stages']:
         if stage not in dag['stages']:
             dag['stages'].append(stage)
@@ -78,7 +87,9 @@ def generated_files(root: Path):
     for r in old_records:
         if r['id'] in record_ids and r.get('source_slice') != 'application_branches':
             raise ValueError('application record collides with existing record: ' + r['id'])
-    all_records = [r for r in old_records if r['id'] not in record_ids] + records
+    frontier_records = [r for r in old_records if r.get('source_slice') == views.FRONTIER_SLICE]
+    all_records = [r for r in old_records if r['id'] not in record_ids
+                   and r.get('source_slice') != views.FRONTIER_SLICE] + records + frontier_records
     if len({r['id'] for r in all_records}) != len(all_records):
         raise ValueError('duplicate master record identifiers')
     paper_paths = {}
@@ -96,9 +107,13 @@ def generated_files(root: Path):
         if r['f004_refs'][:1] != [paper_paths[r['id']]]:
             raise ValueError(f'{r["id"]}: f004_refs must start with its paper {paper_paths[r["id"]]}')
     dag['records'] = [views.canonical_record(r) for r in all_records]
-    dag['index_document']['application_stages'] = list(fragment['stages'])
+    # Stages appended by sync_frontier_branches.py follow this fragment's stages.
+    dag['index_document']['application_stages'] = list(fragment['stages']) + [
+        s for s in dag['index_document']['application_stages'] if s not in fragment['stages']]
 
-    index = strip_suffix((folder / 'derivations/README.md').read_text(encoding='utf-8'))
+    readme_head, frontier_marker, frontier_tail = (folder / 'derivations/README.md').read_text(
+        encoding='utf-8').partition(views.FRONTIER_MARKER)
+    index = strip_suffix(readme_head)
     index += '\n' + MARKER + '\n\n## Application and composition derivation branches\n\n'
     index += ('These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; '
               'an open research target remains open. See the [branch fragment](../fragments/application_branches.json) '
@@ -116,6 +131,8 @@ def generated_files(root: Path):
             parent = paper_paths[r['parent_id']].removeprefix('dag/derivations/')
             node_id = r['existing_derivation_dag_ids'][0]
             index += f'| [{r["id"]}](./{paper}) | {r["name"]} | `{r["record_status"]}` | [{r["parent_id"]}](./{parent}) | `{node_id}` |\n'
+    if frontier_marker:  # the frontier section is owned by sync_frontier_branches.py
+        index = index.rstrip('\n') + '\n\n' + frontier_marker + frontier_tail
     return {
         **views.outputs(dag, root),  # derivation_dag.json and the two views rendered from it
         folder / 'derivations/README.md': index.encode('utf-8'),

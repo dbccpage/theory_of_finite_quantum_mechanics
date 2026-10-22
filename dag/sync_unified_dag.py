@@ -328,7 +328,7 @@ def generated_files(root: Path = ROOT):
 
     # 2. A node for every base record that names none. Fragment-owned records (pre-genesis and
     #    application) get their node from their own fragment.
-    fragment_slices = {'pregenesis_to_wdp', 'application_branches'}
+    fragment_slices = {'pregenesis_to_wdp', 'application_branches', 'frontier_branches'}
     new_nodes, new_routes = [], []
     unified_node = {}
     for r in records:

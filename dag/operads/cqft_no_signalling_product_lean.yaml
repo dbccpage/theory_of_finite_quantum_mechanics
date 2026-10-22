@@ -1,0 +1,183 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: CQFT-NO-SIGNALLING-PRODUCT-LEAN
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'lean4/NoSignallingCore.lean establishes, for natural-number-valued tables of the
+    product form P x y a b = PA x a * PB y b in which each PB y sums to 1 over a listed outcome set, that
+    the marginal on the first party does not depend on the second party''s setting (product_noSignalling,
+    marginalA_product), and that the table sig, in which the first outcome equals the second setting,
+    has a setting-dependent marginal, so NoSignallingBA fails (sig_signals). Scope: product tables over
+    the naturals with outcome lists; no quantum states, no commuting local observables, no relation to
+    the posets of CausalOrder.lean.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The quantum statement that commuting local measurements at spacelike separated points
+    give setting-independent marginals is not stated in this file.
+  source_refs:
+  - dag/derivations/31_causal_qft/tfq_2101_cqft_no_signalling_product_lean.md
+  paper_refs:
+  - dag/derivations/31_causal_qft/tfq_2101_cqft_no_signalling_product_lean.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/31_causal_qft/tfq_2101_cqft_no_signalling_product_lean.md
+    sha256: 54114917a67498fd8b67912ba2f3a84ca2de294b1cbf0db77af9ff3097930cbe
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/causal_qft_cqft_no_signalling_product_lean_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: sumList
+  line: 7
+  signature_excerpt: |-
+    def sumList : List Nat → Nat
+      | [] => 0
+      | x :: xs => x + sumList xs
+
+    theorem sumList_mul (c : Nat) (l : List Nat) :
+        sumList (l.map (fun x => c * x)) = c * sumList l
+  source: lean4/NoSignallingCore.lean
+  repository: this_repository
+  source_sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: NoSignallingBA
+  line: 30
+  signature_excerpt: 'def NoSignallingBA (P : X → Y → A → B → Nat) (outcomesB : List B) : Prop'
+  source: lean4/NoSignallingCore.lean
+  repository: this_repository
+  source_sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: marginalA
+  line: 27
+  signature_excerpt: 'def marginalA (P : X → Y → A → B → Nat) (outcomesB : List B) (x : X) (y : Y) (a
+    : A) : Nat'
+  source: lean4/NoSignallingCore.lean
+  repository: this_repository
+  source_sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sig
+  line: 52
+  signature_excerpt: 'def sig (_x : Unit) (y : Bool) (a : Bool) (_b : Unit) : Nat'
+  source: lean4/NoSignallingCore.lean
+  repository: this_repository
+  source_sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: product_noSignalling
+  line: 33
+  signature_excerpt: |-
+    theorem product_noSignalling (PA : X → A → Nat) (PB : Y → B → Nat)
+        (outcomesB : List B)
+        (hPB : ∀ y, sumList (outcomesB.map (PB y)) = 1) :
+        NoSignallingBA (fun x y a b => PA x a * PB y b) outcomesB
+  source: lean4/NoSignallingCore.lean
+  repository: this_repository
+  source_sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: marginalA_product
+  line: 43
+  signature_excerpt: |-
+    theorem marginalA_product (PA : X → A → Nat) (PB : Y → B → Nat)
+        (outcomesB : List B) (hPB : ∀ y, sumList (outcomesB.map (PB y)) = 1)
+        (x : X) (y : Y) (a : A) :
+        marginalA (fun x y a b => PA x a * PB y b) outcomesB x y a = PA x a
+  source: lean4/NoSignallingCore.lean
+  repository: this_repository
+  source_sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sig_signals
+  line: 55
+  signature_excerpt: 'theorem sig_signals : ¬ NoSignallingBA sig [()]'
+  source: lean4/NoSignallingCore.lean
+  repository: this_repository
+  source_sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/NoSignallingCore.lean::product_noSignalling
+  availability: local
+  symbol: product_noSignalling
+  path: lean4/NoSignallingCore.lean
+  repository: this_repository
+  sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+- original_ref: lean4/NoSignallingCore.lean::marginalA_product
+  availability: local
+  symbol: marginalA_product
+  path: lean4/NoSignallingCore.lean
+  repository: this_repository
+  sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  declaration_status: declaration_found_not_proof_checked
+  line: 43
+  role: source_lead_only
+- original_ref: lean4/NoSignallingCore.lean::sig_signals
+  availability: local
+  symbol: sig_signals
+  path: lean4/NoSignallingCore.lean
+  repository: this_repository
+  sha256: f3fbd4ff4c66675ef44d1ed8e6b6c439f7a7ed93d29df66d038b843573bdaca7
+  declaration_status: declaration_found_not_proof_checked
+  line: 55
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

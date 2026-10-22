@@ -121,6 +121,11 @@ STAGES = (
     "ENGINE_CUSTODY",
     "MAJORANA",
     "COMPUTATION",
+    # Frontier branches (sync_frontier_branches.py).
+    "CONSTRUCTOR_THEORY",
+    "CAUSAL_QFT",
+    "ADS_CFT",
+    "LOOP_QUANTUM_GRAVITY",
 )
 STATUSES = (
     "ADMITTED_PRIMITIVE",

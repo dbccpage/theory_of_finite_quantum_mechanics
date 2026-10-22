@@ -79,6 +79,10 @@ def build_ledger() -> str:
         "TENSOR_COMPOSITION",
         "MAJORANA",
         "COMPUTATION",
+        "CONSTRUCTOR_THEORY",
+        "CAUSAL_QFT",
+        "ADS_CFT",
+        "LOOP_QUANTUM_GRAVITY",
     ]
 
     records_by_stage: dict[str, list[dict]] = {s: [] for s in stages_order}
@@ -157,6 +161,10 @@ def build_ledger() -> str:
             "TENSOR_COMPOSITION": "Tomographic composite coordinates, operational effect cones, finite POVMs",
             "COMPUTATION": "Separated marks to word rewriting, TM0 simulation, halting undecidability, authorization incompleteness and quantum-computation self-obstruction",
             "MAJORANA": "F2 parity schedules, residual trichotomy, syndrome completion, tetron carriers",
+            "CONSTRUCTOR_THEORY": "Deutsch-Marletto task and superinformation vocabulary as imports; finite no-cloning, distinguishability and entangling-phase targets",
+            "CAUSAL_QFT": "Haag-Kastler nets, Reeh-Schlieder, causal perturbation theory and causal sets as imports; finite poset, cyclicity and ordering-fraction targets",
+            "ADS_CFT": "AdS/CFT, Ryu-Takayanagi and HaPPY holographic codes as imports; five-qubit perfect tensor and patch-entropy targets",
+            "LOOP_QUANTUM_GRAVITY": "Spin networks, area spectra, Ponzano-Regge and EPRL as imports; exact area, 6j and quantum pentagon targets",
         }
         lines.append(f"| §{idx:02d} | `{stage}` | {len(recs)} | {desc_map.get(stage, 'Specialized domain')} | [`{first_id}`..`{last_id}`] |")
 

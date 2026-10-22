@@ -1,0 +1,86 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: LQG-TV-LEVEL2-PENTAGON-TARGET
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Finite statement to formalize. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin
+    0, 1, 2), the data of spin_foam.rs live in Q(sqrt 2) and those of H023 and H024 in Z[zeta_12]. Check
+    exactly the quantum Biedenharn-Elliott (pentagon) identity and the orthogonality relation of the quantum
+    6j symbols for all admissible labels. This is the algebraic content of invariance under the Pachner
+    2-3 move for the Turaev-Viro sum. The repository's fence (TFQ-0105) refuses an admission of triangulation
+    invariance; this target would discharge only the identity on those labels, not invariance of a state
+    sum on a triangulated manifold.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Exact arithmetic in a quadratic or cyclotomic field. The step from the local identity
+    to invariance on a triangulation is not part of the target.
+  source_refs:
+  - dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
+  - external:doi:10.1016/0040-9383(92)90015-A
+  - code/rust/src/general_relativity/spin_foam.rs
+  - code/rust/src/qm/finite_spinfoam.rs
+  - lean4/H023DiscreteSpinfoamAmplitudes.lean
+  - lean4/H024FourSimplexSpinfoamS4.lean
+  paper_refs:
+  - dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
+  source_claim_label: OPEN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md
+    sha256: ab834c3c3abc571e41f48c55c6d6422d9eee9f696d03763da9d26c9e8b1d10ca
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/loop_quantum_gravity_lqg_tv_level2_pentagon_target_open.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings: []
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

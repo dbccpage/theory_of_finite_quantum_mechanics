@@ -20,6 +20,7 @@ python -I -X utf8 dag/sync_pfp_results.py
 python -I -X utf8 dag/sync_unified_dag.py
 python -I -X utf8 dag/sync_application_branches.py
 python -I -X utf8 dag/sync_pregenesis_to_wdp.py
+python -I -X utf8 dag/sync_frontier_branches.py
 python -I -X utf8 dag/render_dag_views.py --check
 ```
 
