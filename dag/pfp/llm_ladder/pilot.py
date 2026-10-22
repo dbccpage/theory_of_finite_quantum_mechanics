@@ -34,7 +34,7 @@ from llm_ladder.verify import DeclIndex, default_cache_path  # noqa: E402
 
 
 def arm_stats(summary: dict) -> dict:
-    rows = [a for a in summary['attempts'] if a.get('status') in ('accepted', 'rejected')]
+    rows = [a for a in summary['attempts'] if a.get('status') in ('accepted', 'accepted_partial', 'rejected')]
     failures = sum(a['failures_total'] for a in rows)
     verified = sum(a['verified_total'] for a in rows)
     injected = {i for a in rows for i in a.get('injected_neg_ids', [])}
@@ -44,6 +44,7 @@ def arm_stats(summary: dict) -> dict:
             'per_attempt_verified': [a['verified_total'] for a in rows], 'per_attempt_failures': [a['failures_total'] for a in rows],
             'would_accept': sum(1 for a in rows if a['verified_total'] >= DEFAULT_POLICY['min_verified']
                                 and a['failure_rate'] <= DEFAULT_POLICY['max_failure_rate']),
+            'accepted_partial_attempts': sum(1 for a in rows if a['status'] == 'accepted_partial'),
             'failures_by_class': summary['hallucinations_by_class'], 'known_neg_injected': [a['known_neg_injected'] for a in rows],
             'known_pos_injected': [a['known_pos_injected'] for a in rows], 'repeated_known_bad_moves': repeats,
             'infra_errors': [a.get('code') for a in summary['attempts'] if a.get('status') == 'infra_error'],

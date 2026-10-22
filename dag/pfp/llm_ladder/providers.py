@@ -164,8 +164,13 @@ class OpenAICompatProvider:
                 self._sleep(wait)
 
     def _body(self, req: CallRequest, structured: str) -> dict:
+        system = req.system
+        if structured != 'json_schema' and req.schema:
+            # No enforced schema (provider without support, or the 400 fallback): the model must see the schema in the text.
+            system += ('\n\nThe provider does not enforce the response schema. Your reply must validate against this JSON schema:\n'
+                       + json.dumps(req.schema, separators=(',', ':'), ensure_ascii=False))
         body = {'model': req.model,
-                'messages': [{'role': 'system', 'content': req.system}, {'role': 'user', 'content': req.user}],
+                'messages': [{'role': 'system', 'content': system}, {'role': 'user', 'content': req.user}],
                 self.cfg.get('max_tokens_field', 'max_tokens'): req.max_tokens}
         body.update(self.cfg.get('body_extra', {}))
         body.update(req.body_extra or {})

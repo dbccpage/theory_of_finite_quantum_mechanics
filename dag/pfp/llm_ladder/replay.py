@@ -40,7 +40,7 @@ def stored_attempts(root):
         receipt = json.loads(Path(receipt_path).read_bytes().decode('utf-8'))
         summary = receipt['summary']
         for attempt in summary['attempts']:
-            if attempt.get('status') not in ('accepted', 'rejected'):
+            if attempt.get('status') not in ('accepted', 'accepted_partial', 'rejected'):
                 continue
             folder = run_dir / 'p0' / 'attempts' / attempt['attempt_id']
             yield summary, attempt, folder
