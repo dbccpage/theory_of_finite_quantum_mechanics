@@ -4,6 +4,16 @@ Can quantum mechanics be built from a finite, exact substrate, starting from a s
 
 The project does not claim to derive quantum mechanics. It records how far finite constructions reach and names every structure that has to be supplied from outside.
 
+## Support this research
+
+This is an independent, open-source research effort. Continuing the derivations and checking them across Lean 4, Rust and Python requires computational resources, including paid AI API usage for candidate proofs, adversarial review and repair.
+
+The current **estimated funding need is $5,000** to pursue the remaining research. This is a working budget estimate, **not a guarantee that the whole program can be completed for that amount**, nor a promise that every open problem will be solved. Research API credits would help reduce the cash needed.
+
+If you find the work useful, even **$5 or $10** helps pay for the next round of computation and verification. Results, counterexamples and unresolved gaps will continue to be documented openly, with explicit assumptions and evidence.
+
+**[Contribute through Buy Me a Coffee](https://buymeacoffee.com/ooutwire).**
+
 ## What makes this checkable
 
 | Layer | What it does | Where |
