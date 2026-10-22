@@ -25,17 +25,17 @@ sys.dont_write_bytecode = True
 
 from llm_ladder import ladder as ladder_cli  # noqa: E402
 from llm_ladder.budget import BudgetRefused, Ledger, cost_microusd, usd_to_micro  # noqa: E402
-from llm_ladder.config import DEFAULT_POLICY  # noqa: E402
+from llm_ladder.config import DEFAULT_POLICY, DEFAULT_TIERS  # noqa: E402
 from llm_ladder.gateway import Gateway  # noqa: E402
 from llm_ladder.llm_common import (KEY_PATTERNS, ROOT, SECRET_NAMES, Redactor, load_env, parse_env_text,  # noqa: E402
                                    scan_paths_for_keys, scan_text_for_keys)
 from llm_ladder.memory import HallucinationIndex, entry_id  # noqa: E402
-from llm_ladder.packets import P0_SCHEMA, compile_p0  # noqa: E402
+from llm_ladder.packets import P0_SCHEMA, SYSTEM_P0, compile_p0, schema_example, source_candidates  # noqa: E402
 from llm_ladder.providers import (AnthropicProvider, CallRequest, CallResult, OpenAICompatProvider, ProviderError,  # noqa: E402
                                   extract_json)
 from llm_ladder.runner import LadderRunner  # noqa: E402
-from llm_ladder.verify import (DeclIndex, Failure, LeanRunner, Verifier, lean_arity_candidates, safe_fraction,  # noqa: E402
-                               statement_drift, validate_schema)
+from llm_ladder.verify import (DeclIndex, Failure, LeanRunner, Verifier, lean_arity_candidates, normalise_ref_fields,  # noqa: E402
+                               rust_params, safe_fraction, statement_drift, validate_schema)
 
 try:
     import yaml
@@ -522,6 +522,10 @@ class AdapterTests(Base):
         self.assertIn('response_format', calls[0][2])
         self.assertNotIn('response_format', calls[1][2])
         self.assertEqual(result.structured_mode, 'none')
+        # without an enforced schema the model must be shown the schema in the text
+        self.assertEqual(calls[0][2]['messages'][0]['content'], 's')
+        self.assertIn('validate against this JSON schema', calls[1][2]['messages'][0]['content'])
+        self.assertIn('"type":"object"', calls[1][2]['messages'][0]['content'])
 
     def test_error_statuses_are_classified(self):
         for status, code in ((401, 'auth'), (402, 'payment_required'), (404, 'model_unavailable'), (503, 'server'), (422, 'bad_request')):
@@ -763,6 +767,261 @@ class LadderTests(Base):
         self.assertNotIn(fake_key('sk-ant-'), text)
         self.assertFalse(self.ledger_path.exists())
         self.assertFalse((self.root / 'dag/results').exists())
+
+
+# ============================================================================ round 2 diagnostic fixes (2026-10-21)
+class VerifierFixTests(Base):
+    """Each verifier rule that the round 2 diagnostic found to reject a correct claim."""
+
+    def write(self, relative, text):
+        path = self.root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding='utf-8')
+
+    def lemma(self, **kw):
+        base = {'id': 'l1', 'statement': 'qBeta nc nf = (11/3) nc - (2/3) nf', 'relation_to_target': 'restates', 'depends_on': [],
+                'lean_skeleton': '', 'claims_proved': False, 'ref': ref()}
+        base.update(kw)
+        return base
+
+    def gen(self, gid, path, decl, arity, status='existing'):
+        return {'id': gid, 'inputs': ['X'] * arity, 'output': 'Y', 'arity': arity, 'carrier': 'c', 'ref': ref(path, decl, status)}
+
+    def test_a_placeholder_tautology_without_a_proof_claim_is_no_failure(self):
+        placeholder = self.lemma(id='l_ph', statement='qBeta is defined', relation_to_target='auxiliary',
+                                 lean_skeleton='theorem x : True := by sorry')
+        report = self.verify(reply(lemmas=[placeholder]))
+        self.assertEqual(report.failures, [])
+        self.assertTrue(any('placeholder' in n for n in report.notices))
+        self.assertEqual(report.unverifiable[0]['kind'], 'lemma')
+        # claiming a proof of a tautology is still vacuous, and so is a real x = x claim
+        claimed = self.verify(reply(lemmas=[dict(placeholder, claims_proved=True)]))
+        self.assertEqual(self.classes(claimed), ['vacuous_proof'])
+
+    def test_a_lemma_citing_a_verified_existing_declaration_is_ref_verified_not_lean_checked(self):
+        lemma = self.lemma(ref=ref('lean4/Foo.lean', 'FooNS.qBeta', 'existing'))
+        report = self.verify(reply(lemmas=[lemma]))
+        self.assertEqual(report.failures, [])
+        self.assertEqual(len(report.verified['lemmas']), 1)
+        entry = report.verified['lemmas'][0]
+        self.assertIn('ref_verified_not_lean_checked', entry['evidence_status'])
+        self.assertEqual(entry['host_evidence']['decl'], 'FooNS.qBeta')
+        self.assertEqual(report.verified_total(), 1)
+        # with a skeleton and Lean unavailable the lemma falls back to the same evidence level, and says so
+        with_skeleton = self.verify(reply(lemmas=[dict(lemma, lean_skeleton='theorem l : (23 : Nat) = 23 := by rfl')]))
+        self.assertEqual([e['evidence_status'] for e in with_skeleton.verified['lemmas']],
+                         ['declaration_exists_statement_consistent_ref_verified_not_lean_checked'])
+        # a lemma with no citation stays unverifiable, and a refused citation is still a failure
+        self.assertEqual(self.verify(reply(lemmas=[self.lemma()])).verified['lemmas'], [])
+        ghost = self.verify(reply(lemmas=[self.lemma(ref=ref('lean4/Foo.lean', 'FooNS.ghost', 'existing'))]))
+        self.assertEqual(self.classes(ghost), ['nonexistent_declaration'])
+
+    def test_rust_arity_survives_nested_parentheses_and_counts_a_receiver_either_way(self):
+        self.write('code/rust/api.rs',
+                   'pub fn dihedral(four: &[usize; 5], tri: &[usize; 3], get_length: impl Fn(usize, usize) -> Option<f64>)\n'
+                   '    -> Result<f64, String> {\n    Ok(0.0)\n}\n'
+                   'impl S {\n    pub fn amplitude(&self) -> u8 { 1 }\n    pub fn scale(&mut self, k: u8) -> u8 { k }\n}\n')
+        self.assertEqual(rust_params('pub fn f(a: HashMap<K, V>, g: impl Fn(u8, u8) -> u8)'), (2, 2))
+        self.assertEqual(rust_params("pub fn f(&'a self, x: u8)"), (1, 2))
+        ok = [self.gen('g3', 'code/rust/api.rs', 'dihedral', 3), self.gen('a0', 'code/rust/api.rs', 'amplitude', 0),
+              self.gen('a1', 'code/rust/api.rs', 'amplitude', 1), self.gen('s1', 'code/rust/api.rs', 'scale', 1),
+              self.gen('s2', 'code/rust/api.rs', 'scale', 2)]
+        self.assertEqual(self.verify(reply(generators=ok)).failures, [])
+        bad = self.verify(reply(generators=[self.gen('g4', 'code/rust/api.rs', 'dihedral', 4), self.gen('a2', 'code/rust/api.rs', 'amplitude', 2)]))
+        self.assertEqual(self.classes(bad), ['wrong_signature', 'wrong_signature'])
+
+    def test_python_method_receiver_may_count_as_an_input(self):
+        self.write('code/python/meth.py', 'class K:\n    def run(self, a):\n        return a\n\n    @staticmethod\n    def plain(a, b):\n        return a\n')
+        ok = [self.gen('r1', 'code/python/meth.py', 'run', 1), self.gen('r2', 'code/python/meth.py', 'run', 2),
+              self.gen('p2', 'code/python/meth.py', 'plain', 2)]
+        self.assertEqual(self.verify(reply(generators=ok)).failures, [])
+        self.assertEqual(self.classes(self.verify(reply(generators=[self.gen('r3', 'code/python/meth.py', 'run', 3)]))), ['wrong_signature'])
+
+    def test_lean_header_keeps_implicit_binders_and_defaulted_arguments(self):
+        self.write('lean4/Word.lean',
+                   'def Word.concat {n d : Nat} : List Nat → List Nat → List Nat\n  | a, b => a ++ b\n\n'
+                   'def packetFor\n    (C : Nat) (q : Nat)\n    (b : Nat := 0)\n    (c : Bool := false) : Nat := C\n')
+        header = self.index.statement('lean4/Word.lean', self.index.match_in_table(self.index.file_entry('lean4/Word.lean')['table'], 'Word.concat')[0])
+        self.assertIn('{n d : Nat}', header)
+        self.assertNotIn('a ++ b', header)
+        ok = [self.gen('c2', 'lean4/Word.lean', 'Word.concat', 2), self.gen('p2', 'lean4/Word.lean', 'packetFor', 2),
+              self.gen('p4', 'lean4/Word.lean', 'packetFor', 4)]
+        self.assertEqual(self.verify(reply(generators=ok)).failures, [])
+        self.assertEqual(self.classes(self.verify(reply(generators=[self.gen('p3', 'lean4/Word.lean', 'packetFor', 3)]))), ['wrong_signature'])
+        self.assertEqual(lean_arity_candidates('def f {a : Nat} (x y : Nat) : Nat'), (2, 2))
+
+    def test_compositions_over_unverified_generators_are_unverifiable_not_type_mismatches(self):
+        gens = [self.gen('g_new', '', 'brand_new', 1, status='proposed_new'),
+                {'id': 'g_ok', 'inputs': ['Rat', 'Rat'], 'output': 'Rat', 'arity': 2, 'carrier': 'Rat', 'ref': ref('lean4/Foo.lean', 'FooNS.qBeta', 'existing')}]
+        rels = [{'id': 'R1', 'statement': 'qBeta nc nf = (11/3) nc - (2/3) nf', 'hypotheses': '', 'ref': ref('lean4/Foo.lean', 'FooNS.qBeta', 'existing')}]
+        comps = [{'outer': 'g_ok', 'slot': 0, 'inner': 'g_new', 'licensing_relation': 'R1'},
+                 {'outer': 'g_new', 'slot': 0, 'inner': 'g_ok', 'licensing_relation': 'R1'}]
+        report = self.verify(reply(generators=gens, relations=rels, compositions=comps))
+        self.assertEqual(report.failures, [])
+        self.assertEqual([u['kind'] for u in report.unverifiable if u['kind'] == 'composition'], ['composition', 'composition'])
+        # a generator the reply never listed is a malformed claim and stays a failure; a real colour mismatch too
+        ghost = self.verify(reply(generators=gens, relations=rels, compositions=[dict(comps[0], inner='ghost')]))
+        self.assertEqual(self.classes(ghost), ['composition_type_mismatch'])
+        self.assertIn('not a generator of this reply', ghost.failures[0].evidence)
+
+    def test_reference_fields_lose_visibility_and_kind_words(self):
+        for decl in ('pub fn from_operation<K, M>(elements: Vec<E>)', 'pub(crate) fn from_operation', 'fn from_operation', 'g:from_operation'):
+            self.assertEqual(normalise_ref_fields('code/rust/x.rs', decl), ('code/rust/x.rs', 'from_operation'), decl)
+        self.assertEqual(normalise_ref_fields('code/rust/x.rs', 'pub mod circle_haar;')[1], 'circle_haar')
+        self.assertEqual(normalise_ref_fields('code/rust/x.rs', 'noncomputable def FooNS.qBeta (nc : Rat)')[1], 'FooNS.qBeta')
+        self.assertEqual(normalise_ref_fields('code/rust/x.rs', 'pub_key')[1], 'pub_key')
+
+    def test_numerals_of_group_names_in_a_claim_are_not_drift(self):
+        self.assertIsNone(statement_drift('Q8 embeds into SU(2) via su2_matrix', 'pub mod su2_matrix;'))
+        self.assertIsNone(statement_drift('half of 2', 'the group SU(2) acts'))   # a source keeps all its numerals
+        self.assertIn('2', statement_drift('the value is 2', 'nothing here'))
+
+    def test_a_missing_top_level_array_is_one_notice_and_not_a_failure(self):
+        report = self.verify({'status': 'incomplete', 'generators': []})
+        self.assertEqual(report.failures, [])
+        self.assertEqual(report.notices, ['missing top-level arrays read as []: relations, compositions, numeric_claims, lemmas, near_misses'])
+        self.assertEqual(self.classes(self.verify(reply(relations='not a list'))), ['schema_violation'])
+
+
+class PacketFixTests(Base):
+    def test_system_text_shows_the_reply_shape_and_asks_for_empty_skeletons(self):
+        example = schema_example(P0_SCHEMA)
+        self.assertEqual(sorted(example), sorted(P0_SCHEMA['required']))
+        self.assertEqual(sorted(example['generators'][0]['ref']), ['decl', 'path', 'status'])
+        self.assertEqual(example['status'], 'incomplete|ready_for_host_review')
+        self.assertIn(json.dumps(example, separators=(',', ':'), ensure_ascii=False), SYSTEM_P0)
+        self.assertIn('lean_skeleton', SYSTEM_P0)
+        self.assertIn('never write a placeholder', SYSTEM_P0)
+
+    def test_free_tier_has_no_laguna_and_nemotron_is_last(self):
+        models = [c['model'] for c in DEFAULT_TIERS[0]['candidates'] if c.get('enabled', True)]
+        self.assertFalse(any('laguna' in m for m in models))
+        self.assertEqual(models[-1], 'nvidia/nemotron-3.5-lightning:free')
+
+    def test_files_and_identifiers_named_in_the_statement_or_the_bottleneck_are_offered(self):
+        collection = {'operation_candidates': [], 'relation_candidates': []}
+        by_file = source_candidates(self.root, 'N-2', collection, self.index, 'The note concerns Bar.lean only.', 25)
+        self.assertEqual({p for _, p, _ in by_file}, {'lean4/Bar.lean'})
+        by_ident = source_candidates(self.root, 'N-2', collection, self.index, 'A note.', 25, bottleneck='compare with unrelated_thing')
+        self.assertIn('unrelated_thing', {d['full'] for _, _, d in by_ident})
+        generic = {'mod.rs', 'lib.rs'}
+        self.assertTrue(generic)   # bare module names are never resolved
+        self.assertEqual(source_candidates(self.root, 'N-2', collection, self.index, 'See lib.rs.', 25), [])
+
+    def test_no_relevant_declaration_means_an_empty_src(self):
+        collection = {'operation_candidates': [], 'relation_candidates': []}
+        self.assertEqual(source_candidates(self.root, 'N-2', collection, self.index, 'A survey of an external publication, in prose.', 25), [])
+        packet = compile_p0(self.root, 'N-2', attempt_id='a', policy=DEFAULT_POLICY, index=self.index, feedback=False)
+        self.assertGreater(packet.meta['src_offered'], 0, 'the build_repo statement names qBeta')
+
+
+class PartialAndSkipTests(LadderTests):
+    """accepted_partial and skipped_ungroundable, on the same scripted ladder."""
+
+    def one_verified(self):
+        return reply(relations=[{'id': 'r_def', 'statement': 'qBeta nc nf = (11/3) nc - (2/3) nf', 'hypotheses': '',
+                                 'ref': ref('lean4/Foo.lean', 'FooNS.qBeta', 'existing')}])
+
+    def make_node(self, name, statement):
+        index_path = self.root / 'dag/operads/index.json'
+        index = json.loads(index_path.read_bytes())
+        index['nodes'].append({'node_id': name, 'prompt': 'dag/prompts/%s.yaml' % name, 'operad_collection': 'dag/operads/%s.yaml' % name.lower()})
+        index_path.write_text(json.dumps(index), encoding='utf-8')
+        collection = {'node_id': name, 'target': {'source_statement': statement, 'declared_assumptions': [], 'source_bottleneck': ''},
+                      'operation_candidates': [], 'relation_candidates': []}
+        (self.root / ('dag/operads/%s.yaml' % name.lower())).write_text(yaml.safe_dump(collection), encoding='utf-8')
+        dag_path = self.root / 'dag/derivation_dag.json'
+        dag = json.loads(dag_path.read_bytes())
+        dag['nodes'].append({'id': name, 'status': 'SOURCE_RECORD', 'lean': [], 'rust': [], 'source': ['external:arXiv:0000.00000']})
+        dag_path.write_text(json.dumps(dag), encoding='utf-8')
+
+    def test_one_verified_claim_and_no_refusal_is_accepted_partial_and_terminal(self):
+        a = FakeProvider('free_a', [self.one_verified()])
+        b = FakeProvider('free_b', [self.good()])
+        h = FakeProvider('anthropic', [self.good()])
+        runner, _ = self.runner({'free_a': a, 'free_b': b, 'anthropic': h})
+        summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
+        self.assertEqual(summary['status'], 'accepted_partial')
+        self.assertEqual(summary['stop_reason'], 'accepted_partial_at_tier_0')
+        self.assertIsNone(summary['accepted_attempt'])
+        self.assertEqual(summary['partial_attempt'], 'a0-1')
+        self.assertEqual([x['status'] for x in summary['attempts']], ['accepted_partial'])
+        self.assertFalse(summary['attempts'][0]['abstained'])
+        self.assertEqual((b.requests, h.requests), ([], []), 'no escalation, no second model')
+        check = json.loads((self.root / summary['run_dir'] / 'p0/host_check.json').read_bytes())
+        self.assertIn('partial', check['status'])
+
+    def test_a_refused_claim_keeps_the_full_bar(self):
+        mixed = self.one_verified()
+        mixed['numeric_claims'] = [{'id': 'n_bad', 'expr': '2+2', 'value': '5'}]
+        a = FakeProvider('free_a', [mixed])
+        b = FakeProvider('free_b', [self.good()])
+        runner, _ = self.runner({'free_a': a, 'free_b': b})
+        summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
+        self.assertEqual(summary['status'], 'accepted')
+        self.assertEqual([x['status'] for x in summary['attempts']], ['rejected', 'accepted'])
+
+    def test_partial_can_be_turned_off_and_then_counts_as_an_abstention(self):
+        a = FakeProvider('free_a', [self.one_verified()])
+        b = FakeProvider('free_b', [self.one_verified()])
+        ledger = Ledger(self.ledger_path)
+        runner = LadderRunner(self.root, ledger=ledger, providers={'free_a': a, 'free_b': b}, tiers=self.TIERS[:1],
+                              policy=dict(DEFAULT_POLICY, min_verified=2, abstain_stop=2, accept_partial=False), decl_index=self.index,
+                              verifier=self.verifier(), sleeper=lambda s: None)
+        summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
+        self.assertEqual(summary['status'], 'blocked_abstained')
+        self.assertEqual([x['status'] for x in summary['attempts']], ['rejected', 'rejected'])
+
+    def test_a_node_with_nothing_to_ground_is_skipped_without_a_provider_call(self):
+        self.make_node('N-SKIP', 'An external publication proposes a framework, described here in prose only.')
+        a = FakeProvider('free_a', [self.good()])
+        runner, ledger = self.runner({'free_a': a, 'free_b': FakeProvider('free_b', []), 'anthropic': FakeProvider('anthropic', [])})
+        summary = runner.run('N-SKIP', run_cap_microusd=usd_to_micro(0.05))
+        self.assertEqual(summary['status'], 'skipped_ungroundable')
+        self.assertTrue(summary['stop_reason'].startswith('skipped_ungroundable:'))
+        self.assertIn('no @SRC', summary['stop_reason'])
+        self.assertEqual((summary['attempts'], summary['spend_microusd']), ([], 0))
+        self.assertEqual(a.requests, [])
+        receipt = json.loads((self.root / summary['run_dir'] / 'ladder_receipt.json').read_bytes())
+        self.assertEqual(receipt['external_provider_calls'], 0)
+        self.assertEqual(receipt['summary']['status'], 'skipped_ungroundable')
+        # configurable: with the skip off the node is sent (and, with nothing offered, the model abstains)
+        sent = FakeProvider('free_a', [reply(open_obligations=['nothing to ground'])])
+        ledger2 = Ledger(self.ledger_path)
+        unskipped = LadderRunner(self.root, ledger=ledger2, providers={'free_a': sent, 'free_b': FakeProvider('free_b', [reply()])},
+                                 tiers=self.TIERS[:1], policy=dict(DEFAULT_POLICY, skip_ungroundable=False, abstain_stop=2),
+                                 decl_index=self.index, verifier=self.verifier(), sleeper=lambda s: None)
+        self.assertEqual(unskipped.run('N-SKIP', run_cap_microusd=usd_to_micro(0.05))['status'], 'blocked_abstained')
+        self.assertEqual(len(sent.requests), 1)
+
+    def test_nodes_with_something_to_ground_are_never_skipped(self):
+        # N-1 has a lean anchor and a statement that names qBeta; N-2 has only the identifier
+        for node in ('N-1', 'N-2'):
+            packet = compile_p0(self.root, node, attempt_id='a', policy=DEFAULT_POLICY, index=self.index, feedback=False)
+            self.assertFalse(packet.meta['ungroundable'], node)
+        # a finite target is kept even with nothing found; a SOURCE_RECORD with only fuzzy matches is not
+        self.make_node('N-TARGET', 'Finite statement to formalize. An exact claim in prose.')
+        dag_path = self.root / 'dag/derivation_dag.json'
+        dag = json.loads(dag_path.read_bytes())
+        for n in dag['nodes']:
+            if n['id'] == 'N-TARGET':
+                n.update(status='OPEN', statement='Finite statement to formalize. An exact claim in prose.')
+        dag_path.write_text(json.dumps(dag), encoding='utf-8')
+        packet = compile_p0(self.root, 'N-TARGET', attempt_id='a', policy=DEFAULT_POLICY, index=self.index, feedback=False)
+        self.assertEqual((packet.meta['src_offered'], packet.meta['ungroundable'], packet.meta['finite_target']), (0, False, True))
+
+    def test_cli_reports_partial_and_skip_with_their_own_exit_codes_and_flags(self):
+        env_file = self.tmp / 'empty.env'
+        env_file.write_text('', encoding='utf-8')
+        common = ['--node', 'N-1', '--max-cost-usd', '0.1', '--root', str(self.root), '--ledger', str(self.ledger_path), '--env-file', str(env_file)]
+        args = ladder_cli.parse_args(common + ['--no-partial', '--no-skip-ungroundable', '--partial-min-verified', '2'])
+        self.assertTrue(args.no_partial and args.no_skip_ungroundable)
+        runner = ladder_cli.build_runner(args, providers={})
+        self.assertFalse(runner.policy['accept_partial'])
+        self.assertFalse(runner.policy['skip_ungroundable'])
+        self.assertEqual(runner.policy['partial_min_verified'], 2)
+        defaults = ladder_cli.build_runner(ladder_cli.parse_args(common), providers={})
+        self.assertTrue(defaults.policy['accept_partial'] and defaults.policy['skip_ungroundable'])
 
 
 if __name__ == '__main__':

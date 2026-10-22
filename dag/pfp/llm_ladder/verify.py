@@ -108,12 +108,14 @@ class DeclIndex:
             return table
         for node in ast.walk(tree):
             if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-                arity = None
+                arity, receiver = None, False
                 if not isinstance(node, ast.ClassDef):
-                    args = [a for a in node.args.posonlyargs + node.args.args if a.arg not in ('self', 'cls')]
+                    positional = node.args.posonlyargs + node.args.args
+                    receiver = bool(positional) and positional[0].arg in ('self', 'cls')
+                    args = [a for a in positional if a.arg not in ('self', 'cls')]
                     arity = len(args) + len(node.args.kwonlyargs)
                 table.append({'kind': 'class' if isinstance(node, ast.ClassDef) else 'def', 'name': node.name,
-                              'full': node.name, 'line': node.lineno, 'arity': arity})
+                              'full': node.name, 'line': node.lineno, 'arity': arity, 'receiver': receiver})
         return table
 
     def lines(self, relpath: str) -> list:
@@ -160,6 +162,16 @@ class DeclIndex:
                             found.append(os.path.relpath(os.path.join(folder, name), self.root).replace(os.sep, '/'))
             self._paths = sorted(found)
         return self._paths
+
+    def paths_by_basename(self) -> dict:
+        """file name -> [repository-relative paths] over the indexed source files."""
+        table = getattr(self, '_by_base', None)
+        if table is None:
+            table = {}
+            for path in self.source_paths():
+                table.setdefault(path.rsplit('/', 1)[-1], []).append(path)
+            self._by_base = table
+        return table
 
     def by_short(self) -> dict:
         """short name -> [(path, decl)] over every source file (cached on disk when cache_path is set)."""
@@ -220,13 +232,27 @@ class DeclIndex:
         return '\n'.join(lines[start:stop])
 
     def statement(self, relpath: str, decl: dict) -> str:
-        """The declaration's header: up to the first ':=' or ' where' (Lean) or the signature (Rust/Python)."""
+        """The declaration's header. Lean: up to the first top-level ':=' or ' where' (implicit binders in braces, instance
+        binders in brackets and default arguments in parentheses stay in the header). Rust/Python: up to the first top-level '{'
+        or ':=' / ' where'."""
         text = self.window(relpath, decl, span=14)
-        for marker in (':=', ' where', '{'):
-            if marker in text:
-                text = text.split(marker, 1)[0]
-                break
-        return text.strip()
+        return cut_header(text, lean=relpath.endswith('.lean'))
+
+
+def cut_header(text: str, *, lean: bool) -> str:
+    """Cut `text` at the first body marker that is outside every bracket pair."""
+    depth, i = 0, 0
+    while i < len(text):
+        ch = text[i]
+        if ch in '([{⟨' and not (ch == '{' and not lean and depth == 0):
+            depth += 1
+        elif ch in ')]}⟩':
+            depth = max(0, depth - 1)
+        elif depth == 0 and (text.startswith(':=', i) or text.startswith(' where', i) or (not lean and ch == '{')
+                             or (lean and ch == '\n' and re.match(r'\n\s*\|', text[i:]))):
+            return text[:i].strip()
+        i += 1
+    return text.strip()
 
 
 def default_cache_path(root) -> Path:
@@ -234,18 +260,25 @@ def default_cache_path(root) -> Path:
     return Path(tempfile.gettempdir()) / ('pfp_ladder_declindex_%s.json' % sha256_text(str(Path(root).resolve()))[:10])
 
 
-KIND_WORDS = re.compile(r'^(?:theorem|lemma|def|abbrev|structure|inductive|class|instance|axiom|opaque|fn|struct|enum|trait|const)\s+')
+KIND_WORDS = re.compile(
+    r'^(?:(?:pub(?:\([^)]*\))?|private|protected|noncomputable|partial|unsafe|async|extern|@\[[^\]]*\])\s+'
+    r'|(?:theorem|lemma|def|abbrev|structure|inductive|class|instance|axiom|opaque|fn|struct|enum|trait|const|static|mod|type)\s+)+')
+ID_PREFIX = re.compile(r'^[gr]:(?=[A-Za-z_])')   # the `g:`/`r:` tags of @KNOWN+ lines
+
+
+def _strip_decl_text(text):
+    return ID_PREFIX.sub('', KIND_WORDS.sub('', ID_PREFIX.sub('', str(text or '').strip())))
 
 
 def normalise_ref_fields(path, decl):
-    """Format tolerance only: a model that copies a whole `path::decl` into one field, or a leading kind word, is
-    read as it plainly meant (the leading identifier of the declaration field). The normalised citation is still checked
-    in full: path, declaration and arity."""
+    """Format tolerance only: a model that copies a whole `path::decl` into one field, or leading modifiers and a kind word
+    (`pub fn`, `pub(crate) mod`, `noncomputable def`, a `g:` tag), is read as it plainly meant (the leading identifier of the
+    declaration field). The normalised citation is still checked in full: path, declaration and arity."""
     path = str(path or '').strip()
-    decl = KIND_WORDS.sub('', str(decl or '').strip())
+    decl = _strip_decl_text(decl)
     if '::' in path:
         head, _, tail = path.partition('::')
-        path, decl = head.strip(), (decl or KIND_WORDS.sub('', tail.strip()))
+        path, decl = head.strip(), (decl or _strip_decl_text(tail))
     if '::' in decl and re.search(r'\.(?:lean|rs|py)$', decl.split('::', 1)[0].strip()):
         head, _, tail = decl.partition('::')
         path, decl = path or head.strip(), tail.strip()
@@ -282,14 +315,28 @@ def _split_top_level(text: str):
 
 def lean_arity_candidates(header: str):
     """Explicit-binder count, and that plus the top-level arrows of the conclusion. Heuristic."""
-    binders, conclusion_start = 0, None
+    low, high, _ = _lean_arity(header)
+    return low, high
+
+
+def _lean_arity(header: str):
+    """(explicit binders, explicit binders + conclusion arrows, explicit binders that carry a default `:=`)."""
+    binders, defaulted, conclusion_start = 0, 0, None
     for index, ch, depth in _split_top_level(header):
         if ch == '(' and depth == 0:
-            close = header.find(')', index)
-            group = header[index + 1: close if close > 0 else len(header)]
+            close, nest = index, 0
+            for close in range(index, len(header)):       # the matching ')', not the first one
+                nest += header[close] == '('
+                nest -= header[close] == ')'
+                if nest == 0:
+                    break
+            group = header[index + 1: close]
             if ':' in group:
                 names = group.split(':', 1)[0].split()
-                binders += len([n for n in names if n and n != '_'] or [''])
+                count = len([n for n in names if n and n != '_'] or [''])
+                binders += count
+                if ':=' in group:
+                    defaulted += count
         elif ch == ':' and depth == 0 and conclusion_start is None:
             conclusion_start = index + 1
     arrows = 0
@@ -298,43 +345,95 @@ def lean_arity_candidates(header: str):
         for index, ch, depth in _split_top_level(tail):
             if depth == 0 and (ch == '→' or tail[index: index + 2] == '->'):
                 arrows += 1
-    return binders, binders + arrows
+    return binders, binders + arrows, defaulted
+
+
+def lean_arity_options(header: str) -> set:
+    """Every arity a reader could reasonably mean: with or without conclusion arrows, with or without defaulted binders."""
+    low, high, defaulted = _lean_arity(header)
+    return {low, high, low - defaulted, high - defaulted}
+
+
+RECEIVER = re.compile(r"^&?(?:'\w+\s+)?(?:mut\s+)?self\b")
+
+
+def rust_params(header: str):
+    """(parameters without a receiver, parameters with it) of a Rust fn header, or None. Parentheses, brackets and angle
+    brackets inside parameter types (`impl Fn(usize, usize) -> X`, `HashMap<K, V>`) do not split a parameter."""
+    start = header.find('(')
+    if start < 0:
+        return None
+    depth, end = 0, len(header)
+    for position in range(start, len(header)):
+        if header[position] == '(':
+            depth += 1
+        elif header[position] == ')':
+            depth -= 1
+            if depth == 0:
+                end = position
+                break
+    params, current, nest, prev = [], '', 0, ''
+    for ch in header[start + 1: end]:
+        if ch in '([{<':
+            nest += 1
+        elif ch in ')]}' or (ch == '>' and prev != '-'):
+            nest = max(0, nest - 1)
+        if ch == ',' and nest == 0:
+            params.append(current)
+            current = ''
+        else:
+            current += ch
+        prev = ch
+    params.append(current)
+    params = [p.strip() for p in params if p.strip()]
+    receivers = [p for p in params if RECEIVER.match(p)]
+    return len(params) - len(receivers), len(params)
 
 
 def rust_arity(header: str):
-    match = re.search(r'\(([^)]*)\)', header, re.S)
-    if not match:
-        return None
-    params = [p.strip() for p in re.split(r',(?![^<]*>)', match.group(1)) if p.strip()]
-    return len([p for p in params if not re.match(r'^&?(?:mut\s+)?self\b', p)])
+    """Parameter count without the receiver (kept for callers that want the single number)."""
+    counts = rust_params(header)
+    return None if counts is None else counts[0]
 
 
 def check_arity(index: DeclIndex, relpath: str, decl: dict, claimed):
-    """None when consistent or unknowable, else an evidence string."""
+    """None when consistent or unknowable, else an evidence string. A method receiver (`self`, `&self`, `&mut self`, Python
+    `self`/`cls`) may be counted as an input or not: an operation on the receiver type is a normal reading."""
     if not isinstance(claimed, int) or isinstance(claimed, bool):
         return None
     entry = index.file_entry(relpath)
     if entry['lang'] == 'python':
-        if decl.get('arity') is not None and decl['arity'] != claimed:
-            return 'python def %s takes %d parameters; the claim says %d' % (decl['name'], decl['arity'], claimed)
+        if decl.get('arity') is not None:
+            allowed = {decl['arity']}
+            receiver = decl.get('receiver')
+            if receiver is None:  # a table cached before the receiver flag existed
+                receiver = bool(re.match(r'\s*(?:async\s+)?def\s+\w+\s*\(\s*(?:self|cls)\b', index.window(relpath, decl, span=6)))
+            if receiver:
+                allowed.add(decl['arity'] + 1)
+            if claimed not in allowed:
+                return 'python def %s takes %d parameters; the claim says %d' % (decl['name'], decl['arity'], claimed)
         return None
     header = index.statement(relpath, decl)
     if entry['lang'] == 'rust' and decl['kind'] == 'fn':
-        actual = rust_arity(header)
-        if actual is not None and actual != claimed:
-            return 'rust fn %s takes %d parameters; the claim says %d' % (decl['name'], actual, claimed)
+        counts = rust_params(header)
+        if counts is not None and claimed not in set(counts):
+            return 'rust fn %s takes %d parameters (%d with the receiver); the claim says %d' % (decl['name'], counts[0], counts[1], claimed)
         return None
     if entry['lang'] == 'lean' and decl['kind'] in ('theorem', 'lemma', 'def', 'abbrev'):
         low, high = lean_arity_candidates(header)
-        if claimed not in (low, high):
+        if claimed not in lean_arity_options(header):
             return ('lean %s %s has %d explicit binders (%d with conclusion arrows); the claim says %d '
                     '(heuristic count)' % (decl['kind'], decl['name'], low, high, claimed))
     return None
 
 
 # --------------------------------------------------------------------------- numerals and statements
-def numerals(text: str) -> set:
-    return set(NUMERAL.findall(text or ''))
+# SU(2), SO(3), U(1), Sp(4), GL(n)...: the digit is part of the name of a group, not a quantity a claim can drift on.
+GROUP_NAME = re.compile(r'\b(?:PSU|PSL|PGL|SU|SO|Sp|SL|GL|Spin|U|O)\(\d+\)')
+
+
+def numerals(text: str, *, skip_group_names: bool = False) -> set:
+    return set(NUMERAL.findall(GROUP_NAME.sub(' ', text or '') if skip_group_names else (text or '')))
 
 
 def statement_drift(claim: str, *sources: str):
@@ -342,7 +441,8 @@ def statement_drift(claim: str, *sources: str):
     allowed = {'0', '1'}
     for source in sources:
         allowed |= numerals(source)
-    foreign = sorted(n for n in numerals(claim) if n not in allowed)
+    # The digit of a group name in the CLAIM (SU(2), SO(3)) is not a quantity that can drift; sources keep all their numerals.
+    foreign = sorted(n for n in numerals(claim, skip_group_names=True) if n not in allowed)
     if foreign:
         return 'numerals %s appear in the claim but in none of the checked sources (heuristic)' % ', '.join(foreign)
     return None
@@ -488,6 +588,7 @@ class VerifyReport:
     unverifiable: list = field(default_factory=list)
     lean: dict = field(default_factory=lambda: {'status': 'not_needed', 'reason': 'no Lean skeleton in the reply'})
     claims: int = 0
+    notices: list = field(default_factory=list)   # format leniencies applied (never failures), e.g. a missing array read as []
 
     def verified_total(self) -> int:
         return sum(len(v) for v in self.verified.values())
@@ -603,14 +704,20 @@ class Verifier:
         report.schema_errors = errors[:20]
         known = target_statement
         valid_ids = {'generators': {}, 'relations': {}}
+        missing_arrays = []
+        declared_generators = {g['id'] for g in (response.get('generators') if isinstance(response.get('generators'), list) else [])
+                               if isinstance(g, dict) and isinstance(g.get('id'), str)}
         item_schemas = {k: schema['properties'][k]['items'] for k in
                         ('generators', 'relations', 'compositions', 'lemmas', 'near_misses', 'numeric_claims')}
 
         def items(key):
             raw = response.get(key)
+            if raw is None and key not in response:
+                # An absent slot is an empty slot (the prompt says empty arrays are allowed). One notice, not one failure per key.
+                missing_arrays.append(key)
+                return []
             if not isinstance(raw, list):
-                if key in response or key in schema.get('required', []):
-                    report.failures.append(Failure('schema_violation', key, key, '%s is not an array' % key, 'expected array'))
+                report.failures.append(Failure('schema_violation', key, key, '%s is not an array' % key, 'expected array'))
                 return []
             good = []
             for position, item in enumerate(raw):
@@ -667,9 +774,15 @@ class Verifier:
             claim = '%s . slot %d <- %s via %s' % (comp['outer'], comp['slot'], comp['inner'], comp['licensing_relation'])
             outer, inner = valid_ids['generators'].get(comp['outer']), valid_ids['generators'].get(comp['inner'])
             if outer is None or inner is None:
-                missing = [n for n, g in (('outer', outer), ('inner', inner)) if g is None]
-                report.failures.append(Failure('composition_type_mismatch', claim, 'composition', claim,
-                                               'the %s generator%s not a verified generator of this reply' % (' and '.join(missing), ' is' if len(missing) == 1 else 's are')))
+                missing = [(n, comp[n]) for n, g in (('outer', outer), ('inner', inner)) if g is None]
+                unknown = [n for n, gid in missing if gid not in declared_generators]
+                if unknown:   # names a generator the reply never listed: a malformed claim
+                    report.failures.append(Failure('composition_type_mismatch', claim, 'composition', claim,
+                                                   'the %s generator%s not a generator of this reply' % (' and '.join(unknown), ' is' if len(unknown) == 1 else 's are')))
+                else:         # the generators exist but are proposed_new, unchecked or already refused: nothing to type-check against
+                    report.unverifiable.append({'id': claim, 'kind': 'composition',
+                                                'reason': 'the %s generator%s not host-verified (proposed_new, unchecked or refused)' % (
+                                                    ' and '.join(n for n, _ in missing), ' is' if len(missing) == 1 else 's are')})
                 continue
             slot = comp['slot']
             if not 0 <= slot < len(outer['inputs']) or _norm(outer['inputs'][slot]) != _norm(inner['output']):
@@ -698,6 +811,19 @@ class Verifier:
                 report.verified['numeric'].append({**num, 'host_evidence': {'recomputed': str(computed)}})
         # lemmas (statement checks; Lean last)
         pending_lean = []
+
+        def ref_verified(lem, info):
+            """Same evidence level as a relation: the cited existing declaration verified and the statement is consistent with
+            it. Not Lean-checked, and labelled so."""
+            report.verified['lemmas'].append({**lem, 'host_evidence': {k: info[k] for k in ('path', 'decl', 'kind', 'line', 'lang')},
+                                              'evidence_status': 'declaration_exists_statement_consistent_ref_verified_not_lean_checked'})
+
+        def lean_unavailable(lem, info, reason):
+            if info is not None:
+                ref_verified(lem, info)
+            else:
+                report.unverifiable.append({'id': lem['id'], 'kind': 'lemma', 'reason': reason})
+
         for lem in items('lemmas'):
             claim = '%s: %s' % (lem['id'], lem['statement'])
             ref = lem.get('ref') or {}
@@ -719,9 +845,16 @@ class Verifier:
                     vacuous = 'claims_proved is true but the Lean text contains sorry/admit'
                 elif re.search(r'^\s*axiom\b', skeleton, re.M):
                     vacuous = 'the Lean text introduces an axiom instead of proving the statement'
-            if not vacuous and (re.search(r':\s*True\b', skeleton)
-                                or re.search(r'(?:theorem|lemma)\s+\S+[^:]*:\s*(\w+)\s*=\s*\1\s*:=', skeleton)):
-                vacuous ='the Lean statement is a tautology (True or x = x), so it does not state the lemma'
+            tautology = bool(re.search(r':\s*True\b', skeleton)
+                             or re.search(r'(?:theorem|lemma)\s+\S+[^:]*:\s*(\w+)\s*=\s*\1\s*:=', skeleton))
+            if tautology and not vacuous:
+                if lem.get('claims_proved'):
+                    vacuous = 'the Lean statement is a tautology (True or x = x), so it does not state the lemma'
+                else:
+                    # A placeholder (`theorem x : True := by sorry`) for a prose-only lemma that claims no proof is not a
+                    # failure; it is no formal statement at all, so the lemma is treated as having no skeleton.
+                    skeleton = ''
+                    report.notices.append('lemma %s: placeholder tautological skeleton ignored (claims_proved is false)' % lem['id'])
             if vacuous:
                 report.failures.append(Failure('vacuous_proof', lem['id'], 'lemma', claim, vacuous))
                 continue
@@ -742,20 +875,22 @@ class Verifier:
                                                sorted(names)[0], 'heuristic'))
                 continue
             if skeleton.strip():
-                pending_lean.append((lem, claim, skeleton))
+                pending_lean.append((lem, claim, skeleton, info))
+            elif info is not None:
+                ref_verified(lem, info)
             else:
                 report.unverifiable.append({'id': lem['id'], 'kind': 'lemma', 'reason': 'no Lean skeleton; statement consistent with sources but not elaborated'})
         if pending_lean and self.run_lean:
             available, reason = self.lean.availability()
             report.lean = {'status': 'ran' if available else 'skipped', 'reason': reason}
-            for lem, claim, skeleton in pending_lean:
+            for lem, claim, skeleton, info in pending_lean:
                 if not available:
-                    report.unverifiable.append({'id': lem['id'], 'kind': 'lemma', 'reason': 'Lean elaboration skipped: ' + reason})
+                    lean_unavailable(lem, info, 'Lean elaboration skipped: ' + reason)
                     continue
                 outcome = self.lean.elaborate(skeleton)
                 if outcome['status'] == 'skipped':
                     report.lean = {'status': 'skipped', 'reason': outcome['reason']}
-                    report.unverifiable.append({'id': lem['id'], 'kind': 'lemma', 'reason': 'Lean elaboration skipped: ' + outcome['reason']})
+                    lean_unavailable(lem, info, 'Lean elaboration skipped: ' + outcome['reason'])
                 elif outcome['status'] == 'ok':
                     report.verified['lemmas'].append({**lem, 'host_evidence': {'lean': 'elaborates', 'sorry_in_output': outcome.get('sorry', False)},
                                                       'evidence_status': 'statement_elaborates_proof_not_claimed' if outcome.get('sorry') else 'lean_elaborates'})
@@ -769,10 +904,12 @@ class Verifier:
                                                        'Lean: ' + (outcome['errors'][0][:200] if outcome['errors'] else 'nonzero exit')))
         elif pending_lean:
             report.lean = {'status': 'skipped', 'reason': 'Lean elaboration disabled by the caller'}
-            for lem, _, _ in pending_lean:
-                report.unverifiable.append({'id': lem['id'], 'kind': 'lemma', 'reason': 'Lean elaboration disabled'})
+            for lem, _, _, info in pending_lean:
+                lean_unavailable(lem, info, 'Lean elaboration disabled')
         for miss in items('near_misses'):
             report.unverifiable.append({'id': miss['id'], 'kind': 'near_miss', 'reason': 'semantic near miss; P4 host check decides'})
+        if missing_arrays:
+            report.notices.append('missing top-level arrays read as []: ' + ', '.join(missing_arrays))
         return report
 
 

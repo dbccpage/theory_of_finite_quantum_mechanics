@@ -61,9 +61,11 @@ DEFAULT_TIERS = [
          {'provider': 'groq', 'model': 'qwen/qwen3.8-27b'},
          {'provider': 'groq', 'model': 'openai/gpt-oss-20b', 'body_extra': {'reasoning_effort': 'low'}},
          # OpenRouter free reasoning models burn max_tokens on hidden reasoning unless told not to (observed 2026-10-21).
-         {'provider': 'openrouter', 'model': 'nvidia/nemotron-3.5-lightning:free', 'body_extra': {'reasoning': {'enabled': False}}},
+         # Round 2 diagnostic (2026-10-21): poolside/laguna-s-2.1:free was removed (0 of 57 answers accepted, 296 of the 307
+         # schema violations, 21 replies cut at max_tokens); nemotron-3.5-lightning is demoted to last (3 of 39 answers invalid
+         # or cut, 7 accepted). OpenRouter free models accept `response_format` but do not enforce it.
          {'provider': 'openrouter', 'model': 'minimax/minimax-m3.1-flash:free', 'body_extra': {'reasoning': {'effort': 'low'}}},
-         {'provider': 'openrouter', 'model': 'poolside/laguna-s-2.1:free'},
+         {'provider': 'openrouter', 'model': 'nvidia/nemotron-3.5-lightning:free', 'body_extra': {'reasoning': {'enabled': False}}},
          # Adapters exist and are wired, but these two did not work with the keys on file on 2026-10-21:
          {'provider': 'cerebras', 'model': 'gpt-oss-120b', 'body_extra': {'reasoning_effort': 'low'}, 'enabled': False,
           'disabled_reason': 'HTTP 402 payment_required_error for both listed models'},
@@ -82,9 +84,18 @@ DEFAULT_TIERS = [
      'max_tokens': 8000, 'candidates': [{'provider': 'anthropic', 'model': 'claude-fable-5-1'}]},
 ]
 
+# Statuses of an attempt the model answered (an infra error or a budget refusal is not one of them).
+ANSWERED_STATUSES = ('accepted', 'accepted_partial', 'rejected')
+
 DEFAULT_POLICY = {
     'min_verified': 2,            # verified generators + relations + numeric + lemma statements for acceptance
     'max_failure_rate': 0.5,      # failed host-checked claims / (verified + failed) at most this to accept
+    # accepted_partial: verified >= partial_min_verified, NO refused claim, but fewer than min_verified verified. A terminal
+    # outcome of its own (never counted as `accepted`, never an abstention, no escalation). False restores the old behaviour.
+    'accept_partial': True, 'partial_min_verified': 1,
+    # skip_ungroundable: no provider call for a node with an empty @SRC, no operation/relation candidates and no code anchor
+    # in the checkout. Recorded as `skipped_ungroundable` with the reason. False sends every node.
+    'skip_ungroundable': True,
     'abstain_stop': 0,            # >0: stop (blocked, no escalation) once this many distinct models answered validly with no claim to check and too few verified
     'feedback': True,             # inject negative and positive operad entries into the packet
     'max_neg_lines': 12, 'max_pos_lines': 8, 'max_source_candidates': 25, 'excerpt_chars': 1400,
