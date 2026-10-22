@@ -391,7 +391,8 @@ def ladder_arm(item: dict, run: Path, group: str, args, verifiers: Verifiers, wo
     compare = load_json(run / ('compare_%s_receipt.json' % ('swarm' if group == 'S' else 'fable'))) or {}
     summary = receipt.get('summary', {})
     attempts = summary.get('attempts', [])
-    answered = [a for a in attempts if a.get('status') in ('accepted', 'rejected')]
+    # accepted_partial (ladder after #164) is an answered attempt; it is not `accepted`, so it earns no units under §5.3
+    answered = [a for a in attempts if a.get('status') in ('accepted', 'accepted_partial', 'rejected')]
     infra = [a for a in attempts if a.get('status') == 'infra_error']
     status = summary.get('status')
     scored_aid = summary.get('accepted_attempt') or None
@@ -405,7 +406,8 @@ def ladder_arm(item: dict, run: Path, group: str, args, verifiers: Verifiers, wo
             if report is not None:
                 verified_counts = (report.verified_total(), report.failure_total())
                 entries = [{'kind': kind[:-1] if kind.endswith('s') else kind,
-                            'id': str(e.get('id') or '%s>%s' % (e.get('outer'), e.get('inner')))} for kind, rows in report.verified.items() for e in rows]
+                            'id': str(e.get('id') or '%s>%s' % (e.get('outer'), e.get('inner')))} for kind, rows in report.verified.items() for e in rows
+                           if (kind[:-1] if kind.endswith('s') else kind) not in EXCLUDED_KINDS]
                 notes.append('operad entries re-verified against a rebuilt clean room: %d verified, %d refused (recorded: %d / %d)' % (
                     verified_counts[0], verified_counts[1], aid_row['verified_total'], aid_row['failures_total']))
         for e in entries:
@@ -429,6 +431,10 @@ def ladder_arm(item: dict, run: Path, group: str, args, verifiers: Verifiers, wo
                           'recorded_verdict': 'rejected', 'as_recorded_accepted': False, 'verifier_run': None})
     if scored_aid:
         outcome = 'ACCEPTED'
+    elif status == 'accepted_partial':
+        outcome = 'PARTIAL_NOT_ACCEPTED'
+    elif status == 'skipped_ungroundable':
+        outcome = 'SKIPPED_UNGROUNDABLE'
     elif status == 'blocked_abstained' or (answered and all(a.get('abstained') for a in answered)):
         outcome = 'ABSTAINED'
     elif status == 'budget_refused':
