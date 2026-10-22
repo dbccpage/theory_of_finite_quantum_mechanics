@@ -1,0 +1,91 @@
+{
+  "task_id": "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "674e4f72846c6815dd8808b89ce9b9dde633a7a8168dcb06a9b9551b724b804b",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_execute\",\"inputs\":[\"Machine\",\"Configuration\",\"Nat\"],\"output\":\"StepResult\",\"arity\":3,\"carrier\":\"bounded evaluator outcome\",\"ref\":{\"path\":\"papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean\",\"decl\":\"AuthorizationIncompleteness.DirectTuringMachineModels.execute\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_looping_exhausts\",\"statement\":\"The looping fixture run with a budget of one step yields the fuel-exhausted outcome, with no claim about halting.\",\"hypotheses\":\"loopingMachine with its initial configuration and fuel 1\",\"ref\":{\"path\":\"papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean\",\"decl\":\"AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel\",\"status\":\"existing\"}},{\"id\":\"r_halt_declared\",\"statement\":\"A declared halt configuration yields the halted outcome.\",\"hypotheses\":\"isDeclaredHalt holds for the configuration\",\"ref\":{\"path\":\"papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean\",\"decl\":\"AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt\",\"status\":\"existing\"}},{\"id\":\"r_stuck_empty\",\"statement\":\"The empty-rule fixture yields the stuck outcome.\",\"hypotheses\":\"machine with no rules\",\"ref\":{\"path\":\"papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean\",\"decl\":\"AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_fuel_not_divergence\",\"statement\":\"Fuel exhaustion is a distinct outcome from halted and stuck and carries no divergence claim; the typed stop for Genesis declared-bound runs is unresolved.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_looping_exhausts\"],\"lean_skeleton\":\"theorem fuel_not_divergence : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_fuel_is_divergence\",\"claim\":\"Fuel exhausted implies the machine diverges.\",\"rejecting_invariant\":\"The fuel-exhausted outcome records only that the budget ended; a longer run could halt.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Exact constructor names of StepResult are not visible in the listing, so no constructor-level statement is made.\",\"Genesis continuation declarations are not in SRC, so the bottleneck mapping is ungrounded.\",\"No sorry-free Lean proof is supplied.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_execute",
+        "inputs": [
+          "Machine",
+          "Configuration",
+          "Nat"
+        ],
+        "output": "StepResult",
+        "arity": 3,
+        "carrier": "bounded evaluator outcome",
+        "ref": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_looping_exhausts",
+        "statement": "The looping fixture run with a budget of one step yields the fuel-exhausted outcome, with no claim about halting.",
+        "hypotheses": "loopingMachine with its initial configuration and fuel 1",
+        "ref": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_halt_declared",
+        "statement": "A declared halt configuration yields the halted outcome.",
+        "hypotheses": "isDeclaredHalt holds for the configuration",
+        "ref": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "r_stuck_empty",
+        "statement": "The empty-rule fixture yields the stuck outcome.",
+        "hypotheses": "machine with no rules",
+        "ref": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_fuel_not_divergence",
+        "statement": "Fuel exhaustion is a distinct outcome from halted and stuck and carries no divergence claim; the typed stop for Genesis declared-bound runs is unresolved.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_looping_exhausts"
+        ],
+        "lean_skeleton": "theorem fuel_not_divergence : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_fuel_is_divergence",
+        "claim": "Fuel exhausted implies the machine diverges.",
+        "rejecting_invariant": "The fuel-exhausted outcome records only that the budget ended; a longer run could halt."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Exact constructor names of StepResult are not visible in the listing, so no constructor-level statement is made.",
+      "Genesis continuation declarations are not in SRC, so the bottleneck mapping is ungrounded.",
+      "No sorry-free Lean proof is supplied."
+    ]
+  }
+}

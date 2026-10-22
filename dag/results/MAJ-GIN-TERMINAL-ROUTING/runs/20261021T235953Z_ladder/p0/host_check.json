@@ -1,0 +1,162 @@
+{
+  "task_id": "MAJ-GIN-TERMINAL-ROUTING",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cf7302e498bd84e955d951caeaff9bd59568a7d0ac02468dc886464d90938ede",
+  "candidate_sha256": "e12cba130f912c8adcd030863498a14d2067242324aacd153c80434b5838abb0",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 4,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 5,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T00:00:04Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_evaluate_gin_fermion_recovery",
+        "ordered_inputs": [
+          "Bool",
+          "Nat"
+        ],
+        "output": "TerminalRoute",
+        "arity": 2,
+        "carrier": "TerminalRoute",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+            "declaration": "MajoranaGinCore.evaluate_gin_fermion_recovery",
+            "line": 79
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.evaluate_gin_fermion_recovery",
+          "kind": "def",
+          "line": 79,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_invalid_closure_failure",
+        "equation_or_predicate": "evaluate_gin_fermion_recovery false mass = TerminalRoute.ClosureFailure",
+        "typing_conditions": "mass : Nat",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+            "declaration": "MajoranaGinCore.invalid_gin_routes_to_closure_failure",
+            "line": 103
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.invalid_gin_routes_to_closure_failure",
+          "kind": "theorem",
+          "line": 103,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_zero_mass_repair",
+        "equation_or_predicate": "evaluate_gin_fermion_recovery true 0 = TerminalRoute.Repair",
+        "typing_conditions": "none",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+            "declaration": "MajoranaGinCore.exact_gin_cancellation_routes_to_repair",
+            "line": 90
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.exact_gin_cancellation_routes_to_repair",
+          "kind": "theorem",
+          "line": 90,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_positive_mass_refusal",
+        "equation_or_predicate": "evaluate_gin_fermion_recovery true mass = TerminalRoute.SplitBrainRefusal",
+        "typing_conditions": "mass : Nat, mass > 0",
+        "source_pins": [
+          {
+            "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+            "declaration": "MajoranaGinCore.residual_sign_routes_to_refusal",
+            "line": 95
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/core/majorana/lean4/MajoranaGinCore.lean",
+          "decl": "MajoranaGinCore.residual_sign_routes_to_refusal",
+          "kind": "theorem",
+          "line": 95,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Lemma skeletons are not elaborated and are marked unproved.",
+      "Unclear whether the Lean skeletons need namespace qualification.",
+      "No compositions: the only generator returns TerminalRoute, so nothing can be plugged into its Bool/Nat inputs.",
+      "lemma l_invalid unverified: Lean elaboration disabled",
+      "lemma l_repair unverified: Lean elaboration disabled",
+      "lemma l_refusal unverified: Lean elaboration disabled",
+      "near_miss nm_repair_is_solution unverified: semantic near miss; P4 host check decides",
+      "near_miss nm_invalid_zero_mass_repair unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

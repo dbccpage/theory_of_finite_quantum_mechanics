@@ -1,0 +1,283 @@
+{
+  "task_id": "AUTH-FUEL-EXHAUSTION-TYPED-STOP",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "674e4f72846c6815dd8808b89ce9b9dde633a7a8168dcb06a9b9551b724b804b",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "g_execute",
+          "inputs": [
+            "Machine",
+            "Configuration",
+            "Nat"
+          ],
+          "output": "StepResult",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [
+        {
+          "id": "r_looping_exhausts",
+          "equation_or_predicate": "The looping fixture run with a budget of one step yields the fuel-exhausted outcome, with no claim about halting.",
+          "typing_conditions": "loopingMachine with its initial configuration and fuel 1",
+          "source_pins": [
+            {
+              "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+              "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+              "line": 242
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+            "kind": "theorem",
+            "line": 242,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_halt_declared",
+          "equation_or_predicate": "A declared halt configuration yields the halted outcome.",
+          "typing_conditions": "isDeclaredHalt holds for the configuration",
+          "source_pins": [
+            {
+              "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+              "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+              "line": 211
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+            "kind": "theorem",
+            "line": 211,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        },
+        {
+          "id": "r_stuck_empty",
+          "equation_or_predicate": "The empty-rule fixture yields the stuck outcome.",
+          "typing_conditions": "machine with no rules",
+          "source_pins": [
+            {
+              "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+              "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+              "line": 236
+            }
+          ],
+          "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+          "scope": "as stated; hypotheses not reviewed",
+          "host_evidence": {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+            "kind": "theorem",
+            "line": 236,
+            "lang": "lean"
+          },
+          "proposed_by": {
+            "model": "claude-sonnet-5-5",
+            "provider": "anthropic",
+            "tier": 3
+          }
+        }
+      ],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Exact constructor names of StepResult are not visible in the listing, so no constructor-level statement is made.",
+        "Genesis continuation declarations are not in SRC, so the bottleneck mapping is ungrounded.",
+        "No sorry-free Lean proof is supplied.",
+        "near_miss nm_fuel_is_divergence unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_execute",
+        "ordered_inputs": [
+          "Machine",
+          "Configuration",
+          "Nat"
+        ],
+        "output": "StepResult",
+        "arity": 3,
+        "carrier": "bounded evaluator outcome",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+            "line": 123
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute",
+          "kind": "def",
+          "line": 123,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "r_looping_exhausts",
+        "equation_or_predicate": "The looping fixture run with a budget of one step yields the fuel-exhausted outcome, with no claim about halting.",
+        "typing_conditions": "loopingMachine with its initial configuration and fuel 1",
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+            "line": 242
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel",
+          "kind": "theorem",
+          "line": 242,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_halt_declared",
+        "equation_or_predicate": "A declared halt configuration yields the halted outcome.",
+        "typing_conditions": "isDeclaredHalt holds for the configuration",
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+            "line": 211
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt",
+          "kind": "theorem",
+          "line": 211,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      },
+      {
+        "id": "r_stuck_empty",
+        "equation_or_predicate": "The empty-rule fixture yields the stuck outcome.",
+        "typing_conditions": "machine with no rules",
+        "source_pins": [
+          {
+            "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+            "declaration": "AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+            "line": 236
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean",
+          "decl": "AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck",
+          "kind": "theorem",
+          "line": 236,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-sonnet-5-5",
+          "provider": "anthropic",
+          "tier": 3
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C5EEC0859D84",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "l_fuel_not_divergence: Fuel exhaustion is a distinct outcome from halted and stuck and carries no divergence claim; the typed stop for Genesis declared-bound runs is unresolved.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "AUTH-FUEL-EXHAUSTION-TYPED-STOP"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Exact constructor names of StepResult are not visible in the listing, so no constructor-level statement is made.",
+      "Genesis continuation declarations are not in SRC, so the bottleneck mapping is ungrounded.",
+      "No sorry-free Lean proof is supplied.",
+      "near_miss nm_fuel_is_divergence unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}
