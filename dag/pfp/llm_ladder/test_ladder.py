@@ -904,6 +904,59 @@ class VerifierFixTests(Base):
         self.assertEqual(report.notices, ['missing top-level arrays read as []: relations, compositions, numeric_claims, lemmas, near_misses'])
         self.assertEqual(self.classes(self.verify(reply(relations='not a list'))), ['schema_violation'])
 
+    def test_declaration_kind_allowlists_and_test_generator_rejection(self):
+        self.write('code/rust/kinds.rs',
+                   'pub mod circle_haar;\n'
+                   'pub const K: i64 = 1;\n'
+                   'pub struct Carrier {\n    pub x: i64,\n}\n'
+                   'pub fn test_helper(x: i64) -> i64 { x }\n')
+        bad_gens = [
+            self.gen('g_mod', 'code/rust/kinds.rs', 'circle_haar', 1),
+            self.gen('g_const', 'code/rust/kinds.rs', 'K', 0),
+            self.gen('g_thm', 'lean4/Foo.lean', 'FooNS.foo_bar', 3),
+            self.gen('g_test', 'code/rust/kinds.rs', 'test_helper', 1),
+        ]
+        report = self.verify(reply(generators=bad_gens))
+        self.assertEqual(self.classes(report), ['wrong_signature'] * 4)
+        ok_gen = self.verify(reply(generators=[self.gen('g_struct', 'code/rust/kinds.rs', 'Carrier', 1)]))
+        self.assertEqual(ok_gen.failures, [])
+        bad_rels = [
+            {'id': 'r_mod', 'statement': 'circle_haar module', 'hypotheses': '', 'ref': ref('code/rust/kinds.rs', 'circle_haar', 'existing')},
+            {'id': 'r_struct', 'statement': 'Carrier has x', 'hypotheses': '', 'ref': ref('code/rust/kinds.rs', 'Carrier', 'existing')},
+        ]
+        self.assertEqual(self.classes(self.verify(reply(relations=bad_rels))), ['wrong_signature', 'wrong_signature'])
+
+    def test_relation_requires_token_overlap_with_cited_declaration(self):
+        disjoint = {'id': 'r_disjoint', 'statement': 'Casimir invariant commutes with generators', 'hypotheses': '',
+                    'ref': ref('lean4/Foo.lean', 'FooNS.qBeta', 'existing')}
+        overlapping = {'id': 'r_ok', 'statement': 'qBeta nc nf = (11/3) nc - (2/3) nf', 'hypotheses': '',
+                       'ref': ref('lean4/Foo.lean', 'FooNS.qBeta', 'existing')}
+        report = self.verify(reply(relations=[disjoint, overlapping]))
+        self.assertEqual([f.claim_id for f in report.failures], ['r_disjoint'])
+        self.assertEqual(report.failures[0].cls, 'statement_drift')
+        self.assertEqual([r['id'] for r in report.verified['relations']], ['r_ok'])
+
+    def test_per_task_symbol_allowlist_and_neighbour_credit_rules(self):
+        packet = compile_p0(self.root, 'N-1', attempt_id='a1', policy=DEFAULT_POLICY, index=self.index, feedback=False)
+        self.assertIn(('lean4/Foo.lean', 'FooNS.qBeta'), packet.allowed_refs)
+        self.assertIn('lean4/Foo.lean', packet.credited_paths)
+        # Citing a real declaration from an unoffered file (lean4/Bar.lean) is rejected when allowed_refs is enforced
+        unoffered = {'id': 'r_unoffered', 'statement': 'unrelated_thing holds trivially', 'hypotheses': '',
+                     'ref': ref('lean4/Bar.lean', 'unrelated_thing', 'existing')}
+        rep_unoffered = self.verifier().verify_p0(
+            reply(relations=[unoffered]), P0_SCHEMA, target_statement=TARGET,
+            allowed_refs=packet.allowed_refs, credited_paths=packet.credited_paths)
+        self.assertEqual(self.classes(rep_unoffered), ['wrong_source_location'])
+        # A neighbour-only @KNOWN+ declaration (in allowed_refs, but its path not in credited_paths) is verified without credit
+        allowed_with_neighbour = set(packet.allowed_refs) | {('lean4/Bar.lean', 'unrelated_thing')}
+        rep_neighbour = self.verifier().verify_p0(
+            reply(relations=[unoffered]), P0_SCHEMA, target_statement=TARGET,
+            allowed_refs=allowed_with_neighbour, credited_paths=packet.credited_paths)
+        self.assertEqual(rep_neighbour.failures, [])
+        self.assertEqual(rep_neighbour.verified_total(), 1)
+        self.assertEqual(rep_neighbour.credited_total(), 0)
+        self.assertFalse(rep_neighbour.verified['relations'][0]['credited'])
+
 
 class PacketFixTests(Base):
     def test_system_text_shows_the_reply_shape_and_asks_for_empty_skeletons(self):
@@ -935,6 +988,13 @@ class PacketFixTests(Base):
         self.assertEqual(source_candidates(self.root, 'N-2', collection, self.index, 'A survey of an external publication, in prose.', 25), [])
         packet = compile_p0(self.root, 'N-2', attempt_id='a', policy=DEFAULT_POLICY, index=self.index, feedback=False)
         self.assertGreater(packet.meta['src_offered'], 0, 'the build_repo statement names qBeta')
+
+    def test_structural_stem_stoplist_filters_generic_stems(self):
+        from llm_ladder.packets import STRUCTURAL_STEM_STOP, _distinctive
+        tokens = {'boundary', 'contract', 'primitive', 'genesis', 'casimir', 'plancherel'}
+        filtered = _distinctive(self.index, tokens)
+        self.assertEqual(filtered & STRUCTURAL_STEM_STOP, set())
+        self.assertEqual(filtered, {'casimir', 'plancherel'})
 
 
 class PartialAndSkipTests(LadderTests):

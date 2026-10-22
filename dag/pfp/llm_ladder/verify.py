@@ -34,6 +34,41 @@ from .llm_common import sha256_text
 
 # Counterexample-type failures contradict a claim with a concrete host fact; the rest are failed compositions.
 COUNTEREXAMPLE_CLASSES = {'false_numeric_claim', 'statement_drift', 'wrong_signature'}
+GENERATOR_KINDS = {'def', 'abbrev', 'fn', 'struct', 'structure', 'inductive', 'class'}
+RELATION_KINDS = {'theorem', 'lemma', 'def', 'abbrev', 'fn'}
+RELATION_STOP_TOKENS = {
+    'the', 'and', 'for', 'with', 'that', 'this', 'from', 'into', 'are', 'not', 'its', 'rat', 'nat', 'int', 'bool',
+    'one', 'two', 'all', 'any', 'has', 'have', 'than', 'when', 'which', 'does', 'state', 'states', 'record',
+    'records', 'value', 'values', 'identity', 'identities', 'finite', 'rational', 'exact', 'map', 'maps',
+    'theorem', 'lemma', 'def', 'fn', 'let', 'where', 'under', 'over', 'only', 'each', 'every', 'such', 'same',
+}
+
+
+def _is_test_decl(relpath: str, decl_name: str) -> bool:
+    short = re.split(r'::|\.', decl_name or '')[-1]
+    base = (relpath or '').rsplit('/', 1)[-1]
+    return '/tests/' in (relpath or '') or base.startswith('test_') or short.startswith('test_')
+
+
+def _content_tokens(text: str) -> set[str]:
+    parts = re.findall(r'[A-Za-z][a-z]+|[A-Z]+(?![a-z])|[A-Za-z_][A-Za-z0-9_]*', re.sub(r'([a-z])([A-Z])', r'\1 \2', text or ''))
+    out = set()
+    for p in parts:
+        for sub in p.lower().split('_'):
+            if len(sub) >= 3 and not sub.isdigit() and sub not in RELATION_STOP_TOKENS:
+                out.add(sub)
+    return out
+
+
+def relation_overlap(statement: str, hypotheses: str, info: dict) -> bool:
+    """True when the relation statement/hypotheses share at least one identifier or content token with the cited declaration."""
+    claim_tokens = _content_tokens((statement or '') + ' ' + (hypotheses or ''))
+    if not claim_tokens:
+        return False
+    stem = Path(info.get('path', '')).stem
+    decl_tokens = _content_tokens('%s %s %s' % (info.get('decl', ''), stem, info.get('window', '')))
+    return bool(claim_tokens & decl_tokens)
+
 G_CODES = {'schema_violation': 'G1_SCHEMA', 'unparseable_reply': 'G1_SCHEMA', 'nonexistent_declaration': 'G3_WITNESS',
            'wrong_source_location': 'G3_WITNESS', 'wrong_signature': 'G3_WITNESS', 'false_numeric_claim': 'G3_WITNESS',
            'lean_elaboration_failure': 'G3_WITNESS', 'composition_type_mismatch': 'G3_WITNESS',
@@ -402,6 +437,8 @@ def check_arity(index: DeclIndex, relpath: str, decl: dict, claimed):
     if not isinstance(claimed, int) or isinstance(claimed, bool):
         return None
     entry = index.file_entry(relpath)
+    if decl.get('kind') in ('mod', 'const', 'static', 'type', 'trait'):
+        return '%s %s (%s) is not a callable operation or type constructor' % (entry['lang'], decl['name'], decl['kind'])
     if entry['lang'] == 'python':
         if decl.get('arity') is not None:
             allowed = {decl['arity']}
@@ -595,8 +632,16 @@ class VerifyReport:
 
     def credited_total(self, *, numeric: bool = False) -> int:
         """Verified items that count toward acceptance. A numeric claim carries its own expression and value, so its exact
-        recomputation proves only arithmetic, not relevance; it is credited only when `numeric` is set."""
-        return sum(len(v) for k, v in self.verified.items() if numeric or k != 'numeric')
+        recomputation proves only arithmetic, not relevance; it is credited only when `numeric` is set. Entries marked
+        `credited=False` (such as @KNOWN+ neighbour declarations outside the target node's own @SRC / anchored files) are
+        kept as verified context but do not count toward `min_verified`."""
+        return sum(
+            1
+            for k, v in self.verified.items()
+            if (numeric or k != 'numeric')
+            for item in v
+            if item.get('credited', True)
+        )
 
     def failure_total(self) -> int:
         return len(self.failures)
@@ -651,7 +696,7 @@ class Verifier:
         self.run_lean = run_lean
 
     # ---- reference check ------------------------------------------------
-    def check_ref(self, ref, claimed_arity=None):
+    def check_ref(self, ref, claimed_arity=None, *, role=None, allowed_refs=None):
         """('ok', info) | ('unchecked', reason) | ('fail', cls, evidence, decl_key)."""
         if not isinstance(ref, dict) or ref.get('status') in (None, 'none', 'proposed_new'):
             return 'unchecked', 'no existing declaration cited'
@@ -680,6 +725,24 @@ class Verifier:
                 return 'fail', 'wrong_source_location', '%s has no declaration %s; it exists at %s' % (relpath, decl_name, elsewhere[0][0]), key
             return 'fail', 'nonexistent_declaration', '%s has no declaration %s and none exists in the indexed sources' % (relpath, decl_name), key
         decl = hits[0]
+        if role == 'generator':
+            if decl['kind'] not in GENERATOR_KINDS:
+                return ('fail', 'wrong_signature',
+                        '%s %s has kind %s, which cannot be cited as a generator (allowed: %s)' % (
+                            entry['lang'], decl['full'], decl['kind'], ', '.join(sorted(GENERATOR_KINDS))), key)
+            if _is_test_decl(relpath, decl['full']):
+                return ('fail', 'wrong_signature',
+                        '%s::%s is a [test] declaration and cannot be cited as a generator' % (relpath, decl['full']), key)
+        elif role in ('relation', 'lemma'):
+            if decl['kind'] not in RELATION_KINDS:
+                return ('fail', 'wrong_signature',
+                        '%s %s has kind %s, which cannot be cited as a %s (allowed: %s)' % (
+                            entry['lang'], decl['full'], decl['kind'], role, ', '.join(sorted(RELATION_KINDS))), key)
+        if allowed_refs is not None:
+            short = decl['full'].split('.')[-1]
+            if not ({(relpath, decl['full']), (relpath, decl['name']), (relpath, short)} & set(allowed_refs)):
+                return ('fail', 'wrong_source_location',
+                        '%s::%s is not in the per-task symbol allowlist (@SRC / @KNOWN+)' % (relpath, decl['full']), key)
         problem = check_arity(self.index, relpath, decl, claimed_arity)
         if problem:
             return 'fail', 'wrong_signature', problem, key
@@ -699,7 +762,7 @@ class Verifier:
         return bad
 
     # ---- main entry -----------------------------------------------------
-    def verify_p0(self, response, schema, *, target_statement='') -> VerifyReport:
+    def verify_p0(self, response, schema, *, target_statement='', allowed_refs=None, credited_paths=None) -> VerifyReport:
         report = VerifyReport()
         if not isinstance(response, dict):
             report.failures.append(Failure('unparseable_reply', 'reply', 'reply', 'reply is not a JSON object', 'no object'))
@@ -710,6 +773,8 @@ class Verifier:
         known = target_statement
         valid_ids = {'generators': {}, 'relations': {}}
         missing_arrays = []
+        allowed_set = {tuple(x) for x in allowed_refs} if allowed_refs is not None else None
+        credited_set = set(credited_paths) if credited_paths is not None else None
         declared_generators = {g['id'] for g in (response.get('generators') if isinstance(response.get('generators'), list) else [])
                                if isinstance(g, dict) and isinstance(g.get('id'), str)}
         item_schemas = {k: schema['properties'][k]['items'] for k in
@@ -737,7 +802,7 @@ class Verifier:
 
         # generators
         for gen in items('generators'):
-            status, *rest = self.check_ref(gen['ref'], gen.get('arity'))
+            status, *rest = self.check_ref(gen['ref'], gen.get('arity'), role='generator', allowed_refs=allowed_set)
             claim = '%s: (%s) -> %s [%s]' % (gen['id'], ', '.join(gen['inputs']), gen['output'], gen['ref'].get('decl', ''))
             if status == 'fail':
                 cls, evidence, key = rest
@@ -747,12 +812,15 @@ class Verifier:
             else:
                 info = rest[0]
                 known += '\n' + info['window']
-                valid_ids['generators'][gen['id']] = gen
-                report.verified['generators'].append({**gen, 'host_evidence': {k: info[k] for k in ('path', 'decl', 'kind', 'line', 'lang')},
-                                                      'evidence_status': 'declaration_exists_semantics_unreviewed'})
+                credited = credited_set is None or info['path'] in credited_set
+                entry_gen = {**gen, 'credited': credited,
+                             'host_evidence': {k: info[k] for k in ('path', 'decl', 'kind', 'line', 'lang')},
+                             'evidence_status': 'declaration_exists_semantics_unreviewed'}
+                valid_ids['generators'][gen['id']] = entry_gen
+                report.verified['generators'].append(entry_gen)
         # relations
         for rel in items('relations'):
-            status, *rest = self.check_ref(rel['ref'])
+            status, *rest = self.check_ref(rel['ref'], role='relation', allowed_refs=allowed_set)
             claim = '%s: %s [%s]' % (rel['id'], rel['statement'], rel['ref'].get('decl', ''))
             if status == 'fail':
                 cls, evidence, key = rest
@@ -770,10 +838,18 @@ class Verifier:
                 report.failures.append(Failure('nonexistent_declaration', rel['id'], 'relation', claim,
                                                'statement cites %s, which exists nowhere in the indexed sources (heuristic)' % ', '.join(sorted(names)),
                                                sorted(names)[0], 'heuristic'))
+            elif not relation_overlap(rel['statement'], rel.get('hypotheses', ''), info):
+                report.failures.append(Failure('statement_drift', rel['id'], 'relation', claim,
+                                               'relation statement shares no identifier or content token with cited declaration %s::%s (heuristic)' % (
+                                                   info['path'], info['decl']),
+                                               rel['ref'].get('decl'), 'heuristic'))
             else:
-                valid_ids['relations'][rel['id']] = rel
-                report.verified['relations'].append({**rel, 'host_evidence': {k: info[k] for k in ('path', 'decl', 'kind', 'line', 'lang')},
-                                                     'evidence_status': 'declaration_exists_statement_consistent_semantics_unreviewed'})
+                credited = credited_set is None or info['path'] in credited_set
+                entry_rel = {**rel, 'credited': credited,
+                             'host_evidence': {k: info[k] for k in ('path', 'decl', 'kind', 'line', 'lang')},
+                             'evidence_status': 'declaration_exists_statement_consistent_semantics_unreviewed'}
+                valid_ids['relations'][rel['id']] = entry_rel
+                report.verified['relations'].append(entry_rel)
         # compositions
         for comp in items('compositions'):
             claim = '%s . slot %d <- %s via %s' % (comp['outer'], comp['slot'], comp['inner'], comp['licensing_relation'])
@@ -800,7 +876,10 @@ class Verifier:
                 report.failures.append(Failure('composition_unlicensed', claim, 'composition', claim,
                                                'licensing relation %r is not a verified relation of this reply; matching colours alone is insufficient' % comp['licensing_relation']))
                 continue
-            report.verified['compositions'].append({**comp, 'evidence_status': 'colours_match_and_licensed_by_verified_relation'})
+            lic = valid_ids['relations'][comp['licensing_relation']]
+            credited = bool(outer.get('credited', True) and inner.get('credited', True) and lic.get('credited', True))
+            report.verified['compositions'].append({**comp, 'credited': credited,
+                                                    'evidence_status': 'colours_match_and_licensed_by_verified_relation'})
         # numeric claims
         for num in items('numeric_claims'):
             claim = '%s: %s = %s' % (num['id'], num['expr'], num['value'])
@@ -820,7 +899,9 @@ class Verifier:
         def ref_verified(lem, info):
             """Same evidence level as a relation: the cited existing declaration verified and the statement is consistent with
             it. Not Lean-checked, and labelled so."""
-            report.verified['lemmas'].append({**lem, 'host_evidence': {k: info[k] for k in ('path', 'decl', 'kind', 'line', 'lang')},
+            credited = credited_set is None or info['path'] in credited_set
+            report.verified['lemmas'].append({**lem, 'credited': credited,
+                                              'host_evidence': {k: info[k] for k in ('path', 'decl', 'kind', 'line', 'lang')},
                                               'evidence_status': 'declaration_exists_statement_consistent_ref_verified_not_lean_checked'})
 
         def lean_unavailable(lem, info, reason):
@@ -835,7 +916,7 @@ class Verifier:
             relation = lem['relation_to_target']
             info = None
             if ref.get('status') == 'existing':
-                status, *rest = self.check_ref(ref)
+                status, *rest = self.check_ref(ref, role='lemma', allowed_refs=allowed_set)
                 if status == 'fail':
                     cls, evidence, key = rest
                     report.failures.append(Failure(cls, lem['id'], 'lemma', claim, evidence, key))
