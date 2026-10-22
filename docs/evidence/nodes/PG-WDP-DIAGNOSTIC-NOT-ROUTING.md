@@ -1,0 +1,187 @@
+# PG-WDP-DIAGNOSTIC-NOT-ROUTING
+
+Stage: [WDP](../stages/WDP.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+
+## Statement
+
+> Diagnostic class (ExactClass, ClosedResidual, ActiveClosureFailure) is a different axis from routing terminal (CheckPassed, RequiresLift, Repair, Refusal, NoRule, BudgetUnknown, Refused) and from authority; ExactClass is not ExactRepair, and a diagnostic value or certificate is not authority.
+
+## Grade
+
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 34
+- cited Lean declarations covered by a current replay receipt: 33
+- counted in-repo runnable tests: 0
+- counted in-repo Rust or Python files that are not tests: 2
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
+
+## Flags
+
+- `receipt_names_uncited_module`: a replay receipt names this node for lean4/WdpDiagnosticRouting.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+
+## Imported structure
+
+None recorded.
+
+## Bottleneck
+
+Separation is a definitional discipline that the source code does not follow at the tag level (run.rs 626-633; the Rust exact class is named ExactRepair; omega_mub maps the class to a CodaTerminal); WDP-CH04-O01 (diagnostics feed checked finite routing receipts under a declared terminal, lift and guarded-change policy) is CONDITIONAL and only partially ported.
+
+## Source status
+
+WDP-CH04-N01 NONCLAIM; GTLA rules 4 and 6
+
+## Review
+
+- PFP review: [dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
+  - narrowest claim: Over hand-transcribed source tables, the diagnostic class, routing terminal, residual class and authority tag are different finite axes and nothing forces the partial class-to-terminal composite the source declares (the exact class is unrouted); a diagnostic value is at most a necessary eligibility gate for sealing a certificate, never authority. The source code itself names the exact class ExactRepair and tags ClosedResidual as StabilizedSurvivor, contrary to ledger N01.
+  - does not support: That any policy from diagnostic classes to terminals is the correct one or is forced; WDP-CH04-O01, which stays conditional; any identification of terminal_status::ResidualClass (Exact, ClosedSurvivor, Open, Refused) with the diagnostic class (the unrelated omega_homology ResidualClass with values ExactRepair, StabilizedSurvivor, OpenObstruction has the three values of the diagnostic class and is not modelled); that the Rust class name ExactRepair and the ledger name ExactClass denote different things (the Lean exactRepairAllowed is the same predicate as certEligible, so the clause "ExactClass is not ExactRepair" has no anchor of its own); a route for the exact class (the source declares none); budget, rule or lift availability as routing inputs (none exist in the source routing code); evidence about the source from the leaves that are definitional in the model (authority counts, AuthTag); any physical or interpretive claim.
+  - next test: Enumerate the 7 total extensions of the declared partial policy (the 7 choices of terminal for ExactClass) and decide for each whether it is compatible with (a) certificate eligibility being exact-class-only, (b) the 4-element image of terminal_from_fiber, (c) Certified requiring an authority-bearing terminal; then state the surviving extension(s) as the policy O01 must declare.
+
+## Evidence items
+
+Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/DerivationDagQMClosure.lean`
+
+- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
+- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
+- cited in: node.lean
+- replay: `none`
+- check: `cd lean4 && lake build DerivationDagQMClosure`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+- counts toward the grade: yes
+
+### Lean: `lean4/WdpDiagnosticRouting.lean`
+
+- file: [lean4/WdpDiagnosticRouting.lean](../../../lean4/WdpDiagnosticRouting.lean)
+- sha256 (`bytes`): `36530ac192efceb10c24eb272573d98f8852d40e63d888897c24523fd75ecdf0`
+- cited in: receipt dag/research/pfp_batch01_lean_replay.json (WdpDiagnosticRouting)
+- replay: `verified`
+  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `WdpDiagnosticRouting`): recorded sha256 `36530ac192efceb10c24eb272573d98f8852d40e63d888897c24523fd75ecdf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build WdpDiagnosticRouting`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `WdpDiagnosticRouting.authTag_factors_through_route` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.authTag_factors_through_route` |
+| `WdpDiagnosticRouting.auth_not_determine_route` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.auth_not_determine_route` |
+| `WdpDiagnosticRouting.card_axes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDiagnosticRouting.card_axes` |
+| `WdpDiagnosticRouting.card_injective_policies` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDiagnosticRouting.card_injective_policies` |
+| `WdpDiagnosticRouting.card_policies` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDiagnosticRouting.card_policies` |
+| `WdpDiagnosticRouting.certEligible_iff` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.certEligible_iff` |
+| `WdpDiagnosticRouting.certified_needs_witness` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.certified_needs_witness` |
+| `WdpDiagnosticRouting.certified_only_for_authority_terminals` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.certified_only_for_authority_terminals` |
+| `WdpDiagnosticRouting.closed_tension` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.closed_tension` |
+| `WdpDiagnosticRouting.diagRoute_injective_where_defined` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDiagnosticRouting.diagRoute_injective_where_defined` |
+| `WdpDiagnosticRouting.diagRoute_values` | yes | yes | yes | none | `#print axioms WdpDiagnosticRouting.diagRoute_values` |
+| `WdpDiagnosticRouting.diag_cannot_set_authority` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.diag_cannot_set_authority` |
+| `WdpDiagnosticRouting.diag_cannot_set_terminal` | yes | yes | yes | none | `#print axioms WdpDiagnosticRouting.diag_cannot_set_terminal` |
+| `WdpDiagnosticRouting.exactClass_not_authority` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.exactClass_not_authority` |
+| `WdpDiagnosticRouting.fiber_never_lift_budget_refused` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.fiber_never_lift_budget_refused` |
+| `WdpDiagnosticRouting.fiber_reaches_four` | yes | yes | yes | none | `#print axioms WdpDiagnosticRouting.fiber_reaches_four` |
+| `WdpDiagnosticRouting.fiber_route_in` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.fiber_route_in` |
+| `WdpDiagnosticRouting.no_injective_from_routing` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDiagnosticRouting.no_injective_from_routing` |
+| `WdpDiagnosticRouting.no_surjective_policy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDiagnosticRouting.no_surjective_policy` |
+| `WdpDiagnosticRouting.no_value_forced` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.no_value_forced` |
+| `WdpDiagnosticRouting.outside_profile_ne_refuted` | yes | yes | yes | none | `#print axioms WdpDiagnosticRouting.outside_profile_ne_refuted` |
+| `WdpDiagnosticRouting.policy_values_independent` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.policy_values_independent` |
+| `WdpDiagnosticRouting.refuted_requires_profile` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.refuted_requires_profile` |
+| `WdpDiagnosticRouting.relRoute_outside` | yes | yes | yes | none | `#print axioms WdpDiagnosticRouting.relRoute_outside` |
+| `WdpDiagnosticRouting.relRoute_surjective` | yes | yes | yes | none | `#print axioms WdpDiagnosticRouting.relRoute_surjective` |
+| `WdpDiagnosticRouting.residual_not_determine_route` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.residual_not_determine_route` |
+| `WdpDiagnosticRouting.routePfp_misses_repair_and_norule` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.routePfp_misses_repair_and_norule` |
+| `WdpDiagnosticRouting.routePfp_not_surjective` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.routePfp_not_surjective` |
+| `WdpDiagnosticRouting.routeStatus_surjective` | yes | yes | yes | none | `#print axioms WdpDiagnosticRouting.routeStatus_surjective` |
+| `WdpDiagnosticRouting.route_not_determine_residual` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.route_not_determine_residual` |
+| `WdpDiagnosticRouting.sealed_exact_with_witness` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.sealed_exact_with_witness` |
+| `WdpDiagnosticRouting.sealed_needs_witness` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.sealed_needs_witness` |
+| `WdpDiagnosticRouting.sealed_only_exact` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.sealed_only_exact` |
+- counts toward the grade: yes
+
+### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.lean
+- counts toward the grade: no
+
+### Rust: `code/rust/src/wdp/authority_gap.rs`
+
+- file: [code/rust/src/wdp/authority_gap.rs](../../../code/rust/src/wdp/authority_gap.rs)
+- sha256 (`bytes`): `0868299c878fb62cb4b194ba0f63b96aae2c2c39de916fb698aa252cc4a5399c`
+- cited in: record TFQ-0347
+- note: no test is cited for this symbol; its crate is tfqm_wdp
+- counts toward the grade: yes
+
+### Rust: `code/rust/src/wdp/wdp_kernel_check.rs`
+
+- file: [code/rust/src/wdp/wdp_kernel_check.rs](../../../code/rust/src/wdp/wdp_kernel_check.rs)
+- sha256 (`bytes`): `ed19fff6227820f276fbe81f21c2338bccb3337e7ef165188a99923ae59b94ec`
+- cited in: record TFQ-0347
+- note: no test is cited for this symbol; its crate is tfqm_wdp
+- counts toward the grade: yes
+
+### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
+
+- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Rust: `omega_engine/crates_rs/omega_types/src/ceiling.rs`
+
+- file: `omega_engine/crates_rs/omega_types/src/ceiling.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Rust: `omega_engine/crates_rs/omega_types/src/fda.rs`
+
+- file: `omega_engine/crates_rs/omega_types/src/fda.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Rust: `omega_engine/crates_rs/omega_types/src/routing.rs`
+
+- file: `omega_engine/crates_rs/omega_types/src/routing.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Documents and data: `.claude/rules/authority/rl_gtla_rules_rubric.md`
+
+- file: `.claude/rules/authority/rl_gtla_rules_rubric.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md`
+
+- file: [dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md](../../../dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md)
+- sha256 (`lf-normalised`): `761a413538d8440b7ae979bbf9c9b81a752dc6eeac1e1f3d3cca2915c775bbec`
+- generated view: listed, not counted
+- cited in: record TFQ-0347
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+## Routes
+
+Incoming (1):
+
+- `PG-R-DIAG-NOT-ROUTING` `CONDITIONAL_ON_IMPORT`: [PG-WDP-QUOTIENT-EXACT-SEQUENCE](PG-WDP-QUOTIENT-EXACT-SEQUENCE.md) (PROVED_LEAN)
+
+Outgoing (0):
+
