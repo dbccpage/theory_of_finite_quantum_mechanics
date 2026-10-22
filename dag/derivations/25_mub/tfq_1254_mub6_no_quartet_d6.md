@@ -14,7 +14,7 @@
 Open problem: no four pairwise mutually unbiased bases exist in C^6.
 
 ### Governing Obligation
-The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization.
+The corpus certifies exact reductions (quartet existence iff solutions of the 618-, 648- or 666-equation quadratic systems in stated boxes), conditional implications over supplied premises, and exclusion of the regions in MUB6-C28 and MUB6-PAPER-CLOSE-COLUMNS; it does not cover the full boxes, the six charts, the 56 family cells, the three cusp collars, or triples outside the Szollosi parameterization. N(6) <= 5 is recorded separately as MUB6-OPENAI-FAMILY-LE-FIVE (external theorem of OpenAI, not built here); it does not decide whether a quartet exists. OpenAI N(6)=3 is recorded as external context only: a binary64 seed-cover, Stage A/B/C and clique-search pipeline whose code and run archive are unreleased (verification/ returns 404) and whose Lean tree does not formalize it; it is not imported.
 
 ### Witness Audit
 The JSONL Lean target does not exist in this checkout; README, claim ledger and gap registry (G1 OPEN) state the question is open.

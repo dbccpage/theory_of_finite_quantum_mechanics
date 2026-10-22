@@ -17,9 +17,9 @@
     "primitive_gap": "FQ-GAP-TENSOR-UNIQUENESS remains CONDITIONAL; no derivation of local complex QM or logical minimality theorem is asserted."
   },
   "counts": {
-    "dag_nodes": 821,
-    "dag_routes": 818,
-    "master_records": 873
+    "dag_nodes": 822,
+    "dag_routes": 819,
+    "master_records": 874
   },
   "preservation": {
     "other_master_records_unchanged_byte_for_byte": 416,
@@ -250,24 +250,24 @@
     "No arbitrary-GPT classification, primitive reconstruction, instruments or channel classification is asserted."
   ],
   "sha256": {
-    "dag/derivation_dag.json": "287ab249611c3a6609ddf1b701ff5eb669cd70ece9c1957ac1a0023cef34f7c6",
+    "dag/derivation_dag.json": "be8fe053859874a19042aa6b6c0e51165227f4e6a20c8cb7b30c0217e4e885dc",
     "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "3d1f897722aad08811a52c863e8bc47cfda41d9d087929a00c3925f4782de12f",
-    "dag/derivations/README.md": "fada385d9f352b234e91e7a36a5f59f6a281118df5b7161328a98360947f5043",
-    "dag/fragments/application_branches.json": "337b0a212553ff774a1706a1e0548774abe98b3cf1ed006e16640e9a2918093f",
+    "dag/derivations/README.md": "8fe4ccaa72983cd37fe09e5afb2189ec820136a9a6694f88a21d75e73a2d7218",
+    "dag/fragments/application_branches.json": "9e71855c6981458a88a65765c8d3060979fe553ada854bd27a9ecd397dd7ef78",
     "dag/research/replay_tensor_countermodels.py": "4a104ca91efee4e5fb1311a962a7c7c64d6f7c4918b94085946c73b331944d52",
     "dag/research/tensor_countermodel_failed_replay.json": "e97668cf2cb3f78847b66a007de9b947b57b58f5a74be659db0311d62e46ae35",
     "dag/sync_application_branches.py": "8d3a02da769ee4797ce3ff40296fd9e18a01c37e47d5c41c8d040a20197d0fb6",
     "dag/test_application_branches.py": "7f7609683a46d292b81a1d0bbbd5f6fd5377a2133584134a1e5a0b96b415e44f",
     "dag/test_tensor_countermodel_receipt.py": "c21e303b0d616513fae733bdab323315f7e4831f5b2e1479e379fdf81a0aedf2",
     "dag/test_tensor_measurement_receipt.py": "2b943c4d2892623f1296a2764ca128789428bd141a8ff5ec219bbbc6fb2459c6",
-    "dag/theory_of_finite_qm.jsonl": "51786b5c670b8b210cf5ba45ea2548d9a4d6cc662d57f311745816d70eda9f9a",
-    "dag/theory_of_finite_qm.md": "364d7db2b7bf371662e4c9971234209d4828a168b3e98571ac74e42571e81d3a",
+    "dag/theory_of_finite_qm.jsonl": "9f42025b85e315bc78714c55e1cb1e11ff144559f6c263b38a5745ab0bce1fe7",
+    "dag/theory_of_finite_qm.md": "9c92b2984323fb8df4a3aabd9687a9f3ff0ca04192dcb09d405dd51c4da01244",
     "lean4/TensorCountermodelCones.lean": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
     "lean4/TensorCountermodelEmbeddings.lean": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
     "lean4/TensorCountermodelWitnesses.lean": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
     "lean4/TensorHiddenCoordinates.lean": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
     "lean4/TensorPartialTranspose.lean": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
-    "lean4/lakefile.lean": "b1a4cb75f0cf6204031949e95966019c9647cae0bf6ffbe017de8c592d9ec178"
+    "lean4/lakefile.lean": "cc4ba62b2a5a1e163a261638d36639a84ec444d2cd9c577f1a7d1224efb951f9"
   },
   "rebound": [
     {
@@ -640,6 +640,69 @@
       "current": "364d7db2b7bf371662e4c9971234209d4828a168b3e98571ac74e42571e81d3a",
       "reason": "current-file digest rebound when PFP batch 01 (prompts 152-177: 26 reviewed nodes, three statuses lowered, 13 statements narrowed, 9 caveated) was merged with main and the sync cycle was re-run; the Lean replay section and every other digest are unchanged",
       "run": "branch pfp-batch-01"
+    },
+    {
+      "field": "counts",
+      "previous": {
+        "dag_nodes": 821,
+        "dag_routes": 818,
+        "master_records": 873
+      },
+      "current": {
+        "dag_nodes": 822,
+        "dag_routes": 819,
+        "master_records": 874
+      },
+      "reason": "PR 158 added the IMPORTED_ASSUMPTION node MUB6-OPENAI-FAMILY-LE-FIVE, its route and master record (TFQ-1365); no tensor node, route or master record changed",
+      "run": "branch mub6-honesty-and-le5"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivation_dag.json",
+      "previous": "287ab249611c3a6609ddf1b701ff5eb669cd70ece9c1957ac1a0023cef34f7c6",
+      "current": "be8fe053859874a19042aa6b6c0e51165227f4e6a20c8cb7b30c0217e4e885dc",
+      "reason": "current-file digest rebound when PR 158 (MUB6 honesty fixes and MUB6-OPENAI-FAMILY-LE-FIVE) was merged with main (#154, #155, #157) and the sync cycle was re-run: the graph gained MUB6-OPENAI-FAMILY-LE-FIVE and the MUB6 record corrections; the Lean replay section and every other digest are unchanged",
+      "run": "branch mub6-honesty-and-le5"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivations/README.md",
+      "previous": "fada385d9f352b234e91e7a36a5f59f6a281118df5b7161328a98360947f5043",
+      "current": "8fe4ccaa72983cd37fe09e5afb2189ec820136a9a6694f88a21d75e73a2d7218",
+      "reason": "current-file digest rebound when PR 158 (MUB6 honesty fixes and MUB6-OPENAI-FAMILY-LE-FIVE) was merged with main (#154, #155, #157) and the sync cycle was re-run: the derivation index lists the new record; the Lean replay section and every other digest are unchanged",
+      "run": "branch mub6-honesty-and-le5"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/fragments/application_branches.json",
+      "previous": "337b0a212553ff774a1706a1e0548774abe98b3cf1ed006e16640e9a2918093f",
+      "current": "9e71855c6981458a88a65765c8d3060979fe553ada854bd27a9ecd397dd7ef78",
+      "reason": "current-file digest rebound when PR 158 (MUB6 honesty fixes and MUB6-OPENAI-FAMILY-LE-FIVE) was merged with main (#154, #155, #157) and the sync cycle was re-run: MUB6-GLOBAL-OBLIGATIONS was updated and the fragment re-synchronized; the Lean replay section and every other digest are unchanged",
+      "run": "branch mub6-honesty-and-le5"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/theory_of_finite_qm.jsonl",
+      "previous": "51786b5c670b8b210cf5ba45ea2548d9a4d6cc662d57f311745816d70eda9f9a",
+      "current": "9f42025b85e315bc78714c55e1cb1e11ff144559f6c263b38a5745ab0bce1fe7",
+      "reason": "current-file digest rebound when PR 158 (MUB6 honesty fixes and MUB6-OPENAI-FAMILY-LE-FIVE) was merged with main (#154, #155, #157) and the sync cycle was re-run: one master record was added; the Lean replay section and every other digest are unchanged",
+      "run": "branch mub6-honesty-and-le5"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/theory_of_finite_qm.md",
+      "previous": "364d7db2b7bf371662e4c9971234209d4828a168b3e98571ac74e42571e81d3a",
+      "current": "9c92b2984323fb8df4a3aabd9687a9f3ff0ca04192dcb09d405dd51c4da01244",
+      "reason": "current-file digest rebound when PR 158 (MUB6 honesty fixes and MUB6-OPENAI-FAMILY-LE-FIVE) was merged with main (#154, #155, #157) and the sync cycle was re-run: the master record listing gained one record; the Lean replay section and every other digest are unchanged",
+      "run": "branch mub6-honesty-and-le5"
+    },
+    {
+      "field": "sha256",
+      "path": "lean4/lakefile.lean",
+      "previous": "b1a4cb75f0cf6204031949e95966019c9647cae0bf6ffbe017de8c592d9ec178",
+      "current": "cc4ba62b2a5a1e163a261638d36639a84ec444d2cd9c577f1a7d1224efb951f9",
+      "reason": "current-file digest rebound when PR 158 (MUB6 honesty fixes and MUB6-OPENAI-FAMILY-LE-FIVE) was merged with main (#154, #155, #157) and the sync cycle was re-run: main registered OperationalBoundaryWitnesses, OperationalSymmetry, OperationalCoherence and OperationalIndependence next to the existing roots; the tensor roots are unchanged; the Lean replay section and every other digest are unchanged",
+      "run": "branch mub6-honesty-and-le5"
     }
   ]
 }

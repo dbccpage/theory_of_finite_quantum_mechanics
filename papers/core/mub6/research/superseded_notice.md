@@ -23,3 +23,13 @@ so their digests still replay. Some of their status lines are withdrawn. Read [t
 - It does not change any archived byte or any digest.
 - It does not re-seal the archive. A new archive version would have to drop or
   amend these files and be re-sealed with `scripts/build_zenodo_release.py`.
+
+## Correction notes added in place (2026-10-21)
+
+Each flagged line in `research/mub6.md` (5, 91, 93, 97 at the time), `research/mub6_roadmap.md` (4, 8, 214,
+226) and `research/mub6_frontier_synthesis.md` (5, 7) is now followed by a dated correction note. The
+original text was not changed or deleted. The digests of these three live files therefore differ from
+their members in `zenodo/mub6_formal_archive_v1.0.tar.gz`; the archive members are unchanged and still
+replay. The outer deposit manifests (`manifest.sha256`, `sha256sums`) were regenerated for the live files.
+The comparison sections of `documentation/mub6_master_classification_and_openai_comparative_synthesis.md`
+were rewritten on the same date because they misdescribed OpenAI's work.

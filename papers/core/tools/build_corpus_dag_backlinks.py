@@ -129,6 +129,14 @@ ERRATA = {
          "With X|j> = |j+1 mod 6> and Z|j> = w^j|j> one has Z X = w X Z, equivalently X Z = w^{-1} Z X. "
          "The register writes X Z = w Z X, which holds only under the opposite clock convention. There is "
          "no d = 6 Lean declaration for it, and no MUB count follows from the relation."),
+        ("MUB6-DERIV-075", "TFQ-1252",
+         "The register summary states Conjecture 2 as: no 6x6 complex Hadamard matrix has all 20 balanced "
+         "3x3 submatrices with determinant zero, and that it implies no fourth basis unbiased to F_6. "
+         "Neither is the conjecture. Matolcsi, Matszangosz, Varga and Weiner (arXiv:2503.14752) conjecture "
+         "Laurent (character) vanishing g_H(pi a) = 0 for every coordinate permutation pi of "
+         "a = (1,1,1,-1,-1,-1), plus a condition coupling the characters at 3a, for transitions of a MUB "
+         "triplet; with Conjecture 3 and Proposition 4.2 it would give at most three MUBs. Corrected in "
+         "the register (original wording in summary_original) on 2026-10-21."),
         ("MUB6-DERIV-076", "TFQ-1253",
          "The register calls the quantity an l1 operator norm ||P S_6 P||_1 = 9. The computed (and Lean) "
          "quantity is |sum_j prod_r S_rj^{g_r}|^2 = 9 for each of the 20 balanced sign vectors g "

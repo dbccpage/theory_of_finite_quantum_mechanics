@@ -14,10 +14,10 @@
 Matolcsi et al. Conjecture 2 (balanced Laurent vanishing on actual MUB triples) together with Conjecture 3 (no quartet contains a Szollosi family member) implies at most three MUBs in C^6 (Proposition 4.2); both conjectures are open.
 
 ### Governing Obligation
-Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields.
+Locally only the count of 20 balanced sign masks among 64 and a declared row-count table are checked; AnalyticCubeSliceCertificate takes its row bound and table compatibility as fields. External: the alpha-vanishing part of Conjecture 2 for every order-6 complex Hadamard matrix not equivalent to the Tao matrix is a theorem of the OpenAI companion paper (Lean: OAI.MUB6.fourier_vanishing; external, not built here, see MUB6-OPENAI-FAMILY-LE-FIVE). Still open: the condition coupling the characters at 3a, Tao-class transitions inside triplets, Conjecture 3 and Proposition 4.2.
 
 ### Witness Audit
-lean4/Conjecture2GeneralMechanization.lean::proposition_4_2_moduli_reduction decides a declared table (docstring: not a matrix proof). The source restates Conjecture 2 as a determinant condition on balanced 3x3 submatrices, which does not match the cited Laurent form.
+lean4/Conjecture2GeneralMechanization.lean::proposition_4_2_moduli_reduction decides a declared table (docstring: not a matrix proof). The source summary restated Conjecture 2 as 3x3 determinants being zero on balanced submatrices; that is wrong (corrected 2026-10-21 in the register summary, original kept in summary_original). The conjecture is Laurent (character) vanishing g_H(pi a) = 0 for the permutations pi of a = (1,1,1,-1,-1,-1), together with a condition coupling the characters at 3a, for transitions of a MUB triplet.
 
 ---
 

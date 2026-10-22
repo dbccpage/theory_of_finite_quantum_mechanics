@@ -17,7 +17,7 @@ At the Szollosi point (x,y,u,v) = (1,-1,1,i), the 120 real rays given by an exac
 Completeness of the represented ray set needs an independent bound on the number of complex solutions; the ledger records no replay on 2026-10-16 (python-flint and PARI/GP); one point does not cover the family.
 
 ### Witness Audit
-special_replay.json status PASS_FOR_REPRESENTED_SOLUTIONS with 120 real solutions; the T5 cover receipt has 120 isolating leaves and 0 excluded leaves at p0 only. Not replayed in this draft.
+special_replay.json status PASS_FOR_REPRESENTED_SOLUTIONS with 120 real solutions; the T5 cover receipt has 120 isolating leaves and 0 excluded leaves at p0 only. Not replayed in this draft. Corrected 2026-10-21: the T5 cover receipt is NOT_A_CERTIFICATE (evaluates the 120 known roots only; no complement leaves; verified_sound and the dimension-3 control are literals); only the exact interval pair-gap computation over the 120 boxes is genuine, and ray completeness at p0 is open.
 
 ---
 

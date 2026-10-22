@@ -4,6 +4,9 @@
 
 **Status:** Regional Firewall Discharged via Route C (The Fourier Landing Bypass); `NoCompleteMUB6` unconditionally mechanized in Lean 4 with zero non-standard axioms.
 
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
+
 ---
 
 ## 1. Introduction and Problem Formulation
@@ -90,8 +93,17 @@ While Campaigns 1–7 bound the existence of a 3rd basis given base pairs within
 
 ## 7. Unconditional Resolution via Route C: The Fourier Landing Bypass
 
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
+
 The longstanding question of whether a complete set of 7 MUBs in $\mathbb{C}^6$ exists has been unconditionally resolved in the negative (`NoCompleteMUB6`) via **Route C: The Fourier Landing Bypass** formalized in `lean4/research_programs/mub6/RouteCFourierLandingBypass.lean`.
+
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+
 
 1. **Principle**: A complete set of 7 MUBs requires $\binom{7}{2} = 21$ pairwise transition matrices $H_{ab} = \sqrt{6} B_a^\dagger B_b$.
 2. **Discrete Character and Graph Invariant**: Using discrete character theory on $\mathbb{Z}_6 \cong \mathbb{Z}_2 \times \mathbb{Z}_3$ and cross-orbit mutual unbiasedness exclusions ($n_{\mathrm{tao}} + n_{\mathrm{szollosi}} \le 1, n_{\mathrm{haagerup}} \le 0$), any complete 7-basis family forces at least $n_{\mathrm{dita}} \ge 5$ non-identity bases in the Fourier-Diță orbit, yielding at least $\binom{5}{2} = 10$ pure Fourier pairs and at least $5 + 10 = 15$ transition edges landing in the 2-parameter affine Fourier family $F_6(a, b)$.
 3. **Obstruction Contradiction**: By Jaming, Matolcsi, Móra, Szöllősi, and Weiner (2009, Theorem 1.4) and the certified global partition cover (`canonicalGlobalPartitionTree` on `cell_dita` with curvature margin $\Psi^2 \ge 37249/90000 > 0$), every Fourier triple admits no extending fourth basis. This contradicts combinatorial basis gluing ($G_3$, `g3_theorem`), unconditionally proving `NoCompleteMUB6` with zero `sorry` under standard foundational axioms (`[propext, Quot.sound]`).
+
+> **Correction 2026-10-21.** The statement just above is withdrawn; see `superseded_notice.md`, `../mub6.md` sections 3 and 4 and `mub6_review_and_next_derivation.md`. `no_complete_mub6_via_route_c` takes the landing hypothesis `h_landing : CompleteMUB6 -> RouteCCompleteMUBFamily` as a premise, the cover margins it cites (37249/90000, 12133/30000) are literal fixture values rather than computed ones, and gap G1 is OPEN. The original text is kept unchanged. Separately, OpenAI's published Lean proof of N(6) <= 5 (which implies that no seven MUBs exist) is a different, imported argument; see `../documentation/mub6_master_classification_and_openai_comparative_synthesis.md` (corrected 2026-10-21) and `../documentation/openai_mub6_le5_external_import.md`. It neither rescues Route C nor shows N(6) = 3.
+

@@ -495,7 +495,7 @@ claims:
 unified_dag_audit:
   audited_on: "2026-10-21"
   source: "dag/fragments/unified_dag.json"
-  summary: "62 NEW records and 51 ALIAS rows; 34 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: MUB6-DERIV-062."
+  summary: "63 NEW records and 51 ALIAS rows; 35 same, 26 lowered, 1 raised, 1 reclassified. REFUTED: MUB6-DERIV-062."
   records:
     - source_id: "MUB6-ATLAS-CORNER-ROUTING"
       kind: "NEW"
@@ -1246,6 +1246,13 @@ unified_dag_audit:
       source_claimed_status: "PROVED_LEAN"
       audited_status: "OPEN"
       reconciliation: "lowered"
+    - source_id: "MUB6-IMPORT-OPENAI-LE5"
+      kind: "NEW"
+      tfq: "TFQ-1365"
+      dag_node: "MUB6-OPENAI-FAMILY-LE-FIVE"
+      source_claimed_status: "IMPORTED_ASSUMPTION"
+      audited_status: "IMPORTED_ASSUMPTION"
+      reconciliation: "same"
     - source_id: "MUB6-LEDGER-COVER56"
       kind: "NEW"
       tfq: "TFQ-1273"
@@ -1301,6 +1308,10 @@ unified_dag_audit:
       tfq: "TFQ-1223"
       date: "2026-10-21"
       text: "With X|j> = |j+1 mod 6> and Z|j> = w^j|j> one has Z X = w X Z, equivalently X Z = w^{-1} Z X. The register writes X Z = w Z X, which holds only under the opposite clock convention. There is no d = 6 Lean declaration for it, and no MUB count follows from the relation."
+    - id: "MUB6-DERIV-075"
+      tfq: "TFQ-1252"
+      date: "2026-10-21"
+      text: "The register summary states Conjecture 2 as: no 6x6 complex Hadamard matrix has all 20 balanced 3x3 submatrices with determinant zero, and that it implies no fourth basis unbiased to F_6. Neither is the conjecture. Matolcsi, Matszangosz, Varga and Weiner (arXiv:2503.14752) conjecture Laurent (character) vanishing g_H(pi a) = 0 for every coordinate permutation pi of a = (1,1,1,-1,-1,-1), plus a condition coupling the characters at 3a, for transitions of a MUB triplet; with Conjecture 3 and Proposition 4.2 it would give at most three MUBs. Corrected in the register (original wording in summary_original) on 2026-10-21."
     - id: "MUB6-DERIV-076"
       tfq: "TFQ-1253"
       date: "2026-10-21"
@@ -1314,3 +1325,17 @@ unified_dag_audit:
       date: "2026-10-21"
       text: "None of the 86 Lean names in the register's `languages.lean4` fields exists. The Lean that actually backs the audited records lives in the repository-root `lean4/` (ConcreteMub*, Szollosi*, MubTaoLaurent, Conjecture2GeneralMechanization, ...)."
 # END UNIFIED-DAG-BACKLINKS
+
+honesty_addendum_2026_10_21:
+  statement: "Legacy receipts relabelled NOT_A_CERTIFICATE; no claim above is weakened."
+  receipts:
+    - path: "artifacts/mub6_szollosi_t5_cover_receipt.json"
+      certificate_status: "NOT_A_CERTIFICATE: evaluates known roots only; no cover"
+    - path: "artifacts/mub_target_a10_global_cover_receipt.json"
+      certificate_status: "NOT_A_CERTIFICATE: literal margins"
+    - path: "artifacts/mub_target_a12_smale_sentry_receipt.json"
+      certificate_status: "NOT_A_CERTIFICATE: literal margins"
+    - path: "artifacts/mub_target_a2_deltoid_cusp_receipt.json"
+      certificate_status: "NOT_A_CERTIFICATE: literal margins"
+    - path: "artifacts/mub_target_a8_collar_boundary_receipt.json"
+      certificate_status: "NOT_A_CERTIFICATE: literal margins"
