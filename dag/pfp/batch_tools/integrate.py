@@ -34,7 +34,8 @@ def default_gates(ctx):
         ('dag_validator', [py, '-I', '-X', 'utf8', 'dag/validate_derivation_dag.py', '--no-files'], False),
         ('sync_unified', [py, '-I', '-X', 'utf8', 'dag/sync_unified_dag.py', '--check'], False),
         ('sync_application', [py, '-I', '-X', 'utf8', 'dag/sync_application_branches.py', '--check'], False),
-        ('sync_pregenesis', [py, '-I', '-X', 'utf8', 'dag/sync_pregenesis_to_wdp.py', '--check'], False)]
+        ('sync_pregenesis', [py, '-I', '-X', 'utf8', 'dag/sync_pregenesis_to_wdp.py', '--check'], False),
+        ('sync_frontier', [py, '-I', '-X', 'utf8', 'dag/sync_frontier_branches.py', '--check'], False)]
     return [{'id': name, 'argv': argv, 'cwd': '.', 'needs': None, 'optimizable': optimizable,
              'count': PYTHON_TESTS if any('test_' in a for a in argv) else None}
             for name, argv, optimizable in candidates if (ctx.root / next(a for a in argv if a.endswith('.py'))).is_file()]
