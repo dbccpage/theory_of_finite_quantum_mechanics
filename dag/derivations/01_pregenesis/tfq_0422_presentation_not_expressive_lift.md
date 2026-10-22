@@ -1,6 +1,6 @@
 # [TFQ-0422] presentation-not-expressive-lift
 
-> **Stage**: `PREGENESIS` | **Status**: `CONDITIONAL`  
+> **Stage**: `PREGENESIS` | **Status**: `PROVED_LEAN`  
 > **UUID**: `a0fea856-b6d9-5667-93c6-369972539fa7`  
 > **Parent Derivation**: [TFQ-0421](tfq_0421_observational_equivalence.md)
 
@@ -33,13 +33,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean)
+- [`lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only`](../../../lean4/CampaignPgwPresentationLift.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust record separating presentation state from internal class`
 
 ### Python Oracles & Numerical Evaluators
-- `missing obligation: no Python record separating presentation state from internal class`
+- [`checks/independent/pgw-presentation-not-expressive-lift.py::main`](../../../checks/independent/pgw-presentation-not-expressive-lift.py)
 
 ---
 

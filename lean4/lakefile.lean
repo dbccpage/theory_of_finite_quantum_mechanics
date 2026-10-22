@@ -583,3 +583,7 @@ lean_lib FrontierTargets where
     `FrontierClassical6j,
     `FrontierPrAllowedRegion
   ]
+
+-- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
+lean_lib CampaignPgwPresentationLift where
+  roots := #[`CampaignPgwPresentationLift]

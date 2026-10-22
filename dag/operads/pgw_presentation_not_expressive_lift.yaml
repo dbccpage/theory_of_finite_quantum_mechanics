@@ -22,7 +22,7 @@ target:
   - omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:925-975
   - omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:29-43
   paper_refs: []
-  source_claim_label: CONDITIONAL
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
@@ -34,16 +34,92 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/pregenesis_pgw_presentation_not_expressive_lift_conditional.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: inductive
+  name: IdentityConvention
+  line: 171
+  signature_excerpt: |-
+    inductive IdentityConvention
+      | opaqueConv
+      | exactInscription
+      deriving DecidableEq, Repr
+
+    /-- Equivalence relation on presentations under a given identity convention and observation map. -/
+    def ConvEquiv (c : IdentityConvention) (obs : Inscription → Distinctions) (x y : Inscription) : Prop
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: HasCollapsingPresentations
+  line: 227
+  signature_excerpt: 'def HasCollapsingPresentations (c : IdentityConvention) (obs : Inscription → Distinctions)
+    : Prop'
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: emptyDistinctions
+  line: 112
+  signature_excerpt: 'def emptyDistinctions (_ : Inscription) : Distinctions'
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Inscription
+  line: 57
+  signature_excerpt: |-
+    inductive Inscription
+      | nil
+      | markA
+      deriving DecidableEq, Repr
+
+    instance : Fintype Inscription
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Distinctions
+  line: 108
+  signature_excerpt: abbrev Distinctions
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ConvEquiv
+  line: 177
+  signature_excerpt: 'def ConvEquiv (c : IdentityConvention) (obs : Inscription → Distinctions) (x y :
+    Inscription) : Prop'
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: statement_holds_under_opaque_only
+  line: 242
+  signature_excerpt: |-
+    theorem statement_holds_under_opaque_only (c : IdentityConvention) :
+        HasCollapsingPresentations c emptyDistinctions ↔ c = IdentityConvention.opaqueConv
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal
-  availability: external
-  symbol: empty_profiles_equal
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+- original_ref: lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only
+  availability: local
+  symbol: CampaignPgwPresentationLift.statement_holds_under_opaque_only
+  path: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  sha256: 80614d3533fba0b89e9a82bcd4c2fbc53215b13512dc6775e25eea3c128d6ea7
+  declaration_status: declaration_found_not_proof_checked
+  line: 242
   role: source_lead_only
 presentation:
   colours: []
@@ -86,8 +162,6 @@ operad_slots:
       the quotient by ≈ₙ (assumption)'
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

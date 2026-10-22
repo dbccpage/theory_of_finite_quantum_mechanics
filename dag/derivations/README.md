@@ -41,7 +41,7 @@ Folder: [`01_pregenesis/`](./01_pregenesis/)
 | [`TFQ-0419`](./01_pregenesis/tfq_0419_successor_not_unique.md) | successor-not-unique | `SOURCE_RECORD` | [`TFQ-0418`](./01_pregenesis/tfq_0418_no_transition_quiescence.md) |
 | [`TFQ-0420`](./01_pregenesis/tfq_0420_repetition_needs_structure.md) | repetition-needs-structure | `SOURCE_RECORD` | [`TFQ-0419`](./01_pregenesis/tfq_0419_successor_not_unique.md) |
 | [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) | observational-equivalence | `DEFINITION` | [`TFQ-0362`](./01_pregenesis/tfq_0362_four_host_conditions.md) |
-| [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) | presentation-not-expressive-lift | `CONDITIONAL` | [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) |
+| [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) | presentation-not-expressive-lift | `PROVED_LEAN` | [`TFQ-0421`](./01_pregenesis/tfq_0421_observational_equivalence.md) |
 | [`TFQ-0423`](./01_pregenesis/tfq_0423_identity_convention_undecidable.md) | identity-convention-undecidable | `SOURCE_RECORD` | [`TFQ-0422`](./01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) |
 | [`TFQ-0424`](./01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) | absence-of-rule-not-identification | `SOURCE_RECORD` | [`TFQ-0423`](./01_pregenesis/tfq_0423_identity_convention_undecidable.md) |
 | [`TFQ-0425`](./01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md) | forced-separation-lift-not-unique | `SOURCE_RECORD` | [`TFQ-0424`](./01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) |

@@ -523,7 +523,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0419` | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0419` (SOURCE_RECORD) | - |
 | `TFQ-0420` | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0420` (SOURCE_RECORD) | - |
 | `TFQ-0421` | `PREGENESIS` | `DEFINITION` | `PGW-OBSERVATIONAL-EQUIVALENCE` (DEFINITION) | - |
-| `TFQ-0422` | `PREGENESIS` | `CONDITIONAL` | `PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT` (CONDITIONAL) | - |
+| `TFQ-0422` | `PREGENESIS` | `PROVED_LEAN` | `PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT` (PROVED_LEAN) | - |
 | `TFQ-0423` | `PREGENESIS` | `SOURCE_RECORD` | `PGW-IDENTITY-CONVENTION-UNDECIDABLE` (CONDITIONAL) | - |
 | `TFQ-0424` | `PREGENESIS` | `SOURCE_RECORD` | `PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION` (DEFINITION) | - |
 | `TFQ-0425` | `PREGENESIS` | `SOURCE_RECORD` | `PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE` (PROVED_LEAN) | - |
@@ -1450,7 +1450,7 @@ Obligation: Define x ≈ₙ y as agreement of every declared observation in O_n,
 
 - UUID: `a0fea856-b6d9-5667-93c6-369972539fa7`
 - Parent: `TFQ-0421`
-- Status: `CONDITIONAL`
+- Status: `PROVED_LEAN`
 
 Write P for the presented inscriptions and O for the internal observations. Supplying <a> after <> changes P from {<>} to {<a>} and leaves O_1 = O_0 = ∅, so no new internal distinction is available. With q : P → N sending an inscription to the distinctions the regime has, x ≠ y in P can hold while q(x) = q(y) in N, so a new presentation does not imply a new internal class, and in the other direction q(x) = q(y) does not imply x = y. Under the opaque convention <a> is a new presentation state in the same internal class as <>; the statement holds under that convention only.
 
