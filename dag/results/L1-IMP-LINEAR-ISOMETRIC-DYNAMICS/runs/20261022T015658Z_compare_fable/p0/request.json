@@ -1,0 +1,312 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "cmp",
+  "input_sha256": "449f528ad461268b77b75b14c4bb2641be07e99a7d6c96b8ecd71b2a8b90024c",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=L1-IMP-LINEAR-ISOMETRIC-DYNAMICS stage=P0 attempt=cmp in=449f528a guided=yes\n@TARGET [IMPORTED_ASSUMPTION] Dynamics on the lift are reversible linear isometries. QM_122 H003 shows deterministic report dynamics do not by themselves give reversibility; H006 gives a permutation isometry envelope that is not a Hilbert unitary.\n@BOTTLENECK Lean module symbols not grepped; file existence only checked via listing in prior survey.\n@ASSUME linear structure on dynamics: assumption; isometry / unitarity: assumption\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels | theorem | theorem l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels : ((1 * 1 + 2 * 2 = 5) ∧ (5 ≠ 1)) ∧ ((1 * 1 - 1 * 1 = (0 : \n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permutation_isometry_envelope | theorem | theorem permutation_isometry_envelope : (∀ (u v : Vec Int Bool), sesq intPack enumBool (permU intPack toggleRev u) (permU intPack toggleRev v) = sesq \n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permutation_isometry | theorem | theorem permutation_isometry {K Q : Type} (P : StarRingPack K) [DecidableEq Q] (E : Enum Q) {τ : Q → Q} (R : Reversible τ) (u v : Vec K Q) : sesq P E \n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.qm020_thm4_hilbert_lift_redundancy | theorem | theorem qm020_thm4_hilbert_lift_redundancy (w0 w1 w2 : Nat) (hw : 0 < w0 * w1) : (∀ o0 o1 o2 : Nat, diagExpectation3 o0 o1 o2 w0 w1 w2 = o0 * w0 + o1 \n lean4/H003ReversibilityGate.lean | FableHilbertWalk20260819.H003.Reversible | structure | structure Reversible {Q : Type} (τ : Q → Q)\n lean4/H003ReversibilityGate.lean | FableHilbertWalk20260819.H003.collapse_not_reversible | theorem | theorem collapse_not_reversible : ¬ Nonempty (Reversible collapse)\n lean4/H003ReversibilityGate.lean | FableHilbertWalk20260819.H003.pushforward_reversible | theorem | theorem pushforward_reversible {Q : Type} [DecidableEq Q] (E : Enum Q) (τ : Q → Q) (R : Reversible τ) (w : Q → Int) (q : Q) : rsum intPack ((E.elems.f\n lean4/H003ReversibilityGate.lean | FableHilbertWalk20260819.H003.reversibility_gate | theorem | theorem reversibility_gate : (toggleRev.inv = toggle) ∧ ¬ Nonempty (Reversible collapse) ∧ (∀ (w : Bool → Int) (q : Bool), rsum intPack ((enumBool.ele\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permutation_norm | theorem\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permutation_on_basis | theorem\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.swapI_isometry | theorem\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.swapI_not_permutation | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.signed_sqrt_density_lift_cauchy_schwarz | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition | theorem\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.fq_stone_dynamics_dichotomy_and_continuum_wintner_wielandt_closure | theorem\n lean4/H003ReversibilityGate.lean | FableHilbertWalk20260819.H003.toggle | def\n lean4/H003ReversibilityGate.lean | FableHilbertWalk20260819.H003.toggleRev | def\n lean4/H003ReversibilityGate.lean | FableHilbertWalk20260819.H003.collapse | def\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permU | def\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.revInv | def\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permU_left_inverse | theorem\n lean4/H006PermutationUnitary.lean | FableHilbertWalk20260819.H006.permU_right_inverse | theorem\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair | def\n lean4/HilbertLiftComplexCarrier.lean | HilbertLift.castPair_apply | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "L1-IMP-HILBERT-INNER-PRODUCT",
+      "L1-QM020-THM6-P2-GLEASON",
+      "L1-QM020-THM7-REPRESENTATION-CAPACITY"
+    ],
+    "feedback": true,
+    "index_position": 131,
+    "neg_entry_ids": [],
+    "operation_candidates": 1,
+    "anchors_present": 3,
+    "src_strong": 23,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

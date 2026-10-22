@@ -1,0 +1,286 @@
+{
+  "task_id": "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a5-1",
+  "input_sha256": "449f528ad461268b77b75b14c4bb2641be07e99a7d6c96b8ecd71b2a8b90024c",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"permU\",\"inputs\":[\"StarRingPack\",\"Reversible\"],\"output\":\"VecEndo\",\"arity\":2,\"carrier\":\"Vec K Q → Vec K Q\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.permU\",\"status\":\"existing\"}},{\"id\":\"toggleRev\",\"inputs\":[],\"output\":\"Reversible\",\"arity\":0,\"carrier\":\"Reversible toggle (Bool)\",\"ref\":{\"path\":\"lean4/H003ReversibilityGate.lean\",\"decl\":\"FableHilbertWalk20260819.H003.toggleRev\",\"status\":\"existing\"}},{\"id\":\"toggle\",\"inputs\":[\"Bool\"],\"output\":\"Bool\",\"arity\":1,\"carrier\":\"Bool → Bool\",\"ref\":{\"path\":\"lean4/H003ReversibilityGate.lean\",\"decl\":\"FableHilbertWalk20260819.H003.toggle\",\"status\":\"existing\"}},{\"id\":\"collapse\",\"inputs\":[\"Bool\"],\"output\":\"Bool\",\"arity\":1,\"carrier\":\"Bool → Bool\",\"ref\":{\"path\":\"lean4/H003ReversibilityGate.lean\",\"decl\":\"FableHilbertWalk20260819.H003.collapse\",\"status\":\"existing\"}},{\"id\":\"revInv\",\"inputs\":[\"Reversible\"],\"output\":\"Reversible\",\"arity\":1,\"carrier\":\"Reversible τ → Reversible τ.inv\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.revInv\",\"status\":\"existing\"}},{\"id\":\"castPair\",\"inputs\":[\"Pair\"],\"output\":\"Complex\",\"arity\":1,\"carrier\":\"real pair → complex carrier\",\"ref\":{\"path\":\"lean4/HilbertLiftComplexCarrier.lean\",\"decl\":\"HilbertLift.castPair\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"perm_isometry\",\"statement\":\"sesq P E (permU P R u) (permU P R v) = sesq P E u v for every reversible τ\",\"hypotheses\":\"StarRingPack K, DecidableEq Q, Enum Q, Reversible τ\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.permutation_isometry\",\"status\":\"existing\"}},{\"id\":\"permU_left_inv\",\"statement\":\"permU of the inverse composed with permU is the identity on vectors\",\"hypotheses\":\"Reversible τ\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.permU_left_inverse\",\"status\":\"existing\"}},{\"id\":\"permU_right_inv\",\"statement\":\"permU composed with permU of the inverse is the identity on vectors\",\"hypotheses\":\"Reversible τ\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.permU_right_inverse\",\"status\":\"existing\"}},{\"id\":\"collapse_not_rev\",\"statement\":\"the deterministic report map collapse : Bool → Bool admits no Reversible structure\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/H003ReversibilityGate.lean\",\"decl\":\"FableHilbertWalk20260819.H003.collapse_not_reversible\",\"status\":\"existing\"}},{\"id\":\"swapI_isometry_not_perm\",\"statement\":\"swapI preserves sesq (isometry) yet is not of the form permU for any permutation\",\"hypotheses\":\"none\",\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.swapI_not_permutation\",\"status\":\"existing\"}},{\"id\":\"pushforward_rev\",\"statement\":\"pushforward of a weight along a reversible τ preserves the enumerated sum rsum\",\"hypotheses\":\"Enum Q, Reversible τ\",\"ref\":{\"path\":\"lean4/H003ReversibilityGate.lean\",\"decl\":\"FableHilbertWalk20260819.H003.pushforward_reversible\",\"status\":\"existing\"}}],\"compositions\":[{\"outer\":\"permU\",\"slot\":1,\"inner\":\"toggleRev\",\"licensing_relation\":\"perm_isometry\"},{\"outer\":\"permU\",\"slot\":1,\"inner\":\"revInv\",\"licensing_relation\":\"permU_left_inv\"}],\"lemmas\":[{\"id\":\"toggleRev_inv_is_toggle\",\"statement\":\"The reversible structure on toggle has inverse toggle (order-2 reversible dynamics on Bool).\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem toggleRev_inv_is_toggle : FableHilbertWalk20260819.H003.toggleRev.inv = FableHilbertWalk20260819.H003.toggle := FableHilbertWalk20260819.H003.reversibility_gate.1\",\"claims_proved\":true,\"ref\":{\"path\":\"lean4/H003ReversibilityGate.lean\",\"decl\":\"FableHilbertWalk20260819.H003.reversibility_gate\",\"status\":\"existing\"}},{\"id\":\"no_reversible_collapse\",\"statement\":\"Deterministic report dynamics (collapse) are not reversible, so reversibility is an extra assumption beyond determinism.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"collapse_not_rev\"],\"lean_skeleton\":\"theorem no_reversible_collapse : ¬ Nonempty (FableHilbertWalk20260819.H003.Reversible FableHilbertWalk20260819.H003.collapse) := FableHilbertWalk20260819.H003.collapse_not_reversible\",\"claims_proved\":true,\"ref\":{\"path\":\"lean4/H003ReversibilityGate.lean\",\"decl\":\"FableHilbertWalk20260819.H003.collapse_not_reversible\",\"status\":\"existing\"}},{\"id\":\"permutation_envelope\",\"statement\":\"Every reversible permutation lifts (via permU) to a sesq-preserving linear map on Vec K Q; this is the permutation isometry envelope, a weakening of the target (isometry obtained, but only for permutation dynamics).\",\"relation_to_target\":\"weakens\",\"depends_on\":[\"perm_isometry\",\"permU_left_inv\",\"permU_right_inv\"],\"lean_skeleton\":\"\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/H006PermutationUnitary.lean\",\"decl\":\"FableHilbertWalk20260819.H006.permutation_isometry_envelope\",\"status\":\"existing\"}},{\"id\":\"isometry_dynamics_countermodel\",\"statement\":\"The existing closure theorem records numeric countermodels showing that orthogonal additivity and isometric dynamics are not forced by the l1 gap data; the target remains an imported assumption.\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"\",\"claims_proved\":false,\"ref\":{\"path\":\"lean4/DerivationDagQMClosure.lean\",\"decl\":\"QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"determinism_gives_reversibility\",\"claim\":\"Every deterministic report dynamics τ : Q → Q is reversible.\",\"rejecting_invariant\":\"collapse_not_reversible: collapse : Bool → Bool has no Reversible structure.\"},{\"id\":\"isometries_are_permutations\",\"claim\":\"Every sesq-preserving linear map on the lift is a permutation operator permU.\",\"rejecting_invariant\":\"swapI_isometry together with swapI_not_permutation: swapI is an isometry that is not a permU.\"},{\"id\":\"envelope_is_unitary_group\",\"claim\":\"The permutation isometry envelope already equals the Hilbert unitary group.\",\"rejecting_invariant\":\"permutation_isometry_envelope only covers permU images; swapI_not_permutation exhibits an isometry outside the envelope.\"},{\"id\":\"isometry_implies_linear\",\"claim\":\"Isometry (preservation of sesq) alone implies linearity of the dynamics.\",\"rejecting_invariant\":\"No declaration in @SRC derives linearity; @ASSUME marks linear structure as an assumption.\"}],\"numeric_claims\":[{\"id\":\"l1gap_sum\",\"expr\":\"1*1 + 2*2\",\"value\":\"5\"},{\"id\":\"l1gap_diff\",\"expr\":\"1*1 - 1*1\",\"value\":\"0\"},{\"id\":\"bool_endomaps\",\"expr\":\"2^2\",\"value\":\"4\"},{\"id\":\"bool_permutations\",\"expr\":\"2*1\",\"value\":\"2\"},{\"id\":\"nonreversible_bool_maps\",\"expr\":\"2^2 - 2*1\",\"value\":\"2\"}],\"open_obligations\":[\"Linearity of lift dynamics is not derived from any @SRC declaration; it is imported.\",\"Unitarity over the complex carrier (HilbertLift.castPair) is not connected to sesq over intPack/StarRingPack in @SRC; the bridge is unverified.\",\"Full signatures of permutation_norm, permutation_on_basis, swapI_isometry, swapI_not_permutation are truncated or absent, so skeletons citing them were not written.\",\"Module symbols were not grepped; existence of cited declarations rests on the @SRC listing.\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "permU",
+        "inputs": [
+          "StarRingPack",
+          "Reversible"
+        ],
+        "output": "VecEndo",
+        "arity": 2,
+        "carrier": "Vec K Q → Vec K Q",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permU",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "toggleRev",
+        "inputs": [],
+        "output": "Reversible",
+        "arity": 0,
+        "carrier": "Reversible toggle (Bool)",
+        "ref": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.toggleRev",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "toggle",
+        "inputs": [
+          "Bool"
+        ],
+        "output": "Bool",
+        "arity": 1,
+        "carrier": "Bool → Bool",
+        "ref": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.toggle",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "collapse",
+        "inputs": [
+          "Bool"
+        ],
+        "output": "Bool",
+        "arity": 1,
+        "carrier": "Bool → Bool",
+        "ref": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.collapse",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "revInv",
+        "inputs": [
+          "Reversible"
+        ],
+        "output": "Reversible",
+        "arity": 1,
+        "carrier": "Reversible τ → Reversible τ.inv",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.revInv",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "castPair",
+        "inputs": [
+          "Pair"
+        ],
+        "output": "Complex",
+        "arity": 1,
+        "carrier": "real pair → complex carrier",
+        "ref": {
+          "path": "lean4/HilbertLiftComplexCarrier.lean",
+          "decl": "HilbertLift.castPair",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "perm_isometry",
+        "statement": "sesq P E (permU P R u) (permU P R v) = sesq P E u v for every reversible τ",
+        "hypotheses": "StarRingPack K, DecidableEq Q, Enum Q, Reversible τ",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permutation_isometry",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "permU_left_inv",
+        "statement": "permU of the inverse composed with permU is the identity on vectors",
+        "hypotheses": "Reversible τ",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permU_left_inverse",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "permU_right_inv",
+        "statement": "permU composed with permU of the inverse is the identity on vectors",
+        "hypotheses": "Reversible τ",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permU_right_inverse",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "collapse_not_rev",
+        "statement": "the deterministic report map collapse : Bool → Bool admits no Reversible structure",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.collapse_not_reversible",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "swapI_isometry_not_perm",
+        "statement": "swapI preserves sesq (isometry) yet is not of the form permU for any permutation",
+        "hypotheses": "none",
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.swapI_not_permutation",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "pushforward_rev",
+        "statement": "pushforward of a weight along a reversible τ preserves the enumerated sum rsum",
+        "hypotheses": "Enum Q, Reversible τ",
+        "ref": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.pushforward_reversible",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [
+      {
+        "outer": "permU",
+        "slot": 1,
+        "inner": "toggleRev",
+        "licensing_relation": "perm_isometry"
+      },
+      {
+        "outer": "permU",
+        "slot": 1,
+        "inner": "revInv",
+        "licensing_relation": "permU_left_inv"
+      }
+    ],
+    "lemmas": [
+      {
+        "id": "toggleRev_inv_is_toggle",
+        "statement": "The reversible structure on toggle has inverse toggle (order-2 reversible dynamics on Bool).",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem toggleRev_inv_is_toggle : FableHilbertWalk20260819.H003.toggleRev.inv = FableHilbertWalk20260819.H003.toggle := FableHilbertWalk20260819.H003.reversibility_gate.1",
+        "claims_proved": true,
+        "ref": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.reversibility_gate",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "no_reversible_collapse",
+        "statement": "Deterministic report dynamics (collapse) are not reversible, so reversibility is an extra assumption beyond determinism.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "collapse_not_rev"
+        ],
+        "lean_skeleton": "theorem no_reversible_collapse : ¬ Nonempty (FableHilbertWalk20260819.H003.Reversible FableHilbertWalk20260819.H003.collapse) := FableHilbertWalk20260819.H003.collapse_not_reversible",
+        "claims_proved": true,
+        "ref": {
+          "path": "lean4/H003ReversibilityGate.lean",
+          "decl": "FableHilbertWalk20260819.H003.collapse_not_reversible",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "permutation_envelope",
+        "statement": "Every reversible permutation lifts (via permU) to a sesq-preserving linear map on Vec K Q; this is the permutation isometry envelope, a weakening of the target (isometry obtained, but only for permutation dynamics).",
+        "relation_to_target": "weakens",
+        "depends_on": [
+          "perm_isometry",
+          "permU_left_inv",
+          "permU_right_inv"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/H006PermutationUnitary.lean",
+          "decl": "FableHilbertWalk20260819.H006.permutation_isometry_envelope",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "isometry_dynamics_countermodel",
+        "statement": "The existing closure theorem records numeric countermodels showing that orthogonal additivity and isometric dynamics are not forced by the l1 gap data; the target remains an imported assumption.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/DerivationDagQMClosure.lean",
+          "decl": "QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "determinism_gives_reversibility",
+        "claim": "Every deterministic report dynamics τ : Q → Q is reversible.",
+        "rejecting_invariant": "collapse_not_reversible: collapse : Bool → Bool has no Reversible structure."
+      },
+      {
+        "id": "isometries_are_permutations",
+        "claim": "Every sesq-preserving linear map on the lift is a permutation operator permU.",
+        "rejecting_invariant": "swapI_isometry together with swapI_not_permutation: swapI is an isometry that is not a permU."
+      },
+      {
+        "id": "envelope_is_unitary_group",
+        "claim": "The permutation isometry envelope already equals the Hilbert unitary group.",
+        "rejecting_invariant": "permutation_isometry_envelope only covers permU images; swapI_not_permutation exhibits an isometry outside the envelope."
+      },
+      {
+        "id": "isometry_implies_linear",
+        "claim": "Isometry (preservation of sesq) alone implies linearity of the dynamics.",
+        "rejecting_invariant": "No declaration in @SRC derives linearity; @ASSUME marks linear structure as an assumption."
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "l1gap_sum",
+        "expr": "1*1 + 2*2",
+        "value": "5"
+      },
+      {
+        "id": "l1gap_diff",
+        "expr": "1*1 - 1*1",
+        "value": "0"
+      },
+      {
+        "id": "bool_endomaps",
+        "expr": "2^2",
+        "value": "4"
+      },
+      {
+        "id": "bool_permutations",
+        "expr": "2*1",
+        "value": "2"
+      },
+      {
+        "id": "nonreversible_bool_maps",
+        "expr": "2^2 - 2*1",
+        "value": "2"
+      }
+    ],
+    "open_obligations": [
+      "Linearity of lift dynamics is not derived from any @SRC declaration; it is imported.",
+      "Unitarity over the complex carrier (HilbertLift.castPair) is not connected to sesq over intPack/StarRingPack in @SRC; the bridge is unverified.",
+      "Full signatures of permutation_norm, permutation_on_basis, swapI_isometry, swapI_not_permutation are truncated or absent, so skeletons citing them were not written.",
+      "Module symbols were not grepped; existence of cited declarations rests on the @SRC listing."
+    ]
+  }
+}

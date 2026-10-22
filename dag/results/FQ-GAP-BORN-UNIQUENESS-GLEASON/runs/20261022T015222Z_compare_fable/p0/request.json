@@ -1,0 +1,313 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "cmp",
+  "input_sha256": "6a76b3bf73cd5ad93d48151a06fbadcfb5401211135e1ee79b3e2dd5c63e2305",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\".\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=FQ-GAP-BORN-UNIQUENESS-GLEASON stage=P0 attempt=cmp in=6a76b3bf guided=yes\n@TARGET [CONDITIONAL] Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.\n@BOTTLENECK Finite rational frame obstructions (Cabello 18-9, d=2 plane, and d=3 rotated frame eliminating the quartic rival) are mechanized; continuum Gleason frame additivity on S^{n-1} remains an external import.\n@ASSUME Gleason theorem for d >= 3 (assumption); projection lattice (assumption); Hilbert space (assumption)\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.Mat2Int | structure | structure Mat2Int\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.Mat2Int.trace | def | def Mat2Int.trace (A : Mat2Int) : Int\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.mat2Det | def | def mat2Det (A : Mat2Int) : Int\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates | theorem | theorem ds_qm072_073_090_and_fq_import_boundary_certificates : (let rhoPlus2 : Mat2Int := ⟨1, 1, 1, 1⟩ let rhoMinus2 : Mat2Int := ⟨1, -1, -1, 1⟩ rhoPl\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival | theorem | theorem fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival : (1 * 1 * (1 + 1) = 1 * 1 * 1 * 1 * (1 + 1)) ∧ ((3 * 3) * (3 * 3 * 3 * 3 +\n lean4/DerivationDagQMClosure.lean | QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure | theorem | theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure (s imp : Bool) : (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false)\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.Vec2 | structure | structure Vec2\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.dot | def | def dot (u v : Vec2) : Int\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.normSq | def\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.e1 | def\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.e2 | def\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.p1 | def\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.p2 | def\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.frames_equinorm | theorem\n lean4/H017Gleason.lean | FableHilbertWalk20260819.H017Gleason.GleasonDimAtLeastThree | def\n lean4/H017Gleason.lean | FableHilbertWalk20260819.H017Gleason.gleason_pack_uniqueness_still_imported | theorem\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.quadratic_frame_additivity | theorem\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.quartic_rival_fails_frame_additivity | theorem\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.frames_orthogonal | theorem\n lean4/H017Gleason.lean | FableHilbertWalk20260819.H017Gleason.two_label_host_not_gleason_dimension | theorem\n lean4/H017Gleason.lean | FableHilbertWalk20260819.H017Gleason.gleason_uniqueness_cannot_run_on_two_label_host | theorem\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.quartic_frame_values | theorem\n lean4/H013QuarticRivalSeparation.lean | FableHilbertWalk20260819.H013QuarticSeparation.quartic_frame_deficit | theorem\n lean4/H017Gleason.lean | FableHilbertWalk20260819.H017Gleason.enumBool_length_two | theorem\n lean4/H017Gleason.lean | FableHilbertWalk20260819.H017Gleason.no_three_pairwise_distinct_reports | theorem\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "FQ-CABELLO-FRAME-POLYTOPE-146",
+      "FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION",
+      "FQ-POWER-RULE-P2-SELECTION",
+      "FQ-SORKIN-READOUT-CLASS-QM208"
+    ],
+    "feedback": true,
+    "index_position": 9,
+    "neg_entry_ids": [],
+    "operation_candidates": 16,
+    "anchors_present": 3,
+    "src_strong": 25,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

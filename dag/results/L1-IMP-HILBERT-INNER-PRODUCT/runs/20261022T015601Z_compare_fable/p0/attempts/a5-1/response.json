@@ -1,0 +1,244 @@
+{
+  "status": "ready_for_host_review",
+  "generators": [
+    {
+      "id": "sesq",
+      "inputs": [
+        "StarRingPack",
+        "Enum",
+        "Vec",
+        "Vec"
+      ],
+      "output": "Scalar",
+      "arity": 4,
+      "carrier": "generic sesquilinear pairing over a star-ring pack and enumerated index type",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.sesq",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gramStd",
+      "inputs": [
+        "VecIntBool",
+        "VecIntBool"
+      ],
+      "output": "Int",
+      "arity": 2,
+      "carrier": "standard Gram form on Vec Int Bool",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.gramStd",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gramWeighted",
+      "inputs": [
+        "VecIntBool",
+        "VecIntBool"
+      ],
+      "output": "Int",
+      "arity": 2,
+      "carrier": "weighted Gram form on the same carrier Vec Int Bool",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.gramWeighted",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "oneOneF2",
+      "inputs": [],
+      "output": "VecBoolBool",
+      "arity": 0,
+      "carrier": "constant (1,1) vector over F2 indexed by Bool",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.oneOneF2",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "castPair",
+      "inputs": [
+        "Pair"
+      ],
+      "output": "ComplexCarrier",
+      "arity": 1,
+      "carrier": "cast of a real pair into the complex Hilbert-lift carrier",
+      "ref": {
+        "path": "lean4/HilbertLiftComplexCarrier.lean",
+        "decl": "HilbertLift.castPair",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "gram_not_unique",
+      "statement": "gramStd deltaTrueInt deltaTrueInt = 1, gramWeighted deltaTrueInt deltaTrueInt = 2, and the two values differ: two distinct admissible Gram forms on the same carrier",
+      "hypotheses": "none (closed computation on Vec Int Bool)",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.gram_not_unique",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gramStd_pos_def",
+      "statement": "for nonzero v : Vec Int Bool, 0 < gramStd v v",
+      "hypotheses": "¬(∀ q : Bool, v q = 0)",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.gramStd_pos_def",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "gramWeighted_pos_def",
+      "statement": "the weighted Gram form is also positive definite on nonzero vectors (so positivity does not single out gramStd)",
+      "hypotheses": "v nonzero (exact hypothesis form not shown in @SRC signature)",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.gramWeighted_pos_def",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "inner_product_admission",
+      "statement": "sesq intPack enumBool deltaTrueInt deltaTrueInt = 1 while gramWeighted deltaTrueInt deltaTrueInt = 2, plus an F2 sesq clause: the inner product is admitted as a choice, not derived",
+      "hypotheses": "none",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.inner_product_admission",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "f2_isotropic",
+      "statement": "over the F2 pack the sesq pairing admits a nonzero isotropic vector (oneOneF2 pairs to zero with itself), so sesq alone is not an inner product for every scalar pack",
+      "hypotheses": "none (exact statement not shown in @SRC signature)",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.f2_isotropic",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "delta_orthonormal",
+      "statement": "delta basis vectors are orthonormal for the standard Gram form",
+      "hypotheses": "none (exact statement not shown in @SRC signature)",
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.delta_orthonormal",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "outer": "sesq",
+      "slot": 2,
+      "inner": "oneOneF2",
+      "licensing_relation": "f2_isotropic"
+    },
+    {
+      "outer": "sesq",
+      "slot": 3,
+      "inner": "oneOneF2",
+      "licensing_relation": "f2_isotropic"
+    }
+  ],
+  "lemmas": [
+    {
+      "id": "two_gram_forms_same_carrier",
+      "statement": "On the carrier Vec Int Bool there exist two Gram forms gramStd and gramWeighted that disagree on deltaTrueInt (values 1 and 2); hence a Hilbert inner product on the linearized carrier is not uniquely determined and must be admitted.",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "gram_not_unique"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "lean4/H005InnerProductAdmission.lean",
+        "decl": "FableHilbertWalk20260819.H005.gram_not_unique",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "positivity_does_not_fix_gram",
+      "statement": "Both gramStd and gramWeighted are positive definite on nonzero vectors of Vec Int Bool, so the positivity requirement does not select a unique inner product.",
+      "relation_to_target": "implies",
+      "depends_on": [
+        "gramStd_pos_def",
+        "gramWeighted_pos_def",
+        "gram_not_unique"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "none"
+      }
+    },
+    {
+      "id": "gram_values_differ_by_one",
+      "statement": "gramWeighted deltaTrueInt deltaTrueInt - gramStd deltaTrueInt deltaTrueInt = 1",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "gram_not_unique"
+      ],
+      "lean_skeleton": "open FableHilbertWalk20260819.H005 in\ntheorem gram_values_differ_by_one : gramWeighted deltaTrueInt deltaTrueInt - gramStd deltaTrueInt deltaTrueInt = 1 := by\n  have h := gram_not_unique\n  sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "posdef_forces_uniqueness",
+      "claim": "Requiring a positive-definite form on Vec Int Bool determines the inner product uniquely.",
+      "rejecting_invariant": "gramStd_pos_def and gramWeighted_pos_def both hold while gram_not_unique shows the forms differ on deltaTrueInt (1 vs 2)."
+    },
+    {
+      "id": "sesq_is_inner_product_for_every_pack",
+      "claim": "sesq P E is an inner product (anisotropic) for every StarRingPack P.",
+      "rejecting_invariant": "f2_isotropic: with the F2 pack, oneOneF2 is nonzero yet pairs to zero with itself."
+    },
+    {
+      "id": "delta_orthonormality_pins_form",
+      "claim": "Orthonormality of the delta basis under gramStd (delta_orthonormal) implies every admissible Gram form is gramStd.",
+      "rejecting_invariant": "gramWeighted gives deltaTrueInt norm 2, contradicting uniqueness while still admissible (positive definite)."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "gram_diff",
+      "expr": "2 - 1",
+      "value": "1"
+    },
+    {
+      "id": "gram_ratio",
+      "expr": "2/1",
+      "value": "2"
+    },
+    {
+      "id": "std_delta_norm",
+      "expr": "1*1 + 0*0",
+      "value": "1"
+    }
+  ],
+  "open_obligations": [
+    "deltaTrueInt, intPack, f2Pack, enumBool, StarRingPack and Vec are referenced in @SRC signatures but not listed as declarations, so they are not cited as existing generators",
+    "exact statements of gramWeighted_pos_def, f2_isotropic and delta_orthonormal were truncated/absent in @SRC; relation statements are inferred from names",
+    "no declaration in @SRC asserts uniqueness of the inner product under any extra axiom (e.g. symmetry-invariance), matching the stated bottleneck",
+    "the free linearization coefficient pack remains an assumption with no grounding declaration listed",
+    "lean_skeleton for gram_values_differ_by_one uses sorry; the exact third conjunct of gram_not_unique was truncated so the proof term was not committed"
+  ]
+}

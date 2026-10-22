@@ -1,0 +1,115 @@
+add_or_refine_generators:
+- id: try_from_regge
+  ordered_inputs:
+  - ReggeCalculus
+  - Label
+  output: EinsteinHilbertActionResult
+  arity: 2
+  carrier: 'Rust: Result<EinsteinHilbertAction, ReggeError>'
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    declaration: try_from_regge
+    line: 21
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    decl: try_from_regge
+    kind: fn
+    line: 21
+    lang: rust
+  proposed_by:
+    model: claude-fable-5-1
+    provider: anthropic
+    tier: 5
+add_or_refine_relations:
+- id: action_equals_sum_of_deficits
+  equation_or_predicate: On the finite complex used by the test, the value stored in EinsteinHilbertAction
+    produced by try_from_regge equals the finite sum over hinges of (area × deficit).
+  typing_conditions: ReggeCalculus is finite; all hinge areas and deficits are defined; try_from_regge
+    returns Ok.
+  source_pins:
+  - path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    declaration: action_matches_sum_of_deficits
+    line: 46
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    decl: action_matches_sum_of_deficits
+    kind: fn
+    line: 46
+    lang: rust
+  proposed_by:
+    model: claude-fable-5-1
+    provider: anthropic
+    tier: 5
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- ReggeCalculus, ReggeError and any hinge/deficit accessors are not listed in @SRC; the regge_from_complex
+  and hinge_deficit generators are ungrounded.
+- No @SRC declaration exists for the exact rational squared-area proxy Σ A_h² ε_h; proxy_is_not_eh_action
+  has no citable ref.
+- l1_regge.py is not in @SRC; the float-vs-rational tolerance identity is undeclared.
+- No spin-foam, area-spectrum, or relational point-coincidence declarations are available; those two languages
+  have no finite identity named here.
+- The exact complex and values used inside action_matches_sum_of_deficits were not visible; the lemma
+  finite_regge_sum_is_checked_identity depends on the host grep of that test body.
+- 'generator regge_from_complex unverified: no existing declaration cited'
+- 'generator hinge_deficit unverified: no existing declaration cited'
+- 'generator squared_area_deficit_sum unverified: no existing declaration cited'
+- 'relation proxy_is_not_eh_action unverified: no existing declaration cited'
+- 'relation float_script_is_not_proxy unverified: no existing declaration cited'
+- 'composition try_from_regge . slot 0 <- regge_from_complex via action_equals_sum_of_deficits unverified:
+  the inner generator is not host-verified (proposed_new, unchecked or refused)'
+- 'composition squared_area_deficit_sum . slot 0 <- regge_from_complex via proxy_is_not_eh_action unverified:
+  the outer and inner generators are not host-verified (proposed_new, unchecked or refused)'
+- 'lemma three_hinge_rational_sum unverified: Lean elaboration disabled'
+- 'lemma squared_area_proxy_three_hinges unverified: Lean elaboration disabled'
+- 'near_miss certificate_derives_einstein_equation unverified: semantic near miss; P4 host check decides'
+- 'near_miss float_script_equals_rational_proxy unverified: semantic near miss; P4 host check decides'
+- 'near_miss squared_proxy_equals_regge_action unverified: semantic near miss; P4 host check decides'
+- 'near_miss spin_foam_equals_regge unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: three_hinge_sum
+  expr: 3 * (1 * 2/3)
+  value: '2'
+  host_evidence:
+    recomputed: '2'
+- id: squared_area_proxy_value
+  expr: 3 * (3/16 * 1)
+  value: 9/16
+  host_evidence:
+    recomputed: 9/16
+- id: tetrahedron_boundary_total_deficit_in_pi
+  expr: 4 * (2 - 3 * 1/3)
+  value: '4'
+  host_evidence:
+    recomputed: '4'
+verified_lemma_statements:
+- id: finite_regge_sum_is_checked_identity
+  statement: The existing test action_matches_sum_of_deficits checks the finite identity 'EinsteinHilbertAction
+    value = Σ_h A_h ε_h' on one small complex; it does not check the squared-area proxy and does not derive
+    the Einstein equation.
+  relation_to_target: restates
+  depends_on:
+  - action_equals_sum_of_deficits
+  - proxy_is_not_eh_action
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    decl: action_matches_sum_of_deficits
+    status: existing
+  host_evidence:
+    path: code/rust/src/general_relativity/einstein_hilbert_action.rs
+    decl: action_matches_sum_of_deficits
+    kind: fn
+    line: 46
+    lang: rust
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked
