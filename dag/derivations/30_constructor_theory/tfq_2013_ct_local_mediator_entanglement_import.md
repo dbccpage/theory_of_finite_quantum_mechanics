@@ -15,7 +15,7 @@ Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp.
 
 ## Governing obligation
 
-The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) is an assumption of this branch. It does not use or support any repository Lean result.
+The mediated entanglement inference is reduced to finite-dimensional local quantum channel Schmidt rank preservation in CampaignCtMediatorEntanglement.lean; physical gravity mediation hypotheses remain an external imported assumption.
 
 ## Source status
 
@@ -34,10 +34,17 @@ Declared imported structure:
 
 - Premises audited against arXiv:1707.06036 pp. 2-3 and arXiv:1707.06050 pp. 1-2.
 
+## Finite target (precise statement)
+
+Reduced: local quantum channel Schmidt rank preservation in finite dimension.
+
+No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
+
 ## Connections to this repository
 
 - Route `FRO-R-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT` (`CONDITIONAL_ON_IMPORT`) from `CT-MARLETTO-VEDRAL-2017-SOURCE`: The inference is the import; the link is reading order.
 - Route `FRO-R-BACK-CT-MEDIATOR-TO-TFQ0084` (`GAP_NO_DERIVATION`) from this node into `TFQ-0084`: The finite gravity shadow TFQ-0084 contains no mediator model and no entanglement statement. No source relates the imported inference to the Regge, spin-foam or relational certificates of that node.
+- Reduced in CampaignCtMediatorEntanglement.lean: local operations preserve zero Schmidt determinant (concurrence C^2 = 0) and cannot produce the Pythagorean phase state C^2 = 1/5; independent check executed symbolically in checks/independent/ct-local-mediator-entanglement-import.py.
 
 See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 
@@ -49,6 +56,16 @@ See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 
 - `external:arXiv:1707.06036`: C. Marletto and V. Vedral, "Gravitationally-induced entanglement between two massive particles is sufficient evidence of quantum effects in gravity", arXiv:1707.06036 (2017); Phys. Rev. Lett. 119, 240402 (2017).
 - `external:arXiv:1707.06050`: S. Bose, A. Mazumdar, G. W. Morley, H. Ulbricht, M. Toros, M. Paternostro, A. Geraci, P. Barker, M. S. Kim and G. Milburn, "A Spin Entanglement Witness for Quantum Gravity", arXiv:1707.06050 (2017); Phys. Rev. Lett. 119, 240401 (2017).
+- Repository: `dag/derivations/independent/ct-local-mediator-entanglement-import.md`
+
+## Lean 4 declarations read
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.M_entangled_concurrence`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state`
+- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference`
 
 ## Downstream derivations
 

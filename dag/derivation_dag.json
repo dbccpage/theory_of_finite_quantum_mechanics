@@ -25799,16 +25799,25 @@
       "statement": "Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and Bose et al. (2017, arXiv:1707.06050, pp. 1-2): if two quantum systems Q1 and Q2 start in a separable state, interact only locally through a mediating system M (Q1 <-> M and M <-> Q2, with no direct Q1-Q2 interaction, Principle I locality), and end in an entangled state of Q1 + Q2, then M cannot be a classical medium (in Marletto-Vedral, M must have at least two disjoint incompatible observables whose union is not an information variable; in Bose et al., any mediator modeled by local operations and classical communication cannot create entanglement). The repository has no gravity model; TFQ-0084 is a finite shadow only.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md",
+        "dag/derivations/independent/ct-local-mediator-entanglement-import.md",
         "external:arXiv:1707.06036",
         "external:arXiv:1707.06050"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.M_entangled_concurrence",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference"
+      ],
       "rust": [],
       "imported_structure": [
         "locality of the mediated interaction (assumption)",
         "information-theoretic definition of a classical mediator (assumption)"
       ],
-      "bottleneck": "The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) is an assumption of this branch. It does not use or support any repository Lean result.",
+      "bottleneck": "The mediated entanglement inference is reduced to finite-dimensional local quantum channel Schmidt rank preservation in CampaignCtMediatorEntanglement.lean; physical gravity mediation hypotheses remain an external imported assumption.",
       "tags": [
         "frontier-branch",
         "frontier:constructor_theory",
