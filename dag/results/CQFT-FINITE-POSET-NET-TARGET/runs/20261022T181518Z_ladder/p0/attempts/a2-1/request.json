@@ -1,0 +1,318 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "CQFT-FINITE-POSET-NET-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "b9fe301c66fbc66c18c11fb1ab5490b9353524f0a8148481df6229fdea70b676",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=CQFT-FINITE-POSET-NET-TARGET stage=P0 attempt=a2-1 in=b9fe301c guided=yes\n@TARGET [PROVED_LEAN] Finite statement, checked in Lean 4 for site-factorized operators. For a FiniteStrictPoset P on n points put one qubit (a single-site monoid M) at each point; an operator A : Fin n -> M is localized in a subset O of P when it is the identity outside O, so the Lean \"algebra\" of O is the set of elementary tensor operators localized in O, not the full matrix algebra on the qubits in O. (a) Isotony: O1 inside O2 and A localized in O1 imply A localized in O2. (b) Locality: if every point of O1 is spacelike to every point of O2, then O1 and O2 are disjoint and operators localized in O1 and in O2 commute under the sitewise product. (c) The spacelike relation of CausalOrder.lean is symmetric (spacelike_symm) and irreflexive (spacelike_irrefl) and not transitive: on the four-element N poset 0<2, 1<2, 1<3, points 1 and 0 are spacelike, 0 and 3 are spacelike, and 1<3 are related. The content of Haag-Kastler locality (commutation forced by causal separation of dynamics) is absent because this net has no dynamics.\n@BOTTLENECK Not proved in Lean: the statements for the full local matrix algebras A(O) (linear spans of elementary tensors, for example 2^|O| x 2^|O| matrices): that commutation of elementary tensors extends by bilinearity to the algebras and that A(O1) is a subalgebra of A(O2) as matrix algebras; the single-site monoid M is generic and is not instantiated at 2x2 matrices. The net is kinematical: dynamics, a time-slice property and covariance are not modelled, so the statement is the finite shadow of two axioms and nothing more.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/CausalOrder.lean | CausalOrder.FiniteStrictPoset | structure | structure FiniteStrictPoset (n : Nat)\n lean4/CausalOrder.lean | CausalOrder.isSpacelike | def | def isSpacelike {n : Nat} (P : FiniteStrictPoset n) (x y : Fin n) : Prop\n lean4/CausalOrder.lean | CausalOrder.spacelike_symm | theorem | theorem spacelike_symm {n : Nat} (P : FiniteStrictPoset n) (x y : Fin n) : isSpacelike P x y ↔ isSpacelike P y x\n lean4/CausalOrder.lean | CausalOrder.spacelike_irrefl | theorem | theorem spacelike_irrefl {n : Nat} (P : FiniteStrictPoset n) (x : Fin n) : ¬ isSpacelike P x x\n lean4/FrontierPosetNet.lean | FrontierPosetNet.LocalizedIn | def | def LocalizedIn {n : Nat} {M : Type*} [One M] (O : Finset (Fin n)) (A : Fin n → M) : Prop\n lean4/FrontierPosetNet.lean | FrontierPosetNet.mulSiteOp | def | def mulSiteOp {n : Nat} {M : Type*} [Mul M] (A B : Fin n → M) : Fin n → M\n lean4/FrontierPosetNet.lean | FrontierPosetNet.isotony | theorem | theorem isotony {n : Nat} {M : Type*} [One M] {O₁ O₂ : Finset (Fin n)} (hsub : O₁ ⊆ O₂) {A : Fin n → M} (hA : LocalizedIn O₁ A) : LocalizedIn O₂ A\n lean4/FrontierPosetNet.lean | FrontierPosetNet.disjoint_of_all_spacelike | theorem | theorem disjoint_of_all_spacelike {n : Nat} (P : FiniteStrictPoset n) {O₁ O₂ : Finset (Fin n)} (hsp : ∀ x ∈ O₁, ∀ y ∈ O₂, isSpacelike P x y) : Disjoin\n lean4/FrontierPosetNet.lean | FrontierPosetNet.locality_commute_of_spacelike | theorem\n lean4/FrontierPosetNet.lean | FrontierPosetNet.n_rel_bool | def\n lean4/FrontierPosetNet.lean | FrontierPosetNet.n_rel | def\n lean4/FrontierPosetNet.lean | FrontierPosetNet.posetN | def\n lean4/FrontierPosetNet.lean | FrontierPosetNet.n0 | def\n lean4/FrontierPosetNet.lean | FrontierPosetNet.n1 | def\n lean4/FrontierPosetNet.lean | FrontierPosetNet.n3 | def\n lean4/FrontierPosetNet.lean | FrontierPosetNet.posetN_spacelike_0_1 | theorem\n lean4/FrontierPosetNet.lean | FrontierPosetNet.posetN_spacelike_0_3 | theorem\n lean4/FrontierPosetNet.lean | FrontierPosetNet.posetN_causal_1_3 | theorem\n lean4/FrontierPosetNet.lean | FrontierPosetNet.spacelike_not_transitive_on_posetN | theorem\n lean4/CausalOrder.lean | CausalOrder.c1_spacelike_symm_irrefl | theorem\n lean4/CausalOrder.lean | CausalOrder.n4_spacelike_not_transitive | theorem\n lean4/CausalOrder.lean | CausalOrder.spacelike_not_transitive | theorem\n lean4/CausalOrder.lean | CausalOrder.c1_spacelike_1_2 | theorem\n lean4/CausalOrder.lean | CausalOrder.c1_not_spacelike_0_1 | theorem\n lean4/CausalOrder.lean | CausalOrder.c1_not_spacelike_0_2 | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:build_tensor (Matrix,Matrix)->Matrix src=code/python/src/mub/conj2_tensor_product_proof.py | build_tensor\n g:spacelike_pred (FinitePoset,Element,Element)->Prop src=lean4/CausalOrder.lean | CausalOrder.isSpacelike\n g:c2_mu_value (Element,Element)->Rational src=lean4/CausalOrder.lean | CausalOrder.c2_mu\n r:spacelike_symmetric isSpacelike P x y iff isSpacelike P y x src=lean4/CausalOrder.lean | CausalOrder.spacelike_symm\n r:spacelike_irreflexive not isSpacelike P x x src=lean4/CausalOrder.lean | CausalOrder.spacelike_irrefl\n r:R_spacelike_symm isSpacelike P x y iff isSpacelike P y x for a finite strict poset P src=lean4/CausalOrder.lean | CausalOrder.spacelike_symm\n r:R_spacelike_irrefl No point is spacelike to itself src=lean4/CausalOrder.lean | CausalOrder.spacelike_irrefl\n@KNOWN- (host-refused earlier; do not repeat)\n [vacuous_proof] L_locality: Pairwise spacelike O1, O2 gives commuting A(O1), A(O2), because the supports are disjoint and tens -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_isotony: O1 ⊆ O2 implies A(O1) ⊆ A(O2) (embedding X ↦ X ⊗ I). -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_N_poset: In the N poset, spacelike(0,1), spacelike(0,3), and 1<3, so spacelike is not transitive. -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_locality: Disjoint-support embeddings commute: (X tensor I)(I tensor Y) = (I tensor Y)(X tensor I) -- Do not present a sorry/axiom/tautology as a proof.\n [vacuous_proof] L_isotony: For O1 subset O2, every matrix in A(O1) is X tensor I_{O2 minus O1} in A(O2) -- Do not present a sorry/axiom/tautology as a proof.\n [statement_drift] L_N_poset_decide: On Fin 4 with the order relation lt given by the pairs (0,2),(1,2),(1,3), spacelike a b := a -- Do not restate the source with numerals it does not contain.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 6,
+    "known_pos_injected": 7,
+    "neighbours": [
+      "CQFT-FINITE-STRICT-POSET-SPACELIKE",
+      "CQFT-LOCAL-NET-AXIOMS-IMPORT"
+    ],
+    "feedback": true,
+    "index_position": 792,
+    "neg_entry_ids": [
+      "NEG-4B2A7C260F6D",
+      "NEG-9644BFA31800",
+      "NEG-A10462DA7836",
+      "NEG-31BA3E1242DD",
+      "NEG-E733EA6916D8",
+      "NEG-3F79F02F9044"
+    ],
+    "operation_candidates": 19,
+    "anchors_present": 2,
+    "src_strong": 25,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

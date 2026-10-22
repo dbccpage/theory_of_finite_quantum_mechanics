@@ -1,0 +1,317 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "LQG-AREA-VOLUME-SPECTRA-SOURCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-2",
+  "input_sha256": "dccdb80b369ad5690e894dd5177da71b1797b0be9bf721526c8a6096acb1a79f",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=LQG-AREA-VOLUME-SPECTRA-SOURCE stage=P0 attempt=a3-2 in=dccdb80b guided=yes\n@TARGET [SOURCE_RECORD] Rovelli and Smolin (1995, arXiv:gr-qc/9411005, Section 1 eqs. (1)-(2) p. 4 and Section 4 eqs. (47)-(48) p. 28) and Ashtekar and Lewandowski (1997, arXiv:gr-qc/9602046, Section 3.3 eq. (3.20) p. 16 and Section 4.1 eqs. (4.7)-(4.9), (4.12) pp. 18-19) compute discrete spectra for loop-quantum-gravity area (and volume) operators. In the convention {A_a^i(x), E_j^b(y)} = G delta_a^b delta_j^i delta^3(x,y) used in both papers, the general area eigenvalue is (l_P^2 / 2) sum_v sqrt(2 j_v^(d)(j_v^(d)+1) + 2 j_v^(u)(j_v^(u)+1) - j_v^(d+u)(j_v^(d+u)+1)) (eq. (4.9) of gr-qc/9602046), which for simple transverse punctures without tangential edges (j^(d)=j^(u)=j_i, j^(d+u)=0) equals l_P^2 sum_i sqrt(j_i(j_i+1)) = (l_P^2 / 2) sum_i sqrt(p_i(p_i+2)) with p_i = 2 j_i (eq. (2) and eq. (47) of gr-qc/9411005; eq. (4.12) of gr-qc/9602046); as Ashtekar and Lewandowski note in Section 3.3 footnote 6 (p. 16) and Engle et al. write in arXiv:0711.0146 Section V eq. (36) (p. 11), restoring the 8 pi G gamma factor from the gravitational action and Barbero-Immirzi parameter gamma multiplies this spectrum by 8 pi gamma, giving 8 pi gamma l_P^2 sum_i sqrt(j_i(j_i+1)). (The nonzero trivalent volume formula in eq. (1) and eq. (37) of gr-qc/9411005 was corrected in the erratum Nucl. Phys. B 456 (1995) 753, where trivalent vertices have zero volume.) This node records both papers and their normalization conventions.\n@BOTTLENECK Record only. Both normalization conventions (l_P^2 vs 8 pi gamma l_P^2, per Ashtekar-Lewandowski Section 3.3 footnote 6 p. 16) and the general vertex-puncture formula (eq. (4.9) p. 18) were audited against the papers on 2026-10-22.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.zeroArea | def | def zeroArea : AreaRadVec\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.punctureArea | def | def punctureArea (k : Nat) : AreaRadVec\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.spin3_equals_four_spin_half | theorem | theorem spin3_equals_four_spin_half : multisetArea [6] = multisetArea [1, 1, 1, 1] ∧ multisetArea [6] = ⟨0, 4, 0, 0, 0⟩\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.singlePunctureAreaSq | def | def singlePunctureAreaSq (k : Nat) : Rat\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half | theorem | theorem smallest_nonzero_area_level_is_spin_half (k : Nat) (hk : 1 ≤ k) : 3 / 4 ≤ singlePunctureAreaSq k\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing | theorem | theorem single_puncture_area_sq_strictly_increasing : singlePunctureAreaSq 1 = 3 / 4 ∧ singlePunctureAreaSq 1 < singlePunctureAreaSq 2 ∧ singlePunctur\n code/rust/src/general_relativity/loop_quantum_gravity.rs | LoopQuantumGravity | struct | pub struct LoopQuantumGravity\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.AreaRadVec | structure | structure AreaRadVec\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.addArea | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.sqMultiplier | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.sqFreeRadicand | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.isSquareFree | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.casimir_squarefree_factorizations | theorem\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.multisetArea | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.spins6 | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.multisetsLen1 | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.multisetsLen2 | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.multisetsLen3 | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.multisetsLen4 | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.allMultisetsLe4 | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.findDegeneratePairs | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.degeneratePairs | def\n lean4/FrontierAreaSpectrum.lean | FrontierAreaSpectrum.area_spectrum_table_and_unique_degeneracy | theorem\n code/rust/src/general_relativity/loop_quantum_gravity.rs | area_squared | fn\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g_vertexAmplitude (TetSpins)->Cyclo12 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vertexAmplitude\n r:r_inadmissible_vanishes Tetrahedral labels violating admissibility give zero vertex amplitude; a finite analogue of the trivalent admi src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes\n r:r_vacuum vertexAmplitude vacuumSpins = 1 src=lean4/H023DiscreteSpinfoamAmplitudes.lean | FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude\n@KNOWN- (host-refused earlier; do not repeat)\n [composition_type_mismatch] g_area_sum . slot 0 <- g_spin_term via r_term_values -- Do not compose operations whose colours do not match.\n [vacuous_proof] l_equal_iff: Equal area iff equal squarefree-reduced coefficient vectors -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] g_squarefree_reduce . slot 0 <- g_area_sum via r_equal_iff_reduced -- Do not compose operations whose colours do not match.\n [vacuous_proof] l_min_level: Smallest nonzero level over at most four punctures with j<=3 is sqrt3/2, since every term is >= s -- Do not present a sorry/axiom/tautology as a proof.\n [composition_type_mismatch] g_radical_sum . slot 0 <- g_spin_term via r_term_values -- Do not compose operations whose colours do not match.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 24,
+    "known_neg_injected": 5,
+    "known_pos_injected": 3,
+    "neighbours": [
+      "LQG-AREA-SPECTRUM-EXACT-TARGET",
+      "LQG-SPIN-NETWORK-KINEMATICS-SOURCE"
+    ],
+    "feedback": true,
+    "index_position": 633,
+    "neg_entry_ids": [
+      "NEG-85153189B460",
+      "NEG-0BB83083D4AC",
+      "NEG-F9A2D0E97FBE",
+      "NEG-F9B32565D458",
+      "NEG-C95686D8EC6A"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 0,
+    "src_strong": 0,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

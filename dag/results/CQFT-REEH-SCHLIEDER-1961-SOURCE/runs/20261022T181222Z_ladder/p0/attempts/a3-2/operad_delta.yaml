@@ -1,0 +1,55 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R_spacelike_symm
+  equation_or_predicate: isSpacelike P x y iff isSpacelike P y x for a finite strict poset P
+  typing_conditions: P is a finite strict poset
+  source_pins:
+  - path: lean4/CausalOrder.lean
+    declaration: CausalOrder.spacelike_symm
+    line: 30
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CausalOrder.lean
+    decl: CausalOrder.spacelike_symm
+    kind: theorem
+    line: 30
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+- id: R_spacelike_irrefl
+  equation_or_predicate: No point is spacelike to itself
+  typing_conditions: P is a finite strict poset
+  source_pins:
+  - path: lean4/CausalOrder.lean
+    declaration: CausalOrder.spacelike_irrefl
+    line: 39
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CausalOrder.lean
+    decl: CausalOrder.spacelike_irrefl
+    kind: theorem
+    line: 39
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- 'Audit exact hypotheses against the original German paper: spectrum condition, vacuum uniqueness, covariance'
+- No finite-poset formalization of the cyclicity statement is available; no generators are grounded
+- The existing spacelike lemmas concern finite posets and do not encode the Reeh-Schlieder theorem
+- Define colours and carriers for an operad of local algebras before proposing generators
+- 'lemma L_reeh_schlieder_record unverified: no Lean skeleton; statement consistent with sources but not
+  elaborated'
+- 'near_miss NM_no_spectrum unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_spacelike_reflexive unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

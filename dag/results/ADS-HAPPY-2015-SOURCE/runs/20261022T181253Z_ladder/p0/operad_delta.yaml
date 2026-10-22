@@ -1,0 +1,71 @@
+add_or_refine_generators:
+- id: g:five_qubit_pauli_mask
+  ordered_inputs: []
+  output: PauliMask
+  arity: 0
+  carrier: Pauli mask on five qubits
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierFiveQubitPerfectTensor.lean
+    declaration: FrontierFiveQubitPerfectTensor.PauliMask
+    line: 26
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierFiveQubitPerfectTensor.lean
+    decl: FrontierFiveQubitPerfectTensor.PauliMask
+    kind: structure
+    line: 26
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+add_or_refine_relations:
+- id: r:R_stabilizers_commute
+  equation_or_predicate: Stabilizer generators of the CSS toric code commute pairwise.
+  typing_conditions: CSS toric code stabilizer generators
+  source_pins:
+  - path: lean4/H037FourQubitCssSurfaceCode.lean
+    declaration: FableHilbertWalk20260819.H037.stabilizers_commute
+    line: 34
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/H037FourQubitCssSurfaceCode.lean
+    decl: FableHilbertWalk20260819.H037.stabilizers_commute
+    kind: theorem
+    line: 34
+    lang: lean
+  proposed_by:
+    model: claude-sonnet-5-5
+    provider: anthropic
+    tier: 3
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-78A9A5AF459C
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'stabilizer_projector_5qubit: (q, q, q, q, q) -> q [FrontierFiveQubitPerfectTensor.fiveQubitStabilizer]'
+  evidence: lean def fiveQubitStabilizer has 0 explicit binders (0 with conclusion arrows); the claim
+    says 5 (heuristic count)
+  decl_key: FrontierFiveQubitPerfectTensor.fiveQubitStabilizer
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: ADS-HAPPY-2015-SOURCE
+open_obligations:
+- No grounded declaration for the 6-leg perfect tensor or the {5,4} tiling.
+- Thm. 1, Thm. 2 and Thm. 3 are not formalized.
+- Existing five-qubit file not checked here against [[5,1,3]]; no signature claimed.
+- 'generator g:perfect_tensor_6leg unverified: no existing declaration cited'
+- 'relation r:perfect_tensor_isometry unverified: no existing declaration cited'
+- 'lemma l:happy_source_record unverified: no Lean skeleton; statement consistent with sources but not
+  elaborated'
+- 'near_miss n:toy_model_not_physical unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

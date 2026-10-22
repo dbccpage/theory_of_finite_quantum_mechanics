@@ -1,0 +1,56 @@
+{
+  "task_id": "CQFT-CAUSAL-FACTORIZATION-IMPORT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "f76a3f9366f31d7119b4c7f561dcfde4c080eb44b5e46059968831489abe05d9",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[],\"relations\":[{\"id\":\"R_spacelike_symm_existing\",\"statement\":\"isSpacelike P x y iff isSpacelike P y x for a finite strict poset P\",\"hypotheses\":\"P : FiniteStrictPoset n, x y : Fin n\",\"ref\":{\"path\":\"lean4/CausalOrder.lean\",\"decl\":\"CausalOrder.spacelike_symm\",\"status\":\"existing\"}},{\"id\":\"R_spacelike_irrefl_existing\",\"statement\":\"No point is spacelike to itself in a finite strict poset\",\"hypotheses\":\"P : FiniteStrictPoset n, x : Fin n\",\"ref\":{\"path\":\"lean4/CausalOrder.lean\",\"decl\":\"CausalOrder.spacelike_irrefl\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[],\"near_misses\":[{\"id\":\"NM_causal_factorization_continuum\",\"claim\":\"The continuum Epstein-Glaser factorization V(g,h1+h2)=V(g,h1)V(g,h2) for supp h1 disjoint from causal past of supp h2 is available in the repository\",\"rejecting_invariant\":\"Repository has neither operator-valued distributions nor a continuum Minkowski causal cone; only finite strict posets are formalized\"},{\"id\":\"NM_time_ordered_factorization_finite\",\"claim\":\"Time-ordered products T(P union Q)=T(P)T(Q) for finite point sets follow from existing spacelike lemmas\",\"rejecting_invariant\":\"No existing declaration defines time-ordered products or operator-valued distributions; spacelike symmetry and irreflexivity do not yield factorization\"}],\"numeric_claims\":[],\"open_obligations\":[\"Formalize operator-valued distributions and time-ordered products T(P) on a finite strict poset before any factorization lemma\",\"Formalize continuum Minkowski causal past V^- and the scattering operator S(g) to state the imported factorization\",\"No generator grounded: no existing declaration produces an operator from colours; isSpacelike is a Prop-valued def, not an operation\",\"Renormalization extension across total diagonal is not grounded in the repository\",\"Imported Epstein-Glaser eq. (9), (30) and Brunetti-Fredenhagen Condition P3 remain external assumptions, not verified in repository\",\" AuthorityEffect: None\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [],
+    "relations": [
+      {
+        "id": "R_spacelike_symm_existing",
+        "statement": "isSpacelike P x y iff isSpacelike P y x for a finite strict poset P",
+        "hypotheses": "P : FiniteStrictPoset n, x y : Fin n",
+        "ref": {
+          "path": "lean4/CausalOrder.lean",
+          "decl": "CausalOrder.spacelike_symm",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "R_spacelike_irrefl_existing",
+        "statement": "No point is spacelike to itself in a finite strict poset",
+        "hypotheses": "P : FiniteStrictPoset n, x : Fin n",
+        "ref": {
+          "path": "lean4/CausalOrder.lean",
+          "decl": "CausalOrder.spacelike_irrefl",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [],
+    "near_misses": [
+      {
+        "id": "NM_causal_factorization_continuum",
+        "claim": "The continuum Epstein-Glaser factorization V(g,h1+h2)=V(g,h1)V(g,h2) for supp h1 disjoint from causal past of supp h2 is available in the repository",
+        "rejecting_invariant": "Repository has neither operator-valued distributions nor a continuum Minkowski causal cone; only finite strict posets are formalized"
+      },
+      {
+        "id": "NM_time_ordered_factorization_finite",
+        "claim": "Time-ordered products T(P union Q)=T(P)T(Q) for finite point sets follow from existing spacelike lemmas",
+        "rejecting_invariant": "No existing declaration defines time-ordered products or operator-valued distributions; spacelike symmetry and irreflexivity do not yield factorization"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Formalize operator-valued distributions and time-ordered products T(P) on a finite strict poset before any factorization lemma",
+      "Formalize continuum Minkowski causal past V^- and the scattering operator S(g) to state the imported factorization",
+      "No generator grounded: no existing declaration produces an operator from colours; isSpacelike is a Prop-valued def, not an operation",
+      "Renormalization extension across total diagonal is not grounded in the repository",
+      "Imported Epstein-Glaser eq. (9), (30) and Brunetti-Fredenhagen Condition P3 remain external assumptions, not verified in repository",
+      " AuthorityEffect: None"
+    ]
+  }
+}

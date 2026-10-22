@@ -1,0 +1,107 @@
+{
+  "task_id": "LQG-TURAEV-VIRO-1992-SOURCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "05459d25025fb30cbb33c38af52c8be42a14550c2de2775f68f0d2edc23586a0",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [
+        {
+          "catalog_id": "G_quantum_dimension",
+          "inputs": [
+            "Label"
+          ],
+          "output": "IsingScalar",
+          "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified"
+        }
+      ],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "Source record for Turaev and Viro (1992) is not in the checkout and has no arXiv record; the paper title and journal reference cannot be verified from available material.",
+        "No Lean or Rust declaration in @SRC or @KNOWN+ encodes quantum 6j symbols of U_q(sl_2) or the triangulation-independence of the Turaev-Viro state sum, so no relation or lemma about the target is grounded.",
+        "The only admissible generator is quantum_dimension, which is not a 6j symbol; no composition is licensed.",
+        "near_miss NM_TV_state_sum unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "G_quantum_dimension",
+        "ordered_inputs": [
+          "Label"
+        ],
+        "output": "IsingScalar",
+        "arity": 1,
+        "carrier": "IsingScalar",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "code/rust/src/general_relativity/spin_foam.rs",
+            "declaration": "quantum_dimension",
+            "line": 24
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "code/rust/src/general_relativity/spin_foam.rs",
+          "decl": "quantum_dimension",
+          "kind": "fn",
+          "line": 24,
+          "lang": "rust"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Source record for Turaev and Viro (1992) is not in the checkout and has no arXiv record; the paper title and journal reference cannot be verified from available material.",
+      "No Lean or Rust declaration in @SRC or @KNOWN+ encodes quantum 6j symbols of U_q(sl_2) or the triangulation-independence of the Turaev-Viro state sum, so no relation or lemma about the target is grounded.",
+      "The only admissible generator is quantum_dimension, which is not a 6j symbol; no composition is licensed.",
+      "near_miss NM_TV_state_sum unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "1 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

@@ -1,0 +1,314 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "TFQ-0109",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "5cf526be0d05d98e5cccd23623c83ee9ea0c85ae89ba518ca024ed8278d8ca1b",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=TFQ-0109 stage=P0 attempt=a2-1 in=5cf526be guided=yes\n@TARGET [SOURCE_RECORD] regge_gravity_ghz_chern_finite_map.md records rational identities: post-Newtonian factors, three-qubit eigenvalues, a four-tick history, and a Chern parity table. The same note says the Regge discretization named in the goal title is not implemented there, and the deflection factors are not obtained from a field equation. What is finite is arithmetic at declared inputs, with pi only as a rational interval for arcseconds. What is not discharged is Regge gravity, the Einstein equation, and quantum gravity. An enclosure is not a continuum law.\n@BOTTLENECK PPN endpoint checks do not discharge Regge calculus, the Einstein equation, or a continuum limit.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.chern_table | theorem | theorem chern_table : twoChern (-1) = 2 ∧ twoChern 1 = -2 ∧ twoChern 3 = 0 ∧ twoChern (-3) = 0\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.chern_parity | theorem | theorem chern_parity (m : Int) (h2 : m ≠ 2) (h2' : m ≠ -2) : twoChern m % 2 = 0\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.deflectionFactor | abbrev | abbrev deflectionFactor (gamma : Rat) : Rat\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.deflection_factor_values | theorem | theorem deflection_factor_values : deflectionFactor 1 = 1 ∧ deflectionFactor 0 = 1 / 2 ∧ deflectionFactor 1 = 2 * deflectionFactor 0\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.newtonDeflection | abbrev | abbrev newtonDeflection (gm c b : Rat) : Rat\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.grDeflection | abbrev | abbrev grDeflection (gm c b : Rat) : Rat\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.gr_deflection_twice_newton | theorem | theorem gr_deflection_twice_newton (gm c b : Rat) (_hc : c ≠ 0) (_hb : b ≠ 0) : grDeflection gm c b = 2 * newtonDeflection gm c b ∧ newtonDeflection g\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.clock_shift_order_four | theorem | theorem clock_shift_order_four : Mat4Rat.mul clockShift (Mat4Rat.mul clockShift (Mat4Rat.mul clockShift clockShift)) = Mat4Rat.id\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.pauli_ghz_sites | theorem\n lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.step_unitary_order_four | theorem\n code/python/tests/test_e2e_regge_gravity_ghz_chern_control.py | test_negative_qm229_gr_deflection_is_twice_newtonian | def [test]\n code/python/tests/test_e2e_regge_gravity_ghz_chern_control.py | test_qm229_solar_limb_deflection_windows | def [test]\n code/python/tests/test_e2e_regge_gravity_ghz_chern_control.py | test_qm230_ghz_is_an_eigenvector_of_each_mermin_operator | def [test]\n code/python/tests/test_e2e_regge_gravity_ghz_chern_control.py | test_qm230_page_wootters_history | def [test]\n code/python/tests/test_e2e_regge_gravity_ghz_chern_control.py | test_qm230_phase_damping_three_applications | def [test]\n code/python/tests/test_e2e_regge_gravity_ghz_chern_control.py | test_qm231_qwz_chern_numbers | def [test]\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.logical_qubit_1_anticommutes | theorem\n lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.logical_qubit_2_anticommutes | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:deflectionFactor (gamma)->Rat src=lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.deflectionFactor\n g:newtonDeflection (gm,c,b)->Rat src=lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.newtonDeflection\n g:grDeflection (gm,c,b)->Rat src=lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.grDeflection\n r:gr_deflection_twice_newton grDeflection gm c b = 2 * newtonDeflection gm c b src=lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.gr_deflection_twice_newton\n r:deflection_factor_values deflectionFactor 1 = 1 ∧ deflectionFactor 0 = 1/2 ∧ deflectionFactor 1 = 2 * deflectionFactor 0 src=lean4/FiniteQFTAndGravity.lean | FiniteQFTAndGravity.deflection_factor_values\n@KNOWN- (host-refused earlier; do not repeat)\n [statement_drift] lemma_deflection_factor_consistency: deflectionFactor 1 = 2 * deflectionFactor 0 -- Do not restate the source with numerals it does not contain.\n [statement_drift] lemma_gr_is_twice_newton: grDeflection gm c b = 2 * newtonDeflection gm c b -- Do not restate the source with numerals it does not contain.\n [composition_type_mismatch] grDeflection . slot 0 <- newtonDeflection via gr_deflection_twice_newton -- Do not compose operations whose colours do not match.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 18,
+    "known_neg_injected": 3,
+    "known_pos_injected": 5,
+    "neighbours": [
+      "DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS"
+    ],
+    "feedback": true,
+    "index_position": 242,
+    "neg_entry_ids": [
+      "NEG-0E78E8D4F8F4",
+      "NEG-5A8F568339A7",
+      "NEG-C43C4D2543F9"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 1,
+    "src_strong": 10,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

@@ -1,0 +1,251 @@
+{
+  "task_id": "ADS-LOGICAL-RECONSTRUCTION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "46a9f09d1b6da1be3eb4811ab564891f1e5995bf2dfffaea4fa396dd0591b150",
+  "candidate_sha256": "8d6202ef8c3b7c220b4726cefab47be6e440bbbdb16cc6ba28f169695b537b23",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [],
+  "predicate_results": {
+    "verified_total": 8,
+    "failed_total": 0,
+    "failure_rate": 0.0,
+    "failures_by_class": {},
+    "unverifiable": 4,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:16:03Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "supportedIn5",
+        "ordered_inputs": [
+          "PauliMask",
+          "Nat"
+        ],
+        "output": "Bool",
+        "arity": 2,
+        "carrier": "physical qubit subsets of the 5-qubit code",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FrontierLogicalReconstruction.lean",
+            "declaration": "FrontierLogicalReconstruction.supportedIn5",
+            "line": 38
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.supportedIn5",
+          "kind": "def",
+          "line": 38,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "mulPauli",
+        "ordered_inputs": [
+          "PauliMask",
+          "PauliMask"
+        ],
+        "output": "PauliMask",
+        "arity": 2,
+        "carrier": "Pauli operators modulo phase on 5 qubits",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/FrontierLogicalReconstruction.lean",
+            "declaration": "FrontierLogicalReconstruction.mulPauli",
+            "line": 26
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.mulPauli",
+          "kind": "def",
+          "line": 26,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "commutes5_normalizer",
+        "equation_or_predicate": "A Pauli p lies in the normalizer of the stabilizer iff commutes5 p g holds for every stabilizer generator g; a weight 1 or 2 error anticommuting with some generator is detected.",
+        "typing_conditions": "p ranges over the 105 non-identity Pauli errors of weight 1 or 2 on the [[5,1,3]] code",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierLogicalReconstruction.lean",
+            "declaration": "FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105",
+            "line": 95
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105",
+          "kind": "theorem",
+          "line": 95,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "triples_reconstruct_logicals",
+        "equation_or_predicate": "Each of the 10 three-qubit subsets supports a representative of each of the three nontrivial logical cosets.",
+        "typing_conditions": "subsets are the 10 triples of the 5 physical qubits; cosets are XXXXX, ZZZZZ, YYYYY classes",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierLogicalReconstruction.lean",
+            "declaration": "FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes",
+            "line": 69
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes",
+          "kind": "theorem",
+          "line": 69,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [],
+    "open_obligations": [
+      "Lean skeletons for the three restated lemmas were not written; the cited theorems are existing but I did not verify their full statements beyond the signatures given.",
+      "The identification of the finite statement with bulk operator reconstruction in AdS/CFT remains an imported picture and is not formalized.",
+      "No generator for the logical coset classes was grounded beyond supportedIn5 and mulPauli.",
+      "The numeric claim N_triples is not an actual count of triples supporting classes; it is a binomial count and is not tied to the target.",
+      "numeric N_triples unverified: expression not exactly evaluable",
+      "numeric N_pairs unverified: expression not exactly evaluable",
+      "near_miss NM_bulk_identification unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_five_qubit_min_weight unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N_errors",
+        "expr": "15*7",
+        "value": "105",
+        "host_evidence": {
+          "recomputed": "105"
+        }
+      }
+    ],
+    "verified_lemma_statements": [
+      {
+        "id": "L_triples",
+        "statement": "Every triple of physical qubits supports a representative of each nontrivial logical class of the [[5,1,3]] code.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "triples_reconstruct_logicals"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.every_triple_reconstructs_all_three_logical_classes",
+          "kind": "theorem",
+          "line": 69,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      },
+      {
+        "id": "L_pairs",
+        "statement": "No pair of physical qubits supports a representative of any nontrivial logical class.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "commutes5_normalizer"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.no_pair_supports_any_nontrivial_logical_class",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.no_pair_supports_any_nontrivial_logical_class",
+          "kind": "theorem",
+          "line": 78,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      },
+      {
+        "id": "L_erasure",
+        "statement": "All 105 non-identity Pauli errors of weight 1 or 2 anticommute with a stabilizer generator, so erasure of any two qubits is correctable.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "commutes5_normalizer"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/FrontierLogicalReconstruction.lean",
+          "decl": "FrontierLogicalReconstruction.two_qubit_erasure_detectable_all_105",
+          "kind": "theorem",
+          "line": 95,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "4 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 1 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

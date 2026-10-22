@@ -1,0 +1,108 @@
+add_or_refine_generators:
+- id: G_residual_quotient
+  ordered_inputs:
+  - PrimitiveDifference
+  output: ResidualQuotientType
+  arity: 1
+  carrier: PrimitiveDifference
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/PrimitiveDifference.lean
+    declaration: OmegaCore.PrimitiveDifference.ResidualQuotient
+    line: 43
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/PrimitiveDifference.lean
+    decl: OmegaCore.PrimitiveDifference.ResidualQuotient
+    kind: def
+    line: 43
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: G_quotient_map_setoid_imp
+  ordered_inputs:
+  - Setoid
+  - Setoid
+  - SetoidImplication
+  output: QuotientMap
+  arity: 3
+  carrier: Setoid
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/PrimitiveDifference.lean
+    declaration: OmegaCore.PrimitiveDifference.quotientMapOfSetoidImp
+    line: 215
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/PrimitiveDifference.lean
+    decl: OmegaCore.PrimitiveDifference.quotientMapOfSetoidImp
+    kind: def
+    line: 215
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: R_quotient_map_mk
+  equation_or_predicate: quotientMapOfSetoidImp S T hST (Quotient.mk S a) = Quotient.mk T a
+  typing_conditions: S T are setoids with setoid implication hST
+  source_pins:
+  - path: lean4/PrimitiveDifference.lean
+    declaration: OmegaCore.PrimitiveDifference.quotientMapOfSetoidImp_mk
+    line: 224
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveDifference.lean
+    decl: OmegaCore.PrimitiveDifference.quotientMapOfSetoidImp_mk
+    kind: theorem
+    line: 224
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: R_raw_carrier_status
+  equation_or_predicate: packet status of raw carrier matches the obstruction classifier status on the
+    pointed residual quotient
+  typing_conditions: pointed residual quotient carrier
+  source_pins:
+  - path: lean4/PrimitiveLiftCandidate.lean
+    declaration: OmegaCore.PrimitiveLiftCandidate.rawCarrier_packet_status_matches
+    line: 39
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/PrimitiveLiftCandidate.lean
+    decl: OmegaCore.PrimitiveLiftCandidate.rawCarrier_packet_status_matches
+    kind: theorem
+    line: 39
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Certified term map from tag sealed-derivation-v1 at 3100c4e into the book PrimitiveDifference carrier
+  or candidate Lean mirror is not supplied; S000-GAP-GENESIS-TO-PD stays proposed/open
+- Sealed derivation does not form cochains; no cochain bridge is grounded here
+- finite_obstruction.py quotient certificates are not grounded in @SRC and are left for a later host
+- Mechanical receipt tag is not a mathematical verdict; no verdict is asserted
+- No @SRC declaration in the Rust derivation_controls file is shown to map to the PrimitiveDifference
+  carrier, so no term map is cited
+- 'lemma L_term_map_gap unverified: no Lean skeleton; statement consistent with sources but not elaborated'
+- 'near_miss NM_wrong_sig_raw_carrier unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_vacuous_term_map unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

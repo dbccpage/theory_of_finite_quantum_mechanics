@@ -1,0 +1,56 @@
+add_or_refine_generators: []
+add_or_refine_relations:
+- id: R_spacelike_symm
+  equation_or_predicate: isSpacelike P x y iff isSpacelike P y x for a finite strict poset P
+  typing_conditions: 'P : FiniteStrictPoset n, x y : Fin n'
+  source_pins:
+  - path: lean4/CausalOrder.lean
+    declaration: CausalOrder.spacelike_symm
+    line: 30
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CausalOrder.lean
+    decl: CausalOrder.spacelike_symm
+    kind: theorem
+    line: 30
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: R_spacelike_irrefl
+  equation_or_predicate: No point is spacelike to itself
+  typing_conditions: 'P : FiniteStrictPoset n, x : Fin n'
+  source_pins:
+  - path: lean4/CausalOrder.lean
+    declaration: CausalOrder.spacelike_irrefl
+    line: 39
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/CausalOrder.lean
+    decl: CausalOrder.spacelike_irrefl
+    kind: theorem
+    line: 39
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples: []
+open_obligations:
+- Continuum net A(O) over regions with isotony and locality is not in the repository; held outside the
+  programme as the QHELD continuum light-cone lift
+- 'No grounded lemma for isotony or locality: prior vacuous proofs were refused and no sorry-free proof
+  is available from existing declarations'
+- Generators for the star-algebra operations A(O) are not grounded; only g:build_tensor is KNOWN+ and
+  it concerns finite matrices, not regional algebras
+- Imported assumptions spacetime causal order and net locality remain assumptions and are not discharged
+- 'near_miss NM_net_locality_from_finite_poset unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_spacelike_transitive unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims: []
+verified_lemma_statements: []

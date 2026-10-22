@@ -1,0 +1,123 @@
+add_or_refine_generators:
+- id: boundaryGens20
+  ordered_inputs: []
+  output: boundary_stabilizer_20
+  arity: 0
+  carrier: GF(2)^20 stabilizer generators
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierHappyMincut.lean
+    declaration: FrontierHappyMincut.boundaryGens20
+    line: 70
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierHappyMincut.lean
+    decl: FrontierHappyMincut.boundaryGens20
+    kind: def
+    line: 70
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: encodeCentralGen
+  ordered_inputs:
+  - pauli_pattern
+  output: stabilizer_generator_central
+  arity: 1
+  carrier: Nat-encoded Pauli pattern pushed from central tensor
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierHappyMincut.lean
+    declaration: FrontierHappyMincut.encodeCentralGen
+    line: 60
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierHappyMincut.lean
+    decl: FrontierHappyMincut.encodeCentralGen
+    kind: def
+    line: 60
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: commute_full_rank
+  equation_or_predicate: The 20 boundary generators pairwise commute and have GF(2) rank 20
+  typing_conditions: Lean encoding of the 20 explicit generators
+  source_pins:
+  - path: lean4/FrontierHappyMincut.lean
+    declaration: FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20
+    line: 137
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierHappyMincut.lean
+    decl: FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20
+    kind: theorem
+    line: 137
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-73C603AAAA2A
+  class: wrong_signature
+  claim_kind: generator
+  claim: 'encodeLocalGen: (pauli_pattern) -> stabilizer_generator_local [FrontierHappyMincut.encodeLocalGen]'
+  evidence: lean def encodeLocalGen has 2 explicit binders (2 with conclusion arrows); the claim says
+    1 (heuristic count)
+  decl_key: FrontierHappyMincut.encodeLocalGen
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: ADS-HAPPY-ENTROPY-MINCUT-TARGET
+open_obligations:
+- Lean does not prove the 20 explicit generators are the boundary stabilizer of the contracted network
+  with bulk legs at logical zero
+- Lean does not prove mincut equals minimal curve cut in planar dual
+- List of the 40 deficit intervals is not given, only counts
+- Continuum minimal-surface correspondence is imported and out of scope
+- 'near_miss nm_rt_all_intervals unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_intervals
+  expr: 20*19
+  value: '380'
+  host_evidence:
+    recomputed: '380'
+- id: nc_deficit_frac
+  expr: 40/380
+  value: 2/19
+  host_evidence:
+    recomputed: 2/19
+verified_lemma_statements:
+- id: L_happy_380
+  statement: For all 380 proper contiguous boundary intervals, S(A) <= mincut(A), with equality on 340
+    and deficit 1 on 40
+  relation_to_target: restates
+  depends_on:
+  - commute_full_rank
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/FrontierHappyMincut.lean
+    decl: FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/FrontierHappyMincut.lean
+    decl: FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut
+    kind: theorem
+    line: 147
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

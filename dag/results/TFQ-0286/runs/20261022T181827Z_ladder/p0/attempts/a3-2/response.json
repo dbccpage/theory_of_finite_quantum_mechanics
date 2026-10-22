@@ -1,0 +1,54 @@
+{
+  "status": "incomplete",
+  "generators": [],
+  "relations": [
+    {
+      "id": "R_authority_none",
+      "statement": "The authority effect text of any census receipt is exactly the string AuthorityEffect: None.",
+      "hypotheses": "Receipt produced by the projection obstruction module.",
+      "ref": {
+        "path": "code/rust/src/wdp/po000_projection_obstruction.rs",
+        "decl": "AUTHORITY_EFFECT_TEXT",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_census_authority",
+      "statement": "The descent census, being a status map only, carries authority effect text exactly AuthorityEffect: None. It makes no uniqueness claim.",
+      "relation_to_target": "auxiliary",
+      "depends_on": [
+        "R_authority_none"
+      ],
+      "lean_skeleton": "",
+      "claims_proved": false,
+      "ref": {
+        "path": "code/rust/src/wdp/po000_projection_obstruction.rs",
+        "decl": "AUTHORITY_EFFECT_TEXT",
+        "status": "existing"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_uniqueness",
+      "claim": "Few versions of quantum mechanics descend all the way and no other way holds as a theorem proved by the census.",
+      "rejecting_invariant": "The target is a census, not a result. The uniqueness conjecture is deferred and open, and the census cannot promote it."
+    },
+    {
+      "id": "NM_continuum",
+      "claim": "The continuum surplus is constructed within this census.",
+      "rejecting_invariant": "Continuum surplus is handed to a later cut and is not constructed here."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Assign a status of Derived, Imported, Conditional, or Open to each named quantum ingredient. No grounded declaration exists for the ingredient list.",
+    "No grounded generators or compositions are available for the descent steps.",
+    "The uniqueness conjecture stays open and deferred.",
+    "Continuum surplus is deferred to a later cut.",
+    "Formal Lean statement of the status map is not provided."
+  ]
+}

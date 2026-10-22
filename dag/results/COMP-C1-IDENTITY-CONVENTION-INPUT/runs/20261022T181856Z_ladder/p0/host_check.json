@@ -1,0 +1,147 @@
+{
+  "task_id": "COMP-C1-IDENTITY-CONVENTION-INPUT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "183668928ac4375305cc9b100141c9b53592fb9b5f1db9be5e493d78307153be",
+  "candidate_sha256": "cf7fe76e6e33779c2f7e328db44ff410ce0620fd5b382cc0a411e0bf35d9c618",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "wrong_signature": 1
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:19:01Z",
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "g_identity_convention",
+        "ordered_inputs": [],
+        "output": "IdentityConvention",
+        "arity": 0,
+        "carrier": "IdentityConvention",
+        "coefficient_ring": null,
+        "hypotheses": [],
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.IdentityConvention",
+            "line": 243
+          }
+        ],
+        "semantic_predicate": "UNREVIEWED: only the declaration's existence (and arity where readable) is host-verified",
+        "evidence_status": "declaration_exists_semantics_unreviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.IdentityConvention",
+          "kind": "inductive",
+          "line": 243,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "R1",
+        "equation_or_predicate": "On a pairwise separated regime, distinct marks i≠j below r.data are not collapsed.",
+        "typing_conditions": "PairwiseSeparated r, i < r.data, j < r.data, i ≠ j",
+        "source_pins": [
+          {
+            "path": "lean4/GenesisComputation.lean",
+            "declaration": "GenesisComputation.separated_marks_not_collapsed",
+            "line": 250
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.separated_marks_not_collapsed",
+          "kind": "theorem",
+          "line": 250,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-2B1ADF556AEF",
+        "class": "wrong_signature",
+        "claim_kind": "relation",
+        "claim": "R2: The identity convention is a declared two-valued choice (opaqueConv or exactInscription), not derived from the alphabet. [GenesisComputation.IdentityConvention]",
+        "evidence": "lean GenesisComputation.IdentityConvention has kind inductive, which cannot be cited as a relation (allowed: abbrev, def, fn, lemma, theorem)",
+        "decl_key": "GenesisComputation.IdentityConvention",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "COMP-C1-IDENTITY-CONVENTION-INPUT"
+      }
+    ],
+    "open_obligations": [
+      "Derive or prove that opaque and exact-inscription conventions yield the same marks on a pairwise separated alphabet; not grounded in the listed declarations.",
+      "Show blank, state and end marks are admitted as separated marks in the target alphabet; no declaration grounds this.",
+      "Lean skeleton for L1 not written; no sorry-free proof offered.",
+      "near_miss NM1 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": [
+      {
+        "id": "L1",
+        "statement": "Separated marks are not collapsed under either identity convention, so admitting blank, state and end marks as separated marks suffices without deriving the convention.",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "R1",
+          "R2"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.separated_marks_not_collapsed",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/GenesisComputation.lean",
+          "decl": "GenesisComputation.separated_marks_not_collapsed",
+          "kind": "theorem",
+          "line": 250,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

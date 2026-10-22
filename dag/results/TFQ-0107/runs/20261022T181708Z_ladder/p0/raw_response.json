@@ -1,0 +1,86 @@
+{
+  "task_id": "TFQ-0107",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "237e30a9c6ca10a553bb09cb94247b5feac053d0c4973088f60ef85603bd1845",
+  "raw_text": "{\"status\":\"ready_for_host_review\",\"generators\":[{\"id\":\"regge_field_residual_4d\",\"inputs\":[\"ReggeTriangulation4D\",\"Real\"],\"output\":\"ReggeFieldEquationResult\",\"arity\":2,\"carrier\":\"finite triangulation with floating edge data and lambda\",\"ref\":{\"path\":\"code/rust/src/general_relativity/field_equation.rs\",\"decl\":\"compute_regge_field_equations_4d\",\"status\":\"existing\"}},{\"id\":\"vertex_hamiltonian_constraint\",\"inputs\":[\"ReggeTriangulation4D\"],\"output\":\"HamiltonianConstraintReport\",\"arity\":1,\"carrier\":\"finite vertex-indexed discrete constraint values\",\"ref\":{\"path\":\"code/rust/src/general_relativity/hamiltonian_constraint.rs\",\"decl\":\"evaluate_hamiltonian_constraints\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"lambda_positive_residual_nonzero\",\"statement\":\"For lambda > 0 the Regge field equation residual is non-zero.\",\"hypotheses\":\"lambda > 0 on a finite triangulation\",\"ref\":{\"path\":\"code/rust/src/general_relativity/field_equation.rs\",\"decl\":\"test_cosmological_term_nonzero_when_lambda_positive\",\"status\":\"existing\"}},{\"id\":\"flat_fan_zero_lambda_vanish\",\"statement\":\"For a flat fan triangulation and lambda = 0 the Regge field equations vanish.\",\"hypotheses\":\"flat fan triangulation, lambda = 0\",\"ref\":{\"path\":\"code/rust/src/general_relativity/field_equation.rs\",\"decl\":\"test_flat_fan_regge_field_equations_vanish_for_zero_lambda\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[],\"near_misses\":[{\"id\":\"nm_einstein_discharged\",\"claim\":\"The discrete Regge residual discharges the continuum Einstein equation.\",\"rejecting_invariant\":\"Target states the Einstein equation remains GAP; only finite discrete checks exist.\"},{\"id\":\"nm_deficit_is_curvature\",\"claim\":\"Edge deficits equal smooth curvature.\",\"rejecting_invariant\":\"Target explicitly forbids identifying deficit with smooth curvature.\"}],\"numeric_claims\":[],\"open_obligations\":[\"Continuum Einstein field equation is not discharged.\",\"Physical cosmological constant is not selected; lambda is caller-supplied.\",\"No proof that discrete deficits converge to smooth curvature.\",\"No Lean formalization of the Regge residual is provided; lean_skeleton left empty.\",\"Wheeler-DeWitt constraint has no continuum justification beyond discrete vertex evaluation.\",\"AuthorityEffect None: no authority claims made.\"]}",
+  "parsed": {
+    "status": "ready_for_host_review",
+    "generators": [
+      {
+        "id": "regge_field_residual_4d",
+        "inputs": [
+          "ReggeTriangulation4D",
+          "Real"
+        ],
+        "output": "ReggeFieldEquationResult",
+        "arity": 2,
+        "carrier": "finite triangulation with floating edge data and lambda",
+        "ref": {
+          "path": "code/rust/src/general_relativity/field_equation.rs",
+          "decl": "compute_regge_field_equations_4d",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "vertex_hamiltonian_constraint",
+        "inputs": [
+          "ReggeTriangulation4D"
+        ],
+        "output": "HamiltonianConstraintReport",
+        "arity": 1,
+        "carrier": "finite vertex-indexed discrete constraint values",
+        "ref": {
+          "path": "code/rust/src/general_relativity/hamiltonian_constraint.rs",
+          "decl": "evaluate_hamiltonian_constraints",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "lambda_positive_residual_nonzero",
+        "statement": "For lambda > 0 the Regge field equation residual is non-zero.",
+        "hypotheses": "lambda > 0 on a finite triangulation",
+        "ref": {
+          "path": "code/rust/src/general_relativity/field_equation.rs",
+          "decl": "test_cosmological_term_nonzero_when_lambda_positive",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "flat_fan_zero_lambda_vanish",
+        "statement": "For a flat fan triangulation and lambda = 0 the Regge field equations vanish.",
+        "hypotheses": "flat fan triangulation, lambda = 0",
+        "ref": {
+          "path": "code/rust/src/general_relativity/field_equation.rs",
+          "decl": "test_flat_fan_regge_field_equations_vanish_for_zero_lambda",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [],
+    "near_misses": [
+      {
+        "id": "nm_einstein_discharged",
+        "claim": "The discrete Regge residual discharges the continuum Einstein equation.",
+        "rejecting_invariant": "Target states the Einstein equation remains GAP; only finite discrete checks exist."
+      },
+      {
+        "id": "nm_deficit_is_curvature",
+        "claim": "Edge deficits equal smooth curvature.",
+        "rejecting_invariant": "Target explicitly forbids identifying deficit with smooth curvature."
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "Continuum Einstein field equation is not discharged.",
+      "Physical cosmological constant is not selected; lambda is caller-supplied.",
+      "No proof that discrete deficits converge to smooth curvature.",
+      "No Lean formalization of the Regge residual is provided; lean_skeleton left empty.",
+      "Wheeler-DeWitt constraint has no continuum justification beyond discrete vertex evaluation.",
+      "AuthorityEffect None: no authority claims made."
+    ]
+  }
+}

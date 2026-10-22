@@ -1,0 +1,77 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_cloneZ",
+      "inputs": [
+        "qubit"
+      ],
+      "output": "qubit_pair",
+      "arity": 1,
+      "carrier": "finite qubit channels (Z-basis clone map)",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.cloneZ",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "g_cloneX",
+      "inputs": [
+        "qubit"
+      ],
+      "output": "qubit_pair",
+      "arity": 1,
+      "carrier": "finite qubit channels (X-basis clone map)",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.cloneX",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_ZX_obstruction",
+      "statement": "No additive map clones all of |0>,|1>,|+>,|-> simultaneously, so the union Z union X of the two clonable bases is not an information observable under the finite cloning shadow.",
+      "hypotheses": "Restricted to the narrowed finite interface recorded in CT-QUBIT-NO-CLONING-FINITE-TARGET; the superinformation definition is an imported assumption, not a primitive.",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.no_additive_cloner_for_Z_union_X",
+        "status": "existing"
+      }
+    },
+    {
+      "id": "r_Z_trace_preserving",
+      "statement": "cloneZ is trace-preserving on the Z basis.",
+      "hypotheses": "Finite qubit Z-basis clone map.",
+      "ref": {
+        "path": "lean4/FrontierNoCloning.lean",
+        "decl": "FrontierNoCloning.cloneZ_trace_preserving",
+        "status": "existing"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [],
+  "near_misses": [
+    {
+      "id": "nm_ZX_union_cloneable",
+      "claim": "Z union X is cloneable by a CPTP map because cloneZ and cloneX each exist.",
+      "rejecting_invariant": "Per-basis clone maps do not combine into one additive map on all four states; the no-additive-cloner result rejects a joint clone."
+    },
+    {
+      "id": "nm_fidelity_proof",
+      "claim": "The fidelity argument forcing p^2=p for CPTP clones is formalised in Lean.",
+      "rejecting_invariant": "The fidelity argument and complete positivity are recorded as not formalised."
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "Formal link from the imported superinformation definition (Deutsch-Marletto Section 7) to the repository's finite interface is not established; it remains an assumption of this branch.",
+    "Fidelity argument and complete positivity for the finite cloning shadow are not formalised.",
+    "No lemma stating that Z union X is not an information observable has been proved from the repository declarations; the existing no-additive-cloner result is only the narrowed form.",
+    "Repository does not claim its finite carriers satisfy Principles I-IX.",
+    "Disjointness condition (pairwise equal-or-orthogonal classification) for two information observables is not yet grounded as a lemma."
+  ]
+}

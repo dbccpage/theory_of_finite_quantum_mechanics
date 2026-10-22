@@ -1,0 +1,313 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "232a99e8d432c40c78bb81c1a534260555453c7a6295b6ea1804878965fc8afb",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=ADS-HAPPY-TOY-NOT-DUALITY-GAP stage=P0 attempt=a2-1 in=232a99e8 guided=yes\n@TARGET [OPEN] No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are toy models of the bulk-to-boundary map on a discrete hyperbolic tiling; they have no Lorentzian time, no dynamics, no gravitational action and no large-N limit. A finite check on them does not support the duality, and the finite targets of this stage are exact statements about specific codes only.\n@BOTTLENECK Recorded as an explicit non-claim so that the exact finite results are not read as evidence for the duality.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n code/rust/src/qm/discrete_time_stone.rs | DiscreteTimeStoneError | enum | pub enum DiscreteTimeStoneError\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.QParamGroup | structure | structure QParamGroup (G : Type*) [Group G]\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.discreteEvolution | def | def discreteEvolution (u : G) : ℤ → G\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.discreteEvolution_add | theorem | theorem discreteEvolution_add (u : G) (j k : ℤ) : discreteEvolution u (j + k) = discreteEvolution u j * discreteEvolution u k\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.discreteEvolution_zero | theorem | theorem discreteEvolution_zero (u : G) : discreteEvolution u 0 = 1\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.discreteEvolution_one | theorem | theorem discreteEvolution_one (u : G) : discreteEvolution u 1 = u\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.discreteEvolution_neg | theorem | theorem discreteEvolution_neg (u : G) (k : ℤ) : discreteEvolution u (-k) = (discreteEvolution u k)⁻¹\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.QParamGroup.U_natMul | theorem | theorem U_natMul (Φ : QParamGroup G) (n : ℕ) (t : ℚ) : Φ.U (n * t) = Φ.U t ^ n\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.QParamGroup.U_neg | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.QParamGroup.U_int | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.QParamGroup.U_inv_nat | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.QParamGroup.roots_of_all_orders | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.sq_root_neg | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.neg_ne_self_of_ne_zero | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.half_step_not_unique | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.matrix_half_step_not_unique | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.R345 | def\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.R345_transpose | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.R345_orthogonal | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.R345_det | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.R345_pow_orthogonal | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.four_fifths_den | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.nat_mul_self_ne_five | theorem\n lean4/DiscreteTimeStoneSpec.lean | BornFable.DiscreteTime.four_fifths_not_rat_square | theorem\n@KNOWN+ (host-verified earlier; reusable inside their scope)\n g:g:five_qubit_pauli_mask ()->PauliMask src=lean4/FrontierFiveQubitPerfectTensor.lean | FrontierFiveQubitPerfectTensor.PauliMask\n r:r:R_stabilizers_commute Stabilizer generators of the CSS toric code commute pairwise. src=lean4/H037FourQubitCssSurfaceCode.lean | FableHilbertWalk20260819.H037.stabilizers_commute\n@KNOWN- (host-refused earlier; do not repeat)\n [wrong_signature] FrontierFiveQubitPerfectTensor.fiveQubitStabilizer -- Do not state that arity/signature for FrontierFiveQubitPerfectTensor.fiveQubitStabilizer.\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 1,
+    "known_pos_injected": 2,
+    "neighbours": [
+      "ADS-CFT-DUALITY-IMPORT",
+      "ADS-HAPPY-2015-SOURCE"
+    ],
+    "feedback": true,
+    "index_position": 629,
+    "neg_entry_ids": [
+      "NEG-78A9A5AF459C"
+    ],
+    "operation_candidates": 0,
+    "anchors_present": 0,
+    "src_strong": 0,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

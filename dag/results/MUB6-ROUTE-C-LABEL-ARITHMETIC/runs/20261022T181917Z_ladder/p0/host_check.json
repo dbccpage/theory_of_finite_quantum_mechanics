@@ -1,0 +1,171 @@
+{
+  "task_id": "MUB6-ROUTE-C-LABEL-ARITHMETIC",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-2",
+  "input_sha256": "8381552b7d7a8d4271e6ebd84ff2d1ca96cd7d4573c3f8637a2705fdc5cee0c7",
+  "candidate_sha256": "65f5f4f72fa4fa0ccee0f8aa089dce66767789b177250bcdcc8e5dd6c024e4f5",
+  "status": "repairable_candidate_defect",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G5_SCOPE"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 2,
+    "failure_rate": 0.4,
+    "failures_by_class": {
+      "statement_drift": 2
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:19:28Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-3A7D18BD2CC1",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R1: 6 = n_D + n_T + n_S + n_H with n_T + n_S <= 1 and n_H <= 0 implies n_D >= 5 [MUB6.RouteC.fourier_count_ge_five]",
+        "evidence": "relation statement shares no identifier or content token with cited declaration lean4/RouteCFourierLandingBypass.lean::MUB6.RouteC.fourier_count_ge_five (heuristic)",
+        "decl_key": "MUB6.RouteC.fourier_count_ge_five",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-ROUTE-C-LABEL-ARITHMETIC"
+      },
+      {
+        "id": "NEG-1E3EB529BB1A",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R2: n_D >= 5 implies C(n_D,2) >= 10 and n_D + C(n_D,2) >= 15 [MUB6.RouteC.fourier_landing_edges_lower_bound]",
+        "evidence": "relation statement shares no identifier or content token with cited declaration lean4/RouteCFourierLandingBypass.lean::MUB6.RouteC.fourier_landing_edges_lower_bound (heuristic)",
+        "decl_key": "MUB6.RouteC.fourier_landing_edges_lower_bound",
+        "confidence": "heuristic",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "MUB6-ROUTE-C-LABEL-ARITHMETIC"
+      },
+      {
+        "id": "NEG-ECF439CF3B2E",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "fourier_count: (MUB6OrbitConfiguration) -> Nat [MUB6.RouteC.fourier_count_ge_five]",
+        "evidence": "lean MUB6.RouteC.fourier_count_ge_five has kind theorem, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "MUB6.RouteC.fourier_count_ge_five",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "MUB6-ROUTE-C-LABEL-ARITHMETIC"
+      },
+      {
+        "id": "NEG-19F37EC423B1",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "pair_combinations: (Nat) -> Nat [MUB6.RouteC.fourier_pairs_ge_ten]",
+        "evidence": "lean MUB6.RouteC.fourier_pairs_ge_ten has kind theorem, which cannot be cited as a generator (allowed: abbrev, class, def, fn, inductive, struct, structure)",
+        "decl_key": "MUB6.RouteC.fourier_pairs_ge_ten",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "MUB6-ROUTE-C-LABEL-ARITHMETIC"
+      },
+      {
+        "id": "NEG-36B7F787CEFC",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R1: 6 = n_D + n_T + n_S + n_H with n_T + n_S <= 1 and n_H <= 0 implies 5 <= n_D [MUB6.RouteC.fourier_count_ge_five]",
+        "evidence": "relation statement shares no identifier or content token with cited declaration lean4/RouteCFourierLandingBypass.lean::MUB6.RouteC.fourier_count_ge_five (heuristic)",
+        "decl_key": "MUB6.RouteC.fourier_count_ge_five",
+        "confidence": "heuristic",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "MUB6-ROUTE-C-LABEL-ARITHMETIC"
+      },
+      {
+        "id": "NEG-7CB4C462CBC2",
+        "class": "statement_drift",
+        "claim_kind": "relation",
+        "claim": "R2: 5 <= n_D implies 10 <= C(n_D,2) and 15 <= n_D + C(n_D,2) [MUB6.RouteC.fourier_landing_edges_lower_bound]",
+        "evidence": "relation statement shares no identifier or content token with cited declaration lean4/RouteCFourierLandingBypass.lean::MUB6.RouteC.fourier_landing_edges_lower_bound (heuristic)",
+        "decl_key": "MUB6.RouteC.fourier_landing_edges_lower_bound",
+        "confidence": "heuristic",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "MUB6-ROUTE-C-LABEL-ARITHMETIC"
+      }
+    ],
+    "open_obligations": [
+      "No generators grounded: the source declarations are structure and theorems, not typed operations with known colours.",
+      "No Lean skeleton given; the exact statements of the cited theorems are not reproduced here.",
+      "The map from counts to Fourier transition edges is not formalized.",
+      "near_miss NM1 unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "N1",
+        "expr": "5 + 10",
+        "value": "15",
+        "host_evidence": {
+          "recomputed": "15"
+        }
+      },
+      {
+        "id": "N2",
+        "expr": "5*4/2",
+        "value": "10",
+        "host_evidence": {
+          "recomputed": "10"
+        }
+      }
+    ],
+    "verified_lemma_statements": [
+      {
+        "id": "L1",
+        "statement": "For natural numbers with 6 = n_D + n_T + n_S + n_H, n_T + n_S <= 1 and n_H <= 0, one has n_D >= 5, C(n_D,2) >= 10 and n_D + C(n_D,2) >= 15.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R1",
+          "R2"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/RouteCFourierLandingBypass.lean",
+          "decl": "MUB6.RouteC.fourier_landing_edges_lower_bound",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/RouteCFourierLandingBypass.lean",
+          "decl": "MUB6.RouteC.fourier_landing_edges_lower_bound",
+          "kind": "theorem",
+          "line": 113,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

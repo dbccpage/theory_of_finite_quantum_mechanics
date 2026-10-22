@@ -1,0 +1,138 @@
+add_or_refine_generators:
+- id: det_M_u
+  ordered_inputs:
+  - Mat2
+  output: Q(i)_scalar
+  arity: 1
+  carrier: Q(i)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierEntanglingPhase.lean
+    declaration: FrontierEntanglingPhase.det2
+    line: 99
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierEntanglingPhase.lean
+    decl: FrontierEntanglingPhase.det2
+    kind: def
+    line: 99
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: concurrenceSq_op
+  ordered_inputs:
+  - Mat2
+  output: Q(i)_scalar
+  arity: 1
+  carrier: Q(i)
+  coefficient_ring: null
+  hypotheses: []
+  source_pins:
+  - path: lean4/FrontierEntanglingPhase.lean
+    declaration: FrontierEntanglingPhase.concurrenceSq
+    line: 150
+  semantic_predicate: 'UNREVIEWED: only the declaration''s existence (and arity where readable) is host-verified'
+  evidence_status: declaration_exists_semantics_unreviewed
+  host_evidence:
+    path: lean4/FrontierEntanglingPhase.lean
+    decl: FrontierEntanglingPhase.concurrenceSq
+    kind: def
+    line: 150
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+add_or_refine_relations:
+- id: r_product_det_zero
+  equation_or_predicate: If M is the coefficient matrix of a product two-qubit vector then det M = 0
+  typing_conditions: M is the coefficient matrix of a vector satisfying IsProductState2
+  source_pins:
+  - path: lean4/FrontierEntanglingPhase.lean
+    declaration: FrontierEntanglingPhase.productState2_det_zero
+    line: 126
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierEntanglingPhase.lean
+    decl: FrontierEntanglingPhase.productState2_det_zero
+    kind: theorem
+    line: 126
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+- id: r_det_M_u
+  equation_or_predicate: det M_u = (u-1)/4 over Q(i)
+  typing_conditions: u in Q(i)
+  source_pins:
+  - path: lean4/FrontierEntanglingPhase.lean
+    declaration: FrontierEntanglingPhase.det_M_u
+    line: 116
+  evidence_status: declaration_exists_statement_consistent_semantics_unreviewed
+  scope: as stated; hypotheses not reviewed
+  host_evidence:
+    path: lean4/FrontierEntanglingPhase.lean
+    decl: FrontierEntanglingPhase.det_M_u
+    kind: theorem
+    line: 116
+    lang: lean
+  proposed_by:
+    model: claude-haiku-5-5
+    provider: anthropic
+    tier: 2
+checked_compositions: []
+failed_compositions: []
+counterexamples:
+- id: NEG-0130799A4DE2
+  class: false_numeric_claim
+  claim_kind: numeric
+  claim: 'nc_conc: 4*((3/5)^2+(4/5)^2-2*(3/5)+1)/4 = 1/5'
+  evidence: exact recomputation gives 4/5, not 1/5
+  decl_key: null
+  confidence: exact
+  model: claude-haiku-5-5
+  provider: anthropic
+  tier: 2
+  node_id: CT-ENTANGLING-PHASE-FINITE-TARGET
+open_obligations:
+- 'Statement (d): exact separating linear functional on 4x4 density matrices relative to the product family,
+  tied to DS-QM071, not grounded'
+- Physical inference from entanglement to non-classical mediator is imported and out of scope
+- Lean proofs of (a)-(c) must be elaborated by host; no sorry-free skeleton supplied here
+- 'Concurrence numeric claim nc_conc: |u-1|^2 for u=(3+4i)/5 requires Gaussian-integer norm evaluation
+  not verified here'
+- 'near_miss nm_linear_witness unverified: semantic near miss; P4 host check decides'
+- 'near_miss nm_general_rank unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: nc_det
+  expr: (1-1)/4 - 0
+  value: '0'
+  host_evidence:
+    recomputed: '0'
+verified_lemma_statements:
+- id: L_det_M_u
+  statement: det M_u = (u-1)/4 for u in Q(i)
+  relation_to_target: restates
+  depends_on:
+  - r_det_M_u
+  lean_skeleton: ''
+  claims_proved: false
+  ref:
+    path: lean4/FrontierEntanglingPhase.lean
+    decl: FrontierEntanglingPhase.det_M_u
+    status: existing
+  credited: true
+  host_evidence:
+    path: lean4/FrontierEntanglingPhase.lean
+    decl: FrontierEntanglingPhase.det_M_u
+    kind: theorem
+    line: 116
+    lang: lean
+  evidence_status: declaration_exists_statement_consistent_ref_verified_not_lean_checked

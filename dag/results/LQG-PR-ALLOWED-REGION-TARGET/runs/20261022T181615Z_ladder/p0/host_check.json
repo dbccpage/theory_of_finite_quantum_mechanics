@@ -1,0 +1,175 @@
+{
+  "task_id": "LQG-PR-ALLOWED-REGION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "1d1569d869b6678aac0e9649ac8563879333a06a03b4e689e4198a3f4407978e",
+  "candidate_sha256": "edaa89244f768de6a8f8bdfc555817b809f9dad84bc4a1d904df642d1c4ddc25",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-haiku-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 5,
+    "failed_total": 2,
+    "failure_rate": 0.2857,
+    "failures_by_class": {
+      "wrong_signature": 2
+    },
+    "unverifiable": 1,
+    "lean": {
+      "status": "not_needed",
+      "reason": "no Lean skeleton in the reply"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T18:16:21Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [
+      {
+        "id": "R_allowed_forbidden_count_le8",
+        "equation_or_predicate": "allAdmissibleLe8 has length 13691, countAllowedLe8 = 10884, countForbiddenLe8 = 2807, countFlatLe8 = 0 for twice-spins at most 8",
+        "typing_conditions": "twice-spins at most 8 with all four triads admissible",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierPrAllowedRegion.lean",
+            "declaration": "FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8",
+            "line": 73
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierPrAllowedRegion.lean",
+          "decl": "FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8",
+          "kind": "theorem",
+          "line": 73,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      },
+      {
+        "id": "R_witness_values",
+        "equation_or_predicate": "volumeSq288Rat at (2,2,2,2,2,2) equals 729/16, and sixJSquaredRat at the same tuple equals 1/36",
+        "typing_conditions": "tuple (2,2,2,2,2,2) admissible",
+        "source_pins": [
+          {
+            "path": "lean4/FrontierPrAllowedRegion.lean",
+            "declaration": "FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares",
+            "line": 86
+          }
+        ],
+        "evidence_status": "declaration_exists_statement_consistent_semantics_unreviewed",
+        "scope": "as stated; hypotheses not reviewed",
+        "host_evidence": {
+          "path": "lean4/FrontierPrAllowedRegion.lean",
+          "decl": "FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares",
+          "kind": "theorem",
+          "line": 86,
+          "lang": "lean"
+        },
+        "proposed_by": {
+          "model": "claude-haiku-5-5",
+          "provider": "anthropic",
+          "tier": 2
+        }
+      }
+    ],
+    "checked_compositions": [],
+    "failed_compositions": [],
+    "counterexamples": [
+      {
+        "id": "NEG-4FC0AA703B13",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "G_cayleyMengerScaled64: (twice_spin_tuple6) -> cm_scaled_int [FrontierPrAllowedRegion.cayleyMengerScaled64]",
+        "evidence": "lean def cayleyMengerScaled64 has 6 explicit binders (6 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "FrontierPrAllowedRegion.cayleyMengerScaled64",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "LQG-PR-ALLOWED-REGION-TARGET"
+      },
+      {
+        "id": "NEG-9F9B325CFC0D",
+        "class": "wrong_signature",
+        "claim_kind": "generator",
+        "claim": "G_volumeSq288Rat: (twice_spin_tuple6) -> volume_sq_288_rat [FrontierPrAllowedRegion.volumeSq288Rat]",
+        "evidence": "lean def volumeSq288Rat has 6 explicit binders (6 with conclusion arrows); the claim says 1 (heuristic count)",
+        "decl_key": "FrontierPrAllowedRegion.volumeSq288Rat",
+        "confidence": "exact",
+        "model": "claude-haiku-5-5",
+        "provider": "anthropic",
+        "tier": 2,
+        "node_id": "LQG-PR-ALLOWED-REGION-TARGET"
+      }
+    ],
+    "open_obligations": [
+      "Exact squared 6j value for every admissible tuple is not proved in Lean; only three witnesses are checked",
+      "Identity between the 3x3 Gram form used by Lean and the bordered 5x5 Cayley-Menger determinant is not proved in Lean",
+      "No Lean proof that 288 V^2 = 0 never occurs for shifted-spin tuples beyond the twice-spin <= 8 count",
+      "Cayley-Menger sign convention follows TFQ-0084 P0 mining run and is not independently verified here",
+      "Asymptotic magnitude comparison is numerical and imported, not part of the target",
+      "sixJSquaredRat is not cited as an existing declaration in the SRC list, so no generator or lemma uses it",
+      "Lean skeletons not supplied; no lemma claims proved",
+      "near_miss NM_flat_for_all_shifted unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "NC_witness_vol_2",
+        "expr": "729/16",
+        "value": "729/16",
+        "host_evidence": {
+          "recomputed": "729/16"
+        }
+      },
+      {
+        "id": "NC_witness_6j_2",
+        "expr": "1/36",
+        "value": "1/36",
+        "host_evidence": {
+          "recomputed": "1/36"
+        }
+      }
+    ],
+    "verified_lemma_statements": [
+      {
+        "id": "L_counts_restated",
+        "statement": "The Lean classification theorem gives the counts 13691, 10884, 2807 and zero flat tuples for twice-spins at most 8",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "R_allowed_forbidden_count_le8"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": false,
+        "ref": {
+          "path": "lean4/FrontierPrAllowedRegion.lean",
+          "decl": "FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8",
+          "status": "existing"
+        },
+        "credited": true,
+        "host_evidence": {
+          "path": "lean4/FrontierPrAllowedRegion.lean",
+          "decl": "FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8",
+          "kind": "theorem",
+          "line": 73,
+          "lang": "lean"
+        },
+        "evidence_status": "declaration_exists_statement_consistent_ref_verified_not_lean_checked"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "supports": "2 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 2 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

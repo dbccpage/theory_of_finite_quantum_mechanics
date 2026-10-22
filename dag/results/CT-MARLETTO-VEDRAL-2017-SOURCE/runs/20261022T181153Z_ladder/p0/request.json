@@ -1,0 +1,311 @@
+{
+  "schema_id": "omega.pfp.finite-qm.ladder-packet.v1",
+  "task_id": "CT-MARLETTO-VEDRAL-2017-SOURCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a2-1",
+  "input_sha256": "7315fdadea19caf4f495e3eb50a13819854ae01d5db87753041d52dbe918f42b",
+  "authority_effect": "None",
+  "system_prompt": "You mine operad entries for ONE finite quantum mechanics target. Reply with ONE JSON object that matches the response schema. No prose, no code fences.\nRules:\n- Cite a declaration with status \"existing\" ONLY if it is listed under @SRC or @KNOWN+. Otherwise use status \"proposed_new\" (or \"none\") and leave path empty. Never invent a file path or a declaration name.\n- The host greps every existing citation, recomputes every numeric_claim exactly, and elaborates every Lean skeleton. Each refused claim is recorded against your model name.\n- Declarations marked [test] are checkers, not operations: cite them only inside a relation or lemma, never as a generator.\n- generator: a typed operation. inputs = ordered colour names, output = one colour, arity = len(inputs).\n- composition: plug generator `inner` into input slot `slot` (0-based) of generator `outer`. The inner output colour must equal that input colour and a relation you listed must license the step.\n- lemma: relation_to_target is restates|implies|auxiliary|strengthens|weakens. Do not change a number of the target. Set lean_skeleton to \"\" when you have no formal statement: never write a placeholder such as `: True`. A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and cites the existing declaration that proves it is a good lemma.\n- numeric_claims: exact rational arithmetic only, e.g. expr \"11 - 2/3*5\", value \"23/3\". They are recomputed and a false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions or lemmas.\n- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. List what you could not ground in open_obligations. AuthorityEffect: None.\nReply shape (angle brackets mark where your value goes; a | lists the allowed values):\n{\"status\":\"incomplete|ready_for_host_review\",\"generators\":[{\"id\":\"<id>\",\"inputs\":[\"<inputs>\"],\"output\":\"<output>\",\"arity\":0,\"carrier\":\"<carrier>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"relations\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"hypotheses\":\"<hypotheses>\",\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"compositions\":[{\"outer\":\"<outer>\",\"slot\":0,\"inner\":\"<inner>\",\"licensing_relation\":\"<licensing_relation>\"}],\"lemmas\":[{\"id\":\"<id>\",\"statement\":\"<statement>\",\"relation_to_target\":\"restates|implies|auxiliary|strengthens|weakens\",\"depends_on\":[\"<depends_on>\"],\"lean_skeleton\":\"<lean_skeleton>\",\"claims_proved\":false,\"ref\":{\"path\":\"<path>\",\"decl\":\"<decl>\",\"status\":\"existing|proposed_new|none\"}}],\"near_misses\":[{\"id\":\"<id>\",\"claim\":\"<claim>\",\"rejecting_invariant\":\"<rejecting_invariant>\"}],\"numeric_claims\":[{\"id\":\"<id>\",\"expr\":\"<expr>\",\"value\":\"<value>\"}],\"open_obligations\":[\"<open_obligations>\"]}",
+  "user_prompt": "@PFP/1 task=CT-MARLETTO-VEDRAL-2017-SOURCE stage=P0 attempt=a2-1 in=7315fdad guided=yes\n@TARGET [SOURCE_RECORD] Marletto and Vedral (2017, arXiv:1707.06036, pp. 1-4, Fig. 1) argue within constructor theory that if a mediator M locally couples two quantum systems Q1 and Q2 (via Q1 <-> M <-> Q2 with no direct Q1-Q2 coupling) and generates entanglement from a product state, then M must carry at least two incompatible observables (a superinformation medium), and propose testing gravitationally induced phases between two interferometric masses; Bose et al. (2017, arXiv:1707.06050, pp. 1-5, eqs. (1)-(8)) independently propose a spin-correlation entanglement witness W = |(sigma_x^(1) tensor sigma_z^(2)) + (sigma_y^(1) tensor sigma_y^(2))| > 1 (eq. (8) p. 4) for two Stern-Gerlach interferometers interacting through Newtonian gravity phases delta phi_+- and delta phi_-+ (eqs. (2)-(4) p. 2). This node records both papers; no experiment is claimed to have been performed.\n@BOTTLENECK Record only. Audited against arXiv:1707.06036 and arXiv:1707.06050; the repository makes no physical claim about gravity.\n@ASSUME none declared\n@SRC path | decl | kind | signature (copy path and the bare decl name into ref.path and ref.decl, never the signature text; cite as existing only from here)\n lean4/Entanglement.lean | Entanglement.is_product_state | def | def is_product_state (ψ : BipartiteState2) : Prop\n lean4/Entanglement.lean | Entanglement.product_state_minor_zero | theorem | theorem product_state_minor_zero (ψ : BipartiteState2) (h : is_product_state ψ) : schmidt_minor ψ = 0\n lean4/Entanglement.lean | Entanglement.bell_phi_plus | def | def bell_phi_plus : BipartiteState2\n lean4/Entanglement.lean | Entanglement.bell_phi_plus_minor_non_zero | theorem | theorem bell_phi_plus_minor_non_zero : schmidt_minor bell_phi_plus = 1\n lean4/DualWitness.lean | DualWitness.DiscreteWitness | structure | structure DiscreteWitness\n lean4/DualWitness.lean | DualWitness.StateDifference | structure | structure StateDifference\n lean4/DualWitness.lean | DualWitness.trace_norm | def | def trace_norm (d : StateDifference) : Nat\n lean4/DualWitness.lean | DualWitness.dual_pairing | def | def dual_pairing (w : DiscreteWitness) (d : StateDifference) : Int\n lean4/DualWitness.lean | DualWitness.dual_witness_certifies_trace_distance | theorem\n lean4/DualWitness.lean | DualWitness.SignVal | inductive\n lean4/DualWitness.lean | DualWitness.mulSign | def\n lean4/DualWitness.lean | DualWitness.MagicSquareAssignment | structure\n lean4/DualWitness.lean | DualWitness.row1_prod | def\n lean4/DualWitness.lean | DualWitness.row2_prod | def\n lean4/Entanglement.lean | Entanglement.BipartiteState2 | structure\n lean4/Entanglement.lean | Entanglement.schmidt_minor | def\n lean4/Entanglement.lean | Entanglement.bell_state_is_entangled | theorem\n lean4/Entanglement.lean | Entanglement.reduced_marginal_a | def\n lean4/Entanglement.lean | Entanglement.local_flip_b | def\n lean4/Entanglement.lean | Entanglement.non_signaling_under_local_b_flip | theorem\n code/python/src/mub/conj2_tensor_product_proof.py | build_tensor | def\n code/python/src/qm/tensor_correlation.py | correlation_set_inclusions | def\n code/rust/src/qm/campaigns/tensor_correlation.rs | CorrelationModelClass | enum\n code/rust/src/qm/campaigns/tensor_correlation.rs | correlation_model_hierarchy | fn\n lean4/H075TensorCommutingCorrelationFrontier.lean | FableHilbertWalk20260819.H075.CorrelationModelClass | inductive\n@FILL generators relations compositions lemmas near_misses numeric_claims open_obligations status\n",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "status",
+      "generators",
+      "relations",
+      "compositions",
+      "lemmas",
+      "near_misses",
+      "numeric_claims",
+      "open_obligations"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "incomplete",
+          "ready_for_host_review"
+        ]
+      },
+      "generators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "inputs",
+            "output",
+            "arity",
+            "carrier",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "string"
+            },
+            "arity": {
+              "type": "integer"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "hypotheses",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "hypotheses": {
+              "type": "string"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "compositions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outer",
+            "slot",
+            "inner",
+            "licensing_relation"
+          ],
+          "properties": {
+            "outer": {
+              "type": "string"
+            },
+            "slot": {
+              "type": "integer"
+            },
+            "inner": {
+              "type": "string"
+            },
+            "licensing_relation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "lemmas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "statement",
+            "relation_to_target",
+            "depends_on",
+            "lean_skeleton",
+            "claims_proved",
+            "ref"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "statement": {
+              "type": "string"
+            },
+            "relation_to_target": {
+              "type": "string",
+              "enum": [
+                "restates",
+                "implies",
+                "auxiliary",
+                "strengthens",
+                "weakens"
+              ]
+            },
+            "depends_on": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lean_skeleton": {
+              "type": "string"
+            },
+            "claims_proved": {
+              "type": "boolean"
+            },
+            "ref": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "decl",
+                "status"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "decl": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "existing",
+                    "proposed_new",
+                    "none"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "near_misses": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "claim",
+            "rejecting_invariant"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "claim": {
+              "type": "string"
+            },
+            "rejecting_invariant": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "numeric_claims": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expr",
+            "value"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "expr": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "open_obligations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "meta": {
+    "src_offered": 25,
+    "known_neg_injected": 0,
+    "known_pos_injected": 0,
+    "neighbours": [
+      "CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT",
+      "DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS"
+    ],
+    "feedback": true,
+    "index_position": 611,
+    "neg_entry_ids": [],
+    "operation_candidates": 0,
+    "anchors_present": 2,
+    "src_strong": 20,
+    "finite_target": false,
+    "ungroundable": false,
+    "ungroundable_reason": null
+  },
+  "dispatch_status": "prepared_by_llm_ladder"
+}

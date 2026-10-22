@@ -1,0 +1,125 @@
+{
+  "task_id": "LQG-AREA-VOLUME-SPECTRA-SOURCE",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-2",
+  "input_sha256": "dccdb80b369ad5690e894dd5177da71b1797b0be9bf721526c8a6096acb1a79f",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"g_puncture_area\",\"inputs\":[\"Nat\"],\"output\":\"AreaRadVec\",\"arity\":1,\"carrier\":\"AreaRadVec\",\"ref\":{\"path\":\"lean4/FrontierAreaSpectrum.lean\",\"decl\":\"FrontierAreaSpectrum.punctureArea\",\"status\":\"existing\"}},{\"id\":\"g_add_area\",\"inputs\":[\"AreaRadVec\",\"AreaRadVec\"],\"output\":\"AreaRadVec\",\"arity\":2,\"carrier\":\"AreaRadVec\",\"ref\":{\"path\":\"lean4/FrontierAreaSpectrum.lean\",\"decl\":\"FrontierAreaSpectrum.addArea\",\"status\":\"existing\"}},{\"id\":\"g_zero_area\",\"inputs\":[],\"output\":\"AreaRadVec\",\"arity\":0,\"carrier\":\"AreaRadVec\",\"ref\":{\"path\":\"lean4/FrontierAreaSpectrum.lean\",\"decl\":\"FrontierAreaSpectrum.zeroArea\",\"status\":\"existing\"}}],\"relations\":[{\"id\":\"r_spin3_four_half\",\"statement\":\"multisetArea [6] = multisetArea [1,1,1,1] = <0,4,0,0,0> (spin 3 equals four spin-1/2 punctures in area)\",\"hypotheses\":\"punctures labelled by p=2j, simple transverse punctures\",\"ref\":{\"path\":\"lean4/FrontierAreaSpectrum.lean\",\"decl\":\"FrontierAreaSpectrum.spin3_equals_four_spin_half\",\"status\":\"existing\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_spin3_degeneracy\",\"statement\":\"Area of one puncture with p=6 (j=3) equals area of four punctures with p=1 (j=1/2), as sums of sqrt(j(j+1)) in units l_P^2, since sqrt12=4*sqrt3/2... both equal 2 sqrt3\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[\"r_spin3_four_half\"],\"lean_skeleton\":\"\",\"claims_proved\":true,\"ref\":{\"path\":\"lean4/FrontierAreaSpectrum.lean\",\"decl\":\"FrontierAreaSpectrum.spin3_equals_four_spin_half\",\"status\":\"existing\"}},{\"id\":\"l_min_area\",\"statement\":\"For k>=1 the single puncture area squared is at least 3/4, so smallest nonzero level is spin 1/2\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"\",\"claims_proved\":true,\"ref\":{\"path\":\"lean4/FrontierAreaSpectrum.lean\",\"decl\":\"FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half\",\"status\":\"existing\"}}],\"near_misses\":[{\"id\":\"nm_gamma\",\"claim\":\"The eq. (4.12) spectrum l_P^2 sum sqrt(j(j+1)) already includes the factor 8 pi gamma\",\"rejecting_invariant\":\"Footnote 6 p.16: the 8 pi gamma factor is restored separately; the stated spectrum omits it\"},{\"id\":\"nm_trivalent_volume\",\"claim\":\"Trivalent vertices have nonzero volume per eq. (1) and (37) of gr-qc/9411005\",\"rejecting_invariant\":\"Erratum Nucl. Phys. B 456 (1995) 753: trivalent vertex volume is zero\"}],\"numeric_claims\":[{\"id\":\"n_min\",\"expr\":\"1/2*(1/2+1)\",\"value\":\"3/4\"},{\"id\":\"n_spin3\",\"expr\":\"3*(3+1)\",\"value\":\"12\"}],\"open_obligations\":[\"No existing Lean declaration for the general vertex formula eq. (4.9) or the 8 pi gamma rescaling; propose new\",\"Generator for spin-term sqrt(j(j+1)) with colour-matched composition not grounded\",\"Link between AreaRadVec and p(p+2) convention unproved\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "g_puncture_area",
+        "inputs": [
+          "Nat"
+        ],
+        "output": "AreaRadVec",
+        "arity": 1,
+        "carrier": "AreaRadVec",
+        "ref": {
+          "path": "lean4/FrontierAreaSpectrum.lean",
+          "decl": "FrontierAreaSpectrum.punctureArea",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_add_area",
+        "inputs": [
+          "AreaRadVec",
+          "AreaRadVec"
+        ],
+        "output": "AreaRadVec",
+        "arity": 2,
+        "carrier": "AreaRadVec",
+        "ref": {
+          "path": "lean4/FrontierAreaSpectrum.lean",
+          "decl": "FrontierAreaSpectrum.addArea",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "g_zero_area",
+        "inputs": [],
+        "output": "AreaRadVec",
+        "arity": 0,
+        "carrier": "AreaRadVec",
+        "ref": {
+          "path": "lean4/FrontierAreaSpectrum.lean",
+          "decl": "FrontierAreaSpectrum.zeroArea",
+          "status": "existing"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_spin3_four_half",
+        "statement": "multisetArea [6] = multisetArea [1,1,1,1] = <0,4,0,0,0> (spin 3 equals four spin-1/2 punctures in area)",
+        "hypotheses": "punctures labelled by p=2j, simple transverse punctures",
+        "ref": {
+          "path": "lean4/FrontierAreaSpectrum.lean",
+          "decl": "FrontierAreaSpectrum.spin3_equals_four_spin_half",
+          "status": "existing"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_spin3_degeneracy",
+        "statement": "Area of one puncture with p=6 (j=3) equals area of four punctures with p=1 (j=1/2), as sums of sqrt(j(j+1)) in units l_P^2, since sqrt12=4*sqrt3/2... both equal 2 sqrt3",
+        "relation_to_target": "auxiliary",
+        "depends_on": [
+          "r_spin3_four_half"
+        ],
+        "lean_skeleton": "",
+        "claims_proved": true,
+        "ref": {
+          "path": "lean4/FrontierAreaSpectrum.lean",
+          "decl": "FrontierAreaSpectrum.spin3_equals_four_spin_half",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "l_min_area",
+        "statement": "For k>=1 the single puncture area squared is at least 3/4, so smallest nonzero level is spin 1/2",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "",
+        "claims_proved": true,
+        "ref": {
+          "path": "lean4/FrontierAreaSpectrum.lean",
+          "decl": "FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half",
+          "status": "existing"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_gamma",
+        "claim": "The eq. (4.12) spectrum l_P^2 sum sqrt(j(j+1)) already includes the factor 8 pi gamma",
+        "rejecting_invariant": "Footnote 6 p.16: the 8 pi gamma factor is restored separately; the stated spectrum omits it"
+      },
+      {
+        "id": "nm_trivalent_volume",
+        "claim": "Trivalent vertices have nonzero volume per eq. (1) and (37) of gr-qc/9411005",
+        "rejecting_invariant": "Erratum Nucl. Phys. B 456 (1995) 753: trivalent vertex volume is zero"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "n_min",
+        "expr": "1/2*(1/2+1)",
+        "value": "3/4"
+      },
+      {
+        "id": "n_spin3",
+        "expr": "3*(3+1)",
+        "value": "12"
+      }
+    ],
+    "open_obligations": [
+      "No existing Lean declaration for the general vertex formula eq. (4.9) or the 8 pi gamma rescaling; propose new",
+      "Generator for spin-term sqrt(j(j+1)) with colour-matched composition not grounded",
+      "Link between AreaRadVec and p(p+2) convention unproved"
+    ]
+  }
+}
