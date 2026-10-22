@@ -1,0 +1,114 @@
+{
+  "task_id": "CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "00a393251f5118aea25ddaa8628ac166eaa0dccedb03069c36fee67beaf620c3",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"ordered_product\",\"inputs\":[\"ListOfMatrices\"],\"output\":\"Matrix\",\"arity\":1,\"carrier\":\"finite-dimensional matrices over a common finite space\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"adjacent_swap\",\"inputs\":[\"Listing\"],\"output\":\"Listing\",\"arity\":1,\"carrier\":\"listings of a finite strict poset\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"swap_commute\",\"statement\":\"If A_x and A_y commute then the ordered product of a list with adjacent x,y is unchanged when they are swapped\",\"hypotheses\":\"x,y spacelike (incomparable); A_x A_y = A_y A_x\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"linext_connected\",\"statement\":\"Any two linear extensions of a finite strict poset are connected by a finite sequence of adjacent swaps of incomparable elements\",\"hypotheses\":\"finite strict poset; both listings are linear extensions\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"swap_lemma\",\"statement\":\"For lists l1 l2 and matrices A B with A*B=B*A, prod(l1 ++ [a,b] ++ l2) = prod(l1 ++ [b,a] ++ l2)\",\"relation_to_target\":\"auxiliary\",\"depends_on\":[],\"lean_skeleton\":\"theorem swap_lemma {n : ℕ} (l1 l2 : List (Matrix (Fin n) (Fin n) ℚ)) (A B : Matrix (Fin n) (Fin n) ℚ) (h : A * B = B * A) : (l1 ++ [A, B] ++ l2).prod = (l1 ++ [B, A] ++ l2).prod := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"linext_independence\",\"statement\":\"The ordered product along a linear extension is independent of the extension when A_x,A_y commute for all spacelike pairs\",\"relation_to_target\":\"restates\",\"depends_on\":[\"swap_lemma\"],\"lean_skeleton\":\"theorem linext_indep : True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"anticommuting_sign\",\"claim\":\"Two spacelike elements carrying anticommuting Paulis (e.g. X and Z) give the same ordered product in both orders\",\"rejecting_invariant\":\"XZ = -ZX, so the products differ by sign -1\"}],\"numeric_claims\":[{\"id\":\"diamond_linext_count\",\"expr\":\"2\",\"value\":\"2\"}],\"open_obligations\":[\"General-n Lean proof of the swap lemma and of the connectivity of linear extensions by adjacent swaps\",\"No existing SRC declaration concerns FiniteStrictPoset or ordered matrix products; all refs are proposed_new\",\"Explicit Pauli checks for the diamond and the N poset are not formalized\",\"N poset linear extension count not computed\",\"Epstein-Glaser relation remains an analogy\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "ordered_product",
+        "inputs": [
+          "ListOfMatrices"
+        ],
+        "output": "Matrix",
+        "arity": 1,
+        "carrier": "finite-dimensional matrices over a common finite space",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "adjacent_swap",
+        "inputs": [
+          "Listing"
+        ],
+        "output": "Listing",
+        "arity": 1,
+        "carrier": "listings of a finite strict poset",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "swap_commute",
+        "statement": "If A_x and A_y commute then the ordered product of a list with adjacent x,y is unchanged when they are swapped",
+        "hypotheses": "x,y spacelike (incomparable); A_x A_y = A_y A_x",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "linext_connected",
+        "statement": "Any two linear extensions of a finite strict poset are connected by a finite sequence of adjacent swaps of incomparable elements",
+        "hypotheses": "finite strict poset; both listings are linear extensions",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "swap_lemma",
+        "statement": "For lists l1 l2 and matrices A B with A*B=B*A, prod(l1 ++ [a,b] ++ l2) = prod(l1 ++ [b,a] ++ l2)",
+        "relation_to_target": "auxiliary",
+        "depends_on": [],
+        "lean_skeleton": "theorem swap_lemma {n : ℕ} (l1 l2 : List (Matrix (Fin n) (Fin n) ℚ)) (A B : Matrix (Fin n) (Fin n) ℚ) (h : A * B = B * A) : (l1 ++ [A, B] ++ l2).prod = (l1 ++ [B, A] ++ l2).prod := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "linext_independence",
+        "statement": "The ordered product along a linear extension is independent of the extension when A_x,A_y commute for all spacelike pairs",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "swap_lemma"
+        ],
+        "lean_skeleton": "theorem linext_indep : True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "anticommuting_sign",
+        "claim": "Two spacelike elements carrying anticommuting Paulis (e.g. X and Z) give the same ordered product in both orders",
+        "rejecting_invariant": "XZ = -ZX, so the products differ by sign -1"
+      }
+    ],
+    "numeric_claims": [
+      {
+        "id": "diamond_linext_count",
+        "expr": "2",
+        "value": "2"
+      }
+    ],
+    "open_obligations": [
+      "General-n Lean proof of the swap lemma and of the connectivity of linear extensions by adjacent swaps",
+      "No existing SRC declaration concerns FiniteStrictPoset or ordered matrix products; all refs are proposed_new",
+      "Explicit Pauli checks for the diamond and the N poset are not formalized",
+      "N poset linear extension count not computed",
+      "Epstein-Glaser relation remains an analogy"
+    ]
+  }
+}

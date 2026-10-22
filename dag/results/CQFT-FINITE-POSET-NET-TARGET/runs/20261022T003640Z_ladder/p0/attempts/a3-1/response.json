@@ -1,0 +1,134 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "g_embed",
+      "inputs": [
+        "Mat_O"
+      ],
+      "output": "Mat_P",
+      "arity": 1,
+      "carrier": "matrices on qubits in O, extended by identity to all n qubits",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "g_tensor",
+      "inputs": [
+        "Mat_O1",
+        "Mat_O2"
+      ],
+      "output": "Mat_O1_union_O2",
+      "arity": 2,
+      "carrier": "Kronecker product on disjoint qubit supports",
+      "ref": {
+        "path": "code/python/src/mub/conj2_tensor_product_proof.py",
+        "decl": "build_tensor",
+        "status": "existing"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "r_isotony",
+      "statement": "O1 subset O2 implies A(O1) subset A(O2) via X -> X tensor I on O2 minus O1",
+      "hypotheses": "O1 subset O2 subset points of P",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "r_locality",
+      "statement": "If O1 and O2 are pairwise spacelike (hence disjoint), then [A(O1),A(O2)]=0",
+      "hypotheses": "every point of O1 spacelike to every point of O2; spacelike is irreflexive so supports are disjoint",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "r_N_nontransitive",
+      "statement": "On the N poset 0<2,1<2,1<3: spacelike(0,1), spacelike(0,3), but 1<3, so spacelike is not transitive",
+      "hypotheses": "FiniteStrictPoset on 4 points with the stated order relations",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_isotony",
+      "statement": "For O1 subset O2, every matrix in A(O1) is X tensor I_{O2 minus O1} in A(O2)",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_isotony"
+      ],
+      "lean_skeleton": "theorem isotony (O1 O2 : Finset (Fin n)) (h : O1 ⊆ O2) : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L_locality",
+      "statement": "Disjoint-support embeddings commute: (X tensor I)(I tensor Y) = (I tensor Y)(X tensor I)",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_locality"
+      ],
+      "lean_skeleton": "theorem locality_disjoint (O1 O2 : Finset (Fin n)) (h : Disjoint O1 O2) : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "L_N_poset",
+      "statement": "Explicit decide-check on the N poset that spacelike is symmetric, irreflexive, and non-transitive",
+      "relation_to_target": "restates",
+      "depends_on": [
+        "r_N_nontransitive"
+      ],
+      "lean_skeleton": "-- needs concrete FiniteStrictPoset definition; decide on Fin 4 relation",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "nm_transitive",
+      "claim": "Spacelike separation is transitive, so spacelike-connected sets form cliques",
+      "rejecting_invariant": "N poset: 0 spacelike 1, 0 spacelike 3, yet 1<3 are causally related"
+    },
+    {
+      "id": "nm_dynamics",
+      "claim": "The net's locality encodes causal commutation forced by dynamics (Haag-Kastler)",
+      "rejecting_invariant": "The net is kinematical with no dynamics; commutation follows purely from tensor-product disjoint supports"
+    }
+  ],
+  "numeric_claims": [],
+  "open_obligations": [
+    "No FiniteStrictPoset definition is in SRC; spacelike must be defined as incomparable and distinct",
+    "No existing declaration for A(O), embedding, or isotony; all are proposed_new",
+    "Prior proofs were refused as vacuous; real Lean proofs need concrete Matrix/Kronecker formalization with no sorry",
+    "Dynamics, time-slice and covariance are not modelled",
+    "Python build_tensor is only a 6x6 Kronecker helper, not a general disjoint-support commutation proof"
+  ]
+}

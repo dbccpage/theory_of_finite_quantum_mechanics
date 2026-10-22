@@ -1,0 +1,94 @@
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: NEG-6960C4533E52
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: G_signedSqrt . slot 0 <- G_sixjSq via R_sixj_def
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-opus-5-5
+  provider: anthropic
+  tier: 4
+  node_id: LQG-6J-EXACT-AND-PENTAGON-TARGET
+- id: NEG-B2E84070C902
+  class: composition_type_mismatch
+  claim_kind: composition
+  claim: G_signedSqrt . slot 1 <- G_racahSum via R_sixj_def
+  evidence: the outer and inner generators are not a verified generator of this reply
+  decl_key: null
+  confidence: exact
+  model: claude-opus-5-5
+  provider: anthropic
+  tier: 4
+  node_id: LQG-6J-EXACT-AND-PENTAGON-TARGET
+- id: NEG-0C8F65B4C68E
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_target_open: For all admissible twice-spin 6-tuples <= 6, sixjSq is the Racah rational, invariant
+    under 24 tetrahedral symmetries, satisfies orthogonality and Biedenharn-Elliott'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-opus-5-5
+  provider: anthropic
+  tier: 4
+  node_id: LQG-6J-EXACT-AND-PENTAGON-TARGET
+- id: NEG-2056DEFADC87
+  class: vacuous_proof
+  claim_kind: lemma
+  claim: 'L_tetra_sym_check: For all admissible 6-tuples of twice-spins at most 6, the Racah square is
+    unchanged under each of the 24 tetrahedral symmetries'
+  evidence: the Lean statement is a tautology (True or x = x), so it does not state the lemma
+  decl_key: null
+  confidence: exact
+  model: claude-sonnet-5-5
+  provider: anthropic
+  tier: 3
+  node_id: LQG-6J-EXACT-AND-PENTAGON-TARGET
+counterexamples: []
+open_obligations:
+- Implement G_racahSum / G_sixjSq with exact Nat factorials and verify by decide/native enumeration over
+  all admissible tuples <= 6
+- Prove tetrahedral invariance (R_tet_sym) by finite enumeration, not by sorry
+- Prove orthogonality R_orth over all admissible a,b,c,d,y,y' in range, including cross terms y!=y' which
+  need signs
+- Formalize Biedenharn-Elliott for classical sixj; sign convention for signedSqrt must be fixed consistently
+- No existing source for the classical 6j; all declarations proposed_new
+- 'generator G_triangleDelta unverified: no existing declaration cited'
+- 'generator G_racahSum unverified: no existing declaration cited'
+- 'generator G_sixjSq unverified: no existing declaration cited'
+- 'generator G_signedSqrt unverified: no existing declaration cited'
+- 'relation R_sixj_def unverified: no existing declaration cited'
+- 'relation R_tet_sym unverified: no existing declaration cited'
+- 'relation R_orth unverified: no existing declaration cited'
+- 'relation R_BE unverified: no existing declaration cited'
+- 'lemma L_orth_half_y0 unverified: Lean elaboration disabled'
+- 'lemma L_orth_half_y1 unverified: Lean elaboration disabled'
+- 'near_miss NM_cyclo12 unverified: semantic near miss; P4 host check decides'
+- 'near_miss NM_sq_sign unverified: semantic near miss; P4 host check decides'
+- Review the semantics of each verified generator and relation before marking any mission slot FILLED.
+verified_numeric_claims:
+- id: N_orth_y0
+  expr: 1*1*1/4 + 3*1*1/4
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+- id: N_orth_y1
+  expr: 1*3*1/4 + 3*3*1/36
+  value: '1'
+  host_evidence:
+    recomputed: '1'
+- id: N_tet_group
+  expr: 4*3*2*1
+  value: '24'
+  host_evidence:
+    recomputed: '24'
+- id: N_spin_values
+  expr: 6/1 + 1
+  value: '7'
+  host_evidence:
+    recomputed: '7'
+verified_lemma_statements: []

@@ -1,0 +1,117 @@
+{
+  "task_id": "CQFT-FINITE-POSET-NET-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "ae30e6ad39655aeb74883c617d99d27753def783de7a5d3db3902158d87b1360",
+  "status": "ready_for_host_review",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "The ladder does not fill the carrier; generator carriers are model proposals."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "operations": [],
+      "composition_plan": []
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [
+        "Near misses are recorded as open obligations; the P4 host check decides."
+      ]
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "PROPOSED_HOST_PARTIAL",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [
+        "No cited SRC declaration defines FiniteStrictPoset, the net A(O), or spacelike. All are proposed_new.",
+        "build_tensor is a 6x6 Kronecker product of a 2x2 and a 3x3 matrix, so it does not match the qubit embedding X ⊗ I. It is not cited.",
+        "The Lean skeletons are placeholders and need real statements over Matrix and the Kronecker product.",
+        "The embedding of A(O1) into A(O2) needs a formal definition, via reindexing of tensor factors.",
+        "Dynamics, time-slice and covariance are out of scope.",
+        "relation R_isotony unverified: no existing declaration cited",
+        "relation R_locality unverified: no existing declaration cited",
+        "relation R_spacelike_props unverified: no existing declaration cited",
+        "near_miss NM_transitive unverified: semantic near miss; P4 host check decides",
+        "near_miss NM_dynamical_locality unverified: semantic near miss; P4 host check decides",
+        "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+      ]
+    }
+  },
+  "source_checks": [],
+  "next_missing_dependency": "Host review of the verified entries; semantic mining of the unverified claims",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-9644BFA31800",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_isotony: O1 ⊆ O2 implies A(O1) ⊆ A(O2) (embedding X ↦ X ⊗ I).",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "CQFT-FINITE-POSET-NET-TARGET"
+      },
+      {
+        "id": "NEG-4B2A7C260F6D",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_locality: Pairwise spacelike O1, O2 gives commuting A(O1), A(O2), because the supports are disjoint and tensor factors on disjoint qubits commute.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "CQFT-FINITE-POSET-NET-TARGET"
+      },
+      {
+        "id": "NEG-A10462DA7836",
+        "class": "vacuous_proof",
+        "claim_kind": "lemma",
+        "claim": "L_N_poset: In the N poset, spacelike(0,1), spacelike(0,3), and 1<3, so spacelike is not transitive.",
+        "evidence": "the Lean statement is a tautology (True or x = x), so it does not state the lemma",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "CQFT-FINITE-POSET-NET-TARGET"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "No cited SRC declaration defines FiniteStrictPoset, the net A(O), or spacelike. All are proposed_new.",
+      "build_tensor is a 6x6 Kronecker product of a 2x2 and a 3x3 matrix, so it does not match the qubit embedding X ⊗ I. It is not cited.",
+      "The Lean skeletons are placeholders and need real statements over Matrix and the Kronecker product.",
+      "The embedding of A(O1) into A(O2) needs a formal definition, via reindexing of tensor factors.",
+      "Dynamics, time-slice and covariance are out of scope.",
+      "relation R_isotony unverified: no existing declaration cited",
+      "relation R_locality unverified: no existing declaration cited",
+      "relation R_spacelike_props unverified: no existing declaration cited",
+      "near_miss NM_transitive unverified: semantic near miss; P4 host check decides",
+      "near_miss NM_dynamical_locality unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 0 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  },
+  "execution": "Provider reply from the LLM ladder; untrusted proposal, host-verified entries only."
+}

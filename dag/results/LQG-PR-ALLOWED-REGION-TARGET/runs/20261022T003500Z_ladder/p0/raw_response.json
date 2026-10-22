@@ -1,0 +1,130 @@
+{
+  "task_id": "LQG-PR-ALLOWED-REGION-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "a3e83ab5bd500126aab4cfceef5bcd436761589f78293777deed8efa5afc3bd0",
+  "raw_text": "{\"status\":\"incomplete\",\"generators\":[{\"id\":\"cm_matrix\",\"inputs\":[\"EdgeLengths\"],\"output\":\"BorderedMatrix5\",\"arity\":1,\"carrier\":\"f64 matrix (Rust); exact version needs rationals\",\"ref\":{\"path\":\"code/rust/src/general_relativity/cayley_menger.rs\",\"decl\":\"cayley_menger_matrix\",\"status\":\"existing\"}},{\"id\":\"cm_det\",\"inputs\":[\"EdgeLengths\"],\"output\":\"CMDeterminant\",\"arity\":1,\"carrier\":\"f64 (Rust); exact version needs Rat\",\"ref\":{\"path\":\"code/rust/src/general_relativity/cayley_menger.rs\",\"decl\":\"cayley_menger_determinant\",\"status\":\"existing\"}},{\"id\":\"exact_cm_det_rat\",\"inputs\":[\"SpinTuple6\"],\"output\":\"RatCMDeterminant\",\"arity\":1,\"carrier\":\"Rat\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"six_j_squared_exact\",\"inputs\":[\"SpinTuple6\"],\"output\":\"RatSixJSquared\",\"arity\":1,\"carrier\":\"Rat\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"relations\":[{\"id\":\"r_288V2\",\"statement\":\"288 V^2 = det of bordered 5x5 matrix of squared distances d_ij^2 with l = j + 1/2\",\"hypotheses\":\"tuple admissible (triangle conditions on the four triads); the sign convention follows TFQ-0084, to be confirmed\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}},{\"id\":\"r_classify\",\"statement\":\"V^2>0 implies allowed, V^2<0 implies forbidden; V^2=0 is a boundary case to be handled separately\",\"hypotheses\":\"exact rational V^2 for twice-spins <= 8\",\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"compositions\":[],\"lemmas\":[{\"id\":\"l_classification_finite\",\"statement\":\"For all admissible twice-spin 6-tuples with each entry <= 8, the exact sign of 288 V^2 is computed by decide/native_decide over Rat, giving allowed, forbidden or degenerate classes, together with the exact value of the squared 6j symbol.\",\"relation_to_target\":\"restates\",\"depends_on\":[\"r_288V2\",\"r_classify\"],\"lean_skeleton\":\"theorem classification_finite : ∀ t : Fin 9 × Fin 9 × Fin 9 × Fin 9 × Fin 9 × Fin 9, True := by sorry\",\"claims_proved\":false,\"ref\":{\"path\":\"\",\"decl\":\"\",\"status\":\"proposed_new\"}}],\"near_misses\":[{\"id\":\"nm_float\",\"claim\":\"Deciding the sign with the f64 Rust cayley_menger_determinant is exact\",\"rejecting_invariant\":\"f64 rounding can flip the sign near V^2=0; the sign must be computed in the rationals\"},{\"id\":\"nm_using_j\",\"claim\":\"Using l = j instead of l = j + 1/2 gives the same classification\",\"rejecting_invariant\":\"the length shift changes the squared distances, so the sign of V^2 changes for some tuples\"}],\"numeric_claims\":[],\"open_obligations\":[\"The enumeration count of admissible tuples is not computed\",\"Exact 6j squares are not computed here\",\"The sign convention of TFQ-0084 is not visible and must be verified\",\"The V^2=0 boundary is not classified by the target\",\"The Rust code is f64 only; an exact Rat implementation is needed\",\"The tuple-to-edge assignment convention (which spins are opposite) is not fixed\"]}",
+  "parsed": {
+    "status": "incomplete",
+    "generators": [
+      {
+        "id": "cm_matrix",
+        "inputs": [
+          "EdgeLengths"
+        ],
+        "output": "BorderedMatrix5",
+        "arity": 1,
+        "carrier": "f64 matrix (Rust); exact version needs rationals",
+        "ref": {
+          "path": "code/rust/src/general_relativity/cayley_menger.rs",
+          "decl": "cayley_menger_matrix",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "cm_det",
+        "inputs": [
+          "EdgeLengths"
+        ],
+        "output": "CMDeterminant",
+        "arity": 1,
+        "carrier": "f64 (Rust); exact version needs Rat",
+        "ref": {
+          "path": "code/rust/src/general_relativity/cayley_menger.rs",
+          "decl": "cayley_menger_determinant",
+          "status": "existing"
+        }
+      },
+      {
+        "id": "exact_cm_det_rat",
+        "inputs": [
+          "SpinTuple6"
+        ],
+        "output": "RatCMDeterminant",
+        "arity": 1,
+        "carrier": "Rat",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "six_j_squared_exact",
+        "inputs": [
+          "SpinTuple6"
+        ],
+        "output": "RatSixJSquared",
+        "arity": 1,
+        "carrier": "Rat",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "r_288V2",
+        "statement": "288 V^2 = det of bordered 5x5 matrix of squared distances d_ij^2 with l = j + 1/2",
+        "hypotheses": "tuple admissible (triangle conditions on the four triads); the sign convention follows TFQ-0084, to be confirmed",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      },
+      {
+        "id": "r_classify",
+        "statement": "V^2>0 implies allowed, V^2<0 implies forbidden; V^2=0 is a boundary case to be handled separately",
+        "hypotheses": "exact rational V^2 for twice-spins <= 8",
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "compositions": [],
+    "lemmas": [
+      {
+        "id": "l_classification_finite",
+        "statement": "For all admissible twice-spin 6-tuples with each entry <= 8, the exact sign of 288 V^2 is computed by decide/native_decide over Rat, giving allowed, forbidden or degenerate classes, together with the exact value of the squared 6j symbol.",
+        "relation_to_target": "restates",
+        "depends_on": [
+          "r_288V2",
+          "r_classify"
+        ],
+        "lean_skeleton": "theorem classification_finite : ∀ t : Fin 9 × Fin 9 × Fin 9 × Fin 9 × Fin 9 × Fin 9, True := by sorry",
+        "claims_proved": false,
+        "ref": {
+          "path": "",
+          "decl": "",
+          "status": "proposed_new"
+        }
+      }
+    ],
+    "near_misses": [
+      {
+        "id": "nm_float",
+        "claim": "Deciding the sign with the f64 Rust cayley_menger_determinant is exact",
+        "rejecting_invariant": "f64 rounding can flip the sign near V^2=0; the sign must be computed in the rationals"
+      },
+      {
+        "id": "nm_using_j",
+        "claim": "Using l = j instead of l = j + 1/2 gives the same classification",
+        "rejecting_invariant": "the length shift changes the squared distances, so the sign of V^2 changes for some tuples"
+      }
+    ],
+    "numeric_claims": [],
+    "open_obligations": [
+      "The enumeration count of admissible tuples is not computed",
+      "Exact 6j squares are not computed here",
+      "The sign convention of TFQ-0084 is not visible and must be verified",
+      "The V^2=0 boundary is not classified by the target",
+      "The Rust code is f64 only; an exact Rat implementation is needed",
+      "The tuple-to-edge assignment convention (which spins are opposite) is not fixed"
+    ]
+  }
+}

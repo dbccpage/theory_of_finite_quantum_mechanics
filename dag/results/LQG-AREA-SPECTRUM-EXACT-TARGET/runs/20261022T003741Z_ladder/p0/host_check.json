@@ -1,0 +1,95 @@
+{
+  "task_id": "LQG-AREA-SPECTRUM-EXACT-TARGET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "a3-1",
+  "input_sha256": "cc763137b17808fce1e69b9aa84cef34e68ca0c2c8f60058f74402548c8eeede",
+  "candidate_sha256": "48c61c4c62b3d4346423a5b38ad5e3c1e2eb68e2d423d40211e55fa14f945bab",
+  "status": "reviewed_for_next_step_pending_host_semantic_review",
+  "model": "claude-sonnet-5-5",
+  "bounded_failure_codes": [
+    "G3_WITNESS"
+  ],
+  "predicate_results": {
+    "verified_total": 3,
+    "failed_total": 1,
+    "failure_rate": 0.25,
+    "failures_by_class": {
+      "composition_type_mismatch": 1
+    },
+    "unverifiable": 6,
+    "lean": {
+      "status": "skipped",
+      "reason": "Lean elaboration disabled by the caller"
+    },
+    "schema_errors": []
+  },
+  "checked_at_utc": "2026-10-22T00:37:51Z",
+  "operad_delta": {
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "NEG-C95686D8EC6A",
+        "class": "composition_type_mismatch",
+        "claim_kind": "composition",
+        "claim": "g_radical_sum . slot 0 <- g_spin_term via r_term_values",
+        "evidence": "the outer and inner generators are not a verified generator of this reply",
+        "decl_key": null,
+        "confidence": "exact",
+        "model": "claude-sonnet-5-5",
+        "provider": "anthropic",
+        "tier": 3,
+        "node_id": "LQG-AREA-SPECTRUM-EXACT-TARGET"
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Formalize squarefree reduction and Q-linear independence of square roots of distinct squarefree integers",
+      "Enumerate the table of levels for at most four punctures with j<=3",
+      "Prove the equality criterion iff coefficient vectors agree",
+      "Prove the smallest nonzero level is sqrt3/2",
+      "No existing source declarations are available to cite",
+      "generator g_spin_term unverified: no existing declaration cited",
+      "generator g_radical_sum unverified: no existing declaration cited",
+      "relation r_term_values unverified: no existing declaration cited",
+      "relation r_sum_assoc_comm unverified: no existing declaration cited",
+      "lemma l_degeneracy_spin3 unverified: Lean elaboration disabled",
+      "near_miss nm_sqrt_additive unverified: semantic near miss; P4 host check decides",
+      "Review the semantics of each verified generator and relation before marking any mission slot FILLED."
+    ],
+    "verified_numeric_claims": [
+      {
+        "id": "n_j3_radicand",
+        "expr": "3*4",
+        "value": "12",
+        "host_evidence": {
+          "recomputed": "12"
+        }
+      },
+      {
+        "id": "n_spin3_equals_four_half",
+        "expr": "4*(1/2)",
+        "value": "2",
+        "host_evidence": {
+          "recomputed": "2"
+        }
+      },
+      {
+        "id": "n_j52_radicand_times4",
+        "expr": "5*7",
+        "value": "35",
+        "host_evidence": {
+          "recomputed": "35"
+        }
+      }
+    ],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "0 host-verified declaration-grounded entries (existence, readable arity, source-consistent numerals) and 3 exact numeric recomputations proposed by a model",
+    "does_not_support": "Any semantic correctness of a generator or relation, any theorem, or closure of the target.",
+    "narrowest_claim": "The named declarations exist where cited and the recomputed arithmetic holds.",
+    "next_test": "A host reviewer checks the semantics of the verified generators against their declarations, then P1 may start."
+  }
+}

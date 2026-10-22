@@ -1,0 +1,114 @@
+{
+  "status": "incomplete",
+  "generators": [
+    {
+      "id": "G_sixj_squared",
+      "inputs": [
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin"
+      ],
+      "output": "Rat",
+      "arity": 6,
+      "carrier": "Q (Racah single-sum, exact integer factorials)",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "G_sixj",
+      "inputs": [
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin",
+        "TwiceSpin"
+      ],
+      "output": "Real",
+      "arity": 6,
+      "carrier": "signed square root of Q value",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_tet_sym",
+      "statement": "sixj is invariant under the 24 tetrahedral symmetries (column permutations and swapping upper/lower entries in two columns)",
+      "hypotheses": "all twice-spins in 0..6; triads admissible",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_orth",
+      "statement": "sum_x (2x+1)(2y+1) {a b x; c d y}{a b x; c d y'} = delta(y,y')",
+      "hypotheses": "twice-spins in 0..6; y,y' both admissible with a,b,c,d",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    },
+    {
+      "id": "R_BE",
+      "statement": "Biedenharn-Elliott identity for classical 6j symbols",
+      "hypotheses": "all admissible labels with twice-spins at most 6",
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "compositions": [],
+  "lemmas": [
+    {
+      "id": "L_sq_rational",
+      "statement": "For twice-spins at most 6, sixj_squared is a rational given by Racah's single sum with exact integer factorials, and sixj is its signed square root",
+      "relation_to_target": "restates",
+      "depends_on": [],
+      "lean_skeleton": "theorem sixj_sq_rational : True := by sorry",
+      "claims_proved": false,
+      "ref": {
+        "path": "",
+        "decl": "",
+        "status": "proposed_new"
+      }
+    }
+  ],
+  "near_misses": [
+    {
+      "id": "NM_q_deformed",
+      "claim": "The level-2 q-deformed 6j symbol of TFQ-0105 or the Cyclo12 vertexAmplitude equals the classical 6j",
+      "rejecting_invariant": "Classical 6j is a rational-square-root real number with no root of unity truncation; the q-deformed version is truncated at level 2 and lives in a cyclotomic field. The q to 1 limit is not part of the target."
+    }
+  ],
+  "numeric_claims": [
+    {
+      "id": "N_zero_spins",
+      "expr": "1",
+      "value": "1"
+    }
+  ],
+  "open_obligations": [
+    "Nothing in SRC; no existing citation can be made for the classical 6j or its symmetries",
+    "The pentagon coherence in H023 concerns Cyclo12 recoupling amplitudes and is not the classical Biedenharn-Elliott identity, so it is not cited as licensing",
+    "Lean skeletons are placeholders and need real definitions",
+    "Sign convention for the 6j (Racah phase (-1)^(sum)) must be fixed",
+    "Exact enumeration of all cases is not yet done",
+    "No composition can be listed without a licensing relation",
+    "Numeric claim N_zero_spins is trivial: {0 0 0; 0 0 0}=1; no further exact values were computed"
+  ]
+}
