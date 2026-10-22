@@ -187,6 +187,16 @@ Before changing the DAG, read [`dag/derivation_dag_reading_note.md`](dag/derivat
 | [`evidence/`](evidence) | Migration receipts and evidence dossiers |
 | [`SCORING.md`](SCORING.md) | The scoring rubric |
 
+## Contribute and review
+
+Anyone can help, and the most useful help is a critical reading. There are three ways, each described in [`CONTRIBUTING.md`](CONTRIBUTING.md):
+
+- **Run an example prompt.** Seven small finite nodes, each with a command that costs a few cents or nothing and a check you can run yourself: [`docs/contribute/example_prompts.md`](docs/contribute/example_prompts.md).
+- **Attempt a campaign target.** Open nodes ranked by how much depends on them, with a per-target protocol.
+- **Review.** Mathematicians and physicists who can read one node, its Lean file and its derivation note critically are asked to do so. The process, the rubric, the credit and a dated call for reviewers are in [`REVIEWING.md`](REVIEWING.md); reviewers are listed in [`docs/reviewers.md`](docs/reviewers.md).
+
+Where the project stands, with node counts by status and stage, the most recent changes and a digest per day, is on the generated status page, [`docs/status/README.md`](docs/status/README.md), and in [`docs/status/daily/`](docs/status/daily/index.md). The same pages are published as a site from [`docs/index.md`](docs/index.md) once GitHub Pages is enabled. The per-node evidence pages are being built: [`docs/evidence/README.md`](docs/evidence/README.md) (in progress).
+
 ## Contributing and support
 
 To contribute:

@@ -1,0 +1,51 @@
+name: Bug report
+description: A script fails, a check disagrees with a node, a link is broken, or a statement looks wrong.
+title: "Bug: <short description>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe what you observed and how to reproduce it. If you believe a node statement or a proof is mathematically wrong, a *Derivation review* issue is the better form, because it records a verdict and credits you.
+        Never paste a key or the contents of a .env file.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Derivation DAG or validator (dag/)
+        - PFP prompts or LLM ladder (dag/pfp/)
+        - Lean (lean4/)
+        - Rust or Python certifiers (code/)
+        - Independent checks (checks/)
+        - Status page or scripts (scripts/, docs/)
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw, including the exact error text or output.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The commands, starting from a fresh clone, and the commit (git rev-parse HEAD).
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Python version, and Lean or Rust versions if relevant.
