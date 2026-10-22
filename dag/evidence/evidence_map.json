@@ -9,7 +9,7 @@
   "nodes": 880,
   "path": "dag/derivation_dag.json",
   "routes": 885,
-  "sha256_lf": "fc0aa26d2c06ce932e74ac5eff4f5c7a0a5902a416beb86cc4f982786de5539d"
+  "sha256_lf": "2b8586f8b70a7e1cf630a77ba69410fa42b9ad62c7935059886adf4283a741ea"
  },
  "files": {
   "code/python/src/fsp/bqnf_sign_evaluator.py": {
@@ -713,9 +713,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "fc0aa26d2c06ce932e74ac5eff4f5c7a0a5902a416beb86cc4f982786de5539d",
+   "sha256": "2b8586f8b70a7e1cf630a77ba69410fa42b9ad62c7935059886adf4283a741ea",
    "sha256_basis": "lf-normalised",
-   "size": 4356773
+   "size": 4358088
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5423,9 +5423,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "sha256_basis": "lf-normalised",
-   "size": 75089
+   "size": 76251
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -5601,6 +5601,16 @@
    "sha256": "b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056",
    "sha256_basis": "bytes",
    "size": 15156
+  },
+  "lean4/BornGaussianFrameRays.lean": {
+   "sha256": "2003d07919eff26bf59794a7cc9c3d183a9fc78253caee5748fe6b6cc9ed70ee",
+   "sha256_basis": "bytes",
+   "size": 4522
+  },
+  "lean4/BornGaussianRationalFrameObstruction.lean": {
+   "sha256": "07150279592f5a612a7a6dd40765cbb130290e5480c9a99d8ccdf653a7a8196f",
+   "sha256_basis": "bytes",
+   "size": 10263
   },
   "lean4/BornHermitianCarrier.lean": {
    "sha256": "ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336",
@@ -55709,14 +55719,14 @@
    "dependents": 0,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 13,
-    "lean_receipt_backed": 0,
+    "counted_files": 15,
+    "lean_receipt_backed": 13,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 23
+    "symbols_found": 36
    },
    "flags": [],
-   "grade": "E2",
+   "grade": "E3",
    "id": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
    "items": [
     {
@@ -55761,6 +55771,524 @@
      "replay": "none",
      "resolution": "present",
      "symbol": "BornFable.GaussRat.instStarRing",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianFrameRays",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianFrameRays.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#1:BornGaussianFrameRays",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianFrameRays",
+     "command_note": "then, in a scratch file that imports BornGaussianFrameRays: #print axioms BornFable.GaussianFrames.exists_frame_completion",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianFrameRays.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#1:BornGaussianFrameRays",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.exists_frame_completion",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianFrameRays",
+     "command_note": "then, in a scratch file that imports BornGaussianFrameRays: #print axioms BornFable.GaussianFrames.frameFunction_smul",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianFrameRays.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#1:BornGaussianFrameRays",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frameFunction_smul",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianFrameRays",
+     "command_note": "then, in a scratch file that imports BornGaussianFrameRays: #print axioms BornFable.GaussianFrames.inner_smul_left",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianFrameRays.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#1:BornGaussianFrameRays",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.inner_smul_left",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianFrameRays",
+     "command_note": "then, in a scratch file that imports BornGaussianFrameRays: #print axioms BornFable.GaussianFrames.nonZero_smul",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianFrameRays.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#1:BornGaussianFrameRays",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.nonZero_smul",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.class_value",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.class_value",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.frame_111_110",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frame_111_110",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.frame_e1_011",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frame_e1_011",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.frame_e2_101",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frame_e2_101",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.frame_e3_110",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frame_e3_110",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.frame_tri_011",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frame_tri_011",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.frame_tri_101",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frame_tri_101",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.frame_tri_110",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.frame_tri_110",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)"
+     ],
+     "command": "cd lean4 && lake build BornGaussianRationalFrameObstruction",
+     "command_note": "then, in a scratch file that imports BornGaussianRationalFrameObstruction: #print axioms BornFable.GaussianFrames.parity_class_function_is_third",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "BornFable.GaussianFrames.parity_class_function_is_third",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -56410,7 +56938,7 @@
      "where": "193"
     }
    ],
-   "next_step": "replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)",
+   "next_step": "add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)",
    "records": [
     "TFQ-0307"
    ],
@@ -209940,6 +210468,58 @@
     "Quot.sound",
     "propext"
    ],
+   "built_successfully": null,
+   "checked_at": "2026-10-22T21:07:05Z",
+   "dag_node": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
+   "decl_count": 9,
+   "exit_code": 0,
+   "id": "dag/research/fable_gleason_run2_lean_replay.json#0:BornGaussianRationalFrameObstruction",
+   "lean_version": "Lean (version 4.35.0)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "BornGaussianRationalFrameObstruction",
+   "path": "lean4/BornGaussianRationalFrameObstruction.lean",
+   "receipt_file": "dag/research/fable_gleason_run2_lean_replay.json",
+   "receipt_file_sha256": "d4c17392ffdbd4d5a12ba2f0c271dc2affc8e5674b6b89f4bbdb55b945d177c0",
+   "recorded_sha256": "07150279592f5a612a7a6dd40765cbb130290e5480c9a99d8ccdf653a7a8196f",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": "2026-10-22T21:07:05Z",
+   "dag_node": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
+   "decl_count": 4,
+   "exit_code": 0,
+   "id": "dag/research/fable_gleason_run2_lean_replay.json#1:BornGaussianFrameRays",
+   "lean_version": "Lean (version 4.35.0)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "BornGaussianFrameRays",
+   "path": "lean4/BornGaussianFrameRays.lean",
+   "receipt_file": "dag/research/fable_gleason_run2_lean_replay.json",
+   "receipt_file_sha256": "d4c17392ffdbd4d5a12ba2f0c271dc2affc8e5674b6b89f4bbdb55b945d177c0",
+   "recorded_sha256": "2003d07919eff26bf59794a7cc9c3d183a9fc78253caee5748fe6b6cc9ed70ee",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
    "built_successfully": true,
    "checked_at": "2026-10-22",
    "dag_node": "CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS",
@@ -210983,7 +211563,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211009,7 +211589,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211035,7 +211615,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211061,7 +211641,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211087,7 +211667,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211113,7 +211693,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211139,7 +211719,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211165,7 +211745,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211191,7 +211771,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211217,7 +211797,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211243,7 +211823,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211269,7 +211849,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211295,7 +211875,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211321,7 +211901,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211347,7 +211927,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc35706cbe14672078b118ac95e4c4098a393ff464722ff9dc2a90221d01bd0a",
+   "receipt_file_sha256": "3603b84aba25fb5531bfbd28c8b4e5989b7583cdb46fd95d15d8c4a238cb7369",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211920,8 +212500,8 @@
   "by_grade": {
    "E0": 285,
    "E1": 219,
-   "E2": 324,
-   "E3": 52,
+   "E2": 323,
+   "E3": 53,
    "E4": 0
   },
   "by_status": {
@@ -211937,22 +212517,22 @@
    "SOURCE_RECORD": 79
   },
   "cited_symbols_found_but_no_declaration_form": 1,
-  "e3_nodes_with_review": 38,
+  "e3_nodes_with_review": 39,
   "e3_nodes_with_review_and_cited_code_but_no_test": 8,
   "e3_nodes_with_test_but_no_review": 4,
   "lean_declarations_in_repo": {
-   "distinct": 990,
+   "distinct": 992,
    "no_receipt": 838,
    "replay_failed": 0,
    "replay_stale": 0,
-   "replay_verified": 152,
-   "replay_verified_and_declaration_itemised": 144,
+   "replay_verified": 154,
+   "replay_verified_and_declaration_itemised": 146,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
    "external_unresolved": 313,
    "missing": 1,
-   "present": 1263
+   "present": 1265
   },
   "mismatch_nodes": 399,
   "mismatches_by_kind": {
@@ -211976,7 +212556,7 @@
    "with_in_repo_lean": 208,
    "with_some_outside_lean": 83
   },
-  "receipts_indexed": 75,
+  "receipts_indexed": 77,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -212086,8 +212666,8 @@
    "FINITE_QM_CORE": {
     "E0": 1,
     "E1": 0,
-    "E2": 32,
-    "E3": 0,
+    "E2": 31,
+    "E3": 1,
     "E4": 0
    },
    "FINITE_QM_DYNAMICS": {
@@ -212221,8 +212801,8 @@
    "CONDITIONAL": {
     "E0": 15,
     "E1": 1,
-    "E2": 17,
-    "E3": 1,
+    "E2": 16,
+    "E3": 2,
     "E4": 0
    },
    "DEFINITION": {

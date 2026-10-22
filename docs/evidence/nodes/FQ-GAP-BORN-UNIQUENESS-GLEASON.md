@@ -1,6 +1,6 @@
 # FQ-GAP-BORN-UNIQUENESS-GLEASON
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 13
-- cited Lean, Rust or Python symbols found in their in-repo files: 23
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 15
+- cited Lean, Rust or Python symbols found in their in-repo files: 36
+- cited Lean declarations covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -32,7 +32,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized.
+The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul), and one whose values on Gaussian-integer vectors depend only on the coordinate parity classes is the constant 1/3 (parity_class_function_is_third), so a parity countermodel of the rational-sphere kind does not transfer to Q(i)^3; existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.
 
 ## Source status
 
@@ -73,6 +73,45 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFable.GaussRat.instStarRing` | yes | yes | yes | - | `#print axioms BornFable.GaussRat.instStarRing` |
+- counts toward the grade: yes
+
+### Lean: `lean4/BornGaussianFrameRays.lean`
+
+- file: [lean4/BornGaussianFrameRays.lean](../../../lean4/BornGaussianFrameRays.lean)
+- sha256 (`bytes`): `2003d07919eff26bf59794a7cc9c3d183a9fc78253caee5748fe6b6cc9ed70ee`
+- cited in: node.lean, receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)
+- replay: `verified`
+  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianFrameRays`): recorded sha256 `2003d07919eff26bf59794a7cc9c3d183a9fc78253caee5748fe6b6cc9ed70ee` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornGaussianFrameRays`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFable.GaussianFrames.exists_frame_completion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.exists_frame_completion` |
+| `BornFable.GaussianFrames.frameFunction_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frameFunction_smul` |
+| `BornFable.GaussianFrames.inner_smul_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.inner_smul_left` |
+| `BornFable.GaussianFrames.nonZero_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.nonZero_smul` |
+- counts toward the grade: yes
+
+### Lean: `lean4/BornGaussianRationalFrameObstruction.lean`
+
+- file: [lean4/BornGaussianRationalFrameObstruction.lean](../../../lean4/BornGaussianRationalFrameObstruction.lean)
+- sha256 (`bytes`): `07150279592f5a612a7a6dd40765cbb130290e5480c9a99d8ccdf653a7a8196f`
+- cited in: node.lean, receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)
+- replay: `verified`
+  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianRationalFrameObstruction`): recorded sha256 `07150279592f5a612a7a6dd40765cbb130290e5480c9a99d8ccdf653a7a8196f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornGaussianRationalFrameObstruction`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFable.GaussianFrames.class_value` | yes | yes | yes | Quot.sound, propext | `#print axioms BornFable.GaussianFrames.class_value` |
+| `BornFable.GaussianFrames.frame_111_110` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_111_110` |
+| `BornFable.GaussianFrames.frame_e1_011` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_e1_011` |
+| `BornFable.GaussianFrames.frame_e2_101` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_e2_101` |
+| `BornFable.GaussianFrames.frame_e3_110` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_e3_110` |
+| `BornFable.GaussianFrames.frame_tri_011` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_tri_011` |
+| `BornFable.GaussianFrames.frame_tri_101` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_tri_101` |
+| `BornFable.GaussianFrames.frame_tri_110` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_tri_110` |
+| `BornFable.GaussianFrames.parity_class_function_is_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.parity_class_function_is_third` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornHermitianCarrier.lean`

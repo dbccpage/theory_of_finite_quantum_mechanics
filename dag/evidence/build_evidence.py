@@ -648,9 +648,10 @@ def node_flags(node: dict, items: list[dict], grade: str, facts: dict) -> list[d
         if item["kind"] == "lean_decl" and item["replay"] in ("stale", "failed") and item["counted"]:
             flag("receipt_not_current",
                  f"{item['path']}: replay {item['replay']} against {len(item['receipts'])} receipt(s)")
-    uncited = sorted({i["path"] for i in items
-                      if any(c.startswith("receipt ") for c in i["cited_in"])
-                      and not any(c.startswith("node.") for c in i["cited_in"])})
+    # A module is uncited when the receipt names it for this node but no node field cites ANY declaration in that file;
+    # receipt anchors the node does not name individually are not a citation gap.
+    node_paths = {i["path"] for i in items if any(c.startswith("node.") for c in i["cited_in"])}
+    uncited = sorted({i["path"] for i in items if any(c.startswith("receipt ") for c in i["cited_in"])} - node_paths)
     for path in uncited:
         flag("receipt_names_uncited_module",
              f"a replay receipt names this node for {path}, but the node's lean, rust and source fields do not cite it")
