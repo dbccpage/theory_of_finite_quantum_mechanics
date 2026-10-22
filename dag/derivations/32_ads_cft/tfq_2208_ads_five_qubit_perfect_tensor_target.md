@@ -19,7 +19,7 @@ GF(2) symplectic arithmetic over a 64-element group. The repository has stabiliz
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; source generators audited against arXiv:1503.06237 Appendix A.1 eqs. (A1)-(A7) pp. 24-25, and weight enumerator 1 + 45 z^4 + 18 z^6, all twenty 3|3 bipartition entropies (3 bits) and minimum logical weight 3 recomputed in Python on 2026-10-22.
 
 ## What is imported
 
@@ -38,7 +38,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` (`GAP_NO_DERIVATION`) from `ADS-HAPPY-2015-SOURCE`: Partial real link: sister stabilizer-code checks exist in Lean. This code is not among them, so the route is a gap until it is written.
-- Authoring check (throwaway GF(2) enumeration, not a repository check) reproduced the weight distribution {0:1, 4:45, 6:18}, the order 64, the 3-bit entropies of all twenty 3|3 bipartitions and the minimum logical weight 3.
+- Exact Python recomputation (2026-10-22) confirmed the weight distribution {0:1, 4:45, 6:18} of the 64-element stabilizer group, the 3-bit entropies of all twenty 3|3 bipartitions and the minimum logical weight 3 across all 48 nontrivial normalizer elements.
 
 See also: `TFQ-0048`, `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 

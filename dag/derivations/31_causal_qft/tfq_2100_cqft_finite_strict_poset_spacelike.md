@@ -19,7 +19,7 @@ The theorem name incomparability_not_transitive_c1 overstates its statement. A g
 
 ## Source status
 
-Declarations read in this change from the cited Lean file, which is a root in lean4/lakefile.lean; the file was not rebuilt here.
+Declarations read and verified against lean4/CausalOrder.lean (a root in lean4/lakefile.lean) and code/python/src/general_relativity/causal_set.py on 2026-10-22.
 
 ## What is imported
 

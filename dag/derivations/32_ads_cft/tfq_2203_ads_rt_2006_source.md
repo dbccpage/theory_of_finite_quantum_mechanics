@@ -11,7 +11,7 @@
 
 ## Statement
 
-Ryu and Takayanagi (2006) propose that the entanglement entropy of a boundary region equals the area of the minimal bulk surface anchored on its boundary, divided by four times Newton's constant. This node records the proposal as published.
+Ryu and Takayanagi (2006, arXiv:hep-th/0603001, Section 1 eq. (1.5) p. 2) propose that the entanglement entropy S_A of a spatial subregion A in a (d+1)-dimensional CFT dual to static AdS_{d+2} is given by S_A = Area(gamma_A) / (4 G_N^(d+2)), where gamma_A is the static minimal bulk d-surface anchored on partial A, and check in Section 2 (eqs. (2.1), (2.5)-(2.6) p. 3) that in AdS_3/CFT_2 the geodesic length reproduces S_A = (c/3) log((L/(pi a)) sin(pi l / L)) under the Brown-Henneaux relation c = 3R / (2 G_N^(3)). This node records the proposal as published.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ Record only.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full text of arXiv:hep-th/0603001 (Section 1 eq. (1.5) p. 2, Section 2 eqs. (2.1), (2.5)-(2.6) p. 3) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

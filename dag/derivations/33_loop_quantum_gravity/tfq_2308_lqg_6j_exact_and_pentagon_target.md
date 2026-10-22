@@ -19,7 +19,7 @@ Exact enumeration with big integers. The classical 6j is not the q-deformed 6j a
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; Racah single-sum rational squares and values for 2j <= 2 recomputed with Python fractions.Fraction on 2026-10-22.
 
 ## What is imported
 

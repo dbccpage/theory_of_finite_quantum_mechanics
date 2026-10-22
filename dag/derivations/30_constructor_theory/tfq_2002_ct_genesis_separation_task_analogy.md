@@ -19,7 +19,7 @@ No source maps cost-bounded response search to constructor existence. The Genesi
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open analogy node; audited against PG-GEN-COLLAPSE-AND-FIRST-SEPARATION and arXiv:1210.7439 Section 1.1 on 2026-10-22.
 
 ## What is imported
 

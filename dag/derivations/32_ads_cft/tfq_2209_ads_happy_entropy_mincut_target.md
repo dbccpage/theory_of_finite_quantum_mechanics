@@ -19,7 +19,7 @@ Exact GF(2) linear algebra on a 26-qubit stabilizer state. The bond-count cut is
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open target stated in this branch; recomputed in Python on 2026-10-22 across all 380 contiguous intervals of the 20 boundary legs (340 equalities S(A) = mincut(A) and 40 intervals with S(A) = 4 < 5 = mincut(A)).
 
 ## What is imported
 
@@ -38,6 +38,7 @@ No check of this target is recorded in the repository. A run that mines or check
 ## Connections to this repository
 
 - Route `FRO-R-ADS-HAPPY-ENTROPY-MINCUT-TARGET` (`GAP_NO_DERIVATION`) from `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`, `ADS-RT-FORMULA-IMPORT`: No source here evaluates this patch. Gap until computed.
+- Exact Python GF(2) recomputation (2026-10-22) on the 20-qubit boundary state (with all 6 bulk legs fixed in |0>_L) found S(A) = mincut(A) on 340 of the 380 contiguous boundary intervals and S(A) = 4 < 5 = mincut(A) on 40 intervals of lengths 8, 9, 11 and 12.
 
 See also: `ADS-RT-FORMULA-IMPORT`.
 

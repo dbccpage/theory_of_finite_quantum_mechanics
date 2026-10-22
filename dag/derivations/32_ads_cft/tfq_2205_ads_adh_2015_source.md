@@ -11,15 +11,15 @@
 
 ## Statement
 
-Almheiri, Dong and Harlow (2015) relate bulk locality in AdS/CFT to quantum error correction: bulk local operators are encoded redundantly in boundary operators, so that a bulk region is reconstructed from different boundary subregions. This node records the paper by title and journal reference.
+Almheiri, Dong and Harlow (2015, arXiv:1411.7041) resolve the radial-commutativity puzzle of bulk local operators by formulating the low-energy bulk Hilbert space as a code subspace H_code inside the boundary CFT Hilbert space: a bulk operator phi(x) in the causal wedge (or entanglement wedge, Section 3.4) of a boundary subregion A can be reconstructed as an operator O_A supported on A that acts identically to phi(x) on H_code (Section 3.1 eq. (3.3) p. 11, equivalent to [O, E_a P E_b^dagger] = 0 on the erasure errors of A^c in Section 3.2 eqs. (3.10), (3.15) pp. 13-15, illustrated by the three-qutrit code in Section 2.2 eq. (2.4) p. 8). This node records the paper as published.
 
 ## Governing obligation
 
-Record only; the abstract is summarized from the title and general citation, and the argument is not audited.
+Record only. Audited against the full text of arXiv:1411.7041 on 2026-10-22; the finite 5-qubit reconstruction instance is the separate target ADS-LOGICAL-RECONSTRUCTION-TARGET.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full text of arXiv:1411.7041 (Section 2.2 eq. (2.4) p. 8, Section 3.1 eq. (3.3) p. 11, Section 3.2 eqs. (3.10), (3.15) pp. 13-15, Section 3.5 eq. (3.30) p. 19) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 

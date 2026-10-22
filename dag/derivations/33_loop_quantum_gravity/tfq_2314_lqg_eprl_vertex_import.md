@@ -11,7 +11,7 @@
 
 ## Statement
 
-Imported construction: a vertex amplitude for the four-simplex built from SU(2) representations through the Spin(4) decomposition with simplicity constraints and a finite Immirzi parameter. It requires the continuum group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
+Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ The repository's fences refuse the identification; no source maps the finite cyc
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited against the full texts of arXiv:0711.0146 (Sections III-IV eqs. (18)-(30) pp. 6-9), arXiv:0708.1595 (Sections II.C, V) and arXiv:1205.2019 (Part III) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 

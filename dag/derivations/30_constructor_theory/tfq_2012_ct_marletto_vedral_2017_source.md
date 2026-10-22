@@ -11,15 +11,15 @@
 
 ## Statement
 
-Marletto and Vedral (2017) argue that any system that mediates entanglement between two quantum systems must itself be quantum, independently of the dynamics, and propose an experiment in which two masses in superpositions of location are tested for gravitationally induced entanglement; Bose and co-authors (2017) propose a spin entanglement witness for the same purpose. This node records both abstracts. No experiment is claimed to have been done.
+Marletto and Vedral (2017, arXiv:1707.06036, pp. 1-4, Fig. 1) argue within constructor theory that if a mediator M locally couples two quantum systems Q1 and Q2 (via Q1 <-> M <-> Q2 with no direct Q1-Q2 coupling) and generates entanglement from a product state, then M must carry at least two incompatible observables (a superinformation medium), and propose testing gravitationally induced phases between two interferometric masses; Bose et al. (2017, arXiv:1707.06050, pp. 1-5, eqs. (1)-(8)) independently propose a spin-correlation entanglement witness W = |(sigma_x^(1) tensor sigma_z^(2)) + (sigma_y^(1) tensor sigma_y^(2))| > 1 (eq. (8) p. 4) for two Stern-Gerlach interferometers interacting through Newtonian gravity phases delta phi_+- and delta phi_-+ (eqs. (2)-(4) p. 2). This node records both papers; no experiment is claimed to have been performed.
 
 ## Governing obligation
 
-Record only. The argument's premises (locality of the interaction, the information-theoretic meaning of "classical") are not audited here.
+Record only. Audited against arXiv:1707.06036 and arXiv:1707.06050; the repository makes no physical claim about gravity.
 
 ## Source status
 
-Published source cited by title, authors and identifier (checked against the arXiv or DOI record on 2026-10-21); no derivation from it is read, audited or reproduced in this repository.
+Audited against the full texts of arXiv:1707.06036 (pp. 1-4) and arXiv:1707.06050 (pp. 1-5, eqs. (1)-(8)) on 2026-10-22; recorded as an external source record.
 
 ## What is imported
 
@@ -27,7 +27,7 @@ Published source cited by title, authors and identifier (checked against the arX
 
 ## What is open
 
-- Audit of the premises.
+- Premises audited in arXiv:1707.06036 pp. 2-3 (Principle I locality, interoperability of information media, and definition of classical system as an information medium whose observables commute) and arXiv:1707.06050 p. 1 (LOCC non-increase of entanglement).
 
 ## Connections to this repository
 

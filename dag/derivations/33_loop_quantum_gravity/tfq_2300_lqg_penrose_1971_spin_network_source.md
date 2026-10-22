@@ -15,7 +15,7 @@ Penrose (1971) starts from angular momentum, whose spectrum is discrete, and ask
 
 ## Governing obligation
 
-Record only. The chapter has no arXiv record and is not held in the checkout.
+Record only. The 1971 book chapter has no arXiv record and is not held in the checkout; Penrose's trivalent admissibility rules are verified in Rovelli-Smolin (arXiv:gr-qc/9505006 Section 2 p. 12) and Roberts (arXiv:math-ph/9812013 Section 2 pp. 24-27).
 
 ## Source status
 

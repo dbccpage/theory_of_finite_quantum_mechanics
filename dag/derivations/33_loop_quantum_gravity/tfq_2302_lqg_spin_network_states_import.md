@@ -19,7 +19,7 @@ The compact-group completion that the structure needs is the SU(2) analogue of t
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited against arXiv:gr-qc/9505006 (Sections 4, 6 pp. 17-29) and arXiv:gr-qc/9602046 (Sections 2-3 pp. 4-15) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 

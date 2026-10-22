@@ -11,15 +11,15 @@
 
 ## Statement
 
-Imported inference, as the source states it: if two systems that interact only through a mediating system become entangled, the mediator cannot be described by classical degrees of freedom. Premises include locality of the interaction and the information-theoretic characterization of "classical" used by the source. Applied to gravity, observed entanglement would indicate non-classical gravitational degrees of freedom. The repository has no gravity model; TFQ-0084 is a finite shadow only.
+Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and Bose et al. (2017, arXiv:1707.06050, pp. 1-2): if two quantum systems Q1 and Q2 start in a separable state, interact only locally through a mediating system M (Q1 <-> M and M <-> Q2, with no direct Q1-Q2 interaction, Principle I locality), and end in an entangled state of Q1 + Q2, then M cannot be a classical medium (in Marletto-Vedral, M must have at least two disjoint incompatible observables whose union is not an information variable; in Bose et al., any mediator modeled by local operations and classical communication cannot create entanglement). The repository has no gravity model; TFQ-0084 is a finite shadow only.
 
 ## Governing obligation
 
-The inference is an assumption of this branch. It does not use or support any repository Lean result.
+The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) is an assumption of this branch. It does not use or support any repository Lean result.
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited against the full texts of arXiv:1707.06036 (pp. 2-3) and arXiv:1707.06050 (pp. 1-2, eqs. (1)-(5)) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 
@@ -32,7 +32,7 @@ Declared imported structure:
 
 ## What is open
 
-- Exact premises as stated in the papers.
+- Premises audited against arXiv:1707.06036 pp. 2-3 and arXiv:1707.06050 pp. 1-2.
 
 ## Connections to this repository
 

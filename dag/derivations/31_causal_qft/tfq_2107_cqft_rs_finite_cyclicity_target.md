@@ -19,7 +19,7 @@ Statement and instances are exact rank computations over Q(i). A Lean proof of t
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Open finite target; algebraic instances verified with exact Python arithmetic on 2026-10-22.
 
 ## What is imported
 

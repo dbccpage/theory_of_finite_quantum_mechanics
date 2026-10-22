@@ -15,7 +15,7 @@ Ponzano and Regge (1968) give the leading asymptotic form of the 6j symbol (Raca
 
 ## Governing obligation
 
-Record only. The chapter has no arXiv record and is not held in the checkout.
+Record only. The 1968 chapter has no arXiv record and is not held in the checkout; its asymptotic formula is verified in Roberts (1999, arXiv:math-ph/9812013 Theorem 1 p. 22 and Section 6.1 p. 61).
 
 ## Source status
 

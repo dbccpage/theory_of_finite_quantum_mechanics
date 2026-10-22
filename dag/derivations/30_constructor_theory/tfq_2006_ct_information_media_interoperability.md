@@ -11,27 +11,27 @@
 
 ## Statement
 
-Imported principles, as the source describes them: an information medium is a substrate whose information attributes can be told apart and copied (they are distinguishable and cloneable); the interoperability principle says that the combination of two information media is an information medium. They are postulates of the source taken here as assumptions.
+Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.
 
 ## Governing obligation
 
-The principle constrains composition of systems in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Audited and corrected against the full text of arXiv:1405.5563 (Sections 3-6, eqs. (3)-(4), Principle III, pp. 9-12) on 2026-10-22; taken as an imported assumption of this branch.
 
 ## What is imported
 
-- Information attributes are distinguishable and cloneable.
-- Combination of information media is an information medium (interoperability).
+- Computation variable (all permutations possible with side-effects, Section 3 p. 9) and information variable (clonable computation variable, Section 4 eq. (3) p. 10); distinguishability derived in Section 5 eq. (4) p. 11.
+- Principle III (interoperability, Section 6 p. 12): the composite of two information media with information variables S1, S2 is an information medium with information variable S1 x S2.
 
 Declared imported structure:
 - `information medium and interoperability principle (assumption)`
 
 ## What is open
 
-- Exact wording of the source's definitions; which composition rule it yields for quantum systems.
+- Definitions audited against arXiv:1405.5563 Sections 3-6 pp. 9-12; which composition rule it yields for quantum state spaces remains outside the source.
 
 ## Connections to this repository
 

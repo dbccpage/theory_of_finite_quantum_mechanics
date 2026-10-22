@@ -19,7 +19,7 @@ Definitional only. Nothing about manifold-likeness, dimension or the continuum l
 
 ## Source status
 
-Definition of this branch, checked by reading the cited Lean and Python files.
+Definition of this branch, audited against lean4/CausalOrder.lean, code/python/src/general_relativity/causal_set.py, arXiv:gr-qc/0309009 Section 3 p. 6 and arXiv:gr-qc/0207103 Section II p. 2 on 2026-10-22.
 
 ## What is imported
 

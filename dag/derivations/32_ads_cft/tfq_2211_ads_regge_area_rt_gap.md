@@ -19,7 +19,7 @@ No source relates the Regge hinge areas of the repository to bond counts of a te
 
 ## Source status
 
-Open target stated in this change; no computation of it is recorded in the repository.
+Explicit gap node; audited against TFQ-0100 and arXiv:hep-th/0603001 eq. (1.5) on 2026-10-22.
 
 ## What is imported
 
