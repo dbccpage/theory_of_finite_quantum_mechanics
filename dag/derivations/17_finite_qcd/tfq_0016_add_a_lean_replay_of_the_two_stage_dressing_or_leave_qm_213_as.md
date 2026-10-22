@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. It does not transport color generators, and no Lean twin of QM-213 was located in FiniteQM.lean.
+The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records `(2 : ℕ) ≠ 3` and does not prove a color-transport statement. `checks/independent/tfq-0016.py` searches `FiniteQM.lean` for the substrings `qm213`, `two_stage`, and `borel` and does not find them.
 
 ### Governing Obligation
 Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.

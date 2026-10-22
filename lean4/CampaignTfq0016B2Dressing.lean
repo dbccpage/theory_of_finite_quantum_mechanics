@@ -17,7 +17,9 @@ Formalization of the QM-213 mathematical structure:
    - Stage 2 torus dressing reproduces the tree gauge residual tree_gauge_indexed.residual.
 3. On the extended diamond poset P₅, discrete curvature is the incidence combination
    K(A) = bA + A ⌣ A, satisfying exact gauge covariance, b² = 0, and the discrete Bianchi identity.
-4. Non-transport of SU(3) color generators (dimension mismatch 2 ≠ 3) and absence of QM-213 in FiniteQM.lean.
+4. The arithmetic comparison `(2 : ℕ) ≠ 3`. This module does not prove a statement
+   about SU(3) representations. A search of `FiniteQM.lean` for a QM-213 twin is
+   `checks/independent/tfq-0016.py`, not a Lean theorem.
 -/
 
 namespace CampaignTfq0016
@@ -584,24 +586,15 @@ theorem curvature_gauge_covariance (A : R → R → R) (g g_inv : R → R)
 end PosetCurvature
 
 /-!
-### Part 4: Color Generator Dimension Mismatch and FiniteQM Twin Audit
+### Part 4: Arithmetic comparison of the two recorded carrier dimensions
 -/
 
-section ColorAndAudit
+section ColorDimension
 
-/-- The matrix carrier of B₂(ℚ) has dimension 2, while the fundamental color
-    representation of SU(3) has dimension 3. Hence B₂(ℚ) does not transport
-    SU(3) color generators. -/
+/-- `(2 : ℕ) ≠ 3`. This is not a theorem about SU(3) representations or color transport. -/
 theorem b2_color_dimension_mismatch : (2 : ℕ) ≠ 3 := by decide
 
-/-- Audit confirmation: no Lean twin of the QM-213 two-stage Borel dressing
-    was located in FiniteQM.lean. -/
-def NoLeanTwinOfQM213InFiniteQM : Prop :=
-  True
-
-theorem no_lean_twin_of_qm213_in_finiteqm : NoLeanTwinOfQM213InFiniteQM := trivial
-
-end ColorAndAudit
+end ColorDimension
 
 end CampaignTfq0016
 
@@ -617,4 +610,3 @@ end CampaignTfq0016
 #print axioms CampaignTfq0016.discrete_bianchi_identity
 #print axioms CampaignTfq0016.curvature_gauge_covariance
 #print axioms CampaignTfq0016.b2_color_dimension_mismatch
-#print axioms CampaignTfq0016.no_lean_twin_of_qm213_in_finiteqm

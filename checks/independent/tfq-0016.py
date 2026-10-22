@@ -261,25 +261,28 @@ def check_poset_p5_discrete_curvature() -> None:
 
 
 def check_color_generators_dimension_mismatch() -> None:
-    print("[4/5] Checking color generator non-transport and dimension mismatch...")
+    print("[4/5] Checking that the recorded carrier dimensions 2 and 3 differ...")
     dim_borel = 2
     dim_su3_fundamental = 3
     assert dim_borel != dim_su3_fundamental, "Dimension mismatch assertion failed"
-    # SU(3) Lie algebra has rank 2 and 8 generators (Gell-Mann), trace zero.
-    # Upper-triangular B_2(Q) has carrier dimension 2 and algebra dimension 3 (d1, d2, b).
-    # Its diagonal torus has dim 2 (non-traceless), not su(3) Cartan subalgebra.
-    print(f"  -> B_2(Q) representation dimension {dim_borel} != {dim_su3_fundamental} (SU(3) color carrier).")
+    print(
+        f"  -> Recorded dimensions differ: {dim_borel} != {dim_su3_fundamental}. "
+        "This check does not prove a representation-transport theorem."
+    )
 
 
 def check_repo_twin_audit() -> None:
-    print("[5/5] Checking historical repo twin audit for QM-213 in FiniteQM.lean...")
+    print("[5/5] Searching FiniteQM.lean for the substrings qm213, two_stage, and borel...")
     # Read lean4/FiniteQM.lean directly without importing repo Python code
     with open("lean4/FiniteQM.lean", "r", encoding="utf-8") as f:
         content = f.read()
     assert "qm213" not in content.lower(), "Unexpected qm213 twin located in FiniteQM.lean"
     assert "two_stage" not in content.lower(), "Unexpected two_stage twin located in FiniteQM.lean"
     assert "borel" not in content.lower(), "Unexpected borel twin located in FiniteQM.lean"
-    print("  -> Audit confirmed: zero Lean twins of QM-213 / two-stage Borel dressing in FiniteQM.lean.")
+    print(
+        "  -> Those three substrings are absent. This is a text search, "
+        "not a proof that no equivalent declaration exists under another name."
+    )
 
 
 def main() -> None:
