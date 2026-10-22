@@ -621,6 +621,28 @@ class LadderTests(Base):
                               sleeper=lambda s: None, **kwargs)
         return runner, ledger
 
+    def numeric_only(self):
+        return reply(status='ready_for_host_review',
+                     numeric_claims=[{'id': 'n1', 'expr': '4*1/2', 'value': '2'}, {'id': 'n2', 'expr': '3*(3+1)', 'value': '12'}])
+
+    def test_numeric_only_reply_earns_no_credit_by_default(self):
+        h = FakeProvider('anthropic', [self.numeric_only()])
+        runner, _ = self.runner({'anthropic': h}, tiers=[self.TIERS[1]])
+        self.assertFalse(runner.policy['numeric_counts'])
+        summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
+        attempt = summary['attempts'][0]
+        self.assertEqual((attempt['verified_total'], attempt['credited_total']), (2, 0))
+        self.assertNotIn(attempt['status'], ('accepted', 'accepted_partial'))
+        self.assertNotIn(summary['status'], ('accepted', 'accepted_partial'))
+
+    def test_numeric_counts_restores_the_old_credit(self):
+        h = FakeProvider('anthropic', [self.numeric_only()])
+        runner, _ = self.runner({'anthropic': h}, tiers=[self.TIERS[1]])
+        runner.policy['numeric_counts'] = True
+        summary = runner.run('N-1', run_cap_microusd=usd_to_micro(0.05))
+        self.assertEqual(summary['attempts'][0]['credited_total'], 2)
+        self.assertEqual(summary['status'], 'accepted')
+
     def test_escalates_only_after_host_failures_and_guides_the_later_attempts(self):
         a = FakeProvider('free_a', [self.bad('ghost_one')])
         b = FakeProvider('free_b', [self.bad('ghost_two')])

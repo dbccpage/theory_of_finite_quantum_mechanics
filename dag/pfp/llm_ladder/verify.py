@@ -593,6 +593,11 @@ class VerifyReport:
     def verified_total(self) -> int:
         return sum(len(v) for v in self.verified.values())
 
+    def credited_total(self, *, numeric: bool = False) -> int:
+        """Verified items that count toward acceptance. A numeric claim carries its own expression and value, so its exact
+        recomputation proves only arithmetic, not relevance; it is credited only when `numeric` is set."""
+        return sum(len(v) for k, v in self.verified.items() if numeric or k != 'numeric')
+
     def failure_total(self) -> int:
         return len(self.failures)
 

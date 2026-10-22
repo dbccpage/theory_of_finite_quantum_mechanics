@@ -88,16 +88,19 @@ class LadderRunner:
                            schema=packet.schema, effort=self.effort_for(stage, cand['model'], effort_override),
                            stream=max_tokens > self.policy['stream_above_max_tokens'], body_extra=dict(cand.get('body_extra', {})))
 
+    def _credited(self, report: VerifyReport) -> int:
+        return report.credited_total(numeric=bool(self.policy.get('numeric_counts')))
+
     def _accept(self, report: VerifyReport) -> bool:
-        return (report.parsed and report.verified_total() >= self.policy['min_verified']
+        return (report.parsed and self._credited(report) >= self.policy['min_verified']
                 and report.failure_rate() <= self.policy['max_failure_rate'])
 
     def _partial(self, report: VerifyReport) -> bool:
-        """accepted_partial: too few verified claims for `accepted`, but at least `partial_min_verified` and NOT ONE refused claim.
+        """accepted_partial: too few credited claims for `accepted`, but at least `partial_min_verified` and NOT ONE refused claim.
         An answer with any refused claim keeps the full bar. Never counted as `accepted`, never an abstention."""
         return (bool(self.policy.get('accept_partial')) and report.parsed and not self._accept(report)
                 and report.failure_total() == 0
-                and report.verified_total() >= max(1, self.policy.get('partial_min_verified', 1)))
+                and self._credited(report) >= max(1, self.policy.get('partial_min_verified', 1)))
 
     # ------------------------------------------------------------------ the run
     def run(self, node_id, *, stage='P0', run_cap_microusd, start_tier=0, max_tier=4, feedback=True, allow_fable=False,
@@ -189,10 +192,10 @@ class LadderRunner:
                 accepted_now = self._accept(report)
                 partial_now = self._partial(report)
                 answered += 1
-                abstained = (report.parsed and not report.failures and report.verified_total() < self.policy['min_verified']
+                abstained = (report.parsed and not report.failures and self._credited(report) < self.policy['min_verified']
                              and not partial_now)
                 row.update(status='accepted' if accepted_now else ('accepted_partial' if partial_now else 'rejected'),
-                           verified_total=report.verified_total(),
+                           verified_total=report.verified_total(), credited_total=self._credited(report),
                            failures_total=report.failure_total(), failure_rate=round(report.failure_rate(), 4),
                            failures_by_class=report.by_class(), unverifiable=len(report.unverifiable),
                            input_tokens=result.input_tokens, output_tokens=result.output_tokens,

@@ -94,7 +94,9 @@ _SYSTEM_P0_RULES = (
     'the target. Set lean_skeleton to "" when you have no formal statement: never write a placeholder such as `: True`. '
     'A skeleton may use sorry; set claims_proved true only for a sorry-free proof. A lemma that restates the target and '
     'cites the existing declaration that proves it is a good lemma.\n'
-    '- numeric_claims: exact rational arithmetic only, e.g. expr "11 - 2/3*5", value "23/3".\n'
+    '- numeric_claims: exact rational arithmetic only, e.g. expr "11 - 2/3*5", value "23/3". They are recomputed and a '
+    'false one is refused, but a correct one earns no credit: acceptance needs grounded generators, relations, compositions '
+    'or lemmas.\n'
     '- Prefer 2-6 well-grounded entries per array over many guesses. Every key below is required; an empty slot is []. '
     'List what you could not ground in open_obligations. AuthorityEffect: None.\n'
 )
