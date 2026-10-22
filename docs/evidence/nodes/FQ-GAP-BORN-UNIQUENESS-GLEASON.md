@@ -32,7 +32,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul), and one whose values on Gaussian-integer vectors depend only on the coordinate parity classes is the constant 1/3 (parity_class_function_is_third), so a parity countermodel of the rational-sphere kind does not transfer to Q(i)^3; existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.
+The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z\[i\]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.
 
 ## Source status
 
@@ -78,10 +78,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/BornGaussianFrameRays.lean`
 
 - file: [lean4/BornGaussianFrameRays.lean](../../../lean4/BornGaussianFrameRays.lean)
-- sha256 (`bytes`): `2003d07919eff26bf59794a7cc9c3d183a9fc78253caee5748fe6b6cc9ed70ee`
+- sha256 (`bytes`): `55b3b0911fa9d9081b70c2c388353163e02f4703cd79e78d5b33aa8cae7a73bf`
 - cited in: node.lean, receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)
 - replay: `verified`
-  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianFrameRays`): recorded sha256 `2003d07919eff26bf59794a7cc9c3d183a9fc78253caee5748fe6b6cc9ed70ee` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianFrameRays`): recorded sha256 `55b3b0911fa9d9081b70c2c388353163e02f4703cd79e78d5b33aa8cae7a73bf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianFrameRays`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -95,10 +95,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/BornGaussianRationalFrameObstruction.lean`
 
 - file: [lean4/BornGaussianRationalFrameObstruction.lean](../../../lean4/BornGaussianRationalFrameObstruction.lean)
-- sha256 (`bytes`): `07150279592f5a612a7a6dd40765cbb130290e5480c9a99d8ccdf653a7a8196f`
+- sha256 (`bytes`): `bffddd6e1bc2877e30d830212fa2a4e6ed4b1af5135f421a43aeb4079a8480a3`
 - cited in: node.lean, receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)
 - replay: `verified`
-  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianRationalFrameObstruction`): recorded sha256 `07150279592f5a612a7a6dd40765cbb130290e5480c9a99d8ccdf653a7a8196f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianRationalFrameObstruction`): recorded sha256 `bffddd6e1bc2877e30d830212fa2a4e6ed4b1af5135f421a43aeb4079a8480a3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianRationalFrameObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -322,6 +322,27 @@ def test_computationally_checked_without_a_test_is_flagged():
             assert not flagged(row["id"], "computational_no_runnable_test"), row["id"]
 
 
+def test_uncited_module_flag_compares_files_not_declarations():
+    node = {"status": "CONDITIONAL"}
+    facts = {"runnable_tests": 0}
+
+    def uncited(items: list[dict]) -> list[str]:
+        return [f["detail"] for f in be.node_flags(node, items, "E3", facts)
+                if f["kind"] == "receipt_names_uncited_module"]
+
+    cited = item(path="lean4/A.lean", symbol="A.cited", cited_in=["node.lean", "receipt r.json (A)"])
+    anchor_only = item(path="lean4/A.lean", symbol="A.anchor", cited_in=["receipt r.json (A)"])
+    other_file = item(path="lean4/B.lean", symbol="B.anchor", cited_in=["receipt r.json (B)"])
+    # a receipt anchor in a file where the node cites another declaration is not a citation gap
+    assert uncited([cited, anchor_only]) == []
+    # a file the receipt names and no node field cites at all is a gap, reported once per file
+    gaps = uncited([cited, anchor_only, other_file, item(path="lean4/B.lean", symbol="B.two",
+                                                       cited_in=["receipt r.json (B)"])])
+    assert len(gaps) == 1 and "lean4/B.lean" in gaps[0]
+    # a node-only citation is never a gap
+    assert uncited([item(path="lean4/C.lean", cited_in=["node.lean"])]) == []
+
+
 def test_no_mismatch_without_a_node_and_page():
     ids = set(rows())
     for m in document()["mismatches"]:

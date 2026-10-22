@@ -18,12 +18,15 @@ Gaussian-integer vector `gv a b c d e g = (a+bi, c+di, e+gi)` is `((a+b)%2, (c+d
 
 Main results:
 * `frame_tri_110` (and `frame_tri_101`, `frame_tri_011`): the non-real orthogonal frame
-  `(1,1,0), (1,-1,1+i), (1,-1,-1-i)` all of whose members lie in the parity class `(1,1,0)`;
-  no such frame exists over `ℤ³` (`BornRationalPlaneObstruction.no_real_triangle`).
-* `parity_class_function_is_third`: a frame function on `K³` whose value on every
-  `(1+i)`-primitive Gaussian-integer vector depends only on the parity class is `1/3` on all of
-  them — the Born value of `ρ = I/3`.  So the parity (Meyer / Godsil–Zaks) construction cannot give
-  a non-quadratic frame function over `ℚ(i)`.
+  `(1,1,0), (1,-1,1+i), (1,-1,-1-i)` all of whose members lie in the parity class `(1,1,0)`.
+  (A claim that no such frame exists over `ℤ³` was made in a companion file,
+  `BornRationalPlaneObstruction`, that failed to compile and is not part of this build; it is
+  neither used nor established here.)
+* `parity_class_function_is_third`: a frame function on `K³` whose value on every Gaussian-integer
+  vector not divisible by `1+i` depends only on the parity class is `1/3` on all of those vectors
+  (`1/3` is the value of the Born function of `ρ = I/3`; that is not a theorem here).  So a frame
+  function of this `(1+i)`-parity form is not a non-quadratic one.  Parity-type constructions
+  with other classes (for example residues modulo `2`) are not covered.
 
 This file does **not** decide whether every frame function on `ℚ(i)³` rays is quadratic.
 Nothing here is a statement about physics.
@@ -111,7 +114,7 @@ theorem frame_111_110 : IsFrame (gv 1 0 1 0 1 0) (gv 1 0 (-1) 0 0 0) (gv 1 0 1 0
     nonZero_of_x (by norm_num [gv]), by gauss_arith, by gauss_arith, by gauss_arith⟩
 
 /-- The non-real triangle `(1,1,0), (1,-1,1+i), (1,-1,-1-i)`: all three members have
-`(1+i)`-parity class `(1,1,0)`.  Compare `BornRationalPlaneObstruction.no_real_triangle`. -/
+`(1+i)`-parity class `(1,1,0)`. -/
 theorem frame_tri_110 :
     IsFrame (gv 1 0 1 0 0 0) (gv 1 0 (-1) 0 1 1) (gv 1 0 (-1) 0 (-1) (-1)) :=
   ⟨nonZero_of_x (by norm_num [gv]), nonZero_of_x (by norm_num [gv]),
@@ -139,9 +142,10 @@ theorem class_value {f : GVec → ℚ} {col : ℤ → ℤ → ℤ → ℚ} (hP :
     f (gv a b c d e g) = col p q r := by
   rw [hP a b c d e g hne, h1, h2, h3]
 
-/-- **The `(1+i)`-parity route is closed over `ℚ(i)`.**  A frame function on `K³` whose values on
-`(1+i)`-primitive Gaussian-integer vectors depend only on the `(1+i)`-parity class is the constant
-`1/3` on all such vectors (the Born value of `ρ = I/3`). -/
+/-- **The `(1+i)`-parity ansatz gives only the constant `1/3`.**  A frame function on `K³` whose
+values on Gaussian-integer vectors not divisible by `1+i` depend only on the class
+`((a+b)%2, (c+d)%2, (e+g)%2)` equals `1/3` on all such vectors.  This does not cover other parity
+classes, and it is not stated for vectors outside this domain. -/
 theorem parity_class_function_is_third (f : GVec → ℚ) (col : ℤ → ℤ → ℤ → ℚ)
     (hF : IsFrameFunction f) (hP : ParityDetermined f col)
     (a b c d e g : ℤ) (hne : ¬ ((a + b) % 2 = 0 ∧ (c + d) % 2 = 0 ∧ (e + g) % 2 = 0)) :
