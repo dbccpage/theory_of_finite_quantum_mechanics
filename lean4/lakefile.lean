@@ -584,6 +584,10 @@ lean_lib FrontierTargets where
     `FrontierPrAllowedRegion
   ]
 
+-- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
+lean_lib CampaignPgwPresentationLift where
+  roots := #[`CampaignPgwPresentationLift]
+
 -- Campaign Target 3: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
 -- Not a default target: build with `lake build CampaignCtMediatorEntanglement`.
 lean_lib CampaignCtMediatorEntanglement where

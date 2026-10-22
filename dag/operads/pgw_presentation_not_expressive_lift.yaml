@@ -13,9 +13,17 @@ target:
   declared_assumptions:
   - 'Opaque identity convention: a state is what the regime can tell apart, so internal identity is the
     quotient by ≈ₙ (assumption)'
-  source_bottleneck: Under the exact-inscription convention <a> is a new state; the statement concerns
+  source_bottleneck: 'Under the exact-inscription convention <a> is a new state; the statement concerns
     discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus
-    nonempty payload without assigning a a referent.
+    nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/CampaignPgwPresentationLift.lean
+    checks a two-inscription model (Inscription = {nil, markA}, convention comparison, P0 = {nil} against
+    P1 = {nil, markA}) in which the distinction map q is the constant empty map by definition and the
+    exact-inscription convention is defined as equality, so O_0 = O_1 = empty, the non-injectivity of
+    q and the statement that the collapse holds under the opaque convention only are properties of those
+    definitions. Not proved: an observation family O_n and q derived from it, supplying <a> as an operation
+    that leaves O unchanged, P changing to {<a>} as the statement words it (the model has P1 = {<>, <a>}),
+    the link between q and the Genesis regime model of the module, and the opaque identity convention
+    itself, which stays an import.'
   source_refs:
   - dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md
   - omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:110-135
@@ -34,8 +42,83 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/pregenesis_pgw_presentation_not_expressive_lift_conditional.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: inductive
+  name: IdentityConvention
+  line: 171
+  signature_excerpt: |-
+    inductive IdentityConvention
+      | opaqueConv
+      | exactInscription
+      deriving DecidableEq, Repr
+
+    /-- Equivalence relation on presentations under a given identity convention and observation map. -/
+    def ConvEquiv (c : IdentityConvention) (obs : Inscription → Distinctions) (x y : Inscription) : Prop
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: HasCollapsingPresentations
+  line: 227
+  signature_excerpt: 'def HasCollapsingPresentations (c : IdentityConvention) (obs : Inscription → Distinctions)
+    : Prop'
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: emptyDistinctions
+  line: 112
+  signature_excerpt: 'def emptyDistinctions (_ : Inscription) : Distinctions'
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Inscription
+  line: 57
+  signature_excerpt: |-
+    inductive Inscription
+      | nil
+      | markA
+      deriving DecidableEq, Repr
+
+    instance : Fintype Inscription
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Distinctions
+  line: 108
+  signature_excerpt: abbrev Distinctions
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ConvEquiv
+  line: 177
+  signature_excerpt: 'def ConvEquiv (c : IdentityConvention) (obs : Inscription → Distinctions) (x y :
+    Inscription) : Prop'
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: statement_holds_under_opaque_only
+  line: 242
+  signature_excerpt: |-
+    theorem statement_holds_under_opaque_only (c : IdentityConvention) :
+        HasCollapsingPresentations c emptyDistinctions ↔ c = IdentityConvention.opaqueConv
+  source: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal
   availability: external
@@ -44,6 +127,15 @@ source_bindings:
   repository: the_symbol_game
   sha256: null
   declaration_status: external_source_not_scanned
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only
+  availability: local
+  symbol: CampaignPgwPresentationLift.statement_holds_under_opaque_only
+  path: lean4/CampaignPgwPresentationLift.lean
+  repository: this_repository
+  sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
+  declaration_status: declaration_found_not_proof_checked
+  line: 242
   role: source_lead_only
 presentation:
   colours: []
@@ -86,8 +178,6 @@ operad_slots:
       the quotient by ≈ₙ (assumption)'
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
