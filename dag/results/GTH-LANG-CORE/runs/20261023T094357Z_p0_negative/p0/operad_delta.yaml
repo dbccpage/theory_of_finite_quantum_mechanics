@@ -26,8 +26,8 @@ failed_compositions:
     declaration: Seed.Fifteenth.admission_not_assertion
     line: 48
   reason: reaching is defined as Admission.notAdmitted. reaching_does_not_admit is that definitional equality.
-    reaching_ne_admitted separates it from Admission.admitted. admission_not_assertion says an Admission value is
-    one of those two constructors and is not an assertion of the seed state. The module imports Fifteenth.State.
+    reaching_ne_admitted separates it from Admission.admitted. admission_not_assertion only enumerates the two Admission constructors;
+    no predicate relating the value to seed assertions appears in its type. The module imports Fifteenth.State.
     It does not import the regime calculus or the boxed laws, and it does not declare a syntax.
 - id: fail:derivation_regime_is_not_the_priced_syntax
   outer_operation: priced admission language syntax

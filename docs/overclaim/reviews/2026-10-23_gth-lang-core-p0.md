@@ -1,3 +1,5 @@
+Status: AI-drafted, awaiting human review.
+
 # Review of GTH-LANG-CORE P0
 
 Scope: staged diff for derive/GTH-LANG-CORE, base origin/main at 7e8b22135114. Reviewed before commit. Rule applied: this stage may record a reviewed negative and may not raise a status, invent a reading bundle, or cite AdmitCore as the node's theorem.
@@ -25,3 +27,17 @@ Corrections to the stage text:
 
 ## Prompt validator
 `python -X utf8 dag/pfp/validate_prompts.py` on origin/main at 7e8b22135114, with and without this diff, reports the same two pre-existing errors: TFQ-0084 local source pin changed, and LQG-PR-ALLOWED-REGION-TARGET legacy fabricated contract. GTH-LANG-CORE is not in that list. The whole validator is not claimed green. Isolated `-I` invocation fails to import custody; the normal script invocation was used. No Lean rebuild is claimed.
+
+## Independent repair review (PR #232)
+
+Reviewed author head `ca1e4cedafdd854203168f4266a00a499bcc6673` against merge base `7e8b2213511494fb91d9f5296d663dedfa30a514`. The earlier author report above is retained as history; this replay observed one prompt-validator error, not two.
+
+`Seed.Fifteenth.admission_not_assertion` (`lean4/Imported/GenesisOngoing/Fifteenth/Step.lean:48-52`) only proves `A = .notAdmitted ∨ A = .admitted`. Its type has no seed-assertion predicate. Corrected the YAML delta and identical embedded JSON explanation accordingly. Added the missing SHA-256 for the field list in `Derivation/Basic.lean:62-68` and checked every supplied source pin, including the pre-turn operad against the base Git blob.
+
+Registered the existing run in `dag/operads/index.json` with `p0_reviewed_negative`, `current_stage: P0_MINE_OPERAD`, and `ready_for_derivation: false`. The first full prompt writer moved this row into the executed-run section; the only semantic index change is the CORE registration. All four reviewed negative collections (Core, Import, Interpret, Reflect) were preserved byte for byte. The second full writer made no tracked changes. This addresses the same custody defect repaired in PR #228; an executed-stale refusal is expected for these reviewed deltas.
+
+The target remains OPEN, its Lean and Rust lists remain empty, and the route remains GAP_NO_DERIVATION with three DEFINITION inputs. All four mission slots remain REVIEWED_ABSENT; zero generators, relations, or checked compositions were admitted. No impossibility theorem is claimed. There are no code artifacts or capability promotions in this metadata-only patch.
+
+Independent receipt: `dag/research/pr232_negative_mining_review.json`. The prompt validator reports only the pre-existing `LQG-PR-ALLOWED-REGION-TARGET: legacy fabricated contract`, also present in the PR #228 receipt. Whole-validator success is not claimed. No Lean, Lake, or cargo rebuild was needed or performed.
+
+Independent strict overclaim scan: exit 0; HIGH=0, MEDIUM=0, LOW=0, merge base `7e8b22135114`. No baseline waiver was added. `git diff --check` passed. There is no accepted theorem whose axioms need certifying in this P0 negative.

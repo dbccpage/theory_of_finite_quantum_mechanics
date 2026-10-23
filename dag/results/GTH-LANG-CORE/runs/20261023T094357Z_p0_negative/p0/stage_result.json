@@ -67,6 +67,7 @@
     },
     {
       "path": "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean",
+      "sha256": "151fa22bcd2d75b01ec4d924ea3f94cb4b1c020c2a9254471ff013eb43aabcc7",
       "finding": "Regime at lines 62-68 stores data : Nat, forms, insts, rules, and reqs. That field list is not AdmitCore.Regime."
     },
     {
@@ -110,7 +111,7 @@
           {"path": "lean4/Imported/GenesisOngoing/Fifteenth/Step.lean", "declaration": "Seed.Fifteenth.reaching_ne_admitted", "line": 43},
           {"path": "lean4/Imported/GenesisOngoing/Fifteenth/Step.lean", "declaration": "Seed.Fifteenth.admission_not_assertion", "line": 48}
         ],
-        "reason": "reaching is defined as Admission.notAdmitted. reaching_does_not_admit is that definitional equality. reaching_ne_admitted separates it from Admission.admitted. admission_not_assertion says an Admission value is one of those two constructors and is not an assertion of the seed state. The module imports Fifteenth.State. It does not import the regime calculus or the boxed laws, and it does not declare a syntax."
+        "reason": "reaching is defined as Admission.notAdmitted. reaching_does_not_admit is that definitional equality. reaching_ne_admitted separates it from Admission.admitted. admission_not_assertion only enumerates the two Admission constructors; no predicate relating the value to seed assertions appears in its type. The module imports Fifteenth.State. It does not import the regime calculus or the boxed laws, and it does not declare a syntax."
       },
       {
         "id": "fail:derivation_regime_is_not_the_priced_syntax",
