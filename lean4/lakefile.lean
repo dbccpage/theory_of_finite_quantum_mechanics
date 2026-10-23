@@ -627,3 +627,7 @@ lean_lib GenesisHottHorns where
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
+-- Finite regulator obstruction; not a default target.
+lean_lib CampaignFspLatticeAnomalyInflow where
+  roots := #[`CampaignFspLatticeAnomalyInflow]
+
