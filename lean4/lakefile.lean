@@ -1025,3 +1025,10 @@ lean_lib CampaignFspU1WilsonAction where
   roots := #[`CampaignFspU1WilsonAction]
 
 
+-- Campaign: DFM-GRIBOV-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmGribovContinuumFence where
+  roots := #[`CampaignDfmGribovContinuumFence]
+
+-- Campaign: DFM-SYMANZIK-QED-AE-FENCE. Not a default target.
+lean_lib CampaignDfmSymanzikQedAeFence where
+  roots := #[`CampaignDfmSymanzikQedAeFence]
