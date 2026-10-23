@@ -48,39 +48,27 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: REVIEWED_ABSENT
+    mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
     assumptions: []
     source_pins: []
     public_input: {}
-    note: Not FILLED. No carrier of codes of priced-language sentences was admitted.
   slot_m2_layer1_forward_morphisms:
-    mining_status: REVIEWED_ABSENT
+    mining_status: UNREVIEWED
     operations: []
     composition_plan: []
-    note: Not FILLED. No quotation map from that language was admitted.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: REVIEWED_ABSENT
+    mining_status: UNREVIEWED
     algebraic_relations: []
     rejection_predicates: []
     negative_control_plan: []
-    note: Not FILLED. No soundness sentence for a represented fragment was admitted.
   slot_m4_tri_language_witness_anchors:
-    mining_status: REVIEWED_ABSENT
+    mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
     unpaid_imports: []
-    note: Not FILLED. The node cites no Lean declaration and no Rust declaration.
-stage_history:
-- stage: P0_MINE_OPERAD
-  status: completed
-  result: reviewed_negative
-  attempt: p0
-  run: dag/results/GTH-LANG-REFLECT/runs/20261023T084354Z_p0_negative
-  operad_delta: dag/results/GTH-LANG-REFLECT/runs/20261023T084354Z_p0_negative/p0/operad_delta.yaml
-  authority_effect: None
-  slots_not_filled: true
+stage_history: []
 open_obligations:
 - No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
   premises; do not invent an operation.
@@ -88,21 +76,4 @@ open_obligations:
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
-- P0 2026-10-23 reviewed negative. No generator admitted. Route GTH-R-GTH-LANG-REFLECT stays
-  GAP_NO_DERIVATION. Next missing dependency is a syntax for the priced admission language, which GTH-LANG-CORE
-  does not supply.
-excluded_relation_leads:
-- id: AdmitReflect.quoteJudg
-  path: lean4/AdmitReflect.lean
-  line: 78
-  reason: Maps AdmitCore.Judg to QJudg. Those judgments are not codes of sentences of the priced admission language.
-    Not an input of the route. AdmitCore is not a theorem of this node.
-- id: AdmitReflect.qstep_sound
-  path: lean4/AdmitReflect.lean
-  line: 134
-  reason: Equates quoted step transport with AdmitCore.Step. The comment says this is not a truth predicate.
-    Not a soundness sentence for a represented fragment of the priced language.
-- id: checks.independent.genesis_language
-  path: checks/independent/genesis_language.py
-  line: 19
-  reason: step, holds, and typing helpers for an Admit-core regime. No quotation of sentence codes.
+excluded_relation_leads: []
