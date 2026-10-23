@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 89. Grades: E0 85, E1 1, E2 3. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 10, DEFINITION 16, SOURCE_RECORD 1, OPEN 13.
+Nodes: 89. Grades: E0 84, E1 1, E2 3, E3 1. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 10, DEFINITION 16, SOURCE_RECORD 1, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -19,7 +19,7 @@ Nodes: 89. Grades: E0 85, E1 1, E2 3. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, 
 | [PG-GEN-SAMENESS-REFINEMENTS](../nodes/PG-GEN-SAMENESS-REFINEMENTS.md) | `COMPUTATIONALLY_CHECKED` | E0 | Reviewed scope: Actual excess/plain/together arrays, cancellation cost and bounded two-term rewriting orbits are exact; pointwise excess/... | none in this checkout | computational_no_runnable_test |
 | [TFQ-0383](../nodes/TFQ-0383.md) | `SOURCE_RECORD` | E1 | Ledger row WDP-P000-009 says that with n fixed data, fresh well-formed targets, no new-datum response items, and duplicate-free initial r... | [closure.rs](../../../code/rust/src/general_relativity/exact_regge/closure.rs) | - |
 | [TFQ-0385](../nodes/TFQ-0385.md) | `OPEN` | E0 | Ledger row WDP-P000-017 records a counterexample: adding an admitted uniform rule can erase a prior separation. The row names two data, o... | none in this checkout | - |
-| [TFQ-0396](../nodes/TFQ-0396.md) | `OPEN` | E0 | Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 310... | none in this checkout | - |
+| [TFQ-0396](../nodes/TFQ-0396.md) | `OPEN` | E3 | Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 310... | [CampaignGenesisCarrierBridge.lean](../../../lean4/CampaignGenesisCarrierBridge.lean): `certified_zero_iff`, `factorization_iff`, `inert_inscription_has_no_distinction` +11<br>[tfq-0396.py](../../../checks/independent/tfq-0396.py)<br>[tfq-0396.md](../../../dag/derivations/independent/tfq-0396.md) | - |
 | [PGW-METATHEORY-OBJECT-LANGUAGE-SPLIT](../nodes/PGW-METATHEORY-OBJECT-LANGUAGE-SPLIT.md) | `DEFINITION` | E0 | The sealed manuscript declares two levels. The metatheory holds presentation tokens (strings), event sequences, indices, finite data stru... | none in this checkout | - |
 | [PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS](../nodes/PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS.md) | `DEFINITION` | E0 | A regime isomorphism is a pair of bijections on datum and form indices that preserves form arities, ordered instance arguments, uniform-r... | none in this checkout | - |
 | [PGW-CHALLENGE0-INERTIA-SECOND-TOKEN](../nodes/PGW-CHALLENGE0-INERTIA-SECOND-TOKEN.md) | `PROVED_LEAN` | E0 | At Challenge 0 the only object-language inscription is the opaque whole \<\>. In the token-erased Lean model nothing is derivable at genesi... | none in this checkout | proved_lean_below_e3, proved_lean_external_only |
