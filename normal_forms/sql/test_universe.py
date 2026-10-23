@@ -649,6 +649,7 @@ PARTIAL_DEPENDENCY_COINCIDENCES: dict[tuple[str, tuple[str, ...], str], str] = {
     # a module replayed in several receipt files with an unchanged source gets the same audit outcome in each
     ("receipt_module_audit", ("lean_module_name",), "axiom_audit_passed"): _MODULE_NOTE,
     ("receipt_module_audit", ("lean_module_name",), "axioms_itemised"): _MODULE_NOTE,
+    ("receipt_module", ("lean_module_name",), "exit_code"): _MODULE_NOTE,  # the same build, recorded twice
 }
 
 
