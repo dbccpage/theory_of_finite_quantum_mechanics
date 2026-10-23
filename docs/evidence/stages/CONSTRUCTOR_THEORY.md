@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 15. Grades: E0 11, E1 1, E3 3. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTION 4, SOURCE_RECORD 6, OPEN 2.
+Nodes: 15. Grades: E0 10, E1 1, E3 4. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTION 4, SOURCE_RECORD 6, OPEN 2.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -19,6 +19,6 @@ Nodes: 15. Grades: E0 11, E1 1, E3 3. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTI
 | [CT-PROBABILITY-2016-SOURCE](../nodes/CT-PROBABILITY-2016-SOURCE.md) | `SOURCE_RECORD` | E0 | Marletto (2016, arXiv:1507.03287) formulates unpredictability in superinformation media via the non-existence of an X-predictor construct... | none in this checkout | - |
 | [CT-THERMODYNAMICS-2016-SOURCE](../nodes/CT-THERMODYNAMICS-2016-SOURCE.md) | `SOURCE_RECORD` | E0 | Marletto (2016, v5 2017, arXiv:1608.02625) defines work media as substrates with at least three equally-spaced energy attributes admittin... | none in this checkout | - |
 | [CT-MARLETTO-VEDRAL-2017-SOURCE](../nodes/CT-MARLETTO-VEDRAL-2017-SOURCE.md) | `SOURCE_RECORD` | E1 | Marletto and Vedral (2017, arXiv:1707.06036, pp. 1-4, Fig. 1) argue within constructor theory that if a mediator M locally couples two qu... | [DualWitness.lean](../../../lean4/DualWitness.lean)<br>[Entanglement.lean](../../../lean4/Entanglement.lean) | - |
-| [CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT](../nodes/CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT.md) | `IMPORTED_ASSUMPTION` | E0 | Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and Bose et al. (2017, arXiv:1707.06050, pp. 1-2):... | none in this checkout | - |
+| [CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT](../nodes/CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT.md) | `IMPORTED_ASSUMPTION` | E3 | Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and Bose et al. (2017, arXiv:1707.06050, pp. 1-2):... | [CampaignCtMediatorEntanglement.lean](../../../lean4/CampaignCtMediatorEntanglement.lean): `M_entangled_concurrence`, `M_entangled_det_nonzero`, `M_entangled_not_product` +14<br>[ct-local-mediator-entanglement-import.md](../../../dag/derivations/independent/ct-local-mediator-entanglement-import.md) | - |
 | [CT-ENTANGLING-PHASE-FINITE-TARGET](../nodes/CT-ENTANGLING-PHASE-FINITE-TARGET.md) | `PROVED_LEAN` | E3 | Finite statement over Q(i), checked in Lean 4 for (a) to (c); (d) is not proved. For u in Q(i) (the Lean proofs of (a) and (b) do not use... | [DualWitness.lean](../../../lean4/DualWitness.lean)<br>[Entanglement.lean](../../../lean4/Entanglement.lean)<br>[FrontierEntanglingPhase.lean](../../../lean4/FrontierEntanglingPhase.lean): `concurrenceSq_M_u`, `det2_local_action`, `det_M_u` +7<br>[frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) | - |
 

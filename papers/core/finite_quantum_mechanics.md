@@ -1637,11 +1637,11 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `ADMITTED_PRIMITIVE` | 3 | 3 |
 | `DEFINITION` | 91 | 14 |
 | `PROVED_PROSE` | 27 | 0 |
-| `PROVED_LEAN` | 261 | 100 |
+| `PROVED_LEAN` | 262 | 100 |
 | `COMPUTATIONALLY_CHECKED` | 152 | 22 |
 | `CONDITIONAL` | 34 | 12 |
 | `IMPORTED_ASSUMPTION` | 63 | 21 |
-| `OPEN` | 168 | 5 |
+| `OPEN` | 167 | 5 |
 | `REFUTED` | 2 | 0 |
 | `SOURCE_RECORD` | 79 | 0 |
 | **Total** | **880** | **177** |
@@ -1649,10 +1649,10 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | Route status | Routes |
 | --- | ---: |
 | `DERIVED_PROSE` | 104 |
-| `DERIVED_LEAN` | 268 |
+| `DERIVED_LEAN` | 269 |
 | `COMPUTED` | 156 |
 | `CONDITIONAL_ON_IMPORT` | 91 |
-| `GAP_NO_DERIVATION` | 185 |
+| `GAP_NO_DERIVATION` | 184 |
 | `RECORD_PARENT` | 81 |
 | **Total** | **885** |
 
