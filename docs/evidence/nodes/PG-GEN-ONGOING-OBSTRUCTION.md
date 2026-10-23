@@ -10,9 +10,9 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Not covered by the PFP review: Formalize the full Legal/WF/Reach refinement and the build-structure answer with its minimality theorem. The illegal intermediate image is diagnostic, not an authorized performed change.
+Full source/wire Legal/WF/Step/Reach correspondence and exact obstruction iff statements now compile. A legal build is constructed in two steps, with a general two-step lower bound under the stated quotient-fixes-old-terms premise. An illegal diagnostic image is not a performed change. External runtime/compiler refinement remains separate.
 
 ## Source status
 
@@ -44,6 +44,24 @@ Obstruction: adding xrx, or identifying related terms, is obstructed (Genesis On
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignGenesisOngoingRefinement.lean`
+
+- file: [lean4/CampaignGenesisOngoingRefinement.lean](../../../lean4/CampaignGenesisOngoingRefinement.lean)
+- sha256 (`bytes`): `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `CampaignGenesisOngoingRefinement`): recorded sha256 `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGenesisOngoingRefinement`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignGenesisOngoingRefinement.assertion_obstruction_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.assertion_obstruction_iff` |
+| `CampaignGenesisOngoingRefinement.build_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.build_lower_bound` |
+| `CampaignGenesisOngoingRefinement.build_two_steps` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.build_two_steps` |
+| `CampaignGenesisOngoingRefinement.identify_obstruction_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.identify_obstruction_iff` |
+| `CampaignGenesisOngoingRefinement.wire_build_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.wire_build_lower_bound` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean`
 
@@ -88,6 +106,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0388
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pg-gen-ongoing-fewest-changes.md`
+
+- file: [dag/derivations/independent/pg-gen-ongoing-fewest-changes.md](../../../dag/derivations/independent/pg-gen-ongoing-fewest-changes.md)
+- sha256 (`lf-normalised`): `264aa3c3529be579b7ad1ad06c76d916ca59ad832c0507d4be41d216640bcbcc`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md`
 

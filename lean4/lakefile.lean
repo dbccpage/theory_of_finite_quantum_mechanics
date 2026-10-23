@@ -986,3 +986,15 @@ lean_lib CampaignDfmHierarchicalBorel where
 -- Exact no-return engine replay, reusing the sealed source library.
 lean_lib CampaignGenesisNoReturn where
   roots := #[`CampaignGenesisNoReturn]
+
+-- Immutable Genesis-Ongoing dependencies; non-default source and proof targets.
+lean_lib CampaignGenesisOngoingSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4"
+  roots := #[`H3V7N5QF.Answers, `Second.Cost]
+  globs := #[.submodules `H3V7N5QF, .submodules `Second]
+
+lean_lib CampaignGenesisOngoingRename where
+  roots := #[`CampaignGenesisOngoingRename]
+
+lean_lib CampaignGenesisOngoingRefinement where
+  roots := #[`CampaignGenesisOngoingRefinement]
