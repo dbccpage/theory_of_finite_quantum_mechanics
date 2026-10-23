@@ -1,51 +1,73 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "dag/sync_pfp_results.py",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted.",
   "contract": {
-    "schema_id": "finite-qm.code-companion.v1",
-    "subject": "dag/sync_pfp_results.py",
-    "source_sha256": "c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61",
-    "authority_effect": "None",
-    "contract_urn": "urn:finite-qm:pfp:review-incorporation:c44a7c9f6aaae363336b",
-    "symbols": [
-      "sanitize",
-      "review_sha256",
-      "find_text",
-      "load_decisions",
-      "review_digest",
-      "decision_errors",
-      "apply_decisions",
-      "reviewed_refs",
-      "generated_files",
-      "report",
-      "main"
-    ],
-    "owned_invariants": [
-      "Only the literal definitions and the declared synchronization or check contract of this source are claimed.",
-      "Source bytes are retained; labels and statuses do not admit a mathematical or physical target."
-    ],
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "dag/sync_pfp_results.py",
+      "sha256": "016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07"
+    },
     "boundaries": [
-      "Writes no review, run or manifest file; synchronization establishes no mathematical claim.",
-      "A status is never raised; a decision that would raise one is refused."
+      "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+      "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
     ],
+    "claim": "Integrate reviewed PFP references into their owned records and regenerate deterministic views without promoting target statements.",
+    "contract_urn": "urn:tfqm:pr208-repair:sync_pfp_results",
     "evidence": [
-      "dag/fragments/pfp_review_decisions.json",
-      "dag/derivation_dag_reading_note.md"
+      {
+        "path": "dag/research/foc035_l4_refactor_equivalence.json",
+        "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+      },
+      {
+        "path": "dag/research/foc035_l4_tests_retry.json",
+        "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+      },
+      {
+        "path": "dag/research/foc035_l4_gate_replay.json",
+        "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+      },
+      {
+        "path": "dag/research/foc035_l4_checker_refactor.json",
+        "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+      },
+      {
+        "path": "dag/research/foc035_l4_metrics.json",
+        "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+      }
+    ],
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "generated_files",
+      "main"
     ]
   },
-  "current_contract": "ddbcea5903c3108c6cf8564e3aa826b5f4bcb92128b4a3d4a1cddab28072f0d8",
-  "current_scoring": "18d409fc75075e40dac21aeada3345301846f48d7bf2eff7ee85bd275274764a",
   "contract_history": [
     {
-      "sha256": "93940ef9035993aa8a52394206e96c1a46cfd951f3d83e2534a6926db8f28e59",
       "bytes": 933,
+      "original_paths": [
+        "dag/sync_pfp_results.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:review-incorporation:e361f8c7958c841f847f\nsymbols:\n- apply_decisions\n- decision_errors\n- find_text\n- generated_files\n- json_text\n- load_decisions\n- main\n- record_line\n- report\n- review_digest\n- review_sha256\n- reviewed_refs\n- sanitize\nowned_invariants:\n- Only the literal definitions and the declared synchronization or check contract of this source are claimed.\n- Source bytes are retained; labels and statuses do not admit a mathematical or physical target.\nboundaries:\n- Writes no review, run or manifest file; synchronization establishes no mathematical claim.\n- A status is never raised; a decision that would raise one is refused.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "dag/sync_pfp_results.py",
-        "source_sha256": "e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85",
         "authority_effect": "None",
+        "boundaries": [
+          "Writes no review, run or manifest file; synchronization establishes no mathematical claim.",
+          "A status is never raised; a decision that would raise one is refused."
+        ],
         "contract_urn": "urn:finite-qm:pfp:review-incorporation:e361f8c7958c841f847f",
+        "evidence": [
+          "dag/fragments/pfp_review_decisions.json",
+          "dag/derivation_dag_reading_note.md"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared synchronization or check contract of this source are claimed.",
+          "Source bytes are retained; labels and statuses do not admit a mathematical or physical target."
+        ],
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85",
+        "subject": "dag/sync_pfp_results.py",
         "symbols": [
           "apply_decisions",
           "decision_errors",
@@ -60,34 +82,34 @@
           "review_sha256",
           "reviewed_refs",
           "sanitize"
+        ]
+      },
+      "sha256": "93940ef9035993aa8a52394206e96c1a46cfd951f3d83e2534a6926db8f28e59"
+    },
+    {
+      "bytes": 907,
+      "original_paths": [
+        "dag/sync_pfp_results.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:review-incorporation:c44a7c9f6aaae363336b\nsymbols:\n- sanitize\n- review_sha256\n- find_text\n- load_decisions\n- review_digest\n- decision_errors\n- apply_decisions\n- reviewed_refs\n- generated_files\n- report\n- main\nowned_invariants:\n- Only the literal definitions and the declared synchronization or check contract of this source are claimed.\n- Source bytes are retained; labels and statuses do not admit a mathematical or physical target.\nboundaries:\n- Writes no review, run or manifest file; synchronization establishes no mathematical claim.\n- A status is never raised; a decision that would raise one is refused.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
+      "record": {
+        "authority_effect": "None",
+        "boundaries": [
+          "Writes no review, run or manifest file; synchronization establishes no mathematical claim.",
+          "A status is never raised; a decision that would raise one is refused."
+        ],
+        "contract_urn": "urn:finite-qm:pfp:review-incorporation:c44a7c9f6aaae363336b",
+        "evidence": [
+          "dag/fragments/pfp_review_decisions.json",
+          "dag/derivation_dag_reading_note.md"
         ],
         "owned_invariants": [
           "Only the literal definitions and the declared synchronization or check contract of this source are claimed.",
           "Source bytes are retained; labels and statuses do not admit a mathematical or physical target."
         ],
-        "boundaries": [
-          "Writes no review, run or manifest file; synchronization establishes no mathematical claim.",
-          "A status is never raised; a decision that would raise one is refused."
-        ],
-        "evidence": [
-          "dag/fragments/pfp_review_decisions.json",
-          "dag/derivation_dag_reading_note.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:review-incorporation:e361f8c7958c841f847f\nsymbols:\n- apply_decisions\n- decision_errors\n- find_text\n- generated_files\n- json_text\n- load_decisions\n- main\n- record_line\n- report\n- review_digest\n- review_sha256\n- reviewed_refs\n- sanitize\nowned_invariants:\n- Only the literal definitions and the declared synchronization or check contract of this source are claimed.\n- Source bytes are retained; labels and statuses do not admit a mathematical or physical target.\nboundaries:\n- Writes no review, run or manifest file; synchronization establishes no mathematical claim.\n- A status is never raised; a decision that would raise one is refused.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
-      "original_paths": [
-        "dag/sync_pfp_results.py.contract.yaml"
-      ]
-    },
-    {
-      "sha256": "ddbcea5903c3108c6cf8564e3aa826b5f4bcb92128b4a3d4a1cddab28072f0d8",
-      "bytes": 907,
-      "record": {
         "schema_id": "finite-qm.code-companion.v1",
-        "subject": "dag/sync_pfp_results.py",
         "source_sha256": "c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61",
-        "authority_effect": "None",
-        "contract_urn": "urn:finite-qm:pfp:review-incorporation:c44a7c9f6aaae363336b",
+        "subject": "dag/sync_pfp_results.py",
         "symbols": [
           "sanitize",
           "review_sha256",
@@ -100,124 +122,359 @@
           "generated_files",
           "report",
           "main"
-        ],
-        "owned_invariants": [
-          "Only the literal definitions and the declared synchronization or check contract of this source are claimed.",
-          "Source bytes are retained; labels and statuses do not admit a mathematical or physical target."
-        ],
-        "boundaries": [
-          "Writes no review, run or manifest file; synchronization establishes no mathematical claim.",
-          "A status is never raised; a decision that would raise one is refused."
-        ],
-        "evidence": [
-          "dag/fragments/pfp_review_decisions.json",
-          "dag/derivation_dag_reading_note.md"
         ]
       },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61\nauthority_effect: None\ncontract_urn: urn:finite-qm:pfp:review-incorporation:c44a7c9f6aaae363336b\nsymbols:\n- sanitize\n- review_sha256\n- find_text\n- load_decisions\n- review_digest\n- decision_errors\n- apply_decisions\n- reviewed_refs\n- generated_files\n- report\n- main\nowned_invariants:\n- Only the literal definitions and the declared synchronization or check contract of this source are claimed.\n- Source bytes are retained; labels and statuses do not admit a mathematical or physical target.\nboundaries:\n- Writes no review, run or manifest file; synchronization establishes no mathematical claim.\n- A status is never raised; a decision that would raise one is refused.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
-      "original_paths": [
-        "dag/sync_pfp_results.py.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "9d8796d6d792e01ea4846b325ced916017dc493e15fbeac199214baa773d1cb5",
-      "bytes": 872,
-      "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "dag/sync_pfp_results.py",
-        "source_sha256": "e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
-        "assessment_status": "formal_scoring_not_performed",
-        "gates": {
-          "G1": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G2": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G3": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G4": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G5": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          }
-        },
-        "refusal_reason": "A five-gate engineering-grade assessment was not performed; the tests support only their stated structural scope.",
-        "evidence": [
-          "dag/fragments/pfp_review_decisions.json",
-          "dag/derivation_dag_reading_note.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; the tests support only their\n  stated structural scope.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
-      "original_paths": [
-        "dag/sync_pfp_results.py.score.yaml"
-      ]
+      "sha256": "ddbcea5903c3108c6cf8564e3aa826b5f4bcb92128b4a3d4a1cddab28072f0d8"
     },
     {
-      "sha256": "18d409fc75075e40dac21aeada3345301846f48d7bf2eff7ee85bd275274764a",
-      "bytes": 872,
+      "bytes": 1655,
+      "original_paths": [
+        "dag\\sync_pfp_results.contract.score.yaml#pr208-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/sync_pfp_results.py\",\n    \"sha256\": \"016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07\"\n  },\n  \"boundaries\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"claim\": \"Integrate reviewed PFP references into their owned records and regenerate deterministic views without promoting target statements.\",\n  \"contract_urn\": \"urn:tfqm:pr208-repair:sync_pfp_results\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69\"\n    }\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"generated_files\",\n    \"main\"\n  ]\n}\n",
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "dag/sync_pfp_results.py",
-        "source_sha256": "c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
-        "assessment_status": "formal_scoring_not_performed",
-        "gates": {
-          "G1": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G2": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G3": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G4": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          },
-          "G5": {
-            "grade": null,
-            "status": "formal_scoring_not_performed"
-          }
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/sync_pfp_results.py",
+          "sha256": "016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07"
         },
-        "refusal_reason": "A five-gate engineering-grade assessment was not performed; the tests support only their stated structural scope.",
+        "boundaries": [
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
+        ],
+        "claim": "Integrate reviewed PFP references into their owned records and regenerate deterministic views without promoting target statements.",
+        "contract_urn": "urn:tfqm:pr208-repair:sync_pfp_results",
         "evidence": [
-          "dag/fragments/pfp_review_decisions.json",
-          "dag/derivation_dag_reading_note.md"
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69"
+          }
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "generated_files",
+          "main"
         ]
       },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; the tests support only their\n  stated structural scope.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
+      "sha256": "f4846152d8a2fabbbe814a2f4035a8f134797f46b33762723c3357b7a2b3a379"
+    },
+    {
+      "bytes": 1655,
       "original_paths": [
-        "dag/sync_pfp_results.py.score.yaml"
-      ]
+        "dag/sync_pfp_results.py#final-source-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/sync_pfp_results.py\",\n    \"sha256\": \"016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07\"\n  },\n  \"boundaries\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"claim\": \"Integrate reviewed PFP references into their owned records and regenerate deterministic views without promoting target statements.\",\n  \"contract_urn\": \"urn:tfqm:pr208-repair:sync_pfp_results\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"generated_files\",\n    \"main\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/sync_pfp_results.py",
+          "sha256": "016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07"
+        },
+        "boundaries": [
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
+        ],
+        "claim": "Integrate reviewed PFP references into their owned records and regenerate deterministic views without promoting target statements.",
+        "contract_urn": "urn:tfqm:pr208-repair:sync_pfp_results",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "generated_files",
+          "main"
+        ]
+      },
+      "sha256": "08a5540f5a598f13deb453f91a3888d2e2000ce56a71c7f6504500e8d067371c"
     }
   ],
+  "current_contract": "08a5540f5a598f13deb453f91a3888d2e2000ce56a71c7f6504500e8d067371c",
+  "current_scoring": "f2f38fad632c117d13013e7a4f9dcb852a983c59995aa913ef009fdf027a6e5d",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "dag/sync_pfp_results.py.contract.yaml": "ddbcea5903c3108c6cf8564e3aa826b5f4bcb92128b4a3d4a1cddab28072f0d8",
     "dag/sync_pfp_results.py.score.yaml": "18d409fc75075e40dac21aeada3345301846f48d7bf2eff7ee85bd275274764a"
   },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 872,
+      "original_paths": [
+        "dag/sync_pfp_results.py.score.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; the tests support only their\n  stated structural scope.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
+      "record": {
+        "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/fragments/pfp_review_decisions.json",
+          "dag/derivation_dag_reading_note.md"
+        ],
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; the tests support only their stated structural scope.",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "e361f8c7958c841f847f5a061e71a27535d086385f0f4b4591400aae002a2e85",
+        "subject": "dag/sync_pfp_results.py"
+      },
+      "sha256": "9d8796d6d792e01ea4846b325ced916017dc493e15fbeac199214baa773d1cb5"
+    },
+    {
+      "bytes": 872,
+      "original_paths": [
+        "dag/sync_pfp_results.py.score.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/sync_pfp_results.py\nsource_sha256: c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; the tests support only their\n  stated structural scope.\nevidence:\n- dag/fragments/pfp_review_decisions.json\n- dag/derivation_dag_reading_note.md\n",
+      "record": {
+        "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
+        "evidence": [
+          "dag/fragments/pfp_review_decisions.json",
+          "dag/derivation_dag_reading_note.md"
+        ],
+        "gates": {
+          "G1": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G2": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G3": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G4": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          },
+          "G5": {
+            "grade": null,
+            "status": "formal_scoring_not_performed"
+          }
+        },
+        "refusal_reason": "A five-gate engineering-grade assessment was not performed; the tests support only their stated structural scope.",
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "c44a7c9f6aaae363336b85006b567253dc6d61e7d8c84fc11445fc1d493a6a61",
+        "subject": "dag/sync_pfp_results.py"
+      },
+      "sha256": "18d409fc75075e40dac21aeada3345301846f48d7bf2eff7ee85bd275274764a"
+    },
+    {
+      "bytes": 3144,
+      "original_paths": [
+        "dag\\sync_pfp_results.contract.score.yaml#pr208-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/sync_pfp_results.py\",\n    \"sha256\": \"016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07\"\n  },\n  \"assessor\": \"Codex repair review\",\n  \"basis\": {\n    \"G1\": \"Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.\",\n    \"G2\": \"Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.\",\n    \"G3\": \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"G4\": \"117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.\",\n    \"G5\": \"Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T16:31:30.321455+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.\",\n  \"metrics\": {\n    \"ccn_max\": 16,\n    \"cognitive_max\": 28,\n    \"sha256\": \"016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07\"\n  },\n  \"open_higher_grade_findings\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/sync_pfp_results.py",
+          "sha256": "016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07"
+        },
+        "assessor": "Codex repair review",
+        "basis": {
+          "G1": "Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.",
+          "G2": "Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.",
+          "G3": "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "G4": "117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.",
+          "G5": "Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T16:31:30.321455+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.",
+        "metrics": {
+          "ccn_max": 16,
+          "cognitive_max": 28,
+          "sha256": "016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07"
+        },
+        "open_higher_grade_findings": [
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "52899d82ef6bb6eb8a5d6044662ea5b786ccc25e8069faa1926fcf01248f780c"
+    },
+    {
+      "bytes": 3144,
+      "original_paths": [
+        "dag/sync_pfp_results.py#final-source-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/sync_pfp_results.py\",\n    \"sha256\": \"016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07\"\n  },\n  \"assessor\": \"Codex repair review\",\n  \"basis\": {\n    \"G1\": \"Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.\",\n    \"G2\": \"Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.\",\n    \"G3\": \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"G4\": \"117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.\",\n    \"G5\": \"Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T16:31:30.321455+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.\",\n  \"metrics\": {\n    \"ccn_max\": 16,\n    \"cognitive_max\": 28,\n    \"sha256\": \"016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07\"\n  },\n  \"open_higher_grade_findings\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/sync_pfp_results.py",
+          "sha256": "016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07"
+        },
+        "assessor": "Codex repair review",
+        "basis": {
+          "G1": "Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.",
+          "G2": "Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.",
+          "G3": "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "G4": "117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.",
+          "G5": "Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T16:31:30.321455+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.",
+        "metrics": {
+          "ccn_max": 16,
+          "cognitive_max": 28,
+          "sha256": "016cc910bfb363e3d353c7fbd774bb0fc63d98739833160bac3afbe793f94a07"
+        },
+        "open_higher_grade_findings": [
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "f2f38fad632c117d13013e7a4f9dcb852a983c59995aa913ef009fdf027a6e5d"
+    }
+  ]
 }

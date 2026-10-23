@@ -2,6 +2,12 @@
 
 **AuthorityEffect:** None.
 
+## Revision log
+
+Version 2.0.0 keeps its levels, gates, grade definitions and record schema. The entries below are editorial corrections; records that cite version 2.0.0 stay valid.
+
+- **2026-10-22.** (1) The repository acceptance floor is now stated in [section 1.5](#15-repository-acceptance-floor): a completed score at level L4 or L5 **and** composite grade D or better. Older score records that say `requested_target: L4E or higher` meant any L4 score, `L4E` included; that target is superseded by the floor. (2) Section 7, scenario 7, put the claim-mapping failure of a trivial Lean proof in Gate 2. Claim mapping belongs to Gate 1 (section 3.1 and RULE_LEAN_001), so the scenario now says Gate 1; its score `L2E` is unchanged. The floor is enforced by [`governance/`](governance/README.md).
+
 This document establishes the canonical, fail-closed code evaluation rubric across all software and formal artifacts in this workspace. Version 2.0.0 updates the evaluation framework across nine language profiles and computational environments: **SQL**, **Lean 4**, **C# / .NET**, **C++**, **Python**, **Rust**, **Coq / Rocq**, **Wolfram|Alpha (Service)**, and **Wolfram Language (Code)**.
 
 ---
@@ -55,6 +61,17 @@ An incomplete assessment cannot emit a completed score token:
 $$\text{Level: L3}, \quad \text{Gates: } [\text{G1: A}, \text{G2: A}, \text{G3: B}, \text{G4: Unassessed}, \text{G5: A}] \implies \mathbf{Result: \text{assessment incomplete}}, \quad \mathbf{Ceiling: B}, \quad \mathbf{Composite: null}$$
 
 This preserves the refusal to certify without evidence while avoiding a false claim that the code has already been demonstrated defective. Furthermore, **a known Grade E finding remains visible when other gates are unassessed**. Missing evidence cannot conceal an established failure.
+
+### 1.5 Repository Acceptance Floor
+This repository accepts a source or formal artifact only with a **completed** score at capability level **L4 or L5** and composite grade **D or better**:
+
+$$\text{accepted} \iff \text{complete} \wedge \text{Level} \ge \mathbf{L4} \wedge \text{Grade} \ge \mathbf{D}$$
+
+- `L4D`, `L4C` and `L5A+` are accepted. `L4E` and `L5E` (a demonstrated defect) are rejected, and so is every score at `L1`, `L2` or `L3`, for example `L3A`.
+- An incomplete assessment (an unassessed gate, `composite_grade: null`, `score_token: null`) is rejected, whatever its known ceiling.
+- `requested_target: L4E or higher` in older records means "any L4 score". It is superseded by this floor and earns no acceptance.
+- The floor applies to every new or changed source. A source listed in `governance/baseline.json` with unchanged bytes is grandfathered; changing it removes the exemption. The floor, the source populations and the baseline are machine-readable in `governance/policy.json` and `governance/baseline.json` and are enforced by `governance-check` and by every workspace `build.rs` (see `governance/README.md`).
+- A passing check confirms only that a completed score at or above the floor exists and binds the exact bytes. Whether the grades are deserved is decided by review against the cited evidence.
 
 ---
 
@@ -400,7 +417,7 @@ The following eighteen scenarios establish normative precedents for boundary eva
    A user authentication module enforces signature validation via `assert verify_signature(data)`. Under `python -O`, the check disappears. Gate 3 is bounded to **`E`**: **`L3E`**.
 
 7. **Lean 4 Trivial Proof of Complex Theorem (`L2E`):**
-   A paper claims formal proof of the Riemann Hypothesis, but the Lean file exports `theorem riemann_hypothesis (h : False) : RH := False.elim h`. Gate 2 fails claim mapping: **`L2E`**.
+   A paper claims formal proof of the Riemann Hypothesis, but the Lean file exports `theorem riemann_hypothesis (h : False) : RH := False.elim h`. Gate 1 fails claim mapping (section 3.1, RULE_LEAN_001): **`L2E`**.
 
 8. **Lean 4 Theorem with Hidden `sorryAx` (`L4E`):**
    A formal module discharges 10 lemmas cleanly, but lemma 7 invokes a helper from an auxiliary namespace containing `sorry`. The kernel dependency audit detects transitive `sorryAx`. Gate 3 bounded to **`E`**: **`L4E`**.

@@ -1,0 +1,640 @@
+{
+  "authority_effect": "None",
+  "reviewed_head": "5afb96c279849537c1308a4dda1eee94723ebf95",
+  "source_sha256": {
+    "lean4/CampaignGenesisOngoingRefinement.lean": "ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac",
+    "lean4/CampaignGenesisOngoingRename.lean": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
+    "checks/independent/pg-gen-ongoing-fewest-changes.py": "7e1cdffe67327ac34b88ae1b675df5d122938fc77962821572c4362b043d5675",
+    "lean4/lakefile.lean": "d8efa2b3b882079f22664725a50b9ae29660323bb600a6046c8e20910b71083e"
+  },
+  "checks": {
+    "build_evidence-check": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    "build_results_audit_table-check": {
+      "label": "build_results_audit_table-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "papers/core/tools/build_results_audit_table.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:06.409311+00:00",
+      "completed": "2026-10-23T09:23:06.723576+00:00",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    "build_status-check": {
+      "label": "build_status-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:06.724578+00:00",
+      "completed": "2026-10-23T09:23:13.188159+00:00",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    "campaign-pytest": {
+      "label": "campaign-pytest",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "--basetemp=lean4/b/review-pytest-temp"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:19.039955+00:00",
+      "completed": "2026-10-23T09:23:29.270650+00:00",
+      "exit_code": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.12.10, pytest-8.3.5, pluggy-1.7.0\nrootdir: C:\\gw\\tp205\nconfigfile: pyproject.toml\ncollected 24 items\n\ndag\\test_tensor_countermodel_receipt.py ..                               [  8%]\ndag\\test_tensor_measurement_receipt.py ..                                [ 16%]\ndag\\test_application_branches.py ........                                [ 50%]\ndag\\test_frontier_branches.py ........                                   [ 83%]\ndag\\test_genesis_to_higher.py ....                                       [100%]\n\n============================== warnings summary ===============================\nlean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 24 passed, 1 warning in 9.78s ========================\n",
+      "stderr": ""
+    },
+    "dag-validator": {
+      "label": "dag-validator",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:17.844449+00:00",
+      "completed": "2026-10-23T09:23:19.039955+00:00",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    "invariants": {
+      "label": "invariants",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:17.565944+00:00",
+      "completed": "2026-10-23T09:23:17.842434+00:00",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    "overclaim": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base b53463a1f370); HIGH=0 MEDIUM=0 LOW=7\n",
+      "stderr": ""
+    },
+    "readme-check": {
+      "label": "readme-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:05.358323+00:00",
+      "completed": "2026-10-23T09:29:15.985022+00:00",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    "render_dag_views-check": {
+      "label": "render_dag_views-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:05.919741+00:00",
+      "completed": "2026-10-23T09:23:06.171429+00:00",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    "repin_tensor_receipts-check": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    "sync_application_branches-check": {
+      "label": "sync_application_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:22:54.182430+00:00",
+      "completed": "2026-10-23T09:22:54.471724+00:00",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_frontier_branches-check": {
+      "label": "sync_frontier_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:05.125352+00:00",
+      "completed": "2026-10-23T09:23:05.564247+00:00",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_genesis_to_higher-check": {
+      "label": "sync_genesis_to_higher-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:23:05.564247+00:00",
+      "completed": "2026-10-23T09:23:05.919231+00:00",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    "sync_pfp_results-check": {
+      "label": "sync_pfp_results-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:22:53.130442+00:00",
+      "completed": "2026-10-23T09:22:53.430773+00:00",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    "sync_pregenesis_to_wdp-check": {
+      "label": "sync_pregenesis_to_wdp-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:22:54.471724+00:00",
+      "completed": "2026-10-23T09:23:05.124341+00:00",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    "sync_unified_dag-check": {
+      "label": "sync_unified_dag-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T09:22:53.430773+00:00",
+      "completed": "2026-10-23T09:22:54.181429+00:00",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    }
+  },
+  "contract_audit": {
+    "schema_version": "tfqm.contract-score-coverage-audit.v1",
+    "authority_effect": "None",
+    "assessment_id": "source-coverage-baseline-v1",
+    "population_rule": {
+      "included": "tracked and ordinary-untracked *.py and *.rs under code/, and *.lean under lean4/",
+      "excluded_parts": [
+        ".lake",
+        "__pycache__",
+        "node_modules",
+        "target"
+      ],
+      "sealed_snapshot_prefixes": [
+        "dag/results/",
+        "dag/sealed_runs/",
+        "sealed_runs/"
+      ],
+      "source_discovery": "git ls-files --cached --others --exclude-standard -z followed by explicit path filtering"
+    },
+    "summary": {
+      "sources": 4,
+      "valid_contracts_and_scores": 4,
+      "invalid_or_missing": 0,
+      "by_language": {
+        "Lean 4": 3,
+        "Python": 1
+      },
+      "by_preliminary_profile": {
+        "Exact": 1,
+        "Non-Numeric": 1,
+        "Symbolic/Formal": 2
+      },
+      "completed_scores": 4,
+      "incomplete_scores": 0,
+      "generated_governance_twins": 0,
+      "non_twin_sources": 4
+    },
+    "errors": [],
+    "artifacts": [
+      {
+        "path": "lean4/CampaignGenesisOngoingRefinement.lean",
+        "sha256": "ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac",
+        "language": "Lean 4",
+        "companion": "lean4/CampaignGenesisOngoingRefinement.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "915970817d448146ebb4246f20214511378804d68f50cd08f5a26ffd8e3c6a13",
+        "score_digest": "48f065168dd594d3a2f80959a1c809a9d154243398e0b8d587529f9c01c0cc81",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "lean4/CampaignGenesisOngoingRename.lean",
+        "sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
+        "language": "Lean 4",
+        "companion": "lean4/CampaignGenesisOngoingRename.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "6c8b32c50aa80d981a3e567aa3f0dc7b07120b869d01aed9df80c5e332a19ca4",
+        "score_digest": "97c9b1cf73776992d5cad4e8d09bc9423fd8a72fc3c77c5b6535f8272fa67b35",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "checks/independent/pg-gen-ongoing-fewest-changes.py",
+        "sha256": "7e1cdffe67327ac34b88ae1b675df5d122938fc77962821572c4362b043d5675",
+        "language": "Python",
+        "companion": "checks/independent/pg-gen-ongoing-fewest-changes.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "221cfeaa887e40bdebf4e8465ae12c38842cf1baec6729e34289d0e98ebb204b",
+        "score_digest": "c1d512fb7c77b0caab9b0c97065f8f88dd551cfff9b1a99f6a94fc2cbdb13bc5",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L3D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "lean4/lakefile.lean",
+        "sha256": "d8efa2b3b882079f22664725a50b9ae29660323bb600a6046c8e20910b71083e",
+        "language": "Lean 4",
+        "companion": "lean4/lakefile.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "f10d82e76f6a2e0b593757431187b96a2d9d08615198d15d7669ccd233f26d98",
+        "score_digest": "a1a253f743d00899cb8d4733d782f7a61c7dc36213cd0ee38775c00ad32979ef",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L1D",
+        "is_complete": true,
+        "valid": true
+      }
+    ],
+    "scope_boundary": "This audit proves source-to-companion coverage and current-byte custody. It does not promote incomplete static assessments to engineering-grade certification."
+  },
+  "limits": [
+    "No whole-repository build/scoring certification.",
+    "Known hosted CodeQL Default/Advanced configuration conflict remains a separate maintainer setting."
+  ],
+  "scoped_overclaim_details": {
+    "schema": "overclaim_report.v1",
+    "authority_effect": "None",
+    "rules": {
+      "R1": {
+        "severity": "HIGH",
+        "title": "PROVED_LEAN node without a Lean reference that resolves in this checkout"
+      },
+      "R2": {
+        "severity": "MEDIUM",
+        "title": "PROVED_LEAN node whose cited theorem has type True, or whose statement says every/all/unique/iff while every cited theorem is one closed instance"
+      },
+      "R3": {
+        "severity": "HIGH",
+        "title": "sorry, admit, axiom, native_decide or unsafe in a Lean module cited by a PROVED_LEAN or CONDITIONAL node"
+      },
+      "R4": {
+        "severity": "HIGH",
+        "title": "replay receipt whose sha256 differs from the file, or whose axioms exceed the allowed three"
+      },
+      "R5": {
+        "severity": "LOW",
+        "title": "number in a node statement, derivation note or README found in none of the node's cited files"
+      },
+      "R6": {
+        "severity": "HIGH",
+        "title": "public prose calls a node proved or derived when its DAG status is not a proved status"
+      },
+      "R7": {
+        "severity": "MEDIUM",
+        "title": "absolute or promotional wording in public prose"
+      },
+      "R8": {
+        "severity": "MEDIUM",
+        "title": "independent derivation note without the required Status line"
+      },
+      "R9": {
+        "severity": "HIGH",
+        "title": "status rose versus the git ref with no new resolving Lean reference and replay receipt in the diff"
+      },
+      "R10": {
+        "severity": "LOW",
+        "title": "PROVED_LEAN node whose cited Lean modules appear in no replay receipt"
+      }
+    },
+    "counts": {
+      "R1": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R2": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R3": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R4": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R5": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 8
+      },
+      "R6": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R7": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R8": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R9": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R10": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 1
+      }
+    },
+    "totals": {
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 9
+    },
+    "findings": [
+      {
+        "severity": "LOW",
+        "rule": "R10",
+        "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+        "line": 0,
+        "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+        "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+        "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md",
+        "line": 0,
+        "evidence": "note for PG-GEN-NO-RETURN: 7 of 7 numbers in no cited file: 550, 825, 1100, 55, 230, 120, 59",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md|note|1e613e8812"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/02_genesis/tfq_0388_ongoing_obstruction_answers.md",
+        "line": 0,
+        "evidence": "note for PG-GEN-ONGOING-OBSTRUCTION: 7 of 7 numbers in no cited file: 570, 855, 1140, 57, 237, 124, 61",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/02_genesis/tfq_0388_ongoing_obstruction_answers.md|note|ae8b8ff324"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md",
+        "line": 0,
+        "evidence": "note for PG-GEN-ONGOING-FEWEST-CHANGES: 14 of 14 numbers in no cited file: 590, 885, 1180, 59, 244, 128, 63, 580",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md|note|4e801daf34"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md",
+        "line": 0,
+        "evidence": "note for PG-GEN-REWRITING-COMMUTATION: 7 of 7 numbers in no cited file: 590, 885, 1180, 59, 244, 128, 63",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md|note|bace7160c1"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+        "line": 0,
+        "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "line": 0,
+        "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/independent/pg-gen-no-return.md",
+        "line": 0,
+        "evidence": "note for PG-GEN-NO-RETURN: 5 of 5 numbers in no cited file: 44286, 38638, 204, 24914, 9674",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/independent/pg-gen-no-return.md|note|350883e3d2"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/independent/pg-gen-ongoing-fewest-changes.md",
+        "line": 0,
+        "evidence": "note for PG-GEN-ONGOING-FEWEST-CHANGES: 7 of 10 numbers in no cited file: 627, 18810, 4494, 14316, 3006, 3225, 1827",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/independent/pg-gen-ongoing-fewest-changes.md|note|e7320d61b7"
+      }
+    ]
+  },
+  "overclaim_triage": {
+    "strict_scan": {
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 9
+    },
+    "no_return_review": {
+      "strict_scan": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 5
+      },
+      "dispositions": [
+        {
+          "finding": "no-return independent census",
+          "result": "44,286 histories; 38,638 failures; 204 states; 24,914 regime-change and 9,674 mode-only prefix occurrences independently replayed in both Python modes."
+        },
+        {
+          "finding": "legacy tfq0384 synthetic PFP descriptors",
+          "exact_arithmetic": [
+            1100,
+            230,
+            59
+          ],
+          "expected": [
+            1100,
+            230,
+            59
+          ],
+          "limit": "Arithmetic agrees; descriptors are not source-game measurements and historical model provenance is not recertified."
+        },
+        {
+          "finding": "legacy tensor prompts",
+          "result": "The date identifier, 1/2 and 1/4 claims, and five unreceipted modules are unchanged baseline material; not certified by this focused review."
+        }
+      ]
+    },
+    "ongoing_independent_census": "627 states; 18810 attempts, 4494 successes, 14316 refusals; 3006/3225 shortest-path sums; 1827 build checks independently reproduced.",
+    "legacy_descriptors": [
+      {
+        "computed": [
+          1140,
+          237,
+          61
+        ],
+        "expected": [
+          1140,
+          237,
+          61
+        ]
+      },
+      {
+        "computed": [
+          1180,
+          244,
+          63
+        ],
+        "expected": [
+          1180,
+          244,
+          63
+        ]
+      },
+      {
+        "computed": [
+          1160,
+          242,
+          62
+        ],
+        "expected": [
+          1160,
+          242,
+          62
+        ]
+      }
+    ],
+    "limits": "Synthetic descriptor arithmetic agrees; neither synthetic provenance nor legacy tensor claims are certified as new source-game results."
+  }
+}

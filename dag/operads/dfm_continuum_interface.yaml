@@ -7,8 +7,12 @@ target:
     locality and continuum dynamics as separate obligations.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Specify a refinement family, compatibility maps and convergence theorem before transporting
-    finite identities to smooth gauge theory.
+  source_bottleneck: 'Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b
+    with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5
+    with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a,
+    b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are
+    still required before transporting finite identities to smooth gauge theory. Smooth-field existence,
+    continuum patching and continuum dynamics stay open.'
   source_refs:
   - dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md
   - dag/research/electroweak_dfm_weinberg_finite_map.md
@@ -21,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md
-    sha256: 9b89d268122f0c17bf1a11c2b4f78e500d10772751cd32051ff84bab5fb12d04
+    sha256: 07382677404f96207c41331bcad7fadfdcf634571bb9b6957cc7981f9cad07f4
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -29,9 +33,420 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_continuum_interface_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: src
+  line: 108
+  signature_excerpt: |-
+    def src : Edg → Vtx
+      | .eRP => .root
+      | .ePA => .p
+      | .eRB => .root
+      | .eAB => .a
+
+    def dst : Edg → Vtx
+      | .eRP => .p
+      | .ePA => .a
+      | .eRB => .b
+      | .eAB => .b
+
+    /-- The edge meets the chord `a → b` at `a` or at `b`. -/
+    def incidentChord (e : Edg) : Prop
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dst
+  line: 114
+  signature_excerpt: |-
+    def dst : Edg → Vtx
+      | .eRP => .p
+      | .ePA => .a
+      | .eRB => .b
+      | .eAB => .b
+
+    /-- The edge meets the chord `a → b` at `a` or at `b`. -/
+    def incidentChord (e : Edg) : Prop
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: conn
+  line: 138
+  signature_excerpt: |-
+    def conn {G : Type*} [Group G] (xRP xPA xRB xAB : G) : Edg → G
+      | .eRP => xRP
+      | .ePA => xPA
+      | .eRB => xRB
+      | .eAB => xAB
+
+    /-- Supplied rooted tree paths. The tree is data, not a proved spanning theorem. -/
+    def treePath : (v : Vtx) → Walk src dst Vtx.root v
+      | .root => .nil Vtx.root
+      | .p => .edge Edg.eRP
+      | .a => .append (.edge Edg.eRP) (.edge Edg.ePA)
+      | .b => .edge Edg.eRB
+
+    def treeTransport {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treeDressing
+  line: 154
+  signature_excerpt: 'def treeDressing {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Edg
+  line: 101
+  signature_excerpt: |-
+    inductive Edg
+      | eRP
+      | ePA
+      | eRB
+      | eAB
+      deriving DecidableEq
+
+    def src : Edg → Vtx
+      | .eRP => .root
+      | .ePA => .p
+      | .eRB => .root
+      | .eAB => .a
+
+    def dst : Edg → Vtx
+      | .eRP => .p
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Vtx
+  line: 94
+  signature_excerpt: |-
+    inductive Vtx
+      | root
+      | p
+      | a
+      | b
+      deriving DecidableEq
+
+    inductive Edg
+      | eRP
+      | ePA
+      | eRB
+      | eAB
+      deriving DecidableEq
+
+    def src : Edg → Vtx
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treeTransport
+  line: 151
+  signature_excerpt: 'def treeTransport {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treePath
+  line: 145
+  signature_excerpt: |-
+    def treePath : (v : Vtx) → Walk src dst Vtx.root v
+      | .root => .nil Vtx.root
+      | .p => .edge Edg.eRP
+      | .a => .append (.edge Edg.eRP) (.edge Edg.ePA)
+      | .b => .edge Edg.eRB
+
+    def treeTransport {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: incidentChord
+  line: 121
+  signature_excerpt: 'def incidentChord (e : Edg) : Prop'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: AgreeOn
+  line: 35
+  signature_excerpt: 'def AgreeOn (s : List E) (U W : E → G) : Prop'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: edges
+  line: 29
+  signature_excerpt: |-
+    def edges : {a b : V} → Walk src dst a b → List E
+      | _, _, .nil _ => []
+      | _, _, .edge e => [e]
+      | _, _, .reverse p => edges p
+      | _, _, .append p q => edges p ++ edges q
+
+    def AgreeOn (s : List E) (U W : E → G) : Prop
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Plan
+  line: 49
+  signature_excerpt: 'structure Plan (src dst : E → V)'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: dressed_chord_formula
+  line: 168
+  signature_excerpt: |-
+    theorem dressed_chord_formula {G : Type*} [Group G] (xRP xPA xRB xAB : G) :
+        dress src dst (conn xRP xPA xRB xAB) (treeDressing (conn xRP xPA xRB xAB)) .eAB
+          = xRB⁻¹ * xAB * xPA * xRP
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: not_star_local
+  line: 202
+  signature_excerpt: |-
+    theorem not_star_local {G : Type*} [Group G] (x x' : G) (hne : x ≠ x') :
+        dress src dst (conn x 1 1 1) (treeDressing (conn x 1 1 1)) .eAB ≠
+          dress src dst (conn x' 1 1 1) (treeDressing (conn x' 1 1 1)) .eAB
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_two_ne_five
+  line: 217
+  signature_excerpt: |-
+    theorem witness_two_ne_five :
+        dress src dst (conn (Multiplicative.ofAdd (2 : ℤ)) 1 1 1)
+            (treeDressing (conn (Multiplicative.ofAdd (2 : ℤ)) 1 1 1)) .eAB ≠
+          dress src dst (conn (Multiplicative.ofAdd (5 : ℤ)) 1 1 1)
+            (treeDressing (conn (Multiplicative.ofAdd (5 : ℤ)) 1 1 1)) .eAB
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_star_agrees
+  line: 197
+  signature_excerpt: |-
+    theorem witness_star_agrees {G : Type*} [Group G] (x x' : G) (e : Edg)
+        (he : incidentChord e) :
+        conn x (1 : G) 1 1 e = conn x' 1 1 1 e
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: outer_misses_star
+  line: 124
+  signature_excerpt: 'theorem outer_misses_star : ¬ incidentChord .eRP'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: transport_agrees
+  line: 37
+  signature_excerpt: |-
+    theorem transport_agrees {a b : V} (p : Walk src dst a b) (U W : E → G)
+        (h : AgreeOn (edges p) U W) : transport src dst U p = transport src dst W p
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Plan.evaluate_agrees
+  line: 67
+  signature_excerpt: |-
+    theorem Plan.evaluate_agrees (P : Plan src dst) (U W : E → G) (e : E)
+        (h : AgreeOn (P.footprint e) U W) : P.evaluate U e = P.evaluate W e
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Plan.changed_label
+  line: 78
+  signature_excerpt: |-
+    theorem Plan.changed_label (P : Plan src dst) (U W : E → G) (e : E)
+        (h : P.evaluate U e ≠ P.evaluate W e) :
+        ∃ k ∈ P.footprint e, U k ≠ W k
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Plan.evaluate_agrees_on_superset
+  line: 87
+  signature_excerpt: |-
+    theorem Plan.evaluate_agrees_on_superset (P : Plan src dst) (U W : E → G)
+        (e : E) (s : List E) (hs : ∀ k ∈ P.footprint e, k ∈ s)
+        (h : AgreeOn s U W) : P.evaluate U e = P.evaluate W e
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_plan_evaluate
+  line: 231
+  signature_excerpt: |-
+    theorem witness_plan_evaluate {G : Type*} [Group G] (U : Edg → G) (e : Edg) :
+        witnessPlan.evaluate U e = dress src dst U (treeDressing U) e
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: outer_in_footprint
+  line: 234
+  signature_excerpt: 'theorem outer_in_footprint : Edg.eRP ∈ witnessPlan.footprint Edg.eAB'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.dressed_chord_formula
+  availability: local
+  symbol: CampaignDfmContinuumInterface.dressed_chord_formula
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 168
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.not_star_local
+  availability: local
+  symbol: CampaignDfmContinuumInterface.not_star_local
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 202
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_two_ne_five
+  availability: local
+  symbol: CampaignDfmContinuumInterface.witness_two_ne_five
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 217
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_star_agrees
+  availability: local
+  symbol: CampaignDfmContinuumInterface.witness_star_agrees
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 197
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_misses_star
+  availability: local
+  symbol: CampaignDfmContinuumInterface.outer_misses_star
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 124
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.transport_agrees
+  availability: local
+  symbol: CampaignDfmContinuumInterface.Dependency.transport_agrees
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees
+  availability: local
+  symbol: CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 67
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.changed_label
+  availability: local
+  symbol: CampaignDfmContinuumInterface.Dependency.Plan.changed_label
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset
+  availability: local
+  symbol: CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 87
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_plan_evaluate
+  availability: local
+  symbol: CampaignDfmContinuumInterface.witness_plan_evaluate
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 231
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_in_footprint
+  availability: local
+  symbol: CampaignDfmContinuumInterface.outer_in_footprint
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 234
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -69,8 +484,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

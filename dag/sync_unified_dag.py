@@ -323,51 +323,147 @@ def generated_files(root: Path = ROOT):
                 errors.append(f'alias target {t} of {rid} is not a DAG node')
         by_id[rid] = dict(r, existing_derivation_dag_ids=r['existing_derivation_dag_ids'] + list(targets))
 
-    def real_ids(r):
-        return [x for x in r['existing_derivation_dag_ids'] if x in node_ids or x in app_node_ids]
-
     # 2. A node for every base record that names none. Fragment-owned records (pre-genesis and
     #    application) get their node from their own fragment.
-    fragment_slices = {'pregenesis_to_wdp', 'application_branches', 'frontier_branches', 'genesis_to_higher'}
+    fragment_slices = {'pregenesis_to_wdp', 'application_branches', 'frontier_branches', 'genesis_to_higher',
+                       'foc035_observer_presheaf'}
     new_nodes, new_routes = [], []
     unified_node = {}
     for r in records:
         r = by_id[r['id']]
-        if (r['source_slice'] in fragment_slices and r['id'] not in reuse_set) or real_ids(r):
+        if (r['source_slice'] in fragment_slices and r['id'] not in reuse_set) or _real_node_ids(r, node_ids, app_node_ids):
             continue
         unified_node[r['id']] = r['id']
 
-    def node_of(rid):
-        r = by_id.get(rid)
-        if r is None:
-            return None
-        if rid in unified_node:
-            return rid
-        ids = real_ids(r)
-        if ids:
-            return ids[0]
-        if r['source_slice'] == 'pregenesis_to_wdp':
-            return 'PGW-' + r['name'].upper()
-        return None
+    node_for_id = {rid: _node_of_record(rid, by_id, unified_node, node_ids, app_node_ids) for rid in by_id}
 
     for r in records:
         rid = r['id']
         if rid not in unified_node:
             continue
         r = by_id[rid]
-        parent = node_of(r['parent_id']) if r['parent_id'] else None
+        parent = node_for_id.get(r['parent_id']) if r['parent_id'] else None
         node, route = node_for_record(r, root, paths, parent)
         new_nodes.append(node)
         if route:
             new_routes.append(route)
         by_id[rid] = dict(r, existing_derivation_dag_ids=r['existing_derivation_dag_ids'] + [rid])
 
+    outputs: dict[Path, bytes] = {}
+    node_rows = _render_unrecorded_nodes(by_id, app, pgw, fragment, dag, root, paths, outputs, errors)
+
+    alias_tags = _add_domain_records(fragment, node_ids, by_id, app, new_nodes, paths, root, outputs, errors)
+
+    # 5. Packet crosswalk and alias tags on nodes.
+    packet_tags: dict[str, list[str]] = {}
+    for packet, rid in fragment['packet_crosswalk'].items():
+        nid = node_for_id.get(rid)
+        if nid is None:
+            errors.append(f'packet {packet}: record {rid} has no node')
+            continue
+        packet_tags.setdefault(nid, []).append('packet:' + packet)
+    for n in dag['nodes'] + new_nodes:
+        if 'pregenesis-to-wdp' in n.get('tags', []):
+            continue  # the pre-genesis sync owns these nodes; the crosswalk table carries their aliases
+        extra = packet_tags.get(n['id'], []) + alias_tags.get(n['id'], [])
+        if extra:
+            n['tags'] = n.get('tags', []) + extra
+    for n in app['nodes']:
+        n['tags'] = [t for t in n.get('tags', []) if not t.startswith(OWNED_TAG_PREFIXES)]
+        extra = packet_tags.get(n['id'], []) + alias_tags.get(n['id'], [])
+        if extra:
+            n['tags'] = n['tags'] + extra
+
+    if errors:
+        raise ValueError('unified DAG fragment invalid:\n  ' + '\n  '.join(errors))
+
+    # 6. DAG: unified nodes and routes go before the pre-genesis block, which precedes the
+    #    application block; both other syncs then leave them in place.
+    nodes = dag['nodes']
+    at = next((i for i, n in enumerate(nodes) if 'pregenesis-to-wdp' in n.get('tags', []) or
+               'application-branch' in n.get('tags', [])), len(nodes))
+    dag['nodes'] = nodes[:at] + new_nodes + nodes[at:]
+    routes = dag['routes']
+    at = next((i for i, x in enumerate(routes) if x['id'].startswith(('PGW-R-', 'APP-R-'))), len(routes))
+    dag['routes'] = routes[:at] + new_routes + routes[at:]
+    for stage in NEW_STAGES:
+        if stage not in dag['stages']:
+            dag['stages'].append(stage)
+    dag['status_legend']['SOURCE_RECORD'] = LEGEND_SOURCE_RECORD
+    if EDGE_RECORD_PARENT not in dag['edge_semantics']:
+        dag['edge_semantics'].append(EDGE_RECORD_PARENT)
+    dag['segment_notes'][SLICE] = [fragment['segment_note']]
+
+    # 7. Records: unified records go before the first pre-genesis or application record.
+    out_records = [by_id[r['id']] for r in records]
+    at = next((i for i, r in enumerate(out_records) if r['source_slice'] in fragment_slices), len(out_records))
+    out_records = out_records[:at] + [rec for rec, _, _ in node_rows] + out_records[at:]
+    dag['records'] = [views.canonical_record(r) for r in out_records]
+
+    # 8. Markdown view: the renderer lists unified records in a delimited block of their stage section and
+    #    writes the crosswalk from the records and nodes; the restatement table is kept here.
+    dag['index_document']['source_corpus_restatements'] = [
+        {k: a[k] for k in ('source_id', 'corpus', 'alias_of', 'alias_note') if k in a}
+        for a in fragment.get('domain_aliases', [])]
+    by_stage: dict[str, list] = {}
+    for rec, n, _ in node_rows:
+        by_stage.setdefault(rec['stage'], []).append((rec, n))
+
+    readme_path, readme = _render_unified_readme(folder, by_stage, paths)
+
+    outputs.update(views.outputs(dag, root))  # derivation_dag.json and the two views rendered from it
+    outputs[readme_path] = readme.encode('utf-8')
+    outputs[app_path] = json_text(app).encode('utf-8')
+    outputs[pgw_path] = json_text(pgw).encode('utf-8')
+    return outputs
+
+
+def invariant_errors(root: Path = ROOT) -> list[str]:
+    """After all four syncs: one graph, records and nodes naming each other, views current."""
+    dag = views.load_dag(root)
+    records = dag['records']
+    node_ids = {n['id'] for n in dag['nodes']}
+    named = {x for r in records for x in r['existing_derivation_dag_ids']}
+    errs = [f'record {r["id"]} names no DAG node' for r in records
+            if not any(x in node_ids for x in r['existing_derivation_dag_ids'])]
+    errs += [f'node {n} is named by no record' for n in sorted(node_ids - named)]
+    papers = paper_paths(root)
+    errs += [f'record {r["id"]} has no paper' for r in records if r['id'] not in papers]
+    errs += [f'view {path} differs from derivation_dag.json; run dag/render_dag_views.py --write'
+             for path in views.stale_views(root)]
+    return errs
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true')
+    parser.add_argument('--invariants', action='store_true', help='check the joined graph; write nothing')
+    args = parser.parse_args()
+    if args.invariants:
+        errs = invariant_errors(ROOT)
+        for err in errs:
+            print('FAIL', err)
+        print(f'unified invariants failures={len(errs)}')
+        return int(bool(errs))
+    differences = []
+    for path, expected in generated_files(ROOT).items():
+        if not path.exists() or path.read_bytes() != expected:
+            differences.append(path.relative_to(ROOT).as_posix())
+            if not args.check:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(expected)
+    print('stale=' + ','.join(differences) if differences else 'unified DAG synchronized')
+    return int(bool(differences) and args.check)
+
+
+
+
+def _render_unrecorded_nodes(by_id, app, pgw, fragment, dag, root, paths, outputs, errors):
     # 3. A record for every node that no record names (other fragments' records count).
     named = {x for r in by_id.values() for x in r['existing_derivation_dag_ids']}
     named |= {x for r in app['records'] for x in r['existing_derivation_dag_ids']}
     named |= {'PGW-' + r['name'].upper() for r in pgw['records'] if r.get('dag') and 'reuse' not in r['dag']}
     assigned = fragment['node_records']
-    outputs: dict[Path, bytes] = {}
     node_rows = []
     nodes_by_id = {n['id']: n for n in dag['nodes']}
     incoming = {}
@@ -392,15 +488,7 @@ def generated_files(root: Path = ROOT):
         if n is None:
             errors.append(f'node_records entry {nid} is not a DAG node')
             continue
-        parent = spec.get('parent')
-        if parent is None:
-            for route in incoming.get(nid, []):
-                for item in route['inputs']:
-                    if item in first_record:
-                        parent = first_record[item]
-                        break
-                if parent:
-                    break
+        parent = _choose_parent_record(spec, incoming, first_record, nid)
         if parent is None:
             errors.append(f'node {nid}: no parent record; give node_records.{nid}.parent')
             continue
@@ -417,7 +505,11 @@ def generated_files(root: Path = ROOT):
         outputs[root / paper] = render_paper(rec, n, paper, paths[rec['parent_id']], kids).encode('utf-8')
     if len(row_ids) != len(node_rows) or row_ids & set(by_id):
         errors.append('node_records ids collide')
+    return node_rows
 
+
+def _add_domain_records(fragment, node_ids, by_id, app, new_nodes, paths, root, outputs, errors):
+    app_node_ids = {n['id'] for n in app['nodes']}
     # 4. Source-corpus records into the application fragment.
     domain_nodes, domain_routes, domain_records = [], [], []
     alias_tags: dict[str, list[str]] = {}
@@ -488,62 +580,10 @@ def generated_files(root: Path = ROOT):
     for stage in fragment.get('domain_stages_added', []):
         if stage not in app['stages']:
             app['stages'].append(stage)
+    return alias_tags
 
-    # 5. Packet crosswalk and alias tags on nodes.
-    packet_tags: dict[str, list[str]] = {}
-    for packet, rid in fragment['packet_crosswalk'].items():
-        nid = node_of(rid)
-        if nid is None:
-            errors.append(f'packet {packet}: record {rid} has no node')
-            continue
-        packet_tags.setdefault(nid, []).append('packet:' + packet)
-    for n in dag['nodes'] + new_nodes:
-        if 'pregenesis-to-wdp' in n.get('tags', []):
-            continue  # the pre-genesis sync owns these nodes; the crosswalk table carries their aliases
-        extra = packet_tags.get(n['id'], []) + alias_tags.get(n['id'], [])
-        if extra:
-            n['tags'] = n.get('tags', []) + extra
-    for n in app['nodes']:
-        n['tags'] = [t for t in n.get('tags', []) if not t.startswith(OWNED_TAG_PREFIXES)]
-        extra = packet_tags.get(n['id'], []) + alias_tags.get(n['id'], [])
-        if extra:
-            n['tags'] = n['tags'] + extra
 
-    if errors:
-        raise ValueError('unified DAG fragment invalid:\n  ' + '\n  '.join(errors))
-
-    # 6. DAG: unified nodes and routes go before the pre-genesis block, which precedes the
-    #    application block; both other syncs then leave them in place.
-    nodes = dag['nodes']
-    at = next((i for i, n in enumerate(nodes) if 'pregenesis-to-wdp' in n.get('tags', []) or
-               'application-branch' in n.get('tags', [])), len(nodes))
-    dag['nodes'] = nodes[:at] + new_nodes + nodes[at:]
-    routes = dag['routes']
-    at = next((i for i, x in enumerate(routes) if x['id'].startswith(('PGW-R-', 'APP-R-'))), len(routes))
-    dag['routes'] = routes[:at] + new_routes + routes[at:]
-    for stage in NEW_STAGES:
-        if stage not in dag['stages']:
-            dag['stages'].append(stage)
-    dag['status_legend']['SOURCE_RECORD'] = LEGEND_SOURCE_RECORD
-    if EDGE_RECORD_PARENT not in dag['edge_semantics']:
-        dag['edge_semantics'].append(EDGE_RECORD_PARENT)
-    dag['segment_notes'][SLICE] = [fragment['segment_note']]
-
-    # 7. Records: unified records go before the first pre-genesis or application record.
-    out_records = [by_id[r['id']] for r in records]
-    at = next((i for i, r in enumerate(out_records) if r['source_slice'] in fragment_slices), len(out_records))
-    out_records = out_records[:at] + [rec for rec, _, _ in node_rows] + out_records[at:]
-    dag['records'] = [views.canonical_record(r) for r in out_records]
-
-    # 8. Markdown view: the renderer lists unified records in a delimited block of their stage section and
-    #    writes the crosswalk from the records and nodes; the restatement table is kept here.
-    dag['index_document']['source_corpus_restatements'] = [
-        {k: a[k] for k in ('source_id', 'corpus', 'alias_of', 'alias_note') if k in a}
-        for a in fragment.get('domain_aliases', [])]
-    by_stage: dict[str, list] = {}
-    for rec, n, _ in node_rows:
-        by_stage.setdefault(rec['stage'], []).append((rec, n))
-
+def _render_unified_readme(folder, by_stage, paths):
     # 9. Derivation README: unified records in their stage tables.
     readme_path = folder / 'derivations/README.md'
     readme = readme_path.read_text(encoding='utf-8')
@@ -565,50 +605,43 @@ def generated_files(root: Path = ROOT):
         count = section.count('\n| [`TFQ-')
         rhead = rhead[:m.start()] + f'### {stage} ({count} derivations)\n' + section + '\n' + rhead[nxt:]
     readme = rhead + rmarker + rtail
-
-    outputs.update(views.outputs(dag, root))  # derivation_dag.json and the two views rendered from it
-    outputs[readme_path] = readme.encode('utf-8')
-    outputs[app_path] = json_text(app).encode('utf-8')
-    outputs[pgw_path] = json_text(pgw).encode('utf-8')
-    return outputs
+    return (readme_path, readme)
 
 
-def invariant_errors(root: Path = ROOT) -> list[str]:
-    """After all four syncs: one graph, records and nodes naming each other, views current."""
-    dag = views.load_dag(root)
-    records = dag['records']
-    node_ids = {n['id'] for n in dag['nodes']}
-    named = {x for r in records for x in r['existing_derivation_dag_ids']}
-    errs = [f'record {r["id"]} names no DAG node' for r in records
-            if not any(x in node_ids for x in r['existing_derivation_dag_ids'])]
-    errs += [f'node {n} is named by no record' for n in sorted(node_ids - named)]
-    papers = paper_paths(root)
-    errs += [f'record {r["id"]} has no paper' for r in records if r['id'] not in papers]
-    errs += [f'view {path} differs from derivation_dag.json; run dag/render_dag_views.py --write'
-             for path in views.stale_views(root)]
-    return errs
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check', action='store_true')
-    parser.add_argument('--invariants', action='store_true', help='check the joined graph; write nothing')
-    args = parser.parse_args()
-    if args.invariants:
-        errs = invariant_errors(ROOT)
-        for err in errs:
-            print('FAIL', err)
-        print(f'unified invariants failures={len(errs)}')
-        return int(bool(errs))
-    differences = []
-    for path, expected in generated_files(ROOT).items():
-        if not path.exists() or path.read_bytes() != expected:
-            differences.append(path.relative_to(ROOT).as_posix())
-            if not args.check:
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_bytes(expected)
-    print('stale=' + ','.join(differences) if differences else 'unified DAG synchronized')
-    return int(bool(differences) and args.check)
+def _real_node_ids(record, node_ids, app_node_ids):
+    return [x for x in record["existing_derivation_dag_ids"] if x in node_ids or x in app_node_ids]
+
+
+def _node_of_record(rid, by_id, unified_node, node_ids, app_node_ids):
+    r = by_id.get(rid)
+    if r is None:
+        return None
+    if rid in unified_node:
+        return rid
+    ids = _real_node_ids(r, node_ids, app_node_ids)
+    if ids:
+        return ids[0]
+    if r['source_slice'] == 'pregenesis_to_wdp':
+        return 'PGW-' + r['name'].upper()
+    return None
+
+
+
+
+
+def _choose_parent_record(spec, incoming, first_record, nid):
+    parent = spec.get('parent')
+    if parent is None:
+        for route in incoming.get(nid, []):
+            for item in route['inputs']:
+                if item in first_record:
+                    parent = first_record[item]
+                    break
+            if parent:
+                break
+    return parent
 
 
 if __name__ == '__main__':

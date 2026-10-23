@@ -1,0 +1,78 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C500",
+  "block": "block_08",
+  "global_targets": "C500-T476..C500-T500",
+  "terminal_outcome": "BOUNDED_CORRELATION_ISLAND_WITH_GLOBAL_GUARDRAIL",
+  "predecessor_binding_status": "NOT_VERIFIED_BY_KERNEL",
+  "correlation_set_hierarchy": {
+    "hierarchy": [
+      {
+        "set": "C_q(d)",
+        "description": "Fixed finite dimension d tensor product"
+      },
+      {
+        "set": "C_q",
+        "description": "Arbitrary finite dimension tensor product union"
+      },
+      {
+        "set": "C_qa",
+        "description": "Topological closure of C_q (approximate tensor)"
+      },
+      {
+        "set": "C_qc",
+        "description": "Commuting-operator model (possibly infinite dimensional)"
+      }
+    ],
+    "inclusions": [
+      "C_q(d) subset C_q",
+      "C_q subset C_qa",
+      "C_qa subset C_qc"
+    ],
+    "global_guardrail": {
+      "theorem": "MIP* = RE (Ji-Natarajan-Vidick-Wright-Yuen 2020)",
+      "citation": "arXiv:2001.04383",
+      "status": "CITED_GUARDRAIL",
+      "implication": "C_qa != C_qc; general game value is undecidable",
+      "unrestricted_uniform_value_solver_claimed": false
+    }
+  },
+  "bounded_game_certificates": {
+    "chsh": {
+      "game": "CHSH",
+      "question_alphabet_size": 2,
+      "answer_alphabet_size": 2,
+      "classical_value": "3/4",
+      "classical_value_float": 0.75,
+      "quantum_certified_lower_bound": "17/20",
+      "quantum_certified_upper_bound": "43/50",
+      "quantum_value_float_approx": 0.8535533905932737,
+      "float_approximation_role": "display only; not used by the certificate",
+      "exact_expression": "1/2 + sqrt(2)/4",
+      "expression_evidence_class": "CITED_INPUT",
+      "local_sdp_or_strategy_certificate": false,
+      "interval_enclosure_verified": true,
+      "transformed_lower_squared": "49/25",
+      "transformed_upper_squared": "1296/625",
+      "is_strictly_superclassical": true,
+      "npa_level_1_is_exact_for_chsh": null,
+      "flatness_condition_required_in_general": false
+    }
+  },
+  "npa_finite_level_audit": {
+    "npa_finite_level_is_automatically_exact": false,
+    "requires_rank_flatness_certificate": false,
+    "requires_independent_exactness_certificate": true,
+    "status": "CITED_OUTER_RELAXATION_SEMANTICS",
+    "audit_finding": "A finite NPA level alone does not certify exactness; flatness is one sufficient certificate route."
+  },
+  "machine_bet_clauses": {
+    "frozen_small_game_family_has_verified_bounds": null,
+    "every_finite_npa_level_is_exact": false,
+    "unrestricted_uniform_value_solver_claimed": false,
+    "cqa_qc_separation_recorded_as_cited_guardrail": true,
+    "current_small_corpus_witnesses_global_separation": false,
+    "solver_tolerances_and_certificate_checks_are_pinned": false
+  }
+}

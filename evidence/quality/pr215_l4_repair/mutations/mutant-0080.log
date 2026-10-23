@@ -1,0 +1,30 @@
+
+running 52 tests
+...... 6/52
+policy::tests::companion_naming_follows_collision_rule --- FAILED
+................................... 42/52
+tests::twin_sources_use_qualified_companions --- FAILED
+.........
+failures:
+
+---- policy::tests::companion_naming_follows_collision_rule stdout ----
+
+thread 'policy::tests::companion_naming_follows_collision_rule' (34364) panicked at ..\code\rust\src\governance\src\policy.rs:624:9:
+assertion `left == right` failed
+  left: "code/a/m.contract.score.yaml"
+ right: "code/a/m.rs.contract.score.yaml"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (20948) panicked at ..\code\rust\src\governance\src\lib.rs:373:9:
+assertion failed: repo.root.join("code/t.rs.contract.score.yaml").is_file()
+
+
+failures:
+    policy::tests::companion_naming_follows_collision_rule
+    tests::twin_sources_use_qualified_companions
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.61s
+
+error: test failed, to rerun pass `--lib`

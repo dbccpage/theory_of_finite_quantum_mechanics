@@ -7,6 +7,7 @@ import hashlib
 import json
 import re
 import yaml
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parent))
 from custody import Custody
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -16,6 +17,20 @@ LOADER=getattr(yaml,'CSafeLoader',yaml.SafeLoader)
 def load_yaml(data):
     return yaml.load(data,Loader=LOADER)
 REJECT=re.compile(r'stage_route_shadow_invariant|quotient_reduced_countermodel_defect|Set cochain_d1_d0_exact_zero|Set should_continue|exact 18 keys|which equals|raw_candidate_rival_int|countermodel_expected_int|P\* Cycle C_4')
+
+
+def has_legacy_contract(user_prompt: str, source_statement: str) -> bool:
+    """Scan instructions, excluding one verbatim, unaccepted source-claim quote.
+
+    Ordinary mathematical prose in the quoted target is not an answer contract.
+    A second occurrence or an instruction outside that quote is still checked.
+    """
+    quoted = 'Research target (source claim; verify its scope before reuse):\n' + source_statement + '\n\n'
+    # Only an entire, explicitly delimited target block is a source quote.
+    instructions = '\n' + user_prompt
+    if source_statement:
+        instructions = instructions.replace('\n' + quoted, '', 1)
+    return REJECT.search(instructions) is not None
 
 
 def check_presentation(presentation):
@@ -102,13 +117,14 @@ def validate(root=ROOT):
         seen.add(node)
         if prompt.get('default_stage')!='P0_MINE_OPERAD': errors.append(node+': entry stage')
         if prompt.get('authority_effect')!='None': errors.append(node+': authority')
-        if REJECT.search(prompt['user_prompt']): errors.append(node+': legacy fabricated contract')
         if 'response_schema' in prompt or 'user_prompt_without_m3_ablation' in prompt: errors.append(node+': legacy answer schema')
         for key in ('workflow','mode','stage_contracts','operad_record'):
             target=(path.parent/prompt[key]).resolve()
             if not target.is_file() or root.resolve() not in target.parents:
                 errors.append(node+': broken or escaping '+key)
         record=load_yaml((path.parent/prompt['operad_record']).read_bytes())
+        if has_legacy_contract(prompt['user_prompt'],record['target']['source_statement']):
+            errors.append(node+': legacy fabricated contract')
         if record['node_id']!=node: errors.append(node+': wrong collection')
         if record['target']['source_statement'] not in prompt['user_prompt']: errors.append(node+': truncated target')
         if record['target']['statement_status']!='source_claim_to_scope_check_not_accepted_result': errors.append(node+': source status promoted')

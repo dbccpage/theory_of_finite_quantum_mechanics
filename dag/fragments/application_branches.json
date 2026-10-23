@@ -153,10 +153,22 @@
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
         "papers/ravera_dfm_dossier.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.dressed_chord_formula",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.not_star_local",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_two_ne_five",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_star_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_misses_star",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.transport_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.changed_label",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_plan_evaluate",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_in_footprint"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "bottleneck": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
       "tags": [
         "application-branch",
         "TFQ-0401",
@@ -12179,8 +12191,8 @@
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-0400",
       "record_status": "GAP",
-      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.",
-      "obligation": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star.",
+      "obligation": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-CONTINUUM-INTERFACE"
@@ -12192,9 +12204,17 @@
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
         "papers/ravera_dfm_dossier.md"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-continuum-interface.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmContinuumInterface.lean::dressed_chord_formula",
+        "lean4/CampaignDfmContinuumInterface.lean::not_star_local",
+        "lean4/CampaignDfmContinuumInterface.lean::witness_two_ne_five",
+        "lean4/CampaignDfmContinuumInterface.lean::witness_star_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::outer_misses_star"
+      ]
     },
     {
       "id": "TFQ-0402",

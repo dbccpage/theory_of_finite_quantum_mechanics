@@ -1,0 +1,40 @@
+
+running 10 tests
+......... 9/10
+tests::end_to_end_with_git --- FAILED
+
+failures:
+
+---- tests::end_to_end_with_git stdout ----
+checked 1: 1 pass, 0 grandfathered, 0 boilerplate, 0 failed
+changed since main (5d0f75a053ffc9cc17bb65cb40d88de6dec5ff74): 0 paths
+checked 0: 0 pass, 0 grandfathered, 0 boilerplate, 0 failed
+code/a.rs
+changed since main (5d0f75a053ffc9cc17bb65cb40d88de6dec5ff74): 1 paths
+checked 1: 0 pass, 0 grandfathered, 0 boilerplate, 1 failed
+FAIL code/new.rs (new or not grandfathered)
+  code/new.rs: [MISSING_COMPANION] expected companion code/new.contract.score.yaml, found none
+checked 2: 1 pass, 0 grandfathered, 0 boilerplate, 1 failed
+FAIL code/new.rs (new or not grandfathered)
+  code/new.rs: [MISSING_COMPANION] expected companion code/new.contract.score.yaml, found none
+baseline: 1 entries (0 kept, 1 added, 0 removed); 0 failing files not added
+baseline: 0 entries (0 kept, 0 added, 0 removed); 1 failing files not added
+  not grandfathered: code/new.rs
+wrote governance/baseline.json
+checked 2: 1 pass, 0 grandfathered, 0 boilerplate, 1 failed
+FAIL code/new.rs (new or not grandfathered)
+  code/new.rs: [MISSING_COMPANION] expected companion code/new.contract.score.yaml, found none
+
+thread 'tests::end_to_end_with_git' (30816) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:530:9:
+assertion `left == right` failed: grandfathered now
+  left: Ok(false)
+ right: Ok(true)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::end_to_end_with_git
+
+test result: FAILED. 9 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.69s
+
+error: test failed, to rerun pass `--bin governance-check`

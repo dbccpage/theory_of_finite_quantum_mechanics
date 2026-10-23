@@ -1,0 +1,47 @@
+
+running 52 tests
+policy::tests::exclusions_and_populations_use_any_glob --- FAILED
+...... 7/52
+policy::tests::globs --- FAILED
+.. 10/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+...................................... 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- policy::tests::exclusions_and_populations_use_any_glob stdout ----
+
+thread 'policy::tests::exclusions_and_populations_use_any_glob' (26528) panicked at ..\code\rust\src\governance\src\policy.rs:614:9:
+assertion failed: !spec.admits("c/m.rs")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- policy::tests::globs stdout ----
+
+thread 'policy::tests::globs' (41856) panicked at ..\code\rust\src\governance\src\policy.rs:577:9:
+assertion failed: !glob_match("code/**/*.rs", "code/rust/src/a/b.rs.bak")
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (28740) panicked at ..\code\rust\src\governance\src\policy.rs:534:9:
+assertion `left == right` failed
+  left: Some("Rust")
+ right: Some("Python")
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (12712) panicked at ..\code\rust\src\governance\src\lib.rs:298:9:
+assertion `left == right` failed: scripts/ and README are outside every population
+  left: 7
+ right: 6
+
+
+failures:
+    policy::tests::exclusions_and_populations_use_any_glob
+    policy::tests::globs
+    policy::tests::policy_parses_floor_and_populations
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+
+test result: FAILED. 48 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.07s
+
+error: test failed, to rerun pass `--lib`

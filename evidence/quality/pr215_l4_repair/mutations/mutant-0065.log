@@ -1,0 +1,31 @@
+
+running 52 tests
+...................................... 38/52
+tests::binding_and_completeness_are_both_reported --- FAILED
+.......... 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (27524) panicked at ..\code\rust\src\governance\src\lib.rs:353:9:
+assertion `left == right` failed: floor is not repeated when completeness fails
+  left: [Binding, Completeness, Completeness]
+ right: [Binding, Completeness]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (45464) panicked at ..\code\rust\src\governance\src\lib.rs:301:9:
+assertion failed: matches!(outcome("code/low.rs"), Outcome::Fail(v) if v.len() == 1 &&
+    v[0].rule() == Rule::Floor)
+
+
+failures:
+    tests::binding_and_completeness_are_both_reported
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.73s
+
+error: test failed, to rerun pass `--lib`

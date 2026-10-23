@@ -1,0 +1,43 @@
+
+running 10 tests
+....... 7/10
+tests::open_needs_a_baseline_only_when_asked --- FAILED
+. 9/10
+tests::end_to_end_with_git --- FAILED
+
+failures:
+
+---- tests::open_needs_a_baseline_only_when_asked stdout ----
+
+thread 'tests::open_needs_a_baseline_only_when_asked' (29196) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:553:9:
+assertion `left == right` failed: --initial without a baseline file is allowed
+  left: Err("--initial only creates a missing baseline, without --allow-add")
+ right: Ok(true)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::end_to_end_with_git stdout ----
+checked 1: 1 pass, 0 grandfathered, 0 boilerplate, 0 failed
+changed since main (9049c3a975338a7507bb641d2ad3ad2f09ea3c7c): 0 paths
+checked 0: 0 pass, 0 grandfathered, 0 boilerplate, 0 failed
+code/a.rs
+changed since main (9049c3a975338a7507bb641d2ad3ad2f09ea3c7c): 1 paths
+checked 1: 0 pass, 0 grandfathered, 0 boilerplate, 1 failed
+FAIL code/new.rs (new or not grandfathered)
+  code/new.rs: [MISSING_COMPANION] expected companion code/new.contract.score.yaml, found none
+checked 2: 1 pass, 0 grandfathered, 0 boilerplate, 1 failed
+FAIL code/new.rs (new or not grandfathered)
+  code/new.rs: [MISSING_COMPANION] expected companion code/new.contract.score.yaml, found none
+
+thread 'tests::end_to_end_with_git' (31716) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:528:9:
+assertion `left == right` failed: a dry run never fails
+  left: Err("--initial only creates a missing baseline, without --allow-add")
+ right: Ok(true)
+
+
+failures:
+    tests::end_to_end_with_git
+    tests::open_needs_a_baseline_only_when_asked
+
+test result: FAILED. 8 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.72s
+
+error: test failed, to rerun pass `--bin governance-check`

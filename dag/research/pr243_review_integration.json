@@ -1,0 +1,455 @@
+{
+  "schema_version": "pr243_latest_main_integration.v1",
+  "authority_effect": "None",
+  "source_base": "816245a4d23b326e44e1b19a4ec35a1883844a6c",
+  "checked_at": "2026-10-23T17:21:32.933847+00:00",
+  "integration_commit": "9f7650df0b04eb9cf8a93e3727ed8a18f3828878",
+  "incoming_scope": "Preserve the already-merged PR #223 DFM result and its statuses, scope fences and source bytes; this PR adds no mathematical change.",
+  "campaign_checks": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=925 routes=934 records=977 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing --require-complete",
+      "exit_code": 0,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 748,\n  \"executed_stale_needs_manual_delta\": {},\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/validate_prompts.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"prompts\": 925,\n  \"collections\": 925,\n  \"errors\": [],\n  \"claim\": \"Structural and local-source custody checks only; no operad or target theorem acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 816245a4d23b); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-supply-erasure.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-SUPPLY-ERASURE\",\n  \"authority_effect\": \"None\",\n  \"alphabet_size\": 13,\n  \"maximum_history_length\": 4,\n  \"bases\": 3,\n  \"histories_checked\": 92823,\n  \"failed_histories\": 88808,\n  \"distinct_successful_states\": 429,\n  \"strict_changes_checked\": 2289,\n  \"token_histories_checked\": 4681,\n  \"domain_refusals\": 3,\n  \"negative_controls\": [\n    {\n      \"name\": \"supply-admits\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"failure-as-noop\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"duplicate-append\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ],\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"unordered-requirement\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        [\n          [\n            0,\n            1\n          ]\n        ]\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"state-independent-token-erasure\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"omit-rule-coordinate\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [\n          0\n        ],\n        []\n      ]\n    }\n  ],\n  \"negative_control_count\": 6,\n  \"mutation_coverage\": \"not measured by these fixed-output probes\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/tfq-0396.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"TFQ-0396\",\n  \"authority_effect\": \"None\",\n  \"regimes_checked\": 17756,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ],\n    [\n      1,\n      2\n    ]\n  ],\n  \"class_count_histogram\": {\n    \"0\": 9,\n    \"1\": 5823,\n    \"2\": 3800,\n    \"3\": 8124\n  },\n  \"fixtures\": {\n    \"inert\": {\n      \"data\": 0,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [],\n      \"classes\": 0,\n      \"zero_matrix\": []\n    },\n    \"unseparated_marks\": {\n      \"data\": 2,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    },\n    \"sealed_response\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        1\n      ],\n      \"classes\": 2,\n      \"zero_matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ]\n    },\n    \"uniform_rule\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    }\n  },\n  \"factorizations\": 14,\n  \"refused_factorizations\": 2,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-endogenous-demand-ob1.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-ENDOGENOUS-DEMAND-OB1\",\n  \"authority_effect\": \"None\",\n  \"extension\": true,\n  \"regimes_checked\": 8424,\n  \"seek_rounds\": 6517,\n  \"saturated\": 8424,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ]\n  ],\n  \"policy_controls\": {\n    \"duplicate_requirement\": {\n      \"n\": 2,\n      \"Q\": [\n        [\n          0,\n          1\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_halt\": {\n      \"n\": 2,\n      \"policy\": \"halt\",\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_observation\": {\n      \"unary_fact\": [\n        0\n      ],\n      \"profiles\": [\n        [\n          true\n        ],\n        [\n          false\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    }\n  },\n  \"mutation_accounting\": {\n    \"killed\": 3,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-no-return.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-NO-RETURN\",\n  \"authority_effect\": \"None\",\n  \"histories\": 44286,\n  \"failures\": 38638,\n  \"distinct_successful_engine_states\": 204,\n  \"regime_changes_in_tested_prefixes\": 24914,\n  \"mode_only_changes_in_tested_prefixes\": 9674,\n  \"bases\": 3,\n  \"modes\": 2,\n  \"alphabet_size\": 9,\n  \"maximum_history_length\": 4,\n  \"negative_controls_checked\": 5,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-ongoing-fewest-changes.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-ONGOING-FEWEST-CHANGES\",\n  \"authority_effect\": \"None\",\n  \"labels\": [\n    0,\n    1,\n    2\n  ],\n  \"states\": 627,\n  \"attempts\": 18810,\n  \"performed\": 4494,\n  \"refused\": 14316,\n  \"duplicate_wire_controls\": 627,\n  \"all_writing_shortest_paths\": [\n    {\n      \"both_givens\": false,\n      \"targets\": 627,\n      \"maximum_distance\": 10,\n      \"distance_sum\": 3006\n    },\n    {\n      \"both_givens\": true,\n      \"targets\": 627,\n      \"maximum_distance\": 11,\n      \"distance_sum\": 3225\n    }\n  ],\n  \"nonconsecutive_renaming_squares\": 18810,\n  \"build_cases\": 1827,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-minimal-or-initial-refused.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"negative_controls_checked\": 3,\n  \"mutation_coverage\": \"not measured by this census\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/dfm-continuum-interface.py",
+      "exit_code": 0,
+      "stdout": "[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n  dressed chords: 2 and 5\n[2/4] Matrix witness with trivial star labels.\n  dressed eAB: [[1, 1], [0, 1]] and [[1, 2], [0, 1]]\n  incident edges ePA, eRB, eAB agree; eRP does not meet {a, b}\n[3/4] Noncommutative path product, later factor on the left.\n  dressed eAB: [[-4, -5], [1, 1]]\n  after changing only eRP: [[-4, -9], [1, 2]]\n  reversed product, not the dressing: [[1, -5], [1, -4]]\n[4/4] Closed star of a\u2192b is {ePA, eRB, eAB}.\n  star: ('ePA', 'eRB', 'eAB')\nchecked: dressed chords 2 and 5; matrices [[1,1],[0,1]] vs [[1,2],[0,1]];\nchecked: noncommutative dressed [[-4,-5],[1,1]] vs [[-4,-9],[1,2]];\nchecked: eRP lies outside the closed star of a\u2192b.\n",
+      "stderr": ""
+    }
+  ],
+  "campaign_and_targeted_tests": {
+    "command": "python -I -X utf8 -m pytest -q dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/pfp/test_retained_collections.py",
+    "exit_code": 0,
+    "stdout": "..........................................................               [100%]\n58 passed in 23.47s\n",
+    "stderr": ""
+  },
+  "rename_build_and_audit": [
+    {
+      "command": "lake build Imported.GenesisOngoing.Second.Rename",
+      "exit_code": 0,
+      "stdout": "\u26a0 [3137/3145] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n\u26a0 [3140/3145] Replayed Imported.GenesisOngoing.H3V7N5QF.Paths\nwarning: Imported/GenesisOngoing/H3V7N5QF/Paths.lean:158:18: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335f\u0335a\u0335l\u0335s\u0335e\u0335i\u0332t\u0332e\u0332_\u0332f\u0332a\u0332l\u0332s\u0332e\u0332\n\u26a0 [3145/3145] Replayed Imported.GenesisOngoing.Second.Rename\nwarning: Imported/GenesisOngoing/Second/Rename.lean:59:8: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335n\u0335e\u0335g\u0335i\u0332t\u0332e\u0332_\u0332e\u0332q\u0332_\u0332r\u0332i\u0332g\u0332h\u0332t\u0332\nwarning: Imported/GenesisOngoing/Second/Rename.lean:59:18: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335n\u0335e\u0335g\u0335i\u0332t\u0332e\u0332_\u0332e\u0332q\u0332_\u0332r\u0332i\u0332g\u0332h\u0332t\u0332\nBuild completed successfully (3145 jobs).\n",
+      "stderr": ""
+    },
+    {
+      "command": "lake env lean C:\\Users\\a343o\\.codex\\worktrees\\pr243-independent-review\\theory_of_finite_quantum_mechanics\\.venv-review\\lean-replay\\scratch\\Imported.GenesisOngoing.Second.Rename.lean",
+      "exit_code": 0,
+      "stdout": "AX\tSeed.Second.Reach.rename\tSeed.Second.Reach.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.Reach3.rename\tSeed.Second.Reach3.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.ReachNoRemove.obstruction_persists\tSeed.Second.ReachNoRemove.obstruction_persists\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.ReachNoRemove.toReach\tSeed.Second.ReachNoRemove.toReach\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.Step.rename\tSeed.Second.Step.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.Step3.rename\tSeed.Second.Step3.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.costA_rename\tSeed.Second.costA_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.costB_rename\tSeed.Second.costB_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.exists_perm_of_ne\tSeed.Second.exists_perm_of_ne\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes3_every_writing_A\tSeed.Second.fewest_changes3_every_writing_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes3_every_writing_B\tSeed.Second.fewest_changes3_every_writing_B\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes_every_writing_A\tSeed.Second.fewest_changes_every_writing_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes_every_writing_B\tSeed.Second.fewest_changes_every_writing_B\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.legal_rename\tSeed.Second.legal_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.lostA_rename\tSeed.Second.lostA_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.lostB_rename\tSeed.Second.lostB_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.mem_rename_A\tSeed.Second.mem_rename_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.mem_rename_T\tSeed.Second.mem_rename_T\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.merge_rename\tSeed.Second.merge_rename\t[propext]\nAX\tSeed.Second.miss_rename\tSeed.Second.miss_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.obstruction_persists_reach\tSeed.Second.obstruction_persists_reach\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_a\tSeed.Second.rename_a\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_addAssertion\tSeed.Second.rename_addAssertion\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_addTerm\tSeed.Second.rename_addTerm\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_b\tSeed.Second.rename_b\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_givenA_arb\tSeed.Second.rename_givenA_arb\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_givenB_arb\tSeed.Second.rename_givenB_arb\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_givenB_bra\tSeed.Second.rename_givenB_bra\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_id\tSeed.Second.rename_id\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_identify\tSeed.Second.rename_identify\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_remove\tSeed.Second.rename_remove\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_rename\tSeed.Second.rename_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_symm_apply\tSeed.Second.rename_symm_apply\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.result_iff_A\tSeed.Second.result_iff_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.result_iff_B\tSeed.Second.result_iff_B\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.size_rename\tSeed.Second.size_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.wf_rename\tSeed.Second.wf_rename\t[propext, Classical.choice, Quot.sound]\n",
+      "stderr": ""
+    }
+  ],
+  "axiom_audit": {
+    "passed": true,
+    "declaration_count": 37,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "axioms": {
+      "Seed.Second.Reach.rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.Reach3.rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.ReachNoRemove.obstruction_persists": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.ReachNoRemove.toReach": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.Step.rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.Step3.rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.costA_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.costB_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.exists_perm_of_ne": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.fewest_changes3_every_writing_A": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.fewest_changes3_every_writing_B": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.fewest_changes_every_writing_A": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.fewest_changes_every_writing_B": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.legal_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.lostA_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.lostB_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.mem_rename_A": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.mem_rename_T": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.merge_rename": [
+        "propext"
+      ],
+      "Seed.Second.miss_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.obstruction_persists_reach": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_a": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_addAssertion": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_addTerm": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_b": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_givenA_arb": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_givenB_arb": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_givenB_bra": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_id": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_identify": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_remove": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.rename_symm_apply": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.result_iff_A": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.result_iff_B": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.size_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Seed.Second.wf_rename": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    }
+  },
+  "repository_import_closure": [
+    {
+      "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean",
+      "sha256": "2251e4188422c85595f3d9008098ea59306fcb583e81de00080a8b36650e0b3b",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Basic.lean",
+      "sha256": "e8ed2236449a369d0736cbef29e31910d096b89ab7b98a468d7e0001ce509902",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Cost.lean",
+      "sha256": "9700381f45df6ad5eabc77142f4a5c77edc93298bded5247f7afc11c33101baa",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Finite.lean",
+      "sha256": "4549d09889693c3cf5f962d29057f4fad3028e55bd48a12dbded4feef446aa1d",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean",
+      "sha256": "fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/Second/Carry.lean",
+      "sha256": "6d7c19d48be69a2d3294f8a35763d53e0f77733e1bae5c83eb319df2e50ab65e",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/Second/Cost.lean",
+      "sha256": "bcdd11e4b6ab8e96711732521ce4abdecbe60699d3f726c2ebcc39a4082299f5",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/Second/Rename.lean",
+      "sha256": "557a06c16167db9492980b4c2df8777285c43ffc8272f8f80d5c3437e5e80491",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    },
+    {
+      "source": "lean4/Imported/GenesisOngoing/Second/Step.lean",
+      "sha256": "6e171561cef55105dda8b88931c4b2c1b9f2e2c9a51aa4736ea57b888139d3f1",
+      "committed_lf": true,
+      "unchanged_since_fresh_build": true
+    }
+  ],
+  "protected_path_diff": {
+    "paths": [
+      "atlas",
+      "sources",
+      "dag/results",
+      "dag/prompts",
+      "dag/operads",
+      "dag/derivation_dag.json",
+      "dag/fragments",
+      "dag/derivations",
+      "papers/core",
+      "lean4",
+      "governance",
+      "SCORING.md",
+      "CONTRIBUTING.md"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "original_review_receipt": {
+    "path": "dag/research/pr243_review_validation.json",
+    "sha256": "b39b1abf1c0a0c714c1bd8c8c60908502aa3c7e03ee76b9846ef1ea76a67d45e"
+  },
+  "remaining_limitations": [
+    "The immutable archived Second/Rename.lean historical direct-build failures remain recorded; that source was not rebuilt or edited in this review.",
+    "Other campaign Lean proof modules were not rebuilt; their previous receipts and scopes remain unchanged.",
+    "The maintained port has existing module-system and linter warnings; successful compilation does not mean warning-free.",
+    "95 strict typing findings and the measured G5=E complexity ceilings remain disclosed; the user waived the acceptance floor for PR #243.",
+    "No necessary demand policy, full runtime/compiler equivalence or global process initiality theorem is added."
+  ]
+}

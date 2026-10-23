@@ -10,7 +10,7 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 12
 - cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
@@ -89,17 +89,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md](../../../dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md)
-- sha256 (`lf-normalised`): `deb1f2f91c4d7ce5bc944f716113ad0eacb9eead5a943401be1746411139cd1f`
+- sha256 (`lf-normalised`): `9e51b7b5094df982466715cefae6ea90325a9694971da3f07de90854afec603d`
 - generated view: listed, not counted
 - cited in: record TFQ-1044
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+### Documents and data: `sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
+- sha256 (`lf-normalised`): `2bfb4441352c4206cbd84f3e500e4c3ba817364aff49623a001087ecf12df5a6`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

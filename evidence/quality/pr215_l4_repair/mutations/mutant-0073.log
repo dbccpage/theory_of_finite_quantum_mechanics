@@ -1,0 +1,28 @@
+
+running 52 tests
+..... 5/52
+policy::tests::exclusions_and_populations_use_any_glob --- FAILED
+...... 12/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+.......................................
+failures:
+
+---- policy::tests::exclusions_and_populations_use_any_glob stdout ----
+
+thread 'policy::tests::exclusions_and_populations_use_any_glob' (18368) panicked at ..\code\rust\src\governance\src\policy.rs:606:9:
+one matching glob of several suffices
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (46260) panicked at ..\code\rust\src\governance\src\policy.rs:536:9:
+assertion failed: p.spec_for("code/rust/target/debug/x.rs").is_none()
+
+
+failures:
+    policy::tests::exclusions_and_populations_use_any_glob
+    policy::tests::policy_parses_floor_and_populations
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.56s
+
+error: test failed, to rerun pass `--lib`

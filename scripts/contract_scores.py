@@ -23,14 +23,21 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = "evidence/contract_score_migration/index.json"
-SCHEMA = "tfqm.contract-score.v1"
+# Shared with the Rust governance crate and scripts/score_scope_contracts.py.
+POLICY = json.loads((ROOT / "governance" / "policy.json").read_text(encoding="utf-8"))
+SCHEMA = POLICY["companion"]["document_schema"]
 LEGACY = re.compile(r"(?<!\.contract)\.(contract|scoring|score)\.(?:yaml|yml|yam)$")
-SUFFIX = ".contract.score.yaml"
+SUFFIX = POLICY["companion"]["suffix"]
+GRADE_RANK = {grade: rank for rank, grade in enumerate(POLICY["grade_order"])}
 _cached_index: dict[str, dict[str, Any]] | None = None
+_scope_module: ModuleType | None = None
 
 
 def load_scope_module() -> ModuleType:
-    """Load our sibling by its file path, including under Python isolated mode."""
+    """Load scripts/score_scope_contracts.py by path. `python -I` keeps scripts/ off sys.path."""
+    global _scope_module
+    if _scope_module is not None:
+        return _scope_module
     spec = importlib.util.spec_from_file_location(
         "_tfqm_score_scope_contracts", Path(__file__).with_name("score_scope_contracts.py")
     )
@@ -38,6 +45,7 @@ def load_scope_module() -> ModuleType:
         raise RuntimeError("Cannot load the source-scope checker")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    _scope_module = module
     return module
 
 
@@ -319,6 +327,44 @@ def migrate(apply: bool = False) -> None:
     print("All original bytes verified; legacy files removed.", flush=True)
 
 
+def verify_history(document: dict[str, Any], name: str, versions: dict[tuple[str, str, str], int]) -> None:
+    """Verify stored original bytes before using their readable history records."""
+    for history in ("contract_history", "scoring_history"):
+        seen = set()
+        for entry in document[history]:
+            raw = entry["raw_utf8"].encode("utf-8")
+            if entry["sha256"] in seen:
+                raise ValueError("Duplicate history version")
+            seen.add(entry["sha256"])
+            if sha(raw) != entry["sha256"] or len(raw) != entry["bytes"]:
+                raise ValueError("Corrupt history bytes")
+            if json.dumps(parse(raw.decode("utf-8")), sort_keys=True) != json.dumps(entry["record"], sort_keys=True):
+                raise ValueError("Readable record differs from original bytes")
+            for alias in entry["original_paths"]:
+                versions[(name, alias, entry["sha256"])] = len(raw)
+
+
+def changed_companions(changed: set[str], targets: set[str], errors: list[dict[str, str]]) -> set[str]:
+    """Select affected companions and report missing non-exempt sources."""
+    scope = load_scope_module()
+    wanted = set()
+    for name in changed:
+        if name.endswith(SUFFIX) and (ROOT / name).is_file():
+            wanted.add(name.replace("\\", "/"))
+    for source in scope.sources_in_change(changed):
+        source_name = scope.rel(source)
+        companion = scope.rel(scope.companion_for(source))
+        if source_name not in changed and companion not in changed:
+            continue
+        if (ROOT / companion).is_file():
+            wanted.add(companion)
+        elif not scope.exempt_without_companion(source_name, sha(source.read_bytes())):
+            errors.append({"path": source_name, "error": "missing companion"})
+    targets = {name for name in targets if name in wanted}
+    targets.update(name for name in wanted if (ROOT / name).is_file())
+    return targets
+
+
 def check(changed: set[str] | None = None) -> None:
     """Verify companion history.
 
@@ -332,40 +378,13 @@ def check(changed: set[str] | None = None) -> None:
         if name.endswith(SUFFIX):
             targets.add(name)
     if changed is not None:
-        scope = load_scope_module()
-        wanted = set()
-        for name in changed:
-            if name.endswith(SUFFIX) and (ROOT / name).is_file():
-                wanted.add(name.replace("\\", "/"))
-        for source in scope.sources_in_change(changed):
-            source_name = scope.rel(source)
-            companion = scope.rel(scope.companion_for(source))
-            if source_name not in changed and companion not in changed:
-                continue
-            if (ROOT / companion).is_file():
-                wanted.add(companion)
-            else:
-                errors.append({"path": source_name, "error": "missing companion"})
-        targets = {name for name in targets if name in wanted}
-        targets.update(name for name in wanted if (ROOT / name).is_file())
+        targets = changed_companions(changed, targets, errors)
     for name in sorted(targets):
         try:
             target = (ROOT / name).resolve()
             target.relative_to(ROOT)
             document = load(target)
-            for history in ("contract_history", "scoring_history"):
-                seen = set()
-                for entry in document[history]:
-                    raw = entry["raw_utf8"].encode("utf-8")
-                    if entry["sha256"] in seen:
-                        raise ValueError("Duplicate history version")
-                    seen.add(entry["sha256"])
-                    if sha(raw) != entry["sha256"] or len(raw) != entry["bytes"]:
-                        raise ValueError("Corrupt history bytes")
-                    if json.dumps(parse(raw.decode("utf-8")), sort_keys=True) != json.dumps(entry["record"], sort_keys=True):
-                        raise ValueError("Readable record differs from original bytes")
-                    for alias in entry["original_paths"]:
-                        versions[(name, alias, entry["sha256"])] = len(raw)
+            verify_history(document, name, versions)
             contracts = {e["sha256"]: e["record"] for e in document["contract_history"]}
             if document["contract"] != contracts.get(document["current_contract"]):
                 raise ValueError("Current contract view differs from history")
@@ -459,8 +478,7 @@ def export_v2(path_or_document: str | Path | dict[str, Any]) -> dict[str, Any]:
     if not grade_ceiling:
         assessed = [g for g in gates.values() if g is not None]
         if assessed:
-            ranks = {"E": 0, "D": 1, "C": 2, "B": 3, "A": 4, "A+": 5}
-            grade_ceiling = min(assessed, key=lambda g: ranks.get(g, -1))
+            grade_ceiling = min(assessed, key=lambda g: GRADE_RANK.get(g, -1))
         else:
             grade_ceiling = "E"
     

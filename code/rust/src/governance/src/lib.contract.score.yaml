@@ -1,0 +1,849 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/governance/src/lib.rs",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Rust",
+      "path": "code/rust/src/governance/src/lib.rs",
+      "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+    },
+    "boundaries": [
+      "Does not decide build behaviour; buildtime.rs maps reports to modes."
+    ],
+    "consumers": [
+      "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+    ],
+    "contract_urn": "urn:tfqm:governance:lib:v1",
+    "evidence": [
+      {
+        "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+      },
+      {
+        "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+      },
+      {
+        "path": "governance/policy.json",
+        "sha256": "ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551"
+      }
+    ],
+    "owned_invariants": [
+      "verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.",
+      "Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.",
+      "Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.",
+      "verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package."
+    ],
+    "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+    "requirements": {
+      "R0-structure": {
+        "symbols": [
+          "buildtime",
+          "descriptor",
+          "policy",
+          "repo",
+          "score",
+          "verify"
+        ],
+        "text": "one crate with a module per concern, re-exported at the root"
+      },
+      "R5-baseline": {
+        "symbols": [
+          "BaselineStatus"
+        ],
+        "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+      },
+      "R6-library": {
+        "symbols": [
+          "verify_paths",
+          "verify_file",
+          "Report",
+          "FileReport",
+          "Outcome"
+        ],
+        "text": "verify_paths(policy, baseline, root, paths) -> Report"
+      },
+      "R7-build": {
+        "symbols": [
+          "verify_crate_contracts!"
+        ],
+        "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+      }
+    },
+    "role": "governance crate source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+    "subject": "code/rust/src/governance/src/lib.rs",
+    "symbols": [
+      "buildtime",
+      "descriptor",
+      "policy",
+      "repo",
+      "score",
+      "verify",
+      "BaselineStatus",
+      "Outcome",
+      "FileReport",
+      "Report",
+      "verify_file",
+      "verify_paths",
+      "verify_crate_contracts!"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 4065,
+      "original_paths": [
+        "code/rust/src/governance/src/lib.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"boundaries\": [\n    \"Does not decide build behaviour; buildtime.rs maps reports to modes.\"\n  ],\n  \"consumers\": [\n    \"20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped\",\n    \".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)\",\n    \"scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:lib:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.\",\n    \"Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.\",\n    \"Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.\",\n    \"verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R0-structure\": {\n      \"symbols\": [\n        \"buildtime\",\n        \"descriptor\",\n        \"policy\",\n        \"repo\",\n        \"score\",\n        \"verify\"\n      ],\n      \"text\": \"one crate with a module per concern, re-exported at the root\"\n    },\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"BaselineStatus\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R6-library\": {\n      \"symbols\": [\n        \"verify_paths\",\n        \"verify_file\",\n        \"Report\",\n        \"FileReport\",\n        \"Outcome\"\n      ],\n      \"text\": \"verify_paths(policy, baseline, root, paths) -> Report\"\n    },\n    \"R7-build\": {\n      \"symbols\": [\n        \"verify_crate_contracts!\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\",\n  \"subject\": \"code/rust/src/governance/src/lib.rs\",\n  \"symbols\": [\n    \"buildtime\",\n    \"descriptor\",\n    \"policy\",\n    \"repo\",\n    \"score\",\n    \"verify\",\n    \"BaselineStatus\",\n    \"Outcome\",\n    \"FileReport\",\n    \"Report\",\n    \"verify_file\",\n    \"verify_paths\",\n    \"verify_crate_contracts!\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "boundaries": [
+          "Does not decide build behaviour; buildtime.rs maps reports to modes."
+        ],
+        "consumers": [
+          "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+          ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+          "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+        ],
+        "contract_urn": "urn:tfqm:governance:lib:v1",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "owned_invariants": [
+          "verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.",
+          "Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.",
+          "Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.",
+          "verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R0-structure": {
+            "symbols": [
+              "buildtime",
+              "descriptor",
+              "policy",
+              "repo",
+              "score",
+              "verify"
+            ],
+            "text": "one crate with a module per concern, re-exported at the root"
+          },
+          "R5-baseline": {
+            "symbols": [
+              "BaselineStatus"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R6-library": {
+            "symbols": [
+              "verify_paths",
+              "verify_file",
+              "Report",
+              "FileReport",
+              "Outcome"
+            ],
+            "text": "verify_paths(policy, baseline, root, paths) -> Report"
+          },
+          "R7-build": {
+            "symbols": [
+              "verify_crate_contracts!"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+        "subject": "code/rust/src/governance/src/lib.rs",
+        "symbols": [
+          "buildtime",
+          "descriptor",
+          "policy",
+          "repo",
+          "score",
+          "verify",
+          "BaselineStatus",
+          "Outcome",
+          "FileReport",
+          "Report",
+          "verify_file",
+          "verify_paths",
+          "verify_crate_contracts!"
+        ]
+      },
+      "sha256": "36755d1b8ec67ea67ecf8b57c5cae7c5519cafbcb8e633839a0ba609b67b1c62"
+    },
+    {
+      "bytes": 3089,
+      "original_paths": [
+        "code/rust/src/governance/src/lib.rs#current-policy-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"boundaries\": [\n    \"Does not decide build behaviour; buildtime.rs maps reports to modes.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:lib:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.\",\n    \"Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.\",\n    \"Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.\",\n    \"verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R0-structure\": {\n      \"symbols\": [\n        \"buildtime\",\n        \"descriptor\",\n        \"policy\",\n        \"repo\",\n        \"score\",\n        \"verify\"\n      ],\n      \"text\": \"one crate with a module per concern, re-exported at the root\"\n    },\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"BaselineStatus\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R6-library\": {\n      \"symbols\": [\n        \"verify_paths\",\n        \"verify_file\",\n        \"Report\",\n        \"FileReport\",\n        \"Outcome\"\n      ],\n      \"text\": \"verify_paths(policy, baseline, root, paths) -> Report\"\n    },\n    \"R7-build\": {\n      \"symbols\": [\n        \"verify_crate_contracts!\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\",\n  \"subject\": \"code/rust/src/governance/src/lib.rs\",\n  \"symbols\": [\n    \"buildtime\",\n    \"descriptor\",\n    \"policy\",\n    \"repo\",\n    \"score\",\n    \"verify\",\n    \"BaselineStatus\",\n    \"Outcome\",\n    \"FileReport\",\n    \"Report\",\n    \"verify_file\",\n    \"verify_paths\",\n    \"verify_crate_contracts!\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "boundaries": [
+          "Does not decide build behaviour; buildtime.rs maps reports to modes."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:lib:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951"
+          }
+        ],
+        "owned_invariants": [
+          "verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.",
+          "Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.",
+          "Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.",
+          "verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R0-structure": {
+            "symbols": [
+              "buildtime",
+              "descriptor",
+              "policy",
+              "repo",
+              "score",
+              "verify"
+            ],
+            "text": "one crate with a module per concern, re-exported at the root"
+          },
+          "R5-baseline": {
+            "symbols": [
+              "BaselineStatus"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R6-library": {
+            "symbols": [
+              "verify_paths",
+              "verify_file",
+              "Report",
+              "FileReport",
+              "Outcome"
+            ],
+            "text": "verify_paths(policy, baseline, root, paths) -> Report"
+          },
+          "R7-build": {
+            "symbols": [
+              "verify_crate_contracts!"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+        "subject": "code/rust/src/governance/src/lib.rs",
+        "symbols": [
+          "buildtime",
+          "descriptor",
+          "policy",
+          "repo",
+          "score",
+          "verify",
+          "BaselineStatus",
+          "Outcome",
+          "FileReport",
+          "Report",
+          "verify_file",
+          "verify_paths",
+          "verify_crate_contracts!"
+        ]
+      },
+      "sha256": "25d0ed14e4c5158ecfb0c49e7bad0cfa47c320f809e819dc88c56ff989a36d7e"
+    },
+    {
+      "sha256": "523bf9efa96d4ce078df7d579af38775b3c185b2630abcc6b05bbc8b76dd1e66",
+      "bytes": 3089,
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"boundaries\": [\n    \"Does not decide build behaviour; buildtime.rs maps reports to modes.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:lib:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.\",\n    \"Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.\",\n    \"Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.\",\n    \"verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R0-structure\": {\n      \"symbols\": [\n        \"buildtime\",\n        \"descriptor\",\n        \"policy\",\n        \"repo\",\n        \"score\",\n        \"verify\"\n      ],\n      \"text\": \"one crate with a module per concern, re-exported at the root\"\n    },\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"BaselineStatus\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R6-library\": {\n      \"symbols\": [\n        \"verify_paths\",\n        \"verify_file\",\n        \"Report\",\n        \"FileReport\",\n        \"Outcome\"\n      ],\n      \"text\": \"verify_paths(policy, baseline, root, paths) -> Report\"\n    },\n    \"R7-build\": {\n      \"symbols\": [\n        \"verify_crate_contracts!\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\",\n  \"subject\": \"code/rust/src/governance/src/lib.rs\",\n  \"symbols\": [\n    \"buildtime\",\n    \"descriptor\",\n    \"policy\",\n    \"repo\",\n    \"score\",\n    \"verify\",\n    \"BaselineStatus\",\n    \"Outcome\",\n    \"FileReport\",\n    \"Report\",\n    \"verify_file\",\n    \"verify_paths\",\n    \"verify_crate_contracts!\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "boundaries": [
+          "Does not decide build behaviour; buildtime.rs maps reports to modes."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:lib:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0"
+          }
+        ],
+        "owned_invariants": [
+          "verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.",
+          "Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.",
+          "Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.",
+          "verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R0-structure": {
+            "symbols": [
+              "buildtime",
+              "descriptor",
+              "policy",
+              "repo",
+              "score",
+              "verify"
+            ],
+            "text": "one crate with a module per concern, re-exported at the root"
+          },
+          "R5-baseline": {
+            "symbols": [
+              "BaselineStatus"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R6-library": {
+            "symbols": [
+              "verify_paths",
+              "verify_file",
+              "Report",
+              "FileReport",
+              "Outcome"
+            ],
+            "text": "verify_paths(policy, baseline, root, paths) -> Report"
+          },
+          "R7-build": {
+            "symbols": [
+              "verify_crate_contracts!"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+        "subject": "code/rust/src/governance/src/lib.rs",
+        "symbols": [
+          "buildtime",
+          "descriptor",
+          "policy",
+          "repo",
+          "score",
+          "verify",
+          "BaselineStatus",
+          "Outcome",
+          "FileReport",
+          "Report",
+          "verify_file",
+          "verify_paths",
+          "verify_crate_contracts!"
+        ]
+      },
+      "original_paths": [
+        "code/rust/src/governance/src/lib.contract.score.yaml#l4-repair"
+      ]
+    },
+    {
+      "sha256": "189d4e9140c71e71f480d243ee2333812133de63c2648f3e5cd282b5182e39ef",
+      "bytes": 3089,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "boundaries": [
+          "Does not decide build behaviour; buildtime.rs maps reports to modes."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:lib:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551"
+          }
+        ],
+        "owned_invariants": [
+          "verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.",
+          "Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.",
+          "Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.",
+          "verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R0-structure": {
+            "symbols": [
+              "buildtime",
+              "descriptor",
+              "policy",
+              "repo",
+              "score",
+              "verify"
+            ],
+            "text": "one crate with a module per concern, re-exported at the root"
+          },
+          "R5-baseline": {
+            "symbols": [
+              "BaselineStatus"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R6-library": {
+            "symbols": [
+              "verify_paths",
+              "verify_file",
+              "Report",
+              "FileReport",
+              "Outcome"
+            ],
+            "text": "verify_paths(policy, baseline, root, paths) -> Report"
+          },
+          "R7-build": {
+            "symbols": [
+              "verify_crate_contracts!"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+        "subject": "code/rust/src/governance/src/lib.rs",
+        "symbols": [
+          "buildtime",
+          "descriptor",
+          "policy",
+          "repo",
+          "score",
+          "verify",
+          "BaselineStatus",
+          "Outcome",
+          "FileReport",
+          "Report",
+          "verify_file",
+          "verify_paths",
+          "verify_crate_contracts!"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"boundaries\": [\n    \"Does not decide build behaviour; buildtime.rs maps reports to modes.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:lib:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"verify_file: a source in no population yields None; grandfathered bytes yield Grandfathered without reading the companion; pinned boilerplate with the pinned sha256 yields Boilerplate.\",\n    \"Otherwise SchemaVerifier runs first and stops on failure; Binding and Completeness are both reported; Floor is added only when Completeness passed.\",\n    \"Report::is_clean holds exactly when no file failed; its Display lists every violation of every failed file with its baseline status.\",\n    \"verify_crate_contracts!() expands CARGO_MANIFEST_DIR and CARGO_PKG_NAME in the calling package.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R0-structure\": {\n      \"symbols\": [\n        \"buildtime\",\n        \"descriptor\",\n        \"policy\",\n        \"repo\",\n        \"score\",\n        \"verify\"\n      ],\n      \"text\": \"one crate with a module per concern, re-exported at the root\"\n    },\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"BaselineStatus\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R6-library\": {\n      \"symbols\": [\n        \"verify_paths\",\n        \"verify_file\",\n        \"Report\",\n        \"FileReport\",\n        \"Outcome\"\n      ],\n      \"text\": \"verify_paths(policy, baseline, root, paths) -> Report\"\n    },\n    \"R7-build\": {\n      \"symbols\": [\n        \"verify_crate_contracts!\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\",\n  \"subject\": \"code/rust/src/governance/src/lib.rs\",\n  \"symbols\": [\n    \"buildtime\",\n    \"descriptor\",\n    \"policy\",\n    \"repo\",\n    \"score\",\n    \"verify\",\n    \"BaselineStatus\",\n    \"Outcome\",\n    \"FileReport\",\n    \"Report\",\n    \"verify_file\",\n    \"verify_paths\",\n    \"verify_crate_contracts!\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/lib.contract.score.yaml#pr230-integration"
+      ]
+    }
+  ],
+  "current_contract": "189d4e9140c71e71f480d243ee2333812133de63c2648f3e5cd282b5182e39ef",
+  "current_scoring": "8c839506392ada2f3a5da945580e76dff851a214e659235136610c75e1d3c64c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 3980,
+      "original_paths": [
+        "code/rust/src/governance/src/lib.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"complete\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.\",\n    \"G2\": \"Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.\",\n    \"G3\": \"I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.\",\n    \"G4\": \"Tests in temporary repositories cover every Outcome, every BaselineStatus, malformed and unreadable files, binding with completeness and binding with floor, twins. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 9, survived 0, invalid 2, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 5,\n    \"lizard_production_functions\": 10\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 2,\n    \"killed\": 9,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"No property-based generators outside score.rs (G4 B needs them).\",\n    \"Panic freedom rests on clippy lints and review, not on a proof (G3 B).\",\n    \"Allocation behaviour not benchmarked (G5 A).\",\n    \"Grades drafted by the model that wrote the code; an independent review is still needed.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4C\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "complete",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.",
+          "G2": "Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.",
+          "G3": "I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.",
+          "G4": "Tests in temporary repositories cover every Outcome, every BaselineStatus, malformed and unreadable files, binding with completeness and binding with floor, twins. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 9, survived 0, invalid 2, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "C",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "grade_ceiling": "C",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 5,
+          "lizard_production_functions": 10
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 2,
+          "killed": 9,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "No property-based generators outside score.rs (G4 B needs them).",
+          "Panic freedom rests on clippy lints and review, not on a proof (G3 B).",
+          "Allocation behaviour not benchmarked (G5 A).",
+          "Grades drafted by the model that wrote the code; an independent review is still needed."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4C"
+      },
+      "sha256": "9c2a52fbe7a81bccb2f7f26e44e335520661861dce4ac28f7b68509616d07910"
+    },
+    {
+      "bytes": 3002,
+      "original_paths": [
+        "code/rust/src/governance/src/lib.rs#current-policy-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.\",\n    \"G2\": \"Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.\",\n    \"G3\": \"I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 5,\n    \"lizard_production_functions\": 10\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 2,\n    \"killed\": 9,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.",
+          "G2": "Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.",
+          "G3": "I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 5,
+          "lizard_production_functions": 10
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 2,
+          "killed": 9,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "78d6ed8705c2b07362a7d832aad4a3759c729653662d5eb270a426d1b54f23f2"
+    },
+    {
+      "sha256": "f3d2c7a6430de62633df6fbdaaac164702099334d5c96723168a8ca66d6afc28",
+      "bytes": 3002,
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.\",\n    \"G2\": \"Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.\",\n    \"G3\": \"I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 5,\n    \"lizard_production_functions\": 10\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 2,\n    \"killed\": 9,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.",
+          "G2": "Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.",
+          "G3": "I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 5,
+          "lizard_production_functions": 10
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 2,
+          "killed": 9,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "original_paths": [
+        "code/rust/src/governance/src/lib.contract.score.yaml#l4-repair"
+      ]
+    },
+    {
+      "sha256": "8c839506392ada2f3a5da945580e76dff851a214e659235136610c75e1d3c64c",
+      "bytes": 3002,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/lib.rs",
+          "sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.",
+          "G2": "Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.",
+          "G3": "I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 5,
+          "lizard_production_functions": 10
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 2,
+          "killed": 9,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/lib.rs\",\n    \"sha256\": \"711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:lib:v1, AuthorityEffect None, exact digest; R5 to R7 map to the exported items and back; consumers are the 20 build hooks (through the macro) and the CLI.\",\n    \"G2\": \"Outcome ordering (grandfathered, boilerplate, verified) and verifier ordering are tested; twin companions resolve to the qualified name; a changed grandfathered file is verified in full.\",\n    \"G3\": \"I/O failures become Violation::Io; no unsafe; panic-family lints denied. C as above.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (verify_file) over 10 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: the public API of the crate (verify_paths, verify_file, Report, Outcome, BaselineStatus, the macro) with deliberate verifier ordering and complete, typed reports.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 5,\n    \"lizard_production_functions\": 10\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 2,\n    \"killed\": 9,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/lib.contract.score.yaml#pr230-integration"
+      ]
+    }
+  ]
+}
