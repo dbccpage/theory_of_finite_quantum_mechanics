@@ -4,6 +4,8 @@ Status: AI-drafted, awaiting human review.
 
 AuthorityEffect: None.
 
+Outcome: Narrowed. The proved node statement is restricted to supplied rooted-tree data and the explicitly defined scalar commutative cochain operators. A bundled incidence DGA, arbitrary-graph tree construction and noncommutative matrix-valued curvature remain unpaid.
+
 ## 1. What is being extended
 
 The diamond control factors an invertible upper-triangular matrix and dresses five fixed edges in two stages. The same algebra does not use the number of edges. This note states it for every rooted tree presented by a parent pointer and a depth, and states the incidence curvature identities for one specified pair of operators. The operators are extra data. A parent pointer does not contain a cochain.

@@ -10,14 +10,29 @@ from __future__ import annotations
 import pathlib
 import sys
 from fractions import Fraction
+from typing import TypedDict
 
-import sympy as sp
+import sympy as sp  # type: ignore[import-untyped]  # SymPy does not ship typing metadata.
 
 
 Mat = tuple[Fraction, Fraction, Fraction, Fraction]
 
 
+class Graph(TypedDict):
+    root: int
+    parent: dict[int, int]
+    labels: dict[int, Mat]
+    chords: list[tuple[int, int, Mat]]
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
 def M(a: Fraction | int, b: Fraction | int, c: Fraction | int, d: Fraction | int) -> Mat:
+    if any(type(value) is not int and not isinstance(value, Fraction) for value in (a, b, c, d)):
+        raise ValueError("matrix entries must be exact integers or Fractions; bool and float are refused")
     return (Fraction(a), Fraction(b), Fraction(c), Fraction(d))
 
 
@@ -75,7 +90,7 @@ def check_symbolic_factorization() -> None:
     matrix = sp.Matrix([[d1, b], [0, d2]])
     diagonal = sp.Matrix([[d1, 0], [0, d2]])
     factor = sp.Matrix([[1, b / d1], [0, 1]])
-    assert sp.simplify(diagonal * factor - matrix) == sp.zeros(2)
+    require(sp.simplify(diagonal * factor - matrix) == sp.zeros(2), 'independent equality failed at original line 78')
     d1p, d2p, off = sp.symbols("d1p d2p off")
     general = sp.Matrix([[d1p, 0], [0, d2p]]) * sp.Matrix([[1, off], [0, 1]])
     solution = sp.solve(
@@ -83,42 +98,49 @@ def check_symbolic_factorization() -> None:
         [d1p, d2p, off],
         dict=True,
     )[0]
-    assert solution[d1p] == d1 and solution[d2p] == d2 and solution[off] == b / d1
+    require(solution[d1p] == d1 and solution[d2p] == d2 and (solution[off] == b / d1), 'independent equality failed at original line 86')
     shift = sp.symbols("shift")
     unipotent_generic = sp.Matrix([[1, shift], [0, 1]])
     conjugated = sp.simplify(matrix * unipotent_generic * matrix.inv())
-    assert conjugated[0, 0] == 1 and conjugated[1, 0] == 0 and conjugated[1, 1] == 1
-    assert sp.simplify(conjugated[0, 1] - (d1 / d2) * shift) == 0
+    require(conjugated[0, 0] == 1 and conjugated[1, 0] == 0 and (conjugated[1, 1] == 1), 'independent equality failed at original line 90')
+    require(sp.simplify(conjugated[0, 1] - d1 / d2 * shift) == 0, 'independent equality failed at original line 91')
     left = sp.Matrix([[2, 1], [0, 3]])
     right = sp.Matrix([[2, 1], [0, 3]])
     product = left * right
     def bad(row: sp.Matrix) -> sp.Matrix:
         return sp.Matrix([[row[0, 0], row[0, 1]], [0, 1]])
-    assert bad(product) != bad(left) * bad(right)
-    assert bad(product)[0, 1] == 5 and (bad(left) * bad(right))[0, 1] == 3
+    require(bad(product) != bad(left) * bad(right), 'independent equality failed at original line 97')
+    require(bad(product)[0, 1] == 5 and (bad(left) * bad(right))[0, 1] == 3, 'independent equality failed at original line 98')
 
 
 def transport_of(parent: dict[int, int], root: int, labels: dict[int, Mat]) -> dict[int, Mat]:
-    seen: dict[int, Mat] = {}
-
-    def go(vertex: int) -> Mat:
-        if vertex in seen:
-            return seen[vertex]
-        if vertex == root:
-            seen[vertex] = eye()
-            return seen[vertex]
-        value = mul(labels[vertex], go(parent[vertex]))
-        seen[vertex] = value
-        return value
-
-    for vertex in list(parent) + [root]:
-        go(vertex)
+    if type(root) is not int or any(type(v) is not int for v in (*parent, *parent.values())):
+        raise ValueError("vertex identifiers must be integers, excluding bool")
+    if root not in parent or parent[root] != root or any(p not in parent for p in parent.values()):
+        raise ValueError("parent map must contain the fixed root and every parent")
+    if set(labels) != set(parent) - {root}:
+        raise ValueError("exactly the non-root vertices require labels")
+    for label in labels.values():
+        inv(label)
+    seen: dict[int, Mat] = {root: eye()}
+    for vertex in parent:
+        chain: list[int] = []
+        visiting: set[int] = set()
+        cursor = vertex
+        while cursor not in seen:
+            if cursor in visiting:
+                raise ValueError("parent map has a cycle off the root")
+            visiting.add(cursor)
+            chain.append(cursor)
+            cursor = parent[cursor]
+        for child in reversed(chain):
+            seen[child] = mul(labels[child], seen[parent[child]])
     return seen
 
 
 def check_path_and_diamond() -> None:
     print("[2/6] path of length 2 and a diamond tree, exact rationals")
-    graphs = {
+    graphs: dict[str, Graph] = {
         "path": {
             "root": 0,
             "parent": {0: 0, 1: 0, 2: 1},
@@ -141,43 +163,43 @@ def check_path_and_diamond() -> None:
         parent = graph["parent"]
         labels = graph["labels"]
         transport = transport_of(parent, root, labels)
-        assert transport[root] == eye()
+        require(transport[root] == eye(), 'independent equality failed at original line 144')
         fields = {vertex: stage_one_field(value) for vertex, value in transport.items()}
         diagonals = {vertex: torus(value) for vertex, value in transport.items()}
         for vertex, value in transport.items():
-            assert mul(torus(value), unipotent(value)) == value
-            assert fields[vertex] == mul(mul(diagonals[vertex], inv(unipotent(value))), inv(diagonals[vertex]))
-            assert is_unipotent(fields[vertex])
-            assert mul(fields[vertex], value) == diagonals[vertex]
-            assert mul(inv(diagonals[vertex]), fields[vertex]) == inv(value)
+            require(mul(torus(value), unipotent(value)) == value, 'independent equality failed at original line 148')
+            require(fields[vertex] == mul(mul(diagonals[vertex], inv(unipotent(value))), inv(diagonals[vertex])), 'independent equality failed at original line 149')
+            require(is_unipotent(fields[vertex]), 'independent equality failed at original line 150')
+            require(mul(fields[vertex], value) == diagonals[vertex], 'independent equality failed at original line 151')
+            require(mul(inv(diagonals[vertex]), fields[vertex]) == inv(value), 'independent equality failed at original line 152')
         for vertex, label in labels.items():
             source = parent[vertex]
             dressed = dress(fields[vertex], label, fields[source])
-            assert dressed == mul(diagonals[vertex], inv(diagonals[source]))
-            assert is_torus(dressed)
-            assert torus(dressed) == torus(label)
+            require(dressed == mul(diagonals[vertex], inv(diagonals[source])), 'independent equality failed at original line 156')
+            require(is_torus(dressed), 'independent equality failed at original line 157')
+            require(torus(dressed) == torus(label), 'independent equality failed at original line 158')
             residual = dress(inv(diagonals[vertex]), dressed, inv(diagonals[source]))
-            assert residual == eye()
-            assert residual == mul(mul(inv(transport[vertex]), label), transport[source])
+            require(residual == eye(), 'independent equality failed at original line 160')
+            require(residual == mul(mul(inv(transport[vertex]), label), transport[source]), 'independent equality failed at original line 161')
         for source, target, label in graph["chords"]:
             dressed = dress(fields[target], label, fields[source])
-            assert torus(dressed) == torus(label)
+            require(torus(dressed) == torus(label), 'independent equality failed at original line 164')
             full = mul(mul(inv(transport[target]), label), transport[source])
-            assert dress(inv(diagonals[target]), dressed, inv(diagonals[source])) == full
+            require(dress(inv(diagonals[target]), dressed, inv(diagonals[source])) == full, 'independent equality failed at original line 166')
             coboundary = mul(transport[target], inv(transport[source]))
             pure = mul(mul(inv(transport[target]), coboundary), transport[source])
-            assert pure == eye()
-            assert full != eye()
+            require(pure == eye(), 'independent equality failed at original line 169')
+            require(full != eye(), 'independent equality failed at original line 170')
         print(f"  -> {name}: stage-one tree edges diagonal, stage-two residual matches, chord {graph['chords'][0][2]} is not pure gauge")
     path_transport = transport_of({0: 0, 1: 0, 2: 1}, 0, {1: M(2, 6, 0, 3), 2: M(4, 1, 0, 5)})
-    assert path_transport[2] == M(8, 27, 0, 15)
-    assert stage_one_field(path_transport[1]) == M(1, -2, 0, 1)
-    assert stage_one_field(path_transport[2]) == M(1, Fraction(-9, 5), 0, 1)
+    require(path_transport[2] == M(8, 27, 0, 15), 'independent equality failed at original line 173')
+    require(stage_one_field(path_transport[1]) == M(1, -2, 0, 1), 'independent equality failed at original line 174')
+    require(stage_one_field(path_transport[2]) == M(1, Fraction(-9, 5), 0, 1), 'independent equality failed at original line 175')
     chord = mul(mul(inv(path_transport[2]), M(1, 7, 0, 1)), path_transport[0])
-    assert chord == M(Fraction(1, 8), Fraction(13, 20), 0, Fraction(1, 15))
+    require(chord == M(Fraction(1, 8), Fraction(13, 20), 0, Fraction(1, 15)), 'independent equality failed at original line 177')
     singular = M(0, 1, 0, 1)
     refused = mul(torus(singular), M(1, Fraction(0), 0, 1))
-    assert refused != singular
+    require(refused != singular, 'independent equality failed at original line 180')
 
 
 def check_curvature() -> None:
@@ -186,11 +208,11 @@ def check_curvature() -> None:
     curvature = a01 * a12 - a02
     g0, g1, g2 = sp.symbols("g0 g1 g2", nonzero=True)
     endpoint = (g0 * a01 / g1) * (g1 * a12 / g2) - (g0 * a02 / g2)
-    assert sp.simplify(endpoint - g0 * curvature / g2) == 0
+    require(sp.simplify(endpoint - g0 * curvature / g2) == 0, 'independent equality failed at original line 189')
     source_only = (g0 * a01) * (g1 * a12) - (g0 * a02)
     witness = sp.simplify(source_only - g0 * curvature).subs({a01: 1, a12: 1, a02: 0, g0: 1, g1: 2})
-    assert witness == 1
-    assert (1 * 1) * (2 * 1) - (1 * 0) != 1 * (1 * 1 - 0)
+    require(witness == 1, 'independent equality failed at original line 192')
+    require(1 * 1 * (2 * 1) - 1 * 0 != 1 * (1 * 1 - 0), 'independent equality failed at original line 193')
     u, v, w, z = sp.symbols("u v w z")
     # The specified operators on symbols: K(x,y,z) = A(x,y)A(y,z) - A(x,z).
     def entry(p: sp.Symbol, q: sp.Symbol) -> sp.Expr:
@@ -202,17 +224,19 @@ def check_curvature() -> None:
         + entry(u, v) * curv(v, w, z)
         - curv(u, v, w) * entry(w, z)
     )
-    assert sp.expand(bianchi) == 0
+    require(sp.expand(bianchi) == 0, 'independent equality failed at original line 205')
 
 
 def check_dimension_and_source() -> None:
     print("[4/6] carrier comparison 2 != 3 and admission scan of the Lean module")
-    assert 2 != 3
+    matrix_dimension: int = 2
+    comparison_dimension: int = 3
+    require(matrix_dimension != comparison_dimension, 'independent equality failed at original line 210')
     source = pathlib.Path(__file__).resolve().parents[2] / "lean4" / "CampaignDfmHierarchicalBorel.lean"
     text = source.read_text(encoding="utf-8")
     for banned in ("sorry", "admit", "native_decide", "unsafe", "axiom "):
-        assert banned not in text, banned
-    assert "SU" not in text
+        require(banned not in text, banned)
+    require('SU' not in text, 'independent equality failed at original line 215')
 
 
 def check_anchored_uniqueness() -> None:
@@ -221,11 +245,16 @@ def check_anchored_uniqueness() -> None:
     parent = {0: 0, 1: 0, 2: 1}
     transport = transport_of(parent, 0, labels)
     for vertex in (1, 2):
-        assert labels[vertex] == mul(transport[vertex], inv(transport[parent[vertex]]))
-    other = {0: eye(), 1: mul(M(5, 0, 0, 7), transport[1]), 2: mul(M(5, 0, 0, 7), transport[2])}
-    # A non-anchored field differs at the root, so the anchored hypothesis excludes it.
-    assert other[0] == eye()
-    assert other[1] != transport[1]
+        require(labels[vertex] == mul(transport[vertex], inv(transport[parent[vertex]])), 'independent equality failed at original line 224')
+    # Right-multiplying every vertex field by one constant preserves all edges
+    # but changes the root, exhibiting why the anchoring hypothesis is needed.
+    constant = M(5, 0, 0, 7)
+    other = {vertex: mul(value, constant) for vertex, value in transport.items()}
+    require(other[0] != eye(), "the alternative field must fail anchoring")
+    for vertex in (1, 2):
+        require(labels[vertex] == mul(other[vertex], inv(other[parent[vertex]])),
+                "right multiplication must preserve the edge labels")
+        require(other[vertex] != transport[vertex], "the unanchored field must differ")
 
 
 def main() -> None:
