@@ -627,3 +627,7 @@ lean_lib GenesisHottHorns where
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
+-- All finite Genesis slot contexts, beyond the unary-only mirror. Non-default.
+lean_lib CampaignGenesisContextDecision where
+  roots := #[`CampaignGenesisContextDecision]
+
