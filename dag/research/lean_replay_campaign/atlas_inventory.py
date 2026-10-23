@@ -25,7 +25,9 @@ SKIP_PREFIX = ("lean4/b/", "lean4/.lake/", "lean4/Imported/", "docs/maintenance/
                "dag/research/lean_replay_campaign/")
 PATH_SIMPLE = re.compile(
     r"(?<![\w/.\\-])(?:the_symbol_game[/\\]+)?((?:omega_engine[a-z_]*|omega_simplex[a-z_]*)(?:[/\\][A-Za-z0-9_.@+~-]+)+)")
-DOT_CLAUDE = re.compile(r"(?<![\w/.\\-])(\.claude/[A-Za-z0-9_./@+-]+\.(?:md|json|yaml|yml|txt))")
+# Only a `.claude/` path written as a path INTO the sibling tree counts. A bare `.claude/...` in this repository
+# (skills, agents, worktrees) is this repository's own and is not an atlas dependency.
+DOT_CLAUDE = re.compile(r"(?<![\w.\\-])the_symbol_game[/\\]+(\.claude/[A-Za-z0-9_./@+-]+\.(?:md|json|yaml|yml|txt))")
 ABS = re.compile(r"[A-Za-z]:[\\/]+Users[\\/]+[^\s\"'`]*the_symbol_game[\\/]+([A-Za-z0-9_./\\@+-]*)")
 PY_IMPORT = re.compile(r"^\s*(?:from|import)\s+(omega_engine[a-z_]*|omega_simplex[a-z_]*)(?:[.\s]|$)", re.M)
 NEEDLES = (b"omega_engine", b"omega_simplex", b"the_symbol_game", b".claude/")

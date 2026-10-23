@@ -17,6 +17,9 @@ HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("atlas_inventory", HERE / "atlas_inventory.py")
 inv = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(inv)
+_rspec = importlib.util.spec_from_file_location("replay_campaign", HERE / "replay_campaign.py")
+replay = importlib.util.module_from_spec(_rspec)
+_rspec.loader.exec_module(replay)
 
 NODE_FIELDS = ("lean", "rust", "source")
 RECORD_FIELDS = ("lean4", "rust", "python")
@@ -60,20 +63,78 @@ def dag_citations(repo: Path, existing: dict[str, dict]):
     return node_cites, rec_cites, prov
 
 
+def _dependency_paths(doc: dict):
+    """(dependency name, path) for every dependency table of a parsed Cargo.toml: dependencies,
+    dev-dependencies, build-dependencies, workspace.dependencies, target.*.dependencies and patch/replace
+    tables. `path =` under [lib], [[bin]], [[test]] and so on is a source file, not a dependency, and is skipped."""
+    tables = []
+    for key in ("dependencies", "dev-dependencies", "build-dependencies"):
+        tables.append(doc.get(key, {}))
+        for target in doc.get("target", {}).values():
+            tables.append(target.get(key, {}))
+    tables.append(doc.get("workspace", {}).get("dependencies", {}))
+    for patched in doc.get("patch", {}).values():
+        tables.append(patched)
+    for table in tables:
+        for name, spec in table.items():
+            if isinstance(spec, dict) and isinstance(spec.get("path"), str):
+                yield name, spec["path"]
+
+
+def structured_atlas_lean_refs(repo: Path) -> list[tuple[str, str]]:
+    """(id, reference) for every node `lean` and record `lean4` reference that still names an atlas Lean file."""
+    dag = json.loads((repo / "dag/derivation_dag.json").read_bytes())
+    found = []
+    for kind, field in (("nodes", "lean"), ("records", "lean4")):
+        for item in dag[kind]:
+            for ref in item.get(field, []):
+                if ref.startswith(("absent", "external:")):
+                    continue
+                path = ref.split("::")[0].split(":")[0]
+                if path.endswith(".lean") and inv.PATH_SIMPLE.search(path):
+                    found.append((item["id"], ref))
+    return found
+
+
+def replay_exit_codes(repo: Path) -> dict[str, int]:
+    """repo-relative Lean path -> exit code of its build, from the receipts and the dependency build record."""
+    out: dict[str, int] = {}
+    for f in sorted((repo / "dag/research").glob("lean_replay_campaign_*.json")):
+        for r in json.loads(f.read_text(encoding="utf-8")).get("lean_replay", {}).get("results", []):
+            out[r["source"]] = r["exit_code"]
+    deps = repo / "dag/research/lean_replay_campaign/dependency_builds.json"
+    if deps.exists():
+        for r in json.loads(deps.read_text(encoding="utf-8"))["dependency_builds"]:
+            out.setdefault(r["source"], r["exit_code"])
+    return out
+
+
 def cargo_leaks(repo: Path):
+    """Path dependencies of Cargo.toml files (outside dag/results, which holds sealed copies) that point out of
+    the repository. Both sides are resolved and compared with is_relative_to, case-insensitively on Windows."""
     import os
-    root = str(repo.resolve())
+    import tomllib
+    root = repo.resolve()
+
+    def inside(p: Path) -> bool:
+        return Path(os.path.normcase(p)).is_relative_to(Path(os.path.normcase(root)))
+
     leaks, n = [], 0
     for dp, dn, fns in os.walk(repo):
-        rel = os.path.relpath(dp, repo).replace("\\", "/")
-        dn[:] = [d for d in dn if d not in (".git", "target", "b", ".lake", "node_modules") and not (rel + "/" + d).lstrip("./").startswith("dag/results")]
-        if "Cargo.toml" in fns:
-            text = (Path(dp) / "Cargo.toml").read_text(encoding="utf-8", errors="replace")
-            for m in re.finditer(r'path\s*=\s*"([^"]+)"', text):
-                n += 1
-                target = os.path.normpath(os.path.join(dp, m.group(1)))
-                if not target.startswith(root):
-                    leaks.append(((Path(dp) / "Cargo.toml").relative_to(repo).as_posix(), m.group(1)))
+        rel = Path(dp).relative_to(repo).as_posix()
+        dn[:] = [d for d in dn if d not in (".git", "target", "b", ".lake", "node_modules")
+                 and not (Path(rel) / d).as_posix().startswith("dag/results")]
+        if "Cargo.toml" not in fns:
+            continue
+        manifest = Path(dp) / "Cargo.toml"
+        try:
+            doc = tomllib.loads(manifest.read_text(encoding="utf-8", errors="replace"))
+        except tomllib.TOMLDecodeError:
+            continue
+        for name, dep_path in _dependency_paths(doc):
+            n += 1
+            if not inside((manifest.parent / dep_path).resolve()):
+                leaks.append((manifest.relative_to(repo).as_posix(), name, dep_path))
     return leaks, n
 
 
@@ -144,6 +205,7 @@ def main() -> int:
 
     total_exist = sum(1 for p in paths if p["exists_in_atlas"])
     gone = [p for p in paths if p.get("removed_in_commit") and not p.get("removed_dir")]
+    gone_paths = {p["path"] for p in gone}
     gone_cited = [p for p in gone if sum(n for loc, n in p["referenced_from"].items() if loc in inv.LIVE)]
     gone_families = sorted({"/".join(p["path"].split("/")[3:4]) for p in gone})
     lines: list[str] = []
@@ -199,19 +261,31 @@ def main() -> int:
     w("A reference in a generated paper or view, or in a sealed run artifact, follows from a reference in `dag/derivation_dag.json`, "
       "its fragments or a sealed input and is not a separate dependency.")
     w("")
-    w("## What Part 1 imported")
+    w("## What was imported")
     w("")
     files = manifest["files"]
     ported = [f for f in files if f.get("ports")]
     by_slug = collections.Counter(f["slug"] for f in files)
-    w(f"All {len(files)} Lean files that DAG nodes and records cite outside this repository, together with their local (non-Mathlib) imports, "
+    mathlib_rev = next((p["rev"] for p in json.loads((repo / "lean4/lake-manifest.json").read_text(encoding="utf-8"))["packages"]
+                        if p["name"] == "mathlib"), "?")
+    builds = replay_exit_codes(repo)
+    imported_paths = [f["repo_path"] for f in files]
+    built_ok = sum(1 for rp_ in imported_paths if builds.get(rp_) == 0)
+    built_bad = [rp_ for rp_ in imported_paths if rp_ in builds and builds[rp_] != 0]
+    not_built = [rp_ for rp_ in imported_paths if rp_ not in builds]
+    admission = sorted(rp_ for rp_ in imported_paths
+                       if replay.admission_scan((repo / rp_).read_text(encoding="utf-8", errors="replace")))
+    w(f"{len(files)} Lean files that DAG nodes and records cited outside this repository, together with their local (non-Mathlib) imports, "
       f"were copied to `lean4/Imported/<package>/<path under the package root>.lean` and registered as the non-default library `ImportedAtlas` "
       f"in `lean4/lakefile.lean`. {sum(1 for f in files if f['cited_directly'])} are cited directly; the others are dependencies. "
-      "The package folder disambiguates files that share a stem in different atlas papers (`Paper.lean`, `Same.lean`, `SnTheorems.lean`, `Core.lean`). "
+      "The package folder disambiguates files that share a stem in different atlas papers. "
       "Every file carries a header with its original path, original sha256 and the import date. "
-      f"All {len(files)} compile under Lean 4.35.0 with Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; "
-      f"{len(ported)} needed a port for version drift ({', '.join('`' + f['repo_path'][len('lean4/'):] + '`' for f in ported) or 'none'}), recorded in its header and in "
-      "[`lean4/Imported/import_manifest.json`](../../lean4/Imported/import_manifest.json). None contains `sorry`, `admit`, `axiom`, `native_decide` or `unsafe`.")
+      f"Build record (receipts and `dag/research/lean_replay_campaign/dependency_builds.json`, Mathlib `{mathlib_rev}`): "
+      f"{built_ok} of {len(files)} built with exit code 0, {len(built_bad)} failed, {len(not_built)} have no build record. "
+      f"{len(ported)} needed a port for version drift ({', '.join('`' + f['repo_path'][len('lean4/'):] + '`' for f in ported) or 'none'}), "
+      "recorded in its header and in [`lean4/Imported/import_manifest.json`](../../lean4/Imported/import_manifest.json). "
+      f"The admission scan (`sorry`, `admit`, `axiom`, `native_decide`, `unsafe` outside comments and strings) flags {len(admission)} of them"
+      + (f": {', '.join('`' + a + '`' for a in admission)}." if admission else "."))
     w("")
     w("| Package (atlas path of the Lean root) | files |")
     w("|---|---|")
@@ -223,13 +297,13 @@ def main() -> int:
         w(f"| `{root}` -> `lean4/Imported/{slug}/` | {n} |")
     w("")
     rp = manifest["repointed_instead_of_imported"]
-    w("Three cited paths were not imported because this repository already holds a file whose cited declarations have the same statements; "
+    w(f"{len(rp)} cited path(s) were not imported because this repository already holds a file with that role (see the import manifest); "
       "the references now name the in-repo file:")
     w("")
     for k, v in rp.items():
         w(f"- `{k}` -> `{v}`")
     w("")
-    w("The two cited `omega_engine_education/.../inputs/the_symbol_game/...` copies under `dag/results/` are sealed run inputs and were not touched.")
+    w("Files under `dag/results/**` are sealed run snapshots; their references were not touched and their Lean files are not replayed.")
     w("")
     w("## What this repository would lose")
     w("")
@@ -263,22 +337,22 @@ def main() -> int:
     for s, n in status_count.most_common():
         w(f"| `{s}` | {n} |")
     w("")
-    lean_live = [p for p in paths if p["kind"] == "Lean" and (p["exists_in_atlas"] or p in gone) and not p.get("is_dir")
-                 and any(l in p["referenced_from"] for l in inv.LIVE)]
+    lean_live = [p for p in paths if p["kind"] == "Lean" and (p["exists_in_atlas"] or p["path"] in gone_paths)
+                 and not p.get("is_dir") and any(l in inv.LIVE for l in p["referenced_from"])]
     dag_only = [p for p in lean_live if all(l not in inv.LIVE or l.startswith("dag") for l in p["referenced_from"])]
     code_pin = [p for p in lean_live if "code/**" in p["referenced_from"] or "papers/**" in p["referenced_from"]]
-    w(f"Lean: the Lean files that a node `lean` field or a record `lean4` field cites are all in `lean4/` now. {len(lean_live)} further atlas Lean files "
-      f"are still named by live files, but not as a citation the evidence map resolves: {len(dag_only)} appear only inside `dag/derivation_dag.json` "
-      "in free text (`absent: no local lean twin located for ...` notes, statements, summaries), and "
-      f"{len(code_pin)} are named by `code/**` or `papers/**` (the `source_pin.json` hash pins of the QM code and two MUB6 test files). "
-      "None of them backs a replay receipt, so they were not imported; the DAG already records them as absent twins.")
+    structured_outside = structured_atlas_lean_refs(repo)
+    w(f"Lean: {len(structured_outside)} node `lean` fields and record `lean4` fields still name an atlas Lean file "
+      f"(not counting `absent:` notes). {len(lean_live)} atlas Lean files are named by live files in some way: {len(dag_only)} only inside "
+      f"`dag/derivation_dag.json` or its fragments (notes, statements, summaries), {len(code_pin)} by `code/**` or `papers/**`. "
+      "A file named only in free text or in a hash pin backs no replay receipt and was not imported.")
     w("")
 
     # ---- non-Lean cited files
     def size_of(p):
         return p.get("size_bytes", p.get("size_bytes_before_removal", 0))
 
-    cited_files = [p for p in paths if (p["exists_in_atlas"] and not p.get("is_dir") or p in gone)
+    cited_files = [p for p in paths if (p["exists_in_atlas"] and not p.get("is_dir") or p["path"] in gone_paths)
                    and sum(n for loc, n in p["referenced_from"].items() if loc in inv.LIVE)]
     w("## Files cited by live files, by kind")
     w("")
@@ -286,7 +360,7 @@ def main() -> int:
     w("|---|---|---|---|")
     kind_n = collections.Counter(); kind_b = collections.Counter(); kind_g = collections.Counter()
     for p in cited_files:
-        kind_n[p["kind"]] += 1; kind_b[p["kind"]] += size_of(p); kind_g[p["kind"]] += p in gone
+        kind_n[p["kind"]] += 1; kind_b[p["kind"]] += size_of(p); kind_g[p["kind"]] += p["path"] in gone_paths
     for k, n in kind_n.most_common():
         w(f"| {k} | {n} | {human(kind_b[k])} | {kind_g[k]} |")
     w("")
@@ -297,7 +371,7 @@ def main() -> int:
     w("## Recommended copy list (not copied in this change)")
     w("")
     w(f"The papers, claim registers and data files that DAG nodes and records cite as `source` come to {len(docs)} files, {human(docs_bytes)}. "
-      f"{sum(1 for p in docs if p in gone)} of them ({human(sum(size_of(p) for p in docs if p in gone))}) are no longer in the sibling working tree and would be restored from its git history. "
+      f"{sum(1 for p in docs if p['path'] in gone_paths)} of them ({human(sum(size_of(p) for p in docs if p['path'] in gone_paths))}) are no longer in the sibling working tree and would be restored from its git history. "
       + ("That is over the 5 MB this change allows for non-Lean files, so **none of them was copied**. " if docs_bytes > 5 * 1024 * 1024 else "None of them was copied (this change copies Lean only). ")
       +
       "Recommended: copy them verbatim, keeping their atlas-relative path, to `sources/atlas/<atlas-relative path>` in one follow-up change, "
@@ -307,14 +381,13 @@ def main() -> int:
     w("| File | size | references |")
     w("|---|---|---|")
     for p in sorted(docs, key=lambda p: -size_of(p))[:25]:
-        w(f"| `{p['path']}`{' (removed)' if p in gone else ''} | {human(size_of(p))} | {p['reference_count']} |")
+        w(f"| `{p['path']}`{' (removed)' if p['path'] in gone_paths else ''} | {human(size_of(p))} | {p['reference_count']} |")
     w("")
     code = [p for p in cited_files if p["kind"] in ("Rust", "Python") and any(l in p["referenced_from"] for l in dag_locs)]
     w(f"Rust and Python files cited from node `rust` fields and record fields: {len(code)} files, "
       f"{human(sum(size_of(p) for p in code))} ({sum(1 for p in code if p['kind'] == 'Rust')} Rust, {sum(1 for p in code if p['kind'] == 'Python')} Python). "
-      "Most live in `omega_engine/` (the Rust crates); this repository has its own `code/rust` and `code/python`, and the in-repo twins are what the evidence map counts. "
-      "Copying a sibling-crate file in would not make it build here; the honest options are to cite the in-repo twin or to record the citation as external. "
-      "These were not copied.")
+      f"{sum(1 for p in code if p['path'].startswith('omega_engine/'))} of them are under `omega_engine/`. "
+      "These were not copied; whether to cite an in-repo twin or record the citation as external is a decision for a reviewer.")
     w("")
     w("## Code that imports sibling packages")
     w("")
@@ -327,16 +400,17 @@ def main() -> int:
         for pkg, files_ in sorted(imps.items()):
             w(f"| `{pkg}` | {len(files_)} | {sum(files_.values())} |")
         w("")
-        w("These are in vendored governance contracts and test support (`code/python/governance/**`, `papers/core/**/tests/support/**`) and in tests; none is on the path that builds the DAG, the evidence map or the Lean replay.")
+        by_dir = collections.Counter("/".join(f.split("/")[:3]) for files_ in imps.values() for f in files_)
+        w("Where they are (first three path components): "
+          + ", ".join(f"`{d}` {n}" for d, n in by_dir.most_common(8)) + ".")
         w("")
     leaks, total_paths = cargo_leaks(repo)
     if leaks:
         w(f"`Cargo.toml` path dependencies (excluding sealed copies under `dag/results/**`): {total_paths} entries, {len(leaks)} leave the repository:")
         w("")
-        for manifest_path, dep in leaks:
-            w(f"- `{manifest_path}`: `path = \"{dep}\"`")
+        for manifest_path, name, dep in leaks:
+            w(f"- `{manifest_path}`: dependency `{name}`, `path = \"{dep}\"`")
         w("")
-        w("Every other path dependency points inside `code/rust`. The sealed copies of crates under `dag/results/**` carry absolute `the_symbol_game` paths in their `Cargo.toml`; they are archives, not built.")
     else:
         w(f"No `Cargo.toml` outside `dag/results/**` has a `path =` dependency that leaves the repository ({total_paths} entries checked).")
     w("")
@@ -388,11 +462,13 @@ def main() -> int:
     fam = [n for n in groups if n.startswith("omega_engine_atlas/coda_atlas/F004_papers")]
     blocked = [n for n in fam if verdict(groups[n])[0] == "NOT YET SAFE"]
     removed_fam = [n for n in fam if verdict(groups[n])[0] == "ALREADY REMOVED"]
+    blocker_kinds = collections.Counter()
+    for n in blocked:
+        blocker_kinds.update(groups[n]["live_kinds"])
     w(f"{len(removed_fam)} of the {len(fam)} paper folders listed above are ALREADY REMOVED (their cited files are in the sibling's git history only) and "
-      f"{len(blocked)} are NOT YET SAFE; the blockers are documents, claim registers and data files "
-      "that nodes cite as `source` (and the Rust and Python files the atlas holds), not Lean. After the follow-up copy to `sources/atlas/` and the matching `source` rewrite, "
-      "the paper folders can be deleted. Until then, deleting them leaves the DAG internally consistent but makes `validate_derivation_dag.py` (with files) and the evidence map's "
-      "document links report the sources as missing.")
+      f"{len(blocked)} are NOT YET SAFE. The files that block them: "
+      + (", ".join(f"{n} {k}" for k, n in blocker_kinds.most_common()) or "none")
+      + ". Deleting a blocked folder makes `validate_derivation_dag.py` (with file resolution) report the cited paths as missing.")
     w("")
     text = "\n".join(lines) + "\n"
     (out_dir / "atlas_dependency_inventory.md").write_text(text, encoding="utf-8", newline="\n")

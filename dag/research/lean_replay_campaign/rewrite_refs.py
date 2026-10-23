@@ -48,6 +48,7 @@ def shift_lines(spec: str, n: int) -> str:
 
 
 OFFSETS: dict[str, int] = {}
+KEPT = "absent notes naming a moved path, left unchanged"
 
 
 def rewrite(obj, pattern, table, counter, ctx=""):
@@ -66,6 +67,13 @@ def rewrite(obj, pattern, table, counter, ctx=""):
     if isinstance(obj, list):
         return [rewrite(v, pattern, table, counter, ctx) for v in obj]
     if isinstance(obj, str):
+        # "absent: no local lean twin located for <atlas path>" records that the file was NOT found; pointing
+        # that sentence at the in-repo copy would make it contradict itself, so the whole note stays as written.
+        if ctx == "absent" or obj.lstrip().lower().startswith("absent"):
+            if pattern.search(obj):
+                counter[KEPT] += 1
+            return obj
+
         def sub(m):
             counter[ctx] += 1
             new = table[m.group("p")]
@@ -95,7 +103,7 @@ def main() -> int:
         data = json.loads(path.read_bytes())
         counter: collections.Counter = collections.Counter()
         new = rewrite(data, pattern, table, counter)
-        n = sum(counter.values())
+        n = sum(v for k, v in counter.items() if k != KEPT)
         total += n
         print(f"{rel}: {n} path(s) rewritten {dict(counter)}")
         if args.write and n:

@@ -31,26 +31,70 @@ from pathlib import Path
 
 ALLOWED = ("propext", "Classical.choice", "Quot.sound")
 SOURCE_BASE = "10be79e94"  # origin/main when the campaign started
+AUDIT_VERSION = 4  # 4: exact matching only; whole-file audit never sets the pass flag
 EXTPKG = ("Mathlib", "Std", "Lean", "Init", "Batteries", "Aesop", "Qq", "ProofWidgets", "Plausible",
           "LeanSearchClient", "Cli", "ImportGraph")
 IMPORT = re.compile(r"^\s*import\s+(.+)$", re.M)
 
 
+_IDENT = re.compile(r"[\w.'!?]")
+_CHAR = re.compile(r"'(?:\\(?:x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|.)|[^\\'\n])'")
+_RAW = re.compile(r'r(#*)"')
+
+
 def strip_comments(text: str) -> str:
-    out, i, depth = [], 0, 0
-    while i < len(text):
-        if text.startswith("/-", i):
-            depth += 1
-            i += 2
-        elif text.startswith("-/", i) and depth:
-            depth -= 1
-            i += 2
-        elif depth:
-            i += 1
+    """The Lean source with comments and string/char literals blanked, in one pass.
+
+    Line comments (`--`), nested block comments (`/- ... -/`, doc comments included), string literals with
+    escapes, raw strings (`r"..."`, `r#"..."#`), character literals and `«...»` quoted names are recognised
+    in the order they occur, so `-- /-`, `"/-"` and `'"'` cannot open or close anything they should not.
+    Newlines are kept so that line anchors in later regexes still work; a string becomes `""`.
+    """
+    out: list[str] = []
+    i, n = 0, len(text)
+    while i < n:
+        c = text[i]
+        raw = _RAW.match(text, i) if c == "r" and (i == 0 or not _IDENT.match(text[i - 1])) else None
+        if text.startswith("--", i):
+            j = text.find("\n", i)
+            i = n if j < 0 else j
+        elif text.startswith("/-", i):
+            depth, i = 1, i + 2
+            while i < n and depth:
+                if text.startswith("/-", i):
+                    depth, i = depth + 1, i + 2
+                elif text.startswith("-/", i):
+                    depth, i = depth - 1, i + 2
+                else:
+                    if text[i] == "\n":
+                        out.append("\n")
+                    i += 1
+            out.append(" ")
+        elif raw:
+            close = '"' + raw.group(1)
+            j = text.find(close, raw.end())
+            end = n if j < 0 else j + len(close)
+            out.append('""' + "\n" * text.count("\n", i, end))
+            i = end
+        elif c == '"':
+            j = i + 1
+            while j < n and text[j] != '"':
+                j += 2 if text[j] == "\\" else 1
+            end = min(j + 1, n)
+            out.append('""' + "\n" * text.count("\n", i, end))
+            i = end
+        elif c == "'" and (i == 0 or not _IDENT.match(text[i - 1])) and _CHAR.match(text, i):
+            i = _CHAR.match(text, i).end()
+            out.append("''")
+        elif c == "«":
+            j = text.find("»", i)
+            end = n if j < 0 else j + 1
+            out.append(text[i:end])
+            i = end
         else:
-            out.append(text[i])
+            out.append(c)
             i += 1
-    return re.sub(r"--[^\n]*", "", "".join(out))
+    return "".join(out)
 
 
 def module_of(path: str) -> str | None:
@@ -131,32 +175,24 @@ open Lean Elab Command in
   | some idx =>
     let cited : Array String := #[{cited}]
     let names := env.header.moduleData[idx.toNat]!.constNames
-    let mut anyHit := false
+    let mut anyMiss := false
     for s in cited do
+      -- a cited symbol resolves to a constant whose full name is the symbol or ends in "." ++ symbol (the
+      -- evidence map's rule). All matches are printed; the driver treats a leaf with several matches and no
+      -- exact one as ambiguous, and a symbol with no match as unresolved. No other fallback.
       let mut hit := false
       for n in names do
         let ns := n.toString
-        if ns == s || ns.endsWith ("." ++ s) then
+        if !n.isInternal && (ns == s || ns.endsWith ("." ++ s)) then
           hit := true
           let axs ← collectAxioms n
           IO.println s!"AX\\t{{s}}\\t{{ns}}\\t{{axs.toList.map toString}}"
       if !hit then
-        -- the DAG spelling of the namespace can differ from the file; fall back to the last name component
-        -- (the resolution column of the receipt shows the constant actually audited)
-        let last := (s.splitOn ".").getLast!
-        for n in names do
-          let ns := n.toString
-          if !n.isInternal && (ns == last || ns.endsWith ("." ++ last)) then
-            hit := true
-            let axs ← collectAxioms n
-            IO.println s!"AXLC\\t{{s}}\\t{{ns}}\\t{{axs.toList.map toString}}"
-      if !hit then
+        anyMiss := true
         IO.println s!"UNRESOLVED\\t{{s}}"
-      else
-        anyHit := true
-    if !anyHit then
-      -- the DAG cites the file without naming a declaration, or names none that exists in it: audit every
-      -- user-facing theorem the file declares (the unresolved names stay listed in the receipt)
+    if cited.isEmpty || anyMiss then
+      -- extra information only: every user-facing theorem the file declares. It never sets the pass flag of
+      -- a row whose cited symbols include one that did not resolve.
       for n in names do
         if !n.isInternal then
           match env.find? n with
@@ -181,6 +217,68 @@ def admission_scan(text: str) -> list[str]:
     return [p.pattern for p in ADMISSION if p.search(code)]
 
 
+def _axiom_list(raw: str) -> list[str]:
+    return sorted(a.strip() for a in raw.strip().strip("[]").split(",") if a.strip())
+
+
+def parse_audit(output: str, cited: list[str]) -> dict:
+    """Turn the audit script's output into a resolution of the cited symbols.
+
+    A cited symbol is resolved only through the printed `AX` lines for that symbol: exactly one constant, or
+    several of which one is spelled exactly like the symbol. Several suffix matches and no exact one is
+    ambiguous, no match is unresolved; both count as not resolved. `AXLC` lines (the retired last-component
+    fallback of an earlier version) are ignored. `AX\t*` lines are the whole-file theorem audit, kept apart.
+    """
+    hits: dict[str, list[tuple[str, list[str]]]] = collections.defaultdict(list)
+    file_wide: dict[str, list[str]] = {}
+    seen: set[str] = set()
+    for line in output.splitlines():
+        if line.startswith("AX\t"):
+            _, sym, fq, ax = line.split("\t", 3)
+            if sym == "*":
+                file_wide[fq] = _axiom_list(ax)
+            else:
+                hits[sym].append((fq, _axiom_list(ax)))
+                seen.add(sym)
+        elif line.startswith("UNRESOLVED\t"):
+            seen.add(line.split("\t", 1)[1])
+    axioms: dict[str, list[str]] = {}
+    resolution: dict[str, list[str]] = {}
+    unresolved: list[str] = []
+    ambiguous: dict[str, list[str]] = {}
+    for sym in cited:
+        found = hits.get(sym, [])
+        exact = [h for h in found if h[0] == sym]
+        chosen = exact[:1] or (found if len(found) == 1 else [])
+        if chosen:
+            axioms[chosen[0][0]] = chosen[0][1]
+            resolution[sym] = [chosen[0][0]]
+        else:
+            unresolved.append(sym)
+            if len(found) > 1:
+                ambiguous[sym] = sorted(h[0] for h in found)
+    return {"axioms": axioms, "cited_resolution": resolution, "unresolved_cited_symbols": sorted(unresolved),
+            "ambiguous_cited_symbols": ambiguous, "file_wide_axioms": file_wide,
+            "all_cited_audited": all(s in seen for s in cited)}
+
+
+def audit_decision(parsed: dict, cited: list[str], audit_done: bool) -> tuple[bool, dict]:
+    """(axiom_audit_passed, the axioms to print in the row).
+
+    With cited symbols: passed only if the audit ran, every cited symbol resolved, and the axioms of the
+    resolved constants are all standard. The whole-file audit never sets the flag. With no cited symbol the
+    file-wide theorem audit is the audit (there is nothing cited that could fail to resolve).
+    """
+    if cited:
+        axioms = parsed["axioms"]
+        ok = bool(audit_done and parsed["all_cited_audited"] and not parsed["unresolved_cited_symbols"] and axioms)
+    else:
+        axioms = parsed["file_wide_axioms"]
+        ok = bool(audit_done and axioms)
+    standard = all(set(v) <= set(ALLOWED) for v in axioms.values())
+    return ok and standard, axioms
+
+
 class Runner:
     def __init__(self, repo: Path, work: Path, plan: dict, workers: int):
         self.repo, self.work, self.plan, self.workers = repo, work, plan, workers
@@ -189,6 +287,7 @@ class Runner:
         (work / "results").mkdir(parents=True, exist_ok=True)
         (work / "scratch").mkdir(parents=True, exist_ok=True)
         self.lock = threading.Lock()
+        self._sha_cache: dict[str, str] = {}
 
     def res_file(self, module: str) -> Path:
         return self.work / "results" / (module + ".json")
@@ -205,20 +304,38 @@ class Runner:
             return p.returncode, secs, out, target
         return p.returncode, secs, out, target
 
+    def dep_shas(self, module: str) -> dict[str, str]:
+        """sha256 of every lake module this one imports, directly or not."""
+        out = {}
+        for m in sorted(self.graph.closure([module]) - {module}):
+            with self.lock:
+                if m not in self._sha_cache:
+                    self._sha_cache[m] = sha256_file(self.repo / self.graph.path_of[m])
+            out[m] = self._sha_cache[m]
+        return out
+
+    @staticmethod
+    def keys(sha0: str, deps: dict[str, str], symbols: list[str] | None) -> tuple[str, str]:
+        """(build key, audit key). The build depends on the file and its transitive local imports; the audit
+        also on the set of cited symbols and on the audit procedure."""
+        build = hashlib.sha256(json.dumps([sha0, deps], sort_keys=True).encode()).hexdigest()
+        audit = hashlib.sha256(json.dumps([build, symbols, AUDIT_VERSION]).encode()).hexdigest()
+        return build, audit
+
     def process(self, module: str, cited: dict | None):
         rel = self.graph.path_of[module]
         path = self.repo / rel
         cache = self.res_file(module)
         sha0 = sha256_file(path)
+        symbols = sorted(cited["decls"]) if cited is not None else None
+        build_key, audit_key = self.keys(sha0, self.dep_shas(module), symbols)
+        reuse = None
         if cache.exists():
             old = json.loads(cache.read_text(encoding="utf-8"))
-            if old.get("sha256") == sha0 and old.get("exit_code") == 0 and \
-                    (cited is None or (old.get("audit_done") and (old.get("audit_version") == 3
-                                                                   or not old.get("unresolved_cited_symbols")))):
-                return old
-            reuse = old if old.get("sha256") == sha0 and old.get("exit_code") == 0 else None
-        else:
-            reuse = None
+            if old.get("build_key") == build_key and old.get("exit_code") == 0:
+                if cited is None or (old.get("audit_key") == audit_key and old.get("audit_done")):
+                    return old
+                reuse = old
         if reuse:
             rc, secs, out, target = 0, reuse["seconds"], reuse["build_output"], reuse["build_target"]
         else:
@@ -229,12 +346,10 @@ class Runner:
                "build_target": target, "build_output": out, "checked_at": datetime.datetime.now(
                    datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                "admission_hits": admission_scan(path.read_text(encoding="utf-8", errors="replace")),
-               "audit_done": False}
+               "audit_done": False, "build_key": build_key, "audit_key": audit_key, "audit_version": AUDIT_VERSION}
         if reuse:
             row["checked_at"] = reuse["checked_at"]
-        row["audit_version"] = 3
         if rc == 0 and cited is not None:
-            symbols = sorted(cited["decls"])
             script = self.work / "scratch" / (module + ".lean")
             script.write_text(axiom_script(module, symbols), encoding="utf-8", newline="\n")
             t0 = time.time()
@@ -244,22 +359,7 @@ class Runner:
             row["audit_exit_code"] = p.returncode
             row["audit_seconds"] = round(time.time() - t0, 2)
             row["audit_output"] = aout
-            axioms: dict[str, list[str]] = {}
-            resolution: dict[str, list[str]] = {}
-            unresolved: list[str] = []
-            for line in aout.splitlines():
-                if line.startswith("AX\t") or line.startswith("AXLC\t"):
-                    _, sym, fq, ax = line.split("\t", 3)
-                    ax = [a.strip() for a in ax.strip("[]").split(",") if a.strip()]
-                    axioms[fq] = sorted(ax)
-                    resolution.setdefault(sym, []).append(fq)
-                    if line.startswith("AXLC"):
-                        row.setdefault("resolved_by_last_component", []).append(sym)
-                elif line.startswith("UNRESOLVED\t"):
-                    unresolved.append(line.split("\t", 1)[1])
-            row["axioms"] = axioms
-            row["cited_resolution"] = resolution
-            row["unresolved_cited_symbols"] = sorted(unresolved)
+            row["cited_symbols_audited"] = symbols
             row["audit_done"] = p.returncode == 0 and "MODULE-NOT-FOUND" not in aout
         cache.write_text(json.dumps(row, indent=1, ensure_ascii=False), encoding="utf-8", newline="\n")
         return row
@@ -283,6 +383,22 @@ class Runner:
         args = ["lean"] + ([f"--root={path.parent}", "-o", str(out_olean)] if out_olean else []) + [str(path)]
         return subprocess.run(args, cwd=self.lean4, capture_output=True, encoding="utf-8", errors="replace", env=env)
 
+    def sibling_files(self, path: Path, seen: set | None = None) -> list[Path]:
+        """The files of the same folder that `path` imports, transitively (paper-local modules)."""
+        seen = seen if seen is not None else set()
+        found: list[Path] = []
+        code = strip_comments(path.read_text(encoding="utf-8", errors="replace"))
+        for m in IMPORT.finditer(code):
+            for tok in m.group(1).split():
+                tok = tok.strip("«»")
+                sib = path.parent / (tok + ".lean")
+                if tok.split(".")[0] in EXTPKG or tok in seen or not sib.is_file():
+                    continue
+                seen.add(tok)
+                found.append(sib)
+                found.extend(self.sibling_files(sib, seen))
+        return found
+
     def compile_siblings(self, path: Path, seen: set | None = None) -> None:
         """Compile, in dependency order, the files of the same folder that `path` imports (paper-local modules)."""
         seen = seen if seen is not None else set()
@@ -304,9 +420,12 @@ class Runner:
         path = self.repo / rel
         cache = self.res_file(key)
         sha0 = sha256_file(path)
+        symbols = sorted(cited["decls"])
+        siblings = {s.name: sha256_file(s) for s in self.sibling_files(path)}
+        build_key, audit_key = self.keys(sha0, siblings, symbols)
         if cache.exists():
             old = json.loads(cache.read_text(encoding="utf-8"))
-            if old.get("sha256") == sha0 and old.get("audit_done"):
+            if old.get("audit_key") == audit_key and old.get("audit_done"):
                 return old
         self.compile_siblings(path)
         t0 = time.time()
@@ -319,9 +438,8 @@ class Runner:
                "build_target": "lean " + rel + "   # LEAN_PATH from `lake env`; sibling modules compiled first", "build_output": out,
                "checked_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                "admission_hits": admission_scan(path.read_text(encoding="utf-8", errors="replace")),
-               "audit_done": False}
+               "audit_done": False, "build_key": build_key, "audit_key": audit_key, "audit_version": AUDIT_VERSION}
         if p.returncode == 0:
-            symbols = sorted(cited["decls"])
             cited_lit = ", ".join('"' + lean_escape(x) + '"' for x in symbols)
             snippet = f'''
 open Lean Elab Command in
@@ -345,23 +463,33 @@ open Lean Elab Command in
             t1 = time.time()
             q = self.lean_file(script)
             aout = q.stdout + q.stderr
-            row.update(audit_exit_code=q.returncode, audit_seconds=round(time.time() - t1, 2), audit_output=aout)
-            axioms, resolution, unresolved = {}, {}, []
-            for line in aout.splitlines():
-                if line.startswith("AX\t"):
-                    _, sym, fq, ax = line.split("\t", 3)
-                    axioms[fq] = sorted(a.strip() for a in ax.strip("[]").split(",") if a.strip())
-                    resolution.setdefault(sym, []).append(fq)
-                elif line.startswith("UNRESOLVED\t"):
-                    unresolved.append(line.split("\t", 1)[1])
-            row.update(axioms=axioms, cited_resolution=resolution, unresolved_cited_symbols=sorted(unresolved),
-                       audit_done=q.returncode == 0)
+            row.update(audit_exit_code=q.returncode, audit_seconds=round(time.time() - t1, 2), audit_output=aout,
+                       cited_symbols_audited=symbols, audit_done=q.returncode == 0)
         cache.write_text(json.dumps(row, indent=1, ensure_ascii=False), encoding="utf-8", newline="\n")
         return row
 
+    def normalise_only(self, only):
+        """--only takes repository paths (lean4/X.lean, papers/.../X.lean) or module names (X, Imported.A.B).
+        Returns (set of plan paths, set of lake modules); an unknown token is an error."""
+        if not only:
+            return None, None
+        paths, mods = set(), set()
+        for tok in only:
+            if tok in self.plan:
+                paths.add(tok)
+                if module_of(tok) in self.graph.path_of:
+                    mods.add(module_of(tok))
+            elif tok in self.graph.path_of:
+                mods.add(tok)
+                paths.add(self.graph.path_of[tok])
+            else:
+                raise SystemExit(f"--only {tok!r} is neither a path of the plan nor a lake module")
+        return paths, mods
+
     def run(self, only=None):
+        only_paths, only_mods = self.normalise_only(only)
         for rel, ent in sorted(self.plan.items()):
-            if module_of(rel) is None and ent["decls"] and (not only or rel in only):
+            if module_of(rel) is None and ent["decls"] and (only_paths is None or rel in only_paths):
                 r = self.process_standalone(rel, ent)
                 print(f"[standalone] {rel}: {'ok' if r['exit_code'] == 0 else 'FAIL'} {r['seconds']}s "
                       f"audit={'ok' if r.get('audit_done') else '-'}", flush=True)
@@ -370,7 +498,7 @@ open Lean Elab Command in
             m = module_of(path)
             if m and m in self.graph.path_of:
                 cited_mods[m] = ent
-        todo = set(only) if only else set(cited_mods)
+        todo = set(only_mods) if only_mods is not None else set(cited_mods)
         closure = self.graph.closure(todo)
         levels = self.graph.levels(closure)
         print(f"{len(todo)} receipt modules, {len(closure)} modules in the dependency closure, "
@@ -447,9 +575,11 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
         r = rows_by_module[m]
         stage_count = collections.Counter(n[2] for n in ent["nodes"])
         group = sorted(stage_count.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
-        axioms = r.get("axioms", {})
-        standard = all(set(v) <= set(ALLOWED) for v in axioms.values())
-        audit_ok = bool(r.get("audit_done") and axioms and standard)
+        if sha256_file(repo / r["source"]) != r["sha256"]:
+            raise SystemExit(f"{r['source']} changed since it was replayed; run the campaign again before assembling")
+        cited = sorted(ent["decls"])
+        parsed = parse_audit(r.get("audit_output", ""), cited)
+        audit_ok, axioms = audit_decision(parsed, cited, bool(r.get("audit_done")))
         admission_ok = not r.get("admission_hits") and "declaration uses 'sorry'" not in r["build_output"]
         row = {
             "module": m if not rows_by_module[m].get("standalone") else path[:-len(".lean")].replace("/", "."),
@@ -466,9 +596,13 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
             "admission_scan_passed": admission_ok,
             "axiom_audit_passed": audit_ok,
             "cited_symbols": sorted(ent["decls"]),
-            "cited_resolution": r.get("cited_resolution", {}),
-            "unresolved_cited_symbols": r.get("unresolved_cited_symbols", sorted(ent["decls"])),
+            "cited_resolution": parsed["cited_resolution"],
+            "unresolved_cited_symbols": parsed["unresolved_cited_symbols"],
+            "ambiguous_cited_symbols": parsed["ambiguous_cited_symbols"],
+            "axiom_audit_basis": "cited declarations" if cited else "every theorem of the file (no declaration cited)",
             "axioms": axioms,
+            **({"axioms_whole_file_extra": parsed["file_wide_axioms"]}
+               if cited and parsed["file_wide_axioms"] else {}),
             "output": trunc(r["build_output"], 3000 if r["exit_code"] == 0 else 12000),
             "axiom_audit_output": trunc(r.get("audit_output", ""), 6000),
             "build_command": (f"cd lean4 && {r['build_target']}" if r.get("standalone")
@@ -517,8 +651,12 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
                 "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named "
                 "declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
                 "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the "
-                "sources were not edited. A cited symbol with no constant of that name in the module is listed under "
-                "unresolved_cited_symbols and is not audited.",
+                "sources were not edited. A cited symbol resolves only to a constant whose full name is the symbol or "
+                "ends in '.' + the symbol; a symbol with no such constant, or only several suffix matches and no exact "
+                "one, is listed under unresolved_cited_symbols / ambiguous_cited_symbols and is not audited. "
+                "axiom_audit_passed is true only if every cited symbol resolved and every audited axiom is standard; "
+                "the whole-file theorem audit (axioms_whole_file_extra) is information and never sets it. When the DAG "
+                "cites a file without naming a declaration, the audit is of every theorem of the file.",
                 "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built "
                 "side by side; it includes contention and, for a module whose dependencies were built just before, only "
                 "that module's own compile.",
@@ -532,6 +670,12 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
     deps = [{"module": m, "source": r["source"], "sha256": r["sha256"], "exit_code": r["exit_code"],
              "seconds": r["seconds"]} for m, r in sorted(rows_by_module.items())
             if not any((module_of(p) or runner_key(p)) == m for p in plan)]
+    dep_dir = groups_out / "lean_replay_campaign"
+    dep_dir.mkdir(parents=True, exist_ok=True)
+    (dep_dir / "dependency_builds.json").write_text(json.dumps({
+        "schema_version": "lean_replay_dependency_builds.v1", "authority_effect": "None",
+        "note": "Modules built only because a cited module imports them. Not receipts: no cited declaration is audited.",
+        "dependency_builds": deps}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     (work / "assemble_summary.json").write_text(json.dumps({"groups": summary, "dependency_builds": deps},
                                                            indent=1), encoding="utf-8", newline="\n")
     return summary, deps
