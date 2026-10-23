@@ -1,0 +1,71 @@
+
+running 52 tests
+................ 16/52
+repo::tests::hashing_and_relative_paths --- FAILED
+.......... 27/52
+repo::tests::package_sources_skip_nested_packages_and_target --- FAILED
+..... 33/52
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+. 35/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+..... 41/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+..........
+failures:
+
+---- repo::tests::hashing_and_relative_paths stdout ----
+
+thread 'repo::tests::hashing_and_relative_paths' (25500) panicked at ..\code\rust\src\governance\src\repo.rs:239:9:
+assertion `left == right` failed
+  left: None
+ right: Some("x/y.rs")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- repo::tests::package_sources_skip_nested_packages_and_target stdout ----
+
+thread 'repo::tests::package_sources_skip_nested_packages_and_target' (20884) panicked at ..\code\rust\src\governance\src\repo.rs:265:99:
+called `Option::unwrap()` on a `None` value
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (46964) panicked at ..\code\rust\src\governance\src\buildtime.rs:258:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-new-3\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-new-3\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-new-3\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-new-3\code/rust/p\src\lib.rs
+
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (11384) panicked at ..\code\rust\src\governance\src\buildtime.rs:282:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-changed-1\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-changed-1\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-changed-1\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-changed-1\code/rust/p\src\lib.rs
+
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (4068) panicked at ..\code\rust\src\governance\src\buildtime.rs:240:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-clean-0\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-clean-0\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-clean-0\code/rust/p
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-clean-0\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-clean-0\code/rust/p\build.rs
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-10936-bt-clean-0\code/rust/p\src\lib.rs
+
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+    repo::tests::hashing_and_relative_paths
+    repo::tests::package_sources_skip_nested_packages_and_target
+
+test result: FAILED. 47 passed; 5 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.10s
+
+error: test failed, to rerun pass `--lib`

@@ -45,8 +45,8 @@ gap_register GAP-FQM-002/003/004/006..010/012/014/017/019/020/022 (statuses abse
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:428`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:546`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:560`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:573`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:587`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:428`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:546`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:560`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:573`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:587`

@@ -32,8 +32,10 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols() -> Non
     unified = json.loads((ROOT / 'dag/fragments/unified_dag.json').read_text(encoding='utf-8'))
     frontier = json.loads((ROOT / 'dag/fragments/frontier_branches.json').read_text(encoding='utf-8'))
     gth = json.loads((ROOT / 'dag/fragments/genesis_to_higher.json').read_text(encoding='utf-8'))
+    ops = json.loads((ROOT / 'dag/fragments/foc035_observer_presheaf.json').read_text(encoding='utf-8'))
     assert len(ids) == len(records) == (397 + len(unified['node_records']) + len(pregenesis_to_wdp['records'])
-                                        + len(f["records"]) + len(frontier['records']) + len(gth['records']))
+                                        + len(f["records"]) + len(frontier['records']) + len(gth['records'])
+                                        + len(ops['records']))
     papers = list((ROOT / 'dag/derivations').rglob('tfq_*.md'))
     paper_ids: list[str] = []
     for paper in papers:

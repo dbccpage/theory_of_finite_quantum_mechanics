@@ -1,0 +1,146 @@
+
+running 52 tests
+..... 5/52
+descriptor::tests::parses_a_complete_companion --- FAILED
+............. 19/52
+score::tests::completion_boundary_exhausts_every_gate_assignment --- FAILED
+score::tests::completion_refuses_false_flag_and_absent_values --- FAILED
+score::tests::completion_refuses_forged_axes --- FAILED
+score::tests::completion_refuses_forged_composites --- FAILED
+score::tests::composite_is_the_minimum_of_complete_gates --- FAILED
+...... 30/52
+score::tests::unassessed_gate_gives_no_composite_unless_a_known_e --- FAILED
+... 34/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::null_gate_is_incomplete --- FAILED
+...... 44/52
+tests::binding_failure_still_reports_the_floor --- FAILED
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+. 47/52
+tests::twin_sources_use_qualified_companions --- FAILED
+. 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- descriptor::tests::parses_a_complete_companion stdout ----
+
+thread 'descriptor::tests::parses_a_complete_companion' (26112) panicked at ..\code\rust\src\governance\src\descriptor.rs:274:9:
+assertion `left == right` failed
+  left: None
+ right: Some(C)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- score::tests::completion_boundary_exhausts_every_gate_assignment stdout ----
+
+thread 'score::tests::completion_boundary_exhausts_every_gate_assignment' (9568) panicked at ..\code\rust\src\governance\src\score.rs:574:9:
+assertion `left == right` failed
+  left: Err(Unassessed { gates: [G1], known_ceiling: Some(E) })
+ right: Err(Unassessed { gates: [G2, G3, G4, G5], known_ceiling: Some(E) })
+
+---- score::tests::completion_refuses_false_flag_and_absent_values stdout ----
+
+thread 'score::tests::completion_refuses_false_flag_and_absent_values' (35588) panicked at ..\code\rust\src\governance\src\score.rs:592:9:
+assertion failed: claim.validate().is_ok()
+
+---- score::tests::completion_refuses_forged_axes stdout ----
+
+thread 'score::tests::completion_refuses_forged_axes' (33200) panicked at ..\code\rust\src\governance\src\score.rs:612:13:
+assertion failed: matches!(ScoreClaim { token: Some(token), ..claim }.validate(),
+    Err(CompletionError::TokenMismatch { .. }))
+
+---- score::tests::completion_refuses_forged_composites stdout ----
+
+thread 'score::tests::completion_refuses_forged_composites' (8764) panicked at ..\code\rust\src\governance\src\score.rs:602:13:
+assertion failed: matches!(ScoreClaim { composite: Some(grade), ..claim }.validate(),
+    Err(CompletionError::CompositeMismatch { .. }))
+
+---- score::tests::composite_is_the_minimum_of_complete_gates stdout ----
+
+thread 'score::tests::composite_is_the_minimum_of_complete_gates' (44984) panicked at ..\code\rust\src\governance\src\score.rs:500:9:
+assertion `left == right` failed
+  left: None
+ right: Some(C)
+
+---- score::tests::unassessed_gate_gives_no_composite_unless_a_known_e stdout ----
+
+thread 'score::tests::unassessed_gate_gives_no_composite_unless_a_known_e' (30404) panicked at ..\code\rust\src\governance\src\score.rs:517:9:
+assertion `left == right` failed
+  left: [G1, G2, G3, G5]
+ right: [G4]
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (42268) panicked at ..\code\rust\src\governance\src\verify.rs:404:9:
+assertion `left == right` failed
+  left: Err(Completeness { path: "code/x.contract.score.yaml", field: "gates", expected: "a grade on every gate", found: "unassessed G1, G2, G3, G4, G5" })
+ right: Ok(())
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (38628) panicked at ..\code\rust\src\governance\src\verify.rs:367:9:
+code/x.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (43152) panicked at ..\code\rust\src\governance\src\verify.rs:342:9:
+assertion `left == right` failed
+  left: Err(Completeness { path: "code/x.contract.score.yaml", field: "gates", expected: "a grade on every gate", found: "unassessed G1, G2, G3, G4, G5" })
+ right: Ok(())
+
+---- verify::tests::null_gate_is_incomplete stdout ----
+
+thread 'verify::tests::null_gate_is_incomplete' (39184) panicked at ..\code\rust\src\governance\src\verify.rs:359:9:
+code/x.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G4, G5
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (308) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Binding, Completeness]
+ right: [Binding, Floor]
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (34104) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 0 pass, 0 grandfathered, 1 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\n")
+ right: Ok(())
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (32128) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Completeness { path: "code/t.rs.contract.score.yaml", field: "gates", expected: "a grade on every gate", found: "unassessed G1, G2, G3, G4, G5" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (14764) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Fail([Completeness { path: "code/a.contract.score.yaml", field: "gates", expected: "a grade on every gate", found: "unassessed G1, G2, G3, G4, G5" }])
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    descriptor::tests::parses_a_complete_companion
+    score::tests::completion_boundary_exhausts_every_gate_assignment
+    score::tests::completion_refuses_false_flag_and_absent_values
+    score::tests::completion_refuses_forged_axes
+    score::tests::completion_refuses_forged_composites
+    score::tests::composite_is_the_minimum_of_complete_gates
+    score::tests::unassessed_gate_gives_no_composite_unless_a_known_e
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+    verify::tests::null_gate_is_incomplete
+
+test result: FAILED. 37 passed; 15 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.19s
+
+error: test failed, to rerun pass `--lib`

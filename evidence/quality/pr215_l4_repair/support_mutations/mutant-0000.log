@@ -1,0 +1,40 @@
+
+running 55 tests
+................. 17/55
+policy::tests::support_exceptions_are_exact_and_fail_closed --- FAILED
+........................... 45/55
+verify::tests::support_pin_never_accepts_incomplete_or_grade_e --- FAILED
+........ 54/55
+repo::tests::git_population_changes_and_history --- FAILED
+
+failures:
+
+---- policy::tests::support_exceptions_are_exact_and_fail_closed stdout ----
+
+thread 'policy::tests::support_exceptions_are_exact_and_fail_closed' (44340) panicked at ..\code\rust\src\governance\src\policy.rs:717:9:
+assertion `left == right` failed
+  left: L4
+ right: L1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- verify::tests::support_pin_never_accepts_incomplete_or_grade_e stdout ----
+
+thread 'verify::tests::support_pin_never_accepts_incomplete_or_grade_e' (28772) panicked at ..\code\rust\src\governance\src\verify.rs:475:9:
+assertion `left == right` failed
+  left: Err(Floor { path: "code/x.contract.score.yaml", expected: "a completed token with level >= L4 and grade >= D", found: "L2D" })
+ right: Ok(())
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (31640) panicked at ..\code\rust\src\governance\src\repo.rs:325:34:
+called `Result::unwrap()` on an `Err` value: Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+
+
+failures:
+    policy::tests::support_exceptions_are_exact_and_fail_closed
+    repo::tests::git_population_changes_and_history
+    verify::tests::support_pin_never_accepts_incomplete_or_grade_e
+
+test result: FAILED. 52 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.19s
+
+error: test failed, to rerun pass `--lib`

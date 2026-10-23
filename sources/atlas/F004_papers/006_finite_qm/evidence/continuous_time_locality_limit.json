@@ -1,0 +1,185 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C500",
+  "block": "block_06",
+  "global_targets": "C500-T426..C500-T450",
+  "terminal_outcome": "CONDITIONAL_PRODUCT_FORMULA_BOUNDS_LOCALITY_OPEN",
+  "predecessor_binding_status": "NOT_VERIFIED_BY_KERNEL",
+  "trotter_error_bounds": {
+    "source": "https://arxiv.org/abs/1912.08854 (section 5.1; imported bounded self-adjoint operator estimates)",
+    "fixture": {
+      "A": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "B": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          -1
+        ]
+      ]
+    },
+    "time_t": "1/2",
+    "commutator_norm": "2",
+    "a_double_commutator_norm": "4",
+    "b_double_commutator_norm": "4",
+    "first_order_series": [
+      {
+        "n": 10,
+        "bound": "1/40",
+        "bound_float": 0.025
+      },
+      {
+        "n": 20,
+        "bound": "1/80",
+        "bound_float": 0.0125
+      },
+      {
+        "n": 50,
+        "bound": "1/200",
+        "bound_float": 0.005
+      },
+      {
+        "n": 100,
+        "bound": "1/400",
+        "bound_float": 0.0025
+      },
+      {
+        "n": 200,
+        "bound": "1/800",
+        "bound_float": 0.00125
+      },
+      {
+        "n": 500,
+        "bound": "1/2000",
+        "bound_float": 0.0005
+      },
+      {
+        "n": 1000,
+        "bound": "1/4000",
+        "bound_float": 0.00025
+      }
+    ],
+    "second_order_series": [
+      {
+        "n": 10,
+        "bound": "1/1600",
+        "bound_float": 0.000625
+      },
+      {
+        "n": 20,
+        "bound": "1/6400",
+        "bound_float": 0.00015625
+      },
+      {
+        "n": 50,
+        "bound": "1/40000",
+        "bound_float": 2.5e-05
+      },
+      {
+        "n": 100,
+        "bound": "1/160000",
+        "bound_float": 6.25e-06
+      },
+      {
+        "n": 200,
+        "bound": "1/640000",
+        "bound_float": 1.5625e-06
+      },
+      {
+        "n": 500,
+        "bound": "1/4000000",
+        "bound_float": 2.5e-07
+      },
+      {
+        "n": 1000,
+        "bound": "1/16000000",
+        "bound_float": 6.25e-08
+      }
+    ]
+  },
+  "local_vs_global_errors": [
+    {
+      "volume_l": 10,
+      "dist_to_boundary": 4,
+      "evolution_time": "1",
+      "lieb_robinson_velocity": "2",
+      "outside_declared_cone": true,
+      "local_error_independent_of_volume": null,
+      "locality_bound_status": "OPEN_MISSING_INTERACTION_AND_BOUND_CONSTANTS"
+    },
+    {
+      "volume_l": 50,
+      "dist_to_boundary": 4,
+      "evolution_time": "1",
+      "lieb_robinson_velocity": "2",
+      "outside_declared_cone": true,
+      "local_error_independent_of_volume": null,
+      "locality_bound_status": "OPEN_MISSING_INTERACTION_AND_BOUND_CONSTANTS"
+    },
+    {
+      "volume_l": 100,
+      "dist_to_boundary": 4,
+      "evolution_time": "1",
+      "lieb_robinson_velocity": "2",
+      "outside_declared_cone": true,
+      "local_error_independent_of_volume": null,
+      "locality_bound_status": "OPEN_MISSING_INTERACTION_AND_BOUND_CONSTANTS"
+    }
+  ],
+  "dense_orbit_audit": {
+    "c250_claim": "dense cyclic orbit gives continuous flow",
+    "status": "NARROWED",
+    "audit_rationale": "Even in the usual circle topology, exp(i*(theta+2*pi*k)*t) gives different continuous generators with identical integer-time samples for every integer k. A real-time extension and its topology/continuity must be declared separately.",
+    "dense_orbit_alone_implies_continuous_action": false
+  },
+  "hypothesis_pricing": {
+    "continuous_generator_hypotheses_priced": true,
+    "hypotheses": [
+      {
+        "hypothesis_id": "CONT-HYP-1",
+        "name": "Declared Topology",
+        "price": "Must choose norm or strong operator topology; discrete algebra has none.",
+        "status": "DECLARED"
+      },
+      {
+        "hypothesis_id": "CONT-HYP-2",
+        "name": "Stone Strong Continuity",
+        "price": "Require a one-parameter unitary group strongly continuous at t=0; continuity alone does not supply the group law.",
+        "status": "DECLARED"
+      },
+      {
+        "hypothesis_id": "CONT-HYP-3",
+        "name": "Thermodynamic Quasi-Local C*-Algebra",
+        "price": "Inductive limit norm completion of local algebras A_L as L -> infty.",
+        "status": "DECLARED"
+      },
+      {
+        "hypothesis_id": "CONT-HYP-4",
+        "name": "Lieb-Robinson Finite Velocity",
+        "price": "Specify interaction range/decay, geometry, support norms and constants uniform in volume; a termwise norm alone is insufficient.",
+        "status": "OPEN"
+      }
+    ]
+  },
+  "machine_bet_clauses": {
+    "finite_product_formula_has_explicit_error_bound": true,
+    "dense_orbit_alone_implies_continuous_action": false,
+    "continuous_generator_hypotheses_are_priced": true,
+    "c250_dense_orbit_claim_status": "NARROWED",
+    "every_numerical_bound_has_a_certified_error_enclosure": false,
+    "product_formula_theorem_status": "IMPORTED_BOUNDED_SELF_ADJOINT_THEOREM_WITH_FINITE_FIXTURE",
+    "locality_and_thermodynamic_limit_status": "OPEN"
+  }
+}

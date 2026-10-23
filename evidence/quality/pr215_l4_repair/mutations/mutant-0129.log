@@ -1,0 +1,61 @@
+error[E0277]: expected an `Fn()` closure, found `score::ScoreError`
+   --> ..\code\rust\src\governance\src\score.rs:183:51
+    |
+183 |         let level_text = text.get(..2).ok_or_else(malformed)?;
+    |                                        ---------- ^^^^^^^^^ expected an `Fn()` closure, found `score::ScoreError`
+    |                                        |
+    |                                        required by a bound introduced by this call
+    |
+help: the trait `Fn()` is not implemented for `score::ScoreError`
+   --> ..\code\rust\src\governance\src\score.rs:410:1
+    |
+410 | pub enum ScoreError {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: wrap the `score::ScoreError` in a closure with no arguments: `|| { /* code */ }`
+    = note: required for `&score::ScoreError` to implement `FnOnce()`
+note: required by a bound in `Option::<T>::ok_or_else`
+   --> /rustc/b940084d7eb6a299eb4bfeb8e34901bc051e7ac4/library\core\src\option.rs:1359:4
+
+error[E0277]: expected an `Fn()` closure, found `score::ScoreError`
+   --> ..\code\rust\src\governance\src\score.rs:184:51
+    |
+184 |         let grade_text = text.get(2..).ok_or_else(malformed)?;
+    |                                        ---------- ^^^^^^^^^ expected an `Fn()` closure, found `score::ScoreError`
+    |                                        |
+    |                                        required by a bound introduced by this call
+    |
+help: the trait `Fn()` is not implemented for `score::ScoreError`
+   --> ..\code\rust\src\governance\src\score.rs:410:1
+    |
+410 | pub enum ScoreError {
+    | ^^^^^^^^^^^^^^^^^^^
+    = note: wrap the `score::ScoreError` in a closure with no arguments: `|| { /* code */ }`
+    = note: required for `&score::ScoreError` to implement `FnOnce()`
+note: required by a bound in `Option::<T>::ok_or_else`
+   --> /rustc/b940084d7eb6a299eb4bfeb8e34901bc051e7ac4/library\core\src\option.rs:1359:4
+
+error[E0618]: expected function, found `&&score::ScoreError`
+   --> ..\code\rust\src\governance\src\score.rs:185:61
+    |
+182 |         let malformed = && ScoreError::MalformedToken(text.to_owned());
+    |             --------- `malformed` has type `&&score::ScoreError`
+...
+185 |         let level = level_text.parse::<Level>().map_err(|_| malformed())?;
+    |                                                             ^^^^^^^^^--
+    |                                                             |
+    |                                                             call expression requires function
+
+error[E0618]: expected function, found `&&score::ScoreError`
+   --> ..\code\rust\src\governance\src\score.rs:186:61
+    |
+182 |         let malformed = && ScoreError::MalformedToken(text.to_owned());
+    |             --------- `malformed` has type `&&score::ScoreError`
+...
+186 |         let grade = grade_text.parse::<Grade>().map_err(|_| malformed())?;
+    |                                                             ^^^^^^^^^--
+    |                                                             |
+    |                                                             call expression requires function
+
+Some errors have detailed explanations: E0277, E0618.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `governance` (lib test) due to 4 previous errors

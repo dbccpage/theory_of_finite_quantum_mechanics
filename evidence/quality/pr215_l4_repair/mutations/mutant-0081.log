@@ -1,0 +1,74 @@
+
+running 52 tests
+.... 4/52
+policy::tests::companion_naming_follows_collision_rule --- FAILED
+............................ 33/52
+tests::malformed_companion_and_unreadable_source --- FAILED
+.. 36/52
+tests::binding_failure_still_reports_the_floor --- FAILED
+... 40/52
+tests::twin_sources_use_qualified_companions --- FAILED
+..... 46/52
+tests::binding_and_completeness_are_both_reported --- FAILED
+.. 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- policy::tests::companion_naming_follows_collision_rule stdout ----
+
+thread 'policy::tests::companion_naming_follows_collision_rule' (35808) panicked at ..\code\rust\src\governance\src\policy.rs:621:9:
+assertion `left == right` failed
+  left: "m.contract.score.yaml"
+ right: "code/a/m.contract.score.yaml"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::malformed_companion_and_unreadable_source stdout ----
+
+thread 'tests::malformed_companion_and_unreadable_source' (33392) panicked at ..\code\rust\src\governance\src\lib.rs:333:9:
+assertion failed: matches!(file.violations(), [Violation::MalformedJson { path, .. }] if path ==
+    "code/m.contract.score.yaml")
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (15268) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [MissingCompanion]
+ right: [Binding, Floor]
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (16972) panicked at ..\code\rust\src\governance\src\lib.rs:373:9:
+assertion failed: repo.root.join("code/t.rs.contract.score.yaml").is_file()
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (19152) panicked at ..\code\rust\src\governance\src\lib.rs:353:9:
+assertion `left == right` failed: floor is not repeated when completeness fails
+  left: [MissingCompanion]
+ right: [Binding, Completeness]
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (40696) panicked at ..\code\rust\src\governance\src\lib.rs:310:9:
+checked 6: 1 pass, 1 grandfathered, 1 boilerplate, 3 failed
+FAIL code/low.rs (new or not grandfathered)
+  low.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L3A
+FAIL code/new.rs (new or not grandfathered)
+  code/new.rs: [MISSING_COMPANION] expected companion new.contract.score.yaml, found none
+FAIL code/rust/src/j/build.rs (new or not grandfathered)
+  code/rust/src/j/build.rs: [MISSING_COMPANION] expected companion build.contract.score.yaml, found none
+
+
+
+failures:
+    policy::tests::companion_naming_follows_collision_rule
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::malformed_companion_and_unreadable_source
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+
+test result: FAILED. 46 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.38s
+
+error: test failed, to rerun pass `--lib`

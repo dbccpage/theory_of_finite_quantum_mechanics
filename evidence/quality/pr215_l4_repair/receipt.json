@@ -1,0 +1,130 @@
+{
+  "schema": "tfqm.governance-evidence.v2",
+  "AuthorityEffect": "None",
+  "sources": {
+    "src/bin/governance-check.rs": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+    "src/buildtime.rs": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+    "src/descriptor.rs": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+    "src/lib.rs": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+    "src/policy.rs": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+    "src/repo.rs": "1c0b7bc298330a2042603285c8c7555805fafd809cccd6e271490e9bbf46d2e6",
+    "src/score.rs": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+    "src/verify.rs": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+    "Cargo.toml": "0afa2403cac478f58b250e957250b4f4ad6a8d7d37c49fa43f385f8e950f1879",
+    "clippy.toml": "8cf18dfac057bae996306b178e2a7136c23b4028979e16f5b68c67e0e9519a51",
+    "build_manifest": "22d2960d2a8ac4db4652723844691702b1376beb144069a0fb98693baafb7339",
+    "build_lock": "aa5e458593dc02a0e2dd96f6f914f2b5dc93a91978075f57a4f2d411ef741d3e"
+  },
+  "runner_sha256": "68aafb69c70d4d70cf65b9699e66e796b3ed6323d2e4eea583485aa3e5dd82b6",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "sources_unchanged": true,
+  "steps": {
+    "cargo-version": {
+      "command": [
+        "cargo",
+        "--version"
+      ],
+      "state": "COMPLETED",
+      "exit_status": 0,
+      "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\cargo-version.log",
+      "log_sha256": "1f88eaf7fe1aaec83184752cf4c944cd22f00184136ff36a3e4c318cc60ef566",
+      "output_bytes": 36,
+      "seconds": 0.25,
+      "error": ""
+    },
+    "rustc-version": {
+      "command": [
+        "rustc",
+        "--version"
+      ],
+      "state": "COMPLETED",
+      "exit_status": 0,
+      "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\rustc-version.log",
+      "log_sha256": "8dc912acd5bfeafc70b01b1d2a2afb0844afa02f5dba2f1ae8d5c212d005afb6",
+      "output_bytes": 36,
+      "seconds": 0.2190000000409782,
+      "error": ""
+    },
+    "clippy-version": {
+      "command": [
+        "cargo",
+        "clippy",
+        "--version"
+      ],
+      "state": "COMPLETED",
+      "exit_status": 0,
+      "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\clippy-version.log",
+      "log_sha256": "fb4b6b48a93c028fda3c6f3959ace838c41c06f217a51ac3fc9392a8bed631e5",
+      "output_bytes": 38,
+      "seconds": 0.2029999999795109,
+      "error": ""
+    },
+    "test": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml"
+      ],
+      "state": "CLEANUP_ERROR",
+      "exit_status": 0,
+      "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\test.log",
+      "log_sha256": "76b451df27904ac75727dd463b003ae6b12174366d6aea20254445f7fad5bf36",
+      "output_bytes": 4685,
+      "seconds": 14.76600000000326,
+      "error": "[WinError 32] The process cannot access the file because it is being used by another process."
+    },
+    "clippy": {
+      "command": [
+        "cargo",
+        "clippy",
+        "--offline",
+        "--locked",
+        "--manifest-path",
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+        "--lib",
+        "--bins",
+        "--",
+        "-D",
+        "warnings",
+        "-D",
+        "clippy::cognitive_complexity",
+        "-D",
+        "clippy::excessive_nesting"
+      ],
+      "state": "COMPLETED",
+      "exit_status": 0,
+      "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\clippy.log",
+      "log_sha256": "85bb6438585c2b55f39ae68ae3f2ae06edaa46fba96c6dc4df62f39ccffa11f9",
+      "output_bytes": 184,
+      "seconds": 1.3119999999762513,
+      "error": ""
+    },
+    "lizard": {
+      "command": [
+        "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python.exe",
+        "-I",
+        "-m",
+        "lizard",
+        "-l",
+        "rust",
+        "--csv",
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\code\\rust\\src\\governance\\src"
+      ],
+      "state": "COMPLETED",
+      "exit_status": 1,
+      "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\lizard.log",
+      "log_sha256": "3d22fc8b54573813c9727acf149841db330ec1b930b006bdc2738cfd93c45ffb",
+      "output_bytes": 138,
+      "seconds": 0.125,
+      "error": ""
+    }
+  },
+  "limits": {
+    "seconds": 240,
+    "output_bytes": 4194304
+  },
+  "boundary": "No source copy; exclude concurrent writers. Polling output limit is not a hard disk quota."
+}

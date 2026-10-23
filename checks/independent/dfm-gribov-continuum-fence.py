@@ -8,8 +8,16 @@ no repository code.
 from fractions import Fraction
 
 
+def exact(value):
+    if isinstance(value, Fraction):
+        return value
+    if type(value) is int:
+        return Fraction(value)
+    raise TypeError("expected an int or Fraction (not bool, float, or text)")
+
+
 def mat(rows):
-    return tuple(tuple(Fraction(x) for x in row) for row in rows)
+    return tuple(tuple(exact(x) for x in row) for row in rows)
 
 
 def mul(a, b):

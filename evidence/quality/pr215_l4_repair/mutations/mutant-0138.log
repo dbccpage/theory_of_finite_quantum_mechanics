@@ -1,0 +1,70 @@
+
+running 52 tests
+....................... 23/52
+score::tests::floor_cases --- FAILED
+.... 28/52
+score::tests::completion_boundary_exhausts_every_gate_assignment --- FAILED
+... 32/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+............ 45/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+. 47/52
+tests::twin_sources_use_qualified_companions --- FAILED
+. 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- score::tests::floor_cases stdout ----
+
+thread 'score::tests::floor_cases' (42320) panicked at ..\code\rust\src\governance\src\score.rs:532:9:
+assertion failed: floor.admits(t("L4D"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- score::tests::completion_boundary_exhausts_every_gate_assignment stdout ----
+
+thread 'score::tests::completion_boundary_exhausts_every_gate_assignment' (16368) panicked at ..\code\rust\src\governance\src\score.rs:568:13:
+assertion `left == right` failed
+  left: false
+ right: true
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (44584) panicked at ..\code\rust\src\governance\src\verify.rs:342:9:
+assertion `left == right` failed
+  left: Err(Floor { path: "code/x.contract.score.yaml", expected: "a completed token with level >= L4 and grade >= D", found: "L4D" })
+ right: Ok(())
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (45552) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 0 pass, 0 grandfathered, 1 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L4B\n")
+ right: Ok(())
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (45108) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Floor { path: "code/t.rs.contract.score.yaml", expected: "a completed token with level >= L4 and grade >= D", found: "L4D" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (41212) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Fail([Floor { path: "code/a.contract.score.yaml", expected: "a completed token with level >= L4 and grade >= D", found: "L4C" }])
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    score::tests::completion_boundary_exhausts_every_gate_assignment
+    score::tests::floor_cases
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::floor_pass_and_fail_cases
+
+test result: FAILED. 46 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.22s
+
+error: test failed, to rerun pass `--lib`

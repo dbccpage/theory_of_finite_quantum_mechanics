@@ -1,0 +1,145 @@
+
+running 52 tests
+.... 4/52
+policy::tests::exclusions_and_populations_use_any_glob --- FAILED
+...... 11/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+................ 28/52
+buildtime::tests::decide_respects_mode --- FAILED
+.. 31/52
+tests::changed_bytes_lose_grandfathering --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+... 36/52
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+... 40/52
+tests::malformed_companion_and_unreadable_source --- FAILED
+.. 43/52
+tests::binding_and_completeness_are_both_reported --- FAILED
+. 45/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+buildtime::tests::new_mode_aborts_when_any_failure_is_new --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+. 51/52
+repo::tests::git_population_changes_and_history --- FAILED
+
+failures:
+
+---- policy::tests::exclusions_and_populations_use_any_glob stdout ----
+
+thread 'policy::tests::exclusions_and_populations_use_any_glob' (27744) panicked at ..\code\rust\src\governance\src\policy.rs:611:9:
+one matching glob of several suffices
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (26544) panicked at ..\code\rust\src\governance\src\policy.rs:533:9:
+assertion `left == right` failed
+  left: None
+ right: Some(Rust)
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (25156) panicked at ..\code\rust\src\governance\src\buildtime.rs:332:9:
+assertion failed: matches!(decide(Mode::Warn, &report), Decision::Warn(lines) if lines.len() ==
+    2)
+
+---- tests::changed_bytes_lose_grandfathering stdout ----
+
+thread 'tests::changed_bytes_lose_grandfathering' (26840) panicked at ..\code\rust\src\governance\src\lib.rs:319:85:
+called `Option::unwrap()` on a `None` value
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (28000) panicked at ..\code\rust\src\governance\src\lib.rs:363:93:
+called `Option::unwrap()` on a `None` value
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (18428) panicked at ..\code\rust\src\governance\src\buildtime.rs:258:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-new-5\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-new-5\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-new-5\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-new-5\code/rust/p\src\lib.rs
+
+
+---- tests::malformed_companion_and_unreadable_source stdout ----
+
+thread 'tests::malformed_companion_and_unreadable_source' (27472) panicked at ..\code\rust\src\governance\src\lib.rs:332:93:
+called `Option::unwrap()` on a `None` value
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (28828) panicked at ..\code\rust\src\governance\src\lib.rs:351:93:
+called `Option::unwrap()` on a `None` value
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (24648) panicked at ..\code\rust\src\governance\src\buildtime.rs:282:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-changed-4\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-changed-4\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-changed-4\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-changed-4\code/rust/p\src\lib.rs
+
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (43484) panicked at ..\code\rust\src\governance\src\buildtime.rs:240:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-clean-0\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-clean-0\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-clean-0\code/rust/p
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-clean-0\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-clean-0\code/rust/p\build.rs
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-13368-bt-clean-0\code/rust/p\src\lib.rs
+
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (14228) panicked at ..\code\rust\src\governance\src\lib.rs:374:93:
+called `Option::unwrap()` on a `None` value
+
+---- buildtime::tests::new_mode_aborts_when_any_failure_is_new stdout ----
+
+thread 'buildtime::tests::new_mode_aborts_when_any_failure_is_new' (26332) panicked at ..\code\rust\src\governance\src\buildtime.rs:319:9:
+assertion `left == right` failed
+  left: 0
+ right: 2
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (15516) panicked at ..\code\rust\src\governance\src\lib.rs:298:9:
+assertion `left == right` failed: scripts/ and README are outside every population
+  left: 0
+ right: 6
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (35364) panicked at ..\code\rust\src\governance\src\repo.rs:310:9:
+assertion `left == right` failed: governed, existing files only
+  left: []
+ right: ["code/a.rs", "code/b.py", "code/new.rs"]
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    buildtime::tests::decide_respects_mode
+    buildtime::tests::new_mode_aborts_when_any_failure_is_new
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+    policy::tests::exclusions_and_populations_use_any_glob
+    policy::tests::policy_parses_floor_and_populations
+    repo::tests::git_population_changes_and_history
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::changed_bytes_lose_grandfathering
+    tests::malformed_companion_and_unreadable_source
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+
+test result: FAILED. 38 passed; 14 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+error: test failed, to rerun pass `--lib`
