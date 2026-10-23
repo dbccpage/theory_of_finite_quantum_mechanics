@@ -3,26 +3,51 @@ node_id: DFM-HIERARCHICAL-BOREL
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph
-    theorem for two-stage dressing, quotient preservation and curvature covariance.
+  source_statement: 'Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal
+    matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D
+    * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N.
+    torusProj preserves multiplication. On any vertex type with a root, a parent function and a depth
+    function that strictly decreases along parents, and for invertible labels off the root, root-to-vertex
+    transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one
+    field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]].
+    Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of
+    vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex
+    field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that
+    dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1},
+    and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} *
+    g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex
+    field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1}
+    off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing
+    the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative
+    ring, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) satisfy
+    b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance
+    K(A^g) = g(u) * K(A) * g(w)^{-1} when A^g(x, y) = g(x) * A(x, y) * g(y)^{-1}. For A(0,1)=1, A(1,2)=1,
+    A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2))
+    is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy
+    the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On
+    the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).'
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions:
-  - normal subgroup N and quotient action
-  - specified incidence DGA
-  source_bottleneck: Supply the general factorization, quotient-action and incidence-DGA proof before
-    replacing the existing finite control by a general theorem.
+  declared_assumptions: []
+  source_bottleneck: The rooted tree, given by a parent function and a strictly decreasing depth, and
+    the incidence cochain are supplied data. This statement does not construct a spanning tree from an
+    arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build
+    a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this
+    statement.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md
+  - dag/derivations/independent/dfm-hierarchical-borel.md
+  - dag/research/campaign_dfm-hierarchical-borel_lean_replay.json
+  - checks/independent/dfm-hierarchical-borel.py
   - dag/research/hierarchical_nonabelian_dfm_finite_map.md
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md
-    sha256: 6ff0fe0ba4f350ddd04a0ccd0b7cd02b26aa36c20be3a5c4e06ad7f2bebc463c
+    sha256: 313f6612e01407a51ab0c214ce51825dbb6fe68ad1060d3634fb5180943a1786
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +55,608 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_hierarchical_borel_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: structure
+  name: UpperTri2
+  line: 22
+  signature_excerpt: structure UpperTri2
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsInvertible
+  line: 56
+  signature_excerpt: 'def IsInvertible (x : UpperTri2) : Prop'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: torusProj
+  line: 168
+  signature_excerpt: 'def torusProj (x : UpperTri2) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unipotentPart
+  line: 170
+  signature_excerpt: 'def unipotentPart (x : UpperTri2) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsTorus
+  line: 164
+  signature_excerpt: 'def IsTorus (x : UpperTri2) : Prop'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsUnipotent
+  line: 166
+  signature_excerpt: 'def IsUnipotent (x : UpperTri2) : Prop'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: inv
+  line: 58
+  signature_excerpt: 'def inv (x : UpperTri2) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: RootedTree
+  line: 292
+  signature_excerpt: 'structure RootedTree (V : Type)'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u_N
+  line: 431
+  signature_excerpt: 'def u_N (T : RootedTree V) (U : V → UpperTri2) (v : V) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treeTransport
+  line: 315
+  signature_excerpt: 'def treeTransport (T : RootedTree V) (U : V → UpperTri2) (v : V) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transportFuel
+  line: 311
+  signature_excerpt: |-
+    def transportFuel (T : RootedTree V) (U : V → UpperTri2) : ℕ → V → UpperTri2
+      | 0, _ => 1
+      | n + 1, v => if v = T.root then 1 else U v * transportFuel T U n (T.parent v)
+
+    def treeTransport (T : RootedTree V) (U : V → UpperTri2) (v : V) : UpperTri2
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: D_tree
+  line: 427
+  signature_excerpt: 'def D_tree (T : RootedTree V) (U : V → UpperTri2) (v : V) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u_T
+  line: 434
+  signature_excerpt: 'def u_T (T : RootedTree V) (U : V → UpperTri2) (v : V) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: badProj
+  line: 267
+  signature_excerpt: 'def badProj (x : UpperTri2) : UpperTri2'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: b2
+  line: 664
+  signature_excerpt: 'def b2 (K : R → R → R → R) (u v w z : R) : R'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: b1
+  line: 652
+  signature_excerpt: 'def b1 (A : R → R → R) (u _ w : R) : R'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: b2_semidirect_factorization
+  line: 197
+  signature_excerpt: |-
+    theorem b2_semidirect_factorization (x : UpperTri2) (h : IsInvertible x) :
+        x = torusProj x * unipotentPart x
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: b2_factorization_unique
+  line: 207
+  signature_excerpt: |-
+    theorem b2_factorization_unique (x D n : UpperTri2) (hD : IsTorus D) (hn : IsUnipotent n)
+        (h_prod : x = D * n) (hx : IsInvertible x) :
+        D = torusProj x ∧ n = unipotentPart x
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unipotent_subgroup_normal
+  line: 232
+  signature_excerpt: |-
+    theorem unipotent_subgroup_normal (M n : UpperTri2) (hM : IsInvertible M) (hn : IsUnipotent n) :
+        IsUnipotent (M * n * inv M)
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: torusProj_mul
+  line: 194
+  signature_excerpt: 'theorem torusProj_mul (x y : UpperTri2) : torusProj (x * y) = torusProj x * torusProj
+    y'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: u_N_eq_conjugate
+  line: 513
+  signature_excerpt: |-
+    theorem u_N_eq_conjugate (T : RootedTree V) (U : V → UpperTri2)
+        (hU : ∀ v, v ≠ T.root → IsInvertible (U v)) (v : V) :
+        u_N T U v = torusProj (treeTransport T U v)
+          * inv (unipotentPart (treeTransport T U v))
+          * inv (torusProj (treeTransport T U v))
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage1_tree_edge
+  line: 465
+  signature_excerpt: |-
+    theorem stage1_tree_edge (T : RootedTree V) (U : V → UpperTri2)
+        (hU : ∀ v, v ≠ T.root → IsInvertible (U v)) (v : V) (hv : v ≠ T.root) :
+        u_N T U v * U v * inv (u_N T U (T.parent v))
+          = D_tree T U v * inv (D_tree T U (T.parent v))
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage1_preserves_quotient
+  line: 486
+  signature_excerpt: |-
+    theorem stage1_preserves_quotient (T : RootedTree V) (U : V → UpperTri2)
+        (g : UpperTri2) (s t : V) :
+        torusProj (u_N T U t * g * inv (u_N T U s)) = torusProj g
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage1_residual_torus
+  line: 492
+  signature_excerpt: |-
+    theorem stage1_residual_torus (T : RootedTree V) (U : V → UpperTri2)
+        (hU : ∀ v, v ≠ T.root → IsInvertible (U v))
+        (tfun : V → UpperTri2) (ht : ∀ v, IsTorus (tfun v))
+        (v : V) (hv : v ≠ T.root) :
+        IsTorus (tfun v * (u_N T U v * U v * inv (u_N T U (T.parent v)))
+          * inv (tfun (T.parent v)))
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: two_stage_factorization
+  line: 544
+  signature_excerpt: |-
+    theorem two_stage_factorization (T : RootedTree V) (U : V → UpperTri2)
+        (hU : ∀ v, v ≠ T.root → IsInvertible (U v)) (v : V) :
+        u_T T U v * u_N T U v = inv (treeTransport T U v)
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage2_reproduces
+  line: 563
+  signature_excerpt: |-
+    theorem stage2_reproduces (T : RootedTree V) (U : V → UpperTri2)
+        (hU : ∀ v, v ≠ T.root → IsInvertible (U v)) (s t : V) (g : UpperTri2) :
+        u_T T U t * (u_N T U t * g * inv (u_N T U s)) * inv (u_T T U s)
+          = inv (treeTransport T U t) * g * treeTransport T U s
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dressed_one_iff
+  line: 583
+  signature_excerpt: |-
+    theorem dressed_one_iff (T : RootedTree V) (U : V → UpperTri2)
+        (hU : ∀ v, v ≠ T.root → IsInvertible (U v)) (s t : V) (g : UpperTri2) :
+        inv (treeTransport T U t) * g * treeTransport T U s = 1 ↔
+          g = treeTransport T U t * inv (treeTransport T U s)
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: anchored_transport_unique
+  line: 607
+  signature_excerpt: |-
+    theorem anchored_transport_unique (T : RootedTree V) (U g : V → UpperTri2)
+        (hg : ∀ v, IsInvertible (g v))
+        (hroot : g T.root = 1)
+        (hedge : ∀ v, v ≠ T.root → U v = g v * inv (g (T.parent v)))
+        (v : V) : g v = treeTransport T U v
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: factorization_fails_if_singular
+  line: 276
+  signature_excerpt: |-
+    theorem factorization_fails_if_singular :
+        (⟨0, 1, 1⟩ : UpperTri2) ≠ torusProj ⟨0, 1, 1⟩ * unipotentPart ⟨0, 1, 1⟩
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: badProj_not_homomorphism
+  line: 269
+  signature_excerpt: |-
+    theorem badProj_not_homomorphism :
+        badProj (⟨2, 1, 3⟩ * ⟨2, 1, 3⟩) ≠ badProj ⟨2, 1, 3⟩ * badProj ⟨2, 1, 3⟩
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: b_squared_zero
+  line: 676
+  signature_excerpt: |-
+    theorem b_squared_zero (A : R → R → R) (u v w z : R) :
+        b2 (b1 A) u v w z = 0
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: discrete_bianchi_identity
+  line: 681
+  signature_excerpt: |-
+    theorem discrete_bianchi_identity (A : R → R → R) (u v w z : R) :
+        covariantDiff2 A (curvature1 A) u v w z = 0
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: curvature_gauge_covariance
+  line: 686
+  signature_excerpt: |-
+    theorem curvature_gauge_covariance (A : R → R → R) (g g_inv : R → R)
+        (h_inv : ∀ v, g v * g_inv v = 1)
+        (A_gauge : R → R → R)
+        (hA : ∀ x y, A_gauge x y = g x * A x y * g_inv y)
+        (u v w : R) :
+        curvature1 A_gauge u v w = g u * curvature1 A u v w * g_inv w
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: source_only_dressing_breaks_curvature
+  line: 707
+  signature_excerpt: |-
+    theorem source_only_dressing_breaks_curvature :
+        ((1 : ℚ) * (1 : ℚ)) * ((2 : ℚ) * (1 : ℚ)) - ((1 : ℚ) * (0 : ℚ))
+          ≠ (1 : ℚ) * ((1 : ℚ) * (1 : ℚ) - (0 : ℚ))
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: endpoint_dressing_matches_curvature
+  line: 714
+  signature_excerpt: |-
+    theorem endpoint_dressing_matches_curvature :
+        (((1 : ℚ) * (1 : ℚ) * (2 : ℚ)⁻¹) * ((2 : ℚ) * (1 : ℚ) * (1 : ℚ))
+            - ((1 : ℚ) * (0 : ℚ) * (1 : ℚ)))
+          = (1 : ℚ) * ((1 : ℚ) * (1 : ℚ) - (0 : ℚ)) * (1 : ℚ)
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: carrier_dimension_two_ne_three
+  line: 722
+  signature_excerpt: 'theorem carrier_dimension_two_ne_three : (2 : ℕ) ≠ 3'
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diamond_transport_three
+  line: 751
+  signature_excerpt: |-
+    theorem diamond_transport_three (U : Fin 4 → UpperTri2) :
+        treeTransport diamondTree U 3 = U 3 * U 2
+  source: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  source_sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization
+  availability: local
+  symbol: b2_semidirect_factorization
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 197
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique
+  availability: local
+  symbol: b2_factorization_unique
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 207
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal
+  availability: local
+  symbol: unipotent_subgroup_normal
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 232
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul
+  availability: local
+  symbol: torusProj_mul
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 194
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate
+  availability: local
+  symbol: u_N_eq_conjugate
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 513
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge
+  availability: local
+  symbol: stage1_tree_edge
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 465
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient
+  availability: local
+  symbol: stage1_preserves_quotient
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 486
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::stage1_residual_torus
+  availability: local
+  symbol: stage1_residual_torus
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 492
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization
+  availability: local
+  symbol: two_stage_factorization
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 544
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces
+  availability: local
+  symbol: stage2_reproduces
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 563
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff
+  availability: local
+  symbol: dressed_one_iff
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 583
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique
+  availability: local
+  symbol: anchored_transport_unique
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 607
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular
+  availability: local
+  symbol: factorization_fails_if_singular
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 276
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism
+  availability: local
+  symbol: badProj_not_homomorphism
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 269
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero
+  availability: local
+  symbol: b_squared_zero
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 676
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity
+  availability: local
+  symbol: discrete_bianchi_identity
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 681
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance
+  availability: local
+  symbol: curvature_gauge_covariance
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 686
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature
+  availability: local
+  symbol: source_only_dressing_breaks_curvature
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 707
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature
+  availability: local
+  symbol: endpoint_dressing_matches_curvature
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 714
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::carrier_dimension_two_ne_three
+  availability: local
+  symbol: carrier_dimension_two_ne_three
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 722
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmHierarchicalBorel.lean::diamond_transport_three
+  availability: local
+  symbol: diamond_transport_three
+  path: lean4/CampaignDfmHierarchicalBorel.lean
+  repository: this_repository
+  sha256: 7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917
+  declaration_status: declaration_found_not_proof_checked
+  line: 751
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -51,9 +675,7 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions:
-    - normal subgroup N and quotient action
-    - specified incidence DGA
+    assumptions: []
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -69,13 +691,9 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports:
-    - normal subgroup N and quotient action
-    - specified incidence DGA
+    unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

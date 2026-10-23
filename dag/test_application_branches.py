@@ -88,9 +88,9 @@ def test_nf002_count_is_current_and_global_obligations_stay_open():
     assert 'normalForms_length' in nf['statement']
     assert 'one residual' not in nf['statement'] and 'draft PR' not in nf['statement']
     for name in ('MUB6-GLOBAL-OBLIGATIONS', 'FSP-EFFICIENT-SAMPLING-OBLIGATIONS',
-                 'DFM-HIERARCHICAL-BOREL', 'DFM-CONTINUUM-INTERFACE'):
+                 'DFM-CONTINUUM-INTERFACE'):
         assert nodes[name]['status'] == 'OPEN'
-    for name in ('DFM-GENERAL-GRAPH-DRESSING', 'DFM-TREE-CHANGE'):
+    for name in ('DFM-GENERAL-GRAPH-DRESSING', 'DFM-TREE-CHANGE', 'DFM-HIERARCHICAL-BOREL'):
         assert nodes[name]['status'] == 'PROVED_LEAN'
     lean = (ROOT / 'lean4/FiniteGraphDressing.lean').read_text(encoding='utf-8')
     assert not re.search(r'\b(sorry|admit|axiom)\b', lean)

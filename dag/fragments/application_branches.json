@@ -96,20 +96,42 @@
     {
       "id": "DFM-HIERARCHICAL-BOREL",
       "stage": "DRESSING_FIELD",
-      "status": "OPEN",
-      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+      "status": "PROVED_LEAN",
+      "source_status": "Lean 4.35.0 module CampaignDfmHierarchicalBorel; the printed axioms are propext, Classical.choice and Quot.sound.",
+      "statement": "Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N. torusProj preserves multiplication. On any vertex type with a root, a parent function and a depth function that strictly decreases along parents, and for invertible labels off the root, root-to-vertex transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]]. Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1}, and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} * g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1} off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative ring, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) satisfy b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance K(A^g) = g(u) * K(A) * g(w)^{-1} when A^g(x, y) = g(x) * A(x, y) * g(y)^{-1}. For A(0,1)=1, A(1,2)=1, A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2)) is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/derivations/independent/dfm-hierarchical-borel.md",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json",
+        "checks/independent/dfm-hierarchical-borel.py",
         "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
-      "lean": [],
-      "rust": [],
-      "imported_structure": [
-        "normal subgroup N and quotient action",
-        "specified incidence DGA"
+      "lean": [
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal",
+        "lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul",
+        "lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_residual_torus",
+        "lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces",
+        "lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff",
+        "lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular",
+        "lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero",
+        "lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity",
+        "lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance",
+        "lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::carrier_dimension_two_ne_three",
+        "lean4/CampaignDfmHierarchicalBorel.lean::diamond_transport_three"
       ],
-      "bottleneck": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This statement does not construct a spanning tree from an arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this statement.",
       "tags": [
         "application-branch",
         "TFQ-0400",
@@ -755,7 +777,7 @@
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "bottleneck": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -784,7 +806,7 @@
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "bottleneck": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -8013,9 +8035,13 @@
         "DFM-TREE-CHANGE"
       ],
       "output": "DFM-HIERARCHICAL-BOREL",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
-      "source": []
+      "status": "DERIVED_LEAN",
+      "mechanism": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This route does not construct a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "lean4/CampaignDfmHierarchicalBorel.lean",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json"
+      ]
     },
     {
       "id": "APP-R-DFM-CONTINUUM-INTERFACE",
@@ -8295,7 +8321,7 @@
       ],
       "output": "DFM-BOREL-LEVI-FACTORIZATION",
       "status": "DERIVED_PROSE",
-      "mechanism": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "mechanism": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md",
         "papers/ravera_dfm_dossier.md"
@@ -8309,7 +8335,7 @@
       ],
       "output": "DFM-BOREL-TWO-STAGE-DIAMOND",
       "status": "COMPUTED",
-      "mechanism": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "mechanism": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md",
         "papers/ravera_dfm_dossier.md",
@@ -12081,9 +12107,9 @@
       "name": "Hierarchical Borel dressing beyond the diamond control",
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-0399",
-      "record_status": "OPEN_OBLIGATION",
-      "summary": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
-      "obligation": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "record_status": "PROVED_LEAN",
+      "summary": "Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N. torusProj preserves multiplication. On any vertex type with a root, a parent function and a depth function that strictly decreases along parents, and for invertible labels off the root, root-to-vertex transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]]. Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1}, and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} * g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1} off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative ring, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) satisfy b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance K(A^g) = g(u) * K(A) * g(w)^{-1} when A^g(x, y) = g(x) * A(x, y) * g(y)^{-1}. For A(0,1)=1, A(1,2)=1, A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2)) is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).",
+      "obligation": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This statement does not construct a spanning tree from an arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this statement.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-HIERARCHICAL-BOREL"
@@ -12092,11 +12118,38 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/derivations/independent/dfm-hierarchical-borel.md",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json",
+        "checks/independent/dfm-hierarchical-borel.py",
         "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-hierarchical-borel.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal",
+        "lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul",
+        "lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_residual_torus",
+        "lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces",
+        "lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff",
+        "lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular",
+        "lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero",
+        "lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity",
+        "lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance",
+        "lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::carrier_dimension_two_ne_three",
+        "lean4/CampaignDfmHierarchicalBorel.lean::diamond_transport_three"
+      ]
     },
     {
       "id": "TFQ-0401",
@@ -12731,7 +12784,7 @@
       "parent_id": "TFQ-0398",
       "record_status": "DEFINITION",
       "summary": "B_2(Q) is the group of invertible upper-triangular rational 2x2 matrices, N its unipotent normal subgroup and T_2(Q) the diagonal torus; a tree holonomy [[a,b],[0,d]] factors as [[1,b/d],[0,1]] diag(a,d), giving the stage-1 dressing u_N and stage-2 dressing t.",
-      "obligation": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "obligation": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-BOREL-LEVI-FACTORIZATION"
@@ -12755,7 +12808,7 @@
       "parent_id": "TFQ-1105",
       "record_status": "COMPUTATIONAL_CONTROL",
       "summary": "On the diamond graph with one fixed tree, a pure-gauge B_2(Q) connection built from one rational vertex map is dressed to the identity on all 5 edges, and a connection with one chord multiplied by [[2,1],[0,3]] is dressed to the identity on tree edges and to a non-identity chord; stage-1 fields lie in N, stage-1 tree links are diagonal, and stage 2 reproduces the one-shot dressing.",
-      "obligation": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "obligation": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-BOREL-TWO-STAGE-DIAMOND"
