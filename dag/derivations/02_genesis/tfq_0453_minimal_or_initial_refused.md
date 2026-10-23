@@ -23,19 +23,28 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> The later Derivation/Initiality.lean establishes minimality only relative to a declared 64-member constitution class and probe battery; that supplementary result does not answer Question 10 for the sealed process.
+> An explicit clock-closed observed-process class now has a proved initiality obstruction, including the actual source-regime supply self-loop, and a reachable/reduced finite-model minimum-state criterion. These supplementary results do not certify the full Alpha engine, its class membership, or minimum program/declaration cost; the historical refusal remains accurate.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_agree`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_minimum_size`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_clock_hom_of_self_loop`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_initial_in_clock_closed_class`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.nonminimal_adequate_process`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_run_matches`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_supply_self_loop`](../../../lean4/CampaignGenesisProcessComparison.lean)
 - `missing obligation: no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check; artifact determinism is repeated-run byte agreement, not a program`
 
 ### Python Oracles & Numerical Evaluators
+- [`checks/independent/pgw-minimal-or-initial-refused.py`](../../../checks/independent/pgw-minimal-or-initial-refused.py)
 - `missing obligation: no Python check; artifact determinism is repeated-run byte agreement, not a program`
 
 ---
@@ -51,4 +60,5 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:623-633`
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:626-629`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Initiality.lean:40-43`
+  - `lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean:49-52`
+  - `dag/derivations/independent/pgw-minimal-or-initial-refused.md:1`

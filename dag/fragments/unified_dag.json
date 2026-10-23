@@ -264,7 +264,7 @@
       "source_id": "DFM-P3.2-FENCE",
       "corpus": "papers/ravera_dfm_dossier.md",
       "alias_of": "DFM-HIERARCHICAL-BOREL",
-      "alias_note": "Theorem 3.2 as stated for all B_2(Q) connections, including the uniqueness, quotient-preservation and discrete Bianchi clauses, is the open obligation TFQ-0400; the dossier adds only a diamond instance (DFM-P3.2-TWO-STAGE)."
+      "alias_note": "Dossier Theorem 3.2 is wider than TFQ-0400. TFQ-0400 records unique factorization, normality, rooted-tree two-stage dressing for a supplied parent and depth, quotient invariance, the coboundary criterion, and the specified incidence operators. It does not build a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism. The dossier diamond instance remains DFM-P3.2-TWO-STAGE."
     },
     {
       "source_id": "DFM-SEC5-SCOPE",
@@ -993,7 +993,7 @@
       "status": "DEFINITION",
       "source_claimed_status": "DEFINITION",
       "statement": "B_2(Q) is the group of invertible upper-triangular rational 2x2 matrices, N its unipotent normal subgroup and T_2(Q) the diagonal torus; a tree holonomy [[a,b],[0,d]] factors as [[1,b/d],[0,1]] diag(a,d), giving the stage-1 dressing u_N and stage-2 dressing t.",
-      "obligation": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "obligation": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "imported_structure": [],
       "parent_nodes": [
         "DFM-GENERAL-GRAPH-DRESSING",
@@ -1028,7 +1028,7 @@
       "status": "COMPUTATIONALLY_CHECKED",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "On the diamond graph with one fixed tree, a pure-gauge B_2(Q) connection built from one rational vertex map is dressed to the identity on all 5 edges, and a connection with one chord multiplied by [[2,1],[0,3]] is dressed to the identity on tree edges and to a non-identity chord; stage-1 fields lie in N, stage-1 tree links are diagonal, and stage 2 reproduces the one-shot dressing.",
-      "obligation": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "obligation": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "imported_structure": [],
       "parent_nodes": [
         "DFM-BOREL-LEVI-FACTORIZATION",
@@ -4431,7 +4431,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
-      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "imported_structure": [
         "Wilson-Dirac lattice fermion operator with r = 1 (standard lattice QCD)"
       ],
@@ -4448,9 +4448,10 @@
         "external:omega_quantum_physics::lattice_dirac_doubling::wilson_dirac_gamma5_hermitian (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:461-473"
+        "papers/core/fsp/theory_of_finite_fsp.md:461-473",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::wilson_dirac_gamma5_hermiticity_positivity does not exist; NonAbelianGaugeSigns has no Dirac operator. regge_wdw_core.lean::wilson_term_decouples_doublers is a Nat-scaled predicate in an unbuilt file.",
+      "audit": "Cited NonAbelianGaugeSigns.lean::wilson_dirac_gamma5_hermiticity_positivity does not exist; NonAbelianGaugeSigns has no Dirac operator. regge_wdw_core.lean::wilson_term_decouples_doublers is a Nat-scaled predicate in an unbuilt file. CampaignFspWilsonDiracGamma5.lean checks Euclidean Clifford data in dimensions 2 and 4 and does not state the gamma5 adjoint.",
       "see_also": [],
       "uses": []
     },
@@ -4497,8 +4498,8 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
-      "obligation": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "statement": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.",
+      "obligation": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "imported_structure": [
         "Callan-Harvey continuum anomaly inflow (literature)"
       ],
@@ -4506,9 +4507,20 @@
         "FSP-WILSON-DIRAC-GAMMA5"
       ],
       "parent_record": "TFQ-1197",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-lattice-anomaly-inflow.py::main"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::spin_structure_obstruction::chiral_anomaly_inflow (cited by the source, not in this checkout)"
       ],
@@ -4517,7 +4529,7 @@
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:583-620",
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:25-25"
       ],
-      "audit": "Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exist; callan_harvey_cancellation states q + (-q) = 0 for the packet <q, -q>, and the other lemmas are Nat inequalities. Ledger GIN-C15 marks the module a historical illustrative fixture with its physical reading withdrawn.",
+      "audit": "Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exist; callan_harvey_cancellation states q + (-q) = 0 for the packet <q, -q>, and the other lemmas are Nat inequalities. Ledger GIN-C15 marks the module a historical illustrative fixture with its physical reading withdrawn. Current campaign supplies scoped transport/cochain proofs and exact failed-candidate computations; it does not validate the historical physical reading.",
       "see_also": [],
       "uses": []
     },
@@ -7903,8 +7915,8 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
-      "obligation": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "statement": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
+      "obligation": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "imported_structure": [],
       "parent_nodes": [
         "COMP-C3-BOUNDED-REACH-DECIDABLE",
@@ -7914,7 +7926,8 @@
       "lean": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ],
       "rust": [
         "code/rust/src/wdp/genesis_tm.rs::unary_sep",
@@ -7929,7 +7942,7 @@
         "dag/research/genesis_to_universal_computation.md:88-88",
         "lean4/GenesisComputation.lean:127-155"
       ],
-      "audit": "The instances come from unarySep_iff and pairwiseSeparated_iff over List.range of the admitted forms; they cover only unary forms with the hole as the sole slot.",
+      "audit": "The original unary instances remain scoped to unary forms. The campaign module supplies the full finite slot-context decision and quotient-count theorems, while the larger bundled target remains open.",
       "see_also": [
         "PGW-CONTEXT-DECISION-PROCEDURE"
       ],

@@ -1,0 +1,96 @@
+{
+  "authority_effect": "None",
+  "source_sha256": {
+    "lean4/CampaignDfmHierarchicalBorel.lean": "7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917",
+    "checks/independent/dfm-hierarchical-borel.py": "88b18f3a0516909a4fe94dc76773d91970b2639b4de01b877fb3f3a6914f6d5e",
+    "dag/test_application_branches.py": "84d6899e55bfd02fc5d51033e26c45e2fa5e77e819771c3402d0fb148151a19b",
+    "lean4/lakefile.lean": "29949a591207b923b0f0879849b37af0dc731c085a8ff95b59bb2d19a4c47a05"
+  },
+  "checks": {
+    "repin-before": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--run",
+        "pr220-independent-review",
+        "--reason",
+        "Integrate reviewed branches and regenerate canonical campaign artifacts"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:57:27.896310+00:00",
+      "completed": "2026-10-23T08:57:28.395017+00:00",
+      "exit_code": 0,
+      "stdout": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha dag/derivations/README.md\nrebound: tensor_countermodel_validation.json sha dag/fragments/application_branches.json\nrebound: tensor_countermodel_validation.json sha dag/test_application_branches.py\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\nrebound: tensor_countermodel_validation.json sha lean4/lakefile.lean\n7 stale pin(s)\n",
+      "stderr": ""
+    },
+    "evidence-write": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:57:28.395017+00:00",
+      "completed": "2026-10-23T08:57:57.663994+00:00",
+      "exit_code": 0,
+      "stdout": "evidence map written: 892 nodes, grades {'E0': 189, 'E1': 229, 'E2': 36, 'E3': 438, 'E4': 0}, 255 flags\n",
+      "stderr": ""
+    },
+    "repin-last": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--run",
+        "pr220-independent-review",
+        "--reason",
+        "Rebind final regenerated evidence paths"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:57:57.663994+00:00",
+      "completed": "2026-10-23T08:57:57.874682+00:00",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    "build-final-integrated": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignDfmHierarchicalBorel"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review\\lean4",
+      "started": "2026-10-23T08:57:57.874682+00:00",
+      "completed": "2026-10-23T08:58:03.440802+00:00",
+      "exit_code": 0,
+      "stdout": "\u26a0 [841/842] Replayed CampaignDfmHierarchicalBorel\nwarning: CampaignDfmHierarchicalBorel.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmHierarchicalBorel.lean: imports `Mathlib.Data.Rat.Lemmas` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmHierarchicalBorel.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmHierarchicalBorel.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmHierarchicalBorel.lean:195:28: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignDfmHierarchicalBorel.lean:195:28: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\ninfo: CampaignDfmHierarchicalBorel.lean:768:0: 'CampaignDfmHierarchicalBorel.UpperTri2.b2_semidirect_factorization' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:769:0: 'CampaignDfmHierarchicalBorel.UpperTri2.b2_factorization_unique' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:770:0: 'CampaignDfmHierarchicalBorel.UpperTri2.unipotent_subgroup_normal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:771:0: 'CampaignDfmHierarchicalBorel.UpperTri2.torusProj_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:772:0: 'CampaignDfmHierarchicalBorel.UpperTri2.badProj_not_homomorphism' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:773:0: 'CampaignDfmHierarchicalBorel.UpperTri2.factorization_fails_if_singular' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:774:0: 'CampaignDfmHierarchicalBorel.u_N_eq_conjugate' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:775:0: 'CampaignDfmHierarchicalBorel.u_N_conjugate_in_N' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:776:0: 'CampaignDfmHierarchicalBorel.stage1_tree_edge' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:777:0: 'CampaignDfmHierarchicalBorel.stage1_preserves_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:778:0: 'CampaignDfmHierarchicalBorel.stage1_residual_torus' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:779:0: 'CampaignDfmHierarchicalBorel.two_stage_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:780:0: 'CampaignDfmHierarchicalBorel.stage2_reproduces' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:781:0: 'CampaignDfmHierarchicalBorel.tree_edge_is_coboundary' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:782:0: 'CampaignDfmHierarchicalBorel.dressed_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:783:0: 'CampaignDfmHierarchicalBorel.anchored_transport_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:784:0: 'CampaignDfmHierarchicalBorel.b_squared_zero' depends on axioms: [propext]\ninfo: CampaignDfmHierarchicalBorel.lean:785:0: 'CampaignDfmHierarchicalBorel.discrete_bianchi_identity' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:786:0: 'CampaignDfmHierarchicalBorel.curvature_gauge_covariance' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:787:0: 'CampaignDfmHierarchicalBorel.source_only_dressing_breaks_curvature' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:788:0: 'CampaignDfmHierarchicalBorel.endpoint_dressing_matches_curvature' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:789:0: 'CampaignDfmHierarchicalBorel.carrier_dimension_two_ne_three' does not depend on any axioms\ninfo: CampaignDfmHierarchicalBorel.lean:790:0: 'CampaignDfmHierarchicalBorel.diamond_transport_three' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmHierarchicalBorel.lean:791:0: 'CampaignDfmHierarchicalBorel.diamond_stage1_vertex_three_diagonal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (842 jobs).\n",
+      "stderr": ""
+    },
+    "lean-final-integrated": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "CampaignDfmHierarchicalBorel.lean"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review\\lean4",
+      "started": "2026-10-23T08:58:03.440802+00:00",
+      "completed": "2026-10-23T08:58:18.815780+00:00",
+      "exit_code": 0,
+      "stdout": "CampaignDfmHierarchicalBorel.lean:195:28: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignDfmHierarchicalBorel.lean:195:28: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'CampaignDfmHierarchicalBorel.UpperTri2.b2_semidirect_factorization' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignDfmHierarchicalBorel.UpperTri2.b2_factorization_unique' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignDfmHierarchicalBorel.UpperTri2.unipotent_subgroup_normal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignDfmHierarchicalBorel.UpperTri2.torusProj_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.UpperTri2.badProj_not_homomorphism' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignDfmHierarchicalBorel.UpperTri2.factorization_fails_if_singular' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignDfmHierarchicalBorel.u_N_eq_conjugate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.u_N_conjugate_in_N' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.stage1_tree_edge' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.stage1_preserves_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.stage1_residual_torus' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.two_stage_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.stage2_reproduces' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.tree_edge_is_coboundary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.dressed_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.anchored_transport_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.b_squared_zero' depends on axioms: [propext]\n'CampaignDfmHierarchicalBorel.discrete_bianchi_identity' depends on axioms: [propext, Quot.sound]\n'CampaignDfmHierarchicalBorel.curvature_gauge_covariance' depends on axioms: [propext, Quot.sound]\n'CampaignDfmHierarchicalBorel.source_only_dressing_breaks_curvature' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignDfmHierarchicalBorel.endpoint_dressing_matches_curvature' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignDfmHierarchicalBorel.carrier_dimension_two_ne_three' does not depend on any axioms\n'CampaignDfmHierarchicalBorel.diamond_transport_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmHierarchicalBorel.diamond_stage1_vertex_three_diagonal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    }
+  },
+  "integration": "Preserves all dated campaign rows and distinct source-library registrations.",
+  "limits": [
+    "Focused target replay only; final campaign check receipt follows separately."
+  ]
+}

@@ -10,9 +10,9 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 12
+- cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -65,6 +65,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `SwitchingNormalForm.mem_normalForms_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.mem_normalForms_iff` |
+| `SwitchingNormalForm.normalForms_length` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.normalForms_length` |
+| `SwitchingNormalForm.normalForms_nodup` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.normalForms_nodup` |
+| `SwitchingNormalForm.normal_sound` | yes | yes | yes | none | `#print axioms SwitchingNormalForm.normal_sound` |
+| `SwitchingNormalForm.numChord_identity` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.numChord_identity` |
+| `SwitchingNormalForm.same_class_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.same_class_iff` |
 | `mem_normalForms_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms mem_normalForms_iff` |
 | `normalForms_length` | yes | yes | yes | Quot.sound, propext | `#print axioms normalForms_length` |
 | `normalForms_nodup` | yes | yes | yes | Quot.sound, propext | `#print axioms normalForms_nodup` |
@@ -72,13 +78,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `numChord_identity` | yes | yes | yes | Quot.sound, propext | `#print axioms numChord_identity` |
 | `same_class_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms same_class_iff` |
 - counts toward the grade: yes
-
-### Lean: `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
-
-- file: `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean, node.source, record TFQ-1044
-- counts toward the grade: no
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
@@ -90,17 +89,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md](../../../dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md)
-- sha256 (`lf-normalised`): `cc1d33ceead438d9ff6e284a3226e8fea6126c2cd22e374e3323f309ba3d60f8`
+- sha256 (`lf-normalised`): `9e51b7b5094df982466715cefae6ea90325a9694971da3f07de90854afec603d`
 - generated view: listed, not counted
 - cited in: record TFQ-1044
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+### Documents and data: `sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
+- sha256 (`lf-normalised`): `2bfb4441352c4206cbd84f3e500e4c3ba817364aff49623a001087ecf12df5a6`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

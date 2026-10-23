@@ -16,8 +16,8 @@ target:
     with no theorem about them.
   source_refs:
   - dag/derivations/04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md
-  - omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean:61-70
-  - omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean:72-79
+  - lean4/Imported/OePfp/CarrierOrigin.lean:70-79
+  - lean4/Imported/OePfp/CarrierOrigin.lean:81-88
   paper_refs: []
   source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -31,24 +31,59 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/implementation_pgw_pfp_carrier_origin_nilpotency_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: Simplex1
+  line: 65
+  signature_excerpt: 'structure Simplex1 (V : Type)'
+  source: lean4/Imported/OePfp/CarrierOrigin.lean
+  repository: this_repository
+  source_sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: no_difference_without_distinguishability
+  line: 74
+  signature_excerpt: |-
+    theorem no_difference_without_distinguishability (V : Type) (src tgt : V) (h : src = tgt) :
+        ¬ ∃ (e : Simplex1 V), e.src = src ∧ e.tgt = tgt
+  source: lean4/Imported/OePfp/CarrierOrigin.lean
+  repository: this_repository
+  source_sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nilpotency_composition
+  line: 85
+  signature_excerpt: |-
+    theorem nilpotency_composition {α β γ : Type} [Zero γ]
+        (d0 : α → β) (d1 : β → γ) (h_nil : ∀ x, d1 (d0 x) = 0) (a : α) :
+        d1 (d0 a) = 0
+  source: lean4/Imported/OePfp/CarrierOrigin.lean
+  repository: this_repository
+  source_sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean::no_difference_without_distinguishability
-  availability: external
+- original_ref: lean4/Imported/OePfp/CarrierOrigin.lean::no_difference_without_distinguishability
+  availability: local
   symbol: no_difference_without_distinguishability
-  path: omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OePfp/CarrierOrigin.lean
+  repository: this_repository
+  sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
+  declaration_status: declaration_found_not_proof_checked
+  line: 74
   role: source_lead_only
-- original_ref: omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean::nilpotency_composition
-  availability: external
+- original_ref: lean4/Imported/OePfp/CarrierOrigin.lean::nilpotency_composition
+  availability: local
   symbol: nilpotency_composition
-  path: omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OePfp/CarrierOrigin.lean
+  repository: this_repository
+  sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
+  declaration_status: declaration_found_not_proof_checked
+  line: 85
   role: source_lead_only
 presentation:
   colours: []
@@ -87,8 +122,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

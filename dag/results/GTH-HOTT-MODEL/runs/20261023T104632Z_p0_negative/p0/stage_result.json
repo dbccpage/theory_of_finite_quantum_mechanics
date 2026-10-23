@@ -1,0 +1,212 @@
+{
+  "task_id": "GTH-HOTT-MODEL",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "90391898598a09150d11f220173a0307759e51ba14a0d4c037a55e171beea763",
+  "input_pin": "dag/prompts/genesis_to_higher_gth_hott_model_open.yaml",
+  "status": "incomplete",
+  "authority_effect": "None",
+  "status_note": "incomplete means the mathematical dependency is still missing, so this turn does not enter P1. The operad stage_history entry status completed means this mining turn finished as a reviewed negative.",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "REVIEWED_ABSENT",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "Not FILLED. No carrier was admitted for this node. GenesisHottHorns.Vtx is an excluded lead."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "REVIEWED_ABSENT",
+      "operations": [],
+      "composition_plan": [],
+      "note": "Not FILLED. GenesisHottModel.interp was reviewed and not admitted."
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "REVIEWED_ABSENT",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [],
+      "note": "Not FILLED. No identity-type relation was admitted from the route."
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "REVIEWED_ABSENT",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [],
+      "note": "Not FILLED. The node cites no Lean declaration. soundness was not admitted."
+    }
+  },
+  "source_checks": [
+    {
+      "path": "dag/derivation_dag.json",
+      "finding": "GTH-HOTT-MODEL at line 27307 has status OPEN at line 27309 and lean [] at line 27317. GTH-R-GTH-HOTT-MODEL at line 39106 has status GAP_NO_DERIVATION at line 39111 and input GTH-HORNS. GTH-HORNS at line 27284 has status OPEN at line 27286 and lean [] at line 27294."
+    },
+    {
+      "path": "dag/operads/gth_hott_model.yaml",
+      "sha256": "efd7930e1cda4d5ebee726f31f3930e4126c3b2ecb0b3d513370d3775c691428",
+      "finding": "Before this turn, operation_candidates, relation_candidates, source_bindings, and stage_history were empty. Every mission slot was UNREVIEWED. collection_status was source_candidates_collected_semantic_mining_open. statement_status was source_claim_to_scope_check_not_accepted_result."
+    },
+    {
+      "path": "dag/derivations/34_genesis_to_higher/tfq_2403_gth_hott_model.md",
+      "sha256": "5674e8d4ab0e2d95c393d0c939c507915294fbc573e8a9a72a0aeb38284ac742",
+      "finding": "Line 26 says the route is GAP_NO_DERIVATION from GTH-HORNS and that no deep embedding and no finite model is constructed. Line 32 says nothing in the paper is a Lean declaration. The sha256 matches the operad paper pin."
+    },
+    {
+      "path": "dag/derivations/independent/gth_hott_model.md",
+      "sha256": "01a7a24051c0b9e7ff4e7d627a2ce01b69d8552522f224df0aa15bf5f0031c83",
+      "finding": "Line 7 says the route is GAP_NO_DERIVATION. Line 11 says nothing in Lean. That sentence is the note's claim. The note does not cite lean4/GenesisHottModel.lean. This turn does not rewrite the note."
+    },
+    {
+      "path": "lean4/GenesisHottModel.lean",
+      "sha256": "c45d71added44fdedcb3644027bc9ca45217e557bdda1361c8ff13464e25c407",
+      "finding": "The header at line 4 calls the file a 0-truncated deep embedding of a small identity-type fragment. Line 8 says the file does not add univalence. Line 16 says J is not a rule and is open. interp is at line 83. soundness is at line 221. vertex_id_elim is at line 240. code_univalence_fails is at line 296. These declarations are not cited by the node and are not admitted."
+    },
+    {
+      "path": "lean4/GenesisHottHorns.lean",
+      "sha256": "3624cda43202a07963cf0b009ad114482641263dba82de04701402f473861f2f",
+      "finding": "Vtx constructors v0, v1, and v2 are at lines 49-51. inner_horn_filled at line 165 says one declared inner horn has a filler. inner_horn_refused at line 173 says another has none. The header says the lemmas are about that finite object only. GTH-HORNS does not cite the file."
+    },
+    {
+      "path": "lean4/AdmitCore.lean",
+      "sha256": "c8e46cf7f11884572047e863c8d3b8bc1328f73a9bb4ea04f9e001f91abc61d9",
+      "finding": "Regime at lines 42-45 stores data, forms, and cuts. The header at line 6 describes a regime-calculus fragment. Excluded. Not cited by the node. Not a theorem of this node."
+    }
+  ],
+  "next_missing_dependency": "A derivation, cited by this node, from GTH-HORNS to a deep embedding or finite identity-type model. The declarations read here are not that derivation.",
+  "operad_delta": {
+    "schema_id": "omega.pfp.finite-qm.operad-delta.v1",
+    "node_id": "GTH-HOTT-MODEL",
+    "stage_id": "P0_MINE_OPERAD",
+    "attempt_id": "p0",
+    "authority_effect": "None",
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "fail:model_soundness_is_not_the_route",
+        "outer_operation": "finite identity-type model of this node",
+        "input_slot": "GTH-HORNS",
+        "inner_operation": "GenesisHottModel.soundness",
+        "colour_match": false,
+        "hypothesis_match": "Route GTH-R-GTH-HOTT-MODEL is GAP_NO_DERIVATION. The node lean list is empty.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.soundness", "line": 221},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.interp", "line": 83},
+          {"path": "dag/derivation_dag.json", "declaration": "GTH-R-GTH-HOTT-MODEL", "line": 39106}
+        ],
+        "reason": "soundness says that every Deriv of the file's fragment fits its type under interp. The header at lines 4-16 calls that fragment a 0-truncated deep embedding and says identity elimination J is not a rule of the fragment. The node does not cite the file. Importing GenesisHottHorns is a Lean import, not a derivation recorded by the gap route. The declaration is not admitted as a generator."
+      },
+      {
+        "id": "fail:interp_does_not_send_identity_to_edges",
+        "outer_operation": "interpretation of identity types as the carrier's path relation",
+        "input_slot": "finite_semi_simplicial_data",
+        "inner_operation": "GenesisHottModel.interp",
+        "colour_match": false,
+        "hypothesis_match": "The node names an intended interpretation. This function is a different reading, and it is not cited.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.interp", "line": 83},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "module header", "line": 19},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.edge_reading_refutes_refl", "line": 257}
+        ],
+        "reason": "interp sends a constant to a vertex, a bound variable to the environment vertex, reflexivity to a pth of a vertex with itself, a lambda to a function, and an application by applying that function. The header says an identity type is interpreted as a Lean equality of vertices and that the 1-simplices are not identity proofs. edge_reading_refutes_refl says no edge has equal source and target. That is not the intended path relation on the semi-simplicial edges, and it is not admitted."
+      },
+      {
+        "id": "fail:code_inequality_is_not_univalence",
+        "outer_operation": "univalence for the fragment",
+        "input_slot": "univalence",
+        "inner_operation": "GenesisHottModel.code_univalence_fails",
+        "colour_match": false,
+        "hypothesis_match": "The node says the fragment does not include univalence. This theorem does not add it.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "module header", "line": 8},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.code_univalence_fails", "line": 296},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.base_codes_distinct", "line": 290}
+        ],
+        "reason": "The header says the file does not add univalence and does not postulate a univalent universe. code_univalence_fails states the two round-trip equations for Unit and the equality Vtx.v0 = Vtx.v0, together with BaseCode.unitC ≠ BaseCode.reflC. Inequality of those two codes is not a univalent universe and is not a generator of this node."
+      },
+      {
+        "id": "fail:vertex_elim_is_not_object_j",
+        "outer_operation": "object-language identity elimination",
+        "input_slot": "identity_elimination",
+        "inner_operation": "GenesisHottModel.vertex_id_elim",
+        "colour_match": false,
+        "hypothesis_match": "The file says J is not a rule of the fragment. The node does not cite this eliminator.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "module header", "line": 16},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.Deriv", "line": 68},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.vertex_id_elim", "line": 240}
+        ],
+        "reason": "The header says identity elimination J is not a rule and is open. Deriv's constructors are cst, bvar, refl, lam, app, and weaken. vertex_id_elim is path induction for a motive in Sort u along an equality of vertices. Its comment says it is not a syntactic J rule. It is not admitted."
+      },
+      {
+        "id": "fail:horn_filler_is_not_the_model",
+        "outer_operation": "finite identity-type model of this node",
+        "input_slot": "GTH-HORNS",
+        "inner_operation": "GenesisHottHorns.inner_horn_filled",
+        "colour_match": false,
+        "hypothesis_match": "GTH-HORNS is the route input and is itself OPEN. Its lean list is empty.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottHorns.lean", "declaration": "GenesisHottHorns.inner_horn_filled", "line": 165},
+          {"path": "lean4/GenesisHottHorns.lean", "declaration": "GenesisHottHorns.inner_horn_refused", "line": 173},
+          {"path": "dag/derivation_dag.json", "declaration": "GTH-HORNS", "line": 27284}
+        ],
+        "reason": "inner_horn_filled says one declared inner horn has a triangle filler. inner_horn_refused says another declared inner horn has none. The horns header says those lemmas are about that finite object only and that the Genesis-determination claim is not proved. GTH-HORNS does not cite the file. The filler is not a deep embedding and is not admitted as a generator of GTH-HOTT-MODEL."
+      },
+      {
+        "id": "fail:admitcore_is_not_this_node",
+        "outer_operation": "deep embedding of the fragment named by this node",
+        "input_slot": "deep_embedding",
+        "inner_operation": "AdmitCore.Regime",
+        "colour_match": false,
+        "hypothesis_match": "AdmitCore is not an input of GTH-R-GTH-HOTT-MODEL. The node lean list is empty.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/AdmitCore.lean", "declaration": "AdmitCore.Regime", "line": 42},
+          {"path": "lean4/AdmitCore.lean", "declaration": "module header", "line": 6},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.fits", "line": 97}
+        ],
+        "reason": "AdmitCore.Regime stores data, forms, and cuts. Its header describes a regime-calculus fragment, not the identity-type fragment of this node. fits uses Lean's Prop as the sort of a semantic predicate. That use is not an interpretation of the fragment into Prop and does not add univalence to Prop. AdmitCore is not a theorem of this node."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "cx:model_file_is_not_the_node_theorem",
+        "class": "wrong_carrier",
+        "claim_kind": "generator",
+        "claim": "GenesisHottModel.soundness is the soundness statement of GTH-HOTT-MODEL, and AdmitCore is that embedding.",
+        "evidence": "soundness at lean4/GenesisHottModel.lean:221 is quantified over Deriv of that file. The node lean list at dag/derivation_dag.json:27317 is empty. Route GTH-R-GTH-HOTT-MODEL at dag/derivation_dag.json:39111 has status GAP_NO_DERIVATION. AdmitCore.Regime at lean4/AdmitCore.lean:42 has fields data, forms, and cuts.",
+        "confidence": "exact",
+        "node_id": "GTH-HOTT-MODEL"
+      }
+    ],
+    "open_obligations": [
+      "No generator admitted at P0. Do not invent a deep embedding or a finite model for this node.",
+      "Route GTH-R-GTH-HOTT-MODEL stays GAP_NO_DERIVATION. Node status stays OPEN.",
+      "GenesisHottModel.soundness stays an excluded lead. It is not cited by the node.",
+      "Object-language J stays absent from Deriv. vertex_id_elim is not that rule.",
+      "Univalence stays excluded. code_univalence_fails does not add it.",
+      "AdmitCore is not a theorem of this node.",
+      "Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "This turn read the route, the two derivation notes, the empty operad candidate lists, GenesisHottModel.interp and soundness, vertex_id_elim, code_univalence_fails, the horn filler and refusal, and AdmitCore.Regime. None of those declarations was admitted as a generator of GTH-HOTT-MODEL.",
+    "does_not_support": "A derivation of this node from GTH-HORNS. Treating GenesisHottModel.soundness as the node's soundness theorem. Treating vertex_id_elim as object-language J. Adding univalence. Any use of AdmitCore as a theorem of this node. Any status above OPEN.",
+    "narrowest_claim": "P0 admits no generator for GTH-HOTT-MODEL. The gap route stays GAP_NO_DERIVATION. The node status stays OPEN.",
+    "next_test": "When a declaration is cited by this node and derives a deep embedding or finite identity-type model from GTH-HORNS, review that declaration. Until then, do not fill the mission slots."
+  },
+  "execution": "Local source reading. No provider call. Lean was not rebuilt. No theorem accepted."
+}

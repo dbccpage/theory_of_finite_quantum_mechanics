@@ -37,11 +37,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::accepted_only_from_section`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean)
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::inImage_iff`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean)
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::nonDescent_iff_off_image`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean)
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::retraction_stage_strict`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean)
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::sectionLift_injective`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean)
+- [`lean4/Imported/OeSn/SnOffImage.lean::accepted_only_from_section`](../../../lean4/Imported/OeSn/SnOffImage.lean)
+- [`lean4/Imported/OeSn/SnOffImage.lean::inImage_iff`](../../../lean4/Imported/OeSn/SnOffImage.lean)
+- [`lean4/Imported/OeSn/SnOffImage.lean::nonDescent_iff_off_image`](../../../lean4/Imported/OeSn/SnOffImage.lean)
+- [`lean4/Imported/OeSn/SnOffImage.lean::retraction_stage_strict`](../../../lean4/Imported/OeSn/SnOffImage.lean)
+- [`lean4/Imported/OeSn/SnOffImage.lean::sectionLift_injective`](../../../lean4/Imported/OeSn/SnOffImage.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust implementation of the SnCarrier retraction`
@@ -63,6 +63,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean:10-14`
+  - `lean4/Imported/OeSn/SnOffImage.lean:19-23`
   - `omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md:155-158`
   - `omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md:98-99`

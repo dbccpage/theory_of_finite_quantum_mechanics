@@ -18,8 +18,8 @@ target:
     from Genesis admission (TFQ-0344), and the orientation test in Python stays inside the WDP convention.
   source_refs:
   - dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md
-  - omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean:10-14
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean:282-284
+  - lean4/Imported/OeWdp/GenesisIncidence.lean:19-23
+  - lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:291-293
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1478-1483
   paper_refs: []
   source_claim_label: OPEN
@@ -34,24 +34,76 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_incidence_orientation_transport_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: triD1
+  line: 310
+  signature_excerpt: 'def triD1 (x : TriEdge → ℚ) : ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d1
+  line: 42
+  signature_excerpt: 'def d1 (x y z : Int) : Vec3'
+  source: lean4/Imported/OeWdp/GenesisIncidence.lean
+  repository: this_repository
+  source_sha256: ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d2
+  line: 46
+  signature_excerpt: 'def d2 (w : Int) : Vec3'
+  source: lean4/Imported/OeWdp/GenesisIncidence.lean
+  repository: this_repository
+  source_sha256: ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 35
+  signature_excerpt: 'def zero : Vec3'
+  source: lean4/Imported/OeWdp/GenesisIncidence.lean
+  repository: this_repository
+  source_sha256: ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Vec3
+  line: 29
+  signature_excerpt: structure Vec3
+  source: lean4/Imported/OeWdp/GenesisIncidence.lean
+  repository: this_repository
+  source_sha256: ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: boundary_boundary_filled
+  line: 107
+  signature_excerpt: 'theorem boundary_boundary_filled (w : Int) : d1 (d2 w).x (d2 w).y (d2 w).z = zero'
+  source: lean4/Imported/OeWdp/GenesisIncidence.lean
+  repository: this_repository
+  source_sha256: ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::boundary_boundary_filled
-  availability: external
+- original_ref: lean4/Imported/OeWdp/GenesisIncidence.lean::boundary_boundary_filled
+  availability: local
   symbol: boundary_boundary_filled
-  path: omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeWdp/GenesisIncidence.lean
+  repository: this_repository
+  sha256: ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 107
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::triD1
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1
+  availability: local
   symbol: triD1
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 310
   role: source_lead_only
 presentation:
   colours: []
@@ -90,8 +142,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

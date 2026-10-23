@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ddc-core"
+version = "1.0.3"
+description = "Discrete Deformation Calculus: a finite trace calculus for obstruction handling"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+authors = [{ name = "Jeremy H. Carroll" }]
+keywords = [
+    "discrete-deformation-calculus",
+    "finite-obstruction-calculus",
+    "trace-calculus",
+    "exact-arithmetic",
+    "lean4",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0.0", "coverage>=7.0.0", "ruff>=0.9", "mypy>=1.0", "PyMuPDF>=1.24"]
+notebooks = ["nbclient>=0.8.0", "nbformat>=5.9.0", "ipykernel>=6.0.0"]
+
+[tool.setuptools]
+package-dir = { "" = "code/ddc" }
+py-modules = [
+    "automaton",
+    "cochain",
+    "context_exposure",
+    "demos",
+    "descent",
+    "exact_repair",
+    "fsm",
+    "integration_tape",
+    "residual_projection",
+    "structural_lift",
+    "terminalization",
+    "typed_refusal",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+pythonpath = ["code/ddc"]
+filterwarnings = ["error"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]

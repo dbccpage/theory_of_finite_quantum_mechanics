@@ -34,32 +34,67 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_responses_costs_mu1_mu2_definition.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
+operation_candidates:
+- kind: def
+  name: applyDelta
+  line: 201
+  signature_excerpt: 'def applyDelta (r : Regime) (δ : List Item) : Option Regime'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Basic.lean
+  repository: this_repository
+  source_sha256: 151fa22bcd2d75b01ec4d924ea3f94cb4b1c020c2a9254471ff013eb43aabcc7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: validResponse
+  line: 207
+  signature_excerpt: 'def validResponse (r : Regime) (i j : Nat) (δ : List Item) : Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Basic.lean
+  repository: this_repository
+  source_sha256: 151fa22bcd2d75b01ec4d924ea3f94cb4b1c020c2a9254471ff013eb43aabcc7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: aritySum
+  line: 24
+  signature_excerpt: |-
+    def aritySum : List Item → Nat
+      | [] => 0
+      | .newForm a :: rest => a + aritySum rest
+      | _ :: rest => aritySum rest
+
+    /-- Single-item deltas decompose. -/
+    theorem applyDelta_single (r : Regime) (a : Item) :
+        applyDelta r [a] = applyItem r a
+  source: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  repository: this_repository
+  source_sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
+  status: source_candidate_requires_semantic_review
 relation_candidates: []
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::applyDelta
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::applyDelta
+  availability: local
   symbol: applyDelta
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Basic.lean
+  repository: this_repository
+  sha256: 151fa22bcd2d75b01ec4d924ea3f94cb4b1c020c2a9254471ff013eb43aabcc7
+  declaration_status: declaration_found_not_proof_checked
+  line: 201
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::validResponse
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::validResponse
+  availability: local
   symbol: validResponse
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Basic.lean
+  repository: this_repository
+  sha256: 151fa22bcd2d75b01ec4d924ea3f94cb4b1c020c2a9254471ff013eb43aabcc7
+  declaration_status: declaration_found_not_proof_checked
+  line: 207
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::aritySum
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::aritySum
+  availability: local
   symbol: aritySum
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  repository: this_repository
+  sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/measure.rs::arity_sum
   availability: external
@@ -116,8 +151,6 @@ operad_slots:
     - Declared item grammar and cost measures mu1 and mu2, genesis_source.txt sections 3.6-3.7 (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -1,0 +1,129 @@
+{
+  "schema": "finite-qm.pr-review.negative-mining.v1",
+  "pr": 232,
+  "reviewed_author_head": "ca1e4cedafdd854203168f4266a00a499bcc6673",
+  "comparison_base": "7e8b2213511494fb91d9f5296d663dedfa30a514",
+  "authority_effect": "None",
+  "scope": "Negative P0 source mining only; no target theorem, impossibility result, syntax, P1 advancement, or changed Lean source. Lean, Lake, and cargo not rebuilt.",
+  "corrections": [
+    "Narrow admission_not_assertion to its actual two-constructor disjunction.",
+    "Pin the relied-on Derivation.Regime field list.",
+    "Register the existing negative run so regeneration preserves reviewed evidence."
+  ],
+  "source_pins": [
+    {
+      "path": "dag/operads/gth_lang_core.yaml",
+      "sha256": "02b74ec9f4405ef3979c453cb6c47a1a99b3a49ad94a51a03ad9d19d3393b691",
+      "revision": "7e8b2213511494fb91d9f5296d663dedfa30a514"
+    },
+    {
+      "path": "dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md",
+      "sha256": "1302ceb769cca552189a880855033826ec0174b9894291363aef659cf663737a",
+      "revision": "reviewed working tree"
+    },
+    {
+      "path": "dag/derivations/independent/gth_lang_core.md",
+      "sha256": "c7578e78a3d38c732aad62b2457cbebdcd71eda74155be178247f0e0df5b0e07",
+      "revision": "reviewed working tree"
+    },
+    {
+      "path": "lean4/Imported/GenesisOngoing/Fifteenth/Step.lean",
+      "sha256": "cb6c17517f507ba86e1183e767f70acfd46f3aff14f1b6881324d48b3b1dfa92",
+      "revision": "reviewed working tree"
+    },
+    {
+      "path": "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean",
+      "sha256": "9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7",
+      "revision": "reviewed working tree"
+    },
+    {
+      "path": "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean",
+      "sha256": "151fa22bcd2d75b01ec4d924ea3f94cb4b1c020c2a9254471ff013eb43aabcc7",
+      "revision": "reviewed working tree"
+    },
+    {
+      "path": "dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md",
+      "sha256": "a8573d855e47b39af4e505f22158b0c047dd1693f77d1162b8ac0d5d88b3576c",
+      "revision": "reviewed working tree"
+    },
+    {
+      "path": "lean4/AdmitCore.lean",
+      "sha256": "c8e46cf7f11884572047e863c8d3b8bc1328f73a9bb4ea04f9e001f91abc61d9",
+      "revision": "reviewed working tree"
+    },
+    {
+      "path": "dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md",
+      "sha256": "c0351dfc79a2a8442d8368f91b22b154ab088747f6d565bfa71e6d6fac1c939a",
+      "revision": "reviewed working tree"
+    }
+  ],
+  "input_pin": {
+    "path": "dag/prompts/genesis_to_higher_gth_lang_core_open.yaml",
+    "sha256": "8eb6feb8ed990bb8d2e5c03f06e0987d9d1642801d5b9326d58bd93bcfbc7e8b"
+  },
+  "delta_equal_to_embedded_stage_result": true,
+  "dag_invariants": {
+    "target_status": "OPEN",
+    "route_status": "GAP_NO_DERIVATION",
+    "route_input_statuses": [
+      "DEFINITION",
+      "DEFINITION",
+      "DEFINITION"
+    ],
+    "empty_lean_and_rust": true,
+    "reviewed_absent_slots": 4,
+    "generators": 0,
+    "relations": 0,
+    "checked_compositions": 0
+  },
+  "generator": {
+    "initial_normalization": "First writer moved the new CORE run into the executed-run index section. Semantic comparison verifies that only the CORE row changed. No operad collection was rewritten. The second full writer below is byte-stable.",
+    "command": [
+      "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/pfp/generate_prompts.py",
+      "--write",
+      "--all-missing"
+    ],
+    "exit_code": 0,
+    "stdout": "refusing to rewrite executed prompts: TFQ-0084, GTH-LANG-CORE, GTH-LANG-REFLECT, GTH-LANG-INTERPRET, GTH-LANG-IMPORT\n{\"created\": 0, \"rewritten\": 0, \"unchanged\": 710}\n",
+    "stderr": "",
+    "tracked_diff_unchanged_on_second_run": true,
+    "protected_collections": {
+      "dag/operads/gth_lang_core.yaml": "295c2cc056bfabb18eca418d4be49d175cb2cc0309671c3f0f5010ff9bfe2779",
+      "dag/operads/gth_lang_import.yaml": "21c6e0db32947e391e2d56774fe8e5622a9c1cfb1750130263177a728bde6f1d",
+      "dag/operads/gth_lang_interpret.yaml": "9bb73d935483d32ef626c6c2b355ed99ff86b9763653f0031f8c214faedaf508",
+      "dag/operads/gth_lang_reflect.yaml": "50c4e9fe881abdca6fee57cd301411434e3c21c113f7a47255d12a88291931df"
+    }
+  },
+  "validator": {
+    "command": [
+      "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "dag/pfp/validate_prompts.py"
+    ],
+    "exit_code": 1,
+    "stdout": "{\n  \"prompts\": 892,\n  \"collections\": 892,\n  \"errors\": [\n    \"LQG-PR-ALLOWED-REGION-TARGET: legacy fabricated contract\"\n  ],\n  \"claim\": \"Structural and local-source custody checks only; no operad or target theorem acceptance.\"\n}\n",
+    "stderr": "",
+    "baseline_reference": "dag/research/campaign_pgw-minimal-or-initial-refused_review_custody.json",
+    "interpretation": "Same single LQG baseline error as the independently recorded PR228 run. TFQ-0084 is a generator refusal, not a second validator error in this replay."
+  },
+  "overclaim_scan": {
+    "command": [
+      "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "scripts/overclaim_scan.py",
+      "--changed-since",
+      "origin/main",
+      "--strict"
+    ],
+    "exit_code": 0,
+    "stdout": "overclaim_scan: scope=changes since origin/main (merge base 7e8b22135114); HIGH=0 MEDIUM=0 LOW=0\n",
+    "baseline_entries_added": 0
+  }
+}

@@ -297,10 +297,32 @@ def test_pfp_batch_nodes_are_credited_through_their_receipt():
 
 
 def test_node_without_in_repo_evidence_is_e0():
-    row = rows()["PG-GEN-SUPPLY-NO-OP"]
-    assert row["grade"] == "E0"
-    assert flagged("PG-GEN-SUPPLY-NO-OP", "proved_lean_below_e3")
-    assert flagged("PG-GEN-SUPPLY-NO-OP", "proved_lean_external_only")
+    # PG-GEN-SUPPLY-NO-OP was the live example until its Lean files were imported into lean4/Imported, so the
+    # rule is tested on synthetic nodes; the live DAG is covered by the two completeness tests below.
+    node = {"id": "SYNTH-EXTERNAL", "status": "PROVED_LEAN"}
+    external = item(resolution="external_unresolved", counts=False, counted=False, cited_in=["node.lean"])
+    grade, facts = be.grade_node([external], [])
+    assert grade == "E0"
+    kinds = {f["kind"] for f in be.node_flags(node, [external], grade, facts)}
+    assert {"proved_lean_below_e3", "proved_lean_external_only"} <= kinds
+
+
+def test_proved_lean_with_a_present_but_unreplayed_file_is_below_e3_but_not_external():
+    node = {"id": "SYNTH-UNREPLAYED", "status": "PROVED_LEAN"}
+    unreplayed = item(replay="none", cited_in=["node.lean"])
+    grade, facts = be.grade_node([unreplayed], [])
+    assert grade == "E2"
+    kinds = {f["kind"] for f in be.node_flags(node, [unreplayed], grade, facts)}
+    assert "proved_lean_below_e3" in kinds and "proved_lean_external_only" not in kinds
+
+
+def test_proved_lean_with_a_verified_present_file_raises_neither_flag():
+    node = {"id": "SYNTH-VERIFIED", "status": "PROVED_LEAN"}
+    good = item(cited_in=["node.lean"])
+    grade, facts = be.grade_node([good], [])
+    assert grade == "E3"
+    kinds = {f["kind"] for f in be.node_flags(node, [good], grade, facts)}
+    assert "proved_lean_below_e3" not in kinds and "proved_lean_external_only" not in kinds
 
 
 def test_e4_needs_both_a_test_and_a_review():
@@ -317,7 +339,8 @@ def test_every_proved_lean_node_below_e3_is_in_the_mismatch_list():
              if r["status"] == "PROVED_LEAN" and not at_least(r["grade"], "E3")}
     listed = {m["node"] for m in document()["mismatches"] if m["kind"] == "proved_lean_below_e3"}
     assert below == listed
-    assert below, "the DAG currently has PROVED_LEAN nodes below E3; the list must show them"
+    # non-vacuous: the summary count agrees with the list, whatever its size
+    assert document()["summary"]["mismatches_by_kind"].get("proved_lean_below_e3", 0) == len(below)
 
 
 def test_proved_lean_with_only_external_lean_is_flagged():

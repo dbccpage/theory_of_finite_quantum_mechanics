@@ -1,0 +1,117 @@
+{
+  "paper_identity": "CODA-A",
+  "authority_effect": "None",
+  "evidence_scope": "Lean declarations prove their stated types; Python tests check declared finite instances. Current execution evidence is separate.",
+  "claims": {
+    "A-D1": {
+      "statement": "Residual definition and decomposition",
+      "python": "coda_a_core.residual",
+      "lean": "Coda.A.residual",
+      "test": "code/tests/test_coda_a.py::test_decomposition_identity",
+      "formal_scope": "Definition / additive identity"
+    },
+    "A-D2": {
+      "statement": "Idempotence hypothesis C squared equals C",
+      "python": "coda_a_core.is_projection",
+      "lean": null,
+      "test": "code/tests/test_coda_a.py::test_at2_projection_eats_leftover",
+      "formal_scope": "An explicit hypothesis of the projection theorems; no named IsProjection declaration"
+    },
+    "A-T1": {
+      "statement": "Residual zero iff fixed",
+      "python": "coda_a_core.residual",
+      "lean": "Coda.A.residual_zero_iff",
+      "test": "code/tests/test_coda_a.py::test_at1_bidirectional_exact_examples",
+      "formal_scope": "Additive group theorem"
+    },
+    "A-T2": {
+      "statement": "Residual belongs to kernel for idempotent C",
+      "python": "coda_a_core.residual_in_kernel",
+      "lean": "Coda.A.residual_in_kernel",
+      "test": "code/tests/test_coda_a.py::test_at2_projection_eats_leftover",
+      "formal_scope": "Requires C squared equals C"
+    },
+    "A-T3": {
+      "statement": "Residual map is idempotent for idempotent C",
+      "python": "coda_a_core.residual",
+      "lean": "Coda.A.residual_idempotent",
+      "test": "code/tests/test_coda_a.py::test_at3_leftover_of_leftover",
+      "formal_scope": "Requires C squared equals C"
+    },
+    "A-T4a": {
+      "statement": "Image equals fixed set for idempotent C",
+      "python": "coda_a_core.difference_in_image",
+      "lean": "Coda.A.range_fixed_iff",
+      "test": "code/tests/test_coda_a.py::test_at4_range_equals_fixed_set",
+      "formal_scope": "Requires C squared equals C"
+    },
+    "A-T4b": {
+      "statement": "Unique internal image/kernel decomposition",
+      "python": "coda_a_core.residual",
+      "lean": "Coda.A.direct_sum_unique",
+      "test": "code/tests/test_coda_a.py::test_at4_range_equals_fixed_set",
+      "formal_scope": "Companion declaration direct_sum_decomposition proves existence"
+    },
+    "A-T5": {
+      "statement": "Intertwining maps transport residuals",
+      "python": "coda_a_core.residual_transport",
+      "lean": "Coda.A.residual_transport",
+      "test": "code/tests/test_coda_a.py::test_at5_commuting_transport",
+      "formal_scope": "Requires TC=DT"
+    },
+    "A-T6": {
+      "statement": "Image classes equal residual classes; induced section",
+      "python": "coda_a_core.induced_quotient_section",
+      "lean": "Coda.A.quotient_residual_iff",
+      "test": "code/tests/test_coda_a.py::test_at6_leftover_classes_match_cokernel",
+      "formal_scope": "Companion declaration quotient_section proves a function-level section"
+    },
+    "A-T7": {
+      "statement": "Unique induced quotient factor",
+      "python": "coda_a_core.quotient_universal_factor",
+      "lean": "Coda.A.quotient_universal",
+      "test": "code/tests/test_coda_a.py::test_at7_quotient_universal_factorization",
+      "formal_scope": "Lean proves underlying function and uniqueness on a set quotient; scalar linearity is prose and rational matrix evidence"
+    },
+    "A-S1": {
+      "statement": "Residual and authority terminal constructors are disjoint",
+      "python": "coda_a_core.residual_not_auth",
+      "lean": "CodaA.residual_not_auth",
+      "test": "code/tests/test_coda_a.py::test_scope_fence_as1_terminal_disjointness",
+      "formal_scope": "Formal constructor separation; provenance wording is an interpretive scope fence"
+    },
+    "COMP-01": {
+      "statement": "Finite rational linear algebra",
+      "python": "coda_a_core.maps_commute",
+      "lean": null,
+      "test": "code/tests/test_coda_a.py::test_malformed_inputs_public_api",
+      "formal_scope": "Finite execution contract"
+    },
+    "COMP-02": {
+      "statement": "Finite cochain five-case classification",
+      "python": "coda_a_core.classify_closure_attempt",
+      "lean": "CodaA.ResidualTerminal",
+      "test": "code/tests/test_coda_a.py::test_5_case_classification_suite",
+      "formal_scope": "Lean defines the label type, not the Python quotient-distance algorithm"
+    },
+    "A-T8": {
+      "statement": "Declared ontological commitment",
+      "lean": null,
+      "python": null,
+      "test": null,
+      "formal_scope": "No theorem and no implementation evidence"
+    },
+    "A-T9": {
+      "statement": "Finite rational l1 retention under declared-image repairs",
+      "hypotheses": [
+        "V=Q^n and W=Q^m for finite n,m",
+        "coordinate l1 norm",
+        "C squared equals C",
+        "im(C)=im(d0)"
+      ],
+      "lean": null,
+      "test": "code/tests/test_a_t9_retention.py",
+      "formal_scope": "Prose proof and finite rational regressions; no single Lean theorem"
+    }
+  }
+}

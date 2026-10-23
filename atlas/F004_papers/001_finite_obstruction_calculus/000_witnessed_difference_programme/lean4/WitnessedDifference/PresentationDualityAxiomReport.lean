@@ -1,0 +1,10 @@
+import WitnessedDifference.PresentationDuality
+
+#print axioms WitnessedDifference.PresentationDuality.RelativeControlCircle
+#print axioms WitnessedDifference.PresentationDuality.character_pc_of_lipschitz
+#print axioms WitnessedDifference.PresentationDuality.imageCharacter
+#print axioms WitnessedDifference.PresentationDuality.unique_character_extension_to_completion
+#print axioms WitnessedDifference.PresentationDuality.RealDyadics
+#print axioms WitnessedDifference.PresentationDuality.sqrt_two_not_mem_realDyadics
+#print axioms WitnessedDifference.PresentationDuality.dyadic_sqrt_two_tendsto
+#print axioms WitnessedDifference.PresentationDuality.dyadic_subspace_not_complete

@@ -45,4 +45,4 @@ GAP-F001-S000-003 (book lifecycle admission); deferred tag in book README
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:183`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:183`

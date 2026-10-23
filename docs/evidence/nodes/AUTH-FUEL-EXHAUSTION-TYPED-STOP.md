@@ -1,6 +1,6 @@
 # AUTH-FUEL-EXHAUSTION-TYPED-STOP
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `DEFINITION`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `DEFINITION`. Evidence g
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -47,14 +47,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean](../../../papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean)
 - sha256 (`bytes`): `0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9`
 - cited in: node.lean, record TFQ-1331
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.direct_turing_machine_models`): recorded sha256 `0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck` |
-| `AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt` |
-| `AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel` |
+| `AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck` |
+| `AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt` |
+| `AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md`

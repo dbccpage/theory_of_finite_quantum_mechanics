@@ -1,0 +1,86 @@
+# Claim-to-Code Mapping Registry for CODA-MUR
+paper_id: CODA-MUR
+title: "CODA-MUR: Certified Representation Transport, Composition, and Irreversible Forgetting"
+canonical_version: v3.1.1
+date: 2026-09-28
+authority_effect: None
+
+claims:
+  - id: MUR-D1
+    statement: "Transport record: states, observations, and commutes equality"
+    python_module: coda_mur_core.DescentSquareCertificate
+    test_function: test_finite_verification_evaluates_square
+    test_file: code/tests/test_coda_mur.py
+    lean_symbol: "Coda.MUR.Transport"
+
+  - id: MUR-D2
+    statement: "DescentSquareCertificate: D_B F = barF D_A with typed morphism kind"
+    python_module: coda_mur_core.DescentSquareCertificate
+    test_function: test_valid_exact_transport_inhabits_authority
+    test_file: code/tests/test_coda_mur.py
+    lean_symbol: "CODA_MUR.DescentSquareCertificate"
+
+  - id: MUR-D3
+    statement: "LossLedger: 4-bit loss record (e, i, a, u) with non-negative rational mass"
+    python_module: coda_mur_core.LossLedger
+    test_function: test_loss_ledger_strict_booleans
+    test_file: code/tests/test_coda_mur.py
+    lean_symbol: "CODA_MUR.LossLedger"
+    lean_scope: "four Boolean fields only; rational mass is the paper/Python extension"
+
+  - id: MUR-T1
+    statement: "Composite commutes: r(g.states(f.states(x))) = g.observations(f.observations(p(x)))"
+    python_module: coda_mur_core.paste_certificates
+    test_function: test_pasting_evaluates_composite_maps_on_carrier
+    test_file: code/tests/test_mur_finite_contract.py
+    lean_symbol: "Coda.MUR.composite_commutes"
+
+  - id: MUR-T2
+    statement: "Descent squares paste: D_C(G(F(x))) = barG(barF(D_A(x)))"
+    python_module: coda_mur_core.paste_certificates
+    test_function: test_certificate_pasting_law
+    test_file: code/tests/test_coda_mur.py
+    lean_symbol: "CODA_MUR.descentSquareCertificate_paste"
+
+  - id: MUR-T3
+    statement: "Collisions transport: p(x) = p(y) implies q(f.states(x)) = q(f.states(y))"
+    python_module: coda_mur_core
+    test_function: test_finite_collision_transport_and_nonrecoverability
+    test_file: code/tests/test_mur_finite_contract.py
+    lean_symbol: "Coda.MUR.collision_transports"
+
+  - id: MUR-T4
+    statement: "Post-processing preserves collisions: p(x) = p(y) implies f(p(x)) = f(p(y))"
+    python_module: coda_mur_core
+    test_function: test_finite_collision_transport_and_nonrecoverability
+    test_file: code/tests/test_mur_finite_contract.py
+    lean_symbol: "Coda.MUR.postprocess_preserves_collision"
+
+  - id: MUR-T5
+    statement: "Non-recoverability after non-injective collapse: no left inverse recovers source"
+    python_module: coda_mur_core
+    test_function: test_finite_collision_transport_and_nonrecoverability
+    test_file: code/tests/test_mur_finite_contract.py
+    lean_symbol: "Coda.MUR.loss_is_not_recoverable"
+
+  - id: MUR-T6
+    statement: "chi alone does not imply target standing: countermodel where target never terminalizes"
+    python_module: coda_mur_core.evaluate_transport_authority
+    test_function: test_terminal_non_bypass_firewall
+    test_file: code/tests/test_coda_mur.py
+    lean_symbol: "CODA_MUR.concrete_commuting_square_uninhabited_standing"
+
+  - id: MUR-T7
+    statement: "Loss ledger necessity: lossy move without ledger is not loss-accounting admissible"
+    python_module: coda_mur_core.LossLedger
+    test_function: test_loss_ledger_necessity_for_lossy_morphisms
+    test_file: code/tests/test_coda_mur.py
+    lean_symbol: "CODA_MUR.loss_accounting_admissible_necessity"
+
+  - id: MUR-T8
+    statement: "Loss sums associate: ledger sum is associative with empty ledger as unit"
+    python_module: coda_mur_core.LossLedger
+    test_function: test_loss_algebra_monoid_laws
+    test_file: code/tests/test_coda_mur.py
+    lean_symbol: "CODA_MUR.loss_sum_assoc"
+    lean_scope: "associativity of Boolean OR only; no rational mass field"

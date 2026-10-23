@@ -1,0 +1,13 @@
+# Independent review of PR #219
+
+AuthorityEffect: None. AI-assisted review; no human approval is claimed.
+
+Scope: 53f7274c0b4102754a88bb497f6266673acb5fe9, integration, and checker evidence-label repair. Result: 1 FULL for the newly stated carrier-map subclaim; TFQ-0396 remains OPEN. The historical absence statement and wider theory obligations are not promoted or silently replaced.
+
+CampaignGenesisCarrierBridge.lean:13-40 defines admitted datum indices, actual source contextual collapse, its equivalence laws and the existing Core.PrimitiveDifference instance. Lines 41-77 define the quotient carrier and canonical surjective term map, prove its exact kernel and the iff criterion for factoring a datum map through the two carriers. These are general source-regime statements; raw inequality of indices is not used as the internal distinction. Lines 80-124 provide an actual sealed admission trace to a separated state and controls for undeclared marks, uniform coverage and inert inscription.
+
+The local Core.lean dependency hash and sealed Basic hash match their recorded bytes; Basic also matches Git blob 610d8fc982853807eb892eaaf683fc4eb2959cc1. The external commit is retained as source-provided provenance, not a new network verification. The redundant CarrierSource library registration was removed during integration: the bridge reuses CampaignGenesisSealedSource from the replay campaign, avoiding competing registrations for the same Derivation.Basic module.
+
+Fresh targeted build and direct Lean replay pass after this integration; all 14 printed audits use permitted foundational axioms. Normal and optimized checker outputs match, and strict mypy passes. Exact census: 17,756 regimes, with class histogram 9 / 5,823 / 3,800 / 8,124 for zero through three classes. Four explicit fixtures have 0 / 1 / 2 / 1 classes. Exhaustive two-point factorization checks give 14 factorizations and 2 refusals among 16 maps. Four fixed fixture comparisons are now called negative controls, not killed source mutants. A separately executed constant-zero class-map mutation fails the independent kernel check in both Python modes.
+
+The proof API is L4D; the bounded regression checker is L3D under the approved support exception; declarative Lake registration is L1D under the configuration exception. Checker structure is CCN 34 and cognitive maximum 28, giving a D ceiling. No FOC/cochain/runtime authority or whole-repository proof certification is claimed. Source-bound evidence is dag/research/campaign_tfq-0396_review_validation.json. Final integrated campaign checks are recorded separately.

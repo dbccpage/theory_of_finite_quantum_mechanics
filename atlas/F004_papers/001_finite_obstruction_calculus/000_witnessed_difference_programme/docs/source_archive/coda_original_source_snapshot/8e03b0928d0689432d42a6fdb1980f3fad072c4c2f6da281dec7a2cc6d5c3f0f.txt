@@ -1,0 +1,248 @@
+# Primitive Difference for Quantum Carriers
+
+## Finite graph cochains, declared U(1) connections, and independent SU(N) labels
+
+**Author:** Jeremy H. Carroll
+
+**Subtitle:** Finite graph cochains, declared U(1) connections, and independent SU(N) labels
+
+**Date:** 2026-08-03
+
+**Version:** 1.0.0
+
+**Series:** Quantum Foundations 000
+
+**Status:** published Zenodo release
+
+**License:** Creative Commons Attribution 4.0 International
+
+**AuthorityEffect:** `None`
+
+## Omega Engine Primitives
+
+| Slot | Binding in this paper |
+|---|---|
+| **Primitive Differences** | `(d0 f)(u,v)=f(v)-f(u)` on a declared finite directed graph. |
+| **Carriers / Structure** | Graph cochains; separately, a complex label space `C^N`. |
+| **Cochain complex** | `C0(G;R) --d0--> C1(G;R) --0--> 0`. |
+| **Coboundary maps** | The oriented incidence coboundary `d0`. |
+| **ZeroRel** | A real edge cochain lies in `im d0`; for a connection, trivial closed-loop holonomy. |
+| **Licensed repairs / operator family** | Add `d0 f`; for U(1), apply vertex gauge transformations. |
+| **Quotient / Q1** | `C1/im d0`, with positive weighted L1 quotient norm `Phi1`. |
+| **Residuals** | Raw edge mass `I1`, quotient residual `Phi1`, and declared connection holonomy are distinct. |
+| **Witnesses** | LP primal/dual data, gauge-covariance equality, loop holonomy, PSD quadratic form. |
+| **Observers / profiles** | Positive edge weights, a declared phase scale `alpha`, and optional label basis. |
+| **Anomalons** | Nonzero cochain classes or nontrivial loop holonomy; neither is automatically physical. |
+| **CompletionLaw** | Finite LP and exact finite matrix identities up to declared numerical tolerance. |
+| **Terminal / route** | `ExactRepair` or `ClosedResidual`; no quantum or authority terminal is inferred. |
+| **AuthorityEffect** | `None`; all physical interpretation and publication remain external. |
+
+## Abstract
+
+We isolate three finite constructions that are often conflated. First, an
+oriented graph supplies real primitive differences and a positive weighted L1
+cochain quotient. Second, a U(1) edge connection is separately declared; its
+covariant difference, connection Laplacian, gauge action, and closed-loop
+holonomy obey exact finite identities. A real cochain maps to such a connection
+only after choosing a phase scale, and the map loses periodic information.
+Third, the generalized Gell-Mann matrices form a normalized basis of traceless
+Hermitian operators on an independently declared label space `C^N`; no graph
+constructs that carrier. The results provide auditable algebraic ingredients,
+not a derivation of quantum mechanics, Feynman amplitudes, Born probabilities,
+or dynamics.
+
+## Why a researcher should care
+
+Discrete gauge calculations are useful only when their carriers and observer
+choices are explicit. Treating normalized real edge labels as phases, or graph
+vertices as an automatic SU(N) internal space, silently changes the problem.
+The typed separation here makes the valid covariance and positivity statements
+reusable without the accompanying category errors.
+
+## Falsifiability
+
+The paper is refuted by a finite instance where the quotient LP has a duality
+gap, the declared gauge transformation breaks covariance, closed-loop holonomy
+changes under gauge, the connection Laplacian is not Hermitian positive
+semidefinite, the cochain exponential fails to respect exact-repair gauge
+classes, or the generalized Gell-Mann matrices fail their count, Hermiticity,
+trace, or normalization identities. The companion tests exercise each claim.
+
+## 1. Graph cochains and two L1 quantities
+
+Let `G=(V,E)` be a finite directed graph. For `f in R^V`, define
+
+`(d0 f)(u,v)=f(v)-f(u)`.
+
+Fix strictly positive edge weights `w`. For an edge cochain `omega`, distinguish
+
+`I1(omega)=sum_e w_e |omega_e|`
+
+from the quotient value
+
+`Phi1([omega])=min_f I1(omega+d0f)`.
+
+`I1` depends on the representative; `Phi1` does not. Calling the raw norm
+`Phi1` is incorrect unless no repair subspace is present.
+
+### Theorem QMC-T1 — finite quotient and dual
+
+`Phi1` is an attained norm on `C1/im d0` and
+
+`Phi1([omega])=max { z^Tomega : d0^Tz=0, |z_e|<=w_e }`.
+
+**Proof.** This is the positive weighted finite quotient-norm and LP-duality
+argument: split the residual into positive and negative parts; the free vertex
+potential imposes the circulation equation. `□`
+
+On a graph with no cycles the quotient is zero. An edgeless graph therefore
+cannot generate a nontrivial connection, Hamiltonian, or SU(N) carrier from
+primitive difference alone.
+
+## 2. Declared U(1) connections
+
+A U(1) connection is an assignment `A_e in C` with `|A_e|=1` for each oriented
+edge. For a complex vertex field `psi`, define
+
+`(D_A psi)(u,v)=psi(v)-A_(u,v) psi(u)`.
+
+A vertex gauge is `g:V->U(1)`. Set
+
+`psi'(v)=g(v)psi(v)`,
+
+`A'_(u,v)=g(v) A_(u,v) conjugate(g(u))`.
+
+### Theorem QMC-T2 — gauge covariance
+
+`(D_A' psi')(u,v)=g(v)(D_A psi)(u,v)`.
+
+**Proof.** Substitute the definitions and use
+`conjugate(g(u))g(u)=1`. `□`
+
+Consequently the edgewise squared magnitude and its positive weighted sum are
+gauge invariant.
+
+For a closed oriented walk `gamma`, multiply `A_e` when traversing an edge in
+its declared direction and `conjugate(A_e)` in reverse. The result is the
+holonomy `Hol_A(gamma)`.
+
+### Theorem QMC-T3 — closed-loop gauge invariance
+
+`Hol_A'(gamma)=Hol_A(gamma)` for every closed walk.
+
+**Proof.** Gauge factors telescope along the walk; the initial and final vertex
+coincide. `□`
+
+For an open path the corresponding transport is gauge covariant at its two
+endpoints, not invariant.
+
+## 3. Connection Laplacian
+
+Give the edge space any positive diagonal weight matrix `W`. Define
+
+`Delta_A = D_A^* W D_A`.
+
+### Theorem QMC-T4 — Hermitian positivity and gauge equivalence
+
+`Delta_A` is Hermitian positive semidefinite, and gauge-related connections
+produce unitarily equivalent Laplacians.
+
+**Proof.** Hermiticity is immediate from the adjoint form, and
+`<psi,Delta_A psi>=||W^(1/2)D_Apsi||_2^2>=0`. QMC-T2 says
+`D_A' G=G_E D_A` for diagonal unitary vertex and edge gauge matrices, so
+`Delta_A'=G Delta_A G^*`. `□`
+
+This is finite connection-Laplacian algebra. It is not a Schrödinger equation;
+a Hamiltonian, time parameter, units, and physical interpretation would be
+additional declarations.
+
+## 4. From a real cochain to a connection
+
+Choose a real scale `alpha` and define
+
+`Exp_alpha(omega)_e = exp(i alpha omega_e)`.
+
+### Theorem QMC-T5 — descent to gauge classes
+
+If `omega'=omega+d0f`, then `Exp_alpha(omega')` is gauge equivalent to
+`Exp_alpha(omega)` via `g(v)=exp(i alpha f(v))`.
+
+**Proof.** On `(u,v)`,
+`exp(i alpha(omega_e+f(v)-f(u)))`
+equals `g(v)Exp_alpha(omega)_e conjugate(g(u))`. `□`
+
+The scale `alpha` is observer data. The exponential loses values modulo
+`2pi/alpha` when `alpha` is nonzero. Neither `I1` nor `Phi1` canonically selects
+`alpha`, and normalizing each cochain by its own L1 mass does not define a fixed
+linear or functorial phase convention.
+
+## 5. Independent SU(N) label carrier
+
+Now separately declare a complex label space `H=C^N`, `N>=2`. Let `E_jk` be the
+matrix units. The generalized Gell-Mann family consists of
+
+- `E_jk+E_kj` for `j<k`;
+- `-iE_jk+iE_kj` for `j<k`;
+- for `1<=ell<=N-1`,
+  `sqrt(2/(ell(ell+1))) diag(1,...,1,-ell,0,...,0)`.
+
+### Theorem QMC-T6 — normalized traceless-Hermitian basis
+
+The family has `N^2-1` elements, is a real basis of the traceless Hermitian
+matrices, and satisfies
+
+`Tr(lambda_a lambda_b)=2 delta_ab`.
+
+**Proof.** There are `N(N-1)/2` symmetric, the same number antisymmetric, and
+`N-1` diagonal elements. Each is visibly Hermitian and traceless. Distinct
+off-diagonal supports are orthogonal; symmetric and antisymmetric partners have
+zero trace product; diagonal elements are orthogonal by direct summation. The
+displayed scale makes every squared norm two. Their number equals the real
+dimension `N^2-1`, hence orthogonality makes them a basis. `□`
+
+With `T_a=lambda_a/2`, commutators define real antisymmetric structure constants
+by `[T_a,T_b]=i sum_c f_abc T_c`. The label space and its basis are not generated
+by an arbitrary graph. They may be attached to vertices or edges only by a
+separate modeling choice.
+
+## 6. L1 masses and complex amplitudes
+
+Given declared nonnegative masses `mu_j`, not all zero, one may define
+`p_j=mu_j/sum mu` and, after separately declaring phases `phi_j`, set
+
+`psi_j=sqrt(p_j) exp(i phi_j)`.
+
+Then `sum |psi_j|^2=1`. This elementary embedding is many-to-one: it discards
+overall scale, and the phases are not determined by the masses. If the input is
+a signed cochain, taking absolute values also discards signs. Therefore the map
+does not derive Born's rule or a quantum state from primitive difference.
+
+## 7. Computational companion
+
+One production module implements graph incidence, weighted L1 quotient LPs,
+U(1) gauge transformations, covariant differences, graph-validated path
+holonomy, connection Laplacians, cochain exponentiation, generalized Gell-Mann
+matrices, and the declared mass/phase embedding. Holonomy replay checks edge
+indices, orientations, walk continuity, endpoints, and required closedness.
+Tests include edgeless and cyclic graphs, open and closed paths, random gauges,
+PSD spectra, exact-repair gauge equivalence, all Gell-Mann Gram identities for
+several `N`, and rejected implicit-phase inputs. Two notebooks present the
+shortest positive replay and a falsification suite.
+
+## 8. Scope and nonclaims
+
+This paper does not derive quantum mechanics, Feynman path amplitudes, Born's
+rule, Hilbert space from a graph, SU(N) from graph adjacency, a physical
+Hamiltonian, continuum gauge theory, measurement, or authority. It provides
+finite typed constructions whose extra choices remain visible.
+
+## References
+
+1. J. Dodziuk, “Finite-difference approach to the Hodge theory of harmonic
+   forms,” *American Journal of Mathematics* 98(1), 1976, 79–104.
+   <https://doi.org/10.2307/2373615>
+2. Y. Colin de Verdière, “Spectres de graphes,” Société Mathématique de France,
+   1998.
+3. H. Georgi, *Lie Algebras in Particle Physics*, 2nd ed., Westview, 1999.
+4. J. J. Sakurai and J. Napolitano, *Modern Quantum Mechanics*, 3rd ed.,
+   Cambridge University Press, 2020.

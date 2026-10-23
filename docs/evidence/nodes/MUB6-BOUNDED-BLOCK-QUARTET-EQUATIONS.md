@@ -1,6 +1,6 @@
 # MUB6-BOUNDED-BLOCK-QUARTET-EQUATIONS
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,12 +47,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubBoundedBlockChart.lean](../../../lean4/MubBoundedBlockChart.lean)
 - sha256 (`bytes`): `2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917`
 - cited in: node.lean, record TFQ-1260
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedBlockChart`): recorded sha256 `2a29801d5f787f2e63f4c06d1df18e37d773d1fee3472cf8c529a894a3fb4917` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBoundedBlockChart`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exists_quartet_iff_bounded_completion` | yes | yes | yes | - | `#print axioms exists_quartet_iff_bounded_completion` |
+| `exists_quartet_iff_bounded_completion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_bounded_completion` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubBoundedMUFactor.lean`
@@ -60,12 +61,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubBoundedMUFactor.lean](../../../lean4/MubBoundedMUFactor.lean)
 - sha256 (`bytes`): `732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6`
 - cited in: node.lean, record TFQ-1260
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedMUFactor`): recorded sha256 `732189950dec5044fedb0f3b2f541e0eac714e3419099cdc5198a256c01c3dd6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBoundedMUFactor`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exists_quartet_iff_reduced` | yes | yes | yes | - | `#print axioms exists_quartet_iff_reduced` |
+| `exists_quartet_iff_reduced` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_reduced` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubBoundedQuartetEquations.lean`
@@ -73,12 +75,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubBoundedQuartetEquations.lean](../../../lean4/MubBoundedQuartetEquations.lean)
 - sha256 (`bytes`): `7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b`
 - cited in: node.lean, record TFQ-1260
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBoundedQuartetEquations`): recorded sha256 `7d37ce93c1612b0c6636c7111fb434a4e4149f8053b954b0c910692fbe2e467b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBoundedQuartetEquations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exists_quartet_iff_equations` | yes | yes | yes | - | `#print axioms exists_quartet_iff_equations` |
+| `exists_quartet_iff_equations` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_equations` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1260_mub6_bounded_block_quartet_equations.md`

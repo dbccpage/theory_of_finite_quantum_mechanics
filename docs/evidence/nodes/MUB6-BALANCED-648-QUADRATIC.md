@@ -1,6 +1,6 @@
 # MUB6-BALANCED-648-QUADRATIC
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,13 +47,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubBalancedCompletion.lean](../../../lean4/MubBalancedCompletion.lean)
 - sha256 (`bytes`): `75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44`
 - cited in: node.lean, record TFQ-1264
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBalancedCompletion`): recorded sha256 `75d38d52952c82337aff491dfc020829b0113e49831bdd7208df6c59ccc00b44` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBalancedCompletion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `complete_restrict` | yes | yes | yes | - | `#print axioms complete_restrict` |
-| `restrict_complete` | yes | yes | yes | - | `#print axioms restrict_complete` |
+| `complete_restrict` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms complete_restrict` |
+| `restrict_complete` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms restrict_complete` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubBalancedQuadraticPolynomials.lean`
@@ -61,13 +62,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubBalancedQuadraticPolynomials.lean](../../../lean4/MubBalancedQuadraticPolynomials.lean)
 - sha256 (`bytes`): `e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5`
 - cited in: node.lean, record TFQ-1264
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubBalancedQuadraticPolynomials`): recorded sha256 `e1e92915b1524e2eb349db5d85447739faac51bf790aea1a681b61999323c7a5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubBalancedQuadraticPolynomials`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `equation_degree` | yes | yes | yes | - | `#print axioms equation_degree` |
-| `exists_quartet_iff_balanced_polynomials` | yes | yes | yes | - | `#print axioms exists_quartet_iff_balanced_polynomials` |
+| `equation_degree` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms equation_degree` |
+| `exists_quartet_iff_balanced_polynomials` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_balanced_polynomials` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1264_mub6_balanced_648_quadratic.md`

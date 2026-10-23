@@ -3,20 +3,25 @@ node_id: PGW-CONTEXT-DECISION-PROCEDURE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: No decision procedure over contexts is built (X-1); collapse of two data means every
-    well-formed context derives their pluggings alike, and separability that some well-formed context
-    tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count
-    as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the
-    number of observational classes is a finite computation and OPEN in Lean (SD-C-2).
+  source_statement: A finite Genesis context decision procedure in the existing Regime enumerates every
+    admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform
+    all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish,
+    and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their
+    finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent
+    to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level
+    uniformity necessity and external implementation refinement remain open.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Open; the existing census results decide these rows by finite computation over rung
-    three's rectangle or by Lean statements for every history where cited, not by a procedure over contexts.
+  source_bottleneck: The finite context, class-count, holding-two and exhaustion clauses have local Lean
+    evidence for arbitrary finite regimes in the declared slot/all-tuples-rule language. The bundled node
+    remains OPEN for first-count existence, Y-2 necessity and the external Python/Rust refinement; the
+    earlier unary-only mirror is not used as a full context decider.
   source_refs:
   - dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1073-1076
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:484
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:171-175
+  - dag/derivations/independent/pgw-context-decision-procedure.md:5-8
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -30,9 +35,332 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_context_decision_procedure_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: abbrev
+  name: Context
+  line: 15
+  signature_excerpt: abbrev Context
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: contexts
+  line: 47
+  signature_excerpt: 'def contexts (r : Regime) : List Context'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: WellFormed
+  line: 43
+  signature_excerpt: 'def WellFormed (r : Regime) (c : Context) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Slot
+  line: 14
+  signature_excerpt: abbrev Slot
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: slotTuples
+  line: 27
+  signature_excerpt: |-
+    def slotTuples (n : Nat) : Nat → List (List Slot)
+      | 0 => [[]]
+      | k + 1 => (options n).flatMap fun s => (slotTuples n k).map (s :: ·)
+
+    theorem mem_options (n : Nat) (s : Slot) : s ∈ options n ↔ slotValid n s
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: slotValid
+  line: 17
+  signature_excerpt: |-
+    def slotValid (n : Nat) : Slot → Prop
+      | none => True
+      | some d => d < n
+
+    instance (n : Nat) (s : Slot) : Decidable (slotValid n s)
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: options
+  line: 24
+  signature_excerpt: 'def options (n : Nat) : List Slot'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: collapseTest
+  line: 66
+  signature_excerpt: 'def collapseTest (r : Regime) (i j : Nat) : Bool'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Collapsed
+  line: 61
+  signature_excerpt: 'def Collapsed (r : Regime) (i j : Nat) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Derivable
+  line: 57
+  signature_excerpt: 'def Derivable (r : Regime) (inst : Inst) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: plug
+  line: 56
+  signature_excerpt: 'def plug (c : Context) (d : Nat) : Inst'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: witness
+  line: 84
+  signature_excerpt: 'def witness (r : Regime) (i j : Nat) : Option Context'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: profile
+  line: 97
+  signature_excerpt: 'def profile (r : Regime) (d : Nat) : Finset Context'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: exhaustionTest
+  line: 125
+  signature_excerpt: 'def exhaustionTest (r : Regime) (f : Nat) : Bool'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Exhausted
+  line: 122
+  signature_excerpt: 'def Exhausted (r : Regime) (f : Nat) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: HoldsTwo
+  line: 117
+  signature_excerpt: 'def HoldsTwo (r : Regime) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: mem_contexts
+  line: 52
+  signature_excerpt: 'theorem mem_contexts (r : Regime) (c : Context) : c ∈ contexts r ↔ WellFormed r
+    c'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapseTest_correct
+  line: 69
+  signature_excerpt: |-
+    theorem collapseTest_correct (r : Regime) (i j : Nat) :
+        collapseTest r i j = true ↔ Collapsed r i j
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_none_iff
+  line: 87
+  signature_excerpt: |-
+    theorem witness_none_iff (r : Regime) (i j : Nat) :
+        witness r i j = none ↔ Collapsed r i j
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_sound
+  line: 91
+  signature_excerpt: |-
+    theorem witness_sound {r : Regime} {i j : Nat} {c : Context} (h : witness r i j = some c) :
+        WellFormed r c ∧ ¬ (Derivable r (plug c i) ↔ Derivable r (plug c j))
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: profile_eq_iff
+  line: 104
+  signature_excerpt: |-
+    theorem profile_eq_iff (r : Regime) (i j : Nat) :
+        profile r i = profile r j ↔ Collapsed r i j
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exhaustionTest_correct
+  line: 130
+  signature_excerpt: |-
+    theorem exhaustionTest_correct (r : Regime) (f : Nat) :
+        exhaustionTest r f = true ↔ Exhausted r f
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: uniform_rule_exhausted
+  line: 142
+  signature_excerpt: 'theorem uniform_rule_exhausted (r : Regime) (f : Nat) (hf : f ∈ r.rules) : Exhausted
+    r f'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: holdsTwo_iff_classCount
+  line: 157
+  signature_excerpt: 'theorem holdsTwo_iff_classCount (r : Regime) : HoldsTwo r ↔ 2 ≤ classCount r'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: classCount_eq_quotient_card
+  line: 202
+  signature_excerpt: |-
+    theorem classCount_eq_quotient_card (r : Regime) :
+        classCount r = Nat.card (Quotient (observationSetoid r))
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.mem_contexts
+  availability: local
+  symbol: CampaignGenesisContextDecision.mem_contexts
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct
+  availability: local
+  symbol: CampaignGenesisContextDecision.collapseTest_correct
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_none_iff
+  availability: local
+  symbol: CampaignGenesisContextDecision.witness_none_iff
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 87
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound
+  availability: local
+  symbol: CampaignGenesisContextDecision.witness_sound
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.profile_eq_iff
+  availability: local
+  symbol: CampaignGenesisContextDecision.profile_eq_iff
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.exhaustionTest_correct
+  availability: local
+  symbol: CampaignGenesisContextDecision.exhaustionTest_correct
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 130
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.uniform_rule_exhausted
+  availability: local
+  symbol: CampaignGenesisContextDecision.uniform_rule_exhausted
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 142
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.holdsTwo_iff_classCount
+  availability: local
+  symbol: CampaignGenesisContextDecision.holdsTwo_iff_classCount
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 157
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.classCount_eq_quotient_card
+  availability: local
+  symbol: CampaignGenesisContextDecision.classCount_eq_quotient_card
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 202
+  role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts
   availability: external
   symbol: contexts
@@ -78,8 +406,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

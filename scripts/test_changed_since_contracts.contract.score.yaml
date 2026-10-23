@@ -1,0 +1,131 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "scripts/test_changed_since_contracts.py",
+  "contract": {
+    "schema_version": "2.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "scripts/test_changed_since_contracts.py",
+      "sha256": "e9f223daa0a095e1d26a3f3a24e46e92f563c90deb0ade24b4df91b294420edb",
+      "language": "Python"
+    },
+    "profile": "Non-Numeric",
+    "claim": "Read-only changed-source selection and exact companion/history custody, with explicit CLI and failure-boundary regressions.",
+    "invariants": [
+      "The merge-base comparison includes staged, unstaged and ordinary-untracked files.",
+      "A missing or invalid changed-source companion fails closed.",
+      "Scoped checks preserve audit bytes and timestamps.",
+      "A clean/empty selection avoids unrelated malformed records.",
+      "Legacy receipt bytes survive the logical-path adapter without recreating sidecars."
+    ],
+    "nonclaims": [
+      "No automatic L4/D certification; the evidence and grades require review.",
+      "No whole-tree baseline repair or full estate migration in this change."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/pr201_contract_review.json",
+        "sha256": "db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882"
+      }
+    ]
+  },
+  "current_contract": "8df3bf5a2013c5e0b46b1b7b66b0c17f7bda082eaa302e52eeb6926b4c2b5aac",
+  "current_scoring": "c989fa07a23fc184f481451e5faf959be40d485be0c7cdef6e8ced24f4260db0",
+  "contract_history": [
+    {
+      "sha256": "8df3bf5a2013c5e0b46b1b7b66b0c17f7bda082eaa302e52eeb6926b4c2b5aac",
+      "bytes": 1159,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "scripts/test_changed_since_contracts.py",
+          "sha256": "e9f223daa0a095e1d26a3f3a24e46e92f563c90deb0ade24b4df91b294420edb",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "claim": "Read-only changed-source selection and exact companion/history custody, with explicit CLI and failure-boundary regressions.",
+        "invariants": [
+          "The merge-base comparison includes staged, unstaged and ordinary-untracked files.",
+          "A missing or invalid changed-source companion fails closed.",
+          "Scoped checks preserve audit bytes and timestamps.",
+          "A clean/empty selection avoids unrelated malformed records.",
+          "Legacy receipt bytes survive the logical-path adapter without recreating sidecars."
+        ],
+        "nonclaims": [
+          "No automatic L4/D certification; the evidence and grades require review.",
+          "No whole-tree baseline repair or full estate migration in this change."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/pr201_contract_review.json",
+            "sha256": "db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"scripts/test_changed_since_contracts.py\",\n    \"sha256\": \"e9f223daa0a095e1d26a3f3a24e46e92f563c90deb0ade24b4df91b294420edb\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"claim\": \"Read-only changed-source selection and exact companion/history custody, with explicit CLI and failure-boundary regressions.\",\n  \"invariants\": [\n    \"The merge-base comparison includes staged, unstaged and ordinary-untracked files.\",\n    \"A missing or invalid changed-source companion fails closed.\",\n    \"Scoped checks preserve audit bytes and timestamps.\",\n    \"A clean/empty selection avoids unrelated malformed records.\",\n    \"Legacy receipt bytes survive the logical-path adapter without recreating sidecars.\"\n  ],\n  \"nonclaims\": [\n    \"No automatic L4/D certification; the evidence and grades require review.\",\n    \"No whole-tree baseline repair or full estate migration in this change.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr201_contract_review.json\",\n      \"sha256\": \"db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882\"\n    }\n  ]\n}\n",
+      "original_paths": []
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "c989fa07a23fc184f481451e5faf959be40d485be0c7cdef6e8ced24f4260db0",
+      "bytes": 1913,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "scripts/test_changed_since_contracts.py",
+          "sha256": "e9f223daa0a095e1d26a3f3a24e46e92f563c90deb0ade24b4df91b294420edb",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_assessment": "Regression support suite, admitted under the user-authorized support-file exception.",
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "D",
+          "G4": "D",
+          "G5": "B"
+        },
+        "gate_rationale": {
+          "G1": "Exact source hashes, tested invariants and explicit authority ceiling in this companion and review receipt.",
+          "G2": "Hash/string/path bookkeeping; pinned strict mypy passes.",
+          "G3": "Missing/bad/stale/tampered inputs are refused; Git subprocess timeout and cancellation remain absent.",
+          "G4": "Twelve API/real-CLI/private-Git regressions cover positive and adversarial boundaries; no full-estate migration or mutation campaign.",
+          "G5": "AST branch indicators and existing monolithic functions are disclosed; no cognitive-complexity or whole-module simplification claim."
+        },
+        "composite_grade": "D",
+        "score_token": "L2D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "assessment_status": "completed_for_declared_changed-source_custody_boundary",
+        "evaluation_timestamp": "2026-10-23T05:06:22.093245+00:00",
+        "rubric": "SCORING.md v2.0.0",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr201_contract_review.json",
+            "sha256": "db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882"
+          }
+        ],
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "required_for_completion": [],
+        "limiting_reason": "Missing Git cancellation/timeouts and a full-estate mutation/migration campaign cap the grade at D."
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"scripts/test_changed_since_contracts.py\",\n    \"sha256\": \"e9f223daa0a095e1d26a3f3a24e46e92f563c90deb0ade24b4df91b294420edb\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_assessment\": \"Regression support suite, admitted under the user-authorized support-file exception.\",\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"B\"\n  },\n  \"gate_rationale\": {\n    \"G1\": \"Exact source hashes, tested invariants and explicit authority ceiling in this companion and review receipt.\",\n    \"G2\": \"Hash/string/path bookkeeping; pinned strict mypy passes.\",\n    \"G3\": \"Missing/bad/stale/tampered inputs are refused; Git subprocess timeout and cancellation remain absent.\",\n    \"G4\": \"Twelve API/real-CLI/private-Git regressions cover positive and adversarial boundaries; no full-estate migration or mutation campaign.\",\n    \"G5\": \"AST branch indicators and existing monolithic functions are disclosed; no cognitive-complexity or whole-module simplification claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L2D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"assessment_status\": \"completed_for_declared_changed-source_custody_boundary\",\n  \"evaluation_timestamp\": \"2026-10-23T05:06:22.093245+00:00\",\n  \"rubric\": \"SCORING.md v2.0.0\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr201_contract_review.json\",\n      \"sha256\": \"db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882\"\n    }\n  ],\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"required_for_completion\": [],\n  \"limiting_reason\": \"Missing Git cancellation/timeouts and a full-estate mutation/migration campaign cap the grade at D.\"\n}\n",
+      "original_paths": []
+    }
+  ],
+  "legacy_paths": {},
+  "history_order": "Append order; no prior score is invented."
+}
