@@ -5,7 +5,7 @@ No repository module is imported. Rational arithmetic is exact.
 from __future__ import annotations
 
 from fractions import Fraction
-from itertools import chain, combinations
+from itertools import chain, combinations, product
 from collections.abc import Callable, Iterator
 
 
@@ -122,3 +122,72 @@ print("witness (1/2, 1/3): six-forest quotient 7; omitted-G quotient -5")
 print("sector kernel at z=3/5, lambda=(1/2, 1/3): 9/50, distinct from 7")
 print("formal sector value z*z = 9/25, distinct from 7")
 print("checked: forests, coefficient identity, sample grid, witness, sector comparison")
+
+
+Matrix = tuple[Fraction, Fraction, Fraction, Fraction]
+IDENTITY: Matrix = (Q(1), Q(0), Q(0), Q(1))
+ZERO: Matrix = (Q(0), Q(0), Q(0), Q(0))
+
+
+def multiply(a: Matrix, b: Matrix) -> Matrix:
+    return (a[0]*b[0]+a[1]*b[2], a[0]*b[1]+a[1]*b[3],
+            a[2]*b[0]+a[3]*b[2], a[2]*b[1]+a[3]*b[3])
+
+
+def residual(p: Matrix) -> Matrix:
+    return (1-p[0], -p[1], -p[2], 1-p[3])
+
+
+def checked_reduce(projectors: tuple[Matrix, ...]) -> Matrix:
+    for p in projectors:
+        if any(type(x) is not Fraction for x in p):
+            raise ValueError("exact Fraction entries required")
+        if multiply(p, p) != p:
+            raise ValueError("non-idempotent projector")
+        for q in projectors:
+            if multiply(p, q) != multiply(q, p):
+                raise ValueError("noncommuting projectors")
+    result = IDENTITY
+    for p in reversed(projectors):
+        result = multiply(residual(p), result)
+    return result
+
+
+def check_family(family: tuple[Matrix, ...]) -> None:
+    result = checked_reduce(family)
+    if multiply(result, result) != result:
+        raise SystemExit("reduction is not idempotent")
+    if any(multiply(p, result) != ZERO for p in family):
+        raise SystemExit("reduction misses a supplied kernel")
+    for p in family:
+        if multiply(residual(p), result) != result:
+            raise SystemExit("subfamily does not absorb")
+    if family:
+        if checked_reduce(family + family) != result:
+            raise SystemExit("repeated family changes reduction")
+    elif result != IDENTITY:
+        raise SystemExit("empty subtraction is not identity")
+
+
+def check_projector_api() -> None:
+    matrices: list[Matrix] = [(Q(a), Q(b), Q(c), Q(d)) for a,b,c,d in product((-1,0,1), repeat=4)]
+    projectors = [p for p in matrices if multiply(p,p) == p]
+    checked = 0
+    for size in range(3):
+        for family in product(projectors, repeat=size):
+            if all(multiply(p,q) == multiply(q,p) for p in family for q in family):
+                check_family(family)
+                checked += 1
+    bad: Matrix = (Q(2),Q(0),Q(0),Q(0))
+    p: Matrix = (Q(1),Q(0),Q(0),Q(0))
+    q: Matrix = (Q(1),Q(1),Q(0),Q(0))
+    for family in ((bad,), (p,q)):
+        try:
+            checked_reduce(family)
+        except ValueError:
+            continue
+        raise SystemExit("invalid projector family admitted")
+    print(f"projectors: {len(projectors)} exact idempotents; {checked} compatible lists; two invalid families refused")
+
+
+check_projector_api()
