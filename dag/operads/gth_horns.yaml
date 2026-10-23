@@ -51,27 +51,39 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     carrier: null
     coefficient_ring: null
     assumptions: []
     source_pins: []
     public_input: {}
+    note: Not FILLED. No carrier was admitted for this node. GenesisHottHorns.Vtx is an excluded lead.
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     operations: []
     composition_plan: []
+    note: Not FILLED. GenesisHottHorns.inner_horn_filled was reviewed and not admitted.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     algebraic_relations: []
     rejection_predicates: []
     negative_control_plan: []
+    note: Not FILLED. No horn-filling relation was admitted from the route.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     certificate_predicates: []
     anchors: []
     unpaid_imports: []
-stage_history: []
+    note: Not FILLED. The node cites no Lean declaration. inner_horn_filled was not admitted.
+stage_history:
+- stage: P0_MINE_OPERAD
+  status: completed
+  result: reviewed_negative
+  attempt: p0
+  run: dag/results/GTH-HORNS/runs/20261023T114605Z_p0_negative
+  operad_delta: dag/results/GTH-HORNS/runs/20261023T114605Z_p0_negative/p0/operad_delta.yaml
+  authority_effect: None
+  slots_not_filled: true
 open_obligations:
 - No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
   premises; do not invent an operation.
@@ -79,4 +91,30 @@ open_obligations:
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
-excluded_relation_leads: []
+- P0 2026-10-23 reviewed negative. No generator admitted. Route GTH-R-GTH-HORNS stays
+  GAP_NO_DERIVATION. GenesisHottHorns is an excluded lead, not a theorem of this node.
+excluded_relation_leads:
+- id: GenesisHottHorns.inner_horn_filled
+  path: lean4/GenesisHottHorns.lean
+  line: 165
+  reason: A filler for one declared inner horn of that file. The node lean list is empty. Not a derivation from GTH-TRUNC.
+- id: GenesisHottHorns.inner_horn_refused
+  path: lean4/GenesisHottHorns.lean
+  line: 173
+  reason: A missing filler for one declared inner horn of that file. Not a counterexample for a Genesis-derived object.
+- id: GenesisHottHorns.not_all_inner_2_horns_fill
+  path: lean4/GenesisHottHorns.lean
+  line: 206
+  reason: Not every InnerHorn of that file has a filler. Not the Kan or quasicategory question for this node.
+- id: GenesisHottHorns.outer_horn_k0_filled
+  path: lean4/GenesisHottHorns.lean
+  line: 184
+  reason: A filler for one declared outer horn of index 0. The node does not cite it.
+- id: GenesisHottHorns.unique_inner_filler
+  path: lean4/GenesisHottHorns.lean
+  line: 300
+  reason: Faces of the one declared triangle t012. Not uniqueness of fillers for a Genesis-derived object.
+- id: AdmitCore.Regime
+  path: lean4/AdmitCore.lean
+  line: 42
+  reason: Stores data, forms, and cuts. Not an input of this route and not a theorem of this node.

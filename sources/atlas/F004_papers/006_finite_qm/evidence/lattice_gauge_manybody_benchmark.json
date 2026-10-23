@@ -1,0 +1,129 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C500",
+  "block": "block_09",
+  "global_targets": "C500-T501..C500-T525",
+  "terminal_outcome": "FINITE_LATTICE_BENCHMARKS_WITH_SCALING_OBLIGATIONS",
+  "predecessor_binding_status": "NOT_VERIFIED_BY_KERNEL",
+  "tfim_benchmark": {
+    "model": "1D Transverse-Field Ising Model (L=2)",
+    "coupling_j": 1,
+    "transverse_field_h": 1,
+    "exact_eigenvalues": [
+      "-sqrt(5)",
+      "-1",
+      "1",
+      "sqrt(5)"
+    ],
+    "ground_state_energy": "-sqrt(5)",
+    "gap": "sqrt(5) - 1",
+    "gap_convention": "next distinct energy above the ground eigenspace; zero if no next level",
+    "dimension": 4,
+    "hamiltonian": [
+      [
+        -1,
+        -1,
+        -1,
+        0
+      ],
+      [
+        -1,
+        1,
+        0,
+        -1
+      ],
+      [
+        -1,
+        0,
+        1,
+        -1
+      ],
+      [
+        0,
+        -1,
+        -1,
+        -1
+      ]
+    ],
+    "eigenvalue_encoding": "exact integer or signed principal square root",
+    "radicand": "5",
+    "characteristic_polynomial_descending": [
+      "1",
+      "0",
+      "-6",
+      "0",
+      "5"
+    ],
+    "block_decomposition_verified": true,
+    "basis_gram_verified": true
+  },
+  "z2_gauge_benchmark": {
+    "gauge_group": "Z_2",
+    "geometry": "Single 2D square plaquette (4 links, 4 vertices)",
+    "gauss_generators": [
+      "X_1 X_4",
+      "X_1 X_2",
+      "X_2 X_3",
+      "X_3 X_4"
+    ],
+    "links_per_vertex": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "gauss_generator_masks": [
+      9,
+      3,
+      6,
+      12
+    ],
+    "physical_x_basis_labels": [
+      0,
+      15
+    ],
+    "flux_commutation_sign": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "flux_term_commutes": true,
+    "electric_term_commutes": true,
+    "hamiltonian_preserves_gauge_subspace": true,
+    "physical_subspace_dimension": 2
+  },
+  "continuum_obligations": {
+    "obligations": [
+      {
+        "obligation_id": "CONT-OBLIG-1",
+        "limit_name": "Large-Volume Limit (L -> infty)",
+        "control": "Lieb-Robinson decay, boundary conditions",
+        "status": "OPEN_THERMODYNAMIC_PROOF"
+      },
+      {
+        "obligation_id": "CONT-OBLIG-2",
+        "limit_name": "Gauge Truncation Limit (Lambda -> infty)",
+        "control": "Quantum link / truncation error convergence",
+        "status": "OPEN_TRUNCATION_PROOF"
+      },
+      {
+        "obligation_id": "CONT-OBLIG-3",
+        "limit_name": "Vanishing Lattice Spacing (a -> 0)",
+        "control": "Coupling constant renormalization flow g(a) -> g*",
+        "status": "OPEN_RENORMALIZATION_PROOF"
+      }
+    ],
+    "all_required_continuum_limits_proved": false,
+    "standard_model_or_empirical_recovery_claimed": false
+  },
+  "machine_bet_clauses": {
+    "finite_gauge_subspace_preserved": true,
+    "exact_small_system_observable_count": 2,
+    "volume_truncation_and_spacing_errors_are_separate": true,
+    "all_required_continuum_limits_proved": false,
+    "standard_model_or_empirical_recovery_claimed": false,
+    "extrapolation_grid_frozen_before_results": false
+  }
+}

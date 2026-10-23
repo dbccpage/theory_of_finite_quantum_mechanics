@@ -1,0 +1,25 @@
+[package]
+name = "governance"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Build-time contract governance: companion binding, completed scores and the L4/D acceptance floor"
+autobins = false
+
+[lib]
+name = "governance"
+path = "src/lib.rs"
+
+[[bin]]
+name = "governance-check"
+path = "src/bin/governance-check.rs"
+
+# Only these two: the crate is a build-dependency of every workspace member.
+[dependencies]
+serde_json = "1"
+sha2 = "0.10"
+
+# A member of the code/rust workspace (`cargo test -p governance`). That workspace
+# resolves only with a local [patch] for the optional external omega crates
+# (code/rust/.cargo/config.toml.example), so CI copies this package out of the
+# tree and builds it on its own with the Cargo.lock kept here (unused in the workspace).

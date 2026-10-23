@@ -1,0 +1,172 @@
+{
+  "authority_effect": "None",
+  "author_head": "e6474c47e62016d9bd351722cbaeff1506f668e1",
+  "source_hashes": {
+    "lean4/CampaignDfmContinuumInterface.lean": "251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d",
+    "checks/independent/dfm-continuum-interface.py": "f591792eff405536d567cb4b54ada0dd2f45c182d4a60a82137fc608b9df95b9"
+  },
+  "checks": {
+    "before-mutant-False": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "C:\\gw\\tp205\\lean4\\b\\pr223-review\\original-mutant.py"
+      ],
+      "exit_code": 1,
+      "stdout": "[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\original-mutant.py\", line 152, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\original-mutant.py\", line 141, in main\n    check_additive()\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\original-mutant.py\", line 75, in check_additive\n    assert d2 == 3, d2\n           ^^^^^^^\nAssertionError: 2\n"
+    },
+    "before-mutant-True": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "C:\\gw\\tp205\\lean4\\b\\pr223-review\\original-mutant.py"
+      ],
+      "exit_code": 0,
+      "stdout": "[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n  dressed chords: 2 and 5\n[2/4] Matrix witness with trivial star labels.\n  dressed eAB: [[1, 1], [0, 1]] and [[1, 2], [0, 1]]\n  incident edges ePA, eRB, eAB agree; eRP does not meet {a, b}\n[3/4] Noncommutative path product, later factor on the left.\n  dressed eAB: [[-4, -5], [1, 1]]\n  after changing only eRP: [[-4, -9], [1, 2]]\n  reversed product, not the dressing: [[1, -5], [1, -4]]\n[4/4] Closed star of a\u2192b is {ePA, eRB, eAB}.\n  star: ('ePA', 'eRB', 'eAB')\nchecked: dressed chords 2 and 5; matrices [[1,1],[0,1]] vs [[1,2],[0,1]];\nchecked: noncommutative dressed [[-4,-5],[1,1]] vs [[-4,-9],[1,2]];\nchecked: eRP lies outside the closed star of a\u2192b.\n",
+      "stderr": ""
+    },
+    "checker": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/dfm-continuum-interface.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T08:02:48.222490+00:00",
+      "completed": "2026-10-23T08:02:48.944765+00:00",
+      "exit_code": 0,
+      "stdout": "[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n  dressed chords: 2 and 5\n[2/4] Matrix witness with trivial star labels.\n  dressed eAB: [[1, 1], [0, 1]] and [[1, 2], [0, 1]]\n  incident edges ePA, eRB, eAB agree; eRP does not meet {a, b}\n[3/4] Noncommutative path product, later factor on the left.\n  dressed eAB: [[-4, -5], [1, 1]]\n  after changing only eRP: [[-4, -9], [1, 2]]\n  reversed product, not the dressing: [[1, -5], [1, -4]]\n[4/4] Closed star of a\u2192b is {ePA, eRB, eAB}.\n  star: ('ePA', 'eRB', 'eAB')\nchecked: dressed chords 2 and 5; matrices [[1,1],[0,1]] vs [[1,2],[0,1]];\nchecked: noncommutative dressed [[-4,-5],[1,1]] vs [[-4,-9],[1,2]];\nchecked: eRP lies outside the closed star of a\u2192b.\n",
+      "stderr": ""
+    },
+    "optimized": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/dfm-continuum-interface.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T08:02:48.945783+00:00",
+      "completed": "2026-10-23T08:02:49.560201+00:00",
+      "exit_code": 0,
+      "stdout": "[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n  dressed chords: 2 and 5\n[2/4] Matrix witness with trivial star labels.\n  dressed eAB: [[1, 1], [0, 1]] and [[1, 2], [0, 1]]\n  incident edges ePA, eRB, eAB agree; eRP does not meet {a, b}\n[3/4] Noncommutative path product, later factor on the left.\n  dressed eAB: [[-4, -5], [1, 1]]\n  after changing only eRP: [[-4, -9], [1, 2]]\n  reversed product, not the dressing: [[1, -5], [1, -4]]\n[4/4] Closed star of a\u2192b is {ePA, eRB, eAB}.\n  star: ('ePA', 'eRB', 'eAB')\nchecked: dressed chords 2 and 5; matrices [[1,1],[0,1]] vs [[1,2],[0,1]];\nchecked: noncommutative dressed [[-4,-5],[1,1]] vs [[-4,-9],[1,2]];\nchecked: eRP lies outside the closed star of a\u2192b.\n",
+      "stderr": ""
+    },
+    "mypy": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "--no-incremental",
+        "checks/independent/dfm-continuum-interface.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T08:02:49.560201+00:00",
+      "completed": "2026-10-23T08:02:54.307517+00:00",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    "build": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignDfmContinuumInterface"
+      ],
+      "cwd": "C:\\gw\\tp205\\lean4",
+      "started": "2026-10-23T08:02:54.307517+00:00",
+      "completed": "2026-10-23T08:03:11.286992+00:00",
+      "exit_code": 0,
+      "stdout": "\u26a0 [766/768] Built FiniteGraphDressing (6.2s)\nwarning: FiniteGraphDressing.lean: imports `Mathlib.Algebra.Group.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FiniteGraphDressing.lean: imports `Mathlib.Tactic.Group` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FiniteGraphDressing.lean:134:0: 'FiniteGraphDressing.neutralizable_iff_closed_walks' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:135:0: 'FiniteGraphDressing.neutralizable_iff_closed_walks_forest' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:136:0: 'FiniteGraphDressing.tree_dressing_iff' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:137:0: 'FiniteGraphDressing.change_dressing' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:138:0: 'FiniteGraphDressing.neutralizers_constant' depends on axioms: [propext]\n\u26a0 [767/768] Built CampaignDfmContinuumInterface (5.9s)\nwarning: CampaignDfmContinuumInterface.lean: imports `Mathlib.Algebra.Group.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmContinuumInterface.lean: imports `Mathlib.Algebra.Group.TypeTags.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmContinuumInterface.lean: imports `Mathlib.Tactic.Group` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignDfmContinuumInterface.lean:160:0: 'CampaignDfmContinuumInterface.dressed_chord_formula' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:161:0: 'CampaignDfmContinuumInterface.dressed_chord_witness' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:162:0: 'CampaignDfmContinuumInterface.not_star_local' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:163:0: 'CampaignDfmContinuumInterface.witness_star_agrees' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:164:0: 'CampaignDfmContinuumInterface.outer_misses_star' does not depend on any axioms\ninfo: CampaignDfmContinuumInterface.lean:165:0: 'CampaignDfmContinuumInterface.witness_two_five' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmContinuumInterface.lean:166:0: 'CampaignDfmContinuumInterface.witness_two_ne_five' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (768 jobs).\n",
+      "stderr": ""
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "CampaignDfmContinuumInterface.lean"
+      ],
+      "cwd": "C:\\gw\\tp205\\lean4",
+      "started": "2026-10-23T08:03:11.286992+00:00",
+      "completed": "2026-10-23T08:03:20.295212+00:00",
+      "exit_code": 0,
+      "stdout": "'CampaignDfmContinuumInterface.dressed_chord_formula' depends on axioms: [propext]\n'CampaignDfmContinuumInterface.dressed_chord_witness' depends on axioms: [propext]\n'CampaignDfmContinuumInterface.not_star_local' depends on axioms: [propext]\n'CampaignDfmContinuumInterface.witness_star_agrees' depends on axioms: [propext]\n'CampaignDfmContinuumInterface.outer_misses_star' does not depend on any axioms\n'CampaignDfmContinuumInterface.witness_two_five' depends on axioms: [propext, Quot.sound]\n'CampaignDfmContinuumInterface.witness_two_ne_five' depends on axioms: [propext, Quot.sound]\n",
+      "stderr": ""
+    },
+    "metrics": {
+      "lines": 165,
+      "radon_max": 8,
+      "cognitive_max": 4
+    },
+    "boundaries": {
+      "repaired_mutant_runs": [
+        {
+          "command": [
+            "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py"
+          ],
+          "exit_code": 1,
+          "stdout": "[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n",
+          "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 165, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 154, in main\n    check_additive()\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 88, in check_additive\n    require(d2 == 3, 'independent check failed at original line 75')\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 34, in require\n    raise AssertionError(message)\nAssertionError: independent check failed at original line 75\n"
+        },
+        {
+          "command": [
+            "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+            "-I",
+            "-O",
+            "-X",
+            "utf8",
+            "C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py"
+          ],
+          "exit_code": 1,
+          "stdout": "[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n",
+          "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 165, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 154, in main\n    check_additive()\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 88, in check_additive\n    require(d2 == 3, 'independent check failed at original line 75')\n  File \"C:\\gw\\tp205\\lean4\\b\\pr223-review\\repaired-mutant.py\", line 34, in require\n    raise AssertionError(message)\nAssertionError: independent check failed at original line 75\n"
+        }
+      ],
+      "exact_matrix_refusals": [
+        {
+          "input": "[[True, 0], [0, 1]]",
+          "error": "exact integer entries required; bool and float are refused"
+        },
+        {
+          "input": "[[1.0, 0], [0, 1]]",
+          "error": "exact integer entries required; bool and float are refused"
+        },
+        {
+          "input": "[[0, 0], [0, 1]]",
+          "error": "matrix must have determinant one"
+        },
+        {
+          "input": "[[2, 0], [0, 1]]",
+          "error": "matrix must have determinant one"
+        },
+        {
+          "input": "[[1, 0, 0], [0, 1, 0]]",
+          "error": "SL(2,Z) matrices require two rows and two columns"
+        },
+        {
+          "input": "[[1, 0]]",
+          "error": "SL(2,Z) matrices require two rows and two columns"
+        }
+      ]
+    }
+  },
+  "acceptance": "Withheld: the bounded four-vertex proof module is L3D, below the substantive L4 minimum.",
+  "scope": "Exact finite nonlocality witness, not a continuum/refinement theorem. Full integrated campaign pipeline is not claimed for this blocked PR."
+}

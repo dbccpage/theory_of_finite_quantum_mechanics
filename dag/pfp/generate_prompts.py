@@ -18,7 +18,11 @@ each emitted prompt are recorded, so --check reports a prompt as stale when the 
 status, stage, assumptions, bottleneck, source references, paper pins or scanned local source
 changed after generation; --write regenerates stale prompts that have not run yet. A prompt that
 has run (its index row has latest_run) is never rewritten: it is reported as needing a manual
-delta. Declaration scanning reads only files inside this repository; sources that are not
+delta. A recorded stage history also protects a collection when its index update was missed.
+An explicit retained_collection binding in the extension can reconcile a P0 delta with the
+unchanged generated inputs and prompt; it binds the generated skeleton, current collection
+and recorded delta bytes, without accepting their mathematical content.
+Declaration scanning reads only files inside this repository; sources that are not
 checked in here are bound as external with a null digest and are pinned when a batch is
 prepared. Papers that dag/sync_pregenesis_to_wdp.py renders or rewrites (the fragment records TFQ-0417
 upward and their parents) are not pinned, because that sync must stay free to write them. Nothing here
@@ -202,8 +206,14 @@ class Corpus:
         return node_id in self.prompt_of or node_id in self.index_rows
 
     def executed(self, node_id: str) -> bool:
-        row = self.index_rows.get(node_id)
-        return bool(row and row.get('latest_run'))
+        row = self.index_rows.get(node_id) or self.ext_rows.get(node_id)
+        if not row:
+            return False
+        if row.get('latest_run'):
+            return True
+        # A missed index update must not erase a recorded (including negative) run.
+        path = self.root / row['operad_collection']
+        return path.is_file() and bool(load_yaml(path.read_bytes()).get('stage_history'))
 
     def missing(self):
         return [n for n in self.nodes if not self.has_prompt(n['id'])]
@@ -467,6 +477,46 @@ def stale_reasons(old_inputs, new_inputs):
     return reasons
 
 
+def retained_collection_matches(corpus: Corpus, row: dict, built: dict) -> bool:
+    """Recognise an explicitly bound P0 delta, never semantic acceptance of it.
+
+    The complete generated audit and prompt must still match, as must the target,
+    provenance, retained collection bytes and the last history entry's delta bytes.
+    Any subsequent input, generator, collection or evidence drift fails closed.
+    """
+    retained = row.get('retained_collection')
+    keys = {'generated_operad_collection_sha256', 'operad_delta', 'operad_delta_sha256'}
+    if not isinstance(retained, dict) or set(retained) != keys:
+        return False
+    generated = {k: v for k, v in row.items() if k != 'retained_collection'}
+    generated['operad_collection_sha256'] = retained['generated_operad_collection_sha256']
+    if generated != built['audit']:
+        return False
+    prompt, operad = corpus.root / row['prompt'], corpus.root / row['operad_collection']
+    if not prompt.is_file() or prompt.read_bytes() != built['prompt_bytes'] or not operad.is_file():
+        return False
+    data = operad.read_bytes()
+    if sha(data) != row['operad_collection_sha256']:
+        return False
+    actual, original = load_yaml(data), load_yaml(built['operad_bytes'])
+    if not isinstance(actual, dict):
+        return False
+    identity = ('schema_id', 'node_id', 'authority_effect', 'collection_status', 'target', 'source_provenance')
+    if any(actual.get(k) != original[k] for k in identity):
+        return False
+    history = actual.get('stage_history')
+    if not isinstance(history, list) or not history or not isinstance(history[-1], dict):
+        return False
+    relative = retained['operad_delta']
+    if not isinstance(relative, str) or relative != history[-1].get('operad_delta'):
+        return False
+    evidence = (corpus.root / relative).resolve()
+    runs = (corpus.root / 'dag/results' / row['node_id'] / 'runs').resolve()
+    if not evidence.is_relative_to(runs) or not evidence.is_file():
+        return False
+    return sha(evidence.read_bytes()) == retained['operad_delta_sha256']
+
+
 def classify(corpus: Corpus, node):
     """missing / current / stale / executed_stale / sealed for one node."""
     node_id = node['id']
@@ -480,7 +530,7 @@ def classify(corpus: Corpus, node):
     operad = corpus.root / row['operad_collection']
     same = (on_disk.is_file() and on_disk.read_bytes() == built['prompt_bytes'] and operad.is_file() and
             operad.read_bytes() == built['operad_bytes'] and row == built['audit'])
-    if same:
+    if same or retained_collection_matches(corpus, row, built):
         return 'current', built, []
     reasons = stale_reasons(row.get('inputs', {}), built['inputs']) or ['generator_output_or_file_changed']
     return ('executed_stale' if corpus.executed(node_id) else 'stale'), built, reasons

@@ -1,0 +1,197 @@
+{
+  "authority_effect": "None",
+  "reviewed_original_head": "e06c249d6ef4cb607bdcad4e9b1b4c86f89c2936",
+  "source_sha256": {
+    "lean4/CampaignGenesisProcessComparison.lean": "3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2",
+    "checks/independent/pgw-minimal-or-initial-refused.py": "67fa864d43432040bd7af3a1e02077c4c8757cae77db55851d2660d449be046c",
+    "lean4/lakefile.lean": "b0bdaf7214ef2de44593fccfd295cca76993c5855a43d4c3908cd19990b8164e"
+  },
+  "checks": {
+    "axioms": {
+      "count": 16,
+      "permitted_only": true,
+      "declarations": [
+        "CampaignGenesisProcessComparison.all_words_agree",
+        "CampaignGenesisProcessComparison.all_words_minimum_size",
+        "CampaignGenesisProcessComparison.every_challenge_answer_agrees",
+        "CampaignGenesisProcessComparison.hom_run",
+        "CampaignGenesisProcessComparison.labelled_append",
+        "CampaignGenesisProcessComparison.no_clock_hom_of_self_loop",
+        "CampaignGenesisProcessComparison.no_initial_in_clock_closed_class",
+        "CampaignGenesisProcessComparison.no_map_to_clock_lift",
+        "CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class",
+        "CampaignGenesisProcessComparison.nonminimal_adequate_process",
+        "CampaignGenesisProcessComparison.oneState_is_reduced_reachable",
+        "CampaignGenesisProcessComparison.reduced_reachable_is_minimal",
+        "CampaignGenesisProcessComparison.run_add",
+        "CampaignGenesisProcessComparison.source_advance_matches",
+        "CampaignGenesisProcessComparison.source_run_matches",
+        "CampaignGenesisProcessComparison.source_supply_self_loop"
+      ]
+    },
+    "build-original": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignGenesisProcessComparison"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\lean4",
+      "started": "2026-10-23T09:15:31.385364+00:00",
+      "exit_code": 0,
+      "stdout": "\u26a0 [665/666] Built CampaignGenesisProcessComparison (8.4s)\nwarning: CampaignGenesisProcessComparison.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignGenesisProcessComparison.lean: imports `Mathlib.Data.Fin.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignGenesisProcessComparison.lean:41:17: `simp` already closes the goal\n\nHint: Use `simp` instead of `simpa`:\n  [apply] simp [run, f.step, ih]\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\ninfo: CampaignGenesisProcessComparison.lean:257:0: 'CampaignGenesisProcessComparison.run_add' does not depend on any axioms\ninfo: CampaignGenesisProcessComparison.lean:258:0: 'CampaignGenesisProcessComparison.hom_run' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:259:0: 'CampaignGenesisProcessComparison.every_challenge_answer_agrees' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:260:0: 'CampaignGenesisProcessComparison.no_map_to_clock_lift' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:261:0: 'CampaignGenesisProcessComparison.reduced_reachable_is_minimal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:262:0: 'CampaignGenesisProcessComparison.nonminimal_adequate_process' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:263:0: 'CampaignGenesisProcessComparison.oneState_is_reduced_reachable' does not depend on any axioms\ninfo: CampaignGenesisProcessComparison.lean:264:0: 'CampaignGenesisProcessComparison.labelled_append' does not depend on any axioms\ninfo: CampaignGenesisProcessComparison.lean:265:0: 'CampaignGenesisProcessComparison.all_words_agree' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:266:0: 'CampaignGenesisProcessComparison.no_initial_in_clock_closed_class' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:267:0: 'CampaignGenesisProcessComparison.all_words_minimum_size' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:269:0: 'CampaignGenesisProcessComparison.no_clock_hom_of_self_loop' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:270:0: 'CampaignGenesisProcessComparison.source_advance_matches' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:271:0: 'CampaignGenesisProcessComparison.source_run_matches' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:272:0: 'CampaignGenesisProcessComparison.source_supply_self_loop' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:273:0: 'CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (666 jobs).\n",
+      "stderr": ""
+    },
+    "custody": {
+      "verified_dependencies": [
+        {
+          "source": "atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+          "source_commit": "f34f0b8e6e60b3153cbe9aacc8b44fd9f7cdc393",
+          "sha256": "1520b392f4061af568e00ca4fd235feb03facf6d3612c030c1d60018539e3eed",
+          "hash_basis": "committed blob bytes"
+        }
+      ],
+      "git_blob": "610d8fc982853807eb892eaaf683fc4eb2959cc1",
+      "external_commit_not_refetched": true
+    },
+    "lean-original": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "CampaignGenesisProcessComparison.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\lean4",
+      "started": "2026-10-23T09:15:45.033870+00:00",
+      "exit_code": 0,
+      "stdout": "CampaignGenesisProcessComparison.lean:41:17: warning: `simp` already closes the goal\n\nHint: Use `simp` instead of `simpa`:\n  [apply] simp [run, f.step, ih]\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\n'CampaignGenesisProcessComparison.run_add' does not depend on any axioms\n'CampaignGenesisProcessComparison.hom_run' depends on axioms: [propext]\n'CampaignGenesisProcessComparison.every_challenge_answer_agrees' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisProcessComparison.no_map_to_clock_lift' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGenesisProcessComparison.reduced_reachable_is_minimal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignGenesisProcessComparison.nonminimal_adequate_process' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignGenesisProcessComparison.oneState_is_reduced_reachable' does not depend on any axioms\n'CampaignGenesisProcessComparison.labelled_append' does not depend on any axioms\n'CampaignGenesisProcessComparison.all_words_agree' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisProcessComparison.no_initial_in_clock_closed_class' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignGenesisProcessComparison.all_words_minimum_size' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGenesisProcessComparison.no_clock_hom_of_self_loop' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisProcessComparison.source_advance_matches' depends on axioms: [propext]\n'CampaignGenesisProcessComparison.source_run_matches' depends on axioms: [propext]\n'CampaignGenesisProcessComparison.source_supply_self_loop' depends on axioms: [propext]\n'CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class' depends on axioms: [propext, Quot.sound]\n",
+      "stderr": ""
+    },
+    "metrics": {
+      "max_ccn": 28,
+      "max_cognitive": 24
+    },
+    "mutant-normal": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py\", line 77, in <module>\n    main()\n  File \"C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py\", line 50, in main\n    require(n <= len(q[0]), 'minimum-size criterion')\n  File \"C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py\", line 12, in require\n    raise RuntimeError(message)\nRuntimeError: minimum-size criterion\n"
+    },
+    "mutant-optimized": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py\", line 77, in <module>\n    main()\n  File \"C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py\", line 50, in main\n    require(n <= len(q[0]), 'minimum-size criterion')\n  File \"C:\\gw\\tp205\\lean4\\b\\pr228-review\\mutant-root-observation-only.py\", line 12, in require\n    raise RuntimeError(message)\nRuntimeError: minimum-size criterion\n"
+    },
+    "original-mypy": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "checks/independent/pgw-minimal-or-initial-refused.py"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:15:26.099861+00:00",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    "original-normal": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-minimal-or-initial-refused.py"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:15:17.388253+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"mutation_accounting\": {\n    \"killed\": 3,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    "original-optimized": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-minimal-or-initial-refused.py"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:15:21.834350+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"mutation_accounting\": {\n    \"killed\": 3,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    "repaired-mypy": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\checks\\independent\\pgw-minimal-or-initial-refused.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    "repaired-normal": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\checks\\independent\\pgw-minimal-or-initial-refused.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"negative_controls_checked\": 3,\n  \"mutation_coverage\": \"not measured by this census\"\n}\n",
+      "stderr": ""
+    },
+    "repaired-optimized": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\checks\\independent\\pgw-minimal-or-initial-refused.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"negative_controls_checked\": 3,\n  \"mutation_coverage\": \"not measured by this census\"\n}\n",
+      "stderr": ""
+    }
+  },
+  "repairs": [
+    "Restored merged GTH-LANG-IMPORT negative mining record from origin/main.",
+    "Three fixed controls are no longer reported as killed mutants."
+  ],
+  "mutation_probe": {
+    "actual_source_mutants": 1,
+    "description": "Replace future-pair traversal with root-only observation equality",
+    "normal": "killed at minimum-size criterion",
+    "optimized": "killed at minimum-size criterion",
+    "broad_coverage": "not established"
+  },
+  "limits": [
+    "Focused fresh target build; not full library/Mathlib rebuild.",
+    "Clock closure and strict morphisms are supplied comparison choices.",
+    "No full Alpha runtime, license, program-cost or declaration-cost theorem."
+  ]
+}

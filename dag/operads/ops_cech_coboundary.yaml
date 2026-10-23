@@ -1,0 +1,90 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: OPS-CECH-COBOUNDARY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Proposition B5. Let N be the nerve of the maximal-context cover and take cochains
+    valued in the presheaf U -> Q^E(U), with (delta0 alpha)_(C,C'') the restriction of alpha_C to the
+    overlap minus the restriction of alpha_C'', and delta1 the alternating sum of restrictions on triples.
+    Then delta1 delta0 = 0; for an empirical model e read as a 0-cochain, delta0 e = 0 if and only if
+    e is no-signalling; and Phi_1([omega]) = min over alpha of the l1 norm of (omega - delta0 alpha) is
+    unchanged by omega -> omega - delta0 beta. Instances recomputed exactly: the Bell nerve has four edges
+    (a 4-cycle) and no triple, so delta1 delta0 = 0 is vacuous there; on the cover {0,1}, {0,2}, {0,3}
+    (one nerve triple, overlap {0}) delta1 delta0 alpha = 0 for a non-constant alpha while a 1-cochain
+    supported on one pair has delta1 beta = [1, 0]; delta0 e = 0 for the PR box and is nonzero at the
+    pair (0,1) for a model whose a-marginal differs between the contexts ab and ab''; the unit cochain
+    (1, 1) on the first edge of the Bell nerve has Phi_1 = 2, by the value 2 at alpha = 0 and a dual witness
+    of sup norm 1 that annihilates delta0, and Phi_1 is again 2 after adding delta0 of a coboundary.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Phi_1 is the quotient value of the WDP degree-1 window; no source in this graph identifies
+    the Cech-cochain Phi_1 with PG-WDP-DEGREE1-WINDOW with J the l1 norm, so that route is a gap. Not
+    formalised in Lean.
+  source_refs:
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B9
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4
+  - checks/independent/foc035_observer_presheaf.py
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md
+  paper_refs:
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md
+  source_claim_label: PROVED_PROSE
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md
+    sha256: c77bab02a69d67f0b88ca85c88c6590d969f9c6a8407a0e6ccee41ee1d9d423d
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/observer_presheaf_ops_cech_coboundary_proved_prose.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings: []
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

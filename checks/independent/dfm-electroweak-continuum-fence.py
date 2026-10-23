@@ -5,6 +5,7 @@ fractions.Fraction. This file imports no repository code.
 """
 
 from __future__ import annotations
+from dataclasses import dataclass
 from fractions import Fraction
 
 
@@ -14,10 +15,14 @@ def exact(value: int | Fraction) -> Fraction:
     return Fraction(value)
 
 
+@dataclass(frozen=True, slots=True, eq=False, init=False)
 class GR:
+    re: Fraction
+    im: Fraction
+
     def __init__(self, re: int | Fraction, im: int | Fraction = 0) -> None:
-        self.re = exact(re)
-        self.im = exact(im)
+        object.__setattr__(self, "re", exact(re))
+        object.__setattr__(self, "im", exact(im))
 
     def conj(self) -> GR:
         return GR(self.re, -self.im)
