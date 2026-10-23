@@ -41,56 +41,56 @@ source_provenance:
 operation_candidates:
 - kind: def
   name: cycleCount
-  line: 14
+  line: 17
   signature_excerpt: 'def cycleCount (n : ℚ) : ℚ'
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
 - kind: def
   name: constraintCount
-  line: 16
+  line: 19
   signature_excerpt: 'def constraintCount (n : ℚ) : ℚ'
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
 - kind: def
   name: cpCount
-  line: 18
+  line: 21
   signature_excerpt: 'def cpCount (n : ℚ) : ℚ'
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: cpCount_from_difference
-  line: 20
+  line: 23
   signature_excerpt: |-
     theorem cpCount_from_difference (n : ℚ) :
         cycleCount n - constraintCount n = cpCount n
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: constraintCount_sum
-  line: 25
+  line: 28
   signature_excerpt: |-
     theorem constraintCount_sum (n : ℚ) :
         cpCount n + (n - 1) = constraintCount n
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: count_table
-  line: 30
+  line: 33
   signature_excerpt: |-
     theorem count_table :
         cycleCount 1 = 0 ∧ cpCount 1 = 0 ∧
@@ -103,13 +103,13 @@ relation_candidates:
         cycleCount 4 ≠ cpCount 4
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: three_generation_split
-  line: 42
+  line: 45
   signature_excerpt: |-
     theorem three_generation_split :
         cycleCount 3 = 4 ∧
@@ -118,13 +118,13 @@ relation_candidates:
         cycleCount 3 - constraintCount 3 = cpCount 3
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: count_misses_one_quartet
-  line: 91
+  line: 94
   signature_excerpt: |-
     theorem count_misses_one_quartet :
         cpCount 3 = 1 ∧
@@ -134,7 +134,7 @@ relation_candidates:
         quartetImag.im = cpCount 3
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -144,45 +144,45 @@ source_bindings:
   symbol: cpCount_from_difference
   path: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   declaration_status: declaration_found_not_proof_checked
-  line: 20
+  line: 23
   role: source_lead_only
 - original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::constraintCount_sum
   availability: local
   symbol: constraintCount_sum
   path: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   declaration_status: declaration_found_not_proof_checked
-  line: 25
+  line: 28
   role: source_lead_only
 - original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::count_table
   availability: local
   symbol: count_table
   path: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   declaration_status: declaration_found_not_proof_checked
-  line: 30
+  line: 33
   role: source_lead_only
 - original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::three_generation_split
   availability: local
   symbol: three_generation_split
   path: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   declaration_status: declaration_found_not_proof_checked
-  line: 42
+  line: 45
   role: source_lead_only
 - original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet
   availability: local
   symbol: count_misses_one_quartet
   path: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
-  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   declaration_status: declaration_found_not_proof_checked
-  line: 91
+  line: 94
   role: source_lead_only
 presentation:
   colours: []

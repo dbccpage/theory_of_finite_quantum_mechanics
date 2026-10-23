@@ -9,9 +9,14 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "3df949526d35b4e9039b778599075bafc8217302825215788a4ff7ba2ab86333"
+  "sha256_lf": "19fc7091736e33c6a860a61a90776dd77fe9133574511eb11db972d75e48b58e"
  },
  "files": {
+  "checks/independent/dfm-ckm-physics-fence.py": {
+   "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b",
+   "sha256_basis": "bytes",
+   "size": 9680
+  },
   "checks/independent/dfm-continuum-interface.py": {
    "sha256": "17f37543b78c25ba4f84e40ffb904c0df8a0e37cb16436302d7ec7e4b5aa19de",
    "sha256_basis": "bytes",
@@ -813,9 +818,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "3df949526d35b4e9039b778599075bafc8217302825215788a4ff7ba2ab86333",
+   "sha256": "19fc7091736e33c6a860a61a90776dd77fe9133574511eb11db972d75e48b58e",
    "sha256_basis": "lf-normalised",
-   "size": 4525999
+   "size": 4528374
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5708,9 +5713,9 @@
    "size": 6472
   },
   "dag/derivations/independent/dfm-ckm-physics-fence.md": {
-   "sha256": "9d305b8aaef8ff7808d63b1b08f08526f22ab2918267de1de1e8a647283790a4",
+   "sha256": "d6ff942e33e8ff1b0477bc606a4ffe76e3bd6adabd1cdb604a08f3bb80057769",
    "sha256_basis": "lf-normalised",
-   "size": 2598
+   "size": 4689
   },
   "dag/derivations/independent/dfm-hierarchical-borel.md": {
    "sha256": "2142d869cdf61cc9ca7d9bbce0779c58762a288ceda40b7377deaacb905c0b02",
@@ -5898,9 +5903,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "sha256_basis": "lf-normalised",
-   "size": 139186
+   "size": 141182
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -6151,6 +6156,11 @@
    "sha256": "e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79",
    "sha256_basis": "bytes",
    "size": 10301
+  },
+  "lean4/CampaignDfmCkmPhysicsFence.lean": {
+   "sha256": "48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963",
+   "sha256_basis": "bytes",
+   "size": 9988
   },
   "lean4/CampaignDfmContinuumInterface.lean": {
    "sha256": "c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4",
@@ -175959,10 +175969,10 @@
    "facts": {
     "cited_code_files_not_tests": 1,
     "counted_files": 4,
-    "lean_receipt_backed": 13,
+    "lean_receipt_backed": 24,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 13
+    "symbols_found": 24
    },
    "flags": [],
    "grade": "E3",
@@ -175998,6 +176008,383 @@
      "symbol": null,
      "symbol_declared": null,
      "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.act_compose",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.act_compose",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.act_inverse",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.act_inverse",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmCkmPhysicsFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmCkmPhysicsFence: #print axioms CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize",
+     "symbol_declared": true,
+     "symbol_exists": true,
      "where": null
     },
     {
@@ -246456,6 +246843,32 @@
     "propext"
    ],
    "built_successfully": null,
+   "checked_at": "2026-10-23",
+   "dag_node": "DFM-CKM-PHYSICS-FENCE",
+   "decl_count": 19,
+   "exit_code": 0,
+   "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignDfmCkmPhysicsFence",
+   "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
+   "receipt_file": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json",
+   "receipt_file_sha256": "c80f61b953b60810c611c5e83472326a570526d5dd238b5bc99a2142ea8f240d",
+   "recorded_sha256": "48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": null,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
    "checked_at": "2026-10-23T12:00:00+00:00",
    "dag_node": "DFM-CONTINUUM-INTERFACE",
    "decl_count": 14,
@@ -246470,32 +246883,6 @@
    "recorded_sha256": "c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4",
    "source_unchanged_during_build": true,
    "toolchain": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)"
-  },
-  {
-   "admission_scan_passed": true,
-   "axiom_audit_passed": true,
-   "axioms_itemised": true,
-   "axioms_standard": true,
-   "axioms_union": [
-    "Classical.choice",
-    "Quot.sound",
-    "propext"
-   ],
-   "built_successfully": null,
-   "checked_at": "2026-10-23",
-   "dag_node": "DFM-CKM-PHYSICS-FENCE",
-   "decl_count": 8,
-   "exit_code": 0,
-   "id": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json#0:CampaignDfmCkmPhysicsFence",
-   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-   "module": "CampaignDfmCkmPhysicsFence",
-   "path": "lean4/CampaignDfmCkmPhysicsFence.lean",
-   "receipt_file": "dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json",
-   "receipt_file_sha256": "76ad3c0a4833325cde48f93cf228b6cceaaaa926ff77422c03e262244e36fc3a",
-   "recorded_sha256": "6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df",
-   "source_unchanged_during_build": true,
-   "toolchain": "4.35.0"
   },
   {
    "admission_scan_passed": true,
@@ -257016,7 +257403,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257042,7 +257429,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257068,7 +257455,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257094,7 +257481,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257120,7 +257507,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257146,7 +257533,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257172,7 +257559,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257198,7 +257585,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257224,7 +257611,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257250,7 +257637,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257276,7 +257663,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257302,7 +257689,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257328,7 +257715,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257354,7 +257741,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257380,7 +257767,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
+   "receipt_file_sha256": "1310330c0bc8b12c03db9b017c81df320f476d4dae871e627981abcef9434cda",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257970,9 +258357,9 @@
  "summary": {
   "by_grade": {
    "E0": 189,
-   "E1": 252,
+   "E1": 251,
    "E2": 42,
-   "E3": 442,
+   "E3": 443,
    "E4": 0
   },
   "by_status": {
@@ -257992,16 +258379,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1421,
+   "distinct": 1426,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1374,
-   "replay_verified_and_declaration_itemised": 1329,
+   "replay_verified": 1379,
+   "replay_verified_and_declaration_itemised": 1334,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1730
+   "present": 1735
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -258022,7 +258409,7 @@
    "total": 265,
    "with_in_repo_lean": 265
   },
-  "receipts_indexed": 462,
+  "receipts_indexed": 463,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -258068,9 +258455,9 @@
    },
    "DRESSING_FIELD": {
     "E0": 0,
-    "E1": 17,
+    "E1": 16,
     "E2": 9,
-    "E3": 17,
+    "E3": 18,
     "E4": 0
    },
    "ENGINE_CUSTODY": {
@@ -258303,7 +258690,7 @@
     "E0": 49,
     "E1": 98,
     "E2": 10,
-    "E3": 17,
+    "E3": 18,
     "E4": 0
    },
    "PROVED_LEAN": {
