@@ -47,7 +47,7 @@ def run(command, cwd: Path, env, log: Path):
     return {"command": command, "cwd": str(cwd), "exit_status": proc.returncode, "log": log.name, "log_sha256": sha(log)}
 
 
-def test_regions(path: Path):
+def first_test_line(path: Path):
     """First line of the `#[cfg(test)]` module, so test functions can be told apart."""
     for number, line in enumerate(path.read_text(encoding="utf-8").split("\n"), start=1):
         if line.strip() == "#[cfg(test)]":
@@ -84,7 +84,7 @@ def main():
     for row in csv.reader(io.StringIO(lizard.stdout)):
         nloc, ccn, file_name, function, start = int(row[0]), int(row[1]), row[6], row[7], int(row[9])
         rel = Path(file_name).resolve().relative_to(args.copy.resolve()).as_posix()
-        kind = "test" if start >= test_regions(args.copy / rel) else "production"
+        kind = "test" if start >= first_test_line(args.copy / rel) else "production"
         per = metrics.setdefault(rel, {"production": {"functions": 0, "max_ccn": 0, "max_ccn_function": None},
                                        "test": {"functions": 0, "max_ccn": 0, "max_ccn_function": None}})[kind]
         per["functions"] += 1
