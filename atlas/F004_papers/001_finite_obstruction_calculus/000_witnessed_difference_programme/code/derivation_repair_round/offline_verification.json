@@ -1,0 +1,30 @@
+{
+  "evidence_kind": "OFFLINE_HOST_FIXTURE_TESTS",
+  "scope": "Labelled host fixtures; not live model evidence or general theorem verification",
+  "authority_effect": "None",
+  "sources": [
+    {
+      "path": "test_check.py",
+      "sha256": "8e47ec0904bf523546031457810e192e495d248243ee1026ee9e034ccc6d5a90"
+    },
+    {
+      "path": "check.py",
+      "sha256": "b93738c8be2a2d2136acd005cdb6b5f0bfd43be95147f73aa22f766059a5ae8a"
+    }
+  ],
+  "pytest": {
+    "command": "python -B -m pytest code/derivation_repair_round/test_check.py --basetemp <fresh external temporary directory> -o addopts= -q --tb=short",
+    "passed": 11,
+    "exit_code": 0,
+    "stdout_lines": [
+      "...........                                                              [100%]",
+      "11 passed in 0.07s"
+    ]
+  },
+  "ruff": {
+    "selection": "F401,F841,I",
+    "result": "All checks passed!",
+    "exit_code": 0
+  },
+  "provider_calls": 0
+}

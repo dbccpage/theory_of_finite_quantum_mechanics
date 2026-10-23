@@ -1,0 +1,13 @@
+import WitnessedDifference.DyadicCompactOpen
+
+#print axioms WitnessedDifference.DyadicCompactOpen.mem_dyadicCircle_iff
+#print axioms WitnessedDifference.DyadicCompactOpen.dyadicPoint_tendsto
+#print axioms WitnessedDifference.DyadicCompactOpen.compactTest_isCompact
+#print axioms WitnessedDifference.DyadicCompactOpen.integerCharacter_zero
+#print axioms WitnessedDifference.DyadicCompactOpen.natural_character_hits_half
+#print axioms WitnessedDifference.DyadicCompactOpen.integer_character_hits_half
+#print axioms WitnessedDifference.DyadicCompactOpen.zeroNeighborhood_isOpen
+#print axioms WitnessedDifference.DyadicCompactOpen.zero_mem_zeroNeighborhood
+#print axioms WitnessedDifference.DyadicCompactOpen.nonzero_integer_not_mem
+#print axioms WitnessedDifference.DyadicCompactOpen.zeroNeighborhood_eq_singleton
+#print axioms WitnessedDifference.DyadicCompactOpen.dual_discrete_of_integer_classification

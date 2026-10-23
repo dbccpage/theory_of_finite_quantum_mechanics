@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+  <style>
+    .bg { fill: #0a0f1d; }
+    .card { fill: #111827; stroke: #1f2937; stroke-width: 1.5; rx: 8; ry: 8; }
+    .card-accent { fill: #162032; stroke: #38bdf8; stroke-width: 2; rx: 8; ry: 8; }
+    .card-warn { fill: #1e1b2e; stroke: #f43f5e; stroke-width: 2; rx: 8; ry: 8; }
+    .card-auth { fill: #172554; stroke: #60a5fa; stroke-width: 2; rx: 8; ry: 8; }
+    .card-green { fill: #064e3b; stroke: #10b981; stroke-width: 2; rx: 8; ry: 8; }
+    .card-amber { fill: #451a03; stroke: #f59e0b; stroke-width: 2; rx: 8; ry: 8; }
+    .card-purple { fill: #2e1065; stroke: #a855f7; stroke-width: 2; rx: 8; ry: 8; }
+    .title { font-family: system-ui, -apple-system, sans-serif; font-size: 21px; font-weight: 700; fill: #f8fafc; }
+    .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 400; fill: #94a3b8; }
+    .section-title { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #38bdf8; }
+    .text-main { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 400; fill: #cbd5e1; }
+    .text-bold { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #f1f5f9; }
+    .text-code { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; fill: #a5f3fc; }
+    .text-muted { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #64748b; }
+    .flow-line { stroke: #38bdf8; stroke-width: 2; fill: none; }
+    .flow-line-dashed { stroke: #94a3b8; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+    .flow-line-warn { stroke: #f43f5e; stroke-width: 2; fill: none; }
+    .flow-line-auth { stroke: #60a5fa; stroke-width: 2.5; fill: none; }
+    .flow-line-green { stroke: #10b981; stroke-width: 2; fill: none; }
+  </style>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrow-warn" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f43f5e" />
+    </marker>
+    <marker id="arrow-auth" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#60a5fa" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <linearGradient id="grad-header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="750" class="bg"/>
+  
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="960" height="70" rx="8" fill="url(#grad-header)" stroke="#0284c7" stroke-width="1"/>
+  <text x="40" y="50" class="title">CODA-FDA: Finite Descent Authority</text>
+  <text x="40" y="72" class="subtitle">Packets, Pipelines, and Seven Halt Guards (A proposal is not a decision)</text>
+  <rect x="780" y="35" width="180" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="870" y="52" text-anchor="middle" class="text-code">CODA-FDA · DET-FDA-001</text>
+  <text x="870" y="80" text-anchor="middle" class="text-muted">AuthorityEffect: None</text>
+
+  <!-- 4-Stage Pipeline Stages -->
+  <g transform="translate(50, 105)">
+    <rect x="0" y="0" width="900" height="135" rx="8" class="card-auth"/>
+    <text x="20" y="26" class="section-title">FOUR-STAGE FINITE DESCENT PIPELINE (Pipeline.run)</text>
+    
+    <!-- Stage 1 -->
+    <g transform="translate(25, 42)">
+      <rect x="0" y="0" width="180" height="72" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="12" y="22" class="text-bold" fill="#38bdf8">1. ROUTE</text>
+      <text x="12" y="40" class="text-main" font-size="11">Inspect proposal type</text>
+      <text x="12" y="58" class="text-code" font-size="10">route: P -&gt; S + F</text>
+    </g>
+    <line x1="215" y1="78" x2="250" y2="78" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Stage 2 -->
+    <g transform="translate(255, 42)">
+      <rect x="0" y="0" width="180" height="72" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="12" y="22" class="text-bold" fill="#38bdf8">2. DESCEND</text>
+      <text x="12" y="40" class="text-main" font-size="11">Compute cover sections</text>
+      <text x="12" y="58" class="text-code" font-size="10">descend: S -&gt; P -&gt; X + F</text>
+    </g>
+    <line x1="445" y1="78" x2="480" y2="78" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Stage 3 -->
+    <g transform="translate(485, 42)">
+      <rect x="0" y="0" width="180" height="72" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="12" y="22" class="text-bold" fill="#38bdf8">3. VERIFY</text>
+      <text x="12" y="40" class="text-main" font-size="11">Check verifier evidence</text>
+      <text x="12" y="58" class="text-code" font-size="10">verify: S -&gt; X -&gt; E + F</text>
+    </g>
+    <line x1="675" y1="78" x2="710" y2="78" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Stage 4 -->
+    <g transform="translate(715, 42)">
+      <rect x="0" y="0" width="160" height="72" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+      <text x="12" y="22" class="text-bold" fill="#34d399">4. TERMINALIZE</text>
+      <text x="12" y="40" class="text-main" font-size="11">Exit to terminal type</text>
+      <text x="12" y="58" class="text-code" font-size="10">tau: S-&gt;X-&gt;E-&gt;T + F</text>
+    </g>
+  </g>
+
+  <!-- Left: 5-Field Packet & Dependent Pair Standing -->
+  <g transform="translate(50, 255)">
+    <rect x="0" y="0" width="430" height="340" rx="8" class="card"/>
+    <text x="20" y="28" class="section-title">FIVE-FIELD DESCENT PACKET &amp; STANDING</text>
+    
+    <!-- 5-Field Packet -->
+    <rect x="20" y="44" width="390" height="130" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="30" y="66" class="text-bold" fill="#a5f3fc">DescentPacket (Definition FDA-D1):</text>
+    <text x="30" y="86" class="text-main" font-size="11">Tuple (K, E, V, tau, Lambda) — all fields strictly inhabited:</text>
+    <text x="30" y="104" class="text-code">K: Carrier context | E: Admissible candidate family</text>
+    <text x="30" y="120" class="text-code">V: Local verifier check | tau: Terminalizer exit</text>
+    <text x="30" y="136" class="text-code">Lambda: Failure discipline (refusal/lift/rollback)</text>
+    <text x="30" y="156" class="text-muted" font-size="10">No packet, no standing (Theorem FDA-T2).</text>
+    
+    <!-- Dependent Pair -->
+    <rect x="20" y="186" width="390" height="135" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="30" y="208" class="text-bold" fill="#c7d2fe">Standing is a Dependent Pair (Definition FDA-D2):</text>
+    <text x="24" y="230" class="text-code" font-size="9" fill="#38bdf8">Standing(p) := Sigma(t:T) (Pi#(packet,p)=inl(t) &amp; IsAuth(t))</text>
+    <text x="30" y="252" class="text-main" font-size="11">Pipeline produced terminal t and all 7 halt guards hold.</text>
+    <text x="30" y="270" class="text-main" font-size="11">A confidence score or fluent paragraph is NOT this pair.</text>
+    <text x="30" y="290" class="text-code" font-size="10" fill="#fca5a5">Residual mass overrules confidence (Theorem FDA-T6)</text>
+    <text x="30" y="306" class="text-muted" font-size="10">Standing invariant under deterministic replay (Theorem FDA-T4).</text>
+  </g>
+
+  <!-- Right: Seven Halt Guards -->
+  <g transform="translate(510, 255)">
+    <rect x="0" y="0" width="440" height="340" rx="8" class="card"/>
+    <text x="20" y="28" class="section-title">SEVEN DERIVED HALT GUARDS (Definition FDA-D3)</text>
+    <text x="20" y="46" class="text-muted" font-size="10">From evidence H; one failed guard kills standing (FDA-T1)</text>
+    
+    <g transform="translate(20, 56)">
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <text x="14" y="22" class="text-code" fill="#38bdf8">g_1: accepted</text>
+      <text x="150" y="22" class="text-main" font-size="11">Pipeline accepted the execution run</text>
+    </g>
+    
+    <g transform="translate(20, 95)">
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <text x="14" y="22" class="text-code" fill="#38bdf8">g_2: deterministic</text>
+      <text x="150" y="22" class="text-main" font-size="11">Replay produces byte parity</text>
+    </g>
+    
+    <g transform="translate(20, 134)">
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+      <text x="14" y="22" class="text-code" fill="#34d399">g_3: zero_residual</text>
+      <text x="150" y="22" class="text-main" font-size="11">Residual mass from FOC solver is 0</text>
+    </g>
+    
+    <g transform="translate(20, 173)">
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <text x="14" y="22" class="text-code" fill="#38bdf8">g_4: skeleton_pres</text>
+      <text x="150" y="22" class="text-main" font-size="11">Carrier and maps preserved mid-run</text>
+    </g>
+    
+    <g transform="translate(20, 212)">
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <text x="14" y="22" class="text-code" fill="#38bdf8">g_5: exhaustive</text>
+      <text x="150" y="22" class="text-main" font-size="11">All declared candidates verified (&gt;= 1)</text>
+    </g>
+    
+    <g transform="translate(20, 251)">
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <text x="14" y="22" class="text-code" fill="#38bdf8">g_6: no_pending_lift</text>
+      <text x="150" y="22" class="text-main" font-size="11">Pending-lift count is exactly 0</text>
+    </g>
+    
+    <g transform="translate(20, 290)">
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+      <text x="14" y="22" class="text-code" fill="#fca5a5">g_7: no_refusal</text>
+      <text x="150" y="22" class="text-main" font-size="11">Zero active refusals on terminal</text>
+    </g>
+  </g>
+
+  <!-- Bottom: Scope & Non-Authority Banner -->
+  <g transform="translate(50, 610)">
+    <rect x="0" y="0" width="900" height="115" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="26" class="text-bold" fill="#60a5fa">Epistemic Scope &amp; Refusal Semantics (CODA-FDA §6 &amp; Theorems):</text>
+    <text x="20" y="46" class="text-main">· Refusal Persistence (FDA-T5): If routing already refused, later stages cannot overwrite that refusal.</text>
+    <text x="20" y="64" class="text-main" font-size="11">· Verifier Soundness (FDA-T7): Soundness requires independent semantic verifier; countermodel exists if false.</text>
+    <text x="20" y="82" class="text-main">· Internal Witness Type: Standing is purely an internal record type within the declared formal setting.</text>
+    <text x="20" y="100" class="text-code" fill="#f87171">AuthorityEffect: None. Confers no legal, institutional, safety, publication, or real-world authority.</text>
+  </g>
+</svg>

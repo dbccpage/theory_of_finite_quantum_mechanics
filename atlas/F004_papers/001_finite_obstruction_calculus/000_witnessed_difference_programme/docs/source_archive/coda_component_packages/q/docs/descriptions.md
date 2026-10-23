@@ -1,0 +1,9 @@
+# CODA-Q: Metric completion and midpoint enclosure
+
+An interval can contain a number without naming that number. If √2 is known to lie between 1 and 2, the midpoint 3⁄2 is a useful approximation, but it is not √2. CODA-Q uses this simple distinction to keep completion, enclosure, approximation, and evaluation separate. Every point inside a valid interval lies at most half its width from the midpoint; the bound controls error without turning the midpoint into the unknown state.
+
+The paper develops the standard metric-completion story in the precise form needed here: a metric space embeds isometrically and densely in a complete space, the completion of the rationals identifies isometrically with the real line, and a uniformly continuous map into a complete target extends uniquely. These statements explain what a completed space supplies and what extra hypotheses an extended query needs. Merely listing a few rational approximations or samples does not determine an arbitrary function on the continuum.
+
+The Lean companion gives concrete declarations in mathlib for the completion, extension, and enclosure facts. Exact rational bisection examples show how an interval can be narrowed while keeping its boundary claim checkable. A finite sample-collision example reminds the reader that agreeing observations can conceal different unsampled values. The Python examples operate on declared finite rational data; they do not construct every real number or decide arbitrary real equality.
+
+CODA-Q therefore supplies a careful bridge from finite numerical evidence to analytic language. It allows an error bound when the enclosure is justified, and an extension when uniform continuity and completeness are available. It leaves authority and unrelated physical interpretations to separately stated assumptions and other papers.
