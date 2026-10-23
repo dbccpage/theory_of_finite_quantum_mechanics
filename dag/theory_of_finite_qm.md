@@ -1761,7 +1761,7 @@ Obligation: Inventory row ids in the twenty-second through twenty-fifth claim le
 
 Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 3100c4e into this book's PrimitiveDifference carrier or candidate Lean mirror. Chapter 1 records the same gap as GAP-F000-S000-001 and says the tag is a mechanical receipt, not a mathematical verdict, and that the sealed derivation does not form cochains. finite_obstruction.py, opened at its header, starts from quotient certificates for a later host. The finite statement still required is that term map, or an explicit decision to leave the row proposed.
 
-Obligation: Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.
+Obligation: A certified contextual-collapse term map into the existing Core PrimitiveDifference candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.
 
 ### TFQ-0430 metatheory-object-language-split
 
@@ -2439,9 +2439,9 @@ Obligation: State in Lean the responder's minimum, cost and tie relation over th
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).
+A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish, and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level uniformity necessity and external implementation refinement remain open.
 
-Obligation: Build a decision procedure for collapse and separability over the well-formed contexts of a finite regime, prove it correct in Lean, and use it to decide Y-2, T-1, holding two and exhaustion.
+Obligation: Use the complete finite context decisions for the remaining first-count and Y-2 history claims under their explicit predicates; establish the external implementation refinement separately.
 
 ### TFQ-0498 declared-input-floor
 
@@ -10040,7 +10040,7 @@ Obligation: Standard lattice-gauge fact imported, not established in this checko
 
 The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.
 
-Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.
+Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.
 
 ### TFQ-1198 Topological theta term makes lattice weights complex
 
@@ -11088,9 +11088,9 @@ Obligation: Soundness only; the verdict boundExceeded does not decide the unboun
 - DAG node: `COMP-C3-CONTEXT-DECISION-PARTIAL`
 - Paper: [derivation](derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md)
 
-Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.
+The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.
 
-Obligation: Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.
+Obligation: Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.
 
 ### TFQ-1294 A right-running machine needs an unbounded supply of fresh blanks
 

@@ -1,0 +1,272 @@
+{
+  "authority_effect": "None",
+  "reviewed_head": "c5ac41c039f377fa858aa6e6b3a16087237d3d66",
+  "source_contract_coverage": {
+    "schema_version": "tfqm.contract-score-coverage-audit.v1",
+    "authority_effect": "None",
+    "assessment_id": "source-coverage-baseline-v1",
+    "population_rule": {
+      "included": "tracked and ordinary-untracked *.py and *.rs under code/, and *.lean under lean4/",
+      "excluded_parts": [
+        ".lake",
+        "__pycache__",
+        "node_modules",
+        "target"
+      ],
+      "sealed_snapshot_prefixes": [
+        "dag/results/",
+        "dag/sealed_runs/",
+        "sealed_runs/"
+      ],
+      "source_discovery": "git ls-files --cached --others --exclude-standard -z followed by explicit path filtering"
+    },
+    "summary": {
+      "sources": 6,
+      "valid_contracts_and_scores": 6,
+      "invalid_or_missing": 0,
+      "by_language": {
+        "Python": 6
+      },
+      "by_preliminary_profile": {
+        "Non-Numeric": 6
+      },
+      "completed_scores": 6,
+      "incomplete_scores": 0,
+      "generated_governance_twins": 0,
+      "non_twin_sources": 6
+    },
+    "errors": [],
+    "artifacts": [
+      {
+        "path": "scripts/auto/anti_pattern_lint.py",
+        "sha256": "9776830b91cb6089dac64a33579f676aeae735d85356ce6fba19c2d6203e21e9",
+        "language": "Python",
+        "companion": "scripts/auto/anti_pattern_lint.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "5f19291ec1b337848be0d7d2a3f96e1cba30a0394923f49c9ee3fdd6d0147d4e",
+        "score_digest": "771b118152550a3e9275f3edc8125f618c4c46f439e7fe13a677eacd9db9d98a",
+        "assessment_status": "completed_for_declared_scanner_scope",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "scripts/auto/auto_common.py",
+        "sha256": "6ef1eecee177bb2c97d809c3b99926eb4e359cb54f4f171b4a1be7b0b8795a4b",
+        "language": "Python",
+        "companion": "scripts/auto/auto_common.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "f9e6cb029889008b4209f0cff4608fd4959e6404e5ec6a02140c8e5f032edb04",
+        "score_digest": "84785786e9f9f40ee83428521ad296aeb05975a89cf738d41cb503a215ee26f9",
+        "assessment_status": "completed_for_declared_scanner_scope",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "scripts/auto/estate_audit.py",
+        "sha256": "453ec594734457121bd6b62115dc429ede7124b39158c530630a7e06b54d44d0",
+        "language": "Python",
+        "companion": "scripts/auto/estate_audit.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "fa08bd302d229dab9ac981dc1df0db8ce887f2f2c8265882fbaa33e596012013",
+        "score_digest": "0d2dd7df94b21fff7adb31908bea12e89cf056f06f7027b4fd61fee7fa80f40f",
+        "assessment_status": "completed_for_declared_scanner_scope",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "scripts/auto/obstruction_scan.py",
+        "sha256": "55d1e1cfcdc1bf0f1feb76554b009c94881a4aedfbd130a11a57c537b8764c2e",
+        "language": "Python",
+        "companion": "scripts/auto/obstruction_scan.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "66c160df9139576283abeb6158ebe1f85f373b561e1d960749cc322dc44e5dcb",
+        "score_digest": "10dd32f60c97e60e92acfc2891f1174552cc7c7026bc626731b22881496529ff",
+        "assessment_status": "completed_for_declared_scanner_scope",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "scripts/auto/symmetry_scan.py",
+        "sha256": "ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5",
+        "language": "Python",
+        "companion": "scripts/auto/symmetry_scan.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "17d1453c855a1c93eb234722c488f71526a0b98a23e710091a1f2f95e1c5f00b",
+        "score_digest": "32dc90a056c5d58231a72761a94f712fb39ecb7827a35523a63066637763b08a",
+        "assessment_status": "completed_for_declared_scanner_scope",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "scripts/auto/test_auto_checks.py",
+        "sha256": "6faf19436b9f7794dc85957388446e9464a19bbeb325250c7f40ca0cc41091e1",
+        "language": "Python",
+        "companion": "scripts/auto/test_auto_checks.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "71754213ba13e48c39d29d784757c26389266c84139a9d4e5dd2967c886691da",
+        "score_digest": "bd814d0a70da6aa02e98cf105ca061200a16d107a5ea56fae7933ce8eb38be46",
+        "assessment_status": "completed_for_declared_scanner_scope",
+        "score_token": "L2D",
+        "is_complete": true,
+        "valid": true
+      }
+    ],
+    "scope_boundary": "This audit proves source-to-companion coverage and current-byte custody. It does not promote incomplete static assessments to engineering-grade certification."
+  },
+  "checks": {
+    "pytest-final": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "scripts/auto/test_auto_checks.py",
+        "scripts/test_overclaim_scan.py",
+        "-q",
+        "--basetemp=C:/gw/tp205/lean4/b/pr214-final-tests"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 64%]\n.......................................                                  [100%]\n============================== warnings summary ===============================\n..\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n111 passed, 1 warning in 73.26s (0:01:13)\n",
+      "stderr": ""
+    },
+    "mypy-final-integrated": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "--no-incremental",
+        "--follow-imports=silent",
+        "scripts/auto"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 6 source files\n",
+      "stderr": ""
+    },
+    "lint-integrated": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/anti_pattern_lint.py",
+        "--changed-since",
+        "origin/main",
+        "--json"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"anti_pattern_lint\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"6 changed .lean/.py files since origin/main (Lean rules: added lines)\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 0\n  },\n  \"findings\": []\n}\n",
+      "stderr": ""
+    },
+    "obstructions-integrated": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/obstruction_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--fail-on",
+        "none",
+        "--json"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"obstruction_scan\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"changes since origin/main; rules O1, O2, O3\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 0\n  },\n  \"findings\": []\n}\n",
+      "stderr": ""
+    },
+    "symmetry-integrated": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/symmetry_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--fail-on",
+        "none",
+        "--json"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"symmetry_scan\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"46 prose files changed since origin/main; code constants always compared\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 0\n  },\n  \"findings\": []\n}\n",
+      "stderr": ""
+    },
+    "skills-integrated": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/estate_audit.py",
+        "skills",
+        "--json"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"estate_audit\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"13 skills\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 3\n  },\n  \"findings\": [\n    {\n      \"rule\": \"MISSING_PATH\",\n      \"severity\": \"LOW\",\n      \"path\": \".claude/skills/audit/SKILL.md\",\n      \"line\": 42,\n      \"message\": \"cited path .agents/agents/ does not exist\",\n      \"detail\": \"\"\n    },\n    {\n      \"rule\": \"MISSING_PATH\",\n      \"severity\": \"LOW\",\n      \"path\": \".claude/skills/audit/SKILL.md\",\n      \"line\": 42,\n      \"message\": \"cited path .claude/agents/ does not exist\",\n      \"detail\": \"\"\n    },\n    {\n      \"rule\": \"MISSING_PATH\",\n      \"severity\": \"LOW\",\n      \"path\": \".claude/skills/overclaim-hunter/SKILL.md\",\n      \"line\": 37,\n      \"message\": \"cited path docs/overclaim/report.md does not exist\",\n      \"detail\": \"\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    "overclaim-integrated": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 0ec458389589); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    "readme-write": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    "readme-check": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    }
+  },
+  "scope": "The five production audit tools and regression suite; unchanged main campaign mathematical claims are not recertified.",
+  "limitations": [
+    "Three LOW skill path findings remain: optional agent directories and locally generated ignored overclaim report.",
+    "Git subprocess timeouts and broader malformed-input hardening remain grade-D limits.",
+    "Hosted CodeQL Default/Advanced configuration collision is not resolved by local checks."
+  ]
+}

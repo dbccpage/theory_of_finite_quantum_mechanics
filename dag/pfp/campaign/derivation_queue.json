@@ -253,7 +253,7 @@
    "downstream_nodes": 22,
    "score": 22,
    "statement": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
-   "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+   "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
    "imported_structure": [
     "Wilson-Dirac lattice fermion operator with r = 1 (standard lattice QCD)"
    ],
@@ -293,10 +293,20 @@
    "status": "OPEN",
    "downstream_nodes": 7,
    "score": 21,
-   "statement": "No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).",
-   "bottleneck": "Open; the existing census results decide these rows by finite computation over rung three's rectangle or by Lean statements for every history where cited, not by a procedure over contexts.",
+   "statement": "A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish, and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level uniformity necessity and external implementation refinement remain open.",
+   "bottleneck": "The finite context, class-count, holding-two and exhaustion clauses have local Lean evidence for arbitrary finite regimes in the declared slot/all-tuples-rule language. The bundled node remains OPEN for first-count existence, Y-2 necessity and the external Python/Rust refinement; the earlier unary-only mirror is not used as a full context decider.",
    "imported_structure": [],
-   "lean": [],
+   "lean": [
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.mem_contexts",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_none_iff",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.profile_eq_iff",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.exhaustionTest_correct",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.uniform_rule_exhausted",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.holdsTwo_iff_classCount",
+    "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.classCount_eq_quotient_card"
+   ],
    "rust": [
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts"
    ],
@@ -535,6 +545,23 @@
    "rank": 29
   },
   {
+   "node_id": "DFM-HIERARCHICAL-BOREL",
+   "stage": "DRESSING_FIELD",
+   "status": "OPEN",
+   "downstream_nodes": 11,
+   "score": 11,
+   "statement": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+   "bottleneck": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+   "imported_structure": [
+    "normal subgroup N and quotient action",
+    "specified incidence DGA"
+   ],
+   "lean": [],
+   "rust": [],
+   "python": [],
+   "rank": 30
+  },
+  {
    "node_id": "FSP-BF-2GROUP-SIGN-CLAIM",
    "stage": "FERMION_SIGN",
    "status": "OPEN",
@@ -546,7 +573,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 30
+   "rank": 31
   },
   {
    "node_id": "FSP-COBORDISM-INTRINSIC-SIGN",
@@ -560,7 +587,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 31
+   "rank": 32
   },
   {
    "node_id": "PGW-IDENTITY-CONVENTION-UNDECIDABLE",
@@ -576,7 +603,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 32
+   "rank": 33
   },
   {
    "node_id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
@@ -593,7 +620,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 33
+   "rank": 34
   },
   {
    "node_id": "DFM-CONTINUUM-INTERFACE",
@@ -607,7 +634,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 34
+   "rank": 35
   },
   {
    "node_id": "FSP-REGGE-DEFICIT-ACTION",
@@ -623,7 +650,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 35
+   "rank": 36
   },
   {
    "node_id": "FSP-DISCRETE-WDW-CONSTRAINT",
@@ -637,7 +664,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 36
+   "rank": 37
   },
   {
    "node_id": "FSP-PACHNER-INVARIANCE-CLAIM",
@@ -651,7 +678,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 37
+   "rank": 38
   },
   {
    "node_id": "GTH-SHADOW",
@@ -665,7 +692,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 38
+   "rank": 39
   },
   {
    "node_id": "PGW-ENDOGENOUS-DEMAND-OB1",
@@ -674,14 +701,25 @@
    "downstream_nodes": 2,
    "score": 6,
    "statement": "No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successor research S2): a demand is a target pair (i, j) with 0 ≤ i < j < n_data supplied by the host together with the measure and the declared bounds, nothing in the harness chooses a next demand, and the collapsed pairs left after an admission are returned as observations, not demands (leftover_as_demand refuses). The sealed derivation's pair-separation closure policy is declared metatheory, not a harness function, and the sealed result is that no object-language endogenous demand generator was derived.",
-   "bottleneck": "Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.",
+   "bottleneck": "A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.",
    "imported_structure": [],
-   "lean": [],
+   "lean": [
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
+   ],
    "rust": [
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
    ],
    "python": [],
-   "rank": 39
+   "rank": 40
   },
   {
    "node_id": "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW",
@@ -701,7 +739,7 @@
     "omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter"
    ],
    "python": [],
-   "rank": 40
+   "rank": 41
   },
   {
    "node_id": "TFQ-0032",
@@ -717,7 +755,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 41
+   "rank": 42
   },
   {
    "node_id": "FSP-CDT-FOLIATION-POSITIVITY",
@@ -731,7 +769,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 42
+   "rank": 43
   },
   {
    "node_id": "GTH-TRUNC",
@@ -745,7 +783,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 43
+   "rank": 44
   },
   {
    "node_id": "TFQ-0033",
@@ -761,7 +799,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 44
+   "rank": 45
   },
   {
    "node_id": "FSP-DIRAC-KAHLER-SPINFOAM-CLAIM",
@@ -775,7 +813,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 45
+   "rank": 46
   },
   {
    "node_id": "GTH-HORNS",
@@ -789,7 +827,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 46
+   "rank": 47
   },
   {
    "node_id": "GTH-LANG-CORE",
@@ -803,7 +841,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 47
+   "rank": 48
   },
   {
    "node_id": "LQG-EPRL-VERTEX-IMPORT",
@@ -820,7 +858,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 48
+   "rank": 49
   },
   {
    "node_id": "MAJ-IMPORT-COSET-WEIGHT-NP-HARD",
@@ -836,7 +874,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 49
+   "rank": 50
   },
   {
    "node_id": "MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE",
@@ -858,7 +896,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 50
+   "rank": 51
   },
   {
    "node_id": "CT-TASK-CONSTRUCTOR-POSSIBILITY",
@@ -874,7 +912,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 51
+   "rank": 52
   },
   {
    "node_id": "FSP-XCUBE-FRACTON-MODEL",
@@ -890,7 +928,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 52
+   "rank": 53
   },
   {
    "node_id": "GTH-HOTT-MODEL",
@@ -904,7 +942,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 53
+   "rank": 54
   },
   {
    "node_id": "GTH-LANG-REFLECT",
@@ -918,7 +956,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 54
+   "rank": 55
   },
   {
    "node_id": "LQG-CONTINUUM-LIMIT-GAP",
@@ -932,7 +970,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 55
+   "rank": 56
   },
   {
    "node_id": "MAJ-PHI1-SYNDROME-DECODING",
@@ -950,7 +988,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 56
+   "rank": 57
   },
   {
    "node_id": "PGW-K-ITEM-DELTA-GRAMMAR",
@@ -969,7 +1007,7 @@
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas"
    ],
    "python": [],
-   "rank": 57
+   "rank": 58
   },
   {
    "node_id": "TFQ-0044",
@@ -985,7 +1023,7 @@
     "code/rust/src/fusion_categories/su2_level.rs"
    ],
    "python": [],
-   "rank": 58
+   "rank": 59
   },
   {
    "node_id": "ADS-CFT-DUALITY-IMPORT",
@@ -1002,7 +1040,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 59
+   "rank": 60
   },
   {
    "node_id": "ADS-RT-FORMULA-IMPORT",
@@ -1019,7 +1057,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 60
+   "rank": 61
   },
   {
    "node_id": "CT-SUPERINFORMATION-MEDIUM-DEFINITION",
@@ -1035,7 +1073,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 61
+   "rank": 62
   },
   {
    "node_id": "FSP-EFFICIENT-SAMPLING-OBLIGATIONS",
@@ -1049,7 +1087,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 62
+   "rank": 63
   },
   {
    "node_id": "FSP-FRACTON-MOBILITY",
@@ -1065,7 +1103,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 63
+   "rank": 64
   },
   {
    "node_id": "GTH-LANG-INTERPRET",
@@ -1079,7 +1117,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 64
+   "rank": 65
   },
   {
    "node_id": "MAJ-IMPORT-ISING-ANYONS",
@@ -1101,7 +1139,7 @@
     "code/rust/src/fusion_categories/catalog.rs::ising"
    ],
    "python": [],
-   "rank": 65
+   "rank": 66
   },
   {
    "node_id": "MAJ-IMPORT-KITAEV-CHAIN",
@@ -1121,7 +1159,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 66
+   "rank": 67
   },
   {
    "node_id": "MUB6-FIVE-BRANCH-ROUTING-CLAIM",
@@ -1135,7 +1173,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 67
+   "rank": 68
   },
   {
    "node_id": "MUB6-FLAT-EXTENSION-FAILURE-CLAIM",
@@ -1149,7 +1187,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 68
+   "rank": 69
   },
   {
    "node_id": "TFQ-0177",
@@ -1165,7 +1203,7 @@
     "code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs"
    ],
    "python": [],
-   "rank": 69
+   "rank": 70
   },
   {
    "node_id": "CQFT-CAUSAL-FACTORIZATION-IMPORT",
@@ -1182,7 +1220,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 70
+   "rank": 71
   },
   {
    "node_id": "CQFT-REEH-SCHLIEDER-THEOREM-IMPORT",
@@ -1199,7 +1237,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 71
+   "rank": 72
   },
   {
    "node_id": "DFM-BPHZ-CONTINUUM-FENCE",
@@ -1216,7 +1254,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 72
+   "rank": 73
   },
   {
    "node_id": "DFM-ELECTROWEAK-CONTINUUM-FENCE",
@@ -1233,7 +1271,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 73
+   "rank": 74
   },
   {
    "node_id": "FSP-HINGE-LINEON-SIGN-CLAIM",
@@ -1247,7 +1285,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 74
+   "rank": 75
   },
   {
    "node_id": "FSP-TROYER-WIESE-REDUCTION",
@@ -1261,20 +1299,6 @@
     "Troyer and Wiese, PRL 94, 170201 (2005), cond-mat/0408370, equations (10)-(11) and footnote 9",
     "NP-completeness of the 3D Ising spin-glass ground-state decision problem (Barahona)"
    ],
-   "lean": [],
-   "rust": [],
-   "python": [],
-   "rank": 75
-  },
-  {
-   "node_id": "GTH-LANG-IMPORT",
-   "stage": "GENESIS_TO_HIGHER",
-   "status": "OPEN",
-   "downstream_nodes": 1,
-   "score": 1,
-   "statement": "An import record for the priced admission language names a theory, the axioms added, the cost as the sentences the core does not derive, and a conservativity status that is either established or still open. Writing that record does not derive the added axioms from the core. No format for the record is defined. The language is not shown to state, of itself, a sentence it does not derive.",
-   "bottleneck": "An import record names axioms, cost and a conservativity status (established or open). The record is not a derivation of those axioms. No record format is defined.",
-   "imported_structure": [],
    "lean": [],
    "rust": [],
    "python": [],
@@ -2580,9 +2604,18 @@
    "downstream_nodes": 0,
    "score": 0,
    "statement": "Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 3100c4e into this book's PrimitiveDifference carrier or candidate Lean mirror. Chapter 1 records the same gap as GAP-F000-S000-001 and says the tag is a mechanical receipt, not a mathematical verdict, and that the sealed derivation does not form cochains. finite_obstruction.py, opened at its header, starts from quotient certificates for a later host. The finite statement still required is that term map, or an explicit decision to leave the row proposed.",
-   "bottleneck": "Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.",
+   "bottleneck": "A certified contextual-collapse term map into the existing Core PrimitiveDifference candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.",
    "imported_structure": [],
-   "lean": [],
+   "lean": [
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.certified_zero_iff",
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_eq_iff",
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_surjective",
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.factorization_iff",
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_response_reaches_separated",
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction",
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.undeclared_marks_collapse",
+    "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction"
+   ],
    "rust": [],
    "python": [],
    "rank": 159

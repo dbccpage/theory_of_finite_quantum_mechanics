@@ -1526,18 +1526,23 @@
       "statement": "Supplying an item does not change the regime (supply is a no-op); only an admission event does. Reading L: <> supplied but not admitted; Reading F: <> admitted as datum 0. Both readings are kept.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:190-227",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:279-341"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:279-341",
+        "dag/derivations/independent/pg-gen-supply-erasure.md"
       ],
       "lean": [
         "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts"
+        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.source_supply_no_op",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_supply_no_op",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.copy_step_commutes",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.reading_arrays"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the exact source Regime representation bridge and retain both Reading L and Reading F. An external presentation cannot license an unrecorded admission.",
+      "bottleneck": "The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-SUPPLY-NO-OP/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1554,7 +1559,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Supplying an item does not change the regime (supply is a no-op); only an admission event does. Reading L: <> supplied but not admitted; Reading F: <> admitted as datum 0. Both readings are kept.",
         "prior_bottleneck": "none.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-supply-erasure_lean_replay.json"
+        ]
       }
     },
     {
@@ -1567,18 +1574,25 @@
         "external:prompts/fable_theorems_2026-10-17/03_genesis_supply_erasure.md",
         "lean4/Imported/Genesis19l57g1/Derivation/Erasure.lean:88-147",
         "lean4/Imported/OeGenPrimitives/SupplyErasure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
+        "dag/derivations/independent/pg-gen-supply-erasure.md"
       ],
       "lean": [
         "lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply",
-        "lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only"
+        "lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.source_supply_erasure",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_supply_erasure",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.copy_replay_commutes",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_replay_exact",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_failure_exact",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.token_array_replay"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_supply_erasure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the partial Option/failure and five-field Regime representation bridge for every source history. Erasure does not erase guard failures, actual admissions or external custody requirements.",
+      "bottleneck": "The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.",
       "tags": [
         "fable-in-progress"
       ],
@@ -1597,7 +1611,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Genesis supply erasure: removing supply events from a history leaves the replayed regime unchanged (SupplyErasure.replayE_filter_supply).",
         "prior_bottleneck": "Scoped to Genesis supply events on the core regime projection; full history provenance tags remain distinct from core regime equality.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-supply-erasure_lean_replay.json"
+        ]
       }
     },
     {
@@ -13766,12 +13782,22 @@
       "source_status": "TFQ record_status GAP (source slice 01)",
       "statement": "Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 3100c4e into this book's PrimitiveDifference carrier or candidate Lean mirror. Chapter 1 records the same gap as GAP-F000-S000-001 and says the tag is a mechanical receipt, not a mathematical verdict, and that the sealed derivation does not form cochains. finite_obstruction.py, opened at its header, starts from quotient certificates for a later host. The finite statement still required is that term map, or an explicit decision to leave the row proposed.",
       "source": [
-        "dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md"
+        "dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md",
+        "dag/derivations/independent/tfq-0396.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.certified_zero_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_eq_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_surjective",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.factorization_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_response_reaches_separated",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.undeclared_marks_collapse",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.",
+      "bottleneck": "A certified contextual-collapse term map into the existing Core PrimitiveDifference candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.",
       "tags": [
         "unified-dag",
         "TFQ-0396",
@@ -16023,19 +16049,30 @@
       "stage": "GENESIS",
       "status": "OPEN",
       "source_status": "continuation.txt §13 decision procedure over contexts (X-1); §7 count of observational classes",
-      "statement": "No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).",
+      "statement": "A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish, and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level uniformity necessity and external implementation refinement remain open.",
       "source": [
         "dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1073-1076",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:484",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:171-175"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:171-175",
+        "dag/derivations/independent/pgw-context-decision-procedure.md:5-8"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.mem_contexts",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_none_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.profile_eq_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.exhaustionTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.uniform_rule_exhausted",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.holdsTwo_iff_classCount",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.classCount_eq_quotient_card"
+      ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts"
       ],
       "imported_structure": [],
-      "bottleneck": "Open; the existing census results decide these rows by finite computation over rung three's rectangle or by Lean statements for every history where cited, not by a procedure over contexts.",
+      "bottleneck": "The finite context, class-count, holding-two and exhaustion clauses have local Lean evidence for arbitrary finite regimes in the declared slot/all-tuples-rule language. The bundled node remains OPEN for first-count existence, Y-2 necessity and the external Python/Rust refinement; the earlier unary-only mirror is not used as a full context decider.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0497",
@@ -16193,14 +16230,26 @@
         "dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:531-537",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:70-71",
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88",
+        "dag/derivations/independent/pgw-endogenous-demand-ob1.md:1"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
+      ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
       ],
       "imported_structure": [],
-      "bottleneck": "Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.",
+      "bottleneck": "A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0504",
@@ -20843,14 +20892,15 @@
       "statement": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
       "source": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [
         "Wilson-Dirac lattice fermion operator with r = 1 (standard lattice QCD)"
       ],
-      "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -23343,7 +23393,7 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3c claims OPEN; audited status OPEN",
-      "statement": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "statement": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -23352,14 +23402,15 @@
       "lean": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ],
       "rust": [
         "code/rust/src/wdp/genesis_tm.rs::unary_sep",
         "code/rust/src/wdp/genesis_tm.rs::collapsed"
       ],
       "imported_structure": [],
-      "bottleneck": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "bottleneck": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -35708,10 +35759,11 @@
       ],
       "output": "FSP-WILSON-DIRAC-GAMMA5",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "mechanism": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "source": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ]
     },
     {
@@ -37094,7 +37146,7 @@
       ],
       "output": "COMP-C3-CONTEXT-DECISION-PARTIAL",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "mechanism": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -53416,21 +53468,31 @@
         "TFQ-0396"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_reading_note.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_reading_note.md",
+        "dag/derivations/independent/tfq-0396.md"
       ],
       "id": "TFQ-0396",
       "lean4": [
         "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean",
-        "absent: missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml"
+        "absent: missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.certified_zero_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_eq_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_surjective",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.factorization_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_response_reaches_separated",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.undeclared_marks_collapse",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction"
       ],
       "local_id": "A01-036",
       "name": "sealed-tag-to-carrier-gap",
-      "obligation": "Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.",
+      "obligation": "A certified contextual-collapse term map into the existing Core PrimitiveDifference candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.",
       "parent_id": "TFQ-0395",
       "python": [
         "absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py",
         "absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_genesis_bridge_contract.py",
-        "absent: missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map"
+        "absent: missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map",
+        "checks/independent/tfq-0396.py"
       ],
       "record_status": "GAP",
       "rust": [
@@ -57871,14 +57933,23 @@
       ],
       "id": "TFQ-0497",
       "lean4": [
-        "absent: no decision procedure over contexts in Lean (X-1)"
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.mem_contexts",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_none_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.profile_eq_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.exhaustionTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.uniform_rule_exhausted",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.holdsTwo_iff_classCount",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.classCount_eq_quotient_card"
       ],
       "local_id": "PGW-CONTEXT-DECISION-PROCEDURE",
       "name": "context-decision-procedure",
-      "obligation": "Build a decision procedure for collapse and separability over the well-formed contexts of a finite regime, prove it correct in Lean, and use it to decide Y-2, T-1, holding two and exhaustion.",
+      "obligation": "Use the complete finite context decisions for the remaining first-count and Y-2 history claims under their explicit predicates; establish the external implementation refinement separately.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable",
+        "checks/independent/pgw-context-decision-procedure.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -57886,7 +57957,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
-      "summary": "No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).",
+      "summary": "A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish, and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level uniformity necessity and external implementation refinement remain open.",
       "uuid": "5e9af5a2-14e5-5838-8153-60f15fb2000d"
     },
     {
@@ -58092,14 +58163,25 @@
       ],
       "id": "TFQ-0504",
       "lean4": [
-        "absent: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)"
+        "absent: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
       ],
       "local_id": "PGW-ENDOGENOUS-DEMAND-OB1",
       "name": "endogenous-demand-ob1",
       "obligation": "Derive an object-language rule that generates the next unresolved requirement from admitted structure without reading token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation, or keep every demand host-supplied and recorded.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::leftover_as_demand"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::leftover_as_demand",
+        "checks/independent/pgw-endogenous-demand-ob1.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -63205,13 +63287,14 @@
       ],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:461-473"
+        "papers/core/fsp/theory_of_finite_fsp.md:461-473",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ],
       "id": "TFQ-1197",
       "lean4": [],
       "local_id": "FSP-WILSON-DIRAC-GAMMA5",
       "name": "Wilson-Dirac gamma5-hermiticity and real determinant",
-      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "parent_id": "TFQ-1196",
       "python": [],
       "record_status": "IMPORTED_ASSUMPTION",
@@ -65954,11 +66037,12 @@
       "lean4": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ],
       "local_id": "COMP-C3-CONTEXT-DECISION-PARTIAL",
       "name": "Unary collapse is decidable; TFQ-0497 stays open",
-      "obligation": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "obligation": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "parent_id": "TFQ-1291",
       "python": [
         "code/python/src/qm/genesis_tm.py::unary_sep",
@@ -65971,7 +66055,7 @@
       ],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "summary": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
       "uuid": "16af2250-0735-5b8b-bbc4-082ecd606063"
     },
     {
