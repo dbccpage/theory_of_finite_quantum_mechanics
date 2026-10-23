@@ -1,7 +1,7 @@
 """Exact independent five-coordinate and mode Genesis engine audit. AuthorityEffect: None.
 
 No repository imports. Two transition implementations, partial failure,
-state-dependent token erasure, and all supply-filtered histories are compared.
+mode switches, and all declared full-engine histories are compared.
 The general representation theorem is in Lean; this census has printed bounds.
 """
 from __future__ import annotations
@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from itertools import product
 import json
-from typing import Callable, Literal
+from typing import Literal
 
 import sympy as sp  # type: ignore[import-untyped]
 
@@ -151,18 +151,18 @@ def main() -> None:
     for r,_ in seen:
         require(potential(r)==sp.Matrix([r[0],*(len(x) for x in r[1:])]).dot(sp.ones(5,1)), 'exact source potential')
     start=(bases[1],False)
-    require(engine_replay((None,None),start)==start and engine_step(start,None)!=start,'full-state strictness mutant')
-    require(engine_replay((None,Event('form',0),None),start) is None,'failure-as-noop mutant')
-    require(engine_step(start,None)==(bases[1],True),'omitted mode mutant')
+    require(engine_replay((None,None),start)==start and engine_step(start,None)!=start,'mode-only changes refute full-state strictness')
+    require(engine_replay((None,Event('form',0),None),start) is None,'invalid source event must preserve failure')
+    require(engine_step(start,None)==(bases[1],True),'switch must toggle the mode')
     fresh: State=(2,(),(),(),())
     imposed=step(fresh,Event('impose',0,1));require(imposed is not None,'fresh requirement fixture')
     if imposed is None:raise RuntimeError('unreachable')
-    require(potential(imposed)==potential(fresh)+1,'ignore requirement potential mutant')
+    require(potential(imposed)==potential(fresh)+1,'fresh requirements contribute to potential')
     duplicate: State=(2,(1,),((0,(0,)),),(),())
-    require(step(duplicate,Event('inst',0,args=(0,)))==duplicate,'all admissions strictly grow mutant')
+    require(step(duplicate,Event('inst',0,args=(0,)))==duplicate,'duplicate admissions can leave the regime unchanged')
     print(json.dumps(dict(node='PG-GEN-NO-RETURN',authority_effect='None',histories=cases,failures=failures,
         distinct_successful_engine_states=len(seen),regime_changes_in_tested_prefixes=regime_changes,
         mode_only_changes_in_tested_prefixes=mode_changes,bases=3,modes=2,alphabet_size=len(alphabet),maximum_history_length=4,
-        mutation_accounting=dict(killed=5,survived=0,demonstrably_equivalent=0,invalid=0,inconclusive=0,unrun=0)),indent=2))
+        negative_controls_checked=5, mutation_coverage='not measured by fixed regression fixtures'),indent=2))
 
 if __name__=='__main__':main()

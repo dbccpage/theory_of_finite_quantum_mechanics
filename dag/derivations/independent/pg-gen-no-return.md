@@ -10,7 +10,8 @@ conversions. No count-only or apart-state abstraction substitutes for them.
 
 The array step is independently defined using array push, deduplicating insert
 and the actual source guards. It commutes with the source step including
-failure. A sealed event changes the regime, while SWITCH toggles the mode.
+failure. Sealed events operate on the regime while preserving mode; they may be no-ops.
+SWITCH toggles the mode.
 Induction on a finite history proves full optional replay commutation. The
 bijection reflects success with every output coordinate and reflects failure.
 Every source event is represented, including SWITCH and all guarded admissions.
