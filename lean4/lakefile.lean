@@ -952,3 +952,12 @@ lean_lib CampaignFspLatticeAnomalyInflow where
 -- Operational hypotheses and exact countermodels. Not a default build target.
 lean_lib CampaignTransitionProbability where
   roots := #[`CampaignTransitionProbability]
+
+-- Exact engine-mode replay; non-default source and campaign targets.
+lean_lib CampaignGenesisNoReturnSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
+  roots := #[`Derivation.Basic, `Derivation.Erasure, `SecondRun.Run]
+  globs := #[.submodules `Derivation, .submodules `SecondRun]
+
+lean_lib CampaignGenesisNoReturn where
+  roots := #[`CampaignGenesisNoReturn]
