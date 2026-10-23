@@ -618,3 +618,6 @@ lean_lib CampaignTfq0016B2Dressing where
 lean_lib GenesisHottShadow where
   roots := #[`GenesisHottShadow]
 
+lean_lib GenesisHottTruncation where
+  roots := #[`GenesisHottTruncation]
+
