@@ -24,7 +24,7 @@ In strict adherence to the **Claim Hygiene Rule** and `AuthorityEffect: None`:
 
 ## 2. Derivation Stage Census & Status Taxonomy
 
-The derivation tree comprises **932 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
+The derivation tree comprises **944 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
 
 | Stage Index | Stage Name | Derivation Step Count | Core Physical & Mathematical Focus | Primary DAG Range |
 | :--- | :--- | :---: | :--- | :--- |
@@ -64,7 +64,7 @@ The derivation tree comprises **932 primary derivation steps** structured across
 
 ---
 
-## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2315`)
+## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2411`)
 
 Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.
 
@@ -1004,12 +1004,24 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-2313`** | Perez 2013: review of the spin foam approach | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `TFQ-2312` | `LQG-SPINFOAM-REVIEW-SOURCE` (SOURCE_RECORD) | - | [`TFQ-2313.md`](../../dag/derivations/33_loop_quantum_gravity/tfq_2313_lqg_spinfoam_review_source.md) | Declarative / Formal Spec |
 | **`TFQ-2314`** | Imported: EPRL-FK vertex amplitude for four-dimensional gravity | `LOOP_QUANTUM_GRAVITY` | `IMPORTED_ASSUMPTION` | `TFQ-2312` | `LQG-EPRL-VERTEX-IMPORT` (IMPORTED_ASSUMPTION) | - | [`TFQ-2314.md`](../../dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md) | Declarative / Formal Spec |
 | **`TFQ-2315`** | Gap: no route from finite recoupling to a continuum or semiclassical limit | `LOOP_QUANTUM_GRAVITY` | `OPEN_OBLIGATION` | `TFQ-2314` | `LQG-CONTINUUM-LIMIT-GAP` (OPEN) | - | [`TFQ-2315.md`](../../dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md) | Declarative / Formal Spec |
+| **`TFQ-2400`** | Finite semi-simplicial or globular shadow of Genesis admission | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-0481` | `GTH-SHADOW` (OPEN) | - | [`TFQ-2400.md`](../../dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md) | Declarative / Formal Spec |
+| **`TFQ-2401`** | Truncation: components, finite fundamental groupoid, finite n-type presentation | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2400` | `GTH-TRUNC` (OPEN) | - | [`TFQ-2401.md`](../../dag/derivations/34_genesis_to_higher/tfq_2401_gth_trunc.md) | Declarative / Formal Spec |
+| **`TFQ-2402`** | Horn fillers of a finite shadow | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2401` | `GTH-HORNS` (OPEN) | - | [`TFQ-2402.md`](../../dag/derivations/34_genesis_to_higher/tfq_2402_gth_horns.md) | Declarative / Formal Spec |
+| **`TFQ-2403`** | Finite model of a fragment with identity types, without univalence | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2402` | `GTH-HOTT-MODEL` (OPEN) | - | [`TFQ-2403.md`](../../dag/derivations/34_genesis_to_higher/tfq_2403_gth_hott_model.md) | Declarative / Formal Spec |
+| **`TFQ-2404`** | Imported: a univalent universe is not finite | `GENESIS_TO_HIGHER` | `IMPORTED_ASSUMPTION` | `TFQ-2403` | `GTH-IMPORT-UNIVALENT-UNIVERSE` (IMPORTED_ASSUMPTION) | - | [`TFQ-2404.md`](../../dag/derivations/34_genesis_to_higher/tfq_2404_gth_import_univalent_universe.md) | Declarative / Formal Spec |
+| **`TFQ-2405`** | Imported: an infinity-groupoid is not finite | `GENESIS_TO_HIGHER` | `IMPORTED_ASSUMPTION` | `TFQ-2403` | `GTH-IMPORT-INFTY-GROUPOID` (IMPORTED_ASSUMPTION) | - | [`TFQ-2405.md`](../../dag/derivations/34_genesis_to_higher/tfq_2405_gth_import_infty_groupoid.md) | Declarative / Formal Spec |
+| **`TFQ-2406`** | Imported: an (infinity,1)-category is not finite | `GENESIS_TO_HIGHER` | `IMPORTED_ASSUMPTION` | `TFQ-2403` | `GTH-IMPORT-INFTY-1-CATEGORY` (IMPORTED_ASSUMPTION) | - | [`TFQ-2406.md`](../../dag/derivations/34_genesis_to_higher/tfq_2406_gth_import_infty_1_category.md) | Declarative / Formal Spec |
+| **`TFQ-2407`** | Priced-import language core | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2406` | `GTH-LANG-CORE` (OPEN) | - | [`TFQ-2407.md`](../../dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md) | Declarative / Formal Spec |
+| **`TFQ-2408`** | Reflection of the language | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2407` | `GTH-LANG-REFLECT` (OPEN) | - | [`TFQ-2408.md`](../../dag/derivations/34_genesis_to_higher/tfq_2408_gth_lang_reflect.md) | Declarative / Formal Spec |
+| **`TFQ-2409`** | Interpretation targets, not theorems | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2408` | `GTH-LANG-INTERPRET` (OPEN) | - | [`TFQ-2409.md`](../../dag/derivations/34_genesis_to_higher/tfq_2409_gth_lang_interpret.md) | Declarative / Formal Spec |
+| **`TFQ-2410`** | Import records are not derivations | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2409` | `GTH-LANG-IMPORT` (OPEN) | - | [`TFQ-2410.md`](../../dag/derivations/34_genesis_to_higher/tfq_2410_gth_lang_import.md) | Declarative / Formal Spec |
+| **`TFQ-2411`** | Goedel-Rosser and Tarski limit | `GENESIS_TO_HIGHER` | `PROVED_PROSE` | `TFQ-2410` | `GTH-LANG-LIMITS` (PROVED_PROSE) | - | [`TFQ-2411.md`](../../dag/derivations/34_genesis_to_higher/tfq_2411_gth_lang_limits.md) | Declarative / Formal Spec |
 
 ---
 
 ## 3b. One Derivation Graph
 
-`dag/derivation_dag.json` (880 nodes, 885 routes) and `dag/theory_of_finite_qm.jsonl` (932 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 266 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
+`dag/derivation_dag.json` (892 nodes, 897 routes) and `dag/theory_of_finite_qm.jsonl` (944 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 266 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
 
 ---
 
@@ -1086,7 +1098,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 ## 6. Claim Hygiene Assessment
 
 ### 6.1 What this Master Ledger Supports
-- Complete, un-truncated mathematical cataloging of all 932 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
+- Complete, un-truncated mathematical cataloging of all 944 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
 - Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.
 - Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.
 - Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.
@@ -1097,7 +1109,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 - Does not assert that passing computational and formal verification replaces experimental laboratory observation.
 
 ### 6.3 The Narrowest Defensible Claim
-Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 932 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
+Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 944 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
 
 ### 6.4 The Next Test Needed
 Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.

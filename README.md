@@ -28,15 +28,15 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 
 | Fact | Value | Source |
 |---|---|---|
-| Derivation DAG nodes / routes | 880 / 885 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
-| DAG stages (declared / with nodes) | 34 / 32 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
-| DAG validator | `nodes=880 routes=885 records=932 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
-| TFQ records | 932 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
-| Derivation papers | 933 in 34 stage folders | [`dag/derivations`](dag/derivations) |
+| Derivation DAG nodes / routes | 892 / 897 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| DAG stages (declared / with nodes) | 35 / 33 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| DAG validator | `nodes=892 routes=897 records=944 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
+| TFQ records | 944 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
+| Derivation papers | 957 in 35 stage folders | [`dag/derivations`](dag/derivations) |
 | Lean references in DAG nodes | 1336 resolve to a file in this checkout, 318 do not (sibling or historical paths), 45 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 287 resolve to a file in this checkout, 653 do not, 2 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
-| PFP prompts / indexed operad collections | 880 / 880 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
-| PFP stage per prompt | P0_MINE_OPERAD 703, P5_RECORD 177 | [`dag/operads/index.json`](dag/operads/index.json) |
+| PFP prompts / indexed operad collections | 892 / 892 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
+| PFP stage per prompt | P0_MINE_OPERAD 715, P5_RECORD 177 | [`dag/operads/index.json`](dag/operads/index.json) |
 | Nodes with executed review results | 177 nodes, 208 review directories | `dag/results/*/reviews/` |
 | Review directories with a supports / does_not_support / narrowest_claim boundary | 176 | `dag/results/*/reviews/*/*.json` |
 | P4 mutations rejected, as recorded in review records (`rejected_P4_mutations`, one value per directory) | 47271 | `dag/results/*/reviews/*/*.json` |
@@ -51,15 +51,15 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 218, Quot.sound 165, Classical.choice 119; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 152) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 6511 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Python test functions (`def test_`) | 6515 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 6935 (plus 7995 in `dag/results` snapshots) | `git ls-files '*.rs'` |
 | Contract/score companions | combined_files = 8657, all_passed = false | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
-Nodes by status: PROVED_LEAN 261, OPEN 168, COMPUTATIONALLY_CHECKED 152, DEFINITION 91, SOURCE_RECORD 79, IMPORTED_ASSUMPTION 63, CONDITIONAL 34, PROVED_PROSE 27, ADMITTED_PRIMITIVE 3, REFUTED 2.
+Nodes by status: PROVED_LEAN 261, OPEN 176, COMPUTATIONALLY_CHECKED 152, DEFINITION 91, SOURCE_RECORD 79, IMPORTED_ASSUMPTION 66, CONDITIONAL 34, PROVED_PROSE 28, ADMITTED_PRIMITIVE 3, REFUTED 2.
 
-Nodes by stage: PREGENESIS 31, GENESIS 89, MSSN_SN 28, WDP 29, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 33, FINITE_QM_DYNAMICS 22, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 67, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_GAUGE 1, FINITE_QED 1, FINITE_QCD 32, FINITE_TOPOLOGICAL 9, FINITE_QG 15, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 82, CONSTRUCTOR_THEORY 15, CAUSAL_QFT 14, ADS_CFT 13, LOOP_QUANTUM_GRAVITY 16.
+Nodes by stage: PREGENESIS 31, GENESIS 89, MSSN_SN 28, WDP 29, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 33, FINITE_QM_DYNAMICS 22, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 67, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_GAUGE 1, FINITE_QED 1, FINITE_QCD 32, FINITE_TOPOLOGICAL 9, FINITE_QG 15, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 82, CONSTRUCTOR_THEORY 15, CAUSAL_QFT 14, ADS_CFT 13, LOOP_QUANTUM_GRAVITY 16, GENESIS_TO_HIGHER 12.
 
 Nodes named in this README:
 
@@ -154,6 +154,7 @@ python -I -X utf8 dag/sync_unified_dag.py --check
 python -I -X utf8 dag/sync_application_branches.py --check
 python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check
 python -I -X utf8 dag/sync_frontier_branches.py --check
+python -I -X utf8 dag/sync_genesis_to_higher.py --check
 python -I -X utf8 dag/sync_unified_dag.py --invariants
 python -I -X utf8 dag/validate_derivation_dag.py --no-files
 python -I -X utf8 -m pytest dag/test_*.py
