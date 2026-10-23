@@ -6,10 +6,10 @@ Result: 1 NARROWED. Merge blocked by the substantive L4 minimum. The fixed fores
 
 | Atomic claim | CampaignDfmBphzContinuumFence.lean | Scope |
 | --- | --- | --- |
-| Exactly six overlap forests, rejecting the L/R pair; four nested forests | pieceEdge / isCompatible / flagOk, overlapping_excluded_iff, overlapping_forest_count (lines 20-73); nested_forest_count (line 109) | Fixed three-piece and two-piece Boolean models, not an arbitrary graph API. |
-| Six signed evaluations equal inclusion-exclusion | evalL/evalR/evalG, sixSum_eq_inclusion (lines 116-135) | General rational-valued bivariate function with this explicitly written six-term sum. |
-| Numerator 7xy, quotient 7, omitted-G remainder and exact witnesses | numerator_is_7xy, quotient_is_seven, omitted_graph_remainder, witness_half_third (lines 140-170) | Fixed declared numerator; quotient requires xy != 0. |
-| Sector comparison 9/50 and formal square 9/25 differ from 7 | sector_value, sector_ne_seven, sector_formal_zero (lines 175-191) | Exact rational samples only; no limit or continuum theorem. |
+| Exactly six overlap forests, rejecting the L/R pair; four nested forests | pieceEdge / isCompatible / flagOk, overlapping_excluded_iff, overlapping_forest_count (lines 20-73); nested_forest_count (line 106) | Fixed three-piece and two-piece Boolean models, not an arbitrary graph API. |
+| Six signed evaluations equal inclusion-exclusion | evalL/evalR/evalG, sixSum_eq_inclusion (lines 112-125) | General rational-valued bivariate function with this explicitly written six-term sum. |
+| Numerator 7xy, quotient 7, omitted-G remainder and exact witnesses | numerator_is_7xy, quotient_is_seven, omitted_graph_remainder, witness_half_third (lines 130-164) | Fixed declared numerator; quotient requires xy != 0. |
+| Sector comparison 9/50 and formal square 9/25 differ from 7 | sector_value, sector_ne_seven, sector_formal_zero (lines 167-182) | Exact rational samples only; no limit or continuum theorem. |
 
 The note and PR body retain the open actual-integrand, positive-subtraction-degree and continuum-integration obligations. The source does not derive a Feynman-parametric numerator. The finite forest enumeration and the manually written signed sum are separate definitions; no general forest-operator construction is asserted.
 
