@@ -1,0 +1,270 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/governance/src/descriptor.rs",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Rust",
+      "path": "code/rust/src/governance/src/descriptor.rs",
+      "sha256": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b"
+    },
+    "boundaries": [
+      "No YAML: companions are JSON (all 8,657 on main parse as JSON). Duplicate JSON keys are not detected (serde_json keeps the last); a scan found none on main."
+    ],
+    "consumers": [
+      "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+      ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+      "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+    ],
+    "contract_urn": "urn:tfqm:governance:descriptor:v1",
+    "evidence": [
+      {
+        "path": "evidence/governance/20261023T043243Z/mutation.json",
+        "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/receipt.json",
+        "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+        "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/clippy.log",
+        "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/lizard.csv",
+        "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      },
+      {
+        "path": "governance/policy.json",
+        "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+      }
+    ],
+    "owned_invariants": [
+      "ContractDescriptor::parse fails only on text that is not a JSON object (Violation::MalformedJson); every other defect is kept for the verifiers.",
+      "Both binding layouts are read: artifact {path, sha256, language} and subject + source_sha256.",
+      "digest_ok holds only when raw_utf8 hashes to the entry's sha256 and has its byte length; contract_view_ok only when contract equals the intact current_contract record.",
+      "Typed accessors (level, gate_grades, composite, token) return Violation::Schema naming the field for any invalid value."
+    ],
+    "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+    "requirements": {
+      "R3-descriptor": {
+        "symbols": [
+          "REQUIRED_KEYS",
+          "ScoreRecord",
+          "ContractDescriptor",
+          "hex"
+        ],
+        "text": "ContractDescriptor: typed view of a companion (path, sha256, language, URN, symbols, invariants, score)"
+      }
+    },
+    "role": "governance crate source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b",
+    "subject": "code/rust/src/governance/src/descriptor.rs",
+    "symbols": [
+      "REQUIRED_KEYS",
+      "ScoreRecord",
+      "ContractDescriptor",
+      "hex"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3405,
+      "original_paths": [
+        "code/rust/src/governance/src/descriptor.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/descriptor.rs\",\n    \"sha256\": \"0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b\"\n  },\n  \"boundaries\": [\n    \"No YAML: companions are JSON (all 8,657 on main parse as JSON). Duplicate JSON keys are not detected (serde_json keeps the last); a scan found none on main.\"\n  ],\n  \"consumers\": [\n    \"20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped\",\n    \".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)\",\n    \"scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:descriptor:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"ContractDescriptor::parse fails only on text that is not a JSON object (Violation::MalformedJson); every other defect is kept for the verifiers.\",\n    \"Both binding layouts are read: artifact {path, sha256, language} and subject + source_sha256.\",\n    \"digest_ok holds only when raw_utf8 hashes to the entry's sha256 and has its byte length; contract_view_ok only when contract equals the intact current_contract record.\",\n    \"Typed accessors (level, gate_grades, composite, token) return Violation::Schema naming the field for any invalid value.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R3-descriptor\": {\n      \"symbols\": [\n        \"REQUIRED_KEYS\",\n        \"ScoreRecord\",\n        \"ContractDescriptor\",\n        \"hex\"\n      ],\n      \"text\": \"ContractDescriptor: typed view of a companion (path, sha256, language, URN, symbols, invariants, score)\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b\",\n  \"subject\": \"code/rust/src/governance/src/descriptor.rs\",\n  \"symbols\": [\n    \"REQUIRED_KEYS\",\n    \"ScoreRecord\",\n    \"ContractDescriptor\",\n    \"hex\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/descriptor.rs",
+          "sha256": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b"
+        },
+        "boundaries": [
+          "No YAML: companions are JSON (all 8,657 on main parse as JSON). Duplicate JSON keys are not detected (serde_json keeps the last); a scan found none on main."
+        ],
+        "consumers": [
+          "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+          ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+          "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+        ],
+        "contract_urn": "urn:tfqm:governance:descriptor:v1",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "owned_invariants": [
+          "ContractDescriptor::parse fails only on text that is not a JSON object (Violation::MalformedJson); every other defect is kept for the verifiers.",
+          "Both binding layouts are read: artifact {path, sha256, language} and subject + source_sha256.",
+          "digest_ok holds only when raw_utf8 hashes to the entry's sha256 and has its byte length; contract_view_ok only when contract equals the intact current_contract record.",
+          "Typed accessors (level, gate_grades, composite, token) return Violation::Schema naming the field for any invalid value."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R3-descriptor": {
+            "symbols": [
+              "REQUIRED_KEYS",
+              "ScoreRecord",
+              "ContractDescriptor",
+              "hex"
+            ],
+            "text": "ContractDescriptor: typed view of a companion (path, sha256, language, URN, symbols, invariants, score)"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b",
+        "subject": "code/rust/src/governance/src/descriptor.rs",
+        "symbols": [
+          "REQUIRED_KEYS",
+          "ScoreRecord",
+          "ContractDescriptor",
+          "hex"
+        ]
+      },
+      "sha256": "80f23d5fdeef8f1059e04aef03d7fcb27adbffedc8a85230fa222cb973f93f18"
+    }
+  ],
+  "current_contract": "80f23d5fdeef8f1059e04aef03d7fcb27adbffedc8a85230fa222cb973f93f18",
+  "current_scoring": "5f11d83bc1d015fbfc96840bfc2b999b13ee3ccca6d097f192b0ee11e14f33d0",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4160,
+      "original_paths": [
+        "code/rust/src/governance/src/descriptor.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/descriptor.rs\",\n    \"sha256\": \"0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"complete\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:descriptor:v1, AuthorityEffect None, exact digest; R3 maps to ContractDescriptor and ScoreRecord and back; consumers are verify.rs, lib.rs and the CLI.\",\n    \"G2\": \"Reads the two binding layouts used by the 8,657 existing companions; detects altered raw bytes, altered lengths and a contract view that differs from history; invalid vocabulary is reported per field.\",\n    \"G3\": \"One typed failure at parse time, typed Schema violations afterwards; no unsafe; panic-family lints denied. C rather than B for the same reason as policy.rs.\",\n    \"G4\": \"Tests: complete companion, malformed JSON (three shapes), legacy layout with missing keys, tampered bytes and contract view, invalid level, gate, composite and token values and wrong JSON types. Case tables, not generators. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 7, survived 0, invalid 0, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B for the reason given in policy.rs. Max production CCN 8 (gate_grades) over 15 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a deliberate split between lenient structural parsing and typed, field-precise accessors, covering both companion layouts in use and detecting tampered history bytes.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 8,\n    \"lizard_max_ccn_tests\": 10,\n    \"lizard_production_functions\": 15\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 7,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"No property-based generators outside score.rs (G4 B needs them).\",\n    \"Panic freedom rests on clippy lints and review, not on a proof (G3 B).\",\n    \"Allocation behaviour not benchmarked (G5 A).\",\n    \"Grades drafted by the model that wrote the code; an independent review is still needed.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4C\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/descriptor.rs",
+          "sha256": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "complete",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:descriptor:v1, AuthorityEffect None, exact digest; R3 maps to ContractDescriptor and ScoreRecord and back; consumers are verify.rs, lib.rs and the CLI.",
+          "G2": "Reads the two binding layouts used by the 8,657 existing companions; detects altered raw bytes, altered lengths and a contract view that differs from history; invalid vocabulary is reported per field.",
+          "G3": "One typed failure at parse time, typed Schema violations afterwards; no unsafe; panic-family lints denied. C rather than B for the same reason as policy.rs.",
+          "G4": "Tests: complete companion, malformed JSON (three shapes), legacy layout with missing keys, tampered bytes and contract view, invalid level, gate, composite and token values and wrong JSON types. Case tables, not generators. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 7, survived 0, invalid 0, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B for the reason given in policy.rs. Max production CCN 8 (gate_grades) over 15 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "C",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "grade_ceiling": "C",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a deliberate split between lenient structural parsing and typed, field-precise accessors, covering both companion layouts in use and detecting tampered history bytes.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 8,
+          "lizard_max_ccn_tests": 10,
+          "lizard_production_functions": 15
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 7,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "No property-based generators outside score.rs (G4 B needs them).",
+          "Panic freedom rests on clippy lints and review, not on a proof (G3 B).",
+          "Allocation behaviour not benchmarked (G5 A).",
+          "Grades drafted by the model that wrote the code; an independent review is still needed."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4C"
+      },
+      "sha256": "5f11d83bc1d015fbfc96840bfc2b999b13ee3ccca6d097f192b0ee11e14f33d0"
+    }
+  ]
+}
