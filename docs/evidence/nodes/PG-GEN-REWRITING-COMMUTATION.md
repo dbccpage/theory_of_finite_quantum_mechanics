@@ -129,15 +129,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `557a06c16167db9492980b4c2df8777285c43ffc8272f8f80d5c3437e5e80491`
 - cited in: node.lean, node.source
 - replay: `verified`
+  - receipt [dag/research/genesis_rename_compatibility_lean_replay.json](../../../dag/research/genesis_rename_compatibility_lean_replay.json) (module `Imported.GenesisOngoing.Second.Rename`): recorded sha256 `557a06c16167db9492980b4c2df8777285c43ffc8272f8f80d5c3437e5e80491` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
   - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Second.Rename`): recorded sha256 `557a06c16167db9492980b4c2df8777285c43ffc8272f8f80d5c3437e5e80491` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Second/Rename.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `Reach3.rename` | yes | yes | yes | module-level | `#print axioms Reach3.rename` |
-| `Step3.rename` | yes | yes | yes | module-level | `#print axioms Step3.rename` |
-| `fewest_changes3_every_writing_A` | yes | yes | yes | module-level | `#print axioms fewest_changes3_every_writing_A` |
-| `fewest_changes3_every_writing_B` | yes | yes | yes | module-level | `#print axioms fewest_changes3_every_writing_B` |
+| `Reach3.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Reach3.rename` |
+| `Step3.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Step3.rename` |
+| `fewest_changes3_every_writing_A` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms fewest_changes3_every_writing_A` |
+| `fewest_changes3_every_writing_B` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms fewest_changes3_every_writing_B` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

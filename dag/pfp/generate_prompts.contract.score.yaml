@@ -1,0 +1,264 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "dag/pfp/generate_prompts.py",
+  "contract": {
+    "schema_id": "tfqm.source-contract.v1",
+    "contract_id": "pr243-reviewed-generate_prompts",
+    "authority_effect": "None",
+    "subject": "dag/pfp/generate_prompts.py",
+    "artifact": {
+      "path": "dag/pfp/generate_prompts.py",
+      "language": "Python",
+      "sha256": "c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65"
+    },
+    "source_sha256": "c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65",
+    "purpose": "Generate source-candidate prompts deterministically and retain explicitly bound P0 collections; recorded history protects stale collections even without their index row.",
+    "owned_invariants": [
+      "The sealed audit population is not regenerated.",
+      "Retained bindings must match the generated audit, prompt, collection identity, collection bytes and per-node run delta.",
+      "Recorded stage history prevents stale regeneration even if its whole index row is missing.",
+      "These operational checks do not accept a source claim or change a node status."
+    ],
+    "boundaries": [
+      "AuthorityEffect None; no theorem, status, sealed-byte or scope-fence change.",
+      "Repository tooling only; finite designated tests do not establish universal correctness.",
+      "The user waived the L4/D acceptance floor for PR #243; no repository-wide policy change or independent human score certification."
+    ],
+    "evidence": [
+      {
+        "path": "dag/research/pr243_review_validation.json",
+        "sha256": "b39b1abf1c0a0c714c1bd8c8c60908502aa3c7e03ee76b9846ef1ea76a67d45e"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      }
+    ]
+  },
+  "current_contract": "1c3e07be7a58bb29d3392d8414adcce137e3f5c7ec4b61e561e6240b64cf75c4",
+  "current_scoring": "a9851b65b0e4dd26aad5c93e39459a2ea37f5a6265af6ccf5e532ca545a4a194",
+  "contract_history": [
+    {
+      "sha256": "4aed3258641f9b8e05f7ddf4fb3d75146b77e539e77340693cb60e4a18c408f9",
+      "bytes": 1601,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "prompt-rename-repair-v1",
+        "authority_effect": "None",
+        "subject": "dag/pfp/generate_prompts.py",
+        "artifact": {
+          "path": "dag/pfp/generate_prompts.py",
+          "language": "Python",
+          "sha256": "86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab"
+        },
+        "source_sha256": "86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab",
+        "purpose": "Deterministic generated-prompt custody with explicit P0 delta retention, current generation-input verification, and refusal to overwrite recorded runs.",
+        "owned_invariants": [
+          "Sealed corpus and executed-run bytes are preserved.",
+          "Source quote and instruction boundaries remain distinct.",
+          "Input, generated-audit, collection and delta hashes bind current data.",
+          "No mathematical acceptance, status promotion or scope-fence edit."
+        ],
+        "boundaries": [
+          "Repository workflow only; no mathematical theorem or host-review acceptance.",
+          "Designated fault coverage only; no comprehensive mutation claim.",
+          "Existing derivation/scoring exceptions are unchanged."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/prompt_retention_targeted_validation.json",
+            "sha256": "5f8ee6bbd5828479e78388e24b1ae0f81cfb942ffbd866bd71bae9d5622f5586"
+          },
+          {
+            "path": "dag/research/prompt_retention_challenges.json",
+            "sha256": "f409f14af3488d8b7ba50d1f3f1ddf83f55f48a73989723361fb2c6f6e316161"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"prompt-rename-repair-v1\",\n  \"authority_effect\": \"None\",\n  \"subject\": \"dag/pfp/generate_prompts.py\",\n  \"artifact\": {\n    \"path\": \"dag/pfp/generate_prompts.py\",\n    \"language\": \"Python\",\n    \"sha256\": \"86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab\"\n  },\n  \"source_sha256\": \"86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab\",\n  \"purpose\": \"Deterministic generated-prompt custody with explicit P0 delta retention, current generation-input verification, and refusal to overwrite recorded runs.\",\n  \"owned_invariants\": [\n    \"Sealed corpus and executed-run bytes are preserved.\",\n    \"Source quote and instruction boundaries remain distinct.\",\n    \"Input, generated-audit, collection and delta hashes bind current data.\",\n    \"No mathematical acceptance, status promotion or scope-fence edit.\"\n  ],\n  \"boundaries\": [\n    \"Repository workflow only; no mathematical theorem or host-review acceptance.\",\n    \"Designated fault coverage only; no comprehensive mutation claim.\",\n    \"Existing derivation/scoring exceptions are unchanged.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/prompt_retention_targeted_validation.json\",\n      \"sha256\": \"5f8ee6bbd5828479e78388e24b1ae0f81cfb942ffbd866bd71bae9d5622f5586\"\n    },\n    {\n      \"path\": \"dag/research/prompt_retention_challenges.json\",\n      \"sha256\": \"f409f14af3488d8b7ba50d1f3f1ddf83f55f48a73989723361fb2c6f6e316161\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "dag/pfp/generate_prompts.py.contract.score.yaml#prompt-rename-repair-contract"
+      ]
+    },
+    {
+      "sha256": "1c3e07be7a58bb29d3392d8414adcce137e3f5c7ec4b61e561e6240b64cf75c4",
+      "bytes": 1647,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr243-reviewed-generate_prompts",
+        "authority_effect": "None",
+        "subject": "dag/pfp/generate_prompts.py",
+        "artifact": {
+          "path": "dag/pfp/generate_prompts.py",
+          "language": "Python",
+          "sha256": "c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65"
+        },
+        "source_sha256": "c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65",
+        "purpose": "Generate source-candidate prompts deterministically and retain explicitly bound P0 collections; recorded history protects stale collections even without their index row.",
+        "owned_invariants": [
+          "The sealed audit population is not regenerated.",
+          "Retained bindings must match the generated audit, prompt, collection identity, collection bytes and per-node run delta.",
+          "Recorded stage history prevents stale regeneration even if its whole index row is missing.",
+          "These operational checks do not accept a source claim or change a node status."
+        ],
+        "boundaries": [
+          "AuthorityEffect None; no theorem, status, sealed-byte or scope-fence change.",
+          "Repository tooling only; finite designated tests do not establish universal correctness.",
+          "The user waived the L4/D acceptance floor for PR #243; no repository-wide policy change or independent human score certification."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/pr243_review_validation.json",
+            "sha256": "b39b1abf1c0a0c714c1bd8c8c60908502aa3c7e03ee76b9846ef1ea76a67d45e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr243-reviewed-generate_prompts\",\n  \"authority_effect\": \"None\",\n  \"subject\": \"dag/pfp/generate_prompts.py\",\n  \"artifact\": {\n    \"path\": \"dag/pfp/generate_prompts.py\",\n    \"language\": \"Python\",\n    \"sha256\": \"c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65\"\n  },\n  \"source_sha256\": \"c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65\",\n  \"purpose\": \"Generate source-candidate prompts deterministically and retain explicitly bound P0 collections; recorded history protects stale collections even without their index row.\",\n  \"owned_invariants\": [\n    \"The sealed audit population is not regenerated.\",\n    \"Retained bindings must match the generated audit, prompt, collection identity, collection bytes and per-node run delta.\",\n    \"Recorded stage history prevents stale regeneration even if its whole index row is missing.\",\n    \"These operational checks do not accept a source claim or change a node status.\"\n  ],\n  \"boundaries\": [\n    \"AuthorityEffect None; no theorem, status, sealed-byte or scope-fence change.\",\n    \"Repository tooling only; finite designated tests do not establish universal correctness.\",\n    \"The user waived the L4/D acceptance floor for PR #243; no repository-wide policy change or independent human score certification.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr243_review_validation.json\",\n      \"sha256\": \"b39b1abf1c0a0c714c1bd8c8c60908502aa3c7e03ee76b9846ef1ea76a67d45e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "dag/pfp/generate_prompts.contract.score.yaml#pr243-review-contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a5345b4aa650aab89e0a50c6cb9a31f7dc5745e9a59b84ad0998ec2375b605ad",
+      "bytes": 2381,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "prompt-rename-repair-self-assessment",
+        "assessment_status": "complete_self_assessment_awaiting_maintainer_review",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "dag/pfp/generate_prompts.py",
+          "language": "Python",
+          "sha256": "86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab"
+        },
+        "profile": "Non-Numeric",
+        "level": "L4",
+        "level_assessment": "Self-assessed production repository custody workflow and its adversarial contract suite: deterministic interfaces, atomic writes, explicit preservation boundaries, independently bound artifacts and rejection cases. Maintainer review decides acceptance.",
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "limiting_reason": "Self-assessment awaiting independent maintainer review; legacy dynamic interfaces and limited designated fault set; no global correctness, complete mutation coverage or mathematical acceptance claim.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "evaluation_timestamp": "2026-10-23T16:05:31.566974+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/prompt_retention_targeted_validation.json",
+            "sha256": "5f8ee6bbd5828479e78388e24b1ae0f81cfb942ffbd866bd71bae9d5622f5586"
+          },
+          {
+            "path": "dag/research/prompt_retention_challenges.json",
+            "sha256": "f409f14af3488d8b7ba50d1f3f1ddf83f55f48a73989723361fb2c6f6e316161"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Exact source-byte and evidence hashes; explicit operational claim boundary.",
+          "G2": "Non-numeric custody and classification operations; source quotes retained verbatim.",
+          "G3": "Missing/tampered evidence and escaping paths rejected; recorded runs protected from regeneration.",
+          "G4": "83 broader tests plus final 30 targeted cases, with overlap disclosed; eight designated executed mutants all detected.",
+          "G5": "Inspected workflow structure; AST branch-count diagnostic maximum 28. No cognitive-complexity or higher-grade claim."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"prompt-rename-repair-self-assessment\",\n  \"assessment_status\": \"complete_self_assessment_awaiting_maintainer_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"dag/pfp/generate_prompts.py\",\n    \"language\": \"Python\",\n    \"sha256\": \"86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L4\",\n  \"level_assessment\": \"Self-assessed production repository custody workflow and its adversarial contract suite: deterministic interfaces, atomic writes, explicit preservation boundaries, independently bound artifacts and rejection cases. Maintainer review decides acceptance.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"limiting_reason\": \"Self-assessment awaiting independent maintainer review; legacy dynamic interfaces and limited designated fault set; no global correctness, complete mutation coverage or mathematical acceptance claim.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T16:05:31.566974+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/prompt_retention_targeted_validation.json\",\n      \"sha256\": \"5f8ee6bbd5828479e78388e24b1ae0f81cfb942ffbd866bd71bae9d5622f5586\"\n    },\n    {\n      \"path\": \"dag/research/prompt_retention_challenges.json\",\n      \"sha256\": \"f409f14af3488d8b7ba50d1f3f1ddf83f55f48a73989723361fb2c6f6e316161\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Exact source-byte and evidence hashes; explicit operational claim boundary.\",\n    \"G2\": \"Non-numeric custody and classification operations; source quotes retained verbatim.\",\n    \"G3\": \"Missing/tampered evidence and escaping paths rejected; recorded runs protected from regeneration.\",\n    \"G4\": \"83 broader tests plus final 30 targeted cases, with overlap disclosed; eight designated executed mutants all detected.\",\n    \"G5\": \"Inspected workflow structure; AST branch-count diagnostic maximum 28. No cognitive-complexity or higher-grade claim.\"\n  }\n}\n",
+      "original_paths": [
+        "dag/pfp/generate_prompts.py.contract.score.yaml#prompt-rename-repair-scoring"
+      ]
+    },
+    {
+      "sha256": "a9851b65b0e4dd26aad5c93e39459a2ea37f5a6265af6ccf5e532ca545a4a194",
+      "bytes": 2694,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr243-fresh-ai-review-generate_prompts",
+        "assessment_status": "completed_scoped_ai_reassessment_not_independent_human_certification",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "dag/pfp/generate_prompts.py",
+          "language": "Python",
+          "sha256": "c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65"
+        },
+        "profile": "Non-Numeric",
+        "level": "L3",
+        "level_assessment": "Bounded repository-domain generator/validator with dynamic schemas and untyped failure paths. Production-level L4 resource and typed-error guarantees are absent.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "E"
+        },
+        "composite_grade": "E",
+        "score_token": "L3E",
+        "is_complete": true,
+        "grade_ceiling": "E",
+        "limiting_reason": "SCORING.md section 3.5: measured cognitive complexity exceeds 40, requiring G5=E. Existing dynamic interfaces also lack typed failure contracts. This structural finding is not a new mathematical or runtime correctness counterexample.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evaluation_timestamp": "2026-10-23T17:10:41.190060+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr243_review_validation.json",
+            "sha256": "b39b1abf1c0a0c714c1bd8c8c60908502aa3c7e03ee76b9846ef1ea76a67d45e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Exact source and receipt hashes; per-file contract and explicit authority ceiling. No node claim or independent human certification.",
+          "G2": "Non-numeric raw-byte custody and explicit source-quote delimiters; valid corpus and adversarial tests replayed. Not a proof of mathematical content.",
+          "G3": "Recorded-run preservation and refusal of designated drift cases tested; dynamic schema interfaces and strict typing failures remain, so no typed-failure or crash-freedom claim.",
+          "G4": "See fresh test and ten distinct executable mutation results. Core custody boundaries exercised; no comprehensive fault or property-generator coverage claim.",
+          "G5": "Pinned cognitive-complexity 1.3.0 maximum 62 at mine_node; radon 6.0.1 CCN maximum 26. No operational resource-bound proof."
+        },
+        "merge_exception": {
+          "scope": "PR #243 only",
+          "authorization": "User explicitly instructed: Ignore L4D requirements so we can merge our PRs.",
+          "effect": "Acceptance floor waived for this merge; lower assessments remain visible; governance policy unchanged."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr243-fresh-ai-review-generate_prompts\",\n  \"assessment_status\": \"completed_scoped_ai_reassessment_not_independent_human_certification\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"dag/pfp/generate_prompts.py\",\n    \"language\": \"Python\",\n    \"sha256\": \"c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L3\",\n  \"level_assessment\": \"Bounded repository-domain generator/validator with dynamic schemas and untyped failure paths. Production-level L4 resource and typed-error guarantees are absent.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"E\"\n  },\n  \"composite_grade\": \"E\",\n  \"score_token\": \"L3E\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"E\",\n  \"limiting_reason\": \"SCORING.md section 3.5: measured cognitive complexity exceeds 40, requiring G5=E. Existing dynamic interfaces also lack typed failure contracts. This structural finding is not a new mathematical or runtime correctness counterexample.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T17:10:41.190060+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr243_review_validation.json\",\n      \"sha256\": \"b39b1abf1c0a0c714c1bd8c8c60908502aa3c7e03ee76b9846ef1ea76a67d45e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Exact source and receipt hashes; per-file contract and explicit authority ceiling. No node claim or independent human certification.\",\n    \"G2\": \"Non-numeric raw-byte custody and explicit source-quote delimiters; valid corpus and adversarial tests replayed. Not a proof of mathematical content.\",\n    \"G3\": \"Recorded-run preservation and refusal of designated drift cases tested; dynamic schema interfaces and strict typing failures remain, so no typed-failure or crash-freedom claim.\",\n    \"G4\": \"See fresh test and ten distinct executable mutation results. Core custody boundaries exercised; no comprehensive fault or property-generator coverage claim.\",\n    \"G5\": \"Pinned cognitive-complexity 1.3.0 maximum 62 at mine_node; radon 6.0.1 CCN maximum 26. No operational resource-bound proof.\"\n  },\n  \"merge_exception\": {\n    \"scope\": \"PR #243 only\",\n    \"authorization\": \"User explicitly instructed: Ignore L4D requirements so we can merge our PRs.\",\n    \"effect\": \"Acceptance floor waived for this merge; lower assessments remain visible; governance policy unchanged.\"\n  }\n}\n",
+      "original_paths": [
+        "dag/pfp/generate_prompts.contract.score.yaml#pr243-review-score"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "dag/pfp/generate_prompts.py.contract.score.yaml#prompt-rename-repair-contract": "4aed3258641f9b8e05f7ddf4fb3d75146b77e539e77340693cb60e4a18c408f9",
+    "dag/pfp/generate_prompts.py.contract.score.yaml#prompt-rename-repair-scoring": "a5345b4aa650aab89e0a50c6cb9a31f7dc5745e9a59b84ad0998ec2375b605ad",
+    "dag/pfp/generate_prompts.contract.score.yaml#pr243-review-contract": "1c3e07be7a58bb29d3392d8414adcce137e3f5c7ec4b61e561e6240b64cf75c4",
+    "dag/pfp/generate_prompts.contract.score.yaml#pr243-review-score": "a9851b65b0e4dd26aad5c93e39459a2ea37f5a6265af6ccf5e532ca545a4a194"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Prior self-assessments retained verbatim. Current scores are a fresh scoped AI reassessment, not independent human certification. User-authorized acceptance exception for PR #243 only."
+}
