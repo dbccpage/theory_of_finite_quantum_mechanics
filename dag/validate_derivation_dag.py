@@ -126,6 +126,8 @@ STAGES = (
     "CAUSAL_QFT",
     "ADS_CFT",
     "LOOP_QUANTUM_GRAVITY",
+    # Genesis to higher categories (sync_genesis_to_higher.py).
+    "GENESIS_TO_HIGHER",
 )
 STATUSES = (
     "ADMITTED_PRIMITIVE",

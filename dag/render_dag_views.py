@@ -11,7 +11,8 @@ Markdown index (top-level key index_document). The two files rendered here are v
 
 Never edit the views by hand: edit derivation_dag.json (or the fragment a sync script owns) and run
 the syncs, which call this renderer. Run order: sync_pfp_results.py, sync_unified_dag.py,
-sync_application_branches.py, sync_pregenesis_to_wdp.py, sync_frontier_branches.py; each of them writes
+sync_application_branches.py, sync_pregenesis_to_wdp.py, sync_frontier_branches.py,
+sync_genesis_to_higher.py; each of them writes
 derivation_dag.json and then the views. Run this script alone after a hand edit of derivation_dag.json.
 
     python -I -X utf8 dag/render_dag_views.py --check   # exit 1 when a view on disk differs
@@ -43,8 +44,13 @@ UNIFIED_SLICE = 'unified_dag'
 APP_SLICE = 'application_branches'
 FRONTIER_SLICE = 'frontier_branches'
 FRONTIER_MARKER = '<!-- frontier-branches: generated from fragments/frontier_branches.json -->'
+GTH_SLICE = 'genesis_to_higher'
+GTH_MARKER = '<!-- genesis-to-higher: generated from fragments/genesis_to_higher.json -->'
+GTH_TAG = 'genesis-to-higher'
+GTH_ROUTE_PREFIX = 'GTH-R-'
+GTH_STAGE = 'GENESIS_TO_HIGHER'
 # Records of these slices are listed after APP_MARKER, one section per application stage.
-APP_SLICES = (APP_SLICE, FRONTIER_SLICE)
+APP_SLICES = (APP_SLICE, FRONTIER_SLICE, GTH_SLICE)
 PGW_SLICE = 'pregenesis_to_wdp'
 DOMAIN_TAG = 'source-corpus'
 

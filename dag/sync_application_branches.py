@@ -9,8 +9,9 @@ preserved. The read-only views theory_of_finite_qm.jsonl and theory_of_finite_qm
 from derivation_dag.json by dag/render_dag_views.py.
 
 Run order: sync_pfp_results.py, sync_unified_dag.py, this script, sync_pregenesis_to_wdp.py,
-sync_frontier_branches.py. The frontier block (nodes tagged frontier-branch, routes FRO-R-, records of
-source_slice frontier_branches, the frontier README section) is kept after the application block.
+sync_frontier_branches.py, sync_genesis_to_higher.py. The frontier block (nodes tagged frontier-branch,
+routes FRO-R-, records of source_slice frontier_branches, the frontier README section) is kept after the
+application block, and the genesis-to-higher block is kept after the frontier block.
 --check detects stale generated data without writing.
 AuthorityEffect: None. Synchronization does not establish a mathematical claim.
 """
@@ -51,13 +52,17 @@ def generated_files(root: Path):
         if n['id'] in ids and 'application-branch' not in n['tags']:
             raise ValueError('application node collides with existing node: ' + n['id'])
     # Frontier-branch nodes, routes and records (sync_frontier_branches.py) stay after the application block.
+    # The genesis-to-higher block (sync_genesis_to_higher.py) stays after the frontier block.
     frontier_nodes = [n for n in dag['nodes'] if FRONTIER_TAG in n.get('tags', [])]
-    dag['nodes'] = [n for n in dag['nodes'] if n['id'] not in ids and FRONTIER_TAG not in n.get('tags', [])] \
-        + nodes + frontier_nodes
+    gth_nodes = [n for n in dag['nodes'] if views.GTH_TAG in n.get('tags', [])]
+    dag['nodes'] = [n for n in dag['nodes'] if n['id'] not in ids and FRONTIER_TAG not in n.get('tags', [])
+                    and views.GTH_TAG not in n.get('tags', [])] + nodes + frontier_nodes + gth_nodes
     route_ids = {r['id'] for r in routes}
     frontier_routes = [r for r in dag['routes'] if r['id'].startswith(FRONTIER_ROUTE_PREFIX)]
+    gth_routes = [r for r in dag['routes'] if r['id'].startswith(views.GTH_ROUTE_PREFIX)]
     dag['routes'] = [r for r in dag['routes'] if r['id'] not in route_ids
-                     and not r['id'].startswith(FRONTIER_ROUTE_PREFIX)] + routes + frontier_routes
+                     and not r['id'].startswith(FRONTIER_ROUTE_PREFIX)
+                     and not r['id'].startswith(views.GTH_ROUTE_PREFIX)] + routes + frontier_routes + gth_routes
     for stage in fragment['stages']:
         if stage not in dag['stages']:
             dag['stages'].append(stage)
@@ -88,8 +93,10 @@ def generated_files(root: Path):
         if r['id'] in record_ids and r.get('source_slice') != 'application_branches':
             raise ValueError('application record collides with existing record: ' + r['id'])
     frontier_records = [r for r in old_records if r.get('source_slice') == views.FRONTIER_SLICE]
+    gth_records = [r for r in old_records if r.get('source_slice') == views.GTH_SLICE]
     all_records = [r for r in old_records if r['id'] not in record_ids
-                   and r.get('source_slice') != views.FRONTIER_SLICE] + records + frontier_records
+                   and r.get('source_slice') not in (views.FRONTIER_SLICE, views.GTH_SLICE)] \
+        + records + frontier_records + gth_records
     if len({r['id'] for r in all_records}) != len(all_records):
         raise ValueError('duplicate master record identifiers')
     paper_paths = {}
