@@ -102,8 +102,7 @@ def replay_exit_codes(repo: Path) -> dict[str, int]:
     for f in sorted((repo / "dag/research").glob("lean_replay_campaign_*.json")):
         for r in json.loads(f.read_text(encoding="utf-8")).get("lean_replay", {}).get("results", []):
             out[r["source"]] = r["exit_code"]
-    deps = repo / "dag/research/lean_replay_campaign/dependency_builds.json"
-    if deps.exists():
+    for deps in sorted((repo / "dag/research/lean_replay_campaign").glob("dependency_builds*.json")):
         for r in json.loads(deps.read_text(encoding="utf-8"))["dependency_builds"]:
             out.setdefault(r["source"], r["exit_code"])
     return out
@@ -280,7 +279,7 @@ def main() -> int:
       f"in `lean4/lakefile.lean`. {sum(1 for f in files if f['cited_directly'])} are cited directly; the others are dependencies. "
       "The package folder disambiguates files that share a stem in different atlas papers. "
       "Every file carries a header with its original path, original sha256 and the import date. "
-      f"Build record (receipts and `dag/research/lean_replay_campaign/dependency_builds.json`, Mathlib `{mathlib_rev}`): "
+      f"Build record (receipts and `dag/research/lean_replay_campaign/dependency_builds*.json`, Mathlib `{mathlib_rev}`): "
       f"{built_ok} of {len(files)} built with exit code 0, {len(built_bad)} failed, {len(not_built)} have no build record. "
       f"{len(ported)} needed a port for version drift ({', '.join('`' + f['repo_path'][len('lean4/'):] + '`' for f in ported) or 'none'}), "
       "recorded in its header and in [`lean4/Imported/import_manifest.json`](../../lean4/Imported/import_manifest.json). "
@@ -305,6 +304,38 @@ def main() -> int:
     w("")
     w("Files under `dag/results/**` are sealed run snapshots; their references were not touched and their Lean files are not replayed.")
     w("")
+    prog_path = repo / "lean4/Imported/import_manifest_programmes.json"
+    if prog_path.exists():
+        prog = json.loads(prog_path.read_text(encoding="utf-8"))
+        prog_files = prog["files"]
+        w("### Programme folders (`lean4/research_programs/*`, `lean4/quantum_mechanics`, loose `lean4/*.lean`)")
+        w("")
+        w("A second import took Lean files from the sibling `lean4/` tree only where they are not already here "
+          "(identical sha256, newline-equivalent, or same module name) and a DAG node cites them, a file being imported imports them, "
+          "or they belong to the genesis / S(n) / MSS-N / pre-genesis / WDP / MUB6 / HCT programmes. "
+          "`dag/research/lean_replay_campaign/import_programmes.py` makes the decision for every file and "
+          "[`lean4/Imported/import_manifest_programmes.json`](../../lean4/Imported/import_manifest_programmes.json) records the imports.")
+        w("")
+        w("| Sibling folder | decision counts |")
+        w("|---|---|")
+        for slug, c in sorted(prog["decisions_summary"].items()):
+            w(f"| `{slug}` | " + ", ".join(f"{k} {v}" for k, v in sorted(c.items())) + " |")
+        w("")
+        codes = replay_exit_codes(repo)
+        ok = [f for f in prog_files if codes.get(f["repo_path"]) == 0]
+        bad = [f for f in prog_files if f["repo_path"] in codes and codes[f["repo_path"]] != 0]
+        missing_rec = [f for f in prog_files if f["repo_path"] not in codes]
+        roots = (repo / "lean4/lakefile.lean").read_text(encoding="utf-8")
+        in_lib = [f for f in prog_files if re.search("`" + re.escape(f["module"]) + r"(?![\w.])", roots)]
+        w(f"{len(prog_files)} files were imported; {len(ok)} built with exit code 0 and {len(in_lib)} of them are roots of `ImportedAtlas`; "
+          f"{len(bad)} did not build and are kept out of the library; {len(missing_rec)} have no build record.")
+        w("")
+        if bad:
+            w("Files that did not build (receipt rows with `exit_code` 1):")
+            w("")
+            for f in bad:
+                w(f"- `{f['repo_path']}` (from `{f['original_path']}`)")
+            w("")
     w("## What this repository would lose")
     w("")
     w("The table lists each group of sibling-tree paths that this checkout cites. *live* counts references from files that are inputs of "
