@@ -1,7 +1,74 @@
 {
   "AuthorityEffect": "None",
   "source": "checks/independent/dfm-electroweak-continuum-fence.py",
-  "sha256": "ba9e34421140761e26defe090e6cc202d7bd74eddc6d36ac47bf558fce18d4d2",
+  "sha256": "4c8ff3cf3c8bb851b02f6bd248b2c19793357cf71d4cbbdcb611f7d84f116dd0",
+  "prior_replay": {
+    "AuthorityEffect": "None",
+    "source": "checks/independent/dfm-electroweak-continuum-fence.py",
+    "sha256": "ba9e34421140761e26defe090e6cc202d7bd74eddc6d36ac47bf558fce18d4d2",
+    "checks": [
+      {
+        "argv": [
+          "-I",
+          "-X",
+          "utf8",
+          "checks\\independent\\dfm-electroweak-continuum-fence.py"
+        ],
+        "exit_code": 0,
+        "stdout": "normalization API: 9 doublets, 8 phases, 72 covariance and 576 composition cases\n10 invalid normalization/unit-action cases refused\nunnormalized sample z=1/2+1/3i entries match\nunit z=3/5+4/5i norm2=1 entry01=3/5+4/5i\nnonunit z=2 own-root entries 1 and 2 differ\nshared denominator on z=2 still matches\nchecked: unnormalized sample, unit witness, own-root split\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "-I",
+          "-X",
+          "utf8",
+          "-O",
+          "checks\\independent\\dfm-electroweak-continuum-fence.py"
+        ],
+        "exit_code": 0,
+        "stdout": "normalization API: 9 doublets, 8 phases, 72 covariance and 576 composition cases\n10 invalid normalization/unit-action cases refused\nunnormalized sample z=1/2+1/3i entries match\nunit z=3/5+4/5i norm2=1 entry01=3/5+4/5i\nnonunit z=2 own-root entries 1 and 2 differ\nshared denominator on z=2 still matches\nchecked: unnormalized sample, unit witness, own-root split\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "-m",
+          "mypy",
+          "--strict",
+          "checks\\independent\\dfm-electroweak-continuum-fence.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Success: no issues found in 1 source file\n",
+        "stderr": ""
+      }
+    ],
+    "mutants": [
+      {
+        "name": "zero refusal",
+        "outcome": "KILLED",
+        "reason": "wrong normalization failure class"
+      },
+      {
+        "name": "positive root",
+        "outcome": "KILLED",
+        "reason": "wrong normalization failure class"
+      },
+      {
+        "name": "root equation",
+        "outcome": "KILLED",
+        "reason": "invalid normalization input admitted"
+      },
+      {
+        "name": "unit inputs",
+        "outcome": "KILLED",
+        "reason": "invalid normalization input admitted"
+      }
+    ],
+    "metrics": {
+      "max_ccn": 15,
+      "max_cognitive": 14
+    }
+  },
   "checks": [
     {
       "argv": [
@@ -60,6 +127,7 @@
       "reason": "invalid normalization input admitted"
     }
   ],
+  "immutable_components": "ordinary post-construction reassignment refused with FrozenInstanceError",
   "metrics": {
     "max_ccn": 15,
     "max_cognitive": 14

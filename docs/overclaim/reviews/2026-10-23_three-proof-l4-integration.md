@@ -140,3 +140,15 @@ this integration. Both contract validators and the strict scanner pass against
 that new base. Governance again reports 8195 checked, 26 pass, 8149 unchanged
 grandfathered, 20 boilerplate and zero failures. The review and acceptance
 receipts are the only subsequent additions; hosted checks must pass before merge.
+
+## Concurrent PR230 integration
+
+PR230 was externally merged at 8b09af71610ebdc005c8c742bc81039ada205b52
+while the follow-up was being opened. Its immutable GR component improvement
+is retained. Normal/optimized Python, strict typing and all four selected EW
+faults pass again; direct component reassignment is refused. Proof, canonical
+DAG, registry and policy bytes are unchanged. Its two older Lean receipts are
+explicitly superseded, preserving original raw bytes and digests; they do not
+certify the current L4 module. Active YAML records bind the new checker and
+replay, and the substantive L3 exemption is absent. Affected generated views
+and acceptance checks are replayed against this base before merge.
