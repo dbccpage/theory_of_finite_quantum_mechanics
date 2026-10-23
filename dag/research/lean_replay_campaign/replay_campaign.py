@@ -452,7 +452,7 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
         audit_ok = bool(r.get("audit_done") and axioms and standard)
         admission_ok = not r.get("admission_hits") and "declaration uses 'sorry'" not in r["build_output"]
         row = {
-            "module": m if not rows_by_module[m].get("standalone") else Path(path).stem,
+            "module": m if not rows_by_module[m].get("standalone") else path[:-len(".lean")].replace("/", "."),
             "standalone_file": bool(rows_by_module[m].get("standalone")),
             "dag_nodes": sorted({n[0] for n in ent["nodes"]}),
             "dag_node_statuses": {n[0]: n[1] for n in ent["nodes"]},

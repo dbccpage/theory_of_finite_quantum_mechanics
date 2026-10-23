@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153`
 - cited in: node.lean, record TFQ-1332
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `direct_turing_machine_token_code_models`): recorded sha256 `6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.direct_turing_machine_token_code_models`): recorded sha256 `6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

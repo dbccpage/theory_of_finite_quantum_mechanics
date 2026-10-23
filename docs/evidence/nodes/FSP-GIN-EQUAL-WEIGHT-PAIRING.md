@@ -48,7 +48,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8`
 - cited in: node.lean, record TFQ-1194
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_fermion_sign.json](../../../dag/research/lean_replay_campaign_fermion_sign.json) (module `FermionGinCore`): recorded sha256 `256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_fermion_sign.json](../../../dag/research/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.FermionGinCore`): recorded sha256 `256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/FermionGinCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

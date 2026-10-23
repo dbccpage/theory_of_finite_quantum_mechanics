@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0`
 - cited in: node.lean, record TFQ-1329
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `tape_transition_invariant_models`): recorded sha256 `5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.tape_transition_invariant_models`): recorded sha256 `5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

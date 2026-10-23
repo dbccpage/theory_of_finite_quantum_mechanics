@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3`
 - cited in: node.lean, record TFQ-1335
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `terminal_authorization_boundary_models`): recorded sha256 `a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.terminal_authorization_boundary_models`): recorded sha256 `a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/terminal_authorization_boundary_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

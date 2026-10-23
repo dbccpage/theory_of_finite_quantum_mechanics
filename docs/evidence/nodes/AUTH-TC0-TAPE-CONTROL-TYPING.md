@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df`
 - cited in: node.lean, record TFQ-1328
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `tape_control_authorization_models`): recorded sha256 `c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.tape_control_authorization_models`): recorded sha256 `c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
