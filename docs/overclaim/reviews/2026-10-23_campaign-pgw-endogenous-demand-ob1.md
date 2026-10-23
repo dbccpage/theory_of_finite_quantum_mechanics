@@ -2,7 +2,7 @@
 
 AuthorityEffect: None. AI self-review, awaiting human review.
 
-Scope: PGW-ENDOGENOUS-DEMAND-OB1 on main b18b4d54b5dd6197a0580c8a481683a10d5ff6e0.
+Scope: PGW-ENDOGENOUS-DEMAND-OB1 on main 4a1e551210459ca8b410fada1e8eddb75e7b052c.
 Method: inspect all declaration types and executable syntax, source predicates,
 the independent checker and every finite number. Not rebuilt by this review;
 the completed target receipt supplies compilation evidence.
@@ -39,3 +39,5 @@ invariant under every writing. No token glyph is inspected by this model.
 What the scanner cannot decide: whether this is the desired internal policy,
 and whether Alpha's actual search/license implementation is a faithful host.
 The original goal-free demand obligation is not silently marked proved.
+
+Final gates: all prescribed checks and 24 tests pass. Strict scanner HIGH=0, MEDIUM=0, LOW=3; the LOW findings are inherited tensor metadata. The executed TFQ-0084 prompt delta and unchanged malformed HilbertLiftOperators companion remain additional diagnostic failures. No status is raised or scanner exception introduced.
