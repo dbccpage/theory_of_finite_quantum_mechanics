@@ -17,7 +17,9 @@ import contract_scores as scores  # noqa: E402
 import score_scope_contracts as scope  # noqa: E402
 
 PROBE = scope.ROOT / "code" / "python" / "_changed_since_probe.py"
-BAD = "lean4/HilbertLiftOperators.contract.score.yaml"
+# A deliberately corrupt companion, written for the test and removed after it. (The
+# test used lean4/HilbertLiftOperators.contract.score.yaml until that file was repaired.)
+BAD = "code/python/_changed_since_bad.contract.score.yaml"
 
 
 def _audit_stamp():
@@ -51,9 +53,14 @@ def test_an_empty_change_set_does_not_read_the_known_bad_companion():
 
 
 def test_a_named_bad_companion_is_still_refused():
-    with pytest.raises(SystemExit) as caught:
-        scores.check(changed={BAD})
-    assert caught.value.code == 1
+    bad = scope.ROOT / BAD
+    bad.write_text('{"schema_version": "tfqm.contract-score.v1" "broken": true}\n', encoding="utf-8", newline="\n")
+    try:
+        with pytest.raises(SystemExit) as caught:
+            scores.check(changed={BAD})
+        assert caught.value.code == 1
+    finally:
+        bad.unlink(missing_ok=True)
 
 
 def test_prepare_rejects_changed_since():
