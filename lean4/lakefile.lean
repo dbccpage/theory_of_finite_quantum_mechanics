@@ -627,6 +627,9 @@ lean_lib GenesisHottHorns where
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
+-- Finite regulator obstruction; not a default target.
+lean_lib CampaignFspLatticeAnomalyInflow where
+  roots := #[`CampaignFspLatticeAnomalyInflow]
 
 -- Operational hypotheses and exact countermodels. Not a default build target.
 lean_lib CampaignTransitionProbability where
