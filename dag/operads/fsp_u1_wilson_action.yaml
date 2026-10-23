@@ -3,25 +3,31 @@ node_id: FSP-U1-WILSON-ACTION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: With link phases U_ij = exp(i A_ij) and oriented plaquette products U_p, the Wilson
-    action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and nonnegative.
+  source_statement: With link phases U_ij = exp(i A_ij) on ordered vertex pairs and oriented closed-path
+    products U_p over a finite plaquette family, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant
+    under local U(1) gauge transformations and is nonnegative for beta_g >= 0.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions:
-  - compact lattice U(1) gauge theory with Wilson action (Wilson 1974)
-  source_bottleneck: Standard lattice-gauge fact imported, not established in this checkout; the source
-    supplies no fermion-sign consequence for it.
+  declared_assumptions: []
+  source_bottleneck: 'Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for
+    every g: V -> U(1) and for every angle shift A_ij -> A_ij + theta_i - theta_j) and nonnegativity for
+    beta_g >= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice
+    (ZMod L)^d is one instance. beta_g >= 0 is required: one self-link plaquette with phase -1 and beta_g
+    = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L <= 2 the two parallel links
+    between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity,
+    transfer matrix or non-abelian action is claimed.'
   source_refs:
   - dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md
   - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/independent/fsp-u1-wilson-action.md
   paper_refs:
   - dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md
-  source_claim_label: IMPORTED_ASSUMPTION
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md
-    sha256: c50b048187479b448a2a907e70a4c1e023cb07d81b3058f117804b47021402ea
+    sha256: 308a2a74b66e1860ab5d201751346f4aeaa486edcab9c5bd79780e0127158464
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -29,9 +35,393 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_u1_wilson_action_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: structure
+  name: ClosedPath
+  line: 102
+  signature_excerpt: 'structure ClosedPath (V : Type*)'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wilsonAction
+  line: 139
+  signature_excerpt: 'def wilsonAction (plaq : ι → ClosedPath V) (β : ℝ) (U : V → V → Circle) : ℝ'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gaugeAct
+  line: 47
+  signature_excerpt: 'def gaugeAct (g : V → G) (U : V → V → G) : V → V → G'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: linkOfAngle
+  line: 214
+  signature_excerpt: 'def linkOfAngle (A : V → V → ℝ) : V → V → Circle'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gaugeAngle
+  line: 218
+  signature_excerpt: 'def gaugeAngle (θ : V → ℝ) (A : V → V → ℝ) : V → V → ℝ'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: endpoint
+  line: 78
+  signature_excerpt: |-
+    def endpoint : V → List V → V
+      | a, [] => a
+      | _, b :: rest => endpoint b rest
+
+    @[simp] theorem holonomy_nil (U : V → V → G) (a : V) : holonomy U a [] = 1
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: loopHolonomy
+  line: 108
+  signature_excerpt: 'def loopHolonomy (U : V → V → G) (p : ClosedPath V) : G'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: holonomy
+  line: 73
+  signature_excerpt: |-
+    def holonomy (U : V → V → G) : V → List V → G
+      | _, [] => 1
+      | a, b :: rest => U a b * holonomy U b rest
+
+    /-- Last vertex of the path `a → l₀ → l₁ → ⋯`. -/
+    def endpoint : V → List V → V
+      | a, [] => a
+      | _, b :: rest => endpoint b rest
+
+    @[simp] theorem holonomy_nil (U : V → V → G) (a : V) : holonomy U a [] = 1
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pathAngle
+  line: 230
+  signature_excerpt: |-
+    def pathAngle (A : V → V → ℝ) : V → List V → ℝ
+      | _, [] => 0
+      | a, b :: rest => A a b + pathAngle A b rest
+
+    /-- The holonomy of angle links is the exponential of the summed angle. -/
+    theorem holonomy_linkOfAngle (A : V → V → ℝ) (a : V) (l : List V) :
+        holonomy (linkOfAngle A) a l = Circle.exp (pathAngle A a l)
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: selfLoop
+  line: 187
+  signature_excerpt: 'def selfLoop : ClosedPath Unit'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Site
+  line: 274
+  signature_excerpt: abbrev Site
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hypercubicWilson
+  line: 291
+  signature_excerpt: 'def hypercubicWilson (β : ℝ) (U : Site d L → Site d L → Circle) : ℝ'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: plaquette
+  line: 284
+  signature_excerpt: 'def plaquette (i : PlaqIndex d L) : ClosedPath (Site d L)'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: PlaqIndex
+  line: 280
+  signature_excerpt: abbrev PlaqIndex
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unitVec
+  line: 277
+  signature_excerpt: 'def unitVec (μ : Fin d) : Site d L'
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: fsp_u1_wilson_action
+  line: 254
+  signature_excerpt: |-
+    theorem fsp_u1_wilson_action {ι : Type*} [Fintype ι] (plaq : ι → ClosedPath V)
+        (β : ℝ) (A : V → V → ℝ) :
+        (∀ g : V → Circle,
+            wilsonAction plaq β (gaugeAct g (linkOfAngle A)) = wilsonAction plaq β (linkOfAngle A)) ∧
+        (∀ θ : V → ℝ,
+            wilsonAction plaq β (linkOfAngle (gaugeAngle θ A)) = wilsonAction plaq β (linkOfAngle A)) ∧
+        (0 ≤ β → 0 ≤ wilsonAction plaq β (linkOfAngle A))
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wilsonAction_gauge_invariant
+  line: 143
+  signature_excerpt: |-
+    theorem wilsonAction_gauge_invariant (plaq : ι → ClosedPath V) (β : ℝ)
+        (g : V → Circle) (U : V → V → Circle) :
+        wilsonAction plaq β (gaugeAct g U) = wilsonAction plaq β U
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wilsonAction_nonneg
+  line: 168
+  signature_excerpt: |-
+    theorem wilsonAction_nonneg (plaq : ι → ClosedPath V) {β : ℝ} (hβ : 0 ≤ β)
+        (U : V → V → Circle) : 0 ≤ wilsonAction plaq β U
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: loopHolonomy_gaugeAct
+  line: 125
+  signature_excerpt: |-
+    theorem loopHolonomy_gaugeAct (g : V → G) (U : V → V → G) (p : ClosedPath V) :
+        loopHolonomy (gaugeAct g U) p = loopHolonomy U p
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: holonomy_gaugeAct
+  line: 93
+  signature_excerpt: |-
+    theorem holonomy_gaugeAct (g : V → G) (U : V → V → G) (a : V) (l : List V) :
+        holonomy (gaugeAct g U) a l = g a * holonomy U a l * (g (endpoint a l))⁻¹
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: linkOfAngle_gaugeAngle
+  line: 222
+  signature_excerpt: |-
+    theorem linkOfAngle_gaugeAngle (θ : V → ℝ) (A : V → V → ℝ) :
+        linkOfAngle (gaugeAngle θ A) = gaugeAct (fun v => Circle.exp (θ v)) (linkOfAngle A)
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wilsonAction_linkOfAngle
+  line: 242
+  signature_excerpt: |-
+    theorem wilsonAction_linkOfAngle {ι : Type*} [Fintype ι] (plaq : ι → ClosedPath V)
+        (β : ℝ) (A : V → V → ℝ) :
+        wilsonAction plaq β (linkOfAngle A)
+          = β * ∑ p, (1 - Real.cos (pathAngle A (plaq p).base (plaq p).path))
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wilsonAction_eq_zero_iff
+  line: 173
+  signature_excerpt: |-
+    theorem wilsonAction_eq_zero_iff (plaq : ι → ClosedPath V) {β : ℝ} (hβ : 0 < β)
+        (U : V → V → Circle) :
+        wilsonAction plaq β U = 0 ↔ ∀ p, loopHolonomy U (plaq p) = 1
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wilsonAction_nonneg_needs_beta
+  line: 197
+  signature_excerpt: |-
+    theorem wilsonAction_nonneg_needs_beta :
+        ¬ ∀ (β : ℝ) (U : Unit → Unit → Circle),
+          0 ≤ wilsonAction (fun _ : Unit => selfLoop) β U
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hypercubicWilson_gauge_invariant
+  line: 295
+  signature_excerpt: |-
+    theorem hypercubicWilson_gauge_invariant (β : ℝ) (g : Site d L → Circle)
+        (U : Site d L → Site d L → Circle) :
+        hypercubicWilson d L β (gaugeAct g U) = hypercubicWilson d L β U
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hypercubicWilson_nonneg
+  line: 301
+  signature_excerpt: |-
+    theorem hypercubicWilson_nonneg {β : ℝ} (hβ : 0 ≤ β) (U : Site d L → Site d L → Circle) :
+        0 ≤ hypercubicWilson d L β U
+  source: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.fsp_u1_wilson_action
+  availability: local
+  symbol: CampaignFspU1WilsonAction.fsp_u1_wilson_action
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 254
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_gauge_invariant
+  availability: local
+  symbol: CampaignFspU1WilsonAction.wilsonAction_gauge_invariant
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 143
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg
+  availability: local
+  symbol: CampaignFspU1WilsonAction.wilsonAction_nonneg
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 168
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.loopHolonomy_gaugeAct
+  availability: local
+  symbol: CampaignFspU1WilsonAction.loopHolonomy_gaugeAct
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 125
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.holonomy_gaugeAct
+  availability: local
+  symbol: CampaignFspU1WilsonAction.holonomy_gaugeAct
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle
+  availability: local
+  symbol: CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 222
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_linkOfAngle
+  availability: local
+  symbol: CampaignFspU1WilsonAction.wilsonAction_linkOfAngle
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 242
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff
+  availability: local
+  symbol: CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 173
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta
+  availability: local
+  symbol: CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 197
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant
+  availability: local
+  symbol: CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 295
+  role: source_lead_only
+- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_nonneg
+  availability: local
+  symbol: CampaignFspU1WilsonAction.hypercubicWilson_nonneg
+  path: lean4/CampaignFspU1WilsonAction.lean
+  repository: this_repository
+  sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
+  declaration_status: declaration_found_not_proof_checked
+  line: 301
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -50,8 +440,7 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions:
-    - compact lattice U(1) gauge theory with Wilson action (Wilson 1974)
+    assumptions: []
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -67,12 +456,9 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports:
-    - compact lattice U(1) gauge theory with Wilson action (Wilson 1974)
+    unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -1,0 +1,16 @@
+{
+  "schema_version": "campaign_independent_check.v1",
+  "authority_effect": "None",
+  "dag_node": "FSP-U1-WILSON-ACTION",
+  "script": "checks/independent/fsp-u1-wilson-action.py",
+  "script_sha256": "904e37a395adcd589a13a592b6e07babcc968f64fef3af9d307801872a7ca8d7",
+  "command": "python -I -X utf8 checks/independent/fsp-u1-wilson-action.py",
+  "python_version": "3.14.2",
+  "sympy_version": "1.14.0",
+  "imports_repository_code": false,
+  "exit_code": 0,
+  "seconds": 5.3,
+  "stdout": "    48  Re prod exp(iA) == cos(sum A) (SymPy exact)\n    30  S = 0 iff every U_p = 1 (beta > 0)\n   288  S >= 0 for beta >= 0\n   288  S(gauged) == S exactly\n    20  U(b, a) == conj U(a, b) after gauging\n     6  angle form: S >= 0 for beta >= 0\n     6  angle form: S(A + d theta) == S(A) (SymPy exact)\n  2576  each plaquette holonomy is gauge invariant\n  2576  each plaquette term 1 - Re U_p >= 0\n    20  gauge(g, gauge(h, U)) == gauge(g*h, U)\n    96  gauged links have modulus 1\n    96  links have modulus 1\n     1  negative beta gives S < 0 on a non-flat field\n     1  one-plaquette witness: S = -2 at beta = -1\n    20  open-path holonomy: H(gU) = g(start) H(U) conj g(end)\n     5  plaquette count = L^d * d(d-1)/2\n    30  pure-gauge field has S = 0\n    30  pure-gauge field has every U_p = 1\n     1  single-link non-gauge mutations change some plaquette (20 of 20)\n    20  trivial gauge is the identity\n     1  wrong gauge rule g(a) U(a,b) changes some plaquette\nchecks=6159 distinct=21 failures=0\nOK: exact U(1) Wilson-action gauge invariance, nonnegativity for beta >= 0, flatness criterion and beta >= 0 necessity witness recomputed independently.\n",
+  "stderr": "",
+  "scope": "Finite exact checks on periodic lattices (d, L) in {(2,3), (2,4), (3,2), (3,3), (4,2)} with rational unit phases, plus a SymPy angle-form check on (2,2). Finite evidence, not a proof."
+}

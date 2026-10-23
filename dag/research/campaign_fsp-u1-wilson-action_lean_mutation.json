@@ -1,0 +1,99 @@
+{
+  "source": "lean4/CampaignFspU1WilsonAction.lean",
+  "source_sha256": "5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0",
+  "command": "lake env lean <mutant>.lean (from lean4/)",
+  "killed": 8,
+  "total": 8,
+  "results": [
+    {
+      "mutant": "M1_gauge_rule_drops_inverse",
+      "replaced": "fun a b => g a * U a b * (g b)⁻¹",
+      "with": "fun a b => g a * U a b * g b",
+      "mutant_sha256": "79b31946df3973e1aa665e0e3095b71e04d10c266b5f1df137b1d9258908d2d4",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M1_gauge_rule_drops_inverse.lean:50:0: error: Not a definitional equality: the left-hand side",
+      "seconds": 58
+    },
+    {
+      "mutant": "M1b_gauge_rule_drops_inverse_consistent",
+      "replaced": "fun a b => g a * U a b * (g b)⁻¹\n\n@[simp] theorem gaugeAct_apply (g : V → G) (U : V → V → G) (a b : V) :\n    gaugeAct g U a b = g a * U a b * (g b)⁻¹ := rfl",
+      "with": "fun a b => g a * U a b * g b\n\n@[simp] theorem gaugeAct_apply (g : V → G) (U : V → V → G) (a b : V) :\n    gaugeAct g U a b = g a * U a b * g b := rfl",
+      "mutant_sha256": "00ceffbd0fbeb7181a0890341f8d6712f358a2437f6d5678fd32b4126d8f80f2",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M1b_gauge_rule_drops_inverse_consistent.lean:60:67: error: unsolved goals",
+      "seconds": 48
+    },
+    {
+      "mutant": "M2_action_sign_flip",
+      "replaced": "β * ∑ p, (1 - ((loopHolonomy U (plaq p) : Circle) : ℂ).re)",
+      "with": "β * ∑ p, (1 + ((loopHolonomy U (plaq p) : Circle) : ℂ).re)",
+      "mutant_sha256": "bd592063e42bb1819c353137ee44308a09fd0aaf5d0284a11f5373bdf2f5c077",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M2_action_sign_flip.lean:170:46: error: Type mismatch",
+      "seconds": 61
+    },
+    {
+      "mutant": "M3_nonneg_drops_beta_hypothesis",
+      "replaced": "theorem wilsonAction_nonneg (plaq : ι → ClosedPath V) {β : ℝ} (hβ : 0 ≤ β)",
+      "with": "theorem wilsonAction_nonneg (plaq : ι → ClosedPath V) {β : ℝ} (hβ : True)",
+      "mutant_sha256": "135f4eb4cc0ff742c954d684e0688321d022e0c28bd5b59451050063bc1c2a54",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M3_nonneg_drops_beta_hypothesis.lean:170:13: error: Application type mismatch: The argument",
+      "seconds": 43
+    },
+    {
+      "mutant": "M4_plaquette_not_closed",
+      "replaced": "    i.1 + unitVec d L i.2.1.2, i.1]\n",
+      "with": "    i.1 + unitVec d L i.2.1.2]\n",
+      "mutant_sha256": "bfb3d977ccec2959195c4e974280b13adfa2d190291a50ac34084bbc2be51afc",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M4_plaquette_not_closed.lean:288:12: error: Type mismatch",
+      "seconds": 41
+    },
+    {
+      "mutant": "M5_angle_gauge_sign",
+      "replaced": "fun a b => A a b + θ a - θ b",
+      "with": "fun a b => A a b + θ a + θ b",
+      "mutant_sha256": "f2711bdef254e1ef853bb25928992bf4d25d4e30909c2f39a353aa967272c945",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M5_angle_gauge_sign.lean:223:91: error: unsolved goals",
+      "seconds": 61
+    },
+    {
+      "mutant": "M6_holonomy_drops_link",
+      "replaced": "  | a, b :: rest => U a b * holonomy U b rest",
+      "with": "  | _, b :: rest => holonomy U b rest",
+      "mutant_sha256": "c28d5f13fca69d52b8bb3cbc037a8570feebf17a12cb220f79d07025f20cf9d9",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M6_holonomy_drops_link.lean:84:0: error: Not a definitional equality: the left-hand side",
+      "seconds": 24
+    },
+    {
+      "mutant": "M6b_holonomy_drops_link_consistent",
+      "replaced": [
+        "  | a, b :: rest => U a b * holonomy U b rest\n",
+        "    holonomy U a (b :: rest) = U a b * holonomy U b rest := rfl"
+      ],
+      "with": [
+        "  | _, b :: rest => holonomy U b rest\n",
+        "    holonomy U a (b :: rest) = holonomy U b rest := rfl"
+      ],
+      "mutant_sha256": "1d44f3f9ef20ddbeb4bb5ba72e034964eeadfa09d1e7f7cec0b7dbff3d9243bc",
+      "exit_code": 1,
+      "killed": true,
+      "first_error": "M6b_holonomy_drops_link_consistent.lean:98:57: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern",
+      "seconds": 24
+    }
+  ],
+  "schema_version": "campaign_lean_mutation.v1",
+  "authority_effect": "None",
+  "dag_node": "FSP-U1-WILSON-ACTION",
+  "note": "Each mutant changes one ingredient (M1b and M6b also change the matching rfl simp lemma, so the kill comes from a theorem rather than the restated definition). A kill means lake env lean rejected the mutant. Not an exhaustive mutation campaign."
+}

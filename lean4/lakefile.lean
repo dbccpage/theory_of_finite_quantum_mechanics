@@ -1020,4 +1020,8 @@ lean_lib CampaignDfmCkmPhysicsFence where
 lean_lib CampaignDfmContinuumInterface where
   roots := #[`CampaignDfmContinuumInterface]
 
+-- Campaign: FSP-U1-WILSON-ACTION. Not a default target.
+lean_lib CampaignFspU1WilsonAction where
+  roots := #[`CampaignFspU1WilsonAction]
+
 
