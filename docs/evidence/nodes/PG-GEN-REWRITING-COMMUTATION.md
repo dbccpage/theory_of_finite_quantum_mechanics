@@ -11,8 +11,8 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 16
+- cited Lean, Rust or Python symbols found in their in-repo files: 28
+- cited Lean declarations covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -52,6 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean
 - replay: `verified`
   - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `CampaignGenesisOngoingRefinement`): recorded sha256 `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisOngoingRefinement`): recorded sha256 `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignGenesisOngoingRefinement`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,17 +69,30 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignGenesisOngoingRename.lean](../../../lean4/CampaignGenesisOngoingRename.lean)
 - sha256 (`bytes`): `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2`
-- cited in: node.lean
+- cited in: node.lean, receipt dag/research/genesis_merged_20261023_lean_replay.json (CampaignGenesisOngoingRename)
 - replay: `verified`
   - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `CampaignGenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignGenesisOngoingRename`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `Seed.Second.Reach.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.Reach.rename` |
 | `Seed.Second.Reach3.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.Reach3.rename` |
+| `Seed.Second.ReachNoRemove.obstruction_persists` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.ReachNoRemove.obstruction_persists` |
+| `Seed.Second.ReachNoRemove.pair_mem` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.ReachNoRemove.pair_mem` |
+| `Seed.Second.ReachNoRemove.toReach` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.ReachNoRemove.toReach` |
+| `Seed.Second.Step.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.Step.rename` |
 | `Seed.Second.Step3.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.Step3.rename` |
+| `Seed.Second.costA_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.costA_rename` |
+| `Seed.Second.costB_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.costB_rename` |
 | `Seed.Second.fewest_changes3_every_writing_A` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.fewest_changes3_every_writing_A` |
 | `Seed.Second.fewest_changes3_every_writing_B` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.fewest_changes3_every_writing_B` |
+| `Seed.Second.fewest_changes_every_writing_A` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.fewest_changes_every_writing_A` |
+| `Seed.Second.fewest_changes_every_writing_B` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.fewest_changes_every_writing_B` |
+| `Seed.Second.obstruction_persists_reach` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.obstruction_persists_reach` |
+| `Seed.Second.rename_identify` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.rename_identify` |
+| `Seed.Second.size_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.size_rename` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
