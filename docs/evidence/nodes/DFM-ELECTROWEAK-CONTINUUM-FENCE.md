@@ -47,9 +47,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignDfmElectroweakContinuumFence.lean](../../../lean4/CampaignDfmElectroweakContinuumFence.lean)
 - sha256 (`bytes`): `d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json (CampaignDfmElectroweakContinuumFence), record TFQ-1122
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json (CampaignDfmElectroweakContinuumFence), receipt dag/research/campaign_dfm-electroweak-continuum-fence_repair_lean_replay.json (CampaignDfmElectroweakContinuumFence), record TFQ-1122
 - replay: `verified`
   - receipt [dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json) (module `CampaignDfmElectroweakContinuumFence`): recorded sha256 `d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-electroweak-continuum-fence_repair_lean_replay.json](../../../dag/research/campaign_dfm-electroweak-continuum-fence_repair_lean_replay.json) (module `CampaignDfmElectroweakContinuumFence`): recorded sha256 `d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignDfmElectroweakContinuumFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -75,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-electroweak-continuum-fence.py`
 
 - file: [checks/independent/dfm-electroweak-continuum-fence.py](../../../checks/independent/dfm-electroweak-continuum-fence.py)
-- sha256 (`bytes`): `08caddc8ac770fdbda5639873700a5924ca644cdd1ac6d49351cc634011097ca`
+- sha256 (`bytes`): `576e69471ffec7098a701a6ea8415bbdd5ef538549d9c9e48717385939017928`
 - cited in: node.source, record TFQ-1122
 - counts toward the grade: yes
 
@@ -90,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-electroweak-continuum-fence.md`
 
 - file: [dag/derivations/independent/dfm-electroweak-continuum-fence.md](../../../dag/derivations/independent/dfm-electroweak-continuum-fence.md)
-- sha256 (`lf-normalised`): `eac5ebcbdd7fcc4aabf14a47827ea3bd843dddf4c4aaefa4189ced89596907ca`
+- sha256 (`lf-normalised`): `34d0cd2b42d10d27efe41550cfc22c1fb1edf9e14519a86574e0f5fb26318063`
 - cited in: node.source
 - counts toward the grade: yes
 
