@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 10
 - cited Lean, Rust or Python symbols found in their in-repo files: 91
-- cited Lean declarations covered by a current replay receipt: 81
+- cited Lean declarations covered by a current replay receipt: 89
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -141,12 +141,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H006PermutationUnitary.lean](../../../lean4/H006PermutationUnitary.lean)
 - sha256 (`bytes`): `84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f`
 - cited in: node.lean, node.source, record TFQ-1001
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H006PermutationUnitary`): recorded sha256 `84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build H006PermutationUnitary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `FableHilbertWalk20260819.H006.permutation_isometry` | yes | yes | yes | - | `#print axioms FableHilbertWalk20260819.H006.permutation_isometry` |
+| `FableHilbertWalk20260819.H006.permutation_isometry` | yes | yes | yes | Quot.sound, propext | `#print axioms FableHilbertWalk20260819.H006.permutation_isometry` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormHermitian.lean`
@@ -154,13 +155,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SectorFormHermitian.lean](../../../lean4/SectorFormHermitian.lean)
 - sha256 (`bytes`): `78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc`
 - cited in: node.lean, record TFQ-1001
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormHermitian`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `InnerProductFable.HermitianSectorForm.Generated` | yes | yes | yes | - | `#print axioms InnerProductFable.HermitianSectorForm.Generated` |
-| `InnerProductFable.HermitianSectorForm.Invariant` | yes | yes | yes | - | `#print axioms InnerProductFable.HermitianSectorForm.Invariant` |
+| `InnerProductFable.HermitianSectorForm.Generated` | yes | yes | yes | module-level | `#print axioms InnerProductFable.HermitianSectorForm.Generated` |
+| `InnerProductFable.HermitianSectorForm.Invariant` | yes | yes | yes | module-level | `#print axioms InnerProductFable.HermitianSectorForm.Invariant` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormUniqueness.lean`
@@ -168,16 +170,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SectorFormUniqueness.lean](../../../lean4/SectorFormUniqueness.lean)
 - sha256 (`bytes`): `2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be`
 - cited in: node.lean, record TFQ-1001
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormUniqueness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `InnerProductFable.SectorForm.Generated` | yes | yes | yes | - | `#print axioms InnerProductFable.SectorForm.Generated` |
-| `InnerProductFable.SectorForm.Invariant` | yes | yes | yes | - | `#print axioms InnerProductFable.SectorForm.Invariant` |
-| `InnerProductFable.SectorForm.TransitiveOn` | yes | yes | yes | - | `#print axioms InnerProductFable.SectorForm.TransitiveOn` |
-| `InnerProductFable.SectorForm.diag_const_of_transitive` | yes | yes | yes | - | `#print axioms InnerProductFable.SectorForm.diag_const_of_transitive` |
-| `InnerProductFable.SectorForm.invariant_of_generated` | yes | yes | yes | - | `#print axioms InnerProductFable.SectorForm.invariant_of_generated` |
+| `InnerProductFable.SectorForm.Generated` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.Generated` |
+| `InnerProductFable.SectorForm.Invariant` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.Invariant` |
+| `InnerProductFable.SectorForm.TransitiveOn` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.TransitiveOn` |
+| `InnerProductFable.SectorForm.diag_const_of_transitive` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.diag_const_of_transitive` |
+| `InnerProductFable.SectorForm.invariant_of_generated` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.invariant_of_generated` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/inner_product_uniqueness.rs`

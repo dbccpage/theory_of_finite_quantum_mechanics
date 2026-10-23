@@ -21,7 +21,7 @@ target:
     integer example u(x) = (x,0).'
   source_refs:
   - dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md
-  - omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean:10-14
+  - lean4/Imported/OeSn/SnOffImage.lean:19-23
   - omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md:155-158
   - omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md:98-99
   paper_refs: []
@@ -37,48 +37,122 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/mssn_sn_pgw_sn_off_image_refusal_proposal_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: inImage
+  line: 195
+  signature_excerpt: 'def inImage (n : Nat) (p : SnPresentation) : Bool'
+  source: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: accepted_only_from_section
+  line: 84
+  signature_excerpt: |-
+    theorem accepted_only_from_section (n : Nat) (p : SnPresentation) (q : SnPresentation)
+        (h : retractionDownMap n p = .accepted q) :
+        ∃ b : BasePresentation, p = sectionLift n b ∧ q = b.toPresentation
+  source: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nonDescent_iff_off_image
+  line: 136
+  signature_excerpt: |-
+    theorem nonDescent_iff_off_image (n : Nat) (p : SnPresentation) :
+        retractionDownMap n p = .nonDescent ↔ ∀ b : BasePresentation, p ≠ sectionLift n b
+  source: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sectionLift_injective
+  line: 160
+  signature_excerpt: |-
+    theorem sectionLift_injective (n : Nat) (b b' : BasePresentation)
+        (h : sectionLift n b = sectionLift n b') : b = b'
+  source: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: retraction_stage_strict
+  line: 183
+  signature_excerpt: |-
+    theorem retraction_stage_strict (n m : Nat) (b : BasePresentation) (hm : m ≠ n) :
+        retractionDownMap n (sectionLift m b) = .nonDescent
+  source: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: inImage_iff
+  line: 200
+  signature_excerpt: |-
+    theorem inImage_iff (n : Nat) (p : SnPresentation) :
+        inImage n p = true ↔ ∃ b : BasePresentation, p = sectionLift n b
+  source: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::accepted_only_from_section
-  availability: external
+- original_ref: lean4/Imported/OeSn/SnOffImage.lean::accepted_only_from_section
+  availability: local
   symbol: accepted_only_from_section
-  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
   role: source_lead_only
-- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::nonDescent_iff_off_image
-  availability: external
+- original_ref: lean4/Imported/OeSn/SnOffImage.lean::nonDescent_iff_off_image
+  availability: local
   symbol: nonDescent_iff_off_image
-  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  declaration_status: declaration_found_not_proof_checked
+  line: 136
   role: source_lead_only
-- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::sectionLift_injective
-  availability: external
+- original_ref: lean4/Imported/OeSn/SnOffImage.lean::sectionLift_injective
+  availability: local
   symbol: sectionLift_injective
-  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  declaration_status: declaration_found_not_proof_checked
+  line: 160
   role: source_lead_only
-- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::retraction_stage_strict
-  availability: external
+- original_ref: lean4/Imported/OeSn/SnOffImage.lean::retraction_stage_strict
+  availability: local
   symbol: retraction_stage_strict
-  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  declaration_status: declaration_found_not_proof_checked
+  line: 183
   role: source_lead_only
-- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::inImage_iff
-  availability: external
+- original_ref: lean4/Imported/OeSn/SnOffImage.lean::inImage_iff
+  availability: local
   symbol: inImage_iff
-  path: omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeSn/SnOffImage.lean
+  repository: this_repository
+  sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
+  declaration_status: declaration_found_not_proof_checked
+  line: 200
   role: source_lead_only
 presentation:
   colours: []
@@ -121,8 +195,6 @@ operad_slots:
       (assumption)'
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

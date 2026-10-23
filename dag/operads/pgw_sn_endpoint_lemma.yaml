@@ -33,40 +33,113 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/mssn_sn_pgw_sn_endpoint_lemma_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: Irrefl
+  line: 37
+  signature_excerpt: 'def Irrefl {α : Type} (r : α → α → Prop) : Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: D2
+  line: 98
+  signature_excerpt: 'def D2 : Bool → Bool → Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: irrefl_witness_distinct
+  line: 90
+  signature_excerpt: |-
+    theorem irrefl_witness_distinct {α : Type} (r : α → α → Prop) (hirr : ∀ x, ¬ r x x)
+        {a b : α} (hab : r a b) : a ≠ b
+  source: lean4/Imported/OeSn/SnTheorems.lean
+  repository: this_repository
+  source_sha256: acbabe52a9557e71a1ca32cd81122a70859a1f25c7c4654ec78102c8fc1fcf81
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: irrefl_witness_ne
+  line: 51
+  signature_excerpt: |-
+    theorem irrefl_witness_ne {α : Type} {r : α → α → Prop} (hi : Irrefl r)
+        {a b : α} (h : r a b) : a ≠ b
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: single_oriented_witness_consistent
+  line: 442
+  signature_excerpt: |-
+    theorem single_oriented_witness_consistent :
+        ∃ W : Bool → Bool → Nat,
+          W false true = 1 ∧ W true false = 0
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: D2_initial_pointed
+  line: 132
+  signature_excerpt: |-
+    theorem D2_initial_pointed {α : Type} (r : α → α → Prop) (a b : α)
+        (h : r a b) :
+        ∃ f : Bool → α,
+          (f false = a ∧ f true = b ∧ ∀ x y, D2 x y → r (f x) (f y)) ∧
+          ∀ g : Bool → α, g false = a → g true = b →
+            ∀ t, g t = f t
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_education/documentation/002_oesn/lean4/SnTheorems.lean::irrefl_witness_distinct
-  availability: external
+- original_ref: lean4/Imported/OeSn/SnTheorems.lean::irrefl_witness_distinct
+  availability: local
   symbol: irrefl_witness_distinct
-  path: omega_engine_education/documentation/002_oesn/lean4/SnTheorems.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeSn/SnTheorems.lean
+  repository: this_repository
+  sha256: acbabe52a9557e71a1ca32cd81122a70859a1f25c7c4654ec78102c8fc1fcf81
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::irrefl_witness_ne
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::irrefl_witness_ne
+  availability: local
   symbol: irrefl_witness_ne
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::single_oriented_witness_consistent
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::single_oriented_witness_consistent
+  availability: local
   symbol: single_oriented_witness_consistent
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  declaration_status: declaration_found_not_proof_checked
+  line: 442
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::D2_initial_pointed
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::D2_initial_pointed
+  availability: local
   symbol: D2_initial_pointed
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  repository: this_repository
+  sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
+  declaration_status: declaration_found_not_proof_checked
+  line: 132
   role: source_lead_only
 presentation:
   colours: []
@@ -107,8 +180,6 @@ operad_slots:
     - Irreflexivity and orientation of R as declared inputs, not consequences of <> (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

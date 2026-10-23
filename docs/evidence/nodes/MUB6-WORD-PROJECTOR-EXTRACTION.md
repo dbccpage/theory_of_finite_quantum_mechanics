@@ -1,6 +1,6 @@
 # MUB6-WORD-PROJECTOR-EXTRACTION
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,13 +47,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FlatMomentBasisRelations.lean](../../../lean4/FlatMomentBasisRelations.lean)
 - sha256 (`bytes`): `bf4ba4e84287be003d95729e6ce870b0189bb1c6b9b7a733720e9df3c4470ec8`
 - cited in: node.lean, record TFQ-1278
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `FlatMomentBasisRelations`): recorded sha256 `bf4ba4e84287be003d95729e6ce870b0189bb1c6b9b7a733720e9df3c4470ec8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FlatMomentBasisRelations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `extract_word_basis` | yes | yes | yes | - | `#print axioms extract_word_basis` |
-| `zero_action_moments_reject_completeness` | yes | yes | yes | - | `#print axioms zero_action_moments_reject_completeness` |
+| `extract_word_basis` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms extract_word_basis` |
+| `zero_action_moments_reject_completeness` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms zero_action_moments_reject_completeness` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FlatMomentProjectorExtraction.lean`
@@ -61,12 +62,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FlatMomentProjectorExtraction.lean](../../../lean4/FlatMomentProjectorExtraction.lean)
 - sha256 (`bytes`): `46a1f2c66be5cc14899da49af63a0c3ae7d41a79260dbda333016f7e60e0c6fc`
 - cited in: node.lean, record TFQ-1278
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `FlatMomentProjectorExtraction`): recorded sha256 `46a1f2c66be5cc14899da49af63a0c3ae7d41a79260dbda333016f7e60e0c6fc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FlatMomentProjectorExtraction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `extract_word_projectors` | yes | yes | yes | - | `#print axioms extract_word_projectors` |
+| `extract_word_projectors` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms extract_word_projectors` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1278_mub6_word_projector_extraction.md`

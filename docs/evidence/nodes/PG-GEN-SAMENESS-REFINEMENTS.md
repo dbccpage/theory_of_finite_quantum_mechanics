@@ -1,6 +1,6 @@
 # PG-GEN-SAMENESS-REFINEMENTS
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evide
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
 - cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
 
 ## Flags
 
@@ -45,26 +45,35 @@ MECHANIZED in Sixteenth..Twentyfirst Lean modules with Rust sameness/compatibili
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/State.lean`
+### Lean: `lean4/Imported/GenesisOngoing/Sixteenth/State.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/State.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [lean4/Imported/GenesisOngoing/Sixteenth/State.lean](../../../lean4/Imported/GenesisOngoing/Sixteenth/State.lean)
+- sha256 (`bytes`): `9145a76e1704bd1b8b47b858be313d8c85722ad1fe2cb15c9d8d1cc191b175dd`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Sixteenth.State`): recorded sha256 `9145a76e1704bd1b8b47b858be313d8c85722ad1fe2cb15c9d8d1cc191b175dd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Sixteenth/State.lean`
+- counts toward the grade: yes
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentieth/Order.lean`
+### Lean: `lean4/Imported/GenesisOngoing/Twentieth/Order.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentieth/Order.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [lean4/Imported/GenesisOngoing/Twentieth/Order.lean](../../../lean4/Imported/GenesisOngoing/Twentieth/Order.lean)
+- sha256 (`bytes`): `3d2ba2dbac504fce151498a4ccec4314f70634d052fb36fcba20d7ca61974449`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentieth.Order`): recorded sha256 `3d2ba2dbac504fce151498a4ccec4314f70634d052fb36fcba20d7ca61974449` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentieth/Order.lean`
+- counts toward the grade: yes
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentyfirst/Refusal.lean`
+### Lean: `lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentyfirst/Refusal.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean](../../../lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean)
+- sha256 (`bytes`): `3dda5f94755bd75aeda3748fae0aff489903fd5b23ae582eeb695e5cf52b68b4`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentyfirst.Refusal`): recorded sha256 `3dda5f94755bd75aeda3748fae0aff489903fd5b23ae582eeb695e5cf52b68b4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
+- counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 

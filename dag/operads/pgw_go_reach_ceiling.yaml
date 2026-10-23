@@ -36,32 +36,76 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_go_reach_ceiling_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: oneTerm
+  line: 138
+  signature_excerpt: 'def oneTerm : St'
+  source: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean
+  repository: this_repository
+  source_sha256: fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: reach_by_edits
+  line: 93
+  signature_excerpt: |-
+    theorem reach_by_edits (s g : St) (hg : g.Legal) (hgw : g.WF) (hT : s.T ⊆ g.T)
+        (ha : g.a = s.a) (hb : g.b = s.b) :
+        Reach s g ((s.A \ g.A).card + (g.T \ s.T).card + (g.A \ s.A).card)
+  source: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean
+  repository: this_repository
+  source_sha256: fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: givenA_to_oneTerm
+  line: 182
+  signature_excerpt: 'theorem givenA_to_oneTerm : Reach givenA oneTerm 2'
+  source: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean
+  repository: this_repository
+  source_sha256: fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: givenB_to_oneTerm
+  line: 190
+  signature_excerpt: 'theorem givenB_to_oneTerm : Reach givenB oneTerm 3'
+  source: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean
+  repository: this_repository
+  source_sha256: fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::reach_by_edits
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::reach_by_edits
+  availability: local
   symbol: reach_by_edits
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean
+  repository: this_repository
+  sha256: fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::givenA_to_oneTerm
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::givenA_to_oneTerm
+  availability: local
   symbol: givenA_to_oneTerm
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean
+  repository: this_repository
+  sha256: fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d
+  declaration_status: declaration_found_not_proof_checked
+  line: 182
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::givenB_to_oneTerm
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::givenB_to_oneTerm
+  availability: local
   symbol: givenB_to_oneTerm
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean
+  repository: this_repository
+  sha256: fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d
+  declaration_status: declaration_found_not_proof_checked
+  line: 190
   role: source_lead_only
 presentation:
   colours: []
@@ -104,8 +148,6 @@ operad_slots:
       D9 (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

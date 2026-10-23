@@ -38,23 +38,51 @@ source_provenance:
   path: dag/prompts/pregenesis_pgw_replay_necessity_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: insufficient_history_view
+  line: 28
+  signature_excerpt: |-
+    theorem insufficient_history_view {H V S : Type} (pi : H → V) (sigma : H → S)
+        (h1 h2 : H) (sameView : pi h1 = pi h2) (differentState : sigma h1 ≠ sigma h2) :
+        ¬ ∃ auditor : V → S, ∀ h, auditor (pi h) = sigma h
+  source: lean4/Imported/Genesis19l57g1/Paper000.lean
+  repository: this_repository
+  source_sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_factor_through_common_view
+  line: 14
+  signature_excerpt: |-
+    theorem no_factor_through_common_view {H V S : Type} (view : H → V) (answer : H → S)
+        (h1 h2 : H) (sameView : view h1 = view h2) (differentAnswer : answer h1 ≠ answer h2) :
+        ¬ ∃ auditor : V → S, ∀ h, auditor (view h) = answer h
+  source: lean4/Imported/Genesis19l57g1/Paper000.lean
+  repository: this_repository
+  source_sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::insufficient_history_view
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Paper000.lean::insufficient_history_view
+  availability: local
   symbol: insufficient_history_view
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Paper000.lean
+  repository: this_repository
+  sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::no_factor_through_common_view
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Paper000.lean::no_factor_through_common_view
+  availability: local
   symbol: no_factor_through_common_view
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Paper000.lean
+  repository: this_repository
+  sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
+  declaration_status: declaration_found_not_proof_checked
+  line: 14
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor
   availability: external
@@ -101,8 +129,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

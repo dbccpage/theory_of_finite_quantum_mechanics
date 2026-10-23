@@ -27,12 +27,12 @@ Local compatibility port replayed with Lean 4.33.1; enumeration length, uniquene
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normal_sound`
-- `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.same_class_iff`
-- `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.numChord_identity`
-- `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_length`
-- `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_nodup`
-- `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.mem_normalForms_iff`
+- `lean4/SwitchingNormalForm.lean::SwitchingNormalForm.normal_sound`
+- `lean4/SwitchingNormalForm.lean::SwitchingNormalForm.same_class_iff`
+- `lean4/SwitchingNormalForm.lean::SwitchingNormalForm.numChord_identity`
+- `lean4/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_length`
+- `lean4/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_nodup`
+- `lean4/SwitchingNormalForm.lean::SwitchingNormalForm.mem_normalForms_iff`
 - `lean4/SwitchingNormalForm.lean::normal_sound`
 - `lean4/SwitchingNormalForm.lean::same_class_iff`
 - `lean4/SwitchingNormalForm.lean::numChord_identity`
@@ -55,7 +55,7 @@ Local compatibility port replayed with Lean 4.33.1; enumeration length, uniquene
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
+  - `lean4/SwitchingNormalForm.lean`
   - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
   - `dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
   - `lean4/SwitchingNormalForm.lean`

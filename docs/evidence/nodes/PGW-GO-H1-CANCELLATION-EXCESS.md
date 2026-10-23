@@ -1,6 +1,6 @@
 # PGW-GO-H1-CANCELLATION-EXCESS
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,20 +8,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E0; 4 Lean reference(s) cited, 0 in this checkout. PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
-- `proved_lean_external_only`: all 4 cited Lean reference(s) lie outside this checkout. PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -43,31 +42,53 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Cost.lean`
+### Lean: `lean4/Imported/GenesisOngoingCore/Twentysecond/Cost.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Cost.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+- file: [lean4/Imported/GenesisOngoingCore/Twentysecond/Cost.lean](../../../lean4/Imported/GenesisOngoingCore/Twentysecond/Cost.lean)
+- sha256 (`bytes`): `5c5435dae41ae384a3b9a9c003d45a6feb9f70f6e87b69275b74b4fecd299359`
+- cited in: node.lean, record TFQ-0483
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentysecond.Cost`): recorded sha256 `5c5435dae41ae384a3b9a9c003d45a6feb9f70f6e87b69275b74b4fecd299359` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentysecond/Cost.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Plain.lean`
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `fewest_changes` | yes | yes | yes | Quot.sound, propext | `#print axioms fewest_changes` |
+- counts toward the grade: yes
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Plain.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+### Lean: `lean4/Imported/GenesisOngoingCore/Twentysecond/Plain.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean`
+- file: [lean4/Imported/GenesisOngoingCore/Twentysecond/Plain.lean](../../../lean4/Imported/GenesisOngoingCore/Twentysecond/Plain.lean)
+- sha256 (`bytes`): `53e255f2501fb9e54f1e440348ee89c917ffb1ff86de9c9a504d55f8989e2ab2`
+- cited in: node.lean, record TFQ-0483
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentysecond.Plain`): recorded sha256 `53e255f2501fb9e54f1e440348ee89c917ffb1ff86de9c9a504d55f8989e2ab2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentysecond/Plain.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `plain_reduced` | yes | yes | yes | Quot.sound, propext | `#print axioms plain_reduced` |
+- counts toward the grade: yes
+
+### Lean: `lean4/Imported/GenesisOngoingCore/Twentysecond/Same.lean`
+
+- file: [lean4/Imported/GenesisOngoingCore/Twentysecond/Same.lean](../../../lean4/Imported/GenesisOngoingCore/Twentysecond/Same.lean)
+- sha256 (`bytes`): `60043763e2bc84e81653454381f08e658b5d40cb6fe3bc08c3a584e639650097`
+- cited in: node.lean, record TFQ-0483
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentysecond.Same`): recorded sha256 `60043763e2bc84e81653454381f08e658b5d40cb6fe3bc08c3a584e639650097` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentysecond/Same.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `gen_iff_same` | yes | yes | yes | Quot.sound, propext | `#print axioms gen_iff_same` |
+| `same_iff_excess` | yes | yes | yes | Quot.sound, propext | `#print axioms same_iff_excess` |
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md`
 
 - file: [dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md](../../../dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md)
-- sha256 (`lf-normalised`): `db76068560fe6f5f0ecf23411725c5ddd7336902cea677b877a146f80ee95a2a`
+- sha256 (`lf-normalised`): `18cd28c68f7110413e09785e6dd1d62a7b6c47879bc7f8dfcdbee8605c488cb0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0483
 - counts toward the grade: no
@@ -93,10 +114,6 @@ Named by the node; not in this repository and not checked here.
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::cost`
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::excess`
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::plain`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Cost.lean::fewest_changes`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Plain.lean::plain_reduced`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean::gen_iff_same`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean::same_iff_excess`
 
 ## Absences recorded by the TFQ records
 

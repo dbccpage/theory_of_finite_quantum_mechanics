@@ -1,0 +1,1507 @@
+{
+  "schema_version": "lean_replay_campaign.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-22",
+  "group": "L1_TO_L2",
+  "result": "19 Lean module(s) cited by DAG nodes of stage L1_TO_L2; 19 built with exit code 0, passed the admission scan and the axiom audit (every printed axiom list a subset of propext, Classical.choice, Quot.sound); the rest are listed with their failure.",
+  "source_base": "10be79e94",
+  "proof_boundary": "This receipt records that the file with the stated sha256 type-checks and which axioms the cited declarations depend on. It changes no DAG node status and does not say the declaration states the node's claim.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "1a68724e10f8b4f974b82d2315a5d5de5da2faaf172fbd7ccab02cfe696181f8",
+    "build_directory": "lean4/b (lakefile buildDir; removed after the run)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build <Module>   (one invocation per module, dependencies first)",
+    "parallelism": "modules of one dependency level were built side by side; seconds are wall-clock and include contention",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "BornNormalization",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY"
+        ],
+        "dag_node_statuses": {
+          "L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY": "PROVED_LEAN"
+        },
+        "source": "lean4/BornNormalization.lean",
+        "sha256": "83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8",
+        "sha256_after_build": "83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 19.52,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "born_normalization_redundancy"
+        ],
+        "cited_resolution": {
+          "born_normalization_redundancy": [
+            "BornNormalization.born_normalization_redundancy"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "BornNormalization.born_normalization_redundancy": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "ℹ [2/2] Built BornNormalization (3.7s)\ninfo: BornNormalization.lean:102:0: 'BornNormalization.density_trace_eq_denom' does not depend on any axioms\ninfo: BornNormalization.lean:103:0: 'BornNormalization.born_normalization_redundancy' depends on axioms: [propext, Quot.sound]\ninfo: BornNormalization.lean:104:0: 'BornNormalization.projector_self_adjoint' depends on axioms: [propext]\ninfo: BornNormalization.lean:105:0: 'BornNormalization.projector_trace' does not depend on any axioms\ninfo: BornNormalization.lean:106:0: 'BornNormalization.projector_idempotence_00' depends on axioms: [propext]\ninfo: BornNormalization.lean:107:0: 'BornNormalization.projector_idempotence_01' depends on axioms: [propext]\ninfo: BornNormalization.lean:108:0: 'BornNormalization.ray_invariance_sign_flip' depends on axioms: [propext]\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tborn_normalization_redundancy\tBornNormalization.born_normalization_redundancy\t[propext, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build BornNormalization",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:32:01Z"
+      },
+      {
+        "module": "BornRedundancy",
+        "standalone_file": false,
+        "dag_nodes": [
+          "FQ-BORN-NORMALIZATION-REDUNDANCY",
+          "FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED",
+          "L1-QM020-THM1-DIRECT-NORMALIZATION",
+          "L1-QM020-THM2A-L1-ADDITIVITY-DEFECT",
+          "L1-QM020-THM3-ROW-SPARSITY",
+          "L1-QM020-THM6-P1-SCOPE-FENCE",
+          "L1-QM020-THM7-REPRESENTATION-CAPACITY",
+          "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED"
+        ],
+        "dag_node_statuses": {
+          "FQ-BORN-NORMALIZATION-REDUNDANCY": "PROVED_LEAN",
+          "FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED": "PROVED_LEAN",
+          "L1-QM020-THM1-DIRECT-NORMALIZATION": "PROVED_LEAN",
+          "L1-QM020-THM2A-L1-ADDITIVITY-DEFECT": "PROVED_LEAN",
+          "L1-QM020-THM3-ROW-SPARSITY": "PROVED_LEAN",
+          "L1-QM020-THM6-P1-SCOPE-FENCE": "PROVED_LEAN",
+          "L1-QM020-THM7-REPRESENTATION-CAPACITY": "PROVED_LEAN",
+          "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED": "CONDITIONAL"
+        },
+        "source": "lean4/BornRedundancy.lean",
+        "sha256": "8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b",
+        "sha256_after_build": "8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 9.77,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "D1_zero_iff_mul_nonneg",
+          "D1_zero_iff_same_sign",
+          "descent_compatible_iff_row_sparse",
+          "listSum_normalize",
+          "normalize",
+          "normalize_idempotent",
+          "ray_quotient_classification",
+          "row_sparse_implies_descent_compatible"
+        ],
+        "cited_resolution": {
+          "D1_zero_iff_mul_nonneg": [
+            "BornRedundancy.D1_zero_iff_mul_nonneg"
+          ],
+          "D1_zero_iff_same_sign": [
+            "BornRedundancy.D1_zero_iff_same_sign"
+          ],
+          "descent_compatible_iff_row_sparse": [
+            "BornRedundancy.descent_compatible_iff_row_sparse"
+          ],
+          "listSum_normalize": [
+            "BornRedundancy.listSum_normalize"
+          ],
+          "normalize": [
+            "BornRedundancy.normalize"
+          ],
+          "normalize_idempotent": [
+            "BornRedundancy.normalize_idempotent"
+          ],
+          "ray_quotient_classification": [
+            "BornRedundancy.ray_quotient_classification"
+          ],
+          "row_sparse_implies_descent_compatible": [
+            "BornRedundancy.row_sparse_implies_descent_compatible"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "BornRedundancy.D1_zero_iff_mul_nonneg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "BornRedundancy.D1_zero_iff_same_sign": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "BornRedundancy.descent_compatible_iff_row_sparse": [
+            "Quot.sound",
+            "propext"
+          ],
+          "BornRedundancy.listSum_normalize": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "BornRedundancy.normalize": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "BornRedundancy.normalize_idempotent": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "BornRedundancy.ray_quotient_classification": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "BornRedundancy.row_sparse_implies_descent_compatible": [
+            "propext"
+          ]
+        },
+        "output": "Build completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tD1_zero_iff_mul_nonneg\tBornRedundancy.D1_zero_iff_mul_nonneg\t[propext, Classical.choice, Quot.sound]\nAX\tD1_zero_iff_same_sign\tBornRedundancy.D1_zero_iff_same_sign\t[propext, Classical.choice, Quot.sound]\nAX\tdescent_compatible_iff_row_sparse\tBornRedundancy.descent_compatible_iff_row_sparse\t[propext, Quot.sound]\nAX\tlistSum_normalize\tBornRedundancy.listSum_normalize\t[propext, Classical.choice, Quot.sound]\nAX\tnormalize\tBornRedundancy.normalize\t[propext, Classical.choice, Quot.sound]\nAX\tnormalize_idempotent\tBornRedundancy.normalize_idempotent\t[propext, Classical.choice, Quot.sound]\nAX\tray_quotient_classification\tBornRedundancy.ray_quotient_classification\t[propext, Classical.choice, Quot.sound]\nAX\trow_sparse_implies_descent_compatible\tBornRedundancy.row_sparse_implies_descent_compatible\t[propext]\n",
+        "build_command": "cd lean4 && lake build BornRedundancy",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-23T00:02:06Z"
+      },
+      {
+        "module": "ComplexFieldSelection",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-COMPLEX-FIELD"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-COMPLEX-FIELD": "CONDITIONAL"
+        },
+        "source": "lean4/ComplexFieldSelection.lean",
+        "sha256": "134ba342a742720a19d59d6ebfc9bf197a85d99a4c9fc08b0be7e4f77b3654f1",
+        "sha256_after_build": "134ba342a742720a19d59d6ebfc9bf197a85d99a4c9fc08b0be7e4f77b3654f1",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 71.16,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "ComplexFieldSelection.conditional_discharge",
+          "ComplexFieldSelection.dimension_selection",
+          "ComplexFieldSelection.gaussian_product_span",
+          "ComplexFieldSelection.quaternion_refuted",
+          "ComplexFieldSelection.rho_same_product_statistics",
+          "ComplexFieldSelection.rho_states"
+        ],
+        "cited_resolution": {
+          "ComplexFieldSelection.conditional_discharge": [
+            "ComplexFieldSelection.conditional_discharge"
+          ],
+          "ComplexFieldSelection.dimension_selection": [
+            "ComplexFieldSelection.dimension_selection"
+          ],
+          "ComplexFieldSelection.gaussian_product_span": [
+            "ComplexFieldSelection.gaussian_product_span"
+          ],
+          "ComplexFieldSelection.quaternion_refuted": [
+            "ComplexFieldSelection.quaternion_refuted"
+          ],
+          "ComplexFieldSelection.rho_same_product_statistics": [
+            "ComplexFieldSelection.rho_same_product_statistics"
+          ],
+          "ComplexFieldSelection.rho_states": [
+            "ComplexFieldSelection.rho_states"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "ComplexFieldSelection.conditional_discharge": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ComplexFieldSelection.dimension_selection": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ComplexFieldSelection.gaussian_product_span": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ComplexFieldSelection.quaternion_refuted": [
+            "Quot.sound",
+            "propext"
+          ],
+          "ComplexFieldSelection.rho_same_product_statistics": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "ComplexFieldSelection.rho_states": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [938/969] Replayed BornGaussRat\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Algebra.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.BigOperators.Group.Finset.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.CharZero.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Order.Ring.Unbundled.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Star.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is des\n...[truncated 12322 chars]...\nQuot.sound]\ninfo: ComplexFieldSelection.lean:232:0: 'ComplexFieldSelection.failing_pair_refutes' does not depend on any axioms\ninfo: ComplexFieldSelection.lean:233:0: 'ComplexFieldSelection.real_refuted' depends on axioms: [propext, Quot.sound]\ninfo: ComplexFieldSelection.lean:234:0: 'ComplexFieldSelection.quaternion_refuted' depends on axioms: [propext, Quot.sound]\ninfo: ComplexFieldSelection.lean:235:0: 'ComplexFieldSelection.trivial_factor_passes' depends on axioms: [propext]\ninfo: ComplexFieldSelection.lean:236:0: 'ComplexFieldSelection.conditional_discharge' depends on axioms: [propext, Quot.sound]\ninfo: ComplexFieldSelection.lean:237:0: 'ComplexFieldSelection.real_product_orthogonality' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:238:0: 'ComplexFieldSelection.delta_symmetric' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:239:0: 'ComplexFieldSelection.delta_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:240:0: 'ComplexFieldSelection.rho_states' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:241:0: 'ComplexFieldSelection.rho_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:242:0: 'ComplexFieldSelection.rho_same_product_statistics' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (3138 jobs).\n",
+        "axiom_audit_output": "AX\tComplexFieldSelection.conditional_discharge\tComplexFieldSelection.conditional_discharge\t[propext, Quot.sound]\nAX\tComplexFieldSelection.dimension_selection\tComplexFieldSelection.dimension_selection\t[propext, Classical.choice, Quot.sound]\nAX\tComplexFieldSelection.gaussian_product_span\tComplexFieldSelection.gaussian_product_span\t[propext, Classical.choice, Quot.sound]\nAX\tComplexFieldSelection.quaternion_refuted\tComplexFieldSelection.quaternion_refuted\t[propext, Quot.sound]\nAX\tComplexFieldSelection.rho_same_product_statistics\tComplexFieldSelection.rho_same_product_statistics\t[propext, Classical.choice, Quot.sound]\nAX\tComplexFieldSelection.rho_states\tComplexFieldSelection.rho_states\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build ComplexFieldSelection",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:00:31Z"
+      },
+      {
+        "module": "FiniteWignerKernel",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS": "CONDITIONAL"
+        },
+        "source": "lean4/FiniteWignerKernel.lean",
+        "sha256": "29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab",
+        "sha256_after_build": "29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 42.44,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "WignerFable.Kernel.Similarity",
+          "WignerFable.Kernel.eq_smul_of_normSq_ip_eq",
+          "WignerFable.Kernel.expansion",
+          "WignerFable.Kernel.tp",
+          "WignerFable.Kernel.tp_eq_born"
+        ],
+        "cited_resolution": {
+          "WignerFable.Kernel.Similarity": [
+            "WignerFable.Kernel.Similarity"
+          ],
+          "WignerFable.Kernel.eq_smul_of_normSq_ip_eq": [
+            "WignerFable.Kernel.eq_smul_of_normSq_ip_eq"
+          ],
+          "WignerFable.Kernel.expansion": [
+            "WignerFable.Kernel.expansion"
+          ],
+          "WignerFable.Kernel.tp": [
+            "WignerFable.Kernel.tp"
+          ],
+          "WignerFable.Kernel.tp_eq_born": [
+            "WignerFable.Kernel.tp_eq_born"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "WignerFable.Kernel.Similarity": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Kernel.eq_smul_of_normSq_ip_eq": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Kernel.expansion": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Kernel.tp": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Kernel.tp_eq_born": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1012/1068] Replayed BornEffectValuation\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Module.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Ring.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Abel` from package `mathli\n...[truncated 40933 chars]...\nrnel.lean:746:0: 'WignerFable.Kernel.ip_colMatrix_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:747:0: 'WignerFable.Kernel.vnorm_colMatrix_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:748:0: 'WignerFable.Kernel.ip_f_colMatrix_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:749:0: 'WignerFable.Kernel.coords' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:750:0: 'WignerFable.Kernel.coords_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:751:0: 'WignerFable.Kernel.coords_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:752:0: 'WignerFable.Kernel.expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:753:0: 'WignerFable.Kernel.ip_f_eq_vnorm_mul_coords' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:754:0: 'WignerFable.Kernel.coords_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:755:0: 'WignerFable.Kernel.similarity_colMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerKernel.lean:756:0: 'WignerFable.Kernel.coords_of_similarity' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1814 jobs).\n",
+        "axiom_audit_output": "AX\tWignerFable.Kernel.Similarity\tWignerFable.Kernel.Similarity\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Kernel.eq_smul_of_normSq_ip_eq\tWignerFable.Kernel.eq_smul_of_normSq_ip_eq\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Kernel.expansion\tWignerFable.Kernel.expansion\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Kernel.tp\tWignerFable.Kernel.tp\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Kernel.tp_eq_born\tWignerFable.Kernel.tp_eq_born\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build FiniteWignerKernel",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:14:39Z"
+      },
+      {
+        "module": "FiniteWignerSimilarity",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS": "CONDITIONAL"
+        },
+        "source": "lean4/FiniteWignerSimilarity.lean",
+        "sha256": "d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37",
+        "sha256_after_build": "d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 13.06,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "WignerFable.Similarity.F3_not_induced_by_antiunitary",
+          "WignerFable.Similarity.F3_not_induced_by_unitary",
+          "WignerFable.Similarity.F3_similarity",
+          "WignerFable.Similarity.F3_tpPreserving",
+          "WignerFable.Similarity.exists_unitary_iff",
+          "WignerFable.Similarity.permMatrix_unitary",
+          "WignerFable.Similarity.three_not_sum_two_sq",
+          "WignerFable.Similarity.tpPreserving_iff_born"
+        ],
+        "cited_resolution": {
+          "WignerFable.Similarity.F3_not_induced_by_antiunitary": [
+            "WignerFable.Similarity.F3_not_induced_by_antiunitary"
+          ],
+          "WignerFable.Similarity.F3_not_induced_by_unitary": [
+            "WignerFable.Similarity.F3_not_induced_by_unitary"
+          ],
+          "WignerFable.Similarity.F3_similarity": [
+            "WignerFable.Similarity.F3_similarity"
+          ],
+          "WignerFable.Similarity.F3_tpPreserving": [
+            "WignerFable.Similarity.F3_tpPreserving"
+          ],
+          "WignerFable.Similarity.exists_unitary_iff": [
+            "WignerFable.Similarity.exists_unitary_iff"
+          ],
+          "WignerFable.Similarity.permMatrix_unitary": [
+            "WignerFable.Similarity.permMatrix_unitary"
+          ],
+          "WignerFable.Similarity.three_not_sum_two_sq": [
+            "WignerFable.Similarity.three_not_sum_two_sq"
+          ],
+          "WignerFable.Similarity.tpPreserving_iff_born": [
+            "WignerFable.Similarity.tpPreserving_iff_born"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "WignerFable.Similarity.F3_not_induced_by_antiunitary": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Similarity.F3_not_induced_by_unitary": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Similarity.F3_similarity": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Similarity.F3_tpPreserving": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Similarity.exists_unitary_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Similarity.permMatrix_unitary": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Similarity.three_not_sum_two_sq": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Similarity.tpPreserving_iff_born": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1016/1068] Replayed BornEffectValuation\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Module.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Ring.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Abel` from package `mathli\n...[truncated 64789 chars]...\n [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:465:0: 'WignerFable.Similarity.F3_not_induced_by_unitary' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:466:0: 'WignerFable.Similarity.F3_not_induced_by_antiunitary' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:467:0: 'WignerFable.Similarity.permMatrix' depends on axioms: [propext, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:468:0: 'WignerFable.Similarity.permMatrix_apply' depends on axioms: [propext, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:469:0: 'WignerFable.Similarity.permMatrix_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:470:0: 'WignerFable.Similarity.permMatrix_unitary' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:471:0: 'WignerFable.Similarity.permMatrix_ip' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:472:0: 'WignerFable.Similarity.tpPreserving_iff_born' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:473:0: 'WignerFable.Similarity.Unitary.vnorm_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerSimilarity.lean:474:0: 'WignerFable.Similarity.similarity_hf_one_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1817 jobs).\n",
+        "axiom_audit_output": "AX\tWignerFable.Similarity.F3_not_induced_by_antiunitary\tWignerFable.Similarity.F3_not_induced_by_antiunitary\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Similarity.F3_not_induced_by_unitary\tWignerFable.Similarity.F3_not_induced_by_unitary\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Similarity.F3_similarity\tWignerFable.Similarity.F3_similarity\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Similarity.F3_tpPreserving\tWignerFable.Similarity.F3_tpPreserving\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Similarity.exists_unitary_iff\tWignerFable.Similarity.exists_unitary_iff\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Similarity.permMatrix_unitary\tWignerFable.Similarity.permMatrix_unitary\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Similarity.three_not_sum_two_sq\tWignerFable.Similarity.three_not_sum_two_sq\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Similarity.tpPreserving_iff_born\tWignerFable.Similarity.tpPreserving_iff_born\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build FiniteWignerSimilarity",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-23T00:02:43Z"
+      },
+      {
+        "module": "FiniteWignerTheorem",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS": "CONDITIONAL"
+        },
+        "source": "lean4/FiniteWignerTheorem.lean",
+        "sha256": "b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292",
+        "sha256_after_build": "b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 74.63,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "WignerFable.Theorem.TpPreserving",
+          "WignerFable.Theorem.coord_rigidity",
+          "WignerFable.Theorem.finite_wigner",
+          "WignerFable.Theorem.finite_wigner_cases",
+          "WignerFable.Theorem.sgn_consistent",
+          "WignerFable.Theorem.similarity_bijective",
+          "WignerFable.Theorem.tpPreserving_of_similarity"
+        ],
+        "cited_resolution": {
+          "WignerFable.Theorem.TpPreserving": [
+            "WignerFable.Theorem.TpPreserving"
+          ],
+          "WignerFable.Theorem.coord_rigidity": [
+            "WignerFable.Theorem.coord_rigidity"
+          ],
+          "WignerFable.Theorem.finite_wigner": [
+            "WignerFable.Theorem.finite_wigner"
+          ],
+          "WignerFable.Theorem.finite_wigner_cases": [
+            "WignerFable.Theorem.finite_wigner_cases"
+          ],
+          "WignerFable.Theorem.sgn_consistent": [
+            "WignerFable.Theorem.sgn_consistent"
+          ],
+          "WignerFable.Theorem.similarity_bijective": [
+            "WignerFable.Theorem.similarity_bijective"
+          ],
+          "WignerFable.Theorem.tpPreserving_of_similarity": [
+            "WignerFable.Theorem.tpPreserving_of_similarity"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "WignerFable.Theorem.TpPreserving": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Theorem.coord_rigidity": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Theorem.finite_wigner": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Theorem.finite_wigner_cases": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Theorem.sgn_consistent": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Theorem.similarity_bijective": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "WignerFable.Theorem.tpPreserving_of_similarity": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1012/1043] Replayed BornEffectValuation\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Module.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Ring.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Abel` from package `mathli\n...[truncated 51238 chars]...\nignerTheorem.lean:904:0: 'WignerFable.Theorem.normalised_data' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:905:0: 'WignerFable.Theorem.stage1' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:906:0: 'WignerFable.Theorem.T_r_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:907:0: 'WignerFable.Theorem.sgn_consistent' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:908:0: 'WignerFable.Theorem.stage2' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:909:0: 'WignerFable.Theorem.induced_of_sign' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:910:0: 'WignerFable.Theorem.exists_sign' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:911:0: 'WignerFable.Theorem.finite_wigner' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:912:0: 'WignerFable.Theorem.finite_wigner_cases' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:913:0: 'WignerFable.Theorem.tpPreserving_of_similarity' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: FiniteWignerTheorem.lean:914:0: 'WignerFable.Theorem.similarity_bijective' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1815 jobs).\n",
+        "axiom_audit_output": "AX\tWignerFable.Theorem.TpPreserving\tWignerFable.Theorem.TpPreserving\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Theorem.coord_rigidity\tWignerFable.Theorem.coord_rigidity\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Theorem.finite_wigner\tWignerFable.Theorem.finite_wigner\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Theorem.finite_wigner_cases\tWignerFable.Theorem.finite_wigner_cases\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Theorem.sgn_consistent\tWignerFable.Theorem.sgn_consistent\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Theorem.similarity_bijective\tWignerFable.Theorem.similarity_bijective\t[propext, Classical.choice, Quot.sound]\nAX\tWignerFable.Theorem.tpPreserving_of_similarity\tWignerFable.Theorem.tpPreserving_of_similarity\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build FiniteWignerTheorem",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:20:57Z"
+      },
+      {
+        "module": "GaussRatAutomorphisms",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS": "CONDITIONAL"
+        },
+        "source": "lean4/GaussRatAutomorphisms.lean",
+        "sha256": "714abb8b88f233d38c3046cead72d58bbf770c1b6902a27323d4e47a58de93e5",
+        "sha256_after_build": "714abb8b88f233d38c3046cead72d58bbf770c1b6902a27323d4e47a58de93e5",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 31.11,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "WignerFable.GaussRatAut.ringHom_eq_id_or_star"
+        ],
+        "cited_resolution": {
+          "WignerFable.GaussRatAut.ringHom_eq_id_or_star": [
+            "WignerFable.GaussRatAut.ringHom_eq_id_or_star"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "WignerFable.GaussRatAut.ringHom_eq_id_or_star": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [939/959] Replayed BornGaussRat\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Algebra.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.BigOperators.Group.Finset.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.CharZero.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Order.Ring.Unbundled.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Star.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is des\n...[truncated 8082 chars]...\n from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: GaussRatAutomorphisms.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: GaussRatAutomorphisms.lean:93:0: 'WignerFable.GaussRatAut.mul_self_eq_neg_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: GaussRatAutomorphisms.lean:94:0: 'WignerFable.GaussRatAut.ringHom_apply_I' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: GaussRatAutomorphisms.lean:95:0: 'WignerFable.GaussRatAut.ringHom_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: GaussRatAutomorphisms.lean:96:0: 'WignerFable.GaussRatAut.ringHom_eq_id_or_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: GaussRatAutomorphisms.lean:97:0: 'WignerFable.GaussRatAut.id_ringHom_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: GaussRatAutomorphisms.lean:98:0: 'WignerFable.GaussRatAut.star_ringHom_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: GaussRatAutomorphisms.lean:99:0: 'WignerFable.GaussRatAut.id_and_star_are_ringHoms' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: GaussRatAutomorphisms.lean:100:0: 'WignerFable.GaussRatAut.star_ne_id' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (959 jobs).\n",
+        "axiom_audit_output": "AX\tWignerFable.GaussRatAut.ringHom_eq_id_or_star\tWignerFable.GaussRatAut.ringHom_eq_id_or_star\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build GaussRatAutomorphisms",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:00:46Z"
+      },
+      {
+        "module": "H003ReversibilityGate",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS": "CONDITIONAL"
+        },
+        "source": "lean4/H003ReversibilityGate.lean",
+        "sha256": "d308e3e3f99b14b807f03d3f762cf91a928a78f3c3fa21cef224717ce0b415f2",
+        "sha256_after_build": "d308e3e3f99b14b807f03d3f762cf91a928a78f3c3fa21cef224717ce0b415f2",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 6.12,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [],
+        "cited_resolution": {},
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "every theorem of the file (no declaration cited)",
+        "axioms": {
+          "FableHilbertWalk20260819.H003.Reversible.mk.inj": [],
+          "FableHilbertWalk20260819.H003.Reversible.mk.injEq": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H003.collapse_not_reversible": [],
+          "FableHilbertWalk20260819.H003.Reversible.right": [],
+          "FableHilbertWalk20260819.H003.reversibility_gate": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H003.Reversible.left": [],
+          "FableHilbertWalk20260819.H003.pushforward_reversible": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H003.Reversible.mk.sizeOf_spec": []
+        },
+        "output": "⚠ [2/3] Replayed HWKernel\nwarning: HWKernel.lean:125:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:127:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:142:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:144:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:158:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:162:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:180:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:182:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:275:28: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.l\n...[truncated 7012 chars]...\n[propext]\ninfo: HWKernel.lean:618:0: 'FableHilbertWalk20260819.HWKernel.ratPack' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:619:0: 'Rat.add_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:620:0: 'Rat.add_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:621:0: 'Rat.zero_add' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:622:0: 'Rat.add_neg_cancel' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:623:0: 'Rat.mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:624:0: 'Rat.mul_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:625:0: 'Rat.one_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:626:0: 'Rat.mul_add' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: HWKernel.lean:627:0: 'Rat.mul_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\nℹ [3/3] Replayed H003ReversibilityGate\ninfo: H003ReversibilityGate.lean:38:0: 'FableHilbertWalk20260819.H003.collapse_not_reversible' does not depend on any axioms\ninfo: H003ReversibilityGate.lean:58:0: 'FableHilbertWalk20260819.H003.pushforward_reversible' depends on axioms: [propext]\ninfo: H003ReversibilityGate.lean:70:0: 'FableHilbertWalk20260819.H003.reversibility_gate' depends on axioms: [propext]\nBuild completed successfully (3 jobs).\n",
+        "axiom_audit_output": "AX\t*\tFableHilbertWalk20260819.H003.Reversible.mk.inj\t[]\nAX\t*\tFableHilbertWalk20260819.H003.Reversible.mk.injEq\t[propext]\nAX\t*\tFableHilbertWalk20260819.H003.collapse_not_reversible\t[]\nAX\t*\tFableHilbertWalk20260819.H003.Reversible.right\t[]\nAX\t*\tFableHilbertWalk20260819.H003.reversibility_gate\t[propext]\nAX\t*\tFableHilbertWalk20260819.H003.Reversible.left\t[]\nAX\t*\tFableHilbertWalk20260819.H003.pushforward_reversible\t[propext]\nAX\t*\tFableHilbertWalk20260819.H003.Reversible.mk.sizeOf_spec\t[]\n",
+        "build_command": "cd lean4 && lake build H003ReversibilityGate",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:00:30Z"
+      },
+      {
+        "module": "H005InnerProductAdmission",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-HILBERT-INNER-PRODUCT"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-HILBERT-INNER-PRODUCT": "CONDITIONAL"
+        },
+        "source": "lean4/H005InnerProductAdmission.lean",
+        "sha256": "25072066552c061b7ce2206ed10846ef1fe954edbb7dc5056a34de573929e55c",
+        "sha256_after_build": "25072066552c061b7ce2206ed10846ef1fe954edbb7dc5056a34de573929e55c",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 11.33,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "gram_not_unique",
+          "inner_product_admission"
+        ],
+        "cited_resolution": {
+          "gram_not_unique": [
+            "FableHilbertWalk20260819.H005.gram_not_unique"
+          ],
+          "inner_product_admission": [
+            "FableHilbertWalk20260819.H005.inner_product_admission"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "FableHilbertWalk20260819.H005.gram_not_unique": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H005.inner_product_admission": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [2/4] Replayed HWKernel\nwarning: HWKernel.lean:125:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:127:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:142:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:144:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:158:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:162:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:180:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:182:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:275:28: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.l\n...[truncated 10868 chars]...\nWalk20260819.H005.gram_not_unique' depends on axioms: [propext]\ninfo: H005InnerProductAdmission.lean:87:0: 'FableHilbertWalk20260819.H005.f2_isotropic' does not depend on any axioms\ninfo: H005InnerProductAdmission.lean:114:0: 'FableHilbertWalk20260819.H005.int_pos_semidef' depends on axioms: [propext, Quot.sound]\ninfo: H005InnerProductAdmission.lean:142:0: 'FableHilbertWalk20260819.H005.gramStd_pos_def' depends on axioms: [propext, Quot.sound]\ninfo: H005InnerProductAdmission.lean:162:0: 'FableHilbertWalk20260819.H005.gramWeighted_pos_def' depends on axioms: [propext, Quot.sound]\nwarning: H005InnerProductAdmission.lean:170:45: This simp argument is unused:\n  Int.neg_mul\n\nHint: Omit it from the simp argument list.\n  [apply] simp [GaussInt.gmul, GaussInt.gconj, Int.mul_neg, Int.mul_comm]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: H005InnerProductAdmission.lean:174:10: This simp argument is unused:\n  Int.mul_neg\n\nHint: Omit it from the simp argument list.\n  [apply] simp [GaussInt.gmul, GaussInt.gconj, Int.neg_mul, Int.sub_eq_add_neg, Int.neg_neg]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\ninfo: H005InnerProductAdmission.lean:179:0: 'FableHilbertWalk20260819.H005.gauss_self_real' depends on axioms: [propext, Quot.sound]\ninfo: H005InnerProductAdmission.lean:190:0: 'FableHilbertWalk20260819.H005.inner_product_admission' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (4 jobs).\n",
+        "axiom_audit_output": "AX\tgram_not_unique\tFableHilbertWalk20260819.H005.gram_not_unique\t[propext]\nAX\tinner_product_admission\tFableHilbertWalk20260819.H005.inner_product_admission\t[propext, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build H005InnerProductAdmission",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:09:56Z"
+      },
+      {
+        "module": "H006PermutationUnitary",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-LINEAR-ISOMETRIC-DYNAMICS": "CONDITIONAL"
+        },
+        "source": "lean4/H006PermutationUnitary.lean",
+        "sha256": "84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f",
+        "sha256_after_build": "84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 9.92,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [],
+        "cited_resolution": {},
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "every theorem of the file (no declaration cited)",
+        "axioms": {
+          "FableHilbertWalk20260819.H006.swapI_not_permutation": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H006.permutation_norm": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H006.permU_right_inverse": [
+            "Quot.sound"
+          ],
+          "FableHilbertWalk20260819.H006.permU_left_inverse": [
+            "Quot.sound"
+          ],
+          "FableHilbertWalk20260819.H006.permutation_isometry_envelope": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H006.swapI_isometry": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H006.permU_isometric_automorphism_over_posdef": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H006.permutation_isometry": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H006.permutation_on_basis": []
+        },
+        "output": "⚠ [2/6] Replayed HWKernel\nwarning: HWKernel.lean:125:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:127:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:142:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:144:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:158:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:162:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:180:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:182:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:275:28: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.l\n...[truncated 16022 chars]...\n\n  Int.one_mul\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [GaussInt.gmul, GaussInt.gconj, GaussInt.gi, Int.neg_mul, Int.mul_neg, Int.neg_neg,\n    Int.sub_eq_add_neg, Int.neg_add, Int.zero_mul, Int.mul_zero, Int.zero_add, Int.add_zero, Int.mul_comm, Int.mul_one,\n    GaussInt.mk.injEq]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\ninfo: H006PermutationUnitary.lean:127:0: 'FableHilbertWalk20260819.H006.swapI_isometry' depends on axioms: [propext]\nwarning: H006PermutationUnitary.lean:138:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: H006PermutationUnitary.lean:143:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: H006PermutationUnitary.lean:145:8: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\ninfo: H006PermutationUnitary.lean:148:0: 'FableHilbertWalk20260819.H006.swapI_not_permutation' depends on axioms: [propext, Quot.sound]\ninfo: H006PermutationUnitary.lean:166:0: 'FableHilbertWalk20260819.H006.permU_isometric_automorphism_over_posdef' depends on axioms: [propext, Quot.sound]\ninfo: H006PermutationUnitary.lean:180:0: 'FableHilbertWalk20260819.H006.permutation_isometry_envelope' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (6 jobs).\n",
+        "axiom_audit_output": "AX\t*\tFableHilbertWalk20260819.H006.swapI_not_permutation\t[propext, Quot.sound]\nAX\t*\tFableHilbertWalk20260819.H006.permutation_norm\t[propext, Quot.sound]\nAX\t*\tFableHilbertWalk20260819.H006.permU_right_inverse\t[Quot.sound]\nAX\t*\tFableHilbertWalk20260819.H006.permU_left_inverse\t[Quot.sound]\nAX\t*\tFableHilbertWalk20260819.H006.permutation_isometry_envelope\t[propext, Quot.sound]\nAX\t*\tFableHilbertWalk20260819.H006.swapI_isometry\t[propext]\nAX\t*\tFableHilbertWalk20260819.H006.permU_isometric_automorphism_over_posdef\t[propext, Quot.sound]\nAX\t*\tFableHilbertWalk20260819.H006.permutation_isometry\t[propext, Quot.sound]\nAX\t*\tFableHilbertWalk20260819.H006.permutation_on_basis\t[]\n",
+        "build_command": "cd lean4 && lake build H006PermutationUnitary",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:15:26Z"
+      },
+      {
+        "module": "H007Complexification",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-COMPLEX-FIELD"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-COMPLEX-FIELD": "CONDITIONAL"
+        },
+        "source": "lean4/H007Complexification.lean",
+        "sha256": "5a26837c8e57820953fe5e97f790b4ba6d04a8b0b6edc4ac5fcb84b0ba2e5242",
+        "sha256_after_build": "5a26837c8e57820953fe5e97f790b4ba6d04a8b0b6edc4ac5fcb84b0ba2e5242",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 17.32,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "gi_not_embedded"
+        ],
+        "cited_resolution": {
+          "gi_not_embedded": [
+            "FableHilbertWalk20260819.H007.gi_not_embedded"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "FableHilbertWalk20260819.H007.gi_not_embedded": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [2/7] Replayed HWKernel\nwarning: HWKernel.lean:125:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:127:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:142:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:144:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:158:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:162:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:180:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:182:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:275:28: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.l\n...[truncated 16645 chars]...\necated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: H006PermutationUnitary.lean:143:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: H006PermutationUnitary.lean:145:8: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\ninfo: H006PermutationUnitary.lean:148:0: 'FableHilbertWalk20260819.H006.swapI_not_permutation' depends on axioms: [propext, Quot.sound]\ninfo: H006PermutationUnitary.lean:166:0: 'FableHilbertWalk20260819.H006.permU_isometric_automorphism_over_posdef' depends on axioms: [propext, Quot.sound]\ninfo: H006PermutationUnitary.lean:180:0: 'FableHilbertWalk20260819.H006.permutation_isometry_envelope' depends on axioms: [propext, Quot.sound]\nℹ [7/7] Built H007Complexification (2.9s)\ninfo: H007Complexification.lean:25:0: 'FableHilbertWalk20260819.H007.gi_squared' does not depend on any axioms\ninfo: H007Complexification.lean:42:0: 'FableHilbertWalk20260819.H007.embed_mul' depends on axioms: [propext]\ninfo: H007Complexification.lean:50:0: 'FableHilbertWalk20260819.H007.gi_not_embedded' depends on axioms: [propext]\ninfo: H007Complexification.lean:70:0: 'FableHilbertWalk20260819.H007.real_pipeline_complete' depends on axioms: [propext, Quot.sound]\ninfo: H007Complexification.lean:80:0: 'FableHilbertWalk20260819.H007.complexification' depends on axioms: [propext]\nBuild completed successfully (7 jobs).\n",
+        "axiom_audit_output": "AX\tgi_not_embedded\tFableHilbertWalk20260819.H007.gi_not_embedded\t[propext]\n",
+        "build_command": "cd lean4 && lake build H007Complexification",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:20:00Z"
+      },
+      {
+        "module": "H013BornPairingBoundary",
+        "standalone_file": false,
+        "dag_nodes": [
+          "DS-QM207-211-FIVE-IMPORT-CASCADE",
+          "L1-IMP-ORTHOGONAL-ADDITIVITY",
+          "L1-QM020-THM6-P1-SCOPE-FENCE",
+          "L1-QM122-BORN-PAIRING-NONUNIQUE"
+        ],
+        "dag_node_statuses": {
+          "DS-QM207-211-FIVE-IMPORT-CASCADE": "COMPUTATIONALLY_CHECKED",
+          "L1-IMP-ORTHOGONAL-ADDITIVITY": "CONDITIONAL",
+          "L1-QM020-THM6-P1-SCOPE-FENCE": "PROVED_LEAN",
+          "L1-QM122-BORN-PAIRING-NONUNIQUE": "PROVED_LEAN"
+        },
+        "source": "lean4/H013BornPairingBoundary.lean",
+        "sha256": "debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642",
+        "sha256_after_build": "debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 18.0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "born_nonuniqueness_open",
+          "pairing_exists",
+          "quartic_not_proportional",
+          "quartic_rival",
+          "uniqueness_not_discharged"
+        ],
+        "cited_resolution": {
+          "born_nonuniqueness_open": [
+            "FableHilbertWalk20260819.H013.born_nonuniqueness_open"
+          ],
+          "pairing_exists": [
+            "FableHilbertWalk20260819.H013.pairing_exists"
+          ],
+          "quartic_not_proportional": [
+            "FableHilbertWalk20260819.H013.quartic_not_proportional"
+          ],
+          "quartic_rival": [
+            "FableHilbertWalk20260819.H013.quartic_rival"
+          ],
+          "uniqueness_not_discharged": [
+            "FableHilbertWalk20260819.H013.uniqueness_not_discharged"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "FableHilbertWalk20260819.H013.born_nonuniqueness_open": [],
+          "FableHilbertWalk20260819.H013.pairing_exists": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013.quartic_not_proportional": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013.quartic_rival": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013.uniqueness_not_discharged": []
+        },
+        "output": "⚠ [2/6] Replayed HWKernel\nwarning: HWKernel.lean:125:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:127:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:142:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:144:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:158:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:162:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:180:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:182:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:275:28: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.l\n...[truncated 12706 chars]...\nual_weights' does not depend on any axioms\ninfo: H008PhaseBlindPresentation.lean:57:0: 'FableHilbertWalk20260819.H008.distinct_vectors' does not depend on any axioms\ninfo: H008PhaseBlindPresentation.lean:66:0: 'FableHilbertWalk20260819.H008.global_phase_blind' depends on axioms: [propext]\ninfo: H008PhaseBlindPresentation.lean:78:0: 'FableHilbertWalk20260819.H008.phase_blind_presentation' depends on axioms: [propext]\nℹ [6/6] Built H013BornPairingBoundary (3.5s)\ninfo: H013BornPairingBoundary.lean:28:0: 'FableHilbertWalk20260819.H013.pairing_exists' depends on axioms: [propext]\ninfo: H013BornPairingBoundary.lean:48:0: 'FableHilbertWalk20260819.H013.quartic_rival' depends on axioms: [propext]\ninfo: H013BornPairingBoundary.lean:74:0: 'FableHilbertWalk20260819.H013.pair_linear_effect' depends on axioms: [propext]\ninfo: H013BornPairingBoundary.lean:75:0: 'FableHilbertWalk20260819.H013.pair_linear_state' depends on axioms: [propext]\ninfo: H013BornPairingBoundary.lean:91:0: 'FableHilbertWalk20260819.H013.quartic_not_proportional' depends on axioms: [propext, Quot.sound]\ninfo: H013BornPairingBoundary.lean:113:0: 'FableHilbertWalk20260819.H013.uniqueness_not_discharged' does not depend on any axioms\ninfo: H013BornPairingBoundary.lean:133:0: 'FableHilbertWalk20260819.H013.born_nonuniqueness_open' does not depend on any axioms\ninfo: H013BornPairingBoundary.lean:143:0: 'FableHilbertWalk20260819.H013.born_pairing_boundary' depends on axioms: [propext]\nBuild completed successfully (6 jobs).\n",
+        "axiom_audit_output": "AX\tborn_nonuniqueness_open\tFableHilbertWalk20260819.H013.born_nonuniqueness_open\t[]\nAX\tpairing_exists\tFableHilbertWalk20260819.H013.pairing_exists\t[propext]\nAX\tquartic_not_proportional\tFableHilbertWalk20260819.H013.quartic_not_proportional\t[propext, Quot.sound]\nAX\tquartic_rival\tFableHilbertWalk20260819.H013.quartic_rival\t[propext]\nAX\tuniqueness_not_discharged\tFableHilbertWalk20260819.H013.uniqueness_not_discharged\t[]\n",
+        "build_command": "cd lean4 && lake build H013BornPairingBoundary",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:20:00Z"
+      },
+      {
+        "module": "H013FrameAdditivity",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-ORTHOGONAL-ADDITIVITY"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-ORTHOGONAL-ADDITIVITY": "CONDITIONAL"
+        },
+        "source": "lean4/H013FrameAdditivity.lean",
+        "sha256": "626dd1c874e5a1add3f02cb81f5f535c17637c2f55fdffa12a094b1c34f928a8",
+        "sha256_after_build": "626dd1c874e5a1add3f02cb81f5f535c17637c2f55fdffa12a094b1c34f928a8",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 6.82,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [],
+        "cited_resolution": {},
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "every theorem of the file (no declaration cited)",
+        "axioms": {
+          "FableHilbertWalk20260819.H013Frame.fourth_power_dies_under_frame_additivity": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013Frame.quadratic_same_total_scale_two": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013Frame.rot_is_orthogonal_scale_two": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013Frame.quartic_fails_same_total_scale_two": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013Frame.had_is_orthogonal_scale_two": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H013Frame.quartic_report_basis_total": [
+            "propext"
+          ]
+        },
+        "output": "⚠ [2/7] Replayed HWKernel\nwarning: HWKernel.lean:125:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:127:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:142:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:144:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:158:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:162:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:180:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:182:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:275:28: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.l\n...[truncated 13554 chars]...\nn:75:0: 'FableHilbertWalk20260819.H013.pair_linear_state' depends on axioms: [propext]\ninfo: H013BornPairingBoundary.lean:91:0: 'FableHilbertWalk20260819.H013.quartic_not_proportional' depends on axioms: [propext, Quot.sound]\ninfo: H013BornPairingBoundary.lean:113:0: 'FableHilbertWalk20260819.H013.uniqueness_not_discharged' does not depend on any axioms\ninfo: H013BornPairingBoundary.lean:133:0: 'FableHilbertWalk20260819.H013.born_nonuniqueness_open' does not depend on any axioms\ninfo: H013BornPairingBoundary.lean:143:0: 'FableHilbertWalk20260819.H013.born_pairing_boundary' depends on axioms: [propext]\nℹ [7/7] Built H013FrameAdditivity (897ms)\ninfo: H013FrameAdditivity.lean:70:0: 'FableHilbertWalk20260819.H013Frame.had_is_orthogonal_scale_two' depends on axioms: [propext]\ninfo: H013FrameAdditivity.lean:77:0: 'FableHilbertWalk20260819.H013Frame.rot_is_orthogonal_scale_two' depends on axioms: [propext]\ninfo: H013FrameAdditivity.lean:84:0: 'FableHilbertWalk20260819.H013Frame.quadratic_same_total_scale_two' depends on axioms: [propext]\ninfo: H013FrameAdditivity.lean:92:0: 'FableHilbertWalk20260819.H013Frame.quartic_fails_same_total_scale_two' depends on axioms: [propext]\ninfo: H013FrameAdditivity.lean:100:0: 'FableHilbertWalk20260819.H013Frame.quartic_report_basis_total' depends on axioms: [propext]\ninfo: H013FrameAdditivity.lean:115:0: 'FableHilbertWalk20260819.H013Frame.fourth_power_dies_under_frame_additivity' depends on axioms: [propext]\nBuild completed successfully (7 jobs).\n",
+        "axiom_audit_output": "AX\t*\tFableHilbertWalk20260819.H013Frame.fourth_power_dies_under_frame_additivity\t[propext]\nAX\t*\tFableHilbertWalk20260819.H013Frame.quadratic_same_total_scale_two\t[propext]\nAX\t*\tFableHilbertWalk20260819.H013Frame.rot_is_orthogonal_scale_two\t[propext]\nAX\t*\tFableHilbertWalk20260819.H013Frame.quartic_fails_same_total_scale_two\t[propext]\nAX\t*\tFableHilbertWalk20260819.H013Frame.had_is_orthogonal_scale_two\t[propext]\nAX\t*\tFableHilbertWalk20260819.H013Frame.quartic_report_basis_total\t[propext]\n",
+        "build_command": "cd lean4 && lake build H013FrameAdditivity",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-23T01:19:31Z"
+      },
+      {
+        "module": "H013SameContract",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-ORTHOGONAL-ADDITIVITY"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-ORTHOGONAL-ADDITIVITY": "CONDITIONAL"
+        },
+        "source": "lean4/H013SameContract.lean",
+        "sha256": "47568af5eaa40e031525b641574866c3044176756fb245b6084c96711e8bcca8",
+        "sha256_after_build": "47568af5eaa40e031525b641574866c3044176756fb245b6084c96711e8bcca8",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 16.15,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "two_effect_rules_share_unit_total_and_disagree"
+        ],
+        "cited_resolution": {
+          "two_effect_rules_share_unit_total_and_disagree": [
+            "FableHilbertWalk20260819.H013Contract.two_effect_rules_share_unit_total_and_disagree"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "FableHilbertWalk20260819.H013Contract.two_effect_rules_share_unit_total_and_disagree": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [2/7] Replayed HWKernel\nwarning: HWKernel.lean:125:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:127:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:142:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:144:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:158:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:162:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:180:12: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: HWKernel.lean:182:12: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.lean:275:28: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: HWKernel.l\n...[truncated 13653 chars]...\nrnPairingBoundary.lean:91:0: 'FableHilbertWalk20260819.H013.quartic_not_proportional' depends on axioms: [propext, Quot.sound]\ninfo: H013BornPairingBoundary.lean:113:0: 'FableHilbertWalk20260819.H013.uniqueness_not_discharged' does not depend on any axioms\ninfo: H013BornPairingBoundary.lean:133:0: 'FableHilbertWalk20260819.H013.born_nonuniqueness_open' does not depend on any axioms\ninfo: H013BornPairingBoundary.lean:143:0: 'FableHilbertWalk20260819.H013.born_pairing_boundary' depends on axioms: [propext]\nℹ [7/7] Replayed H013SameContract\ninfo: H013SameContract.lean:39:0: 'FableHilbertWalk20260819.H013Contract.rsum_nonneg' depends on axioms: [propext]\ninfo: H013SameContract.lean:49:0: 'FableHilbertWalk20260819.H013Contract.born_unit_is_total' depends on axioms: [propext]\ninfo: H013SameContract.lean:59:0: 'FableHilbertWalk20260819.H013Contract.swapped_unit_is_total' depends on axioms: [propext]\ninfo: H013SameContract.lean:68:0: 'FableHilbertWalk20260819.H013Contract.born_positive' depends on axioms: [propext, Quot.sound]\ninfo: H013SameContract.lean:77:0: 'FableHilbertWalk20260819.H013Contract.swapped_positive' depends on axioms: [propext, Quot.sound]\ninfo: H013SameContract.lean:84:0: 'FableHilbertWalk20260819.H013Contract.disagree_on_false_indicator' depends on axioms: [propext]\ninfo: H013SameContract.lean:98:0: 'FableHilbertWalk20260819.H013Contract.two_effect_rules_share_unit_total_and_disagree' depends on axioms: [propext,\n Quot.sound]\nBuild completed successfully (7 jobs).\n",
+        "axiom_audit_output": "AX\ttwo_effect_rules_share_unit_total_and_disagree\tFableHilbertWalk20260819.H013Contract.two_effect_rules_share_unit_total_and_disagree\t[propext, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build H013SameContract",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:49:05Z"
+      },
+      {
+        "module": "Imported.ConditionalDensityLift.Xi",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-DENSITY-LIFT-SIGNED-SQRT-PUB009"
+        ],
+        "dag_node_statuses": {
+          "L1-DENSITY-LIFT-SIGNED-SQRT-PUB009": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/ConditionalDensityLift/Xi.lean",
+        "sha256": "ec20e5338b66b27162a78229bffad75e3016f41bf7173eb1f55621dd41473d9e",
+        "sha256_after_build": "ec20e5338b66b27162a78229bffad75e3016f41bf7173eb1f55621dd41473d9e",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 6.53,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [],
+        "cited_resolution": {},
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "every theorem of the file (no declaration cited)",
+        "axioms": {
+          "xiIfZero.eq_1": [
+            "Quot.sound",
+            "propext"
+          ],
+          "forced_sign": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "slack_nonneg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "sq_eq_zero": [
+            "propext"
+          ],
+          "weight_div": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "cross_nonneg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "natCast_mul": [
+            "propext"
+          ],
+          "weight_scale_cross": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "mass.eq_2": [],
+          "nsum.eq_def": [],
+          "slack.eq_1": [
+            "propext"
+          ],
+          "sq_nonneg": [
+            "propext"
+          ],
+          "cast_ne_zero": [
+            "Quot.sound",
+            "propext"
+          ],
+          "sumSq.eq_2": [],
+          "admissible.eq_1": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "primary_increase_rejects": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "weightSum.eq_2": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "dotp.eq_1": [
+            "propext"
+          ],
+          "not_lt_of_gt": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "dotp.eq_2": [
+            "propext"
+          ],
+          "slack.eq_3": [
+            "propext"
+          ],
+          "natAbs_neg": [
+            "propext"
+          ],
+          "nonneg_of_mul_pos_left": [
+            "Quot.sound",
+            "propext"
+          ],
+          "nsum.eq_2": [],
+          "zero_mass_convention": [
+            "Quot.sound",
+            "propext"
+          ],
+          "mass.eq_def": [],
+          "sumSq_nonneg": [
+            "propext"
+          ],
+          "add_div_same": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "slack.eq_def": [
+            "propext"
+          ],
+          "trichotomy_unit": [
+            "propext"
+          ],
+          "expand_gap": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "nsum.eq_1": [],
+          "mass_eq_nsum": [
+            "propext"
+          ],
+          "term.eq_1": [],
+          "guardrail_rejects": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "weightSum.eq_1": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "sumSq.eq_1": [],
+          "cauchy_gap_nonneg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "primary_decrease_accepts": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "mass.eq_1": [],
+          "secondary_increase_rejects": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "dotp.eq_3": [
+            "propext"
+          ],
+          "slack.eq_2": [
+            "propext"
+          ],
+          "mass_neg": [
+            "propext"
+          ],
+          "div_self": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "weights_sum_to_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "dotp.eq_def": [
+            "propext"
+          ],
+          "natAbs_nsmul": [
+            "propext"
+          ],
+          "dual_mass_at_least_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "weightSum.eq_def": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "sumSq.eq_def": [],
+          "weight_sign_cross": [
+            "propext"
+          ],
+          "term_nonneg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "mass_scale": [
+            "propext"
+          ],
+          "cross_id": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "add_nonneg_pair": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "✔ [2/2] Built Imported.ConditionalDensityLift.Xi (1.4s)\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\t*\txiIfZero.eq_1\t[propext, Quot.sound]\nAX\t*\tforced_sign\t[propext, Classical.choice, Quot.sound]\nAX\t*\tslack_nonneg\t[propext, Classical.choice, Quot.sound]\nAX\t*\tsq_eq_zero\t[propext]\nAX\t*\tweight_div\t[propext, Classical.choice, Quot.sound]\nAX\t*\tcross_nonneg\t[propext, Classical.choice, Quot.sound]\nAX\t*\tnatCast_mul\t[propext]\nAX\t*\tweight_scale_cross\t[propext, Classical.choice, Quot.sound]\nAX\t*\tmass.eq_2\t[]\nAX\t*\tnsum.eq_def\t[]\nAX\t*\tslack.eq_1\t[propext]\nAX\t*\tsq_nonneg\t[propext]\nAX\t*\tcast_ne_zero\t[propext, Quot.sound]\nAX\t*\tsumSq.eq_2\t[]\nAX\t*\tadmissible.eq_1\t[propext, Classical.choice, Quot.sound]\nAX\t*\tprimary_increase_rejects\t[propext, Classical.choice, Quot.sound]\nAX\t*\tweightSum.eq_2\t[propext, Classical.choice, Quot.sound]\nAX\t*\tdotp.eq_1\t[propext]\nAX\t*\tnot_lt_of_gt\t[propext, Classical.choice, Quot.sound]\nAX\t*\tdotp.eq_2\t[propext]\nAX\t*\tslack.eq_3\t[propext]\nAX\t*\tnatAbs_neg\t[propext]\nAX\t*\tnonneg_of_mul_pos_left\t[propext, Quot.sound]\nAX\t*\tnsum.eq_2\t[]\nAX\t*\tzero_mass_convention\t[propext, Quot.sound]\nAX\t*\tmass.eq_def\t[]\nAX\t*\tsumSq_nonneg\t[propext]\nAX\t*\tadd_div_same\t[propext, Classical.choice, Quot.sound]\nAX\t*\tslack.eq_def\t[propext]\nAX\t*\ttrichotomy_unit\t[propext]\nAX\t*\texpand_gap\t[propext, Classical.choice, Quot.sound]\nAX\t*\tnsum.eq_1\t[]\nAX\t*\tmass_eq_nsum\t[propext]\nAX\t*\tterm.eq_1\t[]\nAX\t*\tguardrail_rejects\t[propext, Classical.choice, Quot.sound]\nAX\t*\tweightSum.eq_1\t[propext, Classical.choice, Quot.sound]\nAX\t*\tsumSq.eq_1\t[]\nAX\t*\tcauchy_gap_nonneg\t[propext, Classical.choice, Quot.sound]\nAX\t*\tprimary_decrease_accepts\t[propext, Classical.choice, Quot.sound]\nAX\t*\tmass.eq_1\t[]\nAX\t*\tsecondary_increase_rejects\t[propext, Classical.choice, Quot.sound]\nAX\t*\tdotp.eq_3\t[propext]\nAX\t*\tslack.eq_2\t[propext]\nAX\t*\tmass_neg\t[propext]\nAX\t*\tdiv_self\t[propext, Classical.choice, Quot.sound]\nAX\t*\tweights_sum_to_one\t[propext, Classical.choice, Quot.sound]\nAX\t*\tdotp.eq_def\t[propext]\nAX\t*\tnatAbs_nsmul\t[propext]\nAX\t*\tdual_mass_at_least_one\t[propext, Classical.choice, Quot.sound]\nAX\t*\tweightSum.eq_def\t[propext, Classical.choice, Quot.sound]\nAX\t*\tsumSq.eq_def\t[]\nAX\t*\tweight_sign_cross\t[propext]\nAX\t*\tterm_nonneg\t[propext, Classical.choice, Quot.sound]\nAX\t*\tmass_scale\t[propext]\nAX\t*\tcross_id\t[propext, Classical.choice, Quot.sound]\nAX\t*\tadd_nonneg_pair\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build Imported.ConditionalDensityLift.Xi",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-23T01:19:10Z"
+      },
+      {
+        "module": "Imported.OperatorLifts.Lifts",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-OPERATOR-LIFT-TRACE-EMBED-013"
+        ],
+        "dag_node_statuses": {
+          "L1-OPERATOR-LIFT-TRACE-EMBED-013": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/OperatorLifts/Lifts.lean",
+        "sha256": "da77446b350410fd7d74b397108efa8ba81b0a0a3b0a0aedb0c8f371b23369fa",
+        "sha256_after_build": "da77446b350410fd7d74b397108efa8ba81b0a0a3b0a0aedb0c8f371b23369fa",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 21.94,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "trace_norm_eq_mass"
+        ],
+        "cited_resolution": {
+          "trace_norm_eq_mass": [
+            "trace_norm_eq_mass"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "trace_norm_eq_mass": [
+            "propext"
+          ]
+        },
+        "output": "✔ [2/2] Built Imported.OperatorLifts.Lifts (8.1s)\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\ttrace_norm_eq_mass\ttrace_norm_eq_mass\t[propext]\n",
+        "build_command": "cd lean4 && lake build Imported.OperatorLifts.Lifts",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:46:05Z"
+      },
+      {
+        "module": "OperationalFieldSelection",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-COMPLEX-FIELD"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-COMPLEX-FIELD": "CONDITIONAL"
+        },
+        "source": "lean4/OperationalFieldSelection.lean",
+        "sha256": "c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631",
+        "sha256_after_build": "c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 56.95,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "OperationalFieldSelection.selected_parameter"
+        ],
+        "cited_resolution": {
+          "OperationalFieldSelection.selected_parameter": [
+            "OperationalFieldSelection.selected_parameter"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "OperationalFieldSelection.selected_parameter": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1678/1702] Replayed OperationalTomography\nwarning: OperationalTomography.lean: imports `Mathlib.LinearAlgebra.FiniteDimensional.Lemmas` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OperationalTomography.lean: imports `Mathlib.LinearAlgebra.Dimension.Constructions` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OperationalTomography.lean: imports `Mathlib.LinearAlgebra.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OperationalTomography.lean: imports `Mathlib.Tactic.Abel` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OperationalTomography.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OperationalTomography.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: OperationalTomography.lean:311:57: This simp argument is unused:\n  LinearMap.pi_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp [doubledProduct, doubledProductOps, matrixUnit, LinearMap.add_apply, LinearMap.proj_appl\n...[truncated 19403 chars]...\npropext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:239:0: 'ComplexFieldSelection.delta_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:240:0: 'ComplexFieldSelection.rho_states' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:241:0: 'ComplexFieldSelection.rho_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: ComplexFieldSelection.lean:242:0: 'ComplexFieldSelection.rho_same_product_statistics' depends on axioms: [propext, Classical.choice, Quot.sound]\n⚠ [3140/3140] Built OperationalFieldSelection (36s)\nwarning: OperationalFieldSelection.lean:26:2: Try this: \n  haveI̵\n\nThe goal is a proposition, so `have` is preferred over `haveI`.\nThe difference between `have` and `haveI` is that `haveI` inlines the value.\nBut this is not relevant for proofs because of proof irrelevance.\n\nNote: This linter can be disabled with `set_option linter.style.haveILetI false`\ninfo: OperationalFieldSelection.lean:65:0: 'OperationalFieldSelection.selected_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: OperationalFieldSelection.lean:67:0: 'OperationalFieldSelection.selected_carrier' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: OperationalFieldSelection.lean:68:0: 'OperationalFieldSelection.two_hypotheses_satisfiable' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (3140 jobs).\n",
+        "axiom_audit_output": "AX\tOperationalFieldSelection.selected_parameter\tOperationalFieldSelection.selected_parameter\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build OperationalFieldSelection",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:13:13Z"
+      },
+      {
+        "module": "SectorFormHermitian",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-HILBERT-INNER-PRODUCT",
+          "L1-IMP-ORTHOGONAL-ADDITIVITY"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-HILBERT-INNER-PRODUCT": "CONDITIONAL",
+          "L1-IMP-ORTHOGONAL-ADDITIVITY": "CONDITIONAL"
+        },
+        "source": "lean4/SectorFormHermitian.lean",
+        "sha256": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+        "sha256_after_build": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 46.87,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "InnerProductFable.HermitianSectorForm.eq_smul_one",
+          "InnerProductFable.HermitianSectorForm.eq_smul_one_generated",
+          "InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm",
+          "InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive",
+          "InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive",
+          "InnerProductFable.HermitianSectorForm.offdiag_eq_zero"
+        ],
+        "cited_resolution": {
+          "InnerProductFable.HermitianSectorForm.eq_smul_one": [
+            "InnerProductFable.HermitianSectorForm.eq_smul_one"
+          ],
+          "InnerProductFable.HermitianSectorForm.eq_smul_one_generated": [
+            "InnerProductFable.HermitianSectorForm.eq_smul_one_generated"
+          ],
+          "InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm": [
+            "InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm"
+          ],
+          "InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive": [
+            "InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive"
+          ],
+          "InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive": [
+            "InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive"
+          ],
+          "InnerProductFable.HermitianSectorForm.offdiag_eq_zero": [
+            "InnerProductFable.HermitianSectorForm.offdiag_eq_zero"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "InnerProductFable.HermitianSectorForm.eq_smul_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.HermitianSectorForm.eq_smul_one_generated": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.HermitianSectorForm.offdiag_eq_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1012/1022] Replayed BornEffectValuation\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Module.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Ring.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Abel` from package `mathli\n...[truncated 33684 chars]...\ne.HermitianSectorForm.one_posdef' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormHermitian.lean:356:0: 'InnerProductFable.HermitianSectorForm.imagLeak12' depends on axioms: [propext, Quot.sound]\ninfo: SectorFormHermitian.lean:357:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_apply_00' depends on axioms: [propext, Quot.sound]\ninfo: SectorFormHermitian.lean:358:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_apply_01' depends on axioms: [propext, Quot.sound]\ninfo: SectorFormHermitian.lean:359:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_apply_10' depends on axioms: [propext, Quot.sound]\ninfo: SectorFormHermitian.lean:360:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_apply_11' depends on axioms: [propext, Quot.sound]\ninfo: SectorFormHermitian.lean:361:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_hermitian' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormHermitian.lean:362:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_real_direction_additive' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: SectorFormHermitian.lean:363:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: SectorFormHermitian.lean:364:0: 'InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (1331 jobs).\n",
+        "axiom_audit_output": "AX\tInnerProductFable.HermitianSectorForm.eq_smul_one\tInnerProductFable.HermitianSectorForm.eq_smul_one\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.HermitianSectorForm.eq_smul_one_generated\tInnerProductFable.HermitianSectorForm.eq_smul_one_generated\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm\tInnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive\tInnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive\tInnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.HermitianSectorForm.offdiag_eq_zero\tInnerProductFable.HermitianSectorForm.offdiag_eq_zero\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build SectorFormHermitian",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:18:41Z"
+      },
+      {
+        "module": "SectorFormUniqueness",
+        "standalone_file": false,
+        "dag_nodes": [
+          "L1-IMP-HILBERT-INNER-PRODUCT",
+          "L1-IMP-ORTHOGONAL-ADDITIVITY"
+        ],
+        "dag_node_statuses": {
+          "L1-IMP-HILBERT-INNER-PRODUCT": "CONDITIONAL",
+          "L1-IMP-ORTHOGONAL-ADDITIVITY": "CONDITIONAL"
+        },
+        "source": "lean4/SectorFormUniqueness.lean",
+        "sha256": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+        "sha256_after_build": "2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 43.85,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "InnerProductFable.SectorForm.diag12_not_invariant_swap",
+          "InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive",
+          "InnerProductFable.SectorForm.eq_one_of_normalized",
+          "InnerProductFable.SectorForm.eq_smul_one",
+          "InnerProductFable.SectorForm.eq_smul_one_generated",
+          "InnerProductFable.SectorForm.l1_disjoint_additive",
+          "InnerProductFable.SectorForm.offdiag_eq_zero",
+          "InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero",
+          "InnerProductFable.SectorForm.qf_eq_scale_dot",
+          "InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive",
+          "InnerProductFable.SectorForm.scale_pos",
+          "InnerProductFable.SectorForm.unif12_not_sectorAdditive",
+          "InnerProductFable.SectorForm.unique_up_to_scale"
+        ],
+        "cited_resolution": {
+          "InnerProductFable.SectorForm.diag12_not_invariant_swap": [
+            "InnerProductFable.SectorForm.diag12_not_invariant_swap"
+          ],
+          "InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive": [
+            "InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive"
+          ],
+          "InnerProductFable.SectorForm.eq_one_of_normalized": [
+            "InnerProductFable.SectorForm.eq_one_of_normalized"
+          ],
+          "InnerProductFable.SectorForm.eq_smul_one": [
+            "InnerProductFable.SectorForm.eq_smul_one"
+          ],
+          "InnerProductFable.SectorForm.eq_smul_one_generated": [
+            "InnerProductFable.SectorForm.eq_smul_one_generated"
+          ],
+          "InnerProductFable.SectorForm.l1_disjoint_additive": [
+            "InnerProductFable.SectorForm.l1_disjoint_additive"
+          ],
+          "InnerProductFable.SectorForm.offdiag_eq_zero": [
+            "InnerProductFable.SectorForm.offdiag_eq_zero"
+          ],
+          "InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero": [
+            "InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero"
+          ],
+          "InnerProductFable.SectorForm.qf_eq_scale_dot": [
+            "InnerProductFable.SectorForm.qf_eq_scale_dot"
+          ],
+          "InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive": [
+            "InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive"
+          ],
+          "InnerProductFable.SectorForm.scale_pos": [
+            "InnerProductFable.SectorForm.scale_pos"
+          ],
+          "InnerProductFable.SectorForm.unif12_not_sectorAdditive": [
+            "InnerProductFable.SectorForm.unif12_not_sectorAdditive"
+          ],
+          "InnerProductFable.SectorForm.unique_up_to_scale": [
+            "InnerProductFable.SectorForm.unique_up_to_scale"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "InnerProductFable.SectorForm.diag12_not_invariant_swap": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.eq_one_of_normalized": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.eq_smul_one": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.eq_smul_one_generated": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.l1_disjoint_additive": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.offdiag_eq_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.qf_eq_scale_dot": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.scale_pos": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.unif12_not_sectorAdditive": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "InnerProductFable.SectorForm.unique_up_to_scale": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "⚠ [1012/1083] Replayed BornEffectValuation\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Module.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Algebra.Order.Ring.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornEffectValuation.lean: imports `Mathlib.Tactic.Abel` from package `mathli\n...[truncated 19563 chars]...\n, Quot.sound]\ninfo: SectorFormUniqueness.lean:549:0: 'InnerProductFable.SectorForm.unif12_transpose' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:550:0: 'InnerProductFable.SectorForm.unif12_qf' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:551:0: 'InnerProductFable.SectorForm.unif12_posdef' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:552:0: 'InnerProductFable.SectorForm.permute_swap_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:553:0: 'InnerProductFable.SectorForm.permute_swap_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:554:0: 'InnerProductFable.SectorForm.S₂' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:555:0: 'InnerProductFable.SectorForm.S₂_transitive' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:556:0: 'InnerProductFable.SectorForm.unif12_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:557:0: 'InnerProductFable.SectorForm.unif12_not_sectorAdditive' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: SectorFormUniqueness.lean:558:0: 'InnerProductFable.SectorForm.unif12_not_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1337 jobs).\n",
+        "axiom_audit_output": "AX\tInnerProductFable.SectorForm.diag12_not_invariant_swap\tInnerProductFable.SectorForm.diag12_not_invariant_swap\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive\tInnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.eq_one_of_normalized\tInnerProductFable.SectorForm.eq_one_of_normalized\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.eq_smul_one\tInnerProductFable.SectorForm.eq_smul_one\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.eq_smul_one_generated\tInnerProductFable.SectorForm.eq_smul_one_generated\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.l1_disjoint_additive\tInnerProductFable.SectorForm.l1_disjoint_additive\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.offdiag_eq_zero\tInnerProductFable.SectorForm.offdiag_eq_zero\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.offdiag_pair_sum_eq_zero\tInnerProductFable.SectorForm.offdiag_pair_sum_eq_zero\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.qf_eq_scale_dot\tInnerProductFable.SectorForm.qf_eq_scale_dot\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive\tInnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.scale_pos\tInnerProductFable.SectorForm.scale_pos\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.unif12_not_sectorAdditive\tInnerProductFable.SectorForm.unif12_not_sectorAdditive\t[propext, Classical.choice, Quot.sound]\nAX\tInnerProductFable.SectorForm.unique_up_to_scale\tInnerProductFable.SectorForm.unique_up_to_scale\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build SectorFormUniqueness",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:13:01Z"
+      }
+    ]
+  },
+  "reproduction": [
+    "ln -s <shared Mathlib v4.35.0 package cache> lean4/.lake/packages   # Mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "cd lean4 && lake build <module>   # modules of lean4/Imported are in the ImportedAtlas library",
+    "cd lean4 && lake env lean <scratch.lean>   # import Lean + the module; Lean.collectAxioms over the constants whose names end in a cited symbol (every theorem of the module when the DAG cites the file only)",
+    "python -I -X utf8 dag/research/lean_replay_campaign/replay_campaign.py run|assemble --repo . --plan plan.json --work <dir>"
+  ],
+  "limits": [
+    "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
+    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol resolves only to a constant whose full name is the symbol or ends in '.' + the symbol; a symbol with no such constant, or only several suffix matches and no exact one, is listed under unresolved_cited_symbols / ambiguous_cited_symbols and is not audited. axiom_audit_passed is true only if every cited symbol resolved and every audited axiom is standard; the whole-file theorem audit (axioms_whole_file_extra) is information and never sets it. When the DAG cites a file without naming a declaration, the audit is of every theorem of the file.",
+    "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built side by side; it includes contention and, for a module whose dependencies were built just before, only that module's own compile."
+  ]
+}

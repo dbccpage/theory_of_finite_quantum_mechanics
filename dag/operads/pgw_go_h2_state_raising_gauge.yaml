@@ -39,48 +39,161 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_go_h2_state_raising_gauge_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: raise
+  line: 43
+  signature_excerpt: 'def raise (G : St) (x : Nat) : St'
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean
+  repository: this_repository
+  source_sha256: 3f0af3e27cd1c265d446c9fcf69cfdd98d03455c954be612b92e6000309abf2b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: raiseAtoms
+  line: 38
+  signature_excerpt: |-
+    def raiseAtoms (x : Nat) : Nat → List Atom
+      | 0 => []
+      | k + 1 => if k = x then raiseAtoms x k else ⟨.r, x, k⟩ :: ⟨.s, k, x⟩ :: raiseAtoms x k
+
+    /-- Raising the term `x`. -/
+    def raise (G : St) (x : Nat) : St
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean
+  repository: this_repository
+  source_sha256: 3f0af3e27cd1c265d446c9fcf69cfdd98d03455c954be612b92e6000309abf2b
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Gen3
+  line: 40
+  signature_excerpt: |-
+    inductive Gen3 : St → St → Prop
+      | gen {G H : St} : Gen G H → Gen3 G H
+      | raise (G : St) (x : Nat) (hx : x < G.n) : Gen3 G (raise G x)
+      | symm {G H : St} : Gen3 G H → Gen3 H G
+      | trans {G H K : St} : Gen3 G H → Gen3 H K → Gen3 G K
+
+    /-- The seed's sameness at a fixed writing: equally many terms, excesses differing by `g x − g y`. -/
+    def Same3 (G H : St) : Prop
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean
+  repository: this_repository
+  source_sha256: 2be852a5cf25b9965f45f78f6200920c08a18984aa741ca11693c493c4d15f5e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Same3
+  line: 47
+  signature_excerpt: 'def Same3 (G H : St) : Prop'
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean
+  repository: this_repository
+  source_sha256: 2be852a5cf25b9965f45f78f6200920c08a18984aa741ca11693c493c4d15f5e
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: excess_raise
+  line: 137
+  signature_excerpt: |-
+    theorem excess_raise (G : St) (x u v : Nat) (hu : u < G.n) (hv : v < G.n) :
+        excess (raise G x) u v =
+          excess G u v + (if u = x then (1 : Int) else 0) - (if v = x then (1 : Int) else 0)
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean
+  repository: this_repository
+  source_sha256: 3f0af3e27cd1c265d446c9fcf69cfdd98d03455c954be612b92e6000309abf2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gen3_iff_same3
+  line: 116
+  signature_excerpt: 'theorem gen3_iff_same3 {G H : St} (hG : G.WF) (hH : H.WF) : Gen3 G H ↔ Same3 G H'
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean
+  repository: this_repository
+  source_sha256: 2be852a5cf25b9965f45f78f6200920c08a18984aa741ca11693c493c4d15f5e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Same3.around
+  line: 53
+  signature_excerpt: |-
+    theorem Same3.around {G H : St} (h : Same3 G H) {x y z : Nat} (hx : x < G.n) (hy : y < G.n) (hz : z < G.n) :
+        excess G x y + excess G y z + excess G z x = excess H x y + excess H y z + excess H z x
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean
+  repository: this_repository
+  source_sha256: 9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: same3_nothing_iff
+  line: 65
+  signature_excerpt: |-
+    theorem same3_nothing_iff (G : St) :
+        Same3 G ⟨G.n, []⟩ ↔
+          (∀ x, x < G.n → excess G x x = 0) ∧
+          (∀ x y, x < G.n → y < G.n → excess G x y + excess G y x = 0) ∧
+          (∀ x y z, x < G.n → y < G.n → z < G.n → excess G x y + excess G y z + excess G z x = 0)
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean
+  repository: this_repository
+  source_sha256: 9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_of_same3_fails
+  line: 138
+  signature_excerpt: |-
+    theorem step_of_same3_fails :
+        ¬ ∀ G H G' : St, G.WF → Same3 G H → Step G G' → ∃ H', Step H H' ∧ Same3 G' H'
+  source: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean
+  repository: this_repository
+  source_sha256: 9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean::excess_raise
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean::excess_raise
+  availability: local
   symbol: excess_raise
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean
+  repository: this_repository
+  sha256: 3f0af3e27cd1c265d446c9fcf69cfdd98d03455c954be612b92e6000309abf2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 137
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean::gen3_iff_same3
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean::gen3_iff_same3
+  availability: local
   symbol: gen3_iff_same3
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean
+  repository: this_repository
+  sha256: 2be852a5cf25b9965f45f78f6200920c08a18984aa741ca11693c493c4d15f5e
+  declaration_status: declaration_found_not_proof_checked
+  line: 116
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::Same3.around
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::Same3.around
+  availability: local
   symbol: Same3.around
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean
+  repository: this_repository
+  sha256: 9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b
+  declaration_status: declaration_found_not_proof_checked
+  line: 53
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::same3_nothing_iff
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::same3_nothing_iff
+  availability: local
   symbol: same3_nothing_iff
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean
+  repository: this_repository
+  sha256: 9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::step_of_same3_fails
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::step_of_same3_fails
+  availability: local
   symbol: step_of_same3_fails
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean
+  repository: this_repository
+  sha256: 9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b
+  declaration_status: declaration_found_not_proof_checked
+  line: 138
   role: source_lead_only
 presentation:
   colours: []
@@ -125,8 +238,6 @@ operad_slots:
     - 'Chosen reading C-X: a change of a result is a change performed on one of its states (assumption)'
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

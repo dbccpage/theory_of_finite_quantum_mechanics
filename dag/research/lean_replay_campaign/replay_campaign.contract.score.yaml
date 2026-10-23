@@ -1,0 +1,131 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "dag/research/lean_replay_campaign/replay_campaign.py",
+  "contract": {
+    "schema_version": "2.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "dag/research/lean_replay_campaign/replay_campaign.py",
+      "sha256": "7b50365e57a75e1550e211a2e3aaf5d9c25f554bd29492ea26602a19dcc1b2f1",
+      "language": "Python"
+    },
+    "profile": "Non-Numeric",
+    "claim": "Replay-input and axiom-resolution custody; the regression suite tests the stated failure boundaries.",
+    "invariants": [
+      "Public Lean imports participate in local dependency closure.",
+      "Build-cache keys bind declared compiler/package configuration and actual compiler versions.",
+      "A failed paper-local dependency compile stops the caller before stale object reuse.",
+      "Receipt assembly refuses stale source, dependency, configuration or cited-symbol inputs."
+    ],
+    "limits": [
+      "No mathematical node promotion is authorized by a file replay.",
+      "No full imported-source replay in this repair.",
+      "Resume caches assume inputs remain fixed during one run."
+    ],
+    "evidence": [
+      {
+        "path": "dag/research/lean_replay_campaign/review_validation.json",
+        "sha256": "b812c216661cd7897fcab241db92722d87a3b7fbaef9abd45e7b06cc3eaea6ec"
+      }
+    ]
+  },
+  "current_contract": "c5fd903c6cf9fe81f3ef11300e4ff3d1b40d4272f7536739c012ca24bfb9ce5a",
+  "current_scoring": "8a196542e96ec1491c992f9705cac47c183fb015a50dec2d26fdc62f7098a10b",
+  "contract_history": [
+    {
+      "sha256": "c5fd903c6cf9fe81f3ef11300e4ff3d1b40d4272f7536739c012ca24bfb9ce5a",
+      "bytes": 1172,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "dag/research/lean_replay_campaign/replay_campaign.py",
+          "sha256": "7b50365e57a75e1550e211a2e3aaf5d9c25f554bd29492ea26602a19dcc1b2f1",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "claim": "Replay-input and axiom-resolution custody; the regression suite tests the stated failure boundaries.",
+        "invariants": [
+          "Public Lean imports participate in local dependency closure.",
+          "Build-cache keys bind declared compiler/package configuration and actual compiler versions.",
+          "A failed paper-local dependency compile stops the caller before stale object reuse.",
+          "Receipt assembly refuses stale source, dependency, configuration or cited-symbol inputs."
+        ],
+        "limits": [
+          "No mathematical node promotion is authorized by a file replay.",
+          "No full imported-source replay in this repair.",
+          "Resume caches assume inputs remain fixed during one run."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/lean_replay_campaign/review_validation.json",
+            "sha256": "b812c216661cd7897fcab241db92722d87a3b7fbaef9abd45e7b06cc3eaea6ec"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"dag/research/lean_replay_campaign/replay_campaign.py\",\n    \"sha256\": \"7b50365e57a75e1550e211a2e3aaf5d9c25f554bd29492ea26602a19dcc1b2f1\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"claim\": \"Replay-input and axiom-resolution custody; the regression suite tests the stated failure boundaries.\",\n  \"invariants\": [\n    \"Public Lean imports participate in local dependency closure.\",\n    \"Build-cache keys bind declared compiler/package configuration and actual compiler versions.\",\n    \"A failed paper-local dependency compile stops the caller before stale object reuse.\",\n    \"Receipt assembly refuses stale source, dependency, configuration or cited-symbol inputs.\"\n  ],\n  \"limits\": [\n    \"No mathematical node promotion is authorized by a file replay.\",\n    \"No full imported-source replay in this repair.\",\n    \"Resume caches assume inputs remain fixed during one run.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/lean_replay_campaign/review_validation.json\",\n      \"sha256\": \"b812c216661cd7897fcab241db92722d87a3b7fbaef9abd45e7b06cc3eaea6ec\"\n    }\n  ]\n}\n",
+      "original_paths": []
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8a196542e96ec1491c992f9705cac47c183fb015a50dec2d26fdc62f7098a10b",
+      "bytes": 1950,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "dag/research/lean_replay_campaign/replay_campaign.py",
+          "sha256": "7b50365e57a75e1550e211a2e3aaf5d9c25f554bd29492ea26602a19dcc1b2f1",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "level": "L4",
+        "level_assessment": "Production replay/receipt pipeline with explicit dependency and axiom-resolution boundaries.",
+        "gates": {
+          "G1": "B",
+          "G2": "C",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "gate_rationale": {
+          "G1": "Source-pinned repair receipt and distinct proof boundary.",
+          "G2": "Hash and exact string/name matching; no approximate mathematical certificate path.",
+          "G3": "Failed dependency builds now stop; process timeout and cancellation propagation remain absent. The pinned strict-typing diagnostic records missing annotations; no strict-typing certification is claimed.",
+          "G4": "29 focused tests, actual nine-module replay and source-validated receipt assembly; the full campaign was not rerun.",
+          "G5": "Existing large driver retained; scheduling and local dependency traversal remain nontrivial."
+        },
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "assessment_status": "completed_for_driver_repair_boundary",
+        "evaluation_timestamp": "2026-10-23T04:58:55.345496+00:00",
+        "rubric": "SCORING.md v2.0.0",
+        "evidence": [
+          {
+            "path": "dag/research/lean_replay_campaign/review_validation.json",
+            "sha256": "b812c216661cd7897fcab241db92722d87a3b7fbaef9abd45e7b06cc3eaea6ec"
+          }
+        ],
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "required_for_completion": [],
+        "limiting_reason": "Timeout/cancellation handling and broad campaign replay remain outside the evidenced repair boundary."
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"dag/research/lean_replay_campaign/replay_campaign.py\",\n    \"sha256\": \"7b50365e57a75e1550e211a2e3aaf5d9c25f554bd29492ea26602a19dcc1b2f1\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L4\",\n  \"level_assessment\": \"Production replay/receipt pipeline with explicit dependency and axiom-resolution boundaries.\",\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"gate_rationale\": {\n    \"G1\": \"Source-pinned repair receipt and distinct proof boundary.\",\n    \"G2\": \"Hash and exact string/name matching; no approximate mathematical certificate path.\",\n    \"G3\": \"Failed dependency builds now stop; process timeout and cancellation propagation remain absent. The pinned strict-typing diagnostic records missing annotations; no strict-typing certification is claimed.\",\n    \"G4\": \"29 focused tests, actual nine-module replay and source-validated receipt assembly; the full campaign was not rerun.\",\n    \"G5\": \"Existing large driver retained; scheduling and local dependency traversal remain nontrivial.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"assessment_status\": \"completed_for_driver_repair_boundary\",\n  \"evaluation_timestamp\": \"2026-10-23T04:58:55.345496+00:00\",\n  \"rubric\": \"SCORING.md v2.0.0\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/lean_replay_campaign/review_validation.json\",\n      \"sha256\": \"b812c216661cd7897fcab241db92722d87a3b7fbaef9abd45e7b06cc3eaea6ec\"\n    }\n  ],\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"required_for_completion\": [],\n  \"limiting_reason\": \"Timeout/cancellation handling and broad campaign replay remain outside the evidenced repair boundary.\"\n}\n",
+      "original_paths": []
+    }
+  ],
+  "legacy_paths": {},
+  "history_order": "Append order; no prior assessment is invented."
+}

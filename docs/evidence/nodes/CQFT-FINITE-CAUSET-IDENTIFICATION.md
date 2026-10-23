@@ -1,6 +1,6 @@
 # CQFT-FINITE-CAUSET-IDENTIFICATION
 
-Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `DEFINITION`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `DEFINITION`. Evidence gra
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 1
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -47,12 +47,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/CausalOrder.lean](../../../lean4/CausalOrder.lean)
 - sha256 (`bytes`): `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0`
 - cited in: node.lean, node.source, record TFQ-2112
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_causal_qft.json](../../../dag/research/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CausalOrder`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `FiniteStrictPoset` | yes | yes | yes | - | `#print axioms FiniteStrictPoset` |
+| `FiniteStrictPoset` | yes | yes | yes | none | `#print axioms FiniteStrictPoset` |
 - counts toward the grade: yes
 
 ### Python: `code/python/src/general_relativity/causal_set.py`
