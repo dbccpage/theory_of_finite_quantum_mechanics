@@ -584,6 +584,9 @@ lean_lib FrontierTargets where
     `FrontierPrAllowedRegion
   ]
 
+lean_lib FableGleasonRun2 where
+  roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
+
 -- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 lean_lib CampaignPgwPresentationLift where
   roots := #[`CampaignPgwPresentationLift]
