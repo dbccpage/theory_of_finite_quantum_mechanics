@@ -627,6 +627,11 @@ lean_lib GenesisHottHorns where
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
+
+-- Operational hypotheses and exact countermodels. Not a default build target.
+lean_lib CampaignTransitionProbability where
+  roots := #[`CampaignTransitionProbability]
+
 -- Compile the immutable, provenance-bound Genesis source through the shared cache.
 lean_lib CampaignGenesisSealedSource where
   srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
