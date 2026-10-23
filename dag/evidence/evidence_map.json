@@ -9,7 +9,7 @@
   "nodes": 892,
   "path": "dag/derivation_dag.json",
   "routes": 897,
-  "sha256_lf": "7229d3f579feda80bf34bfa58cd7bd12cb4b2453a8d4e65229607c615f96d47a"
+  "sha256_lf": "dc11492b961131a1df69175b7efa3332ee683313ff38905fd2c09db641c89363"
  },
  "files": {
   "checks/independent/dfm-hierarchical-borel.py": {
@@ -41,6 +41,11 @@
    "sha256": "5e7e78bc5a5cc333a82d61b0accf13134504983190c0d07fe50bce1792616d57",
    "sha256_basis": "bytes",
    "size": 4681
+  },
+  "checks/independent/pgw-minimal-or-initial-refused.py": {
+   "sha256": "67fa864d43432040bd7af3a1e02077c4c8757cae77db55851d2660d449be046c",
+   "sha256_basis": "bytes",
+   "size": 3879
   },
   "checks/independent/pgw-presentation-not-expressive-lift.py": {
    "sha256": "11490a7350cd3707be4844f886a505a9d2f3577aa26d1821e761cb1d849d9ee8",
@@ -758,9 +763,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "7229d3f579feda80bf34bfa58cd7bd12cb4b2453a8d4e65229607c615f96d47a",
+   "sha256": "dc11492b961131a1df69175b7efa3332ee683313ff38905fd2c09db641c89363",
    "sha256_basis": "lf-normalised",
-   "size": 4385548
+   "size": 4387691
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -1138,9 +1143,9 @@
    "size": 3421
   },
   "dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md": {
-   "sha256": "6e76720f37d0e45a9b344beb707f7ff60653ec50599c10d6a9678d77f1481458",
+   "sha256": "a28c93e15feb3cf995bdc2940c724c4c8179e071c3daf6727c41b1c708d10b70",
    "sha256_basis": "lf-normalised",
-   "size": 3011
+   "size": 4672
   },
   "dag/derivations/02_genesis/tfq_0454_sealed_terminal_statement.md": {
    "sha256": "ddc639a1b6722c7a5da3e9defe7e24d30eb26d3289b75a41f61ef697bc7ba817",
@@ -5597,6 +5602,11 @@
    "sha256_basis": "lf-normalised",
    "size": 4699
   },
+  "dag/derivations/independent/pgw-minimal-or-initial-refused.md": {
+   "sha256": "a3de462e1958dc96ae0cf6e7c93caf7e1b162842bdd7142c52178499dfc41dd6",
+   "sha256_basis": "lf-normalised",
+   "size": 5597
+  },
   "dag/derivations/independent/tfq-0396.md": {
    "sha256": "17809ed53743058516427c55016d31bfb723bfa111aacde8b074aa6ed0be4e38",
    "sha256_basis": "lf-normalised",
@@ -5663,9 +5673,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "sha256_basis": "lf-normalised",
-   "size": 131423
+   "size": 132655
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -5961,6 +5971,11 @@
    "sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
    "sha256_basis": "bytes",
    "size": 24398
+  },
+  "lean4/CampaignGenesisProcessComparison.lean": {
+   "sha256": "3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2",
+   "sha256_basis": "bytes",
+   "size": 11463
   },
   "lean4/CampaignGenesisReplayRefinement.lean": {
    "sha256": "d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e",
@@ -9361,15 +9376,6 @@
    "grade": "E3",
    "kind": "proved_prose_no_in_repo_document",
    "node": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
-   "stage": "GENESIS",
-   "status": "PROVED_PROSE"
-  },
-  {
-   "dependents": 132,
-   "detail": "no in-repo non-generated document among the counted sources",
-   "grade": "E1",
-   "kind": "proved_prose_no_in_repo_document",
-   "node": "PGW-MINIMAL-OR-INITIAL-REFUSED",
    "stage": "GENESIS",
    "status": "PROVED_PROSE"
   },
@@ -136114,22 +136120,600 @@
    ],
    "dependents": 132,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 4,
+    "lean_receipt_backed": 16,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 16
    },
-   "flags": [
-    {
-     "detail": "no in-repo non-generated document among the counted sources",
-     "kind": "proved_prose_no_in_repo_document"
-    }
-   ],
-   "grade": "E1",
+   "flags": [],
+   "grade": "E3",
    "id": "PGW-MINIMAL-OR-INITIAL-REFUSED",
    "items": [
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.all_words_agree",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.all_words_agree",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.all_words_minimum_size",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.all_words_minimum_size",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.every_challenge_answer_agrees",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.every_challenge_answer_agrees",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.hom_run",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.hom_run",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.labelled_append",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.labelled_append",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.no_clock_hom_of_self_loop",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.no_clock_hom_of_self_loop",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.no_initial_in_clock_closed_class",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.no_initial_in_clock_closed_class",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.no_map_to_clock_lift",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.no_map_to_clock_lift",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.nonminimal_adequate_process",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.nonminimal_adequate_process",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.oneState_is_reduced_reachable",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.oneState_is_reduced_reachable",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.reduced_reachable_is_minimal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.reduced_reachable_is_minimal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.run_add",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.run_add",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.source_advance_matches",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.source_advance_matches",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.source_run_matches",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.source_run_matches",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison)",
+      "record TFQ-0453"
+     ],
+     "command": "cd lean4 && lake build CampaignGenesisProcessComparison",
+     "command_note": "then, in a scratch file that imports CampaignGenesisProcessComparison: #print axioms CampaignGenesisProcessComparison.source_supply_self_loop",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGenesisProcessComparison.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGenesisProcessComparison.source_supply_self_loop",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source"
@@ -136152,6 +136736,29 @@
      "symbol_declared": null,
      "symbol_exists": null,
      "where": "49-52"
+    },
+    {
+     "cited_in": [
+      "record TFQ-0453"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/pgw-minimal-or-initial-refused.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
     },
     {
      "cited_in": [
@@ -136184,6 +136791,29 @@
      "command": null,
      "command_note": null,
      "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/pgw-minimal-or-initial-refused.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": "1"
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
      "counts": false,
      "decl_ambiguous": false,
      "decl_axioms": null,
@@ -136201,7 +136831,7 @@
      "where": "623-633"
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0453"
    ],
@@ -237959,6 +238589,32 @@
     "propext"
    ],
    "built_successfully": null,
+   "checked_at": "2026-10-23T08:27:39.851725+00:00",
+   "dag_node": "PGW-MINIMAL-OR-INITIAL-REFUSED",
+   "decl_count": 16,
+   "exit_code": 0,
+   "id": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json#0:CampaignGenesisProcessComparison",
+   "lean_version": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignGenesisProcessComparison",
+   "path": "lean4/CampaignGenesisProcessComparison.lean",
+   "receipt_file": "dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json",
+   "receipt_file_sha256": "1e9033efbd5921507d34938c22b4f270e60f4d8f41e13fe1fc661270fccc8cc6",
+   "recorded_sha256": "3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2",
+   "source_unchanged_during_build": null,
+   "toolchain": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
    "checked_at": "2026-10-22",
    "dag_node": "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
    "decl_count": 17,
@@ -247923,7 +248579,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -247949,7 +248605,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -247975,7 +248631,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248001,7 +248657,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248027,7 +248683,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248053,7 +248709,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248079,7 +248735,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248105,7 +248761,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248131,7 +248787,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248157,7 +248813,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248183,7 +248839,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248209,7 +248865,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248235,7 +248891,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248261,7 +248917,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248287,7 +248943,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "a24577f8127f7f2494ff25444ca13b6d6143c820ddd314d7414f7911cf39131c",
+   "receipt_file_sha256": "f0bad2fff45ec146938a7194a29da66c70855899286a4a930aa6707ff0b388a8",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -248872,9 +249528,9 @@
  "summary": {
   "by_grade": {
    "E0": 189,
-   "E1": 229,
+   "E1": 228,
    "E2": 36,
-   "E3": 438,
+   "E3": 439,
    "E4": 0
   },
   "by_status": {
@@ -248894,28 +249550,28 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 25,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1398,
+   "distinct": 1406,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1351,
-   "replay_verified_and_declaration_itemised": 1302,
+   "replay_verified": 1359,
+   "replay_verified_and_declaration_itemised": 1310,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1705
+   "present": 1713
   },
-  "mismatch_nodes": 192,
+  "mismatch_nodes": 191,
   "mismatches_by_kind": {
    "broken_reference": 54,
    "computational_no_runnable_test": 126,
    "proved_lean_below_e3": 0,
    "proved_lean_external_only": 0,
-   "proved_prose_no_in_repo_document": 13,
+   "proved_prose_no_in_repo_document": 12,
    "receipt_names_uncited_module": 27,
    "receipt_not_current": 35
   },
-  "mismatches_total": 255,
+  "mismatches_total": 254,
   "nodes": 892,
   "proved_lean_lean_references": {
    "present": 1055
@@ -248924,7 +249580,7 @@
    "total": 263,
    "with_in_repo_lean": 263
   },
-  "receipts_indexed": 453,
+  "receipts_indexed": 454,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -249061,9 +249717,9 @@
    },
    "GENESIS": {
     "E0": 27,
-    "E1": 3,
+    "E1": 2,
     "E2": 1,
-    "E3": 58,
+    "E3": 59,
     "E4": 0
    },
    "GENESIS_TO_HIGHER": {
@@ -249210,9 +249866,9 @@
    },
    "PROVED_PROSE": {
     "E0": 8,
-    "E1": 7,
+    "E1": 6,
     "E2": 7,
-    "E3": 6,
+    "E3": 7,
     "E4": 0
    },
    "REFUTED": {

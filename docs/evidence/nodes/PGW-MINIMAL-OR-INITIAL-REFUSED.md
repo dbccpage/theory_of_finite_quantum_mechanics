@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/pgw-minimal-or-initial-refused.py`
 
 - file: [checks/independent/pgw-minimal-or-initial-refused.py](../../../checks/independent/pgw-minimal-or-initial-refused.py)
-- sha256 (`bytes`): `0ac9dd479bb8f00fc38197cb37e914974953a1febd06d415313fa05c0120df9a`
+- sha256 (`bytes`): `67fa864d43432040bd7af3a1e02077c4c8757cae77db55851d2660d449be046c`
 - cited in: record TFQ-0453
 - counts toward the grade: yes
 
@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-minimal-or-initial-refused.md`
 
 - file: [dag/derivations/independent/pgw-minimal-or-initial-refused.md](../../../dag/derivations/independent/pgw-minimal-or-initial-refused.md)
-- sha256 (`lf-normalised`): `6c949e92a9c560cb0a467d6e14a0b3eaa72103de9be3a04cf52984fc37469e9b`
+- sha256 (`lf-normalised`): `a3de462e1958dc96ae0cf6e7c93caf7e1b162842bdd7142c52178499dfc41dd6`
 - cited in: node.source
 - counts toward the grade: yes
 
