@@ -634,3 +634,12 @@ lean_lib CampaignFspLatticeAnomalyInflow where
 -- Operational hypotheses and exact countermodels. Not a default build target.
 lean_lib CampaignTransitionProbability where
   roots := #[`CampaignTransitionProbability]
+
+-- Sealed Genesis and book candidate source; non-default campaign dependencies.
+lean_lib CampaignGenesisCarrierSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
+  roots := #[`Derivation.Basic]
+  globs := #[.submodules `Derivation]
+
+lean_lib CampaignGenesisCarrierBridge where
+  roots := #[`CampaignGenesisCarrierBridge]
