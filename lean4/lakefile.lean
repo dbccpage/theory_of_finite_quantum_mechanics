@@ -1002,3 +1002,7 @@ lean_lib CampaignGenesisOngoingRefinement where
 -- Explicit comparison classes, reusing the sealed source library above.
 lean_lib CampaignGenesisProcessComparison where
   roots := #[`CampaignGenesisProcessComparison]
+
+-- Campaign: DFM-SYMANZIK-QED-AE-FENCE. Not a default target.
+lean_lib CampaignDfmSymanzikQedAeFence where
+  roots := #[`CampaignDfmSymanzikQedAeFence]

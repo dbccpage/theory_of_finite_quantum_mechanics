@@ -3,18 +3,24 @@ node_id: DFM-SYMANZIK-QED-AE-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: The dossier claim that rational intervals built from U_G bracket the imported 1-to-4-loop
-    QED series a_e to 12 decimal places has no check in the cited replay module.
+  source_statement: The graph with vertices {0,1,2,3} and edges e0=(0,1), e1=(0,2), e2=(1,3), e3=(2,3),
+    e4=(1,2) has exactly eight connected 3-edge subsets among its ten 3-edge subsets. For weights 2, 3,
+    5, 7, 11 on those edges in that order, the sum of the products of the two omitted weights over those
+    eight subsets is 247, and the same sum with every weight 1 is 8. A rational interval around a 1-to-4-loop
+    QED anomalous-moment series stays open.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - 1-to-4-loop QED coefficients of a_e
   - fine-structure constant value
-  source_bottleneck: Supply an exact interval computation from declared graph polynomials and keep the
-    loop coefficients and alpha as imported inputs; continuum Feynman-parameter integrals stay outside
-    the finite statement.
+  source_bottleneck: The edges and the weights are supplied. These eight subsets are one graph, not a
+    theorem for every graph. The QED loop coefficients, the fine-structure constant, and continuum Feynman-parameter
+    integrals stay open.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md
   - papers/ravera_dfm_dossier.md
+  - lean4/CampaignDfmSymanzikQedAeFence.lean
+  - dag/derivations/independent/dfm-symanzik-qed-ae-fence.md
+  - checks/independent/dfm-symanzik-qed-ae-fence.py
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md
   source_claim_label: OPEN
@@ -23,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md
-    sha256: 61dad439c796a48dfe71a8e53b025d2c5429837a481b1d313d640ffbb7ea736b
+    sha256: b87cb562004403bfed5e845d7e0987e4edc4e505168409d159d5263a8d0c9a95
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +37,216 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_symanzik_qed_ae_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: ncomp
+  line: 55
+  signature_excerpt: 'def ncomp (mask : Nat) : Nat'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: run
+  line: 52
+  signature_excerpt: 'def run (mask : Nat) : UF'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: find
+  line: 25
+  signature_excerpt: 'def find (u : UF) (x : Nat) : Nat'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: UF
+  line: 10
+  signature_excerpt: structure UF
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: addIf
+  line: 49
+  signature_excerpt: 'def addIf (u : UF) (mask i : Nat) : UF'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: start
+  line: 16
+  signature_excerpt: 'def start : UF'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: parent
+  line: 18
+  signature_excerpt: |-
+    def parent (u : UF) : Nat → Nat
+      | 0 => u.p0
+      | 1 => u.p1
+      | 2 => u.p2
+      | 3 => u.p3
+      | n => n
+
+    def find (u : UF) (x : Nat) : Nat
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: addEdge
+  line: 40
+  signature_excerpt: 'def addEdge (u : UF) (i : Nat) : UF'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: union
+  line: 30
+  signature_excerpt: 'def union (u : UF) (a b : Nat) : UF'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: scan
+  line: 101
+  signature_excerpt: |-
+    def scan : Nat → Bool
+      | 0 => okMask 0
+      | n + 1 => okMask (n + 1) && scan n
+
+    theorem component_counts :
+        ncomp 7 = 1 ∧ ncomp 11 = 1 ∧ ncomp 13 = 1 ∧ ncomp 14 = 1 ∧
+        ncomp 21 = 1 ∧ ncomp 22 = 1 ∧ ncomp 25 = 1 ∧ ncomp 26 = 1 ∧
+        ncomp 19 = 2 ∧ ncomp 28 = 2
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: okMask
+  line: 98
+  signature_excerpt: 'def okMask (m : Nat) : Bool'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pop5
+  line: 66
+  signature_excerpt: 'def pop5 (m : Nat) : Nat'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isListed
+  line: 94
+  signature_excerpt: 'def isListed (m : Nat) : Bool'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treeSum
+  line: 90
+  signature_excerpt: 'def treeSum (w : Nat → Nat) : Nat'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: weight
+  line: 73
+  signature_excerpt: 'def weight (i : Nat) : Nat'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: oneW
+  line: 88
+  signature_excerpt: 'def oneW (_ : Nat) : Nat'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: component_counts
+  line: 105
+  signature_excerpt: |-
+    theorem component_counts :
+        ncomp 7 = 1 ∧ ncomp 11 = 1 ∧ ncomp 13 = 1 ∧ ncomp 14 = 1 ∧
+        ncomp 21 = 1 ∧ ncomp 22 = 1 ∧ ncomp 25 = 1 ∧ ncomp 26 = 1 ∧
+        ncomp 19 = 2 ∧ ncomp 28 = 2
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: three_bit_masks_are_listed
+  line: 111
+  signature_excerpt: 'theorem three_bit_masks_are_listed : scan 31 = true'
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cotree_sums
+  line: 114
+  signature_excerpt: |-
+    theorem cotree_sums :
+        treeSum weight = 247 ∧ treeSum oneW = 8
+  source: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  source_sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmSymanzikQedAeFence.lean::component_counts
+  availability: local
+  symbol: component_counts
+  path: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  declaration_status: declaration_found_not_proof_checked
+  line: 105
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmSymanzikQedAeFence.lean::three_bit_masks_are_listed
+  availability: local
+  symbol: three_bit_masks_are_listed
+  path: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  declaration_status: declaration_found_not_proof_checked
+  line: 111
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmSymanzikQedAeFence.lean::cotree_sums
+  availability: local
+  symbol: cotree_sums
+  path: lean4/CampaignDfmSymanzikQedAeFence.lean
+  repository: this_repository
+  sha256: d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab
+  declaration_status: declaration_found_not_proof_checked
+  line: 114
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -75,8 +288,6 @@ operad_slots:
     - fine-structure constant value
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
