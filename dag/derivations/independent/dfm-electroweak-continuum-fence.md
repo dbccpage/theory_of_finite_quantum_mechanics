@@ -55,7 +55,9 @@ If the modulus is not 1, the two squared norms differ whenever the original
 squared norm is nonzero. Using each doublet's own rational square root as the
 denominator is a different normalization. On `Φ = (1, 0)` and `z = 2`, the
 squared norms are `1` and `4`, the roots `1` and `2` satisfy `1*1 = 1` and
-`2*2 = 4`, and the normalized `(1, 2)` entries are `1` and `2`. Dividing both
+`2*2 = 4`. The `(1, 2)` entry of `U(2Phi)/2` is `1`, whereas that of
+`(U(Phi)/1) diag(2,2)` is `2`. These are the two sides of the proposed
+covariance law, not two separately normalized doublets. Dividing both
 matrices by the shared denominator `1` still matches, so the failure is the
 change of root, not the un-normalized multiplication.
 
