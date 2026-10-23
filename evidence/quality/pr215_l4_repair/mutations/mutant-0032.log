@@ -1,0 +1,31 @@
+
+running 10 tests
+..... 5/10
+tests::affected_sources_maps_companions_back_to_sources --- FAILED
+....
+failures:
+
+---- tests::affected_sources_maps_companions_back_to_sources stdout ----
+source:    code/a.rs (Rust, Rust)
+sha256:    e454d886b53921e81a8b0811cdaec7e6bb2949b0658d90c373a83dea292474c9
+companion: code/a.contract.score.yaml
+baseline:  Absent
+contract:  urn:t (0 symbols, 0 owned invariants)
+token:     L4C
+  schema       ok
+  binding      ok
+  completeness ok
+  floor        ok
+outcome:   PASS L4C
+
+thread 'tests::affected_sources_maps_companions_back_to_sources' (44588) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:462:9:
+assertion failed: cmd_explain(&r, "code/a.rs").unwrap()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::affected_sources_maps_companions_back_to_sources
+
+test result: FAILED. 9 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.75s
+
+error: test failed, to rerun pass `--bin governance-check`

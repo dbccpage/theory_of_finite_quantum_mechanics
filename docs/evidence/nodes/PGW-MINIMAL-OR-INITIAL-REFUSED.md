@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignGenesisProcessComparison.lean](../../../lean4/CampaignGenesisProcessComparison.lean)
 - sha256 (`bytes`): `3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2`
-- cited in: node.lean, receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison), record TFQ-0453
+- cited in: node.lean, receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison), receipt dag/research/genesis_merged_20261023_lean_replay.json (CampaignGenesisProcessComparison), record TFQ-0453
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json](../../../dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json) (module `CampaignGenesisProcessComparison`): recorded sha256 `3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisProcessComparison`): recorded sha256 `3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignGenesisProcessComparison`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

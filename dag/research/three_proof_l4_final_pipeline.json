@@ -1,0 +1,381 @@
+{
+  "AuthorityEffect": "None",
+  "base": "09f3170fe2c851973219d04662fe319321892762",
+  "reason": "Final joint replay after explicit EW covariance-side prose correction; earlier stale-view failure retained in three_proof_l4_pipeline.json",
+  "steps": [
+    {
+      "argv": [
+        "dag/sync_pfp_results.py"
+      ],
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_unified_dag.py"
+      ],
+      "exit_code": 0,
+      "stdout": "stale=dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md,dag/fragments/application_branches.json\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_application_branches.py"
+      ],
+      "exit_code": 0,
+      "stdout": "stale=derivation_dag.json,theory_of_finite_qm.jsonl,theory_of_finite_qm.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_pregenesis_to_wdp.py"
+      ],
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_frontier_branches.py"
+      ],
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_genesis_to_higher.py"
+      ],
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_foc035_observer_presheaf.py"
+      ],
+      "exit_code": 0,
+      "stdout": "foc035 observer presheaf synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_master_derivation_ledger.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Written: C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\papers\\core\\master_derivation_ledger.md\nWritten: C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\dag\\derivations\\MASTER_DERIVATION_LEDGER.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/pfp/generate_prompts.py",
+        "--write",
+        "--all-missing"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"created\": 0, \"rewritten\": 1, \"unchanged\": 747}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "papers/core/tools/build_results_audit_table.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "finite_quantum_mechanics.md: already current\nfinite_quantum_mechanics_claim_ledger.md: already current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/research/repin_tensor_receipts.py",
+        "--run",
+        "PR227 PR230 PR233 L4 integration",
+        "--reason",
+        "Combined canonical proof API references, explicit covariance comparison and preserved physical gaps"
+      ],
+      "exit_code": 0,
+      "stdout": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha dag/fragments/application_branches.json\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\n4 stale pin(s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map written: 925 nodes, grades {'E0': 189, 'E1': 249, 'E2': 42, 'E3': 445, 'E4': 0}, 254 flags\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "foc035 observer presheaf synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "stdout": "nodes=925 routes=934 records=977 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "papers/core/tools/build_results_audit_table.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "................................                                         [100%]\n============================== warnings summary ===============================\n..\\..\\..\\..\\anaconda3\\lib\\site-packages\\_pytest\\config\\__init__.py:1252\n  C:\\Users\\a343o\\anaconda3\\lib\\site-packages\\_pytest\\config\\__init__.py:1252: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n32 passed, 1 warning in 36.72s\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "09f3170fe2c851973219d04662fe319321892762"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 7,\n    \"valid_contracts_and_scores\": 7,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 4,\n      \"Rust\": 3\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 4,\n      \"Symbolic/Formal\": 3\n    },\n    \"completed_scores\": 7,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 7\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 09f3170fe2c851973219d04662fe319321892762 (merge base 09f3170fe2c8), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "09f3170fe2c851973219d04662fe319321892762"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 10,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "09f3170fe2c851973219d04662fe319321892762",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since 09f3170fe2c851973219d04662fe319321892762 (merge base 09f3170fe2c8); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "checks/independent/dfm-bphz-continuum-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "overlap forests: 6; excluded pair L with R\nnested forests: 4\nnumerator identity: 7*x*y\nwitness (1/2, 1/3): six-forest quotient 7; omitted-G quotient -5\nsector kernel at z=3/5, lambda=(1/2, 1/3): 9/50, distinct from 7\nformal sector value z*z = 9/25, distinct from 7\nchecked: forests, coefficient identity, sample grid, witness, sector comparison\nprojectors: 12 exact idempotents; 77 compatible lists; two invalid families refused\nthree inexact scalar inputs and two sector poles refused\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-O",
+        "checks/independent/dfm-bphz-continuum-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "overlap forests: 6; excluded pair L with R\nnested forests: 4\nnumerator identity: 7*x*y\nwitness (1/2, 1/3): six-forest quotient 7; omitted-G quotient -5\nsector kernel at z=3/5, lambda=(1/2, 1/3): 9/50, distinct from 7\nformal sector value z*z = 9/25, distinct from 7\nchecked: forests, coefficient identity, sample grid, witness, sector comparison\nprojectors: 12 exact idempotents; 77 compatible lists; two invalid families refused\nthree inexact scalar inputs and two sector poles refused\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-m",
+        "mypy",
+        "--strict",
+        "checks/independent/dfm-bphz-continuum-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "checks/independent/dfm-electroweak-continuum-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "normalization API: 9 doublets, 8 phases, 72 covariance and 576 composition cases\n10 invalid normalization/unit-action cases refused\nunnormalized sample z=1/2+1/3i entries match\nunit z=3/5+4/5i norm2=1 entry01=3/5+4/5i\nnonunit z=2 own-root entries 1 and 2 differ\nshared denominator on z=2 still matches\nchecked: unnormalized sample, unit witness, own-root split\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-O",
+        "checks/independent/dfm-electroweak-continuum-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "normalization API: 9 doublets, 8 phases, 72 covariance and 576 composition cases\n10 invalid normalization/unit-action cases refused\nunnormalized sample z=1/2+1/3i entries match\nunit z=3/5+4/5i norm2=1 entry01=3/5+4/5i\nnonunit z=2 own-root entries 1 and 2 differ\nshared denominator on z=2 still matches\nchecked: unnormalized sample, unit witness, own-root split\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-m",
+        "mypy",
+        "--strict",
+        "checks/independent/dfm-electroweak-continuum-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "checks/independent/dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\nrephasing: 2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\nnonreal rational reconstruction and separated cross-ratio control passed\n11 invalid-domain cases refused\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-O",
+        "checks/independent/dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\nrephasing: 2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\nnonreal rational reconstruction and separated cross-ratio control passed\n11 invalid-domain cases refused\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-m",
+        "mypy",
+        "--strict",
+        "checks/independent/dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    }
+  ]
+}

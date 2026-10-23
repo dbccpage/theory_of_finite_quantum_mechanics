@@ -1,60 +1,137 @@
 {
   "schema_version": "campaign_lean_replay.v1",
-  "authority_effect": "None",
-  "checked_at": "2026-10-23",
-  "source_base": "c54ab983ebffd28f05f0e52cd419e647ef5e6cf4",
-  "result": "Narrowed to one order-4 rational step, its four clock blocks, and the vector (3/5, 4/5). The 2026-10-23 lake build of CampaignDfmRelationalTimeFence exited 0. Every printed axiom list is propext, Classical.choice and Quot.sound.",
-  "proof_boundary": "This receipt records that lean4/CampaignDfmRelationalTimeFence.lean type-checks and which axioms its #print axioms lines report. The recorded arithmetic is U^2 = -I, U^4 = I, U^T U = I, the four blocks equal to I, the norm 1, the four transports of psi back to psi, and two first-component inequalities with 3/5. No 8 by 8 matrix, continuous-time generator, or Wheeler-DeWitt constraint is constructed. The node stays OPEN.",
+  "AuthorityEffect": "None",
+  "checked_at": "2026-10-23T19:19:58.612931+00:00",
+  "source_base": "ac4bcf53ce37a19760766df1a9f26918f61dc012",
+  "result": "Narrowed: finite-clock closure API over supplied groups and actions; physical target stays OPEN.",
+  "proof_boundary": "No continuous-time generator, Wheeler-DeWitt constraint, graph/cohomology construction or derivation of supplied group/action. Packaged 8x8 matrix only independently checked.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
     "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "9b3a0d3d7e5aadd041ae172e85368b8e3cad3e42fe6261bd347c2d7b7f07c57d",
-    "library": "CampaignDfmRelationalTimeFence (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b",
-    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache",
-    "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
-    ],
+    "lakefile_sha256": "c11ee6bb9b3794c9cdf5cd96bafb0715354a98beeeaf37bb84580cb73bde5e0a",
     "results": [
       {
         "module": "CampaignDfmRelationalTimeFence",
         "dag_node": "DFM-RELATIONAL-TIME-FENCE",
         "source": "lean4/CampaignDfmRelationalTimeFence.lean",
-        "sha256": "82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c",
-        "sha256_after_build": "82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c",
+        "sha256": "925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98",
+        "sha256_after_build": "925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98",
         "source_unchanged_during_build": true,
         "exit_code": 0,
-        "admission_scan_passed": true,
-        "axiom_audit_passed": true,
+        "axioms": {
+          "CampaignDfmRelationalTimeFence.step_square_and_order": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.four_blocks": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.psi_recover": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.frame_dress": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.interior": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.seam_eq": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.trivial_iff_recurrence": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.validate_zero": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.validate_success_iff": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.validate_period": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.validate_roundtrip": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.validate_nonclosing": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.ClosedCycle.blocks": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.evolves_iff": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.stationary_iff": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.Clock.frame_constant": [
+            "propext"
+          ],
+          "CampaignDfmRelationalTimeFence.rotation_apply": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.rotation_four": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmRelationalTimeFence.rationalClock_blocks": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
         "anchors": [
           "CampaignDfmRelationalTimeFence.step_square_and_order",
           "CampaignDfmRelationalTimeFence.four_blocks",
-          "CampaignDfmRelationalTimeFence.psi_recover"
+          "CampaignDfmRelationalTimeFence.psi_recover",
+          "CampaignDfmRelationalTimeFence.Clock.frame_dress",
+          "CampaignDfmRelationalTimeFence.Clock.interior",
+          "CampaignDfmRelationalTimeFence.Clock.seam_eq",
+          "CampaignDfmRelationalTimeFence.Clock.trivial_iff_recurrence",
+          "CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff",
+          "CampaignDfmRelationalTimeFence.Clock.validate_zero",
+          "CampaignDfmRelationalTimeFence.Clock.validate_success_iff",
+          "CampaignDfmRelationalTimeFence.Clock.validate_period",
+          "CampaignDfmRelationalTimeFence.Clock.validate_roundtrip",
+          "CampaignDfmRelationalTimeFence.Clock.validate_nonclosing",
+          "CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form",
+          "CampaignDfmRelationalTimeFence.Clock.ClosedCycle.blocks",
+          "CampaignDfmRelationalTimeFence.Clock.evolves_iff",
+          "CampaignDfmRelationalTimeFence.Clock.stationary_iff",
+          "CampaignDfmRelationalTimeFence.Clock.frame_constant",
+          "CampaignDfmRelationalTimeFence.rotation_apply",
+          "CampaignDfmRelationalTimeFence.rotation_four",
+          "CampaignDfmRelationalTimeFence.rationalClock_blocks"
         ],
-        "anchors_reported": true,
-        "axioms": {
-          "CampaignDfmRelationalTimeFence.step_square_and_order": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignDfmRelationalTimeFence.four_blocks": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignDfmRelationalTimeFence.psi_recover": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ]
-        },
-        "output": "Build completed successfully (833 jobs)."
+        "axiom_audit_passed": true,
+        "output": "\u26a0 [848/849] Built CampaignDfmRelationalTimeFence (23s)\nwarning: CampaignDfmRelationalTimeFence.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmRelationalTimeFence.lean: imports `Mathlib.Algebra.Group.Action.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmRelationalTimeFence.lean: imports `Mathlib.GroupTheory.Perm.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmRelationalTimeFence.lean: imports `Mathlib.Tactic.Group` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignDfmRelationalTimeFence.lean:299:0: 'CampaignDfmRelationalTimeFence.step_square_and_order' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:300:0: 'CampaignDfmRelationalTimeFence.four_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:301:0: 'CampaignDfmRelationalTimeFence.psi_recover' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:303:0: 'CampaignDfmRelationalTimeFence.Clock.frame_dress' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:304:0: 'CampaignDfmRelationalTimeFence.Clock.interior' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:305:0: 'CampaignDfmRelationalTimeFence.Clock.seam_eq' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:306:0: 'CampaignDfmRelationalTimeFence.Clock.trivial_iff_recurrence' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:307:0: 'CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:308:0: 'CampaignDfmRelationalTimeFence.Clock.validate_zero' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:309:0: 'CampaignDfmRelationalTimeFence.Clock.validate_success_iff' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:310:0: 'CampaignDfmRelationalTimeFence.Clock.validate_period' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:311:0: 'CampaignDfmRelationalTimeFence.Clock.validate_roundtrip' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:312:0: 'CampaignDfmRelationalTimeFence.Clock.validate_nonclosing' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:313:0: 'CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:314:0: 'CampaignDfmRelationalTimeFence.Clock.ClosedCycle.blocks' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:315:0: 'CampaignDfmRelationalTimeFence.Clock.evolves_iff' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:316:0: 'CampaignDfmRelationalTimeFence.Clock.stationary_iff' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:317:0: 'CampaignDfmRelationalTimeFence.Clock.frame_constant' depends on axioms: [propext]\ninfo: CampaignDfmRelationalTimeFence.lean:318:0: 'CampaignDfmRelationalTimeFence.rotation_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:319:0: 'CampaignDfmRelationalTimeFence.rotation_four' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmRelationalTimeFence.lean:320:0: 'CampaignDfmRelationalTimeFence.rationalClock_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (849 jobs).\n"
       }
     ]
+  },
+  "historical_receipt": {
+    "status": "SUPERSEDED_SOURCE",
+    "sha256": "ffca7733e4983598582882e9d7eab3de7ee9a0795bd3b0e462eeea2bb1638900",
+    "raw_utf8": "{\n  \"schema_version\": \"campaign_lean_replay.v1\",\n  \"authority_effect\": \"None\",\n  \"checked_at\": \"2026-10-23\",\n  \"source_base\": \"c54ab983ebffd28f05f0e52cd419e647ef5e6cf4\",\n  \"result\": \"Narrowed to one order-4 rational step, its four clock blocks, and the vector (3/5, 4/5). The 2026-10-23 lake build of CampaignDfmRelationalTimeFence exited 0. Every printed axiom list is propext, Classical.choice and Quot.sound.\",\n  \"proof_boundary\": \"This receipt records that lean4/CampaignDfmRelationalTimeFence.lean type-checks and which axioms its #print axioms lines report. The recorded arithmetic is U^2 = -I, U^4 = I, U^T U = I, the four blocks equal to I, the norm 1, the four transports of psi back to psi, and two first-component inequalities with 3/5. No 8 by 8 matrix, continuous-time generator, or Wheeler-DeWitt constraint is constructed. The node stays OPEN.\",\n  \"lean_replay\": {\n    \"lean_version\": \"Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)\",\n    \"lake_version\": \"Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)\",\n    \"mathlib_source_sha\": \"56a005855ea17e0b0958f73ec801ae140b0a1679\",\n    \"lakefile_sha256\": \"9b3a0d3d7e5aadd041ae172e85368b8e3cad3e42fe6261bd347c2d7b7f07c57d\",\n    \"library\": \"CampaignDfmRelationalTimeFence (lean_lib in lean4/lakefile.lean; not a default target)\",\n    \"build_directory\": \"lean4/b\",\n    \"dependency_packages\": \"read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache\",\n    \"command\": \"cd lean4 && lake build CampaignDfmRelationalTimeFence\",\n    \"allowed_axioms\": [\n      \"propext\",\n      \"Classical.choice\",\n      \"Quot.sound\"\n    ],\n    \"results\": [\n      {\n        \"module\": \"CampaignDfmRelationalTimeFence\",\n        \"dag_node\": \"DFM-RELATIONAL-TIME-FENCE\",\n        \"source\": \"lean4/CampaignDfmRelationalTimeFence.lean\",\n        \"sha256\": \"82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c\",\n        \"sha256_after_build\": \"82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c\",\n        \"source_unchanged_during_build\": true,\n        \"exit_code\": 0,\n        \"admission_scan_passed\": true,\n        \"axiom_audit_passed\": true,\n        \"anchors\": [\n          \"CampaignDfmRelationalTimeFence.step_square_and_order\",\n          \"CampaignDfmRelationalTimeFence.four_blocks\",\n          \"CampaignDfmRelationalTimeFence.psi_recover\"\n        ],\n        \"anchors_reported\": true,\n        \"axioms\": {\n          \"CampaignDfmRelationalTimeFence.step_square_and_order\": [\n            \"Classical.choice\",\n            \"Quot.sound\",\n            \"propext\"\n          ],\n          \"CampaignDfmRelationalTimeFence.four_blocks\": [\n            \"Classical.choice\",\n            \"Quot.sound\",\n            \"propext\"\n          ],\n          \"CampaignDfmRelationalTimeFence.psi_recover\": [\n            \"Classical.choice\",\n            \"Quot.sound\",\n            \"propext\"\n          ]\n        },\n        \"output\": \"Build completed successfully (833 jobs).\"\n      }\n    ]\n  }\n}\n"
   }
 }

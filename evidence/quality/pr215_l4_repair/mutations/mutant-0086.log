@@ -1,0 +1,30 @@
+
+running 52 tests
+.. 2/52
+policy::tests::baseline_round_trip_and_grandfathering --- FAILED
+................................ 35/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+................
+failures:
+
+---- policy::tests::baseline_round_trip_and_grandfathering stdout ----
+
+thread 'policy::tests::baseline_round_trip_and_grandfathering' (20376) panicked at ..\code\rust\src\governance\src\policy.rs:639:9:
+assertion failed: b.grandfathers("code/x.rs", &sha)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (46604) panicked at ..\code\rust\src\governance\src\verify.rs:404:9:
+assertion `left == right` failed
+  left: Err(Floor { path: "code/x.contract.score.yaml", expected: "a completed token with level >= L4 and grade >= D", found: "L2B" })
+ right: Ok(())
+
+
+failures:
+    policy::tests::baseline_round_trip_and_grandfathering
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.54s
+
+error: test failed, to rerun pass `--lib`

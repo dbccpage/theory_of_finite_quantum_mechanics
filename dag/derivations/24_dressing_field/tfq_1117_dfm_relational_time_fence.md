@@ -1,4 +1,4 @@
-# [TFQ-1117] Order-4 clock blocks for one rational step
+# [TFQ-1117] Finite-clock closure and reversible history coordinates
 
 > **Stage**: `DRESSING_FIELD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `DFM-RELATIONAL-TIME-FENCE`  
 > **UUID**: `5bf82ffd-ae95-5919-8a82-5b2aa6db9152`  
@@ -11,10 +11,10 @@
 
 ## 1. Abstract & Formal Statement
 
-For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved.
+For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport conjugates under frame change, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
 
 ### Governing Obligation
-The step and the vector are supplied. These four blocks are one witness, not a theorem for every period. Continuous time, a one-parameter unitary group, and a Hamiltonian constraint stay open.
+The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.
 
 ### Witness Audit
 step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks records the four products equal to I. psi_recover records norm 1, four transports back to psi, and two first-component inequalities with 3/5. The Lean module does not build an 8 by 8 matrix. No continuous-time generator and no Wheeler-DeWitt constraint is constructed. Status stays OPEN. Continuous time and a Hamiltonian constraint stay imported.
@@ -46,6 +46,14 @@ step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks reco
 - `lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order`
 - `lean4/CampaignDfmRelationalTimeFence.lean::four_blocks`
 - `lean4/CampaignDfmRelationalTimeFence.lean::psi_recover`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.frame_dress`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_success_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_period`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.evolves_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.stationary_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.rationalClock_blocks`
 
 ### Rust Certifiers
 - *none*

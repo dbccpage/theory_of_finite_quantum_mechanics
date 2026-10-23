@@ -1,0 +1,88 @@
+{
+  "AuthorityEffect": "None",
+  "source_sha256": "b959e5e2567577710cf96d6d7e0cdfec57424675e2a04157a8736c0f93d60199",
+  "steps": [
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/dfm-relational-time-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "U^2 = -I; U^4 = I; U^T U = I\nfour blocks equal I; psi norm 1; four transports recover psi\nU psi and U^2 psi differ from psi; packed 8x8 product matches the clock shift\nchecked: order-4 step, four blocks, one vector, packaged product\nfour incorrect candidate expressions rejected; witness checks, not a source mutation campaign\nS3 schedules=1554; closed=259; nonclosing=1295; zero-period rejected\nchecked: all seams, closure iff, 12 gauges and 3 histories per schedule, 54 powers\nfinite regression only; the arbitrary-group and arbitrary-period claims are Lean theorems\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/dfm-relational-time-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "U^2 = -I; U^4 = I; U^T U = I\nfour blocks equal I; psi norm 1; four transports recover psi\nU psi and U^2 psi differ from psi; packed 8x8 product matches the clock shift\nchecked: order-4 step, four blocks, one vector, packaged product\nfour incorrect candidate expressions rejected; witness checks, not a source mutation campaign\nS3 schedules=1554; closed=259; nonclosing=1295; zero-period rejected\nchecked: all seams, closure iff, 12 gauges and 3 histories per schedule, 54 powers\nfinite regression only; the arbitrary-group and arbitrary-period claims are Lean theorems\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "mypy",
+        "--strict",
+        "--follow-imports=skip",
+        "checks/independent/dfm-relational-time-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    }
+  ],
+  "metrics": {
+    "ccn": {
+      "mat": 3,
+      "mul": 4,
+      "transp": 3,
+      "apply": 3,
+      "matrix_regression": 27,
+      "compose": 2,
+      "inverse": 2,
+      "frames": 2,
+      "check": 2,
+      "closure": 3,
+      "gauge_regression": 10,
+      "cycle_regression": 9,
+      "fault_regression": 2,
+      "main": 7
+    },
+    "cognitive": {
+      "mat": 0,
+      "mul": 0,
+      "transp": 0,
+      "apply": 0,
+      "matrix_regression": 18,
+      "compose": 0,
+      "inverse": 0,
+      "frames": 1,
+      "check": 1,
+      "closure": 2,
+      "gauge_regression": 2,
+      "cycle_regression": 8,
+      "fault_regression": 0,
+      "main": 9
+    }
+  },
+  "mutation_accounting": "Four hand-chosen incorrect expression witnesses only. No source mutation campaign generated or executed; mutation fraction null.",
+  "lean_structure": {
+    "lines": 322,
+    "theorem_audits": 21,
+    "heartbeat_limit": "Lean default; no override",
+    "analysis": "Separated transport, finite seam, typed validation, reversible action, concrete client. Structural induction on natural time; no partial definitions."
+  }
+}

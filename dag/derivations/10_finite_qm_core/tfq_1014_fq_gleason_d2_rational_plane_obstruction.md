@@ -49,5 +49,5 @@ repository module GleasonRationalPlane.lean (gap register S000-004/010); older G
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:345`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:345`

@@ -1,0 +1,151 @@
+schema_id: omega.pfp.finite-qm.operad-delta.v1
+node_id: GTH-SHADOW
+stage_id: P0_MINE_OPERAD
+attempt_id: p0
+authority_effect: None
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: fail:admission_record_has_no_face_maps
+  outer_operation: finite semi-simplicial or globular set from the admission gate
+  input_slot: PGW-GO-ADMISSION-GATE
+  inner_operation: Seed.Fifteenth.reaching_does_not_admit
+  colour_match: false
+  hypothesis_match: The route has one input, the two-valued admission record. Its Lean type is an equality of that record with notAdmitted.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.reaching
+    line: 27
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.reaching_does_not_admit
+    line: 38
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.reaching_ne_admitted
+    line: 43
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.admission_not_assertion
+    line: 48
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.admission_not_a_kind
+    line: 59
+  reason: reaching is defined as Admission.notAdmitted. reaching_does_not_admit is that definitional equality. reaching_ne_admitted separates it from admitted. admission_not_assertion only enumerates the two Admission constructors. admission_not_a_kind has the same type, reaching = .notAdmitted; the docstring is not the type and the type does not name four kinds of change. None of these declarations has a face map, a source map, or a target map.
+- id: fail:tuple_shadow_is_not_face_data
+  outer_operation: finite semi-simplicial or globular set from the admission gate
+  input_slot: GenesisCopy.Regime
+  inner_operation: GenesisHottShadow.shadowOf
+  colour_match: false
+  hypothesis_match: GenesisHottShadow does not import the fifteenth admission record. The node lean list is empty.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottShadow.lean
+    declaration: module imports
+    line: 1
+  - path: lean4/GenesisHottShadow.lean
+    declaration: header determination sentence
+    line: 51
+  - path: lean4/GenesisComputation.lean
+    declaration: GenesisCopy.Regime
+    line: 71
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.AdmissionTupleShadow
+    line: 60
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.shadowOf
+    line: 68
+  reason: The imports are GenesisComputation, AdmissionFloor, InertDiamond, CellGrammar, and FiniteCochain. Fifteenth.Step is not among them. GenesisCopy.Regime stores data as Nat, forms as List Nat, insts as List (Nat × List Nat), rules as List Nat, and reqs as List (Nat × Nat). shadowOf copies those five fields into AdmissionTupleShadow. That structure has no face map and no source or target map. The header says the determination claim is not proved and that the object the regime determines is AdmissionTupleShadow. This file is not cited by the node.
+- id: fail:edge_regime_does_not_determine_a_semisimplicial_set
+  outer_operation: finite semi-simplicial set determined by the admission record
+  input_slot: edgeRegime
+  inner_operation: GenesisHottShadow.edge_regime_does_not_determine_semisimplicial1
+  colour_match: false
+  hypothesis_match: The theorem is about one declared regime tuple, not about PGW-GO-ADMISSION-GATE.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.edgeRegime
+    line: 132
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.FinSemiSimplicial1
+    line: 231
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.forwardReading
+    line: 251
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.backwardReading
+    line: 256
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.edge_regime_does_not_determine_semisimplicial1
+    line: 295
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.face_map_card
+    line: 307
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.recovers_fun_card
+    line: 310
+  reason: edgeRegime is the tuple with data 2, forms [2], one instance (0, [0, 1]), and empty rules and requirements. FinSemiSimplicial1 stores n0, n1, and a face function Fin 2 → Fin n1 → Fin n0. The comment says no identity is required in this degree. forwardReading and backwardReading are two such values with n0 = 2 and n1 = 1. The theorem type is the conjunction of the tuple equality for shadowOf edgeRegime, recoversEdge of both readings, and forwardReading ≠ backwardReading. face_map_card states that the card of Fin 2 → Fin 1 → Fin 2 is 4. recovers_fun_card states that the card of the subtype where recoversFunB is true is 2. Neither statement is a map from the admission record, and neither states the face identity for a general dimension N.
+- id: fail:edge_regime_does_not_determine_a_globular_set
+  outer_operation: finite globular set determined by the admission record
+  input_slot: edgeRegime
+  inner_operation: GenesisHottShadow.edge_regime_does_not_determine_globular1
+  colour_match: false
+  hypothesis_match: The theorem is about one declared regime tuple, not about PGW-GO-ADMISSION-GATE.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.FinGlobular1
+    line: 237
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.globeForward
+    line: 320
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.globeBackward
+    line: 326
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.edge_regime_does_not_determine_globular1
+    line: 364
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.globular_pair_card
+    line: 376
+  - path: lean4/GenesisHottShadow.lean
+    declaration: GenesisHottShadow.globular_orientation_count
+    line: 380
+  reason: FinGlobular1 stores n0, n1, src, and tgt. It does not state the globular equations for a 2-cell. globeForward and globeBackward are two values with n0 = 2 and n1 = 1. The theorem type is the conjunction of the same tuple equality, recoversGlobe of both readings, and globeForward ≠ globeBackward. globular_pair_card states that the card of the product of two function types Fin 1 → Fin 2 is 4. globular_orientation_count states that the card of the subtype where recoversGlobeB is true is 2. These are not source and target maps defined from the admission record.
+- id: fail:admitcore_is_not_the_admission_gate
+  outer_operation: finite semi-simplicial or globular set from the admission gate
+  input_slot: AdmitCore.Regime
+  inner_operation: AdmitCore.Regime
+  colour_match: false
+  hypothesis_match: AdmitCore is not an input of GTH-R-GTH-SHADOW. The node lean list is empty.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.Regime
+    line: 42
+  - path: dag/derivations/independent/gth_shadow.md
+    declaration: see_also are not inputs
+    line: 7
+  reason: AdmitCore.Regime stores data as List Nat, forms as List (Nat × Nat), and cuts as List (Nat × Nat). The header says rules, requirements, impose, S(n), and MSS-N are not core constructors. That carrier is not Seed.Fifteenth.Admission and it has no face maps. The independent note says PG-GEN-REGIME-EVENTS and PGW-ADMISSION-BEFORE-DISTINCTION are not inputs of the route. AdmitCore is not a theorem of this node.
+counterexamples:
+- id: cx:hott_shadow_file_is_not_the_missing_construction
+  class: wrong_carrier
+  claim_kind: generator
+  claim: GenesisHottShadow constructs a finite semi-simplicial set or a finite globular set from PGW-GO-ADMISSION-GATE, and those declarations are theorems of GTH-SHADOW.
+  evidence: The node lean list is empty. The route status is GAP_NO_DERIVATION with input PGW-GO-ADMISSION-GATE. GenesisHottShadow.lean imports do not include Fifteenth.Step. shadowOf at line 68 copies five regime fields and no faces. edge_regime_does_not_determine_semisimplicial1 at line 295 and edge_regime_does_not_determine_globular1 at line 364 state that one declared edge regime has two unequal readings. AdmitCore.Regime at line 42 is a different carrier.
+  confidence: exact
+  node_id: GTH-SHADOW
+open_obligations:
+- No generator admitted at P0. Do not invent face maps, source maps, target maps, or degeneracies.
+- Route GTH-R-GTH-SHADOW stays GAP_NO_DERIVATION. Node status stays OPEN.
+- The admission record stays the two-valued record already recorded for PGW-GO-ADMISSION-GATE. It does not supply a semi-simplicial set or a globular set.
+- GenesisHottShadow is not a theorem of this node. Its non-determination statements are excluded leads.
+- AdmitCore is not a theorem of this node. The see_also nodes are not inputs of the route.
+- Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted.
+verified_numeric_claims: []
+verified_lemma_statements: []

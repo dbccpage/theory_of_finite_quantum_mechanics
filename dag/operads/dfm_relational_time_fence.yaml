@@ -6,14 +6,19 @@ target:
   source_statement: For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in
     {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi
     for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time
-    reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved.
+    reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued
+    schedule, cumulative transport conjugates under frame change, and a periodic frame cancels all edges
+    iff total transport is identity. Normalized cycle blocks are identity on interior edges and total
+    transport on the closing edge. A checked positive-period constructor returns a closure certificate
+    or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history
+    coordinates preserving the evolution law.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - continuous time and Stone generator
   - Hamiltonian constraint of a physical theory
-  source_bottleneck: The step and the vector are supplied. These four blocks are one witness, not a theorem
-    for every period. Continuous time, a one-parameter unitary group, and a Hamiltonian constraint stay
-    open.
+  source_bottleneck: The group, links, action, step and vector are supplied. General finite-cycle transport
+    and its closure criterion are established for these inputs; deriving them from primitive difference,
+    continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md
   - papers/ravera_dfm_dossier.md
@@ -28,7 +33,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md
-    sha256: 9fbaaa047d688022d5a67dd9e3fcba33164a1a246fd9f794d44973b3b3e67bec
+    sha256: c808b5a4cdc8116fb930621910e47ae5cd9495cae51d0e2591713385fdfa957a
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -39,128 +44,142 @@ source_provenance:
 operation_candidates:
 - kind: def
   name: u2
-  line: 61
+  line: 66
   signature_excerpt: 'def u2 : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: minusEye
-  line: 47
+  line: 52
   signature_excerpt: 'def minusEye : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: u4
-  line: 63
+  line: 68
   signature_excerpt: 'def u4 : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: eye
-  line: 41
+  line: 46
   signature_excerpt: 'def eye : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: mmul
-  line: 25
+  line: 30
   signature_excerpt: 'def mmul (A B : M2) : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: transp
-  line: 31
+  line: 36
   signature_excerpt: 'def transp (A : M2) : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: step
-  line: 53
+  line: 58
   signature_excerpt: 'def step : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: structure
   name: M2
-  line: 14
+  line: 19
   signature_excerpt: structure M2
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: u1
-  line: 60
+  line: 65
   signature_excerpt: 'def u1 : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: u3
-  line: 62
+  line: 67
   signature_excerpt: 'def u3 : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: block
-  line: 69
+  line: 74
   signature_excerpt: 'def block (tNext tCur : M2) : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: u0
-  line: 59
+  line: 64
   signature_excerpt: 'def u0 : M2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: apply
-  line: 37
+  line: 42
   signature_excerpt: 'def apply (A : M2) (v : V2) : V2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: def
   name: psi
-  line: 65
+  line: 70
   signature_excerpt: 'def psi : V2'
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 - kind: structure
   name: V2
-  line: 21
+  line: 26
   signature_excerpt: structure V2
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: frame
+  line: 128
+  signature_excerpt: |-
+    def frame (link : ℕ → G) : ℕ → G
+      | 0 => 1
+      | t + 1 => link t * frame link t
+
+    /-- Change frame at both endpoints of an edge. -/
+    def dress (g : ℕ → G) (link : ℕ → G) (t : ℕ) : G
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: step_square_and_order
-  line: 71
+  line: 76
   signature_excerpt: |-
     theorem step_square_and_order :
         u2 = minusEye ∧
@@ -168,13 +187,13 @@ relation_candidates:
         mmul (transp step) step = eye
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: four_blocks
-  line: 80
+  line: 85
   signature_excerpt: |-
     theorem four_blocks :
         block u1 u0 = eye ∧
@@ -183,13 +202,13 @@ relation_candidates:
         block u4 u3 = eye
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: psi_recover
-  line: 90
+  line: 95
   signature_excerpt: |-
     theorem psi_recover :
         psi.x ^ 2 + psi.y ^ 2 = 1 ∧
@@ -201,37 +220,209 @@ relation_candidates:
         (apply u2 psi).x ≠ psi.x
   source: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: frame_dress
+  line: 142
+  signature_excerpt: |-
+    theorem frame_dress (g link : ℕ → G) (t : ℕ) :
+        frame (dress g link) t = (g t)⁻¹ * frame link t * g 0
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: periodic_trivialization_iff
+  line: 164
+  signature_excerpt: |-
+    theorem periodic_trivialization_iff (link : ℕ → G) (n : ℕ) :
+        (∃ g : ℕ → G, g n = g 0 ∧ ∀ t, t < n → dress g link t = 1) ↔
+          frame link n = 1
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cycleBlock_normal_form
+  line: 231
+  signature_excerpt: |-
+    theorem cycleBlock_normal_form (link : ℕ → G) (n : ℕ) (t : Fin n) :
+        cycleBlock link n t = if t.val + 1 < n then 1 else frame link n
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: validate_success_iff
+  line: 204
+  signature_excerpt: |-
+    theorem validate_success_iff [DecidableEq G] (link : ℕ → G) (n : ℕ) :
+        (∃ c, validate link n = .ok c) ↔ 0 < n ∧ frame link n = 1
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: validate_period
+  line: 209
+  signature_excerpt: |-
+    theorem validate_period [DecidableEq G] (link : ℕ → G) (n : ℕ)
+        (c : ClosedCycle link) (h : validate link n = .ok c) : c.period = n
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: evolves_iff
+  line: 255
+  signature_excerpt: |-
+    theorem evolves_iff (g link : ℕ → G) (h : ℕ → X) :
+        Evolves (dress g link) (historyEquiv g h) ↔ Evolves link h
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stationary_iff
+  line: 266
+  signature_excerpt: |-
+    theorem stationary_iff (link : ℕ → G) (h : ℕ → X) :
+        (∀ t, historyEquiv (frame link) h (t + 1) = historyEquiv (frame link) h t) ↔
+          Evolves link h
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rationalClock_blocks
+  line: 295
+  signature_excerpt: |-
+    theorem rationalClock_blocks (t : Fin 4) :
+        Clock.cycleBlock (fun _ => rotation) 4 t = 1
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
 source_bindings:
 - original_ref: lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order
   availability: local
   symbol: step_square_and_order
   path: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   declaration_status: declaration_found_not_proof_checked
-  line: 71
+  line: 76
   role: source_lead_only
 - original_ref: lean4/CampaignDfmRelationalTimeFence.lean::four_blocks
   availability: local
   symbol: four_blocks
   path: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   declaration_status: declaration_found_not_proof_checked
-  line: 80
+  line: 85
   role: source_lead_only
 - original_ref: lean4/CampaignDfmRelationalTimeFence.lean::psi_recover
   availability: local
   symbol: psi_recover
   path: lean4/CampaignDfmRelationalTimeFence.lean
   repository: this_repository
-  sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
   declaration_status: declaration_found_not_proof_checked
-  line: 90
+  line: 95
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.frame_dress
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.Clock.frame_dress
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 142
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 164
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 231
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_success_iff
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.Clock.validate_success_iff
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 204
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_period
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.Clock.validate_period
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 209
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.evolves_iff
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.Clock.evolves_iff
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 255
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.stationary_iff
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.Clock.stationary_iff
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 266
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.rationalClock_blocks
+  availability: local
+  symbol: CampaignDfmRelationalTimeFence.rationalClock_blocks
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98
+  declaration_status: declaration_found_not_proof_checked
+  line: 295
   role: source_lead_only
 presentation:
   colours: []

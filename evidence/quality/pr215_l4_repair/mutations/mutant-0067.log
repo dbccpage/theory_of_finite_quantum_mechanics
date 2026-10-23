@@ -1,0 +1,50 @@
+
+running 52 tests
+............................................. 45/52
+tests::binding_failure_still_reports_the_floor --- FAILED
+. 47/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (42288) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: []
+ right: [Binding, Floor]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (43464) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 0 pass, 0 grandfathered, 1 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.contract.score.yaml: [COMPLETENESS] score_token: expected a completed token, found nothing\n")
+ right: Ok(())
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (31520) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Completeness { path: "code/t.rs.contract.score.yaml", field: "score_token", expected: "a completed token", found: "nothing" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (32656) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Fail([Completeness { path: "code/a.contract.score.yaml", field: "score_token", expected: "a completed token", found: "nothing" }])
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+
+test result: FAILED. 48 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.00s
+
+error: test failed, to rerun pass `--lib`

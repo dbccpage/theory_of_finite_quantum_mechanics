@@ -1,0 +1,100 @@
+{
+  "AuthorityEffect": "None",
+  "reviewed_author_head": "f1eefb8d7749269777d9a66d3d2965aa320f5a32",
+  "sources": {
+    "code/rust/src/governance/src/descriptor.rs": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+    "code/rust/src/governance/src/score.rs": "227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba",
+    "governance/tools/capture_evidence.py": "69b26767835b94fcb47c8f07a54b2ed1bf6e33c407b67b76a265f418b4f084e9",
+    "governance/tools/mutation_campaign.py": "da799d67e9739ba81d46aeb3a62320e84b5a06ddd9e88308a6c88d94d73d3c42",
+    "governance/tools/test_evidence_boundaries.py": "8f09217186dcd0f485519644d9ff3f984183f2a1527fafb14412610125c8bb52"
+  },
+  "checks": {
+    "forgery-before": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "current_records_must_equal"
+      ],
+      "exit_code": 101,
+      "stdout": "\nrunning 1 test\ntest descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes ... FAILED\n\nfailures:\n\n---- descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes stdout ----\n\nthread 'descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes' (18784) panicked at src\\descriptor.rs:347:9:\na changed score cannot reuse another record's digest\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes\n\ntest result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.01s\n\n",
+      "stderr": "   Compiling governance v0.1.0 (C:\\gw\\tp205\\lean4\\b\\pr215-review\\crate)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.58s\n     Running unittests src\\lib.rs (target\\debug\\deps\\governance-9a7aa91c02a3e498.exe)\nerror: test failed, to rerun pass `--lib`\n"
+    },
+    "tests-after": {
+      "command": [
+        "cargo",
+        "test",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "stdout": "\nrunning 48 tests\ntest buildtime::tests::modes_parse ... ok\ntest descriptor::tests::legacy_subject_layout_and_missing_pieces ... ok\ntest descriptor::tests::malformed_json_is_a_typed_error ... ok\ntest descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes ... ok\ntest descriptor::tests::parses_a_complete_companion ... ok\ntest descriptor::tests::tampered_history_bytes_are_detected ... ok\ntest policy::tests::exclusions_and_populations_use_any_glob ... ok\ntest policy::tests::baseline_round_trip_and_grandfathering ... ok\ntest policy::tests::companion_naming_follows_collision_rule ... ok\ntest descriptor::tests::invalid_vocabulary_is_reported_by_field ... ok\ntest policy::tests::globs ... ok\ntest policy::tests::kind_keys_round_trip ... ok\ntest repo::tests::nul_lists_normalise_separators_and_refuse_non_utf8 ... ok\ntest policy::tests::policy_parses_floor_and_populations ... ok\ntest policy::tests::sha_shape ... ok\ntest policy::tests::policy_rejects_wrong_orders_and_shapes ... ok\ntest buildtime::tests::decide_respects_mode ... ok\ntest buildtime::tests::missing_or_broken_policy ... ok\ntest score::tests::every_token_round_trips ... ok\ntest score::tests::floor_cases ... ok\ntest score::tests::composite_is_the_minimum_of_complete_gates ... ok\ntest score::tests::grade_order_matches_scoring_md ... ok\ntest score::tests::malformed_tokens_are_rejected ... ok\ntest score::tests::level_order_is_numeric ... ok\ntest score::tests::unassessed_gate_gives_no_composite_unless_a_known_e ... ok\ntest buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced ... ok\ntest repo::tests::hashing_and_relative_paths ... ok\ntest score::tests::vocabulary_parse_errors_are_typed ... ok\ntest verify::tests::baseline_waives_floor_only_for_unchanged_bytes ... ok\ntest verify::tests::binding_mismatch_names_the_field ... ok\ntest verify::tests::floor_pass_and_fail_cases ... ok\ntest verify::tests::null_gate_is_incomplete ... ok\ntest verify::tests::violation_display_is_precise ... ok\ntest verify::tests::inconsistent_composite_flag_or_token_is_incomplete ... ok\ntest verify::tests::schema_failures_are_specific ... ok\ntest buildtime::tests::new_mode_aborts_when_any_failure_is_new ... ok\ntest repo::tests::root_is_found_upwards ... ok\ntest repo::tests::package_sources_skip_nested_packages_and_target ... ok\ntest buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files ... ok\ntest tests::binding_failure_still_reports_the_floor ... ok\ntest buildtime::tests::clean_package_emits_reruns_only ... ok\ntest tests::twin_sources_use_qualified_companions ... ok\ntest tests::binding_and_completeness_are_both_reported ... ok\ntest tests::changed_bytes_lose_grandfathering ... ok\ntest tests::malformed_companion_and_unreadable_source ... ok\ntest tests::outcomes_cover_pass_fail_grandfather_and_boilerplate ... ok\ntest repo::tests::git_errors_are_typed ... ok\ntest repo::tests::git_population_changes_and_history ... ok\n\ntest result: ok. 48 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.48s\n\n\nrunning 10 tests\ntest tests::baseline_growth_needs_a_reason ... ok\ntest tests::parses_commands ... ok\ntest tests::rejects_bad_command_lines ... ok\ntest tests::missing_root_is_fatal ... ok\ntest tests::affected_sources_maps_companions_back_to_sources ... ok\ntest tests::baseline_plan_only_shrinks_without_allow_add ... ok\ntest tests::baseline_deficit_is_the_first_violation_and_stale_entries_are_counted ... ok\ntest tests::open_needs_a_baseline_only_when_asked ... ok\ntest tests::a_policy_or_baseline_change_selects_the_whole_population ... ok\ntest tests::end_to_end_with_git ... ok\n\ntest result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.68s\n\n\nrunning 1 test\ntest src\\lib.rs - verify_crate_contracts (line 45) ... ignored\n\ntest result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "stderr": "   Compiling governance v0.1.0 (C:\\gw\\tp205\\lean4\\b\\pr215-review\\crate)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.29s\n     Running unittests src\\lib.rs (target\\debug\\deps\\governance-9a7aa91c02a3e498.exe)\n     Running unittests src\\bin\\governance-check.rs (target\\debug\\deps\\governance_check-fc04fd228c4aa588.exe)\n   Doc-tests governance\n"
+    },
+    "clippy-after": {
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "    Checking governance v0.1.0 (C:\\gw\\tp205\\lean4\\b\\pr215-review\\crate)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.41s\n"
+    },
+    "evidence-tests-final": {
+      "command": [
+        "-m",
+        "pytest",
+        "governance/tools/test_evidence_boundaries.py",
+        "-q",
+        "--basetemp=C:\\gw\\tp205\\lean4\\b\\pr215-review\\final-tests"
+      ],
+      "exit_code": 0,
+      "stdout": ".............                                                            [100%]\n============================== warnings summary ===============================\nlean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n13 passed, 1 warning in 0.37s\n",
+      "stderr": ""
+    },
+    "evidence-typing-final": {
+      "command": [
+        "-m",
+        "mypy",
+        "--strict",
+        "governance/tools/capture_evidence.py",
+        "governance/tools/mutation_campaign.py",
+        "governance/tools/test_evidence_boundaries.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 3 source files\n",
+      "stderr": ""
+    },
+    "python-metrics": {
+      "governance/tools/capture_evidence.py": {
+        "sha256": "69b26767835b94fcb47c8f07a54b2ed1bf6e33c407b67b76a265f418b4f084e9",
+        "ccn_max": 11,
+        "cognitive_max": 10
+      },
+      "governance/tools/mutation_campaign.py": {
+        "sha256": "da799d67e9739ba81d46aeb3a62320e84b5a06ddd9e88308a6c88d94d73d3c42",
+        "ccn_max": 13,
+        "cognitive_max": 20
+      },
+      "governance/tools/test_evidence_boundaries.py": {
+        "sha256": "8f09217186dcd0f485519644d9ff3f984183f2a1527fafb14412610125c8bb52",
+        "ccn_max": 6,
+        "cognitive_max": 2
+      }
+    }
+  },
+  "rust_capture_receipt": {
+    "path": "evidence/governance/pr215-independent-review/receipt.json",
+    "sha256": "37f917489454e538803390913f44cd1d2427a4bd9a1a03433cc1b70326105f06"
+  },
+  "limits": [
+    "The original mutation campaign is historical; its classifications were not independently established from raw per-mutant test logs.",
+    "The evidence harnesses remain bounded L3 utilities, with incomplete process-tree timeout cleanup, retained scratch copies and no resource benchmark.",
+    "The score vocabulary module remains L3: closed enum parsing and floor comparison are not a substantive L4 operational architecture.",
+    "Whole-PR acceptance is withheld: support exceptions do not cover these substantive L3 modules, and additional changed original artifacts still need complete reviewed contracts."
+  ]
+}

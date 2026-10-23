@@ -1,0 +1,72 @@
+{
+  "AuthorityEffect": "None",
+  "source": "checks/independent/dfm-ckm-physics-fence.py",
+  "sha256": "c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b",
+  "checks": [
+    {
+      "argv": [
+        "-I",
+        "-X",
+        "utf8",
+        "checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\nrephasing: 2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\nnonreal rational reconstruction and separated cross-ratio control passed\n11 invalid-domain cases refused\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-I",
+        "-X",
+        "utf8",
+        "-O",
+        "checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\nrephasing: 2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\nnonreal rational reconstruction and separated cross-ratio control passed\n11 invalid-domain cases refused\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-m",
+        "mypy",
+        "--strict",
+        "checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    }
+  ],
+  "mutants": [
+    {
+      "name": "corner",
+      "outcome": "KILLED",
+      "reason": "canonical boundary is not one",
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\n"
+    },
+    {
+      "name": "witness",
+      "outcome": "KILLED",
+      "reason": "Gaussian-rational reconstruction failed",
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\n"
+    },
+    {
+      "name": "decision",
+      "outcome": "KILLED",
+      "reason": "decision and separating invariant disagree",
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\n"
+    },
+    {
+      "name": "zero refusal",
+      "outcome": "KILLED",
+      "reason": "invalid input was admitted: zero label",
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\nrephasing: 2376 sign actions, 4388 pair decisions; orbits [1, 1, 1, 2, 4]\nnonreal rational reconstruction and separated cross-ratio control passed\n"
+    }
+  ],
+  "metrics": {
+    "max_ccn": 17,
+    "max_cognitive": 20
+  },
+  "boundary": "Finite independent regression; no repository imports; no source mutation or copied trees."
+}

@@ -1,0 +1,42 @@
+{
+  "AuthorityEffect": "None",
+  "base": "5dd17d703e172b107218330a35fcdb43354ce204",
+  "input_head": "0dcb84c5462ca6373a5c4e8cbf2fd3ca0eb2fc4f",
+  "validated_input_tree": "5984f66f77d1639943bd056bcce823ea6bc737e5",
+  "tree_identical_to_full_pipeline_commit": "37de8b342",
+  "steps": [
+    {
+      "argv": [
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "5dd17d703e172b107218330a35fcdb43354ce204"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 7,\n    \"valid_contracts_and_scores\": 7,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 4,\n      \"Rust\": 3\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 4,\n      \"Symbolic/Formal\": 3\n    },\n    \"completed_scores\": 7,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 7\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 5dd17d703e172b107218330a35fcdb43354ce204 (merge base 5dd17d703e17), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "5dd17d703e172b107218330a35fcdb43354ce204"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 10,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "5dd17d703e172b107218330a35fcdb43354ce204",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since 5dd17d703e172b107218330a35fcdb43354ce204 (merge base 5dd17d703e17); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    }
+  ]
+}
