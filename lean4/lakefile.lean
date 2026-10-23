@@ -960,3 +960,7 @@ lean_lib CampaignFspLatticeAnomalyInflow where
 -- Operational hypotheses and exact countermodels. Not a default build target.
 lean_lib CampaignTransitionProbability where
   roots := #[`CampaignTransitionProbability]
+
+-- Campaign: DFM-BPHZ-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmBphzContinuumFence where
+  roots := #[`CampaignDfmBphzContinuumFence]

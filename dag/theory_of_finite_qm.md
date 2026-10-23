@@ -8690,9 +8690,9 @@ Obligation: The identity is distributivity on one declared toy kernel; it is not
 - DAG node: `DFM-BPHZ-CONTINUUM-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md)
 
-Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric integrands, and its use before continuum integration, is not established by the finite artifacts.
+On the declared overlapping edge sets L = {0,1,2}, R = {2,3,4} and G = {0,1,2,3,4}, a Zimmermann forest is a subset whose members are pairwise nested or disjoint, and the forests are exactly the six subsets in which L and R do not both occur. For the order-0 evaluations T_L I(x,y) = I(0,y), T_R I(x,y) = I(x,0) and T_G I(x,y) = I(0,0), the signed six-forest sum equals I(x,y) - I(0,y) - I(x,0) + I(0,0). For the declared numerator N(x,y) = 2 + 3x + 5y + 7xy that sum is 7xy, so the quotient by xy equals 7 wherever xy is nonzero. The three-forest sum that omits G equals 7xy - 2, and its quotient is 7 - 2/(xy). At (x,y) = (1/2, 1/3) the two quotients are 7 and -5. Algebraic cancellation for actual Feynman-parametric integrands, and any use of this identity before continuum integration, is not established.
 
-Obligation: State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.
+Obligation: The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.
 
 ### TFQ-1111 Clifford Dirac propagator and tree-dressed matter fields
 
