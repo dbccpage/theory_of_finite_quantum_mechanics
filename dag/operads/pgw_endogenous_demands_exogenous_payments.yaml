@@ -43,40 +43,120 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_endogenous_demands_exogenous_payments_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: Round
+  line: 292
+  signature_excerpt: structure Round
+  source: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  source_sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ClosedRun
+  line: 300
+  signature_excerpt: 'inductive ClosedRun : Regime → List Round → Regime → Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  source_sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: profile1
+  line: 64
+  signature_excerpt: 'def profile1 (s : PState) (i : Nat) : Bool × Bool × Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Generator.lean
+  repository: this_repository
+  source_sha256: 62f194eb1e5b947c99657d3d308c32cb2839f636143a7b36ded8af5d65da36ae
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: closedRun_round_bound_from_empty
+  line: 481
+  signature_excerpt: |-
+    theorem closedRun_round_bound_from_empty {r t : Regime}
+        {rds : List Round} (h : ClosedRun r rds t) (he : r.reqs = []) :
+        2 * rds.length ≤ r.data * (r.data - 1)
+  source: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  source_sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: generation_never_dries
+  line: 192
+  signature_excerpt: |-
+    theorem generation_never_dries (n : Nat) (h : 3 ≤ n) :
+        (1 : Nat) ≠ 2 ∧
+          profile1 (reflState n) 1 = profile1 (reflState n) 2
+  source: lean4/Imported/Genesis19l57g1/Derivation/Generator.lean
+  repository: this_repository
+  source_sha256: 62f194eb1e5b947c99657d3d308c32cb2839f636143a7b36ded8af5d65da36ae
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: g1_class_exclusion
+  line: 39
+  signature_excerpt: |-
+    theorem g1_class_exclusion {d : Nat} (S : LocalStrategy d) (k : Nat)
+        (hfinite : FiniteDeclaration k S) :
+        Fires S ∧ ¬ Clears S ∧
+          ¬ (Fires S ∧ Clears S ∧ ¬ RecurringImport S)
+  source: lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean
+  repository: this_repository
+  source_sha256: 8d4fe298b5673c098cc4ea017e1b2ba5f7f9aa80fae2768dd93781885fab6073
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: clears_does_not_imply_not_fires
+  line: 50
+  signature_excerpt: |-
+    theorem clears_does_not_imply_not_fires :
+        ∃ S : LocalStrategy 0, Clears S ∧ Fires S
+  source: lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean
+  repository: this_repository
+  source_sha256: 8d4fe298b5673c098cc4ea017e1b2ba5f7f9aa80fae2768dd93781885fab6073
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty
+  availability: local
   symbol: closedRun_round_bound_from_empty
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  declaration_status: declaration_found_not_proof_checked
+  line: 481
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Generator.lean::generation_never_dries
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Generator.lean::generation_never_dries
+  availability: local
   symbol: generation_never_dries
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Generator.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Generator.lean
+  repository: this_repository
+  sha256: 62f194eb1e5b947c99657d3d308c32cb2839f636143a7b36ded8af5d65da36ae
+  declaration_status: declaration_found_not_proof_checked
+  line: 192
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean::g1_class_exclusion
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::g1_class_exclusion
+  availability: local
   symbol: g1_class_exclusion
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean
+  repository: this_repository
+  sha256: 8d4fe298b5673c098cc4ea017e1b2ba5f7f9aa80fae2768dd93781885fab6073
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean::clears_does_not_imply_not_fires
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::clears_does_not_imply_not_fires
+  availability: local
   symbol: clears_does_not_imply_not_fires
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean
+  repository: this_repository
+  sha256: 8d4fe298b5673c098cc4ea017e1b2ba5f7f9aa80fae2768dd93781885fab6073
+  declaration_status: declaration_found_not_proof_checked
+  line: 50
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound
   availability: external
@@ -129,8 +209,6 @@ operad_slots:
     - Declared local finite-alphabet strategy class LocalStrategy d with FiniteDeclaration k (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

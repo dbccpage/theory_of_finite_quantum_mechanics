@@ -38,16 +38,49 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_phi_well_defined_l1_duality_conditional.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: sumOver
+  line: 215
+  signature_excerpt: 'def sumOver {E : Type} (es : List E) (g : E → ℚ) : ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: qabs
+  line: 212
+  signature_excerpt: 'def qabs (x : ℚ) : ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: dual_certificate_lower_bound
+  line: 258
+  signature_excerpt: |-
+    theorem dual_certificate_lower_bound {C0 E : Type}
+        (es : List E) (y w δ : E → ℚ) (d0 : C0 → E → ℚ)
+        (annihilates : ∀ f, sumOver es (fun e => y e * d0 f e) = 0)
+        (bounded : ∀ e ∈ es, -w e ≤ y e ∧ y e ≤ w e) :
+        ∀ f, sumOver es (fun e => y e * δ e) ≤
+          sumOver es (fun e => w e * qabs (δ e - d0 f e))
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound
+  availability: local
   symbol: dual_certificate_lower_bound
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 258
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt
   availability: external
@@ -102,8 +135,6 @@ operad_slots:
       (assumption)'
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

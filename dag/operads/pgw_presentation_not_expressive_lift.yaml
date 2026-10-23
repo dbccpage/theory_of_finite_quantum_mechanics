@@ -43,6 +43,46 @@ source_provenance:
   path: dag/prompts/pregenesis_pgw_presentation_not_expressive_lift_conditional.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
+- kind: def
+  name: profileClass
+  line: 31
+  signature_excerpt: |-
+    def profileClass {A : Type u} {I : Type v} {V : I → Type w}
+        (observe : ∀ i, A → V i) (a : A) : Observed observe
+  source: lean4/Imported/PreGenesisToMssn/Observation.lean
+  repository: this_repository
+  source_sha256: cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Observed
+  line: 28
+  signature_excerpt: |-
+    def Observed {A : Type u} {I : Type v} {V : I → Type w}
+        (observe : ∀ i, A → V i)
+  source: lean4/Imported/PreGenesisToMssn/Observation.lean
+  repository: this_repository
+  source_sha256: cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: profileSetoid
+  line: 22
+  signature_excerpt: |-
+    def profileSetoid {A : Type u} {I : Type v} {V : I → Type w}
+        (observe : ∀ i, A → V i) : Setoid A
+  source: lean4/Imported/PreGenesisToMssn/Observation.lean
+  repository: this_repository
+  source_sha256: cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SameProfile
+  line: 19
+  signature_excerpt: |-
+    def SameProfile {A : Type u} {I : Type v} {V : I → Type w}
+        (observe : ∀ i, A → V i) (a b : A) : Prop
+  source: lean4/Imported/PreGenesisToMssn/Observation.lean
+  repository: this_repository
+  source_sha256: cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79
+  status: source_candidate_requires_semantic_review
 - kind: inductive
   name: IdentityConvention
   line: 171
@@ -108,6 +148,19 @@ operation_candidates:
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
+  name: empty_profiles_equal
+  line: 40
+  signature_excerpt: |-
+    theorem empty_profiles_equal {A : Type u} {V : Empty → Type w}
+        (observe : ∀ i, A → V i) (a b : A) :
+        profileClass observe a = profileClass observe b
+  source: lean4/Imported/PreGenesisToMssn/Observation.lean
+  repository: this_repository
+  source_sha256: cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
   name: statement_holds_under_opaque_only
   line: 242
   signature_excerpt: |-
@@ -120,13 +173,14 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal
-  availability: external
+- original_ref: lean4/Imported/PreGenesisToMssn/Observation.lean::empty_profiles_equal
+  availability: local
   symbol: empty_profiles_equal
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/PreGenesisToMssn/Observation.lean
+  repository: this_repository
+  sha256: cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
   role: source_lead_only
 - original_ref: lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only
   availability: local
