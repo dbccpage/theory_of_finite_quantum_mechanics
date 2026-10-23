@@ -6,7 +6,7 @@ Generated 2026-10-23 by [`dag/research/lean_replay_campaign/atlas_inventory.py`]
 
 ## What was scanned
 
-- 104459 text files of this checkout (`.py .rs .toml .md .json .jsonl .yaml .lean .txt ...`), 10215 of which name a sibling-tree path. `lean4/Imported/` (provenance headers), the campaign tools and this page are not scanned.
+- 104458 text files of this checkout (`.py .rs .toml .md .json .jsonl .yaml .lean .txt ...`), 10214 of which name a sibling-tree path. `lean4/Imported/` (provenance headers), the campaign tools and this page are not scanned.
 - 3464 distinct paths: 1991 exist in the sibling working tree, 223 existed until sibling commit `3379759468` removed them (see the next section), and 1240 are not files of the sibling tree at any commit examined (historical names, moved files, directories, or prose fragments that look like paths).
 - Reference classes: node fields (`source`, `rust`, `lean`) and record fields (`lean4`, `rust`, `python`) of `dag/derivation_dag.json`; the fragments that generate them; generated derivation papers and views; `dag/results/**` (sealed run artifacts that quote the paths of their inputs); `code/**`; `papers/**`; `scripts/**`; `lean4/**`; `docs/**`.
 - Records also carry 1531 provenance strings (`f004_refs`, `coda_atlas_paths`) that name atlas files as the origin of a record. They are left as they are; they are history, not a dependency a tool resolves.
@@ -38,7 +38,7 @@ A reference in a generated paper or view, or in a sealed run artifact, follows f
 
 ## What was imported
 
-236 Lean files that DAG nodes and records cited outside this repository, together with their local (non-Mathlib) imports, were copied to `lean4/Imported/<package>/<path under the package root>.lean` and registered as the non-default library `ImportedAtlas` in `lean4/lakefile.lean`. 97 are cited directly; the others are dependencies. The package folder disambiguates files that share a stem in different atlas papers. Every file carries a header with its original path, original sha256 and the import date. Build record (receipts and `dag/research/lean_replay_campaign/dependency_builds.json`, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`): 236 of 236 built with exit code 0, 0 failed, 0 have no build record. 1 needed a port for version drift (`Imported/GenesisOngoing/Second/Rename.lean`), recorded in its header and in [`lean4/Imported/import_manifest.json`](../../lean4/Imported/import_manifest.json). The admission scan (`sorry`, `admit`, `axiom`, `native_decide`, `unsafe` outside comments and strings) flags 0 of them.
+236 Lean files that DAG nodes and records cited outside this repository, together with their local (non-Mathlib) imports, were copied to `lean4/Imported/<package>/<path under the package root>.lean` and registered as the non-default library `ImportedAtlas` in `lean4/lakefile.lean`. 97 are cited directly; the others are dependencies. The package folder disambiguates files that share a stem in different atlas papers. Every file carries a header with its original path, original sha256 and the import date. Build record (receipts and `dag/research/lean_replay_campaign/dependency_builds*.json`, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`): 236 of 236 built with exit code 0, 0 failed, 0 have no build record. 1 needed a port for version drift (`Imported/GenesisOngoing/Second/Rename.lean`), recorded in its header and in [`lean4/Imported/import_manifest.json`](../../lean4/Imported/import_manifest.json). The admission scan (`sorry`, `admit`, `axiom`, `native_decide`, `unsafe` outside comments and strings) flags 0 of them.
 
 | Package (atlas path of the Lean root) | files |
 |---|---|
@@ -67,6 +67,29 @@ A reference in a generated paper or view, or in a sealed run artifact, follows f
 - `lean4/quantum_mechanics/H016ContinuousDynamicsFork.lean` -> `lean4/H016ContinuousDynamicsFork.lean`
 
 Files under `dag/results/**` are sealed run snapshots; their references were not touched and their Lean files are not replayed.
+
+### Programme folders (`lean4/research_programs/*`, `lean4/quantum_mechanics`, loose `lean4/*.lean`)
+
+A second import took Lean files from the sibling `lean4/` tree only where they are not already here (identical sha256, newline-equivalent, or same module name) and a DAG node cites them, a file being imported imports them, or they belong to the genesis / S(n) / MSS-N / pre-genesis / WDP / MUB6 / HCT programmes. `dag/research/lean_replay_campaign/import_programmes.py` makes the decision for every file and [`lean4/Imported/import_manifest_programmes.json`](../../lean4/Imported/import_manifest_programmes.json) records the imports.
+
+| Sibling folder | decision counts |
+|---|---|
+| `HigherCategoryTheory` | import 22 |
+| `LevelEngine` | skip 53 |
+| `Mub6` | import 1, present 156, present-by-module-name 28 |
+| `QuantumMechanics` | skip 193 |
+| `SymbolGameLoose` | import 52, skip 11 |
+| `WdpReasoning` | import 4 |
+
+79 files were imported; 74 built with exit code 0 and 74 of them are roots of `ImportedAtlas`; 5 did not build and are kept out of the library; 0 have no build record.
+
+Files that did not build (receipt rows with `exit_code` 1):
+
+- `lean4/Imported/SymbolGameLoose/FiniteConsequences.lean` (from `lean4/FiniteConsequences.lean`)
+- `lean4/Imported/SymbolGameLoose/LGGR.lean` (from `lean4/LGGR.lean`)
+- `lean4/Imported/SymbolGameLoose/LggrNonFactorization.lean` (from `lean4/LggrNonFactorization.lean`)
+- `lean4/Imported/SymbolGameLoose/TerminalizerPolicy.lean` (from `lean4/TerminalizerPolicy.lean`)
+- `lean4/Imported/Mub6/external_classification/MubFiniteCornerReduction.lean` (from `lean4/research_programs/mub6/external_classification/MubFiniteCornerReduction.lean`)
 
 ## What this repository would lose
 
