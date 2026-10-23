@@ -288,7 +288,7 @@
         "source_id": "DFM-P3.2-FENCE",
         "corpus": "papers/ravera_dfm_dossier.md",
         "alias_of": "DFM-HIERARCHICAL-BOREL",
-        "alias_note": "Theorem 3.2 as stated for all B_2(Q) connections, including the uniqueness, quotient-preservation and discrete Bianchi clauses, is the open obligation TFQ-0400; the dossier adds only a diamond instance (DFM-P3.2-TWO-STAGE)."
+        "alias_note": "Dossier Theorem 3.2 is wider than TFQ-0400. TFQ-0400 records unique factorization, normality, rooted-tree two-stage dressing for a supplied parent and depth, quotient invariance, the coboundary criterion, and the specified incidence operators. It does not build a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism. The dossier diamond instance remains DFM-P3.2-TWO-STAGE."
       },
       {
         "source_id": "DFM-SEC5-SCOPE",
@@ -1526,18 +1526,23 @@
       "statement": "Supplying an item does not change the regime (supply is a no-op); only an admission event does. Reading L: <> supplied but not admitted; Reading F: <> admitted as datum 0. Both readings are kept.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:190-227",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:279-341"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:279-341",
+        "dag/derivations/independent/pg-gen-supply-erasure.md"
       ],
       "lean": [
         "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts"
+        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.source_supply_no_op",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_supply_no_op",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.copy_step_commutes",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.reading_arrays"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the exact source Regime representation bridge and retain both Reading L and Reading F. An external presentation cannot license an unrecorded admission.",
+      "bottleneck": "The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-SUPPLY-NO-OP/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1554,7 +1559,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Supplying an item does not change the regime (supply is a no-op); only an admission event does. Reading L: <> supplied but not admitted; Reading F: <> admitted as datum 0. Both readings are kept.",
         "prior_bottleneck": "none.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-supply-erasure_lean_replay.json"
+        ]
       }
     },
     {
@@ -1567,18 +1574,25 @@
         "external:prompts/fable_theorems_2026-10-17/03_genesis_supply_erasure.md",
         "lean4/Imported/Genesis19l57g1/Derivation/Erasure.lean:88-147",
         "lean4/Imported/OeGenPrimitives/SupplyErasure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
+        "dag/derivations/independent/pg-gen-supply-erasure.md"
       ],
       "lean": [
         "lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply",
-        "lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only"
+        "lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.source_supply_erasure",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_supply_erasure",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.copy_replay_commutes",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_replay_exact",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_failure_exact",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.token_array_replay"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_supply_erasure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the partial Option/failure and five-field Regime representation bridge for every source history. Erasure does not erase guard failures, actual admissions or external custody requirements.",
+      "bottleneck": "The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.",
       "tags": [
         "fable-in-progress"
       ],
@@ -1597,7 +1611,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Genesis supply erasure: removing supply events from a history leaves the replayed regime unchanged (SupplyErasure.replayE_filter_supply).",
         "prior_bottleneck": "Scoped to Genesis supply events on the core regime projection; full history provenance tags remain distinct from core regime equality.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-supply-erasure_lean_replay.json"
+        ]
       }
     },
     {
@@ -1650,19 +1666,30 @@
       "source_status": "Rounds / no-return / cumulative element count (Genesis §8-§9)",
       "statement": "Along the admitted closure rounds the element count is cumulative and a regime once left is not returned to; cycle regimes are constant (cycle_regime_const).",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:343-438"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:343-438",
+        "dag/derivations/independent/pg-gen-no-return.md"
       ],
       "lean": [
         "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::no_return",
         "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::cycle_regime_const",
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_lt_of_ne"
+        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_lt_of_ne",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.source_array",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.array_source",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.engine_step_commutes",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.engine_replay_exact",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.engine_replay_failure_exact",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.cumulative_potential",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.strict_potential",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.no_return",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.cycle_regime_const",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.two_switches_return"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the complete array-to-source Regime interpreter refinement and that every real source regime change strictly raises the source potential. A count comparison alone is not that refinement.",
+      "bottleneck": "The complete five-field array and Boolean-mode source interpreter refinement, all finite partial histories, and strict source potential increase on actual regime changes now have local Lean proofs. External Python/Rust runtime/compiler and responder/license refinement remain separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1679,7 +1706,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Along the admitted closure rounds the element count is cumulative and a regime once left is not returned to; cycle regimes are constant (cycle_regime_const).",
         "prior_bottleneck": "none beyond bound on rounds.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-no-return_lean_replay.json"
+        ]
       }
     },
     {
@@ -1731,19 +1760,25 @@
       "source_status": "Obstruction: adding xrx, or identifying related terms, is obstructed (Genesis Ongoing)",
       "statement": "An attempted change is obstructed exactly when it adds some xrx or identifies two related terms; the three answers are refuse, remove the obstruction, build structure.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md",
+        "dag/derivations/independent/pg-gen-ongoing-fewest-changes.md"
       ],
       "lean": [
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Finite.lean::identify_legal_iff",
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Finite.lean::adding_xrx_always_obstructed",
-        "lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last"
+        "lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.identify_obstruction_iff",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.assertion_obstruction_iff",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.build_two_steps",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.build_lower_bound",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.wire_build_lower_bound"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Formalize the full Legal/WF/Reach refinement and the build-structure answer with its minimality theorem. The illegal intermediate image is diagnostic, not an authorized performed change.",
+      "bottleneck": "Full source/wire Legal/WF/Step/Reach correspondence and exact obstruction iff statements now compile. A legal build is constructed in two steps, with a general two-step lower bound under the stated quotient-fixes-old-terms premise. An illegal diagnostic image is not a performed change. External runtime/compiler refinement remains separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-ONGOING-OBSTRUCTION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1760,7 +1795,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "An attempted change is obstructed exactly when it adds some xrx or identifies two related terms; the three answers are refuse, remove the obstruction, build structure.",
         "prior_bottleneck": "none for the finite game; this is a game-level obstruction, separate from the L1 Phi1/Gamma2 obstruction.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json"
+        ]
       }
     },
     {
@@ -1770,19 +1807,30 @@
       "source_status": "Fewest-changes formula (D8-D10)",
       "statement": "The fewest changes to reach a result is the first derivation's size-plus-twice-destroyed-givens formula, with matching lower and upper bounds (fewest_changes_A/B).",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md",
+        "dag/derivations/independent/pg-gen-ongoing-fewest-changes.md"
       ],
       "lean": [
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::fewest_changes_A",
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::reach_by_edits",
-        "lean4/Imported/GenesisOngoing/H3V7N5QF/Cost.lean::Reach.names_stay_merged"
+        "lean4/Imported/GenesisOngoing/H3V7N5QF/Cost.lean::Reach.names_stay_merged",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.decode_encode",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.legal_iff_source",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.wf_iff_source",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.exact_transition_representation",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.costA_exact",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.costB_exact",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.full_fewest_A",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.full_fewest_B",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes_every_writing_A",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes_every_writing_B"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Extend the refinement to merged-name states, arbitrary labels and all source identification steps and prove the full lower/upper transport. This apart-state search is not the unrestricted fewest_changes_A/B theorem.",
+      "bottleneck": "The complete source/wire state, Legal/WF/Step/Reach and cost refinement now covers merged names, arbitrary labels and every identification. Matching lower/upper bounds are transported for some initial writing and all-writing lower bounds. The unchanged original Second/Rename fails Lean 4.35.0; a separately scored compatibility proof port compiles. External runtime/compiler and serialization refinement remain separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1799,7 +1847,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "The fewest changes to reach a result is the first derivation's size-plus-twice-destroyed-givens formula, with matching lower and upper bounds (fewest_changes_A/B).",
         "prior_bottleneck": "Extension to every writing of the terms is discharged via PG-GEN-REWRITING-COMMUTATION (mechanized in Second/Rename.lean and DerivationDagQMClosure.lean).",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json"
+        ]
       }
     },
     {
@@ -1812,7 +1862,8 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md:92,95",
         "lean4/Imported/GenesisOngoing/Second/Rename.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "lean4/DerivationDagQMClosure.lean"
+        "lean4/DerivationDagQMClosure.lean",
+        "dag/derivations/independent/pg-gen-ongoing-fewest-changes.md"
       ],
       "lean": [
         "lean4/Imported/GenesisOngoing/Second/Rename.lean::Step3.rename",
@@ -1820,14 +1871,24 @@
         "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_A",
         "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_B",
         "lean4/Imported/GenesisOngoing/Second/Carry.lean::Reach3.obstruction_persists",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.decode_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.source_step_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.source_reach_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.renaming_costs",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.wire_reach_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.tracked_obstruction_persists",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.Step3.rename",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.Reach3.rename",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes3_every_writing_A",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes3_every_writing_B"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_rewriting_and_sameness_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove source Step/ReachNoRemove and cost-potential transports for all term writings and the multi-step obstruction persistence theorem. Do not promote a finite permutation test into that source-wide result.",
+      "bottleneck": "General source step/history rewriting, exact costs and wire transports for injective natural term writings, and multi-step tracked obstruction persistence now compile via an explicit compatibility proof port. The original Second/Rename remains unchanged and fails its old proof scripts; no finite permutation census is promoted into the general result.",
       "tags": [
         "alias:MUB6-DERIV-004"
       ],
@@ -1846,7 +1907,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Changes commute with injective rewriting of terms (Step.rename, Reach.rename, fewest_changes_every_writing_A/B for O3), and asserted obstructions persist across multi-step ReachNoRemove sequences (obstruction_persists_reach for O6).",
         "prior_bottleneck": "First-seed and second-seed injective term renamings (O3) and multi-step obstruction persistence (O6) are mechanized in DerivationDagQMClosure.lean and Second/Rename.lean.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json"
+        ]
       }
     },
     {
@@ -13766,12 +13829,22 @@
       "source_status": "TFQ record_status GAP (source slice 01)",
       "statement": "Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 3100c4e into this book's PrimitiveDifference carrier or candidate Lean mirror. Chapter 1 records the same gap as GAP-F000-S000-001 and says the tag is a mechanical receipt, not a mathematical verdict, and that the sealed derivation does not form cochains. finite_obstruction.py, opened at its header, starts from quotient certificates for a later host. The finite statement still required is that term map, or an explicit decision to leave the row proposed.",
       "source": [
-        "dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md"
+        "dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md",
+        "dag/derivations/independent/tfq-0396.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.certified_zero_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_eq_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_surjective",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.factorization_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_response_reaches_separated",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.undeclared_marks_collapse",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.",
+      "bottleneck": "A certified contextual-collapse term map into the existing Core PrimitiveDifference candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.",
       "tags": [
         "unified-dag",
         "TFQ-0396",
@@ -16214,14 +16287,26 @@
         "dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:531-537",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:70-71",
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88",
+        "dag/derivations/independent/pgw-endogenous-demand-ob1.md:1"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
+      ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
       ],
       "imported_structure": [],
-      "bottleneck": "Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.",
+      "bottleneck": "A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0504",
@@ -17668,20 +17753,45 @@
     {
       "id": "DFM-HIERARCHICAL-BOREL",
       "stage": "DRESSING_FIELD",
-      "status": "OPEN",
-      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+      "status": "PROVED_LEAN",
+      "source_status": "Lean 4.35.0 module CampaignDfmHierarchicalBorel; the printed axioms are propext, Classical.choice and Quot.sound.",
+      "statement": "Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N. torusProj preserves multiplication. On any vertex type with a root, a parent function fixing the root, and a natural depth function that is zero at the root and strictly decreases along parents off the root, and for invertible labels off the root, root-to-vertex transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]]. Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1}, and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} * g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1} off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative ring R, for A : R -> R -> R, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) with (bK)(u,v,w,z) = -K(u,w,z) + K(u,v,z) satisfy b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance K(A^g) = g(u) * K(A) * g(w)^{-1} for supplied g and g_inv with g(x) * g_inv(x) = 1 at every x, writing g_inv as g^{-1}, when A^g(x, y) = g(x) * A(x, y) * g_inv(y). For A(0,1)=1, A(1,2)=1, A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2)) is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/derivations/independent/dfm-hierarchical-borel.md",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json",
+        "checks/independent/dfm-hierarchical-borel.py",
         "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal",
+        "lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul",
+        "lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_residual_torus",
+        "lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces",
+        "lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff",
+        "lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular",
+        "lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero",
+        "lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity",
+        "lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance",
+        "lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::carrier_dimension_two_ne_three",
+        "lean4/CampaignDfmHierarchicalBorel.lean::diamond_transport_three"
+      ],
       "rust": [],
       "imported_structure": [
-        "normal subgroup N and quotient action",
-        "specified incidence DGA"
+        "supplied root fixed by parent, natural depth zero at root and strictly decreasing off root, and invertible off-root labels",
+        "specified scalar commutative cochain operators b1, b2 and cup products; no bundled incidence DGA construction"
       ],
-      "bottleneck": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "bottleneck": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This statement does not construct a spanning tree from an arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this statement. No bundled incidence DGA or noncommutative matrix-valued curvature is constructed.",
       "tags": [
         "application-branch",
         "TFQ-0400",
@@ -18327,7 +18437,7 @@
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "bottleneck": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -18356,7 +18466,7 @@
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "bottleneck": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -34131,9 +34241,13 @@
         "DFM-TREE-CHANGE"
       ],
       "output": "DFM-HIERARCHICAL-BOREL",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
-      "source": []
+      "status": "DERIVED_LEAN",
+      "mechanism": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This route does not construct a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "lean4/CampaignDfmHierarchicalBorel.lean",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json"
+      ]
     },
     {
       "id": "APP-R-DFM-CONTINUUM-INTERFACE",
@@ -34413,7 +34527,7 @@
       ],
       "output": "DFM-BOREL-LEVI-FACTORIZATION",
       "status": "DERIVED_PROSE",
-      "mechanism": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "mechanism": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md",
         "papers/ravera_dfm_dossier.md"
@@ -34427,7 +34541,7 @@
       ],
       "output": "DFM-BOREL-TWO-STAGE-DIAMOND",
       "status": "COMPUTED",
-      "mechanism": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "mechanism": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md",
         "papers/ravera_dfm_dossier.md",
@@ -53411,21 +53525,31 @@
         "TFQ-0396"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_reading_note.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_reading_note.md",
+        "dag/derivations/independent/tfq-0396.md"
       ],
       "id": "TFQ-0396",
       "lean4": [
         "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean",
-        "absent: missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml"
+        "absent: missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.certified_zero_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_eq_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_surjective",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.factorization_iff",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_response_reaches_separated",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.undeclared_marks_collapse",
+        "lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction"
       ],
       "local_id": "A01-036",
       "name": "sealed-tag-to-carrier-gap",
-      "obligation": "Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.",
+      "obligation": "A certified contextual-collapse term map into the existing Core PrimitiveDifference candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.",
       "parent_id": "TFQ-0395",
       "python": [
         "absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py",
         "absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_genesis_bridge_contract.py",
-        "absent: missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map"
+        "absent: missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map",
+        "checks/independent/tfq-0396.py"
       ],
       "record_status": "GAP",
       "rust": [
@@ -58105,14 +58229,25 @@
       ],
       "id": "TFQ-0504",
       "lean4": [
-        "absent: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)"
+        "absent: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
       ],
       "local_id": "PGW-ENDOGENOUS-DEMAND-OB1",
       "name": "endogenous-demand-ob1",
       "obligation": "Derive an object-language rule that generates the next unresolved requirement from admitted structure without reading token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation, or keep every demand host-supplied and recorded.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::leftover_as_demand"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::leftover_as_demand",
+        "checks/independent/pgw-endogenous-demand-ob1.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -59902,20 +60037,47 @@
       ],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/derivations/independent/dfm-hierarchical-borel.md",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json",
+        "checks/independent/dfm-hierarchical-borel.py",
         "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
       "id": "TFQ-0400",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal",
+        "lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul",
+        "lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_residual_torus",
+        "lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces",
+        "lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff",
+        "lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular",
+        "lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero",
+        "lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity",
+        "lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance",
+        "lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::carrier_dimension_two_ne_three",
+        "lean4/CampaignDfmHierarchicalBorel.lean::diamond_transport_three"
+      ],
       "local_id": "DFM-HIERARCHICAL-BOREL",
       "name": "Hierarchical Borel dressing beyond the diamond control",
-      "obligation": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "obligation": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This statement does not construct a spanning tree from an arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this statement.",
       "parent_id": "TFQ-0399",
-      "python": [],
-      "record_status": "OPEN_OBLIGATION",
+      "python": [
+        "checks/independent/dfm-hierarchical-borel.py"
+      ],
+      "record_status": "PROVED_LEAN",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+      "summary": "Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N. torusProj preserves multiplication. On any vertex type with a root, a parent function and a depth function that strictly decreases along parents, and for invertible labels off the root, root-to-vertex transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]]. Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1}, and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} * g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1} off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative ring, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) satisfy b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance K(A^g) = g(u) * K(A) * g(w)^{-1} when A^g(x, y) = g(x) * A(x, y) * g(y)^{-1}. For A(0,1)=1, A(1,2)=1, A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2)) is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).",
       "uuid": "cb25b943-66e6-550c-9490-67640907b380"
     },
     {
@@ -60556,7 +60718,7 @@
       "lean4": [],
       "local_id": "DFM-BOREL-LEVI-FACTORIZATION",
       "name": "Borel group B_2(Q), unipotent N and torus Levi factorization",
-      "obligation": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "obligation": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "parent_id": "TFQ-0398",
       "python": [],
       "record_status": "DEFINITION",
@@ -60583,7 +60745,7 @@
       ],
       "local_id": "DFM-BOREL-TWO-STAGE-DIAMOND",
       "name": "Two-stage Borel dressing and artificial/substantial split on the diamond",
-      "obligation": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "obligation": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "parent_id": "TFQ-1105",
       "python": [
         "code/python/src/qm/ravera_dfm.py::verify_pillar2_nonabelian_borel_two_stage_dfm",

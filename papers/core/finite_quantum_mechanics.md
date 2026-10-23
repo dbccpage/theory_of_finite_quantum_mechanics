@@ -1637,11 +1637,11 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `ADMITTED_PRIMITIVE` | 3 | 3 |
 | `DEFINITION` | 91 | 14 |
 | `PROVED_PROSE` | 28 | 0 |
-| `PROVED_LEAN` | 262 | 100 |
+| `PROVED_LEAN` | 263 | 100 |
 | `COMPUTATIONALLY_CHECKED` | 152 | 22 |
 | `CONDITIONAL` | 34 | 12 |
 | `IMPORTED_ASSUMPTION` | 66 | 21 |
-| `OPEN` | 175 | 5 |
+| `OPEN` | 174 | 5 |
 | `REFUTED` | 2 | 0 |
 | `SOURCE_RECORD` | 79 | 0 |
 | **Total** | **892** | **177** |
@@ -1649,14 +1649,14 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | Route status | Routes |
 | --- | ---: |
 | `DERIVED_PROSE` | 104 |
-| `DERIVED_LEAN` | 269 |
+| `DERIVED_LEAN` | 270 |
 | `COMPUTED` | 156 |
 | `CONDITIONAL_ON_IMPORT` | 91 |
-| `GAP_NO_DERIVATION` | 195 |
+| `GAP_NO_DERIVATION` | 194 |
 | `RECORD_PARENT` | 82 |
 | **Total** | **897** |
 
-Of the 177 reviewed nodes, 69 are `consistent`, 18 are `caveat_added`, 65 are `statement_narrowed`, 25 are `status_lowered`. Only 213 of the 892 nodes cite two or more Lean declarations and two or more Rust witnesses; 394 cite no Lean declaration and 515 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
+Of the 177 reviewed nodes, 69 are `consistent`, 18 are `caveat_added`, 65 are `statement_narrowed`, 25 are `status_lowered`. Only 213 of the 892 nodes cite two or more Lean declarations and two or more Rust witnesses; 392 cite no Lean declaration and 515 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
 
 <!-- END GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 

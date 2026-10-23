@@ -26,19 +26,30 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.
+> A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step`](../../../lean4/CampaignGenesisDemandPolicy.lean)
 - `missing obligation: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`checks/independent/pgw-endogenous-demand-ob1.py`](../../../checks/independent/pgw-endogenous-demand-ob1.py)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/alpha_engine/harness.py::leftover_as_demand`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py)
 
 ---
@@ -55,3 +66,4 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:531-537`
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:70-71`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:78-88`
+  - `dag/derivations/independent/pgw-endogenous-demand-ob1.md:1`

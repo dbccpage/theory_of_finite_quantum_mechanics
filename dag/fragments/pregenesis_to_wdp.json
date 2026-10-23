@@ -6534,11 +6534,61 @@
       "summary": "No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successor research S2): a demand is a target pair (i, j) with 0 ≤ i < j < n_data supplied by the host together with the measure and the declared bounds, nothing in the harness chooses a next demand, and the collapsed pairs left after an admission are returned as observations, not demands (leftover_as_demand refuses). The sealed derivation's pair-separation closure policy is declared metatheory, not a harness function, and the sealed result is that no object-language endogenous demand generator was derived.",
       "obligation": "Derive an object-language rule that generates the next unresolved requirement from admitted structure without reading token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation, or keep every demand host-supplied and recorded.",
       "imports": [],
-      "fence": "Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.",
+      "fence": "A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.",
       "witnesses": {
         "lean": [
           {
             "absent": "no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.mem_contexts"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.collapseTest_correct"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.mem_agenda"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.next_sound"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.next_none_iff"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.seek_is_recorded_source_step"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.instruction_records_demand"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.no_host_target_in_program"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.policy_is_not_forced"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.fixed_data_saturates"
           }
         ],
         "rust": [
@@ -6553,6 +6603,10 @@
             "root": "github19l",
             "path": "research/alpha_engine/harness.py",
             "symbol": "leftover_as_demand"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-endogenous-demand-ob1.py"
           }
         ]
       },
@@ -6574,6 +6628,12 @@
           "path": "docs/ALPHA_HANDOFF.md",
           "lines": "78-88",
           "quote": "nothing in the harness chooses a next demand, and a consumer must not expect it."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-endogenous-demand-ob1.md",
+          "quote": "Status: AI-drafted, awaiting human review.",
+          "lines": "1"
         }
       ],
       "coda_atlas_ids": [],
