@@ -1,0 +1,31 @@
+
+running 52 tests
+buildtime::tests::decide_respects_mode --- FAILED
+................................ 33/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+..................
+failures:
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (16152) panicked at ..\code\rust\src\governance\src\buildtime.rs:327:9:
+assertion `left == right` failed
+  left: Abort("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 0: 0 pass, 0 grandfathered, 0 boilerplate, 0 failed\n")
+ right: Silent
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (38968) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 1 pass, 0 grandfathered, 1 boilerplate, 0 failed\n")
+ right: Ok(())
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    buildtime::tests::decide_respects_mode
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.15s
+
+error: test failed, to rerun pass `--lib`

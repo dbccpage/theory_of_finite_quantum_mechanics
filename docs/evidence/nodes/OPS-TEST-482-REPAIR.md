@@ -45,14 +45,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/foc035_observer_presheaf.py`
 
 - file: [checks/independent/foc035_observer_presheaf.py](../../../checks/independent/foc035_observer_presheaf.py)
-- sha256 (`bytes`): `50f1a22baf6a42c8a7af57fdc1883fea1f4ad3fbf7679b7175fb513351dc11b4`
+- sha256 (`bytes`): `3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Python: `dag/test_foc035_observer_presheaf.py`
 
 - file: [dag/test_foc035_observer_presheaf.py](../../../dag/test_foc035_observer_presheaf.py)
-- sha256 (`bytes`): `27a52d7d08c7472387aa311df47c1974523addd994bc46191415e098b618ae1c`
+- sha256 (`bytes`): `17b962ed09fd6127e11d44e3bbc0524f076a9bd85a316992a4e2612ae66a15ee`
 - cited in: node.source
 - check: `python -m pytest dag/test_foc035_observer_presheaf.py`
 - counts toward the grade: yes

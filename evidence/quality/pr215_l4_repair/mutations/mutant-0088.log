@@ -1,0 +1,30 @@
+
+running 52 tests
+... 3/52
+policy::tests::baseline_round_trip_and_grandfathering --- FAILED
+.................................... 40/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+...........
+failures:
+
+---- policy::tests::baseline_round_trip_and_grandfathering stdout ----
+
+thread 'policy::tests::baseline_round_trip_and_grandfathering' (11372) panicked at ..\code\rust\src\governance\src\policy.rs:637:47:
+called `Result::unwrap()` on an `Err` value: Field { field: "entries.code/x.rs.sha256", expected: "64 lower-case hex digits" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (2320) panicked at ..\code\rust\src\governance\src\buildtime.rs:281:9:
+assertion `left == right` failed
+  left: Err("contract governance cannot verify pkg: governance data: field entries.code/rust/p/src/lib.rs.sha256: expected 64 lower-case hex digits")
+ right: Ok(())
+
+
+failures:
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    policy::tests::baseline_round_trip_and_grandfathering
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.57s
+
+error: test failed, to rerun pass `--lib`

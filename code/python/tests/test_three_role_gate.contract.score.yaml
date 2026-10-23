@@ -3,62 +3,44 @@
   "artifact": "code/python/tests/test_three_role_gate.py",
   "assurance": "Source-bound contract and a completed v2 score with disclosed mutation accounting; the baseline coverage records are retained in the history. Not independently reviewed.",
   "contract": {
+    "AuthorityEffect": "None",
     "artifact": {
       "language": "Python",
       "path": "code/python/tests/test_three_role_gate.py",
       "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
     },
-    "authority_effect": "None",
     "boundaries": [
-      "Origin: omega_engine_pfp of the_symbol_game at commit 28a98c069133de6165f4461b19af943d3e32e1f4 (FOC-035); imports and docstring edited, logic unchanged.",
-      "The gate does not evaluate a claim, compute a defect or issue a certificate, and is not linked to the Rust evaluator.",
-      "No claim about the strength of the role policy: it is declared by the regime, not derived from the evidence."
+      "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
+      "Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment."
     ],
-    "claim": "urn:omega:fqm:foc035:three-role-gate-tests:v1",
-    "contract_id": "foc035-test-contract-v1",
-    "cost_model": "Linear in the size of one packet; constant-size pairwise comparisons of three bindings.",
+    "claim": "Independent regression support for finite examples, invalid-input refusals or selected semantic mutations; no general theorem or production API is certified.",
+    "contract_urn": "urn:tfqm:pr208-repair:test_three_role_gate",
     "evidence": [
       {
-        "path": "code/python/tests/test_three_role_gate.py",
-        "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
+        "path": "dag/research/foc035_l4_refactor_equivalence.json",
+        "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
       },
       {
-        "path": "code/python/src/wdp/three_role_gate.py",
-        "sha256": "8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1"
+        "path": "dag/research/foc035_l4_tests_retry.json",
+        "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
       },
       {
-        "path": "code/python/src/wdp/three_role_provenance_fixtures.json",
-        "sha256": "bea22cced6a7a851f67ecaab5e5adbe6472a9c35e88ccd937fd0be4936793287"
+        "path": "dag/research/foc035_l4_gate_replay.json",
+        "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
       },
       {
-        "path": "evidence/quality/foc035_observer_presheaf/three_role_gate_receipt.json",
-        "sha256": "5f952e463047336b13d509ab13c40dab813443bd48337e2ec3d00b32364a1b0e"
+        "path": "dag/research/foc035_l4_checker_refactor.json",
+        "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
       },
       {
-        "path": "evidence/quality/foc035_observer_presheaf/mutation_results.json",
-        "sha256": "d94d449e6fb30282049ea63978a02f7792b4353ff4e1131a449fe29f3803609a"
-      },
-      {
-        "path": "SCORING.md",
-        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        "path": "dag/research/foc035_l4_metrics.json",
+        "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
       }
     ],
-    "failure_boundary": "Typed refusals (PacketShapeError, RefusalReason) and ValueError at construction; no assert is used for validation.",
-    "operations": {
-      "ThreeRoleGateFixtureTests": "15 test methods, 33 subtests; expected verdicts are data in the JSON fixture."
-    },
-    "owned_invariants": [
-      "Each fixture case yields its recorded verdict code and reasons.",
-      "Every RefusalReason value is reached by at least one fixture case."
-    ],
-    "profile": "Non-Numeric",
-    "purpose": "Fixture-driven and mutation-style tests of the three-role gate: 17 fixture cases, every refusal reason, every packet field and observer component dropped or blanked, non-string keys at three levels.",
-    "role": "test or verification harness",
     "schema_id": "tfqm.source-contract.v1",
-    "scope_ceiling": "Scoped to the 17-case fixture and the mutation campaign recorded in the receipt. No claim beyond that.",
-    "source_sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d",
-    "subject": "code/python/tests/test_three_role_gate.py",
-    "trust": "Pinned CPython 3.14.2 and pytest 9.1.1. Type checks use type(x) is str so a str subclass or bool is refused. Not a sandbox against hostile interpreter state."
+    "symbols": [
+      "test/check entrypoints"
+    ]
   },
   "contract_history": [
     {
@@ -170,10 +152,106 @@
         "trust": "Pinned CPython 3.14.2 and pytest 9.1.1. Type checks use type(x) is str so a str subclass or bool is refused. Not a sandbox against hostile interpreter state."
       },
       "sha256": "f07960747c65e51e4c524ece821dd60b0b83c1a0faf662c39b5b62e86a3b689d"
+    },
+    {
+      "bytes": 1624,
+      "original_paths": [
+        "code\\python\\tests\\test_three_role_gate.contract.score.yaml#pr208-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_three_role_gate.py\",\n    \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n  },\n  \"boundaries\": [\n    \"User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.\",\n    \"Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment.\"\n  ],\n  \"claim\": \"Independent regression support for finite examples, invalid-input refusals or selected semantic mutations; no general theorem or production API is certified.\",\n  \"contract_urn\": \"urn:tfqm:pr208-repair:test_three_role_gate\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69\"\n    }\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"test/check entrypoints\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_three_role_gate.py",
+          "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
+        },
+        "boundaries": [
+          "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
+          "Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment."
+        ],
+        "claim": "Independent regression support for finite examples, invalid-input refusals or selected semantic mutations; no general theorem or production API is certified.",
+        "contract_urn": "urn:tfqm:pr208-repair:test_three_role_gate",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69"
+          }
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "test/check entrypoints"
+        ]
+      },
+      "sha256": "83442b6c82d64ffd688d49d41737be7022ce436c9c0b978ca323e493c0e9ea6a"
+    },
+    {
+      "bytes": 1624,
+      "original_paths": [
+        "code/python/tests/test_three_role_gate.py#final-source-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_three_role_gate.py\",\n    \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n  },\n  \"boundaries\": [\n    \"User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.\",\n    \"Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment.\"\n  ],\n  \"claim\": \"Independent regression support for finite examples, invalid-input refusals or selected semantic mutations; no general theorem or production API is certified.\",\n  \"contract_urn\": \"urn:tfqm:pr208-repair:test_three_role_gate\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"test/check entrypoints\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_three_role_gate.py",
+          "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
+        },
+        "boundaries": [
+          "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
+          "Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment."
+        ],
+        "claim": "Independent regression support for finite examples, invalid-input refusals or selected semantic mutations; no general theorem or production API is certified.",
+        "contract_urn": "urn:tfqm:pr208-repair:test_three_role_gate",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "test/check entrypoints"
+        ]
+      },
+      "sha256": "a1e1436938006e487c59ceec6dce7e65352171ed7436db548fda1f525c561101"
     }
   ],
-  "current_contract": "f07960747c65e51e4c524ece821dd60b0b83c1a0faf662c39b5b62e86a3b689d",
-  "current_scoring": "b9518436025b95998817ae36813d69f08f7a8912de8a90a8f1060e830f0e1c4e",
+  "current_contract": "a1e1436938006e487c59ceec6dce7e65352171ed7436db548fda1f525c561101",
+  "current_scoring": "9ad7db9aa8fcb927d937a7ee066a83840c28e3680de2d6a1c633c290687a4d1f",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -324,8 +402,10 @@
       "sha256": "0efbb926c50e101b665fbdbe35a0e2a24b654b41726ac48cc6e5051c0260aa85"
     },
     {
-      "sha256": "b9518436025b95998817ae36813d69f08f7a8912de8a90a8f1060e830f0e1c4e",
       "bytes": 3796,
+      "original_paths": [
+        "code/python/tests/test_three_role_gate.py#review-support-level"
+      ],
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_three_role_gate.py\",\n    \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n  },\n  \"assessment_id\": \"foc035-test-score-v1\",\n  \"basis\": {\n    \"G1\": \"Claim URN, origin commit and AuthorityEffect None declared in the module docstring; exported names match the contract operations. No requirement-to-symbol bijection or downstream audit, so not B.\",\n    \"G2\": \"Non-Numeric profile fixed before the challenge: strict type(x) is str checks, blank refusal, closed enums. No arithmetic. Not B: no property-based generation.\",\n    \"G3\": \"Expected failures are typed (PacketShapeError, RefusalReason, ValueError); no assert, no broad except. Not B: no exhaustive error enumeration or panic-freedom proof.\",\n    \"G4\": \"Fixture of 17 cases and 15 tests pass; a 254-mutant AST campaign gives killed 191, survived 63, no exclusions, R = 191/254 = 0.752 (C needs R >= 0.70; B needs 0.85). 63 survivors are listed, 39 of them string constants.\",\n    \"G5\": \"radon and lizard maximum CCN 4, AST control nesting 3, AST cognitive approximation 9; within the A band. No resource bound beyond linearity.\"\n  },\n  \"composite_grade\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T05:55:44.597867+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"code/python/tests/test_three_role_gate.py\",\n      \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n    },\n    {\n      \"path\": \"code/python/src/wdp/three_role_gate.py\",\n      \"sha256\": \"8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1\"\n    },\n    {\n      \"path\": \"code/python/src/wdp/three_role_provenance_fixtures.json\",\n      \"sha256\": \"bea22cced6a7a851f67ecaab5e5adbe6472a9c35e88ccd937fd0be4936793287\"\n    },\n    {\n      \"path\": \"evidence/quality/foc035_observer_presheaf/three_role_gate_receipt.json\",\n      \"sha256\": \"5f952e463047336b13d509ab13c40dab813443bd48337e2ec3d00b32364a1b0e\"\n    },\n    {\n      \"path\": \"evidence/quality/foc035_observer_presheaf/mutation_results.json\",\n      \"sha256\": \"d94d449e6fb30282049ea63978a02f7792b4353ff4e1131a449fe29f3803609a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"A\"\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Fixture-driven checks plus field-by-field mutation of an admitted packet, negative controls at three nesting levels, and constructor-boundary checks.\",\n  \"metrics\": {\n    \"ast_max_cognitive_approximation\": 9,\n    \"ast_max_control_nesting\": 3,\n    \"lizard_max_ccn\": 4,\n    \"radon_max_ccn\": 4\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.7519685039370079,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 191,\n    \"survived\": 63,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"A second mutation tool or an alternate test harness (G4 A+ needs independent replay)\",\n    \"Tests that kill the 63 surviving mutants: unpinned detail strings and guards reachable only by direct construction\",\n    \"A strict type check (mypy is not installed in this environment)\",\n    \"Connection to the Rust evaluator: the observer strings are compared as text only\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2C\",\n  \"target_scope\": \"This exact source revision only.\",\n  \"level_assessment\": \"Regression support suite under the explicit user-approved exception; the tested runtime gate retains its separate L4 assessment.\"\n}\n",
       "record": {
         "AuthorityEffect": "None",
@@ -380,6 +460,7 @@
         "grade_ceiling": "C",
         "is_complete": true,
         "level": "L2",
+        "level_assessment": "Regression support suite under the explicit user-approved exception; the tested runtime gate retains its separate L4 assessment.",
         "level_basis": "Fixture-driven checks plus field-by-field mutation of an admitted packet, negative controls at three nesting levels, and constructor-boundary checks.",
         "metrics": {
           "ast_max_cognitive_approximation": 9,
@@ -409,12 +490,159 @@
         },
         "schema_version": "2.0.0",
         "score_token": "L2C",
-        "target_scope": "This exact source revision only.",
-        "level_assessment": "Regression support suite under the explicit user-approved exception; the tested runtime gate retains its separate L4 assessment."
+        "target_scope": "This exact source revision only."
       },
+      "sha256": "b9518436025b95998817ae36813d69f08f7a8912de8a90a8f1060e830f0e1c4e"
+    },
+    {
+      "bytes": 2856,
       "original_paths": [
-        "code/python/tests/test_three_role_gate.py#review-support-level"
-      ]
+        "code\\python\\tests\\test_three_role_gate.contract.score.yaml#pr208-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_three_role_gate.py\",\n    \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n  },\n  \"assessor\": \"Codex repair review\",\n  \"basis\": {\n    \"G1\": \"Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.\",\n    \"G2\": \"Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.\",\n    \"G3\": \"User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.\",\n    \"G4\": \"117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.\",\n    \"G5\": \"Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T16:31:30.387642+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Regression artifact under the user-authorized support exception.\",\n  \"metrics\": {\n    \"ccn_max\": 4,\n    \"cognitive_max\": 3,\n    \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n  },\n  \"open_higher_grade_findings\": [\n    \"User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.\",\n    \"Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_three_role_gate.py",
+          "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
+        },
+        "assessor": "Codex repair review",
+        "basis": {
+          "G1": "Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.",
+          "G2": "Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.",
+          "G3": "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
+          "G4": "117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.",
+          "G5": "Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T16:31:30.387642+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Regression artifact under the user-authorized support exception.",
+        "metrics": {
+          "ccn_max": 4,
+          "cognitive_max": 3,
+          "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
+        },
+        "open_higher_grade_findings": [
+          "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
+          "Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "8ce476b8c15d03adbf5f8579785c688273747282facef67898f30a9fd6b90cea"
+    },
+    {
+      "bytes": 2856,
+      "original_paths": [
+        "code/python/tests/test_three_role_gate.py#final-source-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_three_role_gate.py\",\n    \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n  },\n  \"assessor\": \"Codex repair review\",\n  \"basis\": {\n    \"G1\": \"Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.\",\n    \"G2\": \"Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.\",\n    \"G3\": \"User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.\",\n    \"G4\": \"117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.\",\n    \"G5\": \"Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T16:31:30.387642+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Regression artifact under the user-authorized support exception.\",\n  \"metrics\": {\n    \"ccn_max\": 4,\n    \"cognitive_max\": 3,\n    \"sha256\": \"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d\"\n  },\n  \"open_higher_grade_findings\": [\n    \"User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.\",\n    \"Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_three_role_gate.py",
+          "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
+        },
+        "assessor": "Codex repair review",
+        "basis": {
+          "G1": "Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.",
+          "G2": "Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.",
+          "G3": "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
+          "G4": "117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.",
+          "G5": "Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T16:31:30.387642+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Regression artifact under the user-authorized support exception.",
+        "metrics": {
+          "ccn_max": 4,
+          "cognitive_max": 3,
+          "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"
+        },
+        "open_higher_grade_findings": [
+          "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
+          "Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "9ad7db9aa8fcb927d937a7ee066a83840c28e3680de2d6a1c633c290687a4d1f"
     }
   ]
 }

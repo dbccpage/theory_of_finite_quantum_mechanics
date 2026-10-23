@@ -258,7 +258,7 @@ def check_functoriality():
     return True
 
 
-def main() -> None:
+def check_fixed_models():
     # --- fixed models ---
     pr = pr_box()
     ok("PR box rows are distributions", all(sum(d.values()) == 1 and min(d.values()) >= 0 for d in pr))
@@ -289,7 +289,10 @@ def main() -> None:
     mix = mixture(point_mass(BELL, g1), point_mass(BELL, g2))
     ok("mixture of (0,0,0,0) and (1,0,0,1): NCF = 1 and |G| = 2",
        ncf(BELL, mix) == 1 and len(BELL.support_globals(mix)) == 2)
+    return pr, h, mix, delta_pr, overlaps_agree
 
+
+def check_signed_section(pr):
     # --- B3: signed global section of the PR box, found by solving the linear system exactly ---
     A = BELL.incidence()
     e = BELL.stacked(pr)
@@ -317,6 +320,8 @@ def main() -> None:
     ok("PR box: a signed global section exists, sums to 1, matches all marginals, and has a negative entry",
        consistent and sum(d) == 1 and all(sum(A[i][j] * d[j] for j in range(16)) == e[i] for i in range(16)) and min(d) < 0)
 
+
+def check_descent(pr, h, mix):
     # --- B6, B7: descent counts ---
     full = [tuple(c) for c in BELL.contexts]
     ok("maximal cover, PR box: 0 families", matching_families(BELL, pr, full)[0] == 0)
@@ -326,6 +331,8 @@ def main() -> None:
     ok("arc cover, mixture of two assignments: 4 families, 2 Unique, 2 NoGlobalExtension",
        matching_families(BELL, mix, arcs) == (4, 2, 0, 2))
 
+
+def check_parity_cycles():
     # --- B11: parity cycles ---
     for n in (3, 4, 5):
         ctxs = [tuple(sorted((i, (i + 1) % n))) for i in range(n)]
@@ -352,6 +359,8 @@ def main() -> None:
        all(len(set(a) & set(b)) == 1 for a, b in [((0, 1), (1, 2)), ((1, 2), (0, 2)), ((0, 1), (0, 2))])
        and set((0, 1)) & set((1, 2)) & set((0, 2)) == set())
 
+
+def check_bell_cech(pr, h):
     # --- B9: Cech coboundary on the Bell nerve, Phi_1 = 2 by matching primal and dual bounds ---
     pairs = [(i, j) for i in range(4) for j in range(i + 1, 4) if set(BELL.contexts[i]) & set(BELL.contexts[j])]
     ok("Bell nerve: exactly four edges (a 4-cycle) and no triple intersection",
@@ -405,6 +414,8 @@ def main() -> None:
        any(x != 0 for x in dd[(0, 1)]) and edge_pos[(0, 1)] == [0])
     ok("PR box: delta0 e = 0", all(x == 0 for v in delta0(pr).values() for x in v))
 
+
+def check_triple_coboundary():
     # --- B9: delta1 delta0 = 0 on the cover {0,1},{0,2},{0,3} (one triple) ---
     ctx3 = [(0, 1), (0, 2), (0, 3)]
     pairs3 = [(0, 1), (0, 2), (1, 2)]
@@ -424,6 +435,28 @@ def main() -> None:
     curv_b = [beta1[(1, 2)][k] - beta1[(0, 2)][k] + beta1[(0, 1)][k] for k in range(2)]
     ok("delta1 of a 1-cochain supported on one pair is [1, 0] (a non-cocycle is detected)", curv_b == [1, 0])
 
+
+def gyo(edges):
+    work = [set(x) for x in edges]
+    changed = True
+    while changed:
+        changed = False
+        for v in {v for e in work for v in e}:
+            holders = [e for e in work if v in e]
+            if len(holders) == 1:
+                holders[0].discard(v)
+                changed = True
+        for i, e in enumerate(work):
+            if any(i != j and e <= f for j, f in enumerate(work)):
+                work.pop(i)
+                changed = True
+                break
+        work = [e for e in work if e]
+    return not work
+
+
+
+def check_path_gluing():
     # --- B13: Vorob'ev product formula on the path {0,1},{1,2},{2,3} with parity targets 0,1,1 ---
     path = Scenario(4, [(0, 1), (1, 2), (2, 3)])
     pd = [parity_dist(t) for t in (0, 1, 1)]
@@ -442,28 +475,12 @@ def main() -> None:
            path.marginal({g: v for g, v in joint.items()}, tuple(range(4)), c) == pd[k] for k, c in enumerate(path.contexts)))
     ok("path cover: NCF = 1 (the section is a distribution)", ncf(path, pd) == 1)
 
-    def gyo(edges):
-        work = [set(x) for x in edges]
-        changed = True
-        while changed:
-            changed = False
-            for v in {v for e in work for v in e}:
-                holders = [e for e in work if v in e]
-                if len(holders) == 1:
-                    holders[0].discard(v)
-                    changed = True
-            for i, e in enumerate(work):
-                if any(i != j and e <= f for j, f in enumerate(work)):
-                    work.pop(i)
-                    changed = True
-                    break
-            work = [e for e in work if e]
-        return not work
-
     ok("GYO: the three-context path and the two-context path are acyclic, the Bell 4-cycle and a triangle are not",
        gyo([{0, 1}, {1, 2}, {2, 3}]) and gyo([{0, 1}, {1, 2}]) and not gyo([set(c) for c in BELL.contexts])
        and not gyo([{0, 1}, {1, 2}, {0, 2}]))
 
+
+def check_repaired_tables():
     # --- B14: the instances of the repaired Test 482 of the source repository (the test itself is not imported) ---
     p_ab = {(0, 0): F(1, 2), (0, 1): F(1, 6), (1, 0): F(1, 12), (1, 1): F(1, 4)}
     p_bc = {(0, 0): F(1, 3), (0, 1): F(1, 4), (1, 0): F(1, 6), (1, 1): F(1, 4)}
@@ -481,6 +498,8 @@ def main() -> None:
     compatible = [(a, b, c) for a, b, c in product((0, 1), repeat=3) if (a ^ b) == 0 and (b ^ c) == 0 and (a ^ c) == 1]
     ok("Test 482 triangle: no assignment among the 8 satisfies a = b, b = c and a != c", len(compatible) == 0)
 
+
+def check_underdetermination(pr, delta_pr, overlaps_agree):
     # --- A2: the table of conditional underdetermination (K row, Adm row, norm and terminal arithmetic) ---
     sub = Scenario(3, [(0, 1), (0, 2)])  # measurements a=0, b=1, b'=2; sub-cover {ab, ab'}
     prsub = [parity_dist(0), parity_dist(0)]
@@ -492,6 +511,8 @@ def main() -> None:
     ok("terminal row: the defect 2 is below the threshold 3 of the alternative rule, so ExactRepair differs from OpenObstruction",
        delta_pr < 3 and BELL.support_globals(pr) == [])
 
+
+def check_ceilings_and_roles():
     # --- B16: ceilings ---
     ok("ceilings: 2^20 assignments and 2^22 LP entries; 2^64 > 2^20; 2^21 > 2^20; ten singletons 1024 <= 2^20 and 20*1024 <= 2^22",
        2 ** 20 == 1048576 and 2 ** 22 == 4194304 and 2 ** 64 > 2 ** 20 and 2 ** 21 > 2 ** 20
@@ -511,6 +532,8 @@ def main() -> None:
        not (len({s[1] for s in same}) < len({s[0] for s in same}))
        and any(a[0] == b[0] for i, a in enumerate(same) for b in same[i + 1:]))
 
+
+def check_axis_countermodel():
     # --- N3: the countermodel to the wide form of Axis 3 ---
     sigma = {"a": "b", "b": "a"}
     step = {"a": "b", "b": "a"}  # the one transition swaps the two states, so sigma commutes with it
@@ -531,6 +554,20 @@ def main() -> None:
     # --- N4: the unchecked product wrapped to zero ---
     ok("N4: 2^64 assignments wrap to 0 in 64-bit unsigned arithmetic", (2 ** 64) % (2 ** 64) == 0 and 2 ** 64 > 2 ** 20)
 
+
+def main() -> None:
+    CHECKED.clear()
+    pr, h, mix, delta_pr, overlaps_agree = check_fixed_models()
+    check_signed_section(pr)
+    check_descent(pr, h, mix)
+    check_parity_cycles()
+    check_bell_cech(pr, h)
+    check_triple_coboundary()
+    check_path_gluing()
+    check_repaired_tables()
+    check_underdetermination(pr, delta_pr, overlaps_agree)
+    check_ceilings_and_roles()
+    check_axis_countermodel()
     print(f"{len(CHECKED)} checks passed")
 
 

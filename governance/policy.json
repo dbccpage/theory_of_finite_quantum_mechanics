@@ -3,8 +3,21 @@
   "AuthorityEffect": "None",
   "description": "Single source of truth for contract governance. Read by the governance crate (code/rust/src/governance), by every workspace build.rs, by governance-check, and by scripts/score_scope_contracts.py and scripts/contract_scores.py.",
   "rubric": "SCORING.md",
-  "level_order": ["L1", "L2", "L3", "L4", "L5"],
-  "grade_order": ["E", "D", "C", "B", "A", "A+"],
+  "level_order": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5"
+  ],
+  "grade_order": [
+    "E",
+    "D",
+    "C",
+    "B",
+    "A",
+    "A+"
+  ],
   "floor": {
     "min_level": "L4",
     "min_grade": "D",
@@ -14,19 +27,52 @@
     "suffix": ".contract.score.yaml",
     "document_schema": "tfqm.contract-score.v1",
     "score_schema": "2.0.0",
-    "collision_suffixes": [".py", ".rs", ".lean"],
+    "collision_suffixes": [
+      ".py",
+      ".rs",
+      ".lean"
+    ],
     "naming": "<dir>/<stem>.contract.score.yaml; when a sibling with the same stem and another collision suffix exists, <dir>/<name>.contract.score.yaml.",
     "json_schema": "governance/schema/contract-score.v1.json"
   },
   "populations": [
-    {"kind": "rust", "language": "Rust", "globs": ["code/**/*.rs"]},
-    {"kind": "python", "language": "Python", "globs": ["code/**/*.py"]},
-    {"kind": "lean", "language": "Lean 4", "globs": ["lean4/**/*.lean"]}
+    {
+      "kind": "rust",
+      "language": "Rust",
+      "globs": [
+        "code/**/*.rs"
+      ]
+    },
+    {
+      "kind": "python",
+      "language": "Python",
+      "globs": [
+        "code/**/*.py"
+      ]
+    },
+    {
+      "kind": "lean",
+      "language": "Lean 4",
+      "globs": [
+        "lean4/**/*.lean"
+      ]
+    }
   ],
   "discovery": "git ls-files --cached --others --exclude-standard -z, filtered by the population globs and exclusions; build scripts walk their own package instead.",
   "exclusions": {
-    "path_parts": ["__pycache__", ".lake", "target", "node_modules"],
-    "path_globs": ["dag/results/**", "dag/sealed_runs/**", "sealed_runs/**", "atlas/**", "papers/**/archive/**"]
+    "path_parts": [
+      "__pycache__",
+      ".lake",
+      "target",
+      "node_modules"
+    ],
+    "path_globs": [
+      "dag/results/**",
+      "dag/sealed_runs/**",
+      "sealed_runs/**",
+      "atlas/**",
+      "papers/**/archive/**"
+    ]
   },
   "pinned_boilerplate": [
     {
@@ -46,5 +92,17 @@
       "enforce": "abort the build on any violation (CI)"
     },
     "ci": "governance-check check --changed-since origin/main, in .github/workflows/governance.yml"
+  },
+  "support_exceptions": {
+    "code/python/tests/test_three_role_gate.py": {
+      "sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d",
+      "category": "regression_test",
+      "reason": "User-approved regression-test exception: exercises the separate runtime gate; L3D remains accurately recorded."
+    },
+    "lean4/lakefile.lean": {
+      "sha256": "78167b8c8ec66f56edcb8cd0c7001c5ea26451a7d15e087ad34d230a793d8a67",
+      "category": "build_registration",
+      "reason": "User-approved declarative build-file exception: module registrations and toolchain wiring; L1D remains accurately recorded."
+    }
   }
 }

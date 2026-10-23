@@ -1,0 +1,176 @@
+
+running 52 tests
+....... 7/52
+policy::tests::companion_naming_follows_collision_rule --- FAILED
+.. 10/52
+buildtime::tests::decide_respects_mode --- FAILED
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+. 14/52
+buildtime::tests::new_mode_aborts_when_any_failure_is_new --- FAILED
+. 16/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+. 19/52
+buildtime::tests::missing_or_broken_policy --- FAILED
+. 21/52
+policy::tests::policy_rejects_wrong_orders_and_shapes --- FAILED
+repo::tests::git_population_changes_and_history --- FAILED
+............ 35/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+. 39/52
+verify::tests::null_gate_is_incomplete --- FAILED
+verify::tests::binding_mismatch_names_the_field --- FAILED
+verify::tests::schema_failures_are_specific --- FAILED
+. 43/52
+tests::binding_and_completeness_are_both_reported --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::malformed_companion_and_unreadable_source --- FAILED
+tests::changed_bytes_lose_grandfathering --- FAILED
+...
+failures:
+
+---- policy::tests::companion_naming_follows_collision_rule stdout ----
+
+thread 'policy::tests::companion_naming_follows_collision_rule' (24352) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (19732) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (3612) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (47052) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- buildtime::tests::new_mode_aborts_when_any_failure_is_new stdout ----
+
+thread 'buildtime::tests::new_mode_aborts_when_any_failure_is_new' (33544) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (16076) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (6860) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- buildtime::tests::missing_or_broken_policy stdout ----
+
+thread 'buildtime::tests::missing_or_broken_policy' (20860) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- policy::tests::policy_rejects_wrong_orders_and_shapes stdout ----
+
+thread 'policy::tests::policy_rejects_wrong_orders_and_shapes' (37840) panicked at ..\code\rust\src\governance\src\policy.rs:568:9:
+assertion failed: matches!(Policy::from_json(&bad_env), Err(PolicyError::Field { field, .. }) if
+    field == "enforcement.env")
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (34416) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (15812) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (38632) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (46796) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- verify::tests::null_gate_is_incomplete stdout ----
+
+thread 'verify::tests::null_gate_is_incomplete' (3596) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- verify::tests::binding_mismatch_names_the_field stdout ----
+
+thread 'verify::tests::binding_mismatch_names_the_field' (10636) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (3832) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (10064) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (19292) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (33124) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (46892) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- tests::malformed_companion_and_unreadable_source stdout ----
+
+thread 'tests::malformed_companion_and_unreadable_source' (32912) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+---- tests::changed_bytes_lose_grandfathering stdout ----
+
+thread 'tests::changed_bytes_lose_grandfathering' (11260) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "enforcement.env", expected: "TFQM_GOVERNANCE" }
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    buildtime::tests::decide_respects_mode
+    buildtime::tests::missing_or_broken_policy
+    buildtime::tests::new_mode_aborts_when_any_failure_is_new
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+    policy::tests::companion_naming_follows_collision_rule
+    policy::tests::policy_parses_floor_and_populations
+    policy::tests::policy_rejects_wrong_orders_and_shapes
+    repo::tests::git_population_changes_and_history
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::changed_bytes_lose_grandfathering
+    tests::malformed_companion_and_unreadable_source
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::binding_mismatch_names_the_field
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+    verify::tests::null_gate_is_incomplete
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 30 passed; 22 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `--lib`

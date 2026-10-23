@@ -314,12 +314,14 @@ pub(crate) mod tests {
         assert_eq!(show_at(&dir, "main", "code/new.rs").unwrap(), None);
         // A git alias that sleeps (run by git's own shell) must hit the deadline.
         let started = Instant::now();
-        let slow = run_git(&dir, &["-c", "alias.nap=!sleep 20", "nap"], Duration::from_millis(500));
+        let slow = run_git(&dir, &["-c", "alias.nap=!sleep 1", "nap"], Duration::from_millis(50));
         assert!(matches!(&slow, Err(RepoError::Git { message, .. }) if message.contains("timed out")), "{slow:?}");
         assert!(started.elapsed() < Duration::from_secs(15), "the child is killed at the deadline");
         assert!(matches!(git(&dir, &["no-such-subcommand"]), Err(RepoError::Git { .. })));
-        // Only git itself is killed; on Windows its `sleep` grandchild may still hold the
-        // directory for a while, so removal is best effort.
-        let _ = fs::remove_dir_all(&dir);
+        // This API promises to kill git itself, not a shell launched by an alias.
+        // Own the test's deliberate one-second grandchild instead of leaking a
+        // twenty-second sleeper (and inherited log handles) into the next test run.
+        thread::sleep(Duration::from_millis(1200));
+        fs::remove_dir_all(&dir).unwrap();
     }
 }
