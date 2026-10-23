@@ -1,4 +1,4 @@
-# [TFQ-1132] Continuum Gribov ambiguity, ghosts and Yang-Mills remain open
+# [TFQ-1132] Two generator quadratic forms on Omega1 differ
 
 > **Stage**: `DRESSING_FIELD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `DFM-GRIBOV-CONTINUUM-FENCE`  
 > **UUID**: `ad3d49ba-73e3-51ab-9a2b-7385f2e42227`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established by the finite diamond checks.
+For the rational matrices I = diag(1, 1, 1), Omega1 = diag(1, -1, -1), H23 with ones in positions (2, 3) and (3, 2), and H12 with ones in positions (1, 2) and (2, 1), H23^2 = diag(0, 1, 1), H12^2 = diag(1, 1, 0), Omega1^2 = I, the product of Omega1's diagonal entries is 1, Tr(I) = 3, Tr(Omega1) = -1, Tr(I H23^2) = 2, Tr(Omega1 H23^2) = -2, and Tr(Omega1 H12^2) = 0, so those two Omega1 forms differ. Continuum Gribov-Singer, a Faddeev-Popov operator spectrum, ghost-free quantization, and a Yang-Mills mass gap stay unproved.
 
 ### Governing Obligation
-A refinement family of lattices, the full Faddeev-Popov operator spectrum and a limit theorem are needed before transporting the finite comparison.
+The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.
 
 ### Witness Audit
-The dossier scope (section 5) itself excludes continuum existence and mass gap.
+h23_square and h12_square are the generator squares. omega1_square_and_det records Omega1^2 = I, diagonal product 1, and traces 3 and -1. trace_pair records 2, -2, and 0. forms_differ records that -2 and 0 differ. No graph, tree, Faddeev-Popov spectrum, or continuum limit is constructed. Status stays OPEN. Continuum Yang-Mills theory and Faddeev-Popov quantization stay imported.
 
 ---
 
@@ -43,13 +43,17 @@ The dossier scope (section 5) itself excludes continuum existence and mass gap.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignDfmGribovContinuumFence.lean::h23_square`
+- `lean4/CampaignDfmGribovContinuumFence.lean::h12_square`
+- `lean4/CampaignDfmGribovContinuumFence.lean::omega1_square_and_det`
+- `lean4/CampaignDfmGribovContinuumFence.lean::trace_pair`
+- `lean4/CampaignDfmGribovContinuumFence.lean::forms_differ`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/dfm-gribov-continuum-fence.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -67,3 +71,6 @@ The dossier scope (section 5) itself excludes continuum existence and mass gap.
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:32`
   - `papers/ravera_dfm_dossier.md:288`
+  - `lean4/CampaignDfmGribovContinuumFence.lean`
+  - `dag/derivations/independent/dfm-gribov-continuum-fence.md`
+  - `checks/independent/dfm-gribov-continuum-fence.py`

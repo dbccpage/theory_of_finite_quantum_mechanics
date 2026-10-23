@@ -19232,18 +19232,27 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.8-FENCE claims PROVED_LEAN; audited status OPEN",
-      "statement": "Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established by the finite diamond checks.",
+      "statement": "For the rational matrices I = diag(1, 1, 1), Omega1 = diag(1, -1, -1), H23 with ones in positions (2, 3) and (3, 2), and H12 with ones in positions (1, 2) and (2, 1), H23^2 = diag(0, 1, 1), H12^2 = diag(1, 1, 0), Omega1^2 = I, the product of Omega1's diagonal entries is 1, Tr(I) = 3, Tr(Omega1) = -1, Tr(I H23^2) = 2, Tr(Omega1 H23^2) = -2, and Tr(Omega1 H12^2) = 0, so those two Omega1 forms differ. Continuum Gribov-Singer, a Faddeev-Popov operator spectrum, ghost-free quantization, and a Yang-Mills mass gap stay unproved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "lean4/CampaignDfmGribovContinuumFence.lean",
+        "dag/derivations/independent/dfm-gribov-continuum-fence.md",
+        "checks/independent/dfm-gribov-continuum-fence.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmGribovContinuumFence.lean::h23_square",
+        "lean4/CampaignDfmGribovContinuumFence.lean::h12_square",
+        "lean4/CampaignDfmGribovContinuumFence.lean::omega1_square_and_det",
+        "lean4/CampaignDfmGribovContinuumFence.lean::trace_pair",
+        "lean4/CampaignDfmGribovContinuumFence.lean::forms_differ"
+      ],
       "rust": [],
       "imported_structure": [
         "continuum Yang-Mills theory",
         "Faddeev-Popov quantization"
       ],
-      "bottleneck": "A refinement family of lattices, the full Faddeev-Popov operator spectrum and a limit theorem are needed before transporting the finite comparison.",
+      "bottleneck": "The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -35827,7 +35836,7 @@
       ],
       "output": "DFM-GRIBOV-CONTINUUM-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "A refinement family of lattices, the full Faddeev-Popov operator spectrum and a limit theorem are needed before transporting the finite comparison.",
+      "mechanism": "The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md",
         "papers/ravera_dfm_dossier.md"
@@ -62901,20 +62910,31 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md",
         "papers/ravera_dfm_dossier.md:32",
-        "papers/ravera_dfm_dossier.md:288"
+        "papers/ravera_dfm_dossier.md:288",
+        "lean4/CampaignDfmGribovContinuumFence.lean",
+        "dag/derivations/independent/dfm-gribov-continuum-fence.md",
+        "checks/independent/dfm-gribov-continuum-fence.py"
       ],
       "id": "TFQ-1132",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignDfmGribovContinuumFence.lean::h23_square",
+        "lean4/CampaignDfmGribovContinuumFence.lean::h12_square",
+        "lean4/CampaignDfmGribovContinuumFence.lean::omega1_square_and_det",
+        "lean4/CampaignDfmGribovContinuumFence.lean::trace_pair",
+        "lean4/CampaignDfmGribovContinuumFence.lean::forms_differ"
+      ],
       "local_id": "DFM-GRIBOV-CONTINUUM-FENCE",
-      "name": "Continuum Gribov ambiguity, ghosts and Yang-Mills remain open",
-      "obligation": "A refinement family of lattices, the full Faddeev-Popov operator spectrum and a limit theorem are needed before transporting the finite comparison.",
+      "name": "Two generator quadratic forms on Omega1 differ",
+      "obligation": "The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.",
       "parent_id": "TFQ-1130",
-      "python": [],
+      "python": [
+        "checks/independent/dfm-gribov-continuum-fence.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established by the finite diamond checks.",
+      "summary": "For the rational matrices I = diag(1, 1, 1), Omega1 = diag(1, -1, -1), H23 with ones in positions (2, 3) and (3, 2), and H12 with ones in positions (1, 2) and (2, 1), H23^2 = diag(0, 1, 1), H12^2 = diag(1, 1, 0), Omega1^2 = I, the product of Omega1's diagonal entries is 1, Tr(I) = 3, Tr(Omega1) = -1, Tr(I H23^2) = 2, Tr(Omega1 H23^2) = -2, and Tr(Omega1 H12^2) = 0, so those two Omega1 forms differ. Continuum Gribov-Singer, a Faddeev-Popov operator spectrum, ghost-free quantization, and a Yang-Mills mass gap stay unproved.",
       "uuid": "ad3d49ba-73e3-51ab-9a2b-7385f2e42227"
     },
     {
