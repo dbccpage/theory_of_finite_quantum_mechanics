@@ -170,15 +170,4 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea`
-- cited in: node.source
-- counts toward the grade: yes
-
-## Routes
-
-Incoming (1):
-
-- `APP-R-TENSOR-ASSUMPTION-COUNTERMODELS` `DERIVED_LEAN`: [TENSOR-TOMOGRAPHIC-COORDINATES](TENSOR-TOMOGRAPHIC-COORDINATES.md) (PROVED_LEAN), [TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION](TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION.md) (PROVED_LEAN), [TENSOR-BINARY-EFFECT-INTERVAL](TENSOR-BINARY-EFFECT-INTERVAL.md) (PROVED_LEAN)
-
-Outgoing (0):
-
+- sha256 (`lf-normalised`): `f4706c50025e6126f209b63627d14765354ed7a63bcfa2c04d770062dff4689a`
