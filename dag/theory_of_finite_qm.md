@@ -8940,9 +8940,9 @@ Obligation: Full unitarity is not checked in Lean or Python (the external Rust a
 - DAG node: `DFM-CKM-PHYSICS-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md)
 
-Derivation of V from dressed Yukawa couplings, the unitarity-triangle reduction to (N_g - 1)(N_g - 2)/2 CP phases, and any statement about measured CP violation are not established.
+For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the first expression is 0, 1, 4, 9 and the CP expression is 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.
 
-Obligation: Keep the Yukawa sector, mass diagonalization and experimental CKM values as imported structure.
+Obligation: The recorded gap is the rational relation among the three counting expressions and the two quartet imaginary parts 0 and 1. Yukawa couplings, mass-basis diagonalization, a unitarity identification, and measured CKM values stay open.
 
 ### TFQ-1129 Discrete Landau condition, Klein four-group copies and Hessian form
 

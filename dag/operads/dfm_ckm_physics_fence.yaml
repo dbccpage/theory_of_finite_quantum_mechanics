@@ -3,17 +3,25 @@ node_id: DFM-CKM-PHYSICS-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Derivation of V from dressed Yukawa couplings, the unitarity-triangle reduction to
-    (N_g - 1)(N_g - 2)/2 CP phases, and any statement about measured CP violation are not established.
+  source_statement: For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2
+    + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the first expression is 0, 1, 4, 9 and the CP expression
+    is 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3,
+    and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i
+    has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from
+    Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Yukawa couplings and mass-basis diagonalization
   - measured CKM parameters
-  source_bottleneck: Keep the Yukawa sector, mass diagonalization and experimental CKM values as imported
-    structure.
+  source_bottleneck: The recorded gap is the rational relation among the three counting expressions and
+    the two quartet imaginary parts 0 and 1. Yukawa couplings, mass-basis diagonalization, a unitarity
+    identification, and measured CKM values stay open.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md
   - papers/ravera_dfm_dossier.md
+  - lean4/CampaignDfmCkmPhysicsFence.lean
+  - dag/derivations/independent/dfm-ckm-physics-fence.md
+  - checks/independent/dfm-ckm-physics-fence.py
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md
   source_claim_label: OPEN
@@ -22,7 +30,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md
-    sha256: 6498a4aedc1a1707262ff9840c1ceebd1ed97b9a6d7032269e1c443483992f7a
+    sha256: 4442d43bff78dfd330e869e2ea5ee576a25c49cc832150755141dd0247cc480b
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +38,152 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_ckm_physics_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: cycleCount
+  line: 14
+  signature_excerpt: 'def cycleCount (n : ℚ) : ℚ'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: constraintCount
+  line: 16
+  signature_excerpt: 'def constraintCount (n : ℚ) : ℚ'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cpCount
+  line: 18
+  signature_excerpt: 'def cpCount (n : ℚ) : ℚ'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: cpCount_from_difference
+  line: 20
+  signature_excerpt: |-
+    theorem cpCount_from_difference (n : ℚ) :
+        cycleCount n - constraintCount n = cpCount n
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: constraintCount_sum
+  line: 25
+  signature_excerpt: |-
+    theorem constraintCount_sum (n : ℚ) :
+        cpCount n + (n - 1) = constraintCount n
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: count_table
+  line: 30
+  signature_excerpt: |-
+    theorem count_table :
+        cycleCount 1 = 0 ∧ cpCount 1 = 0 ∧
+        cycleCount 2 = 1 ∧ cpCount 2 = 0 ∧
+        cycleCount 3 = 4 ∧ cpCount 3 = 1 ∧
+        cycleCount 4 = 9 ∧ cpCount 4 = 3 ∧
+        cycleCount 1 = cpCount 1 ∧
+        cycleCount 2 ≠ cpCount 2 ∧
+        cycleCount 3 ≠ cpCount 3 ∧
+        cycleCount 4 ≠ cpCount 4
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: three_generation_split
+  line: 42
+  signature_excerpt: |-
+    theorem three_generation_split :
+        cycleCount 3 = 4 ∧
+        constraintCount 3 = 3 ∧
+        cpCount 3 = 1 ∧
+        cycleCount 3 - constraintCount 3 = cpCount 3
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: count_misses_one_quartet
+  line: 91
+  signature_excerpt: |-
+    theorem count_misses_one_quartet :
+        cpCount 3 = 1 ∧
+        quartetReal.im = 0 ∧
+        quartetImag.im = 1 ∧
+        quartetReal.im ≠ cpCount 3 ∧
+        quartetImag.im = cpCount 3
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::cpCount_from_difference
+  availability: local
+  symbol: cpCount_from_difference
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::constraintCount_sum
+  availability: local
+  symbol: constraintCount_sum
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::count_table
+  availability: local
+  symbol: count_table
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::three_generation_split
+  availability: local
+  symbol: three_generation_split
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet
+  availability: local
+  symbol: count_misses_one_quartet
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -74,8 +225,6 @@ operad_slots:
     - measured CKM parameters
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

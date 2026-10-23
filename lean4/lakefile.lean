@@ -1015,3 +1015,7 @@ lean_lib CampaignDfmBphzContinuumFence where
 -- Campaign: DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
 lean_lib CampaignDfmElectroweakContinuumFence where
   roots := #[`CampaignDfmElectroweakContinuumFence]
+
+-- Campaign: DFM-CKM-PHYSICS-FENCE. Not a default target.
+lean_lib CampaignDfmCkmPhysicsFence where
+  roots := #[`CampaignDfmCkmPhysicsFence]
