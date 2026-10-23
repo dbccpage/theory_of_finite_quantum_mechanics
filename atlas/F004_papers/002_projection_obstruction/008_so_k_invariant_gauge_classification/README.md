@@ -26,7 +26,7 @@ package.
 
 ## 2. Installation and Requirements
 
-The package requires Python 3.10+ and `uv`; `uv.lock` pins the resolved
+The package requires Python 3.11+ and `uv`; `uv.lock` pins the resolved
 environment, including the optional notebook stack.
 
 - `numpy >= 1.24.0`

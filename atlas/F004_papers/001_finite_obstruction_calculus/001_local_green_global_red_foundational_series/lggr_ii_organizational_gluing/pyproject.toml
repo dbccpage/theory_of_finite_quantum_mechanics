@@ -7,7 +7,7 @@ name = "epk-org-gluing"
 version = "1.3.1"
 description = "Finite Boolean evaluator composition with Lean 4 checks"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "Apache-2.0"
 authors = [
     { name = "Jeremy H. Carroll" }
@@ -43,3 +43,6 @@ py-modules = ["organizational_gluing_core", "generate_figures"]
 [tool.pytest.ini_options]
 testpaths = ["code/tests"]
 pythonpath = ["code"]
+
+[tool.uv]
+constraint-dependencies = ["pillow>=13.0.0"]
