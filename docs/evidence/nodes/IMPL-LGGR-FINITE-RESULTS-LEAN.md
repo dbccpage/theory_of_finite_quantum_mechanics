@@ -66,6 +66,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`bytes`): `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de`
 - cited in: node.lean, node.source, record TFQ-1046
 - replay: `verified`
+  - receipt [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
   - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `LggrFiniteResults`): recorded sha256 `ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build LggrFiniteResults`
 
@@ -106,5 +108,9 @@ Incoming (1):
 
 - `IMPL-R-LGGR-FINITE-RESULTS` `DERIVED_LEAN`: [L1-OBSERVER-AXIOMS-H1-H5](L1-OBSERVER-AXIOMS-H1-H5.md) (ADMITTED_PRIMITIVE)
 
-Outgoing (0):
+Outgoing (4):
 
+- `OPS-R-LEAN-GAP` `GAP_NO_DERIVATION`: [OPS-LEAN-GAP](OPS-LEAN-GAP.md) (OPEN)
+- `OPS-R-PARITY-HOLONOMY-LEAN` `DERIVED_LEAN`: [OPS-PARITY-HOLONOMY-LEAN](OPS-PARITY-HOLONOMY-LEAN.md) (PROVED_LEAN)
+- `OPS-R-PR1050-ABSENCE` `RECORD_PARENT`: [OPS-PR1050-ABSENCE](OPS-PR1050-ABSENCE.md) (SOURCE_RECORD)
+- `OPS-R-PUSHFORWARD-FUNCTOR-LEAN` `DERIVED_LEAN`: [OPS-PUSHFORWARD-FUNCTOR-LEAN](OPS-PUSHFORWARD-FUNCTOR-LEAN.md) (PROVED_LEAN)

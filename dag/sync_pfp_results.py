@@ -41,7 +41,7 @@ if str(HERE) not in sys.path:
 import render_dag_views as views  # noqa: E402
 DECISIONS = 'dag/fragments/pfp_review_decisions.json'
 GENERATED_SLICES = ('unified_dag', 'pregenesis_to_wdp', 'application_branches', 'frontier_branches',
-                     'genesis_to_higher')
+                     'genesis_to_higher', 'foc035_observer_presheaf')
 SCOPE_EFFECTS = ('consistent', 'caveat_added', 'statement_narrowed', 'status_lowered')
 # Weakest to strongest. A decision may keep or lower a status, never raise it.
 STATUS_RANK = {
