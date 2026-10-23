@@ -10,7 +10,7 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -96,17 +96,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md](../../../dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md)
-- sha256 (`lf-normalised`): `b5aece42ccbda95fb1136f5522a113d92eb9048202daf7b5b85733a3d5e2734d`
+- sha256 (`lf-normalised`): `23b605c786fab2ff7ef3b12c2d095b4d9622b93e4d4740f446cd392046f4db92`
 - generated view: listed, not counted
 - cited in: record TFQ-1020
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+### Documents and data: `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md](../../../sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `5e43f206b08726fd4b27888d6fed3f211aac8398d5f8bf3dce712c415d7d81cc`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

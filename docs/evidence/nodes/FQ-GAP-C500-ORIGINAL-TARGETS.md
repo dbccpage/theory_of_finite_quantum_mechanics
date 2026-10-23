@@ -10,7 +10,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence g
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -69,17 +69,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md](../../../dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md)
-- sha256 (`lf-normalised`): `3832a023cbc510b1e21155da57f5c11b4a0cb16a15bfb0efde6d798cab8a2453`
+- sha256 (`lf-normalised`): `29ab854ca410647be8846e0ac0e041d9fb996f98d6119eb923d31735cc833693`
 - generated view: listed, not counted
 - cited in: record TFQ-1025
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
+### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `16a418a93748cef695fad3c1fab0fd14dd95c6985b23ee8a814b171eca60a445`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

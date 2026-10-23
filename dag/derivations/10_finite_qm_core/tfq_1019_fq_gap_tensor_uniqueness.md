@@ -68,8 +68,8 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
   - `dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md`
   - `dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md`
   - `dag/research/tensor_composition_validation.json`

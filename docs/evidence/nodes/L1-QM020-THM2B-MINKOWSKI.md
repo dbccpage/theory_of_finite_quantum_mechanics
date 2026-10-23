@@ -10,7 +10,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -90,12 +90,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml`
+### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml)
+- sha256 (`lf-normalised`): `9db8daae54ec82cab13d7f63cd24d21a793017302b9e8553255fe0c64881f4c7`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

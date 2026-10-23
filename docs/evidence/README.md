@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 892 nodes in 35 stages. Evidence grades: E0 282, E1 230, E2 322, E3 58.
+The DAG has 892 nodes in 35 stages. Evidence grades: E0 280, E1 232, E2 322, E3 58.
 
 ### What is proved here, what is imported, what is open
 
@@ -28,13 +28,13 @@ Grade E4 needs an in-repo runnable test and a recorded review as well as a repla
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 1022 distinct Lean declarations that lie in files of this checkout. 184 of them are in a file whose current sha256 matches a passing replay receipt; 838 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 996 Lean references; 231 (23 percent) lie in sibling-atlas paths or do not exist in this checkout. 53 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 1042 distinct Lean declarations that lie in files of this checkout. 184 of them are in a file whose current sha256 matches a passing replay receipt; 858 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 996 Lean references; 217 (21 percent) lie in sibling-atlas paths or do not exist in this checkout. 53 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
 | Status | E0 | E1 | E2 | E3 | E4 | Total |
 |---|---|---|---|---|---|---|
-| `PROVED_LEAN` | 51 | 0 | 168 | 43 | 0 | 262 |
+| `PROVED_LEAN` | 49 | 2 | 168 | 43 | 0 | 262 |
 | `PROVED_PROSE` | 13 | 6 | 9 | 0 | 0 | 28 |
 | `COMPUTATIONALLY_CHECKED` | 41 | 56 | 55 | 0 | 0 | 152 |
 | `CONDITIONAL` | 14 | 0 | 16 | 4 | 0 | 34 |
@@ -44,14 +44,14 @@ The `lean` fields of nodes cite 1022 distinct Lean declarations that lie in file
 | `SOURCE_RECORD` | 53 | 26 | 0 | 0 | 0 | 79 |
 | `OPEN` | 57 | 101 | 15 | 2 | 0 | 175 |
 | `REFUTED` | 0 | 0 | 2 | 0 | 0 | 2 |
-| Total | 282 | 230 | 322 | 58 | 0 | 892 |
+| Total | 280 | 232 | 322 | 58 | 0 | 892 |
 
 ### Stage by evidence grade
 
 | Stage | E0 | E1 | E2 | E3 | E4 | Total | `PROVED_LEAN` | Flags |
 |---|---|---|---|---|---|---|---|---|
 | [PREGENESIS](stages/PREGENESIS.md) | 16 | 0 | 0 | 15 | 0 | 31 | 12 | 21 |
-| [GENESIS](stages/GENESIS.md) | 85 | 1 | 3 | 0 | 0 | 89 | 36 | 84 |
+| [GENESIS](stages/GENESIS.md) | 84 | 2 | 3 | 0 | 0 | 89 | 36 | 84 |
 | [MSSN_SN](stages/MSSN_SN.md) | 26 | 0 | 0 | 2 | 0 | 28 | 11 | 26 |
 | [WDP](stages/WDP.md) | 23 | 0 | 0 | 6 | 0 | 29 | 6 | 15 |
 | [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 9 | 0 | 0 | 9 | 5 | 5 |
@@ -59,7 +59,7 @@ The `lean` fields of nodes cite 1022 distinct Lean declarations that lie in file
 | [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 31 | 1 | 0 | 33 | 18 | 30 |
 | [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 3 | 0 | 19 | 0 | 0 | 22 | 5 | 14 |
 | [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 44 | 0 | 0 | 44 | 30 | 38 |
-| [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 4 | 0 | 5 | 1 | 0 | 10 | 6 | 10 |
+| [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 3 | 1 | 5 | 1 | 0 | 10 | 6 | 10 |
 | [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 19 | 22 | 2 | 0 | 43 | 10 | 10 |
 | [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 30 | 37 | 0 | 0 | 67 | 32 | 35 |
 | [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 27 | 11 | 3 | 0 | 41 | 3 | 1 |
@@ -169,7 +169,7 @@ The ten flags on `PROVED_LEAN` nodes with the most downstream nodes:
 |---|---|---|---|---|
 | [PG-GEN-SUPPLY-NO-OP](nodes/PG-GEN-SUPPLY-NO-OP.md) | GENESIS | E0 | 690 | grade E0; 2 Lean reference(s) cited, 0 in this checkout |
 | [PG-GEN-NO-RETURN](nodes/PG-GEN-NO-RETURN.md) | GENESIS | E0 | 660 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
-| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | E2 | 462 | grade E2; 6 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | E2 | 462 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [L1-QM020-THM2A-L1-ADDITIVITY-DEFECT](nodes/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT.md) | L1_TO_L2 | E2 | 144 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-POLICY-ENDPOINT-ALL-SEPARATED](nodes/PGW-POLICY-ENDPOINT-ALL-SEPARATED.md) | GENESIS | E0 | 135 | grade E0; 1 Lean reference(s) cited, 0 in this checkout |
 | [PG-GEN-IRREFLEXIVE-DISTINCT](nodes/PG-GEN-IRREFLEXIVE-DISTINCT.md) | GENESIS | E0 | 115 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |

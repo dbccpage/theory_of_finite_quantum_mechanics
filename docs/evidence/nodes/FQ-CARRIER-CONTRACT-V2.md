@@ -10,7 +10,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `DEFINITION`. Evid
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
 - cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -104,24 +104,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md](../../../dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md)
-- sha256 (`lf-normalised`): `879ab757cb34962ed10a212a012b76bd5cc1299de33b7eda934d0ee2d067a315`
+- sha256 (`lf-normalised`): `9ebce71f008a50f9578bbded6858d4687aeb144c520deaf8530f51e45f57cc31`
 - generated view: listed, not counted
 - cited in: record TFQ-1006
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml`
+### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [sources/atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml)
+- sha256 (`lf-normalised`): `a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+### Documents and data: `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md](../../../sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `5e43f206b08726fd4b27888d6fed3f211aac8398d5f8bf3dce712c415d7d81cc`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

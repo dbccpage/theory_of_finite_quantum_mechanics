@@ -20,7 +20,7 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 |---|---|---|---|---|---|
 | [PG-GEN-SUPPLY-NO-OP](nodes/PG-GEN-SUPPLY-NO-OP.md) | GENESIS | `PROVED_LEAN` | E0 | 690 | grade E0; 2 Lean reference(s) cited, 0 in this checkout |
 | [PG-GEN-NO-RETURN](nodes/PG-GEN-NO-RETURN.md) | GENESIS | `PROVED_LEAN` | E0 | 660 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
-| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 462 | grade E2; 6 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 462 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [L1-QM020-THM2A-L1-ADDITIVITY-DEFECT](nodes/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 144 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PGW-POLICY-ENDPOINT-ALL-SEPARATED](nodes/PGW-POLICY-ENDPOINT-ALL-SEPARATED.md) | GENESIS | `PROVED_LEAN` | E0 | 135 | grade E0; 1 Lean reference(s) cited, 0 in this checkout |
 | [PG-GEN-IRREFLEXIVE-DISTINCT](nodes/PG-GEN-IRREFLEXIVE-DISTINCT.md) | GENESIS | `PROVED_LEAN` | E0 | 115 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
@@ -31,7 +31,7 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [GP-FIN-GAUSS-MATRIX-ALGEBRA](nodes/GP-FIN-GAUSS-MATRIX-ALGEBRA.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 67 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS](nodes/PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS.md) | GENESIS | `PROVED_LEAN` | E0 | 57 | grade E0; 4 Lean reference(s) cited, 0 in this checkout |
 | [FQ-CABELLO-NO-INTEGER-FRAME](nodes/FQ-CABELLO-NO-INTEGER-FRAME.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 56 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
-| [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 55 | grade E2; 6 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 55 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [FQ-CONTEXTUALITY-CECH-F2](nodes/FQ-CONTEXTUALITY-CECH-F2.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 51 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PG-GEN-ONGOING-OBSTRUCTION](nodes/PG-GEN-ONGOING-OBSTRUCTION.md) | GENESIS | `PROVED_LEAN` | E0 | 51 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
 | [DS-QM070-PRODUCT-NONFACTORIZATION](nodes/DS-QM070-PRODUCT-NONFACTORIZATION.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 50 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
@@ -55,11 +55,11 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [PGW-GO-TWO-RELATIONS-SWAP](nodes/PGW-GO-TWO-RELATIONS-SWAP.md) | GENESIS | `PROVED_LEAN` | E0 | 22 | grade E0; 4 Lean reference(s) cited, 0 in this checkout |
 | [FQ-COMMUTATOR-TRACE-OBSTRUCTION](nodes/FQ-COMMUTATOR-TRACE-OBSTRUCTION.md) | FINITE_QM_DYNAMICS | `PROVED_LEAN` | E2 | 21 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [PG-GEN-REWRITING-COMMUTATION](nodes/PG-GEN-REWRITING-COMMUTATION.md) | GENESIS | `PROVED_LEAN` | E2 | 21 | grade E2; 6 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
-| [DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE](nodes/DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 20 | grade E2; 4 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE](nodes/DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 20 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION](nodes/FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 20 | grade E2; 9 Lean reference(s) cited, 9 in this checkout (replay: none 9) |
 | [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](nodes/L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 19 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL](nodes/PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL.md) | MSSN_SN | `PROVED_LEAN` | E0 | 18 | grade E0; 5 Lean reference(s) cited, 0 in this checkout |
-| [DS-QM073-FINITE-CHSH-AND-PR-BOX](nodes/DS-QM073-FINITE-CHSH-AND-PR-BOX.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 17 | grade E2; 5 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [DS-QM073-FINITE-CHSH-AND-PR-BOX](nodes/DS-QM073-FINITE-CHSH-AND-PR-BOX.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 17 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [DS-QM102-SYNDROME-CAPACITY-BOUND](nodes/DS-QM102-SYNDROME-CAPACITY-BOUND.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 16 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [COMP-C5-TM0-STEP-SIMULATION](nodes/COMP-C5-TM0-STEP-SIMULATION.md) | COMPUTATION | `PROVED_LEAN` | E2 | 15 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
 | [DS-QM074-NO-SIGNALING-MARGINAL](nodes/DS-QM074-NO-SIGNALING-MARGINAL.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 15 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
@@ -115,7 +115,7 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [COMP-C3-VERDICT-SOUND](nodes/COMP-C3-VERDICT-SOUND.md) | COMPUTATION | `PROVED_LEAN` | E2 | 2 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
 | [COMP-C4-STEPE-UNCAPPED](nodes/COMP-C4-STEPE-UNCAPPED.md) | COMPUTATION | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [DFM-EW-DOUBLET-REDUCTION](nodes/DFM-EW-DOUBLET-REDUCTION.md) | DRESSING_FIELD | `PROVED_LEAN` | E2 | 2 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
-| [DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY](nodes/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY](nodes/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [FQ-BELL-CLASSICAL-JOINT-EXTENSION](nodes/FQ-BELL-CLASSICAL-JOINT-EXTENSION.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 2 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [FSP-INVOLUTION-PAIR-CANCELLATION](nodes/FSP-INVOLUTION-PAIR-CANCELLATION.md) | FERMION_SIGN | `PROVED_LEAN` | E2 | 2 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [L1-FRAMEWORK-KKT-CERT](nodes/L1-FRAMEWORK-KKT-CERT.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 2 | grade E2; 2 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
@@ -138,7 +138,7 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [COMP-C3-RUNNER-NEEDS-BLANKS](nodes/COMP-C3-RUNNER-NEEDS-BLANKS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [COMP-C6-FINITE-MARKS](nodes/COMP-C6-FINITE-MARKS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [COMP-C8-BINARY-CODING](nodes/COMP-C8-BINARY-CODING.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
-| [DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED](nodes/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 5 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED](nodes/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [DS-QM081-CPTP-MONOTONE-NOT-SELECTING](nodes/DS-QM081-CPTP-MONOTONE-NOT-SELECTING.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [DS-QM081-STOCHASTIC-L1-CONTRACTION](nodes/DS-QM081-STOCHASTIC-L1-CONTRACTION.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO](nodes/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
@@ -187,12 +187,12 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [DFM-WEINBERG-PROJECTORS-RHO](nodes/DFM-WEINBERG-PROJECTORS-RHO.md) | DRESSING_FIELD | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY](nodes/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.md) | FINITE_QM_DYNAMICS | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [DS-QM064-074-083-ANNEX-REDIRECT-ROWS](nodes/DS-QM064-074-083-ANNEX-REDIRECT-ROWS.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
-| [DS-QM073-BELL-THEOREM-OBSTRUCTED](nodes/DS-QM073-BELL-THEOREM-OBSTRUCTED.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
+| [DS-QM073-BELL-THEOREM-OBSTRUCTED](nodes/DS-QM073-BELL-THEOREM-OBSTRUCTED.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION](nodes/DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [DS-QM080-IMPORT-FREE-TRACE-NORM-CORE](nodes/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
-| [DS-QM090-093-QM-UNIQUENESS-TIER3](nodes/DS-QM090-093-QM-UNIQUENESS-TIER3.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
-| [DS-QM094-EVERETT-RELATIVE-STATE-CONTACT](nodes/DS-QM094-EVERETT-RELATIVE-STATE-CONTACT.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
-| [FQ-ENTROPY-DICHOTOMY-BAKER](nodes/FQ-ENTROPY-DICHOTOMY-BAKER.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 0 | grade E2; 7 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
+| [DS-QM090-093-QM-UNIQUENESS-TIER3](nodes/DS-QM090-093-QM-UNIQUENESS-TIER3.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [DS-QM094-EVERETT-RELATIVE-STATE-CONTACT](nodes/DS-QM094-EVERETT-RELATIVE-STATE-CONTACT.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
+| [FQ-ENTROPY-DICHOTOMY-BAKER](nodes/FQ-ENTROPY-DICHOTOMY-BAKER.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 0 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
 | [FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY](nodes/FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY.md) | FINITE_QM_DYNAMICS | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [FQ-FIVE-IMPORT-PROXY-SEPARATION](nodes/FQ-FIVE-IMPORT-PROXY-SEPARATION.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [FQ-INTERFERENCE-NONDESCENT](nodes/FQ-INTERFERENCE-NONDESCENT.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
@@ -201,16 +201,16 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [FQ-TSIRELSON-SOS-Q-SQRT2](nodes/FQ-TSIRELSON-SOS-Q-SQRT2.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [GP-DROP-ONE-CENSUS](nodes/GP-DROP-ONE-CENSUS.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [IMPL-LGGR-FINITE-RESULTS-LEAN](nodes/IMPL-LGGR-FINITE-RESULTS-LEAN.md) | IMPLEMENTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
-| [IMPL-THYMUS-SCREENING-SOUNDNESS](nodes/IMPL-THYMUS-SCREENING-SOUNDNESS.md) | IMPLEMENTATION | `PROVED_LEAN` | E0 | 0 | grade E0; 2 Lean reference(s) cited, 0 in this checkout |
-| [L1-GS001-GAUGE-L1](nodes/L1-GS001-GAUGE-L1.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [IMPL-THYMUS-SCREENING-SOUNDNESS](nodes/IMPL-THYMUS-SCREENING-SOUNDNESS.md) | IMPLEMENTATION | `PROVED_LEAN` | E1 | 0 | grade E1; 2 Lean reference(s) cited, 0 in this checkout |
+| [L1-GS001-GAUGE-L1](nodes/L1-GS001-GAUGE-L1.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [L1-OPERATOR-LIFT-TRACE-EMBED-013](nodes/L1-OPERATOR-LIFT-TRACE-EMBED-013.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
 | [L1-QM003-C17-COMPOSABLE-FACTORIZATION](nodes/L1-QM003-C17-COMPOSABLE-FACTORIZATION.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
-| [L1-QM020-C10-BRANCH-LOCALIZATION](nodes/L1-QM020-C10-BRANCH-LOCALIZATION.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [L1-QM020-C10-BRANCH-LOCALIZATION](nodes/L1-QM020-C10-BRANCH-LOCALIZATION.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [L1-QM020-THM3-ROW-SPARSITY](nodes/L1-QM020-THM3-ROW-SPARSITY.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [L1-QM020-THM5-PHASE-AVERAGED-SHADOW](nodes/L1-QM020-THM5-PHASE-AVERAGED-SHADOW.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [L1-QM121-LADDER-RUNGS-2-6](nodes/L1-QM121-LADDER-RUNGS-2-6.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
-| [L1-QM122-LEFTOVER-MNC-NOT-RECOVERED](nodes/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 7 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
-| [L1-WDP-CH08-C01-REPLICA-L1](nodes/L1-WDP-CH08-C01-REPLICA-L1.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
+| [L1-QM122-LEFTOVER-MNC-NOT-RECOVERED](nodes/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 0 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
+| [L1-WDP-CH08-C01-REPLICA-L1](nodes/L1-WDP-CH08-C01-REPLICA-L1.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [MAJ-ENVELOPE-NAT-ARITHMETIC](nodes/MAJ-ENVELOPE-NAT-ARITHMETIC.md) | MAJORANA | `PROVED_LEAN` | E2 | 0 | grade E2; 11 Lean reference(s) cited, 11 in this checkout (replay: none 11) |
 | [MAJ-KITAEV-EDGE-INDEX-DISJOINT](nodes/MAJ-KITAEV-EDGE-INDEX-DISJOINT.md) | MAJORANA | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [MUB6-BALANCED-648-QUADRATIC](nodes/MUB6-BALANCED-648-QUADRATIC.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
@@ -225,7 +225,7 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [MUB6-TAO-LAURENT-NORM-NINE](nodes/MUB6-TAO-LAURENT-NORM-NINE.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [MUB6-TRANSITION-BALANCE-SYZYGY](nodes/MUB6-TRANSITION-BALANCE-SYZYGY.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [MUB6-WORD-PROJECTOR-EXTRACTION](nodes/MUB6-WORD-PROJECTOR-EXTRACTION.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
-| [PG-GEN-SUPPLY-ERASURE](nodes/PG-GEN-SUPPLY-ERASURE.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 2 Lean reference(s) cited, 0 in this checkout |
+| [PG-GEN-SUPPLY-ERASURE](nodes/PG-GEN-SUPPLY-ERASURE.md) | GENESIS | `PROVED_LEAN` | E1 | 0 | grade E1; 2 Lean reference(s) cited, 0 in this checkout |
 | [PGW-CANONICAL-KEY-CLASSIFICATION](nodes/PGW-CANONICAL-KEY-CLASSIFICATION.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 5 Lean reference(s) cited, 0 in this checkout |
 | [PGW-CHALLENGE0-INERTIA-SECOND-TOKEN](nodes/PGW-CHALLENGE0-INERTIA-SECOND-TOKEN.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 4 Lean reference(s) cited, 0 in this checkout |
 | [PGW-COLLECTION-EXTENSIONALITY](nodes/PGW-COLLECTION-EXTENSIONALITY.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 4 Lean reference(s) cited, 0 in this checkout |
@@ -287,8 +287,8 @@ PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none 
 | [PGW-QUOTIENT-RETENTION](nodes/PGW-QUOTIENT-RETENTION.md) | GENESIS | `PROVED_LEAN` | E0 | 1 | all 4 cited Lean reference(s) lie outside this checkout |
 | [PGW-REPLAY-NECESSITY](nodes/PGW-REPLAY-NECESSITY.md) | PREGENESIS | `PROVED_LEAN` | E0 | 1 | all 2 cited Lean reference(s) lie outside this checkout |
 | [PGW-SN-ENDPOINT-LEMMA](nodes/PGW-SN-ENDPOINT-LEMMA.md) | MSSN_SN | `PROVED_LEAN` | E0 | 1 | all 4 cited Lean reference(s) lie outside this checkout |
-| [IMPL-THYMUS-SCREENING-SOUNDNESS](nodes/IMPL-THYMUS-SCREENING-SOUNDNESS.md) | IMPLEMENTATION | `PROVED_LEAN` | E0 | 0 | all 2 cited Lean reference(s) lie outside this checkout |
-| [PG-GEN-SUPPLY-ERASURE](nodes/PG-GEN-SUPPLY-ERASURE.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 2 cited Lean reference(s) lie outside this checkout |
+| [IMPL-THYMUS-SCREENING-SOUNDNESS](nodes/IMPL-THYMUS-SCREENING-SOUNDNESS.md) | IMPLEMENTATION | `PROVED_LEAN` | E1 | 0 | all 2 cited Lean reference(s) lie outside this checkout |
+| [PG-GEN-SUPPLY-ERASURE](nodes/PG-GEN-SUPPLY-ERASURE.md) | GENESIS | `PROVED_LEAN` | E1 | 0 | all 2 cited Lean reference(s) lie outside this checkout |
 | [PGW-CANONICAL-KEY-CLASSIFICATION](nodes/PGW-CANONICAL-KEY-CLASSIFICATION.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 5 cited Lean reference(s) lie outside this checkout |
 | [PGW-CHALLENGE0-INERTIA-SECOND-TOKEN](nodes/PGW-CHALLENGE0-INERTIA-SECOND-TOKEN.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 4 cited Lean reference(s) lie outside this checkout |
 | [PGW-COLLECTION-EXTENSIONALITY](nodes/PGW-COLLECTION-EXTENSIONALITY.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 4 cited Lean reference(s) lie outside this checkout |
@@ -315,7 +315,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 124 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 123 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-FORCED-CENSUS-COLUMN](nodes/PGW-FORCED-CENSUS-COLUMN.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 109 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E2 | 70 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E2 | 70 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 42 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0126](nodes/TFQ-0126.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 39 | 3 in-repo Rust or Python symbol(s) cited, none a test |
@@ -364,7 +364,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0176](nodes/TFQ-0176.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 3 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [DFM-BPHZ-SECTOR-KERNEL](nodes/DFM-BPHZ-SECTOR-KERNEL.md) | DRESSING_FIELD | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [DFM-TREE-CHANGE-GLZ-SYMANZIK-U](nodes/DFM-TREE-CHANGE-GLZ-SYMANZIK-U.md) | DRESSING_FIELD | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 3 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM033-SCHRODINGER-DISCRETE-COCHAIN](nodes/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM033-SCHRODINGER-DISCRETE-COCHAIN](nodes/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-TRACE-ZERO-DUALITY-K23](nodes/FQ-TRACE-ZERO-DUALITY-K23.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0036](nodes/TFQ-0036.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0045](nodes/TFQ-0045.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E0 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -385,13 +385,13 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0160](nodes/TFQ-0160.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0193](nodes/TFQ-0193.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 5 in-repo Rust or Python symbol(s) cited, none a test |
 | [AUTHF-REPLAY-SUBSTITUTIONS](nodes/AUTHF-REPLAY-SUBSTITUTIONS.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM032-CONTINUUM-LIMIT-CONDITIONAL](nodes/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM032-CONTINUUM-LIMIT-CONDITIONAL](nodes/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS](nodes/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM041-HEISENBERG-PICTURE-FINITE](nodes/DS-QM041-HEISENBERG-PICTURE-FINITE.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM093-SURVIVAL-THEOREM](nodes/DS-QM093-SURVIVAL-THEOREM.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM206-BOUNDARY-SYNTHESIS](nodes/DS-QM206-BOUNDARY-SYNTHESIS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM207-211-FIVE-IMPORT-CASCADE](nodes/DS-QM207-211-FIVE-IMPORT-CASCADE.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-GAP-REAL-EMBEDDING-CHOICE](nodes/FQ-GAP-REAL-EMBEDDING-CHOICE.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM206-BOUNDARY-SYNTHESIS](nodes/DS-QM206-BOUNDARY-SYNTHESIS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM207-211-FIVE-IMPORT-CASCADE](nodes/DS-QM207-211-FIVE-IMPORT-CASCADE.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-GAP-REAL-EMBEDDING-CHOICE](nodes/FQ-GAP-REAL-EMBEDDING-CHOICE.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-IMPL-PAIRING-AUDIT](nodes/FQ-IMPL-PAIRING-AUDIT.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [MUB6-SZOLLOSI-FULLBOX-UNRESOLVED](nodes/MUB6-SZOLLOSI-FULLBOX-UNRESOLVED.md) | MUTUALLY_UNBIASED_BASES | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS](nodes/MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS.md) | MUTUALLY_UNBIASED_BASES | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 2 in-repo Rust or Python symbol(s) cited, none a test |
