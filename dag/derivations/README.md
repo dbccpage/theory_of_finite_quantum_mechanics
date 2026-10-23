@@ -1178,3 +1178,26 @@ These branches record external programmes and their candidate finite targets. A 
 | [TFQ-2313](./33_loop_quantum_gravity/tfq_2313_lqg_spinfoam_review_source.md) | Perez 2013: review of the spin foam approach | `SOURCE_RECORD` | [TFQ-2312](./33_loop_quantum_gravity/tfq_2312_lqg_eprl_2007_source.md) | `LQG-SPINFOAM-REVIEW-SOURCE` |
 | [TFQ-2314](./33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md) | Imported: EPRL-FK vertex amplitude for four-dimensional gravity | `IMPORTED_ASSUMPTION` | [TFQ-2312](./33_loop_quantum_gravity/tfq_2312_lqg_eprl_2007_source.md) | `LQG-EPRL-VERTEX-IMPORT` |
 | [TFQ-2315](./33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md) | Gap: no route from finite recoupling to a continuum or semiclassical limit | `OPEN_OBLIGATION` | [TFQ-2314](./33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md) | `LQG-CONTINUUM-LIMIT-GAP` |
+
+<!-- genesis-to-higher: generated from fragments/genesis_to_higher.json -->
+
+## Genesis to higher categories
+
+This stage records open steps and named imports from the Genesis admission gate toward finite shadows, truncation, horn fillers, a finite identity-type model, three infinite imports, and a priced-import language. An imported assumption is not a result of this repository. A gap route marks a link that no source derives. The limit node states Gödel-Rosser and Tarski under hypotheses that do not mention the unfinished language; its route is reading order. See the [branch fragment](../fragments/genesis_to_higher.json).
+
+### GENESIS_TO_HIGHER (12 derivations)
+
+| ID | Name | Status | Parent | DAG node |
+|---|---|---|---|---|
+| [TFQ-2400](./34_genesis_to_higher/tfq_2400_gth_shadow.md) | Finite semi-simplicial or globular shadow of Genesis admission | `OPEN_OBLIGATION` | [TFQ-0481](./02_genesis/tfq_0481_go_admission_gate.md) | `GTH-SHADOW` |
+| [TFQ-2401](./34_genesis_to_higher/tfq_2401_gth_trunc.md) | Truncation: components, finite fundamental groupoid, finite n-type presentation | `OPEN_OBLIGATION` | [TFQ-2400](./34_genesis_to_higher/tfq_2400_gth_shadow.md) | `GTH-TRUNC` |
+| [TFQ-2402](./34_genesis_to_higher/tfq_2402_gth_horns.md) | Horn fillers of a finite shadow | `OPEN_OBLIGATION` | [TFQ-2401](./34_genesis_to_higher/tfq_2401_gth_trunc.md) | `GTH-HORNS` |
+| [TFQ-2403](./34_genesis_to_higher/tfq_2403_gth_hott_model.md) | Finite model of a fragment with identity types, without univalence | `OPEN_OBLIGATION` | [TFQ-2402](./34_genesis_to_higher/tfq_2402_gth_horns.md) | `GTH-HOTT-MODEL` |
+| [TFQ-2404](./34_genesis_to_higher/tfq_2404_gth_import_univalent_universe.md) | Imported: a univalent universe is not finite | `IMPORTED_ASSUMPTION` | [TFQ-2403](./34_genesis_to_higher/tfq_2403_gth_hott_model.md) | `GTH-IMPORT-UNIVALENT-UNIVERSE` |
+| [TFQ-2405](./34_genesis_to_higher/tfq_2405_gth_import_infty_groupoid.md) | Imported: an infinity-groupoid is not finite | `IMPORTED_ASSUMPTION` | [TFQ-2403](./34_genesis_to_higher/tfq_2403_gth_hott_model.md) | `GTH-IMPORT-INFTY-GROUPOID` |
+| [TFQ-2406](./34_genesis_to_higher/tfq_2406_gth_import_infty_1_category.md) | Imported: an (infinity,1)-category is not finite | `IMPORTED_ASSUMPTION` | [TFQ-2403](./34_genesis_to_higher/tfq_2403_gth_hott_model.md) | `GTH-IMPORT-INFTY-1-CATEGORY` |
+| [TFQ-2407](./34_genesis_to_higher/tfq_2407_gth_lang_core.md) | Priced-import language core | `OPEN_OBLIGATION` | [TFQ-2406](./34_genesis_to_higher/tfq_2406_gth_import_infty_1_category.md) | `GTH-LANG-CORE` |
+| [TFQ-2408](./34_genesis_to_higher/tfq_2408_gth_lang_reflect.md) | Reflection of the language | `OPEN_OBLIGATION` | [TFQ-2407](./34_genesis_to_higher/tfq_2407_gth_lang_core.md) | `GTH-LANG-REFLECT` |
+| [TFQ-2409](./34_genesis_to_higher/tfq_2409_gth_lang_interpret.md) | Interpretation targets, not theorems | `OPEN_OBLIGATION` | [TFQ-2408](./34_genesis_to_higher/tfq_2408_gth_lang_reflect.md) | `GTH-LANG-INTERPRET` |
+| [TFQ-2410](./34_genesis_to_higher/tfq_2410_gth_lang_import.md) | Import records are not derivations | `OPEN_OBLIGATION` | [TFQ-2409](./34_genesis_to_higher/tfq_2409_gth_lang_interpret.md) | `GTH-LANG-IMPORT` |
+| [TFQ-2411](./34_genesis_to_higher/tfq_2411_gth_lang_limits.md) | Goedel-Rosser and Tarski limit | `PROVED_PROSE` | [TFQ-2410](./34_genesis_to_higher/tfq_2410_gth_lang_import.md) | `GTH-LANG-LIMITS` |

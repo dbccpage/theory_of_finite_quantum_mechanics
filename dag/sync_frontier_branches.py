@@ -16,7 +16,9 @@ derivation_dag.json (schema derivation_dag.v2) is the single source of the graph
 - the frontier section of dag/derivations/README.md, after the line views.FRONTIER_MARKER.
 
 Run order: sync_pfp_results.py, sync_unified_dag.py, sync_application_branches.py, sync_pregenesis_to_wdp.py, this
-script. --check detects stale generated data without writing.
+script, then dag/sync_genesis_to_higher.py. A genesis-to-higher block already in the graph (tag
+genesis-to-higher, routes GTH-R-, records of source_slice genesis_to_higher, the README section after
+views.GTH_MARKER) is kept after the frontier block. --check detects stale generated data without writing.
 AuthorityEffect: None. Synchronization does not establish a mathematical claim.
 """
 from __future__ import annotations
@@ -77,6 +79,15 @@ NOTE_PATCHES = (
      'dag/sync_frontier_branches.py (frontier stages), and '),
     ('sync_application_branches.py, sync_pregenesis_to_wdp.py; each writes',
      'sync_application_branches.py, sync_pregenesis_to_wdp.py, sync_frontier_branches.py; each writes'),
+    ('pregenesis_to_wdp and frontier_branches,',
+     'pregenesis_to_wdp, frontier_branches and genesis_to_higher,'),
+    ('dag/sync_frontier_branches.py and dag/sync_pfp_results.py',
+     'dag/sync_frontier_branches.py, dag/sync_genesis_to_higher.py and dag/sync_pfp_results.py'),
+    ('dag/sync_frontier_branches.py (frontier stages), and ',
+     'dag/sync_frontier_branches.py (frontier stages) and dag/sync_genesis_to_higher.py '
+     '(the genesis-to-higher stage), and '),
+    ('sync_frontier_branches.py; each writes',
+     'sync_frontier_branches.py, sync_genesis_to_higher.py; each writes'),
 )
 
 
@@ -219,16 +230,26 @@ def generated_files(root: Path) -> dict[Path, bytes]:
     route_ids = {r['id'] for r in routes}
     record_ids = {r['id'] for r in records}
 
-    dag['nodes'] = [n for n in dag['nodes'] if TAG not in n.get('tags', []) and n['id'] not in ids] + nodes
-    dag['routes'] = [r for r in dag['routes'] if not r['id'].startswith(ROUTE_PREFIX) and r['id'] not in route_ids] + routes
+    # sync_genesis_to_higher.py owns the block after this one. Keep it last.
+    gth_nodes = [n for n in dag['nodes'] if views.GTH_TAG in n.get('tags', [])]
+    gth_routes = [r for r in dag['routes'] if r['id'].startswith(views.GTH_ROUTE_PREFIX)]
+    dag['nodes'] = [n for n in dag['nodes'] if TAG not in n.get('tags', []) and n['id'] not in ids
+                    and views.GTH_TAG not in n.get('tags', [])] + nodes + gth_nodes
+    dag['routes'] = [r for r in dag['routes'] if not r['id'].startswith(ROUTE_PREFIX) and r['id'] not in route_ids
+                     and not r['id'].startswith(views.GTH_ROUTE_PREFIX)] + routes + gth_routes
     for stage in fragment['stages']:
         if stage not in dag['stages']:
             dag['stages'].append(stage)
-    kept = [r for r in dag['records'] if r.get('source_slice') != SLICE and r['id'] not in record_ids]
-    dag['records'] = [views.canonical_record(r) for r in kept + records]
+    gth_records = [r for r in dag['records'] if r.get('source_slice') == views.GTH_SLICE]
+    kept = [r for r in dag['records'] if r.get('source_slice') not in (SLICE, views.GTH_SLICE)
+            and r['id'] not in record_ids]
+    dag['records'] = [views.canonical_record(r) for r in kept + records + gth_records]
     doc = dag['index_document']
-    doc['application_stages'] = [s for s in doc['application_stages'] if s not in fragment['stages']] + list(
-        fragment['stages'])
+    had_gth_stage = views.GTH_STAGE in doc['application_stages']
+    doc['application_stages'] = [s for s in doc['application_stages']
+                                 if s not in fragment['stages'] and s != views.GTH_STAGE] + list(fragment['stages'])
+    if had_gth_stage:
+        doc['application_stages'].append(views.GTH_STAGE)
     dag['segment_notes'][SLICE] = [fragment['segment_note']]
     dag['schema_notes'] = [patch_schema_note(s) for s in dag['schema_notes']]
 
@@ -251,6 +272,8 @@ def generated_files(root: Path) -> dict[Path, bytes]:
 
     readme = (root / 'dag/derivations/README.md').read_text(encoding='utf-8')
     head = readme.partition(MARKER)[0].rstrip('\n')
+    gth_at = readme.find(views.GTH_MARKER)
+    gth_tail = readme[gth_at:] if gth_at >= 0 else ''
     section = '\n\n' + MARKER + '\n\n## Frontier derivation branches\n\n'
     section += ('These branches record external programmes and their candidate finite targets. A source record or an '
                 'imported assumption is not a result of this repository; an open target stays open until a run '
@@ -265,7 +288,12 @@ def generated_files(root: Path) -> dict[Path, bytes]:
             parent = paths[r['parent_id']].removeprefix('dag/derivations/')
             section += (f'| [{r["id"]}](./{paper}) | {r["name"]} | `{r["record_status"]}` | '
                         f'[{r["parent_id"]}](./{parent}) | `{r["existing_derivation_dag_ids"][0]}` |\n')
-    outputs[root / 'dag/derivations/README.md'] = (head + section).encode('utf-8')
+    readme_text = head + section
+    if gth_tail:
+        if not gth_tail.endswith('\n'):
+            gth_tail += '\n'
+        readme_text = readme_text.rstrip('\n') + '\n\n' + gth_tail
+    outputs[root / 'dag/derivations/README.md'] = readme_text.encode('utf-8')
     outputs.update(views.outputs(dag, root))
     return outputs
 
