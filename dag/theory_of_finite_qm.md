@@ -88,7 +88,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0013` | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0013` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0014` | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0014` (OPEN) | - |
 | `TFQ-0015` | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0015` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0016` | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0016` (OPEN) | - |
+| `TFQ-0016` | `FINITE_QCD` | `PROVED_LEAN` | `TFQ-0016` (PROVED_LEAN) | - |
 | `TFQ-0017` | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0017` (OPEN) | - |
 | `TFQ-0018` | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0018` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0019` | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0019` (COMPUTATIONALLY_CHECKED) | - |
@@ -5880,14 +5880,14 @@ Obligation: Keep the substantial-versus-artificial split on B_2(Q), not on SU(3)
 
 - UUID: `e48544d7-d14e-5ebc-8e7e-ca7fdf7232a2`
 - Parent: `TFQ-0015`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 - Coda atlas: `F001.S000`
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
 
-The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. It does not transport color generators, and no Lean twin of QM-213 was located in FiniteQM.lean.
+The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.
 
-Obligation: Add a Lean replay of the two-stage dressing or leave QM-213 as a Rust and Python control.
+Obligation: Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.
 
 ### TFQ-0017 Do not promote the SU(2) quaternion shadow to su(3)_c
 
