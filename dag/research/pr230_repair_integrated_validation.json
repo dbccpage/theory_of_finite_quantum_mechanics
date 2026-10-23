@@ -1,0 +1,413 @@
+{
+  "schema_version": "pr230_repair_integrated.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23T18:24:53.079750+00:00",
+  "working_directory": "C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics",
+  "integration_base": "5dd17d703e172b107218330a35fcdb43354ce204",
+  "source_commit": "f5414d8c5ab220861e9fc9569d47695a267abba1",
+  "sources": [
+    {
+      "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+      "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+      "committed_lf": true
+    },
+    {
+      "path": "checks/independent/dfm-electroweak-continuum-fence.py",
+      "sha256": "576e69471ffec7098a701a6ea8415bbdd5ef538549d9c9e48717385939017928",
+      "committed_lf": true
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "57fd7208ef1aaf2911cae2162088f308d424599a72efbc65e88455ec563f25d9",
+      "committed_lf": true
+    }
+  ],
+  "campaign_commands": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=925 routes=934 records=977 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing --require-complete",
+      "exit_code": 0,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 748,\n  \"executed_stale_needs_manual_delta\": {},\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/validate_prompts.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"prompts\": 925,\n  \"collections\": 925,\n  \"errors\": [],\n  \"claim\": \"Structural and local-source custody checks only; no operad or target theorem acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 5dd17d703e17); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-supply-erasure.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-SUPPLY-ERASURE\",\n  \"authority_effect\": \"None\",\n  \"alphabet_size\": 13,\n  \"maximum_history_length\": 4,\n  \"bases\": 3,\n  \"histories_checked\": 92823,\n  \"failed_histories\": 88808,\n  \"distinct_successful_states\": 429,\n  \"strict_changes_checked\": 2289,\n  \"token_histories_checked\": 4681,\n  \"domain_refusals\": 3,\n  \"negative_controls\": [\n    {\n      \"name\": \"supply-admits\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"failure-as-noop\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"duplicate-append\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ],\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"unordered-requirement\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        [\n          [\n            0,\n            1\n          ]\n        ]\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"state-independent-token-erasure\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"omit-rule-coordinate\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [\n          0\n        ],\n        []\n      ]\n    }\n  ],\n  \"negative_control_count\": 6,\n  \"mutation_coverage\": \"not measured by these fixed-output probes\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/tfq-0396.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"TFQ-0396\",\n  \"authority_effect\": \"None\",\n  \"regimes_checked\": 17756,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ],\n    [\n      1,\n      2\n    ]\n  ],\n  \"class_count_histogram\": {\n    \"0\": 9,\n    \"1\": 5823,\n    \"2\": 3800,\n    \"3\": 8124\n  },\n  \"fixtures\": {\n    \"inert\": {\n      \"data\": 0,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [],\n      \"classes\": 0,\n      \"zero_matrix\": []\n    },\n    \"unseparated_marks\": {\n      \"data\": 2,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    },\n    \"sealed_response\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        1\n      ],\n      \"classes\": 2,\n      \"zero_matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ]\n    },\n    \"uniform_rule\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    }\n  },\n  \"factorizations\": 14,\n  \"refused_factorizations\": 2,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-endogenous-demand-ob1.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-ENDOGENOUS-DEMAND-OB1\",\n  \"authority_effect\": \"None\",\n  \"extension\": true,\n  \"regimes_checked\": 8424,\n  \"seek_rounds\": 6517,\n  \"saturated\": 8424,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ]\n  ],\n  \"policy_controls\": {\n    \"duplicate_requirement\": {\n      \"n\": 2,\n      \"Q\": [\n        [\n          0,\n          1\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_halt\": {\n      \"n\": 2,\n      \"policy\": \"halt\",\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_observation\": {\n      \"unary_fact\": [\n        0\n      ],\n      \"profiles\": [\n        [\n          true\n        ],\n        [\n          false\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    }\n  },\n  \"mutation_accounting\": {\n    \"killed\": 3,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-no-return.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-NO-RETURN\",\n  \"authority_effect\": \"None\",\n  \"histories\": 44286,\n  \"failures\": 38638,\n  \"distinct_successful_engine_states\": 204,\n  \"regime_changes_in_tested_prefixes\": 24914,\n  \"mode_only_changes_in_tested_prefixes\": 9674,\n  \"bases\": 3,\n  \"modes\": 2,\n  \"alphabet_size\": 9,\n  \"maximum_history_length\": 4,\n  \"negative_controls_checked\": 5,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-ongoing-fewest-changes.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-ONGOING-FEWEST-CHANGES\",\n  \"authority_effect\": \"None\",\n  \"labels\": [\n    0,\n    1,\n    2\n  ],\n  \"states\": 627,\n  \"attempts\": 18810,\n  \"performed\": 4494,\n  \"refused\": 14316,\n  \"duplicate_wire_controls\": 627,\n  \"all_writing_shortest_paths\": [\n    {\n      \"both_givens\": false,\n      \"targets\": 627,\n      \"maximum_distance\": 10,\n      \"distance_sum\": 3006\n    },\n    {\n      \"both_givens\": true,\n      \"targets\": 627,\n      \"maximum_distance\": 11,\n      \"distance_sum\": 3225\n    }\n  ],\n  \"nonconsecutive_renaming_squares\": 18810,\n  \"build_cases\": 1827,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-minimal-or-initial-refused.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"negative_controls_checked\": 3,\n  \"mutation_coverage\": \"not measured by this census\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/dfm-continuum-interface.py",
+      "exit_code": 0,
+      "stdout": "dependency API: 85 loop words, 255 append cases; 3 invalid paths refused\n[1/4] Additive witness: outer labels 2 and 5, other labels 0.\n  dressed chords: 2 and 5\n[2/4] Matrix witness with trivial star labels.\n  dressed eAB: [[1, 1], [0, 1]] and [[1, 2], [0, 1]]\n  incident edges ePA, eRB, eAB agree; eRP does not meet {a, b}\n[3/4] Noncommutative path product, later factor on the left.\n  dressed eAB: [[-4, -5], [1, 1]]\n  after changing only eRP: [[-4, -9], [1, 2]]\n  reversed product, not the dressing: [[1, -5], [1, -4]]\n[4/4] Closed star of a\u2192b is {ePA, eRB, eAB}.\n  star: ('ePA', 'eRB', 'eAB')\nchecked: dressed chords 2 and 5; matrices [[1,1],[0,1]] vs [[1,2],[0,1]];\nchecked: noncommutative dressed [[-4,-5],[1,1]] vs [[-4,-9],[1,2]];\nchecked: eRP lies outside the closed star of a\u2192b.\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/dfm-bphz-continuum-fence.py",
+      "exit_code": 0,
+      "stdout": "overlap forests: 6; excluded pair L with R\nnested forests: 4\nnumerator identity: 7*x*y\nwitness (1/2, 1/3): six-forest quotient 7; omitted-G quotient -5\nsector kernel at z=3/5, lambda=(1/2, 1/3): 9/50, distinct from 7\nformal sector value z*z = 9/25, distinct from 7\nchecked: forests, coefficient identity, sample grid, witness, sector comparison\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 -O checks/independent/dfm-bphz-continuum-fence.py",
+      "exit_code": 0,
+      "stdout": "overlap forests: 6; excluded pair L with R\nnested forests: 4\nnumerator identity: 7*x*y\nwitness (1/2, 1/3): six-forest quotient 7; omitted-G quotient -5\nsector kernel at z=3/5, lambda=(1/2, 1/3): 9/50, distinct from 7\nformal sector value z*z = 9/25, distinct from 7\nchecked: forests, coefficient identity, sample grid, witness, sector comparison\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/dfm-electroweak-continuum-fence.py",
+      "exit_code": 0,
+      "stdout": "unnormalized sample z=1/2+1/3i entries match\nunit z=3/5+4/5i norm2=1 entry01=3/5+4/5i\nnonunit z=2 own-root entries 1 and 2 differ\nshared denominator on z=2 still matches\nchecked: unnormalized sample, unit witness, own-root split\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 -O checks/independent/dfm-electroweak-continuum-fence.py",
+      "exit_code": 0,
+      "stdout": "unnormalized sample z=1/2+1/3i entries match\nunit z=3/5+4/5i norm2=1 entry01=3/5+4/5i\nnonunit z=2 own-root entries 1 and 2 differ\nshared denominator on z=2 still matches\nchecked: unnormalized sample, unit witness, own-root split\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 5dd17d703e17), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 3,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "python_tests": {
+    "command": "python -I -X utf8 -m pytest -q dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/pfp/test_retained_collections.py scripts/test_governance_policy.py scripts/test_changed_since_contracts.py dag/test_foc035_l4_regressions.py",
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 74%]\n.........................                                                [100%]\n97 passed in 43.19s\n",
+    "stderr": ""
+  },
+  "rust_unit_tests": {
+    "command": "cargo test --locked --manifest-path governance/Cargo.toml --target-dir <scratch target>",
+    "exit_code": 0,
+    "passed": 65,
+    "ignored_doctests": 1,
+    "output": "   Compiling version_check v0.9.5\n   Compiling typenum v1.20.1\n   Compiling serde_core v1.0.229\n   Compiling zmij v1.0.23\n   Compiling serde_json v1.0.154\n   Compiling cpufeatures v0.2.17\n   Compiling itoa v1.0.18\n   Compiling memchr v2.8.3\n   Compiling cfg-if v1.0.5\n   Compiling generic-array v0.14.7\n   Compiling crypto-common v0.1.7\n   Compiling block-buffer v0.10.4\n   Compiling digest v0.10.7\n   Compiling sha2 v0.10.9\n   Compiling governance v0.1.0 (C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\governance)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 19.35s\n     Running unittests ..\\code\\rust\\src\\governance\\src\\lib.rs (.venv-review/governance-target\\debug\\deps\\governance-9a7aa91c02a3e498.exe)\n\nrunning 55 tests\ntest buildtime::tests::modes_parse ... ok\ntest descriptor::tests::malformed_json_is_a_typed_error ... ok\ntest descriptor::tests::legacy_subject_layout_and_missing_pieces ... ok\ntest policy::tests::exclusions_and_populations_use_any_glob ... ok\ntest policy::tests::baseline_round_trip_and_grandfathering ... ok\ntest descriptor::tests::tampered_history_bytes_are_detected ... ok\ntest policy::tests::companion_naming_follows_collision_rule ... ok\ntest descriptor::tests::parses_a_complete_companion ... ok\ntest policy::tests::kind_keys_round_trip ... ok\ntest descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes ... ok\ntest policy::tests::globs ... ok\ntest policy::tests::sha_shape ... ok\ntest policy::tests::policy_parses_floor_and_populations ... ok\ntest descriptor::tests::invalid_vocabulary_is_reported_by_field ... ok\ntest policy::tests::support_exception_requires_review_metadata ... ok\ntest policy::tests::policy_rejects_wrong_orders_and_shapes ... ok\ntest repo::tests::nul_lists_normalise_separators_and_refuse_non_utf8 ... ok\ntest policy::tests::support_exceptions_are_exact_and_fail_closed ... ok\ntest score::tests::completion_refuses_forged_axes ... ok\ntest score::tests::completion_refuses_forged_composites ... ok\ntest repo::tests::hashing_and_relative_paths ... ok\ntest repo::tests::root_is_found_upwards ... ok\ntest score::tests::composite_is_the_minimum_of_complete_gates ... ok\ntest score::tests::every_token_round_trips ... ok\ntest score::tests::completion_refuses_false_flag_and_absent_values ... ok\ntest repo::tests::package_sources_skip_nested_packages_and_target ... ok\ntest score::tests::floor_cases ... ok\ntest buildtime::tests::decide_respects_mode ... ok\ntest score::tests::level_order_is_numeric ... ok\ntest score::tests::grade_order_matches_scoring_md ... ok\ntest score::tests::malformed_tokens_are_rejected ... ok\ntest score::tests::unassessed_gate_gives_no_composite_unless_a_known_e ... ok\ntest buildtime::tests::missing_or_broken_policy ... ok\ntest score::tests::vocabulary_parse_errors_are_typed ... ok\ntest score::tests::completion_boundary_exhausts_every_gate_assignment ... ok\ntest buildtime::tests::new_mode_aborts_when_any_failure_is_new ... ok\ntest buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced ... ok\ntest verify::tests::baseline_waives_floor_only_for_unchanged_bytes ... ok\ntest verify::tests::binding_mismatch_names_the_field ... ok\ntest verify::tests::floor_pass_and_fail_cases ... ok\ntest verify::tests::null_gate_is_incomplete ... ok\ntest verify::tests::violation_display_is_precise ... ok\ntest verify::tests::support_pin_never_accepts_incomplete_or_grade_e ... ok\ntest verify::tests::inconsistent_composite_flag_or_token_is_incomplete ... ok\ntest buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files ... ok\ntest tests::changed_bytes_lose_grandfathering ... ok\ntest verify::tests::schema_failures_are_specific ... ok\ntest tests::binding_and_completeness_are_both_reported ... ok\ntest tests::binding_failure_still_reports_the_floor ... ok\ntest buildtime::tests::clean_package_emits_reruns_only ... ok\ntest tests::twin_sources_use_qualified_companions ... ok\ntest tests::malformed_companion_and_unreadable_source ... ok\ntest tests::outcomes_cover_pass_fail_grandfather_and_boilerplate ... ok\ntest repo::tests::git_errors_are_typed ... ok\ntest repo::tests::git_population_changes_and_history ... ok\n\ntest result: ok. 55 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.69s\n\n     Running unittests ..\\code\\rust\\src\\governance\\src\\bin\\governance-check.rs (.venv-review/governance-target\\debug\\deps\\governance_check-fc04fd228c4aa588.exe)\n\nrunning 10 tests\ntest tests::rejects_bad_command_lines ... ok\ntest tests::baseline_growth_needs_a_reason ... ok\ntest tests::parses_commands ... ok\ntest tests::missing_root_is_fatal ... ok\ntest tests::baseline_deficit_is_the_first_violation_and_stale_entries_are_counted ... ok\ntest tests::affected_sources_maps_companions_back_to_sources ... ok\ntest tests::baseline_plan_only_shrinks_without_allow_add ... ok\ntest tests::open_needs_a_baseline_only_when_asked ... ok\ntest tests::a_policy_or_baseline_change_selects_the_whole_population ... ok\ntest tests::end_to_end_with_git ... ok\n\ntest result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.65s\n\n   Doc-tests governance\n\nrunning 1 test\ntest ..\\code\\rust\\src\\governance\\src\\lib.rs - verify_crate_contracts (line 45) ... ignored\n\ntest result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+    "scope": "Earlier successful 65-test run; Rust sources/manifests unchanged at this integration."
+  },
+  "focused_validation": {
+    "path": "dag/research/pr230_repair_focused_validation.json",
+    "sha256": "ef2728db8245ca612ba5e66229c227b06541c907a22a18f4c891a3fa66b8a1c4"
+  },
+  "lean_receipt": {
+    "path": "dag/research/campaign_dfm-electroweak-continuum-fence_integrated_lean_replay.json",
+    "sha256": "9744dea99a2707aec55b8fe790edfae84644f4cd866c25a2e864bfea8ec62331"
+  },
+  "scope_comparison": {
+    "target": "DFM-ELECTROWEAK-CONTINUUM-FENCE",
+    "status": "OPEN",
+    "unintended_scope_differences": [],
+    "integration_base": "5dd17d703e172b107218330a35fcdb43354ce204"
+  },
+  "sealed_source_comparison": {
+    "exit_code": 0,
+    "paths": [
+      "atlas",
+      "sources",
+      "dag/pfp/prompt_audit.json",
+      "dag/pfp/custody.py",
+      "dag/pfp/filename_custody.json"
+    ],
+    "sealed_prompt_count": 177,
+    "changed_sealed_prompts": []
+  },
+  "overclaim_findings": [
+    {
+      "severity": "LOW",
+      "rule": "R10",
+      "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "line": 0,
+      "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+      "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+      "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt",
+      "nodes": [
+        "TENSOR-ASSUMPTION-COUNTERMODELS"
+      ],
+      "files": []
+    },
+    {
+      "severity": "LOW",
+      "rule": "R5",
+      "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+      "line": 0,
+      "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+      "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+      "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d",
+      "nodes": [
+        "FQ-GAP-TENSOR-UNIQUENESS"
+      ],
+      "files": [
+        "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md"
+      ]
+    },
+    {
+      "severity": "LOW",
+      "rule": "R5",
+      "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+      "line": 0,
+      "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+      "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+      "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f",
+      "nodes": [
+        "TENSOR-ASSUMPTION-COUNTERMODELS"
+      ],
+      "files": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md"
+      ]
+    }
+  ],
+  "waiver": {
+    "authorization": "User: Ignore L4D requirements so we can merge our PRs.",
+    "proof_exception": {
+      "deficit": "FLOOR",
+      "reason": "PR #230: maintainer explicitly waived L4/D acceptance (Ignore L4D requirements so we can merge our PRs). Retain honest L3D proof and L1D Lake registry scores. This exception binds only the reviewed bytes; changing them removes it.",
+      "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+    },
+    "registry_exception": {
+      "sha256": "57fd7208ef1aaf2911cae2162088f308d424599a72efbc65e88455ec563f25d9",
+      "category": "build_registration",
+      "reason": "User-approved declarative build-file exception: module registrations and toolchain wiring, including the non-default DFM BPHZ continuum-fence target; L1D remains accurately recorded."
+    },
+    "global_floor_unchanged": true,
+    "only_one_baseline_entry_added": true
+  },
+  "setup_attempts": [
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\scripts\\build_master_derivation_ledger.py\", line 21, in <module>\n    from src.qm.textbook_problems import build_qm_question_atlas\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\__init__.py\", line 24, in <module>\n    from .qm import DensityOperator\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\qm\\__init__.py\", line 71, in <module>\n    from . import domain\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\qm\\domain.py\", line 18, in <module>\n    from . import primitives\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\qm\\primitives.py\", line 14, in <module>\n    import numpy as np\nModuleNotFoundError: No module named 'numpy'\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\scripts\\build_master_derivation_ledger.py\", line 21, in <module>\n    from src.qm.textbook_problems import build_qm_question_atlas\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\__init__.py\", line 24, in <module>\n    from .qm import DensityOperator\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\qm\\__init__.py\", line 72, in <module>\n    from . import campaigns\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\qm\\campaigns.py\", line 34, in <module>\n    from . import cochain\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\code\\python\\src\\qm\\cochain.py\", line 38, in <module>\n    from scipy.optimize import linprog\nModuleNotFoundError: No module named 'scipy'\n"
+    },
+    {
+      "command": "overclaim --write with --changed-since",
+      "exit_code": 2,
+      "recovery": "Supplemental diagnostic flag combination is disallowed. The required strict CLI passed; the same scanner API supplied the three finding records without changing baselines."
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 1,
+      "stdout": "differs: dag/evidence/evidence_map.json\ndiffers: docs/evidence/README.md\ndiffers: docs/evidence/nodes/DFM-ELECTROWEAK-CONTINUUM-FENCE.md\ndiffers: docs/evidence/nodes/FQ-GAP-TENSOR-UNIQUENESS.md\ndiffers: docs/evidence/nodes/QCV-SELF-OBSTRUCTION-MODEL.md\ndiffers: docs/evidence/nodes/TENSOR-ASSUMPTION-COUNTERMODELS.md\ndiffers: docs/evidence/stages/DRESSING_FIELD.md\nevidence map is stale: run python -I -X utf8 dag/evidence/build_evidence.py --write\n",
+      "stderr": ""
+    }
+  ],
+  "pipeline": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 0,
+      "stdout": "Written: C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\papers\\core\\master_derivation_ledger.md\nWritten: C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\dag\\derivations\\MASTER_DERIVATION_LEDGER.md\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --write --all-missing",
+      "exit_code": 0,
+      "stdout": "{\"created\": 0, \"rewritten\": 0, \"unchanged\": 748}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --write",
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --write",
+      "exit_code": 0,
+      "stdout": "finite_quantum_mechanics.md: updated\nfinite_quantum_mechanics_claim_ledger.md: already current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run \"PR 230 repair on current main\" --reason \"Integrate the existing electroweak finite-scope proof, immutable exact checker and explicit source-bound score waiver.\"",
+      "exit_code": 0,
+      "stdout": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha dag/fragments/application_branches.json\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\nrebound: tensor_countermodel_validation.json sha lean4/lakefile.lean\n5 stale pin(s)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
+      "exit_code": 0,
+      "stdout": "evidence map written: 925 nodes; generated evidence reports refreshed",
+      "stderr": ""
+    }
+  ],
+  "remaining_limits": [
+    "Node remains OPEN; supplied-root/total-division and continuum interpretation fences are unchanged.",
+    "Three LOW tensor evidence prompts remain; the five tensor modules identified by R10 were not rebuilt in this repair.",
+    "One Rust doctest is ignored by the maintained test suite.",
+    "Only CampaignDfmElectroweakContinuumFence was built and directly checked here; unrelated campaign Lean modules were not rebuilt."
+  ],
+  "governance_validation": "Recorded separately after final companion bindings in pr230_repair_integrated_governance.json; hosted checks must bind the published head."
+}
