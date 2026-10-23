@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "1439ec503f1c8a2580ec5ac11d07c9e643d10be39794a32ac40ace80b82ace1f"
+  "sha256_lf": "cc1d2317b0ba18d82234cb60762d8936a7bdb1455a736b7a7e40e3686bc0aed5"
  },
  "files": {
   "checks/independent/dfm-bphz-continuum-fence.py": {
@@ -36,6 +36,11 @@
    "sha256": "88b18f3a0516909a4fe94dc76773d91970b2639b4de01b877fb3f3a6914f6d5e",
    "sha256_basis": "bytes",
    "size": 12931
+  },
+  "checks/independent/dfm-regge-gravity-fence.py": {
+   "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+   "sha256_basis": "bytes",
+   "size": 3537
   },
   "checks/independent/foc035_observer_presheaf.py": {
    "sha256": "3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d",
@@ -828,9 +833,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "1439ec503f1c8a2580ec5ac11d07c9e643d10be39794a32ac40ace80b82ace1f",
+   "sha256": "cc1d2317b0ba18d82234cb60762d8936a7bdb1455a736b7a7e40e3686bc0aed5",
    "sha256_basis": "lf-normalised",
-   "size": 4539505
+   "size": 4541250
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3983,9 +3988,9 @@
    "size": 2436
   },
   "dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md": {
-   "sha256": "c51282cb16283851c42314373f315def94c6936c9e634ad8a1cf3a13e1776cdf",
+   "sha256": "b68a08417546ad04bf9d172c1c7a7ea88353b911eadf99baf555f06bac36a785",
    "sha256_basis": "lf-normalised",
-   "size": 1931
+   "size": 3145
   },
   "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md": {
    "sha256": "bf9e6f921ff6c5e41d8aabf191026a18ffd1487987c8846b01d727aabebb2ddd",
@@ -5742,6 +5747,11 @@
    "sha256_basis": "lf-normalised",
    "size": 7121
   },
+  "dag/derivations/independent/dfm-regge-gravity-fence.md": {
+   "sha256": "83f18b3698451d20067f41c0b3751785ed33051d9c3de9c9518367a5fa1798ec",
+   "sha256_basis": "lf-normalised",
+   "size": 2025
+  },
   "dag/derivations/independent/fsp-hubbard-protected-representations.md": {
    "sha256": "cbc138ed8d9302fac11dc94b96435772faf042807c3289d2dd28fbf288636575",
    "sha256_basis": "lf-normalised",
@@ -6201,6 +6211,11 @@
    "sha256": "7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917",
    "sha256_basis": "bytes",
    "size": 32142
+  },
+  "lean4/CampaignDfmReggeGravityFence.lean": {
+   "sha256": "dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6",
+   "sha256_basis": "bytes",
+   "size": 2119
   },
   "lean4/CampaignFspHubbardProtected.lean": {
    "sha256": "69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074",
@@ -180462,17 +180477,425 @@
    "absent_notes": [],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 4,
+    "lean_receipt_backed": 8,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 8
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "DFM-REGGE-GRAVITY-FENCE",
    "items": [
+    {
+     "cited_in": [
+      "node.source",
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence)",
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (CampaignDfmReggeGravityFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence)",
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (CampaignDfmReggeGravityFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms CampaignDfmReggeGravityFence.block_trace_half",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmReggeGravityFence.block_trace_half",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence)",
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (CampaignDfmReggeGravityFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms CampaignDfmReggeGravityFence.cosine_sum_ne_block_trace",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmReggeGravityFence.cosine_sum_ne_block_trace",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence)",
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (CampaignDfmReggeGravityFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms CampaignDfmReggeGravityFence.lengths_345",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmReggeGravityFence.lengths_345",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence)",
+      "receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (CampaignDfmReggeGravityFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms CampaignDfmReggeGravityFence.numerator_sum",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmReggeGravityFence.numerator_sum",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1137"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms block_trace_half",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "block_trace_half",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1137"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms cosine_sum_ne_block_trace",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "cosine_sum_ne_block_trace",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1137"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms lengths_345",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "lengths_345",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1137"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmReggeGravityFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmReggeGravityFence: #print axioms numerator_sum",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmReggeGravityFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "numerator_sum",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source",
+      "record TFQ-1137"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/dfm-regge-gravity-fence.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -180511,6 +180934,29 @@
      "file_exists": true,
      "generated": false,
      "kind": "paper",
+     "path": "dag/derivations/independent/dfm-regge-gravity-fence.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
      "path": "papers/ravera_dfm_dossier.md",
      "receipts": [],
      "replay": "n/a",
@@ -180521,7 +180967,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1137"
    ],
@@ -249077,6 +249523,58 @@
     "propext"
    ],
    "built_successfully": null,
+   "checked_at": "2026-10-23",
+   "dag_node": "DFM-REGGE-GRAVITY-FENCE",
+   "decl_count": 4,
+   "exit_code": 0,
+   "id": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json#0:CampaignDfmReggeGravityFence",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignDfmReggeGravityFence",
+   "path": "lean4/CampaignDfmReggeGravityFence.lean",
+   "receipt_file": "dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json",
+   "receipt_file_sha256": "ed081da8efc9b3e83f0520bd65beb140d97163efcc7ee0ed95766d35e99857cb",
+   "recorded_sha256": "dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": "2026-10-23T19:16:32.726447+00:00",
+   "dag_node": "DFM-REGGE-GRAVITY-FENCE",
+   "decl_count": 4,
+   "exit_code": 0,
+   "id": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json#0:CampaignDfmReggeGravityFence",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignDfmReggeGravityFence",
+   "path": "lean4/CampaignDfmReggeGravityFence.lean",
+   "receipt_file": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json",
+   "receipt_file_sha256": "61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21",
+   "recorded_sha256": "dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
    "checked_at": "2026-10-22",
    "dag_node": "FSP-HUBBARD-PROTECTED-REPRESENTATIONS",
    "decl_count": 15,
@@ -260513,9 +261011,9 @@
  "summary": {
   "by_grade": {
    "E0": 189,
-   "E1": 249,
+   "E1": 248,
    "E2": 42,
-   "E3": 445,
+   "E3": 446,
    "E4": 0
   },
   "by_status": {
@@ -260535,16 +261033,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1458,
+   "distinct": 1462,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1411,
-   "replay_verified_and_declaration_itemised": 1366,
+   "replay_verified": 1415,
+   "replay_verified_and_declaration_itemised": 1370,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1767
+   "present": 1771
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -260565,7 +261063,7 @@
    "total": 265,
    "with_in_repo_lean": 265
   },
-  "receipts_indexed": 465,
+  "receipts_indexed": 467,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -260611,9 +261109,9 @@
    },
    "DRESSING_FIELD": {
     "E0": 0,
-    "E1": 14,
+    "E1": 13,
     "E2": 9,
-    "E3": 20,
+    "E3": 21,
     "E4": 0
    },
    "ENGINE_CUSTODY": {
@@ -260844,9 +261342,9 @@
    },
    "OPEN": {
     "E0": 49,
-    "E1": 96,
+    "E1": 95,
     "E2": 10,
-    "E3": 20,
+    "E3": 21,
     "E4": 0
    },
    "PROVED_LEAN": {

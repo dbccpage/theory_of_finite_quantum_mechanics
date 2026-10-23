@@ -4,7 +4,7 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite those sides are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.
+> For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite sides 5, 3 and 4 respectively are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.
 
 ## Grade
 
@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignDfmReggeGravityFence.lean](../../../lean4/CampaignDfmReggeGravityFence.lean)
 - sha256 (`bytes`): `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence), record TFQ-1137
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence), receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (CampaignDfmReggeGravityFence), record TFQ-1137
 - replay: `verified`
   - receipt [dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json) (module `CampaignDfmReggeGravityFence`): recorded sha256 `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json) (module `CampaignDfmReggeGravityFence`): recorded sha256 `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignDfmReggeGravityFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,14 +67,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-regge-gravity-fence.py`
 
 - file: [checks/independent/dfm-regge-gravity-fence.py](../../../checks/independent/dfm-regge-gravity-fence.py)
-- sha256 (`bytes`): `036432fe25fa61ccb9c4bf95529b2171f8eae8ba000fc09991700bfa92be45e3`
+- sha256 (`bytes`): `5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7`
 - cited in: node.source, record TFQ-1137
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md](../../../dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md)
-- sha256 (`lf-normalised`): `7d3e81805d2d74f6471e073121ca77104664a38fc4455d0fbfba69c948e2178c`
+- sha256 (`lf-normalised`): `b68a08417546ad04bf9d172c1c7a7ea88353b911eadf99baf555f06bac36a785`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1137
 - counts toward the grade: no
@@ -81,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-regge-gravity-fence.md`
 
 - file: [dag/derivations/independent/dfm-regge-gravity-fence.md](../../../dag/derivations/independent/dfm-regge-gravity-fence.md)
-- sha256 (`lf-normalised`): `e232990e5030f05695abe23088e2228bbeb23cfb1500a7acbbb91369462c4a81`
+- sha256 (`lf-normalised`): `83f18b3698451d20067f41c0b3751785ed33051d9c3de9c9518367a5fa1798ec`
 - cited in: node.source
 - counts toward the grade: yes
 

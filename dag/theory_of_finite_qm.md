@@ -9048,7 +9048,7 @@ Obligation: No simplicial complex, edge lengths or deficit angles are constructe
 - DAG node: `DFM-REGGE-GRAVITY-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md)
 
-For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite those sides are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.
+For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite sides 5, 3 and 4 respectively are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.
 
 Obligation: The lengths 3, 4, 5 and beta = 1/2 are supplied data. The block trace is not computed from those lengths. A 4D complex, a deficit angle, a spin-frame dressing, and a continuum reading stay open.
 
