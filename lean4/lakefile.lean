@@ -1002,3 +1002,8 @@ lean_lib CampaignGenesisOngoingRefinement where
 -- Explicit comparison classes, reusing the sealed source library above.
 lean_lib CampaignGenesisProcessComparison where
   roots := #[`CampaignGenesisProcessComparison]
+
+-- Campaign target: DFM-CONTINUUM-INTERFACE.
+-- Not a default target: build with `lake build CampaignDfmContinuumInterface`.
+lean_lib CampaignDfmContinuumInterface where
+  roots := #[`CampaignDfmContinuumInterface]
