@@ -1,0 +1,139 @@
+# 03. Results and arguments
+
+**AuthorityEffect:** None.
+**Sources:** [`sources/analysis_derivation_v1.md`](sources/analysis_derivation_v1.md) (v1),
+[`02_trial_record.md`](02_trial_record.md).
+
+The analysis drew seven statements from the trials. They are of different
+kinds, and this chapter labels each one honestly. Only two have proofs, and
+both are short.
+
+| # | Statement | Kind | Where |
+| --- | --- | --- | --- |
+| 1 | No-transition quiescence | true by definition | [v1 42 to 68](sources/analysis_derivation_v1.md#L42) |
+| 2 | Presentation change is not an expressive lift | holds under one convention | [v1 93 to 128](sources/analysis_derivation_v1.md#L93) |
+| 3 | The successor of `<>` is not unique | two observed replies | [v1 832 to 884](sources/analysis_derivation_v1.md#L832) |
+| 4 | Repetition needs structure | conceptual analysis | [v1 888 to 921](sources/analysis_derivation_v1.md#L888) |
+| 5 | Forced separation, non-unique lift | argument with proof | [v1 221 to 303](sources/analysis_derivation_v1.md#L221) |
+| 6 | Replay necessity | theorem with proof | [v1 979 to 1047](sources/analysis_derivation_v1.md#L979) |
+| 7 | Context fidelity | target statement, no proof | [v1 1051 to 1087](sources/analysis_derivation_v1.md#L1051) |
+
+## 1. No-transition quiescence
+
+If a regime's transition relation is empty, no state has a successor. That is
+the definition of an empty relation, so it needs no experiment. What the trials
+add is behaviour: all three replies to Prompt 11 said no continuation is
+forced. A move from `<>` to `<a>` therefore has to come from outside: a caller
+supplies it, or a rule is added.
+
+## 2. Presentation versus expressive power
+
+Write P for what is presented and O for the internal observations the regime
+has. Supplying `<a>` after `<>` changes P and leaves O empty, so no new
+internal distinction is available. Whether `<a>` is then "the same state
+presented differently" or "a new state" depends on a convention:
+
+- **Opaque convention:** a state is what the regime can tell apart; with O
+  empty, `<>` and `<a>` are not told apart.
+- **Exact-inscription convention:** a state is the inscription itself; the
+  strings differ, so the states differ.
+
+Trials 1 and 2 answered under the first; the full replay under the second. The
+analysis says the question is undecidable until one convention is declared
+([v1 731 to 737](sources/analysis_derivation_v1.md#L731)).
+
+## 3. The successor is not unique
+
+Trial 1 proposed no successor; Trial 2 proposed `<>` again under an added
+repetition rule. These are different replies under different proposed
+assumptions. They illustrate that the prompt did not prescribe a continuation;
+they do not constitute two successors of one fixed transition system. To
+select a canonical next stage, specify the allowed operations and the selection
+rule, such as a minimality order with all tied branches retained.
+
+## 4. Repetition needs structure
+
+To say "`<>` again" means something different from "`<>` still", the regime
+needs at least two positions or stages, an identity criterion across them, a
+copy or persistence rule, and a stable alphabet. A self-loop is already an
+operator. This is an analysis of what the word "repeat" presupposes, not a
+proof.
+
+## 5. Forced separation, non-unique lift
+
+Define observational equivalence relative to the observations O_n available at
+stage n:
+
+x ≈ₙ y  if and only if  o(x) = o(y) for every o in O_n.
+
+If O_n is empty, every pair is equivalent, vacuously. So with no observations,
+`<a>` ≈ `<ab>`. This is regime-relative equivalence, not string equality.
+
+**Claim.** A task that assigns different answers to `<a>` and `<ab>` cannot be
+answered correctly on every input using only their common observation profile.
+
+**Proof.** Any operation f defined on the equivalence classes gives
+f([`<a>`]) = f([`<ab>`]), because `<a>` and `<ab>` are in the same class. So no
+operation on the current quotient can produce the required difference. A
+successful representation must distinguish the pair; adding an observation
+o with o(`<a>`) ≠ o(`<ab>`) is one way to do so.
+
+**The lift is not unique.** Under an explicit string decoder, let f test
+whether the payload has more than one position and let g test whether it
+contains `b`. Both return false on `<a>` and true on `<ab>`, but f(`<aa>`) is
+true while g(`<aa>`) is false. Each is a separating one-bit observation. A
+constant predicate would not work. Full inscription identity also separates
+the pair, but carries more than one bit over the unrestricted inscription
+family. The decoder and predicates are supplied operations; the trials did
+not derive a unique one ([v1 283 to 303](sources/analysis_derivation_v1.md#L283)).
+
+Note what the record does not support: earlier versions of this strand
+described a fixed ladder of quotients and a "minimal multiplicity lift" to
+counting. Neither is in the sources, and the sources say no separating
+structure is uniquely forced.
+
+## 6. Replay necessity
+
+Let H be the possible histories, σ(h) the state history h produces, and π(h)
+the part of the history an auditor sees, for example only the last turn.
+
+**Theorem.** If two histories look the same to the auditor, π(h₁) = π(h₂), but
+produce different states, σ(h₁) ≠ σ(h₂), then no auditor A that sees only π
+can report the correct state for every history.
+
+**Proof.** Suppose A(π(h)) = σ(h) for all h. Then
+σ(h₁) = A(π(h₁)) = A(π(h₂)) = σ(h₂), which contradicts σ(h₁) ≠ σ(h₂).
+([v1 1017 to 1037](sources/analysis_derivation_v1.md#L1017))
+
+The trials illustrate why the view matters. The isolated audit and the
+full-history replay produced "Verified." and "Retracted." in response to
+Prompt 17. Their supplied contexts differed. This contrast motivates the
+theorem; it is not an independently checked pair with equal complete auditor
+inputs and different adopted states
+([T2 981 to 1031](sources/trial_2_transcript.md#L981)).
+
+**Sufficient summaries.** On a finite declared history population H, a
+reconstruction function exists on the image π(H) exactly when σ is constant
+on every fiber of π. For the positive direction, choose the first history in
+a fixed enumeration with the given report and return its σ-value. Fiber
+constancy makes the answer independent of the chosen representative. The
+negative direction is the preceding theorem. Thus the required information
+is task-relative: a sufficient summary can replace the raw history. Values
+outside π(H) require a separate policy and may be refused.
+
+## 7. Context fidelity
+
+A trace that starts from a declared context s′ and takes valid steps relative
+to s′ need not be valid relative to the actual replayed state s ≠ s′. Trial 2's
+Result 15 is the example: its reasoning was internally consistent and its
+premise ("the regime contains only <>") was stale. The analysis calls this a
+"clean theorem target" and gives no proof; it is a requirement for a verifier
+(check the declared context against the replayed history), not a result.
+
+## What these results do not show
+
+- Three runs of one unrecorded model are anecdotes. There are no rates.
+- The model did not rediscover DDC, Prime, OESOS or any other repository
+  structure; the analysis says "Do not claim Prime rediscovery from this run"
+  ([v1 449 to 457](sources/analysis_derivation_v1.md#L449)).
+- No host checker evaluated any reply.

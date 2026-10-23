@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-04",
+  "authority_effect": "None",
+  "replay": {
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "finite_observation.replay_examples",
+      "--check",
+      "code/finite_observation/observation_certificates.json"
+    ],
+    "working_directory": "paper root",
+    "interpreter_version": "3.12.14",
+    "exit_code": 0,
+    "stdout": "{\n  \"status\": \"VERIFIED\",\n  \"authority_effect\": \"None\",\n  \"examples\": {\n    \"adaptive_corrected\": {\n      \"fixed\": \"7\",\n      \"adaptive\": \"4\",\n      \"infeasible_pair\": null\n    },\n    \"adaptive_submitted_infeasible\": {\n      \"fixed\": null,\n      \"adaptive\": null,\n      \"infeasible_pair\": [\n        0,\n        4\n      ]\n    },\n    \"fano_integrality_gap\": {\n      \"fixed\": \"3\",\n      \"adaptive\": \"3\",\n      \"infeasible_pair\": null,\n      \"lp_optimum\": \"7/3\"\n    },\n    \"infeasible_miniature\": {\n      \"fixed\": null,\n      \"adaptive\": null,\n      \"infeasible_pair\": [\n        0,\n        1\n      ]\n    },\n    \"visible_report_resolves\": {\n      \"fixed\": \"0\",\n      \"adaptive\": \"0\",\n      \"infeasible_pair\": null\n    }\n  }\n}\n",
+    "stderr": "",
+    "result": {
+      "status": "VERIFIED",
+      "authority_effect": "None",
+      "examples": {
+        "adaptive_corrected": {
+          "fixed": "7",
+          "adaptive": "4",
+          "infeasible_pair": null
+        },
+        "adaptive_submitted_infeasible": {
+          "fixed": null,
+          "adaptive": null,
+          "infeasible_pair": [
+            0,
+            4
+          ]
+        },
+        "fano_integrality_gap": {
+          "fixed": "3",
+          "adaptive": "3",
+          "infeasible_pair": null,
+          "lp_optimum": "7/3"
+        },
+        "infeasible_miniature": {
+          "fixed": null,
+          "adaptive": null,
+          "infeasible_pair": [
+            0,
+            1
+          ]
+        },
+        "visible_report_resolves": {
+          "fixed": "0",
+          "adaptive": "0",
+          "infeasible_pair": null
+        }
+      }
+    }
+  },
+  "sha256": {
+    "code/finite_observation/observation_certificates.json": "ea57ade7e058c5ad459aa3abf1bc5ba6fc834426a4f17281b9517b0c8e887bdd",
+    "code/finite_observation/replay_examples.py": "0d1dd49b5ea6dc29bdb66647cd74fc30f73a9ba5e11843209c5f7db9764b2ba8",
+    "code/finite_observation/solver.py": "08c46e16d97f5a00d5163ccd7b68d30bd5070ffe4a4e4dcbf5ddf57e39c53e0f",
+    "code/finite_observation/submitted_derivation.md": "44edb483ee410ffcddfec28a2188d17cd573f21b13c58368686ff38cfc27983b",
+    "code/unit_tests/test_finite_observation.py": "32ecd96150c6ca5d20a26c1ee7d0377dabfa63c6b1a1312eec989b2b816f987b",
+    "docs/minimum_cost_sufficient_observation.md": "0a65b0d840c90f09ebeb2e2ec43e445dff125c9b39c9948d4d0f39f1164d0571"
+  },
+  "test_review": {
+    "status": "PASSED_PREVIOUSLY_THIS_REVIEW",
+    "command": [
+      "python",
+      "-B",
+      "-m",
+      "pytest",
+      "code/unit_tests/test_finite_observation.py",
+      "-o",
+      "addopts=",
+      "-q"
+    ],
+    "passed": 26,
+    "elapsed_seconds": 0.19,
+    "scope": "Focused finite-observation tests; not rerun while retaining this receipt."
+  },
+  "scope": "Saved supplied certificate bytes replayed in a fresh process. The checker does not call solve to replace candidate tables. No provider call, Rust execution or Lean formalization is asserted."
+}

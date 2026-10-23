@@ -1,0 +1,9 @@
+# CODA-CS-Q: Finite Profile Factorization and Sampling Limits
+
+Two measurements at the ends of an interval do not reveal what happens in the middle. The zero function and the curve t(1 − t) agree at 0 and 1 but differ at 1⁄2. CODA-CS-Q uses such collisions to ask when a finite profile really carries enough information for a particular query. The answer is exact: a query factors through the realized profile image precisely when it is constant on every profile fibre. The factor is unique on that image; values at unused observation labels need additional data.
+
+Approximate recovery has a separate, quantitative form. If a decoder is within ε of the query at every state, two states with the same profile have query values at distance at most 2ε. At zero error, equality of values requires metric separation; a pseudometric alone can have distinct points at distance zero. A Lipschitz assumption gives another bound on how much a query can change when its input changes. None of these inequalities fills in an unsampled curve or supplies a general authority terminalizer.
+
+The Lean development formalizes image factorization and uniqueness, abstract distance bounds, and the obstruction to a total extension. Its finite three-point sampling example uses Boolean signals. The real quadratic endpoint example is proved in prose and checked at rational points. The Lipschitz statement is an abstract scale schema, with no general real-metric instance constructed in this package.
+
+The Python companion builds an image lookup only on a declared nonempty finite observation snapshot. It copies supplied states, observes each profile and query pair once, and refuses lookup outside the realized image. Exact Boolean admission flags, bound image points, mutation checks, and notebook replays make the finite contract inspectable. The paper’s claim ledger keeps these executable facts apart from its broader continuum questions and leaves authorized gluing of shadows open.

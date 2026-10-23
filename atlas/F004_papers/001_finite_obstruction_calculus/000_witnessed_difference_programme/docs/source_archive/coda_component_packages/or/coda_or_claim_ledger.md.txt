@@ -1,0 +1,82 @@
+# Claim Ledger — CODA-OR: Omniversal Re-Presentation — Re-Presentations Transport Rules
+
+**Paper Key:** `000_coda/or/000_coda_or`  
+**Paper Identity:** `CODA-OR` (`coda_or.md`, canonical version: `v1.0 Pre-Print`, status: `first public preprint`)  
+**Authority:** None.
+
+This ledger catalogs every definition, theorem, and scope fence in the canonical CODA-OR preprint (`coda_or.md`). Claims are organized around the actual manuscript statements (Definitions **OR-D1–OR-D4** and Theorems **OR-T1–OR-T8**). A historical mapping appendix preserves legacy GTOR identifiers and documents out-of-scope research obligations.
+
+---
+
+## 1. Primary Active Claim Matrix (OR-D1–OR-D4 & OR-T1–OR-T8)
+
+| ID | Manuscript Statement | Claim Type | Governing Hypotheses | Mathematical Mechanism & Defect Bounds | Edge Cases & Refusal Triggers | Verification & Evidence Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| OR-D1 | **Pair Compatibility:** Pairs $\mathrm{left}\in A\times B$ and $\mathrm{right}\in B\times C$ are compatible when $\mathrm{left}.2 = \mathrm{right}.1$. | DEFINITION | Product types $A\times B$ and $B\times C$ over shared boundary type $B$. | Equality check on shared projection: $\pi_2(\mathrm{left}) = \pi_1(\mathrm{right})$. | Non-matching boundary values; mismatched boundary types. | Lean `Coda.OR in lean4/Algebra.lean` (`pair_gluing`) + Python `000_two_pairs_need_to_agree.ipynb`. Status: DEFINITION / MECHANIZED. |
+| OR-D2 | **Square Defect Status:** Ordered 4-case classification of defect $\delta \in C_1$ under enriched complex $(C_0, C_1, C_2, d_0, d_1)$: StrictCommute ($\delta = 0$), WeakCommuteCertified ($\delta = d_0 \alpha$), H^1DiagramTear ($\delta$ non-exact, $d_1\delta = 0$), OpenDiagramObstruction ($d_1\delta \neq 0$). | DEFINITION | Finite complex with exact matrices over $\mathbb{Q}$ satisfying $d_1 d_0 = 0$. | Quotient distance $\Phi_1([\delta]) = \inf_{\alpha} \|\delta - d_0 \alpha\|_1$ via `LinearRepairProblem`. Defect bound: $\Phi_1 = 0$ for strict/exact; $\Phi_1 > 0$ for closed/open tears. | Non-closed complex ($d_1 d_0 \neq 0$); floats/booleans/symbols in matrices strictly raise `TypeError`. Indeterminate closure raises `ValueError`. | Lean `CodaOr.HasSquareStatus` (`T01SquareClassification.lean`) + Python `classify_diagram_square`. Status: DEFINITION / MECHANIZED. |
+| OR-D3 | **Standing of Comparison Object:** Standing of $X$ requires non-empty support sieve $\operatorname{Supp}_{\mathsf{Auth}}(X)$, local terminalizer flag, and descent-triplet flag. Arrow/sieve targets must strictly bind to $X$. | DEFINITION | Comparison object $X \in \operatorname{Comp}_W(\mathbf{Reg}_\chi)$. | Invariants: $\text{sieve.target} = X.\text{id}$ and $\forall u \in \text{arrows}, u.\text{target} = X.\text{id}$. Defect bound: residual mass $= 1/1$ for empty support, $1/2$ for missing terminalizer, $0/1$ for certified. | Cross-target support; uncredentialed source; missing certificate; missing $(D, V, \tau)$. | Lean `CodaOr.ComparisonObject`, `CodaOr.HasAuthority` (`D01D02Records.lean`) + Python `evaluate_comparison_authority`. Status: DEFINITION / MECHANIZED. |
+| OR-D4 | **Limit Candidate Standing:** Limit candidate $L$ has cone legs and declared terminalizer. Valid leg requires authorized component and projection certificate. Limit standing: every leg valid and terminalizer true. | DEFINITION | Diagram $J \to \mathbf{Reg}_\chi$, cone legs into $L$. | Conjunctive predicate over all cone legs plus declared local terminalizer $\tau_L$. Defect bound: residual mass $= 3/4$ on unsupported component. | Empty leg list without terminalizer; any leg failing validity; uncertified projection. | Lean `CodaOr.LimitCandidate`, `LimitCandidate.hasLimitAuthority` (`T02LimitAuthority.lean`) + Python `evaluate_comparison_authority(require_all_sources=True)`. Status: DEFINITION / MECHANIZED. |
+| OR-T1 | **Compatible Pairs Glue Uniquely:** If pairs are compatible, there exists a unique triple $t \in A\times B\times C$ whose projections recover the pairs: $t = (\mathrm{left}.1, \mathrm{left}.2, \mathrm{right}.2)$. | THEOREM | Compatible pairs $\mathrm{left}, \mathrm{right}$ with $\mathrm{left}.2 = \mathrm{right}.1$. | Componentwise uniqueness from projections: $\pi_{1,2}(t) = \mathrm{left}$ and $\pi_{2,3}(t) = \mathrm{right}$. Defect bound: exact identity. | Boundary disagreement. | Lean `Coda.OR.pair_gluing` (via `Algebra.lean`) + Python `000_two_pairs_need_to_agree.ipynb`. Status: THEOREM / MECHANIZED. |
+| OR-T2 | **Glue Requires Overlap:** If some triple recovers both pairs, the pairs are compatible. | THEOREM | Triple $t \in A\times B\times C$ recovering $\mathrm{left}$ and $\mathrm{right}$. | Transitivity of equality on shared projection slot $B$. | Mismatched overlap slot. | Lean `Coda.OR.gluing_requires_overlap` (via `Algebra.lean`) + Python `000_two_pairs_need_to_agree.ipynb`. Status: THEOREM / MECHANIZED. |
+| OR-T3 | **Incompatible Countermodel:** No triple of type $\mathbf{1}\times\mathsf{Bool}\times\mathbf{1}$ recovers $(*,\\mathsf{false})$ and $(\mathsf{true},*)$. | THEOREM / COUNTERMODEL | Left ends in `false`, right starts in `true`. | Boolean distinctness: $\mathsf{false} \neq \mathsf{true}$ contradicts compatibility requirement of OR-T2. | Attempting to glue disjoint regimes without boundary consensus. | Lean `Coda.OR.incompatible_countermodel` (via `Algebra.lean`) + Python `000_two_pairs_need_to_agree.ipynb`. Status: THEOREM / MECHANIZED. |
+| OR-T4 | **Exact Repairs are Closed:** If $\delta = d_0 \alpha$, then $d_1 \delta = 0$. | THEOREM | Enriched complex with $d_1 d_0 = 0$, $\delta \in \operatorname{im}(d_0)$. | Nilpotence substitution: $d_1(d_0 \alpha) = (d_1 d_0)\alpha = 0 \cdot \alpha = 0$. Defect bound: boundary norm $\|d_1 \delta\| = 0$. | Complex non-nilpotence ($d_1 d_0 \neq 0$); non-exact defects. Implementer note (2026-09-23): $\Gamma_2$ means something only after $d_1 d_0 = 0$ has been checked on the declared data; an implementation must reject a non-complex, not score it. | Lean `CodaOr.exact_repair_is_closed`, `CodaOr.exact_implies_closed` (`T01SquareClassification.lean`) + Python `reproduce_section_6a_worked_example`. Status: THEOREM / MECHANIZED. |
+| OR-T5 | **Empty Support Implies No Standing:** If the support sieve of $X$ is empty, $X$ has no standing ($\mathsf{Auth}(X) = \emptyset$). | THEOREM / FIREWALL | Comparison object $X$ with $\operatorname{Supp}_{\mathsf{Auth}}(X) = \emptyset$. | Constructive firewall: `HasAuthority X` stores a proof that $\operatorname{Supp}(X)$ is non-empty. Python returns `R_empty_support` with residual $1/1$. | Adjoined nodes without inbound certified arrows; consensus laundering. | Lean `CodaOr.empty_support_sieve_implies_zero_authority` (`L02SupportSieve.lean`) + Python `test_coda_or.py::test_gtor_04_support_sieve_necessity`. Status: THEOREM / MECHANIZED. |
+| OR-T6 | **Envelope Membership is Not Standing:** There exists a comparison object $X \in \operatorname{Comp}_W(\mathbf{Reg}_\chi)$ that has no standing. | THEOREM / SCOPE FENCE | Comparison envelope object $X$. | Pointwise countermodel witness (`uncredentialed_comparison_object`). Absence of terminalizer or descent triplet blocks standing. | Assuming diagram completion mints standing; uncredentialed nodes. | Lean `CodaOr.completion_reflector_does_not_create_authority`, `CodaOr.completion_membership_not_implies_authority` (`L01NonCreation.lean`) + Python `test_coda_or.py::test_gtor_02_non_creation_firewall`. Status: THEOREM / MECHANIZED. |
+| OR-T7 | **Missing Terminalizer / Invalid Leg Blocks Limit Standing:** If declared-terminalizer flag is false or any cone leg lacks standing/certificate, limit standing fails. | THEOREM | Limit candidate $L$. | Conjunctive standing condition: missing terminalizer or invalid leg yields refutation. Defect bound: residual mass $1/2$ or $3/4$. | Limit cones missing terminalization; unverified projection arrows. | Lean `CodaOr.limit_missing_terminalizer_lacks_authority`, `CodaOr.limit_invalid_leg_lacks_authority` (`T02LimitAuthority.lean`) + Python `test_coda_or.py::test_or_edge_cases_and_uncovered_branches`. Status: THEOREM / MECHANIZED. |
+| OR-T8 | **Omniversal Object Not Assumed:** The proposition “a global omniversal comparison object is assumed” is definitionally false. | SCOPE FENCE | Category of comparison systems. | Constructive negative scope fence: `GlobalOmniversalObjectAssumed` is defined as `False`. Refusal to assume, not a proof of non-existence. | Assuming a global universal terminal observer. | Lean `CodaOr.omniversal_not_assumed` (`T02LimitAuthority.lean`). Status: SCOPE FENCE / MECHANIZED. |
+| OR-T9 | **Reasoning Authority Non-Generation Fence (Paper 028):** Proposal generation depth or trace volume acquires zero authority. Reasoning authority is not generated; it is terminalized. | SCOPE FENCE | Proposal trace $\tau \in \operatorname{Traces}(\mathcal{P})$ | Proposal trajectories lacking authorized terminalizer path | Generation depth $\not\Rightarrow$ authority | Paper 028 (`AF-003`). Prior external test reference withdrawn 2026-09-23: that test checked empty-sieve refusal, a different property. Status: SCOPE FENCE (no mechanized evidence). |
+| OR-T10 | Nonterminal computation must obey its declared resource policy | DECLARED POLICY | An external application supplies a budget and enforces it | This package has no budget scheduler or timeout theorem | Empty support is covered separately by OR-T5 | No package-local proof or runtime test of budget enforcement; former app-specific timeout values and evidence pointers remain withdrawn |
+
+---
+
+## 2. Appendix: Historical GTOR Mapping & Research Obligations
+
+This appendix documents legacy claims (GTOR-01 through GTOR-21) from earlier drafting cycles. Items outside the scope of the finite manuscript (`coda_or.md`) are explicitly recorded as unmechanized research obligations with No operational authority is conferred.
+
+| Legacy ID | Mapping to OR Claim | Scope / Status in Supplied Package | Explicit Obligation / Boundary Note |
+| :--- | :--- | :--- | :--- |
+| GTOR-01 | Maps to **OR-D3** (Comparison Object) | Subsumed by finite `ComparisonObject` record. The claimed "bicategory of all regimes" and "fully faithful 2-functor bicompletion" are **DISCLAIMED** in manuscript `Introduction & `6. | Finite records only; no bicategorical colimit claimed. |
+| GTOR-02 | Maps to **OR-T6** (Non-Creation Firewall) | Mechanized pointwise via `uncredentialed_comparison_object`. The claimed "categorical adjunction" is **NOT CLAIMED** in current manuscript. | Adjunction overclaim withdrawn; pointwise countermodel retained. |
+| GTOR-03 | Maps to **OR-D3** (Support Sieve) | Mechanized via `SupportSieve` with explicit target binding. | Sieve target and arrow targets must strictly bind to object ID. |
+| GTOR-04 | Maps to **OR-T5** (Empty Support Refusal) | Mechanized via `empty_support_sieve_implies_zero_authority` and Python `R_empty_support`. | Hard refusal on empty support sieve. |
+| GTOR-05 | Maps to **OR-D2** / **OR-T4** (Square Defect) | Mechanized via `HasSquareStatus` and Python `classify_diagram_square`. | Four-case ordered partition under exact rational cochain solver. |
+| GTOR-06 | Maps to **OR-D4** / **OR-T7** (Limit Authority) | Mechanized via `LimitCandidate` and `limit_missing_terminalizer_lacks_authority`. | Cones require local terminalizer and valid legs. |
+| GTOR-07 | Out of Scope / Research Obligation | **NOT IMPLEMENTED** in supplied package. Colimit loss ledgering remains an open research design obligation. | No operational authority is conferred. No colimit authority mechanization claimed. |
+| GTOR-08 | Maps to **OR-T8** (Omniversal Non-Assumption) | Mechanized via `omniversal_not_assumed`. | Scope fence: omniversal object is not assumed. |
+| GTOR-09 | Maps to **OR-T1** (Pair Gluing Uniqueness) | Subsumed by finite pair gluing (`pair_gluing`). | General 2-cell comparison is not claimed. |
+| GTOR-10 | Maps to **OR-D2** / **OR-T4** (Square Classification) | Subsumed by OR-D2 and OR-T4. | Four labels via exact $\ell^1$ quotient distance. |
+| GTOR-11 | Out of Scope / Research Obligation | **NOT IMPLEMENTED**. General weight functors $W: J^{\text{op}} \to \mathbf{Cat}$ are not formalized in Lean or Python. | Declared string weight classes only. |
+| GTOR-12 | Out of Scope / Research Obligation | **NOT IMPLEMENTED**. Adjoint reflector construction is not formalized. | Pointwise deletion lemma only. |
+| GTOR-14 | Maps to **OR-D2** (Square Status) | Subsumed by OR-D2. | Total ordered classification. |
+| GTOR-15 | Maps to **OR-D3** (Weight Class Declaration) | Subsumed by `ComparisonObject.weight_class`. | Non-empty string required. |
+| GTOR-16 | Maps to **OR-T5** (Empty Support Refusal) | Subsumed by OR-T5. | Duplicate of GTOR-04. |
+| GTOR-17 | Out of Scope / Research Obligation | **NOT IMPLEMENTED**. Bounded LLM/evaluator test schemas are not mathematical proofs. | Empirical interpretation fence. |
+| GTOR-18 | Out of Scope / Research Obligation | **NOT IMPLEMENTED**. Disagreement residual handoff to CODA-CS/CODA-A remains typed external protocol. | No operational authority is conferred. |
+| GTOR-19 | Out of Scope / Research Obligation | **NOT IMPLEMENTED**. Monodromy loop cocycles are not in supplied manuscript or Lean files. | Open research obligation. |
+| GTOR-20 | Enriched Environment Nilpotence | Implemented in Python `EnrichedEnvironment` ($d_1 d_0 = 0$). Matrix entries verified as exact rationals. | Zero-float enforcement on cochain differentials. |
+| GTOR-21 | Out of Scope / Conditional | **OPEN / CONDITIONAL**. Global gluing of every cover remains conditional on authorized-glue hypothesis ($H3''$). | Not discharged in this package. |
+
+---
+
+## 3. Edge Cases, Exact Rational Arithmetic & Invariants
+
+1. **Zero Floats Invariant:**
+   All numerical scalars, matrix entries in differentials $d_0, d_1$, raw defect vectors, and quotient distances are represented strictly as exact rational numbers (`sympy.Rational` / `fractions.Fraction`). Floats, booleans, and symbolic variables in matrix positions strictly raise `TypeError` (enforced via `_validate_exact_rational` in `coda_or_core.py`).
+2. **Target Binding Invariants:**
+   - $\text{sieve.target} = \text{object.id}$
+   - $\forall u \in \text{sieve.arrows},\quad u.\text{target} = \text{sieve.target}$
+   Mismatches between arrow target and sieve target, or sieve target and object ID, strictly raise `ValueError` at construction.
+3. **Defensive Immutability:**
+   - `EnrichedEnvironment.d0` and `d1` store immutable snapshots (`sympy.ImmutableMatrix`), preventing post-construction mutation of differential matrices or complex nilpotence.
+   - `DiagramDefectResult` stores immutable matrix copies of `raw_defect`, `boundary_image`, and `repair_2cell`. Modifying the caller's input after classification does not alter the stored result.
+4. **Indeterminate Closure Defense:**
+   In `classify_diagram_square`, if $d_1 \delta$ cannot be determined to be zero or non-zero (`d1_delta.is_zero_matrix is None`), the function raises `ValueError` rather than defaulting to an open defect.
+5. **Protected Skeleton Discipline:**
+   `ProtectedSkeleton.elements` is normalized to an immutable tuple of non-empty strings. Unledgered mutation or mutation with an empty string `loss_ledger=""` raises `SilentMutationRefusal`.
+6. **Standing Policy Refinement:**
+   - Lean `HasAuthority`: requires at least one supporting arrow, local terminalizer, descent triplet, and object/sieve/all-arrow target binding.
+   - Python default evaluator: additionally enforces `require_all_sources=True` (every listed arrow must carry standing). For well-formed nonblank names and weight declarations, `require_all_sources=False` uses the same support, local flags, and target-binding conditions. No full Python/Lean equivalence theorem is claimed.
+7. **Scope:**
+   No operational authority is conferred unconditionally across all code, tests, and documentation.
+
+Target-binding regressions: `CodaOr.old_flags_admit_mismatched_targets`, `CodaOr.mismatched_targets_have_no_authority`, and `CodaOr.bound_target_example_has_authority` in `lean4/L02SupportSieve.lean`.

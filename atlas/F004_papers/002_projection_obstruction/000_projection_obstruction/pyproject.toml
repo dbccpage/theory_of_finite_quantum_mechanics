@@ -1,0 +1,55 @@
+# 2026-08-31: metadata now describes the layout that actually ships.
+# Earlier revisions declared a src/po000 package, src-based pytest/coverage
+# paths, and a dependency list (scipy, sympy, matplotlib, pydantic-by-
+# accident) the code no longer needs.  The deposit runs in place from
+# code/ on stdlib + numpy + scipy + pytest; the notebooks are optional
+# extras.  The license field names the code license (Apache-2.0); text and
+# rendered .tex/.pdf are CC-BY-4.0 -- see LICENSE for the dual statement.
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "po000-projection-obstruction"
+version = "6.9.6"
+description = "Projection Obstruction Anchor: Product Projections and Exact Short-Time Defect Bounds"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Jeremy H. Carroll" }]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "pytest>=7.0.0",
+]
+
+[project.optional-dependencies]
+jets = ["sympy>=1.12"]
+notebooks = ["jupyter>=1.0.0", "ipywidgets>=8.0.0", "matplotlib>=3.7.0"]
+dev = ["pytest-cov>=4.0.0", "mypy>=1.8"]
+
+[tool.setuptools]
+# The deposit is run in place (PYTHONPATH=code); it does not install a
+# package.  An empty package list keeps `pip install .` metadata-only.
+packages = []
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+pythonpath = ["code"]
+addopts = "-p no:debugging"
+markers = ["native_integration: requires explicit repository Rust host integration"]
+
+[tool.coverage.run]
+source = ["code"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
+skip_empty = true
+
+[tool.mypy]
+files = ["code"]
+python_version = "3.11"
+warn_unused_ignores = false

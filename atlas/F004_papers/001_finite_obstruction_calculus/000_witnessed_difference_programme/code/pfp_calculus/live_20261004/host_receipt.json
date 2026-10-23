@@ -1,0 +1,175 @@
+{
+  "authority_effect": "None",
+  "scope": "one live PFP proposal with host audit, extraction and Stage 5",
+  "generation_id": "gen-1791160037-Fc3JtoY58i7oHmvXqMWI",
+  "model_reported": "stealth/space-bunny-alpha",
+  "provider_response_sha256": "dff39b926469a1eb4618c4afd0534226bef3d10e9931c94243d330eb5956f66e",
+  "packet_sha256": "3e13b2c2113891d15226b42ec50464c623f35fad5090f9223b9d51f0caaf4ff4",
+  "raw_usage": {
+    "prompt_tokens": 703,
+    "completion_tokens": 88,
+    "total_tokens": 791,
+    "cost": 0,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 138,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0,
+      "upstream_inference_prompt_cost": 0,
+      "upstream_inference_completions_cost": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "provider_reported_cost_usd": 0,
+  "billing_status": "PROVIDER_REPORTED",
+  "model_calls_in_original_run": 1,
+  "model_calls_in_replay": 0,
+  "model_candidate": {
+    "packet": {
+      "demo_id": "DEMO_001_CALCULUS_R03_R20",
+      "authority_effect": "None",
+      "seed": "Integrate the function f(x) = x from integer 0 to integer 10.\nProvide the single exact numerical result.",
+      "seed_sha256": "fc7084d099b73033938cc8be4fb11055413d9487959bf10c05783be341663b52",
+      "problem": {
+        "profile_id": "demo001_real_qpoly_v1",
+        "domain": "real_interval",
+        "measure": "riemann_dx",
+        "integrand_coefficients": [
+          "0",
+          "1"
+        ],
+        "lower": "0",
+        "upper": "10"
+      },
+      "source": {
+        "candidate_id": "live_model_space_bunny:29764567438b32d1f5c1e173cbdbcc5ce2a42d61ca5dbecbd9286a9055700e97",
+        "actor": "live_model_space_bunny",
+        "raw_response": "{\"profile_id\":\"demo001_real_qpoly_v1\",\"input_sha256\":\"3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d\",\"method\":\"polynomial_antiderivative\",\"antiderivative_coefficients\":[\"0\",\"0\",\"1/2\"],\"claimed_value\":\"50\"}",
+        "raw_sha256": "29764567438b32d1f5c1e173cbdbcc5ce2a42d61ca5dbecbd9286a9055700e97",
+        "candidate_sha256": "3c0ab3faf3358bfbe76ad6764fada101ee90a15b3373ea24a23bd25f2d442653"
+      },
+      "audit": {
+        "owner": "host",
+        "authority_effect": "None",
+        "candidate_id": "live_model_space_bunny:29764567438b32d1f5c1e173cbdbcc5ce2a42d61ca5dbecbd9286a9055700e97",
+        "parent_sha256": "48072467e7fe7309da2d5cd23f28da3a0951fcf2eaba564ffc729775c88cc7b7",
+        "routing": "extract_for_check",
+        "scope": "identity and source fidelity only; mathematical evaluation follows",
+        "source_quote": "Integrate the function f(x) = x from integer 0 to integer 10.\nProvide the single exact numerical result."
+      },
+      "extraction": {
+        "owner": "host",
+        "authority_effect": "None",
+        "candidate_id": "live_model_space_bunny:29764567438b32d1f5c1e173cbdbcc5ce2a42d61ca5dbecbd9286a9055700e97",
+        "parent_sha256": "654978d3f463ebfa372c68be2078681b72e05660853681f447e01273e07c9bdd",
+        "input_sha256": "3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d",
+        "proposal": "{\"profile_id\":\"demo001_real_qpoly_v1\",\"input_sha256\":\"3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d\",\"method\":\"polynomial_antiderivative\",\"antiderivative_coefficients\":[\"0\",\"0\",\"1/2\"],\"claimed_value\":\"50\"}"
+      }
+    },
+    "stage_5": {
+      "authority_effect": "None",
+      "executor": "host",
+      "stage": 5,
+      "scope": "submitted candidate replay with host audit and extraction; not full staged campaign",
+      "packet_sha256": "c1029bb4177a6c95c14b538bce24dd7145f9b76b9235af4cb0d945ff8aed4892",
+      "candidate_id": "live_model_space_bunny:29764567438b32d1f5c1e173cbdbcc5ce2a42d61ca5dbecbd9286a9055700e97",
+      "candidate_sha256": "3c0ab3faf3358bfbe76ad6764fada101ee90a15b3373ea24a23bd25f2d442653",
+      "checker_calls": 1,
+      "checker_sha256": "0a5ae6ed9511bd48a9cb7ff9163a05db9be747eb58f7e6d44274ee0c88f07832",
+      "adapter_sha256": "32f6ba78aa6b0f135952b8c2889c161756f6fa4510cd453a1dd6ee4b558bc986",
+      "contract_sha256": "d5b696d2ae06c61ed7e8b3cdf37e2a3724e6c08f513f991e6ac2b5bc76f2fdb4",
+      "derivative_coefficients": [
+        "0",
+        "1"
+      ],
+      "endpoint_difference": "50",
+      "mathematical_receipt": {
+        "authority_effect": "None",
+        "input_sha256": "3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d",
+        "candidate_sha256": "3c0ab3faf3358bfbe76ad6764fada101ee90a15b3373ea24a23bd25f2d442653",
+        "scope": "reference fixture checker only",
+        "status": "checked_accept",
+        "reason": "Submitted witness replayed against the bound problem",
+        "value": "50"
+      }
+    }
+  },
+  "host_negative_control": {
+    "packet": {
+      "demo_id": "DEMO_001_CALCULUS_R03_R20",
+      "authority_effect": "None",
+      "seed": "Integrate the function f(x) = x from integer 0 to integer 10.\nProvide the single exact numerical result.",
+      "seed_sha256": "fc7084d099b73033938cc8be4fb11055413d9487959bf10c05783be341663b52",
+      "problem": {
+        "profile_id": "demo001_real_qpoly_v1",
+        "domain": "real_interval",
+        "measure": "riemann_dx",
+        "integrand_coefficients": [
+          "0",
+          "1"
+        ],
+        "lower": "0",
+        "upper": "10"
+      },
+      "source": {
+        "candidate_id": "host_adversarial_control:fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1",
+        "actor": "host_adversarial_control",
+        "raw_response": "{\"antiderivative_coefficients\":[\"0\",\"5\"],\"claimed_value\":\"50\",\"input_sha256\":\"3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d\",\"method\":\"polynomial_antiderivative\",\"profile_id\":\"demo001_real_qpoly_v1\"}",
+        "raw_sha256": "fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1",
+        "candidate_sha256": "fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1"
+      },
+      "audit": {
+        "owner": "host",
+        "authority_effect": "None",
+        "candidate_id": "host_adversarial_control:fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1",
+        "parent_sha256": "c2a3622ab098a045bf6e5cfa31efc65b215407fbfea864feea495a2c02c57f31",
+        "routing": "extract_for_check",
+        "scope": "identity and source fidelity only; mathematical evaluation follows",
+        "source_quote": "Integrate the function f(x) = x from integer 0 to integer 10.\nProvide the single exact numerical result."
+      },
+      "extraction": {
+        "owner": "host",
+        "authority_effect": "None",
+        "candidate_id": "host_adversarial_control:fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1",
+        "parent_sha256": "40f578dced74237d4bf5193f2e16f73221fffff37b23a72bd706a3b7903a41c8",
+        "input_sha256": "3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d",
+        "proposal": "{\"antiderivative_coefficients\":[\"0\",\"5\"],\"claimed_value\":\"50\",\"input_sha256\":\"3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d\",\"method\":\"polynomial_antiderivative\",\"profile_id\":\"demo001_real_qpoly_v1\"}"
+      }
+    },
+    "stage_5": {
+      "authority_effect": "None",
+      "executor": "host",
+      "stage": 5,
+      "scope": "submitted candidate replay with host audit and extraction; not full staged campaign",
+      "packet_sha256": "4c16855a4c00627f01c543412621fb4b8fccf306deaf6b1f82f5aa7c63f1aca4",
+      "candidate_id": "host_adversarial_control:fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1",
+      "candidate_sha256": "fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1",
+      "checker_calls": 1,
+      "checker_sha256": "0a5ae6ed9511bd48a9cb7ff9163a05db9be747eb58f7e6d44274ee0c88f07832",
+      "adapter_sha256": "32f6ba78aa6b0f135952b8c2889c161756f6fa4510cd453a1dd6ee4b558bc986",
+      "contract_sha256": "d5b696d2ae06c61ed7e8b3cdf37e2a3724e6c08f513f991e6ac2b5bc76f2fdb4",
+      "derivative_coefficients": [
+        "5"
+      ],
+      "endpoint_difference": "50",
+      "mathematical_receipt": {
+        "authority_effect": "None",
+        "input_sha256": "3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d",
+        "candidate_sha256": "fe0649d02a73db681142fdd3b6dcc3385d7b85065258c5e27520ff9c32d96ae1",
+        "scope": "reference fixture checker only",
+        "status": "invalid_witness",
+        "reason": "Polynomial derivative differs from the original integrand"
+      }
+    }
+  },
+  "acceptance": true,
+  "remaining_scope": "This single example does not claim the complete numbered eight-stage model campaign or all SG demonstrations."
+}

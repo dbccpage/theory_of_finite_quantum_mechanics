@@ -1,0 +1,2135 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% DDC v1.0.3 — pandoc header for pdfLaTeX. AuthorityEffect: None.
+\usepackage{newunicodechar}
+\newunicodechar{Λ}{\ensuremath{\Lambda}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{Φ}{\ensuremath{\Phi}}
+\newunicodechar{Γ}{\ensuremath{\Gamma}}
+\newunicodechar{ℓ}{\ensuremath{\ell}}
+\newunicodechar{₁}{\ensuremath{_1}}
+\newunicodechar{₂}{\ensuremath{_2}}
+\usepackage{pdflscape}
+\emergencystretch=3em
+\usepackage{microtype}
+% Let long identifiers in code spans break after underscores.
+\let\ddcunderscore\_
+\renewcommand{\_}{\ddcunderscore\allowbreak}
+\ifx\pdftrailerid\undefined\else\pdftrailerid{ddc-1.0.3}\fi
+\AtBeginDocument{\hypersetup{
+  pdftitle={Discrete Deformation Calculus: A Finite Trace Calculus for Obstruction Handling},
+  pdfauthor={Jeremy H. Carroll},
+  pdfsubject={Version 1.0.3; 2026-10-03; preprint; DOI pending},
+  pdfkeywords={discrete deformation calculus, finite obstruction calculus, trace calculus, Lean 4}
+}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+\phantomsection\label{discrete-deformation-calculus}
+{\LARGE\bfseries Discrete Deformation Calculus}\par\medskip
+{\large A Finite Trace Calculus for Obstruction Handling}\par\medskip
+Jeremy H. Carroll\par
+Version 1.0.3 --- 2026-10-03\par
+Text: CC BY 4.0 --- Code: PolyForm Noncommercial 1.0.0
+\end{center}
+
+\section{Abstract}\label{abstract}
+
+The Discrete Deformation Calculus (DDC) records what a finite
+computation did to a declared obstruction. Each step emits one letter
+from \(\mathcal{A}_{\mathrm{DDC}} = \{E, R, C, I, \Lambda, D, M, T\}\):
+exact repair, residual projection, context exposure, integration,
+licensed lift, descent, typed refusal and terminalization. A step
+carries a receipt, and a tape is the hash-chained sequence of receipts.
+Diagnostics come from CODA-FOC: \(\Phi_1\) is the weighted \(\ell^1\)
+distance of a residual to the image of \(d_0\), and
+\(\Gamma_2 = \lVert d_1 x \rVert_1\) is its face-closure defect.
+
+This version states the letter laws as a finite-control transition
+system over unbounded data and proves its tape results in Lean 4 without
+Mathlib. Every proved or computed claim is bound to a Lean declaration,
+a Python test or a written proof shipped in this package; the rest are
+typed as open problems or positioning. The main results are these. Only
+a descent with a loss ledger or a licensed lift can lower \(\Phi_1\) or
+\(\Gamma_2\). Consequently an open obstruction (\(\Gamma_2 > 0\)) never
+reaches a terminal without such a priced move. The tape C·R·E·D·I·T is
+lawful exactly when each of its six steps satisfies its law. A lawful
+one starts from \(\Phi_1 = \Gamma_2 = 0\), and without a loss ledger at
+D it is not lawful. Every step the paper admits satisfies the deposited
+historical comparison laws on the same abstract state; no
+deployed-runtime equivalence is claimed. A lawful tape is replay
+evidence; it is never authority.
+
+\section{0. Scope and nonclaims}\label{scope-and-nonclaims}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DDC does not prove that reality is discrete or that the universe is a cochain complex.}
+\NormalTok{DDC does not prove quantum mechanics, continuum physics, consciousness, semantic truth,}
+\NormalTok{autonomous self{-}modification, or global topology.}
+
+\NormalTok{DDC is not authority. A DDC tape is replay evidence; a receipt is bounded verification}
+\NormalTok{data; a terminal is a routing terminal. No authorization is conferred.}
+
+\NormalTok{"All problems are obstruction problems" is a programme thesis, not a theorem.}
+\NormalTok{"The universe is not very creative" is motivation, not runtime mathematics.}
+\end{Highlighting}
+\end{Shaded}
+
+Every diagnostic in this paper is taken on a declared finite carrier
+with a declared detector. Claims about trace equivalence, normal forms,
+detector adequacy in general, and lift minimality remain open (§13).
+
+\section{Part I --- The calculus}\label{part-i-the-calculus}
+
+\section{1. Definition}\label{definition}
+
+\textbf{Definition 1.1} (OE010-09). A \emph{DDC regime} is a finite
+carrier, declared coboundary maps \(d_0, d_1\) with \(d_1 d_0 = 0\), a
+detector that measures \(\Phi_1\) and \(\Gamma_2\), and a terminal
+policy. A \emph{step} is a letter from \(\mathcal{A}_{\mathrm{DDC}}\),
+the state after it, and the witnesses it carries. A \emph{tape} is a
+finite sequence of steps; it is \emph{lawful} when every step satisfies
+its letter's step law (§7) and the control laws (§10).
+
+Carrier, ZeroRel, Observer, Witness, Residual, Quotient, CompletionLaw
+and AuthorityEffect are used in their CODA sense; this paper relies only
+on the ones it defines in this section and in §3 (OE010-02).
+
+The letters classify the role a step played in the life of an
+obstruction:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{context exposure · exact repair · residual projection · integration}
+\NormalTok{licensed lift · descent · typed refusal · terminalization}
+\end{Highlighting}
+\end{Shaded}
+
+\section{2. Core invariant}\label{core-invariant}
+
+DDC does not only classify obstruction states. It classifies what each
+computation did to an obstruction:
+
+\[\boxed{\text{DDC is a typed calculus of what a computation did to an obstruction.}}\]
+
+A status system says \emph{pass}, \emph{fail} or \emph{unknown}. DDC
+asks which finite operation occurred: did it expose a carrier, repair a
+defect, project a residual, integrate a receipt, license a lift, descend
+with loss, refuse, or terminalize? This lets error handling be compared
+across domains without claiming that the domains share an ontology.
+
+\section{3. Cochain window and
+diagnostics}\label{cochain-window-and-diagnostics}
+
+When a cochain regime is declared, every execution window is
+
+\[C^0 \xrightarrow{d_0} C^1 \xrightarrow{d_1} C^2, \qquad d_1 \circ d_0 = 0.\]
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Object & Runtime reading \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(C^0\) & vertex variables, potentials, repair parameters \\
+\(C^1\) & edge defects, claim gaps, local residuals \\
+\(C^2\) & face and loop closure defects \\
+\end{longtable}
+
+The convention is adapter-conditional: a prompt, a patch or an agent
+trace does not have \(C^\bullet\), \(d_0\), \(d_1\), \(\Phi_1\) or
+\(\Gamma_2\) until a carrier, a comparison map, a repair image and a
+detector have been declared.
+
+\textbf{Definition 3.1} (FOC diagnostics). For a residual \(x \in C^1\)
+with positive edge weights \(w\),
+\(\Phi_1(x) = \min_{\varphi} \sum_e w_e \lvert x_e - (d_0\varphi)_e \rvert\)
+and \(\Gamma_2(x) = \lVert d_1 x \rVert_1\). The class of \(x\) is
+\emph{ActiveClosureFailure} when \(\Gamma_2 > 0\), otherwise
+\emph{ExactRepair} when \(\Phi_1 = 0\), otherwise \emph{ClosedResidual}.
+A positive \(\Gamma_2\) dominates (witness dominance).
+
+\textbf{Proposition 3.2} (DDC-TAPE-11). On a finite graph, \(\Phi_1\) is
+attained at a potential determined by a spanning forest whose edges are
+all tight. Enumerating spanning forests therefore computes \(\Phi_1\)
+exactly.
+
+\emph{Proof.} Fix one vertex potential to zero in each connected
+component. Positive weights bound each edge difference on an objective
+sublevel set; paths in a spanning forest then bound every remaining
+potential. Apply compactness to the real extension; a minimum is
+attained. The objective is piecewise linear on finitely many polyhedral
+regions. The minimizing face in one such region is nonempty and bounded,
+so it contains a vertex of that region. At such a vertex, independent
+tight constraints \(x_e = \varphi_v - \varphi_u\) fix \(\varphi\).
+Independent incidence rows form a forest, and fixing \(\varphi\) needs
+one spanning each component. A minimizing vertex determined by a
+spanning forest has rational coordinates, so the optimum is also
+attained over the rationals. \(\square\)
+
+\texttt{cochain.\allowbreak phi1} implements the enumeration and refuses as
+\texttt{BUDGET\_UNKNOWN} above a declared subset budget;
+\texttt{test\_cochain.\allowbreak py::test\_phi1\_is\_gauge\_invariant\_and\_matches\_brute\_force\_on\_small\_grids}
+checks it against an integer search. \texttt{cochain.\allowbreak phi1\_certificate}
+also returns a dual witness: a flow \(y\) with \(d_0^{\top} y = 0\) and
+\(\lvert y_e \rvert \le w_e\) whose value \(\langle y, x \rangle\)
+equals the primal objective. Dual vertices set \(y_e = \pm w_e\) off a
+spanning forest and solve the forest edges by conservation, so the same
+enumeration finds them, and strong duality is checked rather than
+assumed
+(\texttt{test\_cochain.\allowbreak py::test\_phi1\_certificates\_close\_the\_duality\_gap\_exactly}).
+Every \(\Phi_1\) in the demos is measured through this certificate.
+
+A fixed forest representative need not minimize this objective. For the
+complete graph on \(a<b<c<d\), orient all six edges increasingly and put
+\(-1\) on each. The forest rooted at \(a\) leaves the three other edges
+at \(-1\), so the recorded residual norm is 3, while \(\Phi_1=2\). Both
+representatives have the same quotient class. Chapter 2 distinguishes
+these quantities.
+
+\textbf{Theorem 3.3} (OE010-01, DDC-TAPE-10). Over \(\mathbb{Q}\) with
+the standard inner product,
+\(C^1 = \operatorname{im} d_0 \oplus \operatorname{im} d_1^{\top}
+\oplus \mathcal{H}^1\) with
+\(\mathcal{H}^1 = \ker d_1 \cap \ker d_0^{\top}\). Write
+\(x = x_E + x_C + x_H\). Then \(\Gamma_2(x) > 0\) exactly when
+\(x_C \neq 0\), and \(\Phi_1(x) = 0\) exactly when \(x_C = 0\) and
+\(x_H = 0\).
+
+\emph{Proof.} Set \(U=\operatorname{im}d_0\) and
+\(V=\operatorname{im}d_1^{\top}\). The chain law gives \(U\perp V\), and
+\((U\oplus V)^\perp=\ker d_0^{\top}\cap\ker d_1=\mathcal H^1\).
+Finite-dimensional positive definiteness gives the unique orthogonal
+direct sum \(C^1=U\oplus V\oplus\mathcal H^1\). The defining linear
+systems have rational coefficients, so their unique projected vectors
+are rational. Now \(d_1\) kills \(x_E\) because \(d_1 d_0 = 0\) and
+kills \(x_H\) by definition. On \(\operatorname{im} d_1^{\top}\) it is
+injective: \(d_1 d_1^{\top}\psi = 0\) implies
+\(\lVert d_1^{\top}\psi \rVert^2 = \langle \psi, d_1 d_1^{\top}\psi
+\rangle = 0\). So \(d_1 x = d_1 x_C\) vanishes only when \(x_C = 0\).
+\(\Phi_1(x) = 0\) means \(x \in \operatorname{im} d_0\), which by the
+direct sum means \(x_C = x_H = 0\). \(\square\)
+
+The subscripts name Hodge components, not letters. The letter E acts on
+the exact component; the co-exact component is what \(\Gamma_2\) sees;
+the harmonic component is the closed residual.
+\texttt{cochain.\allowbreak hodge\_split} computes the split exactly and
+\texttt{test\_cochain.\allowbreak py::test\_hodge\_split\_is\_orthogonal\_and\_matches\_the\_classes}
+checks the theorem on four complexes.
+
+\section{4. The alphabet}\label{the-alphabet}
+
+Every state transition or structural modification in a DDC regime emits
+exactly one letter.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1739}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3478}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3478}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Letter
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Runtime meaning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Must not claim
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{E} & Exact repair & removes a defect that lies in
+\(\operatorname{im} d_0\) & semantic truth, global correctness,
+authority \\
+\texttt{R} & Residual projection & records the residual class; keeps
+\(\Phi_1\) and \(\Gamma_2\) & resolution \\
+\texttt{C} & Context exposure & declares or splits the carrier, window
+or boundary & repair or authority \\
+\texttt{I} & Integration & appends a receipt to the hash-chained tape &
+promotion \\
+\texttt{Λ} & Structural lift & extends the carrier under a licence &
+arbitrary growth or automatic promotion \\
+\texttt{D} & Descent & re-indexes or coarsens with a declared loss
+ledger & lossless transport unless witnessed \\
+\texttt{M} & Typed refusal & refuses an invalid, unwitnessed or
+out-of-budget request & failure of the product \\
+\texttt{T} & Terminalization & closes the tape on a routing terminal &
+authority \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DDC records how an obstruction was handled, not whether the world is true.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{5. Step receipts}\label{step-receipts}
+
+Every admitted abstract step produces a deterministic record of the
+supplied states, carrier labels and witness flags, linked to the
+previous record. These flags are hypotheses about evidence presence;
+they do not authenticate a receipt, a loss ledger, a licence or detector
+adequacy. Direct construction of \texttt{State} likewise does not
+certify its diagnostics.
+
+\texttt{measure} computes exact diagnostics. Passing a carrier map to
+\texttt{run\_tape} recomputes the initial and successor diagnostics,
+checks that R changes the cochain by a coboundary, and binds topology
+and positive weights into the tape genesis digest. Without that map,
+replay checks only the abstract laws. The Lean theorems concern those
+laws, not an authenticated runtime. The record is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\{}
+  \DataTypeTok{"step\_index"}\FunctionTok{:} \DecValTok{2}\FunctionTok{,}
+  \DataTypeTok{"before\_digest"}\FunctionTok{:} \StringTok{"sha256 of the canonical before{-}state"}\FunctionTok{,}
+  \DataTypeTok{"after\_digest"}\FunctionTok{:} \StringTok{"sha256 of the canonical after{-}state"}\FunctionTok{,}
+  \DataTypeTok{"carrier\_before"}\FunctionTok{:} \StringTok{"two\_triangles"}\FunctionTok{,}
+  \DataTypeTok{"carrier\_after"}\FunctionTok{:} \StringTok{"two\_triangles"}\FunctionTok{,}
+  \DataTypeTok{"class\_before"}\FunctionTok{:} \StringTok{"ExactRepair"}\FunctionTok{,}
+  \DataTypeTok{"class\_after"}\FunctionTok{:} \StringTok{"ExactRepair"}\FunctionTok{,}
+  \DataTypeTok{"phi\_before"}\FunctionTok{:} \StringTok{"0"}\FunctionTok{,} \DataTypeTok{"phi\_after"}\FunctionTok{:} \StringTok{"0"}\FunctionTok{,}
+  \DataTypeTok{"gamma\_before"}\FunctionTok{:} \StringTok{"0"}\FunctionTok{,} \DataTypeTok{"gamma\_after"}\FunctionTok{:} \StringTok{"0"}\FunctionTok{,}
+  \DataTypeTok{"witness"}\FunctionTok{:} \FunctionTok{\{}
+    \DataTypeTok{"receipt"}\FunctionTok{:} \KeywordTok{false}\FunctionTok{,}
+    \DataTypeTok{"loss\_ledger"}\FunctionTok{:} \KeywordTok{false}\FunctionTok{,}
+    \DataTypeTok{"lift\_licence"}\FunctionTok{:} \KeywordTok{false}\FunctionTok{,}
+    \DataTypeTok{"reason"}\FunctionTok{:} \KeywordTok{null}
+  \FunctionTok{\},}
+  \DataTypeTok{"control\_after"}\FunctionTok{:} \StringTok{"Open"}\FunctionTok{,}
+  \DataTypeTok{"routing\_terminal"}\FunctionTok{:} \KeywordTok{null}\FunctionTok{,}
+  \DataTypeTok{"authority\_effect"}\FunctionTok{:} \StringTok{"None"}
+\FunctionTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The integration tape chains receipts as
+\(h_{t+1} = \mathrm{SHA256}(t : h_t : \alpha : \mathrm{json}(r_t))\)
+with canonical JSON (sorted keys, exact rationals as strings, floats
+refused). Production receipts add a trace identifier, detector and
+terminalizer versions, protected distinctions, and references to loss
+ledgers and lift requests. No receipt stores raw user text by default.
+Tamper evidence assumes the collision resistance of SHA-256 and an
+independently retained head and length (DDC-I-02). Unanchored replay
+checks internal consistency only; a rewritten or truncated history can
+remain internally consistent.
+
+\section{6. Diagnostic and runtime
+crosswalk}\label{diagnostic-and-runtime-crosswalk}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2353}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1765}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2353}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3529}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+DDC term
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Runtime term
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Diagnostic meaning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Routing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+closure defect & \(\Gamma_2\) & \(d_1 x \neq 0\) & \texttt{Repair} or
+\texttt{Refusal}; never \texttt{Check\allowbreak Passed} \\
+irreducible residual & \(\Phi_1\) & quotient mass, \(\Phi_1 > 0\) &
+\texttt{Requires\allowbreak Lift} or residual terminal \\
+exact class & \texttt{Exact\allowbreak Repair} & \(\Phi_1 = 0\), \(\Gamma_2 = 0\) &
+\texttt{Check\allowbreak Passed} within the declared scope \\
+open defect & \texttt{Active\allowbreak Closure\allowbreak Failure} & \(\Gamma_2 > 0\) &
+\texttt{Repair} or \texttt{Refusal} \\
+stabilized survivor & \texttt{Closed\allowbreak Residual} & \(\Phi_1 > 0\),
+\(\Gamma_2 = 0\) & residual terminal or \texttt{Requires\allowbreak Lift} \\
+\end{longtable}
+
+The four axes stay separate:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiagnosticClass ≠ RoutingTerminal ≠ ExtensionStatus ≠ AuthorityStatus.}
+\end{Highlighting}
+\end{Shaded}
+
+Letters are not terminals. \texttt{Check\allowbreak Passed} on the routing axis is
+not a licence: this package adopts \texttt{F\_term:\ REFUSED} as its
+explicit unlicensed-terminal policy. This is a policy definition, not an
+application of an external theorem.
+
+\section{7. The laws}\label{the-laws}
+
+The eight candidate laws of the first draft are now step and control
+laws of a finite-control transition system (Definition 10.1). The
+comparison columns below refer exclusively to the deposited
+\texttt{engine\allowbreak Law} and \texttt{engine\_violations} specifications,
+retained from repository commit
+\texttt{e4a1214bb3e47570b0f74ecc9117c98f27a26b5e}. Their names are
+historical. No theorem here establishes parity with a deployed Rust
+implementation; claims about later runtime changes require a separate
+pinned conformance check.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Trace typing} (OE010-03). Every letter carries its input
+  class, output class, required witness and refusal condition, and every
+  lawful step satisfies its letter's step law
+  (\texttt{Ddc.\allowbreak well\_typed\_step}).
+\item
+  \textbf{Terminal absorption} (OE010-10). After \texttt{T} no letter is
+  admitted, so \texttt{T} is the last letter of a lawful tape
+  (\texttt{Ddc.\allowbreak lawful\_T\_is\_last}).
+\item
+  \textbf{Refusal absorption unless lifted} (DDC-TAPE-01). After
+  \texttt{M} only \texttt{C} (changed scope), \texttt{Λ} (licensed lift)
+  or \texttt{T} may follow.
+\item
+  \textbf{Lift trigger.} \texttt{Λ} needs a licence and a trigger: the
+  state before it is a \texttt{Closed\allowbreak Residual} or its detector is
+  inadequate. A trigger is not a licence.
+\item
+  \textbf{Integration requires a receipt.} \texttt{I} without a receipt
+  is refused.
+\item
+  \textbf{Descent requires a loss ledger.} \texttt{D} without a loss
+  ledger is refused.
+\item
+  \textbf{Exact repair discharges.} \texttt{E} needs an exact class
+  before it, leaves the carrier unchanged, and leaves
+  \(\Phi_1 = \Gamma_2 = 0\) and a zero defect after it. A gauge repair
+  cannot cross classes (Chapter 1), so \texttt{E} is never a disguised
+  class change.
+\item
+  \textbf{Context exposure is not repair.} \texttt{C} changes the
+  carrier and never lowers \(\Phi_1\) or \(\Gamma_2\). Hiding an
+  obstruction by re-scoping has to be priced as \texttt{D} or
+  \texttt{Λ}.
+\end{enumerate}
+
+The step laws, compared with the deposited historical specification:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Letter
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Step law
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Deposited comparison
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Additional paper law
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{E} & same carrier; after \(\Phi_1 = \Gamma_2 = 0\) & yes
+(\texttt{Exact\allowbreak Repair\allowbreak Left\allowbreak Residual}) & before class exact; zero defect
+after; adequate detector \\
+\texttt{R} & same carrier; \(\Phi_1\) unchanged & yes
+(\texttt{Residual\allowbreak Projection\allowbreak Changed\allowbreak Mass}) & \(\Gamma_2\) unchanged;
+adequate detector \\
+\texttt{C} & carrier changes & yes
+(\texttt{Carrier\allowbreak Unchanged\allowbreak Under\allowbreak Restructure}) & \(\Phi_1\) and
+\(\Gamma_2\) do not fall (Law 8) \\
+\texttt{I} & state unchanged & yes (\texttt{Inert\allowbreak Op\allowbreak Mutated\allowbreak State}) &
+receipt present (Law 5) \\
+\texttt{Λ} & carrier changes & yes & licence and trigger (Law 4) \\
+\texttt{D} & carrier changes & yes & loss ledger (Law 6) \\
+\texttt{M} & state unchanged & yes & reason from the closed
+vocabulary \\
+\texttt{T} & state unchanged; \(\Gamma_2 = 0\) & yes
+(\texttt{Terminalized\allowbreak Open\allowbreak Residual}) & adequate detector \\
+\end{longtable}
+
+\textbf{Theorem 7.1} (DDC-TAPE-03). Every step admitted by the paper
+laws satisfies the deposited comparison laws, represented on the
+abstract state (\texttt{engine\allowbreak Law} in Lean, \texttt{engine\_violations}
+in Python). The comparison is defined by the local source bytes; the
+theorem does not execute Rust or assert correspondence with its current
+version. Lean: \texttt{Ddc.\allowbreak paper\_refines\_engine}; Python:
+\texttt{test\_automaton.\allowbreak py::test\_paper\_laws\_refine\_the\_engine\_laws\_on\_every\_step}.
+
+\section{8. Five minimal demos}\label{five-minimal-demos}
+
+Each demo is measured on a declared complex and replayed through the
+laws by \texttt{code/\allowbreak ddc/\allowbreak demos.\allowbreak py}. Unlawful variants are kept as
+falsifiers.
+\texttt{test\_fsm\_and\_demos.\allowbreak py::test\_every\_demo\_reaches\_its\_stated\_verdict}
+pins every verdict below.
+
+\textbf{Demo 1 --- boundary cancellation} (two triangles sharing an
+edge). An exact defect is registered, repaired and sealed:
+\texttt{C·R·E·T}, routing \texttt{Check\allowbreak Passed}. A defect with
+circulation around one face (\(\Gamma_2 = 1\)) ends in a typed refusal:
+\texttt{C·R·M}. Its falsifier \texttt{C·R·E·T} is refused at \texttt{E},
+because the class before \texttt{E} is not exact.
+
+\textbf{Demo 2 --- local green, global red} (a filled triangle with
+value 1 on every edge). Each edge is locally consistent, yet
+\(d_1 x = 3\), so \(\Gamma_2 = 3\) and \(\Phi_1 = 3\). The lawful tape
+is \texttt{C·R·M}. Appending \texttt{T} is refused
+(\texttt{Terminalized\allowbreak Open\allowbreak Residual}): a refusal does not license a seal.
+
+\textbf{Demo 3 --- stabilized survivor} (a hollow square with a unit
+defect on one edge; \(\Phi_1 = 1\), \(\Gamma_2 = 0\)). \texttt{C·R·T}
+seals on the residual terminal. A licensed lift that adds capacity away
+from the cycle, \texttt{C·R·Λ·T}, re-measures \(\Phi_1 = 1\): the
+survivor persists, as Chapter 5 proves it must. Without a licence the
+record is \texttt{C·R·M·T} with \texttt{REFUSED\_REQUIRES\_LIFT}. Two
+falsifiers: a lift without a licence is refused, and a lift that
+attaches a face bounding the cycle turns the survivor into
+\(\Gamma_2 = 1\), after which \texttt{T} is refused.
+
+\textbf{Demo 4 --- detector collapse} (a constant detector reports zero
+on the survivor). The lawful tape is \texttt{C·M} with
+\texttt{REFUSED\_DETECTOR\_INADEQUATE}; \texttt{C·M·T} is refused
+(\texttt{Blind\allowbreak Detector}), because a collapsing detector is how false
+green enters. A licensed detector lift, \texttt{C·Λ·T}, re-measures
+\(\Phi_1 = 1\) and seals honestly on the residual terminal.
+
+\textbf{Demo 5 --- descent with loss} (a path of four edges carrying
+\((1, 2, \tfrac{3}{2}, \tfrac{1}{4})\), coarsened to two edges). With a
+loss ledger the tape \texttt{D·I·T} books loss \(\tfrac{7}{4}\) and
+seals. Without one, \texttt{D} is refused (\texttt{Missing\allowbreak Loss\allowbreak Ledger}),
+and the lawful record is \texttt{M·T} with
+\texttt{REFUSED\_MISSING\_LOSS\_LEDGER}.
+
+\section{9. Runtime context and verification
+ceiling}\label{runtime-context-and-verification-ceiling}
+
+The Rust crate \texttt{omega\_discrete\_deformation\_calculus} is
+related runtime context. Names in \texttt{docs/\allowbreak claim\_code\_map.\allowbreak yaml}
+are informational pointers, not self-contained evidence of current
+engine conformance. This deposit proves refinement only of its own
+historical comparison specification. It supplies no authenticated
+licence evaluator and no test of the deployed Rust system.
+
+\section{Part II --- The eight letters}\label{part-ii-the-eight-letters}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.6667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Chapter
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Letter
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Central result
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\hyperref[chapter-1]{1} & \texttt{E} & gauge repair discharges an exact
+defect and cannot cross classes \\
+\hyperref[chapter-2]{2} & \texttt{R} & projection keeps the class, with
+one coordinate per independent cycle \\
+\hyperref[chapter-3]{3} & \texttt{C} & exposure changes the carrier and
+never lowers the diagnostics \\
+\hyperref[chapter-4]{4} & \texttt{I} & the receipt tape only grows and
+every letter enters the chain \\
+\hyperref[chapter-5]{5} & \texttt{Λ} & a lift preserves norms; an
+extending lift cannot exactify a non-exact residual \\
+\hyperref[chapter-6]{6} & \texttt{D} & a descent is lossless exactly
+when the dropped tail is zero \\
+\hyperref[chapter-7]{7} & \texttt{M} & a refusal leaves the state
+unchanged and names a reason \\
+\hyperref[chapter-8]{8} & \texttt{T} & the abstract seal needs
+\(\Gamma_2 = 0\) and adequate detection; continuation policy is a
+separate guard \\
+\end{longtable}
+
+\section{Part III --- Tapes}\label{part-iii-tapes}
+
+\section{10. The tape automaton}\label{the-tape-automaton}
+
+\textbf{Definition 10.1.} A tape runs from a control state
+\texttt{Open}, \texttt{Refused} or \texttt{Terminalized} and an abstract
+data state. A step is admitted when the control admits its letter and
+the letter's step law holds. \texttt{T} moves the control to
+\texttt{Terminalized}, \texttt{M} to \texttt{Refused}, and \texttt{C} or
+\texttt{Λ} after a refusal back to \texttt{Open}. \texttt{Terminalized}
+admits nothing; \texttt{Refused} admits only \texttt{C}, \texttt{Λ} and
+\texttt{T}. Replay stops at the first unlawful step, which is not
+recorded. The Python automaton is \texttt{code/\allowbreak ddc/\allowbreak automaton.\allowbreak py}; the
+Lean one is \texttt{Ddc.\allowbreak run} in \texttt{lean4/\allowbreak Ddc/\allowbreak Law.\allowbreak lean}. They state
+the same laws. The Lean model represents supplied \(\Phi_1, \Gamma_2\)
+by \(\mathbb{N}\) values; the laws use only equality, order and zero
+tests, which the non-negative rationals of the Python model share.
+
+\section{11. Tape theorems}\label{tape-theorems}
+
+Every theorem below is proved in \texttt{lean4/\allowbreak } with no axiom outside
+\{\texttt{propext}, \texttt{Quot.\allowbreak sound}\}
+(\texttt{lean4/\allowbreak axiom\_report.\allowbreak txt}) and checked on examples in
+\texttt{code/\allowbreak tests/\allowbreak }.
+
+\textbf{Theorem 11.1} (OE010-03, composition). If replay of \(t_1\)
+succeeds, replaying \(t_1 t_2\) equals replaying \(t_2\) from that
+successful endpoint. If \(t_1\) fails, the concatenated replay fails as
+well. The empty tape is the identity (\texttt{Ddc.\allowbreak run\_append},
+\texttt{Ddc.\allowbreak lawful\_append}, \texttt{Ddc.\allowbreak lawful\_nil}). Lawful tapes
+therefore form the morphisms of a category whose objects are
+control-state pairs.
+
+\textbf{Theorem 11.2} (OE010-10, terminal absorption). No step is
+admitted after \texttt{T} (\texttt{Ddc.\allowbreak terminal\_absorbing},
+\texttt{Ddc.\allowbreak lawful\_T\_is\_last}).
+
+\textbf{Theorem 11.3} (DDC-TAPE-01, refusal absorption). After
+\texttt{M} only \texttt{C}, \texttt{Λ} or \texttt{T} is admitted
+(\texttt{Ddc.\allowbreak refusal\_absorbing}).
+
+\textbf{Theorem 11.4} (DDC-TAPE-02, well-typed steps). Every step of a
+lawful tape satisfies its letter's step law at the state it was taken
+from (\texttt{Ddc.\allowbreak well\_typed\_step}).
+
+\textbf{Theorem 11.5} (OE010-04, no authority). Every receipt a replay
+emits carries \texttt{Authority\allowbreak Effect.\allowbreak none}, although the type has a
+second value (\texttt{Ddc.\allowbreak authority\_effect\_none}); the receipt tape
+only grows (\texttt{Ddc.\allowbreak receipts\_prefix}).
+
+\textbf{Theorem 11.6} (OE010-17, no free decrease). If a lawful step
+lowers \(\Phi_1\) or \(\Gamma_2\), its letter is \texttt{D} or
+\texttt{Λ} (\texttt{Ddc.\allowbreak no\_free\_decrease}).
+
+\emph{Proof sketch.} \texttt{E} starts from \(\Phi_1 = \Gamma_2 = 0\);
+\texttt{R} keeps both; \texttt{C} cannot lower either; \texttt{I},
+\texttt{M} and \texttt{T} leave the state unchanged. \(\square\)
+
+\textbf{Theorem 11.7} (DDC-TAPE-04, open obstructions need a priced
+move). From a state with \(\Gamma_2 > 0\) and a non-terminal control, a
+lawful tape with no \texttt{D} and no \texttt{Λ} keeps \(\Gamma_2 > 0\)
+and never terminalizes (\texttt{Ddc.\allowbreak open\_needs\_priced\_move}). This is
+witness dominance at the level of tapes: an open obstruction reaches a
+seal only through a booked loss or a licensed lift.
+\texttt{test\_automaton.\allowbreak py::test\_open\_obstruction\_is\_never\_sealed\_without\_a\_priced\_move}
+checks it by exhaustive reachability on a 32-state abstraction.
+
+\textbf{Theorem 11.8} (CREDIT). The mnemonic ``CREDIT'' names the tape
+C·R·E·D·I·T; it is only a mnemonic.
+
+\begin{itemize}
+\tightlist
+\item
+  (DDC-TAPE-05) CREDIT is lawful iff each of its six steps satisfies its
+  law (\texttt{Ddc.\allowbreak credit\_lawful\_iff}).
+\item
+  (DDC-TAPE-06) A lawful CREDIT starts from \(\Phi_1 = \Gamma_2 = 0\)
+  (\texttt{Ddc.\allowbreak credit\_starts\_exact}): \texttt{E} needs an exact class,
+  \texttt{R} keeps the diagnostics and \texttt{C} cannot lower them, so
+  the residual was exact before \texttt{C}.
+\item
+  (DDC-TAPE-07) Without a loss ledger at \texttt{D} it is not lawful
+  (\texttt{Ddc.\allowbreak credit\_needs\_ledger}).
+\item
+  (DDC-TAPE-08) It is realizable (\texttt{Ddc.\allowbreak credit\_realizable};
+  Python: \texttt{demos.\allowbreak credit}, an exact defect on a hollow triangle
+  repaired and then booked down to one edge).
+\end{itemize}
+
+CREDIT is therefore the exact-repair tape with a booked descent. It is
+not a route for dissolving an obstruction.
+
+\textbf{Theorem 11.9} (OE010-16, driver soundness). The §12 driver never
+proposes \texttt{T} on an open or blind state, proposes \texttt{E} only
+on an exact class, and proposes \texttt{Λ} only with a Law 4 trigger
+(\texttt{Ddc.\allowbreak driver\_never\_seals\_open},
+\texttt{Ddc.\allowbreak driver\_repairs\_only\_exact},
+\texttt{Ddc.\allowbreak driver\_lift\_trigger}).
+
+\section{12. The §23 driver}\label{the-23-driver}
+
+The first draft generated tapes with a state machine whose table swapped
+two classes: it tagged \texttt{Active\allowbreak Closure\allowbreak Failure} with \(\Phi_1 > 0\)
+and \texttt{Closed\allowbreak Residual} with \(\Gamma_2 > 0\). The corrected driver
+(OE010-16) proposes:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Class of the current state
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Letters the driver may propose
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Exact\allowbreak Repair} (\(\Phi_1 = 0\), \(\Gamma_2 = 0\)) & \texttt{E}
+then \texttt{T}; \texttt{I} \\
+\texttt{Closed\allowbreak Residual} (\(\Phi_1 > 0\), \(\Gamma_2 = 0\)) & \texttt{R},
+\texttt{Λ} (Law 4), \texttt{T} to the residual terminal; \texttt{I} \\
+\texttt{Active\allowbreak Closure\allowbreak Failure} (\(\Gamma_2 > 0\)) & \texttt{R},
+\texttt{C}, \texttt{D}, \texttt{M}; \texttt{I}; never \texttt{T} \\
+detector inadequate & \texttt{Λ}, \texttt{M}, \texttt{C}; \texttt{I} \\
+\end{longtable}
+
+The four drivers of the first draft read as follows under the laws.
+\texttt{C·R·E·I·T} (autopoietic) is lawful on an exact defect.
+\texttt{C·R·M·T} (refusal) is lawful when the refused state has
+\(\Gamma_2 = 0\); on an open state the lawful record is \texttt{C·R·M}.
+\texttt{C·R·Λ·I·T} (self-examination) is lawful from a closed survivor
+with a licence when the lifted state has \(\Gamma_2 = 0\).
+\texttt{D·I·T} (allopoietic) is lawful with a loss ledger when the
+target has \(\Gamma_2 = 0\). The residual-progress guard of the first
+draft is Theorem 11.6.
+
+\section{13. Open laws}\label{open-laws}
+
+These remain open. Bounded checks are recorded as computed fixtures,
+never as proofs.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Trace equivalence} (DDC-OPEN-01). When do two tapes denote the
+  same handling: same terminal, same diagnostic effect, same receipts,
+  same loss ledger, same carrier endpoint? No equivalence is defined
+  here.
+\item
+  \textbf{Normal forms} (DDC-OPEN-02). Whether finite tapes reduce to
+  forms such as \texttt{C·R·E·I·T}, \texttt{C·R·M·T}, \texttt{C·R·Λ·I·T}
+  and \texttt{D·I·T}. No universal normal form is assumed.
+\item
+  \textbf{Detector adequacy in general.} Demo 4 covers the constant
+  detector; the empty carrier, acyclic collapse, shape-only verifiers
+  and all-green or all-open terminalizers remain future fixtures, not
+  results.
+\item
+  \textbf{Separation from rewriting logic}, \textbf{lift minimality} and
+  \textbf{universal obstruction completeness} are research questions
+  (Part IV).
+\end{itemize}
+
+Composition (Theorem 11.1) and the non-authority invariant (Theorem
+11.5), open in the first draft, are now proved.
+
+\section{14. Deformations of the
+window}\label{deformations-of-the-window}
+
+\textbf{Proposition 14.1} (OE010-05). A deformation
+\(d_i \mapsto d_i + \mu_i\) keeps the window a complex iff
+\((d_1 + \mu_1)(d_0 + \mu_0) = 0\), i.e.~iff
+\(d_1 \mu_0 + \mu_1 d_0 + \mu_1 \mu_0 = 0\) (the Maurer--Cartan
+condition).
+
+\emph{Proof.} Expand and use \(d_1 d_0 = 0\). \(\square\)
+
+\texttt{cochain.\allowbreak deformation\_obstruction} computes the left-hand side
+exactly;
+\texttt{test\_cochain.\allowbreak py::test\_maurer\_cartan\_obstruction\_detects\_unlawful\_deformations}
+shows a zero deformation passing and a single-entry bump failing.
+
+\section{Part IV --- Positioning}\label{part-iv-positioning}
+
+Part IV maps the research neighbourhood. Its statements are positioning,
+not verified literature conclusions; no external citation is upgraded to
+a result.
+
+\section{15. Research agenda}\label{research-agenda}
+
+Six modules steer further work, each recast as a directed attack rather
+than a validation request.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Module
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Question
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Relevance to DDC
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+A. Higher categories and operads & Which structures model finite control
+loops without unpriced coherence? & may supply composition laws for
+tapes; not proof that DDC is an operad \\
+B. Sparse \(\ell^1\) cochains & How stable are quotient obstructions
+under perturbation? & diagnostic engines for \(\Phi_1\) and
+\(\Gamma_2\) \\
+C. Sheaf obstruction & Which Čech or cellular frameworks separate local
+consistency from global coherence? & detectors for local-green,
+global-red failures, once covers are declared \\
+D. Verified rewriting & How can compiler passes be receipt-preserving
+operations? & concrete software examples for \texttt{E}, \texttt{D},
+\texttt{M}, \texttt{T} \\
+E. Finite shadows of continua & How can infinite objects be admitted
+only through finite shadows or oracles? & continuum claims route to
+\texttt{Oracle\allowbreak Needed} \\
+F. Prior art and negative results & Has anyone typed the role a
+computation plays in an obstruction's life? & tests the novelty
+statement \\
+\end{longtable}
+
+Every result from these modules is to be classified as an established
+finite-hypothesis theorem, a plausible formalization target, an analogy,
+a likely category error, or unsupported; with the exact construction,
+the missing adapter data, the smallest demo and the likely
+counterexample.
+
+\section{16. Prior art and the rewriting-logic
+objection}\label{prior-art-and-the-rewriting-logic-objection}
+
+Five traditions are closest (DDC-POS-01).
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Rewriting logic and Maude} is the strongest computational
+  neighbour: it specifies systems by labelled, potentially conditional
+  rules \(t \to t'\) modulo equations. Such a specification can include
+  obstruction diagnostics, witness conditions and receipt fields. DDC
+  supplies one declared combination of these choices; this paper proves
+  no separation in expressive power.
+\item
+  \textbf{Constructor Theory} states physics through possible and
+  impossible transformations; it is a philosophical analogy with no
+  operation ledger or cochain quotient.
+\item
+  \textbf{Structural realism} aligns with the representation-first
+  stance but is not mathematical support by itself.
+\item
+  \textbf{Hypergraph rewriting} treats evolution as rule application;
+  its physical claim is empirical, not runtime verification.
+\item
+  \textbf{Coalgebra} gives behaviour and observation semantics, a
+  promising target for trace semantics, without a cochain obstruction
+  calculus.
+\end{itemize}
+
+Adjacent fields supply candidate law sources: trace monoids and abstract
+rewriting (normal forms, confluence), operational semantics and effect
+systems (typed letters), provenance semirings and proof-carrying code
+(receipts), event structures (concurrency), double categories and string
+diagrams (transport), cellular sheaves and chain homotopy (trace
+equivalence), discrete Morse theory (cancellation), CEGAR and abstract
+interpretation (detector adequacy), and equality saturation (repair
+search).
+
+The sharpest objection is ``DDC is rewriting logic with labels''. The
+concrete contribution evaluated here is the selected policy: obstruction
+diagnostics (§3), typed step guards (§7), chained records (§5), declared
+licence and ledger conditions (Laws 4 and 6), refusal control (Theorem
+11.3), and terminal absorption (Theorem 11.2). Theorem 11.5 proves that
+emitted receipt fields say \texttt{none}; authorization remains outside
+the model. These choices do not prove that rewriting logic cannot
+express DDC. A formal translation and a prior-art review of the
+combination remain open.
+
+\section{17. Novelty statement}\label{novelty-statement}
+
+Unsafe: ``DDC is a theory of everything'', ``every process is
+obstruction elimination'', ``representation is all that exists''.
+
+Defensible programme claim (DDC-POS-02): DDC formalizes a finite
+operation ledger in which every structure-creating,
+obstruction-exposing, obstruction-eliminating, obstruction-carrying or
+obstruction-refusing event is a typed step with a replayable record that
+confers no authorization. What may be distinctive is the combination of
+six parts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  finite cochain diagnostics;
+\item
+  typed letters recording what a step did to an obstruction;
+\item
+  replayable receipts;
+\item
+  proof-assistant and runtime counterparts;
+\item
+  machine-readable governance boundaries;
+\item
+  a firewall that stops successful representation becoming trusted
+  action.
+\end{enumerate}
+
+This stays a programme claim until the prior-art review of Module F is
+complete.
+
+\section{18. Risks and fences}\label{risks-and-fences}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2727}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7273}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Risk
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Fence
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Universality becomes tautology & an obstruction needs a declared
+carrier, protected distinction, detector, witness or refusal rule, and
+terminalizer; DDC must say when it returns \texttt{No\allowbreak Rule},
+\texttt{Detector\allowbreak Inadequate} or \texttt{Oracle\allowbreak Needed} \\
+``The universe is not creative'' needs a negative result & DDC tests
+whether domains reuse the same letters; it does not prove that no new
+structure exists \\
+The word ``algebra'' overclaims & the constructed object is a typed
+trace calculus with proved tape laws; equivalence and normal forms stay
+open \\
+Continuum smuggling & continuum objects need finite shadows, completion
+receipts or oracle interfaces, else \texttt{Oracle\allowbreak Needed} \\
+Authority laundering & receipts record conditional decisions;
+authorization is outside this model. Theorem 11.5 establishes only the
+constant receipt field \\
+Detector inadequacy & a blind detector cannot seal
+(\texttt{Blind\allowbreak Detector}); authority-sensitive uses need a declared
+adequacy record \\
+\end{longtable}
+
+\section{19. Prior-art questions}\label{prior-art-questions}
+
+The standing question for literature search: \emph{has any theory
+defined an operation alphabet whose symbols classify the role a finite
+computation played in an obstruction's life, rather than recording that
+a transition occurred?} Compare against rewriting logic, trace monoids,
+operational semantics, effect systems, proof-carrying code, provenance
+semirings, event structures, double categories, string diagrams,
+cellular sheaves, chain homotopy, deformation complexes, discrete Morse
+theory, process calculi, higher rewriting, coalgebra, Constructor
+Theory, hypergraph rewriting and ontic structural realism. For each,
+classify and return the construction, the finite hypotheses, the missing
+adapter data, the smallest demo and the likely counterexample. If DDC is
+rewriting logic with labels, say exactly why; if not, name the minimal
+formal object that separates them.
+
+\section{20. Final position}\label{final-position}
+
+DDC is a finite typed trace calculus for obstruction-handling
+operations. Its product value is that it records what kind of finite
+operation was performed on an obstruction, not only whether a system
+passed. Its research value is a possible substrate-independent operation
+ledger linking cochain obstruction, rewriting, proof-carrying traces,
+provenance and authority firewalls. The warning stands: do not sell the
+universe; prove trace equivalence, detector adequacy and the separation
+from rewriting logic first.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DDC tape = replay evidence · DDC receipt = bounded verification data}
+\NormalTok{DDC terminal = routing terminal · DDC authority = None}
+\end{Highlighting}
+\end{Shaded}
+
+\section{21. Residuals}\label{residuals}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Residual
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Route
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+R-DDC-01 & This version's new mathematics: the tape automaton and Part
+III & discharged here \\
+R-DDC-02 & The historical comparison model's \texttt{E} law admits
+class-crossing edits; the paper requires an exact class before
+\texttt{E} & historical comparison gap; resolved in governance
+contracts; Rust parity separate \\
+R-DDC-03 & The historical comparison model's \texttt{R} law does not fix
+\(\Gamma_2\) & historical comparison gap; resolved in governance
+contracts; Rust parity separate \\
+R-DDC-04 & The historical comparison model does not enforce Law 8 (no
+scope laundering by \texttt{C}) & historical comparison gap; resolved in
+governance contracts; Rust parity separate \\
+R-DDC-05 & The historical comparison model does not check Laws 3--6, the
+refusal vocabulary or detector adequacy at step level & historical
+comparison gap; resolved in governance contracts; Rust parity
+separate \\
+R-DDC-06 & \(\Phi_1\) needed a dual witness, not only a primal potential
+& discharged here: \texttt{cochain.\allowbreak phi1\_certificate} \\
+R-DDC-07 & Proposition 3.2 and Theorem 3.3 have written proofs only;
+mechanizing them needs linear algebra beyond core Lean & Lean: a later
+version \\
+\end{longtable}
+
+\section{References}\label{references}
+
+See \hyperref[references-and-their-role]{\texttt{docs/\allowbreak references.\allowbreak md}}.
+
+\section{Chapter 1 --- Letter E: exact repair}\label{chapter-1}
+
+E removes a defect that lies in the image of \(d_0\). It is the
+\emph{exact} part of the Hodge split, not the co-exact part; the first
+draft of this chapter had the two reversed.
+
+\subsection{1.1 Definition}\label{definition-1}
+
+Let \(K = (V, E, F)\) be a finite oriented 2-complex with
+
+\[(d_0 \varphi)(u \to v) = \varphi(v) - \varphi(u), \qquad
+(d_1 x)(f) = \sum_{e \in \partial f} [f : e]\, x(e),\]
+
+where \([f : e] \in \{-1, 1\}\) is the orientation of \(e\) in the
+boundary of \(f\). A defect \(x \in C^1(K; \mathbb{Q})\) is
+\emph{exact-repairable} when \(x \in \operatorname{im} d_0\),
+equivalently \(\Phi_1(x) = 0\).
+
+\textbf{Proposition 1.1} (DDC-E-01). An exact defect has a potential
+\(\varphi\) with \(d_0 \varphi = x\), unique up to adding one constant
+on each connected component. \texttt{Exact\allowbreak Repair\allowbreak Solver} finds it by
+breadth-first integration from one gauge vertex per component.
+
+\emph{Proof.} Two potentials of the same defect differ by \(\psi\) with
+\(d_0 \psi = 0\), that is, \(\psi\) is constant along every edge and
+hence on every component. \(\square\)
+
+The repair is \(x \mapsto x - d_0 \varphi = 0\).
+
+\subsection{1.2 Step law}\label{step-law}
+
+E keeps the carrier, starts from an exact class, and leaves
+\(\Phi_1 = \Gamma_2 = 0\) and a zero defect with an adequate detector.
+The historical comparison model's \texttt{verify\_step} checks the
+carrier and the exact class after the step
+(\texttt{Exact\allowbreak Repair\allowbreak Left\allowbreak Residual}); the class before the step, the zero
+defect and the detector are checked only by this package (residual
+R-DDC-02).
+
+\subsection{1.3 Receipt}\label{receipt}
+
+\texttt{Exact\allowbreak Repair\allowbreak Receipt} records \texttt{success},
+\texttt{input\_norm}, \texttt{residual\_norm}, \texttt{gauge\_vertex},
+\texttt{potential}, the repaired defect (\texttt{repaired}, all zeros on
+success), \texttt{error} and \texttt{authority\_effect\ =\ "None"}.
+
+\subsection{1.4 Results}\label{results}
+
+\textbf{Theorem 1.2} (DDC-E-02). If \(d_0 \varphi = x\) then
+\(x - d_0 \varphi = 0\). Lean:
+\texttt{Ddc.\allowbreak E\_gauge\_repair\_discharges}.
+
+\textbf{Theorem 1.3} (DDC-E-03). A gauge move
+\(x \mapsto x - d_0 \varphi\) changes neither \(d_1 x\) nor whether
+\(x\) is exact. Consequently no gauge repair can cross a class: a defect
+that is closed but not exact, or open, stays so. Lean:
+\texttt{Ddc.\allowbreak E\_gauge\_preserves\_closure},
+\texttt{Ddc.\allowbreak E\_gauge\_preserves\_exactness}, over an abstract complex
+with additive \(d_0, d_1\) and \(d_1 d_0 = 0\).
+
+\textbf{Theorem 1.4} (DDC-E-04). A defect with non-zero circulation
+around any cycle of the declared 1-skeleton is not in
+\(\operatorname{im} d_0\), and E refuses it with
+\texttt{REFUSED\_NON\_ZERO\_CURL}. The name is kept for wire
+compatibility; its meaning is exactly ``not in
+\(\operatorname{im} d_0\)''. Lean example:
+\texttt{Ddc.\allowbreak E\_triangle\_open\_not\_exact} (every edge of a filled
+triangle carries 1). Tests:
+\texttt{test\_exact\_repair.\allowbreak py::test\_exact\_repair\_refusal\_non\_zero\_curl},
+\texttt{test\_letter\_modules.\allowbreak py::test\_exact\_repair\_refuses\_any\_cycle\_with\_circulation}.
+
+\textbf{Theorem 1.5} (DDC-E-05). Exact repair is idempotent: repairing
+the repaired (zero) defect again changes nothing. Lean:
+\texttt{Ddc.\allowbreak E\_repair\_idempotent}.
+
+The orthogonality of the exact part to the harmonic part is Theorem 3.3
+of the spine.
+
+\subsection{1.5 Falsifiers}\label{falsifiers}
+
+\begin{itemize}
+\tightlist
+\item
+  Demo 1 applies \texttt{E} to an open defect; the step is refused
+  because the class before \texttt{E} is not exact
+  (\texttt{Exact\allowbreak Repair\allowbreak From\allowbreak Non\allowbreak Exact\allowbreak Class}).
+\item
+  A class-crossing edit (an open state rewritten to zero) passes the
+  historical comparison model but not the paper
+  (\texttt{test\_automaton.\allowbreak py::test\_engine\_checks\_less\_than\_the\_paper}).
+\end{itemize}
+
+\subsection{1.6 Nonclaims}\label{nonclaims}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{E does not claim semantic truth or the correctness of external code or models.}
+\NormalTok{E is a local algebraic gauge adjustment on a declared carrier.}
+\NormalTok{No authorization is conferred.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Chapter 2 --- Letter R: residual projection}\label{chapter-2}
+
+Not every defect can or should be removed. R records what remains,
+keeping its class, so that an unrepaired residual is never silently
+discarded or averaged away.
+
+\subsection{2.1 Definition}\label{definition-2}
+
+Over \(\mathbb{Q}\) with the standard inner product the 1-cochains split
+as
+\(C^1 = \operatorname{im} d_0 \oplus \operatorname{im} d_1^{\top} \oplus
+\mathcal{H}^1\) (spine, Theorem 3.3).
+
+\textbf{Proposition 2.1} (DDC-R-01). Every defect splits uniquely into
+exact, co-exact and harmonic parts. The first draft named only two
+parts, which is correct only when there are no faces. Evidence: spine
+Theorem 3.3, \texttt{cochain.\allowbreak hodge\_split},
+\texttt{test\_cochain.\allowbreak py::test\_hodge\_split\_is\_orthogonal\_and\_matches\_the\_classes}.
+
+R's canonical representative subtracts the coboundary of the potential
+that matches the defect on a spanning forest. What remains is supported
+on the edges outside the forest: one value per independent cycle.
+
+\textbf{Proposition 2.2} (DDC-R-06). The register has
+\(b_1 = |E| - |V| + c\) coordinates for a graph with \(c\) components.
+They are the circulations of the defect around the fundamental cycles,
+and all of them vanish exactly when the defect is exact. The first draft
+handled a single cycle only. \texttt{Graph\allowbreak Residual\allowbreak Projector} covers any
+finite graph, and \texttt{Residual\allowbreak Projector} keeps the single-cycle
+case. Tests:
+\texttt{test\_letter\_modules.\allowbreak py::test\_graph\_projector\_keeps\_one\_coordinate\_per\_independent\_cycle},
+\texttt{test\_cochain.\allowbreak py::test\_a\_hollow\_cycle\_carries\_a\_closed\_residual}.
+
+\subsection{2.2 Step law}\label{step-law-1}
+
+R keeps the carrier, \(\Phi_1\) and \(\Gamma_2\), with an adequate
+detector. The historical comparison model checks the carrier and
+\(\Phi_1\) (\texttt{Residual\allowbreak Projection\allowbreak Changed\allowbreak Mass}); the \(\Gamma_2\)
+clause is paper-only (residual R-DDC-03).
+
+\subsection{2.3 Receipt}\label{receipt-1}
+
+\texttt{Residual\allowbreak Projection\allowbreak Receipt} records the raw, exact and residual
+norms, both components, the status (\texttt{RESIDUAL\_RETAINED} or
+\texttt{EXACT\_TENSION\_ONLY}), the cycle coordinates and
+\texttt{authority\_effect\ =\ "None"}.
+
+These norms are unweighted \(\ell^1\) norms of the recorded vectors,
+rather than certificates of \(\Phi_1\). A fixed forest representative
+may have norm strictly greater than the quotient minimum. For example,
+on the increasingly oriented complete graph with vertices \(a<b<c<d\)
+and value \(-1\) on all six edges, the forest rooted at \(a\) retains
+\((-1,-1,-1)\) on \(bc,bd,cd\). Its norm is 3; the potential
+\((0,-1,-1,-2)\) attains objective 2 and a dual witness certifies
+\(\Phi_1=2\). Test:
+\texttt{test\_publication\_regressions.\allowbreak py::test\_forest\_register\_norm\_is\_not\_the\_quotient\_minimum}.
+R preserves the quotient distance because its difference is exact,
+regardless of whether its representative attains the minimum.
+
+\texttt{evaluate\_xi\_tie\_break} compares a secondary exact score only
+after equal primary diagnostics. It checks the supplied diagnostic
+values and makes no claim to authenticate or remeasure the candidates.
+
+\subsection{2.4 Results}\label{results-1}
+
+\textbf{Theorem 2.3} (DDC-R-02). The canonical R move is a gauge move,
+so it keeps \(\Gamma_2\) and exactness; a lawful R step keeps the class.
+Lean: \texttt{Ddc.\allowbreak R\_gauge\_move\_is\_lawful},
+\texttt{Ddc.\allowbreak R\_keeps\_diagnostics}, \texttt{Ddc.\allowbreak R\_keeps\_class}.
+
+\textbf{Proposition 2.4} (DDC-R-03). The defect is conserved edge by
+edge: the exact component plus the residual component equals the raw
+defect. Test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_projection\_conserves\_the\_defect}.
+
+\textbf{Proposition 2.5} (DDC-R-04). Projecting the representative again
+returns it unchanged. Test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_graph\_projector\_keeps\_one\_coordinate\_per\_independent\_cycle}.
+
+\textbf{Proposition 2.6} (DDC-R-05). Terminalizing an unchanged
+non-exact state never yields \texttt{Check\allowbreak Passed}. A closed residual is
+sealed only on the residual terminal, and an open one not at all (spine,
+Theorem 11.7). Test:
+\texttt{test\_automaton.\allowbreak py::test\_run\_tape\_stops\_at\_the\_first\_unlawful\_step\_and\_chains\_receipts}.
+
+\subsection{2.5 Falsifiers}\label{falsifiers-1}
+
+\begin{itemize}
+\tightlist
+\item
+  An R step that lowers \(\Gamma_2\) is refused
+  (\texttt{Residual\allowbreak Projection\allowbreak Changed\allowbreak Closure}).
+\item
+  An R step that moves \(\Phi_1\) is refused by the paper and the
+  historical comparison model (\texttt{Residual\allowbreak Projection\allowbreak Changed\allowbreak Mass}).
+\end{itemize}
+
+The abstract step law compares diagnostics only. Equal norms do not
+identify quotient classes: on a hollow triangle, (1,0,0) and (−1,0,0)
+have equal diagnostics but different circulation.
+\texttt{Graph\allowbreak Residual\allowbreak Projector} subtracts an actual coboundary;
+\texttt{run\_tape(.\allowbreak .\allowbreak .\allowbreak ,\ carriers=.\allowbreak .\allowbreak .\allowbreak )} checks that stronger condition. A
+booked descent can subsequently change a non-exact state into an exact
+one.
+
+\subsection{2.6 Nonclaims}\label{nonclaims-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R does not resolve the defect and does not claim that a retained residual will vanish.}
+\NormalTok{R binds unresolved residual mass into the tape. No authorization is conferred.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Chapter 3 --- Letter C: context exposure}\label{chapter-3}
+
+Evaluations are local. C restricts the ambient carrier to a window and
+exposes every edge that straddles it, so that external dependencies
+become declared boundary conditions instead of hidden entanglement.
+
+\subsection{3.1 Definition}\label{definition-3}
+
+For a finite graph \(K = (V, E)\) and a window \(V_W \subseteq V\), the
+internal edges are those with both ends in \(V_W\). The boundary
+interface \(\partial_E W\) is the set of edges with exactly one end in
+\(V_W\). C maps a cochain \(c\) to \((c|_W, c|_{\partial_E W})\).
+
+\subsection{3.2 Step law}\label{step-law-2}
+
+C changes the carrier and never lowers \(\Phi_1\) or \(\Gamma_2\) (Law
+8). The historical comparison model checks the carrier change
+(\texttt{Carrier\allowbreak Unchanged\allowbreak Under\allowbreak Restructure}); the monotonicity clause is
+paper-only (residual R-DDC-04). Hiding an obstruction by choosing a
+smaller window is scope laundering; it has to be priced as a descent
+with a loss ledger or a licensed lift.
+
+\subsection{3.3 Receipt}\label{receipt-2}
+
+\texttt{Context\allowbreak Exposure\allowbreak Receipt} records the window, the internal and
+boundary edges, both restricted cochains, the status
+\texttt{CONTEXT\_EXPOSED} and \texttt{authority\_effect\ =\ "None"}.
+
+\subsection{3.4 Results}\label{results-2}
+
+\textbf{Proposition 3.1} (DDC-C-01). The internal edges, the boundary
+edges and the remaining edges partition \(E\). Test:
+\texttt{test\_context\_exposure.\allowbreak py::test\_context\_window\_disjoint\_partition}.
+
+\textbf{Proposition 3.2} (DDC-C-02). An edit supported on the internal
+edges leaves the boundary cochain unchanged. Test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_exposure\_is\_read\_only\_and\_internal\_edits\_keep\_the\_boundary}.
+
+\textbf{Proposition 3.3} (DDC-C-03). Two exposures that agree on every
+shared edge glue to a unique cochain on the union of their exposed
+edges; \texttt{glue} refuses when a shared edge disagrees. Test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_context\_exposure\_glues\_agreeing\_windows\_uniquely}.
+
+\textbf{Proposition 3.4} (DDC-C-04). Exposure is read-only: it returns
+restrictions and never alters the ambient cochain. Test as for DDC-C-02.
+
+\textbf{Theorem 3.5} (DDC-C-05). The boundary of an intersection of
+windows lies in the union of their boundaries. Lean:
+\texttt{Ddc.\allowbreak C\_boundary\_of\_intersection}; test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_boundary\_of\_an\_intersection\_lies\_in\_the\_union\_of\_boundaries}.
+
+\textbf{Theorem 3.6} (DDC-C-06). A lawful C step changes the carrier and
+never lowers \(\Phi_1\) or \(\Gamma_2\). Lean:
+\texttt{Ddc.\allowbreak C\_is\_not\_repair}, \texttt{Ddc.\allowbreak C\_changes\_carrier}.
+
+\subsection{3.5 Falsifiers}\label{falsifiers-2}
+
+\begin{itemize}
+\tightlist
+\item
+  A C step that lowers \(\Gamma_2\) is refused
+  (\texttt{Context\allowbreak Exposure\allowbreak Lowered\allowbreak Obstruction}).
+\item
+  A C step that leaves the carrier unchanged is refused by paper and
+  historical comparison model.
+\end{itemize}
+
+\subsection{3.6 Nonclaims}\label{nonclaims-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C does not claim that a window is complete or that unexposed values are trivial.}
+\NormalTok{C is not repair. No authorization is conferred.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Chapter 4 --- Letter I: integration}\label{chapter-4}
+
+No progress counts until it is committed. I appends a receipt to an
+append-only, hash-chained tape and changes nothing else.
+
+\subsection{4.1 Definition}\label{definition-4}
+
+The tape at step \(t\) is \(T_t = [r_0, \dots, r_{t-1}]\). With
+\(h_0 = \mathrm{SHA256}(\text{genesis root})\), the receipt for letter
+\(\alpha \in \{E, R, C, I, \Lambda, D, M, T\}\) is chained as
+
+\[h_{t+1} = \mathrm{SHA256}\big(t : h_t : \alpha : \mathrm{json}(r_t)\big).\]
+
+Every letter enters the chain, I included; the first draft's letter set
+left I out. The index, the previous head (64 hex digits) and the letter
+cannot contain the separator, so the preimage parses uniquely. Payloads
+are canonical JSON with exact rationals written as strings, and floats
+are refused.
+
+\subsection{4.2 Step law}\label{step-law-3}
+
+I leaves the state unchanged and carries a receipt (Law 5). The
+historical comparison model checks the unchanged state
+(\texttt{Inert\allowbreak Op\allowbreak Mutated\allowbreak State}); the receipt clause is paper-only
+(residual R-DDC-05).
+
+\subsection{4.3 Receipt}\label{receipt-3}
+
+\texttt{Tape\allowbreak Entry} records \texttt{index}, \texttt{prev\_hash},
+\texttt{letter}, the canonical \texttt{payload} and
+\texttt{current\_hash}.
+
+\subsection{4.4 Results}\label{results-3}
+
+\textbf{Theorem 4.1} (DDC-I-01). The tape only grows: a tape is a prefix
+of every later tape, and the receipts of a replay are a prefix of the
+receipts of any extension of it. Lean: \texttt{Ddc.\allowbreak I\_commit\_prefix},
+\texttt{Ddc.\allowbreak I\_receipts\_prefix}.
+
+\textbf{Proposition 4.2} (DDC-I-02). A broken hash or predecessor link
+is located by \texttt{first\_broken\_index}. Replacing a final entry and
+rehashing it, rewriting a suffix, or truncating the tape can leave a
+consistent chain. \texttt{verify\_integrity(checkpoint)} compares with
+an independently retained genesis hash, head hash and length; under
+SHA-256 collision resistance it detects these changes. A checkpoint
+obtained from the suspect tape supplies no authentication. A final
+checkpoint detects a mismatch but does not locate the original first
+alteration. Tests:
+\texttt{test\_review\_regressions.\allowbreak py::test\_tape\_checkpoint\_detects\_rehashed\_replacement\_and\_truncation}.
+
+\textbf{Proposition 4.3} (DDC-I-03). Replaying the same steps from the
+same state reproduces every state and the same head hash. Tests:
+\texttt{test\_automaton.\allowbreak py::test\_replay\_is\_deterministic}, and the
+pinned heads in \texttt{test\_fsm\_and\_demos.\allowbreak py}.
+
+\textbf{Proposition 4.4} (DDC-I-04). A step that fails its law is not
+committed: replay stops before recording it. Lean:
+\texttt{Ddc.\allowbreak I\_needs\_receipt}; test:
+\texttt{test\_automaton.\allowbreak py::test\_run\_tape\_stops\_at\_the\_first\_unlawful\_step\_and\_chains\_receipts}.
+
+\subsection{4.5 Falsifiers}\label{falsifiers-3}
+
+\begin{itemize}
+\tightlist
+\item
+  An I step without a receipt is refused (\texttt{Missing\allowbreak Receipt}).
+\item
+  An I step that alters the state is refused by paper and historical
+  comparison model.
+\end{itemize}
+
+\subsection{4.6 Nonclaims}\label{nonclaims-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{I does not claim semantic authority or that committed steps are optimal.}
+\NormalTok{I provides deterministic commitment; historical integrity needs a trusted checkpoint.}
+\NormalTok{No authorization is conferred.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Chapter 5 --- Letter Λ: structural lift}\label{chapter-5}
+
+When an obstruction cannot be handled on the current carrier, ad hoc
+expansion would launder authority. Λ is licensed carrier expansion: it
+needs a licence, and it needs a trigger that makes a lift the right
+move. A trigger is not a licence.
+
+\subsection{5.1 Definition}\label{definition-5}
+
+The lift pads with zeros: \(\iota : \mathbb{Q}^n \hookrightarrow
+\mathbb{Q}^{n+k}\), \(\iota(x)_i = x_i\) for \(i \le n\) and \(0\)
+otherwise.
+
+\subsection{5.2 Step law}\label{step-law-4}
+
+Λ changes the carrier, carries a licence, and starts from a
+\texttt{Closed\allowbreak Residual} or from an inadequate detector (Law 4). The
+historical comparison model checks the carrier change; the licence and
+the trigger are paper-only (residual R-DDC-05). The first draft did not
+state the trigger.
+
+\subsection{5.3 Receipt}\label{receipt-4}
+
+\texttt{Lift\allowbreak Receipt} records the initial and extended dimensions, the
+licence, the lifted vector, the trigger, \texttt{success},
+\texttt{error} (\texttt{REFUSED\_UNLICENSED\_LIFT},
+\texttt{REFUSED\_LIFT\_TRIGGER} or
+\texttt{INVALID\_NEGATIVE\_EXPANSION}) and
+\texttt{authority\_effect\ =\ "None"}.
+
+The auxiliary \texttt{Finite\allowbreak Lambda\allowbreak Ledger} stores exact nonnegative
+diagnostic rows and checks endpoint matching, adjacency, non-final
+\texttt{is\_descent} flags and the final \texttt{is\_valid} flag. Both
+flags must be actual booleans; the row sequence is snapshotted. They
+remain assumptions, rather than checked preservation or licence
+certificates. This consistency gate does not execute the external Rust
+\texttt{require\_descent\_step} or \texttt{require\_valid} methods and
+establishes no current contract conformance. It also does not impose a
+resolved final endpoint on a nonempty ledger; that condition needs a
+separate policy.
+
+\subsection{5.4 Results}\label{results-4}
+
+\textbf{Theorem 5.1} (DDC-L-01). Zero-padding preserves the \(\ell^1\)
+norm, and every inner product among old vectors. Lean:
+\texttt{Ddc.\allowbreak L\_pad\_preserves\_l1}; test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_lift\_trigger\_law\_and\_norm\_preservation}.
+
+\textbf{Proposition 5.2} (DDC-L-02). A lawful Λ carries a licence and a
+trigger. Lean: \texttt{Ddc.\allowbreak L\_needs\_licence\_and\_trigger}.
+
+\textbf{Proposition 5.3} (DDC-L-03). The new coordinates are orthogonal
+to the image of \(\iota\), since their supports are disjoint.
+
+\textbf{Proposition 5.4} (DDC-L-04). An unlicensed or untriggered lift
+fails closed and returns the original vector. Tests:
+\texttt{test\_structural\_lift.\allowbreak py::test\_unlicensed\_lift\_refusal},
+\texttt{test\_letter\_modules.\allowbreak py::test\_lift\_trigger\_law\_and\_norm\_preservation}.
+
+\textbf{Theorem 5.5} (DDC-TAPE-09). Let \(K_0\) sit in \(K_1\) with
+restriction maps that commute with \(d_0\), and let \(x'\) on \(K_1\)
+restrict to \(x\) on \(K_0\). If \(x'\) is exact on \(K_1\), then \(x\)
+is exact on \(K_0\). So a non-exact residual stays non-exact under every
+lift that extends it. Lean: \texttt{Ddc.\allowbreak L\_cannot\_exactify}.
+
+\emph{Proof.} If \(x' = d_0 \varphi\) then
+\(x = \rho_1(d_0 \varphi) = d_0(\rho_0 \varphi)\). \(\square\)
+
+Demo 3 shows both halves. A lift that adds capacity away from the cycle
+keeps \(\Phi_1 = 1\), and the survivor is sealed on the residual
+terminal. A lift that attaches a face bounding the cycle turns the
+survivor into an open defect (\(\Gamma_2 = 1\)) that \texttt{T} may not
+seal.
+
+\subsection{5.5 Falsifiers}\label{falsifiers-4}
+
+\begin{itemize}
+\tightlist
+\item
+  A lift without a licence is refused (\texttt{Unlicensed\allowbreak Lift}).
+\item
+  A lift from an exact or an open, adequately detected state is refused
+  (\texttt{Lift\allowbreak Without\allowbreak Trigger}).
+\end{itemize}
+
+\subsection{5.6 Nonclaims}\label{nonclaims-4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Λ does not grant unbounded or continuous expansion and does not resolve a survivor.}
+\NormalTok{Λ requires an explicit discrete licence. No authorization is conferred.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Chapter 6 --- Letter D: descent}\label{chapter-6}
+
+Moving to a coarser carrier discards distinctions. D does not claim that
+the coarse state is faithful; it books exactly what was lost.
+
+\subsection{6.1 Definition}\label{definition-6}
+
+With \(\pi : \mathbb{Q}^{n+k} \to \mathbb{Q}^n\) keeping the first \(n\)
+coordinates and \(\iota\) the zero-padding inclusion, the loss vector is
+\(x - \iota(\pi(x))\) (the dropped tail) and the loss scalar is its
+\(\ell^1\) norm \(L(x) = \sum_{i > n} \lvert x_i \rvert\).
+
+\subsection{6.2 Step law}\label{step-law-5}
+
+D changes the carrier and carries a loss ledger (Law 6). The historical
+comparison model checks the carrier change; the ledger clause is
+paper-only (residual R-DDC-05). D is one of the two letters that may
+lower \(\Phi_1\) or \(\Gamma_2\) (spine, Theorem 11.6), which is why its
+loss must be booked.
+
+\subsection{6.3 Receipt}\label{receipt-5}
+
+\texttt{Descent\allowbreak Receipt} records the source and target dimensions, the
+coarse vector, the loss vector, the loss scalar, \texttt{is\_lossless},
+the status (\texttt{LOSSLESS\_DESCENT} or \texttt{DESCENT\_WITH\_LOSS})
+and \texttt{authority\_effect\ =\ "None"}. \texttt{ledger\_entry} is the
+ledger a D step carries.
+
+\subsection{6.4 Results}\label{results-5}
+
+\textbf{Proposition 6.1} (DDC-D-01). The loss is non-negative (a sum of
+absolute values; in Lean a natural number).
+
+\textbf{Theorem 6.2} (DDC-D-02). The descent is lossless exactly when
+every dropped coordinate is zero, that is, when
+\(x \in \iota(\mathbb{Q}^n)\). Lean: \texttt{Ddc.\allowbreak D\_lossless\_iff},
+\texttt{Ddc.\allowbreak l1\_eq\_zero\_iff}.
+
+\textbf{Theorem 6.3} (DDC-D-03). Projecting twice is projecting once.
+Lean: \texttt{Ddc.\allowbreak D\_projection\_idempotent}.
+
+\textbf{Proposition 6.4} (DDC-D-04). A non-zero loss can never produce a
+\texttt{LOSSLESS\_DESCENT} receipt, and a lawful D carries its ledger.
+Lean: \texttt{Ddc.\allowbreak D\_needs\_ledger}; tests:
+\texttt{test\_descent.\allowbreak py::test\_descent\_with\_positive\_loss},
+\texttt{test\_letter\_modules.\allowbreak py::test\_descent\_books\_its\_ledger}.
+
+\subsection{6.5 Falsifiers}\label{falsifiers-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Demo 5 without a ledger: \texttt{D} is refused
+  (\texttt{Missing\allowbreak Loss\allowbreak Ledger}), and the lawful record is \texttt{M·T}
+  with \texttt{REFUSED\_MISSING\_LOSS\_LEDGER}.
+\item
+  CREDIT without a ledger at D is not lawful (spine, Theorem 11.8).
+\end{itemize}
+
+\subsection{6.6 Nonclaims}\label{nonclaims-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D does not claim lossless projection unless the loss is zero.}
+\NormalTok{D does not permit unrecorded loss of distinctions. No authorization is conferred.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Chapter 7 --- Letter M: typed refusal}\label{chapter-7}
+
+The ability to refuse is co-equal with the ability to deform. M is a
+lawful refusal outcome: it leaves the state unchanged, names its reason
+and moves control to \texttt{Refused}. It does not seal the tape; a
+later C, Λ or T still needs its own law and control check.
+
+\subsection{7.1 Definition}\label{definition-7}
+
+A request is a letter, a locus, an alleged witness and a cost. Grounding
+is checked at intake, before admission; witness and budget are checked
+on the tape as M.
+
+\subsection{7.2 Step law}\label{step-law-6}
+
+M leaves the state unchanged and carries a reason from the closed
+vocabulary below. The historical comparison model checks the unchanged
+state (\texttt{Inert\allowbreak Op\allowbreak Mutated\allowbreak State}). It carries its reason as a free
+string (\texttt{dda\_alphabet::Step\allowbreak Outcome::Refused\allowbreak To\allowbreak Execute}), so this
+vocabulary is owned by the paper (residual R-DDC-05). After M, only
+\texttt{C}, \texttt{Λ} or \texttt{T} may follow (spine, Theorem 11.3).
+
+\subsection{7.3 The refusal vocabulary}\label{the-refusal-vocabulary}
+
+Intake refusals are recorded before admission and never enter the tape
+(\texttt{enters\_ddc\_trace} is false):
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Code
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meaning
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{REFUSED\_UNTYPED} & the request or its defect is not typed on
+the declared carrier \\
+\texttt{REFUSED\_UNGROUNDED\_LOCUS} & the locus is not in the declared
+carrier \\
+\texttt{ADAPTER\_INADEQUATE} & the adapter cannot represent the
+request \\
+\end{longtable}
+
+In-trace reasons carried by M:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Code
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Raised when
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{REFUSED\_INVALID\_WITNESS} & the witness is missing or does not
+verify \\
+\texttt{REFUSED\_BUDGET\_EXHAUSTED} & the cost exceeds the remaining
+budget \\
+\texttt{REFUSED\_NON\_ZERO\_CURL} & E was requested for a defect not in
+\(\operatorname{im} d_0\) \\
+\texttt{REFUSED\_UNLICENSED\_LIFT} & Λ was requested without a
+licence \\
+\texttt{REFUSED\_LIFT\_TRIGGER} & Λ was requested without a Law 4
+trigger \\
+\texttt{REFUSED\_MISSING\_LOSS\_LEDGER} & D was requested without a loss
+ledger \\
+\texttt{REFUSED\_MISSING\_RECEIPT} & I was requested without a
+receipt \\
+\texttt{REFUSED\_REQUIRES\_LIFT} & a closed survivor needs a lift that
+is not licensed \\
+\texttt{REFUSED\_DETECTOR\_INADEQUATE} & the detector cannot certify the
+diagnostics \\
+\texttt{REFUSED\_OPEN\_OBSTRUCTION} & an open obstruction
+(\(\Gamma_2 > 0\)) cannot be sealed \\
+\end{longtable}
+
+The first draft used both \texttt{Missing\allowbreak Loss\allowbreak Ledger} and SCREAMING\_CASE
+codes, and listed the ungrounded locus both as an intake refusal and as
+an M reason. It is an intake refusal.
+
+\subsection{7.4 Results}\label{results-6}
+
+\textbf{Theorem 7.1} (DDC-M-01). A lawful M leaves the state unchanged
+and names a reason, and it moves the control to \texttt{Refused}. Lean:
+\texttt{Ddc.\allowbreak M\_preserves\_state}, \texttt{Ddc.\allowbreak M\_refuses}.
+
+\textbf{Proposition 7.2} (DDC-M-02). An ungrounded locus is refused at
+intake and never enters the tape. Test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_ungrounded\_locus\_is\_an\_intake\_refusal\_that\_never\_enters\_the\_tape}.
+
+\textbf{Proposition 7.3} (DDC-M-03). A missing or invalid witness yields
+\texttt{REFUSED\_INVALID\_WITNESS}. Test:
+\texttt{test\_typed\_refusal.\allowbreak py::test\_refusal\_invalid\_witness}.
+
+\textbf{Proposition 7.4} (DDC-M-04). A cost above the remaining budget
+yields \texttt{REFUSED\_BUDGET\_EXHAUSTED}. Test:
+\texttt{test\_typed\_refusal.\allowbreak py::test\_refusal\_budget\_exhausted}.
+
+\subsection{7.5 Falsifiers}\label{falsifiers-6}
+
+\begin{itemize}
+\tightlist
+\item
+  An M step without a reason, or with a reason outside the vocabulary,
+  is refused (\texttt{Missing\allowbreak Refusal\allowbreak Reason}).
+\item
+  An M step that alters the state is refused by paper and historical
+  comparison model.
+\end{itemize}
+
+\subsection{7.6 Nonclaims}\label{nonclaims-6}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{M is not a system failure. It is a typed, lawful refusal that preserves state.}
+\NormalTok{No authorization is conferred.}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Chapter 8 --- Letter T: terminalization}\label{chapter-8}
+
+A recursive evaluation needs a halting law that prevents infinite
+expansion and self-certification. T closes a tape on a routing terminal
+when the declared terminal policy allows it, subject to the sealing
+conditions below.
+
+\subsection{8.1 Definition}\label{definition-8}
+
+\texttt{Can\allowbreak Continue\_n} is the conjunction of the nine conjuncts named
+by the historical comparison model
+(\texttt{omega\_discrete\_deformation\_calculus::oeprmalg2::CONTINUATION\_CONJUNCTS}):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  an outstanding obligation exists;
+\item
+  a higher obligation witness exceeds it;
+\item
+  the next carrier is declared;
+\item
+  the adapter is sound (its loss ledger is booked);
+\item
+  the detector is adequate;
+\item
+  any lift is minimal and licensed;
+\item
+  the old skeleton is preserved;
+\item
+  budget is available;
+\item
+  no GTLA continuation refusal was issued.
+\end{enumerate}
+
+The first draft's three-condition form (positive budget, unresolved
+residual, strict progress) is a weakening. It is conjuncts 8 and 1, plus
+the progress guard of spine Theorem 11.6.
+
+\subsection{8.2 Step law}\label{step-law-7}
+
+T leaves the state unchanged, requires \(\Gamma_2 = 0\), and requires an
+adequate detector. The historical comparison model checks the unchanged
+state and \(\Gamma_2 = 0\) (\texttt{Terminalized\allowbreak Open\allowbreak Residual}); the
+detector clause is paper-only (residual R-DDC-05). After T nothing is
+admitted.
+
+\subsection{8.3 Verdicts}\label{verdicts}
+
+The abstract Lean T law does not include \texttt{Can\allowbreak Continue\_n}; its
+theorem concerns only the conjunction itself.
+\texttt{Terminalization\allowbreak Evaluator.\allowbreak evaluate} accepts optional
+\texttt{continuation\_facts}. After the open/blind-state guards, if all
+nine hold it returns \texttt{CAN\_CONTINUE}; if one fails, an open or
+blind state still cannot seal, and a closed positive residual receives
+\texttt{HALTED\_CONTINUATION\_POLICY}. These booleans are supplied
+assumptions, not independently verified facts.
+
+Without \texttt{continuation\_facts}, the separate
+residual/budget/lookback policy returns one of the following. Its
+simple-policy tests do not establish the nine-fact policy for a deployed
+system:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verdict
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+When
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Routing
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{SEAL\_REFUSED\_OPEN\_OBSTRUCTION} & \(\Gamma_2 > 0\) & not
+terminal; the tape ends in M \\
+\texttt{SEAL\_REFUSED\_DETECTOR\_INADEQUATE} & blind detector & not
+terminal; the tape ends in M \\
+\texttt{LOCAL\_GREEN\_FOR\_SCOPE} & zero residual & \texttt{Check\allowbreak Passed}
+inside the declared scope \\
+\texttt{HALTED\_OUT\_OF\_BUDGET} & closed residual, budget spent &
+residual terminal \\
+\texttt{HALTED\_STAGNANT\_PROGRESS} & no progress over the lookback
+window & residual terminal \\
+\end{longtable}
+
+Every receipt records
+\texttt{authority\_terminal\ =\ "F\_term:REFUSED"}. A local green
+licenses nothing: refusal on the authorization axis is an explicit
+package policy, not an inferred external theorem. The first draft
+emitted a terminal verdict for an out-of-budget open obstruction; that
+verdict now routes to M (\texttt{REFUSED\_OPEN\_OBSTRUCTION}).
+
+\subsection{8.4 Results}\label{results-7}
+
+\textbf{Proposition 8.1} (DDC-T-01). If every charged step costs at
+least \(\varepsilon > 0\) from an initial budget \(B_0\), at most
+\(\lfloor B_0 / \varepsilon \rfloor\) charged steps occur. This is a
+conditional theorem with a one-line proof: the budget is non-negative
+and falls by \(\varepsilon\) per step.
+
+\textbf{Proposition 8.2} (DDC-T-02). Under the simple policy, a zero
+residual with \(\Gamma_2 = 0\) and an adequate detector yields
+\texttt{LOCAL\_GREEN\_FOR\_SCOPE} and records the unlicensed authority
+terminal. Tests:
+\texttt{test\_terminalization.\allowbreak py::test\_terminal\_local\_green},
+\texttt{test\_letter\_modules.\allowbreak py::test\_terminal\_evaluator\_refuses\_to\_seal\_open\_or\_blind\_states}.
+
+\textbf{Proposition 8.3} (DDC-T-03). A non-decreasing residual over the
+lookback window halts with \texttt{HALTED\_STAGNANT\_PROGRESS}. Test:
+\texttt{test\_terminalization.\allowbreak py::test\_terminal\_stagnant\_progress}.
+
+\textbf{Theorem 8.4} (DDC-T-04). T seals: the control becomes
+\texttt{Terminalized} and admits nothing. Lean: \texttt{Ddc.\allowbreak T\_seals},
+\texttt{Ddc.\allowbreak terminal\_absorbing}.
+
+\textbf{Theorem 8.5} (DDC-T-05). A lawful T leaves the state unchanged,
+has \(\Gamma_2 = 0\) and an adequate detector, and lands on the exact or
+the closed class. Lean: \texttt{Ddc.\allowbreak T\_never\_seals\_open},
+\texttt{Ddc.\allowbreak T\_routing}.
+
+\textbf{Theorem 8.6} (DDC-T-06). \texttt{Can\allowbreak Continue\_n} holds exactly
+when all nine conjuncts hold, and each conjunct is a strict boolean,
+never an integer. Lean: \texttt{Ddc.\allowbreak can\allowbreak Continue\_iff}; test:
+\texttt{test\_letter\_modules.\allowbreak py::test\_can\_continue\_is\_the\_conjunction\_of\_the\_nine\_named\_conjuncts}.
+
+\subsection{8.5 Falsifiers}\label{falsifiers-7}
+
+\begin{itemize}
+\tightlist
+\item
+  Demo 2 appends \texttt{T} to an open refusal: refused
+  (\texttt{Terminalized\allowbreak Open\allowbreak Residual}).
+\item
+  Demo 4 appends \texttt{T} under a blind detector: refused
+  (\texttt{Blind\allowbreak Detector}).
+\end{itemize}
+
+\subsection{8.6 Nonclaims}\label{nonclaims-7}
+
+T does not mint global authority and never emits an unscoped green
+verdict. A terminal receipt records a conditional terminal-policy
+decision. No authorization is conferred.
+
+\newpage
+
+\section{Appendices --- Discrete Deformation Calculus
+v1.0.3}\label{appendices}
+
+\textbf{Part of:} \hyperref[discrete-deformation-calculus]{Discrete
+Deformation Calculus v1.0.3}
+
+The appendices hold candidate adapters, observer notes and worked
+trajectories. Nothing here is part of the core calculus unless its
+ledger row says so.
+
+\subsection{A. Candidate adapter: ZX diagrams to
+cochains}\label{a.-candidate-adapter-zx-diagrams-to-cochains}
+
+\begin{quote}
+\textbf{Fence.} A candidate adapter from planar ZX diagrams to finite
+cochains. It is not core DDC and asserts no quantum or physical result
+(DDC-OPEN-03).
+\end{quote}
+
+A finite ZX diagram gives a graph carrier: spiders with a type \(Z\) or
+\(X\) and a phase \(\theta_v\) are vertices, oriented wires with a phase
+discrepancy \(\omega_e\) are edges, and closed plaquettes are faces. The
+candidate coboundary is colour-relative:
+
+\[(d_0 \theta)_{u \to v} = \theta_v - \theta_u - H_{u,v}, \qquad
+H_{u,v} = \begin{cases} 0 & \text{same type,} \\ \pi/2 & \text{different type,} \end{cases}\]
+
+with \(d_1\) summing signed discrepancies around each plaquette. Two
+obligations are open. First, \(d_0\) with a non-zero \(H\) is affine,
+not linear, so \(d_1 \circ d_0 = 0\) must be proved or refused for the
+declared \(H\). Second, phases are real, so an exact treatment needs a
+finite shadow over \(\mathbb{Q}\) or a declared oracle. Spider fusion
+\(Z(\alpha) \circ Z(\beta) \Rightarrow
+Z(\alpha + \beta)\) would read as E when a local \(\theta\) with
+\(\theta_v - \theta_u = \omega_e\) exists, giving the candidate tape
+\texttt{C·R·E·I·T}.
+
+\subsection{B. Observer gauges and dual
+witnesses}\label{b.-observer-gauges-and-dual-witnesses}
+
+\begin{quote}
+\textbf{Fence.} An observer-gauge note. It is not core DDC, and it
+leaves \(\mathbb{Q}\) where it takes a square root (DDC-OPEN-04).
+\end{quote}
+
+For a two-component defect \(\omega = (1, 1)\) on one edge of a hollow
+six-cycle, a coordinate-separable observer reads
+\(\lVert (1,1) \rVert_1 = 2\), and a rotation-invariant observer reads
+\(\lVert (1,1) \rVert_2 = \sqrt{2}\). The ratio \(\sqrt{2}\) is specific
+to this defect and these gauges; for (1,0) the ratio is 1. A feasible
+dual flow must have zero divergence. For the separable gauge, the vector
+(1,1) circulates on every consistently oriented cycle edge; only its
+pairing with the one-edge defect is concentrated on that edge. The
+rotation-invariant gauge similarly uses the constant unit flow
+\((1,1)/\sqrt{2}\) on every edge. A one-edge dual vector would violate
+flow conservation. Formalizing the finite dual certificate, with its
+Fenchel--Rockafellar hypotheses named, is open.
+
+\subsection{C. Worked trajectories}\label{c.-worked-trajectories}
+
+\textbf{C.1 Trajectory recording} (OE010-06). A trajectory maps concrete
+tool and human actions into cochain classes, and cochains back into
+readable evidence, with \(d_{k} \circ d_{k-1} = 0\) on the window. This
+is a positioning statement. The recorder cited by the first draft is not
+part of this deposit, and no claim here depends on it.
+
+\textbf{C.2 Projection-context congruence} (OE010-07). Following the
+coalgebraic partition refinement of Birkmann et al.~(arXiv:2204.06248),
+signatures \(\mathrm{sig}_\pi = F\pi \circ c\) split states until a
+representation \(p\) and every context continuation agree. When
+\(p(x) = p(y)\) but some context \(c\) separates them, the pair and its
+separating word witness a \emph{returning projection}. This is
+positioning. A related implementation exists elsewhere in the
+repository, outside this deposit, and is not relied on here.
+
+\textbf{C.3 Newton--Leibniz as a tape} (OE010-08). Integrate
+\(f(x) = x\) on \([0, 10]\) with ten left-endpoint steps, exactly over
+\(\mathbb{Q}\). The carrier is a path with vertices \(0, \dots, 10\).
+The measured increments are \(k\) (left sum \(45\)). The exact
+increments are \(d_0 F\) for \(F(k) = k^2/2\), namely
+\(k + \tfrac{1}{2}\). The defect is \(\tfrac{1}{2}\) on every edge,
+total \(5\). A path has no cycles, so every defect on it is exact. The
+tape \texttt{C·R·E·I·T} declares the grid, registers the defect, repairs
+it to \(d_0 F\), commits and seals. The integral is the telescoping sum
+\(F(10) - F(0) = 50\): on a path, the discrete fundamental theorem of
+calculus says that summing a coboundary returns the difference of the
+potential at the endpoints. \texttt{demos.\allowbreak newton\_leibniz} computes
+these numbers and the tape's receipt head;
+\texttt{test\_fsm\_and\_demos.\allowbreak py::test\_newton\_leibniz\_is\_exact} pins
+both. No hash is copied into this text.
+
+\subsection{D. Spectral sequences, skills and
+operads}\label{d.-spectral-sequences-skills-and-operads}
+
+\begin{quote}
+\textbf{Fence.} These are programme definitions, not theorems. No code
+in this deposit implements them, and the first draft's references to
+such code were dead.
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Self-maintenance mode} (OE010-11). A tape that re-examines its
+  own detector through \texttt{C·R·Λ·I·T} would relate to the
+  \(E_\infty\) page of a filtration spectral sequence. Open.
+\item
+  \textbf{Skill objects} (OE010-12). A \emph{skill} is proposed to be a
+  residual class that survives every licensed attachment in a growth
+  filtration, bound to a receipt. Definition proposal; open.
+\item
+  \textbf{Meta-skills} (OE010-13). A meta-skill is proposed to be a
+  class that persists across a family of carriers. Open.
+\item
+  \textbf{Spectral sequence on a minimal complex} (OE010-14). Attaching
+  a 2-cell \(\sigma\) with nonzero pairing
+  \(\omega(\partial\sigma) \ne 0\) changes the question: \(\omega\) is
+  no longer closed, so the class leaves \(H^1\) as an open face defect
+  (\(\Gamma_2 > 0\)), and it is not repaired. Demo 3's falsifier shows
+  this directly, and Theorem 5.5 shows that no lift makes a survivor
+  exact under its commuting-restriction hypotheses. Support containment
+  alone is insufficient: two triangle circulations +1 and −1 cancel on a
+  face traversing both cycles
+  (\texttt{test\_review\_regressions.\allowbreak py::test\_attaching\_a\_face\_must\_pair\_nontrivially\_with\_the\_residual}).
+  A correct page-by-page account over a declared filtration is open.
+\item
+  \textbf{Coloured operads of skills} (OE010-15). Composition
+  \(\gamma \in \mathcal{T}(c_1, \dots, c_n; d)\) with loss-ledger
+  accumulation
+  \(L_{\gamma \circ (\delta_i)} = L_\gamma \cup \bigcup_i \gamma^{(i)}_*(L_{\delta_i})\)
+  is a design sketch. The associativity and unit laws of such an operad
+  are open, and composition mints no authority.
+\end{itemize}
+
+\newpage
+
+\section{References and their role}\label{references-and-their-role}
+
+External literature supplies definitions and context; none of these
+references authenticates a DDC runtime or supplies a licence. Local
+companion links are pinned to repository commit
+e4a1214bb3e47570b0f74ecc9117c98f27a26b5e.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  J. H. Carroll. \emph{Local Green, Global Red I: Evaluated Path Kernels
+  for Composed Agent Reliability}, v1.2.3 (2026).
+  \href{https://github.com/dbccpage/the_symbol_game/blob/e4a1214bb3e47570b0f74ecc9117c98f27a26b5e/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/012_local_green_global_red_foundational_series/lggr_i_evaluated_path_kernels/lggr_i_evaluated_path_kernels.md}{Pinned
+  companion source}. Context for the local/global distinction; no DDC
+  proof depends on it.
+\item
+  J. H. Carroll. \emph{Finite Obstruction Calculus: Exact Quotient
+  Diagnostics, Dual Witnesses, Two-Stage Coherence, and Transport},
+  v3.2.0.
+  \href{https://github.com/dbccpage/the_symbol_game/blob/e4a1214bb3e47570b0f74ecc9117c98f27a26b5e/omega_engine_atlas/coda_atlas/F005_coda/foc/coda_foc.md}{Pinned
+  companion source}. Context for §3; the DDC graph formulas and
+  arguments are supplied locally.
+\item
+  J. H. Carroll. \emph{Six jobs, not one machine: obstruction, standing,
+  transport, comparison, shadow, leftover}, v3.2.0 (2026).
+  \href{https://github.com/dbccpage/the_symbol_game/blob/e4a1214bb3e47570b0f74ecc9117c98f27a26b5e/omega_engine_atlas/coda_atlas/F005_coda/coda_gtla/coda_gtla_monograph.md}{Pinned
+  companion source}. Background to the authorization distinction. DDC's
+  refusal terminal is an explicit local policy, not an application of an
+  unstated external theorem.
+\item
+  F. Birkmann, H.-P. Deifel and S. Milius. \emph{Distributed Coalgebraic
+  Partition Refinement}. TACAS 2022, LNCS 13244, 159--177.
+  \href{https://doi.org/10.1007/978-3-030-99527-0_9}{DOI
+  10.1007/978-3-030-99527-0\_9},
+  \href{https://arxiv.org/abs/2204.06248}{arXiv:2204.06248}. Positioning
+  for Appendix C.2; no implementation is imported.
+\item
+  J. Meseguer. \emph{Conditional rewriting logic as a unified model of
+  concurrency}. Theoretical Computer Science 96(1), 73--155 (1992).
+  \href{https://doi.org/10.1016/0304-3975(92)90182-F}{DOI
+  10.1016/0304-3975(92)90182-F}. Prior-art context for §16; separation
+  from rewriting logic remains open.
+  \href{https://maude.cs.illinois.edu/overview}{Maude project overview}
+  and \href{https://maude.cs.illinois.edu/documentation}{documentation}.
+  The framework can represent other operational specifications; DDC's
+  chosen guards and receipt fields do not establish an expressivity
+  separation.
+\item
+  D. Deutsch and C. Marletto. \emph{Constructor theory of information}.
+  Proceedings of the Royal Society A 471, 20140540 (2015).
+  \href{https://doi.org/10.1098/rspa.2014.0540}{DOI
+  10.1098/rspa.2014.0540},
+  \href{https://arxiv.org/abs/1405.5563}{arXiv:1405.5563}.
+  Possible/impossible transformations are a comparison in §16, not a
+  physics claim.
+\item
+  J. J. M. M. Rutten. \emph{Universal coalgebra: a theory of systems}.
+  Theoretical Computer Science 249(1), 3--80 (2000).
+  \href{https://ir.cwi.nl/pub/48}{CWI publication record},
+  \href{https://doi.org/10.1016/S0304-3975(00)00056-6}{DOI
+  10.1016/S0304-3975(00)00056-6}. Coalgebraic context for signatures and
+  transition systems in Appendix C.2.
+\item
+  B. Coecke and A. Kissinger. \emph{Picturing Quantum Processes: A First
+  Course in Quantum Theory and Diagrammatic Reasoning}. Cambridge
+  University Press (2017), ISBN 978-1-107-10422-8.
+  \href{https://www.cambridge.org/core/books/picturing-quantum-processes/1119568B3101F3A685BE832FEEC53E52}{Publisher
+  record}. Diagrammatic context only; Appendix A's proposed adapter
+  remains unproved.
+\item
+  L.-H. Lim. \emph{Hodge Laplacians on Graphs}. SIAM Review 62(3),
+  685--715 (2020). \href{https://doi.org/10.1137/18M1223101}{DOI
+  10.1137/18M1223101},
+  \href{https://arxiv.org/abs/1507.05379}{arXiv:1507.05379}.
+  Linear-algebra background for the decomposition stated and proved in
+  §3.
+\item
+  The Lean project.
+  \href{https://lean-lang.org/doc/reference/latest/}{Lean 4 reference
+  manual}. The executable toolchain is pinned to v4.34.0 in
+  lean4/lean-toolchain; the axiom report records the actual compiler
+  version and commit.
+\end{enumerate}
+
+\end{document}

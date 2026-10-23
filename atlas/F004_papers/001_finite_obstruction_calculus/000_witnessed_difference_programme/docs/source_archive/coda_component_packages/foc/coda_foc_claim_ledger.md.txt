@@ -1,0 +1,158 @@
+# Claim Ledger — Finite Obstruction Calculus: Exact quotient diagnostics, dual witnesses, two-stage coherence, and transport (CODA-FOC)
+
+**Paper Key:** `000_coda/foc`  
+**Paper Identity:** `CODA-FOC` (`coda_foc.md`, version: `3.2.1`)  
+**Date:** 2026-09-28  
+
+This ledger catalogs all mathematical definitions, theorems, corollaries, propositions, and scope fences in `coda_foc.md`. All claims are framed strictly under exact finite-dimensional cochain complexes, discrete polyhedral geometry, and exact rational linear programming duality.
+
+The finite conformance evidence for FOC-T2 and FOC-C1 includes
+`code/tests/test_foc_conformance.py`: seven exact quotient cases and a
+regression showing that one feasible left-kernel vector can miss an
+obstruction. These examples supplement the stated proofs; the tests do
+not establish the universal theorems.
+
+Reproducible local test nodes are `test_foc_conformance.py::test_exact_quotient_conformance` and `test_foc_conformance.py::test_one_feasible_kernel_vector_can_miss_an_obstruction`. They attest to the finite cases only.
+
+---
+
+## 1. Algebraic & Discrete Cochain Foundation
+
+The mathematical substrate is a finite cochain complex of finite-dimensional real spaces (with exact rational representations in software):
+$$C^0 \xrightarrow{d_0} C^1 \xrightarrow{d_1} C^2 \quad \text{with} \quad d_1 \circ d_0 = 0,$$
+augmented by an auxiliary stage-2 linear repair space $U^2 \xrightarrow{a_2} C^2$, and strictly positive observer coordinate weight vectors $w_1 \in \mathbb{R}_{>0}^{\dim C^1}$ and $w_2 \in \mathbb{R}_{>0}^{\dim C^2}$.
+
+Linear repair subspaces are defined by exact linear images:
+$$M_1 := \operatorname{im}(d_0) \subseteq C^1, \qquad M_2 := \operatorname{im}(a_2) \subseteq C^2.$$
+Quotient spaces and weighted $\ell_1$ quotient seminorms:
+$$Q^1 := C^1 / M_1, \qquad Q^2 := C^2 / M_2,$$
+$$\Phi_1([x]) := \min_{f \in C^0} \|x + d_0 f\|_{1, w_1}, \qquad \Gamma_2([d_1 x]) := \min_{u \in U^2} \|d_1 x + a_2 u\|_{1, w_2}.$$
+
+The stage-2 defect evaluation is invariant under all stage-1 repairs: $d_1(x + d_0 f) = d_1 x$ since $d_1 d_0 = 0$.
+
+---
+
+## 2. Claim-by-Claim Mathematical Matrix
+
+| ID | Claim Statement | Type | Discrete Complex Structure | Explicit Hypotheses | Proof Mechanism | Precise Bounds | Verification Evidence |
+|---|---|---|---|---|---|---|---|
+| **FOC-D1** | Valid finite obstruction packet contract | DEFINITION | Finite real spaces $C^0, C^1, C^2, U^2$ and linear maps $d_0, d_1, a_2$ | $\dim C^i < \infty$, all matrix entries finite, $d_1 d_0 = 0$ exactly, $w_1 > 0, w_2 > 0$ strictly | Definitional contract and input validation | Dimensions match; entries finite; $w_{k, i} > 0$ strictly | Python `FiniteObstructionPacket.validate`; `test_invalid_packets_and_dimensions_are_refused` |
+| **FOC-T1** | Quotient values are attained norms on $Q^1$ and $Q^2$ | THEOREM | Quotient vector spaces $Q^1 = C^1/M_1$, $Q^2 = C^2/M_2$ with weighted $\ell_1$ norm | $M \subseteq C$ linear subspace, $w \in \mathbb{R}_{>0}^{\dim C}$ | Finite-dimensional polyhedral coercivity; compactness of sublevel sets $M \cap \{m : \|m\|_{1, w} \le 2 \|x\|_{1, w}\}$ | Minimum attained: $\exists f^*, \Phi_1([x]) = \|x + d_0 f^*\|_{1, w_1} \ge 0$; $\Phi_1([x]) = 0 \iff x \in M_1$ | Analytic proof in §2; Python LP solver; exact rational `LinearRepairProblem` |
+| **FOC-T2** | Full-subspace strong LP duality equality | THEOREM (Python certificate; Lean duality open) | Dual linear program over polyhedral polar cone | Repair matrix $A$ spanning full subspace $M = \operatorname{im}(A)$, strictly positive weights $w > 0$ | Strong duality of linear programming over closed convex polyhedra, **certified here by exact rational Python**, not by a Lean simplex/duality development | $\min_y \|x + Ay\|_{1, w} = \max_z \{ z^T x : A^T z = 0, \vert z_i \vert \le w_i \}$; duality gap $= 0$ on the Python certificate | §2 LP proof; Python exact primal/dual solver; `test_l1_l2_counterexample`, `test_generator_closure_counterexample`. Lean polyhedral duality remains an open formalization target. |
+| **FOC-C1** | Exact dual separation of nonzero quotient classes | COROLLARY | Dual pairing between $Q^1$ and annihilator subspace $(M_1)^\circ$ | Finite dimension, $x \notin M_1$ | Farkas lemma / Hahn-Banach separation for polyhedra combined with FOC-T2 | $[x] \neq 0 \iff \exists z \in \mathbb{R}^{\dim C_1}: A^T z = 0, \vert z_i \vert \le w_i, z^T x > 0$ | §2 corollary; Lean 4 `Algebra.lean` (`Coda.FOC.separator_exists` in `FOC.lean`, within `{propext, Classical.choice, Quot.sound}`). Full polyhedral dual box bounds certified by Python. |
+| **FOC-D2** | Hash-bound primal/dual certificate contract | DEFINITION | Cryptographic & algebraic witness record $(y, r, z, \text{val}, h_{\text{in}})$ | Primal feasibility $r = x + Ay$, dual feasibility $A^T z = 0, \vert z_i \vert \le w_i$, objective equality $w^T \vert r \vert = z^T x$ | Algorithmic certificate verification | Duality gap $\vert w^T \vert r \vert - z^T x \vert = 0$; hash digest $h_{\text{in}} = \operatorname{SHA256}(\text{packet}, x)$ | Python `quotient_certificate`; `LinearRepairProblem` rational witness verification |
+| **FOC-T3** | Exhaustive and mutually exclusive diagnostic trichotomy | THEOREM | Partition of state space $C^1$ into 3 disjoint diagnostic sectors | Valid packet (FOC-D1), vector $x \in C^1$, $d_1 d_0 = 0$ | Disjoint case analysis on $[0, \infty) \times [0, \infty)$: $\Phi_1 = 0 \implies \Gamma_2 = 0$ | Exactly one outcome holds: `ExactRepair` ($\Phi_1 = 0$), `CoherentResidual` ($\Phi_1 > 0, \Gamma_2 = 0$), `NonclosedDefect` ($\Phi_1 > 0, \Gamma_2 > 0$) | Lean 4 `TerminalCompleteness.lean` mechanizes the abstract decidable partition; `L20AKernel.lean` formalizes zero/positive separation conditional on declared primitives; Python `test_total_trichotomy` |
+| **FOC-P1** | Observer positivity preserves quotient nullity | PROPOSITION | Conformal weight variation $w \mapsto w'$ with $w, w' \in \mathbb{R}_{>0}^{\dim C}$ | Strictly positive weight vectors $w, w' > 0$ | Equivalence of norms in finite dimensions and strict positivity of coordinate weights | $\Phi_{1, w}([x]) = 0 \iff [x] = 0 \iff \Phi_{1, w'}([x]) = 0$; values may vary, nullity invariant | §3 proof; Python `test_zero_and_negative_weight_is_refused` |
+| **FOC-T4** | Additive direct-sum composition law | THEOREM | Direct sum of cochain complexes $P \oplus P'$ | Packets $P, P'$ valid; block-diagonal maps $d_k \oplus d_k'$, concatenated weights $(w, w')$ | Block-diagonal separability of linear constraints and $\ell_1$ norm additivity | $\Phi_{1, P \oplus P'}([x, x']) = \Phi_{1, P}([x]) + \Phi_{1, P'}([x'])$; $\Gamma_{2, P \oplus P'} = \Gamma_{2, P} + \Gamma_{2, P'}$ | §4 proof; Python `test_direct_sum_additivity` |
+| **FOC-T5** | Compatible chain transport quotient Lipschitz bounds | THEOREM | Morphism of cochain complexes $T: P \to P'$ with commute squares | $T_1 d_0 = d_0' T_0$, $T_2 d_1 = d_1' T_1$, $T_2 a_2 = a_2' S_2$, bounded operator norms $\|T_i\|_{1, w \to w'} \le L_i$ | Functorial descent to quotient spaces and submultiplicativity of operator seminorms | $\Phi_1'([T_1 x]) \le L_1 \Phi_1([x])$; $\Gamma_2'([T_2 d_1 x]) \le L_2 \Gamma_2([d_1 x])$ | §5 proof; Python `test_identity_transport_and_norm`, `test_transport_reports_broken_square` |
+| **FOC-NC1** | Diagnostic does not infer terminal stabilization or authority | SCOPE FENCE | Operational boundary between diagnosis and sovereign admission | All packets and outcomes | Definitional separation and firewall enforcement | unconditionally; finite stabilization requires complete concrete-registry replay; external authority is not established | §6 prose; Python `test_terminal_firewall` |
+
+---
+
+## 3. Detailed Specifications with Hypotheses and Bounds
+
+### 3.1 Mathematical Complex & Boundary Bounds
+
+#### FOC-D1: Valid Packet Contract
+
+- **Hypotheses:** Real vector spaces $C^0, C^1, C^2, U^2$ with finite integer dimensions $n_0, n_1, n_2, m_2 \ge 0$. Matrices $d_0 \in \mathbb{R}^{n_1 \times n_0}$, $d_1 \in \mathbb{R}^{n_2 \times n_1}$, $a_2 \in \mathbb{R}^{n_2 \times m_2}$. Weight vectors $w_1 \in \mathbb{R}^{n_1}$, $w_2 \in \mathbb{R}^{n_2}$.
+- **Conditions:**
+  1. Dimension compatibility: $\operatorname{cols}(d_0) = n_0$, $\operatorname{rows}(d_0) = n_1 = \operatorname{cols}(d_1)$, $\operatorname{rows}(d_1) = n_2 = \operatorname{rows}(a_2)$, $\operatorname{cols}(a_2) = m_2$.
+  2. Coboundary nilpotence: $\|d_1 d_0\|_\infty = 0$ (exact algebraic zero).
+  3. Weight strict positivity: $\min_i w_{1, i} > 0$ and $\min_j w_{2, j} > 0$.
+- **Refusal Behavior:** Any packet failing these conditions is rejected with `ValueError` or `TypeError` prior to optimization.
+
+#### FOC-T1 & FOC-T2: Quotient Norm Attainment and LP Duality
+
+- **Hypotheses:** Subspace $M = \operatorname{im}(A)$ where $A \in \mathbb{R}^{n \times m}$, weight vector $w \in \mathbb{R}_{>0}^n$, input vector $x \in \mathbb{R}^n$.
+- **Primal Problem:** $\min_{y \in \mathbb{R}^m, r^+, r^- \ge 0} \sum_{i=1}^n w_i (r_i^+ + r_i^-)$ subject to $x + A y = r^+ - r^-$.
+- **Dual Problem:** $\max_{z \in \mathbb{R}^n} z^T x$ subject to $A^T z = 0$ and $-w_i \le z_i \le w_i$ for all $i \in \{1, \dots, n\}$.
+- **Bounds:**
+  - Primal objective $\|x + A y\|_{1, w} \ge 0$.
+  - Dual box constraint: $|z_i| \le w_i$ for every $i \in \{1, \dots, n\}$, equivalently $\max_i \frac{|z_i|}{w_i} \le 1$.
+  - Exact zero duality gap: $\sum_{i=1}^n w_i \vert r_i^* \vert - z^{*T} x = 0$.
+- **Full-Subspace Requirement:** Annihilation $A^T z = 0$ applies to the full span $\operatorname{im}(A)$, not a proper generating subset.
+
+#### FOC-T3: Exhaustive Diagnostic Trichotomy
+
+- **Hypotheses:** Valid packet $P$, defect vector $x \in C^1$.
+- **Partition:**
+  1. `ExactRepair`: $\Phi_1([x]) = 0$. Implies $x \in \operatorname{im}(d_0)$, whence $d_1 x = 0 \in \operatorname{im}(a_2)$, so $\Gamma_2([d_1 x]) = 0$.
+  2. `CoherentResidual`: $\Phi_1([x]) > 0$ and $\Gamma_2([d_1 x]) = 0$. The defect is non-exact at stage 1, but its boundary defect vanishes in the stage-2 quotient.
+  3. `NonclosedDefect`: $\Phi_1([x]) > 0$ and $\Gamma_2([d_1 x]) > 0$. The defect is obstructed at both stage 1 and stage 2.
+- **Exclusivity & Totality:** Disjoint union $\mathbb{R}^{n_1} = \mathcal{S}_1 \sqcup \mathcal{S}_2 \sqcup \mathcal{S}_3$. The Lean sources mechanize the abstract decidable partition and a separation kernel conditional on primitives P1–P4. The numerical quotient construction and its trichotomy are proved in prose and exercised by exact Python examples.
+
+#### FOC-T4: Direct-Sum Additivity
+
+- **Hypotheses:** Packets $P = (C, d, a, w)$ and $P' = (C', d', a', w')$. Direct sum packet $P \oplus P'$ with block maps:
+  $$d_0^{\oplus} = \begin{pmatrix} d_0 & 0 \\ 0 & d_0' \end{pmatrix}, \quad d_1^{\oplus} = \begin{pmatrix} d_1 & 0 \\ 0 & d_1' \end{pmatrix}, \quad a_2^{\oplus} = \begin{pmatrix} a_2 & 0 \\ 0 & a_2' \end{pmatrix}, \quad w_1^{\oplus} = (w_1, w_1').$$
+- **Additivity Bound:**
+  $$\Phi_{1, P \oplus P'}\left(\begin{bmatrix} x \\ x' \end{bmatrix}\right) = \Phi_{1, P}([x]) + \Phi_{1, P'}([x']).$$
+
+#### FOC-T5: Quotient Lipschitz Bounds under Transport
+
+- **Hypotheses:** Packets $P, P'$ and linear maps $T_0: C^0 \to C'^0$, $T_1: C^1 \to C'^1$, $T_2: C^2 \to C'^2$, $S_2: U^2 \to U'^2$ satisfying:
+  $$T_1 d_0 = d_0' T_0, \qquad T_2 d_1 = d_1' T_1, \qquad T_2 a_2 = a_2' S_2.$$
+- **Operator Norms:**
+  $$L_1 := \|T_1\|_{1, w_1 \to w_1'} = \max_{j} \frac{1}{w_{1, j}} \sum_{i} w_{1, i}' \vert (T_1)_{i, j} \vert, \qquad L_2 := \|T_2\|_{1, w_2 \to w_2'}.$$
+- **Precise Bounds:**
+  $$\Phi_1'([T_1 x]) \le L_1 \Phi_1([x]), \qquad \Gamma_2'([T_2 d_1 x]) \le L_2 \Gamma_2([d_1 x]).$$
+
+---
+
+### 3.2 Adversarial Fault Injection & Mutation Verification Matrix
+
+Each test enforces a mathematical invariant via intentional fault injection, verifying that invalid configurations strictly flip diagnostic sectors or raise typed refusals:
+
+| Target Invariant | Injected Fault / Mutation | Expected Outcome & Refusal | Verifying Test Name |
+|---|---|---|---|
+| Total Trichotomy (Exact Repair) | Coherent packet with repairable defect $[3, 0]^T$ | `Diagnostic.EXACT_REPAIR` | `test_total_trichotomy` |
+| Total Trichotomy (Coherent Residual) | Coherent packet with unrepairable closed defect $[0, 4]^T$ | `Diagnostic.COHERENT_RESIDUAL` | `test_total_trichotomy` |
+| Total Trichotomy (Nonclosed Defect) | Packet with nonclosed defect $[0, 4]^T$ ($d_1 x \neq 0$) | `Diagnostic.NONCLOSED_DEFECT` | `test_total_trichotomy` |
+| Zero Floats Invariant | Float in matrix: `[[1.0]]` (IEEE 754 float) | Strictly raises `TypeError: Floating-point values forbidden` | `test_edge_cases_and_type_guards`, `test_float_rejection_negative_paths` |
+| Zero Floats Invariant | Float in vector: `[1.0]` | Strictly raises `TypeError: Floating-point values forbidden` | `test_edge_cases_and_type_guards`, `test_numpy_scalar_floats_are_rejected` |
+| Zero Floats Invariant | Boolean in vector: `[True]` | Strictly raises `TypeError: rejects bool` | `test_edge_cases_and_type_guards` |
+| Zero Floats Invariant | Floating tolerance passed: `tolerance=1e-5` | Strictly raises `TypeError: Floating-point tolerance forbidden` | `test_edge_cases_and_type_guards` |
+| Full Subspace vs Generator | Testing generator-only vs full repair subspace | Full subspace annihilator fails generator-only | `test_generator_closure_counterexample` |
+| $L_1$ vs $L_2$ Separation | $L_1$ quotient distance on $(0, 0, 10)$ vs least-squares repair | Optimal $\ell^1$ value 10, versus $\ell^1$ value 40/3 at the least-squares repair | `test_l1_l2_counterexample` |
+| Non-positive Weights | Coordinate weight $w_i \le 0$ | Strictly raises `ValueError: strictly positive` | `test_zero_and_negative_weight_is_refused` |
+| Dimension Mismatch | Dimension mismatch between differential and defect | Strictly raises `ValueError: does not inhabit` | `test_invalid_packets_and_dimensions_are_refused` |
+| Cochain Invalidity | Coboundary failure: $d_1 d_0 \neq 0$ | Strictly raises `ValueError: cochain` | `test_invalid_packets_and_dimensions_are_refused` |
+| Inconsistent Duals | Inconsistent dual vector supplied to certificate | Strictly raises `RuntimeError` for failed dual invariants | `test_quotient_certificate_refuses_inconsistent_duals` |
+
+---
+
+## 4. Open Obligations and Verification State
+
+1. **Computational evidence:** Exact arithmetic, certificate mutation, independent conformance, finite-registry replay, and figure-generation tests are in `code/tests/`. Test results and line/branch coverage belong to the current validation run; historical counts do not certify this revision. Vertex enumeration targets small finite instances.
+2. **Lean 4 Mechanization Status:**
+   - Abstract decidable trichotomy partition (Theorem FOC-T3) in `TerminalCompleteness.lean` (0 axioms); logical $\Phi$–$\Gamma$ separation kernel in `L20AKernel.lean` (0 axioms from declared primitives P1–P4); dual separator existence (Corollary FOC-C1) in `Algebra.lean` / `FOC.lean` under `{propext, Classical.choice, Quot.sound}`; EPK quotient factorization in `PrimitiveDifference.lean` under `{propext, Quot.sound}` and `EpkPrimitiveDifference.lean` under `{Quot.sound}`.
+   - Lean 4 formalizes the abstract partition and conditional logical/algebraic kernels; Python exact rational certificates from `LinearRepairProblem` verify individual rational problem instances (establishing optimality for the instances checked rather than the universal theorem); and the general numerical LP duality theorem is established by the manuscript's mathematical proof. Complete formalization of the simplex algorithm / polyhedral duality in Lean 4 remains an open formalization target.
+3. **Nonlinear & Infinite Carriers:**
+   - Nonlinear repair varieties and infinite-dimensional Banach cochains are excluded from this calculus.
+4. **Authority Effect:**
+   - Strictly `None`. No row grants authority or publication standing.
+
+---
+
+## 5. Vocabulary Fence & Scope Boundaries
+
+### 5.1 Terminology & Posture Fences
+
+| Term / Posture | Preferred Framing | Prohibited Overclaim |
+|---|---|---|
+| Diagnostic | Mathematical partition into disjoint sectors (`ExactRepair`, `CoherentResidual`, `NonclosedDefect`) | Action selection or remediation command |
+| Dual Witness | Exact bounded functional annihilating repair subspace with zero duality gap | Infinite-dimensional functional or continuous oracle |
+| Quotient Seminorm | Attained polyhedral distance $\Phi_1([x]) = \min_f \|x + d_0 f\|_{1, w}$ | Least-squares or heuristic surrogate |
+| Coherent Residual | Boundary defect vanishing in second stage ($d_1 x \in \operatorname{im} a_2$) | Terminal stabilization or survivor promotion |
+
+### 5.2 What CODA-FOC Does Not Support
+
+1. **Does Not Support $L_2$ Least-Squares Surrogates:** Euclidean projections yield distinct repair points and fail polyhedral polar cone box bounds.
+2. **Simplex LP Duality Not Mechanized in Lean:** Polyhedral duality on raw matrices is a Python computational certificate, not a Lean formal proof.
+3. **Does Not Mint Operational Authority:** Defect diagnosis classifies mathematical obstruction; it confers no sovereign authority, execution grant, or publication standing.
+4. **Does Not Conflate Diagnosis with Stabilization:** A `CoherentResidual` diagnosis does not constitute stabilization. Promotion to `StabilizedSurvivor` requires a complete external certificate matching registry, observer, budget, moves, and evaluation digests.
+
+### 5.3 Narrowest Defensible Claim
+
+For any finite cochain complex $C^0 \xrightarrow{d_0} C^1 \xrightarrow{d_1} C^2$ with $d_1 d_0 = 0$ and strictly positive coordinate weights, the state space $C^1$ admits an exhaustive and mutually exclusive 3-way partition into `ExactRepair`, `CoherentResidual`, and `NonclosedDefect`. When the differentials $d_0, d_1, a_2$, weights $w_1, w_2$, and defect vectors $x$ have rational coordinates in $\mathbb{Q}$, the quotient distances, optimal repairs, and dual certificates are decided with exact zero duality gap over exact rational arithmetic.

@@ -1,0 +1,148 @@
+{
+  "schema_version": "campaign_independent_replay.v1",
+  "AuthorityEffect": "None",
+  "checked_at": "2026-10-23T03:17:56.912061+00:00",
+  "source": "checks/independent/l1-imp-transition-probability-law.py",
+  "sha256": "67537675ef4a328ecf875de7447ddc07f850f0da732afc6cb7a2d1e7ed83e8de",
+  "python_version": "Python 3.12.10",
+  "pinned_dependencies": {
+    "sympy": "1.13.1",
+    "PyYAML": "6.0.3",
+    "mypy": "1.19.1",
+    "pytest": "8.3.5"
+  },
+  "cwd": "C:/gw/tp-law",
+  "commands": [
+    {
+      "command": "python -I -X utf8 checks/independent/l1-imp-transition-probability-law.py",
+      "exit_code": 0,
+      "output": "{\n  \"boundary_rejections\": [\n    \"boolean scalar\",\n    \"floating scalar\",\n    \"unchecked component\",\n    \"zero inverse\",\n    \"zero ray\",\n    \"zero effect\",\n    \"zero state\"\n  ],\n  \"countermodel_probabilities\": [\n    \"9/10\",\n    \"1/10\"\n  ],\n  \"grid\": {\n    \"ordered_pairs\": 6400,\n    \"orthogonal_pairs\": 512,\n    \"vectors\": 80\n  },\n  \"imaginary_probe_probabilities\": [\n    \"1\",\n    \"0\"\n  ],\n  \"mutations\": [\n    {\n      \"mutation\": \"drop probability denominator\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"drop conjugation in inner product\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"remove conditional branch: conjugate every vector\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"replace dynamics by identity\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"stretch inverse without reciprocal\",\n      \"outcome\": \"killed\"\n    }\n  ],\n  \"scope\": \"symbolic identities, exact witnesses, finite grid; no general claim from sampling\",\n  \"status\": \"PASS\",\n  \"stretch_probabilities\": [\n    \"1/2\",\n    \"1/5\"\n  ],\n  \"symbolic_identities\": [\n    \"norm_multiplicative\",\n    \"orthogonal_partner\",\n    \"real_probe\",\n    \"imaginary_probe\",\n    \"gram_calibration\"\n  ],\n  \"witness_inner_products\": [\n    \"3\",\n    \"-1\"\n  ],\n  \"witness_norms\": [\n    \"2\",\n    \"5\"\n  ]\n}\n"
+    },
+    {
+      "command": "python -I -O -X utf8 checks/independent/l1-imp-transition-probability-law.py",
+      "exit_code": 0,
+      "output": "{\n  \"boundary_rejections\": [\n    \"boolean scalar\",\n    \"floating scalar\",\n    \"unchecked component\",\n    \"zero inverse\",\n    \"zero ray\",\n    \"zero effect\",\n    \"zero state\"\n  ],\n  \"countermodel_probabilities\": [\n    \"9/10\",\n    \"1/10\"\n  ],\n  \"grid\": {\n    \"ordered_pairs\": 6400,\n    \"orthogonal_pairs\": 512,\n    \"vectors\": 80\n  },\n  \"imaginary_probe_probabilities\": [\n    \"1\",\n    \"0\"\n  ],\n  \"mutations\": [\n    {\n      \"mutation\": \"drop probability denominator\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"drop conjugation in inner product\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"remove conditional branch: conjugate every vector\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"replace dynamics by identity\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"stretch inverse without reciprocal\",\n      \"outcome\": \"killed\"\n    }\n  ],\n  \"scope\": \"symbolic identities, exact witnesses, finite grid; no general claim from sampling\",\n  \"status\": \"PASS\",\n  \"stretch_probabilities\": [\n    \"1/2\",\n    \"1/5\"\n  ],\n  \"symbolic_identities\": [\n    \"norm_multiplicative\",\n    \"orthogonal_partner\",\n    \"real_probe\",\n    \"imaginary_probe\",\n    \"gram_calibration\"\n  ],\n  \"witness_inner_products\": [\n    \"3\",\n    \"-1\"\n  ],\n  \"witness_norms\": [\n    \"2\",\n    \"5\"\n  ]\n}\n"
+    },
+    {
+      "command": "python -I -m mypy --strict checks/independent/l1-imp-transition-probability-law.py",
+      "exit_code": 0,
+      "output": "Success: no issues found in 1 source file\n"
+    }
+  ],
+  "result": {
+    "boundary_rejections": [
+      "boolean scalar",
+      "floating scalar",
+      "unchecked component",
+      "zero inverse",
+      "zero ray",
+      "zero effect",
+      "zero state"
+    ],
+    "countermodel_probabilities": [
+      "9/10",
+      "1/10"
+    ],
+    "grid": {
+      "ordered_pairs": 6400,
+      "orthogonal_pairs": 512,
+      "vectors": 80
+    },
+    "imaginary_probe_probabilities": [
+      "1",
+      "0"
+    ],
+    "mutations": [
+      {
+        "mutation": "drop probability denominator",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "drop conjugation in inner product",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "remove conditional branch: conjugate every vector",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "replace dynamics by identity",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "stretch inverse without reciprocal",
+        "outcome": "killed"
+      }
+    ],
+    "scope": "symbolic identities, exact witnesses, finite grid; no general claim from sampling",
+    "status": "PASS",
+    "stretch_probabilities": [
+      "1/2",
+      "1/5"
+    ],
+    "symbolic_identities": [
+      "norm_multiplicative",
+      "orthogonal_partner",
+      "real_probe",
+      "imaginary_probe",
+      "gram_calibration"
+    ],
+    "witness_inner_products": [
+      "3",
+      "-1"
+    ],
+    "witness_norms": [
+      "2",
+      "5"
+    ]
+  },
+  "mutation_accounting": {
+    "killed": 5,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": 1
+  },
+  "structure": {
+    "lines": 248,
+    "ast_branch_complexity_per_function": {
+      "require": 2,
+      "gaussian": 3,
+      "norm": 1,
+      "inner": 1,
+      "probability": 2,
+      "scaled": 1,
+      "ray_key": 3,
+      "transform": 2,
+      "stretch": 1,
+      "unstretch": 1,
+      "orthogonal_partner": 1,
+      "check_symbolic": 4,
+      "check_grid": 9,
+      "expect_error": 2,
+      "check_boundaries": 1,
+      "check_mutants": 4,
+      "main": 3,
+      "__post_init__": 3,
+      "__add__": 1,
+      "__neg__": 1,
+      "__sub__": 1,
+      "__mul__": 1,
+      "conjugate": 1,
+      "inverse": 2,
+      "squared": 1,
+      "born": 2,
+      "column": 2
+    },
+    "maximum_ast_branch_complexity": 9,
+    "cognitive_complexity": "not measured; no claim of zero",
+    "scope": "AST branch count counts nested helper bodies in the enclosing function; it is a conservative structural indicator, not a formal complexity proof."
+  },
+  "limitations": [
+    "Finite-grid tests are not universal ray-space evidence.",
+    "Mutation campaign is scoped to the listed five faults; no claim about arbitrary mutations.",
+    "Exact domain admits Fraction components only; float is used solely as an intentional rejection fixture."
+  ]
+}
