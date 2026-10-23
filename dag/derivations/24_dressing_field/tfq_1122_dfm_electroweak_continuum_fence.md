@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4; dividing by the respective rational roots 1 and 2 makes the normalized (1, 2) entries 1 and 2, so they differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.
+For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4. The (1, 2) entry of U(2 Phi)/2 is 1, whereas the (1, 2) entry of (U(Phi)/1) diag(2, 2) is 2; these two sides of the proposed normalized covariance law differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.
 
 ### Governing Obligation
 The normalized residual law is recorded when z lies in Q(i), the squared modulus of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.
 
 ### Witness Audit
-CampaignDfmElectroweakContinuumFence records the four-entry residual identity over Q(i), the unit-modulus shared denominator, the witness 3/5+(4/5)i, and the z=2 separation of normalized (1, 2) entries 1 and 2. Status stays OPEN. Continuum gauge fields and phases outside Q(i) stay imported.
+CampaignDfmElectroweakContinuumFence records the four-entry residual identity over Q(i), the unit-modulus shared denominator, the witness 3/5+(4/5)i, and the z=2 comparison U(2 Phi)/2 versus (U(Phi)/1) diag(2,2), whose (1,2) entries are 1 and 2. Status stays OPEN. Continuum gauge fields and phases outside Q(i) stay imported.
 
 ---
 
@@ -48,6 +48,12 @@ CampaignDfmElectroweakContinuumFence records the four-entry residual identity ov
 - `lean4/CampaignDfmElectroweakContinuumFence.lean::unit_normalized_covariance`
 - `lean4/CampaignDfmElectroweakContinuumFence.lean::witness_three_fifths`
 - `lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ`
+- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff`
+- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_preserves`
+- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize`
+- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.action_composes`
+- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant`
+- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant`
 
 ### Rust Certifiers
 - *none*

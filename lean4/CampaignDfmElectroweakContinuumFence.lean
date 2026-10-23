@@ -148,6 +148,106 @@ theorem unit_normalized_covariance (z : GR) (Φ : Dub) (s : ℚ)
   · rw [unnormalized_covariance, div_rightDiag]
   · exact unit_shares_norm z Φ s hz hs
 
+/-! Checked normalization and unit-phase action. Rational roots are supplied,
+validated and never inferred to exist for every Gaussian-rational doublet. -/
+namespace Normalization
+
+structure Input where
+  phi : Dub
+  scale : ℚ
+  positive : 0 < scale
+  square : scale * scale = Dub.v2 phi
+
+structure UnitDoublet where
+  value : Dub
+  unit : Dub.v2 value = 1
+
+structure UnitPhase where
+  value : GR
+  unit : GR.norm2 value = 1
+
+inductive Error
+  | zeroNorm
+  | nonpositiveScale
+  | mismatchedSquare
+  deriving DecidableEq, Repr
+
+def check (phi : Dub) (s : ℚ) : Except Error Input :=
+  if hn : Dub.v2 phi = 0 then .error .zeroNorm
+  else if hp : 0 < s then
+    if hs : s * s = Dub.v2 phi then .ok ⟨phi, s, hp, hs⟩
+    else .error .mismatchedSquare
+  else .error .nonpositiveScale
+
+theorem check_accepts (phi : Dub) (s : ℚ) (hp : 0 < s)
+    (hs : s * s = Dub.v2 phi) : check phi s = .ok ⟨phi, s, hp, hs⟩ := by
+  have hn : Dub.v2 phi ≠ 0 := by rw [← hs]; exact mul_ne_zero (ne_of_gt hp) (ne_of_gt hp)
+  simp [check, hn, hp, hs]
+
+theorem check_preserves (phi : Dub) (s : ℚ) (n : Input)
+    (h : check phi s = .ok n) : n.phi = phi ∧ n.scale = s := by
+  unfold check at h
+  split at h
+  · cases h
+  · split at h
+    · split at h
+      · cases h; exact ⟨rfl, rfl⟩
+      · cases h
+    · cases h
+
+theorem check_success_iff (phi : Dub) (s : ℚ) :
+    (∃ n, check phi s = .ok n) ↔ 0 < s ∧ s * s = Dub.v2 phi := by
+  constructor
+  · rintro ⟨n, hn⟩
+    obtain ⟨hphi, hs⟩ := check_preserves phi s n hn
+    simpa [← hphi, ← hs] using And.intro n.positive n.square
+  · rintro ⟨hp, hs⟩
+    exact ⟨⟨phi, s, hp, hs⟩, check_accepts phi s hp hs⟩
+
+def divide (phi : Dub) (s : ℚ) : Dub := ⟨GR.div phi.p s, GR.div phi.q s⟩
+
+theorem divide_norm (phi : Dub) (s : ℚ) :
+    Dub.v2 (divide phi s) = Dub.v2 phi / (s * s) := by
+  simp only [Dub.v2, divide, GR.norm2, GR.div]
+  ring
+
+def Input.normalize (n : Input) : UnitDoublet where
+  value := divide n.phi n.scale
+  unit := by
+    rw [divide_norm, ← n.square]
+    exact div_self (mul_ne_zero (ne_of_gt n.positive) (ne_of_gt n.positive))
+
+def UnitPhase.act (z : UnitPhase) (phi : UnitDoublet) : UnitDoublet where
+  value := Dub.scale z.value phi.value
+  unit := by rw [Dub.v2_scale, z.unit, phi.unit, one_mul]
+
+def UnitPhase.compose (z w : UnitPhase) : UnitPhase where
+  value := GR.mul z.value w.value
+  unit := by rw [GR.norm2_mul, z.unit, w.unit, one_mul]
+
+def Input.act (n : Input) (z : UnitPhase) : Input where
+  phi := Dub.scale z.value n.phi
+  scale := n.scale
+  positive := n.positive
+  square := unit_shares_norm z.value n.phi n.scale z.unit n.square
+
+theorem action_composes (z w : UnitPhase) (phi : UnitDoublet) :
+    (z.act (w.act phi)).value = ((z.compose w).act phi).value := by
+  apply Dub.ext <;> apply GR.ext <;>
+    simp [UnitPhase.act, UnitPhase.compose, Dub.scale, GR.mul] <;> ring
+
+theorem normalize_covariant (z : UnitPhase) (n : Input) :
+    ((n.act z).normalize).value = (z.act n.normalize).value := by
+  apply Dub.ext <;> apply GR.ext <;>
+    simp [Input.normalize, Input.act, UnitPhase.act, divide, Dub.scale, GR.div, GR.mul] <;> ring
+
+theorem matrix_covariant (z : UnitPhase) (n : Input) :
+    scaleMat (U (n.act z).phi) (n.act z).scale =
+      rightDiag (scaleMat (U n.phi) n.scale) (GR.conj z.value) z.value := by
+  exact (unit_normalized_covariance z.value n.phi n.scale z.unit n.square).1
+
+end Normalization
+
 def zUnit : GR := ⟨3 / 5, 4 / 5⟩
 def phiAxis : Dub := ⟨⟨1, 0⟩, ⟨0, 0⟩⟩
 def zTwo : GR := ⟨2, 0⟩
@@ -192,6 +292,16 @@ theorem nonunit_normalized_entries_differ :
     simp only [scaleMat, rightDiag, U, u01, Dub.scale, phiAxis, zTwo, GR.conj, GR.mul, GR.div] at hr
     norm_num at hr
 
+#print axioms Normalization.check_accepts
+#print axioms Normalization.check_preserves
+#print axioms Normalization.check_success_iff
+#print axioms Normalization.Input.normalize
+#print axioms Normalization.UnitPhase.act
+#print axioms Normalization.UnitPhase.compose
+#print axioms Normalization.Input.act
+#print axioms Normalization.action_composes
+#print axioms Normalization.normalize_covariant
+#print axioms Normalization.matrix_covariant
 #print axioms CampaignDfmElectroweakContinuumFence.GR.mul_comm
 #print axioms CampaignDfmElectroweakContinuumFence.GR.conj_mul
 #print axioms CampaignDfmElectroweakContinuumFence.GR.norm2_mul

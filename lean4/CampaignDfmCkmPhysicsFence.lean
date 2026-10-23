@@ -1,3 +1,6 @@
+import BornGaussRat
+import Mathlib.Data.Fintype.Card
+import Mathlib.Data.Fintype.Prod
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
 
@@ -113,5 +116,165 @@ theorem count_misses_one_quartet :
 #print axioms CampaignDfmCkmPhysicsFence.quartet_imag_value
 #print axioms CampaignDfmCkmPhysicsFence.quartets_differ
 #print axioms CampaignDfmCkmPhysicsFence.count_misses_one_quartet
+
+/-! A supplied multiplicative label group, not a unitarity or Yukawa assumption.
+`Option` reserves a base row and column while allowing zero free rows/columns. -/
+namespace Rephasing
+
+variable {R C G : Type*} [CommGroup G]
+abbrev Table (R C G : Type*) := R → C → G
+
+@[ext] structure Gauge (R C G : Type*) where
+  row : R → G
+  col : C → G
+
+def act (g : Gauge R C G) (M : Table R C G) : Table R C G :=
+  fun i j => g.row i * M i j / g.col j
+
+def identity : Gauge R C G := ⟨fun _ => 1, fun _ => 1⟩
+def compose (g h : Gauge R C G) : Gauge R C G :=
+  ⟨fun i => g.row i * h.row i, fun j => g.col j * h.col j⟩
+def inverse (g : Gauge R C G) : Gauge R C G :=
+  ⟨fun i => (g.row i)⁻¹, fun j => (g.col j)⁻¹⟩
+
+theorem act_identity (M : Table R C G) : act identity M = M := by
+  funext i j; simp [act, identity]
+
+theorem act_compose (g h : Gauge R C G) (M : Table R C G) :
+    act (compose g h) M = act g (act h M) := by
+  funext i j
+  simp [act, compose, div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc]
+
+theorem act_inverse (g : Gauge R C G) (M : Table R C G) :
+    act (inverse g) (act g M) = M := by
+  funext i j
+  simp [act, inverse, div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc]
+
+def normalize (r : R) (c : C) (M : Table R C G) : Table R C G :=
+  fun i j => M i j * M r c / (M i c * M r j)
+
+def Normalized (r : R) (c : C) (M : Table R C G) : Prop :=
+  (∀ j, M r j = 1) ∧ (∀ i, M i c = 1)
+
+theorem normalize_boundary (r : R) (c : C) (M : Table R C G) :
+    Normalized r c (normalize r c M) := by
+  constructor <;> intro k <;> simp [normalize, mul_comm]
+
+theorem normalize_fixed {r : R} {c : C} {M : Table R C G}
+    (h : Normalized r c M) : normalize r c M = M := by
+  funext i j
+  simp [normalize, h.1, h.2]
+
+theorem normalize_idempotent (r : R) (c : C) (M : Table R C G) :
+    normalize r c (normalize r c M) = normalize r c M :=
+  normalize_fixed (normalize_boundary r c M)
+
+theorem normalize_invariant (r : R) (c : C) (g : Gauge R C G)
+    (M : Table R C G) : normalize r c (act g M) = normalize r c M := by
+  funext i j
+  simp [normalize, act, div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc]
+
+/-- Computed gauge sending M to its canonical representative. -/
+def normalizingGauge (r : R) (c : C) (M : Table R C G) : Gauge R C G :=
+  ⟨fun i => (M i c)⁻¹, fun j => M r j / M r c⟩
+
+theorem act_normalizingGauge (r : R) (c : C) (M : Table R C G) :
+    act (normalizingGauge r c M) M = normalize r c M := by
+  funext i j
+  simp [act, normalizingGauge, normalize, div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc]
+
+def Related (M N : Table R C G) : Prop := ∃ g : Gauge R C G, act g M = N
+
+/-- Decisive classification in both directions, with a computed witness. -/
+theorem related_iff_normalize (r : R) (c : C) (M N : Table R C G) :
+    Related M N ↔ normalize r c M = normalize r c N := by
+  constructor
+  · rintro ⟨g, rfl⟩
+    exact (normalize_invariant r c g M).symm
+  · intro h
+    refine ⟨compose (inverse (normalizingGauge r c N)) (normalizingGauge r c M), ?_⟩
+    rw [act_compose, act_normalizingGauge, h, ← act_normalizingGauge r c N, act_inverse]
+
+/-- All normalized tables are freely determined by their non-base entries. -/
+def extend (x : Table R C G) : Table (Option R) (Option C) G
+  | some i, some j => x i j
+  | _, _ => 1
+
+def restrict (M : Table (Option R) (Option C) G) : Table R C G :=
+  fun i j => M (some i) (some j)
+
+theorem extend_normalized (x : Table R C G) : Normalized none none (extend x) := by
+  constructor <;> intro k <;> cases k <;> rfl
+
+theorem restrict_extend (x : Table R C G) : restrict (extend x) = x := rfl
+
+theorem extend_restrict {M : Table (Option R) (Option C) G}
+    (h : Normalized none none M) : extend (restrict M) = M := by
+  funext i j
+  cases i with
+  | none => exact (h.1 j).symm
+  | some i =>
+    cases j with
+    | none => exact (h.2 (some i)).symm
+    | some j => rfl
+
+def coordinatesEquiv : {M : Table (Option R) (Option C) G // Normalized none none M} ≃
+    Table R C G where
+  toFun M := restrict M.val
+  invFun x := ⟨extend x, extend_normalized x⟩
+  left_inv M := Subtype.ext (extend_restrict M.property)
+  right_inv := restrict_extend
+
+/-- A separating invariant or a constructive witness, using decidable equality. -/
+def decideRelated [Fintype R] [Fintype C] [DecidableEq G]
+    (M N : Table (Option R) (Option C) G) : Bool :=
+  decide (restrict (normalize none none M) = restrict (normalize none none N))
+
+theorem decideRelated_correct [Fintype R] [Fintype C] [DecidableEq G]
+    (M N : Table (Option R) (Option C) G) : decideRelated M N = true ↔ Related M N := by
+  simp only [decideRelated, decide_eq_true_eq]
+  rw [related_iff_normalize none none]
+  constructor
+  · intro h
+    have h' := congrArg extend h
+    simpa only [extend_restrict (normalize_boundary none none M),
+      extend_restrict (normalize_boundary none none N)] using h'
+  · exact congrArg restrict
+
+/-- The number of independent coordinate positions, including the singleton case. -/
+theorem free_coordinate_count (n : ℕ) : Fintype.card (Fin n × Fin n) = n * n := by
+  simp
+
+/-- Concrete exact carrier; nonzero labels are enforced by Units. -/
+abbrev GaussianTable (R C : Type*) := Table (Option R) (Option C) BornFable.GaussRatˣ
+
+/-- Zero is an explicit failed conversion; it is never silently inverted. -/
+def checkedLabel (z : BornFable.GaussRat) : Option BornFable.GaussRatˣ :=
+  if h : z = 0 then none else some (Units.mk0 z h)
+
+theorem checkedLabel_none_iff (z : BornFable.GaussRat) :
+    checkedLabel z = none ↔ z = 0 := by
+  by_cases h : z = 0 <;> simp [checkedLabel, h]
+
+theorem checkedLabel_value (z : BornFable.GaussRat) (u : BornFable.GaussRatˣ)
+    (h : checkedLabel z = some u) : (u : BornFable.GaussRat) = z := by
+  by_cases hz : z = 0
+  · simp [checkedLabel, hz] at h
+  · simp only [checkedLabel, dite_eq_right hz, Option.some.injEq] at h
+    rw [← h]; rfl
+
+end Rephasing
+
+#print axioms Rephasing.act_compose
+#print axioms Rephasing.act_inverse
+#print axioms Rephasing.normalize_boundary
+#print axioms Rephasing.normalize_idempotent
+#print axioms Rephasing.normalize_invariant
+#print axioms Rephasing.related_iff_normalize
+#print axioms Rephasing.coordinatesEquiv
+#print axioms Rephasing.decideRelated_correct
+#print axioms Rephasing.checkedLabel_none_iff
+#print axioms Rephasing.checkedLabel_value
+#print axioms Rephasing.free_coordinate_count
 
 end CampaignDfmCkmPhysicsFence

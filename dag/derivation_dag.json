@@ -18591,7 +18591,14 @@
         "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven",
         "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder",
         "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third",
-        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven"
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_killed",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_append",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.evaluations_compatible",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_is_reduction"
       ],
       "rust": [],
       "imported_structure": [
@@ -18912,7 +18919,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.6-FENCE claims PROVED_LEAN; audited status OPEN",
-      "statement": "For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4; dividing by the respective rational roots 1 and 2 makes the normalized (1, 2) entries 1 and 2, so they differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.",
+      "statement": "For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4. The (1, 2) entry of U(2 Phi)/2 is 1, whereas the (1, 2) entry of (U(Phi)/1) diag(2, 2) is 2; these two sides of the proposed normalized covariance law differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
         "papers/ravera_dfm_dossier.md",
@@ -18924,7 +18931,13 @@
         "lean4/CampaignDfmElectroweakContinuumFence.lean::unnormalized_covariance",
         "lean4/CampaignDfmElectroweakContinuumFence.lean::unit_normalized_covariance",
         "lean4/CampaignDfmElectroweakContinuumFence.lean::witness_three_fifths",
-        "lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ"
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_preserves",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.action_composes",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant"
       ],
       "rust": [],
       "imported_structure": [
@@ -19087,7 +19100,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-FENCE claims PROVED_LEAN; audited status OPEN",
-      "statement": "For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the first expression is 0, 1, 4, 9 and the CP expression is 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.",
+      "statement": "For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the polynomial (n - 1)^2 has values 0, 1, 4, 9 and (n - 1)(n - 2)/2 has values 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
         "papers/ravera_dfm_dossier.md",
@@ -19100,14 +19113,20 @@
         "lean4/CampaignDfmCkmPhysicsFence.lean::constraintCount_sum",
         "lean4/CampaignDfmCkmPhysicsFence.lean::count_table",
         "lean4/CampaignDfmCkmPhysicsFence.lean::three_generation_split",
-        "lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet"
+        "lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count"
       ],
       "rust": [],
       "imported_structure": [
         "Yukawa couplings and mass-basis diagonalization",
         "measured CKM parameters"
       ],
-      "bottleneck": "The recorded gap is the rational relation among the three counting expressions and the two quartet imaginary parts 0 and 1. Yukawa couplings, mass-basis diagonalization, a unitarity identification, and measured CKM values stay open.",
+      "bottleneck": "Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -35750,7 +35769,7 @@
       ],
       "output": "DFM-CKM-PHYSICS-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "The recorded gap is the rational relation among the three counting expressions and the two quartet imaginary parts 0 and 1. Yukawa couplings, mass-basis diagonalization, a unitarity identification, and measured CKM values stay open.",
+      "mechanism": "Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
         "papers/ravera_dfm_dossier.md",
@@ -62234,7 +62253,14 @@
         "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven",
         "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder",
         "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third",
-        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven"
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_killed",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_append",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.evaluations_compatible",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_is_reduction"
       ],
       "local_id": "DFM-BPHZ-CONTINUUM-FENCE",
       "name": "Continuum BPHZ and momentum integration remain outside the finite map",
@@ -62567,7 +62593,13 @@
         "lean4/CampaignDfmElectroweakContinuumFence.lean::unnormalized_covariance",
         "lean4/CampaignDfmElectroweakContinuumFence.lean::unit_normalized_covariance",
         "lean4/CampaignDfmElectroweakContinuumFence.lean::witness_three_fifths",
-        "lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ"
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_preserves",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.action_composes",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant"
       ],
       "local_id": "DFM-ELECTROWEAK-CONTINUUM-FENCE",
       "name": "Electroweak dressing: residual U(1) covariance and the continuum Standard Model",
@@ -62580,7 +62612,7 @@
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4; dividing by the respective rational roots 1 and 2 makes the normalized (1, 2) entries 1 and 2, so they differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.",
+      "summary": "For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4. The (1, 2) entry of U(2 Phi)/2 is 1, whereas the (1, 2) entry of (U(Phi)/1) diag(2, 2) is 2; these two sides of the proposed normalized covariance law differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.",
       "uuid": "6819f4d2-50a9-5952-b5ea-be51a6e006ff"
     },
     {
@@ -62749,11 +62781,17 @@
         "lean4/CampaignDfmCkmPhysicsFence.lean::constraintCount_sum",
         "lean4/CampaignDfmCkmPhysicsFence.lean::count_table",
         "lean4/CampaignDfmCkmPhysicsFence.lean::three_generation_split",
-        "lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet"
+        "lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count"
       ],
       "local_id": "DFM-CKM-PHYSICS-FENCE",
       "name": "CKM origin and physical CP violation stay outside the flavour-graph map",
-      "obligation": "The recorded gap is the rational relation among the three counting expressions and the two quartet imaginary parts 0 and 1. Yukawa couplings, mass-basis diagonalization, a unitarity identification, and measured CKM values stay open.",
+      "obligation": "Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.",
       "parent_id": "TFQ-1127",
       "python": [
         "checks/independent/dfm-ckm-physics-fence.py"
@@ -62762,7 +62800,7 @@
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the first expression is 0, 1, 4, 9 and the CP expression is 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.",
+      "summary": "For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the polynomial (n - 1)^2 has values 0, 1, 4, 9 and (n - 1)(n - 2)/2 has values 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.",
       "uuid": "09030551-87a6-505c-8dd2-2172b5375091"
     },
     {

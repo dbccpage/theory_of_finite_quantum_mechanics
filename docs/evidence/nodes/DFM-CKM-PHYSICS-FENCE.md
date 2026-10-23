@@ -4,15 +4,15 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the first expression is 0, 1, 4, 9 and the CP expression is 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.
+> For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the polynomial (n - 1)^2 has values 0, 1, 4, 9 and (n - 1)(n - 2)/2 has values 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 13
+- cited Lean, Rust or Python symbols found in their in-repo files: 24
+- cited Lean declarations covered by a current replay receipt: 24
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The recorded gap is the rational relation among the three counting expressions and the two quartet imaginary parts 0 and 1. Yukawa couplings, mass-basis diagonalization, a unitarity identification, and measured CKM values stay open.
+Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.
 
 ## Source status
 
@@ -46,14 +46,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignDfmCkmPhysicsFence.lean`
 
 - file: [lean4/CampaignDfmCkmPhysicsFence.lean](../../../lean4/CampaignDfmCkmPhysicsFence.lean)
-- sha256 (`bytes`): `6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df`
+- sha256 (`bytes`): `48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963`
 - cited in: node.lean, node.source, receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence), record TFQ-1128
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json](../../../dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json) (module `CampaignDfmCkmPhysicsFence`): recorded sha256 `6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json](../../../dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json) (module `CampaignDfmCkmPhysicsFence`): recorded sha256 `48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignDfmCkmPhysicsFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `CampaignDfmCkmPhysicsFence.Rephasing.act_compose` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.act_compose` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.act_inverse` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.act_inverse` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary` | yes | yes | yes | propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant` |
+| `CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize` |
 | `CampaignDfmCkmPhysicsFence.constraintCount_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.constraintCount_sum` |
 | `CampaignDfmCkmPhysicsFence.count_misses_one_quartet` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.count_misses_one_quartet` |
 | `CampaignDfmCkmPhysicsFence.count_table` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.count_table` |
@@ -72,14 +83,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-ckm-physics-fence.py`
 
 - file: [checks/independent/dfm-ckm-physics-fence.py](../../../checks/independent/dfm-ckm-physics-fence.py)
-- sha256 (`bytes`): `e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a`
+- sha256 (`bytes`): `c892785ddff595611d83acaade1166e5d755e00a42d84104d60fdad3b793c48b`
 - cited in: node.source, record TFQ-1128
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md](../../../dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md)
-- sha256 (`lf-normalised`): `4442d43bff78dfd330e869e2ea5ee576a25c49cc832150755141dd0247cc480b`
+- sha256 (`lf-normalised`): `a9acef52e5a6a847f61058579441e17bbcf468a717e07952b769e9b3eb2a2919`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1128
 - counts toward the grade: no
@@ -87,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-ckm-physics-fence.md`
 
 - file: [dag/derivations/independent/dfm-ckm-physics-fence.md](../../../dag/derivations/independent/dfm-ckm-physics-fence.md)
-- sha256 (`lf-normalised`): `9d305b8aaef8ff7808d63b1b08f08526f22ab2918267de1de1e8a647283790a4`
+- sha256 (`lf-normalised`): `d6ff942e33e8ff1b0477bc606a4ffe76e3bd6adabd1cdb604a08f3bb80057769`
 - cited in: node.source
 - counts toward the grade: yes
 
