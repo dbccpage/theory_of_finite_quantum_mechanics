@@ -1,0 +1,63 @@
+## 2026-09-27 — Publication review repairs
+
+- Synchronized Markdown and TeX for the retyped A-T8 commitment and corrected A-T9; added finite rational coordinate and l1-norm hypotheses and retained the missing-image counterexample.
+- Stated the exact Lean ceiling of A-T7 (unique underlying quotient function), and supplied the scalar-linearity calculation in prose. Replaced stale declaration/test mappings with existing names.
+- Corrected the projection hypothesis in the README, replaced unverified companion DOI/version relations with immutable repository citations, and labeled the old selected-declaration axiom transcript as historical.
+- Declared replay dependencies, bound notebooks to package-local modules, adjusted the projection label placement, and added dimension, certificate-tamper, and exact-arithmetic regressions.
+
+Validation receipts are recorded in the F005 review output. Test counts and coverage are measured by the coordinated runtime gate; fresh Lean and final figure/PDF receipts are separate. Earlier entries below describe historical versions.
+
+---
+title: "CODA-A: Residuals of Projections, Kernels, and Cokernels Change Log"
+file_name: coda_a_change_log.md
+file_location: coda_atlas/F005_coda/a/
+status: Canonical
+authority_effect: None
+paper_id: CODA-A
+canonical_version: v0.1.0
+date: 2026-09-18
+---
+
+# Change Log — CODA-A: Residuals of Projections, Kernels, and Cokernels
+
+## 2026-09-23 — A-T9 restated; A-T8 retyped (external review)
+
+* **A-T9 withdrawn in place and restated.** The old statement related a projection $C$ and a repair map $d_0$ that were never tied together. It fails on $V = \mathbb{Q}$, $C = I$, $d_0 = d_1 = 0$, $x = 1$, and it wrote $\ker C \subset V/\operatorname{im} C$, confusing a subspace with a quotient. The restatement adds $\operatorname{im} C = \operatorname{im} d_0$ and proves retention from A-T4a and A-T6. The register and `CLOSED_RESIDUAL` clause is moved to an implementation note.
+* **New test** `code/tests/test_a_t9_retention.py`: the counterexample, the running example, and 40 random exact instances. The ledger's former evidence, `test_layer6_a_residue_cokernel_accounting`, checked a message and is withdrawn.
+* **A-T8 retyped** from THEOREM to DECLARED COMMITMENT; the `apps/coda/domain/layers/layer6_a.py` citation is withdrawn.
+* `SHA256SUMS` and `MANIFEST.sha256` regenerated from the committed (LF) blobs. They were already stale for `coda_a.md` and `coda_a_claim_ledger.md` before this entry.
+
+## The Anomalon as a Typed Leftover
+
+2026-09-18 — Republication Review Remediation (v0.1.0 Release Candidate)
+------------------------------------------------------------------------
+
+* **B1 — Quotient Universal Uniqueness Enforced:** Enforced surjectivity requirement $\operatorname{rank}(\pi) = \operatorname{rows}(\pi)$ and absence of free parameters in `quotient_universal_factor`. Rejects non-surjective and rank-deficient quotient maps (e.g. zero-map counterexample), guaranteeing unique exact rational factors.
+* **B2 — Honest Quotient Distances (No Sentinels):** Eliminated fabricated sentinel values (`1` and `3/4`). Administrative states (`RefusedClosure`, `LiftRequired`) now carry `quotient_distance = None`. Mathematical states (`ClosureAbsorbed`, `ClosedResidual`, `OpenResidual`) compute exact $\ell^1$ distance via `LinearRepairProblem.quotient_l1_distance` prior to classification.
+* **B3 — Boundary Validation & Result Invariants:** Enforced strict boolean typing on `pending_lift`, validated column dimensions for $d_1$ even when $d_1$ has zero rows, required strictly positive distance for `ClosedResidual` and `OpenResidual` (distance 0 reserved for `ClosureAbsorbed`), and enforced non-empty strings on IDs and refusal reasons.
+* **B4 — Lean Direct-Sum Splitting Mechanization:** Formally mechanized internal direct-sum splitting $V = \operatorname{im}(C) \oplus \ker(C)$ (`direct_sum_decomposition` and `direct_sum_unique`) in `lean4/CodaReconstruction/A.lean` and `lean4/coda_a_algebra.lean` with zero extra axioms. Split `A-T4` into `A-T4a` (fixed set) and `A-T4b` (splitting) in claim ledger.
+* **B5 — Replayable Lean Build & Axiom Receipt:** Validated clean `lake build` (10/10 jobs). Generated and recorded exact axiom audit receipt (`lean4/axiom_report.txt`) verifying standard Lean 4 kernel axioms `{propext, Quot.sound}` only.
+* **B6 — Hermetic Test Invocation:** Added `code/tests/conftest.py` ensuring `code/` is resolved hermetically on `sys.path`. Clean `python -m pytest code/tests` runs out of the box without manual environment flags. Expanded test suite to 31 tests.
+* **B7 — Release Inventory Integrity:** Rebuilt release candidate manifest, checksums, toolchain files, and receipts into a fully verified, self-contained bundle.
+* **M1 — Figure 1 Arrow Topology Repaired:** Corrected quotient map arrow $q : V \to V / \operatorname{im}(C)$ in `code/generate_figures.py` to originate from the ambient $V$ box rather than $\operatorname{im}(C)$. Added inclusion $\iota : \ker(C) \hookrightarrow V$ and re-exported `public_export/fig1_projection_cokernel.png`. Added semantic figure test.
+* **M2 — Disentangled Residual from Project-Specific Anomalon:** Scoped "Anomalon" at first use in Introduction strictly to the `ClosedResidual` terminal state in discrete cochain complexes ($d_1 x = 0$, dist $> 0$). Removed ambient references to undefined operational layers.
+* **M3 — Complete Refutation Suite:** Expanded Introduction refutation list to provide explicit falsification conditions for each theorem A-T1 through A-T7 (including fixed set/image for A-T4a, direct-sum splitting for A-T4b, and quotient factorization for A-T7).
+* **M4 — Stale Specimen Material Excised:** Excised `reproduce_section_14_worked_example`, `macdonald_*`, and replaced with clean `reproduce_worked_example` using canonical cochain specimen IDs.
+* **M5 — Notebook Ancestor-Path Injection Removed:** Excised `parents[2]` sys.path injection from all three companion notebooks (`000`, `001`, `002`). Re-executed all notebooks sequentially from package root and preserved verified execution outputs.
+* **M6 — Quotient Section Contract Clarification:** Clarified docstrings and manuscript text that `induced_quotient_section` computes the canonical residual representative in $\ker(C)$, whose representative independence modulo $\operatorname{im}(C)$ is established by Theorem A-T6.
+
+---
+
+## Historical Evolution (Archive)
+
+### 2026-09-12 — Woland High Arbiter & CS/A/GTLA Audit
+
+* Explored preliminary residual note and aligned metadata across CITATION.cff and docs.
+
+### 2026-08-29 — Comedy Specimens & Narrative Fences
+
+* Added exploratory §14 specimens (moth, heckler) evaluating whether non-act fences could type humor. Replaced by the 7-theorem linear algebra core.
+
+### 2026-07-25 — Initial Specification
+
+* Initial exploration of typed residual taxonomy and authority disjointness.

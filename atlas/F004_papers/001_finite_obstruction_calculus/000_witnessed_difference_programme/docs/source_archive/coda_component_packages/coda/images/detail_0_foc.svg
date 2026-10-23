@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+  <style>
+    .bg { fill: #0a0f1d; }
+    .card { fill: #111827; stroke: #1f2937; stroke-width: 1.5; rx: 8; ry: 8; }
+    .card-accent { fill: #162032; stroke: #38bdf8; stroke-width: 2; rx: 8; ry: 8; }
+    .card-warn { fill: #1e1b2e; stroke: #f43f5e; stroke-width: 2; rx: 8; ry: 8; }
+    .card-auth { fill: #172554; stroke: #60a5fa; stroke-width: 2; rx: 8; ry: 8; }
+    .card-green { fill: #064e3b; stroke: #10b981; stroke-width: 2; rx: 8; ry: 8; }
+    .card-amber { fill: #451a03; stroke: #f59e0b; stroke-width: 2; rx: 8; ry: 8; }
+    .card-purple { fill: #2e1065; stroke: #a855f7; stroke-width: 2; rx: 8; ry: 8; }
+    .title { font-family: system-ui, -apple-system, sans-serif; font-size: 21px; font-weight: 700; fill: #f8fafc; }
+    .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 400; fill: #94a3b8; }
+    .section-title { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #38bdf8; }
+    .text-main { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 400; fill: #cbd5e1; }
+    .text-bold { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #f1f5f9; }
+    .text-code { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; fill: #a5f3fc; }
+    .text-muted { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #64748b; }
+    .flow-line { stroke: #38bdf8; stroke-width: 2; fill: none; }
+    .flow-line-dashed { stroke: #94a3b8; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+    .flow-line-warn { stroke: #f43f5e; stroke-width: 2; fill: none; }
+    .flow-line-auth { stroke: #60a5fa; stroke-width: 2.5; fill: none; }
+    .flow-line-green { stroke: #10b981; stroke-width: 2; fill: none; }
+  </style>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrow-warn" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f43f5e" />
+    </marker>
+    <marker id="arrow-auth" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#60a5fa" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <linearGradient id="grad-header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="750" class="bg"/>
+  
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="960" height="70" rx="8" fill="url(#grad-header)" stroke="#0284c7" stroke-width="1"/>
+  <text x="40" y="50" class="title">CODA-FOC: Finite Obstruction Calculus</text>
+  <text x="40" y="72" class="subtitle">Exact Quotient Diagnostics, Dual Witnesses, Two-Stage Coherence, and Transport</text>
+  <rect x="780" y="35" width="180" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="870" y="52" text-anchor="middle" class="text-code">CODA-FOC · DET-FOC-001</text>
+  <text x="870" y="80" text-anchor="middle" class="text-muted">AuthorityEffect: None</text>
+
+  <!-- Cochain Complex Flow -->
+  <g transform="translate(50, 105)">
+    <rect x="0" y="0" width="900" height="115" rx="8" class="card-accent"/>
+    <text x="20" y="28" class="section-title">TWO-STAGE COCHAIN REPAIR COMPLEX (Definition FOC-D1)</text>
+    <text x="20" y="48" class="text-main">Exact linear sequence C_0 -&gt; C_1 -&gt; C_2 with d_1 circ d_0 = 0 and observer weights w_1 &gt; 0, w_2 &gt; 0</text>
+    
+    <!-- Nodes -->
+    <g transform="translate(50, 60)">
+      <circle cx="40" cy="22" r="22" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+      <text x="40" y="27" text-anchor="middle" class="text-bold" fill="#38bdf8">C_0</text>
+      
+      <line x1="70" y1="22" x2="230" y2="22" class="flow-line" marker-end="url(#arrow)"/>
+      <text x="150" y="14" text-anchor="middle" class="text-code">d_0 (Stage 1 Repair)</text>
+      
+      <circle cx="260" cy="22" r="22" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+      <text x="260" y="27" text-anchor="middle" class="text-bold" fill="#38bdf8">C_1</text>
+      
+      <line x1="290" y1="22" x2="450" y2="22" class="flow-line" marker-end="url(#arrow)"/>
+      <text x="370" y="14" text-anchor="middle" class="text-code">d_1 (Next Defect)</text>
+      
+      <circle cx="480" cy="22" r="22" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+      <text x="480" y="27" text-anchor="middle" class="text-bold" fill="#38bdf8">C_2</text>
+      
+      <line x1="640" y1="22" x2="510" y2="22" class="flow-line-dashed" marker-end="url(#arrow)"/>
+      <text x="575" y="14" text-anchor="middle" class="text-code">a_2 (Stage 2 Repair)</text>
+      
+      <circle cx="670" cy="22" r="22" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="670" y="27" text-anchor="middle" class="text-muted">U_2</text>
+      
+      <text x="750" y="27" class="text-code" font-size="11" fill="#34d399">d_1 circ d_0 = 0</text>
+    </g>
+  </g>
+
+  <!-- Left: Quotient Norms & Dual Witnesses -->
+  <g transform="translate(50, 235)">
+    <rect x="0" y="0" width="430" height="360" rx="8" class="card"/>
+    <text x="20" y="28" class="section-title">WEIGHTED L1 QUOTIENT NORMS &amp; DUALITY</text>
+    
+    <rect x="20" y="44" width="390" height="70" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="30" y="66" class="text-bold" fill="#a5f3fc">Stage-1 Defect Norm (Theorem FOC-T1):</text>
+    <text x="30" y="88" class="text-code">Phi_1([x]) = min_f ||x + d_0 f||_{1,w1}</text>
+    <text x="30" y="104" class="text-muted" font-size="10">Attained minimum in Q_1 = C_1 / im(d_0)</text>
+    
+    <rect x="20" y="122" width="390" height="70" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="30" y="144" class="text-bold" fill="#a5f3fc">Stage-2 Coherence Norm (Theorem FOC-T1):</text>
+    <text x="30" y="166" class="text-code">Gamma_2([d_1 x]) = min_u ||d_1 x + a_2 u||_{1,w2}</text>
+    <text x="30" y="182" class="text-muted" font-size="10">Attained minimum in Q_2 = C_2 / im(a_2)</text>
+    
+    <rect x="20" y="200" width="390" height="145" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="30" y="222" class="text-bold" fill="#10b981">Strong LP Duality (Theorem FOC-T2):</text>
+    <text x="30" y="240" class="text-code" font-size="10" fill="#a5f3fc">min_f ||x+d_0 f||_{1,w1} = max_z {z^T x : d_0^T z=0, |z_i|&lt;=w_{1,i}}</text>
+    <text x="30" y="260" class="text-code" fill="#34d399">d_0^T z = 0  (Full repair subspace annihilation)</text>
+    <text x="30" y="278" class="text-code" fill="#a5f3fc">&lt;z, x&gt; = Phi_1([x])  (Exact rational witness)</text>
+    <text x="30" y="298" class="text-main" font-size="11">Annihilates the ENTIRE im(d_0), not named generators.</text>
+    <text x="30" y="316" class="text-muted" font-size="10">Nullity invariance: w &gt; 0 changes values, not zeros (FOC-P1).</text>
+    <text x="30" y="332" class="text-code" font-size="10" fill="#cbd5e1">Direct sums add: Phi_{1,P+P'} = Phi_{1,P} + Phi_{1,P'} (FOC-T4)</text>
+  </g>
+
+  <!-- Right: Diagnostic Trichotomy -->
+  <g transform="translate(510, 235)">
+    <rect x="0" y="0" width="440" height="360" rx="8" class="card"/>
+    <text x="20" y="28" class="section-title">DIAGNOSTIC TRICHOTOMY (Theorem FOC-T3)</text>
+    <text x="20" y="46" class="text-muted">Total and exclusive partition of well-posed inputs</text>
+    
+    <!-- State 1 -->
+    <g transform="translate(20, 56)">
+      <rect x="0" y="0" width="400" height="85" rx="6" class="card-green"/>
+      <text x="16" y="24" class="text-bold" fill="#34d399">1. ExactRepair</text>
+      <text x="16" y="44" class="text-code" fill="#a7f3d0">Phi_1([x]) = 0  ==&gt;  x in im(d_0)</text>
+      <text x="16" y="60" class="text-main" font-size="11">Defect is completely cancelled by licensed repair.</text>
+      <text x="16" y="74" class="text-muted" font-size="10">d_1 x = d_1 d_0 f = 0 (Automatically closed)</text>
+    </g>
+    
+    <!-- State 2 -->
+    <g transform="translate(20, 150)">
+      <rect x="0" y="0" width="400" height="95" rx="6" class="card-amber"/>
+      <text x="16" y="24" class="text-bold" fill="#fbbf24">2. CoherentResidual (Stable Survivor)</text>
+      <text x="16" y="44" class="text-code" fill="#fde68a">Phi_1([x]) &gt; 0   and   Gamma_2([d_1 x]) = 0</text>
+      <text x="16" y="60" class="text-main" font-size="11">Leftover cannot be repaired, but vanishes at next stage.</text>
+      <text x="16" y="74" class="text-main" font-size="11">Structural survivor; routes to CODA-A leftover class.</text>
+      <text x="16" y="88" class="text-code" font-size="10" fill="#cbd5e1">A diagnostic label is NOT an authorization (FOC §6)</text>
+    </g>
+    
+    <!-- State 3 -->
+    <g transform="translate(20, 254)">
+      <rect x="0" y="0" width="400" height="85" rx="6" class="card-warn"/>
+      <text x="16" y="24" class="text-bold" fill="#f43f5e">3. NonclosedDefect</text>
+      <text x="16" y="44" class="text-code" fill="#fecdd3">Phi_1([x]) &gt; 0   and   Gamma_2([d_1 x]) &gt; 0</text>
+      <text x="16" y="60" class="text-main" font-size="11">Higher coboundary violation; leftover propagates up.</text>
+      <text x="16" y="74" class="text-muted" font-size="10">Triggers pipeline halt or routing to OR refusal.</text>
+    </g>
+  </g>
+
+  <!-- Bottom: Claim & Transport Box -->
+  <g transform="translate(50, 610)">
+    <rect x="0" y="0" width="900" height="115" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="26" class="text-bold" fill="#38bdf8">Homomorphism Transport &amp; Scope Boundary (FOC-T5 &amp; Scope):</text>
+    <text x="20" y="46" class="text-main" font-size="11">· Transport Bound (FOC-T5): Phi_1'([T_1 x]) &lt;= ||T_1|| * Phi_1([x]); carrier maps cannot inflate leftovers beyond norm.</text>
+    <text x="20" y="64" class="text-main" font-size="11">· Scope Distinction: OpenObstruction is evidence-state; NonclosedDefect is math diagnosis; neither is an action.</text>
+    <text x="20" y="82" class="text-main" font-size="11">· Replay Guarantee: Exact rational arithmetic; zero float tolerance; full certificate replay required for admission.</text>
+    <text x="20" y="100" class="text-code" fill="#f43f5e">AuthorityEffect: None. Classification of cochains confers zero operational permission.</text>
+  </g>
+</svg>

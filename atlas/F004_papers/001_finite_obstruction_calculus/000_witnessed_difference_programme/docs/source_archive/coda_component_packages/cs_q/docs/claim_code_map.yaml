@@ -1,0 +1,119 @@
+{
+  "paper_identity": "CODA-CS-Q",
+  "authority_effect": "None",
+  "evidence_scope": "Lean declarations prove their stated types; Python tests check declared finite instances. Current execution evidence is separate.",
+  "claims": {
+    "CSQ-T1": {
+      "statement": "Image factorization iff fibre constancy",
+      "lean": "Coda.CSQ.exact_on_image",
+      "python": "coda_cs_q_bridge_core.ProfileFactorizationSolver",
+      "test": "code/tests/test_coda_cs_q.py::test_bridge_001_forward_and_image_reverse",
+      "formal_scope": "Arbitrary types with explicit witness image carrier; runtime checks Prof(D) only"
+    },
+    "CSQ-T1-UNIQUE": {
+      "statement": "Uniqueness of image factors",
+      "lean": "Coda.CSQ.image_factor_unique",
+      "python": "coda_cs_q_bridge_core.ProfileFactorizationSolver",
+      "test": "code/tests/test_coda_cs_q.py::test_bridge_001_forward_and_image_reverse",
+      "formal_scope": "Both factors recover q and are invariant under equal profile values"
+    },
+    "CSQ-T2": {
+      "statement": "Collision distance at most epsilon plus epsilon",
+      "lean": "Coda.CSQ.approximate_collision_bound",
+      "python": null,
+      "test": "code/tests/test_coda_cs_q.py::test_pseudometric_zero_error_countermodel_b1",
+      "formal_scope": "Abstract additive ordered distance carrier with stated symmetry and triangle assumptions"
+    },
+    "CSQ-T2-COR": {
+      "statement": "Zero error implies equality under metric separation",
+      "lean": "Coda.CSQ.metric_zero_error_implies_equality",
+      "python": null,
+      "test": "code/tests/test_coda_cs_q.py::test_pseudometric_zero_error_countermodel_b1",
+      "formal_scope": "Requires separation and the explicit MetricSpace fields"
+    },
+    "CSQ-T2-CNT": {
+      "statement": "Pseudometric zero error does not imply equality",
+      "lean": "Coda.CSQ.pseudometric_zero_error_does_not_imply_equality",
+      "python": null,
+      "test": "code/tests/test_coda_cs_q.py::test_pseudometric_zero_error_countermodel_b1",
+      "formal_scope": "Boolean indiscrete countermodel"
+    },
+    "CSQ-T3": {
+      "statement": "Monotone-scale transport of a distance bound",
+      "lean": "Coda.CSQ.lipschitz_access",
+      "python": null,
+      "test": null,
+      "formal_scope": "Abstract ordered-carrier theorem; real K-Lipschitz specialization is prose, not instantiated in Lean"
+    },
+    "CSQ-T4": {
+      "statement": "Endpoint sampling fails to determine a third Boolean coordinate",
+      "lean": "Coda.CSQ.samples_not_query",
+      "python": null,
+      "test": "code/tests/test_cs_q_injected_mutations.py::test_mutant_endpoints_determine_midpoint_killed",
+      "formal_scope": "Boolean Point3 analogue only; real quadratic theorem is prose plus rational tests"
+    },
+    "CSQ-T5": {
+      "statement": "Image constancy alone need not extend to a total factor",
+      "lean": "Coda.CSQ.whole_codomain_needs_extension",
+      "python": "coda_cs_q_bridge_core.ProfileFactorizationSolver",
+      "test": "code/tests/test_coda_cs_q.py::test_prevent_vacuous_admission_b7",
+      "formal_scope": "Empty-domain theorem; runtime separately refuses empty evaluation domain"
+    },
+    "CSQ-T5-INHABITED": {
+      "statement": "Total factor with inhabited answer type",
+      "lean": "Coda.CSQ.total_factor_of_inhabited",
+      "python": null,
+      "test": null,
+      "formal_scope": "Uses Classical choice and an inhabited default; finite runtime does not construct arbitrary total extensions"
+    },
+    "CSQ-SCH-01": {
+      "statement": "Eight admission conjuncts of a fourteen-slot schema",
+      "lean": "CodaCsQ.admissible_implies_all_eight",
+      "python": "coda_cs_q_bridge_core.BridgePacketCore",
+      "test": "code/tests/test_coda_cs_q.py::test_bridge_003_14_schema_and_8_step_admission",
+      "formal_scope": "Projection of recorded hypotheses; no continuum existence certificate"
+    },
+    "CSQ-TRM-01": {
+      "statement": "Factorization implies named query terminal agreement",
+      "lean": "CodaCsQ.factorization_implies_named_terminalizers_agree",
+      "python": "coda_cs_q_bridge_core.terminals_agree",
+      "test": "code/tests/test_coda_cs_q.py::test_bridge_006_named_terminalizer_agreement",
+      "formal_scope": "Named maps q and factor composed with profile"
+    },
+    "CSQ-TAX-01": {
+      "statement": "Seven diagnostic residual classes",
+      "lean": null,
+      "python": "coda_cs_q_bridge_core.BridgeResidualTaxonomy",
+      "test": "code/tests/test_coda_cs_q.py::test_bridge_007_residual_taxonomy",
+      "formal_scope": "Runtime diagnostic taxonomy, not a Lean seven-class theorem"
+    },
+    "BRIDGE-002": {
+      "statement": "Factored query family is fibre-constant",
+      "lean": "CodaCsQ.query_family_factorization_implies_fiber_constant",
+      "python": "coda_cs_q_bridge_core.HigherQueryFamily",
+      "test": "code/tests/test_coda_cs_q.py::test_bridge_002_higher_query_family",
+      "formal_scope": "Assumes family factorization; degree metadata is not a polynomial certificate"
+    },
+    "BRIDGE-004": {
+      "statement": "Retired advisory discrete translation predicate",
+      "lean": "CodaCsQ.TranslationSemigroup",
+      "python": "coda_cs_q_bridge_core.GeneratorSemigroupAdapter.translation_step",
+      "test": "code/tests/test_coda_cs_q.py::test_coverage_auxiliary_paths",
+      "formal_scope": "Definition only; Python computes f(x+h); no exponential generator theorem"
+    },
+    "BRIDGE-005": {
+      "statement": "Retired advisory discrete action predicate",
+      "lean": "CodaCsQ.ActionCompositionSemigroup",
+      "python": "coda_cs_q_bridge_core.GeneratorSemigroupAdapter.action_composition",
+      "test": "code/tests/test_coda_cs_q.py::test_coverage_auxiliary_paths",
+      "formal_scope": "Definition only; Python adds s_h+s_k; no variational action theorem"
+    },
+    "CSQ-AUT-01": {
+      "statement": "Terminal agreement does not follow from flags alone",
+      "lean": "CodaCsQ.terminalizers_not_automatic_from_flags",
+      "python": "coda_cs_q_bridge_core.BridgePacketCore",
+      "test": "code/tests/test_coda_cs_q.py::test_bridge_006_named_terminalizer_agreement",
+      "formal_scope": "Diagnostic model only; AuthorityEffect None"
+    }
+  }
+}

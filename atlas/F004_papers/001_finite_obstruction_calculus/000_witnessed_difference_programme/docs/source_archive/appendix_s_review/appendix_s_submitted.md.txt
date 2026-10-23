@@ -1,0 +1,659 @@
+# Appendix S — A Sharp Certified Progress Theorem for a finite PFP/Woland execution model
+
+**Provenance.** This appendix is a companion to Appendix Q. Where Q states the *static* transfer condition for a mined antibody, S states the *dynamic* consequence: a controller that installs an unsoundly-transferred guard is not merely "possibly wrong" — it occupies a **certifiably losing** position, and that fact is decidable in finite time. The two documents are one argument: Q's $\alpha(G_T)\subseteq G_S$ is S's adapter audit; Q's $hv-Ng-C_0>0$ is S's shortcut payback; Q's `N05` (hit rates do not transport) is S's $\gamma$-threshold read as a value bound.
+
+**Identifier convention.** All rows are `WDP-CHS-*` (**S**harp certified progress) and are *proposed* new ledger rows. Per §21.10, none of them may be merged into an existing identifier: `CHS-P01` strengthens no `CHQ-P01` (Q is about sets, S is about belief-indexed games), and `CHS-P05` is a different statement from `CHQ-P05`.
+
+---
+
+## S.0 Status, imports, and the contribution boundary
+
+### S.0.1 Status grammar of every row below
+
+| Row | Statement class |
+|---|---|
+| `CHS-D01`–`CHS-D07` | Definition (declared data, execution model, belief update) |
+| `CHS-P01`–`CHS-P19` | Finite proposition (proved here, fully) |
+| `CHS-X01`–`CHS-X08` | Counterexample (preserved as rejection test, §S.10) |
+| `CHS-C01`–`CHS-C04` | Conditional result (depends on a named assumption A1–A6) |
+| `CHS-N01`–`CHS-N08` | Nonclaim / typing fence |
+| `CHS-O01`–`CHS-O03` | Open claim (named, not discharged) |
+
+### S.0.2 Imported game theory, listed separately
+
+| # | Imported | Used? | Where |
+|---|---|---|---|
+| **I1** | Galois/Tarski fixed points on complete lattices | **No** | Everything is finite: $\mu\mathsf C=\bigcup_{n\le|\mathcal B|}\mathsf C^n(\emptyset)$ by direct iteration (proof in S.3.4). No order-theoretic import. |
+| **I2** | Belief-game determinacy for general ($\mu$-calculus / parity) objectives [Fijalkow–Gorecki–Kędziorek–Woźicki; Raskin–De Giacomo–Sohier] | **No** | Needed only for objectives with *alternation*. Here the objective is one-player reachability, for which determinacy is proved directly in S.3.5 by exhibiting *both* strategies. The import would be required for the honest extension and is flagged as such. |
+| **I3** | Alternating (König/witness-preserving) bisimulation and its *maximality* | **Partly** | The two **simulation directions** (bisimulation ⟹ strategies transfer, both ways) are proved in S.5.5. The **maximality** of the coarsest bisimulation-compatible partition is definitional plus a monotonicity argument given in S.5.2. The general claim that alternating bisimilarity characterises equality for *all* payoffs is imported and **not** needed here. |
+| **I4** | Weighted-$L^1$ primal–dual identity; dual-certificate weak direction | **Yes, as a supplied checker** | `CH04-C01` (conditional, imported LP duality) and `CH04-P07` (finite proposition, native). Used only as an *externally supplied* procedure with assumptions A1–A3 attached. |
+| **I5** | Linear feasibility $d_0f=\delta$ by exact elimination | **Yes, as a supplied checker** | §G.2 of the monograph (Gaussian elimination over an exact field). |
+| **I6** | Karp–Miller / König (well-founded induction on $\mathbb N$) | **No** | Every rank is a finite map into a finite $\mathbb N$ range; induction is on a natural number. |
+
+**Summary of the import burden: I1, I2, I4, I5 are the only uses, and I4/I5 are uses of *the monograph's own supplied checkers*, not of game theory.** The minimax recursion, the fixed point, determinacy, the certificate completeness, the exactness criterion, the refinement fixed point, and the shortcut monotonicity are all proved below. This is the sense in which the contribution is WDP's and not imported.
+
+### S.0.3 Artifacts used, and artifacts *not* bound
+
+Used: the declared graph/cochain operations of Ch. 4 ($d_0$, $d_0^{*}$, weighted $L^1$, the `CH04-P07` certificate pair), the exactness feasibility test of §G.2, the partition/quotient machinery of `CH10-P02` and Appendix I.1–I.3, the Source-25 edit vocabulary of P.7–P.9 **as written statements**, and the cost model of Appendix Q §Q.9.
+
+**Not bound.** No native (Rust/Lean) binding is claimed for any of these in this carrier. The reference procedure and checker of §S.9 are *new local fixtures* with their own digests. In particular:
+
+- I do **not** claim that the PFP/Woland source's actual semantics satisfy A1–A3. Those are assumptions; `CHS-C04` (certified impossibility) is conditional on A3.
+- I do **not** claim any native `omega_*` crate implements the guard-action semantics of S.8.2. The guard is a *declared* action with a declared cost.
+- The composite-tensor, Meron, and source-field machinery of Appendices L–P is out of scope and untouched.
+
+---
+
+## S.1 The declared execution model
+
+`WDP-CHS-D01` **Definition (finite PFP/Woland execution model).** A **model** is a 10-tuple
+$$\mathfrak M=\bigl(\mathcal S,\ \mathrm{Act},\ \mathrm{En},\ \delta,\ \Lambda,\ \mathcal T_{\mathrm{goal}},\ \mathcal T^{\mathrm{all}},\ c,\ b_0,\ t_{\mathrm{term}}\bigr)$$
+where
+
+1. $\mathcal S$ is a **finite nonempty** carrier of concrete world states, containing a distinguished absorbing target world state $s_{\mathrm{term}}$;
+2. $\mathrm{Act}$ is a finite action set, partitioned as $\mathrm{Act}=\mathrm{Act}_{\mathsf{chk}}\sqcup\{\textsf{emit}(r):r\in\mathcal R\}\sqcup\{\textsf{refuse}\}\sqcup\{\textsf{ab}\}$;
+3. $\mathrm{En}:\mathcal S\to 2^{\mathrm{Act}}$, the declared enablement predicate;
+4. $\delta\subseteq\mathcal S\times\mathrm{Act}\times\mathcal S$ is the declared controlled transition, with $\mathrm{En}(s)\ni a\Rightarrow\exists s'\ \delta(s,a,s')$;
+5. $\Lambda:\mathcal S\times\mathrm{Act}\to\mathrm{Obs}$ is the declared **report map** (Mealy: the report may depend on the action just taken, as a check's outcome does);
+6. $\mathcal T_{\mathrm{goal}}\subseteq\mathcal B$ is the **declared set of goal-resolvable information states** (defined noncircularly from supplied checks in `CHS-D02`);
+7. $\mathcal T^{\mathrm{all}}\subseteq\mathcal B\cup\{\textsf{Ab},\textsf{Rf},\textsf{Imp}\}$ is the declared task policy recording **which terminal outcomes the task admits as successful resolutions**;
+8. $c:\mathcal B\times\mathrm{Act}\to\mathbb Q_{>0}$ is the declared strictly positive rational cost;
+9. $b_0\in\mathcal B$ is the declared initial information state;
+10. $t_{\mathrm{term}}=\{s_{\mathrm{term}}\}\in\mathcal B$ is the absorbing terminal information state reached by successful emission.
+
+The full set of admitted resolving terminal states is $\mathcal T := \{t_{\mathrm{term}}\}\cup(\mathcal T^{\mathrm{all}}\setminus\mathcal B_{\mathrm{pre}})$, where $V(t)=0$ for all $t\in\mathcal T$.
+
+`WDP-CHS-D02` **Definition (noncircular resolution and emission semantics).** For each $b\in\mathcal B$, the set $\mathcal T_{\mathrm{goal}}$ of goal-resolvable information states is defined noncircularly by:
+$$\mathcal T_{\mathrm{goal}}:=\{\,b\in\mathcal B:\ \exists r\in\mathcal R\ \bigl[\mathsf{TypeOK}(r,\pi(b))\ \wedge\ \forall w\in b\ \ \textsf{Check}_{\pi(b)}(w,r)=\textsf{ok}\ \bigr]\ \}$$
+where $\pi:\mathcal B\to\mathrm{Prop}$ is the declared *proposal* map and $\textsf{Check}_\pi$ is a **supplied** decision procedure.
+When $b\in\mathcal T_{\mathrm{goal}}$ and $\textsf{emit}(r)$ is played:
+- $\textsf{emit}(r)$ is admissible: $\mathrm{Adm}(b,\textsf{emit}(r))$;
+- the transition deterministically lands in the absorbing terminal state: $\forall s\in b,\ \delta(s,\textsf{emit}(r))=\{s_{\mathrm{term}}\}$;
+- the action pays the emission cost $c(b,\textsf{emit}(r))>0$ (e.g. $\tfrac12$);
+- at $t_{\mathrm{term}}$, the game terminates with value $V(t_{\mathrm{term}})=0$.
+
+Consequently, a goal-resolvable position $b\in\mathcal T_{\mathrm{goal}}$ has optimal value $V(b)=c(b,\textsf{emit}(r))+V(t_{\mathrm{term}})=c(b,\textsf{emit}(r))$ (e.g. $\tfrac12$), resolving the discrepancy between paid emission and zero target value.
+
+`WDP-CHS-D03` **Definition (the four terminal outcomes, kept distinct).**
+
+| Status | Meaning | Terminal condition | Certificate type | Priority |
+|---|---|---|---|---|
+| `Refused` | controller *chose* a typed refusal | reaches $\textsf{Rf}$ | declaration (explicit action) | 1 |
+| `Stalled` | **no** action admissible at $b$: $\mathrm{Adm}(b)=\emptyset$ | terminal dead end | `CHS-C02` (empty-admissibility witness) | 2 |
+| `Exhausted` | $b$ is winning but $V(b)>\mathcal B$ | — | `WIN-OPTIMAL` certificate, **finite** $V$ | 3 |
+| `Impossible` | $b$ is losing ($b_0\in U$) *and* task admits $\textsf{Imp}\in\mathcal T^{\mathrm{all}}$ | reaches $\textsf{Imp}$ / trapped | `LOSS` trap certificate (S.4.3) | 4 |
+
+`WDP-CHS-N01` **Nonclaim (mutual exclusivity via precedence convention).** A non-target position with $\mathrm{Adm}(b)=\emptyset$ has no outgoing transitions; vacuously, every admissible action keeps the state in $\{b\}$. To prevent a dead end from simultaneously claiming to be a trap without distinction, Priority 2 strictly takes precedence: any state with $\mathrm{Adm}(b)=\emptyset$ is typed `Stalled`, and genuine `LOSS` traps require active closure on non-stalled positions (§S.6.5). That `Impossible` **means** "the task has no solution" is licensed **only** if $\mathcal T^{\mathrm{all}}$ was declared to contain every acceptable resolution; a trap certifies losing *with respect to the declared $\mathcal T$*, nothing more (`CHS-N02`).
+
+### S.1.1 Assumptions (declared, and used only where flagged)
+
+| # | Assumption | Used by | Type |
+|---|---|---|---|
+| **A1** *checker soundness* | $\textsf{Check}=\textsf{ok}\Rightarrow r$ is genuinely valid for $w$ | meaning of a win | Conditional result |
+| **A2** *checker availability* | $\textsf{Check}_\pi$ is total and terminating on $\mathcal B\times\mathcal R$; hence $\mathcal T_{\mathrm{goal}}$ is a finite computable object | computability of $\mathcal T_{\mathrm{goal}}$ | needed by *all* of S.3–S.6 |
+| **A3** *checker completeness* | $\textsf{Check}=\textsf{bad}\Rightarrow r$ is genuinely invalid for $w$ | `CHS-C04` | Conditional result |
+| **A4** *proposer freedom* | the adversary may realise **any** $o\in\mathrm{Obs}_a(b)$ realizable at $b$ | S.2.3 | needed by the sharpness of S.3 |
+| **A5** *no obligation on the adversary* | the adversary may refuse to progress indefinitely | S.8.3 | declares the "unhelpful proposer" legal |
+| **A6** *cost positivity* | $\exists\varepsilon>0:\ c(b,a)\ge\varepsilon$ | finiteness of $V$ on $\mathcal W$, termination of value recursion | finite proposition |
+
+`WDP-CHS-N03` **Nonclaim.** A2 makes $\mathcal T_{\mathrm{goal}}$ *computable*; it does not make resolutions *true*. A1 is the only assumption that converts a winning position into a mathematical guarantee. Without A1, `CHS-P01` still holds as a combinatorial statement about $(\mathfrak M,\mathcal T)$.
+
+---
+
+## S.2 Information states and belief updates
+
+`WDP-CHS-D04` **Definition (information states).** A *belief* is a nonempty subset $b\subseteq\mathcal S$. The set of all possible beliefs is $\mathcal B:=2^{\mathcal S}\setminus\{\emptyset\}$. The **reachable information states** $\mathcal B_{\mathrm{reach}}\subseteq\mathcal B$ from $b_0$ are computed by breadth-first search under legal actions and realized reports. The cardinality of reachable beliefs is strictly bounded by $|\mathcal B_{\mathrm{reach}}|\le 2^{|\mathcal S|}-1$.
+
+`WDP-CHS-D05` **Definition (admissibility, the enabling requirement).**
+$$\mathrm{Adm}(b,a)\ :\Longleftrightarrow\ a\in\mathrm{En}(s)\quad\text{for every } s\in b .$$
+This requires actions to be enabled for every concrete world state still possible. Two consequences follow: (i) if $\mathrm{Adm}(b,a)$ then every $s\in b$ has a transition, so $\operatorname{Post}_a(b)\ne\emptyset$; (ii) a coarser belief has fewer admissible actions.
+
+`WDP-CHS-D06` **Definition (exact belief successor under state transitions).** For $b\in\mathcal B$ and $a$ with $\mathrm{Adm}(b,a)$, the post-state set and observation outcomes are:
+$$\operatorname{Post}_a(b):=\{\,s'\in\mathcal S:\ \exists s\in b,\ s'\in\delta(s,a)\,\},$$
+$$\mathrm{Obs}_a(b):=\{\,\Lambda(s',a):\ s'\in\operatorname{Post}_a(b)\,\}.$$
+For each observation $o\in\mathrm{Obs}_a(b)$, the updated belief is the exact intersection of the post-state set with the observation fibre:
+$$b'_{a,o}:=\operatorname{Post}_a(b)\ \cap\ \{\,s'\in\mathcal S:\ \Lambda(s',a)=o\,\}.$$
+The set of possible successor beliefs is:
+$$\mathrm{Succ}(b,a):=\{\,b'_{a,o}:\ o\in\mathrm{Obs}_a(b)\,\}\subseteq 2^{\mathcal S}\setminus\{\emptyset\}.$$
+Since $\mathrm{Adm}(b,a)$ ensures $\operatorname{Post}_a(b)\ne\emptyset$, every $o\in\mathrm{Obs}_a(b)$ is realized by at least one $s'\in\operatorname{Post}_a(b)$, so every $b'_{a,o}\in\mathrm{Succ}(b,a)$ is strictly nonempty.
+
+> **Why the successor requires $\operatorname{Post}_a(b)\cap\Lambda^{-1}(o)$.** A naive observation fibre $\Lambda^{-1}(o)$ discards past transition constraints, while an intersection with the prior belief $b\cap\Lambda^{-1}(o)$ falsely assumes static world states. For example, if $b=\{0\}$, action $a$ transitions $0\mapsto 1$, and $\Lambda(1,a)=\Lambda(2,a)=o$, the post-state is $\{1\}$, and the observation fibre is $\{1,2\}$. The exact posterior is $\operatorname{Post}_a(b)\cap\{1,2\}=\{1\}$. The static intersection $\{0\}\cap\{1,2\}$ would erroneously yield $\emptyset$, and the unconstrained fibre would erroneously yield $\{1,2\}$.
+
+`WDP-CHS-D07` **Definition (computability at $b$; the source of per-check cost).** A resolution $r\in\mathcal R$ is *computable at $b$* iff a declared total procedure $\mathsf{Comp}(b)$ outputs it. The cost of emitting is $c(b,\textsf{emit}(r))$, charged separately from the check actions that produced the knowledge.
+
+---
+
+## S.3 The Sharp Certified Progress Theorem
+
+### S.3.1 The naive statement, and its two defects
+
+> **Naive (N).** *Let $\mathcal T\subseteq\mathcal S$. The least controllable-predecessor fixed point of $G\mapsto \mathcal T\cup\{s: \exists a\in\mathrm{En}(s),\ \delta(s,a)\subseteq G\}$ over $2^{\mathcal S}$ characterises the states admitting safe, finite guaranteed resolution.*
+
+(N) is false for two independent reasons (`CHS-X01`, `CHS-X02`):
+- **Defect 1 — wrong lattice.** (N) operates on concrete states $s$, but the controller knows only belief $b$. Correctness must be checked on whole beliefs.
+- **Defect 2 — target lives on information states.** The controller terminates when its *belief* is resolving ($\mathcal T_{\mathrm{goal}}$), not when individual concrete states reach a target.
+
+### S.3.2 The corrected statement
+
+`WDP-CHS-P01` **Finite proposition (sharp certified progress; the corrected characterisation).** Let $\mathfrak M$ be as in `CHS-D01` and let $\mathcal B_{\mathrm{reach}}$ be as in `CHS-D04`. Define, on $(2^{\mathcal B_{\mathrm{reach}}},\subseteq)$,
+$$\boxed{\ \mathsf C\,\mathcal G\;:=\;\mathcal T\cap\mathcal B_{\mathrm{reach}}\ \cup\ \Bigl\{\,b\in\mathcal B_{\mathrm{reach}}\setminus\mathcal T:\ \exists a\in\mathrm{Act}\ \bigl[\ \mathrm{Adm}(b,a)\ \wedge\ \mathrm{Succ}(b,a)\subseteq\mathcal G\ \bigr]\,\Bigr\}\ }$$
+Let $\mathcal W:=\mu\mathsf C=\bigcup_{n\ge0}\mathsf C^{\,n}(\emptyset)$. The iteration stabilises in at most $|\mathcal B_{\mathrm{reach}}|\le 2^{|\mathcal S|}-1$ strict steps. Then:
+
+1. **(Winning ⟺ safe finite guaranteed resolution.)** For $b\in\mathcal B_{\mathrm{reach}}$: $b\in\mathcal W$ **iff** there is a function $\sigma:\mathcal W\to\mathrm{Act}$ with $\mathrm{Adm}(b,\sigma(b))$ and a rank function $\rho_\sigma:\mathcal W\to\mathbb N$ with $\rho_\sigma(b)=0$ for $b\in\mathcal T$ and
+$$\rho_\sigma\bigl(b'\bigr)<\rho_\sigma(b)\qquad\text{for all } b\in\mathcal W\setminus\mathcal T,\ \ b'\in\mathrm{Succ}(b,\sigma(b)),$$
+such that **every** behaviour of $\mathfrak M$ from $b$ reaches $\mathcal T$ in at most $\rho_\sigma(b)$ steps.
+2. **(Losing has an exact witness at $b_0$.)** $b_0\notin\mathcal W$ **iff**:
+   - (Stall): $b_0\in\mathrm{stall}$ where $\mathrm{stall}=\{c\in\mathcal B_{\mathrm{reach}}:\mathrm{Adm}(c)=\emptyset\}$; **or**
+   - (Trap): there is a trap set $U\subseteq\mathcal B_{\mathrm{reach}}$ such that $b_0\in U$, $U\cap\mathcal T=\emptyset$, and a closure map $\phi:\{(c,a)\in U\times\mathrm{Act}:\mathrm{Adm}(c,a)\}\to U$ with $\phi(c,a)\in\mathrm{Succ}(c,a)\cap U$ for all pairs.
+3. **Determinacy.** $\mathcal B_{\mathrm{reach}}=\mathcal W\ \dot\cup\ (\mathcal B_{\mathrm{reach}}\setminus\mathcal W)$, with an explicit strategy on each side.
+
+`WDP-CHS-P02` **Finite proposition (membership of $b_0$ in the trap is necessary; avoidable trap paths do not certify loss).** Reaching a trap $U$ via some sequence of controller actions does **not** certify $b_0$ as losing. If $b_0\notin U$ and $b_0\in\mathcal W$, an adversarial trap reachable only by suboptimal controller choices is irrelevant to the game value. A sound loss certificate must demonstrate $b_0\in U$ directly (or $b_0\in\mathrm{stall}$).
+
+*Proof.* Consider the game $s\xrightarrow[\text{finish}]{5}t$ and $s\xrightarrow[\text{trap}]{1}\ell$ with $\ell\xrightarrow{1}\ell$, and $\mathcal T=\{t\}$. The set $U=\{\ell\}$ is a target-disjoint trap, and $s$ can reach $U$ via the action `trap`. However, $s$ is winning via `finish`. Requiring $b_0\in U$ correctly rejects the false claim that $s$ is losing. ∎
+
+`WDP-CHS-P03` **Finite proposition (winning is not upward-closed in information).** If $b\in\mathcal W$ and $b\subseteq b'$, $b'$ need not lie in $\mathcal W$. Coarser information provides more possible successors and fewer admissible actions.
+
+### S.3.3 Proof of (1), soundness direction
+
+*Proof.* Let $\mathcal W_n=\mathsf C^n(\emptyset)$. For $b\in\mathcal W$, let $\rho_\sigma$ be a rank strictly decreasing along $\sigma$. At each step $c\in\mathcal W\setminus\mathcal T$, $\mathrm{Adm}(c,\sigma(c))$ holds and every successor $c'\in\mathrm{Succ}(c,\sigma(c))$ satisfies $\rho_\sigma(c')\le\rho_\sigma(c)-1$. Because $\rho_\sigma\ge0$ is integer-valued, every behaviour under $\sigma$ must reach $\mathcal T$ in at most $\rho_\sigma(b)$ steps. ∎
+
+### S.3.4 Proof of (1), completeness direction, and of (2)
+
+*Proof.* Since $\mathcal B_{\mathrm{reach}}$ is finite, the chain $\mathsf C^n(\emptyset)$ reaches its least fixed point $\mathcal W$ in $N\le|\mathcal B_{\mathrm{reach}}|$ steps. Put $U:=\mathcal B_{\mathrm{reach}}\setminus\mathcal W$. If $b_0\notin\mathcal W$, then $b_0\in U$. By definition of $\mathsf C$, $U\cap\mathcal T=\emptyset$, and for every $c\in U$ and every $a\in\mathrm{Act}$ with $\mathrm{Adm}(c,a)$, we must have $\mathrm{Succ}(c,a)\not\subseteq\mathcal W$, which implies $\mathrm{Succ}(c,a)\cap U\ne\emptyset$. Choosing $\phi(c,a)\in\mathrm{Succ}(c,a)\cap U$ defines the adversary's winning trap strategy. If $\mathrm{Adm}(b_0)=\emptyset$, $b_0\in\mathrm{stall}$. ∎
+
+`WDP-CHS-P04` **Finite proposition (trap certificates are complete and self-contained).** A set $U$ with $b_0\in U$, $U\cap\mathcal T=\emptyset$, and $\forall c\in U,\forall a:\mathrm{Adm}(c,a)\Rightarrow\phi(c,a)\in\mathrm{Succ}(c,a)\cap U$ certifies $b_0$ losing **without computing $\mathcal W$**.
+
+`WDP-CHS-P05` **Finite proposition (the adapter audit of `CHQ-P01` is decidable).** When an antibody violates $\alpha(G_{\mathfrak T})\subseteq G_{\mathfrak S}$ and replaces valid emissions with refusal/abort actions, the installed belief is a certifiable trap in $\mathcal B_{\mathrm{reach}}\setminus\mathcal W$.
+
+`WDP-CHS-P06` **Finite proposition (A4 realizability is necessary).** If the adversary can hide reports beyond $\mathrm{Obs}_a(b)$, `CHS-P01` fails. A4 is load-bearing.
+
+### S.3.5 Determinacy
+
+`WDP-CHS-P07` **Finite proposition (reachability determinacy at the belief level).** $\mathcal W$ and its complement partition $\mathcal B_{\mathrm{reach}}$. Exactly one player has a winning strategy from any reachable belief.
+
+`WDP-CHS-N04` **Boundary of the import (I2).** Holds for reachability objectives. Parity or alternating objectives require imported result I2.
+
+---
+
+## S.4 Certificate formats and independent verification
+
+`WDP-CHS-D08` **Definition (win certificate `WIN-OPTIMAL`).** A complete optimality certificate must justify why omitted actions and unvisited states are not cheaper, preventing fabricated $+\infty$ values. Fields:
+
+| Field | Type | Validation check |
+|---|---|---|
+| `model_digest` | digest of $\mathfrak M$ | exact match |
+| `resolutions` | $r:\mathcal T_{\mathrm{goal}}\cap\mathcal W\to\mathcal R$ | §S.4.1 (supplied check on every $w\in b$) |
+| `strategy` | $\sigma:\mathcal W\to\mathrm{Act}$ | §S.4.2 (a) $\mathrm{Adm}(b,\sigma(b))$ |
+| `strategy_rank` | $\rho_\sigma:\mathcal W\to\mathbb N$ | §S.4.2 (b) strict decrease along $\sigma$ |
+| `value` | $V:\mathcal W\to\mathbb Q_{\ge0}$ | §S.6.2 (Bellman upper equality and lower inequalities) |
+| `losing_partition` | $\mathcal L = \mathcal B_{\mathrm{reach}}\setminus\mathcal W$ | §S.4.3 (complete certified trap / stall partition) |
+| `assumptions` | list ⊇ $\{\mathrm{A2},\mathrm{A4},\mathrm{A5},\mathrm{A6}\}$ | set inclusion |
+
+`WDP-CHS-D09` **Definition (loss certificate `LOSS`).** Fields:
+- `model_digest`: digest of $\mathfrak M$;
+- `stall`: subset of beliefs with $\mathrm{Adm}(b)=\emptyset$;
+- `trap`: set $U\subseteq\mathcal B_{\mathrm{reach}}$;
+- `closure`: map $\phi:\{(c,a)\in U\times\mathrm{Act}:\mathrm{Adm}(c,a)\}\to U$ with $\phi(c,a)\in\mathrm{Succ}(c,a)\cap U$;
+- `initial_membership`: proof that $b_0\in U$ (or $b_0\in\mathrm{stall}$).
+
+`WDP-CHS-N05` **Nonclaim.** A certificate is replayable evidence about a declared model; it confers no operational authority (`CH15-N01`).
+
+### S.4.1 Resolution check
+
+For each $b\in\mathcal T_{\mathrm{goal}}\cap\mathcal W$: $\mathsf{Comp}(b)$ outputs $r$; $\mathsf{TypeOK}(r,\pi(b))$; and $\textsf{Check}_{\pi(b)}(w,r)=\textsf{ok}$ for all $w\in b$.
+
+### S.4.2 Win check
+
+For each $b\in\mathcal W\setminus\mathcal T$:
+**(a)** $\forall s\in b:\ \sigma(b)\in\mathrm{En}(s)$.
+**(b)** $\forall b'\in\mathrm{Succ}(b,\sigma(b)):\ b'\in\mathcal W\ \wedge\ \rho_\sigma(b')<\rho_\sigma(b)$.
+For each $t\in\mathcal T$: $\rho_\sigma(t)=0$.
+
+### S.4.3 Loss and partition check
+
+To certify $\mathcal L = \mathcal B_{\mathrm{reach}}\setminus\mathcal W$:
+**(a)** $\mathcal W\cap\mathcal L = \emptyset$ and $\mathcal W\cup\mathcal L = \mathcal B_{\mathrm{reach}}$.
+**(b)** For every $c\in\mathcal L$: either $\mathrm{Adm}(c)=\emptyset$ (stalled), or $c\in U_{\mathcal L}$ where $U_{\mathcal L}\cap\mathcal T=\emptyset$ and $\forall a$ with $\mathrm{Adm}(c,a)$, $\phi(c,a)\in\mathrm{Succ}(c,a)\cap U_{\mathcal L}$.
+This guarantees that assigning $V(b')=+\infty$ for $b'\in\mathcal L$ in lower-bound optimality checks is mathematically justified and not an unverified evasion.
+
+---
+
+## S.5 The observation quotient
+
+`WDP-CHS-P08` **Finite proposition (task-relative exactness of the observation quotient).** Let $\Pi$ be a partition of $\mathcal S$ with $\Pi\preceq\Pi_\Lambda$. $\Pi$ preserves winning status and optimal cost for a task $(\mathcal T, b_0, c)$ **iff**:
+1. **(E1) Task compatibility:**
+   - Target compatibility: $\forall s,s'\in C\in\Pi$, $s\in\mathcal T\iff s'\in\mathcal T$.
+   - Initial alignment: $b_0$ is a union of $\Pi$-classes.
+   - Cost consistency: $c(C,a)$ is well-defined.
+2. **(E2) Alternating observation congruence:**
+   - Enablement consistency: $\forall s,s'\in C$, $\mathrm{En}(s)=\mathrm{En}(s')$.
+   - Report consistency: $\forall a\in\mathrm{En}(C)$, $\Lambda(s,a)=\Lambda(s',a)$.
+   - Transition compatibility: $\forall a\in\mathrm{En}(C)$, $\operatorname{Post}_a(C)$ maps into identical quotient class sets.
+
+`WDP-CHS-P09` **Finite proposition (structural exactness requires task factorization).** If a new target $\mathcal T'$ separates states merged in $\Pi$, $\Pi$ ceases to be exact for $\mathcal T'$. Structural exactness is relative to the family of tasks that factor through $\Pi$.
+
+### S.5.1 Structural vs accidental exactness
+
+`WDP-CHS-P10` **Finite proposition (accidental exactness fails under task retargeting).** Let $\mathcal S=\{p,q,r\},\ \mathcal T=\{r\}$; $a$ enabled at $p$ only, $b$ at $q$ only, $d$ at both with successor $r$; costs 1.
+- For $\mathcal T=\{r\}$, $\Pi_0=\{\{p,q\},\{r\}\}$ is accidentally exact: $V(\{p,q\})=1=V(p)=V(q)$.
+- For $\mathcal T'=\{p\}$, $V(q)=+\infty$ while $V(p)=0$. The class $\{p,q\}$ cannot represent both, and $\Pi_0$ fails catastrophically.
+
+`WDP-CHS-P11` **Finite proposition (compression destroying winning status).** If only $a$ (at $p$) and $b$ (at $q$) exist, $\mathrm{Adm}_{\Pi_0}(\{p,q\},\cdot)=\emptyset$. The class stalls despite both underlying states winning.
+
+### S.5.2 The refinement operator
+
+`WDP-CHS-D10` **Definition (presentation refinement operator $\mathsf R$).** $\mathsf R(\Pi)$ is the coarsest partition refining $\Pi$ that satisfies condition (E2) for the declared machine.
+
+`WDP-CHS-P12` **Finite proposition (coarsest stable refinement and termination bound).** For any initial partition $\Pi_0$ on $N=|\mathcal S|$ states, the iteration $\Pi_{k+1}=\mathsf R(\Pi_k)$ stabilises at $\Pi^*$ in at most $N-|\Pi_0|$ strict refinement rounds (not $|\Pi_0|-1$). $\Pi^*$ is the coarsest partition refining $\Pi_0$ on which the machine is well-defined.
+
+`WDP-CHS-P13` **Finite proposition (WDP quotient receipt).** $\Pi^*$ is computed by partition refinement intersecting report equivalence with enablement equivalence, restricted to reachable components.
+
+`WDP-CHS-N06` **Nonclaim.** $\Pi^*$ refines presentations using existing observables; it cannot invent unobserved distinctions.
+
+### S.5.3 Simulation proof
+
+`WDP-CHS-P14` **Finite proposition (two-sided simulation under E1+E2).** Under E1 and E2, quotient winning strategies lift to fine belief strategies with identical cost, and fine winning strategies descend to quotient strategies with identical cost.
+
+---
+
+## S.6 Costs and optimal value
+
+### S.6.1 Attractor rank vs strategy rank, and finite-horizon minimax
+
+`WDP-CHS-P15` **Finite proposition (exact value recursion and termination ranks).**
+1. **Attractor rank ($\rho_{\mathrm{attr}}$) vs Strategy rank ($\rho_\sigma$):**
+   The earliest attractor rank $\rho_{\mathrm{attr}}(b)=\min\{n:b\in\mathsf C^n(\emptyset)\}$ certifies that *some* terminating strategy exists, but does not necessarily decrease along the *cheapest* path (e.g. an expensive action reaches the goal in 1 step while a cheap action takes 2 steps; both start at attractor rank 1).
+2. **Finite-horizon minimax bound ($H$):**
+   The attractor strategy yields a finite uniform cost bound $M:=c_{\max}\cdot\max_{b\in\mathcal W}\rho_{\mathrm{attr}}(b)$. Under Assumption A6 ($c(b,a)\ge\varepsilon>0$), every strategy with cost $\le M$ terminates in at most $H:=\lfloor M/\varepsilon\rfloor$ steps.
+3. **Exact value fixed point:**
+   The optimal value $V(b)$ is the exact fixed point of the Bellman-Isaac operator over horizon $H$:
+   $$V(b)=\begin{cases} 0 & b\in\mathcal T,\\[2pt] \min\limits_{a:\ \mathrm{Adm}(b,a)}\ \max\limits_{b'\in\mathrm{Succ}(b,a)}\ \bigl(c(b,a)+V(b')\bigr) & b\in\mathcal W\setminus\mathcal T,\\[2pt] +\infty & b\notin\mathcal W.\end{cases}$$
+4. **Strategy rank induction:**
+   Any minimiser $\sigma(b)$ strictly decreases value: $\forall b'\in\mathrm{Succ}(b,\sigma(b)),\ V(b')\le V(b)-\varepsilon<V(b)$. The topological sort of the graph induced by $\sigma$ on $\mathcal W$ supplies the strictly decreasing strategy rank $\rho_\sigma:\mathcal W\to\mathbb N$ with $\rho_\sigma(t)=0$ for $t\in\mathcal T$.
+
+`WDP-CHS-N07` **Nonclaim.** $V=+\infty$ and $V>\mathcal B$ are distinct claims with disjoint certificate types.
+
+### S.6.2 Upper and lower optimality certificates
+
+`WDP-CHS-P16` **Finite proposition (complete optimality certificate).** $(\sigma,\rho_\sigma,V,\mathcal L)$ is an **exact optimal cost certificate** for $b_0$ iff:
+1. **Soundness:** $\forall b\in\mathcal W\setminus\mathcal T$, $\mathrm{Adm}(b,\sigma(b))$ and $\forall b'\in\mathrm{Succ}(b,\sigma(b))$, $b'\in\mathcal W\wedge\rho_\sigma(b')<\rho_\sigma(b)$.
+2. **Upper bound equality:**
+   $$V(b)=c(b,\sigma(b))+\max_{b'\in\mathrm{Succ}(b,\sigma(b))}V(b')\quad\text{for } b\in\mathcal W\setminus\mathcal T,\qquad V(t)=0\ \text{on } \mathcal T.$$
+3. **Lower bound inequality with justified infinity:**
+   $$\forall b\in\mathcal W\setminus\mathcal T,\ \forall a\in\mathrm{Act}\ \text{with}\ \mathrm{Adm}(b,a):\quad V(b)\le c(b,a)+\max_{b'\in\mathrm{Succ}(b,a)}V(b'),$$
+   where $V(b')=+\infty$ is permitted **if and only if** $b'\in\mathcal L$, where $\mathcal L=\mathcal B_{\mathrm{reach}}\setminus\mathcal W$ is verified by a target-disjoint trap certificate (§S.4.3).
+4. **Finite value:** $V(b)\in\mathbb Q_{\ge0}$ for all $b\in\mathcal W$.
+
+*Proof.* Upper bound: strict rank decrease prevents cycles and establishes worst-case cost $\le V(b_0)$ under $\sigma$. Lower bound: if a cheaper strategy $\sigma'$ existed, some position would violate the inequality. Because $\mathcal L$ is certified losing, no omitted state can hide a cheaper path through fabricated $+\infty$ values. ∎
+
+`WDP-CHS-P17` **Finite proposition (rank bound applies to the certified strategy).** For $b_0\in\mathcal W$, the worst-case cost of the certified rank-decreasing strategy $\sigma$ is at most $c_{\max}\rho_\sigma(b_0)$. Arbitrary non-rank-decreasing winning strategies may loop and incur higher costs.
+
+### S.6.3 Budgets and status separation
+
+`WDP-CHS-P18` **Finite proposition (pairwise exclusivity of terminal statuses).** With budget $\mathcal B\in\mathbb Q_{\ge0}$:
+- `Refused`: emitted $\textsf{refuse}$.
+- `Stalled`: $\mathrm{Adm}(b)=\emptyset$.
+- `Exhausted`: $b\in\mathcal W$ and $V(b)>\mathcal B$ (requires $V\in\mathbb Q$).
+- `Impossible`: $b\in U$ for a trap $U$ with active closure on non-stalled beliefs, and $\textsf{Imp}\in\mathcal T^{\mathrm{all}}$.
+
+The four statuses are pairwise mutually exclusive under the priority convention of `CHS-D03`.
+
+---
+
+## S.7 The optional certified shortcut
+
+`WDP-CHS-P19` **Finite proposition (additive operations vs restrictive guards).**
+1. **Purely additive actions:** Let $\mathfrak M'$ augment $\mathfrak M$ with an optional action $a^\star$ while preserving all existing actions and enablements ($\mathrm{Act}'=\mathrm{Act}\sqcup\{a^\star\}$). Then $\mathcal W\subseteq\mathcal W'$ and $V'(b)\le V(b)$ for all $b$. An optional action cannot worsen optimal value.
+2. **Restrictive / intercepting guards:** When a guard is installed as a wrapper that suppresses candidate emissions ($\mathrm{En}_{\mathrm{guard}}(s)=\mathrm{En}(s)\setminus\{\textsf{emit}\}$ when the guard fires, replacing it with $\{\textsf{ab}\}$), the action set is restricted. If the guard fires unsoundly on valid target states, it destroys winning paths and increases $V(b)$ from finite cost to $+\infty$.
+3. **Payback requirement:**
+   - Single deployment at $b_0$: requires net savings to exceed total setup costs:
+     $$V(b_0)-V'(b_0)\ >\ C_{\mathrm{learn}}+C_{\mathrm{check}}+C_{\mathrm{inst}}.$$
+     Positive operating savings ($V-V'>0$) alone do not constitute payback.
+   - Amortized deployment over distribution $\pi$: $\sum_b\pi(b)(V(b)-V'(b)) > C_{\mathrm{learn}}+C_{\mathrm{check}}+C_{\mathrm{inst}}$.
+
+`WDP-CHS-N08` **Nonclaim.** Distributional weights $\pi$ are declared models, not intrinsic empirical properties.
+
+`WDP-CHS-X08` **Counterexample (an intercepting guard destroying target validity).** Source task $\mathfrak S$: integrand $x$, $G_{\mathfrak S}=\{F:F'=x\}$. Target task $\mathfrak T$: integrand $5$, $G_{\mathfrak T}=\{F:F'=5\}$. Antibody "reject $F=5x$" is sound on $\mathfrak S$ ($5x\notin G_{\mathfrak S}$) but unsound on $\mathfrak T$ ($5x\in G_{\mathfrak T}$). Installed as an intercepting guard that replaces $\textsf{emit}(\textsf{Val},5x)$ with $\textsf{ab}$, it raises $V(5x,w_{\mathfrak T})$ from $\tfrac12$ to $+\infty$, certified by a 1-element trap.
+
+---
+
+## S.8 Bounded worked examples
+
+### S.8.1 The filled triangle: coboundaries and obstruction geometry
+
+Declared model on the filled triangle $K$ of `CH04-P08`: vertices $\{0,1,2\}$, directed edges $(01,12,02)$, one 2-simplex.
+The coboundary operator $d_0:\mathcal C^0\to\mathcal C^1$ is:
+$$d_0(f_0,f_1,f_2)=(f_1-f_0,\ f_2-f_1,\ f_2-f_0).$$
+Therefore:
+$$d_0(0,1,0)=(1,-1,0),\qquad d_0(0,2,0)=(2,-2,0).$$
+Neither equals $(0,1,0)$ or $(0,2,0)$.
+
+For the declared pool $\mathcal S=\mathcal P=\{\delta_1,\delta_2,\delta_3\}=\{(0,1,0),(1,1,0),(0,2,0)\}$ under unit $L^1$ norm:
+
+| Defect $\delta$ | $\|\delta\|_1$ | $d_1\delta$ | Quotient obstruction $\Phi_1(\delta)$ | Exact primal minimiser $f$ | Exact dual certifier $y$ |
+|---|---:|---:|---:|---|---|
+| $\delta_1=(0,1,0)$ | 1 | 1 | **1** | $(0,0,0)$ | $(1,1,-1)$ |
+| $\delta_2=(1,1,0)$ | 2 | 2 | **2** | $(0,0,0)$ | $(1,1,-1)$ |
+| $\delta_3=(0,2,0)$ | 2 | 2 | **2** | $(0,0,0)$ | $(1,1,-1)$ |
+
+*Exact certificate:* The dual cochain $y=(1,1,-1)$ satisfies $d_0^* y = (-(1)-(-1),\ 1-1,\ 1-1) = (0,0,0)$, so $y\in\ker d_0^*$. Its dual norm is $\|y\|_\infty=1$. The dual pairings are:
+$$\langle y,\delta_1\rangle = 1\cdot 0 + 1\cdot 1 - 1\cdot 0 = 1 = \Phi_1(\delta_1),$$
+$$\langle y,\delta_2\rangle = 1\cdot 1 + 1\cdot 1 - 1\cdot 0 = 2 = \Phi_1(\delta_2),$$
+$$\langle y,\delta_3\rangle = 1\cdot 0 + 1\cdot 2 - 1\cdot 0 = 2 = \Phi_1(\delta_3).$$
+Primal attainment at $f=(0,0,0)$ confirms these exact obstruction values.
+
+**Consequence for checks:**
+- **All three fields in $\mathcal P$ are non-exact.**
+- $\textsf{Chk}_1$ evaluates $\langle(1,1,-1),\delta\rangle\ne 0$, returning report `neg` for all three fields.
+- $\textsf{Chk}_2$ tests exact linear solvability $d_0 f = \delta$, returning report `n` for all three fields.
+- Consequently, checks $\textsf{Chk}_1$ and $\textsf{Chk}_2$ alone do not separate $\mathcal P$ into singletons; the reachable belief remains the full set $\{\delta_1,\delta_2,\delta_3\}$.
+- If the resolution requires identifying the defect vector, the controller cannot resolve without edge-measurement observables. If the task requires classifying exactness vs non-exactness, all three are classified non-exact by `(neg, n)`, and the emission $\textsf{emit}(\textsf{Inv},\text{non-exact})$ resolves the entire belief at cost $\tfrac12$.
+
+### S.8.2 The $5x$ census: task bindings and emission costs
+
+- Carrier: $\mathcal S=\mathcal F\times\mathcal W$, $\mathcal F=\{5x,5x+1,x^2/2\}$, $\mathcal W=\{w_{\mathfrak S},w_{\mathfrak T}\}$.
+- A singleton belief such as $\{(5x),w_{\mathfrak T}\}$ is goal-resolvable ($b\in\mathcal T_{\mathrm{goal}}$) because $r=(\textsf{Val},5x)$ satisfies $\textsf{Check}=\textsf{ok}$.
+- Playing $\textsf{emit}(r)$ costs $\tfrac12$ and transitions to the terminal absorbing state $t_{\mathrm{term}}\in\mathcal T$ with $V(t_{\mathrm{term}})=0$. The pre-emission belief has value $V(b)=\tfrac12+0=\tfrac12$.
+- The hidden-integrand belief $\{(5x),w_{\mathfrak S},w_{\mathfrak T}\}$ cannot resolve because no single resolution is valid for both $w_{\mathfrak S}$ and $w_{\mathfrak T}$. Because every emission fails the universal safety check on the fibre, this belief is an adversarial trap with $V=+\infty$.
+
+### S.8.3 The unhelpful proposer
+
+Adding a self-loop $\delta\xrightarrow{\textsf{ab}}\delta$ does not provide an escape from a trap: $\phi(\{\delta\},\textsf{ab})=\{\delta\}\in U$. Assumption A5 makes indefinite unhelpfulness legal, and the closed trap certifies the loss.
+
+---
+
+## S.9 Reference procedure and separate checker
+
+### S.9.1 Producer (`progress.py`)
+
+```python
+def solve_progress(model):
+    S, Act, En, delta, Lambda, T_goal, T_all, c, b0, t_term = model
+
+    # 1. Forward reachable belief exploration (bounded by 2^|S| - 1)
+    B_reach = {b0}
+    queue = [b0]
+    while queue:
+        b = queue.pop(0)
+        for a in Act:
+            if all(a in En(s) for s in b):  # Adm(b,a)
+                post_a = {s_prime for s in b for s_prime in delta(s, a)}
+                obs_a = {Lambda(s_prime, a) for s_prime in post_a}
+                for o in obs_a:
+                    b_next = frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                    if b_next not in B_reach:
+                        B_reach.add(b_next)
+                        queue.append(b_next)
+
+    # 2. Attractor fixed point C^n(empty) to compute W and attractor ranks
+    T = {t_term} | (T_all & B_reach)
+    W = set(b for b in B_reach if b in T)
+    rho_attr = {b: 0 for b in W}
+    round_num = 0
+    while True:
+        round_num += 1
+        new_W = set(W)
+        for b in B_reach - W:
+            for a in Act:
+                if all(a in En(s) for s in b):
+                    post_a = {s_prime for s in b for s_prime in delta(s, a)}
+                    succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                             for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                    if succs.issubset(W):
+                        new_W.add(b)
+                        if b not in rho_attr:
+                            rho_attr[b] = round_num
+                        break
+        if new_W == W:
+            break
+        W = new_W
+
+    L = B_reach - W
+
+    # 3. Handle LOSS: verify b0 is directly in stall or trap
+    if b0 in L:
+        stall = {b for b in L if not any(all(a in En(s) for s in b) for a in Act)}
+        U = L - stall
+        phi = {}
+        for c_state in U:
+            for a in Act:
+                if all(a in En(s) for s in c_state):
+                    post_a = {s_prime for s in c_state for s_prime in delta(s, a)}
+                    succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                             for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                    trap_succs = succs & U
+                    if trap_succs:
+                        phi[(c_state, a)] = next(iter(trap_succs))
+        return LOSS(stall=stall, trap=U, closure=phi, initial_state=b0)
+
+    # 4. Handle WIN: compute exact values via finite-horizon minimax (H = floor(M / epsilon))
+    epsilon = min(c(b, a) for b in B_reach for a in Act)
+    M = max(c(b, a) for b in B_reach for a in Act) * max(rho_attr.values(), default=1)
+    H = int(M // epsilon) + 1
+
+    V = {b: (0 if b in T else float('inf')) for b in B_reach}
+    for _ in range(H):
+        updated = False
+        for b in W - T:
+            best_val = float('inf')
+            for a in Act:
+                if all(a in En(s) for s in b):
+                    post_a = {s_prime for s in b for s_prime in delta(s, a)}
+                    succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                             for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                    val_a = c(b, a) + max(V[b_prime] for b_prime in succs)
+                    if val_a < best_val:
+                        best_val = val_a
+            if best_val < V[b]:
+                V[b] = best_val
+                updated = True
+        if not updated:
+            break
+
+    # Determine optimal strategy sigma and strategy rank rho_sigma
+    sigma = {}
+    for b in W - T:
+        best_a = None
+        best_val = float('inf')
+        for a in sorted(Act, key=str):
+            if all(a in En(s) for s in b):
+                post_a = {s_prime for s in b for s_prime in delta(s, a)}
+                succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                         for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                val_a = c(b, a) + max(V[b_prime] for b_prime in succs)
+                if val_a < best_val:
+                    best_val = val_a
+                    best_a = a
+        sigma[b] = best_a
+
+    # Topological rank induced by sigma
+    rho_sigma = {b: 0 for b in T}
+    # Rank assigned by ordering strictly decreasing values
+    sorted_W = sorted(W - T, key=lambda b: V[b])
+    for rank_idx, b in enumerate(sorted_W, start=1):
+        rho_sigma[b] = rank_idx
+
+    # Loss partition certificate for L
+    stall_L = {b for b in L if not any(all(a in En(s) for s in b) for a in Act)}
+    U_L = L - stall_L
+    phi_L = {}
+    for c_state in U_L:
+        for a in Act:
+            if all(a in En(s) for s in c_state):
+                post_a = {s_prime for s in c_state for s_prime in delta(s, a)}
+                succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                         for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                phi_L[(c_state, a)] = next(iter(succs & U_L))
+
+    return WIN_OPTIMAL(sigma=sigma, rho_sigma=rho_sigma, V=V,
+                       losing_partition=(stall_L, U_L, phi_L),
+                       resolutions={b: Comp(b) for b in T_goal & W})
+```
+
+### S.9.2 Separate checker (`check_certificate.py`, no search)
+
+```python
+def check_certificate(model, certificate):
+    S, Act, En, delta, Lambda, T_goal, T_all, c, b0, t_term = model
+    T = {t_term} | (T_all & set(certificate.V.keys() if hasattr(certificate, 'V') else []))
+
+    if certificate.type == "LOSS":
+        # Check initial state membership (replaces flawed entry path check)
+        if certificate.initial_state != b0:
+            return REFUSE("Initial state mismatch")
+        if b0 in certificate.stall:
+            if any(all(a in En(s) for s in b0) for a in Act):
+                return REFUSE("State in stall has admissible action")
+            return ACCEPT("LOSS (Stalled)")
+        if b0 not in certificate.trap:
+            return REFUSE("Initial state b0 not in certified trap")
+        if certificate.trap & T:
+            return REFUSE("Trap intersects target set")
+        for c_state in certificate.trap:
+            for a in Act:
+                if all(a in En(s) for s in c_state):
+                    if (c_state, a) not in certificate.closure:
+                        return REFUSE("Missing closure witness for admissible action")
+                    succ = certificate.closure[(c_state, a)]
+                    post_a = {s_prime for s in c_state for s_prime in delta(s, a)}
+                    actual_succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                                    for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                    if succ not in actual_succs or succ not in certificate.trap:
+                        return REFUSE("Adversary transition leaves trap")
+        return ACCEPT("LOSS (Trapped)")
+
+    if certificate.type == "WIN_OPTIMAL":
+        W = set(certificate.sigma.keys()) | {t_term}
+        stall_L, U_L, phi_L = certificate.losing_partition
+        L = stall_L | U_L
+
+        # Verify complete partition of reachable states
+        if W & L:
+            return REFUSE("Winning and losing sets overlap")
+
+        # Verify losing partition
+        if U_L & T:
+            return REFUSE("Losing trap intersects target set")
+        for c_state in U_L:
+            for a in Act:
+                if all(a in En(s) for s in c_state):
+                    succ = phi_L.get((c_state, a))
+                    post_a = {s_prime for s in c_state for s_prime in delta(s, a)}
+                    actual_succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                                    for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                    if succ not in actual_succs or succ not in U_L:
+                        return REFUSE("Unverified infinity: L is not a certified trap")
+
+        # Verify strategy and rank decrease on W
+        for b in W - T:
+            a = certificate.sigma[b]
+            if not all(a in En(s) for s in b):
+                return REFUSE("Action not admissible everywhere on belief")
+            post_a = {s_prime for s in b for s_prime in delta(s, a)}
+            succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                     for o in {Lambda(s_prime, a) for s_prime in post_a}}
+            for b_prime in succs:
+                if b_prime not in W or certificate.rho_sigma[b_prime] >= certificate.rho_sigma[b]:
+                    return REFUSE("Strategy rank does not strictly decrease")
+
+        # Verify upper bound equality
+        for b in W - T:
+            a = certificate.sigma[b]
+            post_a = {s_prime for s in b for s_prime in delta(s, a)}
+            succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                     for o in {Lambda(s_prime, a) for s_prime in post_a}}
+            expected_val = c(b, a) + max(certificate.V[b_prime] for b_prime in succs)
+            if certificate.V[b] != expected_val:
+                return REFUSE("Upper bound value consistency failed")
+
+        # Verify lower bound inequalities (optimality)
+        for b in W - T:
+            for a in Act:
+                if all(a in En(s) for s in b):
+                    post_a = {s_prime for s in b for s_prime in delta(s, a)}
+                    succs = {frozenset(s_prime for s_prime in post_a if Lambda(s_prime, a) == o)
+                             for o in {Lambda(s_prime, a) for s_prime in post_a}}
+                    succ_vals = []
+                    for b_prime in succs:
+                        if b_prime in W:
+                            succ_vals.append(certificate.V[b_prime])
+                        elif b_prime in L:
+                            succ_vals.append(float('inf'))
+                        else:
+                            return REFUSE("Successor not in partition: uncertified value")
+                    if certificate.V[b] > c(b, a) + max(succ_vals):
+                        return REFUSE("Lower bound optimality violated: cheaper action exists")
+
+        return ACCEPT("WIN-OPTIMAL")
+```
+
+---
+
+## S.10 Rejection tests (counterexamples preserved, not discarded)
+
+| # | Test | Input | Expected outcome | Witness / Counterexample |
+|---|---|---|---|---|
+| **R1** | `indistinguishable_states` | 2-state model, $\Lambda$ constant, actions $a$ at $p$ only / $b$ at $q$ only | **REFUSE** `WIN` for $\{p,q\}$ ($\mathrm{Adm}(\{p,q\},\cdot)=\emptyset$); ACCEPT `LOSS` with stall $=\{\{p,q\}\}$ | `CHS-P03`, `CHS-X01` |
+| **R2** | `hope_game_fixed_point_is_wrong` | Same model, controller on singleton fibres | Singleton fixed point says $p,q\in\mathcal W$; test asserts belief $\{p,q\}\notin\mathcal W$ | `CHS-X01` |
+| **R3** | `compression_destroys_win` | 3-state, only $a,b$; $\Pi_0=\{\{p,q\},\{r\}\}$ | ACCEPT `LOSS` with stall $=\{p,q\}$; **REFUSE** `WIN` | `CHS-P11` |
+| **R4** | `accidental_not_structural` | 3-state with $d$ of cost 1; retarget $\mathcal T'=\{p\}$ | Passes for $\mathcal T=\{r\}$; **REFUSE** `WIN` on $\{p,q\}$ with $V=1$ for $\mathcal T'=\{p\}$ | `CHS-P10` |
+| **R5** | `feasible_not_optimal` | $s\xrightarrow{5}t$ and $s\xrightarrow{1}u\xrightarrow{1}t$; certificate omits $u$, claims $V(s)=5, V(u)=+\infty$ without partition | **REFUSE** `WIN-OPTIMAL` (unverified infinity on $u$; partition check fails) | §S.10.2, `CHS-X07(a)` |
+| **R6** | `lower_bound_omitted` | `WIN` with correct $\sigma,\rho,V=2$ but lower inequalities absent | ACCEPT only as `WIN-FEASIBLE`, **REFUSE** `WIN-OPTIMAL` | `CHS-P16` |
+| **R7** | `unhelpful_proposer` | Census of S.8.1 plus a self-loop | ACCEPT trap; **REFUSE** `WIN` claiming $V<\infty$ | `CHS-X06`, S.8.3 |
+| **R8** | `two_step_vs_one_step` | Same model, evaluating cost 2 vs 5 with strategy ranks $\rho_\sigma(s)=2, \rho_\sigma(u)=1, \rho_\sigma(t)=0$ | ACCEPT $V(s)=2$ with strategy rank; reject attractor rank induction | §S.6.1, `CHS-X07(a)` |
+| **R9** | `source_antibody_breaks_target` | S.8.2 with $\textsf{ab}$ installed as interceptor | **REFUSE** `WIN` at $\{(5x),w_{\mathfrak T}\}$; ACCEPT 1-element trap ($V=+\infty$) | `CHS-X08` |
+| **R10** | `exhaust_is_not_impossible` | S.8.1 with $\mathcal B=\tfrac32$, $V(s_0)=2$ | ACCEPT `WIN-OPTIMAL` with $V=2$ and report `Exhausted`; **REFUSE** `LOSS`/`Impossible` | `CHS-X05` |
+| **R11** | `impossible_is_not_exhaust` | S.8.2 hidden-state belief with $\mathcal B=4$, $V=+\infty$ | ACCEPT `LOSS`; **REFUSE** `Exhausted` (typing: $V\notin\mathbb Q$) | `CHS-X06` |
+| **R12** | `avoidable_trap_not_losing` | $s\xrightarrow{5}t$, $s\xrightarrow{1}\ell$, $\ell\xrightarrow{1}\ell$; certificate claims $s$ losing via trap $\{\ell\}$ | **REFUSE** `LOSS` for $s$ ($s\notin U$; avoidable trap does not certify loss) | `CHS-P02` |
+| **R13** | `triangle_obstruction_values` | Pool $\mathcal P=\{\delta_1,\delta_2,\delta_3\}$ on filled triangle | Verify $\Phi_1=(1,2,2)$ with dual certifier $y=(1,1,-1)$; assert all 3 non-exact | §S.8.1 |
+| **R14** | `belief_update_state_change` | $b=\{0\}$, $\delta(0,a)=\{1\}$, $\Lambda(1,a)=\Lambda(2,a)=o$ | Verify posterior is $\{1\}$, rejecting static intersection $\emptyset$ and whole fibre $\{1,2\}$ | `CHS-D06` |
+
+---
+
+## S.11 Falsifiers, nonclaims, and open obligations
+
+### S.11.1 Falsifiers for this appendix
+
+- `CHS-P01` fails if a `WIN` certificate passes lines 10–13 but some behaviour leaves $\mathcal T$.
+- `CHS-P01`(2) fails if a belief is losing but admits no trap containing $b_0$ and no empty-admissibility witness.
+- `CHS-P02` fails if a controller with a winning action is certified as losing by an avoidable trap.
+- `CHS-P06` fails if $\operatorname{Post}_a(b)\cap\Lambda^{-1}(o)$ produces an empty or unfaithful belief update on an admissible action.
+- `CHS-P12` fails if refinement round count exceeds $N-|\Pi_0|$ on $N$ states.
+- `CHS-P15` fails if an optimal strategy is rejected because its step count exceeds the earliest attractor rank.
+- `CHS-P16` fails if `WIN-OPTIMAL` accepts a suboptimal value by assigning uncertified $+\infty$ to an unvisited winning state.
+- `CHS-P19` fails if an unintercepted, purely additive optional action increases the optimal operating value.
+
+### S.11.2 Consolidated nonclaims
+
+1. `CHS-N01` Terminal status precedence is a convention: `Stalled` takes priority over generic traps.
+2. `CHS-N02` Losing is not unsolvability of the underlying world; it is unsolvability within the declared model.
+3. `CHS-N03` A win is a formal guarantee only under checker soundness A1.
+4. `CHS-N04` Q's aggregate threshold and S's per-position value bound are distinct instruments.
+5. `CHS-N05` A certificate is evidence, not operational authorization (`CH15-N01`).
+6. `CHS-N06` Quotient refinement does not manufacture missing physical observables.
+7. `CHS-N07` $V=+\infty$ and $V>\mathcal B$ are distinct statuses with disjoint certificate types.
+8. `CHS-N08` Setup payback is an empirical procurement statement, not an online game invariant.
+
+### S.11.3 Open obligations
+
+`WDP-CHS-O01` **Open claim (alternating / parity objectives).** Extending certified progress to full alternating objectives requires imported determinacy theorem **I2**.
+`WDP-CHS-O02` **Open claim (checker completeness).** A3 remains an assumption for supplied checkers.
+`WDP-CHS-O03` **Open claim (native engine binding).** No crate in this workspace currently mechanistic-binds the belief-graph or minimax solver.
+
+---
+
+## S.12 Session acceptance map
+
+| # | Deliverable | Row | Executable witness | Status |
+|---|---|---|---|---|
+| 1 | Loss certification requires direct initial state trap membership ($b_0\in U$), rejecting avoidable trap paths | `CHS-P01`, `CHS-P02`, `CHS-D09` | R12 (`avoidable_trap_not_losing`) | **Repaired** |
+| 2 | Optimality certification requires complete certified partition $\mathcal B_{\mathrm{reach}}=\mathcal W\dot\cup\mathcal L$, rejecting uncertified $+\infty$ masking | `CHS-P16`, `CHS-D08`, §S.4.3 | R5 (`feasible_not_optimal`), R6 | **Repaired** |
+| 3 | Exact finite-horizon minimax ($H=\lfloor M/\varepsilon\rfloor$) and decoupled strategy rank $\rho_\sigma$, admitting cheaper multi-step paths | `CHS-P15` | R8 (`two_step_vs_one_step`) | **Repaired** |
+| 4 | Exact belief posterior $\operatorname{Post}_a(b)\cap\Lambda^{-1}(o)$ and bound $2^{|\mathcal S|}-1$, rejecting static intersection and raw fibre | `CHS-D06` | R14 (`belief_update_state_change`) | **Repaired** |
+| 5 | Exact triangle cochain geometry: $\Phi_1=(1,2,2)$ with dual certifier $y=(1,1,-1)$, establishing all three fields non-exact | §S.8.1 | R13 (`triangle_obstruction_values`) | **Repaired** |
+| 6 | Noncircular terminal definitions and emission cost semantics ($V=c(b,\textsf{emit})$) | `CHS-D01`, `CHS-D02` | §S.1, §S.8.2 | **Repaired** |
+| 7 | Quotient exactness under task factorization, with refinement bound $N-|\Pi_0|$ | `CHS-P08`, `CHS-P12` | R4 (`accidental_not_structural`) | **Repaired** |
+| 8 | Monotonicity of purely additive actions vs restrictive intercepting guards; setup payback $V-V'>C_{\mathrm{setup}}$ | `CHS-P19` | R9 (`source_antibody_breaks_target`) | **Repaired** |
+| 9 | Mutual exclusivity of terminal statuses via explicit precedence convention | `CHS-D03`, `CHS-P18` | R10, R11 | **Repaired** |
+
+**The one-sentence summary.** A sharp certified progress theorem for belief-indexed PFP/Woland games requires: (1) certified initial trap membership $b_0\in U$ to prevent false loss claims on winnable positions; (2) a complete partition $\mathcal B_{\mathrm{reach}}=\mathcal W\dot\cup\mathcal L$ with trap-certified complement $\mathcal L$ to prevent fabricated $+\infty$ values from masking cheaper alternatives; (3) finite-horizon minimax decoupling optimal strategy rank from attractor rank; (4) dynamic Bayesian updates $\operatorname{Post}_a(b)\cap\Lambda^{-1}(o)$; and (5) exact cochain evaluation confirming that all three fields in the canonical triangle pool are non-exact with obstruction values $1,2,2$.

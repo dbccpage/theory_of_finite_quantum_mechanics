@@ -1,0 +1,2078 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{255,255,255}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{\textbf{\colorbox[rgb]{0.97,0.90,0.90}{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.79,0.38,0.79}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.39,0.29,0.61}{\textbf{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.57,0.30,0.62}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.54,0.53,0.53}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.00,0.58,1.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.67,0.33,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.38,0.47,0.50}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{\underline{#1}}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.58,1.00}{\textbf{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.39,0.29,0.61}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{1.00,0.33,0.00}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.43,0.16}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.00,0.43,0.16}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{\colorbox[rgb]{0.88,0.91,0.97}{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.24,0.68,0.91}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{1.00,0.33,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% House preamble for the primitive-axiomatics paper line.
+%
+%  Typesetting is not evidence for any claim.
+%
+% Reviewed 2026-10-02.
+%
+% xelatex, not pdflatex: the manuscript uses unicode characters that pdflatex
+% cannot set without per-character declarations.
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+% Resolve the TeX Live Latin Modern files by resource name so the document
+% builds both with an installed XeTeX distribution and with Tectonic's bundle.
+\setmainfont{lmroman10-regular.otf}[
+  BoldFont=lmroman10-bold.otf,
+  ItalicFont=lmroman10-italic.otf,
+  BoldItalicFont=lmroman10-bolditalic.otf]
+\setmonofont{lmmono10-regular.otf}[Scale=0.85]
+\setmathfont{latinmodern-math.otf}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newunicodechar}
+\newcommand{\um}[1]{\ensuremath{#1}}
+\newunicodechar{ℝ}{\um{\mathbb{R}}}
+\newunicodechar{⁰}{\um{^0}}
+\newunicodechar{₀}{\um{_0}}
+\newunicodechar{₁}{\um{_1}}
+\newunicodechar{₂}{\um{_2}}
+\newunicodechar{¹}{\um{^1}}
+\newunicodechar{²}{\um{^2}}
+\newunicodechar{∘}{\um{\circ}}
+\newunicodechar{δ}{\um{\delta}}
+\newunicodechar{⟨}{\um{\langle}}
+\newunicodechar{⟩}{\um{\rangle}}
+\newunicodechar{φ}{\um{\varphi}}
+\newunicodechar{ᵀ}{\um{^\top}}
+\newunicodechar{𝛷}{\um{\Phi}}
+\newunicodechar{Φ}{\um{\Phi}}
+\newunicodechar{Γ}{\um{\Gamma}}
+\newunicodechar{α}{\um{\alpha}}
+\newunicodechar{β}{\um{\beta}}
+\newunicodechar{κ}{\um{\kappa}}
+\newunicodechar{∂}{\um{\partial}}
+\newunicodechar{∈}{\um{\in}}
+\newunicodechar{−}{\um{-}}
+\newunicodechar{∞}{\um{\infty}}
+\newunicodechar{≠}{\um{\neq}}
+\newunicodechar{≤}{\um{\le}}
+\newunicodechar{≥}{\um{\ge}}
+\newunicodechar{⟺}{\um{\iff}}
+\newunicodechar{→}{\um{\to}}
+\newunicodechar{─}{-}
+\newunicodechar{│}{|}
+\newunicodechar{┌}{+}
+\newunicodechar{┐}{+}
+\newunicodechar{└}{+}
+\newunicodechar{┘}{+}
+\newunicodechar{┬}{+}
+\newunicodechar{┴}{+}
+\newunicodechar{▼}{v}
+\newunicodechar{ℓ}{\um{\ell}}
+\newunicodechar{Ω}{\um{\Omega}}
+\newunicodechar{Σ}{\um{\Sigma}}
+\newunicodechar{·}{\um{\cdot}}
+\newunicodechar{×}{\um{\times}}
+\newunicodechar{⊂}{\um{\subset}}
+\newunicodechar{ₙ}{\um{_n}}
+\newunicodechar{∎}{\um{\blacksquare}}
+\newunicodechar{∼}{\um{\sim}}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{microtype}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue,
+            citecolor=RoyalBlue,breaklinks=true]{hyperref}
+\usepackage{fvextra}
+\usepackage{framed}
+\fvset{breaklines=true,breakanywhere=true,fontsize=\small}
+
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\definecolor{quoterule}{gray}{0.75}
+\renewenvironment{quote}
+  {\begin{leftbar}\small}
+  {\end{leftbar}}
+
+\usepackage[htt]{hyphenat}
+\usepackage{xurl}
+\emergencystretch=3em
+\sloppy
+
+\newenvironment{nonclaim}{\begin{quote}\textbf{Non-claim:\ }}{\end{quote}}
+\newenvironment{claimblock}{\begin{quote}}{\end{quote}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Coordinate-Wise Additivity and Local ℓ¹ Gauge Selection (GS-000)},
+  pdfauthor={Jeremy H. Carroll},
+  colorlinks=true,
+  linkcolor={RoyalBlue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\usepackage{seqsplit}
+
+\title{Coordinate-Wise Additivity and Local ℓ¹ Gauge Selection (GS-000)}
+\author{Jeremy H. Carroll}
+\date{Unpublished repository draft: 2026-10-02}
+\begin{document}
+\maketitle
+\textbf{Author:} Jeremy H. Carroll\\
+\textbf{Canonical Publication:} \texttt{v6.1.1} (2026-06-16), DOI
+\texttt{10.5281/\allowbreak{}zenodo.20723753}
+
+\textbf{Repository State:} unpublished post-v6.1.1 draft (2026-10-02);
+no later version or DOI assigned
+
+\textbf{Paper Identity:} \texttt{GS-\allowbreak{}000}\\
+\textbf{Legacy File Identity:}
+\texttt{009\_\allowbreak{}coordinate\_\allowbreak{}wise\_\allowbreak{}additivity.md}
+
+\textbf{Status:} Step 1 of the Gauge Selection Programme (purely finite
+coordinate-separable base theorem).
+
+\textbf{Authority:} none. This paper may diagnose, price, route, or
+construct structure inside a declared obstruction regime. It does not
+mint authority. Any authority-bearing use requires a separate CODA-FDA /
+GTLA descent packet, terminalizer, evidence ceiling, replay witness, and
+\texttt{IsAuth} guard.
+
+\textbf{Scope:} finite graph-cochain seminorm classification under
+coordinate-separable observer assumptions, with Lean4 support for exact
+finite helpers: CE1--CE4 arithmetic witnesses, a narrower CE5 arithmetic
+witness, Theorem 1 finite real cores, declared-orbit cores for Theorems
+2--3, the Theorem 3 edge-uniformity collapse, and primitive-difference
+quotient-boundary helpers. CE5 as stated in prose and the real-cochain
+LGGR reading in §3.5 remain
+\texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED}; the narrower
+executable helpers do not promote them. PL-004-2 was recorded discharged
+2026-06-20 only for its declared finite formulation; the observer-class
+hypotheses remain conditional. Mechanization scope, and the steps that
+remain assumed rather than derived in Lean, are itemized in the GTOC /
+GTLA Compliance Note.
+
+\textbf{Main claim:} edge locality + coordinate permutation symmetry +
+disjoint-coordinate additivity + seminorm absolute homogeneity force
+coordinatewise \(\ell^1\) on each edge; graph invariance gives
+orbit-weighted \(\ell^1\); unweighted global \(\ell^1\) requires
+edge-transitivity or explicit uniformity.
+
+\textbf{Non-claim:} no finite-structural \(\ell^1\), no claim about
+non-coordinate-separable observers, no unweighted global scalar without
+edge-uniformity, no Banach/dynamical result proved in this paper.
+
+\begin{nonclaim}
+This paper does not claim finite-structural $\ell^1$ geometry, physical norm selection, Banach-presheaf rigidity, projection-obstruction dynamics, or unweighted global $\ell^1$ without edge-transitivity or explicit edge-uniformity. It shows in this model only the finite combinatorial base case: inside the coordinate-separable, edge-local, disjoint-additive observer class, the edgewise seminorm is coordinatewise $\ell^1$, and graph invariance gives orbit-weighted aggregation.
+\end{nonclaim}
+
+\textbf{Lean status.} The local \texttt{PaperGS003} Lean module
+(\href{lean4/gs003_coordinate_l1.lean}{\texttt{lean4/\allowbreak{}gs003\_\allowbreak{}coordinate\_\allowbreak{}l1.lean}})
+machine-checks CE1--CE4 arithmetic witnesses, an exact scoped helper
+named
+\texttt{ce5\_\allowbreak{}lp\_\allowbreak{}not\_\allowbreak{}homogeneous},
+Theorem 1 finite real scalar-witness/norm-positive cores, Theorem 2
+declared-orbit aggregation cores, Theorem 3 orbit-uniform and
+edge-uniform collapse bridges, and finite \texttt{Nat}-valued
+primitive-difference quotient helpers. The CE5 helper does not verify
+the full prose counterexample, and the finite quotient helpers do not
+verify the real-cochain LGGR reading in §3.5. Both broader claims remain
+\texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED}. The global
+proof ledger marks PL-004-2 discharged only for the declared finite
+orbit-action formulation; the prose theorem still retains H1--H5 plus
+edge-transitivity or explicit uniformity as hypotheses.
+
+\textbf{Read ``cores'' and ``bridges'' strictly.} Each Lean artifact
+supports only the exact finite statement it mechanizes. Theorem 1's real
+core is genuinely derived --- \(\nu\) is an opaque field, not assumed to
+be \(w\lVert x\rVert_1\) --- but the Theorem 2 and Theorem 3 artifacts
+\textbf{assume} their load-bearing steps (fiber isometry, weight
+factorization, uniformity) rather than deriving them, H2 is not modelled
+as a permutation action, and no graph, automorphism group, or derived
+orbit appears in the Lean at all. Per-theorem mechanization scope, and
+what ``declared finite orbit-action formulation'' excludes, are itemized
+in the Claim-Type Ledger and the GTOC / GTLA Compliance Note.
+
+Lean reproducibility:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{lake build PaperGS003} --- green (exit 0) from a clean,
+  short-path replay on 2026-09-28.
+\item
+  The refreshed
+  \href{lean4/axiom_report.txt}{\texttt{lean4/\allowbreak{}axiom\_\allowbreak{}report.txt}}
+  covers all 43 declared \texttt{\#print axioms} targets. Each exact
+  Lean declaration depends only on subsets of
+  \texttt{\{propext, Classical.choice, Quot.sound\}}.
+\item
+  A clean build and axiom census establish only compilation and the
+  dependency set of the exact Lean declarations. They do not promote CE5
+  or the manuscript-level §3.5 LGGR reading from
+  \texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED}.
+\item
+  File path:
+  \href{lean4/gs003_coordinate_l1.lean}{\texttt{lean4/\allowbreak{}gs003\_\allowbreak{}coordinate\_\allowbreak{}l1.lean}}.
+\item
+  The receipt is bound to the source digests listed in
+  \href{lean4/PROVENANCE.md}{\texttt{lean4/\allowbreak{}PROVENANCE.md}}
+  and to the release manifest.
+\end{itemize}
+
+\hypertarget{abstract}{%
+\subsection{Abstract}\label{abstract}}
+
+For finite graph cochains with coordinate-valued edge defects, any
+edge-local seminorm that is coordinate-permutation symmetric and
+additive over disjoint coordinate supports is forced to be a nonnegative
+scalar multiple of coordinatewise \(\ell^1\) edgewise; positive weights
+require faithfulness/normhood; across edges the sharp conclusion is
+orbit-weighted \(\ell^1\), with unweighted global \(\ell^1\) requiring
+edge-transitivity or explicit uniformity. The additivity assumption is
+justified only for coordinate-separable, replica-extensive observers.
+Relaxing those assumptions yields alternative obstruction geometries.
+
+\textbf{Conventions.} Norms are denoted \(\lVert \cdot \rVert\) with
+appropriate subscripts; scalar absolute values are denoted \(|\cdot|\).
+
+\textbf{Why a researcher should care.} Many finite diagnostic systems
+decompose observations into coordinate channels: graph total variation,
+componentwise residuals, finite constraint violations, sparse defect
+fields, and coordinate-separable model-evaluation errors all have this
+form. This paper shows in this model that if those coordinate channels
+are treated as independent replicas and their disjoint supports must add
+exactly, then \(\ell^1\) is not an arbitrary choice --- it is forced
+inside that observer class. The result also says what is not forced:
+\(\ell^2\), \(\ell^\infty\), cross-edge cancellation,
+coordinate-weighted \(\ell^1\), and orbit-weighted edge sums all
+reappear when the corresponding assumptions are removed.
+
+\hypertarget{introduction}{%
+\subsection{1. Introduction}\label{introduction}}
+
+This paper is the first step in a sequence analyzing projection-induced
+defects on presheaf coboundaries through progressively richer structural
+settings:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{This paper} establishes that coordinate-wise additivity and
+  symmetry on finite graph cochains select coordinatewise \(\ell^1\)
+  geometry within the coordinate-separable observer class. The result is
+  purely combinatorial and requires no functional-analytic or dynamical
+  structure.
+\item
+  \textbf{The M-compatible Banach-presheaf paper} {[}7{]} extends the
+  classification under a different observer class: maximal
+  bounded-linear local symmetry fixes the native stalk norm edgewise,
+  and edge-additive aggregation then yields a weighted \(\ell^1\) edge
+  sum.
+\item
+  \textbf{The projection-obstruction paper} {[}6{]} applies this
+  rigidity in a setting that imports evolution and a projection map, and
+  reports coboundary defects measured by a conditional \(\ell^1\)
+  diagnostic. Both the dynamics and the projection are imported
+  representation structures relative to the present paper; nothing here
+  derives them, and the \(\ell^1\) measurement is forced there only
+  under that paper's own declared hypotheses, not as an unconditional
+  necessity.
+\end{itemize}
+
+The current package is
+\texttt{009\_\allowbreak{}coordinate\_\allowbreak{}wise\_\allowbreak{}additivity}
+(legacy Paper 003 / Paper 004), and is logically prior to the
+Banach-presheaf and projection-obstruction papers. The numbering
+reflects repository order, not dependency order.
+
+The purpose of the present paper is to isolate the minimal combinatorial
+realization of the replica-extensive, coordinate-separable observer
+class behind this rigidity. In the broader M-compatible framework, this
+corresponds to the case where coordinate channels are required to
+aggregate independently. Other symmetry classes yield different
+admissible gauges. Rather than beginning with Banach space assumptions
+or dynamical systems, we show that \(\ell^1\) geometry is selected for
+finite graph cochains under coordinate-separable, replica-extensive
+evaluation.
+
+A central modeling vulnerability is treating the summation of
+independent measurement channels as an ad hoc assumption (\(L^2\)
+root-sum-squares assume an entirely different aggregation). We isolate
+that assumption rather than hiding it. When independent observations are
+required to compose additively over disjoint coordinate supports, the
+finite seminorm argument below forces linear absolute-value summation.
+Without that observer boundary, the conclusion does not follow.
+
+\textbf{Falsifiability.} A proposed use of this classification fails if
+it cannot specify the finite graph, coordinate dimension \(k\),
+edge-local decomposition, coordinate permutation action,
+disjoint-coordinate additivity condition, seminorm homogeneity,
+graph-isomorphism action, and any edge-uniformity assumption used to
+pass from orbit-weighted to unweighted \(\ell^1\). The theorem would be
+falsified by a seminorm satisfying all stated hypotheses but not
+representable as
+\(\sum_{\mathcal O}w_{\mathcal O}\sum_{e\in\mathcal O}\|\delta_e\|_1\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{related-work-and-positioning}{%
+\subsection{1.1 Related Work and
+Positioning}\label{related-work-and-positioning}}
+
+This paper is closest to five bodies of work:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Finite-dimensional norm and seminorm classification.} The
+  proof is a finite-coordinate seminorm classification:
+  disjoint-coordinate additivity plus homogeneity forces linear
+  absolute-value summation. This paper differs by applying that
+  elementary classification edgewise to graph cochains.
+\item
+  \textbf{Graph total variation and discrete coarea.} For \(k=1\), the
+  classified \(\ell^1\) edge diagnostic matches graph total variation
+  and connects to coarea and cut interpretations. This paper differs by
+  making the observer assumptions selecting that diagnostic explicit.
+\item
+  \textbf{Max-flow / min-cut duality.} Under scalar boundary conditions,
+  \(\ell^1\)-type graph total variation is related to cut problems. This
+  paper differs by proving a norm-selection result, not a new max-flow
+  theorem.
+\item
+  \textbf{Banach-space (\(L^1\)) / abstract (\(L\))-space
+  characterizations.} The finite result is a combinatorial analogue of
+  \(L^1\)-type additivity over disjoint supports. This paper differs by
+  staying entirely finite and graph-cochain based.
+\item
+  \textbf{M-compatible gauge classification and later obstruction
+  papers.} Later papers replace coordinate-separability with
+  Banach-presheaf functoriality or dynamical projection hypotheses. This
+  paper is the finite combinatorial base case, not the Banach or
+  dynamical theorem itself.
+\end{enumerate}
+
+These are positioning anchors. The cited external results are used only
+for background context unless explicitly invoked in a theorem.
+
+\hypertarget{notation}{%
+\subsubsection{1.2 Notation}\label{notation}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Symbol & Meaning \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(G=(V,E)\) & finite directed graph \\
+\(C^1(G,\mathbb R^k)\) & edge cochain space \\
+\(\delta_e\) & vector value on edge \(e\) \\
+\(\nu_G\) & global diagnostic seminorm \\
+\(\nu_e\) & edge-local seminorm \\
+\(w_e\) & edge weight \\
+\(\mathcal O\) & edge orbit \\
+\(\alpha\) & global scalar under edge-uniformity \\
+\end{longtable}
+
+\hypertarget{the-ell1-characterization-proofs}{%
+\subsection{\texorpdfstring{2. The \(\ell^1\) Characterization
+Proofs}{2. The \textbackslash ell\^{}1 Characterization Proofs}}\label{the-ell1-characterization-proofs}}
+
+Theorems 1--3 are finite elementary prose proofs. Lean mechanization is
+a reproducibility-hardening target, not a condition for the paper-level
+result.
+
+\hypertarget{setup}{%
+\subsubsection{2.1 Setup}\label{setup}}
+
+\hypertarget{genesis-bias-fence-no-prior-host}{%
+\subsubsection{Genesis-Bias Fence --- No Prior
+Host}\label{genesis-bias-fence-no-prior-host}}
+
+This paper does not begin with a substrate that hosts the graph, a
+possibility domain that contains the cochains, an ambient geometry that
+pre-selects a norm, a physical system the edges represent, or an
+observer standing outside the comparison. It begins with
+\textbf{declared, packet-local finite data}: an index set of edges
+\(E\), an index set of coordinates \(\{1,\dots,k\}\), a declared scalar
+specialization \(\mathbb R\), and a declared comparison scope (the
+axioms H1--H5 below).
+
+\(G=(V,E)\), \(k\), and the coordinate fiber are \textbf{declared}, not
+derived and not antecedent. The graph is not a prior container from
+which cochains issue; it is the finite index data the declared
+comparison ranges over. \texttt{[DEFINITION]} below records that
+declaration --- it does not report a discovery about a pre-existing
+space.
+
+The ``observer'' of this paper is a \textbf{declared-comparison scope}
+(charter convention K6): the bundle H1--H5 and nothing more. It carries
+no privilege, no standpoint outside the differences it compares, and no
+authority. Where the prose says a geometry is ``forced'' or
+``selected'', the scope of that force is exactly this declared bundle.
+
+\textbf{Pricing the stronger readings.} \(\mathbb R\) is a
+\textbf{declared scalar specialization}, not a derived one --- absolute
+homogeneity over \(\mathbb R\) is admitted here, not earned.
+\(\bigoplus_e \mathbb R^k\) is a declared finite carrier, not a
+finite-structural state space. Neither the graph nor the fiber is
+claimed to be prior to, or to explain, the differences the diagnostic
+measures.
+
+\begin{quote}
+\textbf{GENESIS-BIAS AUDIT.} Does this section explain \(\ell^1\)
+selection by presupposing a prior container, substrate, state-space,
+law, observer, temporal order, possibility domain, sample space, Hilbert
+space, physical system, or authority source? If so, declare and price
+that antecedent, replace it with packet-local data, or stop with an
+OBSTRUCTION. --- Answer: the graph, the coordinate fiber, and the scalar
+field are declared and priced above as packet-local index data and a
+declared scalar specialization. No prior host is claimed.
+\end{quote}
+
+Let \(G=(V,E)\) be a finite directed graph and \(k\ge1\) an integer,
+declared as above, and
+
+\textbf{{[}DEFINITION{]}} \[
+C^1(G,\mathbb R^k)=\bigoplus_{e\in E}\mathbb R^k.
+\]
+
+An element \(\delta\in C^1(G,\mathbb R^k)\) assigns to every edge
+\(e\in E\) a vector
+
+\[
+\delta_e=(\delta_{e,1},\ldots,\delta_{e,k})\in\mathbb R^k.
+\]
+
+Let
+
+\[
+\nu_G:C^1(G,\mathbb R^k)\to\mathbb R_{\ge0}
+\]
+
+be a seminorm satisfying the assumptions below. In H1, the local terms
+\(\nu_e:\mathbb R^k\to\mathbb R_{\ge0}\) are nonnegative maps.
+Evaluating H1 on the zero cochain gives \(\sum_e\nu_e(0)=0\), hence
+every \(\nu_e(0)=0\). Restricting \(\nu_G\) to cochains supported on one
+edge then gives exactly \(\nu_e\), so each local term inherits
+seminormhood. Equivalently, one can declare the local seminorms at the
+outset.
+
+If \(E=\varnothing\), the global carrier is zero-dimensional and its
+unique seminorm is zero; orbit statements are vacuous and one may take
+\(\alpha=0\). The basis and positivity arguments below use \(k\ge1\);
+edge-transitivity is used on a nonempty edge set. The \(k=0\) case is
+excluded because it has no first basis vector and its scalar weight is
+not identifiable.
+
+The observer assumptions are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{{[}AXIOM / DEFINITION OF OBSERVER CLASS{]} (H1) Edge locality}
+\end{enumerate}
+
+\[
+\nu_G(\delta)=\sum_{e\in E}\nu_e(\delta_e).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{{[}AXIOM / OBSERVER ASSUMPTION{]} (H2) Coordinate permutation
+  symmetry}
+\end{enumerate}
+
+For every permutation \(\sigma\in S_k\),
+
+\[
+\nu_e(x_{\sigma(1)},\ldots,x_{\sigma(k)}) = \nu_e(x_1,\ldots,x_k).
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{{[}AXIOM / OBSERVER ASSUMPTION{]} (H3) Disjoint-coordinate
+  additivity}
+\end{enumerate}
+
+If \(\operatorname{supp}(x)\cap\operatorname{supp}(y)=\varnothing\),
+then
+
+\[
+\nu_e(x+y)=\nu_e(x)+\nu_e(y).
+\]
+
+Here ``replica-extensive'' means exact additivity over declared disjoint
+coordinate supports. It is an observer assumption, not a property of all
+diagnostics or all physical systems.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{{[}AXIOM / OBSERVER ASSUMPTION{]} (H4) Graph isomorphism
+  invariance}
+\end{enumerate}
+
+If \(\phi:G\to G'\) is a graph isomorphism, then
+
+\[
+\nu_{G'}(\phi_*\delta)=\nu_G(\delta).
+\]
+
+Here \(\phi_*\) relabels edges; if a nontrivial action on the coordinate
+fiber \(\mathbb R^k\) is declared, it is assumed to act by (possibly
+signed) coordinate permutations, hence \(\ell^1\)-isometrically. This
+explicit fiber hypothesis is what Theorem 2 uses when comparing edge
+weights across an orbit.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  \textbf{{[}AXIOM / OBSERVER ASSUMPTION{]} (H5) Seminorm absolute
+  homogeneity}
+\end{enumerate}
+
+Carried by the standing assumption that \(\nu_G\), and hence each
+\(\nu_e\), is a seminorm:
+
+\[
+\nu_e(cx)=|c|\,\nu_e(x)\qquad(c\in\mathbb R).
+\]
+
+Listed explicitly because the status claims in the front matter and the
+Lean bridges quantify over it. Absolute homogeneity is admitted over the
+\textbf{declared scalar specialization} \(\mathbb R\) (Genesis-Bias
+fence above); it is not derived here.
+
+\textbf{Hypothesis register.} H1 edge locality; H2 coordinate
+permutation symmetry; H3 disjoint-coordinate additivity; H4
+graph-isomorphism invariance with \(\ell^1\)-isometric
+(signed-permutation) fiber action; H5 seminorm absolute homogeneity.
+Every ``{[}PROVEN, CONDITIONAL{]}'' tag in this paper is conditional on
+the subset of H1--H5 named at the theorem, and on nothing else.
+
+\hypertarget{proven-conditional-theorem-1-coordinatewise-additivity-forces-a-nonnegative-scalar-multiple-of-coordinatewise-ell1-edgewise-positive-weights-require-faithfulnessnormhood}{%
+\subsubsection{\texorpdfstring{2.2 \textbf{{[}PROVEN, CONDITIONAL{]}
+Theorem 1 --- Coordinatewise Additivity Forces a Nonnegative Scalar
+Multiple of Coordinatewise \(\ell^1\) Edgewise; Positive Weights Require
+Faithfulness/Normhood}}{2.2 {[}PROVEN, CONDITIONAL{]} Theorem 1 --- Coordinatewise Additivity Forces a Nonnegative Scalar Multiple of Coordinatewise \textbackslash ell\^{}1 Edgewise; Positive Weights Require Faithfulness/Normhood}}\label{proven-conditional-theorem-1-coordinatewise-additivity-forces-a-nonnegative-scalar-multiple-of-coordinatewise-ell1-edgewise-positive-weights-require-faithfulnessnormhood}}
+
+\textbf{Statement:}
+
+For each edge \(e\), there exists a scalar \(w_e\ge0\) such that
+
+\[
+\nu_e(x)=w_e\|x\|_1 = w_e\sum_{i=1}^k |x_i|
+\]
+
+for all \(x\in\mathbb R^k\).
+
+If \(\nu_e\) is a norm, then \(w_e>0\). The scalar is unique because
+\(k\ge1\) and \(w_e=\nu_e(e_1)\).
+
+\textbf{Proof:}
+
+Let
+
+\[
+x=(x_1,\ldots,x_k)\in\mathbb R^k.
+\]
+
+Write \(e_i\) for the \(i\)-th standard coordinate vector. Then
+
+\[
+x=\sum_{i=1}^k x_i e_i.
+\]
+
+The vectors \(x_i e_i\) have pairwise disjoint coordinate support.
+Therefore, by disjoint-coordinate additivity,
+
+\[
+\nu_e(x) = \nu_e\left(\sum_{i=1}^k x_i e_i\right) = \sum_{i=1}^k \nu_e(x_i e_i).
+\]
+
+Since \(\nu_e\) is a seminorm, it is absolutely homogeneous:
+
+\[
+\nu_e(x_i e_i)=|x_i|\nu_e(e_i).
+\]
+
+By coordinate permutation symmetry, all coordinate basis vectors have
+the same seminorm value:
+
+\[
+\nu_e(e_1)=\nu_e(e_2)=\cdots=\nu_e(e_k).
+\]
+
+Set
+
+\[
+w_e:=\nu_e(e_1).
+\]
+
+Then
+
+\[
+\nu_e(x) = \sum_{i=1}^k |x_i|w_e = w_e\sum_{i=1}^k |x_i| = w_e\|x\|_1.
+\]
+
+The scalar is nonnegative since \(\nu_e(e_1)\ge0\), and positive under
+normhood since \(e_1\ne0\). Thus each edge seminorm is coordinatewise
+\(\ell^1\), up to its unique edge weight. \(\square\)
+
+\hypertarget{proven-conditional-theorem-2-orbit-weighted-global-aggregation}{%
+\subsubsection{\texorpdfstring{2.3 \textbf{{[}PROVEN, CONDITIONAL{]}
+Theorem 2 --- Orbit-Weighted Global
+Aggregation}}{2.3 {[}PROVEN, CONDITIONAL{]} Theorem 2 --- Orbit-Weighted Global Aggregation}}\label{proven-conditional-theorem-2-orbit-weighted-global-aggregation}}
+
+\textbf{Statement:}
+
+Let the automorphism group of the graph, or the declared admissible
+graph-isomorphism action, partition the edge set \(E\) into edge orbits
+
+\[
+E=\bigsqcup_{\mathcal O} \mathcal O.
+\]
+
+Then there exist weights \(w_{\mathcal O}\ge0\), constant on edge
+orbits, such that
+
+\[
+\nu_G(\delta) = \sum_{\mathcal O} w_{\mathcal O} \sum_{e\in\mathcal O} \|\delta_e\|_1.
+\]
+
+Orbit weights may be zero for seminorms. If the global diagnostic is
+required to be faithful on each edge orbit, the corresponding orbit
+weights are positive.
+
+\textbf{Proof:}
+
+By Theorem 1, for each edge \(e\),
+
+\[
+\nu_e(\delta_e)=w_e\|\delta_e\|_1.
+\]
+
+By edge locality,
+
+\[
+\nu_G(\delta) = \sum_{e\in E}\nu_e(\delta_e) = \sum_{e\in E}w_e\|\delta_e\|_1.
+\]
+
+Now let \(e,e'\in E\) lie in the same edge orbit. Then there exists a
+graph automorphism \(\phi:G\to G\) such that
+
+\[
+\phi(e)=e'.
+\]
+
+Take a cochain \(\delta\) supported only on edge \(e\), with value
+\(u\in\mathbb R^k\):
+
+\[
+\delta_e=u,\qquad \delta_f=0\quad(f\ne e).
+\]
+
+Then
+
+\[
+\nu_G(\delta)=w_e\|u\|_1.
+\]
+
+The pushed-forward cochain \(\phi_*\delta\) is supported only on \(e'\),
+with the same coordinate value \(u\) up to the declared coordinate
+action --- which, being a (signed) coordinate permutation by Axiom 4,
+preserves \(\|u\|_1\). By graph invariance,
+
+\[
+\nu_G(\phi_*\delta)=\nu_G(\delta).
+\]
+
+Thus
+
+\[
+w_{e'}\|u\|_1=w_e\|u\|_1.
+\]
+
+Choose \(u\ne0\). Then \(\|u\|_1>0\), so
+
+\[
+w_{e'}=w_e.
+\]
+
+Therefore edge weights are constant on edge orbits. Write the common
+value on orbit \(\mathcal O\) as \(w_{\mathcal O}\). Hence
+
+\[
+\nu_G(\delta) = \sum_{\mathcal O} w_{\mathcal O} \sum_{e\in\mathcal O} \|\delta_e\|_1.
+\]
+
+\(\square\)
+
+\hypertarget{proven-conditional-edge-transitivity-or-explicit-uniformity-theorem-3-edge-uniformity-reduces-to-unweighted-global-ell1}{%
+\subsubsection{\texorpdfstring{2.4 \textbf{{[}PROVEN, CONDITIONAL +
+edge-transitivity or explicit uniformity{]} Theorem 3 ---
+Edge-Uniformity Reduces to Unweighted Global
+\(\ell^1\)}}{2.4 {[}PROVEN, CONDITIONAL + edge-transitivity or explicit uniformity{]} Theorem 3 --- Edge-Uniformity Reduces to Unweighted Global \textbackslash ell\^{}1}}\label{proven-conditional-edge-transitivity-or-explicit-uniformity-theorem-3-edge-uniformity-reduces-to-unweighted-global-ell1}}
+
+\textbf{Statement:}
+
+If the graph action is edge-transitive, or if one imposes an explicit
+edge-uniformity/naturality axiom forcing all edge weights to agree, then
+there exists a single scalar \(\alpha\ge0\) such that
+
+\[
+\nu_G(\delta) = \alpha\sum_{e\in E}\|\delta_e\|_1.
+\]
+
+If \(\alpha=1\), this is exactly the standard unweighted \(\ell^1\) norm
+on
+
+\[
+E\times\{1,\ldots,k\}.
+\]
+
+\textbf{Proof:}
+
+From Theorem 2,
+
+\[
+\nu_G(\delta) = \sum_{\mathcal O} w_{\mathcal O} \sum_{e\in\mathcal O} \|\delta_e\|_1.
+\]
+
+If the graph action is edge-transitive, then \(E\) consists of a single
+orbit:
+
+\[
+E=\mathcal O.
+\]
+
+Therefore
+
+\[
+\nu_G(\delta)=w_{\mathcal O}\sum_{e\in E}\|\delta_e\|_1.
+\]
+
+Set
+
+\[
+\alpha:=w_{\mathcal O}.
+\]
+
+Then
+
+\[
+\nu_G(\delta)=\alpha\sum_{e\in E}\|\delta_e\|_1.
+\]
+
+Alternatively, if there are several edge orbits but an explicit
+edge-uniformity axiom imposes
+
+\[
+w_{\mathcal O}=\alpha
+\]
+
+for every orbit \(\mathcal O\), then
+
+\[
+\nu_G(\delta) = \sum_{\mathcal O} \alpha \sum_{e\in\mathcal O} \|\delta_e\|_1 = \alpha \sum_{e\in E} \|\delta_e\|_1.
+\]
+
+Finally,
+
+\[
+\sum_{e\in E}\|\delta_e\|_1 = \sum_{e\in E}\sum_{i=1}^k |\delta_{e,i}| = \|\delta\|_{\ell^1(E\times\{1,\ldots,k\})}.
+\]
+
+Thus the edge-uniform case is the standard finite \(\ell^1\) norm, up to
+scalar normalization. \(\square\)
+
+\hypertarget{worked-replay-orbit-weighted-coordinatewise-ell1}{%
+\subsubsection{\texorpdfstring{Worked Replay --- Orbit-Weighted
+Coordinatewise
+\(\ell^1\)}{Worked Replay --- Orbit-Weighted Coordinatewise \textbackslash ell\^{}1}}\label{worked-replay-orbit-weighted-coordinatewise-ell1}}
+
+Let \(G\) have two directed edges \(e_1,e_2\), with \(k=2\). Suppose the
+admissible graph action fixes the two edges separately, so they lie in
+distinct edge orbits. Let \[
+\delta_{e_1}=(3,-4),\qquad \delta_{e_2}=(1,2).
+\] By Theorem 1, each edge term is coordinatewise \(\ell^1\). With orbit
+weights \(w_{e_1}=1,\ w_{e_2}=2\), \[
+\nu_G(\delta) = 1(|3|+|-4|)+2(|1|+|2|) = 7+6 = 13.
+\] If edge-uniformity is imposed with \(\alpha=1\), the same cochain has
+\[
+\|\delta\|_1=(|3|+|-4|)+(|1|+|2|)=10.
+\] Thus graph invariance alone permits orbit-weighted \(\ell^1\); the
+unweighted value requires the additional uniformity assumption.
+
+Minimal replay:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d1 }\OperatorTok{=}\NormalTok{ (}\DecValTok{3}\NormalTok{, }\OperatorTok{{-}}\DecValTok{4}\NormalTok{)}
+\NormalTok{d2 }\OperatorTok{=}\NormalTok{ (}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{w1, w2 }\OperatorTok{=} \DecValTok{1}\NormalTok{, }\DecValTok{2}
+
+\KeywordTok{def}\NormalTok{ l1(x):}
+    \ControlFlowTok{return} \BuiltInTok{sum}\NormalTok{(}\BuiltInTok{abs}\NormalTok{(t) }\ControlFlowTok{for}\NormalTok{ t }\KeywordTok{in}\NormalTok{ x)}
+
+\NormalTok{orbit\_weighted }\OperatorTok{=}\NormalTok{ w1}\OperatorTok{*}\NormalTok{l1(d1) }\OperatorTok{+}\NormalTok{ w2}\OperatorTok{*}\NormalTok{l1(d2)}
+\NormalTok{unweighted }\OperatorTok{=}\NormalTok{ l1(d1) }\OperatorTok{+}\NormalTok{ l1(d2)}
+
+\BuiltInTok{print}\NormalTok{(orbit\_weighted)}
+\BuiltInTok{print}\NormalTok{(unweighted)}
+\end{Highlighting}
+\end{Shaded}
+
+Expected output:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{13}
+\NormalTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{counterexamples}{%
+\subsubsection{2.5 Counterexamples}\label{counterexamples}}
+
+CE1--CE3 witness the roles of H3, H2, and H1, respectively; CE4
+witnesses the extra edge-uniformity assumption, which is not one of
+H1--H5. CE1 and CE2 use \(k\ge2\). For CE2 and CE3, take trivial fiber
+transport so that H4 does not impose an additional coordinate action.
+CE5 must weaken the standing seminorm premise as well as H5: homogeneity
+cannot be removed while still calling the map a seminorm. Its full
+matching formalization remains open.
+
+The Lean CE1 and CE3 declarations are narrower arithmetic models: a
+quadratic function on \(\mathbb N^2\) and a coupled polynomial on
+\(\mathbb N^2\), respectively. They are not formal proofs that the real
+\(\ell^2\) norm or \(|a+b|\) satisfies all retained observer
+assumptions.
+
+\hypertarget{proven-by-counterexample-counterexample-1-if-coordinate-additivity-is-removed-ell2-is-allowed}{%
+\paragraph{\texorpdfstring{\textbf{{[}PROVEN BY COUNTEREXAMPLE{]}
+Counterexample 1 --- If Coordinate Additivity Is Removed, \(\ell^2\) Is
+Allowed}}{{[}PROVEN BY COUNTEREXAMPLE{]} Counterexample 1 --- If Coordinate Additivity Is Removed, \textbackslash ell\^{}2 Is Allowed}}\label{proven-by-counterexample-counterexample-1-if-coordinate-additivity-is-removed-ell2-is-allowed}}
+
+Define, on each edge,
+
+\[
+\nu_e(x)=\|x\|_2 = \left(\sum_{i=1}^k x_i^2\right)^{1/2}.
+\]
+
+Then \(\nu_e\) is a norm. It is coordinate permutation symmetric:
+
+\[
+\|(x_{\sigma(1)},\ldots,x_{\sigma(k)})\|_2=\|x\|_2.
+\]
+
+It is absolutely homogeneous and subadditive.
+
+But for disjointly supported vectors \(x=(1,0)\) and \(y=(0,1)\),
+
+\[
+\nu_e(x+y)=\|(1,1)\|_2=\sqrt2,
+\]
+
+while
+
+\[
+\nu_e(x)+\nu_e(y)=1+1=2.
+\]
+
+So
+
+\[
+\nu_e(x+y)\ne\nu_e(x)+\nu_e(y).
+\]
+
+Thus without coordinate additivity, the conclusion \(\nu_e=w_e\|x\|_1\)
+fails.
+
+\begin{quote}
+\textbf{Coordinate symmetry alone does not force \(\ell^1\).}
+\end{quote}
+
+\hypertarget{proven-by-counterexample-counterexample-2-if-coordinate-symmetry-is-removed-weighted-coordinate-ell1-is-allowed}{%
+\paragraph{\texorpdfstring{\textbf{{[}PROVEN BY COUNTEREXAMPLE{]}
+Counterexample 2 --- If Coordinate Symmetry Is Removed, Weighted
+Coordinate \(\ell^1\) Is
+Allowed}}{{[}PROVEN BY COUNTEREXAMPLE{]} Counterexample 2 --- If Coordinate Symmetry Is Removed, Weighted Coordinate \textbackslash ell\^{}1 Is Allowed}}\label{proven-by-counterexample-counterexample-2-if-coordinate-symmetry-is-removed-weighted-coordinate-ell1-is-allowed}}
+
+Define
+
+\[
+\nu_e(x)=\sum_{i=1}^k a_i |x_i|
+\]
+
+with positive but unequal weights \(a_i>0\). For example, in
+\(\mathbb R^2\),
+
+\[
+\nu_e(x_1,x_2)=|x_1|+2|x_2|.
+\]
+
+This is a norm. It is additive on disjoint supports:
+
+\[
+\nu_e(x+y)=\nu_e(x)+\nu_e(y)
+\]
+
+whenever
+\(\operatorname{supp}(x)\cap\operatorname{supp}(y)=\varnothing\).
+
+But it is not coordinate permutation symmetric. Indeed,
+
+\[
+\nu_e(1,0)=1,
+\]
+
+while
+
+\[
+\nu_e(0,1)=2.
+\]
+
+Therefore the conclusion becomes coordinate-weighted \(\ell^1\), not
+scalar coordinatewise \(\ell^1\).
+
+\begin{quote}
+\textbf{Without coordinate symmetry, additivity gives weighted
+\(\ell^1\), not uniform coordinate \(\ell^1\).}
+\end{quote}
+
+\hypertarget{proven-by-counterexample-counterexample-3-if-edge-locality-is-removed-cross-edge-coupling-is-allowed}{%
+\paragraph{\texorpdfstring{\textbf{{[}PROVEN BY COUNTEREXAMPLE{]}
+Counterexample 3 --- If Edge Locality Is Removed, Cross-Edge Coupling Is
+Allowed}}{{[}PROVEN BY COUNTEREXAMPLE{]} Counterexample 3 --- If Edge Locality Is Removed, Cross-Edge Coupling Is Allowed}}\label{proven-by-counterexample-counterexample-3-if-edge-locality-is-removed-cross-edge-coupling-is-allowed}}
+
+Let \(G\) have two edges \(e_1,e_2\), and take \(k=1\). A cochain is
+
+\[
+\delta=(a,b)\in\mathbb R^2.
+\]
+
+Define
+
+\[
+\nu_G(\delta)=|a+b|.
+\]
+
+This is a seminorm on \(C^1(G,\mathbb R)\).
+
+It is not edge-local because it cannot be written as
+
+\[
+\nu_G(\delta)=\nu_{e_1}(a)+\nu_{e_2}(b)
+\]
+
+for edgewise seminorms \(\nu_{e_1},\nu_{e_2}\).
+
+To see this, take \((a,b)=(1,0)\) and \((0,-1)\). If edge locality held,
+then
+
+\[
+\nu_G(1,0)=\nu_{e_1}(1)+\nu_{e_2}(0)=1,
+\]
+
+and
+
+\[
+\nu_G(0,-1)=\nu_{e_1}(0)+\nu_{e_2}(-1)=1.
+\]
+
+So locality would imply
+
+\[
+\nu_G(1,-1)=2.
+\]
+
+But actually
+
+\[
+\nu_G(1,-1)=|1-1|=0.
+\]
+
+Contradiction.
+
+Thus without edge locality, cancellation between edges is possible. The
+global seminorm need not be an edge-sum of \(\ell^1\) terms.
+
+\begin{quote}
+\textbf{Without edge locality, cross-edge cancellation destroys edgewise
+\(\ell^1\) aggregation.}
+\end{quote}
+
+\hypertarget{proven-by-counterexample-counterexample-4-if-edge-uniformity-is-removed-orbit-weighted-ell1-need-not-reduce-to-unweighted-ell1}{%
+\paragraph{\texorpdfstring{\textbf{{[}PROVEN BY COUNTEREXAMPLE{]}
+Counterexample 4 --- If Edge-Uniformity Is Removed, Orbit-Weighted
+\(\ell^1\) Need Not Reduce to Unweighted
+\(\ell^1\)}}{{[}PROVEN BY COUNTEREXAMPLE{]} Counterexample 4 --- If Edge-Uniformity Is Removed, Orbit-Weighted \textbackslash ell\^{}1 Need Not Reduce to Unweighted \textbackslash ell\^{}1}}\label{proven-by-counterexample-counterexample-4-if-edge-uniformity-is-removed-orbit-weighted-ell1-need-not-reduce-to-unweighted-ell1}}
+
+Let \(G\) be a directed path with two edges \(e_1,e_2\), and suppose the
+admissible graph automorphism group fixes the two edges separately, so
+they lie in distinct edge orbits.
+
+Define, for \(k=1\),
+
+\[
+\nu_G(\delta)=|\delta_{e_1}|+2|\delta_{e_2}|.
+\]
+
+This satisfies edge locality. It also satisfies coordinate symmetry
+vacuously since \(k=1\), and disjoint-coordinate additivity is vacuous
+on each scalar edge.
+
+It is graph-invariant under the trivial automorphism group.
+
+But it is not proportional to the unweighted \(\ell^1\) norm
+
+\[
+|\delta_{e_1}|+|\delta_{e_2}|.
+\]
+
+Indeed,
+
+\[
+\nu_G(1,0)=1,
+\]
+
+while
+
+\[
+\nu_G(0,1)=2.
+\]
+
+No single scalar \(\alpha\) satisfies both
+
+\[
+\alpha=\nu_G(1,0)=1
+\]
+
+and
+
+\[
+\alpha=\nu_G(0,1)=2.
+\]
+
+Thus the best general theorem is orbit-weighted \(\ell^1\), not globally
+unweighted \(\ell^1\).
+
+\begin{quote}
+\textbf{Graph invariance alone gives orbit weights; edge-uniformity is
+an extra axiom.}
+\end{quote}
+
+\hypertarget{open-not_verified-counterexample-5-a-nonlinear-gauge-candidate-after-weakening-the-seminorm-premise}{%
+\paragraph{\texorpdfstring{\textbf{{[}OPEN / NOT\_VERIFIED{]}
+Counterexample 5 --- A Nonlinear Gauge Candidate after Weakening the
+Seminorm
+Premise}}{{[}OPEN / NOT\_VERIFIED{]} Counterexample 5 --- A Nonlinear Gauge Candidate after Weakening the Seminorm Premise}}\label{open-not_verified-counterexample-5-a-nonlinear-gauge-candidate-after-weakening-the-seminorm-premise}}
+
+Replace the seminorm premise by a nonnegative, zero-at-zero, subadditive
+gauge, and retain coordinate symmetry and disjoint-coordinate
+additivity. The candidate on \(\mathbb R^k\) is
+
+\[
+\Phi(x)=\sum_{i=1}^k |x_i|^p
+\]
+
+for \(0<p<1\). This range makes \(0^p=0\) and permits subadditivity. The
+broader earlier range \(p\ne1\) was insufficient: \(p\le0\) causes a
+zero-coordinate problem, while \(p>1\) loses subadditivity as well as
+homogeneity.
+
+This is coordinate permutation symmetric and additive over disjoint
+coordinate support:
+
+\[
+\Phi(x+y)=\Phi(x)+\Phi(y)
+\]
+
+when supports are disjoint.
+
+But
+
+\[
+\Phi(cx)=|c|^p\Phi(x),
+\]
+
+not
+
+\[
+|c|\Phi(x).
+\]
+
+For \(0<p<1\), the scalar inequality \(|a+b|^p\le |a|^p+|b|^p\) gives
+subadditivity after summing coordinates. Nevertheless the scaling above
+fails H5 for a nonzero vector and, for example, \(c=2\). At \(p=1\) the
+family becomes the \(\ell^1\) norm. The shipped Lean helper fixes
+\(p=2\) and checks only a natural-number scaling inequality; that helper
+also lies outside the subadditive candidate range.
+
+The shipped Python and Lean helpers verify narrower, fixed arithmetic
+witnesses of non-homogeneity. They do not establish the full parameter
+range and every hypothesis asserted by this prose construction.
+Therefore CE5 remains
+\texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED}; the equations
+above state the intended candidate, not a promoted paper result.
+
+\begin{quote}
+\textbf{Disjoint additivity plus symmetry without homogeneity does not
+force \(\ell^1\) scaling.}
+\end{quote}
+
+\hypertarget{proven-conditional-final-consolidated-theorem}{%
+\subsubsection{\texorpdfstring{2.6 \textbf{{[}PROVEN, CONDITIONAL{]}
+Final Consolidated
+Theorem}}{2.6 {[}PROVEN, CONDITIONAL{]} Final Consolidated Theorem}}\label{proven-conditional-final-consolidated-theorem}}
+
+Under the full assumptions:
+
+\begin{itemize}
+\tightlist
+\item
+  Edge locality
+\item
+  Coordinate permutation symmetry
+\item
+  Disjoint-coordinate additivity
+\item
+  Seminorm homogeneity
+\item
+  Graph isomorphism invariance
+\end{itemize}
+
+one obtains:
+
+\[
+\nu_G(\delta) = \sum_{\mathcal O} w_{\mathcal O} \sum_{e\in\mathcal O} \|\delta_e\|_1.
+\]
+
+Under edge-transitivity or explicit edge-uniformity:
+
+\[
+\nu_G(\delta) = \alpha \sum_{e\in E} \sum_{i=1}^k |\delta_{e,i}|.
+\]
+
+And the counterexamples show:
+
+\begin{itemize}
+\item
+  \textbf{Remove coordinate additivity} \(\to\) \(\ell^2\) /
+  \(\ell^\infty\) / mixed gauges allowed
+\item
+  \textbf{Remove coordinate symmetry} \(\to\) coordinate-weighted
+  \(\ell^1\) allowed
+\item
+  \textbf{Remove edge locality} \(\to\) cross-edge coupling/cancellation
+  allowed
+\item
+  \textbf{Remove edge-uniformity} \(\to\) orbit-weighted \(\ell^1\) is
+  the sharp result
+\item
+  \textbf{Weaken the seminorm premise and remove homogeneity} \(\to\)
+  nonlinear separable gauges are a candidate
+  (\texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED}, CE5)
+\end{itemize}
+
+\hypertarget{interpretive-open-connection-to-projection-congruence-core-enc-0209}{%
+\paragraph{\texorpdfstring{\textbf{{[}INTERPRETIVE / OPEN{]} Connection
+to Projection-Congruence Core
+(\(ENC-0209\))}}{{[}INTERPRETIVE / OPEN{]} Connection to Projection-Congruence Core (ENC-0209)}}\label{interpretive-open-connection-to-projection-congruence-core-enc-0209}}
+
+A failure of H1 or H3 invalidates this classification. It does not, by
+itself, prove a returning projection obstruction or prevent an unrelated
+quotient from existing. A PCC application must separately specify its
+state carrier, projection, transition rule, congruence relation, and a
+theorem connecting that structure to these cochain diagnostics. No such
+bridge is proved or packaged here; the \texttt{PCC.adequacy} connection
+is a programme motivation only.
+
+\hypertarget{structural-consequences}{%
+\subsection{3. Structural Consequences}\label{structural-consequences}}
+
+\hypertarget{coarea-duality-k-1}{%
+\subsubsection{\texorpdfstring{3.1 Coarea Duality
+(\(k = 1\))}{3.1 Coarea Duality (k = 1)}}\label{coarea-duality-k-1}}
+
+\textbf{{[}STANDARD + elementary finite proof{]} Fact 3.1 (Weighted
+Discrete Coarea).} For a scalar vertex signal \(v:V\to\mathbb R\) and
+fixed weights \(w_e\ge0\), set
+
+\[
+\operatorname{TV}_w(v)=\sum_{e=(m,n)\in E}w_e|v_n-v_m|,
+\qquad V_t=\{m:v_m>t\}.
+\]
+
+Then
+
+\[
+\operatorname{TV}_w(v)=\int_{-\infty}^{\infty}
+\sum_{e=(m,n)\in E}w_e
+|\mathbf1_{V_t}(n)-\mathbf1_{V_t}(m)|\,dt.
+\]
+
+For each edge the indicator difference has absolute value one on the
+interval between its two endpoint values and zero elsewhere; its
+integral is therefore \(|v_n-v_m|\). Multiply by \(w_e\) and sum
+finitely. At \(w_e=1\), the integrand counts boundary-crossing edges.
+This is the finite graph specialization of coarea background {[}2,3{]};
+see also the explicit graph proof in {[}10, Appendix B{]}.
+
+\textbf{Orientation convention.} Each declared edge is counted once
+regardless of its orientation. Opposite directed edges, if both are
+listed, both contribute. This absolute-value TV yields the cut of the
+underlying undirected weighted multigraph, not a one-way directed-cut
+objective.
+
+\textbf{{[}STANDARD + finite threshold argument{]} Cut specialization.}
+For distinct vertices \(a,b\), minimize \(\operatorname{TV}_w(v)\) with
+\(v_a=1\), \(v_b=0\). Clipping to \([0,1]\) cannot increase any edge
+difference. Each threshold \(0<t<1\) gives a cut containing \(a\) and
+excluding \(b\), so coarea bounds the minimum below by the minimum such
+cut capacity. Conversely, the indicator of a minimum cut is feasible and
+has TV equal to that capacity. Thus a binary minimizer exists; the
+boundary values alone do not force every minimizer to be binary.
+Max-flow/min-cut {[}5{]} applies to the undirected capacitated network,
+or its replacement by two opposite equal-capacity arcs for each edge.
+
+\textbf{{[}PROVEN, CONDITIONAL{]} Remark 3.2.} For \(k>1\), the weighted
+diagnostic of a vertex coboundary is
+\(\sum_{i=1}^k\operatorname{TV}_w(v_i)\), so coarea applies coordinate
+by coordinate. This specialization concerns coboundaries of vertex
+signals; an arbitrary edge cochain need not be a coboundary.
+
+\hypertarget{the-geometry-of-the-defect-field}{%
+\subsubsection{3.2 The Geometry of the Defect
+Field}\label{the-geometry-of-the-defect-field}}
+
+The explicit inclusion of \textbf{Coordinate Additivity} formally
+captures the declared independence of distinct observed coordinates.
+Permutation symmetry and absolute homogeneity alone permit alternative
+norms such as \(\ell^\infty\) or \(\ell^2\). The strict structural
+requirement that isolated defect channels accumulate their structural
+signatures linearly thereby determines the \(\ell^1\) stalk geometry
+under these constraints.
+
+Thus, the seminorm compatible with the stated local
+coordinate-additivity and coordinate-symmetry constraints is
+coordinatewise \(\ell^1\) on each edge. Uniform \(\ell^1\) over the
+product index set requires the additional edge-uniformity assumption
+stated in Theorem 3.
+
+Conceptually, our theorem establishes (cf.~{[}4{]}) that:
+\textbf{{[}PROVEN, CONDITIONAL + uniform weights + \(\alpha>0\){]}} As a
+normed diagnostic space under the selected uniform \(\ell^1\) diagnostic
+with \(\alpha>0\), \(C^1(G,\mathbb R^k)\) is isometric to the finite
+\(L^1\) space on \(E\times\{1,\dots,k\}\). The strict positivity is
+load-bearing: on a nonzero carrier, \(\alpha=0\) gives an identically
+zero seminorm, not a norm. Its separated quotient is the zero space. For
+\(\alpha>0\), the map \(\delta\mapsto\alpha\delta\) is an isometry to
+the standard counting-measure \(L^1\) space; equivalently, the identity
+map uses mass \(\alpha\) at each point. This identification is a
+\textbf{measure-theoretic import} used for identification only; no
+measure, proportion, or probability semantics is derived here (see the
+Import / Oracle boundary). More generally the result is a finite
+weighted \(L^1\) geometry. \textbf{{[}INTERPRETIVE / STANDARD BACKGROUND
++ citation{]}} This serves as a finite combinatorial analogue of
+Kakutani's (1941) concrete characterization of abstract \(L\)-spaces
+{[}1{]}. Local additivity across independent structural components
+selects \(\ell^1\)-type geometry over the relevant finite measure.
+Defect fields in the uniform scalar case behave as discrete 1-forms
+whose absolute total variation tracks graph cuts and sparse obstructions
+{[}3{]}.
+
+\hypertarget{role-in-the-broader-classification-program}{%
+\subsubsection{3.3 Role in the Broader Classification
+Program}\label{role-in-the-broader-classification-program}}
+
+The result obtained here isolates the combinatorial origin of
+\(\ell^1\)-type geometry as a consequence of coordinate-wise and
+edge-wise separability. In subsequent work, this principle is
+generalized. In particular, when the cochain spaces are replaced by
+Banach presheaves and coordinate additivity is replaced by structural
+compatibility in the form of functoriality under bounded linear maps
+{[}7{]}, the same weighted \(\ell^1\) edge-sum structure is recovered,
+with uniformity requiring additional symmetry or normalization.
+
+The present theorem should not be interpreted as asserting universality
+of \(\ell^1\) across all observers. Rather, it identifies the unique
+geometry compatible with coordinate-wise independence and
+replica-extensive aggregation. In the general M-compatible
+classification, relaxing coordinate additivity admits alternative
+geometries such as \(\ell^2\) and mixed norms. The present theorem
+therefore provides the minimal combinatorial base case from which the
+more general Banach {[}7{]} and dynamical {[}6{]} results can be
+understood as specific structural extensions.
+
+\hypertarget{conditional-characterization-of-ell1}{%
+\subsubsection{\texorpdfstring{3.4 Conditional Characterization of
+\(\ell^1\)}{3.4 Conditional Characterization of \textbackslash ell\^{}1}}\label{conditional-characterization-of-ell1}}
+
+\textbf{{[}INTERPRETIVE / PROVEN, CONDITIONAL if formalized{]}
+Formalizing this compressed characterization requires PL-004-1:
+definitions of refinement-invariant and regular, plus the proof that the
+resulting scalar function satisfies \(\psi(t)=C|t|\).}
+
+\begin{quote}
+\textbf{Status divergence (recorded, not resolved).} The global proof
+ledger records PL-004-1 as \textbf{DISCHARGED 2026-06-20} (ENC-0526,
+CONDITIONAL→PROVED-PROSE, tier T3;
+\texttt{lean\_\allowbreak{}status: NOT-\allowbreak{}STARTED}), for the
+corrected conditional statement given below. This section retains
+\texttt{[INTERPRETIVE]} pending the explicit theorem-ledger mapping and
+adversary acceptance required by the formalization-status firewall. The
+status is \textbf{deliberately not upgraded here}; a hygiene pass does
+not promote claims. Reconciling this divergence is an open obligation.
+\end{quote}
+
+A compressed form of the result is the following. If a diagnostic
+\(\Phi\) is coordinate-separable, refinement-invariant, homogeneous, and
+additive across independent coordinates, then it has the form
+
+\[
+\Phi(x)=\sum_i \psi(x_i)
+\]
+
+with one \textbf{even} scalar branch \(\psi\), and with either (a)
+\(\psi\) absolutely homogeneous, or (b) \(\psi\) additive and regular
+\textbf{on each sign half-line}. Hence \(\psi(t)=C|t|\) with \(C\ge0\),
+and
+
+\[
+\Phi(x)=C\sum_i |x_i|.
+\]
+
+\textbf{The evenness / sign-reflection hypothesis is load-bearing and
+was omitted in earlier revisions of this section.} Without it the
+compressed statement is false, in both directions: additivity of a
+\emph{nonnegative} \(\psi\) across all of \(\mathbb R\) forces
+\(\psi(t)+\psi(-t)=\psi(0)=0\) with both terms \(\ge0\), hence
+\(\psi\equiv0\); while regular additivity on each half-line without sign
+reflection admits distinct positive and negative slopes, which is not
+\(C|t|\). The corrected conditional form above is the one recorded in
+the encyclopedia at ENC-0526.
+
+Thus \(\ell^1\) is selected by coordinate separability, additive
+aggregation, an even branch, and regularity. Relaxing any of these
+assumptions admits alternative geometries. This compressed statement
+should be read as a heuristic summary of the finite theorem unless the
+terms `refinement-invariant' and `regular' are formally defined here.
+
+\hypertarget{quotient-boundaries-and-the-open-not_verified-lggr-interpretation}{%
+\subsubsection{\texorpdfstring{3.5 Quotient Boundaries and the
+\textbf{{[}OPEN / NOT\_VERIFIED{]}} LGGR
+Interpretation}{3.5 Quotient Boundaries and the {[}OPEN / NOT\_VERIFIED{]} LGGR Interpretation}}\label{quotient-boundaries-and-the-open-not_verified-lggr-interpretation}}
+
+Three distinct comparisons must be kept separate. The elementary
+factorization facts below correct the earlier fixed-profile non-descent
+assertion; they do not claim the broader cross-graph LGGR specialization
+is mechanized.
+
+\textbf{Fixed graph and fixed weights.} Define
+\(D_w(\delta)=(w_e\|\delta_e\|_1)_e\) and \(\delta\sim_w\delta'\) iff
+\(D_w(\delta)=D_w(\delta')\). Then
+
+\[
+\nu_G(\delta)=\sum_e D_w(\delta)_e.
+\]
+
+Thus \(\nu_G\) factors through \(D_w\), and equal per-edge diagnostics
+force equal global totals for every fixed profile, including nonuniform
+and zero weights. The pairing \(\delta\mapsto(D_w(\delta),w)\) also
+factors through this relation because \(w\) is constant on the carrier.
+The same conclusion holds when the fixed-profile relation records the
+unweighted per-edge values instead.
+
+\textbf{Coarser total-only relation.} Let
+\(U(\delta)=\sum_e\|\delta_e\|_1\) and identify cochains only when
+\(U(\delta)=U(\delta')\). For fixed weights \((1,2)\), edge magnitude
+profiles \((7,3)\) and \((3,7)\) both have \(U=10\), but weighted totals
+\(13\) and \(17\). This witnesses failure of factorization through
+\(U\), not through the per-edge relation. Uniformity makes
+\(\nu_G=\alpha U\); if \(E\ne\varnothing\) and \(k\ge1\), testing each
+unit-edge cochain shows that a representation \(\nu_G=f\circ U\)
+requires all edge weights to agree.
+
+\textbf{Varying-profile record carrier.} On records \((\delta,w)\),
+suppose the relation records only the unweighted per-edge values and
+forgets \(w\). The same cochain with magnitudes \((7,3)\) and profiles
+\((1,2)\) or \((2,2)\) gives totals \(13\) or \(20\). A weight-sensitive
+total or pairing therefore need not descend. A fixed declared profile
+repairs that loss; only requiring each record's profile to be uniform
+does not, unless the scalar is shared across the comparison. The shipped
+finite \texttt{Nat} record helpers permit weights to vary in this way.
+They are not a theorem about two real cochains under one fixed
+diagnostic.
+
+\textbf{Programme boundary.} Identifying a specified cross-graph
+comparison with LGGR {[}8,9{]} remains
+\texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED}. It requires an
+explicit real carrier, relation, graph transport, and
+claim-to-formalization map. Nonuniform weights alone do not create a
+failure of descent through per-edge diagnostics.
+
+\hypertarget{interpretive-connection-to-epk-epistemic-primacy-of-the-kernel}{%
+\subsubsection{\texorpdfstring{3.6 \textbf{{[}INTERPRETIVE{]}}
+Connection to EPK (Epistemic Primacy of the
+Kernel)}{3.6 {[}INTERPRETIVE{]} Connection to EPK (Epistemic Primacy of the Kernel)}}\label{interpretive-connection-to-epk-epistemic-primacy-of-the-kernel}}
+
+The classification depends on the full observer bundle, not on a linear
+kernel alone. On \(\mathbb R^k\) with \(k\ge2\), the \(\ell^1\) and
+\(\ell^2\) norms both have kernel \(\{0\}\) but differ geometrically.
+Even the equality relation of an observable does not fix its numeric
+scale: multiplying a diagnostic by any positive scalar leaves that
+relation unchanged.
+
+For the classified edge sum, its linear kernel is exactly the set of
+cochains supported on zero-weight edges. H3, H2, and H5 determine the
+coordinate form; H4 constrains orbit weights; edge-uniformity constrains
+the global form. These are stronger data than the kernel. A
+coordinate-compatible vertex coboundary \(d_0\) may be supplied in an
+extension, but its kernel is determined by that operator and graph, and
+is not derived from norm selection.
+
+The EPK connection is therefore an interpretive reminder to state which
+distinctions an observer preserves and which data a quotient forgets.
+This paper establishes no general claim that a kernel uniquely selects a
+norm.
+
+\textbf{Generalization frontier.} When coordinate-separability is
+relaxed:
+
+\begin{itemize}
+\tightlist
+\item
+  Replacing coordinate permutation symmetry with \(SO(k)\) invariance is
+  the standard route toward \(\ell^2\). \textbf{This paper does not
+  establish that route, and Counterexample 1 does not establish it
+  either.} CE1 shows only that \(\ell^2\) \emph{is permitted} once
+  disjoint-coordinate additivity is dropped --- it exhibits \(\ell^2\)
+  as \(SO(k)\)-invariant and not disjoint-additive. It does \textbf{not}
+  show that \(SO(k)\) invariance \emph{forces} \(\ell^2\); that converse
+  is a separate classification claim, not proved here and not implied by
+  CE1. \textbf{{[}OPEN / IMPORTED{]}} Obtaining \(\ell^2\) requires
+  importing an inner product (or an equivalent
+  quadratic/rotation-invariant structure) at this degree. That import is
+  not earned anywhere in this paper: nothing here derives an inner
+  product, and the \(\ell^2\) readout is Q-gated in the surrounding
+  series. What is available here is the negative half only ---
+  \(\ell^2\) is excluded by H3, per CE1.
+\item
+  Replacing coordinate-separable boundaries with general Banach-presheaf
+  functoriality gives the M-compatible gauge classification {[}7{]} (see
+  ENC-0652).
+\item
+  Replacing the finite carrier with an infinite-dimensional one requires
+  functional-analytic hypotheses (Kakutani's theorem {[}1{]}).
+\end{itemize}
+
+The finite theorem selects a diagnostic form inside the declared
+observer class. It does not remove the freedom to choose another class
+or a permitted weight profile.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{claim-type-ledger}{%
+\subsection{Claim-Type Ledger}\label{claim-type-ledger}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lean4 Status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Main abstract claim & {[}PROVEN, CONDITIONAL{]} & Prose proof in
+Theorems 1--3; Lean4 support partial \\
+\(C^1(G,\mathbb R^k)\) setup & {[}DEFINITION{]} & N/A \\
+Edge locality & {[}AXIOM / DEFINITION{]} & N/A \\
+Coordinate permutation symmetry & {[}AXIOM / OBSERVER{]} & N/A \\
+Disjoint-coordinate additivity & {[}AXIOM / OBSERVER{]} & N/A \\
+Graph isomorphism invariance & {[}AXIOM / OBSERVER{]} & N/A \\
+Theorem 1 & {[}PROVEN, CONDITIONAL{]} &
+\textbf{{[}MECHANIZED-PARTIAL{]}} --- real finite-coordinate core
+genuinely derived
+(\texttt{coord\_\allowbreak{}real\_\allowbreak{}l1\_\allowbreak{}weighted\_\allowbreak{}sum},
+\texttt{coord\_\allowbreak{}real\_\allowbreak{}l1\_\allowbreak{}scalar\_\allowbreak{}sum\_\allowbreak{}succ},
+\texttt{coord\_\allowbreak{}real\_\allowbreak{}l1\_\allowbreak{}exists\_\allowbreak{}scalar\_\allowbreak{}succ}
+for \(w\ge0\),
+\texttt{coord\_\allowbreak{}real\_\allowbreak{}l1\_\allowbreak{}norm\_\allowbreak{}scalar\_\allowbreak{}positive\_\allowbreak{}succ}
+for \(w>0\)): \(\nu\) is an opaque field, not assumed to be
+\(w\lVert x\rVert_1\). \textbf{Gap:} H2 is not modelled as a permutation
+action; it enters only as its consequence, the
+\texttt{basis\_\allowbreak{}equal} field. The exact declarations are
+covered by the refreshed receipt. \\
+Theorem 2 & {[}PROVEN, CONDITIONAL{]} &
+\textbf{{[}MECHANIZED-PARTIAL{]}} ---
+\texttt{orbit\_\allowbreak{}weight\_\allowbreak{}eq\_\allowbreak{}of\_\allowbreak{}isometric\_\allowbreak{}single\_\allowbreak{}edge\_\allowbreak{}invariance}
+shows in this model weight equality under an \textbf{assumed}
+fiber-isometry hypothesis;
+\texttt{orbit\_\allowbreak{}weighted\_\allowbreak{}l1\_\allowbreak{}aggregation}
+\textbf{assumes} the weight factorization (\texttt{hfactor}) that the
+prose Theorem 2 derives. \textbf{Gap:} no graph, no \(\mathrm{Aut}(G)\),
+no derived orbits --- \texttt{orbit : E → O} is an arbitrary declared
+classifier; the ℓ¹ form is baked into \texttt{edgeWeightedL1Total}
+rather than composed from Theorem 1's witness. The exact declarations
+are covered by the refreshed receipt. \\
+Theorem 3 & {[}PROVEN, CONDITIONAL{]} &
+\textbf{{[}MECHANIZED-PARTIAL{]}} ---
+\texttt{orbit\_\allowbreak{}uniform\_\allowbreak{}l1\_\allowbreak{}collapse}
+/
+\texttt{edge\_\allowbreak{}uniform\_\allowbreak{}l1\_\allowbreak{}collapse}
+\textbf{assume} uniformity (\texttt{huniform}) and collapse in two
+lines;
+\texttt{edge\_\allowbreak{}uniformity\_\allowbreak{}collapses\_\allowbreak{}finite\_\allowbreak{}l1}
+and the two-edge core are receipt-covered. The uniformity axiom itself
+is not derived in Lean, consistent with the prose. \\
+Counterexamples 1-4 & {[}PROVEN BY COUNTEREXAMPLE, PROSE{]} &
+\textbf{{[}MECHANIZED-PARTIAL{]}} --- exact arithmetic helpers are
+receipt-covered. CE1 uses a natural-number quadratic rather than the
+real Euclidean norm; CE3 uses a coupled polynomial rather than the real
+cancellation seminorm. These helpers do not check every retained prose
+hypothesis. \\
+Counterexample 5 & \textbf{{[}OPEN / NOT\_VERIFIED{]}} &
+\texttt{ce5\_\allowbreak{}lp\_\allowbreak{}not\_\allowbreak{}homogeneous}
+is a narrower arithmetic witness and does not promote the full prose
+claim. \\
+Final consolidated theorem & {[}PROVEN, CONDITIONAL{]} & Pending \\
+Weighted discrete coarea and undirected cut specialization & {[}STANDARD
++ finite prose derivation{]} & No new Lean claim; §3.1 includes the
+edgewise proof and orientation convention \\
+Max-flow/min-cut statement & {[}STANDARD + citation{]} & N/A \\
+Remark 3.2 for \(k>1\) & {[}PROVEN, CONDITIONAL{]} & Pending \\
+Defect-space identification & {[}PROVEN, CONDITIONAL{]} & Pending \\
+Kakutani analogy & {[}INTERPRETIVE / STANDARD{]} & N/A \\
+Conditional characterization §3.4 & {[}INTERPRETIVE / PROVEN,
+CONDITIONAL{]} & N/A \\
+LGGR reading (§3.5) & \textbf{{[}OPEN / NOT\_VERIFIED{]}} & Finite
+\texttt{Nat}-valued quotient helpers are receipt-covered over
+\texttt{OmegaCore.PrimitiveDifference} {[}9{]}, but they are not the
+real-cochain manuscript claim. \\
+EPK observer audit (§3.6) & {[}INTERPRETIVE{]} &
+\textbf{{[}MECHANIZED-PARTIAL{]}} for the finite \texttt{Nat}-model
+kernel-refinement artifacts only; the §3.6 principle itself is
+interpretive and is not mechanized. \\
+\(SO(k)\Rightarrow\ell^2\) route (§3.6) & \textbf{{[}OPEN / IMPORTED{]}}
+& N/A --- not proved here; requires an unearned inner-product import.
+CE1 gives only the negative half (\(\ell^2\) excluded by H3). \\
+\end{longtable}
+
+\hypertarget{support-ledger}{%
+\subsection{Support Ledger}\label{support-ledger}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{S1 --- Finite coordinate decomposition lemma (easy).} For
+  \(x\in\mathbb R^k\), the coordinate vectors \(x_i e_i\) have pairwise
+  disjoint supports and sum to \(x\). If \(\nu_e\) is additive over
+  disjoint coordinate supports, then \(\nu_e(x)=\sum_i\nu_e(x_i e_i)\).
+\item
+  \textbf{S2 --- Coordinate symmetry weight-equality lemma (easy).} If
+  \(\nu_e\) is invariant under coordinate permutations, then
+  \(\nu_e(e_i)=\nu_e(e_j)\) for all \(i,j\).
+\item
+  \textbf{S3 --- Edge-orbit weight lemma (easy).} If graph-isomorphism
+  invariance sends edge \(e\) to edge \(e'\), then the edge weights
+  obtained from Theorem 1 satisfy \(w_e=w_{e'}\).
+\item
+  \textbf{S4 --- Edge-uniformity collapse lemma (easy).} If all edge
+  orbits share the same weight \(\alpha\), either by edge-transitivity
+  or explicit uniformity, then the orbit-weighted diagnostic collapses
+  to \(\nu_G(\delta)=\alpha\sum_{e\in E}\|\delta_e\|_1\). The PL-004-2
+  formal bridge for the declared finite orbit-action formulation is
+  discharged by
+  \texttt{PaperGS003.orbit\_\allowbreak{}uniform\_\allowbreak{}l1\_\allowbreak{}collapse}
+  and
+  \texttt{PaperGS003.edge\_\allowbreak{}uniform\_\allowbreak{}l1\_\allowbreak{}collapse};
+  the edge-uniformity hypothesis remains load-bearing.
+\item
+  \textbf{S5 --- Counterexample independence ledger (easy/moderate).}
+  CE1--CE4 verify the scoped failures for disjoint-coordinate
+  additivity, coordinate symmetry, edge locality, and edge-uniformity.
+  The corresponding full homogeneity-independence construction is CE5
+  and remains \texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED}.
+\item
+  \textbf{S6 --- Finite \(L^1\) identification lemma (easy).} Under
+  uniform edge weights and coordinatewise \(\ell^1\), the diagnostic
+  norm on \(C^1(G,\mathbb R^k)\) is isometric to the finite \(L^1\) norm
+  on the finite measure space \(E\times\{1,\dots,k\}\) with counting
+  measure, up to scalar \(\alpha\).
+\item
+  \textbf{S7 --- Scalar coarea import boundary (easy).} For scalar graph
+  total variation, the discrete coarea formula and min-cut relation are
+  imported standard results and are not required to prove Theorems 1--3.
+\item
+  \textbf{S8 --- Functional-equation summary lemma (moderate).} If a
+  scalar function \(\psi:\mathbb R\to\mathbb R_{\ge0}\) is absolutely
+  homogeneous and used in a coordinate-separable disjoint-additive
+  diagnostic, then \(\psi(t)=C|t|\). If instead one wants a
+  Cauchy-equation proof from additivity and regularity, the exact
+  regularity assumption must be stated.
+\item
+  \textbf{S9 --- Dependency-name consistency lemma (easy).} Cross-paper
+  references should use current paper titles or current logical roles
+  rather than stale internal sequence numbering when numbering has
+  changed across the corpus.
+\item
+  \textbf{S10 --- Quotient relation audit (elementary).} A fixed-profile
+  weighted total descends through per-edge diagnostic equality.
+  Non-descent occurs in the examples only after coarsening to
+  unweighted-total equality or enlarging the carrier to records whose
+  weights vary (§3.5). The broader LGGR interpretation remains open.
+\item
+  \textbf{S11 --- EPK observer audit (interpretive).} Kernel data alone
+  do not determine norm geometry. The finite classification uses the
+  full declared observer bundle; alternative symmetry classes require
+  separate hypotheses and classification proofs (§3.6).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{gtoc-gtla-compliance-note}{%
+\subsection{GTOC / GTLA Compliance
+Note}\label{gtoc-gtla-compliance-note}}
+
+\emph{Added by the GTOC/GTLA compliance pass of 2026-07-17. No version
+bump, no status upgrade, and no theorem statement or proof was widened
+by that pass.}
+
+\textbf{Role:} finite combinatorial base case for the
+gauge-classification program. Classifies edge-local seminorms on
+declared finite graph cochains under a declared coordinate-separable
+observer class. Diagnostic only.
+
+\textbf{Degree:} the edge-cochain degree
+\(C^1(G,\mathbb R^k)=\bigoplus_{e\in E}\mathbb R^k\), over the declared
+scalar specialization \(\mathbb R\) and declared finite index sets \(E\)
+and \(\{1,\dots,k\}\).
+
+\textbf{Consumes:} the declared observer bundle H1--H5 (§2.1); declared
+finite index data \(G=(V,E)\), \(k\); the declared scalar specialization
+\(\mathbb R\).
+
+\textbf{Produces:} (i) Theorem 1 --- edgewise
+\(\nu_e=w_e\lVert\cdot\rVert_1\), \(w_e\ge0\), with \(w_e>0\) under
+normhood; (ii) Theorem 2 --- orbit-weighted aggregation; (iii) Theorem 3
+--- unweighted global \(\ell^1\) \textbf{only} under edge-transitivity
+or an explicit uniformity axiom; (iv) CE1--CE4 --- verified independence
+witnesses; (v) CE5 and the §3.5 LGGR reading ---
+\texttt{OPEN /\allowbreak{} NOT\_\allowbreak{}VERIFIED} candidates with
+narrower executable helpers.
+
+\textbf{Does not produce:} authority of any kind; finite-structural or
+observer-independent \(\ell^1\); \(\ell^2\) or any inner-product
+geometry; probability, proportion, or measure semantics; physical norm
+selection; Banach-presheaf rigidity; dynamical or projection-obstruction
+results; unweighted global \(\ell^1\) absent edge-transitivity or
+explicit uniformity; any claim about non-coordinate-separable observers
+or infinite-dimensional carriers.
+
+\textbf{Authority status:} \textbf{none.} See the front-matter firewall.
+Nothing here is a descent packet; nothing here terminalizes; no
+\texttt{IsAuth} guard is discharged. The classification is
+regime-relative to H1--H5 and diagnoses only inside that declared
+regime.
+
+\textbf{GTOC regime declaration.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+This paper
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{ObstructionRegime(k)} & Declared: edge-cochain degree
+\(C^1(G,\mathbb R^k)\). \\
+\texttt{C\textasciicircum{}k, C\textasciicircum{}\{k+1\}, C\textasciicircum{}\{k+2\}}
+& \textbf{Not declared.} This paper classifies a seminorm \emph{on}
+\(C^1\); it does not route a cochain complex. \\
+\texttt{d\_\allowbreak{}k, d\_\allowbreak{}\{k+1\}} & \textbf{Not used.}
+\(d_0\) appears once (§3.6) as a hypothetical coordinate-compatible
+boundary; no result depends on it. \\
+\texttt{d\_\allowbreak{}\{k+1\}\textbackslash{}circ d\_\allowbreak{}k=0}
+& \textbf{Not used and not asserted.} No exactness claim is made or
+needed. \\
+\texttt{ZeroRel} / local sameness & Declared at §3.5:
+\(\delta\sim\delta'\) iff \(\nu_e(\delta_e)=\nu_e(\delta'_e)\) for every
+edge \(e\). \\
+Observer / gauge / norm & H1--H5 --- a \textbf{declared-comparison
+scope} (charter K6), carrying no privilege and no standpoint outside the
+compared differences. \\
+Lift policy & No general lift is claimed. Fixed-profile aggregation
+descends through the per-edge relation; the separate coarser-total and
+varying-profile examples lose data (§3.5). \\
+Terminal policy & \textbf{Refused.} No terminalization is attempted or
+available at this degree. \\
+\end{longtable}
+
+\textbf{GTOC classification boundary.} No fixed-profile closure failure
+is established by nonuniform weights: the weighted aggregate is already
+determined by per-edge diagnostics. Loss of descent in §3.5 belongs to
+its separately declared coarser relation or varying-profile carrier. A
+shared uniform scalar repairs the total-only example; declaring the
+profile repairs the varying-profile example. Any broader GTOC
+classification remains interpretive until its exact carrier and relation
+are supplied.
+
+\textbf{GTLA boundary.} GTOC routes and diagnoses; it mints no
+authority. Authority type, \texttt{IsAuth}, and descent-packet data are
+owned by CODA-FDA; terminalization discipline and non-promotion rules
+are owned by GTLA. This paper touches none of them. A diagnostic that
+classifies cleanly, replays finitely, and mechanizes in Lean is still
+not authority-bearing.
+
+\textbf{Import / Oracle boundary.} Any use of Hilbert space, Born
+uniqueness, phase, continuum, probability semantics, dynamics, physical
+interpretation, tensor composition, or empirical realization is an
+imported representation structure unless explicitly constructed at this
+paper's declared degree. Imported structures are not DDA operations and
+do not produce authority. This paper's registered imports:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Import
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Where
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Status
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(\mathbb R\) as scalar carrier; absolute homogeneity over \(\mathbb R\)
+& §2.1 (H5), throughout & \textbf{Declared scalar specialization.}
+Admitted, not derived. The classification is stated for this
+specialization only. \\
+Continuum coarea integral
+\(\int_{-\infty}^{\infty}\lvert\partial V_t\rvert\,dt\) & Fact 3.1, §3.1
+& \textbf{IMPORTED (continuum).} Standard, cited {[}2,3{]}. Integral
+notation is imported; the finite edgewise identity is shown in §3.1 and
+is \textbf{not used to prove Theorems 1--3} (see S7). The paper's
+``purely combinatorial / entirely finite'' self-description refers to
+Theorems 1--3 and the counterexamples; it does not extend to this
+imported fact. \\
+Max-flow / min-cut & §3.1 & \textbf{IMPORTED.} Standard, cited {[}5{]}.
+Background only. \\
+Counting measure; finite \(L^1\) space on \(E\times\{1,\dots,k\}\) &
+§3.2, S6 & \textbf{IMPORTED (measure-theoretic).} Used for
+identification only. \\
+Kakutani (1941): abstract \(L\)-spaces, mean ergodic theorem & §3.2,
+§3.6, ref {[}1{]} & \textbf{IMPORTED / INTERPRETIVE.} Cited as a finite
+analogue. The ergodic content is \textbf{not} invoked; no source model,
+no ergodicity, no stochastic reading is imported with it. \\
+Inner product / \(SO(k)\)-invariance route to \(\ell^2\) & §3.6 &
+\textbf{OracleNeeded / Q-gated.} Not earned here. See the §3.6
+\texttt{[OPEN /\allowbreak{} IMPORTED]} block. \\
+Infinite-dimensional carrier & §3.6 & \textbf{OracleNeeded.} Requires
+functional-analytic hypotheses; correctly priced in-place. \\
+Dynamics, linear evolution, projection onto a manifold & §1, ref {[}6{]}
+& \textbf{IMPORTED.} Belongs to {[}6{]} under {[}6{]}'s hypotheses;
+nothing here derives it. \\
+Banach-presheaf functoriality & §1, §3.3, ref {[}7{]} &
+\textbf{IMPORTED.} Belongs to {[}7{]}. \\
+\end{longtable}
+
+\textbf{Probability: not imported, and not available.} This paper
+contains no probability semantics, and none is smuggled: it performs no
+normalization to unit sum, constructs no weight profile summing to one,
+and never reads a weight as a proportion, frequency, chance, or measure
+of belief. The words ``normalization'' (§2.4, §3.3) refer \textbf{only}
+to the scaling constant \(\alpha\), not to a unit-sum condition. The
+weights \(w_e,w_{\mathcal O},\alpha\) are \textbf{finite non-negative
+scalars} attached to declared edges --- nothing more. The
+finite-\(L^1\)/counting-measure identification of §3.2 is a
+measure-theoretic \emph{identification}, not a probability structure: no
+normalized measure is constructed. Should a later adapter wish to read a
+normalized weight profile as a probability distribution, it must first
+supply the normalization \textbf{and} the adapter; \textbf{this paper
+supplies neither, and no result here depends on or licenses that
+reading.} Weight, proportion, and normalization at the \(\delta_2\)
+degree are the subject of the separate series paper on weight and
+proportion, not of this one.
+
+\textbf{Formalization-status firewall.} Any Lean, Rust, or replay
+artifact cited here supports only the exact finite statement it
+mechanizes. It does not automatically discharge PL-GTOC, Q, continuum,
+physical-realization, or GTLA authority obligations. A status upgrade
+requires an explicit theorem-ledger mapping, hypotheses check, build
+receipt, axiom/sorry audit, and adversary acceptance. Concretely, for
+this paper: the Lean mechanizes Theorem 1's real finite-coordinate core
+\textbf{genuinely} (\(\nu\) is an opaque field, not assumed to be
+\(w\lVert x\rVert_1\)), but the Theorem 2 and Theorem 3 artifacts
+\textbf{assume} their load-bearing steps --- the fiber isometry, the
+weight factorization \texttt{hfactor}, and uniformity \texttt{huniform}
+--- rather than deriving them; H2 is never modelled as a permutation
+action; and no graph, automorphism group, or derived orbit appears
+anywhere in the Lean, where \texttt{orbit : E → O} is an arbitrary
+declared classifier. ``PL-004-2 discharged \textbf{for the declared
+finite orbit-action formulation}'' means exactly that and nothing
+broader. See the Claim-Type Ledger for the per-theorem scope.
+
+\textbf{Detector adequacy warning.} A replayable detector/profile is not
+automatically adequate for a claim. A collapsing detector can make every
+profile exact. This paper contains a live instance: \(\nu_G\) is a
+\textbf{seminorm}, so \(w_e\ge0\) admits \(w_e\equiv0\) --- under which
+\(\nu_G\equiv0\) satisfies H1--H5 and reads \textbf{every} cochain as
+exact. The paper notes the vanishing case (§2.3) and blocks it where it
+matters by requiring faithfulness/normhood for \(w_e>0\) (Theorem 1) and
+\(\alpha>0\) (§3.2). Any authority-bearing use would require a separate
+\texttt{DetectorAdequacy} certificate naming the protected distinctions,
+adversarial cases, and blind spots --- none is supplied here, and none
+is needed, because this paper mints no authority.
+
+\textbf{Remaining open obligations.}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{PL-004-1 status divergence} --- global ledger records
+  DISCHARGED 2026-06-20 (ENC-0526); §3.4 retains
+  \texttt{[INTERPRETIVE]}. Not reconciled here; a hygiene pass does not
+  promote.
+\item
+  \textbf{CE5 and LGGR scope} --- match CE5 to the weakened gauge
+  premise and \(0<p<1\) range; match any LGGR interpretation to an
+  explicit real record carrier or coarser relation. Keep the broader
+  formalization obligations open; finite probes and the \(p=2\) helper
+  do not close them.
+\item
+  \textbf{Lean H2} --- model coordinate permutation symmetry as an
+  actual permutation action and derive
+  \texttt{basis\_\allowbreak{}equal}, rather than assuming it.
+\item
+  \textbf{Lean Theorem 2} --- model the graph, an automorphism group,
+  and genuine orbits; derive the weight factorization instead of
+  assuming \texttt{hfactor}.
+\item
+  \textbf{Lean composition} --- compose Theorem 1's \(\exists w\)
+  witness into the edge-total definitions, so that the ℓ¹ form is
+  derived rather than baked into \texttt{edgeWeightedL1Total}.
+\item
+  \textbf{§3.6 \(\ell^2\) route} --- either price the inner-product
+  import explicitly or leave it \texttt{[OPEN /\allowbreak{} IMPORTED]}.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{acknowledgments}{%
+\subsection{Acknowledgments}\label{acknowledgments}}
+
+No external funding. No conflicts of interest.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{references}{%
+\subsection{References}\label{references}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Kakutani, S. (1941). \emph{Concrete representation of abstract
+  \((L)\)-spaces and the mean ergodic theorem}. Annals of Mathematics,
+  42(2), 523-537.
+\item
+  Fleming, W. H., \& Rishel, R. (1960). \emph{An integral formula for
+  total gradient variation}. Archiv der Mathematik, 11(1), 218-222.
+\item
+  Chambolle, A., Caselles, V., Novaga, M., Cremers, D., \& Pock, T.
+  (2010). \emph{An introduction to total variation for image analysis.}
+  In: Theoretical Foundations and Numerical Methods for Sparse Recovery.
+  De Gruyter. Author manuscript:
+  \url{https://cvai.cit.tum.de/_media/spezial/bib/chambolle_et_al_10.pdf}.
+\item
+  Rockafellar, R. T. (1970). \emph{Convex Analysis.} Princeton
+  University Press.
+\item
+  Ford, L. R., \& Fulkerson, D. R. (1956). \emph{Maximal flow through a
+  network.} Canadian Journal of Mathematics, 8, 399-404.
+\item
+  Carroll, J. H. (2026). \emph{Projection Obstruction for Factorized
+  States: Nonlinear Dynamics, Conditional ℓ1 Diagnostics, and
+  Finite-Time Defect Bounds} Zenodo.
+  \url{https://zenodo.org/records/20650922}
+\item
+  Carroll, J. H. (2026). \emph{M-Compatible Gauge Classification for
+  Banach Presheaf Coboundaries: The ℓ¹ Maximal-Symmetry Endpoint}
+  Zenodo. \url{https://zenodo.org/records/20564214}
+\item
+  Carroll, J. H. (2026). \emph{Primitive Axiomatics of Finite
+  Obstruction Calculus} Zenodo.
+  \url{https://zenodo.org/records/20651224}
+\item
+  Carroll, J. H. (2026). \emph{Representation Abundance Is Not Physical
+  Authority}. Programme reference; no verified record identifier is
+  supplied here. The exact imported finite quotient code is packaged as
+  \href{lean4/primitive_difference.lean}{\texttt{lean4/\allowbreak{}primitive\_\allowbreak{}difference.lean}},
+  with provenance in
+  \href{lean4/PROVENANCE.md}{\texttt{lean4/\allowbreak{}PROVENANCE.md}}.
+\item
+  van Gennip, Y., Guillen, N., Osting, B., \& Bertozzi, A. L. (2013).
+  \emph{Mean curvature, threshold dynamics, and phase field theory on
+  finite graphs}. Author manuscript, Appendix B.
+  \url{https://www.math.ucla.edu/~bertozzi/papers/graph_curve.pdf}.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{appendix-zenodo-description}{%
+\subsection{Appendix: Zenodo
+Description}\label{appendix-zenodo-description}}
+
+This preprint shows in this model a finite combinatorial classification
+theorem for coordinate-valued graph cochain diagnostics. Under edge
+locality, coordinate permutation symmetry, disjoint-coordinate
+additivity, and seminorm homogeneity, each edge-local seminorm is a
+nonnegative scalar multiple of coordinatewise \(\ell^1\). Graph
+isomorphism invariance gives orbit-weighted \(\ell^1\); a single
+unweighted global \(\ell^1\) diagnostic requires edge-transitivity or
+explicit edge-uniformity. The result is conditional on a
+coordinate-separable observer class and does not claim finite-structural
+\(\ell^1\) geometry.
+
+This paper supplies the finite combinatorial base case for later
+obstruction-calculus papers on Banach presheaf coboundaries,
+M-compatible gauge classification, and projection-induced defects in
+factorized-state dynamics.
+
+\textbf{Keywords:} coordinate-wise additivity; seminorm classification;
+finite graph cochains; \(\ell^1\) norm; weighted \(\ell^1\); disjoint
+supports; permutation symmetry; edge locality; edge orbits; edge
+transitivity; graph total variation; formal verification.
+
+\end{document}
