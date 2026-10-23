@@ -1,4 +1,4 @@
-# [TFQ-1117] Relational clock dressing and continuum time
+# [TFQ-1117] Finite-clock closure and reversible history coordinates
 
 > **Stage**: `DRESSING_FIELD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `DFM-RELATIONAL-TIME-FENCE`  
 > **UUID**: `5bf82ffd-ae95-5919-8a82-5b2aa6db9152`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.
+For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
 
 ### Governing Obligation
-Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.
+The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.
 
 ### Witness Audit
-Interpretive fence; no artifact addresses it.
+step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks records the four products equal to I. psi_recover records norm 1, four transports back to psi, and two first-component inequalities with 3/5. The Lean module does not build an 8 by 8 matrix. No continuous-time generator and no Wheeler-DeWitt constraint is constructed. Status stays OPEN. Continuous time and a Hamiltonian constraint stay imported. Clock.frame_dress, periodic_trivialization_iff, cycleBlock_normal_form, validate_success_iff, validate_period, evolves_iff and stationary_iff supply the general finite-clock API and its typed boundary. This is algebra over supplied structures, not a derivation of physical time.
 
 ---
 
@@ -26,6 +26,7 @@ Interpretive fence; no artifact addresses it.
 ### Admitted Structural Imports
 - **Admitted**: `continuous time and Stone generator`
 - **Admitted**: `Hamiltonian constraint of a physical theory`
+- **Admitted**: `group-valued schedule and group action`
 
 ### Further Prerequisites
 - `DFM-CONTINUUM-INTERFACE`
@@ -43,13 +44,23 @@ Interpretive fence; no artifact addresses it.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order`
+- `lean4/CampaignDfmRelationalTimeFence.lean::four_blocks`
+- `lean4/CampaignDfmRelationalTimeFence.lean::psi_recover`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.frame_dress`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_success_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_period`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.evolves_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.stationary_iff`
+- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.rationalClock_blocks`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/dfm-relational-time-fence.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -67,3 +78,6 @@ Interpretive fence; no artifact addresses it.
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:147`
   - `papers/ravera_dfm_dossier.md:158`
+  - `lean4/CampaignDfmRelationalTimeFence.lean`
+  - `dag/derivations/independent/dfm-relational-time-fence.md`
+  - `checks/independent/dfm-relational-time-fence.py`

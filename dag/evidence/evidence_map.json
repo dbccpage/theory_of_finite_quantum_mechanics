@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "57fc0d9e7f7d055839a7768271fe11c001f7147ba6fbe09c962aa0948d653177"
+  "sha256_lf": "e8f13d7f8089ac675071dbb8484a522ed0b552d6d4e6636ec663dce75843efa1"
  },
  "files": {
   "checks/independent/dfm-bphz-continuum-fence.py": {
@@ -46,6 +46,11 @@
    "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
    "sha256_basis": "bytes",
    "size": 3537
+  },
+  "checks/independent/dfm-relational-time-fence.py": {
+   "sha256": "cb011f2b1d9f811d83462d65b8540a2c5965abed525a5edda99e1c9a061f734c",
+   "sha256_basis": "bytes",
+   "size": 7765
   },
   "checks/independent/dfm-symanzik-qed-ae-fence.py": {
    "sha256": "ebca2357cd211ca946f3b9f04eaca64e955407d5270576af34242cd1c4803d15",
@@ -843,9 +848,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "57fc0d9e7f7d055839a7768271fe11c001f7147ba6fbe09c962aa0948d653177",
+   "sha256": "e8f13d7f8089ac675071dbb8484a522ed0b552d6d4e6636ec663dce75843efa1",
    "sha256_basis": "lf-normalised",
-   "size": 4544620
+   "size": 4548953
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3898,9 +3903,9 @@
    "size": 2102
   },
   "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md": {
-   "sha256": "52ce2291bae57e859687c884fb41eecbd9f240840c28221a86e02d80c8e80dd4",
+   "sha256": "4cd0117afb03cbe6ed819e6ea826a506b5700e991e385487081465811cdc2210",
    "sha256_basis": "lf-normalised",
-   "size": 1888
+   "size": 4592
   },
   "dag/derivations/24_dressing_field/tfq_1118_dfm_electroweak_doublet_dressing.md": {
    "sha256": "c26c394ea7138c3de7836676047b4bb9d4774e724e4ebd5492a9ad64dbdd3fe1",
@@ -5767,6 +5772,11 @@
    "sha256_basis": "lf-normalised",
    "size": 2025
   },
+  "dag/derivations/independent/dfm-relational-time-fence.md": {
+   "sha256": "d59c1e15c357dff66b7db5beb0bef95b9b4642542904cf32f3477c68299a3229",
+   "sha256_basis": "lf-normalised",
+   "size": 3817
+  },
   "dag/derivations/independent/dfm-symanzik-qed-ae-fence.md": {
    "sha256": "2727b639719b9f8d44baaddaee909cb9927cacf3b2ad4749e1fc4f7516fdddf7",
    "sha256_basis": "lf-normalised",
@@ -5953,9 +5963,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "sha256_basis": "lf-normalised",
-   "size": 154742
+   "size": 157069
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -6241,6 +6251,11 @@
    "sha256": "dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6",
    "sha256_basis": "bytes",
    "size": 2119
+  },
+  "lean4/CampaignDfmRelationalTimeFence.lean": {
+   "sha256": "925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98",
+   "sha256_basis": "bytes",
+   "size": 11394
   },
   "lean4/CampaignDfmSymanzikQedAeFence.lean": {
    "sha256": "d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab",
@@ -175509,17 +175524,908 @@
    "absent_notes": [],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 4,
+    "lean_receipt_backed": 24,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 24
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "DFM-RELATIONAL-TIME-FENCE",
    "items": [
+    {
+     "cited_in": [
+      "node.source",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.ClosedCycle.blocks",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.ClosedCycle.blocks",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.evolves_iff",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.evolves_iff",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.frame_constant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.frame_constant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.frame_dress",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.frame_dress",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.interior",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.interior",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.seam_eq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.seam_eq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.stationary_iff",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.stationary_iff",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.trivial_iff_recurrence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.trivial_iff_recurrence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.validate_nonclosing",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.validate_nonclosing",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.validate_period",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.validate_period",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.validate_roundtrip",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.validate_roundtrip",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.validate_success_iff",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.validate_success_iff",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.Clock.validate_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.Clock.validate_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.four_blocks",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.four_blocks",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.psi_recover",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.psi_recover",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.rationalClock_blocks",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.rationalClock_blocks",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.rotation_apply",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.rotation_apply",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.rotation_four",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.rotation_four",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-relational-time-fence_lean_replay.json (CampaignDfmRelationalTimeFence)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms CampaignDfmRelationalTimeFence.step_square_and_order",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmRelationalTimeFence.step_square_and_order",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms four_blocks",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "four_blocks",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms psi_recover",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "psi_recover",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1117"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmRelationalTimeFence",
+     "command_note": "then, in a scratch file that imports CampaignDfmRelationalTimeFence: #print axioms step_square_and_order",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "step_square_and_order",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source",
+      "record TFQ-1117"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/dfm-relational-time-fence.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -175558,6 +176464,29 @@
      "file_exists": true,
      "generated": false,
      "kind": "paper",
+     "path": "dag/derivations/independent/dfm-relational-time-fence.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
      "path": "papers/ravera_dfm_dossier.md",
      "receipts": [],
      "replay": "n/a",
@@ -175568,7 +176497,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1117"
    ],
@@ -250523,6 +251452,32 @@
    "toolchain": "4.35.0"
   },
   {
+   "admission_scan_passed": null,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": "2026-10-23T19:19:58.612931+00:00",
+   "dag_node": "DFM-RELATIONAL-TIME-FENCE",
+   "decl_count": 21,
+   "exit_code": 0,
+   "id": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json#0:CampaignDfmRelationalTimeFence",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignDfmRelationalTimeFence",
+   "path": "lean4/CampaignDfmRelationalTimeFence.lean",
+   "receipt_file": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+   "receipt_file_sha256": "085892753f3ce2833bcad4f51f7db1656a1ce3712ab721bde2adc10b010f0b74",
+   "recorded_sha256": "925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
    "admission_scan_passed": true,
    "axiom_audit_passed": true,
    "axioms_itemised": true,
@@ -261039,7 +261994,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261065,7 +262020,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261091,7 +262046,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261117,7 +262072,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261143,7 +262098,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261169,7 +262124,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261195,7 +262150,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261221,7 +262176,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261247,7 +262202,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261273,7 +262228,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261299,7 +262254,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261325,7 +262280,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261351,7 +262306,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261377,7 +262332,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261403,7 +262358,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "4e242e42a09d55003256711d82aea560a91478596bb24aa2d552a7b9ce7dfb6b",
+   "receipt_file_sha256": "82a1e5d06614c363165d37b08f632480454af66f1ac574825beb9c857793003a",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -261993,9 +262948,9 @@
  "summary": {
   "by_grade": {
    "E0": 189,
-   "E1": 246,
+   "E1": 245,
    "E2": 42,
-   "E3": 448,
+   "E3": 449,
    "E4": 0
   },
   "by_status": {
@@ -262015,16 +262970,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1470,
+   "distinct": 1481,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1423,
-   "replay_verified_and_declaration_itemised": 1378,
+   "replay_verified": 1434,
+   "replay_verified_and_declaration_itemised": 1389,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1779
+   "present": 1790
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -262045,7 +263000,7 @@
    "total": 265,
    "with_in_repo_lean": 265
   },
-  "receipts_indexed": 471,
+  "receipts_indexed": 472,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -262091,9 +263046,9 @@
    },
    "DRESSING_FIELD": {
     "E0": 0,
-    "E1": 11,
+    "E1": 10,
     "E2": 9,
-    "E3": 23,
+    "E3": 24,
     "E4": 0
    },
    "ENGINE_CUSTODY": {
@@ -262324,9 +263279,9 @@
    },
    "OPEN": {
     "E0": 49,
-    "E1": 93,
+    "E1": 92,
     "E2": 10,
-    "E3": 23,
+    "E3": 24,
     "E4": 0
    },
    "PROVED_LEAN": {

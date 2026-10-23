@@ -1127,18 +1127,34 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.5-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
-      "statement": "Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "lean4/CampaignDfmRelationalTimeFence.lean",
+        "dag/derivations/independent/dfm-relational-time-fence.md",
+        "checks/independent/dfm-relational-time-fence.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order",
+        "lean4/CampaignDfmRelationalTimeFence.lean::four_blocks",
+        "lean4/CampaignDfmRelationalTimeFence.lean::psi_recover",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.frame_dress",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_success_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_period",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.evolves_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.stationary_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.rationalClock_blocks"
+      ],
       "rust": [],
       "imported_structure": [
         "continuous time and Stone generator",
-        "Hamiltonian constraint of a physical theory"
+        "Hamiltonian constraint of a physical theory",
+        "group-valued schedule and group action"
       ],
-      "bottleneck": "Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.",
+      "bottleneck": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -8578,7 +8594,7 @@
       ],
       "output": "DFM-RELATIONAL-TIME-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.",
+      "mechanism": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md",
         "papers/ravera_dfm_dossier.md"
@@ -13221,12 +13237,12 @@
       "id": "TFQ-1117",
       "uuid": "5bf82ffd-ae95-5919-8a82-5b2aa6db9152",
       "local_id": "DFM-RELATIONAL-TIME-FENCE",
-      "name": "Relational clock dressing and continuum time",
+      "name": "Finite-clock closure and reversible history coordinates",
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-1116",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.",
-      "obligation": "Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.",
+      "summary": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-RELATIONAL-TIME-FENCE"
@@ -13236,11 +13252,28 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md",
         "papers/ravera_dfm_dossier.md:147",
-        "papers/ravera_dfm_dossier.md:158"
+        "papers/ravera_dfm_dossier.md:158",
+        "lean4/CampaignDfmRelationalTimeFence.lean",
+        "dag/derivations/independent/dfm-relational-time-fence.md",
+        "checks/independent/dfm-relational-time-fence.py"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-relational-time-fence.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order",
+        "lean4/CampaignDfmRelationalTimeFence.lean::four_blocks",
+        "lean4/CampaignDfmRelationalTimeFence.lean::psi_recover",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.frame_dress",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_success_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_period",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.evolves_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.stationary_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.rationalClock_blocks"
+      ]
     },
     {
       "id": "TFQ-1118",
