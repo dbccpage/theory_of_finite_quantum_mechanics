@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 730" width="1000" height="730">
+  <style>
+    .bg { fill: #0a0f1d; }
+    .card { fill: #111827; stroke: #1f2937; stroke-width: 1.5; rx: 8; ry: 8; }
+    .card-accent { fill: #162032; stroke: #38bdf8; stroke-width: 2; rx: 8; ry: 8; }
+    .card-warn { fill: #1e1b2e; stroke: #f43f5e; stroke-width: 2; rx: 8; ry: 8; }
+    .card-auth { fill: #172554; stroke: #60a5fa; stroke-width: 2; rx: 8; ry: 8; }
+    .card-green { fill: #064e3b; stroke: #10b981; stroke-width: 2; rx: 8; ry: 8; }
+    .card-amber { fill: #451a03; stroke: #f59e0b; stroke-width: 2; rx: 8; ry: 8; }
+    .card-purple { fill: #2e1065; stroke: #a855f7; stroke-width: 2; rx: 8; ry: 8; }
+    .title { font-family: system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #f8fafc; }
+    .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 400; fill: #94a3b8; }
+    .section-title { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #38bdf8; }
+    .text-main { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 400; fill: #cbd5e1; }
+    .text-bold { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #f1f5f9; }
+    .text-code { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; fill: #a5f3fc; }
+    .text-muted { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #64748b; }
+    .flow-line { stroke: #38bdf8; stroke-width: 2; fill: none; }
+    .flow-line-dashed { stroke: #94a3b8; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+    .flow-line-warn { stroke: #f43f5e; stroke-width: 2; fill: none; }
+    .flow-line-auth { stroke: #60a5fa; stroke-width: 2.5; fill: none; }
+    .flow-line-green { stroke: #10b981; stroke-width: 2; fill: none; }
+  </style>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrow-warn" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f43f5e" />
+    </marker>
+    <marker id="arrow-auth" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#60a5fa" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <linearGradient id="grad-header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="730" class="bg"/>
+  
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="960" height="70" rx="8" fill="url(#grad-header)" stroke="#0284c7" stroke-width="1"/>
+  <text x="40" y="50" class="title">CODA-MUR: Certified Representation Transport &amp; Irreversible Forgetting</text>
+  <text x="40" y="72" class="subtitle">A commuting square is not target standing — Commuting Squares, Collisions, and Loss Ledgers</text>
+  <rect x="780" y="35" width="180" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="870" y="52" text-anchor="middle" class="text-code">CODA-MUR · DET-MUR-001</text>
+  <text x="870" y="80" text-anchor="middle" class="text-muted">AuthorityEffect: None</text>
+
+  <!-- Commuting Square Diagram & Pasting -->
+  <g transform="translate(50, 105)">
+    <rect x="0" y="0" width="440" height="460" rx="8" class="card"/>
+    <text x="20" y="28" class="section-title">COMMUTING OBSERVATION SQUARE (Definition MUR-D1)</text>
+    <text x="20" y="48" class="text-main">Transport certificate between source and target regimes:</text>
+    
+    <!-- Square Nodes -->
+    <g transform="translate(65, 75)">
+      <!-- Top Left X -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="95" height="42" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="47" y="26" text-anchor="middle" class="text-bold">State X</text>
+      </g>
+      
+      <!-- Top Arrow F -->
+      <line x1="100" y1="21" x2="200" y2="21" class="flow-line" marker-end="url(#arrow)"/>
+      <text x="150" y="14" text-anchor="middle" class="text-code">F (states)</text>
+      
+      <!-- Top Right Y -->
+      <g transform="translate(205, 0)">
+        <rect x="0" y="0" width="95" height="42" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="47" y="26" text-anchor="middle" class="text-bold">State Y</text>
+      </g>
+      
+      <!-- Left Arrow p -->
+      <line x1="47" y1="48" x2="47" y2="135" class="flow-line" marker-end="url(#arrow)"/>
+      <text x="28" y="95" text-anchor="middle" class="text-code">p</text>
+      
+      <!-- Right Arrow q -->
+      <line x1="252" y1="48" x2="252" y2="135" class="flow-line" marker-end="url(#arrow)"/>
+      <text x="272" y="95" text-anchor="middle" class="text-code">q</text>
+      
+      <!-- Bottom Left A -->
+      <g transform="translate(0, 142)">
+        <rect x="0" y="0" width="95" height="42" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1.5"/>
+        <text x="47" y="26" text-anchor="middle" class="text-bold">Obs A</text>
+      </g>
+      
+      <!-- Bottom Arrow F_bar -->
+      <line x1="100" y1="163" x2="200" y2="163" class="flow-line" marker-end="url(#arrow)"/>
+      <text x="150" y="156" text-anchor="middle" class="text-code">F_bar (obs)</text>
+      
+      <!-- Bottom Right B -->
+      <g transform="translate(205, 142)">
+        <rect x="0" y="0" width="95" height="42" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1.5"/>
+        <text x="47" y="26" text-anchor="middle" class="text-bold">Obs B</text>
+      </g>
+    </g>
+
+    <!-- Commutation Formula -->
+    <g transform="translate(20, 280)">
+      <rect x="0" y="0" width="400" height="70" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <text x="16" y="22" class="text-bold" fill="#38bdf8">Commuting Law &amp; Pasting (MUR-T1, MUR-T2):</text>
+      <text x="16" y="42" class="text-code" font-size="10" fill="#a5f3fc">q(F(x)) = F_bar(p(x))   (Look after move = move after look)</text>
+      <text x="16" y="58" class="text-code" font-size="10" fill="#34d399">D_C circ (G circ F) = (G_bar circ F_bar) circ D_A  (Pastes)</text>
+    </g>
+
+    <!-- Scope Box -->
+    <g transform="translate(20, 360)">
+      <rect x="0" y="0" width="400" height="85" rx="6" fill="#20121d" stroke="#e11d48" stroke-width="1"/>
+      <text x="16" y="20" class="text-bold" fill="#fca5a5">Epistemic Scope Boundary:</text>
+      <text x="16" y="38" class="text-main" font-size="11">The commuting square is a certificate that the move</text>
+      <text x="16" y="54" class="text-main" font-size="11">is compatible with looking. It is NOT target standing.</text>
+      <text x="16" y="70" class="text-code" font-size="10" fill="#f43f5e">Target standing requires target pipeline execution.</text>
+    </g>
+  </g>
+
+  <!-- Right: Collisions & Irreversible Loss -->
+  <g transform="translate(510, 105)">
+    <rect x="0" y="0" width="440" height="460" rx="8" class="card"/>
+    <text x="20" y="28" class="section-title">COLLISIONS &amp; IRREVERSIBLE FORGETTING</text>
+    
+    <!-- Collisions Transport -->
+    <g transform="translate(20, 44)">
+      <rect x="0" y="0" width="400" height="90" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+      <text x="16" y="22" class="text-bold" fill="#c7d2fe">Collisions Transport (Theorem MUR-T3):</text>
+      <text x="16" y="42" class="text-code" fill="#38bdf8">p(x) = p(y)  ==&gt;  q(F(x)) = q(F(y))</text>
+      <text x="16" y="60" class="text-main" font-size="11">If two states look identical before the move, they remain</text>
+      <text x="16" y="74" class="text-main" font-size="11">indistinguishable after. Collisions travel forward.</text>
+    </g>
+    
+    <!-- Post-processing preserves collisions -->
+    <g transform="translate(20, 144)">
+      <rect x="0" y="0" width="400" height="85" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+      <text x="16" y="22" class="text-bold" fill="#a5b4fc">Post-Processing Preserves Collisions (MUR-T4):</text>
+      <text x="16" y="42" class="text-code" fill="#818cf8">p(x) = p(y)  ==&gt;  f(p(x)) = f(p(y))</text>
+      <text x="16" y="62" class="text-main" font-size="11">A later function of observation CANNOT split a collision.</text>
+      <text x="16" y="76" class="text-muted" font-size="10">Hashing, filtering, or downstream steps cannot restore lost bits.</text>
+    </g>
+    
+    <!-- Non-recoverability -->
+    <g transform="translate(20, 238)">
+      <rect x="0" y="0" width="400" height="95" rx="6" fill="#261019" stroke="#f43f5e" stroke-width="1"/>
+      <text x="16" y="20" class="text-bold" fill="#fda4af">Irreversible Loss (Theorem MUR-T5):</text>
+      <text x="16" y="40" class="text-code" font-size="10" fill="#fca5a5">not exists recover : 1 -&gt; 2  s.t.  recover(collapse(b)) = b</text>
+      <text x="16" y="60" class="text-main" font-size="11">Once a fiber is collapsed onto a point, no left inverse</text>
+      <text x="16" y="74" class="text-main" font-size="11">can recover the forgotten information.</text>
+      <text x="16" y="88" class="text-muted" font-size="10">Shannon information loss is mathematically irreversible.</text>
+    </g>
+
+    <!-- Morphism Kinds & Loss Ledger -->
+    <g transform="translate(20, 342)">
+      <rect x="0" y="0" width="400" height="105" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="20" class="text-bold" fill="#fbbf24">Typed Morphisms &amp; Loss Ledger:</text>
+      <text x="16" y="38" class="text-main" font-size="11">Kinds: exact | embedding | quotient | approx | unmeasured</text>
+      <text x="16" y="56" class="text-code" font-size="10">exact &lt; embedding &lt; quotient &lt; approx &lt; unmeasured</text>
+      <text x="16" y="74" class="text-main" font-size="11">Loss masses add in declared common units: delta_loss &gt;= 0</text>
+      <text x="16" y="90" class="text-muted" font-size="10">Regime mismatches trigger hard refusal.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(50, 580)">
+    <rect x="0" y="0" width="900" height="130" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="26" class="text-bold" fill="#60a5fa">Architectural Principles of CODA-MUR:</text>
+    <text x="20" y="48" class="text-main">· Commuting squares are certified witnesses of representation transport, verified without ambient environment escapes.</text>
+    <text x="20" y="66" class="text-main">· Forgetting is explicit: loss masses are typed and recorded in immutable ledgers rather than swept into noise terms.</text>
+    <text x="20" y="84" class="text-main">· No Free Lunch: High-resolution states collapsed into low-resolution summaries permanently lose micro-distinctions.</text>
+    <text x="20" y="104" class="text-code" fill="#f87171">AuthorityEffect: None. Certified transport does not mint target standing.</text>
+  </g>
+</svg>

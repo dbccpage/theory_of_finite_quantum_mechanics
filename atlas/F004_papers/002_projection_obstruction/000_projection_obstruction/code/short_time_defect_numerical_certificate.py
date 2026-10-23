@@ -1,0 +1,99 @@
+"""
+Numerical certificate and kill-test companion for PO-000 second-derivative bound.
+
+AuthorityEffect: None
+"""
+
+import math
+from typing import Dict, Any
+
+
+class SecondDerivativeBoundCertificate:
+    """
+    Finite-instance numerical kill-test companion for Appendix B second-derivative bound.
+    """
+
+    def __init__(self, g: float):
+        if isinstance(g, bool) or not isinstance(g, (int, float)):
+            raise TypeError("g must be a real number")
+        g_val = float(g)
+        if math.isnan(g_val) or math.isinf(g_val) or g_val <= 0:
+            raise ValueError(f"g must be a positive finite real, got {g}")
+        self.g = g_val
+        self.paper_one_site_first = 2.0 * self.g
+        self.paper_one_site_second = 8.0 * (self.g ** 2)
+        self.paper_two_site_second = 24.0 * (self.g ** 2)
+        self.paper_M = 48.0 * (self.g ** 2)
+
+    def evaluate_assembly(
+        self,
+        measured_one_site_first_a: float,
+        measured_one_site_first_b: float,
+        measured_one_site_second_a: float,
+        measured_one_site_second_b: float,
+        measured_two_site_second: float,
+        atol: float = 1e-12,
+    ) -> Dict[str, Any]:
+        """
+        Check five reduced-state derivative bounds and assemble M_used.
+        """
+        measured_items = {
+            "measured_one_site_first_a": measured_one_site_first_a,
+            "measured_one_site_first_b": measured_one_site_first_b,
+            "measured_one_site_second_a": measured_one_site_second_a,
+            "measured_one_site_second_b": measured_one_site_second_b,
+            "measured_two_site_second": measured_two_site_second,
+        }
+        for name, val in measured_items.items():
+            if isinstance(val, bool) or not isinstance(val, (int, float)):
+                raise TypeError(f"{name} must be a real number, got {val}")
+            flt_val = float(val)
+            if math.isnan(flt_val) or math.isinf(flt_val) or flt_val < 0.0:
+                raise ValueError(f"{name} must be a finite nonnegative real, got {val}")
+
+        if isinstance(atol, bool) or not isinstance(atol, (int, float)):
+            raise TypeError(f"atol must be a real number, got {atol}")
+        atol_flt = float(atol)
+        if math.isnan(atol_flt) or math.isinf(atol_flt) or atol_flt < 0.0:
+            raise ValueError(f"atol must be a finite nonnegative real, got {atol}")
+
+        v_1a = float(measured_one_site_first_a) > self.paper_one_site_first + atol_flt
+        v_1b = float(measured_one_site_first_b) > self.paper_one_site_first + atol_flt
+        v_2a = float(measured_one_site_second_a) > self.paper_one_site_second + atol_flt
+        v_2b = float(measured_one_site_second_b) > self.paper_one_site_second + atol_flt
+        v_2ab = float(measured_two_site_second) > self.paper_two_site_second + atol_flt
+
+        violated = v_1a or v_1b or v_2a or v_2b or v_2ab
+
+        assembled_M = (
+            measured_two_site_second
+            + measured_one_site_second_a
+            + 2.0 * measured_one_site_first_a * measured_one_site_first_b
+            + measured_one_site_second_b
+        )
+
+        M_used = max(assembled_M, self.paper_M) if violated else self.paper_M
+
+        return {
+            "second_deriv_source": "product_rule_assembly_under_reduced_state_hyps",
+            "g": self.g,
+            "assumed_bounds": {
+                "one_site_first_a": self.paper_one_site_first,
+                "one_site_first_b": self.paper_one_site_first,
+                "one_site_second_a": self.paper_one_site_second,
+                "one_site_second_b": self.paper_one_site_second,
+                "two_site_second": self.paper_two_site_second,
+            },
+            "measured_bounds": {
+                "one_site_first_a": float(measured_one_site_first_a),
+                "one_site_first_b": float(measured_one_site_first_b),
+                "one_site_second_a": float(measured_one_site_second_a),
+                "one_site_second_b": float(measured_one_site_second_b),
+                "two_site_second": float(measured_two_site_second),
+            },
+            "second_deriv_bound_violated": violated,
+            "assembled_M": float(assembled_M),
+            "M_used": float(M_used),
+            "taylor_c2_used": float(M_used / 2.0),
+            "authority_effect": "None",
+        }

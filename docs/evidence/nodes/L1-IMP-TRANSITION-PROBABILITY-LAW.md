@@ -194,7 +194,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/l1-imp-transition-probability-law.py`
 
 - file: [checks/independent/l1-imp-transition-probability-law.py](../../../checks/independent/l1-imp-transition-probability-law.py)
-- sha256 (`bytes`): `67537675ef4a328ecf875de7447ddc07f850f0da732afc6cb7a2d1e7ed83e8de`
+- sha256 (`bytes`): `9641eb17d294a9160f69dc02f2102c18780b6ade7867246aa98da1072f4029d2`
 - cited in: node.source
 - counts toward the grade: yes
 

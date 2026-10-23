@@ -1,0 +1,72 @@
+{
+  "accepted": {
+    "backtrack": {
+      "authority_effect": "None",
+      "certificate_sha256": "fc180f7628f378c01a4a75307db097b3eba055ac069870e3c385cd1675456252",
+      "fresh_native_replay": true,
+      "native_histories": 24,
+      "replacements": 1,
+      "status": "PASS"
+    },
+    "braid": {
+      "authority_effect": "None",
+      "certificate_sha256": "276ca6914e9223cd1646e6de8a47cdc39959d740cec409ae55e985acc187cdf7",
+      "fresh_native_replay": true,
+      "native_histories": 24,
+      "replacements": 1,
+      "status": "PASS"
+    },
+    "execution": {
+      "authority_effect": "None",
+      "certificate_sha256": "7d16c6d6b422160f9609bf4776c80d80ddd298317cfadaf78c94af9a01668d3f",
+      "fresh_native_replay": true,
+      "histories": 24,
+      "status": "PASS"
+    },
+    "square": {
+      "authority_effect": "None",
+      "certificate_sha256": "28cd9eb0c8a1929a7f322b605013d8913e5250fcaade94e33732b082df1b7014",
+      "fresh_native_replay": true,
+      "native_histories": 24,
+      "replacements": 1,
+      "status": "PASS"
+    }
+  },
+  "authority_effect": "None",
+  "fixture_sha256": "11c25de9f90b7f1ce8143c61a6c104c19d2c65ea537063b29117d168a4b5e861",
+  "native_binding": {
+    "binary_sha256": "ada6fce7721a089655882e423feae8c39f0708055e2b78c21fcc2167e1ddaebd",
+    "build_sha256": "a961b433b36d462e9888729e00feaf99808fcff11dca930ebbef96c4e11a0a92",
+    "sources_sha256": "4bec8298dc6fcdbfde4806d82b0d4d8119504e70489d7f988991193b6cd88053"
+  },
+  "negative_controls": [
+    {
+      "name": "valid_poset_impossible_remove",
+      "reason": "native refusal: the event is not an enabled canonical change of this source state",
+      "status": "REFUSE"
+    },
+    {
+      "name": "changed_token_alignment",
+      "reason": "execution certificate differs from fresh native replay",
+      "status": "REFUSE"
+    },
+    {
+      "name": "incorrect_replacement_offset",
+      "reason": "replacement offset outside word",
+      "status": "REFUSE"
+    },
+    {
+      "name": "changed_framed_boundary",
+      "reason": "3-certificate differs from checked replacement replay",
+      "status": "REFUSE"
+    },
+    {
+      "name": "comparable_event_braid",
+      "reason": "swap involves comparable/unavailable occurrences",
+      "status": "REFUSE"
+    }
+  ],
+  "schema": "wdp-causal-replay-v1",
+  "scope": "supplied finite families and selected local relations only",
+  "status": "PASS"
+}

@@ -1,0 +1,3048 @@
+paper_identity:
+  paper_id: "PO-000"
+  title: "Projection Obstruction for Factorized States: Nonlinear Dynamics, Conditional ℓ¹ Diagnostics, and Exact Short-Time Defect Bounds"
+  canonical_version: "v6.9.18"
+  paper_file: "projection_obstruction.md"
+  authority_effect: "None"
+  lean_sources_directory: "lean4/"
+claims:
+  - claim_id: "A1"
+    slug: "product_projection_local_residuals"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Product projection yields local normal residuals"
+    statement: "Product projection yields local normal residuals. If at least eta fraction of edges are active and edge density |E|/N >= a, edge-tally density is lower bounded near t=0."
+    claim_status: "CONDITIONAL"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "NOT_STARTED"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.5"
+      supporting_section: "§5.1"
+      heading: "5.5 Edge-Normalized and Site-Normalized Density Corollaries"
+    description: "Product projection yields local normal residuals. If at least eta fraction of edges are active and edge density |E|/N >= a, edge-tally density is lower bounded near t=0."
+    hypotheses:
+      - id: "H_PRODUCT_INIT"
+        text: "Product initial state"
+      - id: "H_LOCAL_HAMILTONIAN"
+        text: "One- and two-local interaction Hamiltonian"
+      - id: "H_ACTIVE_EDGE_DENSITY"
+        text: "Active edge density fraction eta"
+    depends_on:
+      - claim_id: "E4"
+        relation: "uses_lemma"
+      - claim_id: "E5"
+        relation: "derives_from"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        scope: "full_claim"
+        pointer: "§5.5"
+      - kind: "python"
+        relation: "tests"
+        scope: "finite_examples"
+        python_file_type: "test"
+        module_path: "code.tests.test_po000_core"
+        file_location: "code/tests/test_po000_core.py"
+    open_obligations:
+      - obligation_id: "S5"
+        release_blocking: false
+        text: "Active-edge density check per physical model"
+    limitations:
+      - "Prose-proved composite claim; Python finite replays only; S5 open per model."
+
+  - claim_id: "A2"
+    slug: "residual_1cochain_observation_maps"
+    record_kind: "definition"
+    claim_kind: "protocol_spec"
+    title: "Residual becomes a 1-cochain only through declared local observation maps"
+    statement: "Raw normal residual is a geometric quantity; it converts to a cochain only when local observation maps O_{e,m} are defined."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.2"
+      heading: "7.2 Projection residual, induced cochain, and coboundary"
+    description: "Raw normal residual is a geometric quantity; it converts to a cochain only when local observation maps O_{e,m} are defined."
+    hypotheses:
+      - id: "H_OBS_PRESENTATION"
+        text: "Declared observation map presentation O_{e,m}"
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§7.2"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.cochain_presentation"
+        file_location: "code/cochain_presentation.py"
+    open_obligations:
+      - obligation_id: "S11"
+        release_blocking: false
+        text: "Adapter selection per application"
+    limitations:
+      - "Open schema mapping per application (S11)."
+
+  - claim_id: "A3"
+    slug: "induced_1cochain_not_coboundary"
+    record_kind: "scope_fence"
+    claim_kind: "definition_type_distinction"
+    title: "Induced 1-cochain is not automatically a coboundary"
+    statement: "An induced 1-cochain requires a repair differential d0 and explicit exactness witness to be a coboundary."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.2"
+      heading: "7.2 Projection residual, induced cochain, and coboundary"
+    description: "An induced 1-cochain requires a repair differential d0 and explicit exactness witness to be a coboundary."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§7.2"
+    open_obligations:
+      - obligation_id: "S11"
+        release_blocking: false
+        text: "Adapter exactness witness requirement"
+    limitations:
+      - "Open adapter obligation (S11)."
+
+  - claim_id: "A4"
+    slug: "authority_status_none"
+    record_kind: "policy"
+    claim_kind: "operational_rule"
+    title: "Authority status is none"
+    statement: "The paper, its finite computations, and replay certificates confer AuthorityEffect: None."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "Appendix A"
+      heading: "Appendix A: Mechanism Inventory"
+    description: "The paper, its finite computations, and replay certificates confer AuthorityEffect: None."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "Appendix A"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "A5"
+    slug: "no_unsupported_broader_claims"
+    record_kind: "scope_fence"
+    claim_kind: "operational_rule"
+    title: "No finite-structural l1, global trace-norm equivalence, entanglement, QM derivation, equilibrium or continuum limit, or infinite-time persistence of positive defect claimed"
+    statement: "The conditional dynamical and density limits in section 5.10 do not establish equilibrium, continuum or physical quantum mechanics derivations."
+    claim_status: "REFUSED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "OUT_OF_SCOPE"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§1"
+      heading: "Compliance Note"
+    description: "Section 5.10 supplies conditional dynamical and density limits, not equilibrium or continuum limits."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "Compliance Note"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "A6"
+    slug: "declared_import_register"
+    record_kind: "import"
+    claim_kind: "axiom"
+    title: "Declared import register"
+    statement: "Banach space, C0 semigroup, C2 manifold, local Hilbert spaces, and CPTP maps are priced imported boundaries."
+    claim_status: "IMPORTED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§2.3"
+      heading: "2.3 Linear Semigroups and Projected Dynamics Families"
+    description: "Banach space, C0 semigroup, C2 manifold, local Hilbert spaces, and CPTP maps are priced imported boundaries."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§2.3"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "A7"
+    slug: "python_mechanization_evidence_ceiling"
+    record_kind: "scope_fence"
+    claim_kind: "operational_rule"
+    title: "Python mechanization evidence ceiling"
+    statement: "Python suite supplies exact-finite, symbolic, or numerical evidence for specific instances; does not prove general prose theorems."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.6"
+      heading: "4.6 Position within General Obstruction Framework"
+    description: "Python suite supplies exact-finite, symbolic, or numerical evidence for specific instances; does not prove general prose theorems."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "python"
+        relation: "illustrates"
+        python_file_type: "code"
+        module_path: "code.evidence"
+        file_location: "code/evidence.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "B1"
+    slug: "simplicial_carrier_and_d0_definition"
+    record_kind: "definition"
+    claim_kind: "definition"
+    title: "Finite covering-edge restriction data and d0s defined"
+    statement: "Defines the 0-coboundary map (d0 s)_e = r_{b,a} s(b) - s(a) on finite covering-edge Banach diagrams."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§2.1"
+      heading: "2.1 Covering-Edge Banach Diagrams"
+    description: "Defines the 0-coboundary map (d0 s)_e = r_{b,a} s(b) - s(a) on finite covering-edge Banach diagrams."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "python"
+        relation: "defines"
+        python_file_type: "code"
+        module_path: "code.covering_edge"
+        file_location: "code/covering_edge.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "B2"
+    slug: "abstract_coboundary_gauge_norm"
+    record_kind: "definition"
+    claim_kind: "definition"
+    title: "Abstract coboundary gauge I(s) = sum_e ||(d0 s)_e||"
+    statement: "Defines the total raw represented compatibility defect norm I(s) on finite graph cochains."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§2.2"
+      heading: "2.2 The Coboundary"
+    description: "Defines the total raw represented compatibility defect norm I(s) on finite graph cochains."
+    hypotheses: []
+    depends_on:
+      - claim_id: "B1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "python"
+        relation: "defines"
+        python_file_type: "code"
+        module_path: "code.covering_edge"
+        file_location: "code/covering_edge.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "B3"
+    slug: "retraction_semigroup_defect"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "S_t = Pi T_t |_M need not be a semigroup"
+    statement: "Nonlinear retractions on submanifolds do not in general commute with linear semigroups: S_t != S_{t-s} S_s."
+    claim_status: "STANDARD"
+    proof_status: "DIRECT_COMPUTATION"
+    mechanization_status: "LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§2.3"
+      heading: "2.3 Linear Semigroups and Projected Dynamics Families"
+    description: "Nonlinear retractions on submanifolds do not in general commute with linear semigroups."
+    hypotheses: []
+    depends_on:
+      - claim_id: "A6"
+        relation: "imports_host"
+    evidence:
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.retraction_geometry"
+        file_location: "code/retraction_geometry.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "B4"
+    slug: "native_degree_refusal_d1_d0"
+    record_kind: "scope_fence"
+    claim_kind: "definition_type_distinction"
+    title: "Native-degree refusal: d1 o d0 = 0 unavailable at native 1-cochain degree"
+    statement: "Native covering-edge complex is 1-truncated; higher coboundary d1 requires explicit candidate complex admission."
+    claim_status: "REFUSED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§2.3"
+      heading: "2.3 Linear Semigroups and Projected Dynamics Families"
+    description: "Native covering-edge complex is 1-truncated; higher coboundary d1 requires explicit candidate complex admission."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§2.3"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "C1"
+    slug: "affine_chart_criterion_theorem_3_1"
+    record_kind: "mathematical_claim"
+    claim_kind: "theorem"
+    title: "Theorem 3.1: Affine Chart Criterion (Db nonconstant => b non-affine)"
+    statement: "If the coordinate derivative Db of a projected vector field is nonconstant on a regular chart domain, b is non-affine in that chart."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§3.1"
+      heading: "Theorem 3.1"
+    description: "Shows that if the coordinate derivative Db of a projected vector field is nonconstant, b is non-affine in that declared chart."
+    hypotheses:
+      - id: "H_RETRACTION_C2"
+        text: "C2 retraction on submanifold"
+      - id: "H_REGULAR_DOMAIN"
+        text: "Regularity domain"
+      - id: "H_AFFINE_CHART"
+        text: "Declared affine chart and coordinate vector field"
+    depends_on:
+      - claim_id: "C2"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        scope: "full_claim"
+        pointer: "§3.1"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.retraction_geometry"
+        file_location: "code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "Ambient-to-chart nondegeneracy bridge (not required for Theorem 3.1 as stated)"
+    limitations:
+      - "Prose-proved; ambient-to-chart bridge remains S1 obligation."
+
+  - claim_id: "C2"
+    slug: "flat_affine_connection_tensor"
+    record_kind: "mathematical_claim"
+    claim_kind: "lemma"
+    title: "Lemma 3.2: Parallel (1,1) tensor constant in flat affine chart"
+    statement: "In a flat affine chart, any parallel (1,1) tensor field has constant components."
+    claim_status: "STANDARD"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "NOT_STARTED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§3.2"
+      heading: "Lemma 3.2"
+    description: "Standard differential geometry lemma establishing constancy of parallel tensors in flat charts."
+    hypotheses:
+      - id: "H_FLAT_AFFINE"
+        text: "Torsion-free flat affine connection"
+    depends_on: []
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§3.2"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "C3"
+    slug: "affine_chart_scope_fence"
+    record_kind: "scope_fence"
+    claim_kind: "operational_rule"
+    title: "Excludes affine-coordinate linearity, not arbitrary nonlinear smooth conjugacies"
+    statement: "Theorem 3.1 tests chart non-affinity, not global topological or smooth non-linearizability."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§3.4"
+      heading: "3.4 Proof Packet: Residual Taxonomy and Retraction Geometry"
+    description: "Theorem 3.1 tests chart non-affinity, not global topological or smooth non-linearizability."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§3.4"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "C4"
+    slug: "ambient_to_chart_nondegeneracy_s1"
+    record_kind: "counterexample"
+    claim_kind: "proposition"
+    title: "Ambient derivative nonconstancy or projection curvature alone forces chart nonlinearity"
+    statement: "Refuted. The graph retraction onto y=x^2 with A(x,y)=(-x,0) has nonconstant ambient derivative and nonzero projection curvature while b(s)=-s."
+    claim_status: "REFUTED"
+    proof_status: "PROVED_BY_COUNTEREXAMPLE"
+    mechanization_status: "EXACT_FINITE_INSTANCE"
+    applicability: "UNRESTRICTED_IMPLICATION_FALSE"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§3.3"
+      heading: "Proposition 3.C"
+    description: "Proposition 3.C settles the unqualified C4 implication in the negative."
+    hypotheses: []
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "counterexample"
+        relation: "refutes"
+        pointer: "§3.3, Proposition 3.C"
+    open_obligations: []
+    limitations:
+      - "The counterexample does not close S1 for nonzero second fundamental form."
+
+  - claim_id: "C4a"
+    slug: "affine_subspace_chart_transfer"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Tangent-restricted ambient derivative transfers through an ambient-affine chart of an affine subspace"
+    statement: "Lemma 3.3. On a relatively open piece of a closed affine subspace, Db is the conjugate of the tangent restriction of the ambient derivative."
+    claim_status: "PROVED_CONDITIONAL"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§3.3"
+      heading: "Lemma 3.3"
+    description: "Chain-rule transfer with no chart-variation term. Example 3.3 shows the hypothesis can hold."
+    hypotheses:
+      - "M relatively open in a closed affine subspace L"
+      - "chart is the restriction of a continuous affine isomorphism of L"
+      - "C2 retraction and the generator hypothesis of Theorem 3.1"
+      - "comparison uses the tangent restriction, not the unrestricted ambient operator"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+    evidence:
+      - kind: "exact_symbolic_instance"
+        relation: "checks_instance"
+        pointer: "§3.3, Lemma 3.3"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open when the second fundamental form is nonzero."
+    limitations:
+      - "The finite witness does not prove the Banach-space lemma."
+      - "Curved embeddings are not covered."
+
+  - claim_id: "C4b"
+    slug: "vertical_graph_chart_derivative"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Vertical graph chart derivative and exact noncancellation test"
+    statement: "Lemma 3.4. For a vertical retraction onto a C2 graph, b(u)=P_E A m(u) and Db(u_1)-Db(u_0)=P_E A(Df(u_1)-Df(u_0))."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.4"
+    description: "The E-component of a vertical retraction ignores normal increments. Example 3.4 shows the noncancellation term can be nonzero. Proposition 3.C is the case P_E A vanishes on F."
+    hypotheses:
+      - "E and F are closed complementary subspaces"
+      - "f is C2 and Pi(e+n)=e+f(e)"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1"
+      - "the chart reads phi(m(u))=u"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+    evidence:
+      - kind: "exact_symbolic_instance"
+        relation: "checks_instance"
+        pointer: "Omitted §3.3, Lemma 3.4 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for a retraction that moves the chart coordinate and for a submanifold not presented as a graph."
+    limitations:
+      - "The finite witness does not prove the Banach-space lemma."
+      - "Non-vertical retractions and non-graph embeddings are not covered."
+
+  - claim_id: "C4c"
+    slug: "sheared_graph_chart_derivative"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Constant-shear graph chart derivative"
+    statement: "Lemma 3.5. For Pi=m o g with g(e,n)=e+L(n-f(e)), b(u)=Q(u) alpha(u)+L beta(u) and Q(u)=I_E-L o Df(u)."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.5"
+    description: "A constant shear moves the chart coordinate. Example 3.5 makes Db nonconstant on data whose vertical retraction has constant Db. L=0 recovers Lemma 3.4."
+    hypotheses:
+      - "E and F are closed complementary subspaces"
+      - "f is C2 and L: F to E is bounded and linear"
+      - "Pi is defined by g(e,n)=e+L(n-f(e)) on the open set where g lands in the chart domain"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+      - claim_id: "C4b"
+        relation: "specializes_when_L_vanishes"
+    evidence:
+      - kind: "exact_symbolic_instance"
+        relation: "checks_instance"
+        pointer: "Omitted §3.3, Lemma 3.5 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for a nonlinear fiber displacement and for a submanifold not presented as a graph."
+    limitations:
+      - "The finite witness does not prove the Banach-space lemma."
+      - "Nonlinear fiber displacements and non-graph embeddings are not covered."
+
+  - claim_id: "C4d"
+    slug: "base_dependent_shear_chart_derivative"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Base-dependent shear chart derivative"
+    statement: "Lemma 3.6. For Pi=m o g with g(e,n)=e+Lambda(e)(n-f(e)), b(u)=Q(u) alpha(u)+Lambda(u) beta(u) and Q(u)=I_E-Lambda(u) o Df(u)."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.6"
+    description: "A C2 base-dependent shear moves the chart coordinate. Example 3.6 uses Lambda(s)=s^2 and obtains b(s)=-s+2s^4, with Db(0)=-1 and Db(1)=7. Constant Lambda recovers Lemma 3.5. No Python witness is claimed."
+    hypotheses:
+      - "E and F are closed complementary subspaces"
+      - "f is C2 and Lambda: U to L(F,E) is C2"
+      - "Pi is defined by g(e,n)=e+Lambda(e)(n-f(e)) on the open set where g lands in the chart domain"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+      - claim_id: "C4c"
+        relation: "specializes_when_Lambda_is_constant"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.6 and Example 3.6 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for a fiber displacement nonlinear in the fiber coordinate and for a submanifold not presented as a graph."
+    limitations:
+      - "Example 3.6 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "Fiber-nonlinear displacements and non-graph embeddings are not covered."
+
+  - claim_id: "C4e"
+    slug: "fiber_nonlinear_displacement_chart_derivative"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Fiber-nonlinear displacement chart derivative"
+    statement: "Lemma 3.7. For Pi=m o g with g(e,n)=e+psi(e, n-f(e)) and psi(e,0)=0, b and Db equal the Lemma 3.6 fields of Lambda(u)=D_2 psi(u,0). The pure second fiber derivative does not enter."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.7"
+    description: "A C2 fiber displacement fixing the zero section has the same chart field as its fiber 1-jet shear. Example 3.7 uses psi(s,v)=s^2 v+v^2 and obtains b(s)=-s+2s^4, with Db(0)=-1 and Db(1)=7, while g(0,1)=1 differs from the linear shear. A linear displacement recovers Lemma 3.6. No Python witness is claimed."
+    hypotheses:
+      - "E and F are closed complementary subspaces"
+      - "f is C2 and psi: U times V to E is C2, with V open in F, 0 in V, and psi(e,0)=0"
+      - "Pi is defined by g(e,n)=e+psi(e, n-f(e)) on the open set where the fiber increment lies in V and g lands in the chart domain"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+      - claim_id: "C4d"
+        relation: "specializes_when_psi_is_linear_in_the_fiber"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.7 and Example 3.7 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for a submanifold not presented as a graph of a fixed splitting."
+    limitations:
+      - "Example 3.7 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "The pure second fiber derivative is invisible to the chart field; the lemma does not give a noncancellation mechanism beyond the fiber 1-jet."
+      - "A submanifold not presented as a graph of a fixed splitting is not covered."
+
+  - claim_id: "C4f"
+    slug: "parameter_chart_off_fixed_splitting"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Parameter-chart derivative off a fixed splitting"
+    statement: "Lemma 3.8. For Pi=sigma o rho with rho(sigma(u))=u, b(u)=R(u)(A sigma(u)) where R(u)=D rho(sigma(u)), and Db(u)h=(DR(u)h)(A sigma(u))+R(u)A(D sigma(u)h). The image need not be a graph of a fixed splitting."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.8"
+    description: "A single C2 parameter retraction computes the chart field without a fixed splitting. The moving term is (DR(u)h)(A sigma(u)). A vertical graph retraction has constant R=P_E and returns Lemma 3.4. Example 3.8 uses sigma(s)=(s^3-s,s^2) on (-1,1) and rho(x,y)=x/(y-1). Every line is parallel to some tangent, and b(s)=-s/(s+1), with Db(0)=-1 and Db(1/2)=-4/9. No Python witness is claimed."
+    hypotheses:
+      - "sigma: U to X is C2 on an open set of a Banach space E"
+      - "rho: W to U is C2 and rho(sigma(u))=u, so R(u)=D rho(sigma(u)) is a bounded left inverse of D sigma(u)"
+      - "Pi=sigma o rho on the open set W containing M=sigma(U)"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1"
+      - "The declared affine chart is phi(sigma(u))=u"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+      - claim_id: "C4b"
+        relation: "specializes_when_the_parameter_retraction_is_vertical"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.8 and Example 3.8 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for a piece that needs two parameter charts, and for a tangent with no bounded left inverse."
+    limitations:
+      - "Example 3.8 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "The parameter retraction rho is a hypothesis; the lemma does not construct it."
+      - "A piece that needs two or more parameter charts is not covered."
+      - "A tangent space with no bounded left inverse is not covered."
+
+  - claim_id: "C4g"
+    slug: "two_parameter_charts_on_a_closed_curve"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Transition between two parameter charts"
+    statement: "Lemma 3.9. If two Lemma 3.8 retractions agree on an open overlap V, then tau=rho_1 o sigma_0 satisfies b_1(tau(u))=D tau(u) b_0(u) and Db_1(tau(u))(D tau(u) h)=(D^2 tau(u) h)(b_0(u))+D tau(u)(Db_0(u) h). A nonempty open parameter domain in R does not cover the unit circle."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.9"
+    description: "Two C2 parameter charts of one retraction are related by b_1(tau(u))=D tau(u) b_0(u). The new term is (D^2 tau(u) h)(b_0(u)). One chart from a nonempty open subset of R has noncompact image, so it is not the unit circle. Example 3.9 uses the radial retraction and the two stereographic charts of the unit circle, with A(x,y)=(-x,0). Both chart fields are u(1-u^2)/(1+u^2), with Db(0)=1 and Db(1)=-1. The transition is tau(u)=1/u. At u=2 both sides of the differentiated transition equal 1/100. No Python witness is claimed."
+    hypotheses:
+      - "Each chart is a Lemma 3.8 parameter retraction for the same generator A"
+      - "The two retractions agree on an open set V contained in both chart domains"
+      - "tau=rho_1 o sigma_0 on U_01={u in U_0: sigma_0(u) is in V}"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+      - claim_id: "C4f"
+        relation: "applies_lemma_3_8_on_each_chart"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.9 and Example 3.9 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for a general construction of rho, and for a tangent with no bounded left inverse."
+    limitations:
+      - "Example 3.9 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "Each rho_i is a hypothesis. The example constructs rho only for the unit circle."
+      - "A tangent space with no bounded left inverse is not covered. Each chart still has R_i o D sigma_i = I."
+
+  - claim_id: "C4h"
+    slug: "local_construction_of_rho"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Local construction of rho from one bounded left inverse"
+    statement: "Lemma 3.10. If R_0 o D sigma(u_0)=I_E, then Phi(u,k)=sigma(u)+k on F=ker R_0 is a local C2 diffeomorphism. The E-component rho of the local inverse satisfies rho(sigma(u))=u and D rho(sigma(u_0))=R_0. Pi=sigma o rho is the vertical retraction of the local graph over im D sigma(u_0) along F. The parameter chart agrees with that linear graph chart only when u |-> P_G sigma(u) is affine."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.10"
+    description: "One bounded left inverse at one point produces a C2 parameter retraction on a neighborhood, by the contraction-mapping inverse of Phi(u,k)=sigma(u)+k. The center derivative equals the chosen left inverse. The retraction is vertical for the fixed complement ker R_0, so Lemma 3.4 applies in the linear chart of im D sigma(u_0). Example 3.10 uses the open right unit semicircle, R_0(h,k)=k/2, and A(x,y)=(0,-y). The solved field is b(u)=-u(1+u^2)/(1-u^2), with Db(0)=-1 and Db(1/2)=-31/9. The graph coordinate y has b_E(y)=-y. At u=1/2 both sides of the Lemma 3.9 transition equal -24/25. No Python witness is claimed."
+    hypotheses:
+      - "sigma: U to X is C2 on an open set of a Banach space E"
+      - "R_0 in L(X,E) satisfies R_0 o D sigma(u_0)=I_E"
+      - "F=ker R_0 and Phi(u,k)=sigma(u)+k"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1, and is used only for the chart-field sentence"
+    depends_on:
+      - claim_id: "C1"
+        relation: "uses_theorem"
+      - claim_id: "C4b"
+        relation: "identifies_the_constructed_retraction_with_a_vertical_graph_retraction"
+      - claim_id: "C4f"
+        relation: "applies_lemma_3_8_to_the_constructed_rho"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.10 and Example 3.10 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for a tangent with no bounded left inverse."
+    limitations:
+      - "Example 3.10 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "The construction uses one bounded left inverse at one point and a fixed complement."
+      - "A tangent space with no bounded left inverse is not covered. The lemma does not prove that no C1 neighborhood retraction exists in that case."
+      - "The local chart need not cover a compact manifold. The open right semicircle omits the left-hand point."
+
+  - claim_id: "C4i"
+    slug: "no_parameter_retraction_without_left_inverse"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "No C1 parameter retraction without a bounded left inverse"
+    statement: "Lemma 3.11. If a C1 map rho on a neighborhood of sigma(u_0) satisfies rho(sigma(u))=u near u_0, then D rho(sigma(u_0)) is a bounded left inverse of D sigma(u_0). If no bounded left inverse exists, no such rho exists. This does not assert that the image admits no C1 neighborhood retraction."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.11"
+    description: "Differentiating rho(sigma(u))=u produces a bounded left inverse. Example 3.11 takes sigma(u)=(u^3,0). Then sigma'(0)=0, so no left inverse exists. The difference quotient of the real cube root is |h|^{-2/3}, equal to 4 at h=plus or minus 1/8. The image retraction Pi(x,y)=(x,0) is C-infinity. With A(x,y)=(-x,0), the Lemma 3.4 field is b(e)=-e and Db=-1. The continuous cube root satisfies the parameter identity and is not differentiable at 0. The example is not an immersion. No Python witness is claimed."
+    hypotheses:
+      - "sigma: U to X is C1 on an open set of a Banach space E"
+      - "A C1 candidate rho is defined on a neighborhood of sigma(u_0) and satisfies rho(sigma(u))=u on a neighborhood of u_0, or else no bounded left inverse exists"
+      - "A is bounded or satisfies the graph-norm hypothesis of Theorem 3.1, and is used only in Example 3.11"
+    depends_on:
+      - claim_id: "C4b"
+        relation: "example_reads_the_image_retraction_as_a_vertical_graph"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.11 and Example 3.11 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 remains open for an immersion whose derivative has no bounded left inverse: the lemma does not decide whether that image admits a C1 neighborhood retraction."
+    limitations:
+      - "Example 3.11 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "The obstruction is the chain rule. It does not forbid a continuous parameter inverse."
+      - "The example retraction shows that a C1 neighborhood retraction onto the image can exist when the derivative has no left inverse."
+      - "An immersion with non-closed or non-complemented range is not covered."
+
+  - claim_id: "C4j"
+    slug: "closed_range_image_retraction_splits"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "Closed range and a C1 image retraction produce a bounded left inverse"
+    statement: "Lemma 3.12. If D sigma(u_0) is injective with closed range, sigma is a local homeomorphism onto its image, and that image admits a C1 neighborhood retraction, then D sigma(u_0) has a bounded left inverse. If no bounded left inverse exists, no such retraction exists. A non-closed range is not covered."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.12"
+    description: "A C1 retraction straightens by alpha=beta+P o r, with D alpha(0)=I, using the contraction argument of Lemma 3.10. Closed range gives a lower bound. The local image then fills the complemented tangent, and the bounded inverse theorem supplies the left inverse. Example 3.12 takes the open right semicircle. There P(h,k)=(0,k), alpha(a,b)=(a+1-sqrt(1-b^2), b), f(u)=(0, 2u/(1+u^2)), the remainder ratio 2u^2/(1+u^2) equals 1/13 at u=1/5, and R_0(h,k)=k/2. The tangent is complemented. No Python witness is claimed."
+    hypotheses:
+      - "sigma: U to X is C1 on an open set of a Banach space E"
+      - "D sigma(u_0) is injective and has closed range"
+      - "sigma is a homeomorphism from a neighborhood of u_0 onto its image with the subspace topology"
+      - "a C1 retraction of an open neighborhood in X has image equal to that local image"
+    depends_on:
+      - claim_id: "C4h"
+        relation: "uses_the_contraction_argument_of_lemma_3_10"
+      - claim_id: "C4i"
+        relation: "separates_the_parameter_obstruction_from_the_image_retraction"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.12 and Example 3.12 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "S1 for a non-closed range is outside Lemma 3.12. Lemma 3.13 closes that case when the straightened chart inverse has a linear modulus and leaves the case without that modulus open."
+    limitations:
+      - "Example 3.12 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "The semicircle tangent is complemented, so the finite identity does not exhibit the obstruction."
+      - "Phillips' theorem is cited for c_0 in ell^infty and is not reproved."
+      - "An injective derivative whose range is not closed is not covered. The lemma does not assert that its image admits no C1 neighborhood retraction."
+
+  - claim_id: "C4k"
+    slug: "nonclosed_range_linear_modulus_closes"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "A C1 image retraction complements a container, and a linear modulus closes a non-closed range"
+    statement: "Lemma 3.13. If D sigma(u_0) is injective, sigma is a local homeomorphism onto its image, and that image admits a C1 neighborhood retraction, then im D sigma(u_0) lies in the complemented subspace im D Pi(m). The range is not assumed closed. If the straightened chart inverse satisfies a linear modulus, the range is closed and a bounded left inverse exists. Without that modulus the lemma does not forbid a retraction."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.13"
+    description: "The straightening of Lemma 3.12 does not use the closed-range lower bound. It produces a C1 chart f onto an open set of im D Pi(m), with Df(u_0)=D sigma(u_0). A linear modulus ||h|| <= K ||f(u_0+h)|| gives ||D sigma(u_0) h|| >= (1/(2K)) ||h||, so the range is closed and Lemma 3.12 supplies the left inverse. Example 3.13 takes the open right semicircle. There g(u)=2u/(1+u^2), g'(1/5)=300/169, K=169/300, the remainder ratio is at most 1/13, and the resulting lower bound is 287/169 against the true constant 2=338/169. At u=1/5 the ratio |u|/|g(u)| equals 13/25. The tangent is closed. No Python witness is claimed."
+    hypotheses:
+      - "sigma: U to X is C1 on an open set of a Banach space E"
+      - "D sigma(u_0) is injective; its range is not assumed closed"
+      - "sigma is a homeomorphism from a neighborhood of u_0 onto its image with the subspace topology"
+      - "a C1 retraction of an open neighborhood in X has image equal to that local image"
+      - "the linear modulus is an additional hypothesis, used only for the closed-range conclusion"
+    depends_on:
+      - claim_id: "C4j"
+        relation: "reuses_the_straightening_and_applies_the_closed_range_lemma_after_the_modulus"
+      - claim_id: "C4h"
+        relation: "uses_the_contraction_argument_of_lemma_3_10"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.13 and Example 3.13 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "The modulus alternative is settled by Lemma 3.14: the retraction does not force a linear modulus, and a retraction can exist when the range is not closed."
+    limitations:
+      - "Example 3.13 is an exact finite identity, not a proof of the Banach-space lemma."
+      - "No Python witness is claimed for this lemma."
+      - "The semicircle tangent is closed and complemented, so the finite identity does not exhibit a non-closed range."
+      - "The linear modulus is not deduced from the retraction. Lemma 3.14 shows that it need not follow."
+      - "Example 3.11 has no linear modulus, but its derivative is not injective."
+      - "An injective derivative whose range is not closed is not shown here to forbid a C1 neighborhood retraction."
+
+  - claim_id: "C4l"
+    slug: "linear_modulus_does_not_follow_from_retraction"
+    record_kind: "theorem"
+    claim_kind: "lemma"
+    title: "The straightened linear modulus is a lower bound and does not follow from the retraction"
+    statement: "Lemma 3.14. For a C1 chart, the linear modulus holds if and only if the derivative at the center is bounded below. The three hypotheses of Lemma 3.13 do not force that bound. A C1 local embedding of c_0 into c_0 plus a line has an injective derivative with non-closed range, admits a C-infinity neighborhood retraction, and has no linear modulus."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROVED"
+    mechanization_status: "EXACT_SYMBOLIC_INSTANCE"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; code/retraction_geometry.py"
+      heading: "Lemma 3.14"
+    description: "The modulus ||h|| <= K ||f(u_0+h)|| is equivalent to a lower bound on Df(u_0), by the triangle inequality and the last step of Lemma 3.13. Example 3.14 takes F(x)_n = x_n/n + x_n^3 on c_0 and sigma(x)=(F(x), 0) in c_0 plus R, with Pi(x,t)=(x,0). The straightening is the identity. ||L_0 e_n||=1/n. The truncations of y_n=1/n satisfy ||y-y^{(N)}||_infinity=1/(N+1), and the constant sequence 1 is not in c_0. For h=e_n/n the ratio is n^2/(n+1). At n=5 the ratio is 25/6, with ||h||=1/5 and ||f(h)||=6/125. The two-point bound is ||F(a)-F(b)|| >= ||a-b||^3/4. No Python witness is claimed."
+    hypotheses:
+      - "the equivalence assumes only that the chart is Frechet differentiable at the center"
+      - "the negative instance is the global C1 map F(x)_n=x_n/n+x_n^3 restricted to U=F^{-1}(B_1), not to the parameter unit ball"
+      - "Pi(x,t)=(x,0) on the open unit neighborhood of c_0 plus R"
+      - "no generator is assumed"
+    depends_on:
+      - claim_id: "C4k"
+        relation: "shows_that_the_modulus_hypothesis_of_lemma_3_13_is_not_implied_by_its_retraction_hypotheses"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §3.3, Lemma 3.14 and Example 3.14 (archived revision 90e6231546); code/retraction_geometry.py"
+    open_obligations:
+      - obligation_id: "S1"
+        release_blocking: false
+        text: "The modulus alternative inside S1 is closed by Example 3.14. No coordinate field b is computed for that example."
+    limitations:
+      - "Example 3.14 is an exact symbolic witness, not a Python witness."
+      - "No Python witness is claimed for this lemma."
+      - "The example does not say that every C1 retraction fails the linear modulus. Example 3.13 satisfies one."
+      - "No coordinate field is computed, because no generator is assumed."
+      - "The example does not claim that a non-closed range forbids a retraction. The displayed retraction exists."
+      - "Unqualified C4 remains false by Proposition 3.C."
+
+  - claim_id: "D1"
+    slug: "re1_re5_observer_axioms"
+    record_kind: "definition"
+    claim_kind: "axiom"
+    title: "RE1-RE5 structural observer declarations"
+    statement: "Defines observer functional axioms RE1 (global gauge), RE2 (local magnitude sufficiency), RE3 (disjoint replica additivity), RE4 (edge-exchange symmetry), RE5 (singleton calibration)."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.1"
+      heading: "4.1 Primitive Axioms for Replica-Extensive Diagnostics"
+    description: "Defines observer functional axioms RE1 (global gauge), RE2 (local magnitude sufficiency), RE3 (disjoint replica additivity), RE4 (edge-exchange symmetry), RE5 (singleton calibration)."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "python"
+        relation: "defines"
+        python_file_type: "code"
+        module_path: "code.replica_hierarchy"
+        file_location: "code/replica_hierarchy.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D2"
+    slug: "re3_singleton_decomposition"
+    record_kind: "mathematical_claim"
+    claim_kind: "theorem"
+    title: "RE3 gives singleton decomposition"
+    statement: "RE3 (ReplicaAdditive) decomposes observer functionals on finite edge sets into unweighted singleton sums: J_E(x) = sum_e J_{e}(x)."
+    claim_status: "PROVED"
+    proof_status: "FORMAL_PROOF"
+    mechanization_status: "MECHANIZED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.2"
+      heading: "Theorem 4.2"
+    description: "Shows that RE3 (ReplicaAdditive) decomposes observer functionals on finite edge sets into singleton sums."
+    hypotheses:
+      - id: "H_RE3_ADDITIVE"
+        text: "ReplicaAdditive functional J"
+    depends_on:
+      - claim_id: "D1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "singleton_sum"
+        folder: "lean4/"
+        file_name: "po000_l001_replica_hierarchy.lean"
+        file_location: "lean4/po000_l001_replica_hierarchy.lean"
+        symbol: "ReplicaHierarchy.sum_singletons_of_replicaAdditive"
+        status: "MECHANIZED"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.replica_hierarchy"
+        file_location: "code/replica_hierarchy.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D3"
+    lean_declarations:
+      - "PO000.WeightedHierarchy.singleton_aggregator_linear"
+      - "PO000.WeightedHierarchy.singleton_weight_pos"
+    slug: "re1_re2_re3_positive_multiples"
+    record_kind: "mathematical_claim"
+    claim_kind: "theorem"
+    title: "RE1+RE2+RE3 identify positive singleton multiples"
+    statement: "The global gauge RE1 and local magnitude sufficiency RE2, with disjoint replica additivity RE3, force singletons to take positive scalar weights c_e > 0."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "MECHANIZED-LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.2"
+      heading: "4.2 Corrected Replica-Extensivity Hierarchy"
+    description: "RE1 and RE2, with RE3, force singletons to take positive scalar weights c_e > 0."
+    hypotheses:
+      - id: "H_RE1_RE2_RE3"
+        text: "RE1, RE2, and RE3 axioms"
+    depends_on:
+      - claim_id: "D1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§4.2"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.replica_hierarchy"
+        file_location: "code/replica_hierarchy.py"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "singleton core; assembly over edges remains prose via D2"
+        folder: "lean4/"
+        file_name: "po000_l005_weighted_hierarchy.lean"
+        file_location: "lean4/po000_l005_weighted_hierarchy.lean"
+        symbol: "PO000.WeightedHierarchy.singleton_aggregator_linear"
+        status: "MECHANIZED-LOCAL"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "singleton core; assembly over edges remains prose via D2"
+        folder: "lean4/"
+        file_name: "po000_l005_weighted_hierarchy.lean"
+        file_location: "lean4/po000_l005_weighted_hierarchy.lean"
+        symbol: "PO000.WeightedHierarchy.singleton_weight_pos"
+        status: "MECHANIZED-LOCAL"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D4"
+    lean_declarations:
+      - "PO000.WeightedHierarchy.orbit_weights_equal"
+    slug: "re4_orbit_weights"
+    record_kind: "mathematical_claim"
+    claim_kind: "theorem"
+    title: "RE4 constrains weights on declared edge-exchange orbits"
+    statement: "Orbit invariance RE4 equates weights c_e across edge orbits under symmetry group action G."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "MECHANIZED-LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.2"
+      heading: "4.2 Corrected Replica-Extensivity Hierarchy"
+    description: "Orbit invariance equates weights c_e across edge orbits under group action G."
+    hypotheses:
+      - id: "H_RE4_SYMMETRY"
+        text: "RE4 orbit symmetry"
+    depends_on:
+      - claim_id: "D3"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§4.2"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.replica_hierarchy"
+        file_location: "code/replica_hierarchy.py"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "orbit singleton core; the orbit quantification remains prose"
+        folder: "lean4/"
+        file_name: "po000_l005_weighted_hierarchy.lean"
+        file_location: "lean4/po000_l005_weighted_hierarchy.lean"
+        symbol: "PO000.WeightedHierarchy.orbit_weights_equal"
+        status: "MECHANIZED-LOCAL"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D5"
+    slug: "re3_re5_unweighted_sum"
+    record_kind: "mathematical_claim"
+    claim_kind: "theorem"
+    title: "RE3+RE5 give edgewise sum of declared local gauges"
+    statement: "RE3 disjoint replica additivity and RE5 singleton calibration recover the unweighted gauge sum J_E(x) = sum_e j_e(x_e)."
+    claim_status: "PROVED"
+    proof_status: "FORMAL_PROOF"
+    mechanization_status: "MECHANIZED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.2"
+      heading: "4.2 Corrected Replica-Extensivity Hierarchy"
+    description: "Shows that RE3 disjoint replica additivity and RE5 singleton calibration recover the unweighted gauge sum."
+    hypotheses:
+      - id: "H_RE3_RE5"
+        text: "ReplicaAdditive RE3 and Singleton Calibration RE5"
+    depends_on:
+      - claim_id: "D2"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "unweighted_sum"
+        folder: "lean4/"
+        file_name: "po000_l001_replica_hierarchy.lean"
+        file_location: "lean4/po000_l001_replica_hierarchy.lean"
+        symbol: "ReplicaHierarchy.unweighted_sum_of_replicaAdditive_of_singleton_calibration"
+        status: "MECHANIZED"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.replica_hierarchy"
+        file_location: "code/replica_hierarchy.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D6"
+    slug: "re_axiom_drop_countermodels"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Dropping RE3 admits nonadditive lp; dropping RE5 admits nonunit proportional sums"
+    statement: "Constructs explicit countermodels proving necessity of RE3 and RE5 for gauge sum recovery."
+    claim_status: "PROVED"
+    proof_status: "COUNTEREXAMPLE"
+    mechanization_status: "MECHANIZED-LOCAL"
+    # 2026-09-03: this named PO000.ObserverVisibility.ThreePatch.three_patch_witness,
+    # which is the H5 three-patch theorem and has nothing to do with the D6
+    # RE3/RE5 countermodel arithmetic.  Replaced with the four declarations the
+    # markdown ledger already cited, all verified present in the Lean source.
+    lean_declarations:
+      - "PO000.WeightedHierarchy.l2_combination_not_additive"
+      - "PO000.WeightedHierarchy.l2_combination_calibrated"
+      - "PO000.WeightedHierarchy.doubled_sum_additive"
+      - "PO000.WeightedHierarchy.doubled_sum_not_calibrated"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Withdrawn §4.5; preserved in lean4/po000_l005_weighted_hierarchy.lean and revision 90e6231546"
+      heading: "4.5 Counterexamples and the Withdrawn Independence Claim"
+    description: "Constructs explicit countermodels proving necessity of RE3 and RE5 for gauge sum recovery."
+    hypotheses: []
+    depends_on:
+      - claim_id: "D1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "counterexample"
+        relation: "proves"
+        pointer: "Withdrawn §4.5 (revision 90e6231546); lean4/po000_l005_weighted_hierarchy.lean"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.falsification_sandbox"
+        file_location: "code/falsification_sandbox.py"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "displayed_counterexample_arithmetic"
+        folder: "lean4/"
+        file_name: "po000_l005_weighted_hierarchy.lean"
+        file_location: "lean4/po000_l005_weighted_hierarchy.lean"
+        symbol: "PO000.WeightedHierarchy.l2_combination_not_additive"
+        status: "MECHANIZED-LOCAL"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D7"
+    slug: "re_independence_correction"
+    record_kind: "withdrawal"
+    claim_kind: "operational_rule"
+    title: "Full independence of RE1-RE5 withdrawn"
+    statement: "Withdraws initial claim of full 5-axiom mutual independence; RE3+RE5 suffice for unweighted sum."
+    claim_status: "WITHDRAWN"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "OUT_OF_SCOPE"
+    release_criticality:
+      level: "HISTORICAL"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Withdrawn §4.5; revision 90e6231546"
+      heading: "4.5 Counterexamples and the Withdrawn Independence Claim"
+    description: "Withdraws initial claim of full 5-axiom mutual independence; RE3+RE5 suffice for unweighted sum."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "Withdrawn §4.5 (revision 90e6231546)"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D8"
+    slug: "raw_i_vs_quotient_phi_type_distinction"
+    record_kind: "definition"
+    claim_kind: "definition_type_distinction"
+    title: "Raw I and quotient obstruction Phi are distinct and non-interchangeable"
+    statement: "Establishes type boundary separating raw represented discrepancy I from quotient residual mass Phi1."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.3.1"
+      subsection: "§7.2"
+      heading: "4.3.1 Proof Packet: Exact Dependencies"
+    description: "Establishes type boundary separating raw represented discrepancy I from quotient residual mass Phi1."
+    hypotheses: []
+    depends_on:
+      - claim_id: "B2"
+        relation: "uses_definition"
+    evidence:
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.cochain_presentation"
+        file_location: "code/cochain_presentation.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "D8a"
+    slug: "repairable_mass_out_of_scope"
+    record_kind: "scope_fence"
+    claim_kind: "definition_type_distinction"
+    title: "Repairable mass R is a third distinct quantity outside PO-000 scope"
+    statement: "Notes that repairable mass R belongs to wider obstruction calculus and is not established here."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "OUT_OF_SCOPE"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§4.3.1"
+      heading: "4.3.1 Proof Packet: Exact Dependencies"
+    description: "Notes that repairable mass R belongs to wider obstruction calculus and is not established here."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§4.3.1"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "E1"
+    slug: "trace_norm_conventions_and_schatten_loss"
+    record_kind: "definition"
+    claim_kind: "definition"
+    title: "Trace-norm conventions De, Te, D_hat_e and Schatten loss factor"
+    statement: "Defines raw trace norm De, trace distance Te=De/2, normalized D_hat_e=De/d^2, and Schatten p-norm bounds."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.1"
+      heading: "5.1 Setup and Normalization"
+    description: "Defines raw trace norm De, trace distance Te=De/2, normalized D_hat_e=De/d^2, and Schatten p-norm bounds."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "python"
+        relation: "defines"
+        python_file_type: "code"
+        module_path: "code.quantum_lattice"
+        file_location: "code/quantum_lattice.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "E2"
+    slug: "one_local_two_local_tangent_annihilation"
+    record_kind: "mathematical_claim"
+    claim_kind: "lemma"
+    title: "One-local and two-local terms meeting one endpoint are product tangents at first order"
+    statement: "Shows that first-order defect derivatives for non-spanning edge terms vanish on product states under Q_e."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.3"
+      heading: "Lemma 5.3"
+    description: "Shows that first-order defect derivatives for non-spanning edge terms vanish on product states under Q_e."
+    hypotheses:
+      - id: "H_PRODUCT_STATE"
+        text: "Product initial state"
+    depends_on:
+      - claim_id: "E1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§5.3"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.quantum_lattice"
+        file_location: "code/quantum_lattice.py"
+    open_obligations: []
+    limitations:
+      - "Prose-proved; Python numerical matrix replays."
+
+  - claim_id: "E3"
+    slug: "local_commutator_second_derivative_bounds"
+    record_kind: "mathematical_claim"
+    claim_kind: "lemma"
+    title: "Local commutators give second-derivative bounds 8g^2 and 24g^2"
+    statement: "Lemma 5.2: for a local observable A_S with ||A_S||_inf <= 1, ||[H,[H,A_S]]||_inf <= 8 g^2 when |S| = 1 and <= 24 g^2 when |S| = 2, and ||[H,A_S]||_inf <= 2 g when |S| = 1. These are operator-norm bounds on observables; the trace-norm reduced-state derivative bounds used by Theorem 5.1 follow by duality, which is paper-resident."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.2"
+      heading: "5.1 Setup and Normalization"
+    description: "Lemma 5.2: for a local observable A_S with ||A_S||_inf <= 1, ||[H,[H,A_S]]||_inf <= 8 g^2 when |S| = 1 and <= 24 g^2 when |S| = 2, and ||[H,A_S]||_inf <= 2 g when |S| = 1. These are operator-norm bounds on observables; the trace-norm reduced-state derivative bounds used by Theorem 5.1 follow by duality, which is paper-resident."
+    hypotheses:
+      - id: "H_FULL_NORM"
+        text: "Full incident interaction norm g"
+    depends_on:
+      - claim_id: "E1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§5.2"
+    open_obligations: []
+    limitations:
+      - "Paper-resident analytic bounds."
+      - "Operator-norm bounds on observables. The trace-norm reduced-state derivative bounds consumed by Theorem 5.1 follow by duality, which is not mechanized."
+      - "No Lean evidence is claimed. po000_l003_double_commutator_estimates.lean verifies only the arithmetic factors, already credited under E4-commutator; ReducedStateBounds carries the 8g^2 and 24g^2 fields as hypotheses, not results."
+
+  - claim_id: "E4"
+    slug: "exact_short_time_defect_lower_bound_theorem_5_1"
+    record_kind: "mathematical_claim"
+    claim_kind: "theorem"
+    title: "Theorem 5.1: Exact Short-Time Lower-Bound Certificate De(t) >= nu_e t - 24 g^2 t^2"
+    statement: "Under stated finite quantum-host hypotheses, D_e(t) >= nu_e * t - 24 * g^2 * t^2 for every t >= 0; the positive half-slope conclusion D_e(t) >= nu_min * t / 2 additionally requires 0 < t <= nu_min / (48 * g^2)."
+    statement_latex: "D_e(t) \\ge \\nu_e t - 24 g^2 t^2"
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      heading: "Theorem 5.1"
+      section: "§5.4"
+    description: "Shows exact quadratic lower bound for local defect growth near t=0 on pure and mixed product states."
+    hypotheses:
+      - id: "H_PRODUCT_STATE"
+        text: "Product initial state"
+      - id: "H_LOCAL_HAMILTONIAN"
+        text: "One- and two-local interaction Hamiltonian"
+      - id: "H_FINITE_G"
+        text: "Full incident interaction norm g"
+    depends_on:
+      - claim_id: "E2"
+        relation: "uses_lemma"
+      - claim_id: "E3"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        scope: "full_claim"
+        pointer: "§5.4"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "second_derivative_bound"
+        folder: "lean4/"
+        file_name: "po000_l003_second_deriv_bound.lean"
+        file_location: "lean4/po000_l003_second_deriv_bound.lean"
+        symbol: "SecondDerivBound.product_rule_second_deriv_bound"
+        status: "MECHANIZED-LOCAL"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "constant_48_identity"
+        folder: "lean4/"
+        file_name: "po000_paper_constants.lean"
+        file_location: "lean4/po000_paper_constants.lean"
+        symbol: "PO000.PaperConstants.product_rule_sum_eq_48"
+        status: "MECHANIZED-LOCAL"
+      - kind: "python"
+        relation: "tests"
+        scope: "finite_examples"
+        python_file_type: "code"
+        module_path: "code.short_time_defect_numerical_certificate"
+        file_location: "code/short_time_defect_numerical_certificate.py"
+    open_obligations: []
+    limitations:
+      - "This finite numerical replay does not establish the thermodynamic-limit theorem in section 5.10."
+      - "Python replay is finite numerical evidence, not a universally quantified proof."
+
+  - claim_id: "E4-second"
+    slug: "product_rule_second_derivative_assembly"
+    record_kind: "mathematical_claim"
+    claim_kind: "lemma"
+    title: "Product-rule assembly of the second-derivative bound for F_e"
+    statement: "Assembles the second-derivative bound for F_e from the five reduced-state derivative hypotheses of Appendix B (1-site first <= 2g, 1-site second <= 8g^2, 2-site second <= 24g^2)."
+    claim_status: "PROVED"
+    proof_status: "MECHANIZED_LOCAL"
+    mechanization_status: "MECHANIZED-LOCAL"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "Appendix B"
+      heading: "Appendix B: Exact Constant Ledger for Theorem 5.1"
+    description: "Product-rule assembly step feeding the 48 g^2 constant of Theorem 5.1."
+    hypotheses:
+      - id: "H_REDUCED_STATE_BOUNDS"
+        text: "The five numerical reduced-state derivative bounds of Appendix B"
+      - id: "H_G_NONNEGATIVE"
+        text: "Non-negativity of the local interaction norm g"
+    depends_on:
+      - claim_id: "E4-commutator"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "lean"
+        relation: "mechanizes"
+        scope: "full_claim"
+        folder: "lean4/"
+        file_name: "po000_l003_second_deriv_bound.lean"
+        file_location: "lean4/po000_l003_second_deriv_bound.lean"
+        symbol: "SecondDerivBound.product_rule_second_deriv_bound"
+        status: "MECHANIZED-LOCAL"
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Appendix B"
+    open_obligations: []
+    limitations:
+      - "Justification of the individual reduced-state bounds remains paper-resident."
+  - claim_id: "E4-commutator"
+    slug: "double_commutator_estimates_structured_hypotheses"
+    record_kind: "mathematical_claim"
+    claim_kind: "lemma"
+    title: "Double-commutator estimates packaged as structured hypotheses"
+    statement: "Shows the support-counting factors 2k and 4k(k+1) and their specialisations to the paper constants 2g, 8g^2 and 24g^2. The commutator inequalities ||[H,A]|| <= 2 k g ||A|| and ||[H,[H,A]]|| <= 4 k (k+1) g^2 ||A|| are carried as a structured hypothesis record and are NOT proved in Lean."
+    claim_status: "PROVED"
+    proof_status: "MECHANIZED_LOCAL"
+    mechanization_status: "ARITHMETIC FACTORS MECHANIZED ONLY"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "Appendix B"
+      heading: "Appendix B: Exact Constant Ledger for Theorem 5.1"
+    description: "Arithmetic factors only; the commutator-norm inequalities remain paper-resident hypotheses."
+    hypotheses:
+      - id: "H_LOCAL_INTERACTION_NORM"
+        text: "Local interaction norm g"
+      - id: "H_SUPPORT_SIZE"
+        text: "Support size k"
+      - id: "H_COMMUTATOR_NORM_AXIOMS"
+        text: "Abstract commutator-norm axioms"
+    depends_on: []
+    evidence:
+      - kind: "lean"
+        relation: "mechanizes"
+        scope: "numerical_factors_only"
+        folder: "lean4/"
+        file_name: "po000_l003_double_commutator_estimates.lean"
+        file_location: "lean4/po000_l003_double_commutator_estimates.lean"
+        symbols:
+          - "PO000.DoubleCommutatorEstimates.first_order_k1"
+          - "PO000.DoubleCommutatorEstimates.first_order_k2"
+          - "PO000.DoubleCommutatorEstimates.double_factor_k1"
+          - "PO000.DoubleCommutatorEstimates.double_factor_k2"
+        status: "ARITHMETIC FACTORS MECHANIZED ONLY"
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Appendix B"
+    open_obligations: []
+    limitations:
+      - "Only the arithmetic factors are mechanized. The commutator inequalities themselves, the operator-norm argument and the support expansion are paper-resident; the Lean module contains no matrices, commutators or Schatten norms."
+  - claim_id: "E5"
+    slug: "active_edge_tally_density_corollary"
+    record_kind: "mathematical_claim"
+    claim_kind: "corollary"
+    title: "Active-edge density yields edge-normalized and site-normalized lower bounds"
+    statement: "Extends the edge bound to total graph density C(t)/N >= a * eta * (nu_min * t - 24 * g^2 * t^2); the further half-slope form C(t)/N >= a * eta * nu_min * t / 2 holds only on 0 < t <= nu_min / (48 g^2)."
+    claim_status: "CONDITIONAL"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "NOT_STARTED"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.5"
+      heading: "5.5 Edge-Normalized and Site-Normalized Density Corollaries"
+    description: "Extends the edge bound to total graph density C(t)/N >= a * eta * (nu_min * t - 24 * g^2 * t^2); the further half-slope form C(t)/N >= a * eta * nu_min * t / 2 holds only on 0 < t <= nu_min / (48 g^2)."
+    hypotheses:
+      - id: "H_ETA"
+        text: "Active edge fraction eta"
+      - id: "H_NU_MIN"
+        text: "Uniform edge rate nu_min"
+      - id: "H_DENSITY_A"
+        text: "Graph edge density ratio a"
+    depends_on:
+      - claim_id: "E4"
+        relation: "derives_from"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§5.5"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.family_bound"
+        file_location: "code/family_bound.py"
+    open_obligations:
+      - obligation_id: "S5"
+        release_blocking: false
+        text: "Active-edge density per physical model"
+    limitations:
+      - "S5 open obligation per physical model."
+
+  - claim_id: "E6"
+    slug: "lieb_robinson_superseded"
+    record_kind: "withdrawal"
+    claim_kind: "operational_rule"
+    title: "Lieb-Robinson localization is superseded for Theorem 5.1"
+    statement: "Clarifies that Lieb-Robinson truncation is historical background and not required for short-time bound."
+    claim_status: "WITHDRAWN"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "OUT_OF_SCOPE"
+    release_criticality:
+      level: "HISTORICAL"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.4"
+      heading: "5.4 Exact Short-Time Local Defect Certificate"
+    description: "Clarifies that Lieb-Robinson truncation is historical background and not required for short-time bound."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§5.4"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: E7
+    slug: edge_tally_vs_global_trace_norm
+    record_kind: mathematical_claim
+    claim_kind: negative_result
+    title: 'Proposition 5.12: unrestricted global/edge comparison is refuted'
+    statement: Disjoint pairs exclude a size-independent lower comparison; the five-cycle state excludes
+      an unrestricted upper comparison.
+    claim_status: REFUTED
+    proof_status: PROSE_PROOF
+    mechanization_status: FINITE_EXACT_EXAMPLES_ONLY
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SCOPE_FENCE
+      blocker_if_invalid: false
+    authority_effect: None
+    paper_pointer:
+      section: §5.13
+      heading: Proposition 5.12
+    description: The unrestricted comparison is settled negatively; restricted comparisons are separate
+      research targets.
+    hypotheses: []
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.13
+    - kind: exact_finite_replay
+      relation: checks_examples
+      file_location: code/tests/test_metric_phase_derivations.py
+    open_obligations:
+    - obligation_id: S7-restricted
+      release_blocking: false
+      text: Model-specific restricted comparisons need additional hypotheses.
+    limitations:
+    - The aggregate replay retains its legacy refusal check; it does not mechanize Proposition 5.12.
+
+  - claim_id: "E8"
+    slug: "reverse_triangle_transfer_theorem"
+    record_kind: "mathematical_claim"
+    claim_kind: "theorem"
+    title: "Reverse-triangle transfer theorem"
+    statement: "Mechanizes abstract reverse-triangle approximation transfer in Lean 4."
+    claim_status: "MECHANIZED"
+    proof_status: "FORMAL_PROOF"
+    mechanization_status: "MECHANIZED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.6"
+      heading: "5.6 Detector and Legacy-Transfer Boundaries"
+    description: "Mechanizes abstract reverse-triangle approximation transfer in Lean 4."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "transfer"
+        folder: "lean4/"
+        file_name: "po000_l001_projection_transfer.lean"
+        file_location: "lean4/po000_l001_projection_transfer.lean"
+        symbol: "ProjectionTransfer.transfer"
+        status: "MECHANIZED"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.transfer"
+        file_location: "code/transfer.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "E9"
+    slug: "corollary_5_1_a_uniform_family_bound"
+    record_kind: "mathematical_claim"
+    claim_kind: "corollary"
+    title: "Corollary 5.1.A: Uniform family bounds for infinite sequence of lattice sizes"
+    statement: "Shows uniform time window and density bounds across sequence of finite quantum lattices with bounded incident norm."
+    claim_status: "CONDITIONAL"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "NOT_STARTED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§5.5"
+      heading: "Corollary 5.1.A"
+    description: "Shows uniform time window and density bounds across sequence of finite quantum lattices with bounded incident norm."
+    hypotheses:
+      - id: "H_UNIFORM_G"
+        text: "Uniform bound g_N <= g_* < inf"
+      - id: "H_UNIFORM_DENSITY"
+        text: "Uniform edge density ratio a_*"
+    depends_on:
+      - claim_id: "E4"
+        relation: "derives_from"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§5.5"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.family_bound"
+        file_location: "code/family_bound.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "F1"
+    slug: "two_qubit_xx_exact_defect"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Two-qubit X x X exact raw defect 1/sqrt(2) + 1/4"
+    statement: "Calculates exact analytical defect for two qubits evolving under X x X interaction."
+    claim_status: "PROVED"
+    proof_status: "DIRECT_COMPUTATION"
+    mechanization_status: "LOCAL"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§6.1"
+      heading: "6.1 Example 1: Two Qubits with Exact Trace-Norm Defect"
+    description: "Calculates exact analytical defect for two qubits evolving under X x X interaction."
+    hypotheses: []
+    depends_on:
+      - claim_id: "E1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "exact_finite"
+        relation: "proves"
+        pointer: "§6.1"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.worked_examples"
+        file_location: "code/worked_examples.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "F2"
+    slug: "tfim_product_state_raw_rate"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "TFIM product state J != 0 has raw nu_e = 2 |J|"
+    statement: "Computes exact initial slope nu_e = 2|J| for Transverse-Field Ising Model on all active edges."
+    claim_status: "PROVED"
+    proof_status: "DIRECT_COMPUTATION"
+    mechanization_status: "LOCAL"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§6.2"
+      heading: "6.2 Example 2: Transverse-Field Ising Model"
+    description: "Computes exact initial slope nu_e = 2|J| for Transverse-Field Ising Model on all active edges."
+    hypotheses: []
+    depends_on:
+      - claim_id: "E1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "exact_finite"
+        relation: "proves"
+        pointer: "§6.2"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.worked_examples"
+        file_location: "code/worked_examples.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "F3"
+    slug: "tfim_full_incident_load_inventory"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Transverse field enters generic remainder through g <= 2|J| + |h|"
+    statement: "Verifies full incident norm bound for TFIM including transverse field contribution."
+    claim_status: "PROVED"
+    proof_status: "DIRECT_COMPUTATION"
+    mechanization_status: "LOCAL"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§6.2"
+      heading: "6.2 Example 2: Transverse-Field Ising Model"
+    description: "Verifies full incident norm bound for TFIM including transverse field contribution."
+    hypotheses: []
+    depends_on:
+      - claim_id: "E3"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "exact_finite"
+        relation: "proves"
+        pointer: "§6.2"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.worked_examples"
+        file_location: "code/worked_examples.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "G1"
+    slug: "four_tier_type_distinction"
+    record_kind: "definition"
+    claim_kind: "definition_type_distinction"
+    title: "Residual -> cochain -> quotient -> coboundary four-tier type distinction"
+    statement: "Formalizes distinct types and mathematical dependencies across the four layers of obstruction."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.2"
+      heading: "7.2 Projection residual, induced cochain, and coboundary"
+    description: "Formalizes distinct types and mathematical dependencies across the four layers of obstruction."
+    hypotheses: []
+    depends_on:
+      - claim_id: "D8"
+        relation: "uses_definition"
+    evidence:
+      - kind: "python"
+        relation: "defines"
+        python_file_type: "code"
+        module_path: "code.cochain_presentation"
+        file_location: "code/cochain_presentation.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "G2"
+    slug: "higher_differential_existence"
+    record_kind: "scope_fence"
+    claim_kind: "definition_type_distinction"
+    title: "Higher differential automatically exists and annihilates induced cochain"
+    statement: "Refuses un-witnessed assumption of higher coboundary d1."
+    claim_status: "REFUSED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "OUT_OF_SCOPE"
+    release_criticality:
+      level: "SCOPE_FENCE"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.2"
+      heading: "7.2 Projection residual, induced cochain, and coboundary"
+    description: "Refuses un-witnessed assumption of higher coboundary d1."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "§7.2"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "G3"
+    slug: "extensive_total_correlation_extension"
+    record_kind: "import"
+    claim_kind: "proposition"
+    title: "Paper PO-004 extensive total correlation lower bound"
+    statement: "Cross-reference to companion paper PO-004 total correlation bounds under Pinsker inequality."
+    claim_status: "IMPORTED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "EXTENSION"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Appendix C"
+      heading: "Appendix C: Extension Map"
+    description: "Cross-reference to companion paper PO-004 total correlation bounds under Pinsker inequality."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "Appendix C"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "G4"
+    slug: "po005_semigroup_defect_coefficient"
+    record_kind: "import"
+    claim_kind: "proposition"
+    title: "Paper PO-005 semigroup-defect coefficient K_{Pi,A}(m)"
+    statement: "Cross-reference to companion paper PO-005 semigroup-defect coefficient K_{Pi,A}(m) under a C^3 expansion."
+    claim_status: "IMPORTED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "NOT_PLANNED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "EXTENSION"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Appendix C"
+      heading: "Appendix C: Extension Map"
+    description: "Cross-reference to companion paper PO-005 semigroup-defect coefficient."
+    hypotheses:
+      - id: "H_C3_EXPANSION"
+        text: "C^3 expansion"
+    depends_on: []
+    evidence:
+      - kind: "static_scope_fence"
+        relation: "defines"
+        pointer: "Appendix C"
+    open_obligations: []
+    limitations:
+      - "Imported companion result; not proved in this paper."
+  - claim_id: "H1"
+    slug: "observer_family_and_tally_definitions"
+    record_kind: "definition"
+    claim_kind: "definition"
+    title: "Section 7.4.1 local observer carrier family and watcher kernels"
+    statement: "Defines the finite nonempty local observer carrier family and the edgewise combined watcher kernels K_e."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.1"
+      heading: "7.4.1 Definition (local observer carrier family)"
+    description: "Defines the finite nonempty local observer carrier family and the edgewise combined watcher kernels K_e."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "python"
+        relation: "defines"
+        python_file_type: "code"
+        module_path: "code.observer_carriers"
+        file_location: "code/observer_carriers.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "H2"
+    slug: "local_tallies_all_green_global_red_visibility_gap"
+    record_kind: "definition"
+    claim_kind: "definition"
+    title: "Section 7.4.2 local tallies, All-Green, Global Red, and the visibility gap"
+    statement: "Defines the edge tally I(s), the observed tallies J^alpha(s), All-Green, Global Red, and the best-single-observer visibility gap Lambda_max = I - max_alpha J^alpha, with the edgewise-loss / fragmentation split."
+    claim_status: "DEFINED"
+    proof_status: "NO_PROOF_REQUIRED"
+    mechanization_status: "LOCAL"
+    applicability: "UNCONDITIONAL_DEFINITION"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.2"
+      heading: "7.4.2 Definition (local tallies, Local Green, Global Red, visibility gap)"
+    description: "Tally, All-Green / Global Red, and visibility-gap definitions built on the H1 carrier family."
+    hypotheses:
+      - id: "H_NONEMPTY_OBSERVER_SET"
+        text: "Finite nonempty observer index set A"
+    depends_on:
+      - claim_id: "H1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "python"
+        relation: "defines"
+        python_file_type: "code"
+        module_path: "code.observer_carriers"
+        file_location: "code/observer_carriers.py"
+    open_obligations: []
+    limitations:
+      - "Python finite tally and decomposition fixtures only; definitional, not a theorem."
+  - claim_id: "H3"
+    lean_declarations:
+      - "PO000.ObserverVisibility.tally_le_rawNorm"
+      - "PO000.ObserverVisibility.localGreen_of_globalGreen"
+    slug: "proposition_7_4_3_observer_passivity"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Proposition 7.4.3: Observers are passive and contractive"
+    statement: "Shows J^alpha(s) <= I(s); observation never increases represented defect."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "MECHANIZED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.3"
+      heading: "7.4.1 Definition (local observer carrier family)"
+    description: "Shows J^alpha(s) <= I(s); observation never increases represented defect."
+    hypotheses: []
+    depends_on:
+      - claim_id: "H1"
+        relation: "uses_definition"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§7.4.3"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.observer_carriers"
+        file_location: "code/observer_carriers.py"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "full claim, over arbitrary seminormed fibers"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.tally_le_rawNorm"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "full claim, over arbitrary seminormed fibers"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.localGreen_of_globalGreen"
+        status: "MECHANIZED"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "H4"
+    slug: "proposition_7_4_4_all_green_joint_kernel"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Proposition 7.4.4: Exact All-Green / joint-kernel characterization"
+    statement: "Shows All-Green holds at s iff for every edge e, (d0 s)_e in ker Q_e."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "MECHANIZED"
+    lean_declaration: "PO000.ObserverVisibility.allGreen_iff_kernel"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.4"
+      heading: "7.4.1 Definition (local observer carrier family)"
+    description: "Shows All-Green holds at s iff for every edge e, (d0 s)_e in ker Q_e."
+    hypotheses: []
+    depends_on:
+      - claim_id: "H1"
+        relation: "uses_definition"
+      - claim_id: "H2"
+        relation: "uses_definition"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§7.4.4"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.observer_carriers"
+        file_location: "code/observer_carriers.py"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "H5"
+    lean_declarations:
+      - "PO000.ObserverVisibility.ThreePatch.three_patch_witness"
+      - "PO000.ObserverVisibility.ThreePatch.scaledDefect_is_section_defect"
+    slug: "proposition_7_4_5_three_patch_local_green_global_red"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Proposition 7.4.5: Exact three-patch Local-Green / Global-Red counterexample"
+    statement: "Constructs explicit 3-patch covering diagram where every observer reports All-Green (J^alpha(s)=0) but raw global defect I(s)=6."
+    claim_status: "PROVED"
+    proof_status: "COUNTEREXAMPLE"
+    mechanization_status: "MECHANIZED"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.5"
+      heading: "7.4.2 Definition (local tallies, Local Green, Global Red, visibility gap)"
+    description: "Constructs explicit 3-patch covering diagram where every observer reports All-Green (J^alpha(s)=0) but raw global defect I(s)=6."
+    hypotheses: []
+    depends_on:
+      - claim_id: "H4"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "counterexample"
+        relation: "proves"
+        pointer: "§7.4.5"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.observer_carriers"
+        file_location: "code/observer_carriers.py"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "explicit three-patch witness; the Python witness remains as replay"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.ThreePatch.three_patch_witness"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "explicit three-patch witness; the Python witness remains as replay"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.ThreePatch.scaledDefect_is_section_defect"
+        status: "MECHANIZED"
+    open_obligations: []
+    limitations:
+      - "S15 closed in v6.3: mechanized in po000_l004_observer_visibility.lean"
+
+  - claim_id: "H6"
+    lean_declarations:
+      - "PO000.ObserverVisibility.ThreePatch.rawNorm_scaled"
+      - "PO000.ObserverVisibility.ThreePatch.no_recovery_modulus"
+    slug: "corollary_7_4_6_scaling_and_no_recovery_modulus"
+    record_kind: "mathematical_claim"
+    claim_kind: "corollary"
+    title: "Corollary 7.4.6: the fixed three-patch family has an unbounded invisible gap and no recovery modulus"
+    statement: "For the fixed three-patch diagram-and-observer family, I(s_lambda) = 6|lambda| while every observed tally stays zero, so no function f from the non-negative reals to the non-negative reals can bound I(s) by f(max_alpha J^alpha(s)) for all sections of that family. Scoped to that family: H8 exhibits a family with nontrivial joint kernels in which All-Green does force I(s) = 0."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "MECHANIZED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.6"
+      heading: "Corollary 7.4.6"
+    description: "Positive scaling of the three-patch witness; no recovery modulus for that fixed family."
+    hypotheses: []
+    depends_on:
+      - claim_id: "H5"
+        relation: "derives_from"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§7.4.6"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.observer_carriers"
+        file_location: "code/observer_carriers.py"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "scaling law and absence of a recovery modulus for the fixed family"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.ThreePatch.rawNorm_scaled"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "scaling law and absence of a recovery modulus for the fixed family"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.ThreePatch.no_recovery_modulus"
+        status: "MECHANIZED"
+    open_obligations: []
+    limitations: []
+
+  - claim_id: "H7"
+    lean_declarations:
+      - "PO000.ObserverVisibility.rawNorm_eq_zero_of_allGreen"
+      - "PO000.ObserverVisibility.coverage_of_jointTrivial"
+    slug: "corollary_7_4_7_joint_kernel_triviality_sufficiency"
+    record_kind: "mathematical_claim"
+    claim_kind: "corollary"
+    title: "Corollary 7.4.7: Sufficient joint-kernel triviality condition for Local-to-Global soundness"
+    statement: "Shows that if edgewise combined watcher map Q_e is injective (kernel {0}), All-Green implies Global Green I(s)=0."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "MECHANIZED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.7"
+      heading: "Corollary 7.4.7"
+    description: "Shows that if edgewise combined watcher map Q_e is injective (kernel {0}), All-Green implies Global Green I(s)=0."
+    hypotheses:
+      - id: "H_COVERAGE"
+        text: "Full edge coverage"
+      - id: "H_JOINT_KERNEL_TRIVIAL"
+        text: "Edgewise joint-kernel triviality ker Q_e = {0}"
+    depends_on:
+      - claim_id: "H4"
+        relation: "uses_lemma"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§7.4.7"
+      - kind: "python"
+        relation: "tests"
+        python_file_type: "code"
+        module_path: "code.observer_carriers"
+        file_location: "code/observer_carriers.py"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "sufficiency, with the coverage encoding recorded"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.rawNorm_eq_zero_of_allGreen"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "sufficiency, with the coverage encoding recorded"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.coverage_of_jointTrivial"
+        status: "MECHANIZED"
+    open_obligations: []
+    limitations:
+      - "S13 settled in the negative in v6.3 by Proposition 7.4.7-B (see H8): the premises are sufficient, not necessary"
+
+  - claim_id: "H8"
+    lean_declarations:
+      - "PO000.ObserverVisibility.Coupled.full_coverage"
+      - "PO000.ObserverVisibility.Coupled.joint_kernel_nontrivial"
+      - "PO000.ObserverVisibility.Coupled.allGreen_forces_zero"
+    slug: "proposition_7_4_7_b_necessity_fails_coupled_carrier"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Proposition 7.4.7-B: joint-kernel triviality is not necessary (S13 settled negatively)"
+    statement: "A coupled two-edge carrier with full coverage and nontrivial joint watcher kernels on every edge where All-Green at any section still forces I(s)=0."
+    claim_status: "PROVED"
+    proof_status: "COUNTEREXAMPLE"
+    mechanization_status: "MECHANIZED"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "CORE"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.7-B"
+      heading: "Proposition 7.4.7-B"
+    description: "Zero restriction maps couple both edge defects to -s(x); All-Green places -s(x) in the intersection of two transverse coordinate lines, forcing zero."
+    hypotheses: []
+    depends_on:
+      - claim_id: "H4"
+        relation: "uses_lemma"
+      - claim_id: "H7"
+        relation: "refutes_necessity_of"
+    evidence:
+      - kind: "counterexample"
+        relation: "proves"
+        pointer: "§7.4.7-B"
+      - kind: "lean"
+        relation: "proves"
+        pointer: "po000_l004_observer_visibility.lean"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "coupled-carrier necessity refutation; inline replay in §7.4.7-B"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.Coupled.full_coverage"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "coupled-carrier necessity refutation; inline replay in §7.4.7-B"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.Coupled.joint_kernel_nontrivial"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "coupled-carrier necessity refutation; inline replay in §7.4.7-B"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.Coupled.allGreen_forces_zero"
+        status: "MECHANIZED"
+    open_obligations: []
+    limitations:
+      - "Sufficiency of Corollary 7.4.7 stands; soundness with nontrivial kernels is a property of the coupling and must be argued per application."
+
+  - claim_id: "H9"
+    lean_declarations:
+      - "PO000.ObserverVisibility.QuotientWitness.repair_mass_ge_two"
+      - "PO000.ObserverVisibility.QuotientWitness.repair_mass_attained"
+      - "PO000.ObserverVisibility.QuotientWitness.omega_not_exact"
+    slug: "section_7_4_10_quotient_witness_phi_two"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "§7.4.10: exact quotient obstruction Phi = 2 > 0 on the scalar coupled gauge (S14 closed)"
+    statement: "On the scalar coupled diagram im(d0) is the diagonal; the declared test cochain omega=(1,-1) has inf_alpha l1(omega - d0 alpha) = 2, attained at alpha = 0, and omega is not exact."
+    claim_status: "PROVED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "MECHANIZED"
+    applicability: "PER_MODEL"
+    release_criticality:
+      level: "SUPPORT"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "§7.4.10"
+      heading: "7.4.12 A fiber-level quotient witness (closing S14) — [PROVEN, FINITE / MECHANIZED]"
+    description: "Finite-dimensional presentation, so im(d0) is closed and Phi is a true minimum; omega is a declared test cochain, not a section-derived or physical residual."
+    hypotheses: []
+    depends_on:
+      - claim_id: "H8"
+        relation: "uses_definition"
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "§7.4.10"
+      - kind: "lean"
+        relation: "proves"
+        pointer: "po000_l004_observer_visibility.lean"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "exact quotient witness; inline replay in §7.4.10"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.QuotientWitness.repair_mass_ge_two"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "exact quotient witness; inline replay in §7.4.10"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.QuotientWitness.repair_mass_attained"
+        status: "MECHANIZED"
+      - kind: "lean"
+        relation: "mechanizes_component"
+        scope: "exact quotient witness; inline replay in §7.4.10"
+        folder: "lean4/"
+        file_name: "po000_l004_observer_visibility.lean"
+        file_location: "lean4/po000_l004_observer_visibility.lean"
+        symbol: "PO000.ObserverVisibility.QuotientWitness.omega_not_exact"
+        status: "MECHANIZED"
+    open_obligations: []
+    limitations:
+      - "Says nothing about any §5 physical residual; the §7.2 adapter fence stands."
+
+  - claim_id: "P4-7"
+    slug: "proposition_4_7_linear_measurement_counts"
+    record_kind: "mathematical_claim"
+    claim_kind: "proposition"
+    title: "Proposition 4.7: Minimum additional linear measurement counts for distinct realization and repair subspaces"
+    statement: "On finite-dimensional real normed spaces, with K = ker Q, minimum additional linear measurement counts for distinct realization subspace R and repair subspace B are m_raw = dim(K cap R), m_quo = dim K - dim(K cap B), and m_both = m_quo + dim(K cap B cap R)."
+    claim_status: "OMITTED"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "NOT_STARTED"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPORTING"
+      blocker_if_invalid: false
+    authority_effect: "None"
+    paper_pointer:
+      section: "Omitted from 69-page edition; archived revision 90e6231546; mentioned in §5.16"
+      heading: "Proposition 4.7"
+    description: "Finite-dimensional real normed spaces; linear observation map Q; subspaces R, B. Omitted from 69-page edition; rank-nullity measurement count cited in §5.16."
+    hypotheses: []
+    depends_on: []
+    evidence:
+      - kind: "prose_proof"
+        relation: "proves"
+        pointer: "Omitted §4.7 (archived revision 90e6231546); mentioned in §5.16"
+    open_obligations: []
+    limitations:
+      - "Prose-proved linear algebra in archived revision 90e6231546; cited in 69-page edition §5.16."
+
+  - claim_id: E3-general
+    slug: lemma_5_2_b_general_order_commutator_bounds
+    record_kind: mathematical_claim
+    claim_kind: lemma
+    title: Lemma 5.4
+    statement: Uniform bounds ||F_e^(j)(t)||_1 <= 2^(j+1)(j+1)! g^j for all real t and integers j >= 0.
+    claim_status: PROVED
+    proof_status: PROSE_PROOF
+    mechanization_status: NOT_STARTED
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: CORE
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.8
+      heading: Lemma 5.4
+    description: Local interaction norm g, activation order k >= 1.
+    hypotheses:
+    - Finite time-independent one-/two-local Hamiltonian and full incident norm g.
+    - Product initial state; for the onset consequence every lower residual derivative vanishes.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.8
+    open_obligations: []
+    limitations:
+    - Prose-proved general-order commutator estimates.
+
+  - claim_id: E4-general
+    slug: theorem_5_1_b_general_order_short_time_lower_bound
+    record_kind: mathematical_claim
+    claim_kind: theorem
+    title: Theorem 5.5 and subsequent onset consequences
+    statement: Finite Taylor remainder R_J(t)=2^(J+2)(J+2)g^(J+1)t^(J+1); if k is the first nonzero residual
+      derivative, its leading norm coefficient is ||F_e^(k)(0)||_1/k!.
+    claim_status: PROVED
+    proof_status: PROSE_PROOF
+    mechanization_status: NOT_STARTED
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: CORE
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.8
+      heading: Theorem 5.5 and subsequent onset consequences
+    description: Finite time-independent one-/two-site Hamiltonian, product initial state, activation order
+      k >= 1.
+    hypotheses:
+    - Finite time-independent one-/two-local Hamiltonian and full incident norm g.
+    - Product initial state; for the onset consequence every lower residual derivative vanishes.
+    depends_on:
+    - claim_id: E3-general
+      relation: uses_lemma
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.8
+    open_obligations: []
+    limitations:
+    - Prose-proved general-order short-time lower bound.
+
+
+# Scoped v6.5 groups and v6.6 finite onset theorem; written proofs, not new Lean results.
+  - claim_id: E-LIMITS
+    slug: e_limits
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 5.7 and Corollary 5.8
+    statement: Local dynamical convergence and the specified spatial pair-defect density limit.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.10
+      heading: Theorem 5.7 and Corollary 5.8
+    hypotheses:
+    - Compatible one-/two-local interactions on a fixed locally finite graph with a uniform finite incident sum g_*;
+      spatial density additionally requires translation invariance and lattice cubes.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.10
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-METRIC
+    slug: v65_metric
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 5.9 and Proposition 5.10
+    statement: Nearest-product tangent/dual slope and strict mixed-state retraction distortion.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.11
+      heading: Theorem 5.9 and Proposition 5.10
+    hypotheses:
+    - Full-rank product for the tangent equality; explicit rational mixed-state family.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.11
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-PURE
+    slug: v65_pure
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 5.11
+    statement: Orthogonal pure excitation sectors, first-order optimality, and nu_global^2 = sum_e nu_e^2.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.12
+      heading: Theorem 5.11
+    hypotheses:
+    - Pure product and one-/two-local dynamics; w_e=nu_e^2/4 is a declared normalization, distinct from
+      additive sum_e nu_e.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.12
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-SUPPORT
+    slug: v65_support
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Proposition 5.13
+    statement: Reference-support decomposition; it is distinct from connected cumulants.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.14
+      heading: Proposition 5.13
+    hypotheses:
+    - Declared reference marginals and tensor placements.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.14
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-CUMULANT
+    slug: v65_cumulant
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 5.14
+    statement: Independent-component cancellation, Steiner-length onset, coefficient locality and Taylor
+      bounds.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.14
+      heading: Theorem 5.14
+    hypotheses:
+    - Product initial data and one-/two-local bounded interactions.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.14
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-DENSITY
+    slug: v65_density
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 5.15
+    statement: Local limits and density convergence for finitely many fixed cumulant shapes.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.15
+      heading: Theorem 5.15
+    hypotheses:
+    - Compatible bounded interactions; translation invariance, lattice cubes, finite fixed shapes and nonnegative
+      fixed weights for density.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.15
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-PHASE
+    slug: v65_phase
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 7.5 and Proposition 7.6
+    statement: Phase-fiber scalar minimax intervals and effect-specific descent.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §7.5
+      heading: Theorem 7.5 and Proposition 7.6
+    hypotheses:
+    - Declared full complex phase fibers; scalar predictions; finite sign hosts are different.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §7.5
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-PREDICTION
+    slug: v65_prediction
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorems 7.7 and 7.8
+    statement: All-time scalar prediction, short-time floors and completed-observer norm-distance minimax.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §7.6
+      heading: Theorems 7.7 and 7.8
+    hypotheses:
+    - Specified dynamics, observation span and full density carrier where claimed.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §7.6
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-OBSERVABILITY
+    slug: v65_observability
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 7.9
+    statement: Curvature plus a report separating retained cohomology controls the repair quotient.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §7.7
+      heading: Theorem 7.9
+    hypotheses:
+    - Finite-dimensional complex; injective retained report; constants are model-specific.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §7.7
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V65-EXTENSION
+    slug: v65_extension
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Appendix D and Proposition D.1
+    statement: Conditional extension reductions and protected finite-group extension.
+    claim_status: "OMITTED"
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: false
+    authority_effect: None
+    paper_pointer:
+      section: "Omitted Appendix D; archived revision 90e6231546"
+      heading: "Appendix D: Conditional Extensions and Their Missing Premises"
+    hypotheses:
+    - External extension premise E_K; saturated Hilbert quotient and finite isometric group where used.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: "Omitted Appendix D (archived revision 90e6231546)"
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V66-ONSET
+    slug: v66_onset
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 5.16
+    statement: The first kappa residual derivatives vanish exactly when the polynomial defect remains identically
+      zero.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.16
+      heading: Theorem 5.16
+    hypotheses:
+    - Finite-dimensional real/complex linear flow, polynomial readout, f(m)=0; kappa is the lifted cyclic
+      dimension.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.16
+    open_obligations: []
+    limitations:
+    - "The future-observer roadmap is uniform on the full lifted carrier. For an admitted subset Z, use (Z-Z) intersect ker Q subset N; the ambient measurement count need not be minimal there. This remains a written argument."
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+  - claim_id: V66-APPLICATIONS
+    slug: v66_applications
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Corollary 5.17
+    statement: Pair defects have a finite zero test; nonzero connected cumulants satisfy tau_G(S) <= onset
+      <= kappa_S-1.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.16
+      heading: Corollary 5.17
+    hypotheses:
+    - Fixed finite quantum system; product initial state; one-/two-locality for the Steiner lower bound.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.16
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+
+  - claim_id: V68-CANCELLATION
+    slug: v68_cancellation
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 5.18 and Proposition 5.19
+    statement: Real algebraic onset stratification, generic equality outside exceptional sets, and constructive sharp incidence-qubit families for finite trees.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.17
+      heading: Theorem 5.18 and Proposition 5.19
+    hypotheses:
+    - Fixed finite quantum system, product initial state, bounded local interactions.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.17
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+
+  - claim_id: V68-LOCAL-ZERO
+    slug: v68_local_zero
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Proposition 5.20
+    statement: Boundary-checked invariant subspace criterion for local persistent-zero certification in finite ambient volume.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §5.17
+      heading: Proposition 5.20
+    hypotheses:
+    - Region R containing S, invariant operator space A_R under i[H_R, .] commuting with boundary-crossing terms.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §5.17
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+
+  - claim_id: V68-PHYSICAL
+    slug: v68_physical
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem 7.10 and Corollary 7.11
+    statement: Physical cycle adapter, exact circulation formula, uniform onset window, and graph-state pair blindness.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: §7.8
+      heading: Theorem 7.10 and Corollary 7.11
+    hypotheses:
+    - Ising ring H_n = J sum Z_j Z_{j+1}, n >= 5, initial |+>^n, declared cycle adapter.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: §7.8
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+
+  - claim_id: V69-JORDAN
+    slug: v69_jordan
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Lemmas E.1--E.3 and Theorem E.4
+    statement: Jordan--Lie classification under standard base axioms B1--B4 (B-relative) and pure-state purification selector, with candidate weaker premise set W1--W4.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: "006_finite_qm (§13.8) [formerly Appendix E]"
+      heading: "Lemmas E.1--E.3 and Theorem E.4"
+    hypotheses:
+    - Standard Jordan--Lie base axioms B1--B4, finite-dimensional formally real Jordan algebras with reversible Lie derivations, and purification selector P.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: Appendix E
+    open_obligations: []
+    limitations:
+    - W-relative reconstruction (weakening B1--B4 to W1--W4 without full C*-embedding) remains a candidate/open formulation and is not claimed as a proved theorem. Exact finite replay checks encoded countermodel instances only; no new general formal-proof receipt.
+
+  - claim_id: V69-SELECTOR
+    slug: v69_selector
+    record_kind: mathematical_claim
+    claim_kind: written_theorem_group
+    title: Theorem E.5
+    statement: Pure-state purification as quantum selector and composite channel reconstruction.
+    claim_status: PROVED_UNDER_STATED_HYPOTHESES
+    proof_status: PROSE_PROOF
+    mechanization_status: NO_NEW_GENERAL_LEAN_PROOF
+    applicability: UNDER_STATED_HYPOTHESES
+    release_criticality:
+      level: SUPPLEMENT
+      blocker_if_invalid: true
+    authority_effect: None
+    paper_pointer:
+      section: "006_finite_qm (§13.8) [formerly Appendix E]"
+      heading: "Theorem E.5"
+    hypotheses:
+    - System composite satisfying symmetric bipartite purification and local tomography.
+    depends_on: []
+    evidence:
+    - kind: prose_proof
+      relation: supports
+      pointer: Appendix E
+    open_obligations: []
+    limitations:
+    - Exact finite replay checks encoded instances only; no new general formal-proof receipt.
+
+  - claim_id: "V6914-TRACE"
+    slug: "v6914_trace"
+    record_kind: "mathematical_claim"
+    claim_kind: "written_theorem_group"
+    title: "Proposition E.6"
+    statement: "Proposition E.6: canonical positive invariant multiplication-trace form."
+    claim_status: "PROVED_UNDER_STATED_HYPOTHESES"
+    proof_status: "PROSE_PROOF_AND_SCOPED_LEAN"
+    mechanization_status: "SCOPED_LEAN_PROOF"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPLEMENT"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "006_finite_qm (§13.8) [formerly Appendix E]"
+      heading: "Proposition E.6"
+    hypotheses:
+      - "Finite real unital algebra, signed associator and derivation laws, supplied orthogonal real spectral decompositions."
+    depends_on: []
+    evidence:
+      - kind: "prose_proof"
+        relation: "supports"
+        pointer: "Appendix E.6"
+      - kind: "lean_proof"
+        relation: "supports"
+        pointer: "lean4/Po000JordanTrace.lean"
+    open_obligations: []
+    limitations:
+      - "Mechanized core covers trace form, Peirce decomposition, and spectral positivity in Po000JordanTrace.lean; Pauli fixture separate."
+
+  - claim_id: "V6914-CENTER"
+    slug: "v6914_center"
+    record_kind: "mathematical_claim"
+    claim_kind: "written_theorem_group"
+    title: "Proposition E.7"
+    statement: "Proposition E.7: sharp extension-purity ceiling and distance to pure-composite marginals."
+    claim_status: "PROVED_UNDER_STATED_HYPOTHESES"
+    proof_status: "PROSE_PROOF"
+    mechanization_status: "NO_NEW_GENERAL_LEAN_PROOF"
+    applicability: "UNDER_STATED_HYPOTHESES"
+    release_criticality:
+      level: "SUPPLEMENT"
+      blocker_if_invalid: true
+    authority_effect: "None"
+    paper_pointer:
+      section: "006_finite_qm (§13.8) [formerly Appendix E]"
+      heading: "Proposition E.7"
+    hypotheses:
+      - "Full density states of finite complex direct sums, standard block tensor, sufficiently large simple ancilla for attainment."
+    depends_on: []
+    evidence:
+      - kind: "prose_proof"
+        relation: "supports"
+        pointer: "Appendix E.7"
+    open_obligations: []
+    limitations:
+      - "Exact finite attainment fixture; no general Lean theorem."
+

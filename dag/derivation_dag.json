@@ -1815,11 +1815,11 @@
         "lean4/DerivationDagQMClosure.lean"
       ],
       "lean": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Step.rename",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Reach.rename",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::fewest_changes_every_writing_A",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::fewest_changes_every_writing_B",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::obstruction_persists_reach",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Step3.rename",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Reach3.rename",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::fewest_changes3_every_writing_A",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::fewest_changes3_every_writing_B",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean::Reach3.obstruction_persists",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence"
       ],
       "rust": [
@@ -9586,19 +9586,26 @@
       "stage": "FINITE_QCD",
       "status": "PROVED_LEAN",
       "source_status": "TFQ record_status PROVED_LEAN (source slice 08)",
-      "statement": "The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
+      "statement": "Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md"
       ],
       "lean": [
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual",
-        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity"
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b2_color_dimension_mismatch"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.",
+      "bottleneck": "Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py tests with SymPy only; any color-transport statement.",
       "tags": [
         "unified-dag",
         "TFQ-0016",
@@ -39538,12 +39545,19 @@
       "lean4": [
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual",
-        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity"
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b2_color_dimension_mismatch"
       ],
       "local_id": "A08-005",
       "name": "Add a Lean replay of the two-stage dressing or leave QM-213 as",
-      "obligation": "Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.",
+      "obligation": "Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py tests with SymPy only; any color-transport statement.",
       "parent_id": "TFQ-0015",
       "python": [
         "checks/independent/tfq-0016.py"
@@ -39554,7 +39568,7 @@
       ],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
+      "summary": "Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
       "uuid": "e48544d7-d14e-5ebc-8e7e-ca7fdf7232a2"
     },
     {

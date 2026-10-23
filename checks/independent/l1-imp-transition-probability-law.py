@@ -74,11 +74,20 @@ REAL, PHASE = (ONE, ONE), (ONE, I)
 A, B = PHASE, (ONE, gaussian(0, 2))
 
 
+def require_vector(x: V) -> None:
+    """Reject malformed vectors before any coordinate can be discarded."""
+    if type(x) is not tuple or len(x) != 2 or any(type(c) is not G for c in x):
+        raise TypeError("expected exactly two Gaussian rational coordinates in a tuple")
+
+
 def norm(x: V) -> Q:
+    require_vector(x)
     return x[0].norm() + x[1].norm()
 
 
 def inner(x: V, y: V) -> G:
+    require_vector(x)
+    require_vector(y)
     return x[0].conjugate() * y[0] + x[1].conjugate() * y[1]
 
 
@@ -90,11 +99,15 @@ def probability(x: V, y: V) -> Q:
 
 
 def scaled(c: G, x: V) -> V:
+    require_vector(x)
+    if type(c) is not G:
+        raise TypeError("expected a Gaussian rational scalar")
     return c * x[0], c * x[1]
 
 
 def ray_key(x: V) -> V:
     """Canonical projective representative; reject the zero vector."""
+    require_vector(x)
     anchor = x[0] if x[0] != ZERO else x[1]
     if anchor == ZERO:
         raise ValueError("the zero vector is not a ray")
@@ -102,20 +115,24 @@ def ray_key(x: V) -> V:
 
 
 def transform(x: V) -> V:
+    require_vector(x)
     if x[0].norm() == x[1].norm():
         return x[0].conjugate(), x[1].conjugate()
     return x
 
 
 def stretch(x: V) -> V:
+    require_vector(x)
     return x[0], gaussian(2) * x[1]
 
 
 def unstretch(x: V) -> V:
+    require_vector(x)
     return x[0], gaussian(2).inverse() * x[1]
 
 
 def orthogonal_partner(x: V) -> V:
+    require_vector(x)
     return -x[1].conjugate(), x[0].conjugate()
 
 
@@ -196,6 +213,22 @@ def check_boundaries() -> list[str]:
         expect_error(lambda: ray_key((ZERO, ZERO)), ValueError, "zero ray"),
         expect_error(lambda: probability((ZERO, ZERO), E0), ValueError, "zero effect"),
         expect_error(lambda: probability(E0, (ZERO, ZERO)), ValueError, "zero state"),
+        expect_error(lambda: probability((ONE, ZERO, ONE), E0), TypeError,  # type: ignore[arg-type]
+                     "extra effect coordinate"),
+        expect_error(lambda: probability(E0, (ONE, ZERO, ONE)), TypeError,  # type: ignore[arg-type]
+                     "extra state coordinate"),
+        expect_error(lambda: ray_key((ONE, ZERO, ONE)), TypeError,  # type: ignore[arg-type]
+                     "extra ray coordinate"),
+        expect_error(lambda: ray_key((ONE,)), TypeError,  # type: ignore[arg-type]
+                     "missing ray coordinate"),
+        expect_error(lambda: require_vector([ONE, ZERO]), TypeError,  # type: ignore[arg-type]
+                     "mutable vector"),
+        expect_error(lambda: require_vector((ONE, True)), TypeError,  # type: ignore[arg-type]
+                     "boolean coordinate"),
+        expect_error(lambda: require_vector((ONE, 0.0)), TypeError,  # type: ignore[arg-type]
+                     "floating coordinate"),
+        expect_error(lambda: scaled(True, E0), TypeError,  # type: ignore[arg-type]
+                     "boolean scale"),
     ]
 
 
