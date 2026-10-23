@@ -8592,9 +8592,9 @@ Obligation: The rooted tree, given by a parent function and a strictly decreasin
 - DAG node: `DFM-CONTINUUM-INTERFACE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md)
 
-A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.
+A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star.
 
-Obligation: Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.
+Obligation: Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.
 
 ### TFQ-1100 Tree and chord coordinates of a connection: triangle Mat2 witness
 
