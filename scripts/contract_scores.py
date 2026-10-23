@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 from collections import defaultdict
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -15,6 +16,8 @@ import re
 import shutil
 import subprocess
 import sys
+from types import ModuleType
+from typing import Any, TYPE_CHECKING, cast
 
 import yaml
 
@@ -26,47 +29,52 @@ SCHEMA = POLICY["companion"]["document_schema"]
 LEGACY = re.compile(r"(?<!\.contract)\.(contract|scoring|score)\.(?:yaml|yml|yam)$")
 SUFFIX = POLICY["companion"]["suffix"]
 GRADE_RANK = {grade: rank for rank, grade in enumerate(POLICY["grade_order"])}
-_cached_index = None
+_cached_index: dict[str, dict[str, Any]] | None = None
+_scope_module: ModuleType | None = None
 
 
-def _scope():
-    """scripts/score_scope_contracts.py, loaded by path: `python -I` keeps scripts/ off sys.path."""
-    name = "score_scope_contracts"
-    if name not in sys.modules:
-        import importlib.util
-        spec = importlib.util.spec_from_file_location(name, ROOT / "scripts" / "score_scope_contracts.py")
-        module = importlib.util.module_from_spec(spec)
-        sys.modules[name] = module
-        spec.loader.exec_module(module)
-    return sys.modules[name]
+def load_scope_module() -> ModuleType:
+    """Load scripts/score_scope_contracts.py by path. `python -I` keeps scripts/ off sys.path."""
+    global _scope_module
+    if _scope_module is not None:
+        return _scope_module
+    spec = importlib.util.spec_from_file_location(
+        "_tfqm_score_scope_contracts", Path(__file__).with_name("score_scope_contracts.py")
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError("Cannot load the source-scope checker")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    _scope_module = module
+    return module
 
 
-def sha(data):
+def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def parse(text):
+def parse(text: str) -> dict[str, Any]:
     value = yaml.load(text, Loader=yaml.CSafeLoader)
     if not isinstance(value, dict):
         raise ValueError("Contract/score must be a mapping")
     # Preserve YAML dates in the readable projection; exact types/bytes remain
     # available from raw_utf8 rather than being reconstructed from this view.
-    return json.loads(json.dumps(value, default=str, allow_nan=False))
+    return cast(dict[str, Any], json.loads(json.dumps(value, default=str, allow_nan=False)))
 
 
-def relative(path):
+def relative(path: str | Path) -> str:
     return Path(path).resolve().relative_to(ROOT).as_posix()
 
 
-def index():
+def index() -> dict[str, dict[str, Any]]:
     global _cached_index
     if _cached_index is None:
         p = ROOT / INDEX
         _cached_index = json.loads(p.read_text(encoding="utf-8"))["files"] if p.is_file() else {}
-    return _cached_index
+    return cast(dict[str, dict[str, Any]], _cached_index)
 
 
-def source_for(path):
+def source_for(path: str | Path) -> Path | None:
     path = Path(path)
     match = LEGACY.search(path.name)
     if not match:
@@ -80,13 +88,16 @@ def source_for(path):
     return found[0] if found else None
 
 
-def canonical_path(path):
+def canonical_path(path: str | Path) -> Path:
     path = Path(path)
     if path.name.endswith(SUFFIX):
         return path
     key = relative(path)
     if key in index():
-        destination = (ROOT / index()[key]["combined_path"]).resolve()
+        combined = index()[key]["combined_path"]
+        if not isinstance(combined, str):
+            raise ValueError("Combined path must be a string")
+        destination = (ROOT / combined).resolve()
         destination.relative_to(ROOT)  # reject an escaping index entry
         return destination
     source = source_for(path)
@@ -97,14 +108,16 @@ def canonical_path(path):
     return path.with_name(base + SUFFIX)
 
 
-def load(path):
+def load(path: str | Path) -> dict[str, Any]:
     document = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(document, dict):
+        raise ValueError("Combined document must be a mapping")
     if document.get("schema_version") != SCHEMA:
         raise ValueError("Unknown combined document schema")
     return document
 
 
-def empty(source):
+def empty(source: str | Path | None) -> dict[str, Any]:
     return {"schema_version": SCHEMA, "AuthorityEffect": "None", "artifact": relative(source) if source else None,
             "contract": None, "current_contract": None, "current_scoring": None,
             "contract_history": [], "scoring_history": [], "legacy_paths": {},
@@ -112,7 +125,7 @@ def empty(source):
             "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."}
 
 
-def add(document, alias, data, kind):
+def add(document: dict[str, Any], alias: str, data: bytes, kind: str) -> None:
     text = data.decode("utf-8")
     record = parse(text)
     digest = sha(data)
@@ -130,7 +143,7 @@ def add(document, alias, data, kind):
         document["contract"] = record
 
 
-def save(path, document):
+def save(path: str | Path, document: dict[str, Any]) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(document, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
@@ -139,20 +152,20 @@ def save(path, document):
     os.replace(temporary, path)
 
 
-def archived_bytes(path, expected_sha256=None):
+def archived_bytes(path: str | Path, expected_sha256: str | None = None) -> bytes:
     key = relative(path)
     document = load(canonical_path(path))
     digest = expected_sha256 or document["legacy_paths"].get(key)
     for entry in document["contract_history"] + document["scoring_history"]:
         if entry["sha256"] == digest and key in entry["original_paths"]:
-            data = entry["raw_utf8"].encode("utf-8")
+            data = cast(str, entry["raw_utf8"]).encode("utf-8")
             if sha(data) != digest or len(data) != entry["bytes"]:
                 raise ValueError("Corrupt archived record: " + key)
             return data
     raise FileNotFoundError("No matching archived path/hash: " + key)
 
 
-def read_bytes(path, expected_sha256=None):
+def read_bytes(path: str | Path, expected_sha256: str | None = None) -> bytes:
     path = Path(path)
     if path.is_file():
         data = path.read_bytes()
@@ -163,17 +176,20 @@ def read_bytes(path, expected_sha256=None):
     raise FileNotFoundError(str(path))
 
 
-def write_legacy(path, data):
+def write_legacy(path: str | Path, data: bytes) -> None:
     """Append a writer's assessment/contract without recreating an old sidecar."""
     path = Path(path)
     destination = canonical_path(path)
     source = source_for(path)
     document = load(destination) if destination.is_file() else empty(source)
-    add(document, relative(path), data, LEGACY.search(path.name)[1])
+    match = LEGACY.search(path.name)
+    if match is None:
+        raise ValueError("Not a legacy contract/score name: " + str(path))
+    add(document, relative(path), data, match[1])
     save(destination, document)
 
 
-def copy_file(source, destination):
+def copy_file(source: str | Path, destination: str | Path) -> str | Path:
     """Preserve old receipt-addressed bytes while creating only combined YAML."""
     if LEGACY.search(Path(source).name) or LEGACY.search(Path(destination).name):
         data = read_bytes(source)
@@ -185,20 +201,27 @@ def copy_file(source, destination):
     return shutil.copyfile(source, destination)
 
 
-class RecordPath(type(Path())):
+if TYPE_CHECKING:
+    _RecordPathBase = Path
+else:
+    _RecordPathBase = type(Path())
+
+
+class RecordPath(_RecordPathBase):
     """Scoped logical view for old receipt names used by existing audit tools."""
-    def read_bytes(self):
+    def read_bytes(self) -> bytes:
         return read_bytes(Path(self)) if LEGACY.search(self.name) else super().read_bytes()
 
-    def read_text(self, encoding=None, errors=None, newline=None):
+    def read_text(self, encoding: str | None = None, errors: str | None = None, newline: str | None = None) -> str:
         if LEGACY.search(self.name):
             text = self.read_bytes().decode(encoding or "utf-8", errors or "strict")
             return text.replace("\r\n", "\n").replace("\r", "\n") if newline is None else text
         if newline is None:
             return super().read_text(encoding=encoding, errors=errors)
-        return super().read_text(encoding=encoding, errors=errors, newline=newline)
+        with self.open("r", encoding=encoding, errors=errors, newline=newline) as handle:
+            return handle.read()
 
-    def is_file(self, **kwargs):
+    def is_file(self, **kwargs: Any) -> bool:
         if super().is_file(**kwargs):
             return True
         if LEGACY.search(self.name):
@@ -209,10 +232,10 @@ class RecordPath(type(Path())):
                 return False
         return False
 
-    def exists(self, **kwargs):
+    def exists(self, **kwargs: Any) -> bool:
         return self.is_file(**kwargs) if LEGACY.search(self.name) else super().exists(**kwargs)
 
-    def write_text(self, data, encoding=None, errors=None, newline=None):
+    def write_text(self, data: str, encoding: str | None = None, errors: str | None = None, newline: str | None = None) -> int:
         if LEGACY.search(self.name):
             if newline is not None:
                 data = data.replace("\n", newline)
@@ -220,21 +243,21 @@ class RecordPath(type(Path())):
             return len(data)
         return super().write_text(data, encoding=encoding, errors=errors, newline=newline)
 
-    def write_bytes(self, data):
+    def write_bytes(self, data: Any) -> int:
         if LEGACY.search(self.name):
             write_legacy(Path(self), data)
             return len(data)
         return super().write_bytes(data)
 
 
-def migrate(apply=False):
+def migrate(apply: bool = False) -> None:
     files = [p for p in subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split("\0")
              if p and LEGACY.search(p) and (ROOT / p).is_file()]
     if not files:
         if (ROOT / INDEX).is_file():
             check()
         return
-    groups = defaultdict(list)
+    groups: dict[Path, list[tuple[str, bytes, str, Path | None]]] = defaultdict(list)
     plans = dict(index())
     inputs = {}
     for name in files:
@@ -244,7 +267,10 @@ def migrate(apply=False):
         target = canonical_path(path)
         plans[name] = {"combined_path": relative(target), "sha256": sha(data), "bytes": len(data)}
         inputs[name] = plans[name]
-        groups[target].append((name, data, LEGACY.search(name)[1], source_for(path)))
+        match = LEGACY.search(name)
+        if match is None:
+            raise ValueError("Unexpected non-legacy path: " + name)
+        groups[target].append((name, data, match[1], source_for(path)))
     print(json.dumps({"legacy_files": len(files), "combined_files": len(groups), "apply": apply}), flush=True)
     if not apply:
         return
@@ -262,15 +288,15 @@ def migrate(apply=False):
     # Bring known archived versions into the live artifact's history too. An
     # archive's claimed artifact path is used only if that source exists here;
     # no source or score is invented for standalone registry objects.
-    live_histories = {}
+    live_histories: dict[Path, dict[str, Any]] = {}
     for entries in groups.values():
         for alias, data, kind, _ in entries:
             record = parse(data.decode("utf-8"))
             artifact = record.get("artifact", {})
-            name = artifact.get("path") if isinstance(artifact, dict) else None
-            if not isinstance(name, str) or not name.startswith("code/"):
+            artifact_name = artifact.get("path") if isinstance(artifact, dict) else None
+            if not isinstance(artifact_name, str) or not artifact_name.startswith("code/"):
                 continue
-            source = ROOT / name
+            source = ROOT / artifact_name
             if not source.is_file():
                 continue
             target = source.with_name(source.stem + SUFFIX)
@@ -301,7 +327,7 @@ def migrate(apply=False):
     print("All original bytes verified; legacy files removed.", flush=True)
 
 
-def check(changed=None):
+def check(changed: set[str] | None = None) -> None:
     """Verify companion history.
 
     ``changed`` is None for the whole tree. A set restricts the check to
@@ -314,7 +340,7 @@ def check(changed=None):
         if name.endswith(SUFFIX):
             targets.add(name)
     if changed is not None:
-        scope = _scope()
+        scope = load_scope_module()
         wanted = set()
         for name in changed:
             if name.endswith(SUFFIX) and (ROOT / name).is_file():
@@ -366,7 +392,7 @@ def check(changed=None):
                 raise ValueError("Legacy file still present")
         except (OSError, ValueError, KeyError) as exc:
             errors.append({"path": alias, "error": str(exc)})
-    payload = {"originals": len(index()) if changed is None else None, "combined_files": len(targets), "all_passed": not errors, "errors": errors}
+    payload: dict[str, Any] = {"originals": len(index()) if changed is None else None, "combined_files": len(targets), "all_passed": not errors, "errors": errors}
     if changed is not None:
         payload["scope"] = "changed files only; the rest of the tree was not read"
     print(json.dumps(payload, indent=2))
@@ -374,7 +400,7 @@ def check(changed=None):
         raise SystemExit(1)
 
 
-def export_v2(path_or_document):
+def export_v2(path_or_document: str | Path | dict[str, Any]) -> dict[str, Any]:
     """Deterministically export active assessment as a canonical SCORING.md v2.0.0 record."""
     if isinstance(path_or_document, (str, Path)):
         doc = load(canonical_path(path_or_document))
@@ -500,7 +526,7 @@ def export_v2(path_or_document):
     return v2
 
 
-def main(argv=None):
+def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("migrate", "check", "read", "hash", "export-v2"))
     parser.add_argument("path", nargs="?")
@@ -519,7 +545,7 @@ def main(argv=None):
     elif args.command == "check":
         changed = None
         if args.changed_since:
-            scope = _scope()
+            scope = load_scope_module()
             _base, changed = scope.changed_paths(args.changed_since)
         check(changed)
     elif args.command == "export-v2":

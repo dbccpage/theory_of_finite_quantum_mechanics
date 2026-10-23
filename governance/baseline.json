@@ -3,7 +3,7 @@
   "AuthorityEffect": "None",
   "policy": "governance/policy.json",
   "rule": "Grandfather list. An entry exempts one source only while its bytes keep this sha256. Entries may only be removed; governance-check baseline --write --allow-add --reason is the only way to add one, and CI rejects added entries without a reason.",
-  "summary": {"entries": 8149, "by_deficit": {"BINDING":10,"COMPLETENESS":7601,"MISSING_COMPANION":355,"SCHEMA":183}},
+  "summary": {"entries": 8151, "by_deficit": {"BINDING":9,"COMPLETENESS":7601,"FLOOR":3,"MISSING_COMPANION":355,"SCHEMA":183}},
   "entries": {
     "code/deposit_paths.py": {"deficit":"COMPLETENESS","sha256":"46e3ead75b3df9e4d1827c4b6a40d39e1fdebf3536c32d61de6963b830a7da91"},
     "code/python/governance/00_constitution/constitution_authority_redirect_v1_0_0_contract.py": {"deficit":"COMPLETENESS","sha256":"c9821113211827d1f6aa8c2cfe24ba2b9195948a4de23bb390947cdc3d638698"},
@@ -5390,6 +5390,7 @@
     "code/python/tests/test_support.py": {"deficit":"COMPLETENESS","sha256":"35307f7164d0be27d3e1160f6e5e0fa31386336b334669e1f2525dbf41e49387"},
     "code/python/tests/test_tensor_composition.py": {"deficit":"COMPLETENESS","sha256":"7ff81adb7558a8741bfb648bf1e832a65e2857b320986f1447d0c5890e3b18c4"},
     "code/python/tests/test_tensor_proj.py": {"deficit":"COMPLETENESS","sha256":"cdfcd92fb70ff148f4c3f1e7c78261402cbb4662cb596c1834f389413cd016e1"},
+    "code/python/tests/test_three_role_gate.py": {"deficit":"FLOOR","reason":"Present when contract governance landed in PR 215; the L4/D floor applies once these bytes change.","sha256":"8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d"},
     "code/python/tests/test_tower_walk.py": {"deficit":"COMPLETENESS","sha256":"d7be8c1f610d73c4a5430a727f394c482119585662bb70c213b32d3cfba68afd"},
     "code/python/tests/test_u1_phase_completion.py": {"deficit":"COMPLETENESS","sha256":"dc3702a0f40ff653befe251fed0ac119c395a8c4904b7a1bc7efedbf73523726"},
     "code/python/tests/test_witness.py": {"deficit":"COMPLETENESS","sha256":"39353877a12eb9abd67f6e5394828839ea273d606796e2d3111676434ee2931d"},
@@ -6042,6 +6043,7 @@
     "code/rust/src/general_relativity/spin_foam.rs": {"deficit":"COMPLETENESS","sha256":"8ab22473e5ebc36ab2cb23247e2d6835664bab9ac0e9f0f26b6ab9b4fd63892e"},
     "code/rust/src/general_relativity/spinor_field.rs": {"deficit":"COMPLETENESS","sha256":"79240ff1a9336eae61f95cc0a064057abb34de68f501cacad95f0b4e0e66b44c"},
     "code/rust/src/general_relativity/tetrad_formalism.rs": {"deficit":"COMPLETENESS","sha256":"d3ea7c7c1e52fe4d81520a934b39783091f1ef23415bfdb615aed82df3393fac"},
+    "code/rust/src/governance/src/score.rs": {"deficit":"FLOOR","reason":"Present when contract governance landed in PR 215; the L4/D floor applies once these bytes change.","sha256":"227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba"},
     "code/rust/src/higher_category_theory/bicategory.rs": {"deficit":"COMPLETENESS","sha256":"578ca407129c3aab7523da3fb47fed094f21eeaedafb7caa0ce80f75775cf164"},
     "code/rust/src/higher_category_theory/bounded_derived.rs": {"deficit":"COMPLETENESS","sha256":"7ce07fe293fd3b909d3963ade3213649e17aa70b492fa78cab9c940dfdba3709"},
     "code/rust/src/higher_category_theory/coherence.rs": {"deficit":"COMPLETENESS","sha256":"9f1735bcdad1611142c2dec95f16c92d6387bcba39433b93a2d385abd9dbc8b3"},
@@ -8152,7 +8154,7 @@
     "lean4/WorldWGOCSealedRefusal.lean": {"deficit":"COMPLETENESS","sha256":"1cdf776e708ab6b7b39ef9a7880bb59748e39e34848f0cf5842ae337aa04e250"},
     "lean4/ZeroRelInvariance.lean": {"deficit":"COMPLETENESS","sha256":"97961842228484f2f69654817fc3a5925d57f887d3b00f62e0af4be5b417a84c"},
     "lean4/ZeroRelVariety.lean": {"deficit":"COMPLETENESS","sha256":"85f3357837c94761654f24f523e0c0de3d370e6216e74045fd5be9076ab02ef9"},
-    "lean4/lakefile.lean": {"deficit":"BINDING","sha256":"950e82551985cc690e5dc84f06df6b4f6baf23990583ccda521d44c85ebfb994"},
+    "lean4/lakefile.lean": {"deficit":"FLOOR","reason":"Present when contract governance landed in PR 215; the L4/D floor applies once these bytes change.","sha256":"e32aa23d838b337db8207f4dcc664c12c1c3d121bdfbba1f68b01919ce317c83"},
     "lean4/regge_wdw_core.lean": {"deficit":"COMPLETENESS","sha256":"82a1becb70e42d9f24eb8fc68b7b402d537c02bdd0731b905d56acf615e8e7dc"}
   }
 }

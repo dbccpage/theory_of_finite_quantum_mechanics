@@ -148,7 +148,7 @@ def atomic_write(path: Path, text: str) -> None:
     os.replace(temporary, path)
 
 
-def changed_paths(ref: str) -> Tuple[str, set]:
+def changed_paths(ref: str) -> Tuple[str, set[str]]:
     """Files changed since ``ref``, plus ordinary untracked files.
 
     The comparison base is the merge base of ``ref`` and ``HEAD``. A missing
@@ -173,7 +173,7 @@ def changed_paths(ref: str) -> Tuple[str, set]:
         ["git", "ls-files", "--others", "--exclude-standard", "-z"],
         cwd=ROOT,
     ).decode("utf-8")
-    names: set = set()
+    names: set[str] = set()
     for blob in (diff, others):
         for name in blob.split("\0"):
             if name:
@@ -207,7 +207,7 @@ def source_paths() -> List[Path]:
     return sorted(set(result), key=rel)
 
 
-def sources_in_change(changed: set) -> List[Path]:
+def sources_in_change(changed: set[str]) -> List[Path]:
     """Sources whose own path, or either companion spelling, is in ``changed``."""
     selected: List[Path] = []
     for name in listed_source_names():

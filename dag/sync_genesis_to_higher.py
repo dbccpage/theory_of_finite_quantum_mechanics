@@ -187,14 +187,24 @@ def generated_files(root: Path) -> dict[Path, bytes]:
     route_ids = {r['id'] for r in routes}
     record_ids = {r['id'] for r in records}
 
-    dag['nodes'] = [n for n in dag['nodes'] if TAG not in n.get('tags', []) and n['id'] not in ids] + nodes
-    dag['routes'] = [r for r in dag['routes'] if not r['id'].startswith(ROUTE_PREFIX) and r['id'] not in route_ids] + routes
+    # sync_foc035_observer_presheaf.py owns the block after this one. Keep it last.
+    ops_nodes = [n for n in dag['nodes'] if views.OPS_TAG in n.get('tags', [])]
+    ops_routes = [r for r in dag['routes'] if r['id'].startswith(views.OPS_ROUTE_PREFIX)]
+    ops_records = [r for r in dag['records'] if r.get('source_slice') == views.OPS_SLICE]
+    dag['nodes'] = [n for n in dag['nodes'] if TAG not in n.get('tags', []) and n['id'] not in ids
+                    and views.OPS_TAG not in n.get('tags', [])] + nodes + ops_nodes
+    dag['routes'] = [r for r in dag['routes'] if not r['id'].startswith(ROUTE_PREFIX) and r['id'] not in route_ids
+                     and not r['id'].startswith(views.OPS_ROUTE_PREFIX)] + routes + ops_routes
     if STAGE not in dag['stages']:
         dag['stages'].append(STAGE)
-    kept = [r for r in dag['records'] if r.get('source_slice') != SLICE and r['id'] not in record_ids]
-    dag['records'] = [views.canonical_record(r) for r in kept + records]
+    kept = [r for r in dag['records'] if r.get('source_slice') not in (SLICE, views.OPS_SLICE)
+            and r['id'] not in record_ids]
+    dag['records'] = [views.canonical_record(r) for r in kept + records + ops_records]
     doc = dag['index_document']
-    doc['application_stages'] = [s for s in doc['application_stages'] if s != STAGE] + [STAGE]
+    had_ops_stage = views.OPS_STAGE in doc['application_stages']
+    doc['application_stages'] = [s for s in doc['application_stages'] if s not in (STAGE, views.OPS_STAGE)] + [STAGE]
+    if had_ops_stage:
+        doc['application_stages'].append(views.OPS_STAGE)
     dag['segment_notes'][SLICE] = [fragment['segment_note']]
 
     paths = paper_paths(root)
@@ -219,6 +229,8 @@ def generated_files(root: Path) -> dict[Path, bytes]:
 
     readme = (root / 'dag/derivations/README.md').read_text(encoding='utf-8')
     base = readme.partition(MARKER)[0].rstrip('\n')
+    ops_at = readme.find(views.OPS_MARKER)  # the observer-presheaf section is owned by its own sync script
+    ops_tail = readme[ops_at:] if ops_at >= 0 else ''
     section = '\n\n' + MARKER + '\n\n## Genesis to higher categories\n\n'
     section += ('This stage records open steps and named imports from the Genesis admission gate toward finite '
                 'shadows, truncation, horn fillers, a finite identity-type model, three infinite imports, and a '
@@ -236,7 +248,10 @@ def generated_files(root: Path) -> dict[Path, bytes]:
     bad = forbidden_words(section)
     if bad:
         raise ValueError(f'forbidden word in README section: {bad}')
-    outputs[root / 'dag/derivations/README.md'] = (base + section).encode('utf-8')
+    readme_text = base + section
+    if ops_tail:
+        readme_text = readme_text.rstrip('\n') + '\n\n' + ops_tail
+    outputs[root / 'dag/derivations/README.md'] = readme_text.encode('utf-8')
     outputs.update(views.outputs(dag, root))
     return outputs
 
