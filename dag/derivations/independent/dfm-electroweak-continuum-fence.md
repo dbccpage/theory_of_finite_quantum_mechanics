@@ -62,6 +62,32 @@ change of root, not the un-normalized multiplication.
 The unit witness `z = 3/5 + (4/5)i` has squared modulus `9/25 + 16/25 = 1`.
 On `Φ = (1, 0)` with `s = 1`, the normalized `(1, 2)` entry is `z` itself.
 
+## Checked normalization and phase action
+
+The repaired Normalization API validates a supplied rational scale before
+constructing an Input. Its three typed failures distinguish zero doublet norm,
+nonpositive scale and a mismatched square. Success is equivalent to the two
+conditions 0 < s and s*s = v2(phi), and the successful value preserves the
+original doublet and scale. It does not compute a rational square root.
+
+Dividing the two components by s gives a UnitDoublet with proved squared norm
+one. UnitPhase carries a Gaussian rational with squared modulus one. Its action
+preserves unit doublets, its multiplication composes phases, and the action
+composition law is proved. Acting on a checked Input preserves the same positive
+scale. Normalizing then acting agrees with acting then normalizing; the matrix
+covariance theorem is a client of these validated types.
+
+The original low-level covariance equality still uses total rational division
+and permits s=0. The new checked API refuses that normalization case. Neither
+layer exports a determinant/unitarity theorem or continuum gauge fields.
+
+The independent exact checker uses nine doublets obtained from three rational
+examples at three positive scales. Eight rational unit phases give 72 covariance
+and 576 composition cases. Ten invalid normalization/action inputs are refused,
+including distinct failure classes and bool/float/text scales. Normal and
+optimized runs, strict typing and four selected refusal-boundary mutations pass.
+These are finite regression checks alongside the general Lean statements.
+
 ## What is proved
 
 In `lean4/CampaignDfmElectroweakContinuumFence.lean`:
@@ -94,18 +120,3 @@ field, or phase outside `Q(i)` is used.
 Phases `e^{iα/2}` outside `Q(i)`, the dressed gauge field and its derivative
 term, and any continuum electroweak reading, including an Elitzur or
 symmetry-breaking reading, stay open. The node status stays OPEN.
-
-## Independent review boundary
-
-The Lean equality uses total rational division, including s = 0; its hypotheses
-do not assert a positive or nonzero normalizer. At the zero doublet this is an
-algebraic identity, not a normalized unitary dressing. The checker only divides
-by nonzero exact rationals and now rejects floats, booleans and zero denominators.
-No field-instance laws, determinant/unitarity theorem, positive-root selection
-or arbitrary rational-square-root existence is exported by this module.
-
-Independent focused replay passed, including all twelve permitted-axiom audits
-and an actual conjugation-sign mutation rejected by both Python modes. The proof
-is assessed L3D as a bounded component-formula development under SCORING.md §2,
-below the required L4D minimum for substantive proofs. The checker is L2D and
-Lake is L1D under the approved support exceptions. The PR remains unmerged.

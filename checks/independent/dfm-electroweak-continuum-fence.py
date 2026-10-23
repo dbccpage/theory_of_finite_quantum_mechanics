@@ -6,12 +6,13 @@ fractions.Fraction. This file imports no repository code.
 
 from __future__ import annotations
 from fractions import Fraction
+from collections.abc import Callable
 
 
-def exact(value: int | Fraction) -> Fraction:
-    if type(value) not in (int, Fraction):
-        raise TypeError("expected an integer or Fraction")
-    return Fraction(value)
+def exact(value: object) -> Fraction:
+    if type(value) is int or type(value) is Fraction:
+        return Fraction(value)
+    raise TypeError("expected an integer or Fraction")
 
 
 class GR:
@@ -78,7 +79,80 @@ def check_unnormalized(z: GR, p: GR, q: GR) -> None:
         raise SystemExit("squared-norm multiplicativity failed")
 
 
+class NormalizationError(ValueError):
+    pass
+
+
+def checked_normalize(p: GR, q: GR, root: object) -> tuple[GR, GR]:
+    s = exact(root)
+    if v2(p, q) == 0:
+        raise NormalizationError("zeroNorm")
+    if s <= 0:
+        raise NormalizationError("nonpositiveScale")
+    if s * s != v2(p, q):
+        raise NormalizationError("mismatchedSquare")
+    return p.div(s), q.div(s)
+
+
+def unit_action(z: GR, phi: tuple[GR, GR]) -> tuple[GR, GR]:
+    if z.norm2() != 1 or v2(*phi) != 1:
+        raise NormalizationError("unit input required")
+    return scale(z, *phi)
+
+
+def check_action_case(phi: tuple[GR, GR], root: Fraction, phases: list[GR]) -> int:
+    norm = checked_normalize(*phi, root)
+    if v2(*norm) != 1:
+        raise SystemExit("normalization has nonunit norm")
+    if checked_normalize(*norm, Fraction(1)) != norm:
+        raise SystemExit("normalization is not fixed on unit input")
+    for z in phases:
+        transformed = checked_normalize(*scale(z, *phi), root)
+        if transformed != unit_action(z, norm):
+            raise SystemExit("normalization covariance")
+        if scale_mat(U(*scale(z, *phi)), root) != right_diag(scale_mat(U(*phi), root), z.conj(), z):
+            raise SystemExit("typed matrix covariance")
+        for w in phases:
+            if unit_action(z, unit_action(w, norm)) != unit_action(z.mul(w), norm):
+                raise SystemExit("unit action composition")
+    return len(phases) ** 2
+
+
+def check_normalization_api() -> None:
+    ts = [Fraction(-2),Fraction(-1),Fraction(-1,2),Fraction(0),Fraction(1,2),Fraction(1),Fraction(2)]
+    phases = [GR((1-t*t)/(1+t*t),2*t/(1+t*t)) for t in ts] + [GR(-1)]
+    base = [(GR(1), GR(0), Fraction(1)), (GR(3), GR(4), Fraction(5)), (GR(1,1), GR(1,1), Fraction(2))]
+    count = 0
+    for p, q, root in base:
+        for factor in (Fraction(1), Fraction(2), Fraction(1,3)):
+            phi = scale(GR(factor), p, q)
+            count += check_action_case(phi, factor * root, phases)
+    print(f"normalization API: 9 doublets, {len(phases)} phases, 72 covariance and {count} composition cases")
+    cases: list[tuple[Callable[[], object], type[Exception], str]] = [
+        (lambda: checked_normalize(GR(0),GR(0),1), NormalizationError, "zeroNorm"),
+        (lambda: checked_normalize(GR(1),GR(0),0), NormalizationError, "nonpositiveScale"),
+        (lambda: checked_normalize(GR(1),GR(0),-1), NormalizationError, "nonpositiveScale"),
+        (lambda: checked_normalize(GR(1),GR(0),2), NormalizationError, "mismatchedSquare"),
+        (lambda: checked_normalize(GR(1),GR(1),1), NormalizationError, "mismatchedSquare"),
+        (lambda: checked_normalize(GR(1),GR(0),True), TypeError, "expected an integer or Fraction"),
+        (lambda: checked_normalize(GR(1),GR(0),1.0), TypeError, "expected an integer or Fraction"),
+        (lambda: checked_normalize(GR(1),GR(0),"1"), TypeError, "expected an integer or Fraction"),
+        (lambda: unit_action(GR(2),(GR(1),GR(0))), NormalizationError, "unit input required"),
+        (lambda: unit_action(GR(1),(GR(2),GR(0))), NormalizationError, "unit input required"),
+    ]
+    for action, error, message in cases:
+        try:
+            action()
+        except error as exc:
+            if str(exc) != message:
+                raise SystemExit("wrong normalization failure class")
+        else:
+            raise SystemExit("invalid normalization input admitted")
+    print(f"{len(cases)} invalid normalization/unit-action cases refused")
+
+
 def main() -> None:
+    check_normalization_api()
     z_sample = GR(Fraction(1, 2), Fraction(1, 3))
     p_sample = GR(Fraction(2, 7), Fraction(1, 5))
     q_sample = GR(Fraction(3, 11), 4)

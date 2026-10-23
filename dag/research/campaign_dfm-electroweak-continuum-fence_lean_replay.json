@@ -3,7 +3,7 @@
   "authority_effect": "None",
   "source_base": "cb6a51b809828fbafc304feab6a03ba38d126068",
   "checked_at": "2026-10-23",
-  "proof_boundary": "Algebraic residual covariance of the un-normalized dressing over Q(i), the shared-denominator form when the squared modulus is 1, the unit witness 3/5+(4/5)i, and the z=2 own-root split of normalized (1, 2) entries 1 and 2. No continuum phase, derivative, or electroweak reading is in the module. The node stays OPEN.",
+  "proof_boundary": "Checked positive rational normalization of supplied Gaussian-rational doublets, typed unit doublets/phases, compositional unit action and normalization/matrix covariance. Rational roots are supplied, not guaranteed to exist; no determinant/unitarity or continuum field theorem.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
     "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
@@ -12,8 +12,8 @@
     "library": "CampaignDfmElectroweakContinuumFence (lean_lib in lean4/lakefile.lean; not a default target)",
     "build_directory": "lean4/b (lakefile buildDir; gitignored)",
     "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache; junction removed before commit",
-    "command": "lake build CampaignDfmElectroweakContinuumFence",
-    "cwd": "lean4",
+    "command": "lake --no-cache -d lean4 build CampaignDfmElectroweakContinuumFence",
+    "cwd": ".",
     "allowed_axioms": [
       "propext",
       "Classical.choice",
@@ -24,14 +24,22 @@
         "module": "CampaignDfmElectroweakContinuumFence",
         "dag_node": "DFM-ELECTROWEAK-CONTINUUM-FENCE",
         "source": "lean4/CampaignDfmElectroweakContinuumFence.lean",
-        "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
-        "sha256_after_build": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+        "sha256": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2",
+        "sha256_after_build": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2",
         "source_unchanged_during_build": true,
         "exit_code": 0,
-        "seconds": 25.58,
-        "admission_scan_passed": true,
         "axiom_audit_passed": true,
         "anchors": [
+          "CampaignDfmElectroweakContinuumFence.Normalization.check_accepts",
+          "CampaignDfmElectroweakContinuumFence.Normalization.check_preserves",
+          "CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff",
+          "CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize",
+          "CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.act",
+          "CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.compose",
+          "CampaignDfmElectroweakContinuumFence.Normalization.Input.act",
+          "CampaignDfmElectroweakContinuumFence.Normalization.action_composes",
+          "CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant",
+          "CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant",
           "CampaignDfmElectroweakContinuumFence.GR.mul_comm",
           "CampaignDfmElectroweakContinuumFence.GR.conj_mul",
           "CampaignDfmElectroweakContinuumFence.GR.norm2_mul",
@@ -47,6 +55,56 @@
         ],
         "anchors_reported": true,
         "axioms": {
+          "CampaignDfmElectroweakContinuumFence.Normalization.check_accepts": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.check_preserves": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.act": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.compose": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.Input.act": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.action_composes": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
           "CampaignDfmElectroweakContinuumFence.GR.mul_comm": [
             "propext",
             "Classical.choice",
@@ -108,8 +166,8 @@
             "Quot.sound"
           ]
         },
-        "hash_basis": "LF source bytes, equal to the compiled source",
-        "output": "info: CampaignDfmElectroweakContinuumFence.lean:195:0: 'CampaignDfmElectroweakContinuumFence.GR.mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:196:0: 'CampaignDfmElectroweakContinuumFence.GR.conj_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:197:0: 'CampaignDfmElectroweakContinuumFence.GR.norm2_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:198:0: 'CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:199:0: 'CampaignDfmElectroweakContinuumFence.GR.div_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:200:0: 'CampaignDfmElectroweakContinuumFence.Dub.v2_scale' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:201:0: 'CampaignDfmElectroweakContinuumFence.unnormalized_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:202:0: 'CampaignDfmElectroweakContinuumFence.div_rightDiag' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:203:0: 'CampaignDfmElectroweakContinuumFence.unit_shares_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:204:0: 'CampaignDfmElectroweakContinuumFence.unit_normalized_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:205:0: 'CampaignDfmElectroweakContinuumFence.witness_three_fifths' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:206:0: 'CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (842 jobs).\n"
+        "stdout": "\u26a0 [841/842] Built CampaignDfmElectroweakContinuumFence (11s)\nwarning: CampaignDfmElectroweakContinuumFence.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmElectroweakContinuumFence.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmElectroweakContinuumFence.lean:176:5: Variable name `hn` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _hn\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\ninfo: CampaignDfmElectroweakContinuumFence.lean:295:0: 'CampaignDfmElectroweakContinuumFence.Normalization.check_accepts' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:296:0: 'CampaignDfmElectroweakContinuumFence.Normalization.check_preserves' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:297:0: 'CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:298:0: 'CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:299:0: 'CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.act' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:300:0: 'CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.compose' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:301:0: 'CampaignDfmElectroweakContinuumFence.Normalization.Input.act' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:302:0: 'CampaignDfmElectroweakContinuumFence.Normalization.action_composes' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:303:0: 'CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:304:0: 'CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:305:0: 'CampaignDfmElectroweakContinuumFence.GR.mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:306:0: 'CampaignDfmElectroweakContinuumFence.GR.conj_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:307:0: 'CampaignDfmElectroweakContinuumFence.GR.norm2_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:308:0: 'CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:309:0: 'CampaignDfmElectroweakContinuumFence.GR.div_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:310:0: 'CampaignDfmElectroweakContinuumFence.Dub.v2_scale' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:311:0: 'CampaignDfmElectroweakContinuumFence.unnormalized_covariance' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:312:0: 'CampaignDfmElectroweakContinuumFence.div_rightDiag' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:313:0: 'CampaignDfmElectroweakContinuumFence.unit_shares_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:314:0: 'CampaignDfmElectroweakContinuumFence.unit_normalized_covariance' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:315:0: 'CampaignDfmElectroweakContinuumFence.witness_three_fifths' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:316:0: 'CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (842 jobs).\n",
+        "stderr": ""
       }
     ]
   },
@@ -135,5 +193,116 @@
       "Classical.choice",
       "Quot.sound"
     ]
-  }
+  },
+  "historical_replays": [
+    {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "57344fdfae98eff54a6290a316a98e27ca6bde354a1be8eef92dbbf588385894",
+      "library": "CampaignDfmElectroweakContinuumFence (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b (lakefile buildDir; gitignored)",
+      "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache; junction removed before commit",
+      "command": "lake build CampaignDfmElectroweakContinuumFence",
+      "cwd": "lean4",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignDfmElectroweakContinuumFence",
+          "dag_node": "DFM-ELECTROWEAK-CONTINUUM-FENCE",
+          "source": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+          "sha256_after_build": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "seconds": 25.58,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignDfmElectroweakContinuumFence.GR.mul_comm",
+            "CampaignDfmElectroweakContinuumFence.GR.conj_mul",
+            "CampaignDfmElectroweakContinuumFence.GR.norm2_mul",
+            "CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj",
+            "CampaignDfmElectroweakContinuumFence.GR.div_mul",
+            "CampaignDfmElectroweakContinuumFence.Dub.v2_scale",
+            "CampaignDfmElectroweakContinuumFence.unnormalized_covariance",
+            "CampaignDfmElectroweakContinuumFence.div_rightDiag",
+            "CampaignDfmElectroweakContinuumFence.unit_shares_norm",
+            "CampaignDfmElectroweakContinuumFence.unit_normalized_covariance",
+            "CampaignDfmElectroweakContinuumFence.witness_three_fifths",
+            "CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignDfmElectroweakContinuumFence.GR.mul_comm": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.GR.conj_mul": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.GR.norm2_mul": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.GR.div_mul": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.Dub.v2_scale": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.unnormalized_covariance": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.div_rightDiag": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.unit_shares_norm": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.unit_normalized_covariance": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.witness_three_fifths": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ]
+          },
+          "hash_basis": "LF source bytes, equal to the compiled source",
+          "output": "info: CampaignDfmElectroweakContinuumFence.lean:195:0: 'CampaignDfmElectroweakContinuumFence.GR.mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:196:0: 'CampaignDfmElectroweakContinuumFence.GR.conj_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:197:0: 'CampaignDfmElectroweakContinuumFence.GR.norm2_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:198:0: 'CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:199:0: 'CampaignDfmElectroweakContinuumFence.GR.div_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:200:0: 'CampaignDfmElectroweakContinuumFence.Dub.v2_scale' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:201:0: 'CampaignDfmElectroweakContinuumFence.unnormalized_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:202:0: 'CampaignDfmElectroweakContinuumFence.div_rightDiag' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:203:0: 'CampaignDfmElectroweakContinuumFence.unit_shares_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:204:0: 'CampaignDfmElectroweakContinuumFence.unit_normalized_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:205:0: 'CampaignDfmElectroweakContinuumFence.witness_three_fifths' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmElectroweakContinuumFence.lean:206:0: 'CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (842 jobs).\n"
+        }
+      ]
+    }
+  ]
 }
