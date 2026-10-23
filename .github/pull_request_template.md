@@ -33,7 +33,7 @@ A node becomes `PROVED_LEAN` only if a declaration states its **full** statement
 
 ## Contract and score
 
-Every code addition or change needs a `*.contract.score.yaml` companion (see the acceptance rule in `CONTRIBUTING.md`). At this time code is accepted only at capability level L4 or L5 with composite grade D or better; a grade of E, or any unassessed gate, is not accepted. Write "no code in this change" if that is so.
+Every code addition or change needs a `*.contract.score.yaml` companion (see the acceptance rule in `CONTRIBUTING.md`). At this time code is accepted only at capability level L4 or higher with composite grade D or better. A grade of E stays on the record when other gates are unassessed, and a grade of E or a null composite is not accepted. Write "no code in this change" if that is so.
 
 Contract file(s): …; score token: L?G (≥ L4, grade ≥ D)
 
@@ -53,8 +53,8 @@ python -I -X utf8 dag/validate_derivation_dag.py --no-files
 python -I -X utf8 scripts/build_readme_facts.py --check
 python -I -X utf8 scripts/build_status.py --check
 python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict
-python -I -X utf8 scripts/score_scope_contracts.py check            # code changes
-python -I -X utf8 scripts/contract_scores.py check                  # code changes
+python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main
+python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main
 python -I -X utf8 checks/independent/your_check.py   # your independent check, if any
 lake build YourModule                               # Lean, if any
 ```
