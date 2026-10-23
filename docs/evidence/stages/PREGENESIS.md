@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 31. Grades: E0 16, E2 1, E3 14. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINITION 8, ADMITTED_PRIMITIVE 1, SOURCE_RECORD 5, OPEN 3.
+Nodes: 31. Grades: E0 16, E3 15. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINITION 8, ADMITTED_PRIMITIVE 1, SOURCE_RECORD 5, OPEN 3.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -30,7 +30,7 @@ Nodes: 31. Grades: E0 16, E2 1, E3 14. Statuses: PROVED_LEAN 12, CONDITIONAL 2, 
 | [PGW-PREGENESIS-GRAMMAR](../nodes/PGW-PREGENESIS-GRAMMAR.md) | `DEFINITION` | E0 | The Pre-Genesis host grammar declares the inscription alphabet {\<, \>, a, b} and three public starts: ground_token (exactly \<\>), inscripti... | none in this checkout | - |
 | [PGW-NO-TRANSITION-QUIESCENCE](../nodes/PGW-NO-TRANSITION-QUIESCENCE.md) | `DEFINITION` | E0 | If a regime's transition relation is empty, no state has a successor; that is the definition of an empty relation and needs no experiment... | none in this checkout | - |
 | [PGW-OBSERVATIONAL-EQUIVALENCE](../nodes/PGW-OBSERVATIONAL-EQUIVALENCE.md) | `DEFINITION` | E0 | Relative to the family O_n of internal observations available at stage n, x ≈ₙ y holds exactly when o(x) = o(y) for every o in O_n, with... | none in this checkout | - |
-| [PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT](../nodes/PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT.md) | `CONDITIONAL` | E2 | Write P for the presented inscriptions and O for the internal observations. Supplying \<a\> after \<\> changes P from {\<\>} to {\<a\>} and leave... | [CampaignPgwPresentationLift.lean](../../../lean4/CampaignPgwPresentationLift.lean): `statement_holds_under_opaque_only`<br>[pgw-presentation-not-expressive-lift.py](../../../checks/independent/pgw-presentation-not-expressive-lift.py): `main` | - |
+| [PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT](../nodes/PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT.md) | `CONDITIONAL` | E3 | Write P for the presented inscriptions and O for the internal observations. Supplying \<a\> after \<\> changes P from {\<\>} to {\<a\>} and leave... | [CampaignPgwPresentationLift.lean](../../../lean4/CampaignPgwPresentationLift.lean): `P0_ssubset_P1`, `exact_nil_markA_not_equiv`, `exact_presentation_card` +14<br>[pgw-presentation-not-expressive-lift.py](../../../checks/independent/pgw-presentation-not-expressive-lift.py): `main` | - |
 | [PGW-IDENTITY-CONVENTION-UNDECIDABLE](../nodes/PGW-IDENTITY-CONVENTION-UNDECIDABLE.md) | `CONDITIONAL` | E0 | Whether \<a\> supplied after \<\> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a... | none in this checkout | - |
 | [PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION](../nodes/PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION.md) | `DEFINITION` | E0 | Asked whether the regime distinguishes \<a\> and \<ab\>, identifies them or cannot decide, Trial 1 answered that the current regime identifie... | none in this checkout | - |
 | [PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE](../nodes/PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE.md) | `PROVED_LEAN` | E0 | Suppose an external task requires \<a\> and \<ab\> to differ while the current regime has \<a\> ≈ₙ \<ab\>. Every operation f on the quotient S_n/... | none in this checkout | proved_lean_below_e3, proved_lean_external_only |

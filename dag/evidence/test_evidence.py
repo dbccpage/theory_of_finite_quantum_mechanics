@@ -269,6 +269,26 @@ def test_five_qubit_perfect_tensor_is_e3_or_higher():
     assert row["facts"]["qualifying_reviews"] == 1
 
 
+def test_pgw_campaign_receipt_without_a_lean_replay_object_is_indexed():
+    """The PGW campaign file itemises axioms at the top level. Indexing it does not change the node status."""
+    rel = "dag/research/campaign_pgw-presentation-not-expressive-lift_lean_replay.json"
+    data = json.loads((ROOT / rel).read_text(encoding="utf-8"))
+    assert "lean_replay" not in data
+    receipts = [r for r in document()["receipts"] if r["receipt_file"] == rel]
+    assert len(receipts) == 1
+    assert receipts[0]["module"] == "CampaignPgwPresentationLift"
+    assert receipts[0]["dag_node"] == "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"
+    assert receipts[0]["exit_code"] == 0
+    assert receipts[0]["lean_version"]
+    row = rows()["PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"]
+    assert row["status"] == "CONDITIONAL"
+    current = hashlib.sha256((ROOT / "lean4/CampaignPgwPresentationLift.lean").read_bytes()).hexdigest()
+    assert current == data["sha256"]
+    assert at_least(row["grade"], "E3")
+    skipped = {item["file"] for item in document()["receipts_not_indexed"]}
+    assert "dag/research/tensor_countermodel_failed_replay.json" in skipped
+
+
 def test_pfp_batch_nodes_are_credited_through_their_receipt():
     for entry in receipt_entries("pfp_batch01_lean_replay.json"):
         current = hashlib.sha256((ROOT / entry["source"]).read_bytes()).hexdigest()

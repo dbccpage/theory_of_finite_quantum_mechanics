@@ -1,6 +1,6 @@
 # PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 
-Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence gr
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean, Rust or Python symbols found in their in-repo files: 18
+- cited Lean declarations covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -46,13 +46,30 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwPresentationLift.lean](../../../lean4/CampaignPgwPresentationLift.lean)
 - sha256 (`bytes`): `034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074`
-- cited in: node.lean, record TFQ-0422
-- replay: `none`
+- cited in: node.lean, receipt dag/research/campaign_pgw-presentation-not-expressive-lift_lean_replay.json (CampaignPgwPresentationLift), record TFQ-0422
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-presentation-not-expressive-lift_lean_replay.json](../../../dag/research/campaign_pgw-presentation-not-expressive-lift_lean_replay.json) (module `CampaignPgwPresentationLift`): recorded sha256 `034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwPresentationLift`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignPgwPresentationLift.statement_holds_under_opaque_only` | yes | yes | yes | - | `#print axioms CampaignPgwPresentationLift.statement_holds_under_opaque_only` |
+| `CampaignPgwPresentationLift.P0_ssubset_P1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.P0_ssubset_P1` |
+| `CampaignPgwPresentationLift.exact_nil_markA_not_equiv` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.exact_nil_markA_not_equiv` |
+| `CampaignPgwPresentationLift.exact_presentation_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.exact_presentation_card` |
+| `CampaignPgwPresentationLift.exists_distinct_presentations_same_class` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.exists_distinct_presentations_same_class` |
+| `CampaignPgwPresentationLift.fails_under_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.fails_under_exact` |
+| `CampaignPgwPresentationLift.general_non_injectivity_consequences` | yes | yes | yes | none | `#print axioms CampaignPgwPresentationLift.general_non_injectivity_consequences` |
+| `CampaignPgwPresentationLift.holds_under_opaque` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.holds_under_opaque` |
+| `CampaignPgwPresentationLift.inscription_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.inscription_card` |
+| `CampaignPgwPresentationLift.new_presentation_not_implies_new_internal_class` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.new_presentation_not_implies_new_internal_class` |
+| `CampaignPgwPresentationLift.nil_ne_markA` | yes | yes | yes | none | `#print axioms CampaignPgwPresentationLift.nil_ne_markA` |
+| `CampaignPgwPresentationLift.no_new_internal_distinction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.no_new_internal_distinction` |
+| `CampaignPgwPresentationLift.opaque_nil_markA_equiv` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.opaque_nil_markA_equiv` |
+| `CampaignPgwPresentationLift.opaque_quotient_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.opaque_quotient_card` |
+| `CampaignPgwPresentationLift.q_non_injective_witness` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.q_non_injective_witness` |
+| `CampaignPgwPresentationLift.same_internal_class_not_implies_same_presentation` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.same_internal_class_not_implies_same_presentation` |
+| `CampaignPgwPresentationLift.statement_holds_under_opaque_only` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.statement_holds_under_opaque_only` |
+| `CampaignPgwPresentationLift.two_marks_in_unformed_regime_collapsed` | yes | yes | yes | propext | `#print axioms CampaignPgwPresentationLift.two_marks_in_unformed_regime_collapsed` |
 - counts toward the grade: yes
 
 ### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean`
