@@ -41,6 +41,9 @@ def subjects(tmp_path: Path) -> Subjects:
     """Use a private Git repository, including for the real isolated CLI."""
     scripts = tmp_path / "scripts"
     scripts.mkdir()
+    governance = tmp_path / "governance"
+    governance.mkdir()
+    shutil.copyfile(SOURCE.parent / "governance" / "policy.json", governance / "policy.json")
     shutil.copyfile(SOURCE.parent / "SCORING.md", tmp_path / "SCORING.md")
     for name in ("contract_scores.py", "score_scope_contracts.py"):
         shutil.copyfile(SOURCE / name, scripts / name)

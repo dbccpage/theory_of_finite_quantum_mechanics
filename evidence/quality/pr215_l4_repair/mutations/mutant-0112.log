@@ -1,0 +1,22 @@
+
+running 52 tests
+................................................... 51/52
+repo::tests::git_population_changes_and_history --- FAILED
+
+failures:
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (5468) panicked at ..\code\rust\src\governance\src\repo.rs:310:9:
+assertion `left == right` failed: governed, existing files only
+  left: ["code/a.rs", "code/b.py", "code/gone.rs", "code/new.rs", "docs/x.md"]
+ right: ["code/a.rs", "code/b.py", "code/new.rs"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    repo::tests::git_population_changes_and_history
+
+test result: FAILED. 51 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,472 @@
+{
+  "schema": "finite-qm.pr-review.validation.v1",
+  "pr": 233,
+  "author_head": "edd1ad9b0d3cdb48de818dcaa8a5c756260ee3dd",
+  "base": "5c0ec72fa57e70fdd5fec72569c854b9e5114c0c",
+  "authority_effect": "None",
+  "scope": "Focused independent arithmetic/checker review, not complete campaign-pipeline certification. Merge withheld: substantive proof module is L2D, below the requested L4D floor.",
+  "source_sha256": {
+    "lean4/CampaignDfmCkmPhysicsFence.lean": "6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df",
+    "checks/independent/dfm-ckm-physics-fence.py": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a",
+    "lean4/lakefile.lean": "b97223a34e419f77d5b610a869c0a14f7cb5b502f4274b8a7a19d36ec403e668"
+  },
+  "mathlib_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "versions": {
+    "mypy": "1.19.1",
+    "radon": "6.0.1",
+    "lizard": "1.18.0",
+    "cognitive-complexity": "1.3.0"
+  },
+  "axioms": {
+    "CampaignDfmCkmPhysicsFence.cpCount_from_difference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CampaignDfmCkmPhysicsFence.constraintCount_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CampaignDfmCkmPhysicsFence.count_table": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CampaignDfmCkmPhysicsFence.three_generation_split": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CampaignDfmCkmPhysicsFence.quartet_real_value": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CampaignDfmCkmPhysicsFence.quartet_imag_value": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CampaignDfmCkmPhysicsFence.quartets_differ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CampaignDfmCkmPhysicsFence.count_misses_one_quartet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "checks": {
+    "original-normal": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "C:\\gw\\pr-batch-review\\checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cp 3 matches only the second\nchecked: counting identities, four-point table, quartet split\n",
+      "stderr": "",
+      "source_sha256": "ea9c4a2309a3183e96ba1f240a3f81502e831aba59043e32722faa8abad6b18f"
+    },
+    "original-optimized": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-O",
+        "C:\\gw\\pr-batch-review\\checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cp 3 matches only the second\nchecked: counting identities, four-point table, quartet split\n",
+      "stderr": "",
+      "source_sha256": "ea9c4a2309a3183e96ba1f240a3f81502e831aba59043e32722faa8abad6b18f"
+    },
+    "original-mypy": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "mypy",
+        "--strict",
+        "C:\\gw\\pr-batch-review\\checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 1,
+      "stdout": "checks\\independent\\dfm-ckm-physics-fence.py:10: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:15: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:20: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:26: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:30: error: Function is missing a return type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:31: error: Call to untyped function \"GR\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:33: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:34: error: Call to untyped function \"GR\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:39: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:42: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:46: error: Function is missing a type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:50: error: Function is missing a return type annotation  [no-untyped-def]\nchecks\\independent\\dfm-ckm-physics-fence.py:50: note: Use \"-> None\" if function does not return a value\nchecks\\independent\\dfm-ckm-physics-fence.py:63: error: Call to untyped function \"cycle_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:63: error: Call to untyped function \"constraint_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:63: error: Call to untyped function \"cp_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:65: error: Call to untyped function \"cp_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:65: error: Call to untyped function \"constraint_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:73: error: Incompatible types in assignment (expression has type \"int\", variable has type \"Fraction\")  [assignment]\nchecks\\independent\\dfm-ckm-physics-fence.py:74: error: Call to untyped function \"cycle_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:74: error: Call to untyped function \"cp_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:76: error: Call to untyped function \"cycle_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:76: error: Call to untyped function \"cp_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:78: error: Incompatible types in assignment (expression has type \"int\", variable has type \"Fraction\")  [assignment]\nchecks\\independent\\dfm-ckm-physics-fence.py:79: error: Call to untyped function \"cycle_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:79: error: Call to untyped function \"cp_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:81: error: Call to untyped function \"constraint_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:83: error: Call to untyped function \"cycle_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:83: error: Call to untyped function \"constraint_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:85: error: Call to untyped function \"GR\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:86: error: Call to untyped function \"GR\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:87: error: Call to untyped function \"quartet\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:88: error: Call to untyped function \"quartet\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:89: error: Call to untyped function \"GR\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:91: error: Call to untyped function \"cp_count\" in typed context  [no-untyped-call]\nchecks\\independent\\dfm-ckm-physics-fence.py:103: error: Call to untyped function \"main\" in typed context  [no-untyped-call]\nFound 35 errors in 1 file (checked 1 source file)\n",
+      "stderr": "",
+      "source_sha256": "ea9c4a2309a3183e96ba1f240a3f81502e831aba59043e32722faa8abad6b18f"
+    },
+    "repaired-normal": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "C:\\gw\\pr-batch-review\\checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\n",
+      "stderr": "",
+      "source_sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a"
+    },
+    "repaired-optimized": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-O",
+        "C:\\gw\\pr-batch-review\\checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "difference identity on 9 rational samples\ntable cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3\nn=3 split: cycle 4, constraint 3, cp 1\nquartet imag parts 0 and 1; cpCount(3) matches only the second\nchecked: counting identities, four-point table, quartet split\n",
+      "stderr": "",
+      "source_sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a"
+    },
+    "repaired-mypy": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "mypy",
+        "--strict",
+        "C:\\gw\\pr-batch-review\\checks\\independent\\dfm-ckm-physics-fence.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": "",
+      "source_sha256": "e745bb28c3c04da698214e3efe105c15ae7cb14a88f7b7193efd07d19ec1c57a"
+    },
+    "build-independent": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignDfmCkmPhysicsFence"
+      ],
+      "exit_code": 0,
+      "stdout": "⚠ [841/842] Built CampaignDfmCkmPhysicsFence (11s)\nwarning: CampaignDfmCkmPhysicsFence.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmCkmPhysicsFence.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignDfmCkmPhysicsFence.lean:108:0: 'CampaignDfmCkmPhysicsFence.cpCount_from_difference' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:109:0: 'CampaignDfmCkmPhysicsFence.constraintCount_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:110:0: 'CampaignDfmCkmPhysicsFence.count_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:111:0: 'CampaignDfmCkmPhysicsFence.three_generation_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:112:0: 'CampaignDfmCkmPhysicsFence.quartet_real_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:113:0: 'CampaignDfmCkmPhysicsFence.quartet_imag_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:114:0: 'CampaignDfmCkmPhysicsFence.quartets_differ' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:115:0: 'CampaignDfmCkmPhysicsFence.count_misses_one_quartet' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (842 jobs).\n",
+      "stderr": "",
+      "seconds": 20.97
+    },
+    "lean-independent": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "CampaignDfmCkmPhysicsFence.lean"
+      ],
+      "exit_code": 0,
+      "stdout": "'CampaignDfmCkmPhysicsFence.cpCount_from_difference' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmCkmPhysicsFence.constraintCount_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmCkmPhysicsFence.count_table' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmCkmPhysicsFence.three_generation_split' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmCkmPhysicsFence.quartet_real_value' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmCkmPhysicsFence.quartet_imag_value' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmCkmPhysicsFence.quartets_differ' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignDfmCkmPhysicsFence.count_misses_one_quartet' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stderr": "",
+      "seconds": 9.11
+    },
+    "boundaries-metrics": {
+      "refusals": [
+        [
+          "cycle_count",
+          "True"
+        ],
+        [
+          "constraint_count",
+          "True"
+        ],
+        [
+          "cp_count",
+          "True"
+        ],
+        [
+          "GR",
+          "True"
+        ],
+        [
+          "GR.im",
+          "True"
+        ],
+        [
+          "cycle_count",
+          "False"
+        ],
+        [
+          "constraint_count",
+          "False"
+        ],
+        [
+          "cp_count",
+          "False"
+        ],
+        [
+          "GR",
+          "False"
+        ],
+        [
+          "GR.im",
+          "False"
+        ],
+        [
+          "cycle_count",
+          "0.1"
+        ],
+        [
+          "constraint_count",
+          "0.1"
+        ],
+        [
+          "cp_count",
+          "0.1"
+        ],
+        [
+          "GR",
+          "0.1"
+        ],
+        [
+          "GR.im",
+          "0.1"
+        ],
+        [
+          "cycle_count",
+          "1.0"
+        ],
+        [
+          "constraint_count",
+          "1.0"
+        ],
+        [
+          "cp_count",
+          "1.0"
+        ],
+        [
+          "GR",
+          "1.0"
+        ],
+        [
+          "GR.im",
+          "1.0"
+        ],
+        [
+          "cycle_count",
+          "'1/2'"
+        ],
+        [
+          "constraint_count",
+          "'1/2'"
+        ],
+        [
+          "cp_count",
+          "'1/2'"
+        ],
+        [
+          "GR",
+          "'1/2'"
+        ],
+        [
+          "GR.im",
+          "'1/2'"
+        ],
+        [
+          "cycle_count",
+          "None"
+        ],
+        [
+          "constraint_count",
+          "None"
+        ],
+        [
+          "cp_count",
+          "None"
+        ],
+        [
+          "GR",
+          "None"
+        ],
+        [
+          "GR.im",
+          "None"
+        ]
+      ],
+      "unrelated_equality_refusals": 3,
+      "metrics": {
+        "max_ccn": 17,
+        "max_cognitive": 20
+      }
+    },
+    "mutant-normal": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "C:\\gw\\tp205\\lean4\\b\\pr233-review\\mutant-cp-offset.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "difference failed at 0\n",
+      "source_sha256": "479fcba038a001a62ed7b2edd934acbe376126ae645c7556f4996245bdc1c126"
+    },
+    "mutant-optimized": {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "C:\\gw\\tp205\\lean4\\b\\pr233-review\\mutant-cp-offset.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "difference failed at 0\n",
+      "source_sha256": "479fcba038a001a62ed7b2edd934acbe376126ae645c7556f4996245bdc1c126"
+    }
+  },
+  "mutation_scope": "One real source change adds 1 to the cp_count return; both Python modes reject it at the zero sample. This is not a broad mutation-coverage claim.",
+  "limits": [
+    "The proof contains rational polynomial identities and two declared Gaussian-rational products, no mixing matrix or phase-space quotient.",
+    "The rational formulas are not proved to count graph cycles, unitary constraints, or physical CP phases.",
+    "The declared quartets are not asserted to be entries of any unitary CKM matrix.",
+    "Full generated-facts and campaign pipeline are not independently certified because the substantive L4 floor is unmet."
+  ],
+  "overclaim_scan": {
+    "strict_exit_code": 0,
+    "report": {
+      "schema": "overclaim_report.v1",
+      "authority_effect": "None",
+      "rules": {
+        "R1": {
+          "severity": "HIGH",
+          "title": "PROVED_LEAN node without a Lean reference that resolves in this checkout"
+        },
+        "R2": {
+          "severity": "MEDIUM",
+          "title": "PROVED_LEAN node whose cited theorem has type True, or whose statement says every/all/unique/iff while every cited theorem is one closed instance"
+        },
+        "R3": {
+          "severity": "HIGH",
+          "title": "sorry, admit, axiom, native_decide or unsafe in a Lean module cited by a PROVED_LEAN or CONDITIONAL node"
+        },
+        "R4": {
+          "severity": "HIGH",
+          "title": "replay receipt whose sha256 differs from the file, or whose axioms exceed the allowed three"
+        },
+        "R5": {
+          "severity": "LOW",
+          "title": "number in a node statement, derivation note or README found in none of the node's cited files"
+        },
+        "R6": {
+          "severity": "HIGH",
+          "title": "public prose calls a node proved or derived when its DAG status is not a proved status"
+        },
+        "R7": {
+          "severity": "MEDIUM",
+          "title": "absolute or promotional wording in public prose"
+        },
+        "R8": {
+          "severity": "MEDIUM",
+          "title": "independent derivation note without the required Status line"
+        },
+        "R9": {
+          "severity": "HIGH",
+          "title": "status rose versus the git ref with no new resolving Lean reference and replay receipt in the diff"
+        },
+        "R10": {
+          "severity": "LOW",
+          "title": "PROVED_LEAN node whose cited Lean modules appear in no replay receipt"
+        }
+      },
+      "counts": {
+        "R1": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R2": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R3": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R4": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R5": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 2
+        },
+        "R6": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R7": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R8": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R9": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        },
+        "R10": {
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 1
+        }
+      },
+      "totals": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 3
+      },
+      "findings": [
+        {
+          "severity": "LOW",
+          "rule": "R10",
+          "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+          "line": 0,
+          "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+          "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+          "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt"
+        },
+        {
+          "severity": "LOW",
+          "rule": "R5",
+          "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+          "line": 0,
+          "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+          "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+          "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d"
+        },
+        {
+          "severity": "LOW",
+          "rule": "R5",
+          "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+          "line": 0,
+          "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+          "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+          "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f"
+        }
+      ]
+    },
+    "triage": "All three LOW findings concern pre-existing tensor evidence: absent receipt discovery, a date identifier, and historical 1/2 and 1/4 values. No HIGH or MEDIUM findings; no baseline waivers added. These tensor claims are not recertified by this focused review."
+  }
+}

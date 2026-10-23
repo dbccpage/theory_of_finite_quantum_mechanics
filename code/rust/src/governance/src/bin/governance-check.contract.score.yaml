@@ -1,0 +1,1252 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/governance/src/bin/governance-check.rs",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Rust",
+      "path": "code/rust/src/governance/src/bin/governance-check.rs",
+      "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+    },
+    "boundaries": [
+      "Human-readable output only; there is no machine-readable report format."
+    ],
+    "consumers": [
+      "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+    ],
+    "contract_urn": "urn:tfqm:governance:cli:v1",
+    "evidence": [
+      {
+        "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+      },
+      {
+        "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+      },
+      {
+        "path": "governance/policy.json",
+        "sha256": "8a58de2c5c0362ee5a792d2ade5f6d48a4976d6fdbfa69b080512b4e8b7ce80b"
+      }
+    ],
+    "owned_invariants": [
+      "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+      "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+      "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+      "Unknown options and malformed command lines are usage errors."
+    ],
+    "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+    "requirements": {
+      "R5-baseline": {
+        "symbols": [
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ],
+        "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+      },
+      "R8-cli": {
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources"
+        ],
+        "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+      }
+    },
+    "role": "governance crate source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+    "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+    "symbols": [
+      "main",
+      "parse_args",
+      "cmd_check",
+      "cmd_explain",
+      "cmd_list",
+      "affected_sources",
+      "cmd_baseline",
+      "plan_baseline",
+      "baseline_growth",
+      "growth"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3699,
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"boundaries\": [\n    \"Human-readable output only; there is no machine-readable report format.\"\n  ],\n  \"consumers\": [\n    \"20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped\",\n    \".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)\",\n    \"scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:cli:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exit status 0 clean, 1 violations, 2 usage or configuration error.\",\n    \"check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.\",\n    \"baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).\",\n    \"Unknown options and malformed command lines are usage errors.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"cmd_baseline\",\n        \"plan_baseline\",\n        \"baseline_growth\",\n        \"growth\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R8-cli\": {\n      \"symbols\": [\n        \"main\",\n        \"parse_args\",\n        \"cmd_check\",\n        \"cmd_explain\",\n        \"cmd_list\",\n        \"affected_sources\"\n      ],\n      \"text\": \"governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\",\n  \"subject\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n  \"symbols\": [\n    \"main\",\n    \"parse_args\",\n    \"cmd_check\",\n    \"cmd_explain\",\n    \"cmd_list\",\n    \"affected_sources\",\n    \"cmd_baseline\",\n    \"plan_baseline\",\n    \"baseline_growth\",\n    \"growth\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "boundaries": [
+          "Human-readable output only; there is no machine-readable report format."
+        ],
+        "consumers": [
+          "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+          ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+          "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+        ],
+        "contract_urn": "urn:tfqm:governance:cli:v1",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "owned_invariants": [
+          "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+          "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+          "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+          "Unknown options and malformed command lines are usage errors."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R5-baseline": {
+            "symbols": [
+              "cmd_baseline",
+              "plan_baseline",
+              "baseline_growth",
+              "growth"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R8-cli": {
+            "symbols": [
+              "main",
+              "parse_args",
+              "cmd_check",
+              "cmd_explain",
+              "cmd_list",
+              "affected_sources"
+            ],
+            "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+        "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources",
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ]
+      },
+      "sha256": "e12407f048578abb8233f9c5c97b321cd124f65c86992aba94c79905a2dabde2"
+    },
+    {
+      "bytes": 2723,
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.rs#current-policy-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"boundaries\": [\n    \"Human-readable output only; there is no machine-readable report format.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:cli:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exit status 0 clean, 1 violations, 2 usage or configuration error.\",\n    \"check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.\",\n    \"baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).\",\n    \"Unknown options and malformed command lines are usage errors.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"cmd_baseline\",\n        \"plan_baseline\",\n        \"baseline_growth\",\n        \"growth\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R8-cli\": {\n      \"symbols\": [\n        \"main\",\n        \"parse_args\",\n        \"cmd_check\",\n        \"cmd_explain\",\n        \"cmd_list\",\n        \"affected_sources\"\n      ],\n      \"text\": \"governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\",\n  \"subject\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n  \"symbols\": [\n    \"main\",\n    \"parse_args\",\n    \"cmd_check\",\n    \"cmd_explain\",\n    \"cmd_list\",\n    \"affected_sources\",\n    \"cmd_baseline\",\n    \"plan_baseline\",\n    \"baseline_growth\",\n    \"growth\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "boundaries": [
+          "Human-readable output only; there is no machine-readable report format."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:cli:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951"
+          }
+        ],
+        "owned_invariants": [
+          "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+          "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+          "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+          "Unknown options and malformed command lines are usage errors."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R5-baseline": {
+            "symbols": [
+              "cmd_baseline",
+              "plan_baseline",
+              "baseline_growth",
+              "growth"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R8-cli": {
+            "symbols": [
+              "main",
+              "parse_args",
+              "cmd_check",
+              "cmd_explain",
+              "cmd_list",
+              "affected_sources"
+            ],
+            "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+        "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources",
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ]
+      },
+      "sha256": "24dfe0d439f44f80ebfe6ebf43d9741a1906296b5f1ab9439b6dc9a899babafc"
+    },
+    {
+      "sha256": "650199ee369fb1b39352be5d99a721de0a7b7133b8611688a39cc5b22d31d290",
+      "bytes": 2723,
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"boundaries\": [\n    \"Human-readable output only; there is no machine-readable report format.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:cli:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exit status 0 clean, 1 violations, 2 usage or configuration error.\",\n    \"check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.\",\n    \"baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).\",\n    \"Unknown options and malformed command lines are usage errors.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"cmd_baseline\",\n        \"plan_baseline\",\n        \"baseline_growth\",\n        \"growth\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R8-cli\": {\n      \"symbols\": [\n        \"main\",\n        \"parse_args\",\n        \"cmd_check\",\n        \"cmd_explain\",\n        \"cmd_list\",\n        \"affected_sources\"\n      ],\n      \"text\": \"governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\",\n  \"subject\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n  \"symbols\": [\n    \"main\",\n    \"parse_args\",\n    \"cmd_check\",\n    \"cmd_explain\",\n    \"cmd_list\",\n    \"affected_sources\",\n    \"cmd_baseline\",\n    \"plan_baseline\",\n    \"baseline_growth\",\n    \"growth\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "boundaries": [
+          "Human-readable output only; there is no machine-readable report format."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:cli:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0"
+          }
+        ],
+        "owned_invariants": [
+          "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+          "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+          "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+          "Unknown options and malformed command lines are usage errors."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R5-baseline": {
+            "symbols": [
+              "cmd_baseline",
+              "plan_baseline",
+              "baseline_growth",
+              "growth"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R8-cli": {
+            "symbols": [
+              "main",
+              "parse_args",
+              "cmd_check",
+              "cmd_explain",
+              "cmd_list",
+              "affected_sources"
+            ],
+            "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+        "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources",
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ]
+      },
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#l4-repair"
+      ]
+    },
+    {
+      "sha256": "27f5d94006bae39c769bc3bb36951790c15a001cd9e30f43af7437e7171f95cf",
+      "bytes": 2723,
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"boundaries\": [\n    \"Human-readable output only; there is no machine-readable report format.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:cli:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"f1e94491d48b7da2229c1f9e8c934855422eac75f847d2a95b6dbb816c7d46af\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exit status 0 clean, 1 violations, 2 usage or configuration error.\",\n    \"check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.\",\n    \"baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).\",\n    \"Unknown options and malformed command lines are usage errors.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"cmd_baseline\",\n        \"plan_baseline\",\n        \"baseline_growth\",\n        \"growth\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R8-cli\": {\n      \"symbols\": [\n        \"main\",\n        \"parse_args\",\n        \"cmd_check\",\n        \"cmd_explain\",\n        \"cmd_list\",\n        \"affected_sources\"\n      ],\n      \"text\": \"governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\",\n  \"subject\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n  \"symbols\": [\n    \"main\",\n    \"parse_args\",\n    \"cmd_check\",\n    \"cmd_explain\",\n    \"cmd_list\",\n    \"affected_sources\",\n    \"cmd_baseline\",\n    \"plan_baseline\",\n    \"baseline_growth\",\n    \"growth\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "boundaries": [
+          "Human-readable output only; there is no machine-readable report format."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:cli:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "f1e94491d48b7da2229c1f9e8c934855422eac75f847d2a95b6dbb816c7d46af"
+          }
+        ],
+        "owned_invariants": [
+          "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+          "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+          "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+          "Unknown options and malformed command lines are usage errors."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R5-baseline": {
+            "symbols": [
+              "cmd_baseline",
+              "plan_baseline",
+              "baseline_growth",
+              "growth"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R8-cli": {
+            "symbols": [
+              "main",
+              "parse_args",
+              "cmd_check",
+              "cmd_explain",
+              "cmd_list",
+              "affected_sources"
+            ],
+            "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+        "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources",
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ]
+      },
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#pr227-l4-repair"
+      ]
+    },
+    {
+      "sha256": "9e0f4931beaa337cc479b377b356790a0af3370ee1e7ca6c0b359ae0ec2e6300",
+      "bytes": 2723,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "boundaries": [
+          "Human-readable output only; there is no machine-readable report format."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:cli:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551"
+          }
+        ],
+        "owned_invariants": [
+          "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+          "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+          "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+          "Unknown options and malformed command lines are usage errors."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R5-baseline": {
+            "symbols": [
+              "cmd_baseline",
+              "plan_baseline",
+              "baseline_growth",
+              "growth"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R8-cli": {
+            "symbols": [
+              "main",
+              "parse_args",
+              "cmd_check",
+              "cmd_explain",
+              "cmd_list",
+              "affected_sources"
+            ],
+            "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+        "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources",
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"boundaries\": [\n    \"Human-readable output only; there is no machine-readable report format.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:cli:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exit status 0 clean, 1 violations, 2 usage or configuration error.\",\n    \"check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.\",\n    \"baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).\",\n    \"Unknown options and malformed command lines are usage errors.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"cmd_baseline\",\n        \"plan_baseline\",\n        \"baseline_growth\",\n        \"growth\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R8-cli\": {\n      \"symbols\": [\n        \"main\",\n        \"parse_args\",\n        \"cmd_check\",\n        \"cmd_explain\",\n        \"cmd_list\",\n        \"affected_sources\"\n      ],\n      \"text\": \"governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\",\n  \"subject\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n  \"symbols\": [\n    \"main\",\n    \"parse_args\",\n    \"cmd_check\",\n    \"cmd_explain\",\n    \"cmd_list\",\n    \"affected_sources\",\n    \"cmd_baseline\",\n    \"plan_baseline\",\n    \"baseline_growth\",\n    \"growth\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#pr230-integration"
+      ]
+    },
+    {
+      "sha256": "d030e840936abee873773679ef8d8d726b60b5b58c0c496739b68621243fd542",
+      "bytes": 2723,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "boundaries": [
+          "Human-readable output only; there is no machine-readable report format."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:cli:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "a185f14e5d0a2156c8ebcc1c1aadddcb9957af5aaf2f4ea30a99f3c5d67ca865"
+          }
+        ],
+        "owned_invariants": [
+          "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+          "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+          "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+          "Unknown options and malformed command lines are usage errors."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R5-baseline": {
+            "symbols": [
+              "cmd_baseline",
+              "plan_baseline",
+              "baseline_growth",
+              "growth"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R8-cli": {
+            "symbols": [
+              "main",
+              "parse_args",
+              "cmd_check",
+              "cmd_explain",
+              "cmd_list",
+              "affected_sources"
+            ],
+            "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+        "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources",
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"boundaries\": [\n    \"Human-readable output only; there is no machine-readable report format.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:cli:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"a185f14e5d0a2156c8ebcc1c1aadddcb9957af5aaf2f4ea30a99f3c5d67ca865\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exit status 0 clean, 1 violations, 2 usage or configuration error.\",\n    \"check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.\",\n    \"baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).\",\n    \"Unknown options and malformed command lines are usage errors.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"cmd_baseline\",\n        \"plan_baseline\",\n        \"baseline_growth\",\n        \"growth\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R8-cli\": {\n      \"symbols\": [\n        \"main\",\n        \"parse_args\",\n        \"cmd_check\",\n        \"cmd_explain\",\n        \"cmd_list\",\n        \"affected_sources\"\n      ],\n      \"text\": \"governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\",\n  \"subject\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n  \"symbols\": [\n    \"main\",\n    \"parse_args\",\n    \"cmd_check\",\n    \"cmd_explain\",\n    \"cmd_list\",\n    \"affected_sources\",\n    \"cmd_baseline\",\n    \"plan_baseline\",\n    \"baseline_growth\",\n    \"growth\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#pr233-integration"
+      ]
+    },
+    {
+      "sha256": "5950f51c3fbd6fc683d2e10344d95d084ad0aba43f42513b1220f5d2dab086ec",
+      "bytes": 2723,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "boundaries": [
+          "Human-readable output only; there is no machine-readable report format."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:cli:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "8a58de2c5c0362ee5a792d2ade5f6d48a4976d6fdbfa69b080512b4e8b7ce80b"
+          }
+        ],
+        "owned_invariants": [
+          "Exit status 0 clean, 1 violations, 2 usage or configuration error.",
+          "check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.",
+          "baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).",
+          "Unknown options and malformed command lines are usage errors."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R5-baseline": {
+            "symbols": [
+              "cmd_baseline",
+              "plan_baseline",
+              "baseline_growth",
+              "growth"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R8-cli": {
+            "symbols": [
+              "main",
+              "parse_args",
+              "cmd_check",
+              "cmd_explain",
+              "cmd_list",
+              "affected_sources"
+            ],
+            "text": "governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+        "subject": "code/rust/src/governance/src/bin/governance-check.rs",
+        "symbols": [
+          "main",
+          "parse_args",
+          "cmd_check",
+          "cmd_explain",
+          "cmd_list",
+          "affected_sources",
+          "cmd_baseline",
+          "plan_baseline",
+          "baseline_growth",
+          "growth"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"boundaries\": [\n    \"Human-readable output only; there is no machine-readable report format.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:cli:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"8a58de2c5c0362ee5a792d2ade5f6d48a4976d6fdbfa69b080512b4e8b7ce80b\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exit status 0 clean, 1 violations, 2 usage or configuration error.\",\n    \"check --changed-since REF verifies changed sources and the sources of changed companions (everything when policy.json or baseline.json changed) and fails on baseline entries added since the merge base without a reason.\",\n    \"baseline keeps failing entries with unchanged bytes and drops all others; it adds entries only with --allow-add --reason (or --initial when no baseline exists).\",\n    \"Unknown options and malformed command lines are usage errors.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"cmd_baseline\",\n        \"plan_baseline\",\n        \"baseline_growth\",\n        \"growth\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R8-cli\": {\n      \"symbols\": [\n        \"main\",\n        \"parse_args\",\n        \"cmd_check\",\n        \"cmd_explain\",\n        \"cmd_list\",\n        \"affected_sources\"\n      ],\n      \"text\": \"governance-check check [--changed-since], baseline [--write] [--allow-add --reason], explain, list\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\",\n  \"subject\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n  \"symbols\": [\n    \"main\",\n    \"parse_args\",\n    \"cmd_check\",\n    \"cmd_explain\",\n    \"cmd_list\",\n    \"affected_sources\",\n    \"cmd_baseline\",\n    \"plan_baseline\",\n    \"baseline_growth\",\n    \"growth\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#three-proof-integration"
+      ]
+    }
+  ],
+  "current_contract": "5950f51c3fbd6fc683d2e10344d95d084ad0aba43f42513b1220f5d2dab086ec",
+  "current_scoring": "ba41b02d78e80fa9d11590705d593519defb068e1e532cc4692af1d06d1544e9",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4159,
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"complete\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).\",\n    \"G2\": \"Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.\",\n    \"G3\": \"Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.\",\n    \"G4\": \"Tests: parsing and 13 malformed command lines, missing root and baseline, change selection including twins and policy changes, growth with and without reasons, baseline planning (keep, drop, refuse, add), deficit order, stale entries, and an end-to-end run against git. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 34, survived 1, invalid 3, inconclusive 0, no mutant classed equivalent; R = 0.9714. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 2,\n    \"lizard_production_functions\": 20\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.9714,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 3,\n    \"killed\": 34,\n    \"survived\": 1,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"No property-based generators outside score.rs (G4 B needs them).\",\n    \"Panic freedom rests on clippy lints and review, not on a proof (G3 B).\",\n    \"Allocation behaviour not benchmarked (G5 A).\",\n    \"Grades drafted by the model that wrote the code; an independent review is still needed.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4C\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "complete",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).",
+          "G2": "Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.",
+          "G3": "Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.",
+          "G4": "Tests: parsing and 13 malformed command lines, missing root and baseline, change selection including twins and policy changes, growth with and without reasons, baseline planning (keep, drop, refuse, add), deficit order, stale entries, and an end-to-end run against git. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 34, survived 1, invalid 3, inconclusive 0, no mutant classed equivalent; R = 0.9714. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "C",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "grade_ceiling": "C",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 2,
+          "lizard_production_functions": 20
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 0.9714,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 3,
+          "killed": 34,
+          "survived": 1,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "No property-based generators outside score.rs (G4 B needs them).",
+          "Panic freedom rests on clippy lints and review, not on a proof (G3 B).",
+          "Allocation behaviour not benchmarked (G5 A).",
+          "Grades drafted by the model that wrote the code; an independent review is still needed."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4C"
+      },
+      "sha256": "8bd41a599e11dfa0d9298c4a4fd068db204ff8ec024dde6d59413e7d1437e27e"
+    },
+    {
+      "bytes": 3071,
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.rs#current-policy-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).\",\n    \"G2\": \"Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.\",\n    \"G3\": \"Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 2,\n    \"lizard_production_functions\": 20\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.9714,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 3,\n    \"killed\": 34,\n    \"survived\": 1,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).",
+          "G2": "Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.",
+          "G3": "Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "4aa0aa90aa57219c7b4f02be329f4707a003127cf8449c839065a30d17bf5951"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 2,
+          "lizard_production_functions": 20
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 0.9714,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 3,
+          "killed": 34,
+          "survived": 1,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "1911e1a927838d8c4e59784c92271d383634aa12f3620e1c30ad6e8a3108cc15"
+    },
+    {
+      "sha256": "f6b2dc7968c6b649ed31da39966a81ba608619e288a35ce493f6cf398bc522f3",
+      "bytes": 3071,
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).\",\n    \"G2\": \"Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.\",\n    \"G3\": \"Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 2,\n    \"lizard_production_functions\": 20\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.9714,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 3,\n    \"killed\": 34,\n    \"survived\": 1,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).",
+          "G2": "Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.",
+          "G3": "Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "d6953d632cc438094773f4e3400f9b3b2ff5d7e5fd59c898e777fbf49863a2e0"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 2,
+          "lizard_production_functions": 20
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 0.9714,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 3,
+          "killed": 34,
+          "survived": 1,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#l4-repair"
+      ]
+    },
+    {
+      "sha256": "248deb035190df7ffc6b90538eed55394f23ca26f064b622e4cf3afd90d94e27",
+      "bytes": 3071,
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).\",\n    \"G2\": \"Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.\",\n    \"G3\": \"Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"f1e94491d48b7da2229c1f9e8c934855422eac75f847d2a95b6dbb816c7d46af\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 2,\n    \"lizard_production_functions\": 20\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.9714,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 3,\n    \"killed\": 34,\n    \"survived\": 1,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).",
+          "G2": "Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.",
+          "G3": "Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "f1e94491d48b7da2229c1f9e8c934855422eac75f847d2a95b6dbb816c7d46af"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 2,
+          "lizard_production_functions": 20
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 0.9714,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 3,
+          "killed": 34,
+          "survived": 1,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#pr227-l4-repair"
+      ]
+    },
+    {
+      "sha256": "99880dcdccaa316a67df1d45116a33b2bca4df20381c719f30c9c7cfb7a83720",
+      "bytes": 3071,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).",
+          "G2": "Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.",
+          "G3": "Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 2,
+          "lizard_production_functions": 20
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 0.9714,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 3,
+          "killed": 34,
+          "survived": 1,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).\",\n    \"G2\": \"Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.\",\n    \"G3\": \"Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"ccdde66f0a1461cd2ef2665f65898509eb8aa6ca9878e06c837914a27e9a8551\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 2,\n    \"lizard_production_functions\": 20\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.9714,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 3,\n    \"killed\": 34,\n    \"survived\": 1,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#pr230-integration"
+      ]
+    },
+    {
+      "sha256": "27d12ec3b3bfc83d97c291cb0b6138e6fb1161f41b0114fc556eba0f662a910b",
+      "bytes": 3071,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).",
+          "G2": "Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.",
+          "G3": "Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "a185f14e5d0a2156c8ebcc1c1aadddcb9957af5aaf2f4ea30a99f3c5d67ca865"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 2,
+          "lizard_production_functions": 20
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 0.9714,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 3,
+          "killed": 34,
+          "survived": 1,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).\",\n    \"G2\": \"Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.\",\n    \"G3\": \"Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"a185f14e5d0a2156c8ebcc1c1aadddcb9957af5aaf2f4ea30a99f3c5d67ca865\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 2,\n    \"lizard_production_functions\": 20\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.9714,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 3,\n    \"killed\": 34,\n    \"survived\": 1,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#pr233-integration"
+      ]
+    },
+    {
+      "sha256": "ba41b02d78e80fa9d11590705d593519defb068e1e532cc4692af1d06d1544e9",
+      "bytes": 3071,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/bin/governance-check.rs",
+          "sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).",
+          "G2": "Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.",
+          "G3": "Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "8a58de2c5c0362ee5a792d2ade5f6d48a4976d6fdbfa69b080512b4e8b7ce80b"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 2,
+          "lizard_production_functions": 20
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 0.9714,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 3,
+          "killed": 34,
+          "survived": 1,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/bin/governance-check.rs\",\n    \"sha256\": \"0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:cli:v1, AuthorityEffect None, exact digest; R5 and R8 map to the subcommands and back; consumers: CI workflow and contributors (governance/README.md).\",\n    \"G2\": \"Selection, growth and baseline planning are tested end to end in a git repository. Graded C, not B: the printed output is not specified or asserted line by line, and a repeated option takes its first value without warning.\",\n    \"G3\": \"Every failure is a typed exit status with a message; no unsafe; panic-family lints denied. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 10 (command_of) over 20 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"8a58de2c5c0362ee5a792d2ade5f6d48a4976d6fdbfa69b080512b4e8b7ce80b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete command-line tool over the library (four subcommands, merge-base change selection, baseline monotonicity check, dry-run by default) with typed exit statuses.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 2,\n    \"lizard_production_functions\": 20\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 0.9714,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 3,\n    \"killed\": 34,\n    \"survived\": 1,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/bin/governance-check.contract.score.yaml#three-proof-integration"
+      ]
+    }
+  ]
+}

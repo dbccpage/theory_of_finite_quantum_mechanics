@@ -1,0 +1,32 @@
+
+running 52 tests
+............. 13/52
+repo::tests::nul_lists_normalise_separators_and_refuse_non_utf8 --- FAILED
+..................................... 51/52
+repo::tests::git_population_changes_and_history --- FAILED
+
+failures:
+
+---- repo::tests::nul_lists_normalise_separators_and_refuse_non_utf8 stdout ----
+
+thread 'repo::tests::nul_lists_normalise_separators_and_refuse_non_utf8' (39140) panicked at ..\code\rust\src\governance\src\repo.rs:282:9:
+assertion `left == right` failed
+  left: ["\0", "\0\0"]
+ right: ["a/b.rs", "c.py"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (16076) panicked at ..\code\rust\src\governance\src\repo.rs:310:9:
+assertion `left == right` failed: governed, existing files only
+  left: []
+ right: ["code/a.rs", "code/b.py", "code/new.rs"]
+
+
+failures:
+    repo::tests::git_population_changes_and_history
+    repo::tests::nul_lists_normalise_separators_and_refuse_non_utf8
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s
+
+error: test failed, to rerun pass `--lib`

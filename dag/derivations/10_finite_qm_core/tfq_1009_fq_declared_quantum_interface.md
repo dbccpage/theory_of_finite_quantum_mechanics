@@ -61,7 +61,7 @@ paper s7 / s13.1: complex structure, Hilbert space, tensor factorization, Born r
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:17`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:431`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:761`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:17`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:431`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:761`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105`

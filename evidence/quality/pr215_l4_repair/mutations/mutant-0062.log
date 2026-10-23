@@ -1,0 +1,32 @@
+
+running 52 tests
+.......... 10/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+...................................... 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (24624) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 1 pass, 0 grandfathered, 0 boilerplate, 1 failed\nFAIL code/rust/p/build.rs (new or not grandfathered)\n  code/rust/p/build.rs: [MISSING_COMPANION] expected companion code/rust/p/build.contract.score.yaml, found none\n")
+ right: Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (30800) panicked at ..\code\rust\src\governance\src\lib.rs:304:9:
+assertion `left == right` failed
+  left: Fail([MissingCompanion { path: "code/rust/src/k/build.rs", expected: "code/rust/src/k/build.contract.score.yaml" }])
+ right: Boilerplate
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.56s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,169 @@
+{
+  "schema_version": "prompt_retention_challenges.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23T16:02:58.615262+00:00",
+  "scope": "Eight designated executable custody and instruction-classification mutants, in isolated subprocess module objects; no repository source bytes edited. No comprehensive mutation-coverage claim.",
+  "inputs": [
+    {
+      "path": "dag/pfp/generate_prompts.py",
+      "sha256": "86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab"
+    },
+    {
+      "path": "dag/pfp/validate_prompts.py",
+      "sha256": "7085cf318c0aa00f4e9f6d0be505564db7f91c084ae6fc926346783e4f7666b3"
+    },
+    {
+      "path": "dag/pfp/test_retained_collections.py",
+      "sha256": "f184fb2ad3c5b5438108d1df5b0b4cb30e2d22955b8b2230ecca84189127556e"
+    }
+  ],
+  "targeted_pytest": {
+    "command": "python -m pytest -q dag/pfp/test_retained_collections.py",
+    "exit_code": 0,
+    "output": "..............................                                           [100%]\n30 passed in 0.87s\n"
+  },
+  "mutant_counts": {
+    "killed": 8,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0
+  },
+  "mutants": [
+    {
+      "name": "accept_all",
+      "source": "dag/pfp/generate_prompts.py",
+      "replacement": {
+        "before": "return sha(evidence.read_bytes()) == retained['operad_delta_sha256']",
+        "after": "return True"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[delta]"
+      ],
+      "output": "...F..........................                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[delta]\n1 failed, 29 passed in 0.76s\n",
+      "stderr": ""
+    },
+    {
+      "name": "ignore_generation",
+      "source": "dag/pfp/generate_prompts.py",
+      "replacement": {
+        "before": "if generated != built['audit']:",
+        "after": "if False:"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generated_hash]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[input]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generator_output]"
+      ],
+      "output": ".......FFF....................                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generated_hash]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[input]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generator_output]\n3 failed, 27 passed in 0.74s\n",
+      "stderr": ""
+    },
+    {
+      "name": "ignore_collection_hash",
+      "source": "dag/pfp/generate_prompts.py",
+      "replacement": {
+        "before": "if sha(data) != row['operad_collection_sha256']:",
+        "after": "if False:"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection]"
+      ],
+      "output": "..F...........................                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection]\n1 failed, 29 passed in 0.66s\n",
+      "stderr": ""
+    },
+    {
+      "name": "ignore_node_boundary",
+      "source": "dag/pfp/generate_prompts.py",
+      "replacement": {
+        "before": "if not evidence.is_relative_to(runs) or not evidence.is_file():",
+        "after": "if not evidence.is_file():"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[wrong_node_evidence]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[escaping_evidence]"
+      ],
+      "output": "............F........F........                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[wrong_node_evidence]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[escaping_evidence]\n2 failed, 28 passed in 0.62s\n",
+      "stderr": ""
+    },
+    {
+      "name": "ignore_identity",
+      "source": "dag/pfp/generate_prompts.py",
+      "replacement": {
+        "before": "if any(actual.get(k) != original[k] for k in identity):",
+        "after": "if False:"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[schema_id]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[node_id]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[authority_effect]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection_status]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[target]",
+        "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[source_provenance]"
+      ],
+      "output": "..............FFFFFF..........                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[schema_id]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[node_id]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[authority_effect]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection_status]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[target]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[source_provenance]\n6 failed, 24 passed in 0.49s\n",
+      "stderr": ""
+    },
+    {
+      "name": "index_only_run_guard",
+      "source": "dag/pfp/generate_prompts.py",
+      "replacement": {
+        "before": "return path.is_file() and bool(load_yaml(path.read_bytes()).get('stage_history'))",
+        "after": "return False"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_retains_bound_negative_delta_without_accepting_target",
+        "FAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection"
+      ],
+      "output": "F.....................F.......                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_retains_bound_negative_delta_without_accepting_target\nFAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection\n2 failed, 28 passed in 0.48s\n",
+      "stderr": ""
+    },
+    {
+      "name": "reject_source_quotes",
+      "source": "dag/pfp/validate_prompts.py",
+      "replacement": {
+        "before": "return REJECT.search(instructions) is not None",
+        "after": "return REJECT.search(user_prompt) is not None"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: A which equals B.\\nCollect candidates.-A which equals B.-False]"
+      ],
+      "output": ".......................F......                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: A which equals B.\\nCollect candidates.-A which equals B.-False]\n1 failed, 29 passed in 0.66s\n",
+      "stderr": ""
+    },
+    {
+      "name": "accept_legacy_instructions",
+      "source": "dag/pfp/validate_prompts.py",
+      "replacement": {
+        "before": "return REJECT.search(instructions) is not None",
+        "after": "return False"
+      },
+      "exit_code": 1,
+      "outcome": "killed",
+      "detected_by": [
+        "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: A which equals B.\\nReturn X which equals 1.-A which equals B.-True]",
+        "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: A which equals B.\\nA which equals B.-A which equals B.-True]",
+        "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.-unrelated target-True]",
+        "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.--True]",
+        "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: open claim.\\nSet should_continue true.-open claim.-True]"
+      ],
+      "output": "........................FFFFF.                                           [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: A which equals B.\\nReturn X which equals 1.-A which equals B.-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: A which equals B.\\nA which equals B.-A which equals B.-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.-unrelated target-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.--True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Target: open claim.\\nSet should_continue true.-open claim.-True]\n5 failed, 25 passed in 0.68s\n",
+      "stderr": ""
+    }
+  ],
+  "missing_capability": "These faults do not measure all semantic mutation classes or certify any mathematical target."
+}

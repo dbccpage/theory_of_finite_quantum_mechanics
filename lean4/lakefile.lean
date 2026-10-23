@@ -961,6 +961,10 @@ lean_lib CampaignFspLatticeAnomalyInflow where
 lean_lib CampaignTransitionProbability where
   roots := #[`CampaignTransitionProbability]
 
+-- Campaign: DFM-BPHZ-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmBphzContinuumFence where
+  roots := #[`CampaignDfmBphzContinuumFence]
+
 -- Compile the immutable, provenance-bound Genesis source through the shared cache.
 lean_lib CampaignGenesisSealedSource where
   srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
@@ -983,6 +987,10 @@ lean_lib CampaignGenesisDemandPolicy where
 lean_lib CampaignDfmHierarchicalBorel where
   roots := #[`CampaignDfmHierarchicalBorel]
 
+-- Campaign: DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmElectroweakContinuumFence where
+  roots := #[`CampaignDfmElectroweakContinuumFence]
+
 -- Exact no-return engine replay, reusing the sealed source library.
 lean_lib CampaignGenesisNoReturn where
   roots := #[`CampaignGenesisNoReturn]
@@ -1002,6 +1010,20 @@ lean_lib CampaignGenesisOngoingRefinement where
 -- Explicit comparison classes, reusing the sealed source library above.
 lean_lib CampaignGenesisProcessComparison where
   roots := #[`CampaignGenesisProcessComparison]
+
+-- Campaign: DFM-CKM-PHYSICS-FENCE. Not a default target.
+lean_lib CampaignDfmCkmPhysicsFence where
+  roots := #[`CampaignDfmCkmPhysicsFence]
+
+-- Campaign target: DFM-CONTINUUM-INTERFACE.
+-- Not a default target: build with `lake build CampaignDfmContinuumInterface`.
+lean_lib CampaignDfmContinuumInterface where
+  roots := #[`CampaignDfmContinuumInterface]
+
+
+-- Campaign: DFM-GRIBOV-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmGribovContinuumFence where
+  roots := #[`CampaignDfmGribovContinuumFence]
 
 -- Campaign: DFM-SYMANZIK-QED-AE-FENCE. Not a default target.
 lean_lib CampaignDfmSymanzikQedAeFence where

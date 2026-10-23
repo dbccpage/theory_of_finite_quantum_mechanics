@@ -1,0 +1,36 @@
+
+running 52 tests
+.... 4/52
+descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes --- FAILED
+.... 9/52
+descriptor::tests::tampered_history_bytes_are_detected --- FAILED
+................................ 42/52
+verify::tests::schema_failures_are_specific --- FAILED
+.........
+failures:
+
+---- descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes stdout ----
+
+thread 'descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes' (15464) panicked at ..\code\rust\src\governance\src\descriptor.rs:355:9:
+a changed binding cannot reuse old hashed bytes
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- descriptor::tests::tampered_history_bytes_are_detected stdout ----
+
+thread 'descriptor::tests::tampered_history_bytes_are_detected' (37676) panicked at ..\code\rust\src\governance\src\descriptor.rs:310:9:
+assertion failed: !ContractDescriptor::parse("c", &v.to_string()).unwrap().contract_view_ok
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (30848) panicked at ..\code\rust\src\governance\src\verify.rs:419:61:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+
+failures:
+    descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes
+    descriptor::tests::tampered_history_bytes_are_detected
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 49 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.47s
+
+error: test failed, to rerun pass `--lib`
