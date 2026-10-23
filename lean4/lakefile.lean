@@ -621,3 +621,6 @@ lean_lib GenesisHottShadow where
 lean_lib GenesisHottTruncation where
   roots := #[`GenesisHottTruncation]
 
+lean_lib GenesisHottHorns where
+  roots := #[`GenesisHottHorns, `GenesisHottModel]
+
