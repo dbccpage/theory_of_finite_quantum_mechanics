@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsedCount_rename`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsed_rename`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean::collapsed_renameDataForm`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean::collapsed_transport`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsedCount_rename`](../../../lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsed_rename`](../../../lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean::collapsed_renameDataForm`](../../../lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean::collapsed_transport`](../../../lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs)

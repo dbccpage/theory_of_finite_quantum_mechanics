@@ -20,7 +20,7 @@ target:
   - dag/derivations/02_genesis/tfq_0432_challenge0_inertia_second_token.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:203-217
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:218-224
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean:146-148
+  - lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean:155-157
   paper_refs: []
   source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -34,40 +34,119 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_challenge0_inertia_second_token_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: genesis
+  line: 23
+  signature_excerpt: 'def genesis : Regime'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  repository: this_repository
+  source_sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SingleTok
+  line: 41
+  signature_excerpt: 'def SingleTok (t0 : Nat) (e : TEvent) : Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  repository: this_repository
+  source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: AtMostTok
+  line: 46
+  signature_excerpt: 'def AtMostTok (t0 : Nat) (t : TRegime) : Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  repository: this_repository
+  source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: genesis_underivable
+  line: 30
+  signature_excerpt: 'theorem genesis_underivable (i : Inst) : ¬ derivable genesis i'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  repository: this_repository
+  source_sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: underivable_of_empty
+  line: 39
+  signature_excerpt: |-
+    theorem underivable_of_empty (r : Regime) (hi : r.insts = [])
+        (hr : r.rules = []) (i : Inst) : ¬ derivable r i
+  source: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  repository: this_repository
+  source_sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: single_token_carrier_bound
+  line: 100
+  signature_excerpt: |-
+    theorem single_token_carrier_bound (t0 : Nat) (h : List TEvent)
+        (hall : ∀ e ∈ h, SingleTok t0 e) {t : TRegime}
+        (ht : AtMostTok t0 t) {res : TRegime}
+        (hr : replayT h t = some res) : res.tokens.length ≤ 1
+  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  repository: this_repository
+  source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: second_token_required
+  line: 158
+  signature_excerpt: |-
+    theorem second_token_required (t0 : Nat) (h : List TEvent)
+        {res : TRegime}
+        (hr : replayT h ⟨[], [], [], [], []⟩ = some res)
+        (htwo : 2 ≤ res.tokens.length) :
+        ∃ e ∈ h, ∃ tok, e = TEvent.admitDatum tok ∧ tok ≠ t0
+  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  repository: this_repository
+  source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::genesis_underivable
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable
+  availability: local
   symbol: genesis_underivable
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  repository: this_repository
+  sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::underivable_of_empty
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::underivable_of_empty
+  availability: local
   symbol: underivable_of_empty
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  repository: this_repository
+  sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::single_token_carrier_bound
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::single_token_carrier_bound
+  availability: local
   symbol: single_token_carrier_bound
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  repository: this_repository
+  sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
+  declaration_status: declaration_found_not_proof_checked
+  line: 100
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::second_token_required
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::second_token_required
+  availability: local
   symbol: second_token_required
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  repository: this_repository
+  sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
+  declaration_status: declaration_found_not_proof_checked
+  line: 158
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge0_generates_nothing
   availability: external
@@ -114,8 +193,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

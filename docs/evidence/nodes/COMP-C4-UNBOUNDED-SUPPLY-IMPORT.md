@@ -1,6 +1,6 @@
 # COMP-C4-UNBOUNDED-SUPPLY-IMPORT
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `IMPORTED_ASSUMPTION`. E
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -47,19 +47,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GenesisComputation.lean](../../../lean4/GenesisComputation.lean)
 - sha256 (`bytes`): `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994`
 - cited in: node.lean, record TFQ-1297
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisComputation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `UnboundedSupply` | yes | yes | yes | - | `#print axioms UnboundedSupply` |
-| `not_closed_of_unbounded` | yes | yes | yes | - | `#print axioms not_closed_of_unbounded` |
+| `UnboundedSupply` | yes | yes | yes | module-level | `#print axioms UnboundedSupply` |
+| `not_closed_of_unbounded` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms not_closed_of_unbounded` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md`
 
 - file: [dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md](../../../dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md)
-- sha256 (`lf-normalised`): `f37b447dcb7db09b457f19ef4c715fe15cad95a4af7d8e828f90aa4741b4f052`
+- sha256 (`lf-normalised`): `a807b5c2ebf64f52cf2516f40428568aaa5c2672a56c44b81af0d2fb411455ec`
 - generated view: listed, not counted
 - cited in: node.source
 - counts toward the grade: no

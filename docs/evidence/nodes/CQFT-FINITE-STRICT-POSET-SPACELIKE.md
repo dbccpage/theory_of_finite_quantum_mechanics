@@ -1,6 +1,6 @@
 # CQFT-FINITE-STRICT-POSET-SPACELIKE
 
-Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `PROVED_LEAN`. Evidence gr
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 11
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 10 Lean reference(s) cited, 10 in this checkout (replay: none 10). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,22 +47,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/CausalOrder.lean](../../../lean4/CausalOrder.lean)
 - sha256 (`bytes`): `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0`
 - cited in: node.lean, record TFQ-2100
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_causal_qft.json](../../../dag/research/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CausalOrder`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `c1_mu_spacelike_vanishes` | yes | yes | yes | - | `#print axioms c1_mu_spacelike_vanishes` |
-| `c1_spacelike_1_2` | yes | yes | yes | - | `#print axioms c1_spacelike_1_2` |
-| `c1_spacelike_symm_irrefl` | yes | yes | yes | - | `#print axioms c1_spacelike_symm_irrefl` |
-| `c2_causal_0_3` | yes | yes | yes | - | `#print axioms c2_causal_0_3` |
-| `c2_mu_top_bottom` | yes | yes | yes | - | `#print axioms c2_mu_top_bottom` |
-| `incomparability_not_transitive_c1` | yes | yes | yes | - | `#print axioms incomparability_not_transitive_c1` |
-| `n4_spacelike_not_transitive` | yes | yes | yes | - | `#print axioms n4_spacelike_not_transitive` |
-| `order_independence_witness` | yes | yes | yes | - | `#print axioms order_independence_witness` |
-| `spacelike_irrefl` | yes | yes | yes | - | `#print axioms spacelike_irrefl` |
-| `spacelike_not_transitive` | yes | yes | yes | - | `#print axioms spacelike_not_transitive` |
-| `spacelike_symm` | yes | yes | yes | - | `#print axioms spacelike_symm` |
+| `c1_mu_spacelike_vanishes` | yes | yes | yes | none | `#print axioms c1_mu_spacelike_vanishes` |
+| `c1_spacelike_1_2` | yes | yes | yes | none | `#print axioms c1_spacelike_1_2` |
+| `c1_spacelike_symm_irrefl` | yes | yes | yes | none | `#print axioms c1_spacelike_symm_irrefl` |
+| `c2_causal_0_3` | yes | yes | yes | none | `#print axioms c2_causal_0_3` |
+| `c2_mu_top_bottom` | yes | yes | yes | none | `#print axioms c2_mu_top_bottom` |
+| `incomparability_not_transitive_c1` | yes | yes | yes | none | `#print axioms incomparability_not_transitive_c1` |
+| `n4_spacelike_not_transitive` | yes | yes | yes | none | `#print axioms n4_spacelike_not_transitive` |
+| `order_independence_witness` | yes | yes | yes | none | `#print axioms order_independence_witness` |
+| `spacelike_irrefl` | yes | yes | yes | none | `#print axioms spacelike_irrefl` |
+| `spacelike_not_transitive` | yes | yes | yes | none | `#print axioms spacelike_not_transitive` |
+| `spacelike_symm` | yes | yes | yes | none | `#print axioms spacelike_symm` |
 - counts toward the grade: yes
 
 ### Python: `code/python/src/general_relativity/causal_set.py`

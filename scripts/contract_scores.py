@@ -286,13 +286,35 @@ def migrate(apply=False):
     print("All original bytes verified; legacy files removed.", flush=True)
 
 
-def check():
+def check(changed=None):
+    """Verify companion history.
+
+    ``changed`` is None for the whole tree. A set restricts the check to
+    companions of those repo-relative paths and does not inspect the rest.
+    """
     errors = []
     versions = {}
     targets = {reference["combined_path"] for reference in index().values()}
     for name in subprocess.check_output(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT).decode().split("\0"):
         if name.endswith(SUFFIX):
             targets.add(name)
+    if changed is not None:
+        import score_scope_contracts as scope
+        wanted = set()
+        for name in changed:
+            if name.endswith(SUFFIX) and (ROOT / name).is_file():
+                wanted.add(name.replace("\\", "/"))
+        for source in scope.sources_in_change(changed):
+            source_name = scope.rel(source)
+            companion = scope.rel(scope.companion_for(source))
+            if source_name not in changed and companion not in changed:
+                continue
+            if (ROOT / companion).is_file():
+                wanted.add(companion)
+            else:
+                errors.append({"path": source_name, "error": "missing companion"})
+        targets = {name for name in targets if name in wanted}
+        targets.update(name for name in wanted if (ROOT / name).is_file())
     for name in sorted(targets):
         try:
             target = (ROOT / name).resolve()
@@ -319,6 +341,8 @@ def check():
         except (OSError, ValueError, KeyError) as exc:
             errors.append({"path": name, "error": str(exc)})
     for alias, reference in index().items():
+        if changed is not None and reference["combined_path"] not in targets:
+            continue
         try:
             size = versions[(reference["combined_path"], alias, reference["sha256"])]
             if size != reference["bytes"]:
@@ -327,7 +351,10 @@ def check():
                 raise ValueError("Legacy file still present")
         except (OSError, ValueError, KeyError) as exc:
             errors.append({"path": alias, "error": str(exc)})
-    print(json.dumps({"originals": len(index()), "combined_files": len(targets), "all_passed": not errors, "errors": errors}, indent=2))
+    payload = {"originals": len(index()) if changed is None else None, "combined_files": len(targets), "all_passed": not errors, "errors": errors}
+    if changed is not None:
+        payload["scope"] = "changed files only; the rest of the tree was not read"
+    print(json.dumps(payload, indent=2))
     if errors:
         raise SystemExit(1)
 
@@ -459,17 +486,28 @@ def export_v2(path_or_document):
     return v2
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("migrate", "check", "read", "hash", "export-v2"))
     parser.add_argument("path", nargs="?")
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--sha256")
-    args = parser.parse_args()
+    parser.add_argument(
+        "--changed-since",
+        metavar="REF",
+        help="with check: only companions of files changed since REF (merge base), plus ordinary untracked files",
+    )
+    args = parser.parse_args(argv)
+    if args.changed_since and args.command != "check":
+        parser.error("--changed-since is only valid with check")
     if args.command == "migrate":
         migrate(args.apply)
     elif args.command == "check":
-        check()
+        changed = None
+        if args.changed_since:
+            import score_scope_contracts as scope
+            _base, changed = scope.changed_paths(args.changed_since)
+        check(changed)
     elif args.command == "export-v2":
         if args.path is None:
             parser.error("path is required")

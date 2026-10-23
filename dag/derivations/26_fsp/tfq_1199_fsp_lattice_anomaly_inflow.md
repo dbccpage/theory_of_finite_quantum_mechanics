@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.
+Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.
 
 ### Governing Obligation
-Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.
+Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.
 
 ### Witness Audit
-Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exist; callan_harvey_cancellation states q + (-q) = 0 for the packet <q, -q>, and the other lemmas are Nat inequalities. Ledger GIN-C15 marks the module a historical illustrative fixture with its physical reading withdrawn.
+Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exist; callan_harvey_cancellation states q + (-q) = 0 for the packet <q, -q>, and the other lemmas are Nat inequalities. Ledger GIN-C15 marks the module a historical illustrative fixture with its physical reading withdrawn. Current campaign supplies scoped transport/cochain proofs and exact failed-candidate computations; it does not validate the historical physical reading.
 
 ---
 
@@ -31,13 +31,20 @@ Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exis
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-lattice-anomaly-inflow.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::spin_structure_obstruction::chiral_anomaly_inflow (cited by the source, not in this checkout)`

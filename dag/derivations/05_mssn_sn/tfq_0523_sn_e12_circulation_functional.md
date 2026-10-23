@@ -33,8 +33,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean::triangle_repair_exact_iff`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean::triangle_repair_invariant`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean)
+- [`lean4/Imported/PreGenesisToMssn/Cochain.lean::triangle_repair_exact_iff`](../../../lean4/Imported/PreGenesisToMssn/Cochain.lean)
+- [`lean4/Imported/PreGenesisToMssn/Cochain.lean::triangle_repair_invariant`](../../../lean4/Imported/PreGenesisToMssn/Cochain.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of the converse potential (0, x_ab, x_ab + x_bc); the MSS-N circulation audit is recorded under TFQ-0534`

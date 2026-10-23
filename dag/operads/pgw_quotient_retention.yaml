@@ -16,7 +16,7 @@ target:
   source_refs:
   - dag/derivations/02_genesis/tfq_0457_quotient_retention.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:456-467
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean:18-22
+  - lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean:27-31
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:31
   paper_refs: []
   source_claim_label: PROVED_LEAN
@@ -31,40 +31,126 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_quotient_retention_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: RelationRefinement
+  line: 38
+  signature_excerpt: 'structure RelationRefinement {I : Type} (fine coarse : Setoid I) : Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  source_sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: collapseMap
+  line: 54
+  signature_excerpt: |-
+    def collapseMap
+        {I : Type} {fine coarse : Setoid I}
+        (h : RelationRefinement fine coarse) :
+        Quotient fine -> Quotient coarse
+  source: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  source_sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: collapseMap_surjective
+  line: 68
+  signature_excerpt: |-
+    theorem collapseMap_surjective
+        {I : Type} {fine coarse : Setoid I}
+        (h : RelationRefinement fine coarse) :
+        Function.Surjective (collapseMap h)
+  source: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  source_sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapseMap_injective_iff_reverse_refinement
+  line: 107
+  signature_excerpt: |-
+    theorem collapseMap_injective_iff_reverse_refinement
+        {I : Type} {fine coarse : Setoid I}
+        (h : RelationRefinement fine coarse) :
+        Function.Injective (collapseMap h) ↔
+          (forall {x y}, coarse.r x y -> fine.r x y)
+  source: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  source_sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapseMap_compose
+  line: 144
+  signature_excerpt: |-
+    theorem collapseMap_compose
+        {I : Type} {fine middle coarse : Setoid I}
+        (hfm : RelationRefinement fine middle)
+        (hmc : RelationRefinement middle coarse) :
+        collapseMap (hfm.trans hmc) = collapseMap hmc ∘ collapseMap hfm
+  source: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  source_sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: failed_identification_retains_two_classes
+  line: 77
+  signature_excerpt: |-
+    theorem failed_identification_retains_two_classes
+        {I : Type} {fine coarse : Setoid I}
+        (h : RelationRefinement fine coarse)
+        {x y : I} (hcoarse : coarse.r x y)
+        (hfine : Not (fine.r x y)) :
+        Quotient.mk fine x ≠ Quotient.mk fine y ∧
+          collapseMap h (Quotient.mk fine x) =
+            collapseMap h (Quotient.mk fine y)
+  source: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  source_sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_surjective
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_surjective
+  availability: local
   symbol: collapseMap_surjective
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement
+  availability: local
   symbol: collapseMap_injective_iff_reverse_refinement
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  declaration_status: declaration_found_not_proof_checked
+  line: 107
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_compose
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_compose
+  availability: local
   symbol: collapseMap_compose
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  declaration_status: declaration_found_not_proof_checked
+  line: 144
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes
+  availability: local
   symbol: failed_identification_retains_two_classes
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean
+  repository: this_repository
+  sha256: 21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c
+  declaration_status: declaration_found_not_proof_checked
+  line: 77
   role: source_lead_only
 presentation:
   colours: []
@@ -103,8 +189,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

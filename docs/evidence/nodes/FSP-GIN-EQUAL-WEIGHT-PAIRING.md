@@ -1,6 +1,6 @@
 # FSP-GIN-EQUAL-WEIGHT-PAIRING
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `COMPUTATIONALLY_CHECK
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 7
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
@@ -47,12 +47,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/core/fsp/lean4/FermionGinCore.lean](../../../papers/core/fsp/lean4/FermionGinCore.lean)
 - sha256 (`bytes`): `256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8`
 - cited in: node.lean, record TFQ-1194
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_fermion_sign.json](../../../dag/research/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.FermionGinCore`): recorded sha256 `256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/FermionGinCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `involution_pair_cancels_sign` | yes | yes | yes | - | `#print axioms involution_pair_cancels_sign` |
+| `involution_pair_cancels_sign` | yes | yes | yes | propext | `#print axioms involution_pair_cancels_sign` |
 - counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/ct_aux_streaming_gin_engine.py`

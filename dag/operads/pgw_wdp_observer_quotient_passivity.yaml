@@ -39,32 +39,120 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_observer_quotient_passivity_definition.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: Observer
+  line: 32
+  signature_excerpt: 'structure Observer (Q : Type)'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  source_sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: KernelLe
+  line: 37
+  signature_excerpt: 'def KernelLe {Q : Type} (O P : Observer Q) : Prop'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  source_sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SameKernel
+  line: 40
+  signature_excerpt: 'def SameKernel {Q : Type} (O P : Observer Q) : Prop'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  source_sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: identityObserver
+  line: 44
+  signature_excerpt: 'def identityObserver (Q : Type) : Observer Q'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  source_sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unitObserver
+  line: 49
+  signature_excerpt: 'def unitObserver (Q : Type) : Observer Q'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  source_sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: observer_passivity_of_infimum
+  line: 454
+  signature_excerpt: |-
+    theorem observer_passivity_of_infimum {Q R : Type}
+        (O : Q → R) (Φ : Q → ℚ) (ΦO : R → ℚ)
+        (lower : ∀ y r, O r = y → ΦO y ≤ Φ r) (q : Q) :
+        ΦO (O q) ≤ Φ q ∧ (0 < ΦO (O q) → 0 < Φ q) ∧ (Φ q ≤ 0 → ΦO (O q) ≤ 0)
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: declared_family_order
+  line: 241
+  signature_excerpt: |-
+    theorem declared_family_order {Q I : Type} (family : I → Observer Q) :
+        ((∀ i : I, KernelLe (family i) (family i)) ∧
+          (∀ i j k : I, KernelLe (family i) (family j) → KernelLe (family j) (family k) →
+            KernelLe (family i) (family k)) ∧
+          (∀ i j : I, KernelLe (family i) (family j) → KernelLe (family j) (family i) →
+            SameKernel (family i) (family j))) ∧
+        (∀ O : Observer Q, KernelLe (identityObserver Q) O) ∧
+        (∀ O : Observer Q, KernelLe O (unitObserver Q))
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  source_sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: grammar_resolution_bound
+  line: 229
+  signature_excerpt: |-
+    theorem grammar_resolution_bound {n m : Nat} (f : Fin n → Fin m) :
+        (∀ {k : Nat} (c : Fin k → Fin n), (∀ i j, f (c i) = f (c j) → i = j) → k ≤ m) ∧
+        (m < n → ∃ x y : Fin n, x ≠ y ∧ f x = f y)
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  source_sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::observer_passivity_of_infimum
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::observer_passivity_of_infimum
+  availability: local
   symbol: observer_passivity_of_infimum
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 454
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean::declared_family_order
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean::declared_family_order
+  availability: local
   symbol: declared_family_order
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 241
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean::grammar_resolution_bound
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean::grammar_resolution_bound
+  availability: local
   symbol: grammar_resolution_bound
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean
+  repository: this_repository
+  sha256: 32b81327080b25f688cd74ec1c41bbc317a1fb8a68ec76ae4171df8fbde511ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 229
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend
   availability: external
@@ -113,8 +201,6 @@ operad_slots:
     - Declared presentation, memory, evaluator and policy packets with typed adapters (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

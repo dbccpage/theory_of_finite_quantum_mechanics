@@ -1,6 +1,6 @@
 # FSP-MASTER-DICHOTOMY-REFUTED
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `REFUTED`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `REFUTED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `REFUTED`. Evidence gr
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
@@ -60,12 +60,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean](../../../papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean)
 - sha256 (`bytes`): `85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd`
 - cited in: node.lean, record TFQ-1220
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_fermion_sign.json](../../../dag/research/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.FrustratedSpectrumObstruction`): recorded sha256 `85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `disjoint_spectra_obstructs_involution` | yes | yes | yes | - | `#print axioms disjoint_spectra_obstructs_involution` |
+| `disjoint_spectra_obstructs_involution` | yes | yes | yes | none | `#print axioms disjoint_spectra_obstructs_involution` |
 - counts toward the grade: yes
 
 ### Lean: `papers/core/fsp/lean4/MeronCharacter.lean`
@@ -73,12 +74,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/core/fsp/lean4/MeronCharacter.lean](../../../papers/core/fsp/lean4/MeronCharacter.lean)
 - sha256 (`bytes`): `0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870`
 - cited in: node.lean, record TFQ-1220
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_fermion_sign.json](../../../dag/research/lean_replay_campaign_fermion_sign.json) (module `papers.core.fsp.lean4.MeronCharacter`): recorded sha256 `0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/core/fsp/lean4/MeronCharacter.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `unequal_three_term_cancellation` | yes | yes | yes | - | `#print axioms unequal_three_term_cancellation` |
+| `unequal_three_term_cancellation` | yes | yes | yes | none | `#print axioms unequal_three_term_cancellation` |
 - counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/fermionic_hamiltonian.py`

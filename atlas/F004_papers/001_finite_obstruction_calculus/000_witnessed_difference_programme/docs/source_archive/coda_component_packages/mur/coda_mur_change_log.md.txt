@@ -1,0 +1,91 @@
+## 2026-09-28 — release candidate 3.1.1
+
+Aligned manuscript, code, citation metadata, and rebuilt release artifacts after the review corrections. Historical versions and unresolved claim obligations remain recorded below.
+
+# Change Log — CODA-MUR: Certified Representation Transport, Composition, and Irreversible Forgetting
+
+## 2026-09-28 — Lean Module Path Harmonization & Release Manifest Parity
+
+- **Lean 4 PascalCase Normalization:** Synchronized all references to Lean modules across `coda_mur.md`, `coda_mur.tex`, and `coda_mur_claim_ledger.md` to match canonical PascalCase filenames (`Algebra.lean`, `D01D02D03Records.lean`, `T01CertificatePasting.lean`, `T03T04T05LossNoCreation.lean`, `L02TerminalNonBypass.lean`, `Core.lean`), eliminating stale references.
+- **Strict Mypy Path Configuration:** Added `mypy_path = ["code"]` to `[tool.mypy]` in `pyproject.toml` per strict typing invariants.
+- **Self-Verifiable Archive Checksum Inclusion:** Updated `tools/rebuild_release.py` to package `SHA256SUMS` into `mur_2026-09-28.zip`, ensuring parity with `MANIFEST.sha256` and standalone post-extraction verifiability.
+
+## 2026-09-27 — republication corrections
+
+Require complete nonempty finite square evidence, bind requested artifacts and both quotient cochain/repair map, freeze quotient records and matrices. Separate notebook replay from pytest. Correct rational-mass mechanization claims and test pointers. Synchronize active version 3.1.0 and toolchain pin.
+
+Verification results are recorded separately after execution; source edits alone do not close findings.
+
+---
+
+title: "CODA-MUR Change Log"
+file_name: coda_mur_change_log.md
+file_location: coda_atlas/F005_coda/mur/
+status: Canonical
+authority_effect: None
+paper_id: CODA-MUR
+canonical_version: v3.1.0
+date: 2026-09-18
+---
+
+## v3.1.0 — 2026-09-18 (Review Remediation & Contract Hardening)
+
+- **Provenance Exception Safety (§1):** Eliminated `except Exception: pass` in `evaluate_transport_authority`; any failure during artifact provenance evaluation returns typed refusal `R_substituted_artifact`, preventing failed provenance calculations from falling through to success.
+- **Action / State Map Agreement (§1):** Required that when both `FiniteCoreAction` and `certificate.state_map` are supplied, their outputs on the requested source must strictly agree, preventing uncertified actions from silently replacing the certified morphism.
+- **Finite Verification Integrity (§2):** Enforced that finite verification records require the complete carrier and all 4 maps (`carrier`, `state_map`, `observation_map`, `source_look`, `target_look`); partial constructions reject rather than silently falling back to Boolean attestation.
+- **Source Carrier Binding (§2):** Bound requested source IDs to the declared verified carrier, requiring dynamic commutation verification for any point evaluated outside the declared set (`R_notransport`).
+- **Quotient Defect Binding (§3):** Bound `quotient_certificate.cochain` directly to the declared `certificate.defect_vector`, rejecting evidence for irrelevant cochains (`R_malformed_quotient` / `R_obstruction`).
+- **Associative Loss Pasting & Leaf Provenance (§4.1):** Retained composite loss ledgers across composition whenever non-empty, and preserved the full leaf sequence across arbitrary parenthesizations in `leg_ledgers` (e.g. `paste(paste(F, G), H)` matches `paste(F, paste(G, H))`).
+- **Exact Morphism Loss-Free Invariant (§4.1):** Enforced that `EXACT` and `EMBEDDING` morphisms must be strictly loss-free, returning `is_valid() == False` and `R_unpriced_loss` if non-empty loss is declared.
+- **Intermediate Presentation & Carrier Coverage (§4.2):** Verified agreement of intermediate observation/look maps (`chi_f.target_look` vs `chi_g.source_look`) on intermediate states, verified carrier coverage, and validated composite certificates before returning.
+- **Incompatible Defect Vector Firewall (§4.3):** Raised `ValueError` on incompatible defect vector dimensions during pasting instead of silently discarding the first defect.
+- **Exact Rational Domain & Shape Validation (§5):** Added strict matrix shape checks (rejecting multi-column cochains) and exact rational scalar validation (rejecting `Float`, `sqrt(2)`, SymPy symbols) in `QuotientDistanceCertificate.verify()`.
+- **Immutable Evidence Snapshots (§5):** Created `snapshot()` method on `QuotientDistanceCertificate`, isolating returned `TransportResult` records from caller mutations.
+- **Callback Strict Typing (§6):** Enforced that `target_regime.is_auth()` must return strict Python `bool` (rejecting truthy `"False"`, `1`, `[False]`), and `target_regime.terminalize()` must return `Optional[str]`.
+- **Fresh Notebook Kernel Replay & Figure Tests (§7):** Added automated fresh-kernel execution testing of all 3 notebooks via `nbclient`, and added assertions for all 5 ladder step diagnostics in `test_mur_generate_figures.py`.
+- **Test Suite Expansion:** Expanded test suite from 31 to 50 tests across all 5 test files, all passing cleanly.
+
+
+- **Title & Metadata Alignment:** Standardized canonical paper title to `CODA-MUR: Certified Representation Transport, Composition, and Irreversible Forgetting`, version `v3.0.0`, release date `2026-09-18` across Markdown, LaTeX, PDF metadata, README, Zenodo metadata, CITATION.cff, and claim ledger.
+- **Categorical Terminology Correction (MUR-T5):** Corrected mathematical terminology in Theorem MUR-T5 from "no section" / "non-section" to "no left inverse recovering every source value" after non-injective collapse ($q : \mathbf{2} \to \mathbf{1}$). Sections (right inverses) exist; left inverses do not.
+- **Finite Verification Model:** Replaced unchecked boolean flags with an honest finite verification model in `DescentSquareCertificate` storing finite carrier and maps, verifying $\forall x \in \mathrm{carrier},\ D_B(F(x)) = \bar{F}(D_A(x))$. Enforced strict booleans (`type(v) is bool`) across all flags and loss dimensions.
+- **Regime & Artifact Binding:** Updated `evaluate_transport_authority` to enforce strict target regime matching (`target_regime == cert.target_regime`), source regime matching, and artifact provenance verification via execution action or state-map evaluation (`R_substituted_artifact`).
+- **Pasting Hygiene & Leg Receipts:** Refused pasting unless both input certificates are independently valid. Retained per-leg ledger receipts in `leg_ledgers` to prevent loss laundering across composite legs.
+- **Closed 5×5 Kind Monoid:** Implemented associative total-order monoid $\mathsf{EXACT} < \mathsf{EMBEDDING} < \mathsf{QUOTIENT} < \mathsf{APPROXIMATION} < \mathsf{UNMEASURED}$ with $\mathsf{EXACT}$ as 2-sided identity and $\mathsf{UNMEASURED}$ absorbing. Verified identity and associativity across all 125 triples.
+- **Verified Quotient Distance Certificates:** Required typed `QuotientDistanceCertificate` with `verify() is True` and non-negative rational distance, rejecting negative or unverified mock certificates.
+- **Loss Dimension Obligations:** Required qualitative loss dimensions matching morphism kinds: quotient requires erasure $e=\mathrm{true}$, approximation requires $a=\mathrm{true}$ or $i=\mathrm{true}$, unmeasured requires $u=\mathrm{true}$.
+- **Theorem Reframing (MUR-T6 & MUR-T7):** Reframed Theorem MUR-T7 as policy-level record admissibility (`loss_accounting_admissible`). Reframed Theorem MUR-T6 with a concrete commuting square countermodel (`concrete_commuting_square_uninhabited_standing`).
+- **Vendored Cochain Solver:** Vendored standalone `code/cochain_presentation.py` to eliminate monorepo path escapes (`omega_engine` imports).
+- **Self-Contained Lean 4 Mechanization:** Embedded self-contained `Coda.MUR` core algebra in `lean4/Algebra.lean`, removing external path dependencies. All 12 Lake build targets compile cleanly with 0 `sorry`/`admit`.
+- **Notebook Replay:** Executed all 3 companion Jupyter notebooks (`000`, `001`, `002`) with verified outputs and non-null execution counts.
+- **Test Suite Expansion:** Expanded test suite to 31 tests in `mur/code/tests` passing cleanly.
+- **Claim Ledger Overhaul:** Rewrote `coda_mur_claim_ledger.md` into exact 1-to-1 bijection with MUR-D1–D3 and MUR-T1–T8, purging unevidenced legacy bicategory and cochain claims.
+- **Discrete Policy Bar Plot:** Updated `code/generate_figures.py` to render discrete labeled policy bars instead of continuous descending curves. Rebuilt `coda_mur.pdf` with full embedded metadata.
+
+---
+
+## v2.1.0 — 2026-09-12 (Public Pedagogy Pass)
+
+- Rewrote `coda_mur.md` and `coda_mur.tex` into pedagogical sections: commuting squares, composition, collisions, non-recoverability, and non-bypass.
+- Added 3 companion Jupyter notebooks (`000_moving_a_picture_to_a_coarser_one.ipynb`, `001_when_two_moves_compose.ipynb`, `002_what_you_cannot_get_back.ipynb`).
+
+---
+
+## v2.0.0 — 2026-09-07 (Lean Namespace Modernization)
+
+- PR #224: Unified namespace to `CODA_MUR` across Lean sources.
+- Verified namespace token balance across records and proofs.
+
+---
+
+## v1.0.0 — 2026-07-27 (CODA Tower Normalization)
+
+- Established primary paper identity and transport certificate $\chi_F : D_B F \Rightarrow \bar{F} D_A$.
+- Formalized terminal non-bypass firewall slogan.
+- Documented proof obligations and Part A paper rubric.
+
+---
+
+## v0.1.0 — 2026-07-25 (Initial Formal Specification)
+
+- Initial formalization of Certified Representation Transport ($\Omega\chi$).

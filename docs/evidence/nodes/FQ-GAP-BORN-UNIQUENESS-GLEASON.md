@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 15
 - cited Lean, Rust or Python symbols found in their in-repo files: 36
-- cited Lean declarations covered by a current replay receipt: 13
+- cited Lean declarations covered by a current replay receipt: 36
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -54,12 +54,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornEffectValuation.lean](../../../lean4/BornEffectValuation.lean)
 - sha256 (`bytes`): `667f6f7a73ca630a4c395a424a68398c9daebfba404d5284abe56dfdbe2955cc`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornEffectValuation`): recorded sha256 `667f6f7a73ca630a4c395a424a68398c9daebfba404d5284abe56dfdbe2955cc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornEffectValuation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.val_rat_smul` | yes | yes | yes | - | `#print axioms BornFable.val_rat_smul` |
+| `BornFable.val_rat_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.val_rat_smul` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornGaussRat.lean`
@@ -67,12 +68,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornGaussRat.lean](../../../lean4/BornGaussRat.lean)
 - sha256 (`bytes`): `b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornGaussRat`): recorded sha256 `b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussRat`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.GaussRat.instStarRing` | yes | yes | yes | - | `#print axioms BornFable.GaussRat.instStarRing` |
+| `BornFable.GaussRat.instStarRing` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussRat.instStarRing` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornGaussianFrameRays.lean`
@@ -119,13 +121,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornHermitianCarrier.lean](../../../lean4/BornHermitianCarrier.lean)
 - sha256 (`bytes`): `ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianCarrier`): recorded sha256 `ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornHermitianCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.HermitianCarrier.normSq_dot_le` | yes | yes | yes | - | `#print axioms BornFable.HermitianCarrier.normSq_dot_le` |
-| `BornFable.HermitianCarrier.trace_rep` | yes | yes | yes | - | `#print axioms BornFable.HermitianCarrier.trace_rep` |
+| `BornFable.HermitianCarrier.normSq_dot_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.normSq_dot_le` |
+| `BornFable.HermitianCarrier.trace_rep` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.trace_rep` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornHermitianPsdDecomposition.lean`
@@ -133,12 +136,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornHermitianPsdDecomposition.lean](../../../lean4/BornHermitianPsdDecomposition.lean)
 - sha256 (`bytes`): `35fe7beaeab4e29cc2c0b710a911d403aa1a573db5634e9c92af9618ce16eb32`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianPsdDecomposition`): recorded sha256 `35fe7beaeab4e29cc2c0b710a911d403aa1a573db5634e9c92af9618ce16eb32` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornHermitianPsdDecomposition`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.HermitianPsd.gram_of_psd` | yes | yes | yes | - | `#print axioms BornFable.HermitianPsd.gram_of_psd` |
+| `BornFable.HermitianPsd.gram_of_psd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianPsd.gram_of_psd` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornHermitianTraceRepresentation.lean`
@@ -146,15 +150,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornHermitianTraceRepresentation.lean](../../../lean4/BornHermitianTraceRepresentation.lean)
 - sha256 (`bytes`): `3e1bcb60f82cef30c92e2cf350ffb080ab56d8155d92aa50481c893d92b1b68e`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornHermitianTraceRepresentation`): recorded sha256 `3e1bcb60f82cef30c92e2cf350ffb080ab56d8155d92aa50481c893d92b1b68e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornHermitianTraceRepresentation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.HermitianCarrier.born_representation` | yes | yes | yes | - | `#print axioms BornFable.HermitianCarrier.born_representation` |
-| `BornFable.HermitianCarrier.born_rule` | yes | yes | yes | - | `#print axioms BornFable.HermitianCarrier.born_rule` |
-| `BornFable.HermitianCarrier.density_is_state` | yes | yes | yes | - | `#print axioms BornFable.HermitianCarrier.density_is_state` |
-| `BornFable.HermitianCarrier.state_valuation_correspondence` | yes | yes | yes | - | `#print axioms BornFable.HermitianCarrier.state_valuation_correspondence` |
+| `BornFable.HermitianCarrier.born_representation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.born_representation` |
+| `BornFable.HermitianCarrier.born_rule` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.born_rule` |
+| `BornFable.HermitianCarrier.density_is_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.density_is_state` |
+| `BornFable.HermitianCarrier.state_valuation_correspondence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.state_valuation_correspondence` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornLinearExtension.lean`
@@ -162,12 +167,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornLinearExtension.lean](../../../lean4/BornLinearExtension.lean)
 - sha256 (`bytes`): `3ad866318f95fd58021e70a95dd2d0197e565e8375645d236a45eca99424b332`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornLinearExtension`): recorded sha256 `3ad866318f95fd58021e70a95dd2d0197e565e8375645d236a45eca99424b332` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornLinearExtension`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.OrderedQUnit.linear_extension` | yes | yes | yes | - | `#print axioms BornFable.OrderedQUnit.linear_extension` |
+| `BornFable.OrderedQUnit.linear_extension` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.OrderedQUnit.linear_extension` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornMatrixCarrier.lean`
@@ -175,12 +181,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornMatrixCarrier.lean](../../../lean4/BornMatrixCarrier.lean)
 - sha256 (`bytes`): `723ec7dad59f111be54b11096ac8de4040b7b0777a6be521a07ca6b09c1311eb`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornMatrixCarrier`): recorded sha256 `723ec7dad59f111be54b11096ac8de4040b7b0777a6be521a07ca6b09c1311eb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornMatrixCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.MatrixCarrier.order_unit` | yes | yes | yes | - | `#print axioms BornFable.MatrixCarrier.order_unit` |
+| `BornFable.MatrixCarrier.order_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.order_unit` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornNormalization.lean`
@@ -188,7 +195,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornNormalization.lean](../../../lean4/BornNormalization.lean)
 - sha256 (`bytes`): `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8`
 - cited in: record TFQ-0307 (shared)
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornNormalization`): recorded sha256 `83fdfac8a9b2d61cff987d7a8b8cd7acb809afd851d8d6d0369a3ae2b12004c8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornNormalization`
 - counts toward the grade: no
 
@@ -197,12 +205,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornPsdDecomposition.lean](../../../lean4/BornPsdDecomposition.lean)
 - sha256 (`bytes`): `fc4d54c9f1c4d0156843c89cf6de6aaad8149ee9aa9654366336ef7400ad8037`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornPsdDecomposition`): recorded sha256 `fc4d54c9f1c4d0156843c89cf6de6aaad8149ee9aa9654366336ef7400ad8037` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornPsdDecomposition`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.PsdDecomposition.gram_of_psd` | yes | yes | yes | - | `#print axioms BornFable.PsdDecomposition.gram_of_psd` |
+| `BornFable.PsdDecomposition.gram_of_psd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.PsdDecomposition.gram_of_psd` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornRationalSphereObstruction.lean`
@@ -210,13 +219,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornRationalSphereObstruction.lean](../../../lean4/BornRationalSphereObstruction.lean)
 - sha256 (`bytes`): `bf329537287f4cc508d944ea0ce780096d36df81216728d03a192ea741457812`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornRationalSphereObstruction`): recorded sha256 `bf329537287f4cc508d944ea0ce780096d36df81216728d03a192ea741457812` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRationalSphereObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.RationalSphere.parity_frame_function` | yes | yes | yes | - | `#print axioms BornFable.RationalSphere.parity_frame_function` |
-| `BornFable.RationalSphere.parity_not_quadratic` | yes | yes | yes | - | `#print axioms BornFable.RationalSphere.parity_not_quadratic` |
+| `BornFable.RationalSphere.parity_frame_function` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalSphere.parity_frame_function` |
+| `BornFable.RationalSphere.parity_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalSphere.parity_not_quadratic` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornTraceRepresentation.lean`
@@ -224,15 +234,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornTraceRepresentation.lean](../../../lean4/BornTraceRepresentation.lean)
 - sha256 (`bytes`): `24bc62b14d2a6661c17202df9122a38ef9a3c7ae099e1549198b410ee52b1709`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `BornTraceRepresentation`): recorded sha256 `24bc62b14d2a6661c17202df9122a38ef9a3c7ae099e1549198b410ee52b1709` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornTraceRepresentation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.MatrixCarrier.born_representation` | yes | yes | yes | - | `#print axioms BornFable.MatrixCarrier.born_representation` |
-| `BornFable.MatrixCarrier.born_rule` | yes | yes | yes | - | `#print axioms BornFable.MatrixCarrier.born_rule` |
-| `BornFable.MatrixCarrier.density_is_state` | yes | yes | yes | - | `#print axioms BornFable.MatrixCarrier.density_is_state` |
-| `BornFable.MatrixCarrier.state_valuation_correspondence` | yes | yes | yes | - | `#print axioms BornFable.MatrixCarrier.state_valuation_correspondence` |
+| `BornFable.MatrixCarrier.born_representation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.born_representation` |
+| `BornFable.MatrixCarrier.born_rule` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.born_rule` |
+| `BornFable.MatrixCarrier.density_is_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.density_is_state` |
+| `BornFable.MatrixCarrier.state_valuation_correspondence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.state_valuation_correspondence` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -240,14 +251,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
-| `QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` |
+| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
+| `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQM.lean`
@@ -255,7 +267,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: record TFQ-0307 (shared)
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: no
 
@@ -264,12 +277,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H013QuarticRivalSeparation.lean](../../../lean4/H013QuarticRivalSeparation.lean)
 - sha256 (`bytes`): `249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H013QuarticRivalSeparation`): recorded sha256 `249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build H013QuarticRivalSeparation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `frames_equinorm` | yes | yes | yes | - | `#print axioms frames_equinorm` |
+| `frames_equinorm` | yes | yes | yes | none | `#print axioms frames_equinorm` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H017Gleason.lean`
@@ -277,12 +291,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H017Gleason.lean](../../../lean4/H017Gleason.lean)
 - sha256 (`bytes`): `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Gleason`): recorded sha256 `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build H017Gleason`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `gleason_pack_uniqueness_still_imported` | yes | yes | yes | - | `#print axioms gleason_pack_uniqueness_still_imported` |
+| `gleason_pack_uniqueness_still_imported` | yes | yes | yes | none | `#print axioms gleason_pack_uniqueness_still_imported` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

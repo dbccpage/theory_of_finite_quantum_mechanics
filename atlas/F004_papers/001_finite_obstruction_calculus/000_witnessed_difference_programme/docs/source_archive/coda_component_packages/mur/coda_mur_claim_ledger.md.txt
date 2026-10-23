@@ -1,0 +1,78 @@
+# Claim Ledger — CODA-MUR: Certified Representation Transport, Composition, and Irreversible Forgetting
+
+**Paper Identity:** `CODA-MUR` (`coda_mur.md`, canonical version: `v3.1.1`, date: `2026-09-28`)  
+
+This ledger catalogs every definition (MUR-D1–D3) and theorem (MUR-T1–T8) in `CODA-MUR` with exact hypotheses, formal Lean symbols, computational Python symbols and tests, verified status, and explicit non-claims. Legacy overclaims (bicategory theorems, cochain $d_1 d_0 = 0$ classification, and authority increase bounds) have been purged in alignment with the manuscript.
+
+---
+
+## 1. Definitional Foundations (MUR-D1 – MUR-D3)
+
+| ID | Exact Paper Statement | Governing Hypotheses | Lean Symbol & Module | Python Symbol & Test | Status | Explicit Non-Claims |
+|:---|:---|:---|:---|:---|:---|:---|
+| **MUR-D1** | A transport from $p: X \to A$ to $q: Y \to B$ is a record with $\mathrm{states}: X \to Y$, $\mathrm{observations}: A \to B$, and $\mathrm{commutes}: \forall x,\ q(\mathrm{states}(x)) = \mathrm{observations}(p(x))$. | Types $X, A, Y, B$, looks $p: X \to A, q: Y \to B$. Ordinary types (finiteness not required). | `Coda.MUR.Transport` , in `lean4/Algebra.lean` | `DescentSquareCertificate` , (finite verification model with `verify()` in `coda_mur_core.py`) | DEFINITION / LEAN-PROVED | Does not claim target standing or that the move is invertible. Compatibility with observation only. |
+| **MUR-D2** | A descent-square certificate $\chi_F$ is the equality $D_B(F(x)) = \bar{F}(D_A(x))$ for all $x$, with typed morphism kinds (`exact`, `embedding`, `quotient`, `approximation`, `unmeasured`). | Representation map $F: \mathsf{Rep}_A \to \mathsf{Rep}_B$, core action $\bar{F}: \mathcal{C}_A \to \mathcal{C}_B$, descent maps $D_A, D_B$. | `DescentSquareCertificate` , in `lean4/D01D02D03Records.lean` | `DescentSquareCertificate` , `code/tests/test_coda_mur.py::test_finite_verification_evaluates_square` | DEFINITION / LEAN-PROVED | Kind label is metadata, not a proof of commutation. Commutation must be verified across carrier. |
+| **MUR-D3** | Paper/Python: four Boolean bits plus nonnegative rational mass; Lean: four bits only | Declared common mass units and exact rational values | `CODA_MUR.LossLedger` in `lean4/D01D02D03Records.lean` has no mass field | `code/tests/test_coda_mur.py::test_kind_to_ledger_dimension_obligations` and `test_loss_algebra_monoid_laws` | BOOLEAN DEFINITION MECHANIZED; RATIONAL EXTENSION PAPER/PYTHON | No claim that the full five-field Python record is formalized |
+
+---
+
+## 2. Core Theorems (MUR-T1 – MUR-T8)
+
+| ID | Exact Paper Statement | Governing Hypotheses | Lean Symbol & Module | Python Symbol & Test | Status | Explicit Non-Claims |
+|:---|:---|:---|:---|:---|:---|:---|
+| **MUR-T1** | For composable transports $f$ and $g$, the composite commutes: $r(g.\mathrm{states}(f.\mathrm{states}(x))) = g.\mathrm{observations}(f.\mathrm{observations}(p(x)))$. | Transports $f: p \to q$ and $g: q \to r$. | `Coda.MUR.composite_commutes` , in `lean4/Algebra.lean` | `code/tests/test_mur_finite_contract.py::test_pasting_evaluates_composite_maps_on_carrier` | LEAN-PROVED / PYTHON-TESTED INSTANCE | Does not prove or construct a bicategory of regimes; associators, unitors, and interchange are not supplied. |
+| **MUR-T2** | If $\chi_F$ certifies $D_B \circ F = \bar{F} \circ D_A$ and $\chi_G$ certifies $D_C \circ G = \bar{G} \circ D_B$, then descent squares paste: $D_C \circ (G \circ F) = (\bar{G} \circ \bar{F}) \circ D_A$. | Certified descent squares $\chi_F, \chi_G$ matching at intermediate regime $B$. Both legs independently valid. | `descentSquareCertificate_paste` , in `lean4/T01CertificatePasting.lean` | `paste_certificates` , `code/tests/test_coda_mur.py::test_certificate_pasting_law` | LEAN-PROVED / PYTHON-TESTED INSTANCE | Pasting composite 2-cells does not imply global regime coherence or canonical factorization. |
+| **MUR-T3** | If $f$ is a transport from $p$ to $q$ and $p(x) = p(y)$, then $q(f.\mathrm{states}(x)) = q(f.\mathrm{states}(y))$ (collisions transport). | Transport $f: p \to q$, states $x, y \in X$ with $p(x) = p(y)$. | `Coda.MUR.collision_transports` , in `lean4/Algebra.lean` | `code/tests/test_mur_finite_contract.py::test_finite_collision_transport_and_nonrecoverability` | LEAN-PROVED / PYTHON-TESTED INSTANCE | Does not imply collisions are preserved in reverse or that non-colliding states remain distinct. |
+| **MUR-T4** | If $p(x) = p(y)$ and $f: A \to B$, then $f(p(x)) = f(p(y))$ (post-processing preserves collisions). | Observation map $p: X \to A$, post-processing function $f: A \to B$, states with $p(x) = p(y)$. | `Coda.MUR.postprocess_preserves_collision` , in `lean4/Algebra.lean` | `code/tests/test_mur_finite_contract.py::test_finite_collision_transport_and_nonrecoverability` | LEAN-PROVED / PYTHON-TESTED INSTANCE | Forward congruence only; does not claim post-processing preserves injectivity or information. |
+| **MUR-T5** | There does not exist a recovery map $\mathrm{recover}: \mathbf{1} \to \mathbf{2}$ such that $\mathrm{recover}(\mathrm{collapse}(b)) = b$ for every bit $b$ (non-recoverability after non-injective collapse). | Types $\mathbf{2} = \mathrm{Bool}$, $\mathbf{1} = \mathrm{Unit}$, collapse map $\mathrm{collapse}: \mathbf{2} \to \mathbf{1}$. | `Coda.MUR.loss_is_not_recoverable` , in `lean4/Algebra.lean` | `code/tests/test_mur_finite_contract.py::test_finite_collision_transport_and_nonrecoverability` | LEAN-PROVED / PYTHON-TESTED INSTANCE | Proves non-existence of a left inverse recovering every source value; right inverses (sections) do exist. |
+| **MUR-T6** | It is not the case that for every target regime, every coarser state $y$, and every commuting square $\chi$, $\chi \implies \mathsf{Standing}_B(y)$. | Target regime with terminalizer and halt guards. Concrete countermodel `noTerminalRegime`. | `CODA_MUR.concrete_commuting_square_uninhabited_standing` , `chi_alone_does_not_imply_target_authority` , in `lean4/L02TerminalNonBypass.lean` | `evaluate_transport_authority` , `test_terminal_non_bypass_firewall` , `code/tests/test_coda_mur.py::test_terminal_non_bypass_firewall` | LEAN-PROVED / PYTHON-TESTED INSTANCE | Demonstrates that compatibility certificates are distinct from target standing; does not claim target standing is unachievable. |
+| **MUR-T7** | If a morphism is of a lossy kind and the loss ledger is missing or empty, the move is not loss-accounting admissible. | Morphism with lossy kind (`quotient`, `approximation`, `unmeasured`). | `loss_accounting_admissible_necessity` , in `lean4/T03T04T05LossNoCreation.lean` | `test_loss_ledger_necessity_for_lossy_morphisms` , `code/tests/test_coda_mur.py::test_loss_ledger_necessity_for_lossy_morphisms` | LEAN-PROVED / PYTHON-TESTED INSTANCE | Policy-level accounting gate; does not prove semantic conservation of underlying mathematical information. |
+| **MUR-T8** | Ledger sum is associative with empty unit | Four bits under OR; rational mass under addition in common units | `loss_sum_assoc`, `loss_sum_left_unit`, `loss_sum_right_unit` prove the four-bit instance only | `code/tests/test_coda_mur.py::test_loss_algebra_monoid_laws` | BOOLEAN PART LEAN-PROVED; RATIONAL PART PAPER PROOF / PYTHON INSTANCE | The abstract `LossAlgebra` record assumes laws and is not a concrete rational instance |
+
+---
+
+## 3. Verification Invariants & Defect Policy
+
+1. **Zero Floats Invariant & Exact Rational Domain:** All numerical scalars and defect masses are strictly exact rational numbers (`sympy.Rational` or `fractions.Fraction`). Floats, floating-point approximations, square roots (`sqrt(2)`), and unconstrained algebraic symbols strictly fail validation with `TypeError` or `ValueError` across `coda_mur_core.py` and `cochain_presentation.py`.
+2. **Strict Boolean & Callback Typing:** All certificate flags (`commutes`, `chi_certified`) and ledger dimensions (`e`, `i`, `a`, `u`) require `type(v) is bool`. Strings (e.g. `"False"`) and integers are rejected with `TypeError`. Target callback `target_regime.is_auth()` must return strict Python `bool`, and `target_regime.terminalize()` must return `Optional[str]`.
+3. **Finite Verification Completeness:** `DescentSquareCertificate.verify()` requires the full carrier and all four maps (`carrier`, `state_map`, `observation_map`, `source_look`, `target_look`) to verify the square. Partial constructions return `False` and are rejected by `is_valid()` rather than falling back to unverified Boolean attestation.
+4. **Source Carrier & Commutation Binding:** Requested source IDs must belong to the verified carrier of the certificate, or have dynamic commutation explicitly verified across the square. Requests failing commutation yield `R_notransport`.
+5. **Provenance Exception Safety & Action Agreement:** Swallowing of exceptions in provenance evaluation is eliminated; square evaluation errors yield `R_notransport` and action evaluation errors yield `R_substituted_artifact`. When both `FiniteCoreAction` and `certificate.state_map` are supplied, their outputs on the requested source must strictly agree.
+6. **5×5 Kind Monoid & Exact Loss-Free Invariant:** Morphism kinds compose via a closed associative total-order monoid: $\mathsf{EXACT} < \mathsf{EMBEDDING} < \mathsf{QUOTIENT} < \mathsf{APPROXIMATION} < \mathsf{UNMEASURED}$. Morphisms of kind `EXACT` or `EMBEDDING` must declare zero loss mass; non-empty loss renders `is_valid() == False`.
+7. **Pasting Hygiene, Intermediate Preservation, & Leaf Receipts:** Pasting requires both input legs to be individually valid, verifies agreement of intermediate observation/look maps, verifies intermediate carrier coverage, and retains all leaf leg receipts in `leg_ledgers` associatively across composition. Incompatible defect vector shapes strictly raise `ValueError`.
+8. **Context-Bound Quotient Distance Certificates & Snapshots:** `QuotientDistanceCertificate.verify()` enforces 1-column cochain shapes `(m, 1)` and exact rational scalar entries. In `evaluate_transport_authority`, the certificate's cochain and repair map are strictly bound to `certificate.defect_vector` and `certificate.repair_map` (`R_malformed_quotient` / `R_obstruction`). The returned `TransportResult` stores an immutable snapshot of the certificate, isolating it from caller mutations.
+9. **Policy Diagnostics:** Residual codes (`DIAGNOSTIC_NO_TRANSPORT = 1`, `DIAGNOSTIC_UNPRICED_LOSS = 3/4`, `DIAGNOSTIC_NO_TERMINAL = 1/2`, `DIAGNOSTIC_TARGET_UNAUTH = 1/4`) are explicit policy diagnostics, not derived mathematical defect bounds.
+
+---
+
+## 4. Reproduction and evidence receipts
+
+Run `python -m pip install ".[test,notebooks]"`, then `python -m pytest code/tests`
+from the detached package. The tests exercise finite certificate evaluation,
+artifact binding, loss policies, exact solver certificates and immutable snapshots.
+`verification/replay_notebooks.py` runs each notebook in a separate host process
+with an explicit current-interpreter kernel and package working directory; pytest
+performs static notebook validation only. The independent release receipt records
+collected counts, pass/fail, coverage, notebook results and Lean build outcomes.
+Old 31/50-test counts and timed pass assertions are withdrawn.
+
+## 5. Explicit Non-Claims & Theoretical Boundaries
+
+1. **Finite scope:** A commit, test pass, or green gate in this repository does not confer real-world physical authority or establish external operational safety. The gate verifies internal finite consistency only.
+2. **Induced Action (L01) Non-Constructive Boundary:** The mathematical construction in `coda_mur_l01_finite_core_action.lean` connects induced action existence to descent-fiber invariance and totality using classical choice (`Classical.choose`) over unrestricted types. It is not an algorithmic finite enumeration procedure. The Python runtime class `FiniteCoreAction` is a lightweight callable check, not an executable realization of the L01 classical construction.
+3. **Bicategory Files as Scaffolding:** `coda_mur_t02_t07_instances.lean` is an open `Unit` research placeholder, and `coda_mur_t02_t07_kernel.lean` is an open 3-field record. Neither constitutes a completed proof of a bicategory of regimes or full coherence (associators, unitors, pentagon identity).
+4. **Finite Loss Algebra Scoping:** The formal loss theorems establish the four-bit Boolean operation only. Rational addition is the separate paper/Python extension. They do not prove conservation or classify all continuum, topological, or measure-theoretic loss.
+5. **No-Third-Source Hypothesis:** Theorem `lossy_no_creation` relies on an explicitly stated hypothesis in `NoCreationContext` (`noThirdAuthoritySource`); it does not mathematically derive exhaustiveness of authority sources from information loss alone.
+6. **Certificate Validity vs Relevance:** A mathematically valid quotient distance certificate proves distance for its specific cochain; it is relevant to transport only when both its cochain and repair matrix are bound to the declared transport model.
+
+
+
+## 6. Statement-level correspondence
+
+| Aspect | Lean | Python |
+|---|---|---|
+| Commutation | Equality for every source term | Pointwise evaluation on a nonempty declared finite carrier and the requested source |
+| Loss data | `e,i,a,u : Bool` | Same bits and `loss_mass` an exact nonnegative rational |
+| Sum | Bitwise OR | Bitwise OR and rational addition |
+| MUR-T7 | Abstract `lossDefined : Prop`; necessity follows from an implication | Defined nonempty ledger, kind-specific bits, exact/embedding empty ledger |
+| Quotient evidence | No bridge proof supplied | Verified immutable primal/dual certificate bound to cochain and repair map |
