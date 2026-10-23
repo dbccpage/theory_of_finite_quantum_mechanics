@@ -1,6 +1,6 @@
 # PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 
-Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence gr
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
 - cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Under the exact-inscription convention \<a\> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent.
+Under the exact-inscription convention \<a\> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/CampaignPgwPresentationLift.lean checks a two-inscription model (Inscription = {nil, markA}, convention comparison, P0 = {nil} against P1 = {nil, markA}) in which the distinction map q is the constant empty map by definition and the exact-inscription convention is defined as equality, so O_0 = O_1 = empty, the non-injectivity of q and the statement that the collapse holds under the opaque convention only are properties of those definitions. Not proved: an observation family O_n and q derived from it, supplying \<a\> as an operation that leaves O unchanged, P changing to {\<a\>} as the statement words it (the model has P1 = {\<\>, \<a\>}), the link between q and the Genesis regime model of the module, and the opaque identity convention itself, which stays an import.
 
 ## Source status
 
@@ -42,6 +42,19 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignPgwPresentationLift.lean`
+
+- file: [lean4/CampaignPgwPresentationLift.lean](../../../lean4/CampaignPgwPresentationLift.lean)
+- sha256 (`bytes`): `034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074`
+- cited in: node.lean, record TFQ-0422
+- replay: `none`
+- check: `cd lean4 && lake build CampaignPgwPresentationLift`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignPgwPresentationLift.statement_holds_under_opaque_only` | yes | yes | yes | - | `#print axioms CampaignPgwPresentationLift.statement_holds_under_opaque_only` |
+- counts toward the grade: yes
+
 ### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean`
 
 - file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean`
@@ -49,10 +62,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean
 - counts toward the grade: no
 
+### Python: `checks/independent/pgw-presentation-not-expressive-lift.py`
+
+- file: [checks/independent/pgw-presentation-not-expressive-lift.py](../../../checks/independent/pgw-presentation-not-expressive-lift.py)
+- sha256 (`bytes`): `11490a7350cd3707be4844f886a505a9d2f3577aa26d1821e761cb1d849d9ee8`
+- cited in: record TFQ-0422
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `main` (python_symbol) | yes | yes | yes | - | - |
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md](../../../dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md)
-- sha256 (`lf-normalised`): `a742d4d0d12165bc6bdc301b520a8c9b05680050a39de51a0ba299ba5e77bc7b`
+- sha256 (`lf-normalised`): `04b778517449cda76271bb0713ec7866fefba41f621c82c03692e34fbb835abb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0422
 - counts toward the grade: no
@@ -79,7 +103,6 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0422 python: no Python record separating presentation state from internal class
 - TFQ-0422 rust: no Rust record separating presentation state from internal class
 
 ## Routes

@@ -13929,13 +13929,14 @@
         "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:29-43"
       ],
       "lean": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal",
+        "lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only"
       ],
       "rust": [],
       "imported_structure": [
         "Opaque identity convention: a state is what the regime can tell apart, so internal identity is the quotient by ≈ₙ (assumption)"
       ],
-      "bottleneck": "Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent.",
+      "bottleneck": "Under the exact-inscription convention <a> is a new state; the statement concerns discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/CampaignPgwPresentationLift.lean checks a two-inscription model (Inscription = {nil, markA}, convention comparison, P0 = {nil} against P1 = {nil, markA}) in which the distinction map q is the constant empty map by definition and the exact-inscription convention is defined as equality, so O_0 = O_1 = empty, the non-injectivity of q and the statement that the collapse holds under the opaque convention only are properties of those definitions. Not proved: an observation family O_n and q derived from it, supplying <a> as an operation that leaves O unchanged, P changing to {<a>} as the statement words it (the model has P1 = {<>, <a>}), the link between q and the Genesis regime model of the module, and the opaque identity convention itself, which stays an import.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0422",
@@ -25814,16 +25815,27 @@
       "statement": "Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and Bose et al. (2017, arXiv:1707.06050, pp. 1-2): if two quantum systems Q1 and Q2 start in a separable state, interact only locally through a mediating system M (Q1 <-> M and M <-> Q2, with no direct Q1-Q2 interaction, Principle I locality), and end in an entangled state of Q1 + Q2, then M cannot be a classical medium (in Marletto-Vedral, M must have at least two disjoint incompatible observables whose union is not an information variable; in Bose et al., any mediator modeled by local operations and classical communication cannot create entanglement). The repository has no gravity model; TFQ-0084 is a finite shadow only.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md",
+        "dag/derivations/independent/ct-local-mediator-entanglement-import.md",
         "external:arXiv:1707.06036",
         "external:arXiv:1707.06050"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_local_le",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_not_reachable",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.M_entangled_concurrence",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state",
+        "lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference"
+      ],
       "rust": [],
       "imported_structure": [
         "locality of the mediated interaction (assumption)",
         "information-theoretic definition of a classical mediator (assumption)"
       ],
-      "bottleneck": "The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) is an assumption of this branch. It does not use or support any repository Lean result.",
+      "bottleneck": "The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption of this branch. CampaignCtMediatorEntanglement.lean states only a finite shadow: a single linear local map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating system M, the definition of a classical medium, or any gravity model.",
       "tags": [
         "frontier-branch",
         "frontier:constructor_theory",
@@ -54826,14 +54838,15 @@
       ],
       "id": "TFQ-0422",
       "lean4": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal",
+        "lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only"
       ],
       "local_id": "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
       "name": "presentation-not-expressive-lift",
       "obligation": "Keep the presentation P and the internal quotient N as separate records, so that supplying <a> with O empty adds a presentation state and no internal class, and never infer x = y from q(x) = q(y).",
       "parent_id": "TFQ-0421",
       "python": [
-        "absent: no Python record separating presentation state from internal class"
+        "checks/independent/pgw-presentation-not-expressive-lift.py::main"
       ],
       "record_status": "CONDITIONAL",
       "rust": [
