@@ -8,7 +8,7 @@ Base: 09f3170fe2c851973219d04662fe319321892762. The three original drafts,
 concurrent BPHZ cleanup, repaired Lean declarations, exact independent checkers,
 canonical DAG records and active YAML contracts were reviewed. The individual
 statement-versus-theorem tables are in the adjacent pr-227-l4-repair,
-pr-230-l4-repair and pr-233-l4-repair reviews. Their earlier L3 assessments
+pr-230-l4-repair and pr-233-l4-repair reviews. Their earlier below-floor assessments
 remain immutable historical records and do not certify the repaired sources.
 
 ## Result
@@ -157,3 +157,17 @@ The post-PR230 affected-view replay passes all seven steps (both evidence and
 inventory modes, both contract validators, strict scanner). Governance again
 has zero failures, and all 92 active bindings match. Immutable-number checking
 keeps the 15/14 complexity maxima and all four selected faults are killed.
+
+## Final concurrent-merge integration
+
+Main 88ae4d41bdce6b0b69c3ac8b85d6765cf632fdab includes the original
+PR233 merge. Integration at 60d33d143775d6f85864f1367201a4bac83ead11
+adds only immutable registry history to the post-PR230 validated tree; all
+source, canonical DAG, policy and generated-view bytes remain unchanged.
+The three substantive exemptions (including the original CKM L2D source) are
+removed. Both contract validators and strict scanner pass against this final
+base; governance and hosted results are recorded before merge.
+
+Final-base governance passes: 8195 checked, 26 pass, 8149 unchanged
+grandfathered, 20 pinned boilerplate, zero failures. Exact-head hosted checks
+remain the final merge condition; no pending local substantive check remains.
