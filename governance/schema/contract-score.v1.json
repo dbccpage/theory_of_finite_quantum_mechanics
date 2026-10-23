@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/governance/schema/contract-score.v1.json",
+  "title": "ContractScoreDocumentV1",
+  "description": "A *.contract.score.yaml companion (stored as JSON). History entries keep the exact bytes of every imported or appended contract and score record. Acceptance additionally needs the semantic rules listed in $comment, which governance-check enforces.",
+  "$comment": "Semantic rules beyond this schema (code/rust/src/governance/src/verify.rs): (1) each history entry's raw_utf8 hashes to its sha256 and has its bytes length; (2) contract equals the record of the current_contract entry; (3) the contract and the current score bind the source path and the SHA-256 of its current bytes; (4) the current score is acceptedScore: every gate graded, composite_grade = min(G1..G5), score_token = level + composite_grade; (5) the token meets the floor in governance/policy.json (L4 and D) unless governance/baseline.json lists the source with unchanged bytes.",
+  "type": "object",
+  "required": ["schema_version", "artifact", "contract", "current_contract", "current_scoring", "contract_history", "scoring_history"],
+  "properties": {
+    "schema_version": {"const": "tfqm.contract-score.v1"},
+    "AuthorityEffect": {"const": "None"},
+    "artifact": {"type": ["string", "null"], "description": "Repository-relative path of the source."},
+    "contract": {"$ref": "#/$defs/contractRecord"},
+    "current_contract": {"$ref": "#/$defs/sha256OrNull"},
+    "current_scoring": {"$ref": "#/$defs/sha256OrNull"},
+    "contract_history": {"type": "array", "items": {"$ref": "#/$defs/historyEntry"}},
+    "scoring_history": {"type": "array", "items": {"$ref": "#/$defs/historyEntry"}},
+    "legacy_paths": {"type": "object", "additionalProperties": {"$ref": "#/$defs/sha256"}},
+    "history_order": {"type": "string"},
+    "assurance": {"type": "string"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "sha256OrNull": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+    "grade": {"enum": ["E", "D", "C", "B", "A", "A+"]},
+    "gradeOrNull": {"enum": ["E", "D", "C", "B", "A", "A+", null]},
+    "binding": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "language": {"type": "string"}
+      }
+    },
+    "contractRecord": {
+      "description": "Either layout binds the source: artifact {path, sha256} or subject + source_sha256.",
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "anyOf": [{"required": ["artifact"]}, {"required": ["subject", "source_sha256"]}],
+          "properties": {
+            "artifact": {"$ref": "#/$defs/binding"},
+            "subject": {"type": "string"},
+            "source_sha256": {"$ref": "#/$defs/sha256"},
+            "contract_urn": {"type": "string"},
+            "claim": {"type": "string"},
+            "contract_id": {"type": "string"},
+            "symbols": {"type": "array", "items": {"type": "string"}},
+            "owned_invariants": {"type": "array", "items": {"type": "string"}},
+            "boundaries": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "historyEntry": {
+      "type": "object",
+      "required": ["sha256", "bytes", "record", "raw_utf8", "original_paths"],
+      "properties": {
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "record": {"type": "object"},
+        "raw_utf8": {"type": "string"},
+        "original_paths": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "scoreRecordV2": {
+      "description": "SCORING.md section 6 record, as stored in scoring_history[].record.",
+      "type": "object",
+      "required": ["schema_version", "artifact", "profile", "level", "gates", "composite_grade", "score_token", "is_complete", "grade_ceiling", "evaluation_timestamp"],
+      "properties": {
+        "schema_version": {"const": "2.0.0"},
+        "artifact": {"$ref": "#/$defs/binding"},
+        "profile": {"enum": ["Exact", "Quantized", "Numerical", "Symbolic/Formal", "Non-Numeric"]},
+        "level": {"enum": ["L1", "L2", "L3", "L4", "L5"]},
+        "gates": {
+          "type": "object",
+          "required": ["G1", "G2", "G3", "G4", "G5"],
+          "properties": {
+            "G1": {"$ref": "#/$defs/gradeOrNull"},
+            "G2": {"$ref": "#/$defs/gradeOrNull"},
+            "G3": {"$ref": "#/$defs/gradeOrNull"},
+            "G4": {"$ref": "#/$defs/gradeOrNull"},
+            "G5": {"$ref": "#/$defs/gradeOrNull"}
+          }
+        },
+        "composite_grade": {"$ref": "#/$defs/gradeOrNull"},
+        "score_token": {"type": ["string", "null"], "pattern": "^L[1-5](E|D|C|B|A\\+?)$"},
+        "is_complete": {"type": "boolean"},
+        "grade_ceiling": {"$ref": "#/$defs/grade"},
+        "evaluation_timestamp": {"type": "string", "format": "date-time"},
+        "basis": {"type": "object", "description": "Per-gate reasoning, keyed G1..G5."},
+        "evidence": {"type": "array"}
+      }
+    },
+    "acceptedScore": {
+      "description": "A current score that can clear the floor: complete, with a token.",
+      "allOf": [
+        {"$ref": "#/$defs/scoreRecordV2"},
+        {
+          "properties": {
+            "is_complete": {"const": true},
+            "gates": {"properties": {"G1": {"$ref": "#/$defs/grade"}, "G2": {"$ref": "#/$defs/grade"}, "G3": {"$ref": "#/$defs/grade"}, "G4": {"$ref": "#/$defs/grade"}, "G5": {"$ref": "#/$defs/grade"}}},
+            "composite_grade": {"$ref": "#/$defs/grade"},
+            "level": {"enum": ["L4", "L5"]},
+            "score_token": {"type": "string", "pattern": "^L[45](D|C|B|A\\+?)$"}
+          }
+        }
+      ]
+    }
+  }
+}
