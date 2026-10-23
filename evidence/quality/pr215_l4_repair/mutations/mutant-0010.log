@@ -1,0 +1,22 @@
+
+running 10 tests
+....... 7/10
+tests::a_policy_or_baseline_change_selects_the_whole_population --- FAILED
+..
+failures:
+
+---- tests::a_policy_or_baseline_change_selects_the_whole_population stdout ----
+
+thread 'tests::a_policy_or_baseline_change_selects_the_whole_population' (14720) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:585:13:
+assertion `left == right` failed: governance/policy.json
+  left: []
+ right: ["code/a.rs", "code/b.py"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::a_policy_or_baseline_change_selects_the_whole_population
+
+test result: FAILED. 9 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.68s
+
+error: test failed, to rerun pass `--bin governance-check`

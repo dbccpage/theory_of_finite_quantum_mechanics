@@ -153,10 +153,22 @@
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
         "papers/ravera_dfm_dossier.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.dressed_chord_formula",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.not_star_local",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_two_ne_five",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_star_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_misses_star",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.transport_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.changed_label",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_plan_evaluate",
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_in_footprint"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "bottleneck": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
       "tags": [
         "application-branch",
         "TFQ-0401",
@@ -902,18 +914,35 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.3-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
-      "statement": "Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric integrands, and its use before continuum integration, is not established by the finite artifacts.",
+      "statement": "On the declared overlapping edge sets L = {0,1,2}, R = {2,3,4} and G = {0,1,2,3,4}, a Zimmermann forest is a subset whose members are pairwise nested or disjoint, and the forests are exactly the six subsets in which L and R do not both occur. For the order-0 evaluations T_L I(x,y) = I(0,y), T_R I(x,y) = I(x,0) and T_G I(x,y) = I(0,0), the signed six-forest sum equals I(x,y) - I(0,y) - I(x,0) + I(0,0). For the declared numerator N(x,y) = 2 + 3x + 5y + 7xy that sum is 7xy, so the quotient by xy equals 7 wherever xy is nonzero. The three-forest sum that omits G equals 7xy - 2, and its quotient is 7 - 2/(xy). At (x,y) = (1/2, 1/3) the two quotients are 7 and -5. Algebraic cancellation for actual Feynman-parametric integrands, and any use of this identity before continuum integration, is not established.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/independent/dfm-bphz-continuum-fence.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_excluded_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.nested_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_eq_inclusion",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.numerator_is_7xy",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_killed",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_append",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.evaluations_compatible",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_is_reduction"
+      ],
       "rust": [],
       "imported_structure": [
-        "Zimmermann forest formula",
         "continuum loop-momentum integration"
       ],
-      "bottleneck": "State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.",
+      "bottleneck": "The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -1228,18 +1257,32 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.6-FENCE claims PROVED_LEAN; audited status OPEN",
-      "statement": "The residual U(1)_Y covariance u(e^{i alpha/2} Phi) = u(Phi) diag(e^{-i alpha/2}, e^{i alpha/2}), the dressed gauge field with derivative term, and the reading as an electroweak model without spontaneous symmetry breaking are not established by the finite artifacts.",
+      "statement": "For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4. The (1, 2) entry of U(2 Phi)/2 is 1, whereas the (1, 2) entry of (U(Phi)/1) diag(2, 2) is 2; these two sides of the proposed normalized covariance law differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean",
+        "dag/derivations/independent/dfm-electroweak-continuum-fence.md",
+        "checks/independent/dfm-electroweak-continuum-fence.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::unnormalized_covariance",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::unit_normalized_covariance",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::witness_three_fifths",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_preserves",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.action_composes",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant"
+      ],
       "rust": [],
       "imported_structure": [
         "continuum gauge fields W_mu and derivatives",
         "U(1)_Y phases outside Q(i)"
       ],
-      "bottleneck": "Generic phases e^{i alpha/2} are not in Q(i); keep the residual covariance on declared rational phases and keep the continuum Standard Model and Elitzur reading as interfaces.",
+      "bottleneck": "The normalized residual law is recorded when z lies in Q(i), the squared modulus of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -1395,18 +1438,33 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.7-FENCE claims PROVED_LEAN; audited status OPEN",
-      "statement": "Derivation of V from dressed Yukawa couplings, the unitarity-triangle reduction to (N_g - 1)(N_g - 2)/2 CP phases, and any statement about measured CP violation are not established.",
+      "statement": "For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the polynomial (n - 1)^2 has values 0, 1, 4, 9 and (n - 1)(n - 2)/2 has values 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "lean4/CampaignDfmCkmPhysicsFence.lean",
+        "dag/derivations/independent/dfm-ckm-physics-fence.md",
+        "checks/independent/dfm-ckm-physics-fence.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmCkmPhysicsFence.lean::cpCount_from_difference",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::constraintCount_sum",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::count_table",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::three_generation_split",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count"
+      ],
       "rust": [],
       "imported_structure": [
         "Yukawa couplings and mass-basis diagonalization",
         "measured CKM parameters"
       ],
-      "bottleneck": "Keep the Yukawa sector, mass diagonalization and experimental CKM values as imported structure.",
+      "bottleneck": "Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -1655,7 +1713,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.9-FENCE claims OPEN; audited status OPEN",
-      "statement": "For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite those sides are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.",
+      "statement": "For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite sides 5, 3 and 4 respectively are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md",
         "papers/ravera_dfm_dossier.md",
@@ -8405,7 +8463,7 @@
       ],
       "output": "DFM-BPHZ-CONTINUUM-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.",
+      "mechanism": "The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
         "papers/ravera_dfm_dossier.md"
@@ -8573,7 +8631,7 @@
       ],
       "output": "DFM-ELECTROWEAK-CONTINUUM-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Generic phases e^{i alpha/2} are not in Q(i); keep the residual covariance on declared rational phases and keep the continuum Standard Model and Elitzur reading as interfaces.",
+      "mechanism": "The normalized residual law is recorded when z lies in Q(i), the squared modulus of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
         "papers/ravera_dfm_dossier.md"
@@ -8657,10 +8715,11 @@
       ],
       "output": "DFM-CKM-PHYSICS-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Keep the Yukawa sector, mass diagonalization and experimental CKM values as imported structure.",
+      "mechanism": "Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "lean4/CampaignDfmCkmPhysicsFence.lean"
       ]
     },
     {
@@ -12173,8 +12232,8 @@
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-0400",
       "record_status": "GAP",
-      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.",
-      "obligation": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star.",
+      "obligation": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-CONTINUUM-INTERFACE"
@@ -12186,9 +12245,17 @@
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
         "papers/ravera_dfm_dossier.md"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-continuum-interface.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmContinuumInterface.lean::dressed_chord_formula",
+        "lean4/CampaignDfmContinuumInterface.lean::not_star_local",
+        "lean4/CampaignDfmContinuumInterface.lean::witness_two_ne_five",
+        "lean4/CampaignDfmContinuumInterface.lean::witness_star_agrees",
+        "lean4/CampaignDfmContinuumInterface.lean::outer_misses_star"
+      ]
     },
     {
       "id": "TFQ-0402",
@@ -12930,8 +12997,8 @@
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-1109",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric integrands, and its use before continuum integration, is not established by the finite artifacts.",
-      "obligation": "State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.",
+      "summary": "On the declared overlapping edge sets L = {0,1,2}, R = {2,3,4} and G = {0,1,2,3,4}, a Zimmermann forest is a subset whose members are pairwise nested or disjoint, and the forests are exactly the six subsets in which L and R do not both occur. For the order-0 evaluations T_L I(x,y) = I(0,y), T_R I(x,y) = I(x,0) and T_G I(x,y) = I(0,0), the signed six-forest sum equals I(x,y) - I(0,y) - I(x,0) + I(0,0). For the declared numerator N(x,y) = 2 + 3x + 5y + 7xy that sum is 7xy, so the quotient by xy equals 7 wherever xy is nonzero. The three-forest sum that omits G equals 7xy - 2, and its quotient is 7 - 2/(xy). At (x,y) = (1/2, 1/3) the two quotients are 7 and -5. Algebraic cancellation for actual Feynman-parametric integrands, and any use of this identity before continuum integration, is not established.",
+      "obligation": "The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-BPHZ-CONTINUUM-FENCE"
@@ -12941,11 +13008,31 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
         "papers/ravera_dfm_dossier.md:118-124",
-        "papers/ravera_dfm_dossier.md:34"
+        "papers/ravera_dfm_dossier.md:34",
+        "dag/derivations/independent/dfm-bphz-continuum-fence.md"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-bphz-continuum-fence.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_excluded_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.nested_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_eq_inclusion",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.numerator_is_7xy",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_killed",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_append",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.evaluations_compatible",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_is_reduction"
+      ]
     },
     {
       "id": "TFQ-1111",
@@ -13253,8 +13340,8 @@
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-1119",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "The residual U(1)_Y covariance u(e^{i alpha/2} Phi) = u(Phi) diag(e^{-i alpha/2}, e^{i alpha/2}), the dressed gauge field with derivative term, and the reading as an electroweak model without spontaneous symmetry breaking are not established by the finite artifacts.",
-      "obligation": "Generic phases e^{i alpha/2} are not in Q(i); keep the residual covariance on declared rational phases and keep the continuum Standard Model and Elitzur reading as interfaces.",
+      "summary": "For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4. The (1, 2) entry of U(2 Phi)/2 is 1, whereas the (1, 2) entry of (U(Phi)/1) diag(2, 2) is 2; these two sides of the proposed normalized covariance law differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.",
+      "obligation": "The normalized residual law is recorded when z lies in Q(i), the squared modulus of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-ELECTROWEAK-CONTINUUM-FENCE"
@@ -13264,11 +13351,27 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
         "papers/ravera_dfm_dossier.md:166",
-        "papers/ravera_dfm_dossier.md:173-174"
+        "papers/ravera_dfm_dossier.md:173-174",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean",
+        "dag/derivations/independent/dfm-electroweak-continuum-fence.md",
+        "checks/independent/dfm-electroweak-continuum-fence.py"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-electroweak-continuum-fence.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::unnormalized_covariance",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::unit_normalized_covariance",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::witness_three_fifths",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_preserves",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.action_composes",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant",
+        "lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant"
+      ]
     },
     {
       "id": "TFQ-1123",
@@ -13425,8 +13528,8 @@
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-1127",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Derivation of V from dressed Yukawa couplings, the unitarity-triangle reduction to (N_g - 1)(N_g - 2)/2 CP phases, and any statement about measured CP violation are not established.",
-      "obligation": "Keep the Yukawa sector, mass diagonalization and experimental CKM values as imported structure.",
+      "summary": "For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2 + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the polynomial (n - 1)^2 has values 0, 1, 4, 9 and (n - 1)(n - 2)/2 has values 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.",
+      "obligation": "Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-CKM-PHYSICS-FENCE"
@@ -13435,11 +13538,28 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md",
-        "papers/ravera_dfm_dossier.md:191-203"
+        "papers/ravera_dfm_dossier.md:191-203",
+        "lean4/CampaignDfmCkmPhysicsFence.lean",
+        "dag/derivations/independent/dfm-ckm-physics-fence.md",
+        "checks/independent/dfm-ckm-physics-fence.py"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-ckm-physics-fence.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmCkmPhysicsFence.lean::cpCount_from_difference",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::constraintCount_sum",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::count_table",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::three_generation_split",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value",
+        "lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count"
+      ]
     },
     {
       "id": "TFQ-1129",
@@ -13679,7 +13799,7 @@
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-1136",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite those sides are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.",
+      "summary": "For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite sides 5, 3 and 4 respectively are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.",
       "obligation": "The lengths 3, 4, 5 and beta = 1/2 are supplied data. The block trace is not computed from those lengths. A 4D complex, a deficit angle, a spin-frame dressing, and a continuum reading stay open.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [

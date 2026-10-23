@@ -3,17 +3,25 @@ node_id: DFM-BPHZ-CONTINUUM-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric
-    integrands, and its use before continuum integration, is not established by the finite artifacts.
+  source_statement: On the declared overlapping edge sets L = {0,1,2}, R = {2,3,4} and G = {0,1,2,3,4},
+    a Zimmermann forest is a subset whose members are pairwise nested or disjoint, and the forests are
+    exactly the six subsets in which L and R do not both occur. For the order-0 evaluations T_L I(x,y)
+    = I(0,y), T_R I(x,y) = I(x,0) and T_G I(x,y) = I(0,0), the signed six-forest sum equals I(x,y) - I(0,y)
+    - I(x,0) + I(0,0). For the declared numerator N(x,y) = 2 + 3x + 5y + 7xy that sum is 7xy, so the quotient
+    by xy equals 7 wherever xy is nonzero. The three-forest sum that omits G equals 7xy - 2, and its quotient
+    is 7 - 2/(xy). At (x,y) = (1/2, 1/3) the two quotients are 7 and -5. Algebraic cancellation for actual
+    Feynman-parametric integrands, and any use of this identity before continuum integration, is not established.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
-  - Zimmermann forest formula
   - continuum loop-momentum integration
-  source_bottleneck: State a forest formula for declared graph integrands with an explicit subtraction
-    operator and a convergence statement before using the BPHZ language.
+  source_bottleneck: The six-forest count, the order-0 collapse, and the quotient 7 are recorded only
+    for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands,
+    a subtraction operator of positive degree, and a convergence statement before continuum integration
+    remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md
   - papers/ravera_dfm_dossier.md
+  - dag/derivations/independent/dfm-bphz-continuum-fence.md
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md
   source_claim_label: OPEN
@@ -22,7 +30,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md
-    sha256: f159decfb82a6929f7e0326d90c105de94f4c7253ee9fb7af37e5019646cfbd1
+    sha256: fa03986a245e68500de6567e165d3b1821f43141b8ae16e5cd5c31da70401a56
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +38,510 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_bphz_continuum_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: flagOk
+  line: 139
+  signature_excerpt: 'def flagOk (f : Flag) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Flag
+  line: 133
+  signature_excerpt: structure Flag
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isCompatible
+  line: 116
+  signature_excerpt: 'def isCompatible (a b : Piece) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Piece
+  line: 95
+  signature_excerpt: |-
+    inductive Piece
+      | L
+      | R
+      | G
+      deriving DecidableEq, Repr
+
+    /-- Declared edge sets: `L = {0,1,2}`, `R = {2,3,4}`, `G = {0,1,2,3,4}`. -/
+    def pieceEdge : Piece → Fin 5 → Bool
+      | .L, e => decide (e.val ≤ 2)
+      | .R, e => decide (2 ≤ e.val)
+      | .G, _ => true
+
+    def edgeList : List (Fin 5)
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isSubset
+  line: 109
+  signature_excerpt: 'def isSubset (a b : Piece) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isDisjoint
+  line: 112
+  signature_excerpt: 'def isDisjoint (a b : Piece) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pieceEdge
+  line: 102
+  signature_excerpt: |-
+    def pieceEdge : Piece → Fin 5 → Bool
+      | .L, e => decide (e.val ≤ 2)
+      | .R, e => decide (2 ≤ e.val)
+      | .G, _ => true
+
+    def edgeList : List (Fin 5)
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nestOk
+  line: 181
+  signature_excerpt: 'def nestOk (f : NestFlag) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: NestFlag
+  line: 176
+  signature_excerpt: structure NestFlag
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nestCompatible
+  line: 173
+  signature_excerpt: 'def nestCompatible (a b : Nest) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Nest
+  line: 155
+  signature_excerpt: |-
+    inductive Nest
+      | inner
+      | outer
+      deriving DecidableEq, Repr
+
+    /-- Nested control: `inner = {0,1}` sits inside `outer = {0,1,2,3}`. -/
+    def nestEdge : Nest → Fin 4 → Bool
+      | .inner, e => decide (e.val ≤ 1)
+      | .outer, _ => true
+
+    def nestList : List (Fin 4)
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nestSubset
+  line: 167
+  signature_excerpt: 'def nestSubset (a b : Nest) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nestDisjoint
+  line: 170
+  signature_excerpt: 'def nestDisjoint (a b : Nest) : Bool'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nestEdge
+  line: 161
+  signature_excerpt: |-
+    def nestEdge : Nest → Fin 4 → Bool
+      | .inner, e => decide (e.val ≤ 1)
+      | .outer, _ => true
+
+    def nestList : List (Fin 4)
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sixSum
+  line: 198
+  signature_excerpt: 'def sixSum (I : ℚ → ℚ → ℚ) (x y : ℚ) : ℚ'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: evalL
+  line: 193
+  signature_excerpt: 'def evalL (I : ℚ → ℚ → ℚ) (_x y : ℚ) : ℚ'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: overlapping_excluded_iff
+  line: 145
+  signature_excerpt: |-
+    theorem overlapping_excluded_iff (l r g : Bool) :
+        flagOk ⟨l, r, g⟩ = false ↔ l = true ∧ r = true
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: overlapping_forest_count
+  line: 149
+  signature_excerpt: |-
+    theorem overlapping_forest_count :
+        (([false, true].flatMap fun l =>
+            [false, true].flatMap fun r =>
+              [false, true].map fun g => flagOk ⟨l, r, g⟩).count true) = 6
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nested_forest_count
+  line: 187
+  signature_excerpt: |-
+    theorem nested_forest_count :
+        (([false, true].flatMap fun i =>
+            [false, true].map fun o => nestOk ⟨i, o⟩).count true) = 4
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sixSum_eq_inclusion
+  line: 203
+  signature_excerpt: |-
+    theorem sixSum_eq_inclusion (I : ℚ → ℚ → ℚ) (x y : ℚ) :
+        sixSum I x y = I x y - I 0 y - I x 0 + I 0 0
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: numerator_is_7xy
+  line: 231
+  signature_excerpt: 'theorem numerator_is_7xy (x y : ℚ) : sixSum N x y = 7 * x * y'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quotient_is_seven
+  line: 235
+  signature_excerpt: |-
+    theorem quotient_is_seven (x y : ℚ) (hxy : x * y ≠ 0) :
+        sixSum N x y / (x * y) = 7
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: omitted_graph_remainder
+  line: 249
+  signature_excerpt: |-
+    theorem omitted_graph_remainder (x y : ℚ) (hxy : x * y ≠ 0) :
+        threeSum x y / (x * y) = 7 - 2 / (x * y)
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_half_third
+  line: 253
+  signature_excerpt: |-
+    theorem witness_half_third :
+        sixSum N (1 / 2) (1 / 3) = 7 / 6 ∧
+          sixSum N (1 / 2) (1 / 3) / ((1 / 2) * (1 / 3)) = 7 ∧
+            threeSum (1 / 2) (1 / 3) / ((1 / 2) * (1 / 3)) = -5
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sector_ne_seven
+  line: 275
+  signature_excerpt: |-
+    theorem sector_ne_seven :
+        (sectorK (3 / 5) (1 / 2) - sectorK 0 (1 / 2)) *
+            (sectorK (3 / 5) (1 / 3) - sectorK 0 (1 / 3)) ≠ 7
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reduce_killed
+  line: 51
+  signature_excerpt: |-
+    theorem reduce_killed (ps : List (Projector A)) (hc : Compatible ps)
+        (p : Projector A) (hp : p ∈ ps) (x : A) : p.map (reduce ps x) = 0
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reduce_fixed_iff
+  line: 70
+  signature_excerpt: |-
+    theorem reduce_fixed_iff (ps : List (Projector A)) (hc : Compatible ps) (x : A) :
+        reduce ps x = x ↔ ∀ p ∈ ps, p.map x = 0
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reduce_idempotent
+  line: 66
+  signature_excerpt: |-
+    theorem reduce_idempotent (ps : List (Projector A)) (hc : Compatible ps) (x : A) :
+        reduce ps (reduce ps x) = reduce ps x
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reduce_append
+  line: 82
+  signature_excerpt: |-
+    theorem reduce_append (ps qs : List (Projector A)) (x : A) :
+        reduce (ps ++ qs) x = reduce ps (reduce qs x)
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reduce_absorbs
+  line: 89
+  signature_excerpt: |-
+    theorem reduce_absorbs (ps qs : List (Projector A)) (hc : Compatible qs)
+        (hsub : ∀ p ∈ ps, p ∈ qs) (x : A) : reduce ps (reduce qs x) = reduce qs x
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: evaluations_compatible
+  line: 217
+  signature_excerpt: 'theorem evaluations_compatible : Subtraction.Compatible [leftProjection, rightProjection]'
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sixSum_is_reduction
+  line: 222
+  signature_excerpt: |-
+    theorem sixSum_is_reduction (I : ℚ → ℚ → ℚ) (x y : ℚ) :
+        sixSum I x y = Subtraction.reduce [leftProjection, rightProjection] I x y
+  source: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  source_sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_excluded_iff
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.overlapping_excluded_iff
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 145
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_forest_count
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.overlapping_forest_count
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 149
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.nested_forest_count
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.nested_forest_count
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 187
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_eq_inclusion
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.sixSum_eq_inclusion
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 203
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.numerator_is_7xy
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.numerator_is_7xy
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 231
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.quotient_is_seven
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 235
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.omitted_graph_remainder
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 249
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.witness_half_third
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 253
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.sector_ne_seven
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 275
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_killed
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.Subtraction.reduce_killed
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 70
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 66
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_append
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.Subtraction.reduce_append
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 82
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 89
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.evaluations_compatible
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.evaluations_compatible
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 217
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_is_reduction
+  availability: local
+  symbol: CampaignDfmBphzContinuumFence.sixSum_is_reduction
+  path: lean4/CampaignDfmBphzContinuumFence.lean
+  repository: this_repository
+  sha256: 93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8
+  declaration_status: declaration_found_not_proof_checked
+  line: 222
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -52,7 +561,6 @@ operad_slots:
     carrier: null
     coefficient_ring: null
     assumptions:
-    - Zimmermann forest formula
     - continuum loop-momentum integration
     source_pins: []
     public_input: {}
@@ -70,12 +578,9 @@ operad_slots:
     certificate_predicates: []
     anchors: []
     unpaid_imports:
-    - Zimmermann forest formula
     - continuum loop-momentum integration
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

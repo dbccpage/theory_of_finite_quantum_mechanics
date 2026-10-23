@@ -1,0 +1,45 @@
+
+running 52 tests
+................................ 32/52
+buildtime::tests::decide_respects_mode --- FAILED
+.. 35/52
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+....... 43/52
+buildtime::tests::new_mode_aborts_when_any_failure_is_new --- FAILED
+.. 46/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+.....
+failures:
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (14648) panicked at ..\code\rust\src\governance\src\buildtime.rs:333:9:
+assertion failed: matches!(decide(Mode::New, &report), Decision::Abort(text) if
+    text.contains("TFQM_GOVERNANCE=new"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (40460) panicked at ..\code\rust\src\governance\src\buildtime.rs:262:29:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- buildtime::tests::new_mode_aborts_when_any_failure_is_new stdout ----
+
+thread 'buildtime::tests::new_mode_aborts_when_any_failure_is_new' (5772) panicked at ..\code\rust\src\governance\src\buildtime.rs:320:9:
+one new failure among others aborts
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (35456) panicked at ..\code\rust\src\governance\src\buildtime.rs:283:9:
+assertion failed: output(&repo, "code/rust/p", Some("enforce")).1.is_err()
+
+
+failures:
+    buildtime::tests::decide_respects_mode
+    buildtime::tests::new_mode_aborts_when_any_failure_is_new
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+
+test result: FAILED. 48 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.72s
+
+error: test failed, to rerun pass `--lib`

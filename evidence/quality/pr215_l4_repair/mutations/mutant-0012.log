@@ -1,0 +1,22 @@
+
+running 10 tests
+.... 4/10
+tests::affected_sources_maps_companions_back_to_sources --- FAILED
+.....
+failures:
+
+---- tests::affected_sources_maps_companions_back_to_sources stdout ----
+
+thread 'tests::affected_sources_maps_companions_back_to_sources' (18428) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:459:9:
+assertion `left == right` failed
+  left: ["code/a.contract.score.yaml", "code/gone.rs", "code/m.py", "code/m.rs.contract.score.yaml"]
+ right: ["code/a.rs", "code/m.py", "code/m.rs"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::affected_sources_maps_companions_back_to_sources
+
+test result: FAILED. 9 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.82s
+
+error: test failed, to rerun pass `--bin governance-check`

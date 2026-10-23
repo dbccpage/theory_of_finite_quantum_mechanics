@@ -1,0 +1,41 @@
+{
+  "AuthorityEffect": "None",
+  "base": "88ae4d41bdce6b0b69c3ac8b85d6765cf632fdab",
+  "input_head": "60d33d143775d6f85864f1367201a4bac83ead11",
+  "comparison_to_validated_f3f95f0be": "Only immutable registry history added; all source, canonical DAG, policy and generated-view bytes unchanged.",
+  "steps": [
+    {
+      "argv": [
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "88ae4d41bdce6b0b69c3ac8b85d6765cf632fdab"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 7,\n    \"valid_contracts_and_scores\": 7,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 4,\n      \"Rust\": 3\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 4,\n      \"Symbolic/Formal\": 3\n    },\n    \"completed_scores\": 7,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 7\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 88ae4d41bdce6b0b69c3ac8b85d6765cf632fdab (merge base 88ae4d41bdce), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "88ae4d41bdce6b0b69c3ac8b85d6765cf632fdab"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 10,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "88ae4d41bdce6b0b69c3ac8b85d6765cf632fdab",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since 88ae4d41bdce6b0b69c3ac8b85d6765cf632fdab (merge base 88ae4d41bdce); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    }
+  ]
+}

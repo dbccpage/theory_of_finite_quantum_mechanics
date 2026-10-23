@@ -1,0 +1,50 @@
+
+running 52 tests
+............. 13/52
+score::tests::completion_boundary_exhausts_every_gate_assignment --- FAILED
+...... 20/52
+score::tests::composite_is_the_minimum_of_complete_gates --- FAILED
+..... 26/52
+score::tests::unassessed_gate_gives_no_composite_unless_a_known_e --- FAILED
+...... 33/52
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+..................
+failures:
+
+---- score::tests::completion_boundary_exhausts_every_gate_assignment stdout ----
+
+thread 'score::tests::completion_boundary_exhausts_every_gate_assignment' (19020) panicked at ..\code\rust\src\governance\src\score.rs:574:9:
+assertion `left == right` failed
+  left: Err(Unassessed { gates: [G3, G4, G5], known_ceiling: Some(D) })
+ right: Err(Unassessed { gates: [G3, G4, G5], known_ceiling: Some(E) })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- score::tests::composite_is_the_minimum_of_complete_gates stdout ----
+
+thread 'score::tests::composite_is_the_minimum_of_complete_gates' (25520) panicked at ..\code\rust\src\governance\src\score.rs:500:9:
+assertion `left == right` failed
+  left: Some(APlus)
+ right: Some(C)
+
+---- score::tests::unassessed_gate_gives_no_composite_unless_a_known_e stdout ----
+
+thread 'score::tests::unassessed_gate_gives_no_composite_unless_a_known_e' (3368) panicked at ..\code\rust\src\governance\src\score.rs:516:9:
+assertion `left == right` failed
+  left: Some(A)
+ right: Some(B)
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (35332) panicked at ..\code\rust\src\governance\src\verify.rs:365:83:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+
+failures:
+    score::tests::completion_boundary_exhausts_every_gate_assignment
+    score::tests::composite_is_the_minimum_of_complete_gates
+    score::tests::unassessed_gate_gives_no_composite_unless_a_known_e
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+
+test result: FAILED. 48 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.26s
+
+error: test failed, to rerun pass `--lib`

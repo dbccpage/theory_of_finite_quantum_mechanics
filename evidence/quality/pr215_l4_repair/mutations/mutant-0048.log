@@ -1,0 +1,48 @@
+
+running 52 tests
+.............. 14/52
+buildtime::tests::missing_or_broken_policy --- FAILED
+..................... 36/52
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+..... 42/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+.... 47/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+....
+failures:
+
+---- buildtime::tests::missing_or_broken_policy stdout ----
+
+thread 'buildtime::tests::missing_or_broken_policy' (29184) panicked at ..\code\rust\src\governance\src\buildtime.rs:292:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (26092) panicked at ..\code\rust\src\governance\src\buildtime.rs:258:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (42008) panicked at ..\code\rust\src\governance\src\buildtime.rs:282:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (7720) panicked at ..\code\rust\src\governance\src\buildtime.rs:239:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    buildtime::tests::missing_or_broken_policy
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+
+test result: FAILED. 48 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.49s
+
+error: test failed, to rerun pass `--lib`

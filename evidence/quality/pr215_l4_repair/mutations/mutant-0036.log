@@ -1,0 +1,30 @@
+warning: unreachable pattern
+   --> ..\code\rust\src\governance\src\bin\governance-check.rs:335:9
+    |
+334 |         Ok(false) => ExitCode::SUCCESS,
+    |         --------- matches all the relevant values
+335 |         Ok(false) => ExitCode::from(1),
+    |         ^^^^^^^^^ no value can reach this
+    |
+    = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+error[E0004]: non-exhaustive patterns: `Ok(true)` not covered
+   --> ..\code\rust\src\governance\src\bin\governance-check.rs:333:11
+    |
+333 |     match run(&args) {
+    |           ^^^^^^^^^^ pattern `Ok(true)` not covered
+    |
+note: `Result<bool, std::string::String>` defined here
+   --> /rustc/b940084d7eb6a299eb4bfeb8e34901bc051e7ac4/library\core\src\result.rs:558:0
+   ::: /rustc/b940084d7eb6a299eb4bfeb8e34901bc051e7ac4/library\core\src\result.rs:562:4
+    |
+    = note: not covered
+    = note: the matched value is of type `Result<bool, std::string::String>`
+help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern or an explicit pattern as shown
+    |
+339 ~         },
+340 +         Ok(true) => todo!()
+    |
+
+For more information about this error, try `rustc --explain E0004`.
+error: could not compile `governance` (bin "governance-check" test) due to 1 previous error; 1 warning emitted

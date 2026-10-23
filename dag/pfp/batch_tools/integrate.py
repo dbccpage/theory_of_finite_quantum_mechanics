@@ -36,7 +36,9 @@ def default_gates(ctx):
         ('sync_application', [py, '-I', '-X', 'utf8', 'dag/sync_application_branches.py', '--check'], False),
         ('sync_pregenesis', [py, '-I', '-X', 'utf8', 'dag/sync_pregenesis_to_wdp.py', '--check'], False),
         ('sync_frontier', [py, '-I', '-X', 'utf8', 'dag/sync_frontier_branches.py', '--check'], False),
-        ('sync_genesis_to_higher', [py, '-I', '-X', 'utf8', 'dag/sync_genesis_to_higher.py', '--check'], False)]
+        ('sync_genesis_to_higher', [py, '-I', '-X', 'utf8', 'dag/sync_genesis_to_higher.py', '--check'], False),
+        ('sync_foc035_observer_presheaf',
+         [py, '-I', '-X', 'utf8', 'dag/sync_foc035_observer_presheaf.py', '--check'], False)]
     return [{'id': name, 'argv': argv, 'cwd': '.', 'needs': None, 'optimizable': optimizable,
              'count': PYTHON_TESTS if any('test_' in a for a in argv) else None}
             for name, argv, optimizable in candidates if (ctx.root / next(a for a in argv if a.endswith('.py'))).is_file()]
@@ -90,26 +92,10 @@ def integrate(batch: Batch, *, modes=('normal',), min_free_gb=20.0, max_target_g
                 env.update(guard['env'])
             elif gate.get('needs') == 'lean':
                 env.update(lean_environment(ctx))
-            receipt_path = folder / (name + '_receipt.json')
-            if receipt_path.exists():
-                receipt = load_json(receipt_path)
-                require(receipt['exit_code'] == 0, 'Retained failed gate: ' + name)
-                for pin in receipt['source_pins']:
-                    require(sha(Path(pin['path'])) == pin['sha256'], 'Receipt source drift ' + name)
-            else:
-                argv = expand(gate['argv'], ctx, optimized=(mode == 'optimized'))
-                declared = [ctx.root / p for p in gate.get('pins', [])]
-                receipt = native_record(folder, name, argv, cwd=ctx.root / gate.get('cwd', '.'), sources=declared, env=env, tool_sources=sources)
-            print(json.dumps({'gate': name, 'exit_code': receipt['exit_code'], 'seconds': receipt['seconds']}), flush=True)
-            require(receipt['exit_code'] == 0, 'Actual integration failure ' + name)
-            text = ''.join((folder / receipt[stream]).read_text(encoding='utf-8', errors='replace') for stream in ('stdout', 'stderr'))
-            patterns = [gate['count']] if gate.get('count') else COUNT_PATTERNS
-            for pattern in patterns:
-                match = re.search(pattern, text)
-                if match:
-                    counts[name] = int(match.group(1))
-                    break
-            results[name] = receipt['exit_code']
+            result, count = _execute_gate(ctx, gate, mode, name, folder, env, sources)
+            results[name] = result
+            if count is not None:
+                counts[name] = count
     summary = {'gates': results, 'test_counts': counts, 'modes': list(modes), 'lean_toolchain': lean_toolchain(ctx) if (ctx.root / 'lean4/lean-toolchain').is_file() else None,
                'cargo_guard': guard['report'] if guard else None,
                'scope': 'Targeted local integration and live corpus/protocol validation. No full-Mathlib, whole-repository or hosted-CI claim.'}
@@ -118,3 +104,27 @@ def integrate(batch: Batch, *, modes=('normal',), min_free_gb=20.0, max_target_g
         out.unlink()
     save(out, summary)
     return summary
+
+
+def _execute_gate(ctx, gate, mode, name, folder, env, sources):
+    counts = {}
+    receipt_path = folder / (name + '_receipt.json')
+    if receipt_path.exists():
+        receipt = load_json(receipt_path)
+        require(receipt['exit_code'] == 0, 'Retained failed gate: ' + name)
+        for pin in receipt['source_pins']:
+            require(sha(Path(pin['path'])) == pin['sha256'], 'Receipt source drift ' + name)
+    else:
+        argv = expand(gate['argv'], ctx, optimized=(mode == 'optimized'))
+        declared = [ctx.root / p for p in gate.get('pins', [])]
+        receipt = native_record(folder, name, argv, cwd=ctx.root / gate.get('cwd', '.'), sources=declared, env=env, tool_sources=sources)
+    print(json.dumps({'gate': name, 'exit_code': receipt['exit_code'], 'seconds': receipt['seconds']}), flush=True)
+    require(receipt['exit_code'] == 0, 'Actual integration failure ' + name)
+    text = ''.join((folder / receipt[stream]).read_text(encoding='utf-8', errors='replace') for stream in ('stdout', 'stderr'))
+    patterns = [gate['count']] if gate.get('count') else COUNT_PATTERNS
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            counts[name] = int(match.group(1))
+            break
+    return receipt['exit_code'], counts.get(name)

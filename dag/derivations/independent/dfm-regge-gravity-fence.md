@@ -23,8 +23,9 @@ For every rational `a`, `b`, and `c`,
 cosNum(a, b, c) + cosNum(b, a, c) + cosNum(c, a, b) = a^2 + b^2 + c^2.
 ```
 
-At lengths 3, 4, and 5 the numerators opposite those sides are 0, 32, and 18,
-and the cosine-law values are 0, 4/5, and 3/5. Their sum is 7/5. The three
+At lengths 3, 4, and 5, listing opposite sides in the order 5, 3, 4 gives
+numerators 0, 32, and 18 and cosine-law values 0, 4/5, and 3/5. Their sum is
+7/5. The three
 numerators add to 50, which equals `3^2 + 4^2 + 5^2`.
 
 Separately, with `beta = 1/2`,
