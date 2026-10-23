@@ -9,13 +9,13 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "fca4c1450580a90b1321b7e026367293b4cb9902bdc17d13bca30f750e7fa0fa"
+  "sha256_lf": "3df949526d35b4e9039b778599075bafc8217302825215788a4ff7ba2ab86333"
  },
  "files": {
   "checks/independent/dfm-continuum-interface.py": {
-   "sha256": "478e92d04862f6afc6ce2b9783f3b46688f6fce66e0c8a4da93a5b39eb5041b2",
+   "sha256": "17f37543b78c25ba4f84e40ffb904c0df8a0e37cb16436302d7ec7e4b5aa19de",
    "sha256_basis": "bytes",
-   "size": 6256
+   "size": 8458
   },
   "checks/independent/dfm-hierarchical-borel.py": {
    "sha256": "88b18f3a0516909a4fe94dc76773d91970b2639b4de01b877fb3f3a6914f6d5e",
@@ -813,9 +813,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "fca4c1450580a90b1321b7e026367293b4cb9902bdc17d13bca30f750e7fa0fa",
+   "sha256": "3df949526d35b4e9039b778599075bafc8217302825215788a4ff7ba2ab86333",
    "sha256_basis": "lf-normalised",
-   "size": 4525326
+   "size": 4525999
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5893,9 +5893,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "sha256_basis": "lf-normalised",
-   "size": 138362
+   "size": 139186
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -6148,9 +6148,9 @@
    "size": 10301
   },
   "lean4/CampaignDfmContinuumInterface.lean": {
-   "sha256": "251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d",
+   "sha256": "c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4",
    "sha256_basis": "bytes",
-   "size": 5262
+   "size": 8786
   },
   "lean4/CampaignDfmHierarchicalBorel.lean": {
    "sha256": "7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917",
@@ -165441,10 +165441,10 @@
    "facts": {
     "cited_code_files_not_tests": 1,
     "counted_files": 4,
-    "lean_receipt_backed": 12,
+    "lean_receipt_backed": 19,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 12
+    "symbols_found": 19
    },
    "flags": [],
    "grade": "E3",
@@ -165479,6 +165479,177 @@
      "symbol": null,
      "symbol_declared": null,
      "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.Dependency.Plan.changed_label",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmContinuumInterface.Dependency.Plan.changed_label",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.Dependency.Plan.evaluate_formula",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_formula",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.Dependency.transport_agrees",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmContinuumInterface.Dependency.transport_agrees",
+     "symbol_declared": true,
+     "symbol_exists": true,
      "where": null
     },
     {
@@ -165588,6 +165759,40 @@
       "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
      ],
      "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.outer_in_footprint",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmContinuumInterface.outer_in_footprint",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
      "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.outer_misses_star",
      "counted": true,
      "counts": true,
@@ -165610,6 +165815,40 @@
      "replay": "verified",
      "resolution": "present",
      "symbol": "CampaignDfmContinuumInterface.outer_misses_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignDfmContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignDfmContinuumInterface: #print axioms CampaignDfmContinuumInterface.witness_plan_evaluate",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDfmContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDfmContinuumInterface.witness_plan_evaluate",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -245612,18 +245851,19 @@
    "toolchain": "4.35.0"
   },
   {
-   "admission_scan_passed": true,
+   "admission_scan_passed": null,
    "axiom_audit_passed": true,
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "Classical.choice",
     "Quot.sound",
     "propext"
    ],
    "built_successfully": null,
    "checked_at": "2026-10-23T12:00:00+00:00",
    "dag_node": "DFM-CONTINUUM-INTERFACE",
-   "decl_count": 7,
+   "decl_count": 14,
    "exit_code": 0,
    "id": "dag/research/campaign_dfm-continuum-interface_lean_replay.json#0:CampaignDfmContinuumInterface",
    "lean_version": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)",
@@ -245631,9 +245871,9 @@
    "module": "CampaignDfmContinuumInterface",
    "path": "lean4/CampaignDfmContinuumInterface.lean",
    "receipt_file": "dag/research/campaign_dfm-continuum-interface_lean_replay.json",
-   "receipt_file_sha256": "ab90b0063b22ad5be3c76e4e854ef608456ac105b821940adb19b6c810cf2476",
-   "recorded_sha256": "251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d",
-   "source_unchanged_during_build": null,
+   "receipt_file_sha256": "8c7db6a4fdfbcdd1f2a494e2cd37e5c7f8bb401c9b30c7161752224f1866b56c",
+   "recorded_sha256": "c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4",
+   "source_unchanged_during_build": true,
    "toolchain": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)"
   },
   {
@@ -256129,7 +256369,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256155,7 +256395,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256181,7 +256421,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256207,7 +256447,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256233,7 +256473,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256259,7 +256499,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256285,7 +256525,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256311,7 +256551,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256337,7 +256577,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256363,7 +256603,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256389,7 +256629,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256415,7 +256655,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256441,7 +256681,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256467,7 +256707,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -256493,7 +256733,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "c9c53179b23b6ed98fabc48bcefe019b4eb6513fd4ea698059a99d794635e993",
+   "receipt_file_sha256": "b70918b70801380edf1b8bdd1ff7ffd3b3aff9e2849c4564111b3b507e73e5ea",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -257105,16 +257345,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1415,
+   "distinct": 1421,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1368,
-   "replay_verified_and_declaration_itemised": 1319,
+   "replay_verified": 1374,
+   "replay_verified_and_declaration_itemised": 1325,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1724
+   "present": 1730
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {

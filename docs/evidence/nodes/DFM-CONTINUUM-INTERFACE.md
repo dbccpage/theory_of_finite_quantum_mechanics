@@ -11,8 +11,8 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 12
-- cited Lean declarations covered by a current replay receipt: 12
+- cited Lean, Rust or Python symbols found in their in-repo files: 19
+- cited Lean declarations covered by a current replay receipt: 19
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -45,18 +45,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignDfmContinuumInterface.lean`
 
 - file: [lean4/CampaignDfmContinuumInterface.lean](../../../lean4/CampaignDfmContinuumInterface.lean)
-- sha256 (`bytes`): `251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d`
+- sha256 (`bytes`): `c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4`
 - cited in: node.lean, receipt dag/research/campaign_dfm-continuum-interface_lean_replay.json (CampaignDfmContinuumInterface), record TFQ-0401
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-continuum-interface_lean_replay.json](../../../dag/research/campaign_dfm-continuum-interface_lean_replay.json) (module `CampaignDfmContinuumInterface`): recorded sha256 `251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-continuum-interface_lean_replay.json](../../../dag/research/campaign_dfm-continuum-interface_lean_replay.json) (module `CampaignDfmContinuumInterface`): recorded sha256 `c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignDfmContinuumInterface`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `CampaignDfmContinuumInterface.Dependency.Plan.changed_label` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmContinuumInterface.Dependency.Plan.changed_label` |
+| `CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees` |
+| `CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset` |
+| `CampaignDfmContinuumInterface.Dependency.Plan.evaluate_formula` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.Dependency.Plan.evaluate_formula` |
+| `CampaignDfmContinuumInterface.Dependency.transport_agrees` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.Dependency.transport_agrees` |
 | `CampaignDfmContinuumInterface.dressed_chord_formula` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.dressed_chord_formula` |
 | `CampaignDfmContinuumInterface.dressed_chord_witness` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.dressed_chord_witness` |
 | `CampaignDfmContinuumInterface.not_star_local` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.not_star_local` |
+| `CampaignDfmContinuumInterface.outer_in_footprint` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.outer_in_footprint` |
 | `CampaignDfmContinuumInterface.outer_misses_star` | yes | yes | yes | none | `#print axioms CampaignDfmContinuumInterface.outer_misses_star` |
+| `CampaignDfmContinuumInterface.witness_plan_evaluate` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.witness_plan_evaluate` |
 | `CampaignDfmContinuumInterface.witness_star_agrees` | yes | yes | yes | propext | `#print axioms CampaignDfmContinuumInterface.witness_star_agrees` |
 | `CampaignDfmContinuumInterface.witness_two_five` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmContinuumInterface.witness_two_five` |
 | `CampaignDfmContinuumInterface.witness_two_ne_five` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmContinuumInterface.witness_two_ne_five` |
@@ -70,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-continuum-interface.py`
 
 - file: [checks/independent/dfm-continuum-interface.py](../../../checks/independent/dfm-continuum-interface.py)
-- sha256 (`bytes`): `478e92d04862f6afc6ce2b9783f3b46688f6fce66e0c8a4da93a5b39eb5041b2`
+- sha256 (`bytes`): `17f37543b78c25ba4f84e40ffb904c0df8a0e37cb16436302d7ec7e4b5aa19de`
 - cited in: record TFQ-0401
 - counts toward the grade: yes
 
