@@ -1,0 +1,133 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "dag/research/atlas_sources_import/import_sources.py",
+  "contract": {
+    "schema_version": "2.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "dag/research/atlas_sources_import/import_sources.py",
+      "sha256": "d7a6ce1ff874ed16af811e9abf39b5cee8920d778a195e6391f2131be8bf3e49",
+      "language": "Python"
+    },
+    "profile": "Non-Numeric",
+    "claim": "Before copying, bind every plan row to its exact source bytes and revalidate each existing twin; regress stale plans and optimized-mode behavior.",
+    "invariants": [
+      "All row validation completes before any import write.",
+      "Copied bytes are the bytes validated against the planned SHA-256 and length.",
+      "Existing twins match under the declared exact or newline-equivalent relation.",
+      "Planned repository destinations stay within their declared root."
+    ],
+    "nonclaims": [
+      "No proof replay of imported archives.",
+      "No transaction or rollback on operating-system write failures.",
+      "No L4 certification of this bounded procedural importer."
+    ],
+    "evidence": [
+      {
+        "path": "dag/research/atlas_sources_import/review_validation.json",
+        "sha256": "e104e8cb03d1045e53e9f5687d791990a5df557eb1f97e00547914b94619a730"
+      }
+    ]
+  },
+  "contract_history": [
+    {
+      "sha256": "e0495374470daa4e93aac68b1ab12e8d2cdab4a03e76acb39af642738508f4d7",
+      "bytes": 1158,
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"dag/research/atlas_sources_import/import_sources.py\",\n    \"sha256\": \"d7a6ce1ff874ed16af811e9abf39b5cee8920d778a195e6391f2131be8bf3e49\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"claim\": \"Before copying, bind every plan row to its exact source bytes and revalidate each existing twin; regress stale plans and optimized-mode behavior.\",\n  \"invariants\": [\n    \"All row validation completes before any import write.\",\n    \"Copied bytes are the bytes validated against the planned SHA-256 and length.\",\n    \"Existing twins match under the declared exact or newline-equivalent relation.\",\n    \"Planned repository destinations stay within their declared root.\"\n  ],\n  \"nonclaims\": [\n    \"No proof replay of imported archives.\",\n    \"No transaction or rollback on operating-system write failures.\",\n    \"No L4 certification of this bounded procedural importer.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/atlas_sources_import/review_validation.json\",\n      \"sha256\": \"e104e8cb03d1045e53e9f5687d791990a5df557eb1f97e00547914b94619a730\"\n    }\n  ]\n}\n",
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "dag/research/atlas_sources_import/import_sources.py",
+          "sha256": "d7a6ce1ff874ed16af811e9abf39b5cee8920d778a195e6391f2131be8bf3e49",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "claim": "Before copying, bind every plan row to its exact source bytes and revalidate each existing twin; regress stale plans and optimized-mode behavior.",
+        "invariants": [
+          "All row validation completes before any import write.",
+          "Copied bytes are the bytes validated against the planned SHA-256 and length.",
+          "Existing twins match under the declared exact or newline-equivalent relation.",
+          "Planned repository destinations stay within their declared root."
+        ],
+        "nonclaims": [
+          "No proof replay of imported archives.",
+          "No transaction or rollback on operating-system write failures.",
+          "No L4 certification of this bounded procedural importer."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/atlas_sources_import/review_validation.json",
+            "sha256": "e104e8cb03d1045e53e9f5687d791990a5df557eb1f97e00547914b94619a730"
+          }
+        ]
+      },
+      "original_paths": [
+        "dag/research/atlas_sources_import/import_sources.py#review-contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a65ecf624901edcc54c9870d3143bd04e86ab485a0de4a2ba4d856df6dc1296d",
+      "bytes": 1782,
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"dag/research/atlas_sources_import/import_sources.py\",\n    \"sha256\": \"d7a6ce1ff874ed16af811e9abf39b5cee8920d778a195e6391f2131be8bf3e49\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L3\",\n  \"level_assessment\": \"Bounded provenance import and reference rewriting\",\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"gate_rationale\": {\n    \"G1\": \"129 manifest rows checked against named original source bytes and committed copies/twins; receipt binds repaired source.\",\n    \"G2\": \"Byte hashes, lengths and exact newline normalization; no floating-point certification.\",\n    \"G3\": \"Stale input and unsafe path refusal; bulk writes remain non-transactional under OS failure.\",\n    \"G4\": \"26 regression cases including -O plus full-plan dry run; no mutation campaign or imported-module replay.\",\n    \"G5\": \"Monolithic CLI/reference rewriting remains; preflight is isolated but this is not a production orchestration architecture.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T05:35:20.484349+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/atlas_sources_import/review_validation.json\",\n      \"sha256\": \"e104e8cb03d1045e53e9f5687d791990a5df557eb1f97e00547914b94619a730\"\n    }\n  ],\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"requested_floor_met\": false,\n  \"limiting_reason\": \"Importer remains L3, below the substantive L4 floor; tests use the explicit support-file exception.\"\n}\n",
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "dag/research/atlas_sources_import/import_sources.py",
+          "sha256": "d7a6ce1ff874ed16af811e9abf39b5cee8920d778a195e6391f2131be8bf3e49",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "level": "L3",
+        "level_assessment": "Bounded provenance import and reference rewriting",
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "gate_rationale": {
+          "G1": "129 manifest rows checked against named original source bytes and committed copies/twins; receipt binds repaired source.",
+          "G2": "Byte hashes, lengths and exact newline normalization; no floating-point certification.",
+          "G3": "Stale input and unsafe path refusal; bulk writes remain non-transactional under OS failure.",
+          "G4": "26 regression cases including -O plus full-plan dry run; no mutation campaign or imported-module replay.",
+          "G5": "Monolithic CLI/reference rewriting remains; preflight is isolated but this is not a production orchestration architecture."
+        },
+        "composite_grade": "D",
+        "score_token": "L3D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T05:35:20.484349+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/atlas_sources_import/review_validation.json",
+            "sha256": "e104e8cb03d1045e53e9f5687d791990a5df557eb1f97e00547914b94619a730"
+          }
+        ],
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "requested_floor_met": false,
+        "limiting_reason": "Importer remains L3, below the substantive L4 floor; tests use the explicit support-file exception."
+      },
+      "original_paths": [
+        "dag/research/atlas_sources_import/import_sources.py#review-score"
+      ]
+    }
+  ],
+  "current_contract": "e0495374470daa4e93aac68b1ab12e8d2cdab4a03e76acb39af642738508f4d7",
+  "current_scoring": "a65ecf624901edcc54c9870d3143bd04e86ab485a0de4a2ba4d856df6dc1296d",
+  "legacy_paths": {},
+  "history_order": "Append order; no prior assessment invented."
+}
