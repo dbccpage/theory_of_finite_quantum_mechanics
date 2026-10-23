@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coda-mur"
+version = "3.1.1"
+description = "CODA-MUR: Certified Representation Transport, Composition, and Irreversible Forgetting"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "CC-BY-4.0" }
+dependencies = [
+    "numpy>=1.24",
+    "sympy>=1.12",
+    "matplotlib>=3.7"
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pytest-xdist>=3", "pytest-cov>=6", "nbformat>=5.10"]
+notebooks = ["nbformat>=5.10", "nbclient>=0.10", "ipykernel>=6", "nbconvert>=7"]
+
+[tool.setuptools]
+py-modules = ["coda_mur_core", "generate_figures", "cochain_presentation"]
+package-dir = { "" = "code" }
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+pythonpath = ["code", "."]
+addopts = "--strict-markers"
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = ["code"]
+warn_return_any = true
+warn_unused_configs = true
+
+
+# These scientific packages do not all ship supported type stubs.
+# Only missing third-party stubs are ignored; local source and tests remain checked.
+[[tool.mypy.overrides]]
+module = ["sympy", "sympy.*", "numpy", "numpy.*", "matplotlib", "matplotlib.*", "nbformat", "nbformat.*"]
+ignore_missing_imports = true

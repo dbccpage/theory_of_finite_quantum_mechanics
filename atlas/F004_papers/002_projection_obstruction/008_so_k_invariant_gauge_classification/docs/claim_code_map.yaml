@@ -1,0 +1,349 @@
+schema: gs002.claim_evidence.v2
+review_date: '2026-10-02'
+claims:
+  GS002-C1:
+    ledger_id: C1
+    description: Local SO(k) rigidity; outer sum conditional on strong aggregation
+    status: PROVEN (local); CONDITIONAL (outer)
+    hypotheses: Euclidean stalks, full rotations, faithful homogeneous gauge; separately
+      declared edge sum
+    prose: §§3.2–3.3
+    modules:
+    - code/gauges.py
+    - code/carrier.py
+    tests:
+    - code/tests/test_gauges_and_sok.py
+    lean:
+    - lean4/gs002_l003_02_s_ok_local_gauge.lean
+    - lean4/gs002_l003_04_edge_decomposition.lean
+    evidence_scope: Partial Lean kernels; finite Python examples
+    boundary: General-k group-to-Euclidean Lean bridge
+  GS002-C2:
+    ledger_id: C2
+    description: M-compatible gauge and M-contractive unit-body correspondence
+    status: IMPORTED; NOT LOCALLY PROVED
+    hypotheses: Finite-dimensional V; closed convex balanced absorbing bounded body
+    prose: Companion [2] §2.2; reproduced in §2.1
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: Not locally mechanized
+    boundary: Source status inherited; boundedness restored
+  GS002-C3:
+    ledger_id: C3
+    description: Order reversal of admissible gauge classes
+    status: IMPORTED FROM [2]
+    hypotheses: Inclusion of transformation monoids
+    prose: §2.2, Corollary 1
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: No local code or Lean proof
+    boundary: Source status inherited
+  GS002-C4:
+    ledger_id: C4
+    description: Maximal-symmetry native-norm endpoint
+    status: IMPORTED; CONDITIONAL
+    hypotheses: All bounded endomorphisms; native norm; Hahn–Banach
+    prose: §2.2, Corollary 2; companion [2]
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: No local code or Lean proof
+    boundary: Source status inherited
+  GS002-C5:
+    ledger_id: C5
+    description: Sphere-transitive isometric action forces the native norm up to scale
+    status: PROVEN; CONDITIONAL
+    hypotheses: Transitive action, invariance, faithfulness, homogeneity
+    prose: §2.2, Corollary 3; §3.2
+    modules:
+    - code/gauges.py
+    tests:
+    - code/tests/test_gauges_and_sok.py
+    lean:
+    - lean4/gs002_l003_02_s_ok_local_gauge.lean
+    evidence_scope: Generic radial Lean kernel; finite numerical probes
+    boundary: Group-action and Euclidean instantiation remain explicit
+  GS002-C6:
+    ledger_id: C6
+    description: Compact-group Haar-average norm construction
+    status: IMPORTED STANDARD RESULT
+    hypotheses: Continuous linear compact-group action; normalized Haar measure
+    prose: §2.2, Corollary 4
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: Not locally mechanized
+    boundary: Continuum and action hypotheses imported
+  GS002-C7:
+    ledger_id: C7
+    description: Invariant orbit convex-hull construction
+    status: STANDARD SUPPORT
+    hypotheses: Continuous linear compact action; bounded spanning seed; balanced
+      convex hull
+    prose: §2.2, S8
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: No local code or Lean proof
+    boundary: Standard convex-body argument
+  GS002-C8:
+    ledger_id: C8
+    description: Indexed directed-edge cochains and target-stalk comparison defect
+    status: DEFINITION
+    hypotheses: Finite indexed edges; target-directed transports; real vector stalks
+    prose: §3.1
+    modules:
+    - code/carrier.py
+    tests:
+    - code/tests/test_carrier_and_complex.py
+    lean: []
+    evidence_scope: Flat identity-transport carrier implemented in Python
+    boundary: General transports are prose setup, not executable carrier
+  GS002-C9:
+    ledger_id: C9
+    description: 'Theorem 3.1: local Euclidean gauge rigidity'
+    status: PROVEN; CONDITIONAL
+    hypotheses: k >= 2; Euclidean structure; full SO(k) invariance; faithful homogeneous
+      gauge
+    prose: §3.2
+    modules:
+    - code/gauges.py
+    tests:
+    - code/tests/test_gauges_and_sok.py
+    - code/tests/test_publication_review_regressions.py
+    lean:
+    - lean4/gs002_l003_02_s_ok_local_gauge.lean
+    evidence_scope: Generic radial and separate planar transitivity Lean kernels;
+      finite audits
+    boundary: General-k transitivity and full Euclidean bridge not mechanized
+  GS002-C10:
+    ledger_id: C10
+    description: 'Theorem 3.2: substitution into the strong edgewise sum'
+    status: CONDITIONAL / DEFINITIONAL
+    hypotheses: Local rigidity and explicit edgewise aggregation
+    prose: §3.3
+    modules:
+    - code/carrier.py
+    tests:
+    - code/tests/test_carrier_and_complex.py
+    lean:
+    - lean4/gs002_l003_04_edge_decomposition.lean
+    evidence_scope: Python cost definition; separate Lean disjoint-support splitting
+      lemma
+    boundary: Outer sum does not follow from local rotations
+  GS002-C11:
+    ledger_id: C11
+    description: Flat primal quotient obstruction
+    status: DEFINITION
+    hypotheses: Finite identity-transport graph; positive weights
+    prose: §4, Definition 4.1
+    modules:
+    - code/solver.py
+    tests:
+    - code/tests/test_mixed_norm_solver.py
+    lean: []
+    evidence_scope: Floating-point primal candidates
+    boundary: No exact-arithmetic optimizer certificate
+  GS002-C12:
+    ledger_id: C12
+    description: 'Theorem 4.2: mixed vector quotient duality and attainment'
+    status: STANDARD FINITE APPLICATION
+    hypotheses: Finite-dimensional flat repairs; positive weights; continuity qualification
+    prose: §4; imported convex duality [6]
+    modules:
+    - code/socp_certifier.py
+    - code/solver.py
+    tests:
+    - code/tests/test_primal_dual_duality.py
+    - code/tests/test_publication_review_regressions.py
+    lean:
+    - lean4/gs002_l003_06_mixed_duality_weak.lean
+    evidence_scope: Lean weak-duality kernels; tolerance-qualified Python witnesses
+    boundary: Full strong duality/attainment not mechanized
+  GS002-C13:
+    ledger_id: C13
+    description: Equal single-cycle circulation iff exact repair difference
+    status: PROVEN FINITE GRAPH FACT
+    hypotheses: Single cycle; identity transports; signed traversal when needed
+    prose: §5 explicit vertex partial sums
+    modules:
+    - code/cycle_analytics.py
+    tests:
+    - code/tests/test_triangle_and_extensions.py
+    lean:
+    - lean4/gs002_l003_07_cycle_exactness.lean
+    evidence_scope: Anchored finite Lean kernel; floating-point examples
+    boundary: Graph-incidence instantiation remains prose
+  GS002-C14:
+    ledger_id: C14
+    description: 'Lemma 5.1: normalized cycle quotient formula'
+    status: PROVEN; CONDITIONAL
+    hypotheses: Single cycle; local norm; unit weights
+    prose: §5 lower bound and concentrated achiever
+    modules:
+    - code/cycle_analytics.py
+    tests:
+    - code/tests/test_triangle_and_extensions.py
+    lean:
+    - lean4/gs002_l003_03_weighted_cycle_quotient.lean
+    evidence_scope: Lean native-norm cost kernel; floating-point formula evaluation
+    boundary: General gauge/native-norm and graph identification in prose
+  GS002-C15:
+    ledger_id: C15
+    description: Weighted cycle bottleneck formula
+    status: PROVEN; CONDITIONAL
+    hypotheses: Single cycle; local norm; positive weights
+    prose: §5 weighted refinement
+    modules:
+    - code/cycle_analytics.py
+    - code/socp_certifier.py
+    tests:
+    - code/tests/test_fault_injections_fi008.py
+    - code/tests/test_publication_review_regressions.py
+    lean:
+    - lean4/gs002_l003_03_weighted_cycle_quotient.lean
+    evidence_scope: Lean native-norm weighted cost kernel; floating-point witnesses
+    boundary: General gauge/native-norm and graph identification in prose
+  GS002-C16:
+    ledger_id: C16
+    description: 'Theorem 5.2: normalized triangle 2 versus sqrt(2)'
+    status: PROVEN; CONDITIONAL
+    hypotheses: Common unit normalization; declared Euclidean structure
+    prose: §5
+    modules:
+    - code/cycle_analytics.py
+    tests:
+    - code/tests/test_triangle_and_extensions.py
+    lean:
+    - lean4/gs002_l003_01_triangle_separation.lean
+    evidence_scope: Lean rational squared-cost separation; Python examples
+    boundary: Geometric cost interpretation in prose
+  GS002-C17:
+    ledger_id: C17
+    description: Observer-class separation and dimension scaling
+    status: PROVEN CONSEQUENCE
+    hypotheses: Specified gauges and common normalization
+    prose: §5; finite diagonal examples
+    modules:
+    - code/cycle_analytics.py
+    tests:
+    - code/tests/test_triangle_and_extensions.py
+    lean: []
+    evidence_scope: Floating-point examples and notebook assertions
+    boundary: No global or physical measurement claim
+  GS002-C18:
+    ledger_id: C18
+    description: 'Theorem 6.1: mixed closure bound'
+    status: PROVEN; CONDITIONAL
+    hypotheses: Finite complex; d1 d0 = 0; declared mixed norms
+    prose: §6; scalar-incidence column proof for implementation
+    modules:
+    - code/closure.py
+    tests:
+    - code/tests/test_closure_bound_and_operator_norm.py
+    - code/tests/test_publication_review_regressions.py
+    lean:
+    - lean4/gs002_l003_05_mixed_closure_bound.lean
+    evidence_scope: Abstract Lean invariance/infimum kernel; numerical operator calculation
+    boundary: Concrete norm instantiation not mechanized
+  GS002-C19:
+    ledger_id: C19
+    description: Observer passivity and network/sheaf connections
+    status: IMPORTED / INTERPRETIVE
+    hypotheses: Compatible quotient maps and declared observer hypotheses
+    prose: §7.1; companion framework [1]
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: Not locally mechanized
+    boundary: General transported adjoint replaces ordinary divergence
+  GS002-C20:
+    ledger_id: C20
+    description: Legacy reflective-completion dependency
+    status: CONJECTURE; HISTORICAL REGISTER
+    hypotheses: Companion initiality-to-reflection lemma
+    prose: Companion framework; no current local §7.1 claim
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: Open; not established by this review
+    boundary: PL-003-B remains open
+  GS002-C21:
+    ledger_id: C21
+    description: Euclidean stalk inner product declared with SO(k)
+    status: IMPORTED INPUT
+    hypotheses: Declared Euclidean representation
+    prose: §3.2 import note
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: Input, not a construction
+    boundary: No discharge of continuum/representation import
+  GS002-C22:
+    ledger_id: C22
+    description: Real scalars, continuous group and convex-analysis imports
+    status: IMPORTED INPUT
+    hypotheses: Declared scalar, group, and standard analysis structures
+    prose: §§2–4
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: Input, not a construction
+    boundary: Finite carrier does not make these finite scalar objects
+  GS002-C23:
+    ledger_id: C23
+    description: Applied and physical vocabulary
+    status: SCOPE LIMIT
+    hypotheses: Interpretation candidates only
+    prose: §§1, 5
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: No empirical realization supplied
+    boundary: No physical detector or dynamics result
+  GS002-C24:
+    ledger_id: C24
+    description: No authority effect
+    status: PACKAGE POLICY
+    hypotheses: Evidence does not mint semantic or publication authority
+    prose: Companion ledger and release documentation
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: Not a mathematical theorem
+    boundary: No proof promotion from packaging
+  GS002-C25:
+    ledger_id: C25
+    description: Non-Abelian holonomy obstruction inequality
+    status: WITHDRAWN
+    hypotheses: Excised from v2.0.0 after counterexample
+    prose: Historical §5.3; not in current manuscript
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: No current support claimed
+    boundary: Remains withdrawn
+  GS002-C26:
+    ledger_id: C26
+    description: Unqualified extreme-weight numerical stability
+    status: WITHDRAWN
+    hypotheses: Excised from v2.0.0
+    prose: Historical §5.3; not in current manuscript
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: No current support claimed
+    boundary: Scale regressions do not restore a general stability theorem
+  GS002-C27:
+    ledger_id: C27
+    description: McLachlan trace-norm projection extension
+    status: WITHDRAWN
+    hypotheses: Excised from v2.0.0
+    prose: Historical §5.3; not in current manuscript
+    modules: []
+    tests: []
+    lean: []
+    evidence_scope: No current support claimed
+    boundary: Remains withdrawn

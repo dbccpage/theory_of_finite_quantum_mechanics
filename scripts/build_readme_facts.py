@@ -28,6 +28,7 @@ README = ROOT / "README.md"
 BEGIN = "<!-- facts:begin -->"
 END = "<!-- facts:end -->"
 CONTRACT_ROW = "| Contract/score companions |"
+ATLAS_PREFIX = "atlas/"
 ALLOWED_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
 SCOPE_EFFECTS = ("consistent", "caveat_added", "statement_narrowed", "status_lowered")
 # Nodes named in the README text; their stage and status are read from the DAG.
@@ -63,7 +64,8 @@ def tracked_files() -> list[str]:
     out = subprocess.check_output(
         ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT)
     names = [n for n in out.decode("utf-8").split("\0") if n]
-    return sorted(n for n in names if (ROOT / n).is_file())
+    # atlas/ is a byte-identical source archive of paper folders, not part of this repository's inventory.
+    return sorted(n for n in names if not n.startswith(ATLAS_PREFIX) and (ROOT / n).is_file())
 
 
 # ---------------------------------------------------------------- DAG facts

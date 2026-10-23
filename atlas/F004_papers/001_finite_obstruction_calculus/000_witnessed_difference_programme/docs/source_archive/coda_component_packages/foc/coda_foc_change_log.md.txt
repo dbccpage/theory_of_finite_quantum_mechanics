@@ -1,0 +1,89 @@
+## 2026-09-28 — Zenodo deposit publication (v3.2.1 Pre-Print)
+
+Recorded canonical Zenodo record <https://zenodo.org/records/23025087> (DOI: `10.5281/zenodo.23025087`) across deposit metadata, `CITATION.cff`, `README.md`, and atlas `zenodo_records.md`.
+
+---
+
+## 2026-09-28 — release candidate 3.2.1
+
+Aligned manuscript, code, citation metadata, and rebuilt release artifacts after the review corrections. Historical versions and unresolved claim obligations remain recorded below.
+
+# Change Log — Finite Obstruction Calculus: Exact quotient diagnostics, dual witnesses, two-stage coherence, and transport (CODA-FOC)
+
+## 2026-09-28 — Post-review republication repairs
+
+- Enforced problem-bound verification in `terminal_route`: exact repair routing strictly requires problem data (`registry` or `packet` and `defect`) and verifies the repair equation ($x + d_0 f = 0$ with zero residual) against original inputs; un-bound exact-repair claims fail closed to `OpenObstruction`.
+- Enforced registry-consistency checks before either terminal branch in `terminal_route`, rejecting conflicting `packet` or `defect` arguments for survivor routes (`test_survivor_routing_rejects_conflicting_problem_data`).
+- Eliminated double iterator consumption in exact terminal routing by passing the materialized vector `x` to `diagnose(bound_packet, x)` (`test_exact_routing_accepts_iterator_defect_inputs`).
+- Decomposed `finite_obstruction.py` into modular domain types and rich DDD Value Objects inside `code/foc_core/` under bounded context `CODA.FOC`, retaining `finite_obstruction.py` as backward-compatible entrypoint.
+- Corrected `PrimitiveDifference` axiom dependency reporting to `{propext, Quot.sound}` across `coda_foc_claim_ledger.md` and `docs/lean_claim_map.md` (retaining `{Quot.sound}` for listed EPK declarations).
+- Corrected trichotomy proof sentence in manuscript (`coda_foc.tex`, `coda_foc.md`, and recompiled `coda_foc.pdf`) to state that the three cases partition the attainable value pairs rather than the entire nonnegative quadrant.
+- Fixed empty SymPy matrix handling in `_exact_vector`: matrices with zero columns and more than one row (e.g. `Matrix.zeros(2, 0)`) now raise `ValueError` matching NumPy behavior, preventing fabricated zero defects and spuriously certified exact repairs.
+- Added regression tests covering un-bound exact repairs, forged zero-residual coherent defects, and empty-matrix shape rejections.
+
+## 2026-09-27 — review repairs
+
+- Require exact replay of a concrete, immutable finite repair registry before a survivor route; document the finite-list completeness boundary.
+- Correct the transport explanation: growth by the operator norm is allowed.
+- Remove placeholder DOI strings and synchronize the scientific description and diagnostic scope.
+- Clarify the exact statements covered by the Lean partition and separation kernels.
+- Corrected dual box constraint in `coda_foc_claim_ledger.md` to coordinatewise $|z_i| \le w_i$ for every $i$ (equivalently $\max_i |z_i|/w_i \le 1$), avoiding the insufficient loose bound $\|z\|_\infty \le \max_i w_i$ under nonuniform weights.
+- Aligned evidence qualifications across manuscript §8 and ledger §4, consistently distinguishing abstract Lean partition/algebraic kernels, individual rational instance verification via Python certificates, and universal numerical LP duality established by the manuscript proof.
+- Restricted ledger §5.3 exact-rational solvability and zero duality gap claims explicitly to rational inputs ($\mathbb{Q}$).
+- Corrected least-squares comparison in the mutation verification matrix: optimal $\ell^1$ value 10 versus $\ell^1$ value 40/3 at the least-squares repair (clarifying that 40/3 is the $\ell^1$ norm of the least-squares residual, not its $\ell^2$ norm).
+- Reconciled checksum documentation between `README.md` and release structure: `MANIFEST.sha256` is the canonical manifest of packaged source files contained in the release ZIP, while `SHA256SUMS` covers release assets including `MANIFEST.sha256`.
+
+
+## 2026-09-27 — Integrated remaining September 23 suggestions
+
+Added the feasible-witness warning and seven exact conformance cases plus the missed-direction regression in `code/tests/test_foc_conformance.py`. The note states the small-instance scope and exponential worst-case cost of vertex enumeration.
+
+The former top-level update-suggestions document is retired after its remaining
+actions were incorporated into the maintained package sources. Prior applied
+A-T8/A-T9, FDA-T9–T12, and OR-T9/T10 revisions remain in their existing logs.
+This integration is not a publication-readiness verdict.
+
+## 3.2.0 — 2026-09-18 (Republication Rereview Remediation)
+
+- Replaced Figure 1 schematic with three distinct panels (`ExactRepair`, `CoherentResidual`, `NonclosedDefect`) strictly matching prose with exact vector arithmetic ($r = x + d_0 f$) and added coordinate assertions in `code/tests/test_foc_generate_figures.py`.
+- Excised all `Survivor` and `Open` backward-compatibility aliases from Lean 4 formalization (`coda_foc_20_terminal_completeness.lean`, `coda_foc_l20_a_kernel.lean`).
+- Realigned `coda_foc_l20_a_kernel.lean` second-stage carrier type to quotient $Q_2 = C_2 / \operatorname{im} a_2$ and induced map $\bar{d}_1 : Q_1 \to Q_2$; renamed theorem to `nonclosed_of_gamma_pos`.
+- Realigned paper-to-Lean claim mappings in `coda_foc_claim_ledger.md` and `docs/lean_claim_map.md`: mapped `FOC-C1` strictly to `Coda.FOC.separator_exists` and scoped `FOC-T3` Lean rows to abstract decidable case-split and conditional separation kernel.
+- Flattened Lean 4 layout by moving `CodaReconstruction` modules and axiom audit scripts directly into `lean4/`, eliminating the nested `reconstruction/` sub-package while preserving direct Lake Mathlib dependency and clean `lake build` verification.
+- Rewrote FOC-T1 attainment proof to use compact reverse-triangle-inequality argument on compact set $M \cap \{m : \|m\|_{1,w} \le 2\|x\|_{1,w}\}$.
+- Updated refutation paragraph in manuscript to distinguish implementation/certificate failure from mathematical theorem refutation.
+- Added explicit operational firewall sentence separating `OpenObstruction` from mathematical `NonclosedDefect`.
+- Attached in-text citations for Rockafellar, Schrijver, Boyd–Vandenberghe; removed unused Mac Lane reference.
+- Verified test suite passes cleanly (23 tests collected and passed across 3 test modules).
+- **Documentation Consolidation & Checksum Simplification**:
+  - Consolidated supporting documentation into three maintained core documents: `README.md`, `coda_foc_claim_ledger.md`, and `coda_foc_change_log.md`.
+  - Merged `docs/000_quick_start.md`, `docs/descriptions.md`, and `docs/artifact_manifest.md` into `README.md`, establishing an expanded component table with explicit module boundaries and verification entry points.
+  - Merged `docs/nonclaims.md` (vocabulary fences, scope boundaries) and `docs/coda_foc_mutation_audit.md` (adversarial fault injection and invariant verification matrix) into `coda_foc_claim_ledger.md`.
+  - Retired `docs/claim_code_map.md` in favor of the maintained claim ledger as the sole claim record.
+  - Structured two-level checksum scheme: maintained `MANIFEST.sha256` for release ZIP contents and `SHA256SUMS` covering all retained package assets including `MANIFEST.sha256`.
+  - Retained `docs/lean_claim_map.md`, `docs/keywords.md`, and `docs/references.md` as focused reference companions.
+  - Executed comprehensive literature deep dive for CODA-FOC references: expanded `docs/references.md` into an authoritative, pure-Unicode register of 11 foundational works spanning convex analysis (Rockafellar 1970), linear programming duality (Schrijver 1986, Boyd & Vandenberghe 2004), quotient normed spaces and annihilator duality (Rudin 1991), cochain complexes and obstruction theory (Mac Lane 1963, Steenrod 1951), Lean 4 formal verification (de Moura & Ullrich 2021), and CODA architectural layers (CODA-A, CODA-FDA, CODA-MUR, sealed derivation v1). Synchronized in-text citations and bibliography across `coda_foc.md`, `coda_foc.tex`, and recompiled `coda_foc.pdf`.
+
+## 3.1.0 — 2026-09-12 (CODA Modernization & Claim Ledger Reframing)
+
+- Excised all occurrences of "General Theory of Finite Obstruction Calculus" and pre-CODA framing across manuscript, metadata, and notebooks.
+- Standardized canonical paper identity as `Finite Obstruction Calculus: Exact quotient diagnostics, dual witnesses, two-stage coherence, and transport (CODA-FOC)`.
+- Reframed `coda_foc_claim_ledger.md` under exact discrete algebraic obstruction calculus: finite cochain complexes $C^0 \xrightarrow{d_0} C^1 \xrightarrow{d_1} C^2$, simplicial boundary maps, exact linear programming duality on polyhedral cones, explicit hypotheses, proof mechanisms, and precise bounds for all claims (FOC-D1 through FOC-NC1).
+- Updated LaTeX source `coda_foc.tex`, `zenodo_metadata.json`, `CITATION.cff`, `README.md`, `docs/000_quick_start.md`, `docs/references.md`, `docs/nonclaims.md`, and Jupyter notebooks.
+- Maintained strict claim hygiene across all mathematical claims.
+
+## 3.0.0 — 2026-08-03
+
+- Replaced the rejected frozen monograph with a compact exact finite calculus.
+- Removed the false generator-annihilator equivalence, least-element claim,
+  cross-carrier monoid claim, invalid iteration bound, and circular terminal
+  theorem.
+- Replaced L2/grid surrogates with positive weighted L1 linear programs.
+- Separated diagnostics, refusals, open obstructions, and stabilization.
+- Consolidated one production module, adversarial tests, and two notebooks.
+- Bound quotient certificates to deterministic input digests and replaced the
+  boolean terminal stub with registry-, observer-, budget-, move-, evaluator-,
+  and receipt-bound stabilization evidence.
+- Pinned Genesis derivation citations strictly to frozen tag sealed-derivation-v1 (commit 3100c4e) of dbccpage/19L57G1.
+- Invalidated stale figures, receipts, mirrors, and release bundle.
+- Kept; publication remains human-only.

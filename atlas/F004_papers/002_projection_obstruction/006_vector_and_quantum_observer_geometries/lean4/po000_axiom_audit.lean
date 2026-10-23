@@ -1,0 +1,90 @@
+import «projection_transfer»
+import «replica_hierarchy»
+import «double_commutator_rate»
+import «schatten_orthogonal»
+import «su2_curvature»
+import «cptp_monotonicity»
+import «mixed_vector_duality»
+import «strong_vector_duality»
+import «quantum_trace_duality»
+
+-- PO-000 Projection Transfer Axiom Audit
+#print axioms ProjectionTransfer.transfer
+#print axioms ProjectionTransfer.transfer_of_lipschitz
+#print axioms ProjectionTransfer.tensor_subadd
+#print axioms ProjectionTransfer.transfer_product_KPi_three
+
+-- PO-000 Replica Hierarchy Axiom Audit
+#print axioms ReplicaHierarchy.sum_singletons_of_replicaAdditive
+#print axioms ReplicaHierarchy.unweighted_sum_of_replicaAdditive_of_singleton_calibration
+
+-- PO-000 Double Commutator Rate Axiom Audit
+#print axioms DoubleCommutatorRate.short_time_defect_lower_bound
+#print axioms DoubleCommutatorRate.short_time_rate_positive
+#print axioms DoubleCommutatorRate.doubleBracket_witness_ne_zero
+#print axioms DoubleCommutatorRate.witness_short_time_rate_strictly_positive
+
+-- PO-000 Schatten Orthogonal Additivity Axiom Audit
+#print axioms QuantumSchatten.SpectralProfile.schatten1_orthogonal_additive
+#print axioms QuantumSchatten.SpectralProfile.schatten2_not_additive
+#print axioms QuantumSchatten.Mat2.blocks_orthogonal
+#print axioms QuantumSchatten.Mat2.blocks_schatten1_additive
+#print axioms QuantumSchatten.Mat2.schatten2_orthogonal_defect_nonzero
+
+-- PO-000 SU(2) Curvature Defect Axiom Audit
+#print axioms SU2GaugeTheory.Quat.non_abelian_witness
+#print axioms SU2GaugeTheory.Quat.non_abelian_curvature_defect
+#print axioms SU2GaugeTheory.Quat.curvature_gauge_invariance
+#print axioms SU2GaugeTheory.Quat.total_curvature_additive
+
+-- PO-000 CPTP Quotient Monotonicity Axiom Audit
+#print axioms QuantumObserverGeometry.cptp_pointwise_repair_monotonicity
+#print axioms QuantumObserverGeometry.cptp_orbit_dominance
+#print axioms QuantumObserverGeometry.cptp_optimal_quotient_monotonicity
+#print axioms QuantumObserverGeometry.cptp_attained_quotient_monotonicity
+
+-- PO-000 Weak Vector Fenchel Duality Axiom Audit
+#print axioms MixedVectorDuality.stalk_cauchy_schwarz_unit
+#print axioms MixedVectorDuality.dualPairing_le_J_21
+#print axioms MixedVectorDuality.dualPairing_sub
+#print axioms MixedVectorDuality.dualPairing_repair_invariance
+#print axioms MixedVectorDuality.weak_vector_duality_pointwise
+#print axioms MixedVectorDuality.weak_vector_duality_quotient
+#print axioms MixedVectorDuality.duality_gap_zero_certificate
+
+-- PO-000 Strong Vector Duality & Minimax Attainment Axiom Audit
+#print axioms StrongVectorDuality.stalk_slack_nonneg
+#print axioms StrongVectorDuality.stalkNormingVector_norm_le_one
+#print axioms StrongVectorDuality.stalkNormingVector_norm_eq_one
+#print axioms StrongVectorDuality.stalkNormingVector_inner_eq
+#print axioms StrongVectorDuality.canonicalSubgradientCochain_unitBounded
+#print axioms StrongVectorDuality.canonicalSubgradientCochain_aligned
+#print axioms StrongVectorDuality.dualPairing_eq_J_21_of_aligned
+#print axioms StrongVectorDuality.subgradient_attainment
+#print axioms StrongVectorDuality.dual_witness_is_maximizer
+#print axioms StrongVectorDuality.strong_duality_minimax_identity
+#print axioms StrongVectorDuality.complementary_slackness_edge_alignment
+#print axioms StrongVectorDuality.hb_weak_duality
+#print axioms StrongVectorDuality.hb_strong_duality_attainment
+#print axioms StrongVectorDuality.dualWitnessToHahnBanach
+#print axioms StrongVectorDuality.full_minimax_attainment_certificate
+#print axioms StrongVectorDuality.strong_vector_duality_of_stationary_subgradient
+#print axioms StrongVectorDuality.hahn_banach_separation_existence
+
+-- PO-000 Quantum Trace Duality & Helstrom POVM Alignment Axiom Audit
+#print axioms QuantumTraceDuality.helstromStalkObservable_specNorm_le
+#print axioms QuantumTraceDuality.helstromStalkObservable_inner_eq
+#print axioms QuantumTraceDuality.helstrom_slack_nonneg
+#print axioms QuantumTraceDuality.canonicalHelstromCochain_bounded
+#print axioms QuantumTraceDuality.canonicalHelstromCochain_pairing_eq
+#print axioms QuantumTraceDuality.dualPairing_Q_sub
+#print axioms QuantumTraceDuality.dualPairing_Q_repair_invariance
+#print axioms QuantumTraceDuality.weak_quantum_duality_pointwise
+#print axioms QuantumTraceDuality.weak_quantum_duality_quotient
+#print axioms QuantumTraceDuality.helstrom_attainment
+#print axioms QuantumTraceDuality.quantum_dual_witness_is_maximizer
+#print axioms QuantumTraceDuality.quantum_strong_duality_minimax_identity
+#print axioms QuantumTraceDuality.quantum_complementary_slackness
+#print axioms QuantumTraceDuality.strong_quantum_duality_of_stationary_helstrom
+#print axioms QuantumTraceDuality.single_cycle_qubit_fixture_exact
+

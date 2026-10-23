@@ -1,0 +1,55 @@
+# Claim Ledger: Finite Profile Factorization and Sampling Limits (CODA-CS-Q)
+
+**Paper:** `coda_cs_q_bridge.md` / `coda_cs_q_bridge.tex`
+**Programme Root:** `omega_engine_atlas/coda_atlas/F005_coda/cs_q`
+**Version:** `3.0.1`
+**Date:** `2026-09-28`
+**Status:** CLAIM SCOPES RECONCILED; current build/test receipts are separate evidence
+
+---
+
+## 1. Primary Paper Theorems (CSQ-T1 through CSQ-T5)
+
+| Claim ID | Paper Section | Mathematical Statement | Lean 4 Mechanization | Python Evidence | Status |
+|---|---|---|---|---|---|
+| CSQ-T1 | §1 | **Exact on Realized Image:** A query $q: X \to Y$ factors through profile map $\operatorname{Prof}: X \to P$ on the realized image $\operatorname{im}(\operatorname{Prof})$ if and only if $q$ is fibre-constant. Total reverse on all $P$ requires section or choice. | `Coda.CSQ.exact_on_image`, `CodaCsQ.factorization_iff_fiber_constancy_on_image` | `ProfileFactorizationSolver.solve_factorization()` in `coda_cs_q_bridge_core.py`, restricted to the copied finite observation snapshot Prof(D); tested in `test_coda_cs_q.py::test_bridge_001_forward_and_image_reverse` | `VERIFIED` |
+| CSQ-T2 | §2 | **Approximate Collision Bound:** If decoder $g: P \to Y$ achieves uniform error $\varepsilon$ ($\mathrm{dist}(q(x), g(p(x))) \le \varepsilon$), then profile collisions satisfy $\mathrm{dist}(q(x), q(y)) \le 2\varepsilon$. | `Coda.CSQ.approximate_collision_bound` | Parity replay with $\varepsilon=1, 2\varepsilon=2$ in `test_coda_cs_q.py::test_bridge_001_forward_and_image_reverse` | `VERIFIED` |
+| CSQ-T2-COR | §2 | **Metric Separation Corollary:** If target satisfies metric separation axiom ($\mathrm{dist}(a,b)=0 \implies a=b$), then zero decoder error ($\varepsilon=0$) implies $q(x)=q(y)$ on every fibre. | `Coda.CSQ.metric_zero_error_implies_equality` | Exact equality on metric targets in `test_coda_cs_q.py::test_pseudometric_zero_error_countermodel_b1` | `VERIFIED` |
+| CSQ-T2-CNT | §2 | **Indiscrete Pseudometric Countermodel:** In an indiscrete pseudometric space, $\varepsilon=0$ does not imply value equality $q(x)=q(y)$ without separation axiom. | `Coda.CSQ.pseudometric_zero_error_does_not_imply_equality` | `test_coda_cs_q.py::test_pseudometric_zero_error_countermodel_b1` | `VERIFIED` |
+| CSQ-T3 | §3 | **Lipschitz Access:** If $q$ is $K$-Lipschitz and $\mathrm{dist}(x, a) \le \varepsilon$, then $\mathrm{dist}(q(x), q(a)) \le K\varepsilon$. | `Coda.CSQ.lipschitz_access`: abstract monotone-scale schema; no real-metric instance | Linear signal $q(t)=2t$ on $\mathbb{Q}$ with $K=2$ in `test_coda_cs_q.py::test_transition_cochain_quotient_solver` | `PROSE SPECIALIZATION / ABSTRACT LEAN SCHEMA` |
+| CSQ-T4 | §4 | **Endpoint Sampling Limit:** Sampling real curves at endpoints $\{0, 1\}$ does not determine the midpoint value at $1/2$. Witnesses: $f(t)=0$ and $g(t)=t(1-t)$ share profile $(0,0)$ but have midpoint values $0 \ne 1/4$. | `Coda.CSQ.samples_not_query`: Boolean Point3 analogue only | `test_cs_q_injected_mutations.py::test_mutant_endpoints_determine_midpoint_killed` | `REAL PROSE PROOF / BOOLEAN LEAN ANALOGUE / RATIONAL CHECKS` |
+| CSQ-T5 | §5 | **Extension Obstruction:** Fibre constancy on $\operatorname{Empty}$ does not produce a total factor into an empty codomain without extension data. Inhabited targets admit total extension via Classical choice. | `Coda.CSQ.whole_codomain_needs_extension`, `Coda.CSQ.total_factor_of_inhabited` | Refusal on unreachable profiles in `test_coda_cs_q.py::test_bridge_001_forward_and_image_reverse` | `VERIFIED` |
+
+---
+
+## 2. Operational Schema and Apparatus Claims
+
+| Claim ID | Scope | Mathematical & Operational Content | Formal / Code Binding | Status |
+|---|---|---|---|---|
+| CSQ-SCH-01 | 14-Field Schema & 8-Step Admission | Lean records 14 named schema slots; Python audits 8 finite-domain admission steps: FinitePacketValidity, TowerCoherence, CompletionWitness, QHeldDebts, ProfileFactorization, RouteIndependence, ReflectionDescent, TerminalAgreement. | `T02BridgeAdmissibility.lean`, `BridgePacketCore` in `coda_cs_q_bridge_core.py`, verified in `test_coda_cs_q.py::test_bridge_003_14_schema_and_8_step_admission` | `DECLARED SCHEMA / FINITE CHECKLIST` |
+| CSQ-TRM-01 | Named Terminal Agreement | Pointwise agreement of named terminalizers $\tau_q = \tau_{\mathrm{CS}}$ evaluates step 8. Agreement does not follow from boolean flags alone. | `T03NamedTerminalizers.lean`, `terminals_agree` in `coda_cs_q_bridge_core.py`, verified in `test_coda_cs_q.py::test_bridge_006_named_terminalizer_agreement` | `VERIFIED` |
+| CSQ-TAX-01 | Residual Taxonomy | 7-class typed diagnostic residual taxonomy: $R_{\mathrm{domain}}$, $R_{\mathrm{factor}}$, $R_{\mathrm{trans}}$, $R_{\mathrm{cons}}$, $R_{\mathrm{route}}$, $R_{\mathrm{parse}}$, $R_{\mathrm{overclaim}}$. | `BridgeResidualTaxonomy.classify_residual` in `coda_cs_q_bridge_core.py`, verified in `test_coda_cs_q.py::test_bridge_007_residual_taxonomy` | `VERIFIED` |
+| CSQ-AUT-01 | Non-Authority Protocol | Declared diagnostic scope: finite equality carrier only; no physical or continuum promotion. | No operational authority is conferred across all files | `SCOPE DECLARATION` |
+
+---
+
+## 3. Bijection Table: Legacy BRIDGE-001..008 to Canonical CSQ Claims
+
+| Legacy Claim ID | Canonical Claim ID | Relationship / Disposition |
+|---|---|---|
+| `BRIDGE-001` | `CSQ-T1` | Exactly corresponds to CSQ-T1 (factorization on realized image iff fiber constancy). |
+| `BRIDGE-002` | `CSQ-T1-FAM` | Family degree-bounded factorization corollary of CSQ-T1 (`query_family_factorization_implies_fiber_constant`). |
+| `BRIDGE-003` | `CSQ-SCH-01` | 14-slot schema and 8-step admission audit. |
+| `BRIDGE-004` | Retired / Advisory | Prop definition only for discrete translation steps; not a theorem of the paper. |
+| `BRIDGE-005` | Retired / Advisory | Prop definition only for discrete action steps; not a theorem of the paper. |
+| `BRIDGE-006` | `CSQ-TRM-01` | Named terminalizer agreement and independence from bare flags. |
+| `BRIDGE-007` | `CSQ-TAX-01` | 7-class typed residual taxonomy. |
+| `BRIDGE-008` | `CSQ-AUT-01` | Strict non-authority protocol (No operational authority is conferred). |
+
+## Formal boundary and runtime repair notes
+
+- `Coda.CSQ.image_factor_unique` proves equality of two factors satisfying recovery and equal-value invariance on the explicit-witness image carrier.
+- Python domain/state/profile mutations are checked afresh on each solve. A successful lookup certifies the observed finite pairs only; callables must be deterministic and non-mutating for use as mathematical maps.
+- `ImagePoint` requires a bound profile map and revalidates its witness; `evaluate_factored` requires a supplied factor and checks agreement at that witness.
+- All four admission flags require actual booleans. Empty evaluation domains are refused by runtime policy even though empty-domain mathematical implications can be vacuous.
+- BRIDGE-004/005 remain predicate definitions and discrete convenience adapters. They do not establish exponential or Hamilton–Jacobi generator theorems.
