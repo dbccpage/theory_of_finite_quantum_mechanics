@@ -631,3 +631,10 @@ lean_lib AdmitLang where
 lean_lib CampaignGenesisContextDecision where
   roots := #[`CampaignGenesisContextDecision]
 
+-- Finite regulator obstruction; not a default target.
+lean_lib CampaignFspLatticeAnomalyInflow where
+  roots := #[`CampaignFspLatticeAnomalyInflow]
+
+-- Operational hypotheses and exact countermodels. Not a default build target.
+lean_lib CampaignTransitionProbability where
+  roots := #[`CampaignTransitionProbability]

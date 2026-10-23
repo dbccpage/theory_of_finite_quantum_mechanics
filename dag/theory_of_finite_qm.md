@@ -4153,9 +4153,9 @@ Obligation: The completion, its identification with l2 and the lift of bounded e
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `L1-IMP-TRANSITION-PROBABILITY-LAW` (`IMPORTED_ASSUMPTION`)
 
-Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.
+Imported dynamical law: the evolution of rays preserves the Born probability of every transported rank-one effect in every state; conditional on this law the dynamics is a linear or conjugate-linear similarity. Campaign hypothesis map on Q(i)^n: a supplied linear lift with finite orthogonality calibration and a nonzero anchor preserves transition probabilities; fixed-frame statistics for all basis, real pair and imaginary pair probes in every nonzero state, together with nonvanishing, also suffice and fix every ray. On Q(i)^2, reversible ray dynamics can preserve norms, basis and real pair statistics, report-swap covariance and orthogonality while changing a transition probability from 9/10 to 1/10. A reversible linear subspace-lattice automorphism changes another probability from 1/2 to 1/5. The dynamical law remains supplied, not derived from primitive difference.
 
-Obligation: No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.
+Obligation: The sufficient packages add explicit structure: a Gaussian-rational linear lift plus finite zero-probability calibration, or nonvanishing plus all-state fixed-frame tomographic statistics. Neither package is a derivation from primitive difference or a strictly weaker replacement for the full law. Static Born readout, reversibility, report-swap covariance, norms, basis and real pair statistics and orthogonality are jointly insufficient in dimension two. Subspace order preservation without orthocomplement preservation is also insufficient. Arbitrary ray bijections in higher dimensions under orthogonality alone, affine positive-effect automorphisms and evolving measurement-frame covariance are not classified here.
 <!-- unified-dag:rows:L1_TO_L2:end -->
 
 ## FINITE_HILBERT
@@ -10062,9 +10062,9 @@ Obligation: Severity of the resulting sign problem is phenomenology from the lit
 - DAG node: `FSP-LATTICE-ANOMALY-INFLOW`
 - Paper: [derivation](derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
 
-Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.
+Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.
 
-Obligation: Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.
+Obligation: Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.
 
 ### TFQ-1200 SU(2) adjoint fermions have a real determinant
 
