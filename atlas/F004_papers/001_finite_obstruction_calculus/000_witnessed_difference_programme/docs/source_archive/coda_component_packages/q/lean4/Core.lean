@@ -1,0 +1,34 @@
+import D01D02Records
+import T01ModeDescentFirewall
+import T02AdmissionDebt
+import T03ProfileCollision
+import Algebra
+
+/-!
+# CODA-Q programme wrapper (binding only)
+
+Re-exports kernels and reconstruction Q algebra. Not a second theorem home.
+-/
+
+namespace CodaQ
+
+open CodaQ
+
+#print axioms mode_being_unpacks_to_descent_and_terminalization
+#print axioms mode_being_pushes_forward_along_mode_refinement
+#print axioms q_terminal_not_authority_terminal
+#print axioms no_q_status_equals_authority_terminal
+#print axioms claim_machine_status_not_authority_terminal
+#print axioms no_claim_machine_status_equals_authority_terminal
+#print axioms halt_guards_is_auth_iff_all_seven
+#print axioms qheld_admissible_iff_complete_admission_debt
+#print axioms missing_finite_shadow_blocks_qheld
+#print axioms terminal_within_scope_requires_witness_support
+#print axioms terminal_within_scope_without_witness_blocked
+#print axioms observed_profile_determines_target_iff_profile_fiber_invariance
+#print axioms target_factorization_implies_profile_fiber_invariance
+#print axioms primitive_impossibility_blocks_profile_factorization
+#print axioms repaired_permission_separates_primitive_impossibility_witness
+#print axioms fiber_respecting_profile_cannot_repair_primitive_impossibility
+
+end CodaQ

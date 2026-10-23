@@ -1,0 +1,82 @@
+{
+  "AuthorityEffect": "None",
+  "steps": [
+    {
+      "command": [
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py"
+      ],
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py"
+      ],
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py"
+      ],
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py"
+      ],
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py"
+      ],
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py"
+      ],
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py"
+      ],
+      "exit_code": 0,
+      "stdout": "foc035 observer presheaf synchronized\n",
+      "stderr": ""
+    }
+  ]
+}

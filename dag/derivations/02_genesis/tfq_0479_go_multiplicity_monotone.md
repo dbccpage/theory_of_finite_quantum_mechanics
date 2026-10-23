@@ -33,9 +33,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean::Reach4.arb_mult_le`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean::Reach4.contains`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean::Reach4.mult_le`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean)
+- [`lean4/Imported/GenesisOngoing/Fourth/Contain.lean::Reach4.arb_mult_le`](../../../lean4/Imported/GenesisOngoing/Fourth/Contain.lean)
+- [`lean4/Imported/GenesisOngoing/Fourth/Contain.lean::Reach4.contains`](../../../lean4/Imported/GenesisOngoing/Fourth/Contain.lean)
+- [`lean4/Imported/GenesisOngoing/Fourth/Contain.lean::Reach4.mult_le`](../../../lean4/Imported/GenesisOngoing/Fourth/Contain.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: the H3V7N5QF package holds no Rust`
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean:6-7`
+  - `lean4/Imported/GenesisOngoing/Fourth/Contain.lean:15-16`
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/fourth/claim_ledger.md:59`
   - `omega_engine_education/documentation/005_oegenong/levels/level_05_monotone_mass_growth.md:37`

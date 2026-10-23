@@ -1,0 +1,286 @@
+{
+  "schema_version": "campaign_independent_review_replay.v1",
+  "AuthorityEffect": "None",
+  "reviewed_head": "927e42784c0650fdf36c8d20017d85e010029a41",
+  "integrated_base": "611b954f66d5a3464512dd2a5e5ef6f88013ea84",
+  "checked_at": "2026-10-23T04:05:52.766691+00:00",
+  "source": "checks/independent/l1-imp-transition-probability-law.py",
+  "sha256": "9641eb17d294a9160f69dc02f2102c18780b6ade7867246aa98da1072f4029d2",
+  "python_version": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "dependency_versions": {
+    "sympy": "1.13.1",
+    "PyYAML": "6.0.3",
+    "mypy": "1.19.1",
+    "pytest": "8.3.5"
+  },
+  "commands": [
+    {
+      "label": "checker-normal",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:02:42.512917+00:00",
+      "completed": "2026-10-23T04:03:06.904858+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"boundary_rejections\": [\n    \"boolean scalar\",\n    \"floating scalar\",\n    \"unchecked component\",\n    \"zero inverse\",\n    \"zero ray\",\n    \"zero effect\",\n    \"zero state\",\n    \"extra effect coordinate\",\n    \"extra state coordinate\",\n    \"extra ray coordinate\",\n    \"missing ray coordinate\",\n    \"mutable vector\",\n    \"boolean coordinate\",\n    \"floating coordinate\",\n    \"boolean scale\"\n  ],\n  \"countermodel_probabilities\": [\n    \"9/10\",\n    \"1/10\"\n  ],\n  \"grid\": {\n    \"ordered_pairs\": 6400,\n    \"orthogonal_pairs\": 512,\n    \"vectors\": 80\n  },\n  \"imaginary_probe_probabilities\": [\n    \"1\",\n    \"0\"\n  ],\n  \"mutations\": [\n    {\n      \"mutation\": \"drop probability denominator\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"drop conjugation in inner product\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"remove conditional branch: conjugate every vector\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"replace dynamics by identity\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"stretch inverse without reciprocal\",\n      \"outcome\": \"killed\"\n    }\n  ],\n  \"scope\": \"symbolic identities, exact witnesses, finite grid; no general claim from sampling\",\n  \"status\": \"PASS\",\n  \"stretch_probabilities\": [\n    \"1/2\",\n    \"1/5\"\n  ],\n  \"symbolic_identities\": [\n    \"norm_multiplicative\",\n    \"orthogonal_partner\",\n    \"real_probe\",\n    \"imaginary_probe\",\n    \"gram_calibration\"\n  ],\n  \"witness_inner_products\": [\n    \"3\",\n    \"-1\"\n  ],\n  \"witness_norms\": [\n    \"2\",\n    \"5\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "checker-optimized",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:03:06.905855+00:00",
+      "completed": "2026-10-23T04:03:48.373523+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"boundary_rejections\": [\n    \"boolean scalar\",\n    \"floating scalar\",\n    \"unchecked component\",\n    \"zero inverse\",\n    \"zero ray\",\n    \"zero effect\",\n    \"zero state\",\n    \"extra effect coordinate\",\n    \"extra state coordinate\",\n    \"extra ray coordinate\",\n    \"missing ray coordinate\",\n    \"mutable vector\",\n    \"boolean coordinate\",\n    \"floating coordinate\",\n    \"boolean scale\"\n  ],\n  \"countermodel_probabilities\": [\n    \"9/10\",\n    \"1/10\"\n  ],\n  \"grid\": {\n    \"ordered_pairs\": 6400,\n    \"orthogonal_pairs\": 512,\n    \"vectors\": 80\n  },\n  \"imaginary_probe_probabilities\": [\n    \"1\",\n    \"0\"\n  ],\n  \"mutations\": [\n    {\n      \"mutation\": \"drop probability denominator\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"drop conjugation in inner product\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"remove conditional branch: conjugate every vector\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"replace dynamics by identity\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"stretch inverse without reciprocal\",\n      \"outcome\": \"killed\"\n    }\n  ],\n  \"scope\": \"symbolic identities, exact witnesses, finite grid; no general claim from sampling\",\n  \"status\": \"PASS\",\n  \"stretch_probabilities\": [\n    \"1/2\",\n    \"1/5\"\n  ],\n  \"symbolic_identities\": [\n    \"norm_multiplicative\",\n    \"orthogonal_partner\",\n    \"real_probe\",\n    \"imaginary_probe\",\n    \"gram_calibration\"\n  ],\n  \"witness_inner_products\": [\n    \"3\",\n    \"-1\"\n  ],\n  \"witness_norms\": [\n    \"2\",\n    \"5\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "checker-mypy",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:03:48.375046+00:00",
+      "completed": "2026-10-23T04:04:11.116166+00:00",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    }
+  ],
+  "result": {
+    "boundary_rejections": [
+      "boolean scalar",
+      "floating scalar",
+      "unchecked component",
+      "zero inverse",
+      "zero ray",
+      "zero effect",
+      "zero state",
+      "extra effect coordinate",
+      "extra state coordinate",
+      "extra ray coordinate",
+      "missing ray coordinate",
+      "mutable vector",
+      "boolean coordinate",
+      "floating coordinate",
+      "boolean scale"
+    ],
+    "countermodel_probabilities": [
+      "9/10",
+      "1/10"
+    ],
+    "grid": {
+      "ordered_pairs": 6400,
+      "orthogonal_pairs": 512,
+      "vectors": 80
+    },
+    "imaginary_probe_probabilities": [
+      "1",
+      "0"
+    ],
+    "mutations": [
+      {
+        "mutation": "drop probability denominator",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "drop conjugation in inner product",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "remove conditional branch: conjugate every vector",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "replace dynamics by identity",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "stretch inverse without reciprocal",
+        "outcome": "killed"
+      }
+    ],
+    "scope": "symbolic identities, exact witnesses, finite grid; no general claim from sampling",
+    "status": "PASS",
+    "stretch_probabilities": [
+      "1/2",
+      "1/5"
+    ],
+    "symbolic_identities": [
+      "norm_multiplicative",
+      "orthogonal_partner",
+      "real_probe",
+      "imaginary_probe",
+      "gram_calibration"
+    ],
+    "witness_inner_products": [
+      "3",
+      "-1"
+    ],
+    "witness_norms": [
+      "2",
+      "5"
+    ]
+  },
+  "normal_equals_optimized": true,
+  "review_defect": {
+    "before_source_sha256": "67537675ef4a328ecf875de7447ddc07f850f0da732afc6cb7a2d1e7ed83e8de",
+    "input": "x=(ONE,ZERO,ONE); effect=E0",
+    "observed_before": "probability(x,E0)=1; ray_key(x)=(ONE,ZERO), silently dropping the third coordinate",
+    "expected": "TypeError for vectors outside Q(i)^2",
+    "fix": "Strict tuple, dimension and Gaussian-coordinate validation before vector operations; exact Gaussian scale guard."
+  },
+  "extra_mutation": {
+    "mutation": "remove the vector admission guard",
+    "source_replacement": {
+      "before": "    if type(x) is not tuple or len(x) != 2 or any(type(c) is not G for c in x):\n        raise TypeError(\"expected exactly two Gaussian rational coordinates in a tuple\")",
+      "after": "    return None"
+    },
+    "mutant_sha256": "72274804ab4f8c0dedb67ddea19aaef562dd8b308a609f05e07e3f2c428a13a4",
+    "command": [
+      "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "C:\\gw\\tp205\\lean4\\b\\pr205-review\\mutant-remove-vector-guard.py"
+    ],
+    "cwd": "C:\\gw\\tp205",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr205-review\\mutant-remove-vector-guard.py\", line 280, in <module>\n    main()\n  File \"C:\\gw\\tp205\\lean4\\b\\pr205-review\\mutant-remove-vector-guard.py\", line 273, in main\n    \"boundary_rejections\": check_boundaries(),\n                           ^^^^^^^^^^^^^^^^^^\n  File \"C:\\gw\\tp205\\lean4\\b\\pr205-review\\mutant-remove-vector-guard.py\", line 215, in check_boundaries\n    expect_error(lambda: probability((ONE, ZERO, ONE), E0), TypeError,  # type: ignore[arg-type]\n  File \"C:\\gw\\tp205\\lean4\\b\\pr205-review\\mutant-remove-vector-guard.py\", line 203, in expect_error\n    raise CheckFailure(\"expected rejection missing: \" + label)\nCheckFailure: expected rejection missing: extra effect coordinate\n",
+    "outcome": "killed",
+    "reason": "Full checker exits through CheckFailure at extra effect coordinate rejection, not syntax or harness failure."
+  },
+  "mutation_accounting": {
+    "semantic_fault_probes": [
+      {
+        "mutation": "drop probability denominator",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "drop conjugation in inner product",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "remove conditional branch: conjugate every vector",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "replace dynamics by identity",
+        "outcome": "killed"
+      },
+      {
+        "mutation": "stretch inverse without reciprocal",
+        "outcome": "killed"
+      }
+    ],
+    "full_script_injection_count": 1,
+    "killed": 6,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": "1"
+  },
+  "structure": {
+    "source_lines": 281,
+    "ast_branch_indicator": {
+      "require": 2,
+      "gaussian": 3,
+      "require_vector": 5,
+      "norm": 1,
+      "inner": 1,
+      "probability": 2,
+      "scaled": 2,
+      "ray_key": 3,
+      "transform": 2,
+      "stretch": 1,
+      "unstretch": 1,
+      "orthogonal_partner": 1,
+      "check_symbolic": 4,
+      "check_grid": 9,
+      "expect_error": 2,
+      "check_boundaries": 1,
+      "check_mutants": 4,
+      "main": 3,
+      "__post_init__": 3,
+      "__add__": 1,
+      "__neg__": 1,
+      "__sub__": 1,
+      "__mul__": 1,
+      "conjugate": 1,
+      "inverse": 2,
+      "squared": 1,
+      "born": 2,
+      "column": 2
+    },
+    "max_ast_branch_indicator": 9,
+    "metric_boundary": "AST indicator is not a cognitive-complexity measurement; manual structural review caps G5 at C."
+  },
+  "retained_local_edit_failures": [
+    {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "timestamp": "2026-10-23T04:01:19.062410+00:00",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "  File \"C:\\gw\\tp205\\checks\\independent\\l1-imp-transition-probability-law.py\", line 55\n    require_vector(x)\n    ^^^^^^^^^^^^^^\nIndentationError: expected an indented block after function definition on line 54\n"
+    },
+    {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "timestamp": "2026-10-23T04:01:19.875723+00:00",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "  File \"C:\\gw\\tp205\\checks\\independent\\l1-imp-transition-probability-law.py\", line 55\n    require_vector(x)\n    ^^^^^^^^^^^^^^\nIndentationError: expected an indented block after function definition on line 54\n"
+    },
+    {
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "timestamp": "2026-10-23T04:01:27.794754+00:00",
+      "exit_code": 2,
+      "stdout": "checks\\independent\\l1-imp-transition-probability-law.py:55: error: Expected an indented block after function definition on line 54  [syntax]\nFound 1 error in 1 file (errors prevented further checking)\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Exact standalone replay, symbolic identities and bounded grid; unrestricted mathematics is established by Lean."
+}

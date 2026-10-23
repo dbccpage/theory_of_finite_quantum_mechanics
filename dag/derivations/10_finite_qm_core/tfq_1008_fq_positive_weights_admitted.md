@@ -51,5 +51,5 @@ paper s13.8.2 table: "positivity and normalized preparation weights are admitted
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1381`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1381`

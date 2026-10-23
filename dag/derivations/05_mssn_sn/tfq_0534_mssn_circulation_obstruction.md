@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::circulation_flux_obstruction`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean)
-- [`omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean)
-- [`omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean)
-- [`omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obstP_factors`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean)
-- [`omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obst_of_gates`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean)
+- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::circulation_flux_obstruction`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
+- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
+- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
+- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
+- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obst_of_gates`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs)
@@ -60,6 +60,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean:4-9`
-  - `omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean:123-124`
+  - `lean4/Imported/OeMssn/MssnObstructionDetector.lean:13-18`
+  - `lean4/Imported/OeMssn/MssnObstructionDetector.lean:132-133`
   - `omega_engine_education/documentation/003_oemssn/lean4/README.md:11`

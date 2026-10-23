@@ -1,0 +1,102 @@
+## 2026-09-28 — Zenodo deposit publication (v3.0.1 Pre-Print)
+
+Recorded canonical Zenodo record <https://zenodo.org/records/23025236> (DOI: `10.5281/zenodo.23025236`) across deposit metadata, `CITATION.cff`, `README.md`, and atlas `zenodo_records.md`.
+
+---
+
+## 2026-09-28 — release candidate 3.0.1
+
+Aligned manuscript, code, citation metadata, and rebuilt release artifacts after the review corrections. Historical versions and unresolved claim obligations remain recorded below.
+
+## 2026-09-27 — Publication review repairs
+
+- Replaced stale fibre caching in the factor solver with one copied finite observation snapshot per solve. Profiles/query values are observed once per state, collision checks use those same pairs, and returned values are detached from mutable inputs.
+- Required actual bool values for all four admission flags, including revalidation after mutation. ImagePoint now requires a profile binding and explicit supplied factor, and revalidates its witness before factor use.
+- Added the actual Lean image-factor uniqueness statement. Corrected absent helper citations, the T3 abstract monotone-scale ceiling, the T4 Boolean analogue, and all zero-error claims requiring metric separation.
+- Synchronized maps, ledgers, metadata, current finite schema, README and quick start; retired generator/exponential overclaims while retaining the discrete convenience definitions.
+- Corrected figure source to use Prof(D), separately supplied total extension data, and all eight admission checks; kept floats out of the bibliography. Bound notebooks to local modules and migrated their factor calls.
+- Added stale-state, changed-projector, truthy-flag, witness-binding, returned-value, and exact-solver regression tests. Current binary recovery and verification receipts are maintained by the release audit.
+
+Validation receipts are recorded in the F005 review output. Test counts and coverage are measured by the coordinated runtime gate; fresh Lean and final figure/PDF receipts are separate. Earlier entries below describe historical versions.
+
+Change Log: CODA-CS–Q Bridge Factorization Theorem via Algorithm Prime 000
+=======================================================================
+
+All notable updates, structural reorganizations, and Lean4 additions for `coda_cs_q_bridge.md` are documented in this file.
+
+---
+
+2026-07-26 — Initial Creation (v0.1)
+------------------------------------
+
+* Created `coda_cs_q_bridge.md`, `coda_cs_q_bridge_claim_ledger.md`, `coda_cs_q_bridge_change_log.md`, and `GttcQBridge.lean`.
+* Formulated the CODA-CS–Q Bridge Factorization Theorem ($q = \bar{q} \circ \operatorname{Prof} \iff \text{fiber constancy}$).
+* Established 14-tuple Bridge Packet $\mathcal{B}_q$ under 8-step `BridgeAdmissible` conditions.
+* Formalized continuum laws as infinitesimal generators of finite transport semigroups.
+
+2026-07-26 — rip-papers improver
+--------------------------------
+
+* Added Part-A hygiene: Why care, Falsifiability, References (and §5b primitives where missing).
+* No claim status upgrade.
+
+2026-07-26
+----------
+
+* Added research library shelf link (`_support/library_shelf.md`) from reindexed LIB corpus.
+
+* **v0.4 (2026-07-26):** Phase C Kernel No-Smuggling hygiene complete. Primitive Difference status updated to CONSTRUCTION; typed residual handoff capsule attached; claim ledger retargeted.
+
+2026-07-31 — Honesty demotion + residual advance (v0.6–v0.9 ledger)
+-------------------------------------------------------------------
+
+* **v0.6:** Demote iff overclaims; BRIDGE statuses PARTIAL / OPEN / DEFINED.
+* **v0.7:** Image reverse mechanized (`ImagePoint`, image iff).
+* **v0.8:** `BridgePacket14` + `BridgeAdmissible8` typed projectors.
+* **v0.9:** Named terminalizers Lean+Python; authority τ OPEN.
+
+2026-08-01 — Paper hygiene to ledger v0.9 + contract skeleton
+-------------------------------------------------------------
+
+* **Paper body** rewritten to match claim ledger v0.9 (forward + image reverse; TYPED_8_STEP/14_SCHEMA; named τ; ENC hedges; claim-id index filenames).
+* **Nonclaims** expanded (total-β reverse, FINITE_* fence, no seal/twin/PROD).
+* **Nomos skeleton:** `omega_contracts/.../math/coda_cs_q_bridge.contract.yaml` (mathematical_wip, skeleton_only, no PROD).
+* No claim status upgrade beyond ledger v0.9.
+
+* **v0.9 land note (2026-08-01):** Nomos-shaped skeleton parked at docs/coda_cs_q_bridge.contract.skeleton.yaml (not under omega_contracts/math/ yet) because pre-commit v1 corpus gate currently fails estate-wide on concurrent nomos_debate_NOT_CANONICAL fields. Skeleton remains skeleton_only. No OMEGA_SKIP_V1_GATE.
+* **Genesis Citation Pinning:** Pinned all citations to Genesis derivation repository (`dbccpage/19L57G1`) strictly to frozen tag `sealed-derivation-v1` (commit `3100c4e`).
+
+2026-09-07 — PR #224 review repair
+----------------------------------
+
+* Removed `coda_cs_q_change_log.md`, a byte-identical duplicate of this file added
+  alongside it during the `cs_q_bridge/` -> `cs_q/` rename. This file remains the
+  package's only change log.
+
+2026-09-12 — Public math note (v3.0.0)
+--------------------------------------
+
+* Rewrote `coda_cs_q_bridge.md` as a short public note: image factorization
+  iff fibre constancy, $2\varepsilon$ collision bound, Lipschitz access,
+  two-dot midpoint collision, image reverse versus total extension.
+* Subtitle is factorization / samples, not generator semigroups.
+* Notebooks: `000_two_dots_do_not_make_a_curve`,
+  `001_when_a_blurry_view_still_answers`,
+  `002_nearby_inputs_nearby_answers`. Removed
+  `000_inline_code_companion` and `001_reviewer_coda_cs_q`.
+* Named terminalizers remain in package Lean; general authority
+  terminalizers are not proved. H3'' glue is not proved. Generator
+  semigroups / Hamilton–Jacobi are not theorems of the note.
+
+2026-09-18 — Republication Remediation (v3.0.0)
+-----------------------------------------------
+
+* **Title & Metadata Reconciliation:** Reconciled canonical title to `Finite Profile Factorization and Sampling Limits (CODA-CS-Q)`, subtitle to `Image factors, decoder bounds, and missing-value obstructions`, canonical version `v3.0.0`, release date `2026-09-18`.
+* **Metric Separation Correction (B1):** Corrected Theorem CSQ-T2 zero-error inference in manuscript and Lean. Clarified that $\operatorname{dist}(q(x), q(y)) = 0$ in a general pseudometric does not imply value equality without the metric separation axiom. Mechanized `Coda.CSQ.metric_zero_error_implies_equality` and constructed indiscrete pseudometric countermodel `Coda.CSQ.pseudometric_zero_error_does_not_imply_equality`.
+* **Self-Contained Lean 4 Project:** Excised external monorepo require path from `lean4/lakefile.lean`. Formalized all 5 paper theorems (`Coda.CSQ.exact_on_image`, `approximate_collision_bound`, `lipschitz_access`, `samples_not_query`, `whole_codomain_needs_extension`) self-contained in `lean4/Algebra.lean`. All lake modules build cleanly with 0 `sorry` and standard kernel axioms.
+* **Engine Façade & Package Isolation:** Replaced legacy 1,305-line `coda_cs_q_engine.py` with a clean backwards-compatible façade re-exporting `coda_cs_q_bridge_core.py` symbols. Vendored exact rational quotient distance solver in `code/cochain_presentation.py`, eliminating ambient monorepo `sys.path` escapes.
+* **Mathematical Decision Tree Figure:** Updated `generate_figures.py` to render a genuine conditional decision tree (fiber constancy test, collision witness extraction, canonical image factor, total extension audit, and terminal agreement) and embedded it into recompiled 7-page PDF.
+* **Claim Ledger Overhaul:** Aligned claim ledger 1-to-1 with paper theorems CSQ-T1 through CSQ-T5, attaching explicit hypotheses, discrete bounds, Lean theorems, and legacy bijection.
+* **Linter & Test Hygiene:** Resolved 100% of ruff and mypy issues with zero blanket suppressions; 100% pytest suite passes over 8 workers.
+* **Scope:** No operational authority is conferred.
+

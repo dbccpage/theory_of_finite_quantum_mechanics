@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wdp-paper-001"
+version = "0.1.0"
+description = "Finite checks for WDP Paper 001"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.setuptools]
+py-modules = ["sn_mssn_checks", "reproduce"]
+package-dir = {"" = "code"}
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+pythonpath = ["code"]
+addopts = "-p no:cacheprovider"

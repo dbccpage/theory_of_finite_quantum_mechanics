@@ -665,7 +665,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0397` | `DRESSING_FIELD` | `DEFINITION` | `DFM-GROUP-CONNECTION` (DEFINITION) | - |
 | `TFQ-0398` | `DRESSING_FIELD` | `PROVED_LEAN` | `DFM-GENERAL-GRAPH-DRESSING` (PROVED_LEAN) | - |
 | `TFQ-0399` | `DRESSING_FIELD` | `PROVED_LEAN` | `DFM-TREE-CHANGE` (PROVED_LEAN) | - |
-| `TFQ-0400` | `DRESSING_FIELD` | `OPEN_OBLIGATION` | `DFM-HIERARCHICAL-BOREL` (OPEN) | - |
+| `TFQ-0400` | `DRESSING_FIELD` | `PROVED_LEAN` | `DFM-HIERARCHICAL-BOREL` (PROVED_LEAN) | - |
 | `TFQ-0401` | `DRESSING_FIELD` | `GAP` | `DFM-CONTINUUM-INTERFACE` (OPEN) | - |
 | `TFQ-0402` | `MUTUALLY_UNBIASED_BASES` | `DEFINITION` | `MUB-EXACT-PROJECTORS` (DEFINITION) | - |
 | `TFQ-0403` | `MUTUALLY_UNBIASED_BASES` | `OPEN_OBLIGATION` | `MUB-PRIME-POWER-CONSTRUCTION` (OPEN) | - |
@@ -1061,7 +1061,7 @@ These source records restate a trunk step; the trunk node carries an `alias:` ta
 | `DFM-DEF-2.1` | `papers/ravera_dfm_dossier.md` | `DFM-GROUP-CONNECTION` | Dossier Definition 2.1 fixes a connected directed graph and lists concrete groups (Q, U(1,Q(i)), B_2(Q), SU(2), SU(3), SO+(1,3;Q)); TFQ-0397 allows multigraphs, loops, forests and any supplied group, with the same gauge action U^g_(u,v) = g(v) U g(u)^{-1}. |
 | `DFM-DEF-2.2` | `papers/ravera_dfm_dossier.md` | `DFM-GENERAL-GRAPH-DRESSING` | Dossier Definition 2.2 (rooted tree holonomy u_T, dressed links u_T(v)^{-1} U u_T(u), identity on tree edges, chord value equal to the rooted fundamental-cycle holonomy) is the connected single-tree case of TFQ-0398 with u = T^{-1}; the coordinate bijection H^{\|V\|-1} x H^{b_1} = H^{\|E\|} is recorded separately as DFM-DEF-2.2-COORDS. |
 | `DFM-DEF-2.2-ROOT` | `papers/ravera_dfm_dossier.md` | `DFM-TREE-CHANGE` | The dossier clause that anchored gauges leave dressed links unchanged while an unanchored root value g(v_0) conjugates every dressed link is the root-gauge paragraph of TFQ-0399 (residual becomes g(r) R_e g(r)^{-1}); the dossier writes the conjugation with the opposite multiplication convention. |
-| `DFM-P3.2-FENCE` | `papers/ravera_dfm_dossier.md` | `DFM-HIERARCHICAL-BOREL` | Theorem 3.2 as stated for all B_2(Q) connections, including the uniqueness, quotient-preservation and discrete Bianchi clauses, is the open obligation TFQ-0400; the dossier adds only a diamond instance (DFM-P3.2-TWO-STAGE). |
+| `DFM-P3.2-FENCE` | `papers/ravera_dfm_dossier.md` | `DFM-HIERARCHICAL-BOREL` | Dossier Theorem 3.2 is wider than TFQ-0400. TFQ-0400 records unique factorization, normality, rooted-tree two-stage dressing for a supplied parent and depth, quotient invariance, the coboundary criterion, and the specified incidence operators. It does not build a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism. The dossier diamond instance remains DFM-P3.2-TWO-STAGE. |
 | `DFM-SEC5-SCOPE` | `papers/ravera_dfm_dossier.md` | `DFM-CONTINUUM-INTERFACE` | Dossier section 5 restricts every claim to finite graphs and complexes over Q and Q(i) and leaves continuum Yang-Mills, gravity and the residual root and tree-change symmetries explicit, which is the obligation set of TFQ-0401. |
 | `MAJ-C12` | `papers/core/majorana/the_majorana_problem.md` | `TFQ-0184` | The ledger row says the enum rfl Betti declarations are not tetron homology, which is TFQ-0184; the computed Betti numbers are MAJ-COMP-TETRON-BETTI. |
 | `MAJ-FENCE-DIAGNOSTIC-LABELS` | `papers/core/majorana/the_majorana_problem.md` | `DS-QM212-MAJORANA-PROBLEM` | Section 0.2 name-collision fix and non-claim 3: Exact/ClosedResidual/OpenObstruction are GF(2) diagnostic classes with AuthorityEffect None, not FOC ExactRepair; TFQ-0181 states this for omega_majorana. |
@@ -1795,7 +1795,7 @@ Obligation: Inventory row ids in the twenty-second through twenty-fifth claim le
 
 Opened proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, status proposed, asks for a certified term map from tag sealed-derivation-v1 at 3100c4e into this book's PrimitiveDifference carrier or candidate Lean mirror. Chapter 1 records the same gap as GAP-F000-S000-001 and says the tag is a mechanical receipt, not a mathematical verdict, and that the sealed derivation does not form cochains. finite_obstruction.py, opened at its header, starts from quotient certificates for a later host. The finite statement still required is that term map, or an explicit decision to leave the row proposed.
 
-Obligation: Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.
+Obligation: A certified contextual-collapse term map into the existing Core PrimitiveDifference candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.
 
 ### TFQ-0430 metatheory-object-language-split
 
@@ -2473,9 +2473,9 @@ Obligation: State in Lean the responder's minimum, cost and tie relation over th
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).
+A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish, and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level uniformity necessity and external implementation refinement remain open.
 
-Obligation: Build a decision procedure for collapse and separability over the well-formed contexts of a finite regime, prove it correct in Lean, and use it to decide Y-2, T-1, holding two and exhaustion.
+Obligation: Use the complete finite context decisions for the remaining first-count and Y-2 history claims under their explicit predicates; establish the external implementation refinement separately.
 
 ### TFQ-0498 declared-input-floor
 
@@ -4187,9 +4187,9 @@ Obligation: The completion, its identification with l2 and the lift of bounded e
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `L1-IMP-TRANSITION-PROBABILITY-LAW` (`IMPORTED_ASSUMPTION`)
 
-Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.
+Imported dynamical law: the evolution of rays preserves the Born probability of every transported rank-one effect in every state; conditional on this law the dynamics is a linear or conjugate-linear similarity. Campaign hypothesis map on Q(i)^n: a supplied linear lift with finite orthogonality calibration and a nonzero anchor preserves transition probabilities; fixed-frame statistics for all basis, real pair and imaginary pair probes in every nonzero state, together with nonvanishing, also suffice and fix every ray. On Q(i)^2, reversible ray dynamics can preserve norms, basis and real pair statistics, report-swap covariance and orthogonality while changing a transition probability from 9/10 to 1/10. A reversible linear subspace-lattice automorphism changes another probability from 1/2 to 1/5. The dynamical law remains supplied, not derived from primitive difference.
 
-Obligation: No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.
+Obligation: The sufficient packages add explicit structure: a Gaussian-rational linear lift plus finite zero-probability calibration, or nonvanishing plus all-state fixed-frame tomographic statistics. Neither package is a derivation from primitive difference or a strictly weaker replacement for the full law. Static Born readout, reversibility, report-swap covariance, norms, basis and real pair statistics and orthogonality are jointly insufficient in dimension two. Subspace order preservation without orthocomplement preservation is also insufficient. Arbitrary ray bijections in higher dimensions under orthogonality alone, affine positive-effect automorphisms and evolving measurement-frame covariance are not classified here.
 <!-- unified-dag:rows:L1_TO_L2:end -->
 
 ## FINITE_HILBERT
@@ -5932,9 +5932,9 @@ Obligation: Keep the substantial-versus-artificial split on B_2(Q), not on SU(3)
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
 
-The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.
+Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.
 
-Obligation: Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.
+Obligation: Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py tests with SymPy only; any color-transport statement.
 
 ### TFQ-0017 Do not promote the SU(2) quaternion shadow to su(3)_c
 
@@ -8576,13 +8576,13 @@ Obligation: Use the same multiplication convention in all three languages; disti
 
 - UUID: `cb25b943-66e6-550c-9490-67640907b380`
 - Parent: `TFQ-0399`
-- Status: `OPEN_OBLIGATION`
+- Status: `PROVED_LEAN`
 - DAG node: `DFM-HIERARCHICAL-BOREL`
 - Paper: [derivation](derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md)
 
-Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.
+Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N. torusProj preserves multiplication. On any vertex type with a root, a parent function and a depth function that strictly decreases along parents, and for invertible labels off the root, root-to-vertex transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]]. Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1}, and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} * g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1} off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative ring, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) satisfy b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance K(A^g) = g(u) * K(A) * g(w)^{-1} when A^g(x, y) = g(x) * A(x, y) * g(y)^{-1}. For A(0,1)=1, A(1,2)=1, A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2)) is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).
 
-Obligation: Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.
+Obligation: The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This statement does not construct a spanning tree from an arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this statement.
 
 ### TFQ-0401 Dressing-field continuum and physical interpretation obligations
 
@@ -8666,7 +8666,7 @@ Obligation: Supply an exact interval computation from declared graph polynomials
 
 B_2(Q) is the group of invertible upper-triangular rational 2x2 matrices, N its unipotent normal subgroup and T_2(Q) the diagonal torus; a tree holonomy [[a,b],[0,d]] factors as [[1,b/d],[0,1]] diag(a,d), giving the stage-1 dressing u_N and stage-2 dressing t.
 
-Obligation: Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.
+Obligation: Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.
 
 ### TFQ-1106 Two-stage Borel dressing and artificial/substantial split on the diamond
 
@@ -8678,7 +8678,7 @@ Obligation: Uniqueness of the factorization and quotient preservation for arbitr
 
 On the diamond graph with one fixed tree, a pure-gauge B_2(Q) connection built from one rational vertex map is dressed to the identity on all 5 edges, and a connection with one chord multiplied by [[2,1],[0,3]] is dressed to the identity on tree edges and to a non-identity chord; stage-1 fields lie in N, stage-1 tree links are diagonal, and stage 2 reproduces the one-shot dressing.
 
-Obligation: The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.
+Obligation: Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.
 
 ### TFQ-1107 Tree momentum routing and second Symanzik 2-forest polynomial
 
@@ -10074,7 +10074,7 @@ Obligation: Standard lattice-gauge fact imported, not established in this checko
 
 The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.
 
-Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.
+Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.
 
 ### TFQ-1198 Topological theta term makes lattice weights complex
 
@@ -10096,9 +10096,9 @@ Obligation: Severity of the resulting sign problem is phenomenology from the lit
 - DAG node: `FSP-LATTICE-ANOMALY-INFLOW`
 - Paper: [derivation](derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
 
-Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.
+Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.
 
-Obligation: Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.
+Obligation: Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.
 
 ### TFQ-1200 SU(2) adjoint fermions have a real determinant
 
@@ -11122,9 +11122,9 @@ Obligation: Soundness only; the verdict boundExceeded does not decide the unboun
 - DAG node: `COMP-C3-CONTEXT-DECISION-PARTIAL`
 - Paper: [derivation](derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md)
 
-Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.
+The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.
 
-Obligation: Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.
+Obligation: Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.
 
 ### TFQ-1294 A right-running machine needs an unbounded supply of fresh blanks
 

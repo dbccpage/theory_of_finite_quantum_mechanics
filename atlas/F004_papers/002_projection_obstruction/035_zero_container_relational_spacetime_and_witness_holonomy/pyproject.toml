@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "po035-relational-spacetime-witness"
+version = "0.1.0"
+description = "Zero-Container Relational Spacetime, Emergent Lorentz Causality, and Witness Holonomy"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Jeremy H. Carroll" }]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "pytest>=7.0.0",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+pythonpath = ["code"]
+addopts = "-p no:debugging"
+
+[tool.coverage.run]
+source = ["code"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_empty = true
+
+[tool.mypy]
+files = ["code"]
+python_version = "3.11"
+warn_unused_ignores = false

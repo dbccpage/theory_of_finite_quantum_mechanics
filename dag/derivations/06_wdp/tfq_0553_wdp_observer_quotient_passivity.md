@@ -36,9 +36,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean::declared_family_order`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean::grammar_resolution_bound`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::observer_passivity_of_infimum`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean)
+- [`lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean::declared_family_order`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean)
+- [`lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean::grammar_resolution_bound`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean)
+- [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::observer_passivity_of_infimum`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs)

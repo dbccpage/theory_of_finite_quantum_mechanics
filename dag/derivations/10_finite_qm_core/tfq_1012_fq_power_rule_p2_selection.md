@@ -50,4 +50,4 @@ paper s11.6 (proof in supplement s11.58); rational controls in Rust
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:686`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:686`

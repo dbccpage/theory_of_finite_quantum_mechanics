@@ -1,0 +1,138 @@
+{
+  "schema": "po000.research_qualification.v1",
+  "date_utc": "2026-10-11",
+  "base_commit": "29b3070c694f6af3717834bae8d822600398986e",
+  "authority_effect": "None",
+  "scope": "Focused research/publication revision. Not a full standalone profile, whole package test sweep, historical Lean rebuild or external deposit.",
+  "identity": {
+    "schema": "po000.release_identity.v1",
+    "manuscript_version": "6.9.14",
+    "code_version": "6.9.5",
+    "release_version": "6.9.14",
+    "release_date": "2026-10-11",
+    "status": "author-review revision; not deposited",
+    "authority_effect": "None"
+  },
+  "commands": [
+    {
+      "name": "lean",
+      "command": "MATHLIB_NO_CACHE_ON_UPDATE=1 lake -Kmathlib=/workspace/.toolchains/mathlib4-v4.34.0 build (cwd lean4)",
+      "exit_code": 0,
+      "output": "info: po000_bridge: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\ninfo: mathlib: running post-update hooks\n\u2139 [3071/3074] Built Po000JordanLie (3.8s)\ninfo: Po000JordanLie.lean:152:0: 'Po000JordanLie.Data.product_associative' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:153:0: 'Po000JordanLie.Data.star_product' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:154:0: 'Po000JordanLie.Data.product_involution' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:155:0: 'Po000JordanLie.Data.left_multiplicative' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:156:0: 'Po000JordanLie.Data.left_faithful' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:157:0: 'Po000JordanLie.Data.left_adjoint' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:158:0: 'Po000JordanLie.Data.positive_square' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:159:0: 'Po000JordanLie.Data.positive_jordan_square' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:160:0: 'Po000JordanLie.scalarData' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLie.lean:161:0: 'Po000JordanLie.scalar_product' depends on axioms: [propext, Classical.choice, Quot.sound]\n\u2139 [3072/3074] Built Po000JordanTrace (4.2s)\ninfo: Po000JordanTrace.lean:265:0: 'Po000JordanTrace.Data.trace_bracket' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:266:0: 'Po000JordanTrace.Data.form_associative' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:267:0: 'Po000JordanTrace.Data.form_bracket_skew' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:268:0: 'Po000JordanTrace.Data.idempotent_peirce' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:269:0: 'Po000JordanTrace.Data.trace_idempotent_pos' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:270:0: 'Po000JordanTrace.Data.form_self_pos' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:271:0: 'Po000JordanTrace.Data.form_self_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:272:0: 'Po000JordanTrace.Data.form_self_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanTrace.lean:273:0: 'Po000JordanTrace.scalarSpectrum' depends on axioms: [propext, Classical.choice, Quot.sound]\n\u2139 [3073/3074] Built Po000JordanLieImage (8.1s)\ninfo: Po000JordanLieImage.lean:143:0: 'Po000JordanLie.Data.continuousLeft_faithful' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLieImage.lean:144:0: 'Po000JordanLie.Data.image_closed' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLieImage.lean:145:0: 'Po000JordanLie.Data.imageCStarAlgebra' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLieImage.lean:146:0: 'Po000JordanLie.Data.image_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLieImage.lean:147:0: 'Po000JordanLie.Data.image_self_adjoint_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLieImage.lean:148:0: 'Po000JordanLie.Data.positive_iff_jordan_square' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: Po000JordanLieImage.lean:149:0: 'Po000JordanLie.Data.mem_positiveCone_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (3074 jobs).\n"
+    },
+    {
+      "name": "publication_tests",
+      "command": "python -m pytest -q -o addopts= --confcutdir=. code/tests/test_publication_verification.py code/tests/test_release_packaging.py code/tests/test_verifier_mutations.py",
+      "exit_code": 0,
+      "output": "........................................................................ [ 30%]\n........................................................................ [ 61%]\n........................................................................ [ 91%]\n....................                                                     [100%]\n236 passed in 3.12s\n"
+    },
+    {
+      "name": "artifact_tests",
+      "command": "PYTHONPATH=code:scripts python -m pytest -q -o addopts= --confcutdir=. code/tests/test_paper_artifacts.py code/tests/test_fault_injection_guards.py",
+      "exit_code": 0,
+      "output": "..................................                                       [100%]\n34 passed in 0.99s\n"
+    },
+    {
+      "name": "paper",
+      "command": "XDG_CACHE_HOME=/tmp/wdp-font-cache python scripts/build_paper_artifacts.py",
+      "exit_code": 0,
+      "output": "build_paper_artifacts   AuthorityEffect: None\n  source : projection_obstruction.md (5154 lines)\n  toolchain: pandoc 3.1.11.1 | XeTeX 3.141592653-2.6-0.999996 (TeX Live 2025/dev/Debian)\n  tex    : projection_obstruction.tex  397,296 bytes  sha256 292b82b3c83e21ff\n    log: 0 missing characters, 1 overfull box(es), none over 10pt\n  pdf    : projection_obstruction.pdf  613,927 bytes  sha256 7f2d6687fe36667c\n"
+    },
+    {
+      "name": "certificate",
+      "command": "python code/verify_certificate.py ../po000_replay_2026-10-11.json",
+      "exit_code": 0,
+      "output": "{\"authority_effect\": \"None\", \"errors\": [], \"verdict\": \"pass\"}\n"
+    },
+    {
+      "name": "archive",
+      "command": "python scripts/build_release_zip.py --output dist/ --check",
+      "exit_code": 0,
+      "output": "archive: projection_obstruction_v6.9.14.zip; bytes: 3000778; sha256: c5f3fa29af71f6c3540eae283863d23ed4f0770f488912aaaf2c2f9b1b9daa28\narchive: projection_obstruction_v6.9.14.zip; bytes: 3000778; sha256: c5f3fa29af71f6c3540eae283863d23ed4f0770f488912aaaf2c2f9b1b9daa28\n  reproducible: two builds are byte-identical\n"
+    },
+    {
+      "name": "integrity",
+      "command": "python verify_deposit.py --integrity-only --lean-source-scan --archive dist/projection_obstruction_v6.9.14.zip",
+      "exit_code": 0,
+      "output": "integrity: 139 pinned payload files; exact selected archive and sidecar verified\nLean SOURCE SCAN ONLY: 20 files; no lexical sorry/admit tokens. No compilation or axiom audit.\nPARTIAL: integrity only; Python tests, replay, native integration and Lean compilation not executed.\n"
+    },
+    {
+      "name": "mathematical_tests",
+      "command": "python -m pytest -q -o addopts= --confcutdir=. code/tests/test_jordan_lie_countermodels.py code/tests/test_quantum_selector.py code/tests/test_po000_e2e_extension.py::TestTier1FeatureCoverage::test_tier1_f17_jordan_lie_countermodels_suite",
+      "exit_code": 0,
+      "output": "38 passed in1.40s"
+    },
+    {
+      "name": "replay",
+      "command": "python code/replay.py --output ../po000_replay_2026-10-11.json",
+      "exit_code": 0,
+      "scope": "Current dispositions and finite certificates; general E.6/E.7 refused by Python; native measurement capability refusals retained."
+    }
+  ],
+  "lean": {
+    "toolchain": "Lean4.34.0; Mathlib v4.34.0 commit5ed2965256430c3649e86755f9576b54eca72435",
+    "axiom_reports": {
+      "Po000JordanLie.Data.product_associative": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.star_product": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.product_involution": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.left_multiplicative": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.left_faithful": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.left_adjoint": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.positive_square": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.positive_jordan_square": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.scalarData": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.scalar_product": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.trace_bracket": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.form_associative": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.form_bracket_skew": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.idempotent_peirce": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.trace_idempotent_pos": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.form_self_pos": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.form_self_nonneg": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.Data.form_self_eq_zero_iff": "propext, Classical.choice, Quot.sound",
+      "Po000JordanTrace.scalarSpectrum": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.continuousLeft_faithful": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.image_closed": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.imageCStarAlgebra": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.image_finite": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.image_self_adjoint_iff": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.positive_iff_jordan_square": "propext, Classical.choice, Quot.sound",
+      "Po000JordanLie.Data.mem_positiveCone_iff": "propext, Classical.choice, Quot.sound"
+    },
+    "source_sha256": {
+      "Po000JordanLie.lean": "7d98bf86a822fbfbe7ffc8a8527c7730add89f5d9574cd9cd78a9da6c4c4c652",
+      "Po000JordanTrace.lean": "f7d6d1224d6e21b5582617989fb66f56efe7293286822a9a22b947bd3f7e4a88",
+      "Po000JordanLieImage.lean": "d17ea1813ab66a9516326bb14a59f48244d817cf6eddb0020e91bf7d9f20232e"
+    }
+  },
+  "paper": {
+    "pages": 110,
+    "visually_inspected_pages": [
+      105,
+      106
+    ],
+    "inspection": "Trace polynomial, projection formula, positivity argument, central bounds and proof legible; no clipped equations on inspected pages. Focused inspection only.",
+    "sha256": {
+      "projection_obstruction.md": "3e162d07c5408cc61cfa2909aa235ca1b0eb15ab0caaeb4029729608d9c301f0",
+      "projection_obstruction.tex": "292b82b3c83e21ff64b271d9a0758a9845add9f7180c2b855c28d964a4e9c72d",
+      "projection_obstruction.pdf": "7f2d6687fe36667c8632a99ae04ea446054c8c681e305b6c939778f39a27824b"
+    }
+  },
+  "replay_sha256": "87997ff2ce4ecde0c34a0bab98cc6d0c3b0305ebba0b578ef7f924bb5e617691",
+  "archive": {
+    "file": "dist/projection_obstruction_v6.9.14.zip",
+    "bytes": 3000778,
+    "sha256": "c5f3fa29af71f6c3540eae283863d23ed4f0770f488912aaaf2c2f9b1b9daa28",
+    "payload_manifest_sha256": "7b9d96aec47bb9c16b3b1b81e8346bd49c80ad0123a8530c3042eda2ab75ff90"
+  },
+  "claim_inventory": "All current proof anchors and example paths resolve. Historical receipts remain unchanged.",
+  "resolved_execution_issues": [
+    "Initial publication collection refused unpinned new ledger claims; added independent refusal dispositions and reran236tests successfully.",
+    "Initial artifact collection needed scripts on PYTHONPATH; reran with code:scripts paths,34passed."
+  ],
+  "limits": [
+    "No empirical derivation from <> or Genesis.",
+    "E.6 depends on supplied real spectra; E.7 assumes full complex density states and standard block tensors with stated ancilla availability for attainment.",
+    "No full notebook/native-profile recertification or new Zenodo deposit."
+  ]
+}

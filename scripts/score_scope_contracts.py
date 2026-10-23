@@ -63,13 +63,46 @@ def atomic_write(path: Path, text: str) -> None:
     os.replace(temporary, path)
 
 
-def source_paths() -> List[Path]:
-    """Return the complete source population without depending on glob quirks."""
+def changed_paths(ref: str) -> Tuple[str, set[str]]:
+    """Files changed since ``ref``, plus ordinary untracked files.
+
+    The comparison base is the merge base of ``ref`` and ``HEAD``. A missing
+    merge base falls through to ``ref`` itself; a ref git cannot resolve then
+    fails the diff rather than reporting an empty change.
+    """
+    try:
+        base = subprocess.check_output(
+            ["git", "merge-base", ref, "HEAD"],
+            cwd=ROOT,
+            stderr=subprocess.DEVNULL,
+        ).decode("utf-8").strip()
+    except subprocess.CalledProcessError:
+        base = ref.strip()
+    if not base:
+        base = ref.strip()
+    diff = subprocess.check_output(
+        ["git", "diff", "--name-only", "--no-renames", "-z", base],
+        cwd=ROOT,
+    ).decode("utf-8")
+    others = subprocess.check_output(
+        ["git", "ls-files", "--others", "--exclude-standard", "-z"],
+        cwd=ROOT,
+    ).decode("utf-8")
+    names: set[str] = set()
+    for blob in (diff, others):
+        for name in blob.split("\0"):
+            if name:
+                names.add(name.replace("\\", "/"))
+    return base, names
+
+
+def listed_source_names() -> List[str]:
+    """In-scope source names from git, without stating each path."""
     raw = subprocess.check_output(
         ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
         cwd=ROOT,
     ).decode("utf-8")
-    result: List[Path] = []
+    result: List[str] = []
     for name in raw.split("\0"):
         if not name:
             continue
@@ -82,10 +115,37 @@ def source_paths() -> List[Path]:
         in_code = normalized.startswith("code/") and path.suffix in {".py", ".rs"}
         in_lean = normalized.startswith("lean4/") and path.suffix == ".lean"
         if in_code or in_lean:
-            absolute = ROOT / path
-            if absolute.is_file():
-                result.append(absolute)
+            result.append(normalized)
+    return result
+
+
+def source_paths() -> List[Path]:
+    """Return the complete source population without depending on glob quirks."""
+    result: List[Path] = []
+    for name in listed_source_names():
+        absolute = ROOT / name
+        if absolute.is_file():
+            result.append(absolute)
     return sorted(result, key=rel)
+
+
+def sources_in_change(changed: set[str]) -> List[Path]:
+    """Sources whose own path, or either companion spelling, is in ``changed``."""
+    selected: List[Path] = []
+    for name in listed_source_names():
+        path = Path(name)
+        companion_spellings = {
+            path.with_name(path.stem + ".contract.score.yaml").as_posix(),
+            name + ".contract.score.yaml",
+        }
+        if name not in changed and changed.isdisjoint(companion_spellings):
+            continue
+        absolute = ROOT / name
+        if not absolute.is_file():
+            continue
+        if name in changed or rel(companion_for(absolute)) in changed:
+            selected.append(absolute)
+    return sorted(selected, key=rel)
 
 
 def companion_for(source: Path) -> Path:
@@ -343,8 +403,9 @@ def score_error(score: Dict[str, Any], source_name: str, source_digest: str, lan
     return None
 
 
-def audit_population() -> Tuple[Dict[str, Any], bool]:
-    sources = source_paths()
+def audit_population(sources: Optional[List[Path]] = None) -> Tuple[Dict[str, Any], bool]:
+    if sources is None:
+        sources = source_paths()
     records: List[Dict[str, Any]] = []
     errors: List[Dict[str, str]] = []
     language_counts: Counter[str] = Counter()
@@ -377,6 +438,8 @@ def audit_population() -> Tuple[Dict[str, Any], bool]:
                 current_error = valid_current_entry(entry)
                 if current_error:
                     raise ValueError(kind + " " + current_error)
+            if c_entry is None or s_entry is None:
+                raise ValueError("missing current history entry")
             contract = document.get("contract")
             if contract != c_entry.get("record"):
                 raise ValueError("current contract view differs from current history")
@@ -454,10 +517,20 @@ def command_prepare(audit_path: Path) -> int:
     return 0 if passed else 1
 
 
-def command_check(audit_path: Path) -> int:
-    audit, passed = audit_population()
-    write_audit(audit, audit_path)
-    print(json.dumps({"audit": rel(audit_path), "passed": passed, "summary": audit["summary"], "errors": audit["errors"]}, indent=2))
+def command_check(audit_path: Path, sources: Optional[List[Path]] = None, scope_note: Optional[str] = None) -> int:
+    audit, passed = audit_population(sources)
+    payload: Dict[str, Any] = {
+        "audit": rel(audit_path),
+        "passed": passed,
+        "summary": audit["summary"],
+        "errors": audit["errors"],
+    }
+    if scope_note is None:
+        write_audit(audit, audit_path)
+    else:
+        payload["audit"] = None
+        payload["scope"] = scope_note
+    print(json.dumps(payload, indent=2))
     return 0 if passed else 1
 
 
@@ -465,7 +538,14 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("prepare", "check"), help="prepare companions or audit them without source changes")
     parser.add_argument("--audit", type=Path, default=AUDIT_PATH, help="repository-relative or absolute audit JSON destination")
+    parser.add_argument(
+        "--changed-since",
+        metavar="REF",
+        help="with check: only in-scope sources added or edited since REF (merge base), plus ordinary untracked files. Does not write the audit file.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
+    if args.changed_since and args.command != "check":
+        parser.error("--changed-since is only valid with check")
     audit_path = args.audit if args.audit.is_absolute() else ROOT / args.audit
     try:
         audit_path.resolve().relative_to(ROOT.resolve())
@@ -473,7 +553,15 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         parser.error("--audit must stay inside the repository")
     if args.command == "prepare":
         return command_prepare(audit_path)
-    return command_check(audit_path)
+    if not args.changed_since:
+        return command_check(audit_path)
+    base, changed = changed_paths(args.changed_since)
+    selected = sources_in_change(changed)
+    note = (
+        "in-scope sources changed since {} (merge base {}), including ordinary untracked files. "
+        "The tracked audit file is not written. Grades are not read."
+    ).format(args.changed_since, base[:12])
+    return command_check(audit_path, selected, note)
 
 
 if __name__ == "__main__":

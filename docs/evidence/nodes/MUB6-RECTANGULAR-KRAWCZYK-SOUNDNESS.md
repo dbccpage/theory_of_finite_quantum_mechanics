@@ -1,6 +1,6 @@
 # MUB6-RECTANGULAR-KRAWCZYK-SOUNDNESS
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,14 +47,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/RectangularQuadraticExclusion.lean](../../../lean4/RectangularQuadraticExclusion.lean)
 - sha256 (`bytes`): `e7723f9114caacc35e8ada60c9b8295edf87c094b86ec83612c4916d4a98fccf`
 - cited in: node.lean, record TFQ-1271
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `RectangularQuadraticExclusion`): recorded sha256 `e7723f9114caacc35e8ada60c9b8295edf87c094b86ec83612c4916d4a98fccf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build RectangularQuadraticExclusion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exclusion_sound` | yes | yes | yes | - | `#print axioms exclusion_sound` |
-| `list_secant_identity` | yes | yes | yes | - | `#print axioms list_secant_identity` |
-| `root_in_image` | yes | yes | yes | - | `#print axioms root_in_image` |
+| `exclusion_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exclusion_sound` |
+| `list_secant_identity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms list_secant_identity` |
+| `root_in_image` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms root_in_image` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiRectangularExclusion.lean`
@@ -62,12 +63,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SzollosiRectangularExclusion.lean](../../../lean4/SzollosiRectangularExclusion.lean)
 - sha256 (`bytes`): `0709a45031ecb050772d9e52a57a7d6068b7f4aeea6fa712ad9374390c924173`
 - cited in: node.lean, record TFQ-1271
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiRectangularExclusion`): recorded sha256 `0709a45031ecb050772d9e52a57a7d6068b7f4aeea6fa712ad9374390c924173` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiRectangularExclusion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `no_quartet_of_check` | yes | yes | yes | - | `#print axioms no_quartet_of_check` |
+| `no_quartet_of_check` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_quartet_of_check` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md`

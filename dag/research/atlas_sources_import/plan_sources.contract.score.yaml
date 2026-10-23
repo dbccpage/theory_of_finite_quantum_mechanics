@@ -1,0 +1,166 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "dag/research/atlas_sources_import/plan_sources.py",
+  "contract": {
+    "schema_id": "tfqm.source-contract.v1",
+    "contract_id": "pr210-lifecycle-repair-20261023",
+    "subject": "dag/research/atlas_sources_import/plan_sources.py",
+    "source_sha256": "347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d",
+    "artifact": {
+      "path": "dag/research/atlas_sources_import/plan_sources.py",
+      "sha256": "347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d",
+      "language": "Python"
+    },
+    "authority_effect": "None",
+    "role": "source module",
+    "purpose": "Typed planning API with explicit configuration and row outcomes, exact pinned Git-object custody, deterministic indexed twin selection, bounded reads and Git deadline, and atomic plan publication.",
+    "owned_invariants": [
+      "build_plan binds source bytes to a resolved parent Git commit and compares restored files exactly.",
+      "Missing or mismatching restored files are explicit refusal outcomes for the importer.",
+      "Git failures, malformed inventories, path escapes and missing tracked files refuse without a partial output plan.",
+      "write_plan publishes only a fully serialized plan and removes its staging file on handled failures."
+    ],
+    "boundaries": [
+      "No multi-file crash atomicity; interrupted or failed rollback retains journal and lock for manual recovery.",
+      "Cooperating writers only; uncooperative filesystem races are outside the contract.",
+      "Trusted Git process output is spooled before its byte-limit check; no adversarial process disk quota is claimed.",
+      "Supplied plan digests are validated; the importer alone does not authenticate sibling Git history.",
+      "No archive program execution, Lean replay, scientific status promotion or general filesystem transaction is claimed."
+    ],
+    "evidence": [
+      {
+        "path": "dag/research/atlas_sources_import/l4_repair_validation.json",
+        "sha256": "2148cc725fae6f441020e7e4ab9478559bcd6a7daa8beca5d40d25e42988aeea"
+      },
+      {
+        "path": "dag/research/atlas_sources_import/l4_archive_custody.json",
+        "sha256": "a133f8a12aa133619ccfb7d42e97890bfe15e68842855dfbf47aed2fb2a66ac6"
+      },
+      {
+        "path": "dag/research/atlas_sources_import/l4_live_plan_replay.json",
+        "sha256": "af52acff5f313cc396eb475f6801a1bba9f5044b46b6997017161b27a65b5adc"
+      }
+    ]
+  },
+  "current_contract": "5dfd2e14c64ba30e063e1656f4bff26cc7726e8faf9c472a6ae41f1d16a246c5",
+  "current_scoring": "0f3c567bacdb7bc0c8811b26e8b7e8ae26ceb6c8d68e9d280e330d8dc1af8dd2",
+  "contract_history": [
+    {
+      "sha256": "5dfd2e14c64ba30e063e1656f4bff26cc7726e8faf9c472a6ae41f1d16a246c5",
+      "bytes": 2281,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr210-lifecycle-repair-20261023",
+        "subject": "dag/research/atlas_sources_import/plan_sources.py",
+        "source_sha256": "347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d",
+        "artifact": {
+          "path": "dag/research/atlas_sources_import/plan_sources.py",
+          "sha256": "347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d",
+          "language": "Python"
+        },
+        "authority_effect": "None",
+        "role": "source module",
+        "purpose": "Typed planning API with explicit configuration and row outcomes, exact pinned Git-object custody, deterministic indexed twin selection, bounded reads and Git deadline, and atomic plan publication.",
+        "owned_invariants": [
+          "build_plan binds source bytes to a resolved parent Git commit and compares restored files exactly.",
+          "Missing or mismatching restored files are explicit refusal outcomes for the importer.",
+          "Git failures, malformed inventories, path escapes and missing tracked files refuse without a partial output plan.",
+          "write_plan publishes only a fully serialized plan and removes its staging file on handled failures."
+        ],
+        "boundaries": [
+          "No multi-file crash atomicity; interrupted or failed rollback retains journal and lock for manual recovery.",
+          "Cooperating writers only; uncooperative filesystem races are outside the contract.",
+          "Trusted Git process output is spooled before its byte-limit check; no adversarial process disk quota is claimed.",
+          "Supplied plan digests are validated; the importer alone does not authenticate sibling Git history.",
+          "No archive program execution, Lean replay, scientific status promotion or general filesystem transaction is claimed."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/atlas_sources_import/l4_repair_validation.json",
+            "sha256": "2148cc725fae6f441020e7e4ab9478559bcd6a7daa8beca5d40d25e42988aeea"
+          },
+          {
+            "path": "dag/research/atlas_sources_import/l4_archive_custody.json",
+            "sha256": "a133f8a12aa133619ccfb7d42e97890bfe15e68842855dfbf47aed2fb2a66ac6"
+          },
+          {
+            "path": "dag/research/atlas_sources_import/l4_live_plan_replay.json",
+            "sha256": "af52acff5f313cc396eb475f6801a1bba9f5044b46b6997017161b27a65b5adc"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/research/atlas_sources_import/plan_sources.py\",\n    \"sha256\": \"347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No multi-file crash atomicity; interrupted or failed rollback retains journal and lock for manual recovery.\",\n    \"Cooperating writers only; uncooperative filesystem races are outside the contract.\",\n    \"Trusted Git process output is spooled before its byte-limit check; no adversarial process disk quota is claimed.\",\n    \"Supplied plan digests are validated; the importer alone does not authenticate sibling Git history.\",\n    \"No archive program execution, Lean replay, scientific status promotion or general filesystem transaction is claimed.\"\n  ],\n  \"contract_id\": \"pr210-lifecycle-repair-20261023\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/atlas_sources_import/l4_repair_validation.json\",\n      \"sha256\": \"2148cc725fae6f441020e7e4ab9478559bcd6a7daa8beca5d40d25e42988aeea\"\n    },\n    {\n      \"path\": \"dag/research/atlas_sources_import/l4_archive_custody.json\",\n      \"sha256\": \"a133f8a12aa133619ccfb7d42e97890bfe15e68842855dfbf47aed2fb2a66ac6\"\n    },\n    {\n      \"path\": \"dag/research/atlas_sources_import/l4_live_plan_replay.json\",\n      \"sha256\": \"af52acff5f313cc396eb475f6801a1bba9f5044b46b6997017161b27a65b5adc\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"build_plan binds source bytes to a resolved parent Git commit and compares restored files exactly.\",\n    \"Missing or mismatching restored files are explicit refusal outcomes for the importer.\",\n    \"Git failures, malformed inventories, path escapes and missing tracked files refuse without a partial output plan.\",\n    \"write_plan publishes only a fully serialized plan and removes its staging file on handled failures.\"\n  ],\n  \"purpose\": \"Typed planning API with explicit configuration and row outcomes, exact pinned Git-object custody, deterministic indexed twin selection, bounded reads and Git deadline, and atomic plan publication.\",\n  \"role\": \"source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d\",\n  \"subject\": \"dag/research/atlas_sources_import/plan_sources.py\"\n}\n",
+      "original_paths": [
+        "dag/research/atlas_sources_import/plan_sources.contract.score.yaml#lifecycle-review"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "0f3c567bacdb7bc0c8811b26e8b7e8ae26ceb6c8d68e9d280e330d8dc1af8dd2",
+      "bytes": 2913,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr210-lifecycle-repair-20261023",
+        "assessment_status": "complete_scoped_independent_review",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "dag/research/atlas_sources_import/plan_sources.py",
+          "sha256": "347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "profile_status": "Reviewed Non-Numeric workflow with exact byte identity; floating similarity is diagnostic only.",
+        "level": "L4",
+        "level_assessment": "Typed planning API with explicit configuration and row outcomes, exact pinned Git-object custody, deterministic indexed twin selection, bounded reads and Git deadline, and atomic plan publication.",
+        "gates": {
+          "G1": "C",
+          "G2": "B",
+          "G3": "D",
+          "G4": "C",
+          "G5": "C"
+        },
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "limiting_reason": "Manual recovery is required after interruption or rollback failure. Git output is temporarily spooled without an operating-system disk quota. Three selected mutations do not establish exhaustive fault coverage.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "evaluation_timestamp": "2026-10-23T14:57:26.918983+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/atlas_sources_import/l4_repair_validation.json",
+            "sha256": "2148cc725fae6f441020e7e4ab9478559bcd6a7daa8beca5d40d25e42988aeea"
+          },
+          {
+            "path": "dag/research/atlas_sources_import/l4_archive_custody.json",
+            "sha256": "a133f8a12aa133619ccfb7d42e97890bfe15e68842855dfbf47aed2fb2a66ac6"
+          },
+          {
+            "path": "dag/research/atlas_sources_import/l4_live_plan_replay.json",
+            "sha256": "af52acff5f313cc396eb475f6801a1bba9f5044b46b6997017161b27a65b5adc"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Named prepare/apply and planning/publication APIs mapped to invariants; source SHA-256 and raw evidence bound. No authority promotion.",
+          "G2": "Strict mypy passed for both runtime modules; exact source bytes, digests and newline equivalence tested against independent Git objects and private fixtures.",
+          "G3": "Refusal paths, writer contention, staging failure, every fixture publication position, stale bytes and failed rollback tested. Interrupted recovery is deliberately manual; trusted Git spool lacks an OS disk quota.",
+          "G4": "68 tests passed normally and under optimized Python; three valid semantic mutants killed, none survived/inconclusive/unrun. Live 129-row planning and read-only importer preparation passed.",
+          "G5": "Importer max CCN 14/cognitive 19; planner max CCN 16/cognitive 17. File, aggregate-byte, row, tracked-file and subprocess-time bounds are explicit; maximum-scale throughput is not certified."
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/research/atlas_sources_import/plan_sources.py\",\n    \"sha256\": \"347fc962a9f21de04ece72d9050893b8ce764befb2901a327a9cea74e70c580d\"\n  },\n  \"assessment_id\": \"pr210-lifecycle-repair-20261023\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T14:57:26.918983+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/atlas_sources_import/l4_repair_validation.json\",\n      \"sha256\": \"2148cc725fae6f441020e7e4ab9478559bcd6a7daa8beca5d40d25e42988aeea\"\n    },\n    {\n      \"path\": \"dag/research/atlas_sources_import/l4_archive_custody.json\",\n      \"sha256\": \"a133f8a12aa133619ccfb7d42e97890bfe15e68842855dfbf47aed2fb2a66ac6\"\n    },\n    {\n      \"path\": \"dag/research/atlas_sources_import/l4_live_plan_replay.json\",\n      \"sha256\": \"af52acff5f313cc396eb475f6801a1bba9f5044b46b6997017161b27a65b5adc\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Named prepare/apply and planning/publication APIs mapped to invariants; source SHA-256 and raw evidence bound. No authority promotion.\",\n    \"G2\": \"Strict mypy passed for both runtime modules; exact source bytes, digests and newline equivalence tested against independent Git objects and private fixtures.\",\n    \"G3\": \"Refusal paths, writer contention, staging failure, every fixture publication position, stale bytes and failed rollback tested. Interrupted recovery is deliberately manual; trusted Git spool lacks an OS disk quota.\",\n    \"G4\": \"68 tests passed normally and under optimized Python; three valid semantic mutants killed, none survived/inconclusive/unrun. Live 129-row planning and read-only importer preparation passed.\",\n    \"G5\": \"Importer max CCN 14/cognitive 19; planner max CCN 16/cognitive 17. File, aggregate-byte, row, tracked-file and subprocess-time bounds are explicit; maximum-scale throughput is not certified.\"\n  },\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"B\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_assessment\": \"Typed planning API with explicit configuration and row outcomes, exact pinned Git-object custody, deterministic indexed twin selection, bounded reads and Git deadline, and atomic plan publication.\",\n  \"limiting_reason\": \"Manual recovery is required after interruption or rollback failure. Git output is temporarily spooled without an operating-system disk quota. Three selected mutations do not establish exhaustive fault coverage.\",\n  \"profile\": \"Non-Numeric\",\n  \"profile_status\": \"Reviewed Non-Numeric workflow with exact byte identity; floating similarity is diagnostic only.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "dag/research/atlas_sources_import/plan_sources.contract.score.yaml#lifecycle-review"
+      ]
+    }
+  ],
+  "legacy_paths": {},
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Current source-bound assessment; historical records remain byte-preserved and separately identifiable."
+}

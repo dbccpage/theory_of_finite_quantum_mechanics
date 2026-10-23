@@ -20,8 +20,8 @@ target:
     cost accounting the education audit describes.
   source_refs:
   - dag/derivations/02_genesis/tfq_0494_stage_change_contract_proposal_record.md
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean:360-380
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean:351-358
+  - lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean:369-389
+  - lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean:360-367
   - omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:982-988
   paper_refs: []
   source_claim_label: PROVED_LEAN
@@ -36,32 +36,66 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_stage_change_contract_proposal_record_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: ProposalRecord
+  line: 390
+  signature_excerpt: 'structure ProposalRecord (s : PState)'
+  source: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  repository: this_repository
+  source_sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: upProposal
+  line: 461
+  signature_excerpt: |-
+    def upProposal (s : PState) (hwf : WFStores s) (hh : s.halted = false)
+        (p : Nat) (hp : p < s.occ.length) : ProposalRecord s
+  source: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  repository: this_repository
+  source_sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: proposal_confers_no_execution
+  line: 450
+  signature_excerpt: |-
+    theorem proposal_confers_no_execution (s : PState)
+        (P : ProposalRecord s) (h : s.halted = true) :
+        replayP P.block s = s
+  source: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  repository: this_repository
+  source_sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean::ProposalRecord
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::ProposalRecord
+  availability: local
   symbol: ProposalRecord
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  repository: this_repository
+  sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
+  declaration_status: declaration_found_not_proof_checked
+  line: 390
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean::proposal_confers_no_execution
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::proposal_confers_no_execution
+  availability: local
   symbol: proposal_confers_no_execution
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  repository: this_repository
+  sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
+  declaration_status: declaration_found_not_proof_checked
+  line: 450
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean::upProposal
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::upProposal
+  availability: local
   symbol: upProposal
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  repository: this_repository
+  sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
+  declaration_status: declaration_found_not_proof_checked
+  line: 461
   role: source_lead_only
 presentation:
   colours: []
@@ -100,8 +134,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

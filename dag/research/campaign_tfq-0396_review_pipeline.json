@@ -1,0 +1,377 @@
+{
+  "authority_effect": "None",
+  "reviewed_head": "caf6e156680551575442cf2dfec8833758e76ab7",
+  "source_sha256": {
+    "lean4/CampaignGenesisCarrierBridge.lean": "730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e",
+    "checks/independent/tfq-0396.py": "6d6e92be6e642055941c7828a18305785bda0b7a94f408670a09cf6519633a62",
+    "lean4/lakefile.lean": "f611158fb43d4c1f59a32e05749d8a27f485d58343c84e3370e8b27dcd3bb972"
+  },
+  "checks": {
+    "build_evidence-check": {
+      "label": "build_evidence-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:48.103131+00:00",
+      "completed": "2026-10-23T08:30:53.164318+00:00",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    "build_results_audit_table-check": {
+      "label": "build_results_audit_table-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "papers/core/tools/build_results_audit_table.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:40.715965+00:00",
+      "completed": "2026-10-23T08:30:41.068926+00:00",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    "build_status-check": {
+      "label": "build_status-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:41.068926+00:00",
+      "completed": "2026-10-23T08:30:48.103131+00:00",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    "campaign-pytest": {
+      "label": "campaign-pytest",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "--basetemp=lean4/b/review-pytest-temp"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:54.732609+00:00",
+      "completed": "2026-10-23T08:31:05.437375+00:00",
+      "exit_code": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.12.10, pytest-8.3.5, pluggy-1.7.0\nrootdir: C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics\nconfigfile: pyproject.toml\ncollected 24 items\n\ndag\\test_tensor_countermodel_receipt.py ..                               [  8%]\ndag\\test_tensor_measurement_receipt.py ..                                [ 16%]\ndag\\test_application_branches.py ........                                [ 50%]\ndag\\test_frontier_branches.py ........                                   [ 83%]\ndag\\test_genesis_to_higher.py ....                                       [100%]\n\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 24 passed, 1 warning in 10.27s ========================\n",
+      "stderr": ""
+    },
+    "dag-validator": {
+      "label": "dag-validator",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:53.623933+00:00",
+      "completed": "2026-10-23T08:30:54.732609+00:00",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    "invariants": {
+      "label": "invariants",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:53.164318+00:00",
+      "completed": "2026-10-23T08:30:53.623933+00:00",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    "overclaim": {
+      "label": "overclaim",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:31:05.442410+00:00",
+      "completed": "2026-10-23T08:31:23.415436+00:00",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base dd8a15b01472); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    },
+    "readme-check": {
+      "label": "readme-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:35.757076+00:00",
+      "completed": "2026-10-23T08:36:41.430788+00:00",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    "render_dag_views-check": {
+      "label": "render_dag_views-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:40.289767+00:00",
+      "completed": "2026-10-23T08:30:40.492271+00:00",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    "repin_tensor_receipts-check": {
+      "label": "repin_tensor_receipts-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:40.493271+00:00",
+      "completed": "2026-10-23T08:30:40.715965+00:00",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    "sync_application_branches-check": {
+      "label": "sync_application_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:30.021993+00:00",
+      "completed": "2026-10-23T08:30:30.340437+00:00",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_frontier_branches-check": {
+      "label": "sync_frontier_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:39.311594+00:00",
+      "completed": "2026-10-23T08:30:39.788442+00:00",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_genesis_to_higher-check": {
+      "label": "sync_genesis_to_higher-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:39.788442+00:00",
+      "completed": "2026-10-23T08:30:40.289767+00:00",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    "sync_pfp_results-check": {
+      "label": "sync_pfp_results-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:28.575878+00:00",
+      "completed": "2026-10-23T08:30:29.107951+00:00",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    "sync_pregenesis_to_wdp-check": {
+      "label": "sync_pregenesis_to_wdp-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:30.340437+00:00",
+      "completed": "2026-10-23T08:30:39.310593+00:00",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    "sync_unified_dag-check": {
+      "label": "sync_unified_dag-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T08:30:29.109400+00:00",
+      "completed": "2026-10-23T08:30:30.021993+00:00",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    }
+  },
+  "contract_audit": {
+    "schema_version": "tfqm.contract-score-coverage-audit.v1",
+    "authority_effect": "None",
+    "assessment_id": "source-coverage-baseline-v1",
+    "population_rule": {
+      "included": "tracked and ordinary-untracked *.py and *.rs under code/, and *.lean under lean4/",
+      "excluded_parts": [
+        ".lake",
+        "__pycache__",
+        "node_modules",
+        "target"
+      ],
+      "sealed_snapshot_prefixes": [
+        "dag/results/",
+        "dag/sealed_runs/",
+        "sealed_runs/"
+      ],
+      "source_discovery": "git ls-files --cached --others --exclude-standard -z followed by explicit path filtering"
+    },
+    "summary": {
+      "sources": 3,
+      "valid_contracts_and_scores": 3,
+      "invalid_or_missing": 0,
+      "by_language": {
+        "Lean 4": 2,
+        "Python": 1
+      },
+      "by_preliminary_profile": {
+        "Exact": 1,
+        "Non-Numeric": 1,
+        "Symbolic/Formal": 1
+      },
+      "completed_scores": 3,
+      "incomplete_scores": 0,
+      "generated_governance_twins": 0,
+      "non_twin_sources": 3
+    },
+    "errors": [],
+    "artifacts": [
+      {
+        "path": "lean4/CampaignGenesisCarrierBridge.lean",
+        "sha256": "730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e",
+        "language": "Lean 4",
+        "companion": "lean4/CampaignGenesisCarrierBridge.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "75203d5ecd64b8ca9b5756575f206d65784d95f5d8e915c691998800d3058fc5",
+        "score_digest": "29a4637f8a38a00b3943eee0ca87fb38c548d3d57ff3bcba228a590d04fbdd02",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "checks/independent/tfq-0396.py",
+        "sha256": "6d6e92be6e642055941c7828a18305785bda0b7a94f408670a09cf6519633a62",
+        "language": "Python",
+        "companion": "checks/independent/tfq-0396.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "9be962d970a1992c4abe6215620eab9c7e09d21cd66508075afc7696fbf1c9dc",
+        "score_digest": "8a3741de262567dfbdf788918fb1bd2ba8f12facd766d9e3c56709394c86a5e9",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L3D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "lean4/lakefile.lean",
+        "sha256": "f611158fb43d4c1f59a32e05749d8a27f485d58343c84e3370e8b27dcd3bb972",
+        "language": "Lean 4",
+        "companion": "lean4/lakefile.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "1a3302d37cc4514dd975104e646656b6bc7c4e0dc79cc0d76ab914056e0f5b4e",
+        "score_digest": "bd2e57f486b244c4953cafe9dce34609280dd01987e23520c51911af7d2a6240",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L1D",
+        "is_complete": true,
+        "valid": true
+      }
+    ],
+    "scope_boundary": "This audit proves source-to-companion coverage and current-byte custody. It does not promote incomplete static assessments to engineering-grade certification."
+  },
+  "integration_repair": "Restored dated PG-GEN-SUPPLY-ERASURE and TFQ-0396 log entries omitted by an earlier conflict-resolution helper; all author rows preserved.",
+  "limits": [
+    "Focused campaign checks only; not a whole-repository L4D or default Lean certification.",
+    "Three LOW scanner prompts are unchanged legacy tensor/date evidence, not a new theorem or numerical assertion by this PR.",
+    "External pinned commit was not fetched anew.",
+    "Known hosted CodeQL Default/Advanced configuration conflict is not resolved by local checks."
+  ]
+}

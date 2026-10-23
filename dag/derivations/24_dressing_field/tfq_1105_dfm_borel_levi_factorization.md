@@ -14,7 +14,7 @@
 B_2(Q) is the group of invertible upper-triangular rational 2x2 matrices, N its unipotent normal subgroup and T_2(Q) the diagonal torus; a tree holonomy [[a,b],[0,d]] factors as [[1,b/d],[0,1]] diag(a,d), giving the stage-1 dressing u_N and stage-2 dressing t.
 
 ### Governing Obligation
-Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.
+Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.
 
 ### Witness Audit
 No audit note.

@@ -1,0 +1,65 @@
+paper_identity: "CODA-CS"
+version: "1.1.0"
+manuscript_version: "v1.1"
+authority_effect: "None"
+
+claims:
+  CS-D1:
+    statement: "Fiber constancy: FiberConstant(p, q) <=> forall x y, p(x) = p(y) => q(x) = q(y)"
+    python: "coda_cs_core.verify_bridge_admissibility"
+    lean: "Coda.FiberConstant"
+    test: "code/tests/test_coda_cs.py::test_bridge_admissibility_gates"
+
+  CS-D2:
+    statement: "Factorization: Factors(p, q) <=> exists g, forall x, g(p(x)) = q(x)"
+    python: "coda_cs_core.verify_bridge_admissibility"
+    lean: "Coda.Factors"
+    test: "code/tests/test_coda_cs.py::test_bridge_admissibility_gates"
+
+  CS-D3:
+    statement: "Refinement: p = forget circ fine for fine look and forgetful map"
+    python: "coda_cs_core.ProfileMap"
+    lean: "Coda.CS.refinement_preserves_descent"
+    test: "code/tests/test_coda_cs.py::test_cs_d3_refinement_composite_identity"
+
+  CS-L1:
+    statement: "Factorization implies fiber constancy: Factors(p, q) => FiberConstant(p, q)"
+    python: "coda_cs_core.reproduce_worked_example"
+    lean: "Coda.factor_implies_constant"
+    test: "code/tests/test_coda_cs.py::test_worked_example_reproduction"
+
+  CS-T1:
+    statement: "Refinement preserves descent: FiberConstant(forget circ fine, q) => FiberConstant(fine, q)"
+    python: "coda_cs_core.verify_bridge_admissibility"
+    lean: "Coda.CS.refinement_preserves_descent"
+    test: null
+    evidence_scope: "General refinement implication is Lean evidence; no separate Python theorem implementation."
+
+  CS-T2:
+    statement: "Family observation equality is pointwise extensionality"
+    python: "coda_cs_core.ProfileMap.project"
+    lean: "Coda.CS.family_observation"
+    test: "code/tests/test_coda_cs.py::test_cs_t2_family_observation_equality"
+
+  CS-T3:
+    statement: "First coordinate collision obstructs second coordinate factorization: not Factors(x.1, x.2) on 2x2"
+    python: "coda_cs_core.verify_bridge_admissibility"
+    lean: "Coda.CS.finite_shadow_collision"
+    test: "code/tests/test_coda_cs.py::test_cs03_factors_fst_snd_is_false_on_bool_pair"
+
+  CS-T4:
+    statement: "Strict refinement countermodel: Factors(id, x.2) and not Factors(x.1, x.2)"
+    python: "coda_cs_core.verify_bridge_admissibility"
+    lean: "Coda.CS.refinement_strict_countermodel"
+    test: "code/tests/test_coda_cs.py::test_cs03_factors_fst_snd_is_false_on_bool_pair"
+
+  CS-T5:
+    statement: "Missing terminalizer blocks query authority: has_local_terminalizer = false => not HasQueryAuthority(X, q, b)"
+    python: "coda_cs_core.evaluate_query_authority"
+    lean: "CodaCs.terminalizer_absence_blocks_query_authority"
+    test: "code/tests/test_coda_cs.py::test_continuum_non_creation_firewall"
+
+operational_edge:
+  lean: "CodaCs.empty_shadow_tower_not_authorized"
+  test: "code/tests/test_review_edge_contracts.py::test_empty_tower_fails_authority_and_constant_query_stays_mathematical"
+  scope: "Empty shadow towers fail allSlicesAuthorized in both Python and Lean."

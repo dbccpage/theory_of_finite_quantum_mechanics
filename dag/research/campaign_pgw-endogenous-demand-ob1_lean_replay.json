@@ -1,0 +1,208 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "source_base": "4a1e551210459ca8b410fada1e8eddb75e7b052c",
+  "source_commit": "6329ca86275ca927c7d21d94db87f0a485a6e9ee",
+  "checked_at": "2026-10-23T06:38:47.760869+00:00",
+  "proof_boundary": "Explicit policy and instruction-language extension only. SEEK records a fresh request; it does not satisfy it. No frozen-source policy derivation, Alpha runtime/license refinement, or unbounded continuation.",
+  "lean_replay": {
+    "lean_version": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "448b3a53a9e8b3ec6df968a6527f9619952be591fa079dce61453fbc51af8198",
+    "command": "lake build CampaignGenesisDemandPolicy",
+    "cwd": "lean4",
+    "library": "CampaignGenesisDemandPolicy (non-default lean_lib)",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignGenesisDemandPolicy",
+        "dag_node": "PGW-ENDOGENOUS-DEMAND-OB1",
+        "source": "lean4/CampaignGenesisDemandPolicy.lean",
+        "source_commit": "6329ca86275ca927c7d21d94db87f0a485a6e9ee",
+        "sha256": "782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940",
+        "exit_code": 0,
+        "anchors": [
+          "CampaignGenesisDemandPolicy.mem_options",
+          "CampaignGenesisDemandPolicy.mem_tuples",
+          "CampaignGenesisDemandPolicy.mem_contexts",
+          "CampaignGenesisDemandPolicy.collapseTest_correct",
+          "CampaignGenesisDemandPolicy.mem_candidates",
+          "CampaignGenesisDemandPolicy.mem_agenda",
+          "CampaignGenesisDemandPolicy.next_sound",
+          "CampaignGenesisDemandPolicy.next_none_iff",
+          "CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+          "CampaignGenesisDemandPolicy.seek_grows_one",
+          "CampaignGenesisDemandPolicy.seek_preserves_observations",
+          "CampaignGenesisDemandPolicy.no_immediate_repeat",
+          "CampaignGenesisDemandPolicy.policy_is_not_forced",
+          "CampaignGenesisDemandPolicy.fixed_data_saturates",
+          "CampaignGenesisDemandPolicy.seek_preserves_policy",
+          "CampaignGenesisDemandPolicy.instruction_records_demand",
+          "CampaignGenesisDemandPolicy.no_host_target_in_program"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "CampaignGenesisDemandPolicy.mem_options": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.mem_tuples": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.mem_contexts": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.collapseTest_correct": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.mem_candidates": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.mem_agenda": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.next_sound": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.next_none_iff": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.seek_is_recorded_source_step": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.seek_grows_one": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.seek_preserves_observations": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.no_immediate_repeat": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.policy_is_not_forced": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.fixed_data_saturates": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.seek_preserves_policy": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.instruction_records_demand": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisDemandPolicy.no_host_target_in_program": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "hash_basis": "COMMITTED LF blob bytes, equal to compiled source",
+        "output": "⚠ [541/542] Replayed CampaignGenesisDemandPolicy\nwarning: CampaignGenesisDemandPolicy.lean: imports `Mathlib.Data.List.Range` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignGenesisDemandPolicy.lean:53:49: This simp argument is unused:\n  and_left_comm\n\nHint: Omit it from the simp argument list.\n  [apply] simp [candidates, List.mem_flatMap, and_assoc, and_comm]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\ninfo: CampaignGenesisDemandPolicy.lean:170:0: 'CampaignGenesisDemandPolicy.mem_options' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:171:0: 'CampaignGenesisDemandPolicy.mem_tuples' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:172:0: 'CampaignGenesisDemandPolicy.mem_contexts' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:173:0: 'CampaignGenesisDemandPolicy.collapseTest_correct' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:174:0: 'CampaignGenesisDemandPolicy.mem_candidates' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:175:0: 'CampaignGenesisDemandPolicy.mem_agenda' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:176:0: 'CampaignGenesisDemandPolicy.next_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:177:0: 'CampaignGenesisDemandPolicy.next_none_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:178:0: 'CampaignGenesisDemandPolicy.seek_is_recorded_source_step' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:179:0: 'CampaignGenesisDemandPolicy.seek_grows_one' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:180:0: 'CampaignGenesisDemandPolicy.seek_preserves_observations' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:181:0: 'CampaignGenesisDemandPolicy.no_immediate_repeat' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:182:0: 'CampaignGenesisDemandPolicy.policy_is_not_forced' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:183:0: 'CampaignGenesisDemandPolicy.fixed_data_saturates' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:184:0: 'CampaignGenesisDemandPolicy.seek_preserves_policy' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:185:0: 'CampaignGenesisDemandPolicy.instruction_records_demand' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisDemandPolicy.lean:186:0: 'CampaignGenesisDemandPolicy.no_host_target_in_program' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (542 jobs).\n"
+      }
+    ]
+  },
+  "axiom_audit": {
+    "passed": true,
+    "declaration_count": 17,
+    "expected_declarations": [
+      "CampaignGenesisDemandPolicy.mem_options",
+      "CampaignGenesisDemandPolicy.mem_tuples",
+      "CampaignGenesisDemandPolicy.mem_contexts",
+      "CampaignGenesisDemandPolicy.collapseTest_correct",
+      "CampaignGenesisDemandPolicy.mem_candidates",
+      "CampaignGenesisDemandPolicy.mem_agenda",
+      "CampaignGenesisDemandPolicy.next_sound",
+      "CampaignGenesisDemandPolicy.next_none_iff",
+      "CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+      "CampaignGenesisDemandPolicy.seek_grows_one",
+      "CampaignGenesisDemandPolicy.seek_preserves_observations",
+      "CampaignGenesisDemandPolicy.no_immediate_repeat",
+      "CampaignGenesisDemandPolicy.policy_is_not_forced",
+      "CampaignGenesisDemandPolicy.fixed_data_saturates",
+      "CampaignGenesisDemandPolicy.seek_preserves_policy",
+      "CampaignGenesisDemandPolicy.instruction_records_demand",
+      "CampaignGenesisDemandPolicy.no_host_target_in_program"
+    ],
+    "reported_declarations": [
+      "CampaignGenesisDemandPolicy.mem_options",
+      "CampaignGenesisDemandPolicy.mem_tuples",
+      "CampaignGenesisDemandPolicy.mem_contexts",
+      "CampaignGenesisDemandPolicy.collapseTest_correct",
+      "CampaignGenesisDemandPolicy.mem_candidates",
+      "CampaignGenesisDemandPolicy.mem_agenda",
+      "CampaignGenesisDemandPolicy.next_sound",
+      "CampaignGenesisDemandPolicy.next_none_iff",
+      "CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+      "CampaignGenesisDemandPolicy.seek_grows_one",
+      "CampaignGenesisDemandPolicy.seek_preserves_observations",
+      "CampaignGenesisDemandPolicy.no_immediate_repeat",
+      "CampaignGenesisDemandPolicy.policy_is_not_forced",
+      "CampaignGenesisDemandPolicy.fixed_data_saturates",
+      "CampaignGenesisDemandPolicy.seek_preserves_policy",
+      "CampaignGenesisDemandPolicy.instruction_records_demand",
+      "CampaignGenesisDemandPolicy.no_host_target_in_program"
+    ],
+    "unexpected_axioms": []
+  },
+  "source_dependencies": [
+    {
+      "source": "atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+      "source_commit": "6329ca86275ca927c7d21d94db87f0a485a6e9ee",
+      "sha256": "1520b392f4061af568e00ca4fd235feb03facf6d3612c030c1d60018539e3eed",
+      "hash_basis": "committed blob bytes"
+    }
+  ],
+  "compilation_scope": {
+    "compiled": [
+      "CampaignGenesisDemandPolicy",
+      "Lake configuration"
+    ],
+    "imported_local_cache": [
+      "Derivation.Basic"
+    ],
+    "not_rebuilt": [
+      "default FiniteQuantum library",
+      "Mathlib",
+      "other campaign PR modules"
+    ],
+    "warnings": "One unused simp argument retained. Every new theorem uses only permitted kernel axioms; prior unsuccessful drafts are not proof evidence."
+  },
+  "sealed_source": {
+    "repository": "dbccpage/19L57G1",
+    "commit": "3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a",
+    "path": "lean4/Derivation/Basic.lean",
+    "git_blob": "610d8fc982853807eb892eaaf683fc4eb2959cc1",
+    "sha256": "1520b392f4061af568e00ca4fd235feb03facf6d3612c030c1d60018539e3eed",
+    "local_bytes_equal_fetched_blob": true
+  }
+}

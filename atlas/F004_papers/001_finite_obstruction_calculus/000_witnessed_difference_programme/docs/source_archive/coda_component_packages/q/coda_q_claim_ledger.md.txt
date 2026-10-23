@@ -1,0 +1,55 @@
+# Claim Ledger — Metric completion and midpoint enclosure (CODA-Q)
+
+**Paper Key:** `coda_atlas/F005_coda/q`
+**Paper Identity:** `CODA-Q` (`coda_q.md`, canonical version: `3.1.1`, preprint dated 2026-09-28)
+
+This ledger catalogs the active mathematical claims and definitions of `CODA-Q`. Each claim is typed, with explicit governing hypotheses, paper section references, packaged Lean 4 formalization declarations, and Python verification tests.
+
+---
+
+## 1. Active Claim-by-Claim Matrix (CODA-Q)
+
+| ID | Claim | Type | Hypotheses | Paper Section | Formal Proof (Lean 4) | Executable Test (Python) | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Q-T1 | Metric completion $\widehat{X}$ is complete, the canonical map $i:X\to\widehat{X}$ is an isometry, and $i(X)$ is dense in $\widehat{X}$. | THEOREM | Metric space $(X, d)$ | §1 | `Coda.Q.completion_complete`, `Coda.Q.completion_isometry`, `Coda.Q.completion_dense` (`Algebra.lean`) | Not applicable: Python API smoke tests do not verify this theorem | Mechanized; `propext`, `Classical.choice`, `Quot.sound` |
+| Q-T2 | Rational completion $\widehat{\mathbb{Q}}$ maps isometrically onto $\mathbb{R}$ via extension $F:\widehat{\mathbb{Q}}\to\mathbb{R}$; $F$ is an isometry, agrees with the canonical embedding on $\mathbb{Q}$, and is bijective. | THEOREM | Rational metric space $(\mathbb{Q}, \lvert\cdot\rvert)$ and real line $(\mathbb{R}, \lvert\cdot\rvert)$ | §2 | `Coda.Q.rational_completion_coe`, `Coda.Q.rational_completion_isometry`, `Coda.Q.rational_completion_surjective`, `Coda.Q.rational_completion_bijective` (`Algebra.lean`) | Not applicable: Python API smoke tests do not verify this theorem | Mechanized; `propext`, `Classical.choice`, `Quot.sound` |
+| Q-T3 | Unique uniformly continuous extension: any uniformly continuous map $f:X\to Y$ into a complete metric space extends uniquely to a uniformly continuous map $\widehat{f}:\widehat{X}\to Y$. | THEOREM | Metric space $X$, complete metric space $Y$, uniformly continuous $f:X\to Y$ | §3 | `Coda.Q.extension_agrees`, `Coda.Q.extension_uniformly_continuous`, `Coda.Q.extension_unique` (`Algebra.lean`) | Not applicable: Python API smoke tests do not verify this theorem | Mechanized; `propext`, `Classical.choice`, `Quot.sound` |
+| Q-D1 | Rational bisection step for $\sqrt{2}$: given $0\le lo\le hi$, let $m=(lo+hi)/2$. Replace with $(m, hi)$ if $m^2\le 2$, and $(lo, m)$ otherwise. | DEFINITION | Nonnegative rational bounds $0\le lo\le hi$ | §4 | `Coda.Q.sqrtStep` (real bounds), `coda_q_core.sqrt_step` (rational bounds) | `test_coda_q.py::test_sqrt_step_and_nested_enclosures` | Mechanized |
+| Q-T4 | Midpoint enclosure error bound: for any $lo\le x\le hi$, $\lvert x - (lo+hi)/2\rvert \le (hi-lo)/2$.  | THEOREM | Real bounds, $lo\le x\le hi$ | §4 | `Coda.Q.enclosure_error` (`Algebra.lean`) | `test_coda_q.py::test_midpoint_and_error_bound_on_ordered_rationals` | Mechanized; `propext`, `Classical.choice`, `Quot.sound` |
+| Q-T5 | Bisection enclosure preservation: if $0\le lo\le\sqrt{2}\le hi$, the step of Definition Q-D1 produces nonnegative bounds containing $\sqrt{2}$ and halves interval width. | THEOREM | $0\le lo\le\sqrt{2}\le hi$ | §4 | `Coda.Q.sqrt_step_enclosure` (`Algebra.lean`) | `test_coda_q.py::test_sqrt_step_and_nested_enclosures` | Mechanized; `propext`, `Classical.choice`, `Quot.sound` |
+| Q-OB1 | Sample collision obstruction: a finite list of samples does not determine an arbitrary continuum query; signals agreeing on sample profiles can disagree off-sample. | OBSTRUCTION | Sample set $S \subset X$, query $q:X\to Y$ | §5 | `CodaQ.observed_profile_determines_target_iff_profile_fiber_invariance`, `CodaQ.primitive_impossibility_blocks_profile_factorization` (`Core.lean`) | `test_coda_q.py::test_two_signal_sample_collision` | Mechanized; no axioms |
+| Q-AUTH1 | In the declared local sum type, a Q-status constructor is distinct from an authority constructor. In the declared guard record, the authorized flag is equivalent to conjunction of its seven fields. | DECLARED MODEL / LOCAL THEOREMS | Explicit local inductive type and guard definition; no metric-completion or institutional-authorization premise | Scope boundary after §5 | `CodaQ.q_terminal_not_authority_terminal`, `CodaQ.halt_guards_is_auth_iff_all_seven` (`Core.lean`) | Not applicable: API smoke coverage is not evidence for authority | Formalized local schema only; no theorem that completion algorithms authenticate grants |
+
+---
+
+## 2. Mathematical Scoping & Epistemic Boundaries
+
+1. **Completion is not Compactness or Computable Selection**:
+   The existence of $\widehat{X}$ adds formal limit points of Cauchy sequences. It does not render an arbitrary metric space compact, nor does it provide a mechanical decision procedure for equality of arbitrary Cauchy representations without a modulus of convergence.
+2. **Enclosure is an Inequality, not an Identification**:
+   Enclosure bounds of the form $|x - m| \le \delta$ assert containment within a ball/interval. A returned midpoint $m = (lo+hi)/2$ is an approximation candidate, not the point $x$ itself. In particular, for $\sqrt{2}$, $(m)^2 \neq 2$ for all rational $m$.
+3. **Continuum Queries Require Modulus of Continuity or Fibre Invariance**:
+   A finite sample vector $p(x) = (f_1(x), \dots, f_k(x))$ determines the target value on every realized profile if and only if $q$ is constant on every fibre of $p$ ($p(x) = p(y) \implies q(x) = q(y)$). This is a realized-fibre statement; constructing a total factor on an ambient profile type needs a value for unrealized profiles (an inhabited target suffices classically). Off-profile variation permits non-trivial query divergence (demonstrated by $t \mapsto t(t-1)$ colliding on $\{0, 1\}$ while differing at $1/2$).
+4. **Concrete mathlib proofs and computational scope**:
+   The completion and enclosure declarations in `lean4/Algebra.lean`
+   use mathlib's metric completion and real numbers. Their printed axiom
+   dependencies must be checked per declaration; no zero-axiom claim is made.
+   Python examples check finite rational calculations and do not prove
+   completion, density, surjectivity, or uniform extension theorems.
+
+## 3. Source custody and historical ledger
+
+The concrete proof source is recovered from CODA commit
+`8a744161057e5d2d2a2ca9663ef7908e3c12d04d`.
+The unused `CodaReconstruction.Foundations` import is removed and declaration
+axiom reports are appended. The pinned mathlib revision is declared directly.
+
+The PR's earlier replacement took completion, density, bijectivity and enclosure
+bounds as structure fields or hypotheses. That implementation is withdrawn as
+evidence for Q-T1 through Q-T5. An empty axiom report did not establish those
+claims, because the conclusions had already been assumed.
+
+The full prior ledger is retained in
+[the historical ledger](docs/coda_q_legacy_ledger.md). Its old proof-source
+and status labels remain historical records, not current certification.
+

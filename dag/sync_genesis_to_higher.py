@@ -81,6 +81,29 @@ def validate(fragment: dict, dag: dict) -> list[str]:
         errs.append('duplicate route ids')
     known = ids | others
     cited = {c['ref'] for c in fragment['citations'].values()}
+    _validate_node_evidence(nodes, fragment, errs)
+    _validate_routes_and_statuses(nodes, routes, ids, others, known, errs)
+    record_ids = {r['id'] for r in records}
+    existing = {r['id'] for r in dag['records'] if r.get('source_slice') != SLICE}
+    if record_ids & existing:
+        errs.append('record id collides with an existing record')
+    for r in records:
+        if r['source_slice'] != SLICE or r['stage'] != STAGE:
+            errs.append(f'{r["id"]}: bad slice or stage')
+        if r['parent_id'] not in (record_ids | existing):
+            errs.append(f'{r["id"]}: bad parent')
+        if r['existing_derivation_dag_ids'] != [r['local_id']]:
+            errs.append(f'{r["id"]}: record does not name its node')
+    named = {x for r in records for x in r['existing_derivation_dag_ids']}
+    if named != ids:
+        errs.append('records and nodes of the fragment do not name each other')
+    blob = json.dumps(fragment, ensure_ascii=False)
+    errs += [f'forbidden word in fragment: {w}' for w in forbidden_words(blob)]
+    return errs
+
+
+def _validate_node_evidence(nodes, fragment, errs):
+    cited = {c['ref'] for c in fragment['citations'].values()}
     for n in nodes:
         if n['stage'] != STAGE:
             errs.append(f'{n["id"]}: stage {n["stage"]} is not {STAGE}')
@@ -100,6 +123,9 @@ def validate(fragment: dict, dag: dict) -> list[str]:
                 errs.append(f'{n["id"]}: an import needs an external: source')
         if not any(s.startswith('dag/derivations/independent/gth_') for s in n['source']):
             errs.append(f'{n["id"]}: source does not name an independent note')
+
+
+def _validate_routes_and_statuses(nodes, routes, ids, others, known, errs):
     for r in routes:
         if not r['id'].startswith(ROUTE_PREFIX) or r['output'] not in known or any(i not in known for i in r['inputs']):
             errs.append(f'route {r["id"]}: bad id or endpoint')
@@ -118,23 +144,6 @@ def validate(fragment: dict, dag: dict) -> list[str]:
     if not any(r['output'] == 'GTH-SHADOW' and 'PGW-GO-ADMISSION-GATE' in r['inputs']
                and r['status'] == 'GAP_NO_DERIVATION' for r in routes):
         errs.append('GTH-SHADOW has no gap route from PGW-GO-ADMISSION-GATE')
-    record_ids = {r['id'] for r in records}
-    existing = {r['id'] for r in dag['records'] if r.get('source_slice') != SLICE}
-    if record_ids & existing:
-        errs.append('record id collides with an existing record')
-    for r in records:
-        if r['source_slice'] != SLICE or r['stage'] != STAGE:
-            errs.append(f'{r["id"]}: bad slice or stage')
-        if r['parent_id'] not in (record_ids | existing):
-            errs.append(f'{r["id"]}: bad parent')
-        if r['existing_derivation_dag_ids'] != [r['local_id']]:
-            errs.append(f'{r["id"]}: record does not name its node')
-    named = {x for r in records for x in r['existing_derivation_dag_ids']}
-    if named != ids:
-        errs.append('records and nodes of the fragment do not name each other')
-    blob = json.dumps(fragment, ensure_ascii=False)
-    errs += [f'forbidden word in fragment: {w}' for w in forbidden_words(blob)]
-    return errs
 
 
 def render_paper(node: dict, record: dict, fragment: dict, paths: dict[str, str]) -> str:
@@ -270,6 +279,8 @@ def main():
                 path.write_bytes(expected)
     print('stale=' + ','.join(differences) if differences else 'genesis-to-higher synchronized')
     return int(bool(differences) and args.check)
+
+
 
 
 if __name__ == '__main__':

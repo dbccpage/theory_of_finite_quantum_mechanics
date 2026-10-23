@@ -733,10 +733,7 @@ mod tests {
             let report = run_cover(k_torus_region(k), (2 * k) as u32, 48, &label);
             let secs = t.elapsed().as_secs_f64();
             let cert = report.certificate(&label);
-            eprintln!(
-                "SCALING k={k}: complete={} certified={} off_torus={} uncertified={} time={:.1}s",
-                cert.complete, cert.certified, cert.off_torus, cert.uncertified, secs
-            );
+            eprintln!("SCALING k={k}: metrics redacted time={:.1}s", secs);
         }
     }
 }
