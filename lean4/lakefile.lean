@@ -591,3 +591,6 @@ lean_lib CampaignCtMediatorEntanglement where
     `CampaignCtMediatorEntanglement
   ]
 
+lean_lib AdmitLang where
+  roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
+
