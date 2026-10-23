@@ -131,6 +131,24 @@ flowchart LR
 
 The stage list is `stages` in [`dag/derivation_dag.json`](dag/derivation_dag.json). Implementation and custody stages (`IMPLEMENTATION*`, `ENGINE_CUSTODY`, `AUTHORIZATION`, `FINITE_OBSTRUCTION`) are omitted from the diagram.
 
+## Related repositories
+
+The first stages of the arc above, PREGENESIS, GENESIS and MSSN_SN, are built from results in two earlier public repositories by the same author. The three use different methods and make different kinds of claim.
+
+| Repository | Role | Where the DAG cites it |
+|---|---|---|
+| [`dbccpage/19L57G1`](https://github.com/dbccpage/19L57G1) (Genesis) | A blind, sealed, finite derivation from an opaque seed. It stops at a tie: the minimum response costs two items in both readings L and F, and the minima are tied. It has 75 Lean modules, 1530 axiom reports and 140 `CL-*` claims. | 90 nodes: 71 in GENESIS, 9 in PREGENESIS, 8 in MSSN_SN, 1 in IMPLEMENTATION and 1 in AUTHORIZATION. 43 Lean references are pinned to commit `85a83ae`. |
+| [`dbccpage/H3V7N5QF`](https://github.com/dbccpage/H3V7N5QF) (Genesis-Ongoing) | 25 further blind derivations, each from its own seed, on terms, assertions and a short list of changes: obstruction and answer, fewest changes, counted assertions, two relations, an admission gate, and three operator-targeted climbing rounds. | 16 nodes: 14 in GENESIS, 1 in COMPUTATION and 1 in WDP, by a sibling path and not a pinned commit. |
+
+Two limits apply to this link, and both are recorded in the DAG:
+
+- **The route from GENESIS to WDP is a gap.** Its three routes are `GAP_NO_DERIVATION`, and five bridge obligations (`GEN-WDP-O01` to `O05`) are open in `PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`. Neither repository derives a structure of finite QM. The stages from L1 on carry their own status labels.
+- **The Genesis nodes are mostly grade E0 here.** 100 of the 106 nodes that cite these repositories are E0 in the [evidence map](docs/evidence/README.md), which means this checkout holds no counted evidence file for them. Mostly that is because the Lean and code they cite are in the two Genesis repositories. Each repository checks itself with its own local gates, described in its README.
+
+The stage GENESIS_TO_HIGHER asks what a higher-categorical language would need beyond Genesis. It is open steps and named imports, and its three routes from GENESIS and MSSN_SN are also `GAP_NO_DERIVATION`. The read-only inventories of the two repositories are [`research/genesis_foundations/genesis_19L57G1.md`](research/genesis_foundations/genesis_19L57G1.md) and [`research/genesis_foundations/genesis_ongoing.md`](research/genesis_foundations/genesis_ongoing.md).
+
+Counts in this section are from `dag/derivation_dag.json` at commit `8f1f7ca` (2026-10-22) and are not part of the generated facts block.
+
 ## Open problems: help wanted
 
 Each item is a DAG node with a staged PFP prompt or a named obligation. The current statuses are in the generated table.
