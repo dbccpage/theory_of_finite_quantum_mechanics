@@ -982,3 +982,7 @@ lean_lib CampaignGenesisDemandPolicy where
 -- Supplied rooted-tree Borel dressing. Non-default.
 lean_lib CampaignDfmHierarchicalBorel where
   roots := #[`CampaignDfmHierarchicalBorel]
+
+-- Exact no-return engine replay, reusing the sealed source library.
+lean_lib CampaignGenesisNoReturn where
+  roots := #[`CampaignGenesisNoReturn]

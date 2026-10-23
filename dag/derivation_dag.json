@@ -1666,19 +1666,30 @@
       "source_status": "Rounds / no-return / cumulative element count (Genesis §8-§9)",
       "statement": "Along the admitted closure rounds the element count is cumulative and a regime once left is not returned to; cycle regimes are constant (cycle_regime_const).",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:343-438"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:343-438",
+        "dag/derivations/independent/pg-gen-no-return.md"
       ],
       "lean": [
         "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::no_return",
         "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::cycle_regime_const",
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_lt_of_ne"
+        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_lt_of_ne",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.source_array",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.array_source",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.engine_step_commutes",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.engine_replay_exact",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.engine_replay_failure_exact",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.cumulative_potential",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.strict_potential",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.no_return",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.cycle_regime_const",
+        "lean4/CampaignGenesisNoReturn.lean::CampaignGenesisNoReturn.two_switches_return"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the complete array-to-source Regime interpreter refinement and that every real source regime change strictly raises the source potential. A count comparison alone is not that refinement.",
+      "bottleneck": "The complete five-field array and Boolean-mode source interpreter refinement, all finite partial histories, and strict source potential increase on actual regime changes now have local Lean proofs. External Python/Rust runtime/compiler and responder/license refinement remain separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1695,7 +1706,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Along the admitted closure rounds the element count is cumulative and a regime once left is not returned to; cycle regimes are constant (cycle_regime_const).",
         "prior_bottleneck": "none beyond bound on rounds.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-no-return_lean_replay.json"
+        ]
       }
     },
     {
