@@ -591,3 +591,7 @@ lean_lib CampaignCtMediatorEntanglement where
     `CampaignCtMediatorEntanglement
   ]
 
+lean_lib GenesisHottTruncation where
+  roots := #[`GenesisHottTruncation]
+
+
