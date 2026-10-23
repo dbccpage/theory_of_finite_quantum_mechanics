@@ -1,0 +1,86 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: OPS-SELF-CERTIFICATION-PACKET
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Read as a provenance packet, the sentence "I verified this and certify it" is (p,
+    p, p): one identifier and one principal in the proposer, evaluator and authorizer roles. All three
+    pairs of roles coincide. The gate returns REJECTED with the reasons SELF_AUTHORIZATION, EVALUATOR_IS_PROPOSER
+    and EVALUATOR_IS_AUTHORIZER, in that order (fixture case i_verified_this_and_certify_it; test test_self_certification_sentence_is_rejected_on_three_counts).
+    The note''s reading of this as a single-patch gluing on the role cover with no descent data is prose,
+    and is not computed.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The role policy is the authority note's PairwiseDistinct, principals included, which
+    is declared by the regime and not derived from the evidence. A regime that permits self-attestation
+    gives SELF_ATTESTED for the same packet.
+  source_refs:
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C6
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.2
+  - code/python/src/wdp/three_role_gate.py
+  - code/python/src/wdp/three_role_provenance_fixtures.json
+  - code/python/tests/test_three_role_gate.py
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md
+  paper_refs:
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md
+  source_claim_label: COMPUTATIONALLY_CHECKED
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md
+    sha256: 558580c6220c0266ba749dfa715c2a1047a5d50547dfe5caff4384c355c06aa0
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/observer_presheaf_ops_self_certification_packet_computationally_checked.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings: []
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

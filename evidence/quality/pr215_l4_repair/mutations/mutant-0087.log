@@ -1,0 +1,32 @@
+
+running 52 tests
+.... 4/52
+policy::tests::baseline_round_trip_and_grandfathering --- FAILED
+.......................................... 47/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+....
+failures:
+
+---- policy::tests::baseline_round_trip_and_grandfathering stdout ----
+
+thread 'policy::tests::baseline_round_trip_and_grandfathering' (23460) panicked at ..\code\rust\src\governance\src\policy.rs:637:9:
+assertion `left == right` failed
+  left: Baseline { entries: {} }
+ right: Baseline { entries: {"code/x.rs": BaselineEntry { sha256: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", deficit: "COMPLETENESS", reason: None }, "code/y.py": BaselineEntry { sha256: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", deficit: "MISSING_COMPANION", reason: Some("why") }} }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (38728) panicked at ..\code\rust\src\governance\src\buildtime.rs:281:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=new):\nchecked 1: 0 pass, 0 grandfathered, 0 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.rs: [MISSING_COMPANION] expected companion code/rust/p/src/lib.contract.score.yaml, found none\n")
+ right: Ok(())
+
+
+failures:
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    policy::tests::baseline_round_trip_and_grandfathering
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.06s
+
+error: test failed, to rerun pass `--lib`

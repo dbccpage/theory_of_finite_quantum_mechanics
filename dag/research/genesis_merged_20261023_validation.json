@@ -1,0 +1,935 @@
+{
+  "schema_version": "genesis_merged_revalidation.v1",
+  "authority_effect": "None",
+  "source_commit": "c54ab983ebffd28f05f0e52cd419e647ef5e6cf4",
+  "scope": "Already merged PRs 222, 226 and 228; all six Genesis independent checkers; current-main generated-view repair.",
+  "initial_checks": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 1,
+      "stdout": "README facts are stale: run scripts/build_readme_facts.py --write\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 1,
+      "stdout": "differs: dag/evidence/evidence_map.json\ndiffers: docs/evidence/README.md\nevidence map is stale: run python -I -X utf8 dag/evidence/build_evidence.py --write\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing",
+      "exit_code": 1,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 710,\n  \"executed_stale_needs_manual_delta\": {\n    \"GTH-LANG-CORE\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"GTH-LANG-IMPORT\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"GTH-LANG-INTERPRET\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"GTH-LANG-REFLECT\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"TFQ-0084\": [\n      \"generator_output_or_file_changed\"\n    ]\n  },\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 0,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 0,\n    \"valid_contracts_and_scores\": 0,\n    \"invalid_or_missing\": 0,\n    \"by_language\": {},\n    \"by_preliminary_profile\": {},\n    \"completed_scores\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 0\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base c54ab983ebff), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since c5e49a418cec7e70931fdb96f9f67d31a82f1922 --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since c5e49a418cec7e70931fdb96f9f67d31a82f1922 (merge base c5e49a418cec); HIGH=0 MEDIUM=0 LOW=12\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-supply-erasure.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-SUPPLY-ERASURE\",\n  \"authority_effect\": \"None\",\n  \"alphabet_size\": 13,\n  \"maximum_history_length\": 4,\n  \"bases\": 3,\n  \"histories_checked\": 92823,\n  \"failed_histories\": 88808,\n  \"distinct_successful_states\": 429,\n  \"strict_changes_checked\": 2289,\n  \"token_histories_checked\": 4681,\n  \"domain_refusals\": 3,\n  \"negative_controls\": [\n    {\n      \"name\": \"supply-admits\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"failure-as-noop\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"duplicate-append\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ],\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"unordered-requirement\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        [\n          [\n            0,\n            1\n          ]\n        ]\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"state-independent-token-erasure\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"omit-rule-coordinate\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [\n          0\n        ],\n        []\n      ]\n    }\n  ],\n  \"negative_control_count\": 6,\n  \"mutation_coverage\": \"not measured by these fixed-output probes\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/tfq-0396.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"TFQ-0396\",\n  \"authority_effect\": \"None\",\n  \"regimes_checked\": 17756,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ],\n    [\n      1,\n      2\n    ]\n  ],\n  \"class_count_histogram\": {\n    \"0\": 9,\n    \"1\": 5823,\n    \"2\": 3800,\n    \"3\": 8124\n  },\n  \"fixtures\": {\n    \"inert\": {\n      \"data\": 0,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [],\n      \"classes\": 0,\n      \"zero_matrix\": []\n    },\n    \"unseparated_marks\": {\n      \"data\": 2,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    },\n    \"sealed_response\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        1\n      ],\n      \"classes\": 2,\n      \"zero_matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ]\n    },\n    \"uniform_rule\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    }\n  },\n  \"factorizations\": 14,\n  \"refused_factorizations\": 2,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-endogenous-demand-ob1.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-ENDOGENOUS-DEMAND-OB1\",\n  \"authority_effect\": \"None\",\n  \"extension\": true,\n  \"regimes_checked\": 8424,\n  \"seek_rounds\": 6517,\n  \"saturated\": 8424,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ]\n  ],\n  \"policy_controls\": {\n    \"duplicate_requirement\": {\n      \"n\": 2,\n      \"Q\": [\n        [\n          0,\n          1\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_halt\": {\n      \"n\": 2,\n      \"policy\": \"halt\",\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_observation\": {\n      \"unary_fact\": [\n        0\n      ],\n      \"profiles\": [\n        [\n          true\n        ],\n        [\n          false\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    }\n  },\n  \"mutation_accounting\": {\n    \"killed\": 3,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-no-return.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-NO-RETURN\",\n  \"authority_effect\": \"None\",\n  \"histories\": 44286,\n  \"failures\": 38638,\n  \"distinct_successful_engine_states\": 204,\n  \"regime_changes_in_tested_prefixes\": 24914,\n  \"mode_only_changes_in_tested_prefixes\": 9674,\n  \"bases\": 3,\n  \"modes\": 2,\n  \"alphabet_size\": 9,\n  \"maximum_history_length\": 4,\n  \"negative_controls_checked\": 5,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-ongoing-fewest-changes.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-ONGOING-FEWEST-CHANGES\",\n  \"authority_effect\": \"None\",\n  \"labels\": [\n    0,\n    1,\n    2\n  ],\n  \"states\": 627,\n  \"attempts\": 18810,\n  \"performed\": 4494,\n  \"refused\": 14316,\n  \"duplicate_wire_controls\": 627,\n  \"all_writing_shortest_paths\": [\n    {\n      \"both_givens\": false,\n      \"targets\": 627,\n      \"maximum_distance\": 10,\n      \"distance_sum\": 3006\n    },\n    {\n      \"both_givens\": true,\n      \"targets\": 627,\n      \"maximum_distance\": 11,\n      \"distance_sum\": 3225\n    }\n  ],\n  \"nonconsecutive_renaming_squares\": 18810,\n  \"build_cases\": 1827,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-minimal-or-initial-refused.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"negative_controls_checked\": 3,\n  \"mutation_coverage\": \"not measured by this census\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/obstruction_scan.py --changed-since c5e49a418cec7e70931fdb96f9f67d31a82f1922 --fail-on none",
+      "exit_code": 0,
+      "stdout": "obstruction_scan: 0 HIGH, 0 MEDIUM, 0 LOW (changes since c5e49a418cec7e70931fdb96f9f67d31a82f1922; rules O1, O2, O3)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/symmetry_scan.py --changed-since c5e49a418cec7e70931fdb96f9f67d31a82f1922 --fail-on none",
+      "exit_code": 0,
+      "stdout": "symmetry_scan: 0 HIGH, 0 MEDIUM, 0 LOW (1 prose files changed since c5e49a418cec7e70931fdb96f9f67d31a82f1922; code constants always compared)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/anti_pattern_lint.py --changed-since c5e49a418cec7e70931fdb96f9f67d31a82f1922 --fail-on none",
+      "exit_code": 0,
+      "stdout": "anti_pattern_lint: 0 HIGH, 0 MEDIUM, 0 LOW (13 changed .lean/.py files since c5e49a418cec7e70931fdb96f9f67d31a82f1922 (Lean rules: added lines))\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/estate_audit.py docs --changed-since c5e49a418cec7e70931fdb96f9f67d31a82f1922 --fail-on none",
+      "exit_code": 0,
+      "stdout": "[MEDIUM] BROKEN_LINK dag/derivations/MASTER_DERIVATION_LEDGER.md:1030: relative link ../foundations/theory_of_finite_quantum_foundations.md does not resolve\n[MEDIUM] BROKEN_LINK dag/theory_of_finite_qm.md:8585: relative link v does not resolve\n[MEDIUM] BROKEN_LINK docs/evidence/stages/DRESSING_FIELD.md:15: relative link v does not resolve\n[MEDIUM] BROKEN_LINK papers/core/finite_quantum_mechanics.md:431: relative link v does not resolve\n[MEDIUM] BROKEN_LINK papers/core/finite_quantum_mechanics.md:1014: relative link research/quantum_to_classical_descent/README.md does not resolve\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:33: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_agree does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:34: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_minimum_size does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:35: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_clock_hom_of_self_loop does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:36: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_initial_in_clock_closed_class does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:37: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:38: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.nonminimal_adequate_process does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:39: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_run_matches does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md:40: cited path lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_supply_self_loop does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:36: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:37: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:38: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:39: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:40: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:41: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:42: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:43: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:44: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced does not exist\n[LOW] MISSING_PATH dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md:45: cited path lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step does not exist\n[LOW] MISSING_PATH dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md:44: cited path lean4/RaveraDfmFiniteToContinuum.lean::spanning_tree_nonabelian_mat2_factorization does not exist\n[LOW] MISSING_PATH dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md:50: cited path code/python/src/qm/ravera_dfm.py::verify_pillar2_nonabelian_borel_two_stage_dfm does not exist\n[LOW] MISSING_PATH dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md:51: cited path code/python/tests/test_ravera_dfm.py::test_pillar2_nonabelian_borel_two_stage_dfm does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1077: cited path code/rust/src/majorana/parity_schedules.rs does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1087: cited path code/python/src/qm/textbook_problems.py::solve_q58_infinite_square_well does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1087: cited path code/rust/src/qm/textbook_problems.rs::solve_q58_infinite_square_well does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1087: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1088: cited path code/python/src/qm/textbook_problems.py::solve_q59_harmonic_oscillator_fock does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1088: cited path code/rust/src/qm/textbook_problems.rs::solve_q59_harmonic_oscillator_fock does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1088: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1089: cited path code/python/src/qm/textbook_problems.py::solve_q60_potential_barrier_transfer does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1089: cited path code/rust/src/qm/textbook_problems.rs::solve_q60_potential_barrier_transfer does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1089: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1090: cited path code/python/src/qm/textbook_problems.py::solve_q61_stern_gerlach_and_rabi does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1090: cited path code/rust/src/qm/textbook_problems.rs::solve_q61_stern_gerlach_and_rabi does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1090: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1091: cited path code/python/src/qm/textbook_problems.py::solve_q62_clebsch_gordan_two_spins does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1091: cited path code/rust/src/qm/textbook_problems.rs::solve_q62_clebsch_gordan_two_spins does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1091: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1092: cited path code/python/src/qm/textbook_problems.py::solve_q63_perturbation_and_stark does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1092: cited path code/rust/src/qm/textbook_problems.rs::solve_q63_perturbation_and_stark does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1092: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1093: cited path code/python/src/qm/textbook_problems.py::solve_q64_pancharatnam_berry_phase does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1093: cited path code/rust/src/qm/textbook_problems.rs::solve_q64_pancharatnam_berry_phase does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1093: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1094: cited path code/python/src/qm/textbook_problems.py::solve_q65_fermi_golden_rule_and_revival does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1094: cited path code/rust/src/qm/textbook_problems.rs::solve_q65_fermi_golden_rule_and_revival does not exist\n[LOW] MISSING_PATH dag/derivations/MASTER_DERIVATION_LEDGER.md:1094: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:16: cited path lean4/CampaignGenesisNoReturn.lean:174 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:16: cited path lean4/CampaignGenesisNoReturn.lean:179 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:16: cited path lean4/CampaignGenesisNoReturn.lean:187 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:16: cited path lean4/CampaignGenesisNoReturn.lean:191 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:17: cited path lean4/CampaignGenesisNoReturn.lean:202 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:17: cited path lean4/CampaignGenesisNoReturn.lean:215 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:18: cited path lean4/CampaignGenesisNoReturn.lean:231 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:18: cited path lean4/CampaignGenesisNoReturn.lean:245 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:19: cited path lean4/CampaignGenesisNoReturn.lean:266 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:19: cited path lean4/CampaignGenesisNoReturn.lean:271 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:20: cited path lean4/CampaignGenesisNoReturn.lean:254 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:20: cited path lean4/CampaignGenesisNoReturn.lean:261 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-no-return.md:21: cited path lean4/CampaignGenesisNoReturn.lean:277 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:16: cited path lean4/CampaignGenesisOngoingRefinement.lean:22 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:16: cited path lean4/CampaignGenesisOngoingRefinement.lean:30 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:16: cited path lean4/CampaignGenesisOngoingRefinement.lean:33 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:17: cited path lean4/CampaignGenesisOngoingRefinement.lean:101 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:17: cited path lean4/CampaignGenesisOngoingRefinement.lean:120 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:17: cited path lean4/CampaignGenesisOngoingRefinement.lean:126 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:17: cited path lean4/CampaignGenesisOngoingRefinement.lean:136 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:17: cited path lean4/CampaignGenesisOngoingRefinement.lean:88 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:18: cited path lean4/CampaignGenesisOngoingRefinement.lean:230 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:18: cited path lean4/CampaignGenesisOngoingRefinement.lean:242 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:18: cited path lean4/CampaignGenesisOngoingRefinement.lean:46 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:18: cited path lean4/CampaignGenesisOngoingRefinement.lean:49 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:19: cited path lean4/CampaignGenesisOngoingRefinement.lean:154 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:19: cited path lean4/CampaignGenesisOngoingRefinement.lean:158 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:19: cited path lean4/CampaignGenesisOngoingRefinement.lean:162 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:19: cited path lean4/CampaignGenesisOngoingRefinement.lean:167 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:20: cited path lean4/CampaignGenesisOngoingRefinement.lean:172 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:21: cited path lean4/CampaignGenesisOngoingRefinement.lean:177 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:21: cited path lean4/CampaignGenesisOngoingRefinement.lean:182 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:22: cited path lean4/CampaignGenesisOngoingRefinement.lean:201 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:22: cited path lean4/CampaignGenesisOngoingRefinement.lean:215 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:22: cited path lean4/CampaignGenesisOngoingRefinement.lean:223 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pg-gen-ongoing-fewest-changes.md:61: cited path lean4/CampaignGenesisOngoingRename.lean:81 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:18: cited path lean4/CampaignGenesisProcessComparison.lean:164 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:19: cited path lean4/CampaignGenesisProcessComparison.lean:175 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:20: cited path lean4/CampaignGenesisProcessComparison.lean:210 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:21: cited path lean4/CampaignGenesisProcessComparison.lean:230 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:21: cited path lean4/CampaignGenesisProcessComparison.lean:243 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:22: cited path lean4/CampaignGenesisProcessComparison.lean:248 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:22: cited path lean4/CampaignGenesisProcessComparison.lean:251 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:23: cited path lean4/CampaignGenesisProcessComparison.lean:183 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused.md:24: cited path lean4/CampaignGenesisProcessComparison.lean:120 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:36: cited path lean4/CampaignGenesisProcessComparison.lean:164 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:37: cited path lean4/CampaignGenesisProcessComparison.lean:175 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:38: cited path lean4/CampaignGenesisProcessComparison.lean:210 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:39: cited path lean4/CampaignGenesisProcessComparison.lean:230 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:39: cited path lean4/CampaignGenesisProcessComparison.lean:243 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:40: cited path lean4/CampaignGenesisProcessComparison.lean:248 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:40: cited path lean4/CampaignGenesisProcessComparison.lean:251 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:41: cited path lean4/CampaignGenesisProcessComparison.lean:183 does not exist\n[LOW] MISSING_PATH docs/overclaim/reviews/2026-10-23_campaign-pgw-minimal-or-initial-refused_audit.md:42: cited path lean4/CampaignGenesisProcessComparison.lean:120 does not exist\n[LOW] MISSING_PATH papers/core/finite_quantum_mechanics.md:493: cited path docs/zenodo_errata/20683775_erratum.md does not exist\n[LOW] MISSING_PATH papers/core/finite_quantum_mechanics.md:495: cited path docs/zenodo_errata/20550459_erratum.md does not exist\n[LOW] MISSING_PATH papers/core/finite_quantum_mechanics.md:769: cited path docs/code_companion.md does not exist\n[LOW] MISSING_PATH papers/core/finite_quantum_mechanics.md:1925: cited path papers/core/fsp/000_meron_sign_problem does not exist\n[LOW] MISSING_PATH papers/core/finite_quantum_mechanics.md:1931: cited path docs/references.md does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1077: cited path code/rust/src/majorana/parity_schedules.rs does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1087: cited path code/python/src/qm/textbook_problems.py::solve_q58_infinite_square_well does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1087: cited path code/rust/src/qm/textbook_problems.rs::solve_q58_infinite_square_well does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1087: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1088: cited path code/python/src/qm/textbook_problems.py::solve_q59_harmonic_oscillator_fock does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1088: cited path code/rust/src/qm/textbook_problems.rs::solve_q59_harmonic_oscillator_fock does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1088: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1089: cited path code/python/src/qm/textbook_problems.py::solve_q60_potential_barrier_transfer does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1089: cited path code/rust/src/qm/textbook_problems.rs::solve_q60_potential_barrier_transfer does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1089: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1090: cited path code/python/src/qm/textbook_problems.py::solve_q61_stern_gerlach_and_rabi does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1090: cited path code/rust/src/qm/textbook_problems.rs::solve_q61_stern_gerlach_and_rabi does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1090: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1091: cited path code/python/src/qm/textbook_problems.py::solve_q62_clebsch_gordan_two_spins does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1091: cited path code/rust/src/qm/textbook_problems.rs::solve_q62_clebsch_gordan_two_spins does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1091: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1092: cited path code/python/src/qm/textbook_problems.py::solve_q63_perturbation_and_stark does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1092: cited path code/rust/src/qm/textbook_problems.rs::solve_q63_perturbation_and_stark does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1092: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1093: cited path code/python/src/qm/textbook_problems.py::solve_q64_pancharatnam_berry_phase does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1093: cited path code/rust/src/qm/textbook_problems.rs::solve_q64_pancharatnam_berry_phase does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1093: cited path lean4/FiniteQM.lean#L does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1094: cited path code/python/src/qm/textbook_problems.py::solve_q65_fermi_golden_rule_and_revival does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1094: cited path code/rust/src/qm/textbook_problems.rs::solve_q65_fermi_golden_rule_and_revival does not exist\n[LOW] MISSING_PATH papers/core/master_derivation_ledger.md:1094: cited path lean4/FiniteQM.lean#L does not exist\nestate_audit: 0 HIGH, 5 MEDIUM, 130 LOW (132 files changed since c5e49a418cec7e70931fdb96f9f67d31a82f1922)\n",
+      "stderr": ""
+    }
+  ],
+  "final_checks": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing",
+      "exit_code": 1,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 710,\n  \"executed_stale_needs_manual_delta\": {\n    \"GTH-LANG-CORE\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"GTH-LANG-IMPORT\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"GTH-LANG-INTERPRET\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"GTH-LANG-REFLECT\": [\n      \"generator_output_or_file_changed\"\n    ],\n    \"TFQ-0084\": [\n      \"generator_output_or_file_changed\"\n    ]\n  },\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 0,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 0,\n    \"valid_contracts_and_scores\": 0,\n    \"invalid_or_missing\": 0,\n    \"by_language\": {},\n    \"by_preliminary_profile\": {},\n    \"completed_scores\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 0\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base c54ab983ebff), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base c54ab983ebff); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/obstruction_scan.py --changed-since origin/main --fail-on none",
+      "exit_code": 0,
+      "stdout": "obstruction_scan: 0 HIGH, 0 MEDIUM, 0 LOW (changes since origin/main; rules O1, O2, O3)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/symmetry_scan.py --changed-since origin/main --fail-on none",
+      "exit_code": 0,
+      "stdout": "symmetry_scan: 0 HIGH, 0 MEDIUM, 0 LOW (1 prose files changed since origin/main; code constants always compared)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/anti_pattern_lint.py --changed-since origin/main --fail-on none",
+      "exit_code": 0,
+      "stdout": "anti_pattern_lint: 0 HIGH, 0 MEDIUM, 0 LOW (0 changed .lean/.py files since origin/main (Lean rules: added lines))\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/auto/estate_audit.py docs --changed-since origin/main --fail-on none",
+      "exit_code": 0,
+      "stdout": "estate_audit: 0 HIGH, 0 MEDIUM, 0 LOW (12 files changed since origin/main)\n",
+      "stderr": ""
+    }
+  ],
+  "independent_verification": {
+    "optimized": [
+      {
+        "source": "checks/independent/pg-gen-supply-erasure.py",
+        "exit_code": 0,
+        "output": {
+          "node": "PG-GEN-SUPPLY-ERASURE",
+          "authority_effect": "None",
+          "alphabet_size": 13,
+          "maximum_history_length": 4,
+          "bases": 3,
+          "histories_checked": 92823,
+          "failed_histories": 88808,
+          "distinct_successful_states": 429,
+          "strict_changes_checked": 2289,
+          "token_histories_checked": 4681,
+          "domain_refusals": 3,
+          "negative_controls": [
+            {
+              "name": "supply-admits",
+              "outcome": "rejected",
+              "proposed": [
+                1,
+                [],
+                [],
+                [],
+                []
+              ],
+              "reference": [
+                0,
+                [],
+                [],
+                [],
+                []
+              ]
+            },
+            {
+              "name": "failure-as-noop",
+              "outcome": "rejected",
+              "proposed": [
+                1,
+                [],
+                [],
+                [],
+                []
+              ],
+              "reference": null
+            },
+            {
+              "name": "duplicate-append",
+              "outcome": "rejected",
+              "proposed": [
+                1,
+                [
+                  1
+                ],
+                [
+                  [
+                    0,
+                    [
+                      0
+                    ]
+                  ],
+                  [
+                    0,
+                    [
+                      0
+                    ]
+                  ]
+                ],
+                [],
+                []
+              ],
+              "reference": [
+                1,
+                [
+                  1
+                ],
+                [
+                  [
+                    0,
+                    [
+                      0
+                    ]
+                  ]
+                ],
+                [],
+                []
+              ]
+            },
+            {
+              "name": "unordered-requirement",
+              "outcome": "rejected",
+              "proposed": [
+                2,
+                [],
+                [],
+                [],
+                [
+                  [
+                    0,
+                    1
+                  ]
+                ]
+              ],
+              "reference": null
+            },
+            {
+              "name": "state-independent-token-erasure",
+              "outcome": "rejected",
+              "proposed": [
+                2,
+                [],
+                [],
+                [],
+                []
+              ],
+              "reference": [
+                1,
+                [],
+                [],
+                [],
+                []
+              ]
+            },
+            {
+              "name": "omit-rule-coordinate",
+              "outcome": "rejected",
+              "proposed": [
+                0,
+                [
+                  1
+                ],
+                [],
+                [],
+                []
+              ],
+              "reference": [
+                0,
+                [
+                  1
+                ],
+                [],
+                [
+                  0
+                ],
+                []
+              ]
+            }
+          ],
+          "negative_control_count": 6,
+          "mutation_coverage": "not measured by these fixed-output probes"
+        }
+      },
+      {
+        "source": "checks/independent/tfq-0396.py",
+        "exit_code": 0,
+        "output": {
+          "node": "TFQ-0396",
+          "authority_effect": "None",
+          "regimes_checked": 17756,
+          "datum_bound": 3,
+          "signatures": [
+            [],
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "class_count_histogram": {
+            "0": 9,
+            "1": 5823,
+            "2": 3800,
+            "3": 8124
+          },
+          "fixtures": {
+            "inert": {
+              "data": 0,
+              "forms": [],
+              "contexts": 0,
+              "class_map": [],
+              "classes": 0,
+              "zero_matrix": []
+            },
+            "unseparated_marks": {
+              "data": 2,
+              "forms": [],
+              "contexts": 0,
+              "class_map": [
+                0,
+                0
+              ],
+              "classes": 1,
+              "zero_matrix": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ]
+            },
+            "sealed_response": {
+              "data": 2,
+              "forms": [
+                1
+              ],
+              "contexts": 1,
+              "class_map": [
+                0,
+                1
+              ],
+              "classes": 2,
+              "zero_matrix": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ]
+              ]
+            },
+            "uniform_rule": {
+              "data": 2,
+              "forms": [
+                1
+              ],
+              "contexts": 1,
+              "class_map": [
+                0,
+                0
+              ],
+              "classes": 1,
+              "zero_matrix": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ]
+            }
+          },
+          "factorizations": 14,
+          "refused_factorizations": 2,
+          "negative_controls_checked": 4,
+          "mutation_coverage": "not measured by fixed regression fixtures"
+        }
+      },
+      {
+        "source": "checks/independent/pgw-endogenous-demand-ob1.py",
+        "exit_code": 0,
+        "output": {
+          "node": "PGW-ENDOGENOUS-DEMAND-OB1",
+          "authority_effect": "None",
+          "extension": true,
+          "regimes_checked": 8424,
+          "seek_rounds": 6517,
+          "saturated": 8424,
+          "datum_bound": 3,
+          "signatures": [
+            [],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "policy_controls": {
+            "duplicate_requirement": {
+              "n": 2,
+              "Q": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "correct_next": null,
+              "mutant_next": [
+                0,
+                1
+              ]
+            },
+            "ignore_halt": {
+              "n": 2,
+              "policy": "halt",
+              "correct_next": null,
+              "mutant_next": [
+                0,
+                1
+              ]
+            },
+            "ignore_observation": {
+              "unary_fact": [
+                0
+              ],
+              "profiles": [
+                [
+                  true
+                ],
+                [
+                  false
+                ]
+              ],
+              "correct_next": null,
+              "mutant_next": [
+                0,
+                1
+              ]
+            }
+          },
+          "mutation_accounting": {
+            "killed": 3,
+            "survived": 0,
+            "demonstrably_equivalent": 0,
+            "invalid": 0,
+            "inconclusive": 0,
+            "unrun": 0
+          }
+        }
+      },
+      {
+        "source": "checks/independent/pg-gen-no-return.py",
+        "exit_code": 0,
+        "output": {
+          "node": "PG-GEN-NO-RETURN",
+          "authority_effect": "None",
+          "histories": 44286,
+          "failures": 38638,
+          "distinct_successful_engine_states": 204,
+          "regime_changes_in_tested_prefixes": 24914,
+          "mode_only_changes_in_tested_prefixes": 9674,
+          "bases": 3,
+          "modes": 2,
+          "alphabet_size": 9,
+          "maximum_history_length": 4,
+          "negative_controls_checked": 5,
+          "mutation_coverage": "not measured by fixed regression fixtures"
+        }
+      },
+      {
+        "source": "checks/independent/pg-gen-ongoing-fewest-changes.py",
+        "exit_code": 0,
+        "output": {
+          "node": "PG-GEN-ONGOING-FEWEST-CHANGES",
+          "authority_effect": "None",
+          "labels": [
+            0,
+            1,
+            2
+          ],
+          "states": 627,
+          "attempts": 18810,
+          "performed": 4494,
+          "refused": 14316,
+          "duplicate_wire_controls": 627,
+          "all_writing_shortest_paths": [
+            {
+              "both_givens": false,
+              "targets": 627,
+              "maximum_distance": 10,
+              "distance_sum": 3006
+            },
+            {
+              "both_givens": true,
+              "targets": 627,
+              "maximum_distance": 11,
+              "distance_sum": 3225
+            }
+          ],
+          "nonconsecutive_renaming_squares": 18810,
+          "build_cases": 1827,
+          "negative_controls_checked": 4,
+          "mutation_coverage": "not measured by fixed regression fixtures"
+        }
+      },
+      {
+        "source": "checks/independent/pgw-minimal-or-initial-refused.py",
+        "exit_code": 0,
+        "output": {
+          "node": "PGW-MINIMAL-OR-INITIAL-REFUSED",
+          "authority_effect": "None",
+          "comparison_class_extension": true,
+          "processes": 682,
+          "state_bound": 3,
+          "clock_component_candidates": 41764,
+          "behavior_equal_pairs": 98346,
+          "minimality_comparisons": 1230,
+          "source_supply_clock_maps": 16,
+          "controls": {
+            "nonreduced": [
+              [
+                1,
+                0
+              ],
+              0,
+              [
+                false,
+                false
+              ]
+            ],
+            "unreachable": [
+              [
+                0,
+                1
+              ],
+              0,
+              [
+                false,
+                true
+              ]
+            ],
+            "one_state": [
+              [
+                0
+              ],
+              0,
+              [
+                false
+              ]
+            ]
+          },
+          "negative_controls_checked": 3,
+          "mutation_coverage": "not measured by this census"
+        }
+      }
+    ],
+    "contracts": [
+      {
+        "source": "checks/independent/pg-gen-supply-erasure.py",
+        "sha256": "324ba72c3e096dbd4a84bbaea70d23da3284ea284752ab6ed616d1e45a32aefb",
+        "current_score": "L3D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "checks/independent/tfq-0396.py",
+        "sha256": "6d6e92be6e642055941c7828a18305785bda0b7a94f408670a09cf6519633a62",
+        "current_score": "L3D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "checks/independent/pgw-endogenous-demand-ob1.py",
+        "sha256": "5e7e78bc5a5cc333a82d61b0accf13134504983190c0d07fe50bce1792616d57",
+        "current_score": "L3D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "checks/independent/pg-gen-no-return.py",
+        "sha256": "3800b224b819805cabc09b1341f57b458035628b80cd5cebba7bd45cbd90067a",
+        "current_score": "L3D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "checks/independent/pg-gen-ongoing-fewest-changes.py",
+        "sha256": "7e1cdffe67327ac34b88ae1b675df5d122938fc77962821572c4362b043d5675",
+        "current_score": "L3D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "checks/independent/pgw-minimal-or-initial-refused.py",
+        "sha256": "67fa864d43432040bd7af3a1e02077c4c8757cae77db55851d2660d449be046c",
+        "current_score": "L3D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/CampaignGenesisReplayRefinement.lean",
+        "sha256": "d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e",
+        "current_score": "L4D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/CampaignGenesisCarrierBridge.lean",
+        "sha256": "730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e",
+        "current_score": "L4D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/CampaignGenesisDemandPolicy.lean",
+        "sha256": "782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940",
+        "current_score": "L4D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/CampaignGenesisNoReturn.lean",
+        "sha256": "348bd7e00a4f19a9631e67d6ed1e52539517e74b743f7dba91f7b27786870a79",
+        "current_score": "L4D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/CampaignGenesisOngoingRename.lean",
+        "sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
+        "current_score": "L4D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/CampaignGenesisOngoingRefinement.lean",
+        "sha256": "ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac",
+        "current_score": "L4D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/CampaignGenesisProcessComparison.lean",
+        "sha256": "3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2",
+        "current_score": "L4D",
+        "status": "complete_scoped_independent_review"
+      },
+      {
+        "source": "lean4/lakefile.lean",
+        "sha256": "e32aa23d838b337db8207f4dcc664c12c1c3d121bdfbba1f68b01919ce317c83",
+        "current_score": "L1D",
+        "status": "complete_scoped_independent_review"
+      }
+    ],
+    "mypy": {
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 6 source files\n",
+      "stderr": ""
+    }
+  },
+  "fresh_replay_receipt": "dag/research/genesis_merged_20261023_lean_replay.json",
+  "original_source_failure": {
+    "source": "atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean",
+    "exit_code": 1,
+    "output": "../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:46:8: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:46:18: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:361:9: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  rename (?σ ∘ ?π) ?s\nin the target expression\n  Reach (rename (⇑(Equiv.symm π)) (rename (⇑π) givenA)) (rename (⇑(Equiv.symm π)) g) n\n\ncase right\ng : St\nhg : g.Legal\nhgw : g.WF\nπ : Equiv.Perm ℕ\nn : ℕ\nh : Reach (rename (⇑π) givenA) g n\nh' : Reach (rename (⇑(Equiv.symm π)) (rename (⇑π) givenA)) (rename (⇑(Equiv.symm π)) g) n\n⊢ costA g ≤ n + 3\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:395:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  rename (?σ ∘ ?π) ?s\nin the target expression\n  Reach (rename (⇑(Equiv.symm π)) (rename (⇑π) givenB)) (rename (⇑(Equiv.symm π)) g) n\n\ncase right\ng : St\nhg : g.Legal\nhgw : g.WF\nπ : Equiv.Perm ℕ\nn : ℕ\nh : Reach (rename (⇑π) givenB) g n\nh' : Reach (rename (⇑(Equiv.symm π)) (rename (⇑π) givenB)) (rename (⇑(Equiv.symm π)) g) n\n⊢ costB g ≤ n + 4\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:423:2: error: Too many variable names provided at alternative `refl`: 3 provided, but 2 expected\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:423:35: error: Application type mismatch: The argument\n  s\nhas type\n  ℕ\nbut is expected to have type\n  St\nin the application\n  Reach.refl s\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:436:2: error: Too many variable names provided at alternative `refl`: 3 provided, but 2 expected\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:437:50: error: Application type mismatch: The argument\n  huv₀\nhas type\n  (s, u) ∈ s✝.A\nbut is expected to have type\n  (u, u) ∈ s✝.A\nin the application\n  hs u huv₀\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:438:21: error(lean.invalidField): Invalid field `identify`: The environment does not contain `Nat.identify`, so it is not possible to project the field `identify` from an expression\n  s\nof type `ℕ`\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:442:17: error: Application type mismatch: The argument\n  hne\nhas type\n  u ≠ v\nbut is expected to have type\n  s ≠ u\nin the application\n  And.intro hne\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:444:11: error: Tactic `rcases` failed: `ih : (u₀✝, v₀✝) ∈ s.A →\n  (u✝, v✝) ∈ t✝.A ∧ u✝ ≠ v✝ ∧ ¬(t✝.identify u✝ v✝).Legal` is not an inductive datatype\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:451:11: error: Tactic `rcases` failed: `ih : (u₀✝, v₀✝) ∈ s.A →\n  (u✝, v✝) ∈ t✝.A ∧ u✝ ≠ v✝ ∧ ¬(t✝.identify u✝ v✝).Legal` is not an inductive datatype\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:459:11: error: Tactic `rcases` failed: `ih : (u₀✝, v₀✝) ∈ s.A →\n  (u✝, v✝) ∈ t✝.A ∧ u✝ ≠ v✝ ∧ ¬(t✝.identify u✝ v✝).Legal` is not an inductive datatype\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:467:11: error: Tactic `rcases` failed: `ih : (u₀✝, v₀✝) ∈ s.A →\n  (u✝, v✝) ∈ t✝.A ∧ u✝ ≠ v✝ ∧ ¬(t✝.identify u✝ v✝).Legal` is not an inductive datatype\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:496:6: error: Too many variable names provided at alternative `addTerm`: 3 provided, but 2 expected\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:498:47: error(lean.unknownIdentifier): Unknown identifier `hw`\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:501:6: error: Too many variable names provided at alternative `addAssertion`: 7 provided, but 6 expected\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:503:58: error: Application type mismatch: The argument\n  hxy\nhas type\n  (x✝, x) ∉ t✝.A\nbut is expected to have type\n  x ≠ ?m.284\nin the application\n  ReachNoRemove.addAssertion hnr hx ?m.286 hxy\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:503:62: error(lean.unknownIdentifier): Unknown identifier `hnew`\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:503:55: error: Application type mismatch: The argument\n  hy\nhas type\n  x✝ ≠ x\nbut is expected to have type\n  ?m.284 ∈ t✝.T\nin the application\n  ReachNoRemove.addAssertion hnr hx hy\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:506:6: error: Too many variable names provided at alternative `remove`: 3 provided, but 2 expected\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:507:27: error: Type mismatch\n  (u, v)\nhas type\n  ℕ × ℕ\nof sort `Type` but is expected to have type\n  p✝ ∈ t✝.A\nof sort `Prop`\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:508:10: error: Tactic `subst` failed: did not find equation for eliminating 'hpe'\n\ncase pos\ns t : St\nn : ℕ\nhs : s.Legal\nu₀ v₀ : ℕ\nhuv₀ : (u₀, v₀) ∈ s.A\nt✝ : St\nn✝ : ℕ\nr : Reach s t✝ n✝\nu v : ℕ\nhnr : ReachNoRemove s u₀ v₀ t✝ u v n✝\nhmem : (u, v) ∈ t✝.A\nhne : u ≠ v\nhobs : ¬(t✝.identify u v).Legal\np✝ : ℕ × ℕ\np : p✝ ∈ t✝.A\nhpe : sorry\n⊢ (∃ u v,\n      ReachNoRemove s u₀ v₀ (t✝.remove p✝) u v (n✝ + 1) ∧\n        (u, v) ∈ (t✝.remove p✝).A ∧ u ≠ v ∧ ¬((t✝.remove p✝).identify u v).Legal) ∨\n    ∃ m k mid u v,\n      m + 1 + k = n✝ + 1 ∧ ReachNoRemove s u₀ v₀ mid u v m ∧ (u, v) ∈ mid.A ∧ Reach (mid.remove (u, v)) (t✝.remove p✝) k\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:512:53: error(lean.unknownIdentifier): Unknown identifier `hp`\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:515:6: error: Too many variable names provided at alternative `identify`: 8 provided, but 7 expected\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:517:54: error: Application type mismatch: The argument\n  hpq\nhas type\n  (u✝, p) ∉ t✝.A\nbut is expected to have type\n  p ≠ ?m.373\nin the application\n  ReachNoRemove.identify hnr hp ?m.375 hpq\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:517:61: error(lean.unknownIdentifier): Unknown identifier `h2`\n../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:517:51: error: Application type mismatch: The argument\n  hq\nhas type\n  u✝ ≠ p\nbut is expected to have type\n  u✝ ∈ t✝.T\nin the application\n  ReachNoRemove.identify hnr hp hq\n",
+    "used_as_proof_evidence": false
+  },
+  "codeql_investigation": {
+    "pr": 222,
+    "advanced_run": 39927692643,
+    "default_run": 39927686597,
+    "advanced_failed_jobs": [
+      120328037316,
+      120328037548,
+      120328037607,
+      120328037634
+    ],
+    "languages": [
+      "rust",
+      "javascript-typescript",
+      "actions",
+      "python"
+    ],
+    "failure_stage": "github/codeql-action/analyze@v3 upload",
+    "error": "CodeQL analyses from advanced configurations cannot be processed when the default setup is enabled",
+    "default_workflow_languages_all_passed": true,
+    "settings_api": "GET repos/dbccpage/theory_of_finite_quantum_mechanics/code-scanning/default-setup",
+    "settings_api_status": 403,
+    "resolution": "Repository maintainer must switch Default to Advanced to keep the committed archive exclusions. No security setting or workflow policy changed; rerunning the unchanged failing workflow would not resolve the conflict."
+  },
+  "merge_commits": {
+    "222": "5c397a3a6b0afaa57be0b1e6b40b89ced1414a6a",
+    "226": "8c63b1deb7d058e27c09b28b31e25af79b802417",
+    "228": "7e8b2213511494fb91d9f5296d663dedfa30a514"
+  },
+  "node_status_changes": [],
+  "remaining_failures": {
+    "additional_prompt_diagnostic": {
+      "GTH-LANG-CORE": [
+        "generator_output_or_file_changed"
+      ],
+      "GTH-LANG-IMPORT": [
+        "generator_output_or_file_changed"
+      ],
+      "GTH-LANG-INTERPRET": [
+        "generator_output_or_file_changed"
+      ],
+      "GTH-LANG-REFLECT": [
+        "generator_output_or_file_changed"
+      ],
+      "TFQ-0084": [
+        "generator_output_or_file_changed"
+      ]
+    },
+    "hosted_codeql": "Default/advanced setup conflict; setup API returns 403; no setting changed",
+    "unchanged_archive": "Second/Rename.lean retains failed original proof scripts; separate delivered port passes",
+    "whole_estate_scoring": "Not certified; unchanged HilbertLiftOperators JSON error retained"
+  },
+  "campaign_tests": {
+    "exit_code": 0,
+    "output": "........................                                                 [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\_pytest\\config\\__init__.py:1474\n  C:\\Users\\a343o\\.codex\\worktrees\\genesis-merged-audit\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\_pytest\\config\\__init__.py:1474: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n24 passed, 1 warning in 27.35s\n"
+  },
+  "additional_existing_contract_diagnostic": {
+    "path": "lean4/HilbertLiftOperators.contract.score.yaml",
+    "error": "Expecting ',' delimiter: line 202 column 7 (char 10999)",
+    "classification": "unchanged file; whole-tree scope checker intentionally not used as merge gate"
+  },
+  "inputs": [
+    {
+      "path": "dag/research/genesis_merged_20261023_lean_replay.json",
+      "sha256": "acdec48deb09c67028eac26fa3f57d08f2bc965dd2dcba934b14637bd2adefa4"
+    },
+    {
+      "path": "docs/overclaim/reviews/2026-10-23_genesis-merged-revalidation_audit.md",
+      "sha256": "87f3745aa2885db9e6a7116da71ff734d2695fbacd5653a9c6d4e82cb963c9fe"
+    },
+    {
+      "path": "README.md",
+      "sha256": "9135b114ad4fe46720ae17a2f0ad7d9966f89ac664ad64bcbc0a91135c3448d3"
+    },
+    {
+      "path": "dag/evidence/evidence_map.json",
+      "sha256": "fb9bd9b80b3052673d1641477ebef49a4a964cd9d5823da7adc0c94f9a0ae077"
+    },
+    {
+      "path": "dag/derivation_dag.json",
+      "sha256": "dc11492b961131a1df69175b7efa3332ee683313ff38905fd2c09db641c89363"
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "e32aa23d838b337db8207f4dcc664c12c1c3d121bdfbba1f68b01919ce317c83"
+    }
+  ]
+}

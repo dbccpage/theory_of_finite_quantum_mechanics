@@ -1,0 +1,129 @@
+
+running 52 tests
+.. 2/52
+descriptor::tests::legacy_subject_layout_and_missing_pieces --- FAILED
+.. 5/52
+descriptor::tests::parses_a_complete_companion --- FAILED
+........................ 30/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+. 32/52
+tests::binding_and_completeness_are_both_reported --- FAILED
+. 34/52
+verify::tests::binding_mismatch_names_the_field --- FAILED
+. 36/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+. 39/52
+verify::tests::null_gate_is_incomplete --- FAILED
+verify::tests::schema_failures_are_specific --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+..... 47/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- descriptor::tests::legacy_subject_layout_and_missing_pieces stdout ----
+
+thread 'descriptor::tests::legacy_subject_layout_and_missing_pieces' (31060) panicked at ..\code\rust\src\governance\src\descriptor.rs:294:9:
+assertion `left == right` failed
+  left: ["schema_version", "contract"]
+ right: ["artifact", "current_contract", "current_scoring", "contract_history", "scoring_history"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- descriptor::tests::parses_a_complete_companion stdout ----
+
+thread 'descriptor::tests::parses_a_complete_companion' (40684) panicked at ..\code\rust\src\governance\src\descriptor.rs:261:9:
+assertion failed: d.missing_keys.is_empty()
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (20692) panicked at ..\code\rust\src\governance\src\verify.rs:404:9:
+assertion `left == right` failed
+  left: Err(Schema { path: "code/x.contract.score.yaml", field: "schema_version", expected: "present", found: "absent" })
+ right: Ok(())
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (19280) panicked at ..\code\rust\src\governance\src\lib.rs:353:9:
+assertion `left == right` failed: floor is not repeated when completeness fails
+  left: [Schema]
+ right: [Binding, Completeness]
+
+---- verify::tests::binding_mismatch_names_the_field stdout ----
+
+thread 'verify::tests::binding_mismatch_names_the_field' (4432) panicked at ..\code\rust\src\governance\src\verify.rs:382:9:
+code/x.contract.score.yaml: [SCHEMA] schema_version: expected present, found absent
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (35264) panicked at ..\code\rust\src\governance\src\verify.rs:342:9:
+assertion `left == right` failed
+  left: Err(Schema { path: "code/x.contract.score.yaml", field: "schema_version", expected: "present", found: "absent" })
+ right: Ok(())
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (33560) panicked at ..\code\rust\src\governance\src\verify.rs:367:9:
+code/x.contract.score.yaml: [SCHEMA] schema_version: expected present, found absent
+
+---- verify::tests::null_gate_is_incomplete stdout ----
+
+thread 'verify::tests::null_gate_is_incomplete' (32004) panicked at ..\code\rust\src\governance\src\verify.rs:358:9:
+assertion `left == right` failed
+  left: Schema
+ right: Completeness
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (46552) panicked at ..\code\rust\src\governance\src\verify.rs:426:9:
+code/x.contract.score.yaml: [SCHEMA] schema_version: expected present, found absent
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (22108) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Schema]
+ right: [Binding, Floor]
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (23876) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 0 pass, 0 grandfathered, 1 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.contract.score.yaml: [SCHEMA] schema_version: expected present, found absent\n")
+ right: Ok(())
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (19600) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Schema { path: "code/t.rs.contract.score.yaml", field: "schema_version", expected: "present", found: "absent" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (26648) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Fail([Schema { path: "code/a.contract.score.yaml", field: "schema_version", expected: "present", found: "absent" }])
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    descriptor::tests::legacy_subject_layout_and_missing_pieces
+    descriptor::tests::parses_a_complete_companion
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::binding_mismatch_names_the_field
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+    verify::tests::null_gate_is_incomplete
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 39 passed; 13 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.62s
+
+error: test failed, to rerun pass `--lib`

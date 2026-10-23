@@ -1,56 +1,74 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "dag/render_dag_views.py",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted.",
   "contract": {
-    "schema_id": "finite-qm.code-companion.v1",
-    "subject": "dag/render_dag_views.py",
-    "source_sha256": "ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74",
-    "authority_effect": "None",
-    "contract_urn": "urn:finite-qm:dag:single-source-views:ece893959504c061a22f",
-    "symbols": [
-      "json_text",
-      "record_line",
-      "canonical_record",
-      "load_dag",
-      "records_of",
-      "render_jsonl",
-      "_plain_block",
-      "_unified_block",
-      "_application_block",
-      "_crosswalk",
-      "_trunk_section",
-      "render_md",
-      "views",
-      "outputs",
-      "stale_views",
-      "main"
-    ],
-    "owned_invariants": [
-      "Only the literal definitions and the declared rendering or check contract of this source are claimed.",
-      "Source bytes are retained; labels and statuses do not admit a mathematical or physical target."
-    ],
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "dag/render_dag_views.py",
+      "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+    },
     "boundaries": [
-      "Renders views only; rendering establishes no mathematical claim.",
-      "No status is promoted: every record and node field is copied from derivation_dag.json."
+      "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+      "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
     ],
+    "claim": "Render the canonical DAG into deterministic JSONL and Markdown views while preserving record identities and stage order.",
+    "contract_urn": "urn:tfqm:pr208-repair:render_dag_views",
     "evidence": [
-      "dag/derivation_dag_reading_note.md",
-      "dag/theory_of_finite_qm.jsonl.README.md"
+      {
+        "path": "dag/research/foc035_l4_refactor_equivalence.json",
+        "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+      },
+      {
+        "path": "dag/research/foc035_l4_tests_retry.json",
+        "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+      },
+      {
+        "path": "dag/research/foc035_l4_gate_replay.json",
+        "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+      },
+      {
+        "path": "dag/research/foc035_l4_checker_refactor.json",
+        "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+      },
+      {
+        "path": "dag/research/foc035_l4_metrics.json",
+        "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+      }
+    ],
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "load_dag",
+      "canonical_record",
+      "outputs"
     ]
   },
-  "current_contract": "44f048ab02c1a5e85a3825a7ee0af0268dfbff2f882635d910f3b7456ac3d4ec",
-  "current_scoring": "bd6a8a9f8604c643a046a00b0e24e03211f22953217278b54ab8edb102e4d77b",
   "contract_history": [
     {
-      "sha256": "44f048ab02c1a5e85a3825a7ee0af0268dfbff2f882635d910f3b7456ac3d4ec",
       "bytes": 953,
+      "original_paths": [
+        "dag/render_dag_views.py.contract.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/render_dag_views.py\nsource_sha256: ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74\nauthority_effect: None\ncontract_urn: urn:finite-qm:dag:single-source-views:ece893959504c061a22f\nsymbols:\n- json_text\n- record_line\n- canonical_record\n- load_dag\n- records_of\n- render_jsonl\n- _plain_block\n- _unified_block\n- _application_block\n- _crosswalk\n- _trunk_section\n- render_md\n- views\n- outputs\n- stale_views\n- main\nowned_invariants:\n- Only the literal definitions and the declared rendering or check contract of this source are claimed.\n- Source bytes are retained; labels and statuses do not admit a mathematical or physical target.\nboundaries:\n- Renders views only; rendering establishes no mathematical claim.\n- 'No status is promoted: every record and node field is copied from derivation_dag.json.'\nevidence:\n- dag/derivation_dag_reading_note.md\n- dag/theory_of_finite_qm.jsonl.README.md\n",
       "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "dag/render_dag_views.py",
-        "source_sha256": "ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74",
         "authority_effect": "None",
+        "boundaries": [
+          "Renders views only; rendering establishes no mathematical claim.",
+          "No status is promoted: every record and node field is copied from derivation_dag.json."
+        ],
         "contract_urn": "urn:finite-qm:dag:single-source-views:ece893959504c061a22f",
+        "evidence": [
+          "dag/derivation_dag_reading_note.md",
+          "dag/theory_of_finite_qm.jsonl.README.md"
+        ],
+        "owned_invariants": [
+          "Only the literal definitions and the declared rendering or check contract of this source are claimed.",
+          "Source bytes are retained; labels and statuses do not admit a mathematical or physical target."
+        ],
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74",
+        "subject": "dag/render_dag_views.py",
         "symbols": [
           "json_text",
           "record_line",
@@ -68,40 +86,136 @@
           "outputs",
           "stale_views",
           "main"
-        ],
-        "owned_invariants": [
-          "Only the literal definitions and the declared rendering or check contract of this source are claimed.",
-          "Source bytes are retained; labels and statuses do not admit a mathematical or physical target."
-        ],
+        ]
+      },
+      "sha256": "44f048ab02c1a5e85a3825a7ee0af0268dfbff2f882635d910f3b7456ac3d4ec"
+    },
+    {
+      "bytes": 1665,
+      "original_paths": [
+        "dag\\render_dag_views.contract.score.yaml#pr208-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/render_dag_views.py\",\n    \"sha256\": \"86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9\"\n  },\n  \"boundaries\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"claim\": \"Render the canonical DAG into deterministic JSONL and Markdown views while preserving record identities and stage order.\",\n  \"contract_urn\": \"urn:tfqm:pr208-repair:render_dag_views\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69\"\n    }\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"load_dag\",\n    \"canonical_record\",\n    \"outputs\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/render_dag_views.py",
+          "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+        },
         "boundaries": [
-          "Renders views only; rendering establishes no mathematical claim.",
-          "No status is promoted: every record and node field is copied from derivation_dag.json."
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
         ],
+        "claim": "Render the canonical DAG into deterministic JSONL and Markdown views while preserving record identities and stage order.",
+        "contract_urn": "urn:tfqm:pr208-repair:render_dag_views",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69"
+          }
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "load_dag",
+          "canonical_record",
+          "outputs"
+        ]
+      },
+      "sha256": "7eece2ae836ca372c0adc484027122896652aaac5912a99873ff2c009d53e3bd"
+    },
+    {
+      "bytes": 1665,
+      "original_paths": [
+        "dag/render_dag_views.py#final-source-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/render_dag_views.py\",\n    \"sha256\": \"86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9\"\n  },\n  \"boundaries\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"claim\": \"Render the canonical DAG into deterministic JSONL and Markdown views while preserving record identities and stage order.\",\n  \"contract_urn\": \"urn:tfqm:pr208-repair:render_dag_views\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"load_dag\",\n    \"canonical_record\",\n    \"outputs\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/render_dag_views.py",
+          "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+        },
+        "boundaries": [
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
+        ],
+        "claim": "Render the canonical DAG into deterministic JSONL and Markdown views while preserving record identities and stage order.",
+        "contract_urn": "urn:tfqm:pr208-repair:render_dag_views",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "load_dag",
+          "canonical_record",
+          "outputs"
+        ]
+      },
+      "sha256": "6e9093e90ac8b211b1946e3d5b5e7b196af615e38ec001c88a466984fc4b7f87"
+    }
+  ],
+  "current_contract": "6e9093e90ac8b211b1946e3d5b5e7b196af615e38ec001c88a466984fc4b7f87",
+  "current_scoring": "975ddec8dab3df43c7cb7dfb3f4f76cc2c96ad39f2d732e964562d4c4a92356a",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "dag/render_dag_views.py.contract.yaml": "44f048ab02c1a5e85a3825a7ee0af0268dfbff2f882635d910f3b7456ac3d4ec",
+    "dag/render_dag_views.py.score.yaml": "bd6a8a9f8604c643a046a00b0e24e03211f22953217278b54ab8edb102e4d77b"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 872,
+      "original_paths": [
+        "dag/render_dag_views.py.score.yaml"
+      ],
+      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/render_dag_views.py\nsource_sha256: ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; the tests support only their\n  stated structural scope.\nevidence:\n- dag/derivation_dag_reading_note.md\n- dag/theory_of_finite_qm.jsonl.README.md\n",
+      "record": {
+        "assessment_status": "formal_scoring_not_performed",
+        "authority_effect": "None",
+        "capability_level": null,
+        "composite_score": null,
+        "engineering_grade": null,
         "evidence": [
           "dag/derivation_dag_reading_note.md",
           "dag/theory_of_finite_qm.jsonl.README.md"
-        ]
-      },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/render_dag_views.py\nsource_sha256: ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74\nauthority_effect: None\ncontract_urn: urn:finite-qm:dag:single-source-views:ece893959504c061a22f\nsymbols:\n- json_text\n- record_line\n- canonical_record\n- load_dag\n- records_of\n- render_jsonl\n- _plain_block\n- _unified_block\n- _application_block\n- _crosswalk\n- _trunk_section\n- render_md\n- views\n- outputs\n- stale_views\n- main\nowned_invariants:\n- Only the literal definitions and the declared rendering or check contract of this source are claimed.\n- Source bytes are retained; labels and statuses do not admit a mathematical or physical target.\nboundaries:\n- Renders views only; rendering establishes no mathematical claim.\n- 'No status is promoted: every record and node field is copied from derivation_dag.json.'\nevidence:\n- dag/derivation_dag_reading_note.md\n- dag/theory_of_finite_qm.jsonl.README.md\n",
-      "original_paths": [
-        "dag/render_dag_views.py.contract.yaml"
-      ]
-    }
-  ],
-  "scoring_history": [
-    {
-      "sha256": "bd6a8a9f8604c643a046a00b0e24e03211f22953217278b54ab8edb102e4d77b",
-      "bytes": 872,
-      "record": {
-        "schema_id": "finite-qm.code-companion.v1",
-        "subject": "dag/render_dag_views.py",
-        "source_sha256": "ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74",
-        "authority_effect": "None",
-        "rubric": "SCORING.md v2.0.0 section1.4",
-        "capability_level": null,
-        "engineering_grade": null,
-        "composite_score": null,
-        "assessment_status": "formal_scoring_not_performed",
+        ],
         "gates": {
           "G1": {
             "grade": null,
@@ -125,21 +239,162 @@
           }
         },
         "refusal_reason": "A five-gate engineering-grade assessment was not performed; the tests support only their stated structural scope.",
-        "evidence": [
-          "dag/derivation_dag_reading_note.md",
-          "dag/theory_of_finite_qm.jsonl.README.md"
-        ]
+        "rubric": "SCORING.md v2.0.0 section1.4",
+        "schema_id": "finite-qm.code-companion.v1",
+        "source_sha256": "ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74",
+        "subject": "dag/render_dag_views.py"
       },
-      "raw_utf8": "schema_id: finite-qm.code-companion.v1\nsubject: dag/render_dag_views.py\nsource_sha256: ece893959504c061a22f51c918ca258104929945bf15408f44e69287b37cfb74\nauthority_effect: None\nrubric: SCORING.md v2.0.0 section1.4\ncapability_level: null\nengineering_grade: null\ncomposite_score: null\nassessment_status: formal_scoring_not_performed\ngates:\n  G1:\n    grade: null\n    status: formal_scoring_not_performed\n  G2:\n    grade: null\n    status: formal_scoring_not_performed\n  G3:\n    grade: null\n    status: formal_scoring_not_performed\n  G4:\n    grade: null\n    status: formal_scoring_not_performed\n  G5:\n    grade: null\n    status: formal_scoring_not_performed\nrefusal_reason: A five-gate engineering-grade assessment was not performed; the tests support only their\n  stated structural scope.\nevidence:\n- dag/derivation_dag_reading_note.md\n- dag/theory_of_finite_qm.jsonl.README.md\n",
+      "sha256": "bd6a8a9f8604c643a046a00b0e24e03211f22953217278b54ab8edb102e4d77b"
+    },
+    {
+      "bytes": 3143,
       "original_paths": [
-        "dag/render_dag_views.py.score.yaml"
-      ]
+        "dag\\render_dag_views.contract.score.yaml#pr208-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/render_dag_views.py\",\n    \"sha256\": \"86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9\"\n  },\n  \"assessor\": \"Codex repair review\",\n  \"basis\": {\n    \"G1\": \"Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.\",\n    \"G2\": \"Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.\",\n    \"G3\": \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"G4\": \"117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.\",\n    \"G5\": \"Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T16:31:30.296637+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.\",\n  \"metrics\": {\n    \"ccn_max\": 19,\n    \"cognitive_max\": 9,\n    \"sha256\": \"86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9\"\n  },\n  \"open_higher_grade_findings\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/render_dag_views.py",
+          "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+        },
+        "assessor": "Codex repair review",
+        "basis": {
+          "G1": "Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.",
+          "G2": "Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.",
+          "G3": "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "G4": "117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.",
+          "G5": "Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T16:31:30.296637+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "c1ac4766319e9565ee3c88b6dee75f3100c57b6a8cb26ccc0ffc8445ebb8ae69"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.",
+        "metrics": {
+          "ccn_max": 19,
+          "cognitive_max": 9,
+          "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+        },
+        "open_higher_grade_findings": [
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "5e10a91cd8fc632ce158fef56d290f8ee6a20791167e61222b2e18e674eeeabd"
+    },
+    {
+      "bytes": 3143,
+      "original_paths": [
+        "dag/render_dag_views.py#final-source-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"dag/render_dag_views.py\",\n    \"sha256\": \"86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9\"\n  },\n  \"assessor\": \"Codex repair review\",\n  \"basis\": {\n    \"G1\": \"Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.\",\n    \"G2\": \"Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.\",\n    \"G3\": \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"G4\": \"117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.\",\n    \"G5\": \"Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T16:31:30.296637+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.\",\n  \"metrics\": {\n    \"ccn_max\": 19,\n    \"cognitive_max\": 9,\n    \"sha256\": \"86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9\"\n  },\n  \"open_higher_grade_findings\": [\n    \"Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.\",\n    \"A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "dag/render_dag_views.py",
+          "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+        },
+        "assessor": "Codex repair review",
+        "basis": {
+          "G1": "Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.",
+          "G2": "Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.",
+          "G3": "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "G4": "117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.",
+          "G5": "Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T16:31:30.296637+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.",
+        "metrics": {
+          "ccn_max": 19,
+          "cognitive_max": 9,
+          "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9"
+        },
+        "open_higher_grade_findings": [
+          "Assessment is for repository-local schema-conforming inputs and the named owned stage; arbitrary hostile JSON, crash-atomic multifile publication and concurrency are not guaranteed.",
+          "A generator IO failure can leave stale derived views; rerun the owning sync and all validation checks. No theorem or node status is promoted."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "975ddec8dab3df43c7cb7dfb3f4f76cc2c96ad39f2d732e964562d4c4a92356a"
     }
-  ],
-  "legacy_paths": {
-    "dag/render_dag_views.py.contract.yaml": "44f048ab02c1a5e85a3825a7ee0af0268dfbff2f882635d910f3b7456ac3d4ec",
-    "dag/render_dag_views.py.score.yaml": "bd6a8a9f8604c643a046a00b0e24e03211f22953217278b54ab8edb102e4d77b"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+  ]
 }

@@ -1006,3 +1006,8 @@ lean_lib CampaignGenesisProcessComparison where
 -- Campaign: DFM-CKM-PHYSICS-FENCE. Not a default target.
 lean_lib CampaignDfmCkmPhysicsFence where
   roots := #[`CampaignDfmCkmPhysicsFence]
+
+-- Campaign target: DFM-CONTINUUM-INTERFACE.
+-- Not a default target: build with `lake build CampaignDfmContinuumInterface`.
+lean_lib CampaignDfmContinuumInterface where
+  roots := #[`CampaignDfmContinuumInterface]

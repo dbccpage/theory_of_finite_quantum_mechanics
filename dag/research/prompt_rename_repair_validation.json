@@ -1,0 +1,256 @@
+{
+  "schema_version": "campaign_prompt_rename_validation.v1",
+  "authority_effect": "None",
+  "source_base": "051091f7b6be583969482d323d4fac3e36b6ea8c",
+  "checked_at": "2026-10-23T16:24:29.620006+00:00",
+  "commands": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=925 routes=934 records=977 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing --require-complete",
+      "exit_code": 0,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 748,\n  \"executed_stale_needs_manual_delta\": {},\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/validate_prompts.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"prompts\": 925,\n  \"collections\": 925,\n  \"errors\": [],\n  \"claim\": \"Structural and local-source custody checks only; no operad or target theorem acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 051091f7b6be); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-supply-erasure.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-SUPPLY-ERASURE\",\n  \"authority_effect\": \"None\",\n  \"alphabet_size\": 13,\n  \"maximum_history_length\": 4,\n  \"bases\": 3,\n  \"histories_checked\": 92823,\n  \"failed_histories\": 88808,\n  \"distinct_successful_states\": 429,\n  \"strict_changes_checked\": 2289,\n  \"token_histories_checked\": 4681,\n  \"domain_refusals\": 3,\n  \"negative_controls\": [\n    {\n      \"name\": \"supply-admits\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"failure-as-noop\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"duplicate-append\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ],\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"unordered-requirement\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        [\n          [\n            0,\n            1\n          ]\n        ]\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"state-independent-token-erasure\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"omit-rule-coordinate\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [\n          0\n        ],\n        []\n      ]\n    }\n  ],\n  \"negative_control_count\": 6,\n  \"mutation_coverage\": \"not measured by these fixed-output probes\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/tfq-0396.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"TFQ-0396\",\n  \"authority_effect\": \"None\",\n  \"regimes_checked\": 17756,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ],\n    [\n      1,\n      2\n    ]\n  ],\n  \"class_count_histogram\": {\n    \"0\": 9,\n    \"1\": 5823,\n    \"2\": 3800,\n    \"3\": 8124\n  },\n  \"fixtures\": {\n    \"inert\": {\n      \"data\": 0,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [],\n      \"classes\": 0,\n      \"zero_matrix\": []\n    },\n    \"unseparated_marks\": {\n      \"data\": 2,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    },\n    \"sealed_response\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        1\n      ],\n      \"classes\": 2,\n      \"zero_matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ]\n    },\n    \"uniform_rule\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    }\n  },\n  \"factorizations\": 14,\n  \"refused_factorizations\": 2,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-endogenous-demand-ob1.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-ENDOGENOUS-DEMAND-OB1\",\n  \"authority_effect\": \"None\",\n  \"extension\": true,\n  \"regimes_checked\": 8424,\n  \"seek_rounds\": 6517,\n  \"saturated\": 8424,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ]\n  ],\n  \"policy_controls\": {\n    \"duplicate_requirement\": {\n      \"n\": 2,\n      \"Q\": [\n        [\n          0,\n          1\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_halt\": {\n      \"n\": 2,\n      \"policy\": \"halt\",\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_observation\": {\n      \"unary_fact\": [\n        0\n      ],\n      \"profiles\": [\n        [\n          true\n        ],\n        [\n          false\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    }\n  },\n  \"mutation_accounting\": {\n    \"killed\": 3,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-no-return.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-NO-RETURN\",\n  \"authority_effect\": \"None\",\n  \"histories\": 44286,\n  \"failures\": 38638,\n  \"distinct_successful_engine_states\": 204,\n  \"regime_changes_in_tested_prefixes\": 24914,\n  \"mode_only_changes_in_tested_prefixes\": 9674,\n  \"bases\": 3,\n  \"modes\": 2,\n  \"alphabet_size\": 9,\n  \"maximum_history_length\": 4,\n  \"negative_controls_checked\": 5,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-ongoing-fewest-changes.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-ONGOING-FEWEST-CHANGES\",\n  \"authority_effect\": \"None\",\n  \"labels\": [\n    0,\n    1,\n    2\n  ],\n  \"states\": 627,\n  \"attempts\": 18810,\n  \"performed\": 4494,\n  \"refused\": 14316,\n  \"duplicate_wire_controls\": 627,\n  \"all_writing_shortest_paths\": [\n    {\n      \"both_givens\": false,\n      \"targets\": 627,\n      \"maximum_distance\": 10,\n      \"distance_sum\": 3006\n    },\n    {\n      \"both_givens\": true,\n      \"targets\": 627,\n      \"maximum_distance\": 11,\n      \"distance_sum\": 3225\n    }\n  ],\n  \"nonconsecutive_renaming_squares\": 18810,\n  \"build_cases\": 1827,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-minimal-or-initial-refused.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"negative_controls_checked\": 3,\n  \"mutation_coverage\": \"not measured by this census\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "protected_files": [
+    {
+      "path": "dag/derivation_dag.json",
+      "sha256": "405d9088102b3012dc0c9bae090b553090b6895bb4c373a89df3dc012b1e1b17",
+      "unchanged": true
+    },
+    {
+      "path": "dag/fragments/genesis_to_higher.json",
+      "sha256": "a316a7759a7423b4ae4c9ffaea55bfee2374366a5eea1a1943b4cee9da151c4f",
+      "unchanged": true
+    },
+    {
+      "path": "dag/pfp/prompt_audit.json",
+      "sha256": "986e26a467b3115136ca93f912d6329890b116ff3202f3e888dfb4ed083ed1de",
+      "unchanged": true
+    },
+    {
+      "path": "dag/pfp/filename_custody.json",
+      "sha256": "dfe87711e9c89da7e9142b688d7a78c51853f76e2c2d2c6d95286f267f50c0fc",
+      "unchanged": true
+    },
+    {
+      "path": "dag/pfp/custody.py",
+      "sha256": "586007d762519557045fdb3dec2743055c8b197de7c2600a675d2c6d44b791de",
+      "unchanged": true
+    }
+  ],
+  "node_status_changes": [],
+  "scope_fence_changes": [],
+  "initial_integrated_failures": [
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    }
+  ],
+  "repair_sources": [
+    {
+      "path": "dag/pfp/generate_prompts.py",
+      "sha256": "86190f46d769c3dd2b4affa4b325aa1eb3e06dc81299b4a0882eceab6f5dc8ab",
+      "committed_lf": true
+    },
+    {
+      "path": "dag/pfp/validate_prompts.py",
+      "sha256": "7085cf318c0aa00f4e9f6d0be505564db7f91c084ae6fc926346783e4f7666b3",
+      "committed_lf": true
+    },
+    {
+      "path": "dag/pfp/test_retained_collections.py",
+      "sha256": "f184fb2ad3c5b5438108d1df5b0b4cb30e2d22955b8b2230ecca84189127556e",
+      "committed_lf": true
+    }
+  ],
+  "final_tests": {
+    "exit_code": 0,
+    "command": "python -m pytest -q <prescribed five campaign files> dag/pfp/test_retained_collections.py",
+    "output": "......................................................                   [100%]\n54 passed in 18.78s\n"
+  },
+  "prior_broader_regression_receipt": "dag/research/prompt_retention_targeted_validation.json",
+  "designated_mutation_receipt": "dag/research/prompt_retention_challenges.json",
+  "scoped_contract_check": {
+    "audit": null,
+    "passed": true,
+    "summary": {
+      "sources": 0,
+      "valid_contracts_and_scores": 0,
+      "invalid_or_missing": 0,
+      "by_language": {},
+      "by_preliminary_profile": {},
+      "completed_scores": 0,
+      "incomplete_scores": 0,
+      "generated_governance_twins": 0,
+      "non_twin_sources": 0
+    },
+    "errors": [],
+    "scope": "in-scope sources changed since origin/main (merge base 051091f7b6be), including ordinary untracked files. The tracked audit file is not written. Grades are not read."
+  },
+  "contract_history_check": {
+    "originals": null,
+    "combined_files": 3,
+    "all_passed": true,
+    "errors": [],
+    "scope": "changed files only; the rest of the tree was not read"
+  },
+  "protected_git_diff": {
+    "base": "051091f7b6be583969482d323d4fac3e36b6ea8c",
+    "paths": [
+      "atlas",
+      "sources",
+      "dag/results",
+      "dag/prompts",
+      "dag/operads",
+      "dag/derivation_dag.json",
+      "dag/fragments",
+      "dag/derivations",
+      "papers/core"
+    ],
+    "exit_code": 0
+  },
+  "compatibility_receipt": {
+    "path": "dag/research/genesis_rename_compatibility_lean_replay.json",
+    "sha256": "93aee9137679a526c8d43b6b28fa013b9511bfe1aa0a389c4eb843d8aa61739c"
+  },
+  "remaining_failures_at_supported_entry_points": [],
+  "historical_limitations": [
+    "The immutable archived Second/Rename.lean direct-build failure remains recorded. The maintained compatibility target passes.",
+    "Previously recorded derivation scopes and scoring exceptions are unchanged.",
+    "Whole-estate companion inventory retains the inherited all_passed=false; it is not the scoped merge gate."
+  ]
+}

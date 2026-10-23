@@ -1,0 +1,203 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: OPS-PUSHFORWARD-FUNCTOR-LEAN
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'In Lean (LggrFiniteResults), a finitely supported measure with natural-number weights
+    is a list of (value, weight) pairs, and pushforward along f maps each value by f and keeps its weight.
+    Then: push of the identity is the identity (push_id); push along g after f equals push along the composite
+    (push_comp); total mass is unchanged (mass_push); and the weight at b of push f p equals the mass
+    of the entries of p whose image is b (weightAt_push). The note reads marginalisation of a context
+    distribution as such a pushforward along the restriction map, so these are the identity and composition
+    laws of the functor from the opposite of the context poset to probability vectors (Lemma B2). That
+    reading is not a Lean statement. Not covered: rational weights, normalisation to probability vectors,
+    the context poset, and the Rust types. The ledger row states the same narrowing.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: The Lean statement is the narrowed one above. The functor over rational probability
+    vectors is proved in prose in the note (Lemma B2) and its instances on the PR box and the noisy PR
+    boxes are recomputed by the independent check, which does not test the Lean statement. Independently
+    replayed with Lean 4.35.0; the source-bound axiom receipt is dag/research/foc035_observer_presheaf_lean_replay.json.
+  source_refs:
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B1
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.1
+  - lean4/LggrFiniteResults.lean
+  - checks/independent/foc035_observer_presheaf.py
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md
+  - dag/research/foc035_observer_presheaf_lean_replay.json
+  paper_refs:
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md
+    sha256: e0667df1655dc43f0c4174bdf29575478afc90d7647a83743d9f584f9ec249bb
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/observer_presheaf_ops_pushforward_functor_lean_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: Meas
+  line: 6
+  signature_excerpt: 'abbrev Meas (A : Type)'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: push
+  line: 8
+  signature_excerpt: 'def push {A B : Type} (f : A → B) (p : Meas A) : Meas B'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mass
+  line: 11
+  signature_excerpt: 'def mass {A : Type} (p : Meas A) : Nat'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: weightAt
+  line: 14
+  signature_excerpt: 'def weightAt {B : Type} [DecidableEq B] (p : Meas B) (b : B) : Nat'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: push_id
+  line: 17
+  signature_excerpt: 'theorem push_id {A : Type} (p : Meas A) : push (fun a => a) p = p'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: push_comp
+  line: 22
+  signature_excerpt: |-
+    theorem push_comp {A B C : Type} (f : A → B) (g : B → C) (p : Meas A) :
+        push (fun a => g (f a)) p = push g (push f p)
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mass_push
+  line: 28
+  signature_excerpt: 'theorem mass_push {A B : Type} (f : A → B) (p : Meas A) : mass (push f p) = mass
+    p'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weightAt_push
+  line: 33
+  signature_excerpt: |-
+    theorem weightAt_push {A B : Type} [DecidableEq B] (f : A → B) (p : Meas A) (b : B) :
+        weightAt (push f p) b = mass (p.filter (fun e => decide (f e.1 = b)))
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/LggrFiniteResults.lean::LggrFiniteResults.push_id
+  availability: local
+  symbol: LggrFiniteResults.push_id
+  path: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  declaration_status: declaration_found_not_proof_checked
+  line: 17
+  role: source_lead_only
+- original_ref: lean4/LggrFiniteResults.lean::LggrFiniteResults.push_comp
+  availability: local
+  symbol: LggrFiniteResults.push_comp
+  path: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/LggrFiniteResults.lean::LggrFiniteResults.mass_push
+  availability: local
+  symbol: LggrFiniteResults.mass_push
+  path: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: lean4/LggrFiniteResults.lean::LggrFiniteResults.weightAt_push
+  availability: local
+  symbol: LggrFiniteResults.weightAt_push
+  path: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

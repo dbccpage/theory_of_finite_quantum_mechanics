@@ -52,5 +52,5 @@ H058 theorem family (38 theorems); Rust exact effects at declared cyclotomic rea
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics_claim_ledger.md#SRC-122`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics_claim_ledger.md#SRC-122`

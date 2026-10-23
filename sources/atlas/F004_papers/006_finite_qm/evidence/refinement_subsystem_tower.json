@@ -1,0 +1,106 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C500",
+  "block": "block_04",
+  "global_targets": "C500-T376..C500-T400",
+  "terminal_outcome": "FINITE_DIVISIBILITY_AND_EMBEDDING_CHECKS",
+  "predecessor_binding_status": "NOT_VERIFIED_BY_KERNEL",
+  "arrow_classes": [
+    {
+      "arrow_class": "Unital *-Homomorphism",
+      "domain_codomain": "M_d1 -> M_d2",
+      "existence_criterion": "d1 divides d2",
+      "preserves_purity": null,
+      "preserves_projections": true,
+      "state_pushforward": "Not declared: A -> A tensor I_k acts on observables, not normalized density matrices.",
+      "trace_behavior": "Ordinary trace multiplied by k; normalized trace preserved.",
+      "preserves_algebra": true,
+      "injective": true,
+      "surjectivity_scope": "Surjective only when k=1; proper embeddings are not algebra isomorphisms."
+    },
+    {
+      "arrow_class": "CPTP Coarse-Graining Channel",
+      "domain_codomain": "S(M_d2) -> S(M_d1)",
+      "existence_criterion": "Partial trace for d2 = k*d1 with k > 1 and a declared tensor factorization",
+      "preserves_purity": false,
+      "preserves_trace": true,
+      "preserves_algebra": false,
+      "irreversible": true
+    },
+    {
+      "arrow_class": "Generator-Preserving Map",
+      "domain_codomain": "M_d1 -> M_d2 mapping X_d1 -> X_d2, Z_d1 -> Z_d2",
+      "existence_criterion": "d1 == d2 only (strictly obstructed when d1 != d2)",
+      "preserves_purity": true,
+      "preserves_trace": true,
+      "preserves_algebra": true,
+      "scope": "Only the identity case d1 == d2; otherwise no such homomorphism exists.",
+      "irreversible": false
+    }
+  ],
+  "phase_mismatch_obstructions": [
+    {
+      "d1": 2,
+      "d2": 4,
+      "phase_d1": "2pi / 2",
+      "phase_d2": "2pi / 4",
+      "phases_match": false,
+      "generator_preserving_homomorphism_possible": false,
+      "obstruction": "Phase mismatch: primitive d1-th root of unity != primitive d2-th root of unity"
+    },
+    {
+      "d1": 3,
+      "d2": 9,
+      "phase_d1": "2pi / 3",
+      "phase_d2": "2pi / 9",
+      "phases_match": false,
+      "generator_preserving_homomorphism_possible": false,
+      "obstruction": "Phase mismatch: primitive d1-th root of unity != primitive d2-th root of unity"
+    },
+    {
+      "d1": 2,
+      "d2": 6,
+      "phase_d1": "2pi / 2",
+      "phase_d2": "2pi / 6",
+      "phases_match": false,
+      "generator_preserving_homomorphism_possible": false,
+      "obstruction": "Phase mismatch: primitive d1-th root of unity != primitive d2-th root of unity"
+    }
+  ],
+  "directed_subsystems": {
+    "dyadic_chain": {
+      "chain": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "identity_law_holds": true,
+      "composition_law_holds": true,
+      "is_valid_directed_category": true,
+      "triples_tested": 20
+    },
+    "triadic_chain": {
+      "chain": [
+        3,
+        9,
+        27,
+        81
+      ],
+      "identity_law_holds": true,
+      "composition_law_holds": true,
+      "is_valid_directed_category": true,
+      "triples_tested": 4
+    }
+  },
+  "machine_bet_clauses": {
+    "all_divisibility_generator_preserving_tower": false,
+    "at_least_one_nontrivial_directed_subsystem": true,
+    "retained_arrows_satisfy_identity_and_composition": true,
+    "channel_arrow_class_strictly_differs_from_star_embeddings": true,
+    "object_list_without_arrow_laws_is_not_scored_as_tower": true
+  }
+}
