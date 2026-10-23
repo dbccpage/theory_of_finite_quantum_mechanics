@@ -4,7 +4,7 @@ AuthorityEffect: None. AI self-review, awaiting human review.
 
 Scope: PGW-CONTEXT-DECISION-PROCEDURE and its dependent
 COMP-C3-CONTEXT-DECISION-PARTIAL cross-reference, against origin/main
-3924d378ff1de685948bf2b419dc63a5a9560881. Compiled source commit:
+611b954f66d5a3464512dd2a5e5ef6f88013ea84. Compiled source commit:
 6cdc1d9eade109f77b9884491039bddccf22afcd.
 
 Method: read the source definitions, the new Lean declarations, independent
@@ -12,7 +12,10 @@ checker and note; matched each theorem audit to the committed source. No
 Lean/Lake/Cargo build was performed as part of this review. The campaign build
 receipt supplies the completed build and preserves its legacy import warnings.
 The external observation sources read locally match the DAG's pinned sibling
-commit, including the Python and Rust context definitions.
+commit, including the Python and Rust context definitions. The target build
+was also replayed successfully after integration commit
+3fb662c0fd0dabad0e4c8284bd85eb64f5e45441; both module sources were identical
+to the committed LF blobs of the original compilation.
 
 Result: 0 FULL, 2 NARROWED, 0 OVERCLAIM across the changed DAG records. The
 complete finite-context theorem is derived; the larger original bundle still
@@ -65,7 +68,7 @@ by the injective quotient-to-profile map and a proof of its exact image.
 | Concrete class counts two, one and zero | Lean `explicit_class_counts` and independent quotient grouping | match |
 | Four killed mutations; seven domain refusals | explicit challenge calls with fail-closed checks under normal and optimized Python | match |
 | Twenty new theorem audit lines; forty-three dependency audit lines | terminal print commands matched to parsed build output and allowed axiom sets | match |
-| Regression results | 32 passed, 1 skipped in the initial run; the skipped citation test passed when its known sibling root was supplied | match |
+| Regression results | 33 passed in the final post-integration run, including offline citations with the known sibling root supplied | match |
 | Generated README inventory | canonical generator and check | current; inventory is not a full build |
 
 Normal and optimized independent outputs are identical. The exact source
@@ -82,9 +85,8 @@ checks pass after regeneration. The additional all-missing prompt diagnostic
 still reports the executed TFQ-0084 manual delta. The additional whole-repository
 contract check still reports malformed JSON in the unchanged
 HilbertLiftOperators companion. The campaign companions have valid history
-records and current source hashes. The prompt generator also refreshed the
-existing TFQ-0016 pins after preserving its statement while repairing its YAML
-scalar quoting. No theorem in that module was rebuilt.
+records and current source hashes. No whole-repository contract success is claimed. The generated-status check
+also passes. There is no TFQ-0016 change relative to the integrated main.
 
 ## What the scanner could not decide
 
