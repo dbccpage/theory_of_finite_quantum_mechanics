@@ -825,81 +825,7 @@ lean_lib ImportedAtlas where
     `Imported.OeMssn.MssnObstructionDetector,
     `Imported.OePfp.CarrierOrigin,
     `Imported.OePfp.ThymusScreening,
-    `Imported.OeWdp.GenesisIncidence,
-    `Imported.SymbolGameLoose.AntimorphicInvolution,
-    `Imported.SymbolGameLoose.Demo3ProtocolInvariants,
-    `Imported.SymbolGameLoose.Expressivity,
-    `Imported.SymbolGameLoose.Family,
-    `Imported.SymbolGameLoose.FidelityAdequacy,
-    `Imported.SymbolGameLoose.GenesisBellCertificate,
-    `Imported.SymbolGameLoose.GenesisContinuation,
-    `Imported.SymbolGameLoose.GenesisJoint,
-    `Imported.SymbolGameLoose.GenesisJointOperations,
-    `Imported.SymbolGameLoose.GenesisSimulation,
-    `Imported.SymbolGameLoose.GenesisTrace,
-    `Imported.SymbolGameLoose.GrammarCeiling,
-    `Imported.SymbolGameLoose.GrammarDepthCeiling,
-    `Imported.SymbolGameLoose.LGGR1,
-    `Imported.SymbolGameLoose.LGGR2,
-    `Imported.SymbolGameLoose.LGGR3,
-    `Imported.SymbolGameLoose.Level15AuthorityCalculus,
-    `Imported.SymbolGameLoose.Level16IndObject,
-    `Imported.SymbolGameLoose.Level17HodgeDecomposition,
-    `Imported.SymbolGameLoose.Level18ZeroFloatLaw,
-    `Imported.SymbolGameLoose.Level19IharaZetaQuarantine,
-    `Imported.SymbolGameLoose.Level20AutopoieticCohomology,
-    `Imported.SymbolGameLoose.Level21DiscreteRegge,
-    `Imported.SymbolGameLoose.Level22FibredDependentContexts,
-    `Imported.SymbolGameLoose.Level23SheafDescent,
-    `Imported.SymbolGameLoose.Level80ScopedAuthorization,
-    `Imported.SymbolGameLoose.Lib,
-    `Imported.SymbolGameLoose.LiftPatchSemantics,
-    `Imported.SymbolGameLoose.LpWeakDuality,
-    `Imported.SymbolGameLoose.NormalFormsCore,
-    `Imported.SymbolGameLoose.OperationTreeFold,
-    `Imported.SymbolGameLoose.PrimitiveDifference,
-    `Imported.SymbolGameLoose.ReportRepair,
-    `Imported.SymbolGameLoose.RuntimeLimits,
-    `Imported.SymbolGameLoose.SLevel,
-    `Imported.SymbolGameLoose.ShadowBoundary,
-    `Imported.SymbolGameLoose.ShadowFactorization,
-    `Imported.SymbolGameLoose.SnSymbolGameAndPackets,
-    `Imported.SymbolGameLoose.SnTower,
-    `Imported.SymbolGameLoose.Stage0LiftNecessity,
-    `Imported.SymbolGameLoose.Stage1LiftNecessity,
-    `Imported.SymbolGameLoose.Sweeper,
-    `Imported.SymbolGameLoose.SymbolGame,
-    `Imported.SymbolGameLoose.TokenFrontier,
-    `Imported.SymbolGameLoose.TowerLadder,
-    `Imported.SymbolGameLoose.TowerZeta,
-    `Imported.SymbolGameLoose.TriggerNotLicense,
-    `Imported.SymbolGameLoose.TypedPacketShadow,
-    `Imported.HigherCategoryTheory.Bicategory,
-    `Imported.HigherCategoryTheory.Braided,
-    `Imported.HigherCategoryTheory.Census,
-    `Imported.HigherCategoryTheory.CoherenceTheorems,
-    `Imported.HigherCategoryTheory.CompactlyGenerated,
-    `Imported.HigherCategoryTheory.DGCategory,
-    `Imported.HigherCategoryTheory.DendroidalSet,
-    `Imported.HigherCategoryTheory.DerivedCategory,
-    `Imported.HigherCategoryTheory.DoubleCategory,
-    `Imported.HigherCategoryTheory.Enriched,
-    `Imported.HigherCategoryTheory.HigherFunctor,
-    `Imported.HigherCategoryTheory.HigherNaturalTransformation,
-    `Imported.HigherCategoryTheory.Master,
-    `Imported.HigherCategoryTheory.ModelCategory,
-    `Imported.HigherCategoryTheory.Monoidal,
-    `Imported.HigherCategoryTheory.OperadicNerve,
-    `Imported.HigherCategoryTheory.Regression,
-    `Imported.HigherCategoryTheory.Ribbon,
-    `Imported.HigherCategoryTheory.SimplicialSet,
-    `Imported.HigherCategoryTheory.StableInfinityCategory,
-    `Imported.HigherCategoryTheory.Triangulated,
-    `Imported.HigherCategoryTheory.TwoCategory,
-    `Imported.WdpReasoning.ExecutableReasoning,
-    `Imported.WdpReasoning.ReasoningAxioms,
-    `Imported.WdpReasoning.RefinementAxioms,
-    `Imported.WdpReasoning.WitnessedReasoning
+    `Imported.OeWdp.GenesisIncidence
   ]
 
 -- Campaign target: FSP-HUBBARD-PROTECTED-REPRESENTATIONS.
@@ -952,3 +878,12 @@ lean_lib CampaignFspLatticeAnomalyInflow where
 -- Operational hypotheses and exact countermodels. Not a default build target.
 lean_lib CampaignTransitionProbability where
   roots := #[`CampaignTransitionProbability]
+
+-- Declared demand-policy extension. Neither library is a default target.
+lean_lib CampaignGenesisDemandSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
+  roots := #[`Derivation.Basic]
+  globs := #[.submodules `Derivation]
+
+lean_lib CampaignGenesisDemandPolicy where
+  roots := #[`CampaignGenesisDemandPolicy]
