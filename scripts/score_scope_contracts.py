@@ -7,9 +7,18 @@ scope contract plus an explicitly incomplete v2 score.  A later assessment can
 append evidence-backed gate grades without losing this baseline or older
 history.
 
-The scope is all tracked or ordinary-untracked Python/Rust source below
-``code/`` and Lean source below ``lean4/``.  Build/cache directories and sealed
-run snapshots are excluded by an explicit rule recorded in the audit receipt.
+The scope is the governed population declared in ``governance/policy.json``
+(today: Python/Rust source below ``code/`` and Lean source below ``lean4/``,
+tracked or ordinary-untracked).  Build/cache directories and sealed run
+snapshots are excluded by the same policy; the rule is recorded in the audit
+receipt.  Acceptance (completed score at L4 and grade D or better, with the
+grandfather list ``governance/baseline.json``) is decided by ``governance-check``
+in ``code/rust/src/governance``, not here.
+
+Commands: ``check`` (audit, read-only unless ``--write-audit``), ``prepare``
+(write coverage baselines; never demotes a completed byte-bound score),
+``population`` (print the governed paths) and ``record SOURCE --contract C
+--score S`` (append an assessment to a companion and make it current).
 """
 from __future__ import annotations
 
@@ -30,15 +39,68 @@ except ImportError as error:  # pragma: no cover - the repository toolchain has 
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCHEMA = "tfqm.contract-score.v1"
+# One source of truth: the population, exclusions, companion naming, schemas and
+# grade vocabulary come from governance/policy.json, which the Rust governance
+# crate (code/rust/src/governance) and every build.rs read too.
+POLICY_PATH = ROOT / "governance" / "policy.json"
+POLICY = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
+SCHEMA = POLICY["companion"]["document_schema"]
+COMPANION_SUFFIX = POLICY["companion"]["suffix"]
+COLLISION_SUFFIXES = tuple(POLICY["companion"]["collision_suffixes"])
 BASELINE_ID = "source-coverage-baseline-v1"
 AUDIT_PATH = ROOT / "evidence" / "contract_score_coverage_scope_audit.json"
-SOURCE_SUFFIXES = {".py": "Python", ".rs": "Rust", ".lean": "Lean 4"}
+POPULATIONS = tuple((item["language"], tuple(item["globs"])) for item in POLICY["populations"])
+SOURCE_SUFFIXES = {glob.rsplit("*", 1)[-1]: language for language, globs in POPULATIONS for glob in globs}
 PROFILES = {"Exact", "Quantized", "Numerical", "Symbolic/Formal", "Non-Numeric"}
-GRADES = {"E", "D", "C", "B", "A", "A+"}
-LEVELS = {"L1", "L2", "L3", "L4", "L5"}
-EXCLUDED_PARTS = {"__pycache__", ".lake", "target", "node_modules"}
-SEALED_PREFIXES = ("dag/results/", "dag/sealed_runs/", "sealed_runs/")
+GRADES = set(POLICY["grade_order"])
+LEVELS = set(POLICY["level_order"])
+EXCLUDED_PARTS = set(POLICY["exclusions"]["path_parts"])
+EXCLUDED_GLOBS = tuple(POLICY["exclusions"]["path_globs"])
+
+
+def _wildcard(pattern, text, is_star, single) -> bool:
+    """Same dynamic programme as governance::policy::wildcard: O(len(pattern) * len(text))."""
+    row = [True] + [False] * len(text)
+    for element in pattern:
+        if is_star(element):
+            seen, nxt = False, []
+            for reached in row:
+                seen = seen or reached
+                nxt.append(seen)
+            row = nxt
+        else:
+            row = [False] + [reached and single(element, item) for reached, item in zip(row, text)]
+    return row[-1]
+
+
+def glob_match(pattern: str, path: str) -> bool:
+    """Same rule as governance::policy::glob_match: ``**`` spans whole components,
+    ``*`` any run of characters within one component, ``?`` one character."""
+
+    def component(pat: str, text: str) -> bool:
+        return _wildcard(pat, text, lambda c: c == "*", lambda c, t: c == "?" or c == t)
+
+    return _wildcard(pattern.split("/"), path.split("/"), lambda p: p == "**", component)
+
+
+def pinned_boilerplate(normalized: str, digest: str) -> Optional[Dict[str, Any]]:
+    """The policy pin admitting this exact file (for example the build.rs hook), if any."""
+    for pin in POLICY["pinned_boilerplate"]:
+        if glob_match(pin["glob"], normalized) and pin["sha256"] == digest:
+            return pin
+    return None
+
+
+def population_language(normalized: str) -> Optional[str]:
+    """The language of the policy population this repository-relative path is in, if any."""
+    if any(part in EXCLUDED_PARTS for part in normalized.split("/")):
+        return None
+    if any(glob_match(glob, normalized) for glob in EXCLUDED_GLOBS):
+        return None
+    for language, globs in POPULATIONS:
+        if any(glob_match(glob, normalized) for glob in globs):
+            return language
+    return None
 
 
 def sha256(data: bytes) -> str:
@@ -74,18 +136,11 @@ def source_paths() -> List[Path]:
         if not name:
             continue
         normalized = name.replace("\\", "/")
-        path = Path(normalized)
-        if any(part in EXCLUDED_PARTS for part in path.parts):
-            continue
-        if normalized.startswith(SEALED_PREFIXES):
-            continue
-        in_code = normalized.startswith("code/") and path.suffix in {".py", ".rs"}
-        in_lean = normalized.startswith("lean4/") and path.suffix == ".lean"
-        if in_code or in_lean:
-            absolute = ROOT / path
+        if population_language(normalized) is not None:
+            absolute = ROOT / normalized
             if absolute.is_file():
                 result.append(absolute)
-    return sorted(result, key=rel)
+    return sorted(set(result), key=rel)
 
 
 def companion_for(source: Path) -> Path:
@@ -93,11 +148,11 @@ def companion_for(source: Path) -> Path:
     # collides when a directory contains (for example) both ``module.py`` and
     # ``module.rs``.  Keep the historical file intact, but give *both* live
     # sources an extension-qualified active companion in that case.
-    for suffix in SOURCE_SUFFIXES:
+    for suffix in COLLISION_SUFFIXES:
         sibling = source.with_suffix(suffix)
         if sibling != source and sibling.is_file():
-            return source.with_name(source.name + ".contract.score.yaml")
-    return source.with_name(source.stem + ".contract.score.yaml")
+            return source.with_name(source.name + COMPANION_SUFFIX)
+    return source.with_name(source.stem + COMPANION_SUFFIX)
 
 
 def parse_document(path: Path) -> Dict[str, Any]:
@@ -112,7 +167,10 @@ def parse_document(path: Path) -> Dict[str, Any]:
 
 
 def language_for(source: Path) -> str:
-    return SOURCE_SUFFIXES[source.suffix]
+    language = population_language(rel(source))
+    if language is None:
+        raise ValueError("not in a governed population: " + rel(source))
+    return language
 
 
 def profile_for(source: Path, text: str) -> str:
@@ -255,8 +313,18 @@ def new_document(source: Path) -> Dict[str, Any]:
 
 
 def prepare_source(source: Path) -> bool:
+    if pinned_boilerplate(rel(source), sha256(source.read_bytes())) is not None:
+        return False  # admitted by exact bytes in governance/policy.json; no companion
     companion = companion_for(source)
     document = parse_document(companion) if companion.is_file() else new_document(source)
+    if companion.is_file():
+        try:
+            current = validate_document(document, rel(source), sha256(source.read_bytes()), language_for(source))
+        except (ValueError, TypeError, KeyError):
+            current = None
+        if current is not None and current.get("is_complete") is True:
+            # Never demote a completed, byte-bound assessment to the coverage baseline.
+            return False
     if document.get("schema_version") != SCHEMA:
         raise ValueError("unexpected combined-document schema")
     for key in ("contract_history", "scoring_history"):
@@ -343,6 +411,33 @@ def score_error(score: Dict[str, Any], source_name: str, source_digest: str, lan
     return None
 
 
+def validate_document(document: Dict[str, Any], source_name: str, source_digest: str, language: str) -> Dict[str, Any]:
+    """Return the current score record of a valid, byte-bound companion; raise ValueError otherwise."""
+    if document.get("schema_version") != SCHEMA:
+        raise ValueError("wrong combined-document schema")
+    c_entry = history_entry(document, "contract_history", document.get("current_contract"))
+    s_entry = history_entry(document, "scoring_history", document.get("current_scoring"))
+    for entry, kind in ((c_entry, "contract"), (s_entry, "score")):
+        current_error = valid_current_entry(entry)
+        if current_error:
+            raise ValueError(kind + " " + current_error)
+    contract = document.get("contract")
+    if contract != c_entry.get("record"):
+        raise ValueError("current contract view differs from current history")
+    if not isinstance(contract, dict):
+        raise ValueError("current contract is not a mapping")
+    c_path, c_digest = source_artifact(contract)
+    if c_path != source_name or c_digest != source_digest:
+        raise ValueError("current contract does not bind current source bytes")
+    score = s_entry.get("record")
+    if not isinstance(score, dict):
+        raise ValueError("current score is not a mapping")
+    current_error = score_error(score, source_name, source_digest, language)
+    if current_error:
+        raise ValueError(current_error)
+    return score
+
+
 def audit_population() -> Tuple[Dict[str, Any], bool]:
     sources = source_paths()
     records: List[Dict[str, Any]] = []
@@ -365,32 +460,16 @@ def audit_population() -> Tuple[Dict[str, Any], bool]:
         }
         if record["generated_governance_twin"]:
             twin_count += 1
+        pin = pinned_boilerplate(source_name, source_digest)
+        if pin is not None:
+            record.update({"valid": True, "assessment_status": "pinned_boilerplate", "template": pin["template"], "is_complete": None})
+            records.append(record)
+            continue
         try:
             if not companion.is_file():
                 raise ValueError("missing companion")
             document = parse_document(companion)
-            if document.get("schema_version") != SCHEMA:
-                raise ValueError("wrong combined-document schema")
-            c_entry = history_entry(document, "contract_history", document.get("current_contract"))
-            s_entry = history_entry(document, "scoring_history", document.get("current_scoring"))
-            for entry, kind in ((c_entry, "contract"), (s_entry, "score")):
-                current_error = valid_current_entry(entry)
-                if current_error:
-                    raise ValueError(kind + " " + current_error)
-            contract = document.get("contract")
-            if contract != c_entry.get("record"):
-                raise ValueError("current contract view differs from current history")
-            if not isinstance(contract, dict):
-                raise ValueError("current contract is not a mapping")
-            c_path, c_digest = source_artifact(contract)
-            if c_path != source_name or c_digest != source_digest:
-                raise ValueError("current contract does not bind current source bytes")
-            score = s_entry.get("record")
-            if not isinstance(score, dict):
-                raise ValueError("current score is not a mapping")
-            current_error = score_error(score, source_name, source_digest, language)
-            if current_error:
-                raise ValueError(current_error)
+            score = validate_document(document, source_name, source_digest, language)
             profile_counts[score["profile"]] += 1
             record.update(
                 {
@@ -408,14 +487,16 @@ def audit_population() -> Tuple[Dict[str, Any], bool]:
             record.update({"valid": False, "error": detail})
         records.append(record)
     completed = sum(1 for item in records if item.get("is_complete") is True)
+    pinned = sum(1 for item in records if item.get("assessment_status") == "pinned_boilerplate")
     audit = {
         "schema_version": "tfqm.contract-score-coverage-audit.v1",
         "authority_effect": "None",
         "assessment_id": BASELINE_ID,
         "population_rule": {
-            "included": "tracked and ordinary-untracked *.py and *.rs under code/, and *.lean under lean4/",
+            "policy": rel(POLICY_PATH),
+            "included": {language: list(globs) for language, globs in POPULATIONS},
             "excluded_parts": sorted(EXCLUDED_PARTS),
-            "sealed_snapshot_prefixes": list(SEALED_PREFIXES),
+            "excluded_globs": list(EXCLUDED_GLOBS),
             "source_discovery": "git ls-files --cached --others --exclude-standard -z followed by explicit path filtering",
         },
         "summary": {
@@ -425,7 +506,8 @@ def audit_population() -> Tuple[Dict[str, Any], bool]:
             "by_language": dict(sorted(language_counts.items())),
             "by_preliminary_profile": dict(sorted(profile_counts.items())),
             "completed_scores": completed,
-            "incomplete_scores": len(records) - completed,
+            "pinned_boilerplate": pinned,
+            "incomplete_scores": len(records) - completed - pinned,
             "generated_governance_twins": twin_count,
             "non_twin_sources": len(records) - twin_count,
         },
@@ -454,17 +536,68 @@ def command_prepare(audit_path: Path) -> int:
     return 0 if passed else 1
 
 
-def command_check(audit_path: Path) -> int:
+def command_check(audit_path: Path, write: bool) -> int:
     audit, passed = audit_population()
-    write_audit(audit, audit_path)
-    print(json.dumps({"audit": rel(audit_path), "passed": passed, "summary": audit["summary"], "errors": audit["errors"]}, indent=2))
+    if write:
+        write_audit(audit, audit_path)
+    print(json.dumps({"audit": rel(audit_path) if write else None, "passed": passed, "summary": audit["summary"], "errors": audit["errors"]}, indent=2))
     return 0 if passed else 1
+
+
+def command_population() -> int:
+    """Print the governed population, one path per line (CI compares it with governance-check list)."""
+    for source in source_paths():
+        print(rel(source))
+    return 0
+
+
+def load_record(path: Path) -> Dict[str, Any]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError(str(path) + " must hold a JSON object")
+    return value
+
+
+def command_record(source_arg: Path, contract_path: Path, score_path: Path) -> int:
+    """Append a contract and a score record to a source's companion and make them current.
+
+    Both records must bind the source's path and current SHA-256 (``artifact``).
+    Earlier history is kept; nothing is graded here. ``governance-check explain``
+    then reports whether the score meets the floor.
+    """
+    source = (source_arg if source_arg.is_absolute() else ROOT / source_arg).resolve()
+    source_name, digest = rel(source), sha256(source.read_bytes())
+    language = language_for(source)
+    contract, score = load_record(contract_path), load_record(score_path)
+    for kind, record in (("contract", contract), ("score", score)):
+        path, bound = source_artifact(record)
+        if path != source_name or bound != digest:
+            raise SystemExit("{} record must bind {} at {} (found {} at {})".format(kind, source_name, digest, path, bound))
+    problem = score_error(score, source_name, digest, language)
+    if problem:
+        raise SystemExit("score record rejected: " + problem)
+    companion = companion_for(source)
+    document = parse_document(companion) if companion.is_file() else new_document(source)
+    label = rel(companion) + "#" + str(score.get("assessment_id", "assessment"))
+    document["current_contract"] = append_history(document, "contract_history", contract, label)
+    document["current_scoring"] = append_history(document, "scoring_history", score, label)
+    document["contract"] = contract
+    document["artifact"] = source_name
+    document["assurance"] = "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review."
+    atomic_write(companion, canonical_json(document))
+    print(json.dumps({"companion": rel(companion), "score_token": score.get("score_token"), "is_complete": score.get("is_complete")}))
+    return 0
 
 
 def main(argv: Optional[Iterable[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("prepare", "check"), help="prepare companions or audit them without source changes")
+    parser.add_argument("command", choices=("prepare", "check", "population", "record"),
+                        help="prepare companions, audit them, print the population, or record an assessment")
+    parser.add_argument("source", nargs="?", type=Path, help="record: the source file")
     parser.add_argument("--audit", type=Path, default=AUDIT_PATH, help="repository-relative or absolute audit JSON destination")
+    parser.add_argument("--write-audit", action="store_true", help="check: also rewrite the audit JSON (prepare always writes it)")
+    parser.add_argument("--contract", type=Path, help="record: JSON contract record")
+    parser.add_argument("--score", type=Path, help="record: JSON score record (SCORING.md v2.0.0)")
     args = parser.parse_args(list(argv) if argv is not None else None)
     audit_path = args.audit if args.audit.is_absolute() else ROOT / args.audit
     try:
@@ -473,7 +606,13 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         parser.error("--audit must stay inside the repository")
     if args.command == "prepare":
         return command_prepare(audit_path)
-    return command_check(audit_path)
+    if args.command == "population":
+        return command_population()
+    if args.command == "record":
+        if args.source is None or args.contract is None or args.score is None:
+            parser.error("record needs SOURCE --contract FILE --score FILE")
+        return command_record(args.source, args.contract, args.score)
+    return command_check(audit_path, args.write_audit)
 
 
 if __name__ == "__main__":

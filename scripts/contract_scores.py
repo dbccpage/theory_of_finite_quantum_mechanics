@@ -20,9 +20,12 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = "evidence/contract_score_migration/index.json"
-SCHEMA = "tfqm.contract-score.v1"
+# Shared with the Rust governance crate and scripts/score_scope_contracts.py.
+POLICY = json.loads((ROOT / "governance" / "policy.json").read_text(encoding="utf-8"))
+SCHEMA = POLICY["companion"]["document_schema"]
 LEGACY = re.compile(r"(?<!\.contract)\.(contract|scoring|score)\.(?:yaml|yml|yam)$")
-SUFFIX = ".contract.score.yaml"
+SUFFIX = POLICY["companion"]["suffix"]
+GRADE_RANK = {grade: rank for rank, grade in enumerate(POLICY["grade_order"])}
 _cached_index = None
 
 
@@ -399,8 +402,7 @@ def export_v2(path_or_document):
     if not grade_ceiling:
         assessed = [g for g in gates.values() if g is not None]
         if assessed:
-            ranks = {"E": 0, "D": 1, "C": 2, "B": 3, "A": 4, "A+": 5}
-            grade_ceiling = min(assessed, key=lambda g: ranks.get(g, -1))
+            grade_ceiling = min(assessed, key=lambda g: GRADE_RANK.get(g, -1))
         else:
             grade_ceiling = "E"
     
