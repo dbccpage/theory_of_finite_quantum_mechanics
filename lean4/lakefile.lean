@@ -932,6 +932,10 @@ lean_lib CampaignCtMediatorEntanglement where
 lean_lib CampaignTfq0016B2Dressing where
   roots := #[`CampaignTfq0016B2Dressing]
 
+-- Campaign: FSP-WILSON-DIRAC-GAMMA5. Not a default target.
+lean_lib CampaignFspWilsonDiracGamma5 where
+  roots := #[`CampaignFspWilsonDiracGamma5]
+
 -- Finite combinatorial shadow of Genesis admission. Not a default target.
 lean_lib GenesisHottShadow where
   roots := #[`GenesisHottShadow]
@@ -944,6 +948,10 @@ lean_lib GenesisHottHorns where
 
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
+
+-- All finite Genesis slot contexts, beyond the unary-only mirror. Non-default.
+lean_lib CampaignGenesisContextDecision where
+  roots := #[`CampaignGenesisContextDecision]
 
 -- Finite regulator obstruction; not a default target.
 lean_lib CampaignFspLatticeAnomalyInflow where
