@@ -139,7 +139,15 @@ docs/evidence/** text eol=lf
 # Imported normal-form contracts are byte-identical copies bound by PROVENANCE.json sha256 values.
 normal_forms/contracts/** -text -whitespace
 
-# Byte-identical copies of restored sibling-atlas files; custody is by sha256 in sources/atlas/PROVENANCE.json.
+# Atlas source copies are byte-identical to their origin files and bound by sources/atlas/PROVENANCE.json sha256 values.
 sources/atlas/** -text -whitespace
 # Source archive of paper folders copied byte-for-byte from the private the_symbol_game repo; see atlas/PROVENANCE.json (sha256 per file).
 atlas/** -text -whitespace
+
+# Contract governance: its receipts bind exact bytes; its policy data stays LF.
+evidence/governance/** -text -whitespace
+governance/** text eol=lf
+
+# Repair replay logs are exact source-bound evidence bytes.
+evidence/quality/pr215_l4_repair/** -text -whitespace
+dag/research/foc035_l4_*.json -text

@@ -1,0 +1,342 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/governance/src/policy.rs",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Rust",
+      "path": "code/rust/src/governance/src/policy.rs",
+      "sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c"
+    },
+    "boundaries": [
+      "It does not decide whether a file passes; it supplies the rules and the grandfather list."
+    ],
+    "consumers": [
+      "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+      ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+      "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+    ],
+    "contract_urn": "urn:tfqm:governance:policy:v1",
+    "evidence": [
+      {
+        "path": "evidence/governance/20261023T043243Z/mutation.json",
+        "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/receipt.json",
+        "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+        "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/clippy.log",
+        "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+      },
+      {
+        "path": "evidence/governance/20261023T043243Z/lizard.csv",
+        "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      },
+      {
+        "path": "governance/policy.json",
+        "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+      }
+    ],
+    "owned_invariants": [
+      "Policy::from_json rejects any policy whose level_order or grade_order differs from the crate's enums, whose floor is not valid vocabulary, or whose enforcement.env is not TFQM_GOVERNANCE.",
+      "A path is in a population when no exclusion part or glob matches and at least one population glob matches.",
+      "glob_match is a dynamic programme: ** spans whole components, * runs within one, ? one character; O(P x S), no backtracking.",
+      "Baseline::grandfathers(path, sha) holds only for a listed path with exactly that sha256; to_json_text is deterministic and round-trips."
+    ],
+    "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+    "requirements": {
+      "R2-kinds": {
+        "symbols": [
+          "ArtifactKind",
+          "ArtifactKindSpec",
+          "PopulationSpec",
+          "Exclusions",
+          "glob_match"
+        ],
+        "text": "ArtifactKind (build kind) and ArtifactKindSpec (per-language globs and exclusions)"
+      },
+      "R5-baseline": {
+        "symbols": [
+          "Baseline",
+          "BaselineEntry",
+          "BASELINE_PATH",
+          "BASELINE_SCHEMA",
+          "is_sha256"
+        ],
+        "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+      },
+      "R9-population": {
+        "symbols": [
+          "Policy",
+          "POLICY_PATH",
+          "POLICY_SCHEMA",
+          "CompanionRules",
+          "PinnedBoilerplate",
+          "MODE_ENV",
+          "PolicyError"
+        ],
+        "text": "one population rule shared with scripts/score_scope_contracts.py via governance/policy.json"
+      }
+    },
+    "role": "governance crate source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+    "subject": "code/rust/src/governance/src/policy.rs",
+    "symbols": [
+      "POLICY_PATH",
+      "BASELINE_PATH",
+      "POLICY_SCHEMA",
+      "BASELINE_SCHEMA",
+      "MODE_ENV",
+      "ArtifactKind",
+      "Exclusions",
+      "ArtifactKindSpec",
+      "PopulationSpec",
+      "CompanionRules",
+      "PinnedBoilerplate",
+      "Policy",
+      "BaselineEntry",
+      "Baseline",
+      "PolicyError",
+      "is_sha256",
+      "glob_match"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 4222,
+      "original_paths": [
+        "code/rust/src/governance/src/policy.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/policy.rs\",\n    \"sha256\": \"0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c\"\n  },\n  \"boundaries\": [\n    \"It does not decide whether a file passes; it supplies the rules and the grandfather list.\"\n  ],\n  \"consumers\": [\n    \"20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped\",\n    \".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)\",\n    \"scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:policy:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Policy::from_json rejects any policy whose level_order or grade_order differs from the crate's enums, whose floor is not valid vocabulary, or whose enforcement.env is not TFQM_GOVERNANCE.\",\n    \"A path is in a population when no exclusion part or glob matches and at least one population glob matches.\",\n    \"glob_match is a dynamic programme: ** spans whole components, * runs within one, ? one character; O(P x S), no backtracking.\",\n    \"Baseline::grandfathers(path, sha) holds only for a listed path with exactly that sha256; to_json_text is deterministic and round-trips.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R2-kinds\": {\n      \"symbols\": [\n        \"ArtifactKind\",\n        \"ArtifactKindSpec\",\n        \"PopulationSpec\",\n        \"Exclusions\",\n        \"glob_match\"\n      ],\n      \"text\": \"ArtifactKind (build kind) and ArtifactKindSpec (per-language globs and exclusions)\"\n    },\n    \"R5-baseline\": {\n      \"symbols\": [\n        \"Baseline\",\n        \"BaselineEntry\",\n        \"BASELINE_PATH\",\n        \"BASELINE_SCHEMA\",\n        \"is_sha256\"\n      ],\n      \"text\": \"grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks\"\n    },\n    \"R9-population\": {\n      \"symbols\": [\n        \"Policy\",\n        \"POLICY_PATH\",\n        \"POLICY_SCHEMA\",\n        \"CompanionRules\",\n        \"PinnedBoilerplate\",\n        \"MODE_ENV\",\n        \"PolicyError\"\n      ],\n      \"text\": \"one population rule shared with scripts/score_scope_contracts.py via governance/policy.json\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c\",\n  \"subject\": \"code/rust/src/governance/src/policy.rs\",\n  \"symbols\": [\n    \"POLICY_PATH\",\n    \"BASELINE_PATH\",\n    \"POLICY_SCHEMA\",\n    \"BASELINE_SCHEMA\",\n    \"MODE_ENV\",\n    \"ArtifactKind\",\n    \"Exclusions\",\n    \"ArtifactKindSpec\",\n    \"PopulationSpec\",\n    \"CompanionRules\",\n    \"PinnedBoilerplate\",\n    \"Policy\",\n    \"BaselineEntry\",\n    \"Baseline\",\n    \"PolicyError\",\n    \"is_sha256\",\n    \"glob_match\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/policy.rs",
+          "sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c"
+        },
+        "boundaries": [
+          "It does not decide whether a file passes; it supplies the rules and the grandfather list."
+        ],
+        "consumers": [
+          "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+          ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+          "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+        ],
+        "contract_urn": "urn:tfqm:governance:policy:v1",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "owned_invariants": [
+          "Policy::from_json rejects any policy whose level_order or grade_order differs from the crate's enums, whose floor is not valid vocabulary, or whose enforcement.env is not TFQM_GOVERNANCE.",
+          "A path is in a population when no exclusion part or glob matches and at least one population glob matches.",
+          "glob_match is a dynamic programme: ** spans whole components, * runs within one, ? one character; O(P x S), no backtracking.",
+          "Baseline::grandfathers(path, sha) holds only for a listed path with exactly that sha256; to_json_text is deterministic and round-trips."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R2-kinds": {
+            "symbols": [
+              "ArtifactKind",
+              "ArtifactKindSpec",
+              "PopulationSpec",
+              "Exclusions",
+              "glob_match"
+            ],
+            "text": "ArtifactKind (build kind) and ArtifactKindSpec (per-language globs and exclusions)"
+          },
+          "R5-baseline": {
+            "symbols": [
+              "Baseline",
+              "BaselineEntry",
+              "BASELINE_PATH",
+              "BASELINE_SCHEMA",
+              "is_sha256"
+            ],
+            "text": "grandfathering by unchanged sha256; a changed file loses it; the baseline only shrinks"
+          },
+          "R9-population": {
+            "symbols": [
+              "Policy",
+              "POLICY_PATH",
+              "POLICY_SCHEMA",
+              "CompanionRules",
+              "PinnedBoilerplate",
+              "MODE_ENV",
+              "PolicyError"
+            ],
+            "text": "one population rule shared with scripts/score_scope_contracts.py via governance/policy.json"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+        "subject": "code/rust/src/governance/src/policy.rs",
+        "symbols": [
+          "POLICY_PATH",
+          "BASELINE_PATH",
+          "POLICY_SCHEMA",
+          "BASELINE_SCHEMA",
+          "MODE_ENV",
+          "ArtifactKind",
+          "Exclusions",
+          "ArtifactKindSpec",
+          "PopulationSpec",
+          "CompanionRules",
+          "PinnedBoilerplate",
+          "Policy",
+          "BaselineEntry",
+          "Baseline",
+          "PolicyError",
+          "is_sha256",
+          "glob_match"
+        ]
+      },
+      "sha256": "6b2bfb83e316955d7742300e5bed1b86ecd16ae8342b683492a1e23d5d266cae"
+    }
+  ],
+  "current_contract": "6b2bfb83e316955d7742300e5bed1b86ecd16ae8342b683492a1e23d5d266cae",
+  "current_scoring": "7d1f92c88c91893cf04bbd0bc6e9b03b0a8a15c5612abe3e80905c5244f18cd4",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4637,
+      "original_paths": [
+        "code/rust/src/governance/src/policy.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/policy.rs\",\n    \"sha256\": \"0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"complete\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:policy:v1, AuthorityEffect None, exact digest; requirements R2, R5 and R9 map to the symbols and back; consumers (build scripts, CLI, Python scripts) are listed and their agreement is tested (test_governance_policy.py, CI population diff).\",\n    \"G2\": \"Every policy field is validated with a typed error naming it; level and grade orders must equal the enums; glob semantics are fixed by tests shared with the Python matcher (same cases, same DP algorithm); companion naming follows the twin rule of score_scope_contracts.py.\",\n    \"G3\": \"Typed PolicyError for I/O, JSON and every field; no unsafe; panic-family lints denied in production code. Graded C, not B: freedom from panics rests on lints and review, not on a proof.\",\n    \"G4\": \"Unit tests cover parsing, each rejection path (orders, floor, schema, kind, pin digest, empty globs, empty populations, wrong types, env), glob edge cases including pathological patterns, exclusion and population any-glob semantics, companion naming, baseline round trip. Case tables rather than property generators, so B is not claimed. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 37, survived 0, invalid 0, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics (A band); B because allocation behaviour was not benchmarked. Max production CCN 10 (from_json) over 41 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: the single source of truth for the floor, populations, exclusions, companion naming, pinned boilerplate and baseline, with field-precise typed validation (PolicyError::Field names the key), cross-validation against the crate's enums, a linear-time glob matcher, and deterministic, diff-friendly baseline serialisation.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 10,\n    \"lizard_max_ccn_tests\": 11,\n    \"lizard_production_functions\": 41\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 37,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"No property-based generators outside score.rs (G4 B needs them).\",\n    \"Panic freedom rests on clippy lints and review, not on a proof (G3 B).\",\n    \"Allocation behaviour not benchmarked (G5 A).\",\n    \"Grades drafted by the model that wrote the code; an independent review is still needed.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4C\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/policy.rs",
+          "sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "complete",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:policy:v1, AuthorityEffect None, exact digest; requirements R2, R5 and R9 map to the symbols and back; consumers (build scripts, CLI, Python scripts) are listed and their agreement is tested (test_governance_policy.py, CI population diff).",
+          "G2": "Every policy field is validated with a typed error naming it; level and grade orders must equal the enums; glob semantics are fixed by tests shared with the Python matcher (same cases, same DP algorithm); companion naming follows the twin rule of score_scope_contracts.py.",
+          "G3": "Typed PolicyError for I/O, JSON and every field; no unsafe; panic-family lints denied in production code. Graded C, not B: freedom from panics rests on lints and review, not on a proof.",
+          "G4": "Unit tests cover parsing, each rejection path (orders, floor, schema, kind, pin digest, empty globs, empty populations, wrong types, env), glob edge cases including pathological patterns, exclusion and population any-glob semantics, companion naming, baseline round trip. Case tables rather than property generators, so B is not claimed. Mutation ratio below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 37, survived 0, invalid 0, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).",
+          "G5": "Production max CCN and clippy thresholds as in metrics (A band); B because allocation behaviour was not benchmarked. Max production CCN 10 (from_json) over 41 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "C",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "grade_ceiling": "C",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: the single source of truth for the floor, populations, exclusions, companion naming, pinned boilerplate and baseline, with field-precise typed validation (PolicyError::Field names the key), cross-validation against the crate's enums, a linear-time glob matcher, and deterministic, diff-friendly baseline serialisation.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 10,
+          "lizard_max_ccn_tests": 11,
+          "lizard_production_functions": 41
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 37,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "No property-based generators outside score.rs (G4 B needs them).",
+          "Panic freedom rests on clippy lints and review, not on a proof (G3 B).",
+          "Allocation behaviour not benchmarked (G5 A).",
+          "Grades drafted by the model that wrote the code; an independent review is still needed."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4C"
+      },
+      "sha256": "7d1f92c88c91893cf04bbd0bc6e9b03b0a8a15c5612abe3e80905c5244f18cd4"
+    }
+  ]
+}

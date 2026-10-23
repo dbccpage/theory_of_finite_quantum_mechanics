@@ -1,0 +1,85 @@
+# Contract governance: every new or changed governed source (code/**/*.rs, code/**/*.py,
+# lean4/**/*.lean) must carry a companion bound to its bytes with a completed score at
+# L4 or higher and grade D or higher (SCORING.md section 1.5, governance/README.md).
+# Offline apart from checkout and crates.io; no secrets; no model calls.
+name: governance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: governance-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TFQM_GOVERNANCE: enforce
+  CARGO_TERM_COLOR: never
+  # The code/rust workspace resolves only with a local [patch] for the optional external
+  # omega crates, so the governance crate (no path dependencies) is built out of tree.
+  GOV_DIR: ${{ github.workspace }}/../governance-build
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python tools
+        run: python -m pip install --disable-pip-version-check pyyaml pytest
+
+      - name: Copy the governance crate out of the workspace
+        run: |
+          rm -rf "$GOV_DIR"
+          cp -r code/rust/src/governance "$GOV_DIR"
+
+      - name: Cache cargo registry and governance target
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ${{ env.GOV_DIR }}/target
+          key: governance-${{ runner.os }}-${{ hashFiles('code/rust/src/governance/Cargo.lock') }}
+
+      - name: Test the governance crate
+        run: cargo test --locked --manifest-path "$GOV_DIR/Cargo.toml"
+
+      - name: Build governance-check
+        run: cargo build --locked --release --manifest-path "$GOV_DIR/Cargo.toml" --bin governance-check
+
+      - name: Test the shared policy in the Python scripts
+        run: python -I -X utf8 -m pytest scripts/test_governance_policy.py -q -p no:cacheprovider
+
+      - name: Rust and Python agree on the governed population
+        run: |
+          "$GOV_DIR/target/release/governance-check" --root . list > "$RUNNER_TEMP/population.rust"
+          python -I -X utf8 scripts/score_scope_contracts.py population > "$RUNNER_TEMP/population.python"
+          diff -u "$RUNNER_TEMP/population.rust" "$RUNNER_TEMP/population.python"
+          wc -l < "$RUNNER_TEMP/population.rust"
+
+      - name: governance-check on the pull request (changes since origin/main)
+        if: github.event_name == 'pull_request'
+        run: '"$GOV_DIR/target/release/governance-check" --root . check --changed-since origin/main'
+
+      - name: governance-check on every governed source
+        if: github.event_name != 'pull_request'
+        run: '"$GOV_DIR/target/release/governance-check" --root . check'
+
+      - name: Contract/score history integrity
+        run: python -I -X utf8 scripts/contract_scores.py check

@@ -10,6 +10,7 @@ members = [
     "src/functional",
     "src/fusion_categories",
     "src/general_relativity",
+    "src/governance",
     "src/higher_category_theory",
     "src/holonomy",
     "src/homotopy_type_theory",
@@ -114,3 +115,7 @@ proptest = "1.5"
 # Workspace-wide: member-level profiles are ignored by Cargo.
 [profile.release]
 overflow-checks = true
+
+# Contract governance hook (build.rs); see governance/README.md.
+[build-dependencies]
+governance = { path = "src/governance" }

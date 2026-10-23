@@ -1,0 +1,50 @@
+{
+  "schema_version": "tfqm.governance-policy.v1",
+  "AuthorityEffect": "None",
+  "description": "Single source of truth for contract governance. Read by the governance crate (code/rust/src/governance), by every workspace build.rs, by governance-check, and by scripts/score_scope_contracts.py and scripts/contract_scores.py.",
+  "rubric": "SCORING.md",
+  "level_order": ["L1", "L2", "L3", "L4", "L5"],
+  "grade_order": ["E", "D", "C", "B", "A", "A+"],
+  "floor": {
+    "min_level": "L4",
+    "min_grade": "D",
+    "statement": "A governed source is accepted only with a completed score (every gate graded, score_token = level + composite grade) at capability level L4 or L5 and composite grade D or better. Sources in governance/baseline.json with unchanged bytes are grandfathered."
+  },
+  "companion": {
+    "suffix": ".contract.score.yaml",
+    "document_schema": "tfqm.contract-score.v1",
+    "score_schema": "2.0.0",
+    "collision_suffixes": [".py", ".rs", ".lean"],
+    "naming": "<dir>/<stem>.contract.score.yaml; when a sibling with the same stem and another collision suffix exists, <dir>/<name>.contract.score.yaml.",
+    "json_schema": "governance/schema/contract-score.v1.json"
+  },
+  "populations": [
+    {"kind": "rust", "language": "Rust", "globs": ["code/**/*.rs"]},
+    {"kind": "python", "language": "Python", "globs": ["code/**/*.py"]},
+    {"kind": "lean", "language": "Lean 4", "globs": ["lean4/**/*.lean"]}
+  ],
+  "discovery": "git ls-files --cached --others --exclude-standard -z, filtered by the population globs and exclusions; build scripts walk their own package instead.",
+  "exclusions": {
+    "path_parts": ["__pycache__", ".lake", "target", "node_modules"],
+    "path_globs": ["dag/results/**", "dag/sealed_runs/**", "sealed_runs/**", "atlas/**", "papers/**/archive/**"]
+  },
+  "pinned_boilerplate": [
+    {
+      "glob": "code/rust/**/build.rs",
+      "sha256": "1de89c670397df868c84f607922b9c4767b66a376c48f251070f117eb862fd13",
+      "template": "governance/hook/build.rs",
+      "reason": "The build hook (two comment lines and a main) that calls governance::verify_crate_contracts!(). It carries no logic of its own; the logic it calls is scored with the governance crate. Only byte-identical copies are exempt; any other build.rs needs its own companion."
+    }
+  ],
+  "enforcement": {
+    "env": "TFQM_GOVERNANCE",
+    "build_default": "warn",
+    "modes": {
+      "off": "build scripts skip verification",
+      "warn": "default; each violation is a cargo warning and the build continues",
+      "new": "abort the build when a file outside the baseline fails; warn for the rest",
+      "enforce": "abort the build on any violation (CI)"
+    },
+    "ci": "governance-check check --changed-since origin/main, in .github/workflows/governance.yml"
+  }
+}
