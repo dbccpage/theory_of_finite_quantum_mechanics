@@ -1,4 +1,4 @@
-# [TFQ-1137] Regge geometry, spinor coupling and continuum gravity remain open
+# [TFQ-1137] Cosine-law data for lengths 3, 4, 5 differs from block trace 16/3
 
 > **Stage**: `DRESSING_FIELD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `DFM-REGGE-GRAVITY-FENCE`  
 > **UUID**: `a326bbc9-b907-5089-a286-f74fd8d53f03`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-A 4D Regge complex with dressed hinge holonomies from edge lengths, a Spin+(1,3; Q(i)) spin-frame dressing of simplex spinors preserving a discrete Dirac action (the dossier's next test), and any continuum gravity reading are not constructed.
+For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite those sides are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.
 
 ### Governing Obligation
-Build the complex, compute deficits from declared lengths, and state the spinor dressing before linking to the finite gravity shadow; the Einstein equation stays outside.
+The lengths 3, 4, 5 and beta = 1/2 are supplied data. The block trace is not computed from those lengths. A 4D complex, a deficit angle, a spin-frame dressing, and a continuum reading stay open.
 
 ### Witness Audit
-Section 5 lists the spinor dressing as the next test and excludes a UV-complete gravity theory.
+numerator_sum is the numerator identity for every rational triple. lengths_345 records 0, 32, 18, the total 50, the cosine-law values 0, 4/5, 3/5, and the sum 7/5. block_trace_half records gamma 5/3, off-diagonal 4/3, block trace 16/3, and the gaps from 4 and from 7/5. cosine_sum_ne_block_trace records that 7/5 and 16/3 differ. No 4D complex, deficit angle, spin-frame dressing, or continuum reading is constructed. Status stays OPEN. Regge calculus to a general-relativity limit stays imported.
 
 ---
 
@@ -42,13 +42,16 @@ Section 5 lists the spinor dressing as the next test and excludes a UV-complete 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignDfmReggeGravityFence.lean::numerator_sum`
+- `lean4/CampaignDfmReggeGravityFence.lean::lengths_345`
+- `lean4/CampaignDfmReggeGravityFence.lean::block_trace_half`
+- `lean4/CampaignDfmReggeGravityFence.lean::cosine_sum_ne_block_trace`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/dfm-regge-gravity-fence.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -66,3 +69,6 @@ Section 5 lists the spinor dressing as the next test and excludes a UV-complete 
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:288`
   - `papers/ravera_dfm_dossier.md:292-293`
+  - `lean4/CampaignDfmReggeGravityFence.lean`
+  - `dag/derivations/independent/dfm-regge-gravity-fence.md`
+  - `checks/independent/dfm-regge-gravity-fence.py`
