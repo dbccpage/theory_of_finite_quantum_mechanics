@@ -1,4 +1,4 @@
-# [TFQ-1117] Relational clock dressing and continuum time
+# [TFQ-1117] Order-4 clock blocks for one rational step
 
 > **Stage**: `DRESSING_FIELD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `DFM-RELATIONAL-TIME-FENCE`  
 > **UUID**: `5bf82ffd-ae95-5919-8a82-5b2aa6db9152`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.
+For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved.
 
 ### Governing Obligation
-Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.
+The step and the vector are supplied. These four blocks are one witness, not a theorem for every period. Continuous time, a one-parameter unitary group, and a Hamiltonian constraint stay open.
 
 ### Witness Audit
-Interpretive fence; no artifact addresses it.
+step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks records the four products equal to I. psi_recover records norm 1, four transports back to psi, and two first-component inequalities with 3/5. The Lean module does not build an 8 by 8 matrix. No continuous-time generator and no Wheeler-DeWitt constraint is constructed. Status stays OPEN. Continuous time and a Hamiltonian constraint stay imported.
 
 ---
 
@@ -43,13 +43,15 @@ Interpretive fence; no artifact addresses it.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order`
+- `lean4/CampaignDfmRelationalTimeFence.lean::four_blocks`
+- `lean4/CampaignDfmRelationalTimeFence.lean::psi_recover`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/dfm-relational-time-fence.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -67,3 +69,6 @@ Interpretive fence; no artifact addresses it.
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:147`
   - `papers/ravera_dfm_dossier.md:158`
+  - `lean4/CampaignDfmRelationalTimeFence.lean`
+  - `dag/derivations/independent/dfm-relational-time-fence.md`
+  - `checks/independent/dfm-relational-time-fence.py`

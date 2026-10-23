@@ -8766,7 +8766,7 @@ If U_S is unitary with U_S^N = I_d, then D^dagger W D = S_C tensor I_d, and D^da
 
 Obligation: Exact checks exist only for N = 4, d = 2, U_S = [[0,-1],[1,0]] and psi_0 = (3/5, 4/5); no Lean witness.
 
-### TFQ-1117 Relational clock dressing and continuum time
+### TFQ-1117 Order-4 clock blocks for one rational step
 
 - UUID: `5bf82ffd-ae95-5919-8a82-5b2aa6db9152`
 - Parent: `TFQ-1116`
@@ -8774,9 +8774,9 @@ Obligation: Exact checks exist only for N = 4, d = 2, U_S = [[0,-1],[1,0]] and p
 - DAG node: `DFM-RELATIONAL-TIME-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md)
 
-Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.
+For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved.
 
-Obligation: Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.
+Obligation: The step and the vector are supplied. These four blocks are one witness, not a theorem for every period. Continuous time, a one-parameter unitary group, and a Hamiltonian constraint stay open.
 
 ### TFQ-1118 Electroweak doublet dressing matrix and Weinberg projectors
 

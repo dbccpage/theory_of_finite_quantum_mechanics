@@ -3,17 +3,23 @@ node_id: DFM-RELATIONAL-TIME-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant
-    physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.
+  source_statement: For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in
+    {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi
+    for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time
+    reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - continuous time and Stone generator
   - Hamiltonian constraint of a physical theory
-  source_bottleneck: Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint
-    stay imported; a finite clock of period N does not supply them.
+  source_bottleneck: The step and the vector are supplied. These four blocks are one witness, not a theorem
+    for every period. Continuous time, a one-parameter unitary group, and a Hamiltonian constraint stay
+    open.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md
   - papers/ravera_dfm_dossier.md
+  - lean4/CampaignDfmRelationalTimeFence.lean
+  - dag/derivations/independent/dfm-relational-time-fence.md
+  - checks/independent/dfm-relational-time-fence.py
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md
   source_claim_label: OPEN
@@ -22,7 +28,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md
-    sha256: 52ce2291bae57e859687c884fb41eecbd9f240840c28221a86e02d80c8e80dd4
+    sha256: 9fbaaa047d688022d5a67dd9e3fcba33164a1a246fd9f794d44973b3b3e67bec
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +36,203 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_relational_time_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: u2
+  line: 61
+  signature_excerpt: 'def u2 : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: minusEye
+  line: 47
+  signature_excerpt: 'def minusEye : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u4
+  line: 63
+  signature_excerpt: 'def u4 : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eye
+  line: 41
+  signature_excerpt: 'def eye : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mmul
+  line: 25
+  signature_excerpt: 'def mmul (A B : M2) : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transp
+  line: 31
+  signature_excerpt: 'def transp (A : M2) : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: step
+  line: 53
+  signature_excerpt: 'def step : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: M2
+  line: 14
+  signature_excerpt: structure M2
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u1
+  line: 60
+  signature_excerpt: 'def u1 : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u3
+  line: 62
+  signature_excerpt: 'def u3 : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: block
+  line: 69
+  signature_excerpt: 'def block (tNext tCur : M2) : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u0
+  line: 59
+  signature_excerpt: 'def u0 : M2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: apply
+  line: 37
+  signature_excerpt: 'def apply (A : M2) (v : V2) : V2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: psi
+  line: 65
+  signature_excerpt: 'def psi : V2'
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: V2
+  line: 21
+  signature_excerpt: structure V2
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: step_square_and_order
+  line: 71
+  signature_excerpt: |-
+    theorem step_square_and_order :
+        u2 = minusEye ∧
+        u4 = eye ∧
+        mmul (transp step) step = eye
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: four_blocks
+  line: 80
+  signature_excerpt: |-
+    theorem four_blocks :
+        block u1 u0 = eye ∧
+        block u2 u1 = eye ∧
+        block u3 u2 = eye ∧
+        block u4 u3 = eye
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: psi_recover
+  line: 90
+  signature_excerpt: |-
+    theorem psi_recover :
+        psi.x ^ 2 + psi.y ^ 2 = 1 ∧
+        apply (transp u0) (apply u0 psi) = psi ∧
+        apply (transp u1) (apply u1 psi) = psi ∧
+        apply (transp u2) (apply u2 psi) = psi ∧
+        apply (transp u3) (apply u3 psi) = psi ∧
+        (apply u1 psi).x ≠ psi.x ∧
+        (apply u2 psi).x ≠ psi.x
+  source: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  source_sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order
+  availability: local
+  symbol: step_square_and_order
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::four_blocks
+  availability: local
+  symbol: four_blocks
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  declaration_status: declaration_found_not_proof_checked
+  line: 80
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRelationalTimeFence.lean::psi_recover
+  availability: local
+  symbol: psi_recover
+  path: lean4/CampaignDfmRelationalTimeFence.lean
+  repository: this_repository
+  sha256: 82780812950910f0bbab83dbc5911fc268437b842392833b1f8a85859764a91c
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -74,8 +274,6 @@ operad_slots:
     - Hamiltonian constraint of a physical theory
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
