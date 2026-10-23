@@ -77,7 +77,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 124 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 123 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-FORCED-CENSUS-COLUMN](nodes/PGW-FORCED-CENSUS-COLUMN.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 109 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 70 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 70 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 42 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0126](nodes/TFQ-0126.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 39 | 3 in-repo Rust or Python symbol(s) cited, none a test |
@@ -126,7 +126,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0176](nodes/TFQ-0176.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 3 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [DFM-BPHZ-SECTOR-KERNEL](nodes/DFM-BPHZ-SECTOR-KERNEL.md) | DRESSING_FIELD | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [DFM-TREE-CHANGE-GLZ-SYMANZIK-U](nodes/DFM-TREE-CHANGE-GLZ-SYMANZIK-U.md) | DRESSING_FIELD | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 3 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM033-SCHRODINGER-DISCRETE-COCHAIN](nodes/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM033-SCHRODINGER-DISCRETE-COCHAIN](nodes/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-TRACE-ZERO-DUALITY-K23](nodes/FQ-TRACE-ZERO-DUALITY-K23.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0036](nodes/TFQ-0036.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0045](nodes/TFQ-0045.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E0 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -147,13 +147,13 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0160](nodes/TFQ-0160.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0193](nodes/TFQ-0193.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 5 in-repo Rust or Python symbol(s) cited, none a test |
 | [AUTHF-REPLAY-SUBSTITUTIONS](nodes/AUTHF-REPLAY-SUBSTITUTIONS.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM032-CONTINUUM-LIMIT-CONDITIONAL](nodes/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM032-CONTINUUM-LIMIT-CONDITIONAL](nodes/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS](nodes/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM041-HEISENBERG-PICTURE-FINITE](nodes/DS-QM041-HEISENBERG-PICTURE-FINITE.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM093-SURVIVAL-THEOREM](nodes/DS-QM093-SURVIVAL-THEOREM.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM206-BOUNDARY-SYNTHESIS](nodes/DS-QM206-BOUNDARY-SYNTHESIS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM207-211-FIVE-IMPORT-CASCADE](nodes/DS-QM207-211-FIVE-IMPORT-CASCADE.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-GAP-REAL-EMBEDDING-CHOICE](nodes/FQ-GAP-REAL-EMBEDDING-CHOICE.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM206-BOUNDARY-SYNTHESIS](nodes/DS-QM206-BOUNDARY-SYNTHESIS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM207-211-FIVE-IMPORT-CASCADE](nodes/DS-QM207-211-FIVE-IMPORT-CASCADE.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-GAP-REAL-EMBEDDING-CHOICE](nodes/FQ-GAP-REAL-EMBEDDING-CHOICE.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-IMPL-PAIRING-AUDIT](nodes/FQ-IMPL-PAIRING-AUDIT.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [MUB6-SZOLLOSI-FULLBOX-UNRESOLVED](nodes/MUB6-SZOLLOSI-FULLBOX-UNRESOLVED.md) | MUTUALLY_UNBIASED_BASES | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS](nodes/MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS.md) | MUTUALLY_UNBIASED_BASES | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 2 in-repo Rust or Python symbol(s) cited, none a test |

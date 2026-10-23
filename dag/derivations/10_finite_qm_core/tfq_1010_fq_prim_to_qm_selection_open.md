@@ -52,6 +52,6 @@ Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:367`
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
+  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:367`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`

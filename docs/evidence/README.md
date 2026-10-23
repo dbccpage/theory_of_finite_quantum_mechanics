@@ -24,7 +24,7 @@ The DAG has 892 nodes in 35 stages. Evidence grades: E0 189, E1 228, E2 36, E3 4
 
 Of the 263 `PROVED_LEAN` nodes, 263 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 439 nodes at E3, 166 have a qualifying review, 25 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 439 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
