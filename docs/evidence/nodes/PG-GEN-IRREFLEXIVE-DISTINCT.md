@@ -99,8 +99,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ## Absences recorded by the TFQ records
 
 - TFQ-0387 lean4: declaration obligation: given_distinct and irreflexive_endpoints, with bra left undecided
-- TFQ-0387 lean4: no local lean twin located for lean4/Imported/GenesisOngoing/H3V7N5QF/Basic.lean
-- TFQ-0387 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/Paper.lean
+- TFQ-0387 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+- TFQ-0387 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Basic.lean
 - TFQ-0387 python: missing obligation: a seed checker under 001_genesis_ongoing_h3v7n5qf/code that accepts arb, rejects xrx, and leaves bra unset
 - TFQ-0387 rust: missing obligation: no Rust seed module was listed under 001_genesis_ongoing_h3v7n5qf; the ban on xrx still needs a carrier there or an explicit absence
 

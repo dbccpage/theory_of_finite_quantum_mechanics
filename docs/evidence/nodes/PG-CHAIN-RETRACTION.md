@@ -235,10 +235,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/chain_map.rs
 - TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/cochain_primitive_difference.rs
 - TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/finite_rational_homology.rs
-- TFQ-0337 lean4: no local lean twin located for lean4/Imported/SnMssn/Paper001.lean
+- TFQ-0337 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
 - TFQ-0337 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py
 - TFQ-0375 lean4: declaration obligation: chain_retraction_cannot_kill on a declared ChainFragment
-- TFQ-0375 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/Paper.lean
+- TFQ-0375 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
 - TFQ-0375 python: missing obligation: graph_homology_ranks on the two named complexes, without a retraction that kills the old class
 - TFQ-0375 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py
 - TFQ-0375 rust: missing obligation: chain-retraction check for the two-point graph and the attached triangle in crate pre_mssn_preservation

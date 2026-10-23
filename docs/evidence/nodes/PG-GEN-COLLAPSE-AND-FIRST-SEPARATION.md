@@ -93,12 +93,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ## Absences recorded by the TFQ records
 
 - TFQ-0381 lean4: declaration obligation: deltaU0_valid inside the declared response grammar
-- TFQ-0381 lean4: no local lean twin located for lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+- TFQ-0381 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean
 - TFQ-0381 python: missing obligation: a cost counter in 000_genesis_19l57g1/code/derivation/candidates.py, listed and not opened, scoped to the declared response grammar
 - TFQ-0381 rust: missing obligation: minima.rs must record item cost two without dropping ties
 - TFQ-0381 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs
 - TFQ-0382 lean4: missing declaration obligation: refined class (2, 1) versus the unbounded reading-L family, file listed and not opened
-- TFQ-0382 lean4: no local lean twin located for lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean
+- TFQ-0382 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean
 - TFQ-0382 python: missing obligation: a refined-cost key (2, 1) in 000_genesis_19l57g1/code/derivation/candidates.py that does not hide the unbounded reading-L family
 - TFQ-0382 rust: missing obligation: separate counters for item-cost minima and the refined class
 - TFQ-0382 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs

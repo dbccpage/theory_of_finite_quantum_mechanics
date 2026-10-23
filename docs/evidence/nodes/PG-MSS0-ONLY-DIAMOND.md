@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ## Absences recorded by the TFQ records
 
 - TFQ-0377 lean4: missing declaration obligation: no MSS-0 name was seen in the opened Inertia.lean header
-- TFQ-0377 lean4: no local lean twin located for lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+- TFQ-0377 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
 - TFQ-0377 python: missing obligation: the tower profile cited by the DAG was not opened; a local stage-0 check is still required in 000_genesis_19l57g1/code/genesis_checks.py
 - TFQ-0377 rust: missing obligation: an MSS-0 symbol was not confirmed in omega_ooutwire_primitives
 - TFQ-0377 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs

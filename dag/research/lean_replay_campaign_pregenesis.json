@@ -64,6 +64,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "insufficient_history_view": [],
           "no_factor_through_common_view": [],
@@ -111,6 +113,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "PreMssnListed.fiberConstant_of_recon": [],
           "PreMssnListed.listed_history_report_criterion": [],
@@ -149,6 +153,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "PreMssn.Homology.induced_homology_injective": [
             "Quot.sound",
@@ -200,6 +206,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "PreMssn.Observation.SameProfile": [],
           "PreMssn.Observation.collapsed_quotient_barrier": [
@@ -290,6 +298,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "PreMssn.chain_retraction_cannot_kill": [],
           "PreMssn.collapsed_observation_barrier": [],
@@ -395,6 +405,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "demand_accounting": [
             "Classical.choice",
@@ -460,6 +472,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "WitnessedDifference.Descent.function_descends_iff_fiber_constant": [
             "Classical.choice"
@@ -498,6 +512,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "WitnessedDifference.GenesisConstruction.literalRoot": []
         },
@@ -540,6 +556,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "WitnessedDifference.PointedRelation.pointed_relation_independence": [],
           "WitnessedDifference.PointedRelation.pointed_relation_independence_fin": [
@@ -587,6 +605,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "WitnessedDifference.PrimitiveAdmissionFloor.endpoints_apart": [],
           "WitnessedDifference.PrimitiveAdmissionFloor.identification_breaks_law": [],
@@ -627,6 +647,8 @@
           ]
         },
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
         "axioms": {
           "WitnessedDifference.ProposalAdmissionBridge.factorization_iff_fiber_constancy": [
             "Classical.choice"
@@ -648,7 +670,7 @@
   ],
   "limits": [
     "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
-    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol with no constant of that name in the module is listed under unresolved_cited_symbols and is not audited.",
+    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol resolves only to a constant whose full name is the symbol or ends in '.' + the symbol; a symbol with no such constant, or only several suffix matches and no exact one, is listed under unresolved_cited_symbols / ambiguous_cited_symbols and is not audited. axiom_audit_passed is true only if every cited symbol resolved and every audited axiom is standard; the whole-file theorem audit (axioms_whole_file_extra) is information and never sets it. When the DAG cites a file without naming a declaration, the audit is of every theorem of the file.",
     "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built side by side; it includes contention and, for a module whose dependencies were built just before, only that module's own compile."
   ]
 }

@@ -124,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - TFQ-0342 rust: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/obligation.rs
 - TFQ-0378 lean4: declaration obligation: genesis as the five-field empty regime, events still to be matched to the ledger families
-- TFQ-0378 lean4: no local lean twin located for lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+- TFQ-0378 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
 - TFQ-0378 python: missing obligation: model.py was listed and not opened; the five regime fields still need a local check against WDP-P000-006
 - TFQ-0378 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py
 - TFQ-0378 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py

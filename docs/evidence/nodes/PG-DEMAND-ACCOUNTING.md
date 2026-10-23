@@ -153,10 +153,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0333 lean4: no local lean twin located for lean4/Imported/SnMssn/Paper001.lean
+- TFQ-0333 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
 - TFQ-0333 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py
 - TFQ-0369 lean4: declaration obligation: demand_accounting, hypotheses kept in the statement rather than dropped
-- TFQ-0369 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/Paper.lean
+- TFQ-0369 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
 - TFQ-0369 python: missing obligation: a count wrapper around demand_step that states s_next = s - d + b only when discharged is a subset and births are disjoint
 - TFQ-0369 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py
 - TFQ-0369 rust: missing obligation: the same cardinality step in crate pre_mssn_preservation, with the two hypotheses as fields

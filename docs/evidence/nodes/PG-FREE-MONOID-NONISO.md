@@ -154,11 +154,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0336 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/Paper.lean
-- TFQ-0336 lean4: no local lean twin located for lean4/Imported/SnMssn/Paper001.lean
+- TFQ-0336 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+- TFQ-0336 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
 - TFQ-0336 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py
 - TFQ-0373 lean4: declaration obligation: unequal_finite_alphabets_not_iso for unequal finite alphabet sizes
-- TFQ-0373 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/Paper.lean
+- TFQ-0373 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
 - TFQ-0373 python: missing obligation: a size comparison beside free_reduce in preservation.py that refuses an isomorphism when alphabet sizes differ
 - TFQ-0373 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/tests/test_free_words.py
 - TFQ-0373 rust: missing obligation: finite-alphabet non-isomorphism in crate pre_mssn_preservation

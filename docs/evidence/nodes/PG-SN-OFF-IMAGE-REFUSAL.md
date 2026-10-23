@@ -137,10 +137,10 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0335 lean4: no local lean twin located for lean4/Imported/SnMssn/Paper001.lean
+- TFQ-0335 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
 - TFQ-0335 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py
 - TFQ-0372 lean4: missing declaration obligation: off-image non-descent inside this package, not an unread education module
-- TFQ-0372 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/SnCarrier.lean
+- TFQ-0372 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean
 - TFQ-0372 python: missing obligation: an off-image refusal predicate in 000_pre_genesis_to_mssn/code/preservation.py that does not call recover_word a total inverse
 - TFQ-0372 rust: missing obligation: section-retraction refusal in crate pre_mssn_preservation for points outside the section image
 

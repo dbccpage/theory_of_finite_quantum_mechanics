@@ -185,10 +185,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0338 lean4: no local lean twin located for lean4/Imported/SnMssn/Paper001.lean
+- TFQ-0338 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
 - TFQ-0338 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py
 - TFQ-0366 lean4: declaration obligation: history_report_criterion and history_factor_unique, with Classical.choice left visible on the unlisted direction
-- TFQ-0366 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/Paper.lean
+- TFQ-0366 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
 - TFQ-0366 python: missing obligation: preservation.report_factor must be checked against fiber constancy and must return no factor off the image
 - TFQ-0366 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py
 - TFQ-0366 rust: missing obligation: a report-factor checker in crate pre_mssn_preservation that refuses answers outside the realized image

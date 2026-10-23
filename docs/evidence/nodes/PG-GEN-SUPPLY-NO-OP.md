@@ -93,12 +93,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ## Absences recorded by the TFQ records
 
 - TFQ-0379 lean4: declaration obligation: supply_no_op on Regime and a supply event, readings left unselected
-- TFQ-0379 lean4: no local lean twin located for lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+- TFQ-0379 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
 - TFQ-0379 python: missing obligation: a supply step in 000_genesis_19l57g1/code/derivation/model.py that returns the same regime and does not set a reading flag
 - TFQ-0379 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs
 - TFQ-0379 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/supply.rs
 - TFQ-0380 lean4: missing declaration obligation: both readings remain parameters of the first-separation statements
-- TFQ-0380 lean4: no local lean twin located for lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+- TFQ-0380 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean
 - TFQ-0380 python: missing obligation: 000_genesis_19l57g1/code/derivation/model.py must be able to store both readings without a default choice
 - TFQ-0380 rust: missing obligation: reading.rs was listed and not opened; it must not collapse L and F if both are represented
 - TFQ-0380 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs

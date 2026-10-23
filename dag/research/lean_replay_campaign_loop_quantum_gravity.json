@@ -44,39 +44,10 @@
         "admission_scan_passed": true,
         "axiom_audit_passed": true,
         "cited_symbols": [],
-        "cited_resolution": {
-          "*": [
-            "falsification_degenerate_carrier",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_2",
-            "FableHilbertWalk20260819.H023.OrientationAndSymmetry.tetrahedral_face_rotation_invariant",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_2_squared_is_3",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_diff_invertible",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_6_truncation",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.even_loop_half_turn_amplitude",
-            "FableHilbertWalk20260819.H023.PentagonRecoupling.PentagonAmplitudes.mk.injEq",
-            "FableHilbertWalk20260819.H023.OrientationAndSymmetry.vacuum_orientation_conjugation",
-            "FableHilbertWalk20260819.H023.PentagonRecoupling.PentagonAmplitudes.mk.sizeOf_spec",
-            "FableHilbertWalk20260819.H023.PentagonRecoupling.spinfoam_pentagon_coherence",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_diff_is_i",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_3",
-            "FableHilbertWalk20260819.H023.OrientationAndSymmetry.face_rotate_vacuum",
-            "FableHilbertWalk20260819.H023.PentagonRecoupling.PentagonAmplitudes.mk.inj",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_0",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.vacuum_is_admissible",
-            "FableHilbertWalk20260819.H023.TopologicalGluing.gluing_with_inadmissible_zero",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_all_one_inadmissible",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.TetSpins.mk.injEq",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_1",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_vacuum_amplitude",
-            "FableHilbertWalk20260819.H023.TopologicalGluing.gluing_vacuum_is_one",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.TetSpins.mk.inj",
-            "FableHilbertWalk20260819.H023.OrientationAndSymmetry.orient_reverse_vacuum",
-            "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_4",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.TetSpins.mk.sizeOf_spec",
-            "FableHilbertWalk20260819.H023.TetrahedralSpinFoam.tetrahedral_inadmissible_vanishes"
-          ]
-        },
+        "cited_resolution": {},
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "every theorem of the file (no declaration cited)",
         "axioms": {
           "falsification_degenerate_carrier": [],
           "FableHilbertWalk20260819.H023.QuantumIntegers.q_int_2": [],
@@ -136,17 +107,10 @@
         "admission_scan_passed": true,
         "axiom_audit_passed": true,
         "cited_symbols": [],
-        "cited_resolution": {
-          "*": [
-            "ReggePachnerWdw.SimplicialVertex.mk.inj",
-            "ReggePachnerWdw.flat_vertex_wdw_closure",
-            "ReggePachnerWdw.SimplicialVertex.mk.injEq",
-            "ReggePachnerWdw.SimplicialVertex.mk.sizeOf_spec",
-            "ReggePachnerWdw.curved_pachner_induces_positive_defect",
-            "ReggePachnerWdw.wdw_defect_unscreenable"
-          ]
-        },
+        "cited_resolution": {},
         "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "every theorem of the file (no declaration cited)",
         "axioms": {
           "ReggePachnerWdw.SimplicialVertex.mk.inj": [],
           "ReggePachnerWdw.flat_vertex_wdw_closure": [],
@@ -179,7 +143,7 @@
   ],
   "limits": [
     "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
-    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol with no constant of that name in the module is listed under unresolved_cited_symbols and is not audited.",
+    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol resolves only to a constant whose full name is the symbol or ends in '.' + the symbol; a symbol with no such constant, or only several suffix matches and no exact one, is listed under unresolved_cited_symbols / ambiguous_cited_symbols and is not audited. axiom_audit_passed is true only if every cited symbol resolved and every audited axiom is standard; the whole-file theorem audit (axioms_whole_file_extra) is information and never sets it. When the DAG cites a file without naming a declaration, the audit is of every theorem of the file.",
     "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built side by side; it includes contention and, for a module whose dependencies were built just before, only that module's own compile."
   ]
 }

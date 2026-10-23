@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ## Absences recorded by the TFQ records
 
 - TFQ-0363 lean4: missing declaration obligation: six operation names beside supply_no_op in Derivation/Inertia.lean
-- TFQ-0363 lean4: no local lean twin located for lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+- TFQ-0363 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
 - TFQ-0363 python: missing obligation: six operation constructors in 000_genesis_19l57g1/code/derivation/model.py, listed but not opened, kept distinct from one another
 - TFQ-0363 rust: missing obligation: six named operations in omega_ooutwire_primitives rather than one event enum that merges them
 - TFQ-0363 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs

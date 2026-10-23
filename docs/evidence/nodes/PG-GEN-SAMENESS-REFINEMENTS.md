@@ -107,9 +107,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ## Absences recorded by the TFQ records
 
 - TFQ-0391 lean4: missing declaration obligation: row ids in the four later claim ledgers were not read
-- TFQ-0391 lean4: no local lean twin located for lean4/Imported/GenesisOngoing/Sixteenth/State.lean
-- TFQ-0391 lean4: no local lean twin located for lean4/Imported/GenesisOngoing/Twentieth/Order.lean
-- TFQ-0391 lean4: no local lean twin located for lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean
+- TFQ-0391 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/State.lean
+- TFQ-0391 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentieth/Order.lean
+- TFQ-0391 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentyfirst/Refusal.lean
 - TFQ-0391 python: missing obligation: do not import a sameness refinement into 001_genesis_ongoing_h3v7n5qf/code until the four unread claim ledgers are inventoried
 - TFQ-0391 rust: missing obligation: no Rust sameness crate was listed; do not add one from the unread ledgers
 

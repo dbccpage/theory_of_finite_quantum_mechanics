@@ -99,8 +99,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ## Absences recorded by the TFQ records
 
 - TFQ-0388 lean4: declaration obligation: identify_legal_iff and adding_xrx_always_obstructed
-- TFQ-0388 lean4: no local lean twin located for lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean
-- TFQ-0388 lean4: no local lean twin located for lean4/Imported/GenesisOngoing/H3V7N5QF/Finite.lean
+- TFQ-0388 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Answers.lean
+- TFQ-0388 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Finite.lean
 - TFQ-0388 python: missing obligation: an answer triple refuse, remove, build under 001_genesis_ongoing_h3v7n5qf/code, not a Phi1 residual
 - TFQ-0388 rust: missing obligation: the ongoing package listing showed no Rust crate; a later crate must not reuse this obstruction as an L1 weight
 

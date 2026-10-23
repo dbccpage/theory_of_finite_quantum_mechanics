@@ -152,10 +152,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0335 lean4: no local lean twin located for lean4/Imported/SnMssn/Paper001.lean
+- TFQ-0335 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean
 - TFQ-0335 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py
 - TFQ-0371 lean4: declaration obligation: old_image_injective, scoped to typed recovery on the old image
-- TFQ-0371 lean4: no local lean twin located for lean4/Imported/PreGenesisToMssn/Paper.lean
+- TFQ-0371 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
 - TFQ-0371 python: missing obligation: an injectivity check for recover_word on the old alphabet that does not also claim off-image refusal
 - TFQ-0371 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py
 - TFQ-0371 rust: missing obligation: old-image injectivity in crate pre_mssn_preservation, with the three negative boundaries as separate tests

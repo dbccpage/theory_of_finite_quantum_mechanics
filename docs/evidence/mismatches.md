@@ -6,7 +6,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 |---|---|
 | `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 0 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 0 |
-| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 0 |
+| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 35 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 13 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 54 |
@@ -24,11 +24,47 @@ PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none 
 
 None.
 
-## `receipt_not_current` (0)
+## `receipt_not_current` (35)
 
 A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit. Ordered by downstream nodes, most first.
 
-None.
+| Node | Stage | Status | Grade | Downstream | Detail |
+|---|---|---|---|---|---|
+| [FQ-CONTEXTUALITY-CECH-F2](nodes/FQ-CONTEXTUALITY-CECH-F2.md) | FINITE_QM_CORE | `PROVED_LEAN` | E3 | 51 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [DS-QM120-MERMIN-PERES-F2-OBSTRUCTION](nodes/DS-QM120-MERMIN-PERES-F2-OBSTRUCTION.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 50 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS](nodes/DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 48 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [CT-MARLETTO-VEDRAL-2017-SOURCE](nodes/CT-MARLETTO-VEDRAL-2017-SOURCE.md) | CONSTRUCTOR_THEORY | `SOURCE_RECORD` | E1 | 29 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [TFQ-0213](nodes/TFQ-0213.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 20 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [TFQ-0225](nodes/TFQ-0225.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 8 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-TENSOR-UNIQUENESS](nodes/FQ-GAP-TENSOR-UNIQUENESS.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 7 | lean4/CoupledRelationalProjectors.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CauchyCircleCompletion.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CauchyCircleCompletion.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CayleyProjectiveCircle.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CayleyProjectiveCircle.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1CyclotomicTorsionTower.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1PythagoreanObstruction.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
+| [FQ-TRACE-ZERO-DUALITY-K23](nodes/FQ-TRACE-ZERO-DUALITY-K23.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [GP-GAP-EXACT-DUALITY](nodes/GP-GAP-EXACT-DUALITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [CT-ENTANGLING-PHASE-FINITE-TARGET](nodes/CT-ENTANGLING-PHASE-FINITE-TARGET.md) | CONSTRUCTOR_THEORY | `PROVED_LEAN` | E3 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [DS-QM080-IMPORT-FREE-TRACE-NORM-CORE](nodes/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [FQ-PRIM-TO-QM-SELECTION-OPEN](nodes/FQ-PRIM-TO-QM-SELECTION-OPEN.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 0 | lean4/CoupledRelationalProjectors.lean: replay failed against 1 receipt(s) |
+| [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 
 ## `computational_no_runnable_test` (126)
 
