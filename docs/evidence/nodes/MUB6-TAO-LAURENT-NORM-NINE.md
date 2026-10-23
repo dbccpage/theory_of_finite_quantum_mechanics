@@ -1,6 +1,6 @@
 # MUB6-TAO-LAURENT-NORM-NINE
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,13 +47,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/Conjecture2GeneralMechanization.lean](../../../lean4/Conjecture2GeneralMechanization.lean)
 - sha256 (`bytes`): `6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101`
 - cited in: node.lean, record TFQ-1253
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `Conjecture2GeneralMechanization`): recorded sha256 `6598ff7b86fd0f334a033417fce411be70b569afcf0983ae5882994816b78101` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build Conjecture2GeneralMechanization`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `balanced_mask_count` | yes | yes | yes | - | `#print axioms balanced_mask_count` |
-| `tao_all_balanced_masks` | yes | yes | yes | - | `#print axioms tao_all_balanced_masks` |
+| `balanced_mask_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms balanced_mask_count` |
+| `tao_all_balanced_masks` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tao_all_balanced_masks` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubTaoLaurent.lean`
@@ -61,12 +62,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubTaoLaurent.lean](../../../lean4/MubTaoLaurent.lean)
 - sha256 (`bytes`): `52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3`
 - cited in: node.lean, record TFQ-1253
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubTaoLaurent`): recorded sha256 `52ebf998525088a85ab86f4b089fa8b3ff8ffc1546f6275558dcc351be5ba2d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubTaoLaurent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `tao_all_balanced_laurent` | yes | yes | yes | - | `#print axioms tao_all_balanced_laurent` |
+| `tao_all_balanced_laurent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tao_all_balanced_laurent` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md`

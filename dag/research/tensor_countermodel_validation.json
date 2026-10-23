@@ -250,7 +250,7 @@
     "No arbitrary-GPT classification, primitive reconstruction, instruments or channel classification is asserted."
   ],
   "sha256": {
-    "dag/derivation_dag.json": "6a9c792306bdcf18f2396e89451f4d98c1411419c109ef05eb0e936088a2e093",
+    "dag/derivation_dag.json": "bdde3061817da961abf1fadc0cc7535070c2a01c3eb0a403b1de6eda928851a9",
     "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md": "3d1f897722aad08811a52c863e8bc47cfda41d9d087929a00c3925f4782de12f",
     "dag/derivations/README.md": "227b7530968ccc0ea2f69e300f0178a6fff5017b88d58ba9128664439f5c91cf",
     "dag/fragments/application_branches.json": "9a403dfc64df214a0176b5ca8595b63c9d99a505a4c104093ab6584d7d79f8a9",
@@ -260,14 +260,14 @@
     "dag/test_application_branches.py": "a1539b595814243b6ce61b736be32c50076d5343f45ae9ad955ac72efa792de1",
     "dag/test_tensor_countermodel_receipt.py": "c21e303b0d616513fae733bdab323315f7e4831f5b2e1479e379fdf81a0aedf2",
     "dag/test_tensor_measurement_receipt.py": "2b943c4d2892623f1296a2764ca128789428bd141a8ff5ec219bbbc6fb2459c6",
-    "dag/theory_of_finite_qm.jsonl": "348013a3da9e20faa24fed402ab4a2cafb432538e70932d804c9aefd544480ac",
+    "dag/theory_of_finite_qm.jsonl": "9f3c0820f65b38559ed9894bcfb0b52a9371ed249bf1eb9cfb7298f0435bb76c",
     "dag/theory_of_finite_qm.md": "ea2f7530f77f4d6a1443d144d6c498f997b2ec436a25e2eba1e3dacdd73b91e8",
     "lean4/TensorCountermodelCones.lean": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
     "lean4/TensorCountermodelEmbeddings.lean": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
     "lean4/TensorCountermodelWitnesses.lean": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
     "lean4/TensorHiddenCoordinates.lean": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
     "lean4/TensorPartialTranspose.lean": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
-    "lean4/lakefile.lean": "5bdc945ffecf1ca99a91dd41d1fc05264c0fc36967b865cc882817070439a1eb"
+    "lean4/lakefile.lean": "e22b56d401fea88cc78904253b028c7710c45034233556e1fb5d72dbedbac427"
   },
   "rebound": [
     {
@@ -1410,41 +1410,81 @@
       "field": "sha256",
       "path": "dag/derivation_dag.json",
       "previous": "7f951351f57b614cd6727d443a53b347fbfc0d38ba68db033cfea9b49d1c8025",
-      "current": "6a9c792306bdcf18f2396e89451f4d98c1411419c109ef05eb0e936088a2e093",
-      "reason": "current-file digest rebound: Integrate independently reviewed finite context decision campaign with main",
-      "run": "unspecified"
+      "current": "0e067e5105bfbe0f3e8cb92d1c0be2a929325d1fab2a3031ccbf0b79b2dbac28",
+      "reason": "current-file digest rebound: main gained PRs 203, 204, 205, 206 and 213 while PR 202 was open; DAG references re-rewritten to lean4/Imported",
+      "run": "merge of main into lean-replay-campaign"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/theory_of_finite_qm.jsonl",
+      "previous": "00dd68729227dd90721d8f80304e82eb2fb0859d130f5cea216c667af2358f4c",
+      "current": "92eadb2ddbcbb56004f962fd19d82732db1a8246720b7482c16d7e7ba2931210",
+      "reason": "current-file digest rebound: main gained PRs 203, 204, 205, 206 and 213 while PR 202 was open; DAG references re-rewritten to lean4/Imported",
+      "run": "merge of main into lean-replay-campaign"
+    },
+    {
+      "field": "sha256",
+      "path": "lean4/lakefile.lean",
+      "previous": "5dde11b42d3ad28d81db46803f3fc828dac59d508d5235705069cb47e4425fe3",
+      "current": "1e47ffdc9f75c9af163b5b862c8b84a7e4b7d62cbc2ff0a06e21e3c70ba7cc12",
+      "reason": "current-file digest rebound: main gained PRs 203, 204, 205, 206 and 213 while PR 202 was open; DAG references re-rewritten to lean4/Imported",
+      "run": "merge of main into lean-replay-campaign"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivation_dag.json",
+      "previous": "0e067e5105bfbe0f3e8cb92d1c0be2a929325d1fab2a3031ccbf0b79b2dbac28",
+      "current": "452da34906f776249496776612405ac4a7b52ead6018f02bea92b6c6a3cb2814",
+      "reason": "current-file digest rebound: sync cycle re-run after the merge",
+      "run": "merge of main into lean-replay-campaign"
+    },
+    {
+      "field": "sha256",
+      "path": "lean4/lakefile.lean",
+      "previous": "1e47ffdc9f75c9af163b5b862c8b84a7e4b7d62cbc2ff0a06e21e3c70ba7cc12",
+      "current": "950e82551985cc690e5dc84f06df6b4f6baf23990583ccda521d44c85ebfb994",
+      "reason": "current-file digest rebound: main moved while the PR was open; merge train",
+      "run": "merge of main into lean-import-programmes"
+    },
+    {
+      "field": "sha256",
+      "path": "dag/derivation_dag.json",
+      "previous": "452da34906f776249496776612405ac4a7b52ead6018f02bea92b6c6a3cb2814",
+      "current": "bdde3061817da961abf1fadc0cc7535070c2a01c3eb0a403b1de6eda928851a9",
+      "reason": "current-file digest rebound: Integrate current main and preserve bounded context scope",
+      "run": "branch campaign/pgw-context-decision-procedure independent review"
     },
     {
       "field": "sha256",
       "path": "dag/fragments/application_branches.json",
       "previous": "1284c9fb0fb6875dcfe599108ad2b1344d3f52c9183174d4f408bf941958cda5",
       "current": "9a403dfc64df214a0176b5ca8595b63c9d99a505a4c104093ab6584d7d79f8a9",
-      "reason": "current-file digest rebound: Integrate independently reviewed finite context decision campaign with main",
-      "run": "unspecified"
+      "reason": "current-file digest rebound: Integrate current main and preserve bounded context scope",
+      "run": "branch campaign/pgw-context-decision-procedure independent review"
     },
     {
       "field": "sha256",
       "path": "dag/theory_of_finite_qm.jsonl",
-      "previous": "00dd68729227dd90721d8f80304e82eb2fb0859d130f5cea216c667af2358f4c",
-      "current": "348013a3da9e20faa24fed402ab4a2cafb432538e70932d804c9aefd544480ac",
-      "reason": "current-file digest rebound: Integrate independently reviewed finite context decision campaign with main",
-      "run": "unspecified"
+      "previous": "92eadb2ddbcbb56004f962fd19d82732db1a8246720b7482c16d7e7ba2931210",
+      "current": "9f3c0820f65b38559ed9894bcfb0b52a9371ed249bf1eb9cfb7298f0435bb76c",
+      "reason": "current-file digest rebound: Integrate current main and preserve bounded context scope",
+      "run": "branch campaign/pgw-context-decision-procedure independent review"
     },
     {
       "field": "sha256",
       "path": "dag/theory_of_finite_qm.md",
       "previous": "bf6ad7f39618ff0957b0b77e93f2e4a4747ef064de33ce4956dede0d222732ba",
       "current": "ea2f7530f77f4d6a1443d144d6c498f997b2ec436a25e2eba1e3dacdd73b91e8",
-      "reason": "current-file digest rebound: Integrate independently reviewed finite context decision campaign with main",
-      "run": "unspecified"
+      "reason": "current-file digest rebound: Integrate current main and preserve bounded context scope",
+      "run": "branch campaign/pgw-context-decision-procedure independent review"
     },
     {
       "field": "sha256",
       "path": "lean4/lakefile.lean",
-      "previous": "5dde11b42d3ad28d81db46803f3fc828dac59d508d5235705069cb47e4425fe3",
-      "current": "5bdc945ffecf1ca99a91dd41d1fc05264c0fc36967b865cc882817070439a1eb",
-      "reason": "current-file digest rebound: Integrate independently reviewed finite context decision campaign with main",
-      "run": "unspecified"
+      "previous": "950e82551985cc690e5dc84f06df6b4f6baf23990583ccda521d44c85ebfb994",
+      "current": "e22b56d401fea88cc78904253b028c7710c45034233556e1fb5d72dbedbac427",
+      "reason": "current-file digest rebound: Integrate current main and preserve bounded context scope",
+      "run": "branch campaign/pgw-context-decision-procedure independent review"
     }
   ],
   "repin_history": [

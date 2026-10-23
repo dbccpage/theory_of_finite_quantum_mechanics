@@ -1,6 +1,6 @@
 # COMP-C6-FINITE-MARKS
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,17 +47,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GenesisCompUniv.lean](../../../lean4/GenesisCompUniv.lean)
 - sha256 (`bytes`): `966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3`
 - cited in: node.lean, node.source, record TFQ-1306
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisCompUniv`): recorded sha256 `966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisCompUniv`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `card_G1` | yes | yes | yes | - | `#print axioms card_G1` |
-| `init_mem` | yes | yes | yes | - | `#print axioms init_mem` |
-| `markSet` | yes | yes | yes | - | `#print axioms markSet` |
-| `step_closed` | yes | yes | yes | - | `#print axioms step_closed` |
-| `used_marks_finite` | yes | yes | yes | - | `#print axioms used_marks_finite` |
-| `used_state_marks_finite` | yes | yes | yes | - | `#print axioms used_state_marks_finite` |
+| `card_G1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms card_G1` |
+| `init_mem` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms init_mem` |
+| `markSet` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms markSet` |
+| `step_closed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms step_closed` |
+| `used_marks_finite` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms used_marks_finite` |
+| `used_state_marks_finite` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms used_state_marks_finite` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1306_comp_c6_finite_marks.md`

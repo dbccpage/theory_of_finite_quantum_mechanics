@@ -1,6 +1,6 @@
 # AUTH-TC0-TAPE-CONTROL-TYPING
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `COMPUTATIONALLY_CHECKED
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -49,15 +49,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean](../../../papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean)
 - sha256 (`bytes`): `c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df`
 - cited in: node.lean, record TFQ-1328
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.tape_control_authorization_models`): recorded sha256 `c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/tape_control_authorization_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider` |
-| `AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters` |
-| `AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` |
-| `AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider` |
+| `AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.same_halt_control_blocks_control_only_decider` |
+| `AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters` |
+| `AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` |
+| `AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1328_auth_tc0_tape_control_typing.md`

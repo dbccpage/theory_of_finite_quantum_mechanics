@@ -1,6 +1,6 @@
 # MUB6-QUARTET-RAW-HADAMARD-TRANSPORT
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,12 +47,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubMonomialTransport.lean](../../../lean4/MubMonomialTransport.lean)
 - sha256 (`bytes`): `1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63`
 - cited in: node.lean, record TFQ-1225
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubMonomialTransport`): recorded sha256 `1e0f4d069de79c8c48da3425acc14a335bc13ee6d0ebeee4af1f234323e4aa63` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubMonomialTransport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `hasRawQuartet_iff_of_monomialEquivalent` | yes | yes | yes | - | `#print axioms hasRawQuartet_iff_of_monomialEquivalent` |
+| `hasRawQuartet_iff_of_monomialEquivalent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms hasRawQuartet_iff_of_monomialEquivalent` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubQuartetTransportBridge.lean`
@@ -60,13 +61,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubQuartetTransportBridge.lean](../../../lean4/MubQuartetTransportBridge.lean)
 - sha256 (`bytes`): `9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5`
 - cited in: node.lean, record TFQ-1225
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuartetTransportBridge`): recorded sha256 `9a8fe3fc0f59e06b2c1e5b53bdfd5f63b4ae197f0adfee76008a034acd36afb5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubQuartetTransportBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exists_quartet_iff_exists_rawQuartet` | yes | yes | yes | - | `#print axioms exists_quartet_iff_exists_rawQuartet` |
-| `no_quartet_of_concrete_representatives` | yes | yes | yes | - | `#print axioms no_quartet_of_concrete_representatives` |
+| `exists_quartet_iff_exists_rawQuartet` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_exists_rawQuartet` |
+| `no_quartet_of_concrete_representatives` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_quartet_of_concrete_representatives` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1225_mub6_quartet_raw_hadamard_transport.md`

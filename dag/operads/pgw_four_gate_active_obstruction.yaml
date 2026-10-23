@@ -20,8 +20,8 @@ target:
     nf.derivation.apnf.yaml, which is the apartness normal form.
   source_refs:
   - dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean:207-217
-  - omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean:54-57
+  - lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean:216-226
+  - lean4/Imported/OeMssn/MssnObstructionDetector.lean:63-66
   - omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:1105-1107
   paper_refs: []
   source_claim_label: DEFINITION
@@ -36,40 +36,226 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_four_gate_active_obstruction_definition.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: PState
+  line: 86
+  signature_excerpt: structure PState
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: obstP
+  line: 156
+  signature_excerpt: 'def obstP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: retainedP
+  line: 177
+  signature_excerpt: 'def retainedP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: protectedP
+  line: 181
+  signature_excerpt: 'def protectedP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: declaredP
+  line: 185
+  signature_excerpt: 'def declaredP (s : PState) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zeroDeclP
+  line: 193
+  signature_excerpt: 'def zeroDeclP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zeroP
+  line: 130
+  signature_excerpt: 'def zeroP (cols : List (List Nat)) (i j : Nat) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sepP
+  line: 124
+  signature_excerpt: 'def sepP (cols : List (List Nat)) (i j : Nat) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sepCol
+  line: 119
+  signature_excerpt: 'def sepCol (c : List Nat) (i j : Nat) : Bool'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: PState
+  line: 25
+  signature_excerpt: structure PState
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: obstP
+  line: 57
+  signature_excerpt: 'def obstP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: retainedP
+  line: 36
+  signature_excerpt: 'def retainedP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: protectedP
+  line: 40
+  signature_excerpt: 'def protectedP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: declaredP
+  line: 44
+  signature_excerpt: 'def declaredP (s : PState) : Bool'
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zeroDeclP
+  line: 50
+  signature_excerpt: 'def zeroDeclP (s : PState) (i j : Nat) : Bool'
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zeroP
+  line: 32
+  signature_excerpt: 'def zeroP (cols : List (List Nat)) (i j : Nat) : Bool'
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: obstP_factors
+  line: 227
+  signature_excerpt: |-
+    theorem obstP_factors (s : PState) (i j : Nat) :
+        obstP s i j =
+          (retainedP s i j && protectedP s i j && declaredP s
+            && zeroDeclP s i j)
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: obst_of_gates
+  line: 236
+  signature_excerpt: |-
+    theorem obst_of_gates (s : PState) (i j : Nat)
+        (h1 : retainedP s i j = true) (h2 : protectedP s i j = true)
+        (h3 : declaredP s = true) (h4 : zeroDeclP s i j = true) :
+        obstP s i j = true
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gates_of_obst
+  line: 246
+  signature_excerpt: |-
+    theorem gates_of_obst (s : PState) (i j : Nat)
+        (h : obstP s i j = true) :
+        retainedP s i j = true ∧ protectedP s i j = true
+          ∧ declaredP s = true ∧ zeroDeclP s i j = true
+  source: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  source_sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: obstP_factors
+  line: 65
+  signature_excerpt: |-
+    theorem obstP_factors (s : PState) (i j : Nat) :
+        obstP s i j = (retainedP s i j && protectedP s i j && declaredP s && zeroDeclP s i j)
+  source: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  source_sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obstP_factors
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obstP_factors
+  availability: local
   symbol: obstP_factors
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  declaration_status: declaration_found_not_proof_checked
+  line: 227
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obst_of_gates
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obst_of_gates
+  availability: local
   symbol: obst_of_gates
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  declaration_status: declaration_found_not_proof_checked
+  line: 236
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::gates_of_obst
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::gates_of_obst
+  availability: local
   symbol: gates_of_obst
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean
+  repository: this_repository
+  sha256: 02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612
+  declaration_status: declaration_found_not_proof_checked
+  line: 246
   role: source_lead_only
-- original_ref: omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obstP_factors
-  availability: external
+- original_ref: lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors
+  availability: local
   symbol: obstP_factors
-  path: omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/OeMssn/MssnObstructionDetector.lean
+  repository: this_repository
+  sha256: 8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
   role: source_lead_only
 presentation:
   colours: []
@@ -108,8 +294,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

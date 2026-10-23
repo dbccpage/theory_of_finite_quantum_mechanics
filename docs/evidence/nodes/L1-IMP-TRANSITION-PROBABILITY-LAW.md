@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 10
 - cited Lean, Rust or Python symbols found in their in-repo files: 88
-- cited Lean declarations covered by a current replay receipt: 80
+- cited Lean declarations covered by a current replay receipt: 85
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -142,13 +142,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteWignerKernel.lean](../../../lean4/FiniteWignerKernel.lean)
 - sha256 (`bytes`): `29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab`
 - cited in: node.lean, record TFQ-1047
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerKernel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Kernel.tp` | yes | yes | yes | - | `#print axioms WignerFable.Kernel.tp` |
-| `WignerFable.Kernel.tp_eq_born` | yes | yes | yes | - | `#print axioms WignerFable.Kernel.tp_eq_born` |
+| `WignerFable.Kernel.tp` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp` |
+| `WignerFable.Kernel.tp_eq_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp_eq_born` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerSimilarity.lean`
@@ -156,12 +157,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteWignerSimilarity.lean](../../../lean4/FiniteWignerSimilarity.lean)
 - sha256 (`bytes`): `d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37`
 - cited in: node.lean, record TFQ-1047
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerSimilarity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Similarity.tpPreserving_iff_born` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.tpPreserving_iff_born` |
+| `WignerFable.Similarity.tpPreserving_iff_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.tpPreserving_iff_born` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerTheorem.lean`
@@ -169,13 +171,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteWignerTheorem.lean](../../../lean4/FiniteWignerTheorem.lean)
 - sha256 (`bytes`): `b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292`
 - cited in: node.lean, node.source, record TFQ-1047
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Theorem.TpPreserving` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.TpPreserving` |
-| `WignerFable.Theorem.tpPreserving_of_similarity` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.tpPreserving_of_similarity` |
+| `WignerFable.Theorem.TpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.TpPreserving` |
+| `WignerFable.Theorem.tpPreserving_of_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.tpPreserving_of_similarity` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/finite_wigner.rs`

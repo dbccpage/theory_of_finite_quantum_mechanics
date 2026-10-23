@@ -30,11 +30,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/CanonicalMinimizer.lean::key_classification`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/CanonicalMinimizer.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperCanonical.lean::serializedRelabel_sound`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperCanonical.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean::canonicalBytes_classification`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean::canonicalKey_attained`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperWire.lean::portableBytes_injective`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperWire.lean)
+- [`lean4/Imported/Genesis19l57g1/CanonicalMinimizer.lean::key_classification`](../../../lean4/Imported/Genesis19l57g1/CanonicalMinimizer.lean)
+- [`lean4/Imported/Genesis19l57g1/PaperCanonical.lean::serializedRelabel_sound`](../../../lean4/Imported/Genesis19l57g1/PaperCanonical.lean)
+- [`lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalBytes_classification`](../../../lean4/Imported/Genesis19l57g1/PaperSearch.lean)
+- [`lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalKey_attained`](../../../lean4/Imported/Genesis19l57g1/PaperSearch.lean)
+- [`lean4/Imported/Genesis19l57g1/PaperWire.lean::portableBytes_injective`](../../../lean4/Imported/Genesis19l57g1/PaperWire.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::portable_key_v1`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs)

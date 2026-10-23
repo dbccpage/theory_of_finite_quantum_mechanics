@@ -10,9 +10,9 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 17
-- cited Lean declarations covered by a current replay receipt: 14
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 23
+- cited Lean declarations covered by a current replay receipt: 23
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -50,14 +50,47 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
-| `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+| `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
+| `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
+| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+- counts toward the grade: yes
+
+### Lean: `lean4/Imported/PreGenesisToMssn/SnCarrier.lean`
+
+- file: [lean4/Imported/PreGenesisToMssn/SnCarrier.lean](../../../lean4/Imported/PreGenesisToMssn/SnCarrier.lean)
+- sha256 (`bytes`): `73a91689993eeefb0a501d4dbb23942ac14bb243f05e65fe2b16d78ba207fb4c`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnCarrier`): recorded sha256 `73a91689993eeefb0a501d4dbb23942ac14bb243f05e65fe2b16d78ba207fb4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/SnCarrier.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BasePresentation` | yes | yes | yes | none | `#print axioms BasePresentation` |
+| `RetractOutcome` | yes | yes | yes | none | `#print axioms RetractOutcome` |
+| `retractionDownMap` | yes | yes | yes | propext | `#print axioms retractionDownMap` |
+| `sectionLift` | yes | yes | yes | none | `#print axioms sectionLift` |
+- counts toward the grade: yes
+
+### Lean: `lean4/Imported/PreGenesisToMssn/SnTheorems.lean`
+
+- file: [lean4/Imported/PreGenesisToMssn/SnTheorems.lean](../../../lean4/Imported/PreGenesisToMssn/SnTheorems.lean)
+- sha256 (`bytes`): `0b3a26d57be1ddc3d5d808f1d2c6aaabf5ca45822d04e85dc0e51e072e5b1244`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnTheorems`): recorded sha256 `0b3a26d57be1ddc3d5d808f1d2c6aaabf5ca45822d04e85dc0e51e072e5b1244` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/SnTheorems.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `ground_carrier_empty` | yes | yes | yes | none | `#print axioms ground_carrier_empty` |
+| `old_image_base` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms old_image_base` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SnCarrierPfp.lean`
@@ -86,20 +119,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `SnCarrierPfp.table_ne_base_stage_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms SnCarrierPfp.table_ne_base_stage_zero` |
 | `SnCarrierPfp.unrestricted_lift_not_injective` | yes | yes | yes | propext | `#print axioms SnCarrierPfp.unrestricted_lift_not_injective` |
 - counts toward the grade: yes
-
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
-
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
 
 ### Rust: `omega_engine/crates_rs/omega_category_theory/src/mssn_functor_bridge.rs`
 

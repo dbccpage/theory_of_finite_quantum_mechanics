@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 2
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -47,15 +47,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GenesisCompTM.lean](../../../lean4/GenesisCompTM.lean)
 - sha256 (`bytes`): `5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c`
 - cited in: node.lean, node.source, record TFQ-1294
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisCompTM`): recorded sha256 `5e02374ea98ced960a8d3deef1dd84f1b0d053ef00b268d66804af665e2dfe5c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisCompTM`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `runner_not_closed` | yes | yes | yes | - | `#print axioms runner_not_closed` |
-| `runner_step` | yes | yes | yes | - | `#print axioms runner_step` |
-| `runner_unbounded` | yes | yes | yes | - | `#print axioms runner_unbounded` |
-| `runner_unboundedSupply` | yes | yes | yes | - | `#print axioms runner_unboundedSupply` |
+| `runner_not_closed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms runner_not_closed` |
+| `runner_step` | yes | yes | yes | propext | `#print axioms runner_step` |
+| `runner_unbounded` | yes | yes | yes | Quot.sound, propext | `#print axioms runner_unbounded` |
+| `runner_unboundedSupply` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms runner_unboundedSupply` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/GenesisComputation.lean`
@@ -65,6 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, record TFQ-1294
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisComputation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

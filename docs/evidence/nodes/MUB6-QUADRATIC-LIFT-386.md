@@ -1,6 +1,6 @@
 # MUB6-QUADRATIC-LIFT-386
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,12 +47,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubQuadraticLiftNarrowBox.lean](../../../lean4/MubQuadraticLiftNarrowBox.lean)
 - sha256 (`bytes`): `0e3a98ed598a0b74eaf2b6c2c152cc41ea40a416766501734249920419c053ac`
 - cited in: node.lean, record TFQ-1262
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticLiftNarrowBox`): recorded sha256 `0e3a98ed598a0b74eaf2b6c2c152cc41ea40a416766501734249920419c053ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubQuadraticLiftNarrowBox`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exists_quartet_iff_narrow_table` | yes | yes | yes | - | `#print axioms exists_quartet_iff_narrow_table` |
+| `exists_quartet_iff_narrow_table` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_narrow_table` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubQuadraticLiftTable.lean`
@@ -60,13 +61,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/MubQuadraticLiftTable.lean](../../../lean4/MubQuadraticLiftTable.lean)
 - sha256 (`bytes`): `a9b19face97bd0413c997ca484bab4866b89085cee4330d29e55b10c5389b4d8`
 - cited in: node.lean, record TFQ-1262
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MubQuadraticLiftTable`): recorded sha256 `a9b19face97bd0413c997ca484bab4866b89085cee4330d29e55b10c5389b4d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build MubQuadraticLiftTable`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exists_quartet_iff_table` | yes | yes | yes | - | `#print axioms exists_quartet_iff_table` |
-| `rows_match` | yes | yes | yes | - | `#print axioms rows_match` |
+| `exists_quartet_iff_table` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_table` |
+| `rows_match` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms rows_match` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1262_mub6_quadratic_lift_386.md`

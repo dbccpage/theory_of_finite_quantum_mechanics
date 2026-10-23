@@ -33,12 +33,12 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean::nothing_balanced`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean::told_iff`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Blind.lean::blind_three_iff`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Blind.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Blind.lean::cone_decides`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Blind.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Same.lean::balances_iff`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Same.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Tell.lean::told_iff`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Tell.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentyfifth/Balance.lean::nothing_balanced`](../../../lean4/Imported/GenesisOngoingCore/Twentyfifth/Balance.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentyfifth/Balance.lean::told_iff`](../../../lean4/Imported/GenesisOngoingCore/Twentyfifth/Balance.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentyfifth/Blind.lean::blind_three_iff`](../../../lean4/Imported/GenesisOngoingCore/Twentyfifth/Blind.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentyfifth/Blind.lean::cone_decides`](../../../lean4/Imported/GenesisOngoingCore/Twentyfifth/Blind.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentyfourth/Same.lean::balances_iff`](../../../lean4/Imported/GenesisOngoingCore/Twentyfourth/Same.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentyfourth/Tell.lean::told_iff`](../../../lean4/Imported/GenesisOngoingCore/Twentyfourth/Tell.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: the H3V7N5QF package holds no Rust`

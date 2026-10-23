@@ -49,6 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, node.source, record TFQ-1288
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisComputation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -57,7 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ofSplit_injective` | yes | yes | yes | propext | `#print axioms ofSplit_injective` |
 | `oneHole_iff_split` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms oneHole_iff_split` |
 | `plug1_ofSplit` | yes | yes | yes | Quot.sound, propext | `#print axioms plug1_ofSplit` |
-| `plug1_ofSplit_eq_plug` | yes | yes | yes | module-level | `#print axioms plug1_ofSplit_eq_plug` |
+| `plug1_ofSplit_eq_plug` | yes | yes | yes | Quot.sound, propext | `#print axioms plug1_ofSplit_eq_plug` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`

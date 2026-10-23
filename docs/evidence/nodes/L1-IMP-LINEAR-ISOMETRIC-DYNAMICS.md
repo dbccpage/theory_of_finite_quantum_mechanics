@@ -1,6 +1,6 @@
 # L1-IMP-LINEAR-ISOMETRIC-DYNAMICS
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 9
 - cited Lean, Rust or Python symbols found in their in-repo files: 26
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -52,12 +52,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerKernel.lean`
@@ -65,16 +66,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteWignerKernel.lean](../../../lean4/FiniteWignerKernel.lean)
 - sha256 (`bytes`): `29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerKernel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Kernel.Similarity` | yes | yes | yes | - | `#print axioms WignerFable.Kernel.Similarity` |
-| `WignerFable.Kernel.eq_smul_of_normSq_ip_eq` | yes | yes | yes | - | `#print axioms WignerFable.Kernel.eq_smul_of_normSq_ip_eq` |
-| `WignerFable.Kernel.expansion` | yes | yes | yes | - | `#print axioms WignerFable.Kernel.expansion` |
-| `WignerFable.Kernel.tp` | yes | yes | yes | - | `#print axioms WignerFable.Kernel.tp` |
-| `WignerFable.Kernel.tp_eq_born` | yes | yes | yes | - | `#print axioms WignerFable.Kernel.tp_eq_born` |
+| `WignerFable.Kernel.Similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.Similarity` |
+| `WignerFable.Kernel.eq_smul_of_normSq_ip_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.eq_smul_of_normSq_ip_eq` |
+| `WignerFable.Kernel.expansion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.expansion` |
+| `WignerFable.Kernel.tp` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp` |
+| `WignerFable.Kernel.tp_eq_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp_eq_born` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerSimilarity.lean`
@@ -82,19 +84,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteWignerSimilarity.lean](../../../lean4/FiniteWignerSimilarity.lean)
 - sha256 (`bytes`): `d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerSimilarity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Similarity.F3_not_induced_by_antiunitary` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.F3_not_induced_by_antiunitary` |
-| `WignerFable.Similarity.F3_not_induced_by_unitary` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.F3_not_induced_by_unitary` |
-| `WignerFable.Similarity.F3_similarity` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.F3_similarity` |
-| `WignerFable.Similarity.F3_tpPreserving` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.F3_tpPreserving` |
-| `WignerFable.Similarity.exists_unitary_iff` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.exists_unitary_iff` |
-| `WignerFable.Similarity.permMatrix_unitary` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.permMatrix_unitary` |
-| `WignerFable.Similarity.three_not_sum_two_sq` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.three_not_sum_two_sq` |
-| `WignerFable.Similarity.tpPreserving_iff_born` | yes | yes | yes | - | `#print axioms WignerFable.Similarity.tpPreserving_iff_born` |
+| `WignerFable.Similarity.F3_not_induced_by_antiunitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_not_induced_by_antiunitary` |
+| `WignerFable.Similarity.F3_not_induced_by_unitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_not_induced_by_unitary` |
+| `WignerFable.Similarity.F3_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_similarity` |
+| `WignerFable.Similarity.F3_tpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_tpPreserving` |
+| `WignerFable.Similarity.exists_unitary_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.exists_unitary_iff` |
+| `WignerFable.Similarity.permMatrix_unitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.permMatrix_unitary` |
+| `WignerFable.Similarity.three_not_sum_two_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.three_not_sum_two_sq` |
+| `WignerFable.Similarity.tpPreserving_iff_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.tpPreserving_iff_born` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerTheorem.lean`
@@ -102,18 +105,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteWignerTheorem.lean](../../../lean4/FiniteWignerTheorem.lean)
 - sha256 (`bytes`): `b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Theorem.TpPreserving` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.TpPreserving` |
-| `WignerFable.Theorem.coord_rigidity` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.coord_rigidity` |
-| `WignerFable.Theorem.finite_wigner` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.finite_wigner` |
-| `WignerFable.Theorem.finite_wigner_cases` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.finite_wigner_cases` |
-| `WignerFable.Theorem.sgn_consistent` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.sgn_consistent` |
-| `WignerFable.Theorem.similarity_bijective` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.similarity_bijective` |
-| `WignerFable.Theorem.tpPreserving_of_similarity` | yes | yes | yes | - | `#print axioms WignerFable.Theorem.tpPreserving_of_similarity` |
+| `WignerFable.Theorem.TpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.TpPreserving` |
+| `WignerFable.Theorem.coord_rigidity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.coord_rigidity` |
+| `WignerFable.Theorem.finite_wigner` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.finite_wigner` |
+| `WignerFable.Theorem.finite_wigner_cases` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.finite_wigner_cases` |
+| `WignerFable.Theorem.sgn_consistent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.sgn_consistent` |
+| `WignerFable.Theorem.similarity_bijective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.similarity_bijective` |
+| `WignerFable.Theorem.tpPreserving_of_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.tpPreserving_of_similarity` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/GaussRatAutomorphisms.lean`
@@ -121,12 +125,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/GaussRatAutomorphisms.lean](../../../lean4/GaussRatAutomorphisms.lean)
 - sha256 (`bytes`): `714abb8b88f233d38c3046cead72d58bbf770c1b6902a27323d4e47a58de93e5`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `GaussRatAutomorphisms`): recorded sha256 `714abb8b88f233d38c3046cead72d58bbf770c1b6902a27323d4e47a58de93e5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GaussRatAutomorphisms`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.GaussRatAut.ringHom_eq_id_or_star` | yes | yes | yes | - | `#print axioms WignerFable.GaussRatAut.ringHom_eq_id_or_star` |
+| `WignerFable.GaussRatAut.ringHom_eq_id_or_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.GaussRatAut.ringHom_eq_id_or_star` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H003ReversibilityGate.lean`
@@ -134,7 +139,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H003ReversibilityGate.lean](../../../lean4/H003ReversibilityGate.lean)
 - sha256 (`bytes`): `d308e3e3f99b14b807f03d3f762cf91a928a78f3c3fa21cef224717ce0b415f2`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H003ReversibilityGate`): recorded sha256 `d308e3e3f99b14b807f03d3f762cf91a928a78f3c3fa21cef224717ce0b415f2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build H003ReversibilityGate`
 - counts toward the grade: yes
 
@@ -143,7 +149,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H006PermutationUnitary.lean](../../../lean4/H006PermutationUnitary.lean)
 - sha256 (`bytes`): `84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H006PermutationUnitary`): recorded sha256 `84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build H006PermutationUnitary`
 - counts toward the grade: yes
 

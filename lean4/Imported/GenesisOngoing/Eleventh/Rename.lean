@@ -1,0 +1,54 @@
+/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
+   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Eleventh/Rename.lean
+   Original sha256: faa5daa1dc2cd961be64d1f468912da0093a38a4246043fc7f788d929b14c0ac (bytes as found)
+   Imported on    : 2026-10-22
+   Module         : Imported.GenesisOngoing.Eleventh.Rename
+   Changes        : local import lines rewritten to the Imported namespace; line endings normalised to LF;
+                    no declaration, proof or comment of the original was edited.
+                    Port notes (version drift): none.
+   AuthorityEffect: None. -/
+import Imported.GenesisOngoing.Eleventh.Compare
+
+/-!
+# Exchange of the relations carries writings
+
+Plan target 4.  The terms are unchanged by the exchange (`swap9_T`), so a
+writing of the terms is the same writing, and determination of `q` on `s` is
+determination of `!q` on `s.swap`.
+-/
+
+namespace Seed.Eleventh
+
+open Seed Seed.Ninth Seed.Eighth NDSt
+
+theorem determinesRel_swap (s : NDSt) (w : ℕ → ℕ) (q : Rel) :
+    determinesRel s.swap w q ↔ determinesRel s w (!q) := by
+  constructor
+  · intro h L K x y x' y' hx hy hx' hy' hL hK hL' hK'
+    have hxS : x ∈ s.swap.T := by simpa [NDSt.swap] using hx
+    have hyS : y ∈ s.swap.T := by simpa [NDSt.swap] using hy
+    have hxS' : x' ∈ s.swap.T := by simpa [NDSt.swap] using hx'
+    have hyS' : y' ∈ s.swap.T := by simpa [NDSt.swap] using hy'
+    have := h L K x y x' y' hxS hyS hxS' hyS' hL hK hL' hK'
+    simpa [NDSt.swap] using this
+  · intro h L K x y x' y' hx hy hx' hy' hL hK hL' hK'
+    have hxS : x ∈ s.T := by simpa [NDSt.swap] using hx
+    have hyS : y ∈ s.T := by simpa [NDSt.swap] using hy
+    have hxS' : x' ∈ s.T := by simpa [NDSt.swap] using hx'
+    have hyS' : y' ∈ s.T := by simpa [NDSt.swap] using hy'
+    have := h L K x y x' y' hxS hyS hxS' hyS' hL hK hL' hK'
+    simpa [NDSt.swap] using this
+
+theorem determines_swap (s : NDSt) (w : ℕ → ℕ) :
+    determines s.swap w ↔ determines s w := by
+  constructor
+  · intro h q
+    have := (determinesRel_swap s w (!q)).1 (h (!q))
+    simpa using this
+  · intro h q
+    exact (determinesRel_swap s w q).2 (h (!q))
+
+theorem Step11.swap {s t : NDSt} (h : Step11 s t) : Step11 s.swap t.swap :=
+  Step9.swap h
+
+end Seed.Eleventh

@@ -49,13 +49,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, node.source, record TFQ-1296
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisComputation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `genesis_unbounded_admission` | yes | yes | yes | propext | `#print axioms genesis_unbounded_admission` |
 | `replay_admitDatum_replicate` | yes | yes | yes | propext | `#print axioms replay_admitDatum_replicate` |
-| `stepE` | yes | yes | yes | module-level | `#print axioms stepE` |
+| `stepE` | yes | yes | yes | propext | `#print axioms stepE` |
 | `stepE_data_mono` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms stepE_data_mono` |
 - counts toward the grade: yes
 
