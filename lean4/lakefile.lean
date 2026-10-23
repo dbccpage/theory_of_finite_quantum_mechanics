@@ -971,6 +971,10 @@ lean_lib CampaignGenesisSealedSource where
 lean_lib CampaignGenesisReplayRefinement where
   roots := #[`CampaignGenesisReplayRefinement]
 
+-- Certified carrier bridge reuses the sealed Genesis source library above.
+lean_lib CampaignGenesisCarrierBridge where
+  roots := #[`CampaignGenesisCarrierBridge]
+
 -- Declared demand-policy extension. Non-default.
 lean_lib CampaignGenesisDemandPolicy where
   roots := #[`CampaignGenesisDemandPolicy]
