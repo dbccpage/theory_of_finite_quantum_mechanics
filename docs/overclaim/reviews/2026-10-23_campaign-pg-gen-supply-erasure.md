@@ -3,8 +3,8 @@
 AuthorityEffect: None. AI self-review, awaiting human review.
 
 Scope: PG-GEN-SUPPLY-ERASURE and its PG-GEN-SUPPLY-NO-OP dependency,
-against main `611b954f66d5a3464512dd2a5e5ef6f88013ea84`. The compiled LF
-source commit is `2b0da98eb`; the replay receipt supplies its full SHA.
+against main `7a666b26da10a2ea6daf5e4309a4d6799a6bb1e5`. The compiled LF
+source commit is `4f9c4599b08464d1b855bf7eefbc0f19f3d0f39e`; the replay receipt supplies its full SHA.
 
 Method: read every exported declaration, its source types and the independent
 checker, and compare the atomic claims below. Lean and Lake were not run as
@@ -68,8 +68,8 @@ encoding the answer. Partial failure is not converted into a no-op.
 The final scanner and full campaign outputs are recorded in
 `dag/research/campaign_pg-gen-supply-erasure_checks.json`. The scan reports HIGH=0, MEDIUM=0, LOW=5. Three LOW findings concern
 existing tensor receipt/numeric metadata. Two concern the historical PFP
-boilerplate in `dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md:82`
-and `dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md:80`. Exact
+boilerplate in `dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md:69`
+and `dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md:68`. Exact
 SymPy arithmetic gives 520 - 1040 + 780 + 780 = 1040,
 4*52 + 3*2 + 4 = 218, and 114 - 56 - 2 = 56; for the other row it gives
 530 - 1060 + 795 + 795 = 1060, 4*53 + 3*2 + 2 = 220, and

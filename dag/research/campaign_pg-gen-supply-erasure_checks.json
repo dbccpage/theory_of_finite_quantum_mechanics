@@ -2,14 +2,14 @@
   "schema_version": "campaign_checks.v1",
   "authority_effect": "None",
   "node": "PG-GEN-SUPPLY-ERASURE",
-  "base_sha": "611b954f66d5a3464512dd2a5e5ef6f88013ea84",
-  "source_commit": "2b0da98eb9d339076af9fb5a239741dae46af5b8",
-  "checked_at": "2026-10-23T05:22:08.963473+00:00",
+  "base_sha": "7a666b26da10a2ea6daf5e4309a4d6799a6bb1e5",
+  "source_commit": "4f9c4599b08464d1b855bf7eefbc0f19f3d0f39e",
+  "checked_at": "2026-10-23T05:50:26.394692+00:00",
   "pipeline": [
     {
       "command": "python -I -X utf8 dag/sync_pfp_results.py",
       "exit_code": 0,
-      "stdout": "stale=dag/derivation_dag.json\n",
+      "stdout": "pfp results synchronized\n",
       "stderr": ""
     },
     {
@@ -58,7 +58,8 @@
       "command": "python -I -X utf8 scripts/build_readme_facts.py --write",
       "exit_code": 0,
       "stdout": "README facts written\n",
-      "stderr": ""
+      "stderr": "",
+      "execution": "standalone rerun completed after original interrupted while scanning facts"
     },
     {
       "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --write",
@@ -69,17 +70,17 @@
     {
       "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
       "exit_code": 0,
-      "stdout": "evidence map written: 892 nodes, grades {'E0': 280, 'E1': 230, 'E2': 322, 'E3': 60, 'E4': 0}, 488 flags\n",
+      "stdout": "evidence map written: 892 nodes, grades {'E0': 280, 'E1': 230, 'E2': 321, 'E3': 61, 'E4': 0}, 488 flags\n",
       "stderr": ""
     },
     {
       "command": "python -I -X utf8 dag/pfp/campaign/make_queue.py",
       "exit_code": 0,
-      "stdout": "  1  549 TFQ-0006                                       L1_TO_L2               The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers d\n  2  426 L1-IMP-SECTOR-SYMMETRY-LAW                     L1_TO_L2               Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutatio\n  3  240 TFQ-0008                                       FINITE_QM_DYNAMICS     After the finite carrier, the required dynamics are finite: an instrument or measurement u\n  4   57 TFQ-0009                                       FINITE_GAUGE           A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, \n  5   54 TFQ-0012                                       FINITE_QCD             quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_\n  6   39 PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT           PREGENESIS             Write P for the presented inscriptions and O for the internal observations. Supplying <a> \n  7   28 CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT          CONSTRUCTOR_THEORY     Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and \n  8   28 FSP-HUBBARD-PROTECTED-REPRESENTATIONS          FERMION_SIGN           For the Trotter auxiliary-field Hubbard determinants, the spin-determinant product d_up d_\n  9   28 TFQ-0014                                       FINITE_QCD             finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). \n 10   25 MUB6-GLOBAL-OBLIGATIONS                        MUTUALLY_UNBIASED_BASES Separate exact stated-region exclusions and conditional reductions from a global dimension\n 11   25 TFQ-0017                                       FINITE_QCD             quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitar\n 12   24 FSP-U1-WILSON-ACTION                           FERMION_SIGN           With link phases U_ij = exp(i A_ij) and oriented plaquette products U_p, the Wilson action\n 13   24 PGW-SN-E08-WEIGHTED-L1-DUALITY                 MSSN_SN                Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weight\n 14   22 FSP-WILSON-DIRAC-GAMMA5                        FERMION_SIGN           The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenva\n 15   21 FSP-LATTICE-ANOMALY-INFLOW                     FERMION_SIGN           Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant\n 16   21 PGW-CONTEXT-DECISION-PROCEDURE                 GENESIS                No decision procedure over contexts is built (X-1); collapse of two data means every well-\n 17   20 FSP-SU2-ADJOINT-REAL-DET                       FERMION_SIGN           For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary s\n 18   19 FSP-QCD-CHEMICAL-POTENTIAL-DET                 FERMION_SIGN           For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger,\n 19   17 FSP-IMAGINARY-MU-REAL-DET                      FERMION_SIGN           At mu = i mu_I with real mu_I, gamma5 D(i mu_I) gamma5 = D(i mu_I)^dagger, so det D(i mu_I\n 20   16 FSP-LATTICE-WESS-ZUMINO-SUSY                   FERMION_SIGN           Claimed: a finite-lattice 2D N=1 Wess-Zumino model with supercharges obeying {Q_a, Q_b} = \n 21   15 L1-IMP-TRANSITION-PROBABILITY-LAW              L1_TO_L2               Transition-probability preservation of the ray dynamics: the evolution of rays of the lift\n 22   14 FSP-MAJORANA-CLIFFORD-PARITY                   FERMION_SIGN           For N CAR modes, gamma_{2j-1} = c_j + c_j^dagger and gamma_{2j} = -i(c_j - c_j^dagger) are\n 23   14 FSP-WITTEN-INDEX-INVARIANCE                    FERMION_SIGN           On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dag\n 24   14 TFQ-0026                                       FINITE_QCD             lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and\n 25   13 FSP-KITAEV-HONEYCOMB-SOLUTION                  FERMION_SIGN           Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette f\n 26   13 TFQ-0027                                       FINITE_QCD             wilson_species_count in the same file counts corners where the rational expression mass + \n 27   12 FSP-LAUGHLIN-EXCHANGE-PHASE                    FERMION_SIGN           Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin s\n 28   12 PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER           WDP                    GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protect\n 29   11 CT-INFORMATION-MEDIA-INTEROPERABILITY          CONSTRUCTOR_THEORY     Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.\n 30   11 DFM-HIERARCHICAL-BOREL                         DRESSING_FIELD         Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem\n 31   10 FSP-BF-2GROUP-SIGN-CLAIM                       FERMION_SIGN           Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs c\n 32    9 FSP-COBORDISM-INTRINSIC-SIGN                   FERMION_SIGN           Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5\n 33    9 PGW-IDENTITY-CONVENTION-UNDECIDABLE            PREGENESIS             Whether <a> supplied after <> is a new state depends on an identity convention that no pro\n 34    8 CQFT-LOCAL-NET-AXIOMS-IMPORT                   CAUSAL_QFT             Imported structure: a spacetime with a causal order, and a family of unital star-algebras \n 35    8 DFM-CONTINUUM-INTERFACE                        DRESSING_FIELD         A finite graph dressing theorem leaves smooth-field existence, patching, topology, localit\n 36    8 FSP-REGGE-DEFICIT-ACTION                       FERMION_SIGN           On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon\n 37    6 FSP-DISCRETE-WDW-CONSTRAINT                    FERMION_SIGN           Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegativ\n 38    6 FSP-PACHNER-INVARIANCE-CLAIM                   FERMION_SIGN           Claimed: a discrete topological partition function on 4D triangulations is invariant under\n 39    6 GTH-SHADOW                                     GENESIS_TO_HIGHER      No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite \n 40    6 PGW-ENDOGENOUS-DEMAND-OB1                      GENESIS                No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successo\n 41    6 PGW-WDP-BRIDGE-ONGOING-TO-WINDOW               WDP                    GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked tripl\n 42    6 TFQ-0032                                       FINITE_QCD             The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a qua\n 43    5 FSP-CDT-FOLIATION-POSITIVITY                   FERMION_SIGN           Claimed: a global proper-time foliation in CDT forbids spatial branching, removes Lorentzi\n 44    5 GTH-TRUNC                                      GENESIS_TO_HIGHER      Let a finite shadow be a finite semi-simplicial set or a finite globular set as in GTH-SHA\n 45    5 TFQ-0033                                       FINITE_QCD             The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_\n 46    4 FSP-DIRAC-KAHLER-SPINFOAM-CLAIM                FERMION_SIGN           Claimed: Dirac-Kaehler fermions on simplicial lattices give 2^(D/2) flavors and EPRL-FK bo\n 47    4 GTH-HORNS                                      GENESIS_TO_HIGHER      The horn Lambda^k[n] is the union of all faces of the standard n-simplex except the face o\n 48    4 GTH-LANG-CORE                                  GENESIS_TO_HIGHER      The priced admission language is not defined. The reading intended for its primitives, whi\n 49    4 LQG-EPRL-VERTEX-IMPORT                         LOOP_QUANTUM_GRAVITY   Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:071\n 50    4 MAJ-IMPORT-COSET-WEIGHT-NP-HARD                MAJORANA               Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berl\n 51    4 MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE            MAJORANA               For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning ra\n 52    3 CT-TASK-CONSTRUCTOR-POSSIBILITY                CONSTRUCTOR_THEORY     Imported vocabulary, audited against Deutsch (2013, Section 1.1 eqs. (1)-(2) pp. 2-4) and \n 53    3 FSP-XCUBE-FRACTON-MODEL                        FERMION_SIGN           Vijay-Haah-Fu (2016): the X-cube model on an Lx x Ly x Lz periodic cubic lattice has pairw\n 54    3 GTH-HOTT-MODEL                                 GENESIS_TO_HIGHER      No deep embedding of a dependent type theory, and no finite model of such a theory, is con\n 55    3 GTH-LANG-REFLECT                               GENESIS_TO_HIGHER      No quotation layer for the priced admission language is defined, because that language is \ntotal 160\n",
+      "stdout": "  1  549 TFQ-0006                                       L1_TO_L2               The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers d\n  2  426 L1-IMP-SECTOR-SYMMETRY-LAW                     L1_TO_L2               Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutatio\n  3  240 TFQ-0008                                       FINITE_QM_DYNAMICS     After the finite carrier, the required dynamics are finite: an instrument or measurement u\n  4   57 TFQ-0009                                       FINITE_GAUGE           A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, \n  5   54 TFQ-0012                                       FINITE_QCD             quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_\n  6   39 PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT           PREGENESIS             Write P for the presented inscriptions and O for the internal observations. Supplying <a> \n  7   28 CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT          CONSTRUCTOR_THEORY     Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and \n  8   28 FSP-HUBBARD-PROTECTED-REPRESENTATIONS          FERMION_SIGN           For the Trotter auxiliary-field Hubbard determinants, the spin-determinant product d_up d_\n  9   28 TFQ-0014                                       FINITE_QCD             finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). \n 10   25 MUB6-GLOBAL-OBLIGATIONS                        MUTUALLY_UNBIASED_BASES Separate exact stated-region exclusions and conditional reductions from a global dimension\n 11   25 TFQ-0017                                       FINITE_QCD             quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitar\n 12   24 FSP-U1-WILSON-ACTION                           FERMION_SIGN           With link phases U_ij = exp(i A_ij) and oriented plaquette products U_p, the Wilson action\n 13   24 PGW-SN-E08-WEIGHTED-L1-DUALITY                 MSSN_SN                Example E08 takes finite rational cochain spaces, d\u2080: C\u2070 \u2192 C\u00b9 and positive rational weight\n 14   22 FSP-WILSON-DIRAC-GAMMA5                        FERMION_SIGN           The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenva\n 15   21 FSP-LATTICE-ANOMALY-INFLOW                     FERMION_SIGN           Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant\n 16   21 PGW-CONTEXT-DECISION-PROCEDURE                 GENESIS                No decision procedure over contexts is built (X-1); collapse of two data means every well-\n 17   20 FSP-SU2-ADJOINT-REAL-DET                       FERMION_SIGN           For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary s\n 18   19 FSP-QCD-CHEMICAL-POTENTIAL-DET                 FERMION_SIGN           For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger,\n 19   17 FSP-IMAGINARY-MU-REAL-DET                      FERMION_SIGN           At mu = i mu_I with real mu_I, gamma5 D(i mu_I) gamma5 = D(i mu_I)^dagger, so det D(i mu_I\n 20   16 FSP-LATTICE-WESS-ZUMINO-SUSY                   FERMION_SIGN           Claimed: a finite-lattice 2D N=1 Wess-Zumino model with supercharges obeying {Q_a, Q_b} = \n 21   15 L1-IMP-TRANSITION-PROBABILITY-LAW              L1_TO_L2               Imported dynamical law: the evolution of rays preserves the Born probability of every tran\n 22   14 FSP-MAJORANA-CLIFFORD-PARITY                   FERMION_SIGN           For N CAR modes, gamma_{2j-1} = c_j + c_j^dagger and gamma_{2j} = -i(c_j - c_j^dagger) are\n 23   14 FSP-WITTEN-INDEX-INVARIANCE                    FERMION_SIGN           On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dag\n 24   14 TFQ-0026                                       FINITE_QCD             lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and\n 25   13 FSP-KITAEV-HONEYCOMB-SOLUTION                  FERMION_SIGN           Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette f\n 26   13 TFQ-0027                                       FINITE_QCD             wilson_species_count in the same file counts corners where the rational expression mass + \n 27   12 FSP-LAUGHLIN-EXCHANGE-PHASE                    FERMION_SIGN           Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin s\n 28   12 PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER           WDP                    GEN-WDP-03: with actual cases X, a declared evaluation report E: X \u2192 Reports and a protect\n 29   11 CT-INFORMATION-MEDIA-INTEROPERABILITY          CONSTRUCTOR_THEORY     Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.\n 30   11 DFM-HIERARCHICAL-BOREL                         DRESSING_FIELD         Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem\n 31   10 FSP-BF-2GROUP-SIGN-CLAIM                       FERMION_SIGN           Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs c\n 32    9 FSP-COBORDISM-INTRINSIC-SIGN                   FERMION_SIGN           Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5\n 33    9 PGW-IDENTITY-CONVENTION-UNDECIDABLE            PREGENESIS             Whether <a> supplied after <> is a new state depends on an identity convention that no pro\n 34    8 CQFT-LOCAL-NET-AXIOMS-IMPORT                   CAUSAL_QFT             Imported structure: a spacetime with a causal order, and a family of unital star-algebras \n 35    8 DFM-CONTINUUM-INTERFACE                        DRESSING_FIELD         A finite graph dressing theorem leaves smooth-field existence, patching, topology, localit\n 36    8 FSP-REGGE-DEFICIT-ACTION                       FERMION_SIGN           On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon\n 37    6 FSP-DISCRETE-WDW-CONSTRAINT                    FERMION_SIGN           Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegativ\n 38    6 FSP-PACHNER-INVARIANCE-CLAIM                   FERMION_SIGN           Claimed: a discrete topological partition function on 4D triangulations is invariant under\n 39    6 GTH-SHADOW                                     GENESIS_TO_HIGHER      No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite \n 40    6 PGW-ENDOGENOUS-DEMAND-OB1                      GENESIS                No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successo\n 41    6 PGW-WDP-BRIDGE-ONGOING-TO-WINDOW               WDP                    GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked tripl\n 42    6 TFQ-0032                                       FINITE_QCD             The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a qua\n 43    5 FSP-CDT-FOLIATION-POSITIVITY                   FERMION_SIGN           Claimed: a global proper-time foliation in CDT forbids spatial branching, removes Lorentzi\n 44    5 GTH-TRUNC                                      GENESIS_TO_HIGHER      Let a finite shadow be a finite semi-simplicial set or a finite globular set as in GTH-SHA\n 45    5 TFQ-0033                                       FINITE_QCD             The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_\n 46    4 FSP-DIRAC-KAHLER-SPINFOAM-CLAIM                FERMION_SIGN           Claimed: Dirac-Kaehler fermions on simplicial lattices give 2^(D/2) flavors and EPRL-FK bo\n 47    4 GTH-HORNS                                      GENESIS_TO_HIGHER      The horn Lambda^k[n] is the union of all faces of the standard n-simplex except the face o\n 48    4 GTH-LANG-CORE                                  GENESIS_TO_HIGHER      The priced admission language is not defined. The reading intended for its primitives, whi\n 49    4 LQG-EPRL-VERTEX-IMPORT                         LOOP_QUANTUM_GRAVITY   Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:071\n 50    4 MAJ-IMPORT-COSET-WEIGHT-NP-HARD                MAJORANA               Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berl\n 51    4 MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE            MAJORANA               For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning ra\n 52    3 CT-TASK-CONSTRUCTOR-POSSIBILITY                CONSTRUCTOR_THEORY     Imported vocabulary, audited against Deutsch (2013, Section 1.1 eqs. (1)-(2) pp. 2-4) and \n 53    3 FSP-XCUBE-FRACTON-MODEL                        FERMION_SIGN           Vijay-Haah-Fu (2016): the X-cube model on an Lx x Ly x Lz periodic cubic lattice has pairw\n 54    3 GTH-HOTT-MODEL                                 GENESIS_TO_HIGHER      No deep embedding of a dependent type theory, and no finite model of such a theory, is con\n 55    3 GTH-LANG-REFLECT                               GENESIS_TO_HIGHER      No quotation layer for the priced admission language is defined, because that language is \ntotal 160\n",
       "stderr": ""
     },
     {
-      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/pg-gen-supply-erasure --reason Exact Genesis source replay representation and receipt refresh.",
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/pg-gen-supply-erasure --reason Re-pin after final source receipts.",
       "exit_code": 0,
       "stdout": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha lean4/lakefile.lean\n2 stale pin(s)\n",
       "stderr": ""
@@ -87,7 +88,7 @@
     {
       "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
       "exit_code": 0,
-      "stdout": "evidence map written: 892 nodes, grades {'E0': 280, 'E1': 230, 'E2': 322, 'E3': 60, 'E4': 0}, 488 flags\n",
+      "stdout": "evidence map written: 892 nodes, grades {'E0': 280, 'E1': 230, 'E2': 321, 'E3': 61, 'E4': 0}, 488 flags\n",
       "stderr": ""
     },
     {
@@ -185,7 +186,7 @@
     {
       "command": "python -I -X utf8 scripts/contract_scores.py check",
       "exit_code": 1,
-      "stdout": "{\n  \"originals\": 0,\n  \"combined_files\": 8659,\n  \"all_passed\": false,\n  \"errors\": [\n    {\n      \"path\": \"lean4/HilbertLiftOperators.contract.score.yaml\",\n      \"error\": \"Expecting ',' delimiter: line 202 column 7 (char 10999)\"\n    }\n  ]\n}\n",
+      "stdout": "{\n  \"originals\": 0,\n  \"combined_files\": 8661,\n  \"all_passed\": false,\n  \"errors\": [\n    {\n      \"path\": \"lean4/HilbertLiftOperators.contract.score.yaml\",\n      \"error\": \"Expecting ',' delimiter: line 202 column 7 (char 10999)\"\n    }\n  ]\n}\n",
       "stderr": ""
     },
     {
@@ -197,27 +198,17 @@
     {
       "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
       "exit_code": 0,
-      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 611b954f66d5); HIGH=0 MEDIUM=0 LOW=5\n",
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 7a666b26da10); HIGH=0 MEDIUM=0 LOW=5\n",
       "stderr": ""
     },
     {
-      "command": "Campaign and owning-fragment pytest with known sibling root",
+      "command": "python -m pytest -q [five prescribed campaign files]; TFQ_SYMBOL_GAME_ROOT set to known sibling checkout",
       "exit_code": 0,
-      "stdout": ".................................                                        [100%]\n33 passed in 72.87s (0:01:12)\n"
+      "stdout": "........................                                                 [100%]\n24 passed in 60.51s (0:01:00)\n",
+      "prior_attempt": "Concurrent run before tensor re-pin failed one pin check (23 passed). Sequential rerun after the last pipeline write passed all 24 tests. Earlier base had 33 tests; that result is not reported for current main."
     },
     {
-      "command": "Independent exact checker normal and optimized",
-      "exit_code": 0,
-      "optimized_output_identical": true,
-      "receipt": "dag/research/campaign_pg-gen-supply-erasure_independent.json"
-    },
-    {
-      "command": "python -I -X utf8 -m mypy --strict checks/independent/pg-gen-supply-erasure.py",
-      "exit_code": 0,
-      "stdout": "Success: no issues found in 1 source file"
-    },
-    {
-      "command": "Three campaign companion history and active source/evidence hash verification",
+      "command": "Campaign companions: all history digests, byte lengths, active artifact/evidence hashes",
       "exit_code": 0
     }
   ],
@@ -246,7 +237,7 @@
     },
     {
       "path": "lean4/lakefile.lean",
-      "sha256": "cd429398e47245c159d99274e2cb6d20eaff8e6974aefa7feb9c5bbb4c24f5e4"
+      "sha256": "093bd61cd0fb055ee2e9a35171e09cb1b199b61f11def6b074620f5b5debcbb3"
     },
     {
       "path": "dag/derivations/independent/pg-gen-supply-erasure.md",
@@ -254,15 +245,15 @@
     },
     {
       "path": "dag/research/campaign_pg-gen-supply-erasure_lean_replay.json",
-      "sha256": "6f1c23601a3b4afa7f59eae71926f1c395e33e974c596ffdb93a0451d37d910c"
+      "sha256": "d5aa045819a97082c7cab029ccf9dc73ca2f181af9ff6f038fc6274042a8591a"
     },
     {
       "path": "dag/research/campaign_pg-gen-supply-erasure_independent.json",
-      "sha256": "6c9cdc653bd04502a2f862fe6ffc1158332aceabb1bf72029cc0931457befa83"
+      "sha256": "bbc419e4b04ba2af39c9135d3333572ef7a3a881b7bb0257d14453623d0c829b"
     },
     {
       "path": "dag/derivation_dag.json",
-      "sha256": "e8664abfc46f501687c276e06dacc66e47752954195eb4ecd31316875f29cf6d"
+      "sha256": "bb4ec3668829ef68ef007dbca42a3fe8e882af30e07826113849e0c80bfee3e1"
     },
     {
       "path": "dag/fragments/pfp_review_decisions.json",
@@ -270,7 +261,7 @@
     },
     {
       "path": "docs/overclaim/reviews/2026-10-23_campaign-pg-gen-supply-erasure.md",
-      "sha256": "015601ad4b47f477be27f9dcffa46e726aca60f31fd03e47bcfdf04f0c11d63a"
+      "sha256": "74006600a48d4e25ffd2a254dc8195e9cb76727d2c191ed2ffe66bb9257aeb90"
     }
   ],
   "node_status_changes": [],
