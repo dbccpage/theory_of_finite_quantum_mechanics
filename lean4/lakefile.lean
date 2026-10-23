@@ -1008,6 +1008,10 @@ lean_lib CampaignGenesisProcessComparison where
 lean_lib CampaignDfmContinuumInterface where
   roots := #[`CampaignDfmContinuumInterface]
 
+-- Campaign: DFM-BPHZ-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmBphzContinuumFence where
+  roots := #[`CampaignDfmBphzContinuumFence]
+
 -- Campaign: DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
 lean_lib CampaignDfmElectroweakContinuumFence where
   roots := #[`CampaignDfmElectroweakContinuumFence]

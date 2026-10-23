@@ -914,18 +914,28 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.3-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
-      "statement": "Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric integrands, and its use before continuum integration, is not established by the finite artifacts.",
+      "statement": "On the declared overlapping edge sets L = {0,1,2}, R = {2,3,4} and G = {0,1,2,3,4}, a Zimmermann forest is a subset whose members are pairwise nested or disjoint, and the forests are exactly the six subsets in which L and R do not both occur. For the order-0 evaluations T_L I(x,y) = I(0,y), T_R I(x,y) = I(x,0) and T_G I(x,y) = I(0,0), the signed six-forest sum equals I(x,y) - I(0,y) - I(x,0) + I(0,0). For the declared numerator N(x,y) = 2 + 3x + 5y + 7xy that sum is 7xy, so the quotient by xy equals 7 wherever xy is nonzero. The three-forest sum that omits G equals 7xy - 2, and its quotient is 7 - 2/(xy). At (x,y) = (1/2, 1/3) the two quotients are 7 and -5. Algebraic cancellation for actual Feynman-parametric integrands, and any use of this identity before continuum integration, is not established.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/independent/dfm-bphz-continuum-fence.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_excluded_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.nested_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_eq_inclusion",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.numerator_is_7xy",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven"
+      ],
       "rust": [],
       "imported_structure": [
-        "Zimmermann forest formula",
         "continuum loop-momentum integration"
       ],
-      "bottleneck": "State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.",
+      "bottleneck": "The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -8417,7 +8427,7 @@
       ],
       "output": "DFM-BPHZ-CONTINUUM-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.",
+      "mechanism": "The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
         "papers/ravera_dfm_dossier.md"
@@ -12950,8 +12960,8 @@
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-1109",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric integrands, and its use before continuum integration, is not established by the finite artifacts.",
-      "obligation": "State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.",
+      "summary": "On the declared overlapping edge sets L = {0,1,2}, R = {2,3,4} and G = {0,1,2,3,4}, a Zimmermann forest is a subset whose members are pairwise nested or disjoint, and the forests are exactly the six subsets in which L and R do not both occur. For the order-0 evaluations T_L I(x,y) = I(0,y), T_R I(x,y) = I(x,0) and T_G I(x,y) = I(0,0), the signed six-forest sum equals I(x,y) - I(0,y) - I(x,0) + I(0,0). For the declared numerator N(x,y) = 2 + 3x + 5y + 7xy that sum is 7xy, so the quotient by xy equals 7 wherever xy is nonzero. The three-forest sum that omits G equals 7xy - 2, and its quotient is 7 - 2/(xy). At (x,y) = (1/2, 1/3) the two quotients are 7 and -5. Algebraic cancellation for actual Feynman-parametric integrands, and any use of this identity before continuum integration, is not established.",
+      "obligation": "The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-BPHZ-CONTINUUM-FENCE"
@@ -12961,11 +12971,24 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md",
         "papers/ravera_dfm_dossier.md:118-124",
-        "papers/ravera_dfm_dossier.md:34"
+        "papers/ravera_dfm_dossier.md:34",
+        "dag/derivations/independent/dfm-bphz-continuum-fence.md"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-bphz-continuum-fence.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_excluded_iff",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.nested_forest_count",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_eq_inclusion",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.numerator_is_7xy",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third",
+        "lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven"
+      ]
     },
     {
       "id": "TFQ-1111",

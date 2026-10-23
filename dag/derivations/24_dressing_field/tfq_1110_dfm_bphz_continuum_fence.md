@@ -11,20 +11,19 @@
 
 ## 1. Abstract & Formal Statement
 
-Algebraic cancellation of nested and overlapping UV boundary poles for actual Feynman-parametric integrands, and its use before continuum integration, is not established by the finite artifacts.
+On the declared overlapping edge sets L = {0,1,2}, R = {2,3,4} and G = {0,1,2,3,4}, a Zimmermann forest is a subset whose members are pairwise nested or disjoint, and the forests are exactly the six subsets in which L and R do not both occur. For the order-0 evaluations T_L I(x,y) = I(0,y), T_R I(x,y) = I(x,0) and T_G I(x,y) = I(0,0), the signed six-forest sum equals I(x,y) - I(0,y) - I(x,0) + I(0,0). For the declared numerator N(x,y) = 2 + 3x + 5y + 7xy that sum is 7xy, so the quotient by xy equals 7 wherever xy is nonzero. The three-forest sum that omits G equals 7xy - 2, and its quotient is 7 - 2/(xy). At (x,y) = (1/2, 1/3) the two quotients are 7 and -5. Algebraic cancellation for actual Feynman-parametric integrands, and any use of this identity before continuum integration, is not established.
 
 ### Governing Obligation
-State a forest formula for declared graph integrands with an explicit subtraction operator and a convergence statement before using the BPHZ language.
+The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.
 
 ### Witness Audit
-No local artifact evaluates a Feynman integrand or a Taylor subtraction operator T^omega.
+CampaignDfmBphzContinuumFence records the six forests, the signed-sum collapse, the numerator identity 7xy, the quotients 7 and 7 - 2/(xy), and the witness values 7 and -5. No Feynman integrand and no continuum integral is evaluated.
 
 ---
 
 ## 2. Derivation Context
 
 ### Admitted Structural Imports
-- **Admitted**: `Zimmermann forest formula`
 - **Admitted**: `continuum loop-momentum integration`
 
 ### Further Prerequisites
@@ -43,13 +42,21 @@ No local artifact evaluates a Feynman integrand or a Taylor subtraction operator
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_excluded_iff`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_forest_count`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.nested_forest_count`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_eq_inclusion`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.numerator_is_7xy`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third`
+- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/dfm-bphz-continuum-fence.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -67,3 +74,4 @@ No local artifact evaluates a Feynman integrand or a Taylor subtraction operator
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:118-124`
   - `papers/ravera_dfm_dossier.md:34`
+  - `dag/derivations/independent/dfm-bphz-continuum-fence.md`
