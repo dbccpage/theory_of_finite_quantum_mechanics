@@ -1032,3 +1032,6 @@ lean_lib CampaignDfmSymanzikQedAeFence where
 -- Campaign: DFM-REGGE-GRAVITY-FENCE. Not a default target.
 lean_lib CampaignDfmReggeGravityFence where
   roots := #[`CampaignDfmReggeGravityFence]
+
+lean_lib CampaignDfmRelationalTimeFence where
+  roots := #[`CampaignDfmRelationalTimeFence]
