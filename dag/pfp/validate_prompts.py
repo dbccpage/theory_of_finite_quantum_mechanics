@@ -25,7 +25,11 @@ def has_legacy_contract(user_prompt: str, source_statement: str) -> bool:
     Ordinary mathematical prose in the quoted target is not an answer contract.
     A second occurrence or an instruction outside that quote is still checked.
     """
-    instructions = user_prompt.replace(source_statement, '', 1) if source_statement else user_prompt
+    quoted = 'Research target (source claim; verify its scope before reuse):\n' + source_statement + '\n\n'
+    # Only an entire, explicitly delimited target block is a source quote.
+    instructions = '\n' + user_prompt
+    if source_statement:
+        instructions = instructions.replace('\n' + quoted, '', 1)
     return REJECT.search(instructions) is not None
 
 

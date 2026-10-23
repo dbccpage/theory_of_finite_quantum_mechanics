@@ -206,7 +206,7 @@ class Corpus:
         return node_id in self.prompt_of or node_id in self.index_rows
 
     def executed(self, node_id: str) -> bool:
-        row = self.index_rows.get(node_id)
+        row = self.index_rows.get(node_id) or self.ext_rows.get(node_id)
         if not row:
             return False
         if row.get('latest_run'):

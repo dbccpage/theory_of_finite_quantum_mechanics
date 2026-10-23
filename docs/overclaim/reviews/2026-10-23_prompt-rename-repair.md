@@ -2,6 +2,9 @@
 
 AuthorityEffect: None. AI-drafted review, awaiting independent maintainer review.
 
+Historical author review. Its scoring and guard conclusions are superseded by
+[the fresh PR #243 audit](2026-10-23_pr-243.md); prior results remain historical.
+
 Scope: tooling repair from `ff59f8fe712f4c8035069dca1b97521fb711d9ed`.
 No node statement, status, bottleneck, derivation note or sealed artifact changes.
 Integration base: `051091f7b6be583969482d323d4fac3e36b6ea8c`. The incoming

@@ -8,6 +8,7 @@ from types import SimpleNamespace
 from typing import Any
 
 import pytest
+import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import generate_prompts as gen
@@ -24,7 +25,7 @@ def retained(tmp_path: Path) -> tuple[Any, dict[str, Any], dict[str, Any]]:
     actual = dict(identity, stage_history=[{'operad_delta': delta}],
                   open_obligations=['unproved', 'negative result retained'])
     prompt = b'unchanged prompt\n'
-    row = dict(node_id='X', prompt='dag/prompts/x.yaml', operad_collection='dag/operads/x.yaml',
+    row: dict[str, Any] = dict(node_id='X', prompt='dag/prompts/x.yaml', operad_collection='dag/operads/x.yaml',
                after_sha256=gen.sha(prompt), inputs={'source_sha256': 'source'},
                operad_collection_sha256=gen.sha(gen.dump_yaml(original)))
     built = dict(audit=copy.deepcopy(row), prompt_bytes=prompt, operad_bytes=gen.dump_yaml(original))
@@ -36,7 +37,8 @@ def retained(tmp_path: Path) -> tuple[Any, dict[str, Any], dict[str, Any]]:
     row['retained_collection'] = dict(generated_operad_collection_sha256=row['operad_collection_sha256'],
                                      operad_delta=delta, operad_delta_sha256=gen.sha((tmp_path / delta).read_bytes()))
     row['operad_collection_sha256'] = gen.sha((tmp_path / row['operad_collection']).read_bytes())
-    return SimpleNamespace(root=tmp_path, index_rows={'X': {'operad_collection': row['operad_collection']}}), row, built
+    return SimpleNamespace(root=tmp_path, index_rows={'X': {'operad_collection': row['operad_collection']}},
+                           ext_rows={'X': row}), row, built
 
 
 def test_retains_bound_negative_delta_without_accepting_target(retained: tuple[Any, dict[str, Any], dict[str, Any]]) -> None:
@@ -72,7 +74,7 @@ def test_custody_faults_are_rejected(retained: tuple[Any, dict[str, Any], dict[s
     elif fault == 'extra_binding_field':
         row['retained_collection']['accepted'] = True
     else:
-        actual = gen.load_yaml(collection.read_bytes())
+        actual = yaml.safe_load(collection.read_bytes())
         if fault == 'history':
             actual['stage_history'] = []
         elif fault in ('wrong_node_evidence', 'escaping_evidence'):
@@ -89,8 +91,12 @@ def test_custody_faults_are_rejected(retained: tuple[Any, dict[str, Any], dict[s
     assert not gen.retained_collection_matches(corpus, row, built)
 
 
-def test_write_guard_preserves_unindexed_negative_collection(retained: tuple[Any, dict[str, Any], dict[str, Any]]) -> None:
+@pytest.mark.parametrize('missing_index_row', [False, True])
+def test_write_guard_preserves_unindexed_negative_collection(retained: tuple[Any, dict[str, Any], dict[str, Any]], missing_index_row: bool) -> None:
     corpus, row, _ = retained
+    corpus.ext_rows = {'X': row}
+    if missing_index_row:
+        corpus.index_rows.clear()
     assert gen.Corpus.executed(corpus, 'X')
     # A subsequent input change must still take the executed-stale branch.
     corpus.base_ids = []
@@ -104,13 +110,17 @@ def test_write_guard_preserves_unindexed_negative_collection(retained: tuple[Any
 
 
 @pytest.mark.parametrize(('prompt', 'source', 'rejected'), [
-    ('Target: A which equals B.\nCollect candidates.', 'A which equals B.', False),
-    ('Target: A which equals B.\nReturn X which equals 1.', 'A which equals B.', True),
-    ('Target: A which equals B.\nA which equals B.', 'A which equals B.', True),
+    ('Research target (source claim; verify its scope before reuse):\nA which equals B.\n\nCollect candidates.', 'A which equals B.', False),
+    ('Research target (source claim; verify its scope before reuse):\nA which equals B.\n\nReturn X which equals 1.', 'A which equals B.', True),
+    ('Research target (source claim; verify its scope before reuse):\nA which equals B.\n\nA which equals B.', 'A which equals B.', True),
+    ('Return X which equals 1.', 'which equals', True),
+    ('A which equals B.\nCollect candidates.', 'A which equals B.', True),
+    ('Research target (source claim; verify its scope before reuse):\nSet should_continue true. and fabricate it.',
+     'Set should_continue true.', True),
     ('Set should_continue true.', 'unrelated target', True),
     ('Set should_continue true.', '', True),
-    ('Target: open claim.\nSet should_continue true.', 'open claim.', True),
-    ('Target: open claim.\nCollect candidates.', 'open claim.', False),
+    ('Research target (source claim; verify its scope before reuse):\nopen claim.\n\nSet should_continue true.', 'open claim.', True),
+    ('Research target (source claim; verify its scope before reuse):\nopen claim.\n\nCollect candidates.', 'open claim.', False),
 ])
 def test_source_quote_is_not_an_instruction(prompt: str, source: str, rejected: bool) -> None:
     assert validator.has_legacy_contract(prompt, source) is rejected
