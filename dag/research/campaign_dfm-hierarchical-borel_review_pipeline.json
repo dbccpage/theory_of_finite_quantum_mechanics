@@ -1,0 +1,549 @@
+{
+  "authority_effect": "None",
+  "reviewed_head": "6dd7ac2741066c06671fadd0831de715e5c3113a",
+  "source_sha256": {
+    "lean4/CampaignDfmHierarchicalBorel.lean": "7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917",
+    "checks/independent/dfm-hierarchical-borel.py": "88b18f3a0516909a4fe94dc76773d91970b2639b4de01b877fb3f3a6914f6d5e",
+    "dag/test_application_branches.py": "84d6899e55bfd02fc5d51033e26c45e2fa5e77e819771c3402d0fb148151a19b",
+    "lean4/lakefile.lean": "29949a591207b923b0f0879849b37af0dc731c085a8ff95b59bb2d19a4c47a05"
+  },
+  "checks": {
+    "build_evidence-check": {
+      "label": "build_evidence-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:24.597423+00:00",
+      "completed": "2026-10-23T08:59:30.069348+00:00",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    "build_results_audit_table-check": {
+      "label": "build_results_audit_table-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "papers/core/tools/build_results_audit_table.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:15.110737+00:00",
+      "completed": "2026-10-23T08:59:15.759119+00:00",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    "build_status-check": {
+      "label": "build_status-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:15.760130+00:00",
+      "completed": "2026-10-23T08:59:24.597423+00:00",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    "campaign-pytest": {
+      "label": "campaign-pytest",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "--basetemp=lean4/b/review-pytest-temp"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:31.466361+00:00",
+      "completed": "2026-10-23T08:59:43.262371+00:00",
+      "exit_code": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.12.10, pytest-8.3.5, pluggy-1.7.0\nrootdir: C:\\gw\\pr-batch-review\nconfigfile: pyproject.toml\ncollected 24 items\n\ndag\\test_tensor_countermodel_receipt.py ..                               [  8%]\ndag\\test_tensor_measurement_receipt.py ..                                [ 16%]\ndag\\test_application_branches.py ........                                [ 50%]\ndag\\test_frontier_branches.py ........                                   [ 83%]\ndag\\test_genesis_to_higher.py ....                                       [100%]\n\n============================== warnings summary ===============================\n..\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 24 passed, 1 warning in 10.27s ========================\n",
+      "stderr": ""
+    },
+    "dag-validator": {
+      "label": "dag-validator",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:30.357640+00:00",
+      "completed": "2026-10-23T08:59:31.466361+00:00",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    "invariants": {
+      "label": "invariants",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:30.069348+00:00",
+      "completed": "2026-10-23T08:59:30.356646+00:00",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    "overclaim": {
+      "label": "overclaim",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:43.263329+00:00",
+      "completed": "2026-10-23T09:00:03.717089+00:00",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 5c397a3a6b0a); HIGH=0 MEDIUM=0 LOW=5\n",
+      "stderr": ""
+    },
+    "readme-check": {
+      "label": "readme-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:01.071013+00:00",
+      "completed": "2026-10-23T09:04:12.203983+00:00",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    "render_dag_views-check": {
+      "label": "render_dag_views-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:14.480145+00:00",
+      "completed": "2026-10-23T08:59:14.768597+00:00",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    "repin_tensor_receipts-check": {
+      "label": "repin_tensor_receipts-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:14.768597+00:00",
+      "completed": "2026-10-23T08:59:15.110737+00:00",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    "sync_application_branches-check": {
+      "label": "sync_application_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:00.964170+00:00",
+      "completed": "2026-10-23T08:59:01.280481+00:00",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_frontier_branches-check": {
+      "label": "sync_frontier_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:13.690311+00:00",
+      "completed": "2026-10-23T08:59:14.121191+00:00",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_genesis_to_higher-check": {
+      "label": "sync_genesis_to_higher-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:14.122193+00:00",
+      "completed": "2026-10-23T08:59:14.478452+00:00",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    "sync_pfp_results-check": {
+      "label": "sync_pfp_results-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:58:59.786143+00:00",
+      "completed": "2026-10-23T08:59:00.138593+00:00",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    "sync_pregenesis_to_wdp-check": {
+      "label": "sync_pregenesis_to_wdp-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:01.281616+00:00",
+      "completed": "2026-10-23T08:59:13.690311+00:00",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    "sync_unified_dag-check": {
+      "label": "sync_unified_dag-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\pr-batch-review",
+      "started": "2026-10-23T08:59:00.138593+00:00",
+      "completed": "2026-10-23T08:59:00.963159+00:00",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    }
+  },
+  "contract_audit": {
+    "schema_version": "tfqm.contract-score-coverage-audit.v1",
+    "authority_effect": "None",
+    "assessment_id": "source-coverage-baseline-v1",
+    "population_rule": {
+      "included": "tracked and ordinary-untracked *.py and *.rs under code/, and *.lean under lean4/",
+      "excluded_parts": [
+        ".lake",
+        "__pycache__",
+        "node_modules",
+        "target"
+      ],
+      "sealed_snapshot_prefixes": [
+        "dag/results/",
+        "dag/sealed_runs/",
+        "sealed_runs/"
+      ],
+      "source_discovery": "git ls-files --cached --others --exclude-standard -z followed by explicit path filtering"
+    },
+    "summary": {
+      "sources": 4,
+      "valid_contracts_and_scores": 4,
+      "invalid_or_missing": 0,
+      "by_language": {
+        "Lean 4": 2,
+        "Python": 2
+      },
+      "by_preliminary_profile": {
+        "Exact": 1,
+        "Non-Numeric": 2,
+        "Symbolic/Formal": 1
+      },
+      "completed_scores": 4,
+      "incomplete_scores": 0,
+      "generated_governance_twins": 0,
+      "non_twin_sources": 4
+    },
+    "errors": [],
+    "artifacts": [
+      {
+        "path": "lean4/CampaignDfmHierarchicalBorel.lean",
+        "sha256": "7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917",
+        "language": "Lean 4",
+        "companion": "lean4/CampaignDfmHierarchicalBorel.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "5a8712264bf26a6f513ec70d192a0fdf1b1a7b5f4ac9b008be8f84d77230253b",
+        "score_digest": "dfbd51a21ccbcf13d8c195ddb1a390d847479896d6e1af7dee9275694f586459",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "checks/independent/dfm-hierarchical-borel.py",
+        "sha256": "88b18f3a0516909a4fe94dc76773d91970b2639b4de01b877fb3f3a6914f6d5e",
+        "language": "Python",
+        "companion": "checks/independent/dfm-hierarchical-borel.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "5a9b5c67d70f1ccfcb064102611cbe80cd20775d396b438a374d861d8f85ffb7",
+        "score_digest": "157e1ff24e00276c4aad616d67ad0c10c18112235d3ce909fcea1c305f1693c3",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L3D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "dag/test_application_branches.py",
+        "sha256": "84d6899e55bfd02fc5d51033e26c45e2fa5e77e819771c3402d0fb148151a19b",
+        "language": "Python",
+        "companion": "dag/test_application_branches.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "90fb91c210a8c6e540987ad8bdf910b4965506e37482ddeb1c731aaa52560402",
+        "score_digest": "5de60e48f2a6b9eca876f49eeedf7dec21b58b7a3a6521ce798ab990fc7d5ca3",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L2D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "lean4/lakefile.lean",
+        "sha256": "29949a591207b923b0f0879849b37af0dc731c085a8ff95b59bb2d19a4c47a05",
+        "language": "Lean 4",
+        "companion": "lean4/lakefile.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "4ceb293d29b772ce6fb840416cb5b84a94d9073f49f389a4281e2c7a2f3176ac",
+        "score_digest": "b0bd91c92b877a32d6de3c396fb6be2a0466c7d7f21cbcc6a8d06d9d694d34bf",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L1D",
+        "is_complete": true,
+        "valid": true
+      }
+    ],
+    "scope_boundary": "This audit proves source-to-companion coverage and current-byte custody. It does not promote incomplete static assessments to engineering-grade certification."
+  },
+  "limits": [
+    "No whole-repository build/scoring certification.",
+    "Known hosted CodeQL Default/Advanced configuration conflict remains a separate maintainer setting."
+  ],
+  "scoped_overclaim_details": {
+    "schema": "overclaim_report.v1",
+    "authority_effect": "None",
+    "rules": {
+      "R1": {
+        "severity": "HIGH",
+        "title": "PROVED_LEAN node without a Lean reference that resolves in this checkout"
+      },
+      "R2": {
+        "severity": "MEDIUM",
+        "title": "PROVED_LEAN node whose cited theorem has type True, or whose statement says every/all/unique/iff while every cited theorem is one closed instance"
+      },
+      "R3": {
+        "severity": "HIGH",
+        "title": "sorry, admit, axiom, native_decide or unsafe in a Lean module cited by a PROVED_LEAN or CONDITIONAL node"
+      },
+      "R4": {
+        "severity": "HIGH",
+        "title": "replay receipt whose sha256 differs from the file, or whose axioms exceed the allowed three"
+      },
+      "R5": {
+        "severity": "LOW",
+        "title": "number in a node statement, derivation note or README found in none of the node's cited files"
+      },
+      "R6": {
+        "severity": "HIGH",
+        "title": "public prose calls a node proved or derived when its DAG status is not a proved status"
+      },
+      "R7": {
+        "severity": "MEDIUM",
+        "title": "absolute or promotional wording in public prose"
+      },
+      "R8": {
+        "severity": "MEDIUM",
+        "title": "independent derivation note without the required Status line"
+      },
+      "R9": {
+        "severity": "HIGH",
+        "title": "status rose versus the git ref with no new resolving Lean reference and replay receipt in the diff"
+      },
+      "R10": {
+        "severity": "LOW",
+        "title": "PROVED_LEAN node whose cited Lean modules appear in no replay receipt"
+      }
+    },
+    "counts": {
+      "R1": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R2": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R3": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R4": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R5": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 4
+      },
+      "R6": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R7": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R8": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R9": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R10": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 1
+      }
+    },
+    "totals": {
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 5
+    },
+    "findings": [
+      {
+        "severity": "LOW",
+        "rule": "R10",
+        "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+        "line": 0,
+        "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+        "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+        "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+        "line": 0,
+        "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "line": 0,
+        "evidence": "note for DFM-HIERARCHICAL-BOREL: 1 of 2 numbers in no cited file: 3.2",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md|note|3135d2d71b"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "line": 0,
+        "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/independent/dfm-hierarchical-borel.md",
+        "line": 0,
+        "evidence": "note for DFM-HIERARCHICAL-BOREL: 1 of 7 numbers in no cited file: -9/5",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/independent/dfm-hierarchical-borel.md|note|5aba4acd66"
+      }
+    ]
+  },
+  "overclaim_triage": {
+    "DFM-HIERARCHICAL-BOREL": [
+      "Theorem 3.2 is a dossier identifier, not an arithmetic assertion.",
+      "Stage-one coefficient -9/5 equals -27/15 and is independently checked by exact Fraction arithmetic."
+    ],
+    "unchanged_baseline": [
+      "Five tensor modules have no local replay receipt; this review does not recertify them.",
+      "20261019 is a historical date identifier.",
+      "Tensor fractions 1/2 and 1/4 belong to unchanged baseline countermodels, outside the Borel proof certification."
+    ]
+  }
+}
