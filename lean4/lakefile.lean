@@ -627,3 +627,7 @@ lean_lib GenesisHottHorns where
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
+
+-- Operational hypotheses and exact countermodels. Not a default build target.
+lean_lib CampaignTransitionProbability where
+  roots := #[`CampaignTransitionProbability]
