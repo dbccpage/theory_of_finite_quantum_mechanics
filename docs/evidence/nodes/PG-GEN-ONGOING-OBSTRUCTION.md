@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pg-gen-ongoing-fewest-changes.md`
 
 - file: [dag/derivations/independent/pg-gen-ongoing-fewest-changes.md](../../../dag/derivations/independent/pg-gen-ongoing-fewest-changes.md)
-- sha256 (`lf-normalised`): `f36b454741c238b0e4123e6a2c7d62ead56eb28032b2d8dbc249e3152050def6`
+- sha256 (`lf-normalised`): `264aa3c3529be579b7ad1ad06c76d916ca59ad832c0507d4be41d216640bcbcc`
 - cited in: node.source
 - counts toward the grade: yes
 
