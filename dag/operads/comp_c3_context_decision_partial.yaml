@@ -3,14 +3,15 @@ node_id: COMP-C3-CONTEXT-DECISION-PARTIAL
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Decidable instances for the unary hole-only mirror of separability, collapse and pairwise
-    separation on a finite regime are proved by bounded search; the decision procedure over all well-formed
-    Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is
-    not built.
+  source_statement: The earlier GenesisComputation module decides only unary hole-only separability, collapse
+    and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite
+    slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage
+    in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity
+    and external implementation refinement.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Build and prove a decision procedure for collapse and separability over all well-formed
-    contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.
+  source_bottleneck: Use the general finite context procedure for the remaining TFQ-0497 history claims
+    under their declared predicates; keep operational refinement separate.
   source_refs:
   - dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md
   - dag/research/genesis_to_universal_computation.md
@@ -23,7 +24,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md
-    sha256: bb8b5defd4adee92a0fb99aff7ea6ecf24a9aa10fa23e31dd3f5cfc3ac3dbdb1
+    sha256: d5096df113159d1be9025cd6d5ade2edebfa4fc85894fbc18d1bfc675c01f23b
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -72,6 +73,104 @@ operation_candidates:
   repository: this_repository
   source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
   status: source_candidate_requires_semantic_review
+- kind: def
+  name: collapseTest
+  line: 66
+  signature_excerpt: 'def collapseTest (r : Regime) (i j : Nat) : Bool'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Collapsed
+  line: 61
+  signature_excerpt: 'def Collapsed (r : Regime) (i j : Nat) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: contexts
+  line: 47
+  signature_excerpt: 'def contexts (r : Regime) : List Context'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Derivable
+  line: 57
+  signature_excerpt: 'def Derivable (r : Regime) (inst : Inst) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: plug
+  line: 56
+  signature_excerpt: 'def plug (c : Context) (d : Nat) : Inst'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: WellFormed
+  line: 43
+  signature_excerpt: 'def WellFormed (r : Regime) (c : Context) : Prop'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Context
+  line: 15
+  signature_excerpt: abbrev Context
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: slotTuples
+  line: 27
+  signature_excerpt: |-
+    def slotTuples (n : Nat) : Nat → List (List Slot)
+      | 0 => [[]]
+      | k + 1 => (options n).flatMap fun s => (slotTuples n k).map (s :: ·)
+
+    theorem mem_options (n : Nat) (s : Slot) : s ∈ options n ↔ slotValid n s
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: slotValid
+  line: 17
+  signature_excerpt: |-
+    def slotValid (n : Nat) : Slot → Prop
+      | none => True
+      | some d => d < n
+
+    instance (n : Nat) (s : Slot) : Decidable (slotValid n s)
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Slot
+  line: 14
+  signature_excerpt: abbrev Slot
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: options
+  line: 24
+  signature_excerpt: 'def options (n : Nat) : List Slot'
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: unarySep_iff
@@ -108,6 +207,18 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: collapseTest_correct
+  line: 69
+  signature_excerpt: |-
+    theorem collapseTest_correct (r : Regime) (i j : Nat) :
+        collapseTest r i j = true ↔ Collapsed r i j
+  source: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  source_sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/GenesisComputation.lean::unarySep_iff
   availability: local
@@ -135,6 +246,15 @@ source_bindings:
   sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
   declaration_status: declaration_found_not_proof_checked
   line: 237
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct
+  availability: local
+  symbol: CampaignGenesisContextDecision.collapseTest_correct
+  path: lean4/CampaignGenesisContextDecision.lean
+  repository: this_repository
+  sha256: 621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
   role: source_lead_only
 - original_ref: code/rust/src/wdp/genesis_tm.rs::unary_sep
   availability: local
