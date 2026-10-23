@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 892 nodes in 35 stages. Evidence grades: E0 282, E1 230, E2 322, E3 58.
+The DAG has 892 nodes in 35 stages. Evidence grades: E0 282, E1 229, E2 322, E3 59.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,7 +24,7 @@ The DAG has 892 nodes in 35 stages. Evidence grades: E0 282, E1 230, E2 322, E3 
 
 Of the 262 `PROVED_LEAN` nodes, 43 reach grade E3 or E4 (16 percent); 219 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 58 nodes at E3, 39 have a qualifying review, 8 of those cite in-repo Rust or Python code that is not a test, and 4 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 59 nodes at E3, 39 have a qualifying review, 8 of those cite in-repo Rust or Python code that is not a test, and 4 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
@@ -39,12 +39,12 @@ The `lean` fields of nodes cite 1029 distinct Lean declarations that lie in file
 | `COMPUTATIONALLY_CHECKED` | 41 | 56 | 55 | 0 | 0 | 152 |
 | `CONDITIONAL` | 14 | 0 | 16 | 4 | 0 | 34 |
 | `DEFINITION` | 42 | 16 | 27 | 6 | 0 | 91 |
-| `IMPORTED_ASSUMPTION` | 11 | 25 | 28 | 2 | 0 | 66 |
+| `IMPORTED_ASSUMPTION` | 11 | 24 | 28 | 3 | 0 | 66 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 2 | 1 | 0 | 3 |
 | `SOURCE_RECORD` | 53 | 26 | 0 | 0 | 0 | 79 |
 | `OPEN` | 57 | 101 | 15 | 2 | 0 | 175 |
 | `REFUTED` | 0 | 0 | 2 | 0 | 0 | 2 |
-| Total | 282 | 230 | 322 | 58 | 0 | 892 |
+| Total | 282 | 229 | 322 | 59 | 0 | 892 |
 
 ### Stage by evidence grade
 
@@ -62,7 +62,7 @@ The `lean` fields of nodes cite 1029 distinct Lean declarations that lie in file
 | [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 4 | 0 | 5 | 1 | 0 | 10 | 6 | 10 |
 | [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 19 | 22 | 2 | 0 | 43 | 10 | 10 |
 | [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 30 | 37 | 0 | 0 | 67 | 32 | 35 |
-| [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 27 | 11 | 3 | 0 | 41 | 3 | 1 |
+| [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 26 | 11 | 4 | 0 | 41 | 3 | 2 |
 | [TENSOR_COMPOSITION](stages/TENSOR_COMPOSITION.md) | 0 | 0 | 0 | 7 | 0 | 7 | 7 | 0 |
 | [FINITE_OBSTRUCTION](stages/FINITE_OBSTRUCTION.md) | 4 | 5 | 0 | 0 | 0 | 9 | 0 | 1 |
 | [AUTHORIZATION](stages/AUTHORIZATION.md) | 8 | 0 | 0 | 0 | 0 | 8 | 0 | 0 |
@@ -151,7 +151,7 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 
 ## Where status and evidence disagree
 
-492 flags on 399 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
+493 flags on 400 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
 
 | Flag | Count | Meaning |
 |---|---|---|
@@ -161,7 +161,7 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 | `computational_no_runnable_test` | 126 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
 | `proved_prose_no_in_repo_document` | 13 | PROVED_PROSE with no in-repo source document cited |
 | `broken_reference` | 55 | A cited in-repo path or symbol cannot be found in this checkout |
-| `receipt_names_uncited_module` | 26 | A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) |
+| `receipt_names_uncited_module` | 27 | A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) |
 
 The ten flags on `PROVED_LEAN` nodes with the most downstream nodes:
 
