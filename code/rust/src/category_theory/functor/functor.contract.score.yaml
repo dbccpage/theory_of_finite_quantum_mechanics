@@ -3,40 +3,47 @@
   "artifact": "code/rust/src/category_theory/functor/functor.rs",
   "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
+    "schema_id": "tfqm.source-contract.v1",
+    "contract_id": "functor-shell-validation-review",
     "artifact": {
-      "language": "Rust",
       "path": "code/rust/src/category_theory/functor/functor.rs",
-      "sha256": "f0910eb6749ba84a342d93b11dbc130e9fe288091d88663c7d7b5d7f59f428fc"
+      "sha256": "c9649c73f18389af7188f0ca413e65dfe8a5a78de8737ebac3a731ac065ca137",
+      "language": "Rust"
     },
-    "authority_effect": "None",
-    "boundaries": [
-      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
-      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
-    ],
-    "contract_id": "source-coverage-baseline-v1",
-    "evidence": [
-      {
-        "path": "code/rust/src/category_theory/functor/functor.rs",
-        "sha256": "f0910eb6749ba84a342d93b11dbc130e9fe288091d88663c7d7b5d7f59f428fc"
-      },
-      {
-        "path": "SCORING.md",
-        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
-      }
-    ],
+    "AuthorityEffect": "None",
+    "purpose": "Declare partial object and morphism images with checked nonblank, unique source keys, explicit owned admission and diagnostic lookups.",
     "operations": {
-      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
-      "source_identity": "The exact source bytes identified by subject and source_sha256."
+      "new": "Unchecked label-only candidate; categories unset.",
+      "between": "Unchecked candidate with supplied category labels and empty pair lists.",
+      "with_object_map": "Replace the raw object pair list.",
+      "with_morphism_map": "Replace the raw morphism pair list.",
+      "validate_shell": "First-error nonblank field/tag checks, then unique sources independently per map.",
+      "validate_map": "Borrowed-key shape validation shared by both lists; deterministic first failure in input order.",
+      "validated": "Consume the candidate; return it unchanged iff validate_shell succeeds.",
+      "object_image": "First exact object-key match or None.",
+      "morphism_image": "First exact morphism-key match or None."
     },
     "owned_invariants": [
-      "The companion identifies one source path and its exact current SHA-256 digest.",
-      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+      "Successful validation entails nonblank label/category/tag strings and unique source keys within each list.",
+      "Duplicate targets and the same source spelling across the two separate maps remain permitted.",
+      "Error reports preserve the offending list and index; missing-field tests isolate each guard.",
+      "Successful owned validation preserves all supplied bytes, pair order and notes."
     ],
-    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
-    "role": "source module",
-    "schema_id": "tfqm.source-contract.v1",
-    "source_sha256": "f0910eb6749ba84a342d93b11dbc130e9fe288091d88663c7d7b5d7f59f428fc",
-    "subject": "code/rust/src/category_theory/functor/functor.rs"
+    "boundaries": [
+      "AuthorityEffect None; partial declarations only, no category membership, boundaries, identities, composition or totality proof.",
+      "Raw Deserialize and public fields remain unchecked/mutable. validated() checks the candidate at the call only.",
+      "Verbatim tag identity and order-sensitive equality; blank means str::trim().is_empty(); notes are unrestricted.",
+      "Default and new(label) are invalid until the required labels are supplied.",
+      "Lookup on unchecked duplicate sources returns the first recorded pair.",
+      "Isolated manifest compiles the complete actual category-library source snapshot, not the original governance build hook or external omega workspace.",
+      "L2 metadata capability, no L4 claim. The proposed exact-source waiver was rejected by automatic approval review; no baseline exception is applied."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/functor_shell_validation/receipt.json",
+        "sha256": "df07d07a8a91223a7ed176c0e31e02d346dd4cf0e35764ae8fdc5f817ccb09a7"
+      }
+    ]
   },
   "contract_history": [
     {
@@ -192,15 +199,67 @@
         "subject": "code/rust/src/category_theory/functor/functor.rs"
       },
       "sha256": "4b99bd5dc940fbf86609e77a9d99a4f00a1abe01842b4b4d0af93a8f6949384a"
+    },
+    {
+      "sha256": "80bfce5994cd898eb7b42711e1ee3ee4d3ea0a5290598c6d97ed3e1e0a70c6dd",
+      "bytes": 2693,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "functor-shell-validation-review",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor/functor.rs",
+          "sha256": "c9649c73f18389af7188f0ca413e65dfe8a5a78de8737ebac3a731ac065ca137",
+          "language": "Rust"
+        },
+        "AuthorityEffect": "None",
+        "purpose": "Declare partial object and morphism images with checked nonblank, unique source keys, explicit owned admission and diagnostic lookups.",
+        "operations": {
+          "new": "Unchecked label-only candidate; categories unset.",
+          "between": "Unchecked candidate with supplied category labels and empty pair lists.",
+          "with_object_map": "Replace the raw object pair list.",
+          "with_morphism_map": "Replace the raw morphism pair list.",
+          "validate_shell": "First-error nonblank field/tag checks, then unique sources independently per map.",
+          "validate_map": "Borrowed-key shape validation shared by both lists; deterministic first failure in input order.",
+          "validated": "Consume the candidate; return it unchanged iff validate_shell succeeds.",
+          "object_image": "First exact object-key match or None.",
+          "morphism_image": "First exact morphism-key match or None."
+        },
+        "owned_invariants": [
+          "Successful validation entails nonblank label/category/tag strings and unique source keys within each list.",
+          "Duplicate targets and the same source spelling across the two separate maps remain permitted.",
+          "Error reports preserve the offending list and index; missing-field tests isolate each guard.",
+          "Successful owned validation preserves all supplied bytes, pair order and notes."
+        ],
+        "boundaries": [
+          "AuthorityEffect None; partial declarations only, no category membership, boundaries, identities, composition or totality proof.",
+          "Raw Deserialize and public fields remain unchecked/mutable. validated() checks the candidate at the call only.",
+          "Verbatim tag identity and order-sensitive equality; blank means str::trim().is_empty(); notes are unrestricted.",
+          "Default and new(label) are invalid until the required labels are supplied.",
+          "Lookup on unchecked duplicate sources returns the first recorded pair.",
+          "Isolated manifest compiles the complete actual category-library source snapshot, not the original governance build hook or external omega workspace.",
+          "L2 metadata capability, no L4 claim. The proposed exact-source waiver was rejected by automatic approval review; no baseline exception is applied."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/functor_shell_validation/receipt.json",
+            "sha256": "df07d07a8a91223a7ed176c0e31e02d346dd4cf0e35764ae8fdc5f817ccb09a7"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"functor-shell-validation-review\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor/functor.rs\",\n    \"sha256\": \"c9649c73f18389af7188f0ca413e65dfe8a5a78de8737ebac3a731ac065ca137\",\n    \"language\": \"Rust\"\n  },\n  \"AuthorityEffect\": \"None\",\n  \"purpose\": \"Declare partial object and morphism images with checked nonblank, unique source keys, explicit owned admission and diagnostic lookups.\",\n  \"operations\": {\n    \"new\": \"Unchecked label-only candidate; categories unset.\",\n    \"between\": \"Unchecked candidate with supplied category labels and empty pair lists.\",\n    \"with_object_map\": \"Replace the raw object pair list.\",\n    \"with_morphism_map\": \"Replace the raw morphism pair list.\",\n    \"validate_shell\": \"First-error nonblank field/tag checks, then unique sources independently per map.\",\n    \"validate_map\": \"Borrowed-key shape validation shared by both lists; deterministic first failure in input order.\",\n    \"validated\": \"Consume the candidate; return it unchanged iff validate_shell succeeds.\",\n    \"object_image\": \"First exact object-key match or None.\",\n    \"morphism_image\": \"First exact morphism-key match or None.\"\n  },\n  \"owned_invariants\": [\n    \"Successful validation entails nonblank label/category/tag strings and unique source keys within each list.\",\n    \"Duplicate targets and the same source spelling across the two separate maps remain permitted.\",\n    \"Error reports preserve the offending list and index; missing-field tests isolate each guard.\",\n    \"Successful owned validation preserves all supplied bytes, pair order and notes.\"\n  ],\n  \"boundaries\": [\n    \"AuthorityEffect None; partial declarations only, no category membership, boundaries, identities, composition or totality proof.\",\n    \"Raw Deserialize and public fields remain unchecked/mutable. validated() checks the candidate at the call only.\",\n    \"Verbatim tag identity and order-sensitive equality; blank means str::trim().is_empty(); notes are unrestricted.\",\n    \"Default and new(label) are invalid until the required labels are supplied.\",\n    \"Lookup on unchecked duplicate sources returns the first recorded pair.\",\n    \"Isolated manifest compiles the complete actual category-library source snapshot, not the original governance build hook or external omega workspace.\",\n    \"L2 metadata capability, no L4 claim. The proposed exact-source waiver was rejected by automatic approval review; no baseline exception is applied.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/functor_shell_validation/receipt.json\",\n      \"sha256\": \"df07d07a8a91223a7ed176c0e31e02d346dd4cf0e35764ae8fdc5f817ccb09a7\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code\\rust\\src\\category_theory\\functor\\functor.contract.score.yaml#functor-shell-validation-review"
+      ]
     }
   ],
-  "current_contract": "4b99bd5dc940fbf86609e77a9d99a4f00a1abe01842b4b4d0af93a8f6949384a",
-  "current_scoring": "4c2caac422874c5b1c276ad5201ee9e512cf99102216ff39f089cc727f84b5f2",
+  "current_contract": "80bfce5994cd898eb7b42711e1ee3ee4d3ea0a5290598c6d97ed3e1e0a70c6dd",
+  "current_scoring": "22a90fcac059ce896eb379f0d07f4adfc69611a29fee35c8466861901eaa2ead",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "code/rust/src/category_theory/functor/functor.rs.contract.yaml": "0e0718dd11db742c8c9d7ea253cf09f2c83e8efd8fe321bd28b87d53e96a94ad",
     "code/rust/src/category_theory/functor/functor.rs.scoring.yaml": "fd83d066281fc1a0684f1d2b70ce896db253a7987e13e2f3947378e9af3238c9",
-    "code/rust/src/category_theory/functor/functor.score.yaml": "345f7f01fbf84f0a9d97017e66d8fe8524614f1eb804c87de8dd92e0f443e4ac"
+    "code/rust/src/category_theory/functor/functor.score.yaml": "345f7f01fbf84f0a9d97017e66d8fe8524614f1eb804c87de8dd92e0f443e4ac",
+    "code\\rust\\src\\category_theory\\functor\\functor.contract.score.yaml#functor-shell-validation-review": "22a90fcac059ce896eb379f0d07f4adfc69611a29fee35c8466861901eaa2ead"
   },
   "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
@@ -562,6 +621,66 @@
         "score_token": null
       },
       "sha256": "4c2caac422874c5b1c276ad5201ee9e512cf99102216ff39f089cc727f84b5f2"
+    },
+    {
+      "sha256": "22a90fcac059ce896eb379f0d07f4adfc69611a29fee35c8466861901eaa2ead",
+      "bytes": 2910,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "functor-shell-validation-review",
+        "assessment_status": "complete",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor/functor.rs",
+          "sha256": "c9649c73f18389af7188f0ca413e65dfe8a5a78de8737ebac3a731ac065ca137",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Mutable finite metadata record, fluent construction, borrowed lookup and shape checks; no law-checked functor certificate.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Declaration, partiality, raw serde, mutable-field, Default and order-sensitive equality boundaries are explicit in the type and method docs.",
+          "G2": "Verbatim string identity; Unicode blank checks; duplicate-source rejection without injectivity or category-law assumptions. No numeric arithmetic.",
+          "G3": "Indexed typed InvalidShape failures; exact first-error assertions, absent lookups and an explicit owned admission boundary. Raw input is not treated as a certificate.",
+          "G4": "472 category tests and three public serde boundary tests pass offline. Five selected semantic guard mutations fail their isolated intended tests. Original workspace/build-hook integration is not covered.",
+          "G5": "Manual source review covers all nine methods, one loop with borrowed keys and linear lookup; no recursion/unsafe. No calibrated AST metrics, size budget or allocation-failure recovery is claimed."
+        },
+        "composite_grade": "D",
+        "score_token": "L2D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T20:43:11.904291+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/functor_shell_validation/receipt.json",
+            "sha256": "df07d07a8a91223a7ed176c0e31e02d346dd4cf0e35764ae8fdc5f817ccb09a7"
+          }
+        ],
+        "open_higher_grade_findings": [
+          "AuthorityEffect None; partial declarations only, no category membership, boundaries, identities, composition or totality proof.",
+          "Raw Deserialize and public fields remain unchecked/mutable. validated() checks the candidate at the call only.",
+          "Verbatim tag identity and order-sensitive equality; blank means str::trim().is_empty(); notes are unrestricted.",
+          "Default and new(label) are invalid until the required labels are supplied.",
+          "Lookup on unchecked duplicate sources returns the first recorded pair.",
+          "Isolated manifest compiles the complete actual category-library source snapshot, not the original governance build hook or external omega workspace.",
+          "L2 metadata capability, no L4 claim. The proposed exact-source waiver was rejected by automatic approval review; no baseline exception is applied."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"functor-shell-validation-review\",\n  \"assessment_status\": \"complete\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor/functor.rs\",\n    \"sha256\": \"c9649c73f18389af7188f0ca413e65dfe8a5a78de8737ebac3a731ac065ca137\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Mutable finite metadata record, fluent construction, borrowed lookup and shape checks; no law-checked functor certificate.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Declaration, partiality, raw serde, mutable-field, Default and order-sensitive equality boundaries are explicit in the type and method docs.\",\n    \"G2\": \"Verbatim string identity; Unicode blank checks; duplicate-source rejection without injectivity or category-law assumptions. No numeric arithmetic.\",\n    \"G3\": \"Indexed typed InvalidShape failures; exact first-error assertions, absent lookups and an explicit owned admission boundary. Raw input is not treated as a certificate.\",\n    \"G4\": \"472 category tests and three public serde boundary tests pass offline. Five selected semantic guard mutations fail their isolated intended tests. Original workspace/build-hook integration is not covered.\",\n    \"G5\": \"Manual source review covers all nine methods, one loop with borrowed keys and linear lookup; no recursion/unsafe. No calibrated AST metrics, size budget or allocation-failure recovery is claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L2D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T20:43:11.904291+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/functor_shell_validation/receipt.json\",\n      \"sha256\": \"df07d07a8a91223a7ed176c0e31e02d346dd4cf0e35764ae8fdc5f817ccb09a7\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"AuthorityEffect None; partial declarations only, no category membership, boundaries, identities, composition or totality proof.\",\n    \"Raw Deserialize and public fields remain unchecked/mutable. validated() checks the candidate at the call only.\",\n    \"Verbatim tag identity and order-sensitive equality; blank means str::trim().is_empty(); notes are unrestricted.\",\n    \"Default and new(label) are invalid until the required labels are supplied.\",\n    \"Lookup on unchecked duplicate sources returns the first recorded pair.\",\n    \"Isolated manifest compiles the complete actual category-library source snapshot, not the original governance build hook or external omega workspace.\",\n    \"L2 metadata capability, no L4 claim. The proposed exact-source waiver was rejected by automatic approval review; no baseline exception is applied.\"\n  ]\n}\n",
+      "original_paths": [
+        "code\\rust\\src\\category_theory\\functor\\functor.contract.score.yaml#functor-shell-validation-review"
+      ]
     }
   ]
 }
