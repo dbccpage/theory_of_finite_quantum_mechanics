@@ -67,3 +67,7 @@ List every number in the PR body, the changed derivation notes (`dag/derivations
 ## Output to the user
 
 Verdict counts, the nodes to narrow or revert (with the proposed text), number mismatches, and the findings you could not decide. Lead with the worst.
+
+## Run together with
+
+The [audit](../audit/SKILL.md) umbrella runs this skill first, then the auto-* hunters that apply to the change (obstruction, symmetry, anti-pattern, docs, agent and skill review), and writes one consolidated report, `docs/overclaim/reviews/<date>_<scope>_audit.md`, whose first section is this skill's review. Everything above still applies in full inside the umbrella; the hunters hand any node they flag back to Step 2 and give no node verdicts of their own. Run this skill alone when only claims are in question.

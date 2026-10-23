@@ -107,9 +107,9 @@ def main() -> None:
         "datum_bound": 3, "signatures": [[], [1], [2], [1, 2]], "class_count_histogram": histogram,
         "fixtures": {"inert": empty, "unseparated_marks": initial, "sealed_response": separated, "uniform_rule": ruled},
         "factorizations": factors, "refused_factorizations": refusals,
-        "mutation_accounting": {"killed": 4, "survived": 0, "demonstrably_equivalent": 0,
-                                "invalid": 0, "inconclusive": 0, "unrun": 0}}
-    # Four concrete semantic mutations, all contradicted by a preceding exact fixture.
+        "negative_controls_checked": 4,
+        "mutation_coverage": "not measured by fixed regression fixtures"}
+    # Four fixed negative controls, each contradicted by an exact fixture.
     require(initial["classes"] != 2, "inequality-of-labels as internal distinction")
     require(separated["classes"] != 1, "constant term map")
     require(ruled["classes"] != separated["classes"], "ignore uniform coverage")

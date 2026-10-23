@@ -33,40 +33,124 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_count_invariance_transport_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: DRen
+  line: 59
+  signature_excerpt: 'structure DRen (n : Nat)'
+  source: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean
+  repository: this_repository
+  source_sha256: e9975572e9e521c76a21cff3485f77bcf2bb18062045fc1c09ad375930540088
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: renameRegime
+  line: 99
+  signature_excerpt: 'def renameRegime (f : Nat → Nat) (r : Regime) : Regime'
+  source: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean
+  repository: this_repository
+  source_sha256: e9975572e9e521c76a21cff3485f77bcf2bb18062045fc1c09ad375930540088
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mapInst
+  line: 88
+  signature_excerpt: 'def mapInst (f : Nat → Nat) (i : Inst) : Inst'
+  source: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean
+  repository: this_repository
+  source_sha256: e9975572e9e521c76a21cff3485f77bcf2bb18062045fc1c09ad375930540088
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: collapsed_rename
+  line: 213
+  signature_excerpt: |-
+    theorem collapsed_rename {n : Nat} (σ : DRen n) (r : Regime) (hn : r.data = n)
+        (d d' : Nat) :
+        collapsed (renameRegime σ.f r) (σ.f d) (σ.f d') ↔ collapsed r d d'
+  source: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean
+  repository: this_repository
+  source_sha256: e9975572e9e521c76a21cff3485f77bcf2bb18062045fc1c09ad375930540088
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapsedCount_rename
+  line: 248
+  signature_excerpt: |-
+    theorem collapsedCount_rename {n : Nat} (σ : DRen n) (r : Regime)
+        (hn : r.data = n) (p q : Nat × Nat → Bool)
+        (hp : ∀ x : Nat × Nat, p x = true ↔ collapsed r x.1 x.2)
+        (hq : ∀ x : Nat × Nat, q x = true ↔ collapsed (renameRegime σ.f r) x.1 x.2)
+        (L : List (Nat × Nat)) :
+        (L.map (fun x => (σ.f x.1, σ.f x.2))).countP q = L.countP p
+  source: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean
+  repository: this_repository
+  source_sha256: e9975572e9e521c76a21cff3485f77bcf2bb18062045fc1c09ad375930540088
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapsed_transport
+  line: 173
+  signature_excerpt: |-
+    theorem collapsed_transport (h : Iso r s) {d d' : Nat}
+        (hd : d < r.data) (hd' : d' < r.data) :
+        collapsed s (h.dmap d) (h.dmap d') ↔ collapsed r d d'
+  source: lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean
+  repository: this_repository
+  source_sha256: 1a269017cea3c5f1c1f6d8d37cedd29297ea73d38c6876cb7d2f660c70575d9c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapsed_renameDataForm
+  line: 198
+  signature_excerpt: |-
+    theorem collapsed_renameDataForm {n : Nat} (σ : DRen n) (r : Regime)
+        (hn : r.data = n) (τ : DRen r.forms.length) (d d' : Nat) :
+        collapsed (renameForms τ.f τ.g (renameRegime σ.f r)) (σ.f d) (σ.f d')
+          ↔ collapsed r d d'
+  source: lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean
+  repository: this_repository
+  source_sha256: b3b430792e69cd8c64a10b71637d34bc3691b83ef0304362fa97f8919eda5b9f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsed_rename
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsed_rename
+  availability: local
   symbol: collapsed_rename
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean
+  repository: this_repository
+  sha256: e9975572e9e521c76a21cff3485f77bcf2bb18062045fc1c09ad375930540088
+  declaration_status: declaration_found_not_proof_checked
+  line: 213
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsedCount_rename
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsedCount_rename
+  availability: local
   symbol: collapsedCount_rename
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean
+  repository: this_repository
+  sha256: e9975572e9e521c76a21cff3485f77bcf2bb18062045fc1c09ad375930540088
+  declaration_status: declaration_found_not_proof_checked
+  line: 248
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean::collapsed_transport
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean::collapsed_transport
+  availability: local
   symbol: collapsed_transport
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean
+  repository: this_repository
+  sha256: 1a269017cea3c5f1c1f6d8d37cedd29297ea73d38c6876cb7d2f660c70575d9c
+  declaration_status: declaration_found_not_proof_checked
+  line: 173
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean::collapsed_renameDataForm
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean::collapsed_renameDataForm
+  availability: local
   symbol: collapsed_renameDataForm
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean
+  repository: this_repository
+  sha256: b3b430792e69cd8c64a10b71637d34bc3691b83ef0304362fa97f8919eda5b9f
+  declaration_status: declaration_found_not_proof_checked
+  line: 198
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming
   availability: external
@@ -121,8 +205,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -15,7 +15,7 @@ target:
   source_refs:
   - dag/derivations/02_genesis/tfq_0458_faithful_descent_round_trip.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:469-482
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean:23-27
+  - lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean:32-36
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:32
   paper_refs: []
   source_claim_label: PROVED_LEAN
@@ -30,24 +30,92 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_faithful_descent_round_trip_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: TranslationAttempt
+  line: 50
+  signature_excerpt: 'structure TranslationAttempt (P Q : Type)'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  source_sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Totalization
+  line: 57
+  signature_excerpt: 'structure Totalization {P Q : Type} (t : TranslationAttempt P Q)'
+  source: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  source_sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: FaithfulCommonDescent
+  line: 138
+  signature_excerpt: |-
+    structure FaithfulCommonDescent
+        {P Q : Type} {t : TranslationAttempt P Q}
+        (u : Totalization t)
+  source: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  source_sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: RoundTripCoherent
+  line: 92
+  signature_excerpt: |-
+    structure RoundTripCoherent
+        {P Q : Type} {t : TranslationAttempt P Q}
+        (u : Totalization t) : Prop
+  source: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  source_sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: faithful_descent_iff_round_trip_coherent
+  line: 201
+  signature_excerpt: |-
+    theorem faithful_descent_iff_round_trip_coherent
+        {P Q : Type} {t : TranslationAttempt P Q}
+        (u : Totalization t) :
+        Nonempty (FaithfulCommonDescent u) ↔ RoundTripCoherent u
+  source: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  source_sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: faithful_descent_to_coherent
+  line: 182
+  signature_excerpt: |-
+    theorem faithful_descent_to_coherent
+        {P Q : Type} {t : TranslationAttempt P Q}
+        {u : Totalization t} (d : FaithfulCommonDescent u) :
+        RoundTripCoherent u
+  source: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  source_sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent
+  availability: local
   symbol: faithful_descent_iff_round_trip_coherent
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  declaration_status: declaration_found_not_proof_checked
+  line: 201
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean::faithful_descent_to_coherent
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_to_coherent
+  availability: local
   symbol: faithful_descent_to_coherent
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean
+  repository: this_repository
+  sha256: 0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92
+  declaration_status: declaration_found_not_proof_checked
+  line: 182
   role: source_lead_only
 presentation:
   colours: []
@@ -86,8 +154,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

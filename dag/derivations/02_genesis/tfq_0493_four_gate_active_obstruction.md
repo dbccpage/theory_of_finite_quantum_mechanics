@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::gates_of_obst`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obstP_factors`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obst_of_gates`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean)
-- [`omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obstP_factors`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::gates_of_obst`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obstP_factors`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obst_of_gates`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
+- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust port of the passage-system obstP; obstruction.rs::obstructed is the kernel's exhausted-menu notion, a different predicate`
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean:207-217`
-  - `omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean:54-57`
+  - `lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean:216-226`
+  - `lean4/Imported/OeMssn/MssnObstructionDetector.lean:63-66`
   - `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:1105-1107`

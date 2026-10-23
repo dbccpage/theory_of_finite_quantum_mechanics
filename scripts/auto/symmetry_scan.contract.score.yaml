@@ -1,0 +1,291 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "scripts/auto/symmetry_scan.py",
+  "contract": {
+    "schema_id": "finite-qm.code-companion.v1",
+    "subject": "scripts/auto/symmetry_scan.py",
+    "source_sha256": "ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5",
+    "authority_effect": "None",
+    "contract_urn": "urn:finite-qm:independent-auto-review:symmetry_scan:ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5",
+    "claim": "Compares every prose copy of four honesty invariants (allowed Lean axioms, forbidden Lean tokens, status order, the validator's forbidden words) with the code constants that enforce them, and reports where a copy names an item the code does not or omits one it does.",
+    "symbols": [
+      "Reference",
+      "_present",
+      "check_axioms",
+      "check_forbidden_words",
+      "check_status_order",
+      "check_tokens",
+      "literal_assignment",
+      "load_reference",
+      "main",
+      "paragraphs",
+      "prose_files",
+      "quoted_runs",
+      "scan",
+      "scan_text"
+    ],
+    "owned_invariants": [
+      "Reference values are read with ast.literal_eval from ALLOWED_AXIOMS and LEAN_ADMISSION_TOKENS in scripts/overclaim_scan.py, PFP_STATUS_RANK and FORBIDDEN in dag/validate_derivation_dag.py, and LEAN_FORBIDDEN in scripts/auto/anti_pattern_lint.py; no module is imported.",
+      "A non-literal or missing reference constant raises AuditError (exit 2).",
+      "An extra allowed axiom in a prose allowlist, or a status chain the validator ranks out of order, is HIGH."
+    ],
+    "boundaries": [
+      "Prose extraction is heuristic (sentences that list two allowed axioms and say only; lines that say the validator refuses words and list three or more quoted words); an empty scan does not show the copies agree.",
+      "The code constants are the comparison reference only; a finding does not say which copy should change."
+    ],
+    "evidence": [
+      "evidence/quality/pr214_independent_review.json"
+    ]
+  },
+  "current_contract": "17d1453c855a1c93eb234722c488f71526a0b98a23e710091a1f2f95e1c5f00b",
+  "current_scoring": "32dc90a056c5d58231a72761a94f712fb39ecb7827a35523a63066637763b08a",
+  "contract_history": [
+    {
+      "sha256": "741c049c8f84e7bed04f44ffec6fa5e95c48622e7175806ba76e18373c1fd54b",
+      "bytes": 1855,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "scripts/auto/symmetry_scan.py",
+        "source_sha256": "c7f163f4de39fcf29cf663dfa9b64ec0a34e763ff4668fb0f9318f1efd24b132",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:auto:symmetry-scan:c7f163f4de39fcf29cf6",
+        "claim": "Compares every prose copy of four honesty invariants (allowed Lean axioms, forbidden Lean tokens, status order, the validator's forbidden words) with the code constants that enforce them, and reports where a copy names an item the code does not or omits one it does.",
+        "symbols": [
+          "Reference",
+          "_present",
+          "check_axioms",
+          "check_forbidden_words",
+          "check_status_order",
+          "check_tokens",
+          "literal_assignment",
+          "load_reference",
+          "main",
+          "paragraphs",
+          "prose_files",
+          "quoted_runs",
+          "scan",
+          "scan_text"
+        ],
+        "owned_invariants": [
+          "Reference values are read with ast.literal_eval from ALLOWED_AXIOMS and LEAN_ADMISSION_TOKENS in scripts/overclaim_scan.py, PFP_STATUS_RANK and FORBIDDEN in dag/validate_derivation_dag.py, and LEAN_FORBIDDEN in scripts/auto/anti_pattern_lint.py; no module is imported.",
+          "A non-literal or missing reference constant raises AuditError (exit 2).",
+          "An extra allowed axiom in a prose allowlist, or a status chain the validator ranks out of order, is HIGH."
+        ],
+        "boundaries": [
+          "Prose extraction is heuristic (sentences that list two allowed axioms and say only; lines that say the validator refuses words and list three or more quoted words); an empty scan does not show the copies agree.",
+          "The code constants are the comparison reference only; a finding does not say which copy should change."
+        ],
+        "evidence": [
+          "scripts/auto/test_auto_checks.py",
+          "scripts/overclaim_scan.py",
+          "dag/validate_derivation_dag.py",
+          "SCORING.md"
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"subject\": \"scripts/auto/symmetry_scan.py\",\n  \"source_sha256\": \"c7f163f4de39fcf29cf663dfa9b64ec0a34e763ff4668fb0f9318f1efd24b132\",\n  \"authority_effect\": \"None\",\n  \"contract_urn\": \"urn:finite-qm:auto:symmetry-scan:c7f163f4de39fcf29cf6\",\n  \"claim\": \"Compares every prose copy of four honesty invariants (allowed Lean axioms, forbidden Lean tokens, status order, the validator's forbidden words) with the code constants that enforce them, and reports where a copy names an item the code does not or omits one it does.\",\n  \"symbols\": [\n    \"Reference\",\n    \"_present\",\n    \"check_axioms\",\n    \"check_forbidden_words\",\n    \"check_status_order\",\n    \"check_tokens\",\n    \"literal_assignment\",\n    \"load_reference\",\n    \"main\",\n    \"paragraphs\",\n    \"prose_files\",\n    \"quoted_runs\",\n    \"scan\",\n    \"scan_text\"\n  ],\n  \"owned_invariants\": [\n    \"Reference values are read with ast.literal_eval from ALLOWED_AXIOMS and LEAN_ADMISSION_TOKENS in scripts/overclaim_scan.py, PFP_STATUS_RANK and FORBIDDEN in dag/validate_derivation_dag.py, and LEAN_FORBIDDEN in scripts/auto/anti_pattern_lint.py; no module is imported.\",\n    \"A non-literal or missing reference constant raises AuditError (exit 2).\",\n    \"An extra allowed axiom in a prose allowlist, or a status chain the validator ranks out of order, is HIGH.\"\n  ],\n  \"boundaries\": [\n    \"Prose extraction is heuristic (sentences that list two allowed axioms and say only; lines that say the validator refuses words and list three or more quoted words); an empty scan does not show the copies agree.\",\n    \"The code constants are the comparison reference only; a finding does not say which copy should change.\"\n  ],\n  \"evidence\": [\n    \"scripts/auto/test_auto_checks.py\",\n    \"scripts/overclaim_scan.py\",\n    \"dag/validate_derivation_dag.py\",\n    \"SCORING.md\"\n  ]\n}\n",
+      "original_paths": [
+        "scripts/auto/symmetry_scan.contract.score.yaml#contract"
+      ]
+    },
+    {
+      "sha256": "17d1453c855a1c93eb234722c488f71526a0b98a23e710091a1f2f95e1c5f00b",
+      "bytes": 1843,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "scripts/auto/symmetry_scan.py",
+        "source_sha256": "ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:independent-auto-review:symmetry_scan:ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5",
+        "claim": "Compares every prose copy of four honesty invariants (allowed Lean axioms, forbidden Lean tokens, status order, the validator's forbidden words) with the code constants that enforce them, and reports where a copy names an item the code does not or omits one it does.",
+        "symbols": [
+          "Reference",
+          "_present",
+          "check_axioms",
+          "check_forbidden_words",
+          "check_status_order",
+          "check_tokens",
+          "literal_assignment",
+          "load_reference",
+          "main",
+          "paragraphs",
+          "prose_files",
+          "quoted_runs",
+          "scan",
+          "scan_text"
+        ],
+        "owned_invariants": [
+          "Reference values are read with ast.literal_eval from ALLOWED_AXIOMS and LEAN_ADMISSION_TOKENS in scripts/overclaim_scan.py, PFP_STATUS_RANK and FORBIDDEN in dag/validate_derivation_dag.py, and LEAN_FORBIDDEN in scripts/auto/anti_pattern_lint.py; no module is imported.",
+          "A non-literal or missing reference constant raises AuditError (exit 2).",
+          "An extra allowed axiom in a prose allowlist, or a status chain the validator ranks out of order, is HIGH."
+        ],
+        "boundaries": [
+          "Prose extraction is heuristic (sentences that list two allowed axioms and say only; lines that say the validator refuses words and list three or more quoted words); an empty scan does not show the copies agree.",
+          "The code constants are the comparison reference only; a finding does not say which copy should change."
+        ],
+        "evidence": [
+          "evidence/quality/pr214_independent_review.json"
+        ]
+      },
+      "raw_utf8": "{\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"Prose extraction is heuristic (sentences that list two allowed axioms and say only; lines that say the validator refuses words and list three or more quoted words); an empty scan does not show the copies agree.\",\n    \"The code constants are the comparison reference only; a finding does not say which copy should change.\"\n  ],\n  \"claim\": \"Compares every prose copy of four honesty invariants (allowed Lean axioms, forbidden Lean tokens, status order, the validator's forbidden words) with the code constants that enforce them, and reports where a copy names an item the code does not or omits one it does.\",\n  \"contract_urn\": \"urn:finite-qm:independent-auto-review:symmetry_scan:ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5\",\n  \"evidence\": [\n    \"evidence/quality/pr214_independent_review.json\"\n  ],\n  \"owned_invariants\": [\n    \"Reference values are read with ast.literal_eval from ALLOWED_AXIOMS and LEAN_ADMISSION_TOKENS in scripts/overclaim_scan.py, PFP_STATUS_RANK and FORBIDDEN in dag/validate_derivation_dag.py, and LEAN_FORBIDDEN in scripts/auto/anti_pattern_lint.py; no module is imported.\",\n    \"A non-literal or missing reference constant raises AuditError (exit 2).\",\n    \"An extra allowed axiom in a prose allowlist, or a status chain the validator ranks out of order, is HIGH.\"\n  ],\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"source_sha256\": \"ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5\",\n  \"subject\": \"scripts/auto/symmetry_scan.py\",\n  \"symbols\": [\n    \"Reference\",\n    \"_present\",\n    \"check_axioms\",\n    \"check_forbidden_words\",\n    \"check_status_order\",\n    \"check_tokens\",\n    \"literal_assignment\",\n    \"load_reference\",\n    \"main\",\n    \"paragraphs\",\n    \"prose_files\",\n    \"quoted_runs\",\n    \"scan\",\n    \"scan_text\"\n  ]\n}\n",
+      "original_paths": [
+        "scripts/auto/symmetry_scan.contract.score.yaml#independent-review"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "201a196380dca9c012d5d4b49067d5aeb63babc28bdc7fc63eac2f5b43926da3",
+      "bytes": 3583,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "scripts/auto/symmetry_scan.py",
+          "language": "Python",
+          "sha256": "c7f163f4de39fcf29cf663dfa9b64ec0a34e763ff4668fb0f9318f1efd24b132"
+        },
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "level": "L4",
+        "level_basis": "Production checker: reference values read without importing code, typed refusals, classification into the drift classes of the skill, fenced-code-aware paragraph splitting, diff-scoped prose selection.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Docstring header (Origin, Claim, AuthorityEffect None, Scope Fence); contract URN bound to the source digest; contract symbols are the module's top-level definitions; owned invariants and boundaries stated. Not B: no audited bidirectional map from every requirement to code and to downstream consumers.",
+          "G2": "Non-Numeric profile fixed before testing. Primary paths checked against git fixture repositories built in tmp_path; inputs validated at entry (git checkout, DAG shape, front-matter type, literal constants). Heuristic rules are declared as prompts in the boundaries, not as semantic verdicts.",
+          "G3": "Every environment failure is a typed AuditError mapped to exit status 2; no bare except; unreadable or unparseable inputs become LOW findings instead of being dropped; all git calls are read-only; no file outside a caller-named --summary path is written.",
+          "G4": "scripts/auto/test_auto_checks.py: 78 tests (unit, CLI, git-fixture integration, python -I subprocess). Mutation campaign: conservative ratio R = 1.0 (no mutant declared equivalent). Not B: no property-based generator tests.",
+          "G5": "Max cyclomatic complexity 11, cognitive complexity 15, control nesting 3; SCORING.md 3.5 ceilings give B."
+        },
+        "metrics": {
+          "radon_ccn_max": 11,
+          "lizard_ccn_max": 11,
+          "cognitive_complexity_max": 15,
+          "control_nesting_max": 3,
+          "tools": "radon 6.0.1, lizard, cognitive_complexity (PyPI); nesting by an AST walk treating elif as one level"
+        },
+        "mutation_accounting": {
+          "killed": 44,
+          "survived": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "demonstrably_equivalent": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0,
+          "harness": "AST mutation (compare-op swap, and/or swap, not removal, bool flip, severity rotation); pytest scripts/auto/test_auto_checks.py -x per mutant; no mutant declared equivalent",
+          "survivors": []
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-23T12:00:00+00:00",
+        "assessor": "Claude Opus 5.5 (AI-drafted assessment, awaiting human review)",
+        "open_higher_grade_findings": [
+          "Heuristic prose extraction",
+          "No property-based tests",
+          "No independent alternate harness"
+        ],
+        "evidence": [
+          {
+            "path": "scripts/auto/test_auto_checks.py",
+            "sha256": "e1381481bb1d49ad89cf0c3c2e965514f014300651bb46fc399ff16071f6d441"
+          },
+          {
+            "path": "scripts/overclaim_scan.py",
+            "sha256": "a28b62f84873368ad7929b0e6451b5b2fa388169f6e7a0ad39e30bf8405ce131"
+          },
+          {
+            "path": "dag/validate_derivation_dag.py",
+            "sha256": "c77c5c7e21a61506228141312cd6d31d4a6b5b3e58abcdbf6d10911b80f235cb"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"scripts/auto/symmetry_scan.py\",\n    \"language\": \"Python\",\n    \"sha256\": \"c7f163f4de39fcf29cf663dfa9b64ec0a34e763ff4668fb0f9318f1efd24b132\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"level\": \"L4\",\n  \"level_basis\": \"Production checker: reference values read without importing code, typed refusals, classification into the drift classes of the skill, fenced-code-aware paragraph splitting, diff-scoped prose selection.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Docstring header (Origin, Claim, AuthorityEffect None, Scope Fence); contract URN bound to the source digest; contract symbols are the module's top-level definitions; owned invariants and boundaries stated. Not B: no audited bidirectional map from every requirement to code and to downstream consumers.\",\n    \"G2\": \"Non-Numeric profile fixed before testing. Primary paths checked against git fixture repositories built in tmp_path; inputs validated at entry (git checkout, DAG shape, front-matter type, literal constants). Heuristic rules are declared as prompts in the boundaries, not as semantic verdicts.\",\n    \"G3\": \"Every environment failure is a typed AuditError mapped to exit status 2; no bare except; unreadable or unparseable inputs become LOW findings instead of being dropped; all git calls are read-only; no file outside a caller-named --summary path is written.\",\n    \"G4\": \"scripts/auto/test_auto_checks.py: 78 tests (unit, CLI, git-fixture integration, python -I subprocess). Mutation campaign: conservative ratio R = 1.0 (no mutant declared equivalent). Not B: no property-based generator tests.\",\n    \"G5\": \"Max cyclomatic complexity 11, cognitive complexity 15, control nesting 3; SCORING.md 3.5 ceilings give B.\"\n  },\n  \"metrics\": {\n    \"radon_ccn_max\": 11,\n    \"lizard_ccn_max\": 11,\n    \"cognitive_complexity_max\": 15,\n    \"control_nesting_max\": 3,\n    \"tools\": \"radon 6.0.1, lizard, cognitive_complexity (PyPI); nesting by an AST walk treating elif as one level\"\n  },\n  \"mutation_accounting\": {\n    \"killed\": 44,\n    \"survived\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0,\n    \"harness\": \"AST mutation (compare-op swap, and/or swap, not removal, bool flip, severity rotation); pytest scripts/auto/test_auto_checks.py -x per mutant; no mutant declared equivalent\",\n    \"survivors\": []\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"grade_ceiling\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T12:00:00+00:00\",\n  \"assessor\": \"Claude Opus 5.5 (AI-drafted assessment, awaiting human review)\",\n  \"open_higher_grade_findings\": [\n    \"Heuristic prose extraction\",\n    \"No property-based tests\",\n    \"No independent alternate harness\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"scripts/auto/test_auto_checks.py\",\n      \"sha256\": \"e1381481bb1d49ad89cf0c3c2e965514f014300651bb46fc399ff16071f6d441\"\n    },\n    {\n      \"path\": \"scripts/overclaim_scan.py\",\n      \"sha256\": \"a28b62f84873368ad7929b0e6451b5b2fa388169f6e7a0ad39e30bf8405ce131\"\n    },\n    {\n      \"path\": \"dag/validate_derivation_dag.py\",\n      \"sha256\": \"c77c5c7e21a61506228141312cd6d31d4a6b5b3e58abcdbf6d10911b80f235cb\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "scripts/auto/symmetry_scan.contract.score.yaml#scoring"
+      ]
+    },
+    {
+      "sha256": "32dc90a056c5d58231a72761a94f712fb39ecb7827a35523a63066637763b08a",
+      "bytes": 3064,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "scripts/auto/symmetry_scan.py",
+          "language": "Python",
+          "sha256": "ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5"
+        },
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "level": "L4",
+        "level_basis": "Production checker: reference values read without importing code, typed refusals, classification into the drift classes of the skill, fenced-code-aware paragraph splitting, diff-scoped prose selection.",
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Adaptation origins and authority ceiling are explicit; current source and test results are bound by the independent receipt. No semantic proof or upstream-equivalence claim.",
+          "G2": "111 selected scanner and overclaim regressions pass, including Git boundaries, exact severity comparisons, comments, strings, constructor identifiers and tactic alternatives. Rules are explicitly syntactic heuristics.",
+          "G3": "Typed AuditError is exposed at supported CLI boundaries; no repository mutation except caller-named summary output. Missing Git deadlines and complete malformed-DAG validation cap this gate at D.",
+          "G4": "The formerly missed tactic alternatives fail before the patch and pass after it. Current tests are meaningful, but comprehensive generated mutation coverage was not replayed; D records that audit deficit.",
+          "G5": "Pinned radon, lizard and cognitive-complexity measurements are attached. No runtime benchmark or formal resource bound is claimed; whole-estate traversal and missing deadlines remain limits."
+        },
+        "metrics": {
+          "sha256": "ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5",
+          "radon_ccn_max": 12,
+          "lizard_ccn_max": 12,
+          "cognitive_complexity_max": 17,
+          "functions": 14
+        },
+        "is_complete": true,
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T07:06:07.225289+00:00",
+        "assessor": "Codex independent review",
+        "open_higher_grade_findings": [
+          "The original mutation campaign is historical and was not replayed on these bytes.",
+          "The pre-fix regression run failed six tactic-alternative cases; all 111 selected tests passed after repair.",
+          "Git subprocesses have no deadline; broad malformed-DAG element validation and semantic Lean parsing are absent.",
+          "Three estate LOW findings describe optional agent directories and an ignored local report; none licenses a status change.",
+          "A stale incremental mypy run still reported an unchanged dependency; the no-incremental final run passes all six reviewed files."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/pr214_independent_review.json",
+            "sha256": "7c80dbc7bf9fa3a83c07d6c8760b4346c99db91a03b861e7cf9c11a87a3f35d7"
+          }
+        ],
+        "assessment_status": "completed_for_declared_scanner_scope"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"scripts/auto/symmetry_scan.py\",\n    \"sha256\": \"ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5\"\n  },\n  \"assessment_status\": \"completed_for_declared_scanner_scope\",\n  \"assessor\": \"Codex independent review\",\n  \"basis\": {\n    \"G1\": \"Adaptation origins and authority ceiling are explicit; current source and test results are bound by the independent receipt. No semantic proof or upstream-equivalence claim.\",\n    \"G2\": \"111 selected scanner and overclaim regressions pass, including Git boundaries, exact severity comparisons, comments, strings, constructor identifiers and tactic alternatives. Rules are explicitly syntactic heuristics.\",\n    \"G3\": \"Typed AuditError is exposed at supported CLI boundaries; no repository mutation except caller-named summary output. Missing Git deadlines and complete malformed-DAG validation cap this gate at D.\",\n    \"G4\": \"The formerly missed tactic alternatives fail before the patch and pass after it. Current tests are meaningful, but comprehensive generated mutation coverage was not replayed; D records that audit deficit.\",\n    \"G5\": \"Pinned radon, lizard and cognitive-complexity measurements are attached. No runtime benchmark or formal resource bound is claimed; whole-estate traversal and missing deadlines remain limits.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T07:06:07.225289+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr214_independent_review.json\",\n      \"sha256\": \"7c80dbc7bf9fa3a83c07d6c8760b4346c99db91a03b861e7cf9c11a87a3f35d7\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Production checker: reference values read without importing code, typed refusals, classification into the drift classes of the skill, fenced-code-aware paragraph splitting, diff-scoped prose selection.\",\n  \"metrics\": {\n    \"cognitive_complexity_max\": 17,\n    \"functions\": 14,\n    \"lizard_ccn_max\": 12,\n    \"radon_ccn_max\": 12,\n    \"sha256\": \"ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5\"\n  },\n  \"open_higher_grade_findings\": [\n    \"The original mutation campaign is historical and was not replayed on these bytes.\",\n    \"The pre-fix regression run failed six tactic-alternative cases; all 111 selected tests passed after repair.\",\n    \"Git subprocesses have no deadline; broad malformed-DAG element validation and semantic Lean parsing are absent.\",\n    \"Three estate LOW findings describe optional agent directories and an ignored local report; none licenses a status change.\",\n    \"A stale incremental mypy run still reported an unchanged dependency; the no-incremental final run passes all six reviewed files.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "scripts/auto/symmetry_scan.contract.score.yaml#independent-review"
+      ]
+    }
+  ],
+  "legacy_paths": {},
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "First assessment of newly ported code; AI-drafted, not independently reviewed or promoted."
+}

@@ -1,6 +1,6 @@
 # MUB6-SZOLLOSI-GAUGED-666
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 7
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,12 +47,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SzollosiColumnGauge.lean](../../../lean4/SzollosiColumnGauge.lean)
 - sha256 (`bytes`): `40d2a7a43eb4a6af119eacd842f05ee293e6a9f179260a526f8db5dd320933de`
 - cited in: node.lean, record TFQ-1269
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiColumnGauge`): recorded sha256 `40d2a7a43eb4a6af119eacd842f05ee293e6a9f179260a526f8db5dd320933de` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiColumnGauge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exists_gauge_box_solution_with_parameters_iff` | yes | yes | yes | - | `#print axioms exists_gauge_box_solution_with_parameters_iff` |
+| `exists_gauge_box_solution_with_parameters_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_gauge_box_solution_with_parameters_iff` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiGaugeBalance.lean`
@@ -60,12 +61,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SzollosiGaugeBalance.lean](../../../lean4/SzollosiGaugeBalance.lean)
 - sha256 (`bytes`): `fb2b8eeda0f65497bb3320b0b221011ec333310c46ef654f0f68c9058ad5548b`
 - cited in: node.lean, record TFQ-1269
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiGaugeBalance`): recorded sha256 `fb2b8eeda0f65497bb3320b0b221011ec333310c46ef654f0f68c9058ad5548b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiGaugeBalance`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `solution_balance_equations` | yes | yes | yes | - | `#print axioms solution_balance_equations` |
+| `solution_balance_equations` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms solution_balance_equations` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiGaugedCover.lean`
@@ -73,12 +75,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SzollosiGaugedCover.lean](../../../lean4/SzollosiGaugedCover.lean)
 - sha256 (`bytes`): `aeaa4546c8e28788a173348e6e79d0d366d5f1c097e85298f933ba5edb29d354`
 - cited in: node.lean, record TFQ-1269
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiGaugedCover`): recorded sha256 `aeaa4546c8e28788a173348e6e79d0d366d5f1c097e85298f933ba5edb29d354` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiGaugedCover`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `augmented_solution_chart_cover` | yes | yes | yes | - | `#print axioms augmented_solution_chart_cover` |
+| `augmented_solution_chart_cover` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms augmented_solution_chart_cover` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiGaugedExecutable.lean`
@@ -86,12 +89,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SzollosiGaugedExecutable.lean](../../../lean4/SzollosiGaugedExecutable.lean)
 - sha256 (`bytes`): `d87b81d16a62d67d2ed92d8df796dbd2d0a77241b5328c36074ff303dd46a19e`
 - cited in: node.lean, record TFQ-1269
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiGaugedExecutable`): recorded sha256 `d87b81d16a62d67d2ed92d8df796dbd2d0a77241b5328c36074ff303dd46a19e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiGaugedExecutable`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `augmented_exists_with_parameters_iff` | yes | yes | yes | - | `#print axioms augmented_exists_with_parameters_iff` |
+| `augmented_exists_with_parameters_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms augmented_exists_with_parameters_iff` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiGaugedReflection.lean`
@@ -99,12 +103,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/SzollosiGaugedReflection.lean](../../../lean4/SzollosiGaugedReflection.lean)
 - sha256 (`bytes`): `356eab2883d9d9494b06481f1ee41450a5f052a2bd157558657aca48da71c914`
 - cited in: node.lean, record TFQ-1269
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `SzollosiGaugedReflection`): recorded sha256 `356eab2883d9d9494b06481f1ee41450a5f052a2bd157558657aca48da71c914` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SzollosiGaugedReflection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `native_chart_quartet_iff` | yes | yes | yes | - | `#print axioms native_chart_quartet_iff` |
+| `native_chart_quartet_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms native_chart_quartet_iff` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1269_mub6_szollosi_gauged_666.md`

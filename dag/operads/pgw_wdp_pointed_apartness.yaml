@@ -36,15 +36,32 @@ source_provenance:
   path: dag/prompts/wdp_pgw_wdp_pointed_apartness_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: pointed_relation_independence_fin
+  line: 105
+  signature_excerpt: |-
+    theorem pointed_relation_independence_fin :
+        (∃ (R : Fin 1 → Fin 1 → Prop) (a b : Fin 1), R a b ∧ a = b) ∧
+        (∃ (R : Fin 2 → Fin 2 → Prop) (a b : Fin 2), a ≠ b ∧ ¬ R a b) ∧
+        (∀ {X : Type} (R : X → X → Prop), (∀ x, ¬ R x x) → ∀ a b : X, R a b → a ≠ b)
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean
+  repository: this_repository
+  source_sha256: abf14f0a60ee68e7b9d5645f9241620f666ec6336c3f25d8e2b69507ffc827d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::pointed_relation_independence_fin
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean::pointed_relation_independence_fin
+  availability: local
   symbol: pointed_relation_independence_fin
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean
+  repository: this_repository
+  sha256: abf14f0a60ee68e7b9d5645f9241620f666ec6336c3f25d8e2b69507ffc827d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 105
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::GenesisAdmissionKernel
   availability: external
@@ -93,8 +110,6 @@ operad_slots:
     - Declared irreflexivity law on the relation R (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

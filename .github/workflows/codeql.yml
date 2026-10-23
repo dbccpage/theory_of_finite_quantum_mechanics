@@ -1,0 +1,37 @@
+# CodeQL advanced setup. It replaces GitHub's default setup so that .github/codeql/codeql-config.yml can exclude the
+# archives and sealed records (atlas/, sources/, dag/results/) from analysis.
+#
+# One-time step by the maintainer, before this workflow can upload results: Settings -> Code security -> CodeQL
+# analysis -> switch from "Default" to "Advanced" (GitHub rejects advanced uploads while default setup is enabled).
+name: codeql
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "41 4 * * 1"      # weekly, Monday 04:41 UTC
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [actions, python, javascript-typescript, rust]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          config-file: ./.github/codeql/codeql-config.yml
+      - uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"

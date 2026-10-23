@@ -37,16 +37,54 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_bridge_ongoing_to_window_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: abbrev
+  name: Table
+  line: 23
+  signature_excerpt: 'abbrev Table (V : Type u)'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean
+  repository: this_repository
+  source_sha256: f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normal
+  line: 28
+  signature_excerpt: 'def normal (root : V) (e : Table V) : Table V'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean
+  repository: this_repository
+  source_sha256: f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: potential
+  line: 26
+  signature_excerpt: 'def potential (root : V) (e : Table V) (x : V) : Int'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean
+  repository: this_repository
+  source_sha256: f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: normal_preserves_round_sums
+  line: 62
+  signature_excerpt: |-
+    theorem normal_preserves_round_sums (root : V) (e : Table V) (x y z : V) :
+        normal root e x y + normal root e y z + normal root e z x =
+          e x y + e y z + e z x
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean
+  repository: this_repository
+  source_sha256: f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums
+  availability: local
   symbol: normal_preserves_round_sums
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/RootGaugeNormalization.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean
+  repository: this_repository
+  sha256: f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3
+  declaration_status: declaration_found_not_proof_checked
+  line: 62
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter
   availability: external
@@ -95,8 +133,6 @@ operad_slots:
     - Fixed carrier and declared marked triples F from the chosen Genesis Ongoing source contexts (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

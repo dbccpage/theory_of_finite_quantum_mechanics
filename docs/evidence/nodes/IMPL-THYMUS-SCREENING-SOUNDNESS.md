@@ -1,6 +1,6 @@
 # IMPL-THYMUS-SCREENING-SOUNDNESS
 
-Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,20 +8,19 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evi
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E0; 2 Lean reference(s) cited, 0 in this checkout. PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
-- `proved_lean_external_only`: all 2 cited Lean reference(s) lie outside this checkout. PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -46,12 +45,20 @@ MECHANIZED in ThymusScreening.lean (empty axiom report) with Rust witness
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_education/documentation/004_oepfp/lean4/ThymusScreening.lean`
+### Lean: `lean4/Imported/OePfp/ThymusScreening.lean`
 
-- file: `omega_engine_education/documentation/004_oepfp/lean4/ThymusScreening.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [lean4/Imported/OePfp/ThymusScreening.lean](../../../lean4/Imported/OePfp/ThymusScreening.lean)
+- sha256 (`bytes`): `e10cd45992cd38464dd24eee3e03b48f334726dc37ff010afb1d7dd027db8a74`
 - cited in: node.lean, node.source, record TFQ-1045
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `Imported.OePfp.ThymusScreening`): recorded sha256 `e10cd45992cd38464dd24eee3e03b48f334726dc37ff010afb1d7dd027db8a74` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OePfp/ThymusScreening.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `Oeeis.Thymus.self_panel_soundness` | yes | yes | yes | none | `#print axioms Oeeis.Thymus.self_panel_soundness` |
+| `Oeeis.Thymus.thymus_admit_iff` | yes | yes | yes | none | `#print axioms Oeeis.Thymus.thymus_admit_iff` |
+- counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
@@ -63,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md](../../../dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md)
-- sha256 (`lf-normalised`): `06afafd2c94638f9b4f720c747b4680b27bbd4bb41bca63ef1227e68f977120c`
+- sha256 (`lf-normalised`): `d59d6f8772e48f0100b89525976943c5f142c44ac9fb852162089f21dc6f4638`
 - generated view: listed, not counted
 - cited in: record TFQ-1045
 - counts toward the grade: no
