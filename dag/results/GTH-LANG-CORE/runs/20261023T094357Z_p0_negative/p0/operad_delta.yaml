@@ -1,0 +1,127 @@
+schema_id: omega.pfp.finite-qm.operad-delta.v1
+node_id: GTH-LANG-CORE
+stage_id: P0_MINE_OPERAD
+attempt_id: p0
+authority_effect: None
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: fail:reaching_record_is_not_a_syntax
+  outer_operation: priced admission language syntax
+  input_slot: PGW-GO-ADMISSION-GATE
+  inner_operation: Seed.Fifteenth.reaching_does_not_admit
+  colour_match: false
+  hypothesis_match: The route requires all three inputs. This declaration is only the admission-record input.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.reaching_does_not_admit
+    line: 38
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.reaching_ne_admitted
+    line: 43
+  - path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+    declaration: Seed.Fifteenth.admission_not_assertion
+    line: 48
+  reason: reaching is defined as Admission.notAdmitted. reaching_does_not_admit is that definitional equality.
+    reaching_ne_admitted separates it from Admission.admitted. admission_not_assertion says an Admission value is
+    one of those two constructors and is not an assertion of the seed state. The module imports Fifteenth.State.
+    It does not import the regime calculus or the boxed laws, and it does not declare a syntax.
+- id: fail:derivation_regime_is_not_the_priced_syntax
+  outer_operation: priced admission language syntax
+  input_slot: PG-GEN-REGIME-EVENTS
+  inner_operation: Derivation.supply_no_op
+  colour_match: false
+  hypothesis_match: The route requires all three inputs. This declaration is only the regime-event input.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/Imported/Genesis19l57g1/Derivation/Basic.lean
+    declaration: Derivation.Regime
+    line: 62
+  - path: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+    declaration: Derivation.genesis
+    line: 23
+  - path: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+    declaration: Derivation.supply_no_op
+    line: 26
+  reason: Derivation.Regime stores data as Nat, forms as List Nat, insts as List Inst, rules as List Nat, and
+    reqs as List (Nat × Nat). genesis is the zero count with four empty lists. supply_no_op says stepE of a
+    supply returns the same regime. That is the regime calculus already recorded for PG-GEN-REGIME-EVENTS. It
+    is not a syntax obtained from the admission record and the boxed laws.
+- id: fail:boxed_laws_have_no_local_syntax
+  outer_operation: priced admission language syntax
+  input_slot: PGW-SN-TWO-BOXED-LAWS
+  inner_operation: evaluate_two_boxed_laws_gate
+  colour_match: false
+  hypothesis_match: The node cites a Rust gate that is not in this checkout, and the derivation note says there is no Lean statement.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md
+    declaration: governing obligation
+    line: 14
+  reason: The note says the two boxed laws are design rules, that no checker enforces them, and that the Lean
+    witness is a missing obligation. A search of this checkout finds no evaluate_two_boxed_laws_gate. The cited
+    Rust path is absent. The laws are not a syntax.
+- id: fail:admitcore_is_a_different_carrier
+  outer_operation: priced admission language syntax
+  input_slot: deep_embedding
+  inner_operation: AdmitCore.Regime
+  colour_match: false
+  hypothesis_match: AdmitCore is not an input of GTH-R-GTH-LANG-CORE. The node lean list is empty.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.Regime
+    line: 42
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.impose_no_step
+    line: 85
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.Step
+    line: 52
+  reason: AdmitCore.Regime stores data, forms, and cuts. The comment says rules and requirements are not stored.
+    The header says impose, S(n), and MSS-N are not core constructors. Step has constructors supply, admitData,
+    admitForm, and admitCut. impose_no_step says there is no Step for impose. That carrier is not
+    Derivation.Regime, and it is not a theorem of this node. It is not admitted as a generator and it is not
+    assembled into a reading bundle with the three route inputs.
+- id: fail:mssn_alphabet_is_not_a_route_input
+  outer_operation: priced admission language syntax
+  input_slot: mssn_alphabet
+  inner_operation: PGW-MSSN-ALPHABET-DECLARATIONS
+  colour_match: false
+  hypothesis_match: PGW-MSSN-ALPHABET-DECLARATIONS is not an input of GTH-R-GTH-LANG-CORE. The node see_also is PGW-MSSN-SYNTAX-NOT-DECODING, which is also not an input.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md
+    declaration: statement
+    line: 11
+  reason: The note defines an MSS-N alphabet as a separate declaration and says the Lean and Rust witnesses are
+    missing obligations. The grammar path omega_engine_education/documentation/003_oemssn/grammar/mssn.ebnf is
+    not in this checkout. That alphabet is not a primitive derived from the three route inputs.
+counterexamples:
+- id: cx:admitcore_is_not_the_priced_language
+  class: wrong_carrier
+  claim_kind: generator
+  claim: AdmitCore is the priced admission language, its Regime is the regime tuple named by the three route
+    inputs, and its declarations are theorems of GTH-LANG-CORE.
+  evidence: 'AdmitCore.Regime at lean4/AdmitCore.lean:42-45 has fields data, forms, and cuts. Derivation.Regime
+    at lean4/Imported/Genesis19l57g1/Derivation/Basic.lean:62-68 has fields data, forms, insts, rules, and reqs,
+    with data a Nat. impose_no_step at lean4/AdmitCore.lean:85 refuses an impose step. The node lean list is
+    empty. The route status is GAP_NO_DERIVATION.'
+  confidence: exact
+  node_id: GTH-LANG-CORE
+open_obligations:
+- No generator admitted at P0. Do not invent a syntax or a reading bundle.
+- Route GTH-R-GTH-LANG-CORE stays GAP_NO_DERIVATION. Node status stays OPEN.
+- The three inputs stay the definitions already recorded for them. Joining their names does not produce a syntax.
+- AdmitCore is not a theorem of this node.
+- The MSS-N alphabet declaration is not an input of this route.
+- Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted.
+verified_numeric_claims: []
+verified_lemma_statements: []
