@@ -49,6 +49,38 @@ is `1`, with imaginary part `0`. Replacing the second factor by `i` yields
 matches the second imaginary part and misses the first. The same integer is
 therefore not the imaginary part of every declared quartet.
 
+## Classification of supplied nonzero labels
+
+Take any commutative group G and a table M with a designated base row r and
+column c. A supplied gauge acts by M[i,j] -> u[i] M[i,j] / v[j]. Define
+N(M)[i,j] = M[i,j] M[r,c] / (M[i,c] M[r,j]). All divisions are in G.
+The base row and column become one. Commutativity cancels the row and column
+factors, so N is invariant and idempotent. The explicit gauge
+u[i] = 1/M[i,c], v[j] = M[r,j]/M[r,c] sends M to N(M).
+Consequently equal normal forms give a gauge from M to M' by composing the
+first normalizing gauge with the inverse of the second. The converse follows
+from invariance. This proves both directions, rather than assuming orbit
+agreement.
+
+With Option-indexed rows and columns, none is the base and the remaining
+entries are free coordinates. Extending any free table with a boundary of
+ones and restricting it back are inverse maps. Empty free row or column types
+are included. Finite decidable equality gives a Boolean orbit decision with
+soundness and completeness. For Fin n on both free axes there are n*n
+coordinate positions; this counts positions, not physical phases.
+
+The exact instance uses nonzero Gaussian rationals as Units. checkedLabel
+returns none exactly at zero and preserves the underlying value on success.
+Arbitrary nonzero rescalings are allowed; this action does not assert unit
+modulus, unitarity, or that the entries describe a physical mixing matrix.
+
+The independent checker exercises 2376 sign-gauge actions and 4388 pair
+decisions across shapes 1x1, 1x2, 2x1, 2x2, 2x3. Their orbit counts are
+1, 1, 1, 2, 4. A nonreal rational example checks the reconstructed witness;
+a changed cross-ratio separates another pair. Eleven invalid inputs are
+refused in normal and optimized Python. Four selected in-memory faults are
+detected; this is scoped regression evidence, not exhaustive mutation coverage.
+
 ## What is proved
 
 In `lean4/CampaignDfmCkmPhysicsFence.lean`:
@@ -63,6 +95,10 @@ In `lean4/CampaignDfmCkmPhysicsFence.lean`:
 
 The independent check recomputes the identities on nine rational samples, the
 four-point table, and the two quartets.
+
+The Rephasing namespace also proves the action laws, normalization laws,
+constructive orbit classification, free-coordinate equivalence, Boolean
+decision correctness and explicit zero refusal described above.
 
 ## What is assumed
 

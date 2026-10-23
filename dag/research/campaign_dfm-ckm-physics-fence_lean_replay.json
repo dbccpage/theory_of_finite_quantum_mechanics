@@ -3,7 +3,7 @@
   "authority_effect": "None",
   "source_base": "7e8b2213511494fb91d9f5296d663dedfa30a514",
   "checked_at": "2026-10-23",
-  "proof_boundary": "Rational identities among cycleCount, constraintCount, and cpCount, the values at n = 1, 2, 3, 4, the n = 3 split 4, 3, 1, and two quartet imaginary parts 0 and 1. No Yukawa matrix, unitarity reduction, graph, tree, or measured angle is in the module. The node stays OPEN.",
+  "proof_boundary": "Supplied commutative-group diagonal action on nonzero labels: canonical representatives, constructive orbit equivalence, finite decision correctness and coordinate equivalence. Gaussian-rational units are an exact instance. This is not unit-modulus rephasing, unitarity, a CKM or Yukawa derivation; the physical node stays OPEN.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
     "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
@@ -11,9 +11,9 @@
     "lakefile_sha256": "b97223a34e419f77d5b610a869c0a14f7cb5b502f4274b8a7a19d36ec403e668",
     "library": "CampaignDfmCkmPhysicsFence (lean_lib in lean4/lakefile.lean; not a default target)",
     "build_directory": "lean4/b (lakefile buildDir; gitignored)",
-    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache; junction removed before commit",
-    "command": "lake build CampaignDfmCkmPhysicsFence",
-    "cwd": "lean4",
+    "dependency_packages": "Existing pinned cache through existing junction; no download or cache restoration by this repair.",
+    "command": "lake --no-cache -d lean4 build CampaignDfmCkmPhysicsFence",
+    "cwd": ".",
     "allowed_axioms": [
       "propext",
       "Classical.choice",
@@ -24,12 +24,10 @@
         "module": "CampaignDfmCkmPhysicsFence",
         "dag_node": "DFM-CKM-PHYSICS-FENCE",
         "source": "lean4/CampaignDfmCkmPhysicsFence.lean",
-        "sha256": "6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df",
-        "sha256_after_build": "6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df",
+        "sha256": "48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963",
+        "sha256_after_build": "48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963",
         "source_unchanged_during_build": true,
         "exit_code": 0,
-        "seconds": 18,
-        "admission_scan_passed": true,
         "axiom_audit_passed": true,
         "anchors": [
           "CampaignDfmCkmPhysicsFence.cpCount_from_difference",
@@ -39,7 +37,18 @@
           "CampaignDfmCkmPhysicsFence.quartet_real_value",
           "CampaignDfmCkmPhysicsFence.quartet_imag_value",
           "CampaignDfmCkmPhysicsFence.quartets_differ",
-          "CampaignDfmCkmPhysicsFence.count_misses_one_quartet"
+          "CampaignDfmCkmPhysicsFence.count_misses_one_quartet",
+          "CampaignDfmCkmPhysicsFence.Rephasing.act_compose",
+          "CampaignDfmCkmPhysicsFence.Rephasing.act_inverse",
+          "CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary",
+          "CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent",
+          "CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant",
+          "CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize",
+          "CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv",
+          "CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct",
+          "CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff",
+          "CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value",
+          "CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count"
         ],
         "anchors_reported": true,
         "axioms": {
@@ -82,10 +91,57 @@
             "propext",
             "Classical.choice",
             "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.act_compose": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.act_inverse": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary": [
+            "propext"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
           ]
         },
-        "hash_basis": "LF source bytes, equal to the compiled source",
-        "output": "info: CampaignDfmCkmPhysicsFence.lean:108:0: 'CampaignDfmCkmPhysicsFence.cpCount_from_difference' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:109:0: 'CampaignDfmCkmPhysicsFence.constraintCount_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:110:0: 'CampaignDfmCkmPhysicsFence.count_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:111:0: 'CampaignDfmCkmPhysicsFence.three_generation_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:112:0: 'CampaignDfmCkmPhysicsFence.quartet_real_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:113:0: 'CampaignDfmCkmPhysicsFence.quartet_imag_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:114:0: 'CampaignDfmCkmPhysicsFence.quartets_differ' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:115:0: 'CampaignDfmCkmPhysicsFence.count_misses_one_quartet' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (842 jobs).\n"
+        "stdout": "\u26a0 [964/966] Built BornGaussRat (25s)\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Algebra.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.BigOperators.Group.Finset.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.CharZero.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Order.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Order.Ring.Unbundled.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Algebra.Star.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: BornGaussRat.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: BornGaussRat.lean:313:0: 'BornFable.GaussRat.instCommRing' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:314:0: 'BornFable.GaussRat.instStarRing' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:315:0: 'BornFable.GaussRat.instAlgebra' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:316:0: 'BornFable.GaussRat.instField' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:317:0: 'BornFable.GaussRat.instNontrivial' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:318:0: 'BornFable.GaussRat.instCharZero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:319:0: 'BornFable.GaussRat.re_zero' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:320:0: 'BornFable.GaussRat.im_zero' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:321:0: 'BornFable.GaussRat.re_one' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:322:0: 'BornFable.GaussRat.im_one' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:323:0: 'BornFable.GaussRat.re_add' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:324:0: 'BornFable.GaussRat.im_add' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:325:0: 'BornFable.GaussRat.re_neg' does not depend on any axioms\ninfo: BornGaussRat.lean:326:0: 'BornFable.GaussRat.im_neg' does not depend on any axioms\ninfo: BornGaussRat.lean:327:0: 'BornFable.GaussRat.re_sub' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:328:0: 'BornFable.GaussRat.im_sub' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:329:0: 'BornFable.GaussRat.re_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:330:0: 'BornFable.GaussRat.im_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:331:0: 'BornFable.GaussRat.re_smul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:332:0: 'BornFable.GaussRat.im_smul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:333:0: 'BornFable.GaussRat.re_star' does not depend on any axioms\ninfo: BornGaussRat.lean:334:0: 'BornFable.GaussRat.im_star' does not depend on any axioms\ninfo: BornGaussRat.lean:335:0: 'BornFable.GaussRat.re_I' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:336:0: 'BornFable.GaussRat.im_I' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:337:0: 'BornFable.GaussRat.re_natCast' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:338:0: 'BornFable.GaussRat.im_natCast' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:339:0: 'BornFable.GaussRat.re_intCast' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:340:0: 'BornFable.GaussRat.im_intCast' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:341:0: 'BornFable.GaussRat.re_ratCast' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:342:0: 'BornFable.GaussRat.im_ratCast' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:343:0: 'BornFable.GaussRat.smul_mk' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:344:0: 'BornFable.GaussRat.re_nsmul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:345:0: 'BornFable.GaussRat.im_nsmul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:346:0: 'BornFable.GaussRat.re_zsmul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:347:0: 'BornFable.GaussRat.im_zsmul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:348:0: 'BornFable.GaussRat.re_ofNat' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:349:0: 'BornFable.GaussRat.im_ofNat' depends on axioms: [propext, Quot.sound]\ninfo: BornGaussRat.lean:350:0: 'BornFable.GaussRat.star_I' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:351:0: 'BornFable.GaussRat.re_ofRat' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:352:0: 'BornFable.GaussRat.im_ofRat' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:353:0: 'BornFable.GaussRat.re_algebraMap' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:354:0: 'BornFable.GaussRat.im_algebraMap' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:355:0: 'BornFable.GaussRat.algebraMap_eq_ratCast' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:356:0: 'BornFable.GaussRat.I_mul_I' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:357:0: 'BornFable.GaussRat.mk_eq_add_mul_I' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:358:0: 'BornFable.GaussRat.normSq_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:359:0: 'BornFable.GaussRat.normSq_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:360:0: 'BornFable.GaussRat.normSq_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:361:0: 'BornFable.GaussRat.normSq_natCast' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:362:0: 'BornFable.GaussRat.star_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:363:0: 'BornFable.GaussRat.re_star_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:364:0: 'BornFable.GaussRat.im_star_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:365:0: 'BornFable.GaussRat.re_star_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:366:0: 'BornFable.GaussRat.im_star_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:367:0: 'BornFable.GaussRat.re_star_mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:368:0: 'BornFable.GaussRat.im_star_mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:369:0: 'BornFable.GaussRat.re_smul_rat' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:370:0: 'BornFable.GaussRat.re_algebraMap_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:371:0: 'BornFable.GaussRat.reAddMonoidHom_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:372:0: 'BornFable.GaussRat.imAddMonoidHom_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:373:0: 'BornFable.GaussRat.re_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:374:0: 'BornFable.GaussRat.im_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:375:0: 'BornFable.GaussRat.re_inv' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:376:0: 'BornFable.GaussRat.im_inv' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:377:0: 'BornFable.GaussRat.inv_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: BornGaussRat.lean:378:0: 'BornFable.GaussRat.mul_inv_cancel' depends on axioms: [propext, Classical.choice, Quot.sound]\n\u26a0 [965/966] Built CampaignDfmCkmPhysicsFence (20s)\nwarning: CampaignDfmCkmPhysicsFence.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmCkmPhysicsFence.lean: imports `Mathlib.Data.Fintype.Prod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmCkmPhysicsFence.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmCkmPhysicsFence.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignDfmCkmPhysicsFence.lean:111:0: 'CampaignDfmCkmPhysicsFence.cpCount_from_difference' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:112:0: 'CampaignDfmCkmPhysicsFence.constraintCount_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:113:0: 'CampaignDfmCkmPhysicsFence.count_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:114:0: 'CampaignDfmCkmPhysicsFence.three_generation_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:115:0: 'CampaignDfmCkmPhysicsFence.quartet_real_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:116:0: 'CampaignDfmCkmPhysicsFence.quartet_imag_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:117:0: 'CampaignDfmCkmPhysicsFence.quartets_differ' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:118:0: 'CampaignDfmCkmPhysicsFence.count_misses_one_quartet' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:268:0: 'CampaignDfmCkmPhysicsFence.Rephasing.act_compose' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:269:0: 'CampaignDfmCkmPhysicsFence.Rephasing.act_inverse' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:270:0: 'CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary' depends on axioms: [propext]\ninfo: CampaignDfmCkmPhysicsFence.lean:271:0: 'CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:272:0: 'CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:273:0: 'CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:274:0: 'CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:275:0: 'CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:276:0: 'CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:277:0: 'CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:278:0: 'CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (966 jobs).\n",
+        "stderr": ""
       }
     ]
   },
@@ -107,5 +163,92 @@
       "Classical.choice",
       "Quot.sound"
     ]
-  }
+  },
+  "historical_replays": [
+    {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "b97223a34e419f77d5b610a869c0a14f7cb5b502f4274b8a7a19d36ec403e668",
+      "library": "CampaignDfmCkmPhysicsFence (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b (lakefile buildDir; gitignored)",
+      "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache; junction removed before commit",
+      "command": "lake build CampaignDfmCkmPhysicsFence",
+      "cwd": "lean4",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignDfmCkmPhysicsFence",
+          "dag_node": "DFM-CKM-PHYSICS-FENCE",
+          "source": "lean4/CampaignDfmCkmPhysicsFence.lean",
+          "sha256": "6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df",
+          "sha256_after_build": "6cf59912891b90b93acc025f4b153d623873abe7c1e3f45824a977f306f741df",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "seconds": 18,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignDfmCkmPhysicsFence.cpCount_from_difference",
+            "CampaignDfmCkmPhysicsFence.constraintCount_sum",
+            "CampaignDfmCkmPhysicsFence.count_table",
+            "CampaignDfmCkmPhysicsFence.three_generation_split",
+            "CampaignDfmCkmPhysicsFence.quartet_real_value",
+            "CampaignDfmCkmPhysicsFence.quartet_imag_value",
+            "CampaignDfmCkmPhysicsFence.quartets_differ",
+            "CampaignDfmCkmPhysicsFence.count_misses_one_quartet"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignDfmCkmPhysicsFence.cpCount_from_difference": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmCkmPhysicsFence.constraintCount_sum": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmCkmPhysicsFence.count_table": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmCkmPhysicsFence.three_generation_split": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmCkmPhysicsFence.quartet_real_value": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmCkmPhysicsFence.quartet_imag_value": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmCkmPhysicsFence.quartets_differ": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "CampaignDfmCkmPhysicsFence.count_misses_one_quartet": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ]
+          },
+          "hash_basis": "LF source bytes, equal to the compiled source",
+          "output": "info: CampaignDfmCkmPhysicsFence.lean:108:0: 'CampaignDfmCkmPhysicsFence.cpCount_from_difference' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:109:0: 'CampaignDfmCkmPhysicsFence.constraintCount_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:110:0: 'CampaignDfmCkmPhysicsFence.count_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:111:0: 'CampaignDfmCkmPhysicsFence.three_generation_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:112:0: 'CampaignDfmCkmPhysicsFence.quartet_real_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:113:0: 'CampaignDfmCkmPhysicsFence.quartet_imag_value' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:114:0: 'CampaignDfmCkmPhysicsFence.quartets_differ' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmCkmPhysicsFence.lean:115:0: 'CampaignDfmCkmPhysicsFence.count_misses_one_quartet' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (842 jobs).\n"
+        }
+      ]
+    }
+  ]
 }
