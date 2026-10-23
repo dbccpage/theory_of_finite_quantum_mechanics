@@ -51,7 +51,15 @@ def test_statuses_follow_the_evidence():
     for nid, node in by_id.items():
         if node['status'] == 'PROVED_LEAN':
             assert node['lean'] and all(x.startswith('lean4/LggrFiniteResults.lean::') for x in node['lean'])
-            assert 'not rebuilt' in node['bottleneck']
+            receipt_path = 'dag/research/foc035_observer_presheaf_lean_replay.json'
+            assert receipt_path in node['source']
+            receipt = json.loads((ROOT / receipt_path).read_text(encoding='utf-8'))
+            entry = next(e for e in receipt['lean_replay']['results'] if e['dag_node'] == nid)
+            assert entry['sha256'] == hashlib.sha256((ROOT / entry['source']).read_bytes()).hexdigest()
+            assert entry['exit_code'] == 0 and entry['axiom_audit_passed']
+            assert set(entry['anchors']) == {ref.split('::')[1] for ref in node['lean']}
+            assert all(set(report['axioms']) <= {'propext', 'Classical.choice', 'Quot.sound'}
+                       for report in entry['axiom_reports'])
         else:
             assert node['lean'] == [], nid
         if node['status'] == 'COMPUTATIONALLY_CHECKED':

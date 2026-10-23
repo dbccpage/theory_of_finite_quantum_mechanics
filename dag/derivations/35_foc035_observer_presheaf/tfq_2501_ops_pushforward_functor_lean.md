@@ -15,7 +15,7 @@ In Lean (LggrFiniteResults), a finitely supported measure with natural-number we
 
 ## Governing obligation
 
-The Lean statement is the narrowed one above. The functor over rational probability vectors is proved in prose in the note (Lemma B2) and its instances on the PR box and the noisy PR boxes are recomputed by the independent check, which does not test the Lean statement. Lean not rebuilt in this change.
+The Lean statement is the narrowed one above. The functor over rational probability vectors is proved in prose in the note (Lemma B2) and its instances on the PR box and the noisy PR boxes are recomputed by the independent check, which does not test the Lean statement. Independently replayed with Lean 4.35.0; the source-bound axiom receipt is dag/research/foc035_observer_presheaf_lean_replay.json.
 
 ## Source status
 
@@ -42,3 +42,4 @@ See also: `IMPL-LGGR-FINITE-RESULTS-LEAN`.
 - Repository: `lean4/LggrFiniteResults.lean`
 - Repository: `checks/independent/foc035_observer_presheaf.py`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md`
+- Repository: `dag/research/foc035_observer_presheaf_lean_replay.json`

@@ -23,6 +23,11 @@ from itertools import product
 CHECKED: list[str] = []
 
 
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise ValueError(message)
+
+
 def ok(label: str, condition: bool) -> None:
     if not condition:
         raise SystemExit("FAILED: " + label)
@@ -36,7 +41,7 @@ def ok(label: str, condition: bool) -> None:
 
 def simplex_min(c, A, b):
     m, n = len(A), len(c)
-    assert all(v >= 0 for v in b)
+    require(all(v >= 0 for v in b), "invalid exact certificate: all(v >= 0 for v in b)")
     tab = [[F(x) for x in A[i]] + [F(1) if j == i else F(0) for j in range(m)] + [F(b[i])] for i in range(m)]
     basis = [n + i for i in range(m)]
     width = n + m
@@ -88,12 +93,16 @@ def simplex_min(c, A, b):
 def verify_lp(c, A, b, x, y):
     """x primal feasible, y dual feasible (c_j - y.A_j >= 0), equal objectives."""
     m, n = len(A), len(c)
-    assert all(v >= 0 for v in x)
-    assert all(sum(A[i][j] * x[j] for j in range(n)) == b[i] for i in range(m))
-    assert all(c[j] - sum(y[i] * A[i][j] for i in range(m)) >= 0 for j in range(n))
+    require(len(b) == m and len(y) == m and len(x) == n and all(len(row) == n for row in A),
+            "certificate dimensions do not match the LP")
+    values = list(c) + list(b) + list(x) + list(y) + [v for row in A for v in row]
+    require(all(type(v) is int or isinstance(v, F) for v in values), "certificate entries must be exact integers or fractions")
+    require(all(v >= 0 for v in x), "invalid exact certificate: all(v >= 0 for v in x)")
+    require(all(sum(A[i][j] * x[j] for j in range(n)) == b[i] for i in range(m)), "invalid exact certificate: all(sum(A[i][j] * x[j] for j in range(n)) == b[i] for i in range(m))")
+    require(all(c[j] - sum(y[i] * A[i][j] for i in range(m)) >= 0 for j in range(n)), "invalid exact certificate: all(c[j] - sum(y[i] * A[i][j] for i in range(m)) >= 0 for j in range(n))")
     primal = sum(c[j] * x[j] for j in range(n))
     dual = sum(b[i] * y[i] for i in range(m))
-    assert primal == dual
+    require(primal == dual, "invalid exact certificate: primal == dual")
     return primal
 
 
@@ -185,11 +194,11 @@ def l1_defect(scen, dists):
     value = verify_lp(c, rows, b, x, y)
     p = x[:n]
     resid = [sum(A[i][j] * p[j] for j in range(n)) - e[i] for i in range(m)]
-    assert sum(abs(r) for r in resid) == value and sum(p) == 1
+    require(sum(abs(r) for r in resid) == value and sum(p) == 1, "invalid exact certificate: sum(abs(r) for r in resid) == value and sum(p) == 1")
     phi, y0 = y[:m], y[m]
-    assert all(abs(v) <= 1 for v in phi)
-    assert all(sum(phi[i] * A[i][j] for i in range(m)) + y0 <= 0 for j in range(n))
-    assert sum(phi[i] * e[i] for i in range(m)) + y0 == value
+    require(all(abs(v) <= 1 for v in phi), "invalid exact certificate: all(abs(v) <= 1 for v in phi)")
+    require(all(sum(phi[i] * A[i][j] for i in range(m)) + y0 <= 0 for j in range(n)), "invalid exact certificate: all(sum(phi[i] * A[i][j] for i in range(m)) + y0 <= 0 for j in range(n))")
+    require(sum(phi[i] * e[i] for i in range(m)) + y0 == value, "invalid exact certificate: sum(phi[i] * e[i] for i in range(m)) + y0 == value")
     return value
 
 

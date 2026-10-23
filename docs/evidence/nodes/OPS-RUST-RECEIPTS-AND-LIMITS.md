@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/foc035_observer_presheaf.py`
 
 - file: [checks/independent/foc035_observer_presheaf.py](../../../checks/independent/foc035_observer_presheaf.py)
-- sha256 (`bytes`): `6c1962e9a7e6b987ed5ba1b47afca56f17065d81fbfd2522245711b3840967ef`
+- sha256 (`bytes`): `50f1a22baf6a42c8a7af57fdc1883fea1f4ad3fbf7679b7175fb513351dc11b4`
 - cited in: node.source
 - counts toward the grade: yes
 

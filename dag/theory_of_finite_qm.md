@@ -12852,7 +12852,7 @@ Obligation: A reading of WDP-CH10-D01 to D04, not a derivation. WDP chapter 15 h
 
 In Lean (LggrFiniteResults), a finitely supported measure with natural-number weights is a list of (value, weight) pairs, and pushforward along f maps each value by f and keeps its weight. Then: push of the identity is the identity (push_id); push along g after f equals push along the composite (push_comp); total mass is unchanged (mass_push); and the weight at b of push f p equals the mass of the entries of p whose image is b (weightAt_push). The note reads marginalisation of a context distribution as such a pushforward along the restriction map, so these are the identity and composition laws of the functor from the opposite of the context poset to probability vectors (Lemma B2). That reading is not a Lean statement. Not covered: rational weights, normalisation to probability vectors, the context poset, and the Rust types. The ledger row states the same narrowing.
 
-Obligation: The Lean statement is the narrowed one above. The functor over rational probability vectors is proved in prose in the note (Lemma B2) and its instances on the PR box and the noisy PR boxes are recomputed by the independent check, which does not test the Lean statement. Lean not rebuilt in this change.
+Obligation: The Lean statement is the narrowed one above. The functor over rational probability vectors is proved in prose in the note (Lemma B2) and its instances on the PR box and the noisy PR boxes are recomputed by the independent check, which does not test the Lean statement. Independently replayed with Lean 4.35.0; the source-bound axiom receipt is dag/research/foc035_observer_presheaf_lean_replay.json.
 
 ### TFQ-2502 Parity cycles: holonomy and global sections (Lean)
 
@@ -12864,7 +12864,7 @@ Obligation: The Lean statement is the narrowed one above. The functor over ratio
 
 In Lean (LggrFiniteResults), take a length n > 0 and edge parities b : Nat -> Bool. Let holonomy b k be the exclusive or of b 0, ..., b (k-1), and call g a section when, for every i < n, the exclusive or of g i and g ((i+1) mod n) equals b i. Then (section_exists_iff_holonomy_zero) a section exists if and only if holonomy b n = false. Further (no_joint_measure_when_holonomy_one), if holonomy b n = true then no finitely supported natural-weight measure on assignments Nat -> Bool with positive total mass has, for every i < n, zero pushforward weight on every pair of values (g i, g ((i+1) mod n)) whose exclusive or differs from b i. These are the clause "G(e) is nonempty iff the holonomy h is 0" and the clause "holonomy 1 forbids a positive-mass joint measure with parity-supported marginals" of Proposition B6. Not in Lean: the arc-cover clause, the noncontextual-fraction clause and the Cech-cohomology reading.
 
-Obligation: The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Lean not rebuilt in this change.
+Obligation: The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Independently replayed with Lean 4.35.0; the source-bound axiom receipt is dag/research/foc035_observer_presheaf_lean_replay.json.
 
 ### TFQ-2503 Global section, convex hull and noncontextual fraction 1
 
