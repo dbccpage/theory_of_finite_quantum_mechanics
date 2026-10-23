@@ -1,4 +1,4 @@
-# [TFQ-1104] Continuum Feynman parameters and the QED a_e enclosure
+# [TFQ-1104] Eight omitted-edge products on the five-edge diamond sum to 247
 
 > **Stage**: `DRESSING_FIELD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `DFM-SYMANZIK-QED-AE-FENCE`  
 > **UUID**: `0b5f02db-03b2-583b-9b93-d31e94e68494`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-The dossier claim that rational intervals built from U_G bracket the imported 1-to-4-loop QED series a_e to 12 decimal places has no check in the cited replay module.
+The graph with vertices {0,1,2,3} and edges e0=(0,1), e1=(0,2), e2=(1,3), e3=(2,3), e4=(1,2) has exactly eight connected 3-edge subsets among its ten 3-edge subsets. For weights 2, 3, 5, 7, 11 on those edges in that order, the sum of the products of the two omitted weights over those eight subsets is 247, and the same sum with every weight 1 is 8. A rational interval around a 1-to-4-loop QED anomalous-moment series stays open.
 
 ### Governing Obligation
-Supply an exact interval computation from declared graph polynomials and keep the loop coefficients and alpha as imported inputs; continuum Feynman-parameter integrals stay outside the finite statement.
+The edges and the weights are supplied. These eight subsets are one graph, not a theorem for every graph. The QED loop coefficients, the fine-structure constant, and continuum Feynman-parameter integrals stay open.
 
 ### Witness Audit
-verify_pillar1_abelian_tree_dfm_and_symanzik_u returns no a_e or interval field; the existing dressed-graph control (TFQ-0060) is a separate external artifact.
+Replay edge order is (0,1), (0,2), (1,3), (2,3), (1,2). Eight masks 7, 11, 13, 14, 21, 22, 25, 26 have one component; masks 19 and 28 have two. Omitted-edge sums are 247 and 8. Status stays OPEN. An a_e interval stays imported.
 
 ---
 
@@ -43,13 +43,15 @@ verify_pillar1_abelian_tree_dfm_and_symanzik_u returns no a_e or interval field;
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignDfmSymanzikQedAeFence.lean::component_counts`
+- `lean4/CampaignDfmSymanzikQedAeFence.lean::three_bit_masks_are_listed`
+- `lean4/CampaignDfmSymanzikQedAeFence.lean::cotree_sums`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/dfm-symanzik-qed-ae-fence.py`
 
 ### Cited by the source, not in this checkout
 - `external:code/ravera_dfm_dossier_replay.py (path cited by the dossier; absent here, the same verify_pillar* functions live in code/python/src/qm/ravera_dfm.py)`
@@ -67,3 +69,6 @@ verify_pillar1_abelian_tree_dfm_and_symanzik_u returns no a_e or interval field;
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:96`
   - `papers/ravera_dfm_dossier.md:48`
+  - `lean4/CampaignDfmSymanzikQedAeFence.lean`
+  - `dag/derivations/independent/dfm-symanzik-qed-ae-fence.md`
+  - `checks/independent/dfm-symanzik-qed-ae-fence.py`

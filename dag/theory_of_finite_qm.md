@@ -8644,7 +8644,7 @@ On the diamond graph, the 2x2 chord-coordinate matrix from a fixed tree T_0 to e
 
 Obligation: The general claims (tree change acts by GL(b_1, Z); det L_T(alpha) = U_G(alpha) for every graph and positive alpha) are the classical matrix-tree theorem and are cited, not proved here.
 
-### TFQ-1104 Continuum Feynman parameters and the QED a_e enclosure
+### TFQ-1104 Eight omitted-edge products on the five-edge diamond sum to 247
 
 - UUID: `0b5f02db-03b2-583b-9b93-d31e94e68494`
 - Parent: `TFQ-1103`
@@ -8652,9 +8652,9 @@ Obligation: The general claims (tree change acts by GL(b_1, Z); det L_T(alpha) =
 - DAG node: `DFM-SYMANZIK-QED-AE-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md)
 
-The dossier claim that rational intervals built from U_G bracket the imported 1-to-4-loop QED series a_e to 12 decimal places has no check in the cited replay module.
+The graph with vertices {0,1,2,3} and edges e0=(0,1), e1=(0,2), e2=(1,3), e3=(2,3), e4=(1,2) has exactly eight connected 3-edge subsets among its ten 3-edge subsets. For weights 2, 3, 5, 7, 11 on those edges in that order, the sum of the products of the two omitted weights over those eight subsets is 247, and the same sum with every weight 1 is 8. A rational interval around a 1-to-4-loop QED anomalous-moment series stays open.
 
-Obligation: Supply an exact interval computation from declared graph polynomials and keep the loop coefficients and alpha as imported inputs; continuum Feynman-parameter integrals stay outside the finite statement.
+Obligation: The edges and the weights are supplied. These eight subsets are one graph, not a theorem for every graph. The QED loop coefficients, the fine-structure constant, and continuum Feynman-parameter integrals stay open.
 
 ### TFQ-1105 Borel group B_2(Q), unipotent N and torus Levi factorization
 
@@ -9040,7 +9040,7 @@ A telescoping product of pure-gauge frame factors is I_4; Lambda(1/2) Lambda(1/3
 
 Obligation: No simplicial complex, edge lengths or deficit angles are constructed, and the Bianchi check is a telescoping identity, not curvature on actual 3-cell boundaries.
 
-### TFQ-1137 Regge geometry, spinor coupling and continuum gravity remain open
+### TFQ-1137 Cosine-law data for lengths 3, 4, 5 differs from block trace 16/3
 
 - UUID: `a326bbc9-b907-5089-a286-f74fd8d53f03`
 - Parent: `TFQ-1136`
@@ -9048,9 +9048,9 @@ Obligation: No simplicial complex, edge lengths or deficit angles are constructe
 - DAG node: `DFM-REGGE-GRAVITY-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md)
 
-A 4D Regge complex with dressed hinge holonomies from edge lengths, a Spin+(1,3; Q(i)) spin-frame dressing of simplex spinors preserving a discrete Dirac action (the dossier's next test), and any continuum gravity reading are not constructed.
+For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite sides 5, 3 and 4 respectively are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta = 1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.
 
-Obligation: Build the complex, compute deficits from declared lengths, and state the spinor dressing before linking to the finite gravity shadow; the Einstein equation stays outside.
+Obligation: The lengths 3, 4, 5 and beta = 1/2 are supplied data. The block trace is not computed from those lengths. A 4D complex, a deficit angle, a spin-frame dressing, and a continuum reading stay open.
 
 ## MUTUALLY_UNBIASED_BASES
 
