@@ -126,6 +126,8 @@ STAGES = (
     "CAUSAL_QFT",
     "ADS_CFT",
     "LOOP_QUANTUM_GRAVITY",
+    # Genesis to higher categories (sync_genesis_to_higher.py).
+    "GENESIS_TO_HIGHER",
 )
 STATUSES = (
     "ADMITTED_PRIMITIVE",
@@ -282,6 +284,11 @@ def repo_root_from(start: Path) -> Path:
 def split_ref(ref: str) -> tuple[str, str | None]:
     path, _, tail = ref.partition("::")
     return path, tail or None
+
+
+def symbol_leaf(symbol: str) -> str:
+    """The last name component of a cited symbol: the part that must occur in the cited file."""
+    return symbol.split("::")[-1].split(".")[-1]
 
 
 def is_external(ref: str) -> bool:
@@ -681,7 +688,7 @@ def _symbol_errors(root: Path, node_id: object, field: str, ref: str) -> list[st
     if not symbol or not (root / path).is_file():
         return []
     text = (root / path).read_text(encoding="utf-8", errors="replace")
-    leaf = symbol.split("::")[-1].split(".")[-1]
+    leaf = symbol_leaf(symbol)
     if leaf not in text:
         return [f"node {node_id}: symbol {symbol} not in {path}"]
     return []

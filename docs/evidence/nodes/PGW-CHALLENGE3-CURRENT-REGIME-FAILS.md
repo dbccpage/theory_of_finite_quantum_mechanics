@@ -1,0 +1,98 @@
+# PGW-CHALLENGE3-CURRENT-REGIME-FAILS
+
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+
+## Statement
+
+> Challenge 3 requires \<a\> and \<ab\> to be internally separable in the declared sense of positive derivability. Instantiating R2L_collapsed and R2F_collapsed, the current regime fails this: no witness context exists. The quotient barrier then applies: every function out of a quotient by a relation is constant on related elements (quotient_barrier, quot_barrier), and on the collapse classes of R2L any operation takes equal values on data 0 and 1 (barrier_R2L). An operation defined only on the current abstraction therefore cannot recover the required distinction, and a response has to change the regime.
+
+## Grade
+
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo runnable tests: 0
+- counted in-repo Rust or Python files that are not tests: 0
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+
+## Flags
+
+None. Status and evidence are consistent under the rules in the overview.
+
+## Imported structure
+
+None recorded.
+
+## Bottleneck
+
+The barrier concerns operations defined on the given quotient; it puts no bound on what an admitted augmentation of the regime can separate, which is the subject of the cost results (TFQ-0381).
+
+## Source status
+
+genesis_source.txt section 7.1 and question 5 \[theorem\]; Quot.lean
+
+## Review
+
+No recorded statement-match review.
+
+## Evidence items
+
+Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Quot.lean`
+
+- file: [lean4/Imported/Genesis19l57g1/Derivation/Quot.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Quot.lean)
+- sha256 (`bytes`): `e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f`
+- cited in: node.lean, node.source, record TFQ-0439
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Quot`): recorded sha256 `e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Quot.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `barrier_R2L` | yes | yes | yes | Quot.sound, propext | `#print axioms barrier_R2L` |
+| `quot_barrier` | yes | yes | yes | Quot.sound | `#print axioms quot_barrier` |
+| `quotient_barrier` | yes | yes | yes | Quot.sound | `#print axioms quotient_barrier` |
+- counts toward the grade: yes
+
+### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.rust
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md`
+
+- file: [dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md](../../../dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md)
+- sha256 (`lf-normalised`): `fbd1c08fc0f6ed8289a6921d2e71e15eb5f9449690f90ef80085dcae01841528`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-0439
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable`
+- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs::challenge2_collapse_is_total_in_both_readings`
+
+## Routes
+
+Incoming (1):
+
+- `PGW-R-CHALLENGE3-CURRENT-REGIME-FAILS` `DERIVED_LEAN`: [PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED](PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED.md) (PROVED_LEAN), [PGW-RESPONSES-COSTS-MU1-MU2](PGW-RESPONSES-COSTS-MU1-MU2.md) (DEFINITION)
+
+Outgoing (1):
+
+- `PGW-R-MU1-MINIMUM-NOT-UNIQUE-L` `DERIVED_LEAN`: [PGW-MU1-MINIMUM-NOT-UNIQUE-L](PGW-MU1-MINIMUM-NOT-UNIQUE-L.md) (PROVED_LEAN)

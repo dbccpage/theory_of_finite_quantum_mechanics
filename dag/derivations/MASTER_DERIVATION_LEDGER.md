@@ -24,7 +24,7 @@ In strict adherence to the **Claim Hygiene Rule** and `AuthorityEffect: None`:
 
 ## 2. Derivation Stage Census & Status Taxonomy
 
-The derivation tree comprises **932 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
+The derivation tree comprises **944 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
 
 | Stage Index | Stage Name | Derivation Step Count | Core Physical & Mathematical Focus | Primary DAG Range |
 | :--- | :--- | :---: | :--- | :--- |
@@ -64,7 +64,7 @@ The derivation tree comprises **932 primary derivation steps** structured across
 
 ---
 
-## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2315`)
+## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2411`)
 
 Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.
 
@@ -88,7 +88,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-0013`** | Use cyclotomic character tables only as labels of a declared finite group | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0012` | `TFQ-0013` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-0013.md`](../../dag/derivations/17_finite_qcd/tfq_0013_use_cyclotomic_character_tables_only_as_labels_of_a_declared_finite_group.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0014`** | Do not cite the M_2 packet complex or the groupoid algebra as | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0013` | `TFQ-0014` (OPEN) | - | [`TFQ-0014.md`](../../dag/derivations/17_finite_qcd/tfq_0014_do_not_cite_the_m_2_packet_complex_or_the_groupoid_algebra_as.md) | Lean: `1`, Rust: `4`, Py: `1` |
 | **`TFQ-0015`** | Keep the substantial-versus-artificial split on B_2(Q), not on SU(3) | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0014` | `TFQ-0015` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-0015.md`](../../dag/derivations/17_finite_qcd/tfq_0015_keep_the_substantial_versus_artificial_split_on_b_2_q_not_on_su_3.md) | Lean: `1`, Rust: `1`, Py: `1` |
-| **`TFQ-0016`** | Add a Lean replay of the two-stage dressing or leave QM-213 as | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0015` | `TFQ-0016` (OPEN) | - | [`TFQ-0016.md`](../../dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0016`** | Add a Lean replay of the two-stage dressing or leave QM-213 as | `FINITE_QCD` | `PROVED_LEAN` | `TFQ-0015` | `TFQ-0016` (PROVED_LEAN) | - | [`TFQ-0016.md`](../../dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md) | Lean: `4`, Rust: `1`, Py: `1` |
 | **`TFQ-0017`** | Do not promote the SU(2) quaternion shadow to su(3)_c | `FINITE_QCD` | `OPEN_OBLIGATION` | `TFQ-0016` | `TFQ-0017` (OPEN) | - | [`TFQ-0017.md`](../../dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md) | Lean: `1`, Rust: `2`, Py: `1` |
 | **`TFQ-0018`** | Treat C^N as a declared label space before any graph attachment | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0017` | `TFQ-0018` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-0018.md`](../../dag/derivations/17_finite_qcd/tfq_0018_treat_c_n_as_a_declared_label_space_before_any_graph_attachment.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0019`** | Keep the weighted M_3(Q(i)) family distinct from a finite subgroup of SU(3) | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `TFQ-0018` | `TFQ-0019` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-0019.md`](../../dag/derivations/17_finite_qcd/tfq_0019_keep_the_weighted_m_3_q_i_family_distinct_from_a_finite_subgroup_of_su_3.md) | Lean: `1`, Rust: `1`, Py: `1` |
@@ -470,7 +470,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-0395`** | law-bearing-cut-not-two-marks | `PREGENESIS` | `OPEN_OBLIGATION` | `TFQ-0394` | `PG-ADMISSION-FLOOR` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent | [`TFQ-0395.md`](../../dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md) | Lean: `2`, Rust: `1`, Py: `2` |
 | **`TFQ-0396`** | sealed-tag-to-carrier-gap | `GENESIS` | `GAP` | `TFQ-0395` | `TFQ-0396` (OPEN) | - | [`TFQ-0396.md`](../../dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md) | Lean: `2`, Rust: `1`, Py: `3` |
 | **`TFQ-1000`** | l1-operator-lift-trace-embed-013 | `L1_TO_L2` | `PROVED_LEAN` | `TFQ-0005` | `L1-OPERATOR-LIFT-TRACE-EMBED-013` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent | [`TFQ-1000.md`](../../dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md) | Lean: `2`, Rust: `2` |
-| **`TFQ-1001`** | l1-imp-sector-symmetry-law | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `TFQ-0296` | `L1-IMP-SECTOR-SYMMETRY-LAW` (IMPORTED_ASSUMPTION) | - | [`TFQ-1001.md`](../../dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md) | Lean: `8`, Rust: `2` |
+| **`TFQ-1001`** | l1-imp-sector-symmetry-law | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `TFQ-0296` | `L1-IMP-SECTOR-SYMMETRY-LAW` (IMPORTED_ASSUMPTION) | - | [`TFQ-1001.md`](../../dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md) | Lean: `20`, Rust: `2` |
 | **`TFQ-1002`** | l1-wdp-realification-j | `L1_TO_L2` | `DEFINITION` | `TFQ-0293` | `L1-WDP-REALIFICATION-J` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added | [`TFQ-1002.md`](../../dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md) | Lean: `2`, Rust: `4` |
 | **`TFQ-1003`** | l1-u1-selector-other-segment | `L1_TO_L2` | `OPEN_OBLIGATION` | `TFQ-0312` | `L1-U1-SELECTOR-OTHER-SEGMENT` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered | [`TFQ-1003.md`](../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md) | Lean: `6`, Rust: `7` |
 | **`TFQ-1004`** | l1-qm020-c10-branch-localization | `L1_TO_L2` | `PROVED_LEAN` | `TFQ-0234` | `L1-QM020-C10-BRANCH-LOCALIZATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed | [`TFQ-1004.md`](../../dag/derivations/08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md) | Lean: `4`, Rust: `5` |
@@ -523,7 +523,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-0419`** | successor-not-unique | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0418` | `TFQ-0419` (SOURCE_RECORD) | - | [`TFQ-0419.md`](../../dag/derivations/01_pregenesis/tfq_0419_successor_not_unique.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0420`** | repetition-needs-structure | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0419` | `TFQ-0420` (SOURCE_RECORD) | - | [`TFQ-0420.md`](../../dag/derivations/01_pregenesis/tfq_0420_repetition_needs_structure.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0421`** | observational-equivalence | `PREGENESIS` | `DEFINITION` | `TFQ-0362` | `PGW-OBSERVATIONAL-EQUIVALENCE` (DEFINITION) | - | [`TFQ-0421.md`](../../dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md) | Lean: `2`, Rust: `1`, Py: `1` |
-| **`TFQ-0422`** | presentation-not-expressive-lift | `PREGENESIS` | `CONDITIONAL` | `TFQ-0421` | `PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT` (CONDITIONAL) | - | [`TFQ-0422.md`](../../dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) | Lean: `1`, Rust: `1`, Py: `1` |
+| **`TFQ-0422`** | presentation-not-expressive-lift | `PREGENESIS` | `CONDITIONAL` | `TFQ-0421` | `PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT` (CONDITIONAL) | - | [`TFQ-0422.md`](../../dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md) | Lean: `2`, Rust: `1`, Py: `1` |
 | **`TFQ-0423`** | identity-convention-undecidable | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0422` | `PGW-IDENTITY-CONVENTION-UNDECIDABLE` (CONDITIONAL) | - | [`TFQ-0423.md`](../../dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0424`** | absence-of-rule-not-identification | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0423` | `PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION` (DEFINITION) | - | [`TFQ-0424.md`](../../dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0425`** | forced-separation-lift-not-unique | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0424` | `PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE` (PROVED_LEAN) | - | [`TFQ-0425.md`](../../dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md) | Lean: `3`, Rust: `1`, Py: `2` |
@@ -1004,12 +1004,24 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-2313`** | Perez 2013: review of the spin foam approach | `LOOP_QUANTUM_GRAVITY` | `SOURCE_RECORD` | `TFQ-2312` | `LQG-SPINFOAM-REVIEW-SOURCE` (SOURCE_RECORD) | - | [`TFQ-2313.md`](../../dag/derivations/33_loop_quantum_gravity/tfq_2313_lqg_spinfoam_review_source.md) | Declarative / Formal Spec |
 | **`TFQ-2314`** | Imported: EPRL-FK vertex amplitude for four-dimensional gravity | `LOOP_QUANTUM_GRAVITY` | `IMPORTED_ASSUMPTION` | `TFQ-2312` | `LQG-EPRL-VERTEX-IMPORT` (IMPORTED_ASSUMPTION) | - | [`TFQ-2314.md`](../../dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md) | Declarative / Formal Spec |
 | **`TFQ-2315`** | Gap: no route from finite recoupling to a continuum or semiclassical limit | `LOOP_QUANTUM_GRAVITY` | `OPEN_OBLIGATION` | `TFQ-2314` | `LQG-CONTINUUM-LIMIT-GAP` (OPEN) | - | [`TFQ-2315.md`](../../dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md) | Declarative / Formal Spec |
+| **`TFQ-2400`** | Finite semi-simplicial or globular shadow of Genesis admission | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-0481` | `GTH-SHADOW` (OPEN) | - | [`TFQ-2400.md`](../../dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md) | Declarative / Formal Spec |
+| **`TFQ-2401`** | Truncation: components, finite fundamental groupoid, finite n-type presentation | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2400` | `GTH-TRUNC` (OPEN) | - | [`TFQ-2401.md`](../../dag/derivations/34_genesis_to_higher/tfq_2401_gth_trunc.md) | Declarative / Formal Spec |
+| **`TFQ-2402`** | Horn fillers of a finite shadow | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2401` | `GTH-HORNS` (OPEN) | - | [`TFQ-2402.md`](../../dag/derivations/34_genesis_to_higher/tfq_2402_gth_horns.md) | Declarative / Formal Spec |
+| **`TFQ-2403`** | Finite model of a fragment with identity types, without univalence | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2402` | `GTH-HOTT-MODEL` (OPEN) | - | [`TFQ-2403.md`](../../dag/derivations/34_genesis_to_higher/tfq_2403_gth_hott_model.md) | Declarative / Formal Spec |
+| **`TFQ-2404`** | Imported: a univalent universe is not finite | `GENESIS_TO_HIGHER` | `IMPORTED_ASSUMPTION` | `TFQ-2403` | `GTH-IMPORT-UNIVALENT-UNIVERSE` (IMPORTED_ASSUMPTION) | - | [`TFQ-2404.md`](../../dag/derivations/34_genesis_to_higher/tfq_2404_gth_import_univalent_universe.md) | Declarative / Formal Spec |
+| **`TFQ-2405`** | Imported: an infinity-groupoid is not finite | `GENESIS_TO_HIGHER` | `IMPORTED_ASSUMPTION` | `TFQ-2403` | `GTH-IMPORT-INFTY-GROUPOID` (IMPORTED_ASSUMPTION) | - | [`TFQ-2405.md`](../../dag/derivations/34_genesis_to_higher/tfq_2405_gth_import_infty_groupoid.md) | Declarative / Formal Spec |
+| **`TFQ-2406`** | Imported: an (infinity,1)-category is not finite | `GENESIS_TO_HIGHER` | `IMPORTED_ASSUMPTION` | `TFQ-2403` | `GTH-IMPORT-INFTY-1-CATEGORY` (IMPORTED_ASSUMPTION) | - | [`TFQ-2406.md`](../../dag/derivations/34_genesis_to_higher/tfq_2406_gth_import_infty_1_category.md) | Declarative / Formal Spec |
+| **`TFQ-2407`** | Priced-import language core | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2406` | `GTH-LANG-CORE` (OPEN) | - | [`TFQ-2407.md`](../../dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md) | Declarative / Formal Spec |
+| **`TFQ-2408`** | Reflection of the language | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2407` | `GTH-LANG-REFLECT` (OPEN) | - | [`TFQ-2408.md`](../../dag/derivations/34_genesis_to_higher/tfq_2408_gth_lang_reflect.md) | Declarative / Formal Spec |
+| **`TFQ-2409`** | Interpretation targets, not theorems | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2408` | `GTH-LANG-INTERPRET` (OPEN) | - | [`TFQ-2409.md`](../../dag/derivations/34_genesis_to_higher/tfq_2409_gth_lang_interpret.md) | Declarative / Formal Spec |
+| **`TFQ-2410`** | Import records are not derivations | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2409` | `GTH-LANG-IMPORT` (OPEN) | - | [`TFQ-2410.md`](../../dag/derivations/34_genesis_to_higher/tfq_2410_gth_lang_import.md) | Declarative / Formal Spec |
+| **`TFQ-2411`** | Goedel-Rosser and Tarski limit | `GENESIS_TO_HIGHER` | `PROVED_PROSE` | `TFQ-2410` | `GTH-LANG-LIMITS` (PROVED_PROSE) | - | [`TFQ-2411.md`](../../dag/derivations/34_genesis_to_higher/tfq_2411_gth_lang_limits.md) | Declarative / Formal Spec |
 
 ---
 
 ## 3b. One Derivation Graph
 
-`dag/derivation_dag.json` (880 nodes, 885 routes) and `dag/theory_of_finite_qm.jsonl` (932 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 266 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
+`dag/derivation_dag.json` (892 nodes, 897 routes) and `dag/theory_of_finite_qm.jsonl` (944 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 266 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
 
 ---
 
@@ -1086,7 +1098,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 ## 6. Claim Hygiene Assessment
 
 ### 6.1 What this Master Ledger Supports
-- Complete, un-truncated mathematical cataloging of all 932 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
+- Complete, un-truncated mathematical cataloging of all 944 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
 - Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.
 - Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.
 - Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.
@@ -1097,7 +1109,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 - Does not assert that passing computational and formal verification replaces experimental laboratory observation.
 
 ### 6.3 The Narrowest Defensible Claim
-Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 932 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
+Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 944 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
 
 ### 6.4 The Next Test Needed
 Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.

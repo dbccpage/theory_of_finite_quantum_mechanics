@@ -1,0 +1,102 @@
+# PGW-OBSERVATIONAL-EQUIVALENCE
+
+Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+
+## Statement
+
+> Relative to the family O_n of internal observations available at stage n, x ≈ₙ y holds exactly when o(x) = o(y) for every o in O_n, with equality taken in each observation's codomain. If O_n is empty, every pair is equivalent vacuously, so with no observations \<a\> ≈ₙ \<ab\>. This is regime-relative equivalence: it does not make the strings equal and does not install an equality operator inside the regime.
+
+## Grade
+
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo runnable tests: 0
+- counted in-repo Rust or Python files that are not tests: 0
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+
+## Flags
+
+None. Status and evidence are consistent under the rules in the overview.
+
+## Imported structure
+
+- A declared carrier of inscriptions and a declared family O_n of observations on it (assumption)
+
+## Bottleneck
+
+The relation depends on the declared O_n and compares observation values in the metatheory; it is not literal string equality and does not say which observations a regime should have.
+
+## Source status
+
+000_genesis_19l57g1 paper.md section 4 definition; v1 Formalization B; 000_oepregen rewriting Definition 2.3
+
+## Review
+
+No recorded statement-match review.
+
+## Evidence items
+
+Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/Imported/PreGenesisToMssn/Observation.lean`
+
+- file: [lean4/Imported/PreGenesisToMssn/Observation.lean](../../../lean4/Imported/PreGenesisToMssn/Observation.lean)
+- sha256 (`bytes`): `cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79`
+- cited in: node.lean, record TFQ-0421
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Observation`): recorded sha256 `cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Observation.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `SameProfile` | yes | yes | yes | none | `#print axioms SameProfile` |
+| `empty_profiles_equal` | yes | yes | yes | Quot.sound, propext | `#print axioms empty_profiles_equal` |
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md`
+
+- file: [dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md](../../../dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md)
+- sha256 (`lf-normalised`): `1f00c63d578a46cf7b4bfcd0260b53ae7949171319cc13df8b7d2c6ae53fa85a`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-0421
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
+
+- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
+
+- file: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+### Documents and data: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
+
+- file: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
+- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- cited in: node.source
+- counts toward the grade: no
+
+## Absences recorded by the TFQ records
+
+- TFQ-0421 python: no Python ≈ₙ check over Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/derivation/observe.py
+- TFQ-0421 rust: no Rust observation-family type for Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/rust/src/separability.rs
+
+## Routes
+
+Incoming (1):
+
+- `PGW-R-OBSERVATIONAL-EQUIVALENCE` `DERIVED_PROSE`: [PG-INERT-DIAMOND](PG-INERT-DIAMOND.md) (DEFINITION)
+
+Outgoing (1):
+
+- `PGW-R-PRESENTATION-NOT-EXPRESSIVE-LIFT` `CONDITIONAL_ON_IMPORT`: [PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT](PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT.md) (CONDITIONAL)
