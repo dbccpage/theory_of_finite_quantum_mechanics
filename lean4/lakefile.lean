@@ -627,3 +627,13 @@ lean_lib GenesisHottHorns where
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
+-- Compile the immutable, provenance-bound Genesis source through the shared cache.
+lean_lib CampaignGenesisSealedSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
+  roots := #[`Derivation.Basic, `Derivation.Erasure, `Derivation.Inertia, `SecondRun.Run]
+  globs := #[.submodules `Derivation, .submodules `SecondRun]
+
+-- Exact array/copy/source partial replay transport. Non-default.
+lean_lib CampaignGenesisReplayRefinement where
+  roots := #[`CampaignGenesisReplayRefinement]
+
