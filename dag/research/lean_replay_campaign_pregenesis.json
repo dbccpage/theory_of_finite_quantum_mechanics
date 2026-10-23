@@ -1,0 +1,654 @@
+{
+  "schema_version": "lean_replay_campaign.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-22",
+  "group": "PREGENESIS",
+  "result": "11 Lean module(s) cited by DAG nodes of stage PREGENESIS; 11 built with exit code 0, passed the admission scan and the axiom audit (every printed axiom list a subset of propext, Classical.choice, Quot.sound); the rest are listed with their failure.",
+  "source_base": "10be79e94",
+  "proof_boundary": "This receipt records that the file with the stated sha256 type-checks and which axioms the cited declarations depend on. It changes no DAG node status and does not say the declaration states the node's claim.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "6489aa132a2f760d3a6c889f13b85c9684129afb1353fcf2f181d35d18c7aa79",
+    "build_directory": "lean4/b (lakefile buildDir; removed after the run)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build <Module>   (one invocation per module, dependencies first)",
+    "parallelism": "modules of one dependency level were built side by side; seconds are wall-clock and include contention",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "Imported.Genesis19l57g1.Paper000",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PGW-ADMISSION-BEFORE-DISTINCTION",
+          "PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE",
+          "PGW-REPLAY-NECESSITY"
+        ],
+        "dag_node_statuses": {
+          "PGW-ADMISSION-BEFORE-DISTINCTION": "DEFINITION",
+          "PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE": "PROVED_LEAN",
+          "PGW-REPLAY-NECESSITY": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/Genesis19l57g1/Paper000.lean",
+        "sha256": "1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46",
+        "sha256_after_build": "1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 16.36,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "insufficient_history_view",
+          "no_factor_through_common_view",
+          "separation_not_on_quotient",
+          "single_admission_does_not_separate"
+        ],
+        "cited_resolution": {
+          "insufficient_history_view": [
+            "insufficient_history_view"
+          ],
+          "no_factor_through_common_view": [
+            "no_factor_through_common_view"
+          ],
+          "separation_not_on_quotient": [
+            "separation_not_on_quotient"
+          ],
+          "single_admission_does_not_separate": [
+            "single_admission_does_not_separate"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "insufficient_history_view": [],
+          "no_factor_through_common_view": [],
+          "separation_not_on_quotient": [],
+          "single_admission_does_not_separate": []
+        },
+        "output": "✔ [2/2] Built Imported.Genesis19l57g1.Paper000 (3.6s)\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tinsufficient_history_view\tinsufficient_history_view\t[]\nAX\tno_factor_through_common_view\tno_factor_through_common_view\t[]\nAX\tseparation_not_on_quotient\tseparation_not_on_quotient\t[]\nAX\tsingle_admission_does_not_separate\tsingle_admission_does_not_separate\t[]\n",
+        "build_command": "cd lean4 && lake build Imported.Genesis19l57g1.Paper000",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:42:56Z"
+      },
+      {
+        "module": "Imported.OePregen.ListedHistorySummary",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-PREGEN-CONSTRUCTIVE-SUMMARY"
+        ],
+        "dag_node_statuses": {
+          "PG-PREGEN-CONSTRUCTIVE-SUMMARY": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/OePregen/ListedHistorySummary.lean",
+        "sha256": "b3cb2fad54a60c4dc4cfdfd59a7b2c83bc7e3650efed6ded32ffe0b89fa1c4ac",
+        "sha256_after_build": "b3cb2fad54a60c4dc4cfdfd59a7b2c83bc7e3650efed6ded32ffe0b89fa1c4ac",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 20.69,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "PreMssnListed.fiberConstant_of_recon",
+          "PreMssnListed.listed_history_report_criterion",
+          "PreMssnListed.recon_of_fiberConstant"
+        ],
+        "cited_resolution": {
+          "PreMssnListed.fiberConstant_of_recon": [
+            "PreMssnListed.fiberConstant_of_recon"
+          ],
+          "PreMssnListed.listed_history_report_criterion": [
+            "PreMssnListed.listed_history_report_criterion"
+          ],
+          "PreMssnListed.recon_of_fiberConstant": [
+            "PreMssnListed.recon_of_fiberConstant"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "PreMssnListed.fiberConstant_of_recon": [],
+          "PreMssnListed.listed_history_report_criterion": [],
+          "PreMssnListed.recon_of_fiberConstant": []
+        },
+        "output": "ℹ [2/2] Built Imported.OePregen.ListedHistorySummary (4.8s)\ninfo: Imported/OePregen/ListedHistorySummary.lean:267:0: 'PreMssnListed.recon_of_fiberConstant' does not depend on any axioms\ninfo: Imported/OePregen/ListedHistorySummary.lean:268:0: 'PreMssnListed.fiberConstant_of_recon' does not depend on any axioms\ninfo: Imported/OePregen/ListedHistorySummary.lean:269:0: 'PreMssnListed.listed_history_report_criterion' does not depend on any axioms\ninfo: Imported/OePregen/ListedHistorySummary.lean:270:0: 'PreMssnListed.recon_eq_none_iff' does not depend on any axioms\ninfo: Imported/OePregen/ListedHistorySummary.lean:271:0: 'PreMssnListed.recon_eq_none_of_off_image' does not depend on any axioms\ninfo: Imported/OePregen/ListedHistorySummary.lean:272:0: 'PreMssnListed.off_image_of_recon_eq_none' does not depend on any axioms\ninfo: Imported/OePregen/ListedHistorySummary.lean:273:0: 'PreMssnListed.recon_unique' does not depend on any axioms\ninfo: Imported/OePregen/ListedHistorySummary.lean:274:0: 'PreMssnListed.listed_factor_exists' does not depend on any axioms\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tPreMssnListed.fiberConstant_of_recon\tPreMssnListed.fiberConstant_of_recon\t[]\nAX\tPreMssnListed.listed_history_report_criterion\tPreMssnListed.listed_history_report_criterion\t[]\nAX\tPreMssnListed.recon_of_fiberConstant\tPreMssnListed.recon_of_fiberConstant\t[]\n",
+        "build_command": "cd lean4 && lake build Imported.OePregen.ListedHistorySummary",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:45:20Z"
+      },
+      {
+        "module": "Imported.PreGenesisToMssn.Homology",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-CHAIN-RETRACTION"
+        ],
+        "dag_node_statuses": {
+          "PG-CHAIN-RETRACTION": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/PreGenesisToMssn/Homology.lean",
+        "sha256": "c2d4c354ae83deec3317716ed1324cc2560e190f9c9c39f8b1000c97e01b315c",
+        "sha256_after_build": "c2d4c354ae83deec3317716ed1324cc2560e190f9c9c39f8b1000c97e01b315c",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 18.51,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "induced_homology_injective"
+        ],
+        "cited_resolution": {
+          "induced_homology_injective": [
+            "PreMssn.Homology.induced_homology_injective"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "PreMssn.Homology.induced_homology_injective": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "✔ [3/3] Built Imported.PreGenesisToMssn.Homology (8.5s)\nBuild completed successfully (3 jobs).\n",
+        "axiom_audit_output": "AX\tinduced_homology_injective\tPreMssn.Homology.induced_homology_injective\t[propext, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build Imported.PreGenesisToMssn.Homology",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:02:58Z"
+      },
+      {
+        "module": "Imported.PreGenesisToMssn.Observation",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE",
+          "PGW-OBSERVATIONAL-EQUIVALENCE",
+          "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"
+        ],
+        "dag_node_statuses": {
+          "PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE": "PROVED_LEAN",
+          "PGW-OBSERVATIONAL-EQUIVALENCE": "DEFINITION",
+          "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT": "CONDITIONAL"
+        },
+        "source": "lean4/Imported/PreGenesisToMssn/Observation.lean",
+        "sha256": "cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79",
+        "sha256_after_build": "cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 16.74,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "SameProfile",
+          "collapsed_quotient_barrier",
+          "empty_profiles_equal"
+        ],
+        "cited_resolution": {
+          "SameProfile": [
+            "PreMssn.Observation.SameProfile"
+          ],
+          "collapsed_quotient_barrier": [
+            "PreMssn.Observation.collapsed_quotient_barrier"
+          ],
+          "empty_profiles_equal": [
+            "PreMssn.Observation.empty_profiles_equal"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "PreMssn.Observation.SameProfile": [],
+          "PreMssn.Observation.collapsed_quotient_barrier": [
+            "Quot.sound",
+            "propext"
+          ],
+          "PreMssn.Observation.empty_profiles_equal": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "✔ [3/3] Built Imported.PreGenesisToMssn.Observation (4.7s)\nBuild completed successfully (3 jobs).\n",
+        "axiom_audit_output": "AX\tSameProfile\tPreMssn.Observation.SameProfile\t[]\nAX\tcollapsed_quotient_barrier\tPreMssn.Observation.collapsed_quotient_barrier\t[propext, Quot.sound]\nAX\tempty_profiles_equal\tPreMssn.Observation.empty_profiles_equal\t[propext, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build Imported.PreGenesisToMssn.Observation",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:03:11Z"
+      },
+      {
+        "module": "Imported.PreGenesisToMssn.Paper",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-CHAIN-RETRACTION",
+          "PG-COLLAPSE-BARRIER",
+          "PG-DEMAND-ACCOUNTING",
+          "PG-FREE-MONOID-NONISO",
+          "PG-GEN-IRREFLEXIVE-DISTINCT",
+          "PG-HISTORY-REPORT-CRITERION",
+          "PG-OLD-IMAGE-INJECTIVE",
+          "PG-REFINE-SEPARATES"
+        ],
+        "dag_node_statuses": {
+          "PG-CHAIN-RETRACTION": "PROVED_LEAN",
+          "PG-COLLAPSE-BARRIER": "PROVED_LEAN",
+          "PG-DEMAND-ACCOUNTING": "PROVED_LEAN",
+          "PG-FREE-MONOID-NONISO": "PROVED_LEAN",
+          "PG-GEN-IRREFLEXIVE-DISTINCT": "PROVED_LEAN",
+          "PG-HISTORY-REPORT-CRITERION": "PROVED_LEAN",
+          "PG-OLD-IMAGE-INJECTIVE": "PROVED_LEAN",
+          "PG-REFINE-SEPARATES": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/PreGenesisToMssn/Paper.lean",
+        "sha256": "5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12",
+        "sha256_after_build": "5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 24.81,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "chain_retraction_cannot_kill",
+          "collapsed_observation_barrier",
+          "demand_accounting",
+          "history_factor_unique",
+          "history_report_criterion",
+          "irreflexive_endpoints",
+          "old_image_injective",
+          "refine_separates",
+          "unequal_finite_alphabets_not_iso"
+        ],
+        "cited_resolution": {
+          "chain_retraction_cannot_kill": [
+            "PreMssn.chain_retraction_cannot_kill"
+          ],
+          "collapsed_observation_barrier": [
+            "PreMssn.collapsed_observation_barrier"
+          ],
+          "demand_accounting": [
+            "PreMssn.demand_accounting"
+          ],
+          "history_factor_unique": [
+            "PreMssn.history_factor_unique"
+          ],
+          "history_report_criterion": [
+            "PreMssn.history_report_criterion"
+          ],
+          "irreflexive_endpoints": [
+            "PreMssn.irreflexive_endpoints"
+          ],
+          "old_image_injective": [
+            "PreMssn.old_image_injective"
+          ],
+          "refine_separates": [
+            "PreMssn.refine_separates"
+          ],
+          "unequal_finite_alphabets_not_iso": [
+            "PreMssn.unequal_finite_alphabets_not_iso"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "PreMssn.chain_retraction_cannot_kill": [],
+          "PreMssn.collapsed_observation_barrier": [],
+          "PreMssn.demand_accounting": [
+            "Quot.sound",
+            "propext"
+          ],
+          "PreMssn.history_factor_unique": [
+            "Quot.sound"
+          ],
+          "PreMssn.history_report_criterion": [
+            "Classical.choice"
+          ],
+          "PreMssn.irreflexive_endpoints": [],
+          "PreMssn.old_image_injective": [],
+          "PreMssn.refine_separates": [],
+          "PreMssn.unequal_finite_alphabets_not_iso": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "✔ [2/2] Built Imported.PreGenesisToMssn.Paper (8.5s)\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tchain_retraction_cannot_kill\tPreMssn.chain_retraction_cannot_kill\t[]\nAX\tcollapsed_observation_barrier\tPreMssn.collapsed_observation_barrier\t[]\nAX\tdemand_accounting\tPreMssn.demand_accounting\t[propext, Quot.sound]\nAX\thistory_factor_unique\tPreMssn.history_factor_unique\t[Quot.sound]\nAX\thistory_report_criterion\tPreMssn.history_report_criterion\t[Classical.choice]\nAX\tirreflexive_endpoints\tPreMssn.irreflexive_endpoints\t[]\nAX\told_image_injective\tPreMssn.old_image_injective\t[]\nAX\trefine_separates\tPreMssn.refine_separates\t[]\nAX\tunequal_finite_alphabets_not_iso\tPreMssn.unequal_finite_alphabets_not_iso\t[propext, Classical.choice, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build Imported.PreGenesisToMssn.Paper",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:46:16Z"
+      },
+      {
+        "module": "Imported.SnMssn.Paper001",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-CHAIN-RETRACTION",
+          "PG-DEMAND-ACCOUNTING",
+          "PG-FREE-MONOID-NONISO",
+          "PG-HISTORY-REPORT-CRITERION",
+          "PG-OLD-IMAGE-INJECTIVE",
+          "PG-REFINE-SEPARATES"
+        ],
+        "dag_node_statuses": {
+          "PG-CHAIN-RETRACTION": "PROVED_LEAN",
+          "PG-DEMAND-ACCOUNTING": "PROVED_LEAN",
+          "PG-FREE-MONOID-NONISO": "PROVED_LEAN",
+          "PG-HISTORY-REPORT-CRITERION": "PROVED_LEAN",
+          "PG-OLD-IMAGE-INJECTIVE": "PROVED_LEAN",
+          "PG-REFINE-SEPARATES": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/SnMssn/Paper001.lean",
+        "sha256": "1a79ddc7a70157834ee80ed3890124aadd149093336ac49776eab3c167b4fb07",
+        "sha256_after_build": "1a79ddc7a70157834ee80ed3890124aadd149093336ac49776eab3c167b4fb07",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 23.95,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "demand_accounting",
+          "descent_unique",
+          "exists_descent_of_constant",
+          "homology_injective_of_chain_retraction",
+          "no_discrete_equivalence",
+          "no_free_monoid_iso",
+          "off_image_not_implied",
+          "old_image_injective",
+          "supplied_tag_separates",
+          "triangle_retraction_impossible",
+          "two_point_retraction_impossible"
+        ],
+        "cited_resolution": {
+          "demand_accounting": [
+            "demand_accounting"
+          ],
+          "descent_unique": [
+            "descent_unique"
+          ],
+          "exists_descent_of_constant": [
+            "exists_descent_of_constant"
+          ],
+          "homology_injective_of_chain_retraction": [
+            "homology_injective_of_chain_retraction"
+          ],
+          "no_discrete_equivalence": [
+            "no_discrete_equivalence"
+          ],
+          "no_free_monoid_iso": [
+            "no_free_monoid_iso"
+          ],
+          "off_image_not_implied": [
+            "off_image_not_implied"
+          ],
+          "old_image_injective": [
+            "old_image_injective"
+          ],
+          "supplied_tag_separates": [
+            "supplied_tag_separates"
+          ],
+          "triangle_retraction_impossible": [
+            "triangle_retraction_impossible"
+          ],
+          "two_point_retraction_impossible": [
+            "two_point_retraction_impossible"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "demand_accounting": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "descent_unique": [],
+          "exists_descent_of_constant": [
+            "Classical.choice"
+          ],
+          "homology_injective_of_chain_retraction": [],
+          "no_discrete_equivalence": [
+            "Quot.sound",
+            "propext"
+          ],
+          "no_free_monoid_iso": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "off_image_not_implied": [
+            "Quot.sound",
+            "propext"
+          ],
+          "old_image_injective": [],
+          "supplied_tag_separates": [],
+          "triangle_retraction_impossible": [],
+          "two_point_retraction_impossible": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "✔ [2/2] Built Imported.SnMssn.Paper001 (8.7s)\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tdemand_accounting\tdemand_accounting\t[propext, Classical.choice, Quot.sound]\nAX\tdescent_unique\tdescent_unique\t[]\nAX\texists_descent_of_constant\texists_descent_of_constant\t[Classical.choice]\nAX\thomology_injective_of_chain_retraction\thomology_injective_of_chain_retraction\t[]\nAX\tno_discrete_equivalence\tno_discrete_equivalence\t[propext, Quot.sound]\nAX\tno_free_monoid_iso\tno_free_monoid_iso\t[propext, Classical.choice, Quot.sound]\nAX\toff_image_not_implied\toff_image_not_implied\t[propext, Quot.sound]\nAX\told_image_injective\told_image_injective\t[]\nAX\tsupplied_tag_separates\tsupplied_tag_separates\t[]\nAX\ttriangle_retraction_impossible\ttriangle_retraction_impossible\t[]\nAX\ttwo_point_retraction_impossible\ttwo_point_retraction_impossible\t[propext, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build Imported.SnMssn.Paper001",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:47:08Z"
+      },
+      {
+        "module": "Imported.WitnessedDifference.WitnessedDifference.Descent",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-HISTORY-REPORT-CRITERION"
+        ],
+        "dag_node_statuses": {
+          "PG-HISTORY-REPORT-CRITERION": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/WitnessedDifference/WitnessedDifference/Descent.lean",
+        "sha256": "3c14552841a74335e9a2b0ad711dd31ea79b2892e2069f49a980350bca7535cf",
+        "sha256_after_build": "3c14552841a74335e9a2b0ad711dd31ea79b2892e2069f49a980350bca7535cf",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 15.0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "function_descends_iff_fiber_constant"
+        ],
+        "cited_resolution": {
+          "function_descends_iff_fiber_constant": [
+            "WitnessedDifference.Descent.function_descends_iff_fiber_constant"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "WitnessedDifference.Descent.function_descends_iff_fiber_constant": [
+            "Classical.choice"
+          ]
+        },
+        "output": "✔ [3/3] Built Imported.WitnessedDifference.WitnessedDifference.Descent (1.6s)\nBuild completed successfully (3 jobs).\n",
+        "axiom_audit_output": "AX\tfunction_descends_iff_fiber_constant\tWitnessedDifference.Descent.function_descends_iff_fiber_constant\t[Classical.choice]\n",
+        "build_command": "cd lean4 && lake build Imported.WitnessedDifference.WitnessedDifference.Descent",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:03:44Z"
+      },
+      {
+        "module": "Imported.WitnessedDifference.WitnessedDifference.GenesisConstruction",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-INERT-DIAMOND"
+        ],
+        "dag_node_statuses": {
+          "PG-INERT-DIAMOND": "DEFINITION"
+        },
+        "source": "lean4/Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean",
+        "sha256": "acec76637d43d318ff6f73f77b3162e380d28b7c0ffdd824bd810c3b39818b1b",
+        "sha256_after_build": "acec76637d43d318ff6f73f77b3162e380d28b7c0ffdd824bd810c3b39818b1b",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 14.64,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "literalRoot"
+        ],
+        "cited_resolution": {
+          "literalRoot": [
+            "WitnessedDifference.GenesisConstruction.literalRoot"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "WitnessedDifference.GenesisConstruction.literalRoot": []
+        },
+        "output": "ℹ [2/3] Replayed Imported.WitnessedDifference.WitnessedDifference.GenerativeHistoryCompression\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenerativeHistoryCompression.lean:330:0: 'WitnessedDifference.GenerativeHistoryCompression.Path.comp_assoc' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenerativeHistoryCompression.lean:331:0: 'WitnessedDifference.GenerativeHistoryCompression.replay_transitionEvents' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenerativeHistoryCompression.lean:332:0: 'WitnessedDifference.GenerativeHistoryCompression.transitionEvents_comp' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenerativeHistoryCompression.lean:333:0: 'WitnessedDifference.GenerativeHistoryCompression.Path.fold_comp' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenerativeHistoryCompression.lean:334:0: 'WitnessedDifference.GenerativeHistoryCompression.Path.fold_unique' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenerativeHistoryCompression.lean:335:0: 'WitnessedDifference.GenerativeHistoryCompression.contextEq_prefix' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenerativeHistoryCompression.lean:336:0: 'WitnessedDifference.GenerativeHistoryCompression.contextEq_suffix' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/Witnessed\n...[truncated 1775 chars]...\ntiveHistoryCompression.parallel_comparison_boundary_zero' depends on axioms: [propext,\n Quot.sound]\nℹ [3/3] Built Imported.WitnessedDifference.WitnessedDifference.GenesisConstruction (1.9s)\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean:175:0: 'WitnessedDifference.GenesisConstruction.accepted_replay_has_typed_history' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean:176:0: 'WitnessedDifference.GenesisConstruction.replay_commutes' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean:177:0: 'WitnessedDifference.GenesisConstruction.replay_refusal_iff' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean:178:0: 'WitnessedDifference.GenesisConstruction.replay_exact_result_iff' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean:179:0: 'WitnessedDifference.GenesisConstruction.rootedHistory_events' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean:180:0: 'WitnessedDifference.GenesisConstruction.literal_supply_replay' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/GenesisConstruction.lean:181:0: 'WitnessedDifference.GenesisConstruction.literal_root_construction' depends on axioms: [propext]\nBuild completed successfully (3 jobs).\n",
+        "axiom_audit_output": "AX\tliteralRoot\tWitnessedDifference.GenesisConstruction.literalRoot\t[]\n",
+        "build_command": "cd lean4 && lake build Imported.WitnessedDifference.WitnessedDifference.GenesisConstruction",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:03:44Z"
+      },
+      {
+        "module": "Imported.WitnessedDifference.WitnessedDifference.PointedRelation",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-ADMISSION-FLOOR",
+          "PGW-WDP-POINTED-APARTNESS"
+        ],
+        "dag_node_statuses": {
+          "PG-ADMISSION-FLOOR": "PROVED_LEAN",
+          "PGW-WDP-POINTED-APARTNESS": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean",
+        "sha256": "abf14f0a60ee68e7b9d5645f9241620f666ec6336c3f25d8e2b69507ffc827d0",
+        "sha256_after_build": "abf14f0a60ee68e7b9d5645f9241620f666ec6336c3f25d8e2b69507ffc827d0",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 14.03,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "pointed_relation_independence",
+          "pointed_relation_independence_fin"
+        ],
+        "cited_resolution": {
+          "pointed_relation_independence": [
+            "WitnessedDifference.PointedRelation.pointed_relation_independence"
+          ],
+          "pointed_relation_independence_fin": [
+            "WitnessedDifference.PointedRelation.pointed_relation_independence_fin"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "WitnessedDifference.PointedRelation.pointed_relation_independence": [],
+          "WitnessedDifference.PointedRelation.pointed_relation_independence_fin": [
+            "propext"
+          ]
+        },
+        "output": "✔ [3/3] Built Imported.WitnessedDifference.WitnessedDifference.PointedRelation (2.0s)\nBuild completed successfully (3 jobs).\n",
+        "axiom_audit_output": "AX\tpointed_relation_independence\tWitnessedDifference.PointedRelation.pointed_relation_independence\t[]\nAX\tpointed_relation_independence_fin\tWitnessedDifference.PointedRelation.pointed_relation_independence_fin\t[propext]\n",
+        "build_command": "cd lean4 && lake build Imported.WitnessedDifference.WitnessedDifference.PointedRelation",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T23:04:23Z"
+      },
+      {
+        "module": "Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-ADMISSION-FLOOR"
+        ],
+        "dag_node_statuses": {
+          "PG-ADMISSION-FLOOR": "PROVED_LEAN"
+        },
+        "source": "lean4/Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean",
+        "sha256": "42c1b985479a375ccdc5da70c4c378cb18efd29b8b6f737c5d4b20087582648d",
+        "sha256_after_build": "42c1b985479a375ccdc5da70c4c378cb18efd29b8b6f737c5d4b20087582648d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 19.56,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "endpoints_apart",
+          "identification_breaks_law",
+          "no_cut_on_subsingleton"
+        ],
+        "cited_resolution": {
+          "endpoints_apart": [
+            "WitnessedDifference.PrimitiveAdmissionFloor.endpoints_apart"
+          ],
+          "identification_breaks_law": [
+            "WitnessedDifference.PrimitiveAdmissionFloor.identification_breaks_law"
+          ],
+          "no_cut_on_subsingleton": [
+            "WitnessedDifference.PrimitiveAdmissionFloor.no_cut_on_subsingleton"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "WitnessedDifference.PrimitiveAdmissionFloor.endpoints_apart": [],
+          "WitnessedDifference.PrimitiveAdmissionFloor.identification_breaks_law": [],
+          "WitnessedDifference.PrimitiveAdmissionFloor.no_cut_on_subsingleton": []
+        },
+        "output": "ℹ [2/2] Built Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor (3.9s)\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:87:0: 'WitnessedDifference.PrimitiveAdmissionFloor.endpoints_apart' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:88:0: 'WitnessedDifference.PrimitiveAdmissionFloor.no_cut_on_subsingleton' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:89:0: 'WitnessedDifference.PrimitiveAdmissionFloor.identification_breaks_law' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:90:0: 'WitnessedDifference.PrimitiveAdmissionFloor.instance_without_law_allows_singleton' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:91:0: 'WitnessedDifference.PrimitiveAdmissionFloor.law_without_instance_allows_singleton' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:92:0: 'WitnessedDifference.PrimitiveAdmissionFloor.minimum_has_two_orientations' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:93:0: 'WitnessedDifference.PrimitiveAdmissionFloor.raw_item_cost_ties' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean:94:0: 'WitnessedDifference.PrimitiveAdmissionFloor.declared_arity_cost_selects' does not depend on any axioms\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tendpoints_apart\tWitnessedDifference.PrimitiveAdmissionFloor.endpoints_apart\t[]\nAX\tidentification_breaks_law\tWitnessedDifference.PrimitiveAdmissionFloor.identification_breaks_law\t[]\nAX\tno_cut_on_subsingleton\tWitnessedDifference.PrimitiveAdmissionFloor.no_cut_on_subsingleton\t[]\n",
+        "build_command": "cd lean4 && lake build Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:48:37Z"
+      },
+      {
+        "module": "Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge",
+        "standalone_file": false,
+        "dag_nodes": [
+          "PG-HISTORY-REPORT-CRITERION",
+          "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER"
+        ],
+        "dag_node_statuses": {
+          "PG-HISTORY-REPORT-CRITERION": "PROVED_LEAN",
+          "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER": "CONDITIONAL"
+        },
+        "source": "lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean",
+        "sha256": "dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822",
+        "sha256_after_build": "dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 22.34,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "factorization_iff_fiber_constancy"
+        ],
+        "cited_resolution": {
+          "factorization_iff_fiber_constancy": [
+            "WitnessedDifference.ProposalAdmissionBridge.factorization_iff_fiber_constancy"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "WitnessedDifference.ProposalAdmissionBridge.factorization_iff_fiber_constancy": [
+            "Classical.choice"
+          ]
+        },
+        "output": "ℹ [2/2] Built Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge (7.3s)\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:178:0: 'WitnessedDifference.ProposalAdmissionBridge.factorization_iff_fiber_constancy' depends on axioms: [Classical.choice]\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:179:0: 'WitnessedDifference.ProposalAdmissionBridge.equal_report_opposite_decision_no_decoder' depends on axioms: [Classical.choice]\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:180:0: 'WitnessedDifference.ProposalAdmissionBridge.postprocessing_cannot_restore_decision' depends on axioms: [Classical.choice]\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:181:0: 'WitnessedDifference.ProposalAdmissionBridge.joint_report_preserves_permission' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:182:0: 'WitnessedDifference.ProposalAdmissionBridge.joint_report_preserves_evaluation' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:183:0: 'WitnessedDifference.ProposalAdmissionBridge.evaluation_does_not_determine_authorization' depends on axioms: [Classical.choice]\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:184:0: 'WitnessedDifference.ProposalAdmissionBridge.replay_ap\n...[truncated 275 chars]...\nfference/ProposalAdmissionBridge.lean:186:0: 'WitnessedDifference.ProposalAdmissionBridge.replay_has_declared_run' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:187:0: 'WitnessedDifference.ProposalAdmissionBridge.declared_run_iff_replay' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:188:0: 'WitnessedDifference.ProposalAdmissionBridge.invalid_proposal_noop' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:189:0: 'WitnessedDifference.ProposalAdmissionBridge.unpermitted_proposal_noop' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:190:0: 'WitnessedDifference.ProposalAdmissionBridge.admitted_proposal_transition' depends on axioms: [propext]\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:192:0: 'WitnessedDifference.ProposalAdmissionBridge.joint_report_equality_iff' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:193:0: 'WitnessedDifference.ProposalAdmissionBridge.replay_nil' does not depend on any axioms\ninfo: Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean:194:0: 'WitnessedDifference.ProposalAdmissionBridge.replay_cons' does not depend on any axioms\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tfactorization_iff_fiber_constancy\tWitnessedDifference.ProposalAdmissionBridge.factorization_iff_fiber_constancy\t[Classical.choice]\n",
+        "build_command": "cd lean4 && lake build Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:48:40Z"
+      }
+    ]
+  },
+  "reproduction": [
+    "ln -s <shared Mathlib v4.35.0 package cache> lean4/.lake/packages   # Mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "cd lean4 && lake build <module>   # modules of lean4/Imported are in the ImportedAtlas library",
+    "cd lean4 && lake env lean <scratch.lean>   # import Lean + the module; Lean.collectAxioms over the constants whose names end in a cited symbol (every theorem of the module when the DAG cites the file only)",
+    "python -I -X utf8 dag/research/lean_replay_campaign/replay_campaign.py run|assemble --repo . --plan plan.json --work <dir>"
+  ],
+  "limits": [
+    "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
+    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol with no constant of that name in the module is listed under unresolved_cited_symbols and is not audited.",
+    "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built side by side; it includes contention and, for a module whose dependencies were built just before, only that module's own compile."
+  ]
+}

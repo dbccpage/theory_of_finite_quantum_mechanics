@@ -1,0 +1,90 @@
+{
+  "schema_version": "lean_replay_campaign.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-22",
+  "group": "CONSTRUCTOR_THEORY",
+  "result": "1 Lean module(s) cited by DAG nodes of stage CONSTRUCTOR_THEORY; 1 built with exit code 0, passed the admission scan and the axiom audit (every printed axiom list a subset of propext, Classical.choice, Quot.sound); the rest are listed with their failure.",
+  "source_base": "10be79e94",
+  "proof_boundary": "This receipt records that the file with the stated sha256 type-checks and which axioms the cited declarations depend on. It changes no DAG node status and does not say the declaration states the node's claim.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "6489aa132a2f760d3a6c889f13b85c9684129afb1353fcf2f181d35d18c7aa79",
+    "build_directory": "lean4/b (lakefile buildDir; removed after the run)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build <Module>   (one invocation per module, dependencies first)",
+    "parallelism": "modules of one dependency level were built side by side; seconds are wall-clock and include contention",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "Entanglement",
+        "standalone_file": false,
+        "dag_nodes": [
+          "CT-ENTANGLING-PHASE-FINITE-TARGET",
+          "CT-QUBIT-NO-CLONING-FINITE-TARGET",
+          "DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS",
+          "DS-QM074-NO-SIGNALING-MARGINAL"
+        ],
+        "dag_node_statuses": {
+          "CT-ENTANGLING-PHASE-FINITE-TARGET": "PROVED_LEAN",
+          "CT-QUBIT-NO-CLONING-FINITE-TARGET": "PROVED_LEAN",
+          "DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS": "PROVED_LEAN",
+          "DS-QM074-NO-SIGNALING-MARGINAL": "PROVED_LEAN"
+        },
+        "source": "lean4/Entanglement.lean",
+        "sha256": "bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d",
+        "sha256_after_build": "bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 8.05,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "bell_state_is_entangled",
+          "non_signaling_under_local_b_flip"
+        ],
+        "cited_resolution": {
+          "bell_state_is_entangled": [
+            "Entanglement.bell_state_is_entangled"
+          ],
+          "non_signaling_under_local_b_flip": [
+            "Entanglement.non_signaling_under_local_b_flip"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "Entanglement.bell_state_is_entangled": [
+            "Quot.sound",
+            "propext"
+          ],
+          "Entanglement.non_signaling_under_local_b_flip": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "ℹ [2/2] Built Entanglement (1.8s)\ninfo: Entanglement.lean:71:0: 'Entanglement.product_state_minor_zero' depends on axioms: [propext, Quot.sound]\ninfo: Entanglement.lean:72:0: 'Entanglement.bell_phi_plus_minor_non_zero' does not depend on any axioms\ninfo: Entanglement.lean:73:0: 'Entanglement.bell_state_is_entangled' depends on axioms: [propext, Quot.sound]\ninfo: Entanglement.lean:74:0: 'Entanglement.non_signaling_under_local_b_flip' depends on axioms: [propext, Quot.sound]\ninfo: Entanglement.lean:75:0: 'Entanglement.non_signaling_under_local_b_phase' depends on axioms: [propext]\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\tbell_state_is_entangled\tEntanglement.bell_state_is_entangled\t[propext, Quot.sound]\nAX\tnon_signaling_under_local_b_flip\tEntanglement.non_signaling_under_local_b_flip\t[propext, Quot.sound]\n",
+        "build_command": "cd lean4 && lake build Entanglement",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:35:40Z"
+      }
+    ]
+  },
+  "reproduction": [
+    "ln -s <shared Mathlib v4.35.0 package cache> lean4/.lake/packages   # Mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "cd lean4 && lake build <module>   # modules of lean4/Imported are in the ImportedAtlas library",
+    "cd lean4 && lake env lean <scratch.lean>   # import Lean + the module; Lean.collectAxioms over the constants whose names end in a cited symbol (every theorem of the module when the DAG cites the file only)",
+    "python -I -X utf8 dag/research/lean_replay_campaign/replay_campaign.py run|assemble --repo . --plan plan.json --work <dir>"
+  ],
+  "limits": [
+    "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
+    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol with no constant of that name in the module is listed under unresolved_cited_symbols and is not audited.",
+    "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built side by side; it includes contention and, for a module whose dependencies were built just before, only that module's own compile."
+  ]
+}

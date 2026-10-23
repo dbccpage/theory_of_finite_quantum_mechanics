@@ -1,0 +1,229 @@
+{
+  "schema_version": "lean_replay_campaign.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-22",
+  "group": "ADS_CFT",
+  "result": "3 Lean module(s) cited by DAG nodes of stage ADS_CFT; 3 built with exit code 0, passed the admission scan and the axiom audit (every printed axiom list a subset of propext, Classical.choice, Quot.sound); the rest are listed with their failure.",
+  "source_base": "10be79e94",
+  "proof_boundary": "This receipt records that the file with the stated sha256 type-checks and which axioms the cited declarations depend on. It changes no DAG node status and does not say the declaration states the node's claim.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "6489aa132a2f760d3a6c889f13b85c9684129afb1353fcf2f181d35d18c7aa79",
+    "build_directory": "lean4/b (lakefile buildDir; removed after the run)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build <Module>   (one invocation per module, dependencies first)",
+    "parallelism": "modules of one dependency level were built side by side; seconds are wall-clock and include contention",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "H036ThreeQubitCodeSyndromeRecovery",
+        "standalone_file": false,
+        "dag_nodes": [
+          "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET",
+          "ADS-LOGICAL-RECONSTRUCTION-TARGET"
+        ],
+        "dag_node_statuses": {
+          "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET": "PROVED_LEAN",
+          "ADS-LOGICAL-RECONSTRUCTION-TARGET": "PROVED_LEAN"
+        },
+        "source": "lean4/H036ThreeQubitCodeSyndromeRecovery.lean",
+        "sha256": "b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7",
+        "sha256_after_build": "b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 6.74,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [],
+        "cited_resolution": {
+          "*": [
+            "FableHilbertWalk20260819.H036.syndromes_pairwise_distinct",
+            "FableHilbertWalk20260819.H036.BitFlipError.errX3.sizeOf_spec",
+            "FableHilbertWalk20260819.H036.syndrome_decoding_exact",
+            "FableHilbertWalk20260819.H036.Syndrome.mk.sizeOf_spec",
+            "FableHilbertWalk20260819.H036.bit_flip_error_recovery_involution",
+            "FableHilbertWalk20260819.H036.Syndrome.mk.injEq",
+            "FableHilbertWalk20260819.H036.Syndrome.mk.inj",
+            "FableHilbertWalk20260819.H036.BitFlipError.errX2.sizeOf_spec",
+            "FableHilbertWalk20260819.H036.BitFlipError.errI.sizeOf_spec",
+            "FableHilbertWalk20260819.H036.BitFlipError.errX1.sizeOf_spec",
+            "FableHilbertWalk20260819.H036.BitFlipError.ofNat_ctorIdx"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "FableHilbertWalk20260819.H036.syndromes_pairwise_distinct": [],
+          "FableHilbertWalk20260819.H036.BitFlipError.errX3.sizeOf_spec": [],
+          "FableHilbertWalk20260819.H036.syndrome_decoding_exact": [],
+          "FableHilbertWalk20260819.H036.Syndrome.mk.sizeOf_spec": [],
+          "FableHilbertWalk20260819.H036.bit_flip_error_recovery_involution": [],
+          "FableHilbertWalk20260819.H036.Syndrome.mk.injEq": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H036.Syndrome.mk.inj": [],
+          "FableHilbertWalk20260819.H036.BitFlipError.errX2.sizeOf_spec": [],
+          "FableHilbertWalk20260819.H036.BitFlipError.errI.sizeOf_spec": [],
+          "FableHilbertWalk20260819.H036.BitFlipError.errX1.sizeOf_spec": [],
+          "FableHilbertWalk20260819.H036.BitFlipError.ofNat_ctorIdx": []
+        },
+        "output": "ℹ [2/2] Built H036ThreeQubitCodeSyndromeRecovery (1.1s)\ninfo: H036ThreeQubitCodeSyndromeRecovery.lean:46:0: 'FableHilbertWalk20260819.H036.syndromes_pairwise_distinct' does not depend on any axioms\ninfo: H036ThreeQubitCodeSyndromeRecovery.lean:47:0: 'FableHilbertWalk20260819.H036.syndrome_decoding_exact' does not depend on any axioms\ninfo: H036ThreeQubitCodeSyndromeRecovery.lean:48:0: 'FableHilbertWalk20260819.H036.bit_flip_error_recovery_involution' does not depend on any axioms\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\t*\tFableHilbertWalk20260819.H036.syndromes_pairwise_distinct\t[]\nAX\t*\tFableHilbertWalk20260819.H036.BitFlipError.errX3.sizeOf_spec\t[]\nAX\t*\tFableHilbertWalk20260819.H036.syndrome_decoding_exact\t[]\nAX\t*\tFableHilbertWalk20260819.H036.Syndrome.mk.sizeOf_spec\t[]\nAX\t*\tFableHilbertWalk20260819.H036.bit_flip_error_recovery_involution\t[]\nAX\t*\tFableHilbertWalk20260819.H036.Syndrome.mk.injEq\t[propext]\nAX\t*\tFableHilbertWalk20260819.H036.Syndrome.mk.inj\t[]\nAX\t*\tFableHilbertWalk20260819.H036.BitFlipError.errX2.sizeOf_spec\t[]\nAX\t*\tFableHilbertWalk20260819.H036.BitFlipError.errI.sizeOf_spec\t[]\nAX\t*\tFableHilbertWalk20260819.H036.BitFlipError.errX1.sizeOf_spec\t[]\nAX\t*\tFableHilbertWalk20260819.H036.BitFlipError.ofNat_ctorIdx\t[]\n",
+        "build_command": "cd lean4 && lake build H036ThreeQubitCodeSyndromeRecovery",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-23T01:18:47Z"
+      },
+      {
+        "module": "H042ShorNineQubitCode",
+        "standalone_file": false,
+        "dag_nodes": [
+          "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET"
+        ],
+        "dag_node_statuses": {
+          "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET": "PROVED_LEAN"
+        },
+        "source": "lean4/H042ShorNineQubitCode.lean",
+        "sha256": "6bb233631905c18bbef63f8fa4a9b3b012a65d33d14c187e3e7f8b9fe2df82c9",
+        "sha256_after_build": "6bb233631905c18bbef63f8fa4a9b3b012a65d33d14c187e3e7f8b9fe2df82c9",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 6.77,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [],
+        "cited_resolution": {
+          "*": [
+            "FableHilbertWalk20260819.H042.logical_operators_anticommute",
+            "FableHilbertWalk20260819.H042.zl_commutes_with_stabilizers",
+            "falsification_degenerate_carrier",
+            "FableHilbertWalk20260819.H042.s3_s8_commute",
+            "FableHilbertWalk20260819.H042.all_x_errors_detected",
+            "FableHilbertWalk20260819.H042.xl3_weight",
+            "FableHilbertWalk20260819.H042.s5_s7_commute",
+            "FableHilbertWalk20260819.H042.all_y_errors_detected",
+            "FableHilbertWalk20260819.H042.s2_s8_commute",
+            "FableHilbertWalk20260819.H042.s5_s8_commute",
+            "FableHilbertWalk20260819.H042.s6_s7_commute",
+            "FableHilbertWalk20260819.H042.Syndrome8.mk.injEq",
+            "FableHilbertWalk20260819.H042.Syndrome8.mk.sizeOf_spec",
+            "FableHilbertWalk20260819.H042.s7_s8_commute",
+            "FableHilbertWalk20260819.H042.s6_s8_commute",
+            "FableHilbertWalk20260819.H042.zl_weight",
+            "FableHilbertWalk20260819.H042.s2_s7_commute",
+            "FableHilbertWalk20260819.H042.s4_s7_commute",
+            "FableHilbertWalk20260819.H042.all_z_errors_detected",
+            "FableHilbertWalk20260819.H042.Syndrome8.mk.inj",
+            "FableHilbertWalk20260819.H042.s1_s8_commute",
+            "FableHilbertWalk20260819.H042.s1_s7_commute",
+            "FableHilbertWalk20260819.H042.s4_s8_commute",
+            "FableHilbertWalk20260819.H042.s3_s7_commute",
+            "FableHilbertWalk20260819.H042.xl_commutes_with_stabilizers"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "FableHilbertWalk20260819.H042.logical_operators_anticommute": [],
+          "FableHilbertWalk20260819.H042.zl_commutes_with_stabilizers": [],
+          "falsification_degenerate_carrier": [],
+          "FableHilbertWalk20260819.H042.s3_s8_commute": [],
+          "FableHilbertWalk20260819.H042.all_x_errors_detected": [],
+          "FableHilbertWalk20260819.H042.xl3_weight": [],
+          "FableHilbertWalk20260819.H042.s5_s7_commute": [],
+          "FableHilbertWalk20260819.H042.all_y_errors_detected": [],
+          "FableHilbertWalk20260819.H042.s2_s8_commute": [],
+          "FableHilbertWalk20260819.H042.s5_s8_commute": [],
+          "FableHilbertWalk20260819.H042.s6_s7_commute": [],
+          "FableHilbertWalk20260819.H042.Syndrome8.mk.injEq": [
+            "propext"
+          ],
+          "FableHilbertWalk20260819.H042.Syndrome8.mk.sizeOf_spec": [],
+          "FableHilbertWalk20260819.H042.s7_s8_commute": [],
+          "FableHilbertWalk20260819.H042.s6_s8_commute": [],
+          "FableHilbertWalk20260819.H042.zl_weight": [],
+          "FableHilbertWalk20260819.H042.s2_s7_commute": [],
+          "FableHilbertWalk20260819.H042.s4_s7_commute": [],
+          "FableHilbertWalk20260819.H042.all_z_errors_detected": [],
+          "FableHilbertWalk20260819.H042.Syndrome8.mk.inj": [],
+          "FableHilbertWalk20260819.H042.s1_s8_commute": [],
+          "FableHilbertWalk20260819.H042.s1_s7_commute": [],
+          "FableHilbertWalk20260819.H042.s4_s8_commute": [],
+          "FableHilbertWalk20260819.H042.s3_s7_commute": [],
+          "FableHilbertWalk20260819.H042.xl_commutes_with_stabilizers": []
+        },
+        "output": "ℹ [2/2] Built H042ShorNineQubitCode (1.8s)\ninfo: H042ShorNineQubitCode.lean:151:0: 'FableHilbertWalk20260819.H042.zl_weight' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:152:0: 'FableHilbertWalk20260819.H042.xl3_weight' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:153:0: 'FableHilbertWalk20260819.H042.s1_s7_commute' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:154:0: 'FableHilbertWalk20260819.H042.s1_s8_commute' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:155:0: 'FableHilbertWalk20260819.H042.s7_s8_commute' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:156:0: 'FableHilbertWalk20260819.H042.xl_commutes_with_stabilizers' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:157:0: 'FableHilbertWalk20260819.H042.zl_commutes_with_stabilizers' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:158:0: 'FableHilbertWalk20260819.H042.logical_operators_anticommute' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:159:0: 'FableHilbertWalk20260819.H042.all_x_errors_detected' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:160:0: 'FableHilbertWalk20260819.H042.all_z_errors_detected' does not depend on any axioms\ninfo: H042ShorNineQubitCode.lean:161:0: 'FableHilbertWalk20260819.H042.all_y_errors_detected' does not depend on any axioms\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\t*\tFableHilbertWalk20260819.H042.logical_operators_anticommute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.zl_commutes_with_stabilizers\t[]\nAX\t*\tfalsification_degenerate_carrier\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s3_s8_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.all_x_errors_detected\t[]\nAX\t*\tFableHilbertWalk20260819.H042.xl3_weight\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s5_s7_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.all_y_errors_detected\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s2_s8_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s5_s8_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s6_s7_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.Syndrome8.mk.injEq\t[propext]\nAX\t*\tFableHilbertWalk20260819.H042.Syndrome8.mk.sizeOf_spec\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s7_s8_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s6_s8_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.zl_weight\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s2_s7_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s4_s7_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.all_z_errors_detected\t[]\nAX\t*\tFableHilbertWalk20260819.H042.Syndrome8.mk.inj\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s1_s8_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s1_s7_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s4_s8_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.s3_s7_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H042.xl_commutes_with_stabilizers\t[]\n",
+        "build_command": "cd lean4 && lake build H042ShorNineQubitCode",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-23T01:19:05Z"
+      },
+      {
+        "module": "H044SurfaceCodeToricTopology",
+        "standalone_file": false,
+        "dag_nodes": [
+          "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET"
+        ],
+        "dag_node_statuses": {
+          "ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET": "PROVED_LEAN"
+        },
+        "source": "lean4/H044SurfaceCodeToricTopology.lean",
+        "sha256": "fb7dabdab6050799ef04a17f7ca0892c4cab39b4781db08d9445a9496915e15b",
+        "sha256_after_build": "fb7dabdab6050799ef04a17f7ca0892c4cab39b4781db08d9445a9496915e15b",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 5.98,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [],
+        "cited_resolution": {
+          "*": [
+            "FableHilbertWalk20260819.H044.torus_euler_characteristic",
+            "FableHilbertWalk20260819.H044.plaq_weights",
+            "FableHilbertWalk20260819.H044.anyon_loop_string_intersection",
+            "FableHilbertWalk20260819.H044.anyon_braiding_phase_pi",
+            "FableHilbertWalk20260819.H044.star_weights",
+            "FableHilbertWalk20260819.H044.homology_dimension_k2",
+            "FableHilbertWalk20260819.H044.star_plaq_geometric_overlaps",
+            "FableHilbertWalk20260819.H044.all_star_plaq_commute",
+            "FableHilbertWalk20260819.H044.torus_genus"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "axioms": {
+          "FableHilbertWalk20260819.H044.torus_euler_characteristic": [],
+          "FableHilbertWalk20260819.H044.plaq_weights": [],
+          "FableHilbertWalk20260819.H044.anyon_loop_string_intersection": [],
+          "FableHilbertWalk20260819.H044.anyon_braiding_phase_pi": [],
+          "FableHilbertWalk20260819.H044.star_weights": [],
+          "FableHilbertWalk20260819.H044.homology_dimension_k2": [],
+          "FableHilbertWalk20260819.H044.star_plaq_geometric_overlaps": [],
+          "FableHilbertWalk20260819.H044.all_star_plaq_commute": [],
+          "FableHilbertWalk20260819.H044.torus_genus": []
+        },
+        "output": "ℹ [2/2] Built H044SurfaceCodeToricTopology (1.1s)\ninfo: H044SurfaceCodeToricTopology.lean:72:0: 'FableHilbertWalk20260819.H044.star_weights' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:73:0: 'FableHilbertWalk20260819.H044.plaq_weights' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:74:0: 'FableHilbertWalk20260819.H044.all_star_plaq_commute' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:75:0: 'FableHilbertWalk20260819.H044.star_plaq_geometric_overlaps' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:76:0: 'FableHilbertWalk20260819.H044.torus_euler_characteristic' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:77:0: 'FableHilbertWalk20260819.H044.torus_genus' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:78:0: 'FableHilbertWalk20260819.H044.homology_dimension_k2' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:79:0: 'FableHilbertWalk20260819.H044.anyon_loop_string_intersection' does not depend on any axioms\ninfo: H044SurfaceCodeToricTopology.lean:80:0: 'FableHilbertWalk20260819.H044.anyon_braiding_phase_pi' does not depend on any axioms\nBuild completed successfully (2 jobs).\n",
+        "axiom_audit_output": "AX\t*\tFableHilbertWalk20260819.H044.torus_euler_characteristic\t[]\nAX\t*\tFableHilbertWalk20260819.H044.plaq_weights\t[]\nAX\t*\tFableHilbertWalk20260819.H044.anyon_loop_string_intersection\t[]\nAX\t*\tFableHilbertWalk20260819.H044.anyon_braiding_phase_pi\t[]\nAX\t*\tFableHilbertWalk20260819.H044.star_weights\t[]\nAX\t*\tFableHilbertWalk20260819.H044.homology_dimension_k2\t[]\nAX\t*\tFableHilbertWalk20260819.H044.star_plaq_geometric_overlaps\t[]\nAX\t*\tFableHilbertWalk20260819.H044.all_star_plaq_commute\t[]\nAX\t*\tFableHilbertWalk20260819.H044.torus_genus\t[]\n",
+        "build_command": "cd lean4 && lake build H044SurfaceCodeToricTopology",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-23T01:18:40Z"
+      }
+    ]
+  },
+  "reproduction": [
+    "ln -s <shared Mathlib v4.35.0 package cache> lean4/.lake/packages   # Mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "cd lean4 && lake build <module>   # modules of lean4/Imported are in the ImportedAtlas library",
+    "cd lean4 && lake env lean <scratch.lean>   # import Lean + the module; Lean.collectAxioms over the constants whose names end in a cited symbol (every theorem of the module when the DAG cites the file only)",
+    "python -I -X utf8 dag/research/lean_replay_campaign/replay_campaign.py run|assemble --repo . --plan plan.json --work <dir>"
+  ],
+  "limits": [
+    "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
+    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol with no constant of that name in the module is listed under unresolved_cited_symbols and is not audited.",
+    "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built side by side; it includes contention and, for a module whose dependencies were built just before, only that module's own compile."
+  ]
+}
