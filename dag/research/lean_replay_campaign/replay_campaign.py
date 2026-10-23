@@ -31,6 +31,7 @@ from pathlib import Path
 
 ALLOWED = ("propext", "Classical.choice", "Quot.sound")
 SOURCE_BASE = "10be79e94"  # origin/main when the campaign started
+UNCITED_GROUP = "IMPORTED_PROGRAMMES"  # receipts of imported files that no DAG node cites
 AUDIT_VERSION = 4  # 4: exact matching only; whole-file audit never sets the pass flag
 EXTPKG = ("Mathlib", "Std", "Lean", "Init", "Batteries", "Aesop", "Qq", "ProofWidgets", "Plausible",
           "LeanSearchClient", "Cli", "ImportGraph")
@@ -557,7 +558,7 @@ def trunc(s: str, n: int) -> str:
     return s if len(s) <= n else s[: n // 2] + "\n...[truncated " + str(len(s) - n) + " chars]...\n" + s[-n // 2:]
 
 
-def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
+def assemble(repo: Path, work: Path, plan: dict, groups_out: Path, deps_file: str = "dependency_builds.json"):
     lean_v, lake_v = tool_versions(repo / "lean4")
     mathlib = json.loads((repo / "lean4/lake-manifest.json").read_text(encoding="utf-8"))
     msha = next(p["rev"] for p in mathlib["packages"] if p["name"] == "mathlib")
@@ -574,7 +575,9 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
             continue
         r = rows_by_module[m]
         stage_count = collections.Counter(n[2] for n in ent["nodes"])
-        group = sorted(stage_count.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
+        # a file imported for a named programme that no DAG node cites yet has no stage
+        group = (sorted(stage_count.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
+                 if stage_count else UNCITED_GROUP)
         if sha256_file(repo / r["source"]) != r["sha256"]:
             raise SystemExit(f"{r['source']} changed since it was replayed; run the campaign again before assembling")
         cited = sorted(ent["decls"])
@@ -599,7 +602,9 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
             "cited_resolution": parsed["cited_resolution"],
             "unresolved_cited_symbols": parsed["unresolved_cited_symbols"],
             "ambiguous_cited_symbols": parsed["ambiguous_cited_symbols"],
-            "axiom_audit_basis": "cited declarations" if cited else "every theorem of the file (no declaration cited)",
+            "axiom_audit_basis": ("cited declarations" if cited else
+                                 "every theorem of the file (no declaration cited)" if axioms else
+                                 "the file declares no theorem and cites none: nothing to audit"),
             "axioms": axioms,
             **({"axioms_whole_file_extra": parsed["file_wide_axioms"]}
                if cited and parsed["file_wide_axioms"] else {}),
@@ -620,7 +625,10 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
             "authority_effect": "None",
             "checked_at": datetime.date.today().isoformat(),
             "group": group,
-            "result": (f"{len(rows)} Lean module(s) cited by DAG nodes of stage {group}; {ok} built with exit code 0, "
+            "result": (f"{len(rows)} Lean module(s) "
+                       + ("imported for the named programmes, not yet cited by any DAG node"
+                          if group == UNCITED_GROUP else f"cited by DAG nodes of stage {group}")
+                       + f"; {ok} built with exit code 0, "
                        "passed the admission scan and the axiom audit (every printed axiom list a subset of "
                        "propext, Classical.choice, Quot.sound); the rest are listed with their failure."),
             "source_base": SOURCE_BASE,
@@ -672,7 +680,7 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
             if not any((module_of(p) or runner_key(p)) == m for p in plan)]
     dep_dir = groups_out / "lean_replay_campaign"
     dep_dir.mkdir(parents=True, exist_ok=True)
-    (dep_dir / "dependency_builds.json").write_text(json.dumps({
+    (dep_dir / deps_file).write_text(json.dumps({
         "schema_version": "lean_replay_dependency_builds.v1", "authority_effect": "None",
         "note": "Modules built only because a cited module imports them. Not receipts: no cited declaration is audited.",
         "dependency_builds": deps}, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
@@ -689,13 +697,14 @@ def main():
     ap.add_argument("--work", required=True)
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--only", nargs="*")
+    ap.add_argument("--deps-file", default="dependency_builds.json", help="name of the dependency build record written by assemble")
     a = ap.parse_args()
     repo, work = Path(a.repo), Path(a.work)
     plan = json.loads(Path(a.plan).read_text(encoding="utf-8"))
     if a.cmd == "run":
         Runner(repo, work, plan, a.workers).run(a.only)
     else:
-        s, d = assemble(repo, work, plan, repo / "dag/research")
+        s, d = assemble(repo, work, plan, repo / "dag/research", a.deps_file)
         print(json.dumps(s, indent=1))
         print(len(d), "dependency-only builds")
 
