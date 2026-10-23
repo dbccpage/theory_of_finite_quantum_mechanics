@@ -584,6 +584,13 @@ lean_lib FrontierTargets where
     `FrontierPrAllowedRegion
   ]
 
+-- Campaign Target 3: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
+-- Not a default target: build with `lake build CampaignCtMediatorEntanglement`.
+lean_lib CampaignCtMediatorEntanglement where
+  roots := #[
+    `CampaignCtMediatorEntanglement
+  ]
+
 -- Derivation Campaign Target 5 (TFQ-0016): B2(Q) Semidirect Factorization, Two-Stage Dressing, Discrete Poset Curvature
 lean_lib CampaignTfq0016B2Dressing where
   roots := #[`CampaignTfq0016B2Dressing]
