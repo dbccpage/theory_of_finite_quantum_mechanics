@@ -778,7 +778,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1193` | `FERMION_SIGN` | `PROVED_LEAN` | `FSP-INVOLUTION-PAIR-CANCELLATION` (PROVED_LEAN) | - |
 | `TFQ-1194` | `FERMION_SIGN` | `COMPUTATIONAL_CONTROL` | `FSP-GIN-EQUAL-WEIGHT-PAIRING` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-1195` | `FERMION_SIGN` | `PROVED_PROSE` | `FSP-RATIONAL-QUOTIENT-NORMAL-FORM` (PROVED_PROSE) | - |
-| `TFQ-1196` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-U1-WILSON-ACTION` (IMPORTED_ASSUMPTION) | - |
+| `TFQ-1196` | `FERMION_SIGN` | `PROVED_LEAN` | `FSP-U1-WILSON-ACTION` (PROVED_LEAN) | - |
 | `TFQ-1197` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-WILSON-DIRAC-GAMMA5` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1198` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-THETA-TERM-COMPLEX-WEIGHT` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1199` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-LATTICE-ANOMALY-INFLOW` (OPEN) | - |
@@ -8800,7 +8800,7 @@ If U_S is unitary with U_S^N = I_d, then D^dagger W D = S_C tensor I_d, and D^da
 
 Obligation: Exact checks exist only for N = 4, d = 2, U_S = [[0,-1],[1,0]] and psi_0 = (3/5, 4/5); no Lean witness.
 
-### TFQ-1117 Relational clock dressing and continuum time
+### TFQ-1117 Finite-clock closure and reversible history coordinates
 
 - UUID: `5bf82ffd-ae95-5919-8a82-5b2aa6db9152`
 - Parent: `TFQ-1116`
@@ -8808,9 +8808,9 @@ Obligation: Exact checks exist only for N = 4, d = 2, U_S = [[0,-1],[1,0]] and p
 - DAG node: `DFM-RELATIONAL-TIME-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md)
 
-Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.
+For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
 
-Obligation: Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.
+Obligation: The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.
 
 ### TFQ-1118 Electroweak doublet dressing matrix and Weinberg projectors
 
@@ -10056,13 +10056,13 @@ Obligation: N_W is not an l1 minimizer (span(1,2), x = (1,0) gives norm 2 versus
 
 - UUID: `b1bcc73c-d463-5262-98a8-7badf4a7a06c`
 - Parent: `TFQ-0091`
-- Status: `IMPORTED_ASSUMPTION`
+- Status: `PROVED_LEAN`
 - DAG node: `FSP-U1-WILSON-ACTION`
 - Paper: [derivation](derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md)
 
-With link phases U_ij = exp(i A_ij) and oriented plaquette products U_p, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and nonnegative.
+With link phases U_ij = exp(i A_ij) on ordered vertex pairs and oriented closed-path products U_p over a finite plaquette family, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and is nonnegative for beta_g >= 0.
 
-Obligation: Standard lattice-gauge fact imported, not established in this checkout; the source supplies no fermion-sign consequence for it.
+Obligation: Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for every g: V -> U(1) and for every angle shift A_ij -> A_ij + theta_i - theta_j) and nonnegativity for beta_g >= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice (ZMod L)^d is one instance. beta_g >= 0 is required: one self-link plaquette with phase -1 and beta_g = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L <= 2 the two parallel links between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity, transfer matrix or non-abelian action is claimed. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.
 
 ### TFQ-1197 Wilson-Dirac gamma5-hermiticity and real determinant
 

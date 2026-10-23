@@ -1,0 +1,413 @@
+{
+  "AuthorityEffect": "None",
+  "base": "282dfa1da298422d59972dd71b2600b73c1d774b",
+  "reviewed_source_head": "e5cfe6b4649172d48f42a0fb3c4d3a7326ca3e5e",
+  "steps": [
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/anti_pattern_lint.py",
+        "--changed-since",
+        "282dfa1da298422d59972dd71b2600b73c1d774b"
+      ],
+      "exit_code": 0,
+      "stdout": "anti_pattern_lint: 0 HIGH, 0 MEDIUM, 0 LOW (3 changed .lean/.py files since 282dfa1da298422d59972dd71b2600b73c1d774b (Lean rules: added lines))\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "scripts/test_governance_policy.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "....                                                                     [100%]\n============================== warnings summary ===============================\n.venv-l4-review\\Lib\\site-packages\\_pytest\\config\\__init__.py:1464\n  C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Lib\\site-packages\\_pytest\\config\\__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n4 passed, 1 warning in 0.40s\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.whitespace=cr-at-eol",
+        "diff",
+        "--check",
+        "282dfa1da298422d59972dd71b2600b73c1d774b"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "282dfa1da298422d59972dd71b2600b73c1d774b"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 5,\n    \"valid_contracts_and_scores\": 5,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2,\n      \"Rust\": 3\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 3,\n      \"Symbolic/Formal\": 2\n    },\n    \"completed_scores\": 5,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 5\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 282dfa1da298422d59972dd71b2600b73c1d774b (merge base 282dfa1da298), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "282dfa1da298422d59972dd71b2600b73c1d774b"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 6,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "282dfa1da298422d59972dd71b2600b73c1d774b",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since 282dfa1da298422d59972dd71b2600b73c1d774b (merge base 282dfa1da298); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "governance/target/debug/governance-check.exe",
+        "--root",
+        ".",
+        "check",
+        "--changed-since",
+        "282dfa1da298422d59972dd71b2600b73c1d774b"
+      ],
+      "exit_code": 0,
+      "stdout": "changed since 282dfa1da298422d59972dd71b2600b73c1d774b (282dfa1da298422d59972dd71b2600b73c1d774b): 41 paths\nchecked 8199: 27 pass, 8152 grandfathered, 20 boilerplate, 0 failed\n",
+      "stderr": ""
+    }
+  ],
+  "prior_runs": [
+    {
+      "AuthorityEffect": "None",
+      "base": "448d20ead88344ac8b3d545f5451fa03cbcb7a9d",
+      "reviewed_source_head": "4f67aacdaa8f19b987d65e05684024fc569aa043",
+      "steps": [
+        {
+          "argv": [
+            "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "scripts/score_scope_contracts.py",
+            "check",
+            "--changed-since",
+            "448d20ead88344ac8b3d545f5451fa03cbcb7a9d"
+          ],
+          "exit_code": 0,
+          "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 5,\n    \"valid_contracts_and_scores\": 5,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2,\n      \"Rust\": 3\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 3,\n      \"Symbolic/Formal\": 2\n    },\n    \"completed_scores\": 5,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 5\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 448d20ead88344ac8b3d545f5451fa03cbcb7a9d (merge base 448d20ead883), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "scripts/contract_scores.py",
+            "check",
+            "--changed-since",
+            "448d20ead88344ac8b3d545f5451fa03cbcb7a9d"
+          ],
+          "exit_code": 0,
+          "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 6,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "scripts/auto/anti_pattern_lint.py",
+            "--changed-since",
+            "448d20ead88344ac8b3d545f5451fa03cbcb7a9d"
+          ],
+          "exit_code": 0,
+          "stdout": "anti_pattern_lint: 0 HIGH, 0 MEDIUM, 0 LOW (3 changed .lean/.py files since 448d20ead88344ac8b3d545f5451fa03cbcb7a9d (Lean rules: added lines))\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "-m",
+            "pytest",
+            "scripts/test_governance_policy.py",
+            "-q",
+            "-p",
+            "no:cacheprovider"
+          ],
+          "exit_code": 0,
+          "stdout": "....                                                                     [100%]\n============================== warnings summary ===============================\n.venv-l4-review\\Lib\\site-packages\\_pytest\\config\\__init__.py:1464\n  C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Lib\\site-packages\\_pytest\\config\\__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n4 passed, 1 warning in 0.22s\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "git",
+            "-c",
+            "core.whitespace=cr-at-eol",
+            "diff",
+            "--check",
+            "448d20ead88344ac8b3d545f5451fa03cbcb7a9d"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Scripts\\python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "scripts/overclaim_scan.py",
+            "--changed-since",
+            "448d20ead88344ac8b3d545f5451fa03cbcb7a9d",
+            "--strict"
+          ],
+          "exit_code": 0,
+          "stdout": "overclaim_scan: scope=changes since 448d20ead88344ac8b3d545f5451fa03cbcb7a9d (merge base 448d20ead883); HIGH=0 MEDIUM=0 LOW=3\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "governance/target/debug/governance-check.exe",
+            "--root",
+            ".",
+            "check",
+            "--changed-since",
+            "448d20ead88344ac8b3d545f5451fa03cbcb7a9d"
+          ],
+          "exit_code": 0,
+          "stdout": "changed since 448d20ead88344ac8b3d545f5451fa03cbcb7a9d (448d20ead88344ac8b3d545f5451fa03cbcb7a9d): 40 paths\nchecked 8197: 27 pass, 8150 grandfathered, 20 boilerplate, 0 failed\n",
+          "stderr": ""
+        }
+      ],
+      "scanner_findings": [
+        {
+          "severity": "LOW",
+          "rule": "R10",
+          "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+          "line": 0,
+          "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+          "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+          "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt"
+        },
+        {
+          "severity": "LOW",
+          "rule": "R5",
+          "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+          "line": 0,
+          "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+          "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+          "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d"
+        },
+        {
+          "severity": "LOW",
+          "rule": "R5",
+          "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+          "line": 0,
+          "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+          "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+          "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f"
+        }
+      ],
+      "baselines_unchanged": true,
+      "bindings": [
+        "lean4/CampaignDfmRelationalTimeFence.lean",
+        "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+        "dag/research/pr239_independent_validation.json",
+        "lean4/CampaignDfmRelationalTimeFence.lean",
+        "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+        "dag/research/pr239_independent_validation.json",
+        "SCORING.md",
+        "checks/independent/dfm-relational-time-fence.py",
+        "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+        "dag/research/pr239_independent_validation.json",
+        "checks/independent/dfm-relational-time-fence.py",
+        "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+        "dag/research/pr239_independent_validation.json",
+        "SCORING.md",
+        "lean4/lakefile.lean",
+        "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+        "dag/research/pr239_independent_validation.json",
+        "lean4/lakefile.lean",
+        "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+        "dag/research/pr239_independent_validation.json",
+        "SCORING.md",
+        "code/rust/src/governance/src/bin/governance-check.rs",
+        "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "governance/policy.json",
+        "code/rust/src/governance/src/bin/governance-check.rs",
+        "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "governance/policy.json",
+        "SCORING.md",
+        "code/rust/src/governance/src/buildtime.rs",
+        "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "governance/policy.json",
+        "code/rust/src/governance/src/buildtime.rs",
+        "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "governance/policy.json",
+        "SCORING.md",
+        "code/rust/src/governance/src/lib.rs",
+        "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "governance/policy.json",
+        "code/rust/src/governance/src/lib.rs",
+        "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+        "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+        "governance/policy.json",
+        "SCORING.md"
+      ],
+      "current_bindings_match": true,
+      "low_triage": {
+        "exact_tensor_values": {
+          "imaginary_B": "0",
+          "imaginary_twist": "1/2",
+          "plus_B": "1/2",
+          "plus_dephased": "1/4"
+        },
+        "date_label": "20261019 is an inherited audit-date identifier, not a numerical theorem",
+        "unreplayed": "Five inherited tensor modules have no repository replay receipt; this PR does not renew their compile coverage.",
+        "target_numbers": "1554 schedules, 259 closed, 1295 nonclosing, 12 gauges, 3 states and 54 powers are recomputed in pr239_independent_validation.json."
+      }
+    }
+  ],
+  "scanner_findings": [
+    {
+      "severity": "LOW",
+      "rule": "R10",
+      "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "line": 0,
+      "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+      "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+      "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt"
+    },
+    {
+      "severity": "LOW",
+      "rule": "R5",
+      "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+      "line": 0,
+      "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+      "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+      "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d"
+    },
+    {
+      "severity": "LOW",
+      "rule": "R5",
+      "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+      "line": 0,
+      "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+      "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+      "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f"
+    }
+  ],
+  "baselines_unchanged": true,
+  "bindings": [
+    "lean4/CampaignDfmRelationalTimeFence.lean",
+    "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+    "dag/research/pr239_independent_validation.json",
+    "lean4/CampaignDfmRelationalTimeFence.lean",
+    "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+    "dag/research/pr239_independent_validation.json",
+    "SCORING.md",
+    "checks/independent/dfm-relational-time-fence.py",
+    "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+    "dag/research/pr239_independent_validation.json",
+    "checks/independent/dfm-relational-time-fence.py",
+    "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+    "dag/research/pr239_independent_validation.json",
+    "SCORING.md",
+    "lean4/lakefile.lean",
+    "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+    "dag/research/pr239_independent_validation.json",
+    "lean4/lakefile.lean",
+    "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+    "dag/research/pr239_independent_validation.json",
+    "SCORING.md",
+    "code/rust/src/governance/src/bin/governance-check.rs",
+    "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+    "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+    "governance/policy.json",
+    "code/rust/src/governance/src/bin/governance-check.rs",
+    "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+    "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+    "governance/policy.json",
+    "SCORING.md",
+    "code/rust/src/governance/src/buildtime.rs",
+    "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+    "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+    "governance/policy.json",
+    "code/rust/src/governance/src/buildtime.rs",
+    "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+    "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+    "governance/policy.json",
+    "SCORING.md",
+    "code/rust/src/governance/src/lib.rs",
+    "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+    "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+    "governance/policy.json",
+    "code/rust/src/governance/src/lib.rs",
+    "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+    "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+    "governance/policy.json",
+    "SCORING.md"
+  ],
+  "current_bindings_match": true,
+  "duplicate_json_keys": false,
+  "source_blobs": {
+    "lean4/CampaignDfmRelationalTimeFence.lean": "925ab7156f2b9b115b7579b723af0573327434e4111f56a9ac677d62be591e98",
+    "checks/independent/dfm-relational-time-fence.py": "cb011f2b1d9f811d83462d65b8540a2c5965abed525a5edda99e1c9a061f734c"
+  },
+  "low_triage": {
+    "exact_tensor_values": {
+      "imaginary_B": "0",
+      "imaginary_twist": "1/2",
+      "plus_B": "1/2",
+      "plus_dephased": "1/4"
+    },
+    "date_label": "20261019 is an inherited audit-date identifier, not a numerical theorem",
+    "unreplayed": "Five inherited tensor modules have no repository replay receipt; this PR does not renew their compile coverage.",
+    "target_numbers": "1554 schedules, 259 closed, 1295 nonclosing, 12 gauges, 3 states and 54 powers are recomputed in pr239_independent_validation.json."
+  },
+  "changed_nodes": [
+    "DFM-RELATIONAL-TIME-FENCE"
+  ],
+  "status_changes": []
+}

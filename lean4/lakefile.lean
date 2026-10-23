@@ -1020,6 +1020,10 @@ lean_lib CampaignDfmCkmPhysicsFence where
 lean_lib CampaignDfmContinuumInterface where
   roots := #[`CampaignDfmContinuumInterface]
 
+-- Campaign: FSP-U1-WILSON-ACTION. Not a default target.
+lean_lib CampaignFspU1WilsonAction where
+  roots := #[`CampaignFspU1WilsonAction]
+
 
 -- Campaign: DFM-GRIBOV-CONTINUUM-FENCE. Not a default target.
 lean_lib CampaignDfmGribovContinuumFence where
@@ -1032,6 +1036,9 @@ lean_lib CampaignDfmSymanzikQedAeFence where
 -- Campaign: DFM-REGGE-GRAVITY-FENCE. Not a default target.
 lean_lib CampaignDfmReggeGravityFence where
   roots := #[`CampaignDfmReggeGravityFence]
+
+lean_lib CampaignDfmRelationalTimeFence where
+  roots := #[`CampaignDfmRelationalTimeFence]
 
 -- Campaign: PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
 lean_lib CampaignSnE08WeightedL1Duality where

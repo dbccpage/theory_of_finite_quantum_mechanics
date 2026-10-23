@@ -1468,30 +1468,48 @@
       "record_id": "TFQ-1117",
       "node_id": "DFM-RELATIONAL-TIME-FENCE",
       "slug": "dfm-relational-time-fence",
-      "name": "Relational clock dressing and continuum time",
+      "name": "Finite-clock closure and reversible history coordinates",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.",
-      "obligation": "Continuous time, a one-parameter unitary group and a gravitational Hamiltonian constraint stay imported; a finite clock of period N does not supply them.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
-        "Hamiltonian constraint of a physical theory"
+        "Hamiltonian constraint of a physical theory",
+        "group-valued schedule and group action"
       ],
       "parent_nodes": [
         "DFM-CLOCK-DRESSING-INTERTWINER",
         "DFM-CONTINUUM-INTERFACE"
       ],
       "parent_record": "TFQ-1116",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order",
+        "lean4/CampaignDfmRelationalTimeFence.lean::four_blocks",
+        "lean4/CampaignDfmRelationalTimeFence.lean::psi_recover",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.frame_dress",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_success_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_period",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.evolves_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.stationary_iff",
+        "lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.rationalClock_blocks"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-relational-time-fence.py"
+      ],
       "external_witnesses": [],
       "sources": [
         "papers/ravera_dfm_dossier.md:147",
-        "papers/ravera_dfm_dossier.md:158"
+        "papers/ravera_dfm_dossier.md:158",
+        "lean4/CampaignDfmRelationalTimeFence.lean",
+        "dag/derivations/independent/dfm-relational-time-fence.md",
+        "checks/independent/dfm-relational-time-fence.py"
       ],
-      "audit": "Interpretive fence; no artifact addresses it.",
+      "audit": "step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks records the four products equal to I. psi_recover records norm 1, four transports back to psi, and two first-component inequalities with 3/5. The Lean module does not build an 8 by 8 matrix. No continuous-time generator and no Wheeler-DeWitt constraint is constructed. Status stays OPEN. Continuous time and a Hamiltonian constraint stay imported. Clock.frame_dress, periodic_trivialization_iff, cycleBlock_normal_form, validate_success_iff, validate_period, evolves_iff and stationary_iff supply the general finite-clock API and its typed boundary. This is algebra over supplied structures, not a derivation of physical time.",
       "see_also": [
         "FQ-GAP-STONE-CONTINUOUS-TIME",
         "GP-IMPORT-CONTINUOUS-TIME"
@@ -4473,19 +4491,29 @@
       "slug": "fsp-u1-wilson-action",
       "name": "Compact lattice U(1) Wilson action gauge invariance",
       "stage": "FERMION_SIGN",
-      "status": "IMPORTED_ASSUMPTION",
+      "status": "PROVED_LEAN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "With link phases U_ij = exp(i A_ij) and oriented plaquette products U_p, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and nonnegative.",
-      "obligation": "Standard lattice-gauge fact imported, not established in this checkout; the source supplies no fermion-sign consequence for it.",
-      "imported_structure": [
-        "compact lattice U(1) gauge theory with Wilson action (Wilson 1974)"
-      ],
+      "statement": "With link phases U_ij = exp(i A_ij) on ordered vertex pairs and oriented closed-path products U_p over a finite plaquette family, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and is nonnegative for beta_g >= 0.",
+      "obligation": "Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for every g: V -> U(1) and for every angle shift A_ij -> A_ij + theta_i - theta_j) and nonnegativity for beta_g >= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice (ZMod L)^d is one instance. beta_g >= 0 is required: one self-link plaquette with phase -1 and beta_g = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L <= 2 the two parallel links between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity, transfer matrix or non-abelian action is claimed. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.",
+      "imported_structure": [],
       "parent_nodes": [
         "DS-QM063-HOLONOMY-COHERENT-INTENSITY",
         "FSP-HUBBARD-PROTECTED-REPRESENTATIONS"
       ],
       "parent_record": "TFQ-0091",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.fsp_u1_wilson_action",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_gauge_invariant",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.loopHolonomy_gaugeAct",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.holonomy_gaugeAct",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_linkOfAngle",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant",
+        "lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_nonneg"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [
@@ -4493,9 +4521,10 @@
         "external:omega_holonomy::strict_zero_float::lattice_u1_gauge_action (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:448-460"
+        "papers/core/fsp/theory_of_finite_fsp.md:448-460",
+        "dag/derivations/independent/fsp-u1-wilson-action.md"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance does not exist. regge_wdw_core.lean::simplicial_u1_gauge_transformation_invariant states integer telescoping of gauge shifts around one triangle, but regge_wdw_core.lean is not a lakefile root and is not imported, so lake build never elaborates it.",
+      "audit": "Cited NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance does not exist. regge_wdw_core.lean::simplicial_u1_gauge_transformation_invariant states integer telescoping of gauge shifts around one triangle, but regge_wdw_core.lean is not a lakefile root and is not imported, so lake build never elaborates it. CampaignFspU1WilsonAction.lean (lean_lib CampaignFspU1WilsonAction) states the full claim as fsp_u1_wilson_action, with beta_g >= 0 explicit and its necessity shown by wilsonAction_nonneg_needs_beta. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.",
       "see_also": [
         "DS-QM063-HOLONOMY-COHERENT-INTENSITY",
         "DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS"
