@@ -4,6 +4,8 @@ Can quantum mechanics be built from a finite, exact substrate, starting from a s
 
 The project does not claim to derive quantum mechanics. It records how far finite constructions reach and names every structure that has to be supplied from outside.
 
+> **On the use of AI.** Much of the code, proofs, prose and review in this repository is drafted by AI models and LLM coding agents, directed and reviewed by the maintainer. The disclosure and the [acceptance rule](CONTRIBUTING.md#acceptance-rule) are in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## What makes this checkable
 
 | Layer | What it does | Where |
@@ -51,7 +53,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 218, Quot.sound 165, Classical.choice 119; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 6549 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Python test functions (`def test_`) | 6554 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 6935 (plus 7995 in `dag/results` snapshots) | `git ls-files '*.rs'` |
 | Contract/score companions | combined_files = 8659, all_passed = false | `python -I -X utf8 scripts/contract_scores.py check` |
 
