@@ -3,7 +3,7 @@
   "$id": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/governance/schema/contract-score.v1.json",
   "title": "ContractScoreDocumentV1",
   "description": "A *.contract.score.yaml companion (stored as JSON). History entries keep the exact bytes of every imported or appended contract and score record. Acceptance additionally needs the semantic rules listed in $comment, which governance-check enforces.",
-  "$comment": "Semantic rules beyond this schema (code/rust/src/governance/src/verify.rs): (1) each history entry's raw_utf8 hashes to its sha256 and has its bytes length; (2) contract equals the record of the current_contract entry; (3) the contract and the current score bind the source path and the SHA-256 of its current bytes; (4) the current score is acceptedScore: every gate graded, composite_grade = min(G1..G5), score_token = level + composite_grade; (5) the token meets the floor in governance/policy.json (L4 and D) unless governance/baseline.json lists the source with unchanged bytes.",
+  "$comment": "Semantic rules beyond this schema (code/rust/src/governance/src/verify.rs): (1) each history entry's raw_utf8 hashes to its sha256 and has its bytes length; (2) contract equals the record of the current_contract entry; (3) the contract (acceptedContract) and the current score bind the source path and the SHA-256 of its current bytes; (4) the current score is acceptedScore: every gate graded, composite_grade = min(G1..G5), score_token = level + composite_grade; (5) the token meets the floor in governance/policy.json (L4 and D) unless governance/baseline.json lists the source with unchanged bytes.",
   "type": "object",
   "required": ["schema_version", "artifact", "contract", "current_contract", "current_scoring", "contract_history", "scoring_history"],
   "properties": {
@@ -33,23 +33,29 @@
         "language": {"type": "string"}
       }
     },
+    "acceptedContract": {
+      "description": "A current contract that can be accepted binds the source in one of the two layouts: artifact {path, sha256} or subject + source_sha256.",
+      "allOf": [
+        {"$ref": "#/$defs/contractRecord"},
+        {"type": "object", "anyOf": [{"required": ["artifact"], "properties": {"artifact": {"$ref": "#/$defs/binding"}}}, {"required": ["subject", "source_sha256"], "properties": {"source_sha256": {"$ref": "#/$defs/sha256"}}}]}
+      ]
+    },
     "contractRecord": {
-      "description": "Either layout binds the source: artifact {path, sha256} or subject + source_sha256.",
+      "description": "Stored contracts use several historical layouts (tfqm.source-contract.v1, finite-qm.code-companion.v1, omega.contract.v1, ...); only acceptedContract is required for acceptance.",
       "oneOf": [
         {"type": "null"},
         {
           "type": "object",
-          "anyOf": [{"required": ["artifact"]}, {"required": ["subject", "source_sha256"]}],
           "properties": {
-            "artifact": {"$ref": "#/$defs/binding"},
+            "artifact": {"type": ["object", "string"]},
             "subject": {"type": "string"},
-            "source_sha256": {"$ref": "#/$defs/sha256"},
+            "source_sha256": {"type": "string"},
             "contract_urn": {"type": "string"},
             "claim": {"type": "string"},
             "contract_id": {"type": "string"},
             "symbols": {"type": "array", "items": {"type": "string"}},
-            "owned_invariants": {"type": "array", "items": {"type": "string"}},
-            "boundaries": {"type": "array", "items": {"type": "string"}}
+            "owned_invariants": {"type": "array"},
+            "boundaries": {"type": "array"}
           }
         }
       ]
