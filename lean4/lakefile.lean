@@ -970,3 +970,7 @@ lean_lib CampaignGenesisSealedSource where
 -- Exact array/copy/source partial replay transport. Non-default.
 lean_lib CampaignGenesisReplayRefinement where
   roots := #[`CampaignGenesisReplayRefinement]
+
+-- Certified carrier bridge reuses the sealed Genesis source library above.
+lean_lib CampaignGenesisCarrierBridge where
+  roots := #[`CampaignGenesisCarrierBridge]
