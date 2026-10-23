@@ -1,0 +1,4295 @@
+{
+  "schema": "tfqm.mutation-campaign.v2",
+  "AuthorityEffect": "None",
+  "phase": "finished",
+  "baseline": {
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml"
+    ],
+    "state": "COMPLETED",
+    "exit_status": 0,
+    "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\baseline.log",
+    "log_sha256": "45d05724172fe9e204d2be0f2ef98203df44da3f5d9f2a3c5d7370fca4beebed",
+    "output_bytes": 4561,
+    "seconds": 12.5,
+    "error": ""
+  },
+  "sources": {
+    "src/bin/governance-check.rs": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+    "src/buildtime.rs": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+    "src/descriptor.rs": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+    "src/lib.rs": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+    "src/policy.rs": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+    "src/repo.rs": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+    "src/score.rs": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+    "src/verify.rs": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+    "Cargo.toml": "0afa2403cac478f58b250e957250b4f4ad6a8d7d37c49fa43f385f8e950f1879",
+    "clippy.toml": "8cf18dfac057bae996306b178e2a7136c23b4028979e16f5b68c67e0e9519a51"
+  },
+  "build_inputs": {
+    "manifest": "22d2960d2a8ac4db4652723844691702b1376beb144069a0fb98693baafb7339",
+    "lock": "aa5e458593dc02a0e2dd96f6f914f2b5dc93a91978075f57a4f2d411ef741d3e"
+  },
+  "tool_sources": {
+    "governance\\tools\\mutation_campaign.py": "10b865fab61baee1e9edacb8cfa198b70ae4add372dd627228ce04215198bb78",
+    "governance/tools/capture_evidence.py": "117f016ead43236cc70ab07b8d98a381ba2004b628eb5a5b1d87b9c9031006ca"
+  },
+  "boundary": "Lexical candidates; cooperative writers; process output limits are polled.",
+  "mutants": [
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 69,
+      "operator": "not-removed",
+      "original": "            [path] if !path.starts_with(\"--\") => Ok(Command::Explain { path: path.replace('\\\\', \"/\") }),\n",
+      "mutated": "            [path] if path.starts_with(\"--\") => Ok(Command::Explain { path: path.replace('\\\\', \"/\") }),\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0000.log",
+        "log_sha256": "576d7b6700075f13dc87919d99ea56a6ebf73223585eb47e7d73934972d1bddc",
+        "output_bytes": 862,
+        "seconds": 12.25,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 78,
+      "operator": "and->or",
+      "original": "    match options.iter().find(|o| o.starts_with(\"--\") && !known.contains(o)) {\n",
+      "mutated": "    match options.iter().find(|o| o.starts_with(\"--\") || !known.contains(o)) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0001.log",
+        "log_sha256": "9a39dfdd2952510518812942ecdb7d7c099a87ee58fb01884ae19deecaabc5db",
+        "output_bytes": 1432,
+        "seconds": 5.172000000020489,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 78,
+      "operator": "not-removed",
+      "original": "    match options.iter().find(|o| o.starts_with(\"--\") && !known.contains(o)) {\n",
+      "mutated": "    match options.iter().find(|o| o.starts_with(\"--\") && known.contains(o)) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0002.log",
+        "log_sha256": "8d839ee199b2da9281317673733deb8b21c518595a70bea42aaf44785bb4befb",
+        "output_bytes": 1706,
+        "seconds": 4.203000000037719,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 87,
+      "operator": "ne->eq",
+      "original": "    if options.contains(&\"--allow-add\") != reason.is_some() {\n",
+      "mutated": "    if options.contains(&\"--allow-add\") == reason.is_some() {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0003.log",
+        "log_sha256": "1020cb343e90134868e8b3feab22b68e72c9b9e32f9ef75db207fab8b195a4d0",
+        "output_bytes": 2334,
+        "seconds": 8.405999999959022,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 87,
+      "operator": "is_some->is_none",
+      "original": "    if options.contains(&\"--allow-add\") != reason.is_some() {\n",
+      "mutated": "    if options.contains(&\"--allow-add\") != reason.is_none() {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0004.log",
+        "log_sha256": "09a85175f69050826d159ab01a0a700c02b7d0993e0005b8e5a6b986827dfcb2",
+        "output_bytes": 2334,
+        "seconds": 5.51600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 94,
+      "operator": "eq->ne",
+      "original": "    match options.iter().position(|o| *o == flag) {\n",
+      "mutated": "    match options.iter().position(|o| *o != flag) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0005.log",
+        "log_sha256": "8d1496a36704cc9aab3af99fc0dbc99c36678a1d7ca12eccc35f1cd9ca91cdd7",
+        "output_bytes": 1625,
+        "seconds": 7.5310000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 97,
+      "operator": "not-removed",
+      "original": "            Some(value) if !value.starts_with(\"--\") => Ok(Some((*value).to_owned())),\n",
+      "mutated": "            Some(value) if value.starts_with(\"--\") => Ok(Some((*value).to_owned())),\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0006.log",
+        "log_sha256": "f2aab7c68800f67c97367a71670c35ef72ab90c114d02540d4e2d84aa3686e69",
+        "output_bytes": 1343,
+        "seconds": 5.23399999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 119,
+      "operator": "or->and",
+      "original": "    let baseline = if baseline_file.is_file() || need_baseline {\n",
+      "mutated": "    let baseline = if baseline_file.is_file() && need_baseline {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0007.log",
+        "log_sha256": "93f9410ad047b4c2f3809a635ca4db2bf8ad8fe465208e992a426f0bf0187719",
+        "output_bytes": 635,
+        "seconds": 7.48399999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 130,
+      "operator": "eq->ne",
+      "original": "    if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {\n",
+      "mutated": "    if changed.iter().any(|p| p != POLICY_PATH || p == BASELINE_PATH) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0008.log",
+        "log_sha256": "5e51dba4d479d90790bbc631333c355044eb34a9d97c311844cd9ecd3697b354",
+        "output_bytes": 1299,
+        "seconds": 7.10899999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 130,
+      "operator": "eq->ne",
+      "original": "    if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {\n",
+      "mutated": "    if changed.iter().any(|p| p == POLICY_PATH || p != BASELINE_PATH) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0009.log",
+        "log_sha256": "af827e7c07f09bb0e3d72189b00cbb1c07151864b89f07311f07f688106f9647",
+        "output_bytes": 1299,
+        "seconds": 6.125,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 130,
+      "operator": "or->and",
+      "original": "    if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {\n",
+      "mutated": "    if changed.iter().any(|p| p == POLICY_PATH && p == BASELINE_PATH) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0010.log",
+        "log_sha256": "2b73f653972c85998bc97811e0efbf2f237f392c19c05a0e7bf2d9bd179878de",
+        "output_bytes": 779,
+        "seconds": 7.171999999962281,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 130,
+      "operator": "any->all",
+      "original": "    if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {\n",
+      "mutated": "    if changed.iter().all(|p| p == POLICY_PATH || p == BASELINE_PATH) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0011.log",
+        "log_sha256": "a132fe3173a6541f9bb81b86b51a40c580a4eed6c0f7c99269d0f1064f1d6487",
+        "output_bytes": 778,
+        "seconds": 6.76600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 135,
+      "operator": "and->or",
+      "original": "        if r.policy.spec_for(path).is_some() && r.root.join(path).is_file() {\n",
+      "mutated": "        if r.policy.spec_for(path).is_some() || r.root.join(path).is_file() {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0012.log",
+        "log_sha256": "c120d306a2a2e3ae8315833c6c83ed977bd102f9c76b9ccac6d2d3f4ffaf348e",
+        "output_bytes": 825,
+        "seconds": 6.23399999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 135,
+      "operator": "is_some->is_none",
+      "original": "        if r.policy.spec_for(path).is_some() && r.root.join(path).is_file() {\n",
+      "mutated": "        if r.policy.spec_for(path).is_none() && r.root.join(path).is_file() {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0013.log",
+        "log_sha256": "dc444d12e8c471f40f40b3e5d0c37ecc310ba27c94e6e181054bd831c186fdf3",
+        "output_bytes": 1466,
+        "seconds": 3.3439999999827705,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 149,
+      "operator": "and->or",
+      "original": "        .filter(|c| r.policy.spec_for(c).is_some() && r.root.join(c).is_file())\n",
+      "mutated": "        .filter(|c| r.policy.spec_for(c).is_some() || r.root.join(c).is_file())\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0014.log",
+        "log_sha256": "f0a9354ea87ecad42715757f03904224f7caf37cb4841ebbd0bfd612365e3941",
+        "output_bytes": 804,
+        "seconds": 10.25,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 149,
+      "operator": "is_some->is_none",
+      "original": "        .filter(|c| r.policy.spec_for(c).is_some() && r.root.join(c).is_file())\n",
+      "mutated": "        .filter(|c| r.policy.spec_for(c).is_none() && r.root.join(c).is_file())\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0015.log",
+        "log_sha256": "db013f8af3829906b288dba88aa79981db7187f6c7b3e2da379be4c30519a8f4",
+        "output_bytes": 746,
+        "seconds": 17.54700000002049,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 150,
+      "operator": "eq->ne",
+      "original": "        .filter(|c| r.policy.companion_path(c, |p| r.root.join(p).is_file()) == companion)\n",
+      "mutated": "        .filter(|c| r.policy.companion_path(c, |p| r.root.join(p).is_file()) != companion)\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0016.log",
+        "log_sha256": "df6888aa15cc5390ff2d60540dfaec01d07838b0f64a29a55042054e3203bb63",
+        "output_bytes": 746,
+        "seconds": 10.172000000020489,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 173,
+      "operator": "ne->eq",
+      "original": "    let grown = new.entries.iter().filter(|(path, entry)| old.entries.get(*path).is_none_or(|prior| prior.sha256 != entry.sha256));\n",
+      "mutated": "    let grown = new.entries.iter().filter(|(path, entry)| old.entries.get(*path).is_none_or(|prior| prior.sha256 == entry.sha256));\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0017.log",
+        "log_sha256": "670128e78f2ad69996b7d6e410007e4253a10ca6344f361efe8dc75052bf27d9",
+        "output_bytes": 717,
+        "seconds": 10.547000000020489,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 174,
+      "operator": "is_some->is_none",
+      "original": "    let (with_reason, without): (Vec<_>, Vec<_>) = grown.partition(|(_, entry)| entry.reason.is_some());\n",
+      "mutated": "    let (with_reason, without): (Vec<_>, Vec<_>) = grown.partition(|(_, entry)| entry.reason.is_none());\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0018.log",
+        "log_sha256": "47c3b804be50e0d139a9d38a0f1243d3dc916f72b61c3cac8880ce4bff188603",
+        "output_bytes": 2195,
+        "seconds": 9.311999999976251,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 196,
+      "operator": "gt->ge",
+      "original": "    if stale > 0 {\n",
+      "mutated": "    if stale >= 0 {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "SURVIVED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 0,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0019.log",
+        "log_sha256": "5bff5c6a4f184468a73672932504dfcc9c299267d525e147f028bf84da46ea55",
+        "output_bytes": 363,
+        "seconds": 12.219000000040978,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 199,
+      "operator": "and->or",
+      "original": "    Ok(report.is_clean() && growth.is_empty())\n",
+      "mutated": "    Ok(report.is_clean() || growth.is_empty())\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0020.log",
+        "log_sha256": "738f9b3874b0eaf62d01dc1ca3ca3818268c9fffe24ec61b38af33b40566ca12",
+        "output_bytes": 1096,
+        "seconds": 7.407000000006519,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 199,
+      "operator": "is_empty-negated",
+      "original": "    Ok(report.is_clean() && growth.is_empty())\n",
+      "mutated": "    Ok(report.is_clean() && !growth.is_empty())\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0021.log",
+        "log_sha256": "d24171f4c17cf520ffc95d370acb6580d8a968e8603ef7866c72664e4bbf70d5",
+        "output_bytes": 655,
+        "seconds": 8.437000000034459,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 204,
+      "operator": "not-removed",
+      "original": "    r.baseline.entries.keys().filter(|p| !r.root.join(p).is_file()).count()\n",
+      "mutated": "    r.baseline.entries.keys().filter(|p| r.root.join(p).is_file()).count()\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0022.log",
+        "log_sha256": "a1027ee63fce5d1a0a5aafe3ef51901dd4470cbfb0fea2ec20d63b519795eaf1",
+        "output_bytes": 781,
+        "seconds": 23.280999999959022,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 208,
+      "operator": "and->or",
+      "original": "    if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {\n",
+      "mutated": "    if initial || (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0023.log",
+        "log_sha256": "a9d3c4ea5a9d0074a0e04b94b7c19821684d1317aeaf935d9b38c29ffb0f78c3",
+        "output_bytes": 1833,
+        "seconds": 10.09399999998277,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 208,
+      "operator": "or->and",
+      "original": "    if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {\n",
+      "mutated": "    if initial && (r.root.join(BASELINE_PATH).is_file() && reason.is_some()) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0024.log",
+        "log_sha256": "738f2831f3fa5eeacfa37e0bf88e300e6eda9fecbd0f84d2e6d39d591209bd13",
+        "output_bytes": 2422,
+        "seconds": 16.45299999997951,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 208,
+      "operator": "is_some->is_none",
+      "original": "    if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {\n",
+      "mutated": "    if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_none()) {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0025.log",
+        "log_sha256": "0490e4f9958436ec73910f546be293ac340b181257b6b4595d51f6be646f69fe",
+        "output_bytes": 730,
+        "seconds": 51.09400000004098,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 212,
+      "operator": "or->and",
+      "original": "    let plan = plan_baseline(r, &paths, initial || reason.is_some(), reason);\n",
+      "mutated": "    let plan = plan_baseline(r, &paths, initial && reason.is_some(), reason);\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0026.log",
+        "log_sha256": "ab5f21732925d489f310f0c9c15412a74126833fde805b30ed7ab38b1c869d29",
+        "output_bytes": 1732,
+        "seconds": 21.969000000040978,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 212,
+      "operator": "is_some->is_none",
+      "original": "    let plan = plan_baseline(r, &paths, initial || reason.is_some(), reason);\n",
+      "mutated": "    let plan = plan_baseline(r, &paths, initial || reason.is_none(), reason);\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0027.log",
+        "log_sha256": "627df2932432b6e105053a46d74300d4f9deb050923c6e12d8cfda33483ae7eb",
+        "output_bytes": 1699,
+        "seconds": 12.844000000040978,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 228,
+      "operator": "true->false",
+      "original": "    Ok(true)\n",
+      "mutated": "    Ok(false)\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0028.log",
+        "log_sha256": "78312db3e009a8885982b129ef6f073d53f6067998db7e8cb582e37def4c83f7",
+        "output_bytes": 1898,
+        "seconds": 9.875,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 247,
+      "operator": "first->last",
+      "original": "        let (Some(sha256), Some(first)) = (file.sha256.clone(), file.violations().first()) else { continue };\n",
+      "mutated": "        let (Some(sha256), Some(first)) = (file.sha256.clone(), file.violations().last()) else { continue };\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0029.log",
+        "log_sha256": "2e45261b284d31e5306c5b27f830601b15497ee8842959e83c6db864e581b850",
+        "output_bytes": 835,
+        "seconds": 13.01500000001397,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 251,
+      "operator": "eq->ne",
+      "original": "            Some(old) if old.sha256 == sha256 => {\n",
+      "mutated": "            Some(old) if old.sha256 != sha256 => {\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0030.log",
+        "log_sha256": "47a7bfecc9dd2ed9d20a1ea62c83bb5c00d53e3a032e7d59299b45a7176ac165",
+        "output_bytes": 1194,
+        "seconds": 17.92200000002049,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 262,
+      "operator": "not-removed",
+      "original": "    plan.removed = r.baseline.entries.keys().filter(|p| !plan.next.entries.contains_key(*p)).count();\n",
+      "mutated": "    plan.removed = r.baseline.entries.keys().filter(|p| plan.next.entries.contains_key(*p)).count();\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0031.log",
+        "log_sha256": "a76ed32d69f0a20f0ad290295b268bf7466baf4578da7b1829f8b04f08f541e7",
+        "output_bytes": 697,
+        "seconds": 15.280999999959022,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 277,
+      "operator": "not-removed",
+      "original": "    let ok = !file.failed();\n",
+      "mutated": "    let ok = file.failed();\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0032.log",
+        "log_sha256": "74ddaaa6a07cfe0d5bec75ee34f6d4e5cadf4d49816f187c09d8488eae3d2e12",
+        "output_bytes": 1021,
+        "seconds": 12.73399999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 316,
+      "operator": "true->false",
+      "original": "    Ok(true)\n",
+      "mutated": "    Ok(false)\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0033.log",
+        "log_sha256": "7ca71d3734d11737c4fb11a2061450ffa298de1cc2f3ef03990b181d0e551959",
+        "output_bytes": 1662,
+        "seconds": 8.60999999998603,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 321,
+      "operator": "true->false",
+      "original": "    let needs_baseline = !matches!(command, Command::Baseline { initial: true, .. } | Command::List);\n",
+      "mutated": "    let needs_baseline = !matches!(command, Command::Baseline { initial: false, .. } | Command::List);\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0034.log",
+        "log_sha256": "f6eb60594e3fe6a918271274e0f24601de8738a3c151c939e145b4e95f03f6e6",
+        "output_bytes": 803,
+        "seconds": 10.688000000023749,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 321,
+      "operator": "not-removed",
+      "original": "    let needs_baseline = !matches!(command, Command::Baseline { initial: true, .. } | Command::List);\n",
+      "mutated": "    let needs_baseline = matches!(command, Command::Baseline { initial: true, .. } | Command::List);\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0035.log",
+        "log_sha256": "e7fe65773b431972e50524a5e0b6cb70945b7ff187d5469eb024d8d224cf9449",
+        "output_bytes": 713,
+        "seconds": 10.5,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 334,
+      "operator": "true->false",
+      "original": "        Ok(true) => ExitCode::SUCCESS,\n",
+      "mutated": "        Ok(false) => ExitCode::SUCCESS,\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0036.log",
+        "log_sha256": "745d9113d8085e5fec94819e21967565d85eb6205bd5ffef71bbf8717a068b0f",
+        "output_bytes": 1338,
+        "seconds": 1.6869999999762513,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/bin/governance-check.rs",
+      "line": 335,
+      "operator": "false->true",
+      "original": "        Ok(false) => ExitCode::from(1),\n",
+      "mutated": "        Ok(true) => ExitCode::from(1),\n",
+      "source_sha256": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--bin",
+          "governance-check"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0037.log",
+        "log_sha256": "0ca2cb1a306c13a9bbce4ec77c0fdbf9f3217a310d0d0d9a63c18d2d4a78b689",
+        "output_bytes": 1337,
+        "seconds": 0.7190000000409782,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 102,
+      "operator": "or->and",
+      "original": "        if root.join(&companion).is_file() || file.failed() {\n",
+      "mutated": "        if root.join(&companion).is_file() && file.failed() {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0038.log",
+        "log_sha256": "8a34fae46b20a9cd62b63ba1a79d06641fe94b58f7c3369a19ebec5609a964d8",
+        "output_bytes": 1297,
+        "seconds": 9.405999999959022,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 113,
+      "operator": "not-removed",
+      "original": "    let mut dirs: Vec<PathBuf> = sources.iter().filter_map(|s| s.parent()).filter(|d| !d.join(\"target\").is_dir()).map(Path::to_path_buf).collect();\n",
+      "mutated": "    let mut dirs: Vec<PathBuf> = sources.iter().filter_map(|s| s.parent()).filter(|d| d.join(\"target\").is_dir()).map(Path::to_path_buf).collect();\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0039.log",
+        "log_sha256": "ce4e9bdc15e0274d2960fb0b8b44182331aa73d33d4d84ab6d10875429ca5539",
+        "output_bytes": 1252,
+        "seconds": 4.688000000023749,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 132,
+      "operator": "eq->ne",
+      "original": "    if mode == Mode::Off || report.is_clean() {\n",
+      "mutated": "    if mode != Mode::Off || report.is_clean() {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0040.log",
+        "log_sha256": "16b370baa01bd3f0a171b5c5ac0b9074fc1962def653930b775e1e676e4d24c8",
+        "output_bytes": 3302,
+        "seconds": 4.98399999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 132,
+      "operator": "or->and",
+      "original": "    if mode == Mode::Off || report.is_clean() {\n",
+      "mutated": "    if mode == Mode::Off && report.is_clean() {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0041.log",
+        "log_sha256": "8fed3efa9934646b74121b46f010778e091bdb171aeddad37e67ae9966d3857c",
+        "output_bytes": 1253,
+        "seconds": 5.688000000023749,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 135,
+      "operator": "eq->ne",
+      "original": "    let new_failure = report.failures().any(|f| f.baseline == BaselineStatus::Absent);\n",
+      "mutated": "    let new_failure = report.failures().any(|f| f.baseline != BaselineStatus::Absent);\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0042.log",
+        "log_sha256": "1f15a1cb0c76bb38b1a8e4e9c5f91641d42b2b808c3e11a0a46c1ec7614d1c61",
+        "output_bytes": 2394,
+        "seconds": 9.84399999998277,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 135,
+      "operator": "any->all",
+      "original": "    let new_failure = report.failures().any(|f| f.baseline == BaselineStatus::Absent);\n",
+      "mutated": "    let new_failure = report.failures().all(|f| f.baseline == BaselineStatus::Absent);\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0043.log",
+        "log_sha256": "c656252d3e25fe514b300aeaeb609c534532de871ad947ce4e41be7ede9119d0",
+        "output_bytes": 703,
+        "seconds": 10.03200000000652,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 136,
+      "operator": "eq->ne",
+      "original": "    if mode == Mode::Enforce || (mode == Mode::New && new_failure) {\n",
+      "mutated": "    if mode != Mode::Enforce || (mode == Mode::New && new_failure) {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0044.log",
+        "log_sha256": "a28c71ccef82742a1842e9fbe507f4397328305948f53c8876ff1694af517ab7",
+        "output_bytes": 2679,
+        "seconds": 6.717999999993481,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 136,
+      "operator": "eq->ne",
+      "original": "    if mode == Mode::Enforce || (mode == Mode::New && new_failure) {\n",
+      "mutated": "    if mode == Mode::Enforce || (mode != Mode::New && new_failure) {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0045.log",
+        "log_sha256": "9742512e2bbc1d8e2c576b43901338e402825feb5bbb1b7e70e60fa50c468619",
+        "output_bytes": 1876,
+        "seconds": 10.03100000001723,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 136,
+      "operator": "and->or",
+      "original": "    if mode == Mode::Enforce || (mode == Mode::New && new_failure) {\n",
+      "mutated": "    if mode == Mode::Enforce || (mode == Mode::New || new_failure) {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0046.log",
+        "log_sha256": "e207499693a35df116624ff9876203e6d4f564656033a9309c0321d1ca39ce65",
+        "output_bytes": 2679,
+        "seconds": 5.625,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 136,
+      "operator": "or->and",
+      "original": "    if mode == Mode::Enforce || (mode == Mode::New && new_failure) {\n",
+      "mutated": "    if mode == Mode::Enforce && (mode == Mode::New && new_failure) {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0047.log",
+        "log_sha256": "130feda48741ca85fe47c6ecb55012a2537f3060c95ba836385223fbfa18cdc8",
+        "output_bytes": 2078,
+        "seconds": 4.702999999979511,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 161,
+      "operator": "eq->ne",
+      "original": "    if mode == Mode::Off {\n",
+      "mutated": "    if mode != Mode::Off {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0048.log",
+        "log_sha256": "fa53eff9356317df63473ca6307ad602743ea880d3486c98f9cab6684ce5511d",
+        "output_bytes": 1953,
+        "seconds": 5.577999999979511,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/buildtime.rs",
+      "line": 166,
+      "operator": "eq->ne",
+      "original": "        Err(error) if mode == Mode::Warn => {\n",
+      "mutated": "        Err(error) if mode != Mode::Warn => {\n",
+      "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0049.log",
+        "log_sha256": "ccdd503ea87458ee0014438ded6a43fc56be0cf36f21e32b5922b7e23c21d5d0",
+        "output_bytes": 816,
+        "seconds": 4.829000000027008,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 81,
+      "operator": "not-removed",
+      "original": "        let missing_keys = REQUIRED_KEYS.into_iter().filter(|key| !doc.contains_key(*key)).collect();\n",
+      "mutated": "        let missing_keys = REQUIRED_KEYS.into_iter().filter(|key| doc.contains_key(*key)).collect();\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0050.log",
+        "log_sha256": "e8dd359d96e72ca1d54c41e5a2d5a0bf76a639c084af578e0b432b85dc5de5f0",
+        "output_bytes": 6272,
+        "seconds": 7.671999999962281,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 85,
+      "operator": "eq->ne",
+      "original": "            .is_some_and(|entry| entry.get(\"record\") == doc.get(\"contract\") && digest_ok(entry));\n",
+      "mutated": "            .is_some_and(|entry| entry.get(\"record\") != doc.get(\"contract\") && digest_ok(entry));\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0051.log",
+        "log_sha256": "81625b924760c570aaa7e22fc161bcd1149bb1619ae4cc70b8486026f9e8ec8d",
+        "output_bytes": 6647,
+        "seconds": 7.436999999976251,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 85,
+      "operator": "and->or",
+      "original": "            .is_some_and(|entry| entry.get(\"record\") == doc.get(\"contract\") && digest_ok(entry));\n",
+      "mutated": "            .is_some_and(|entry| entry.get(\"record\") == doc.get(\"contract\") || digest_ok(entry));\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0052.log",
+        "log_sha256": "64d1f651cacc21864274bdeaad41a03478e0c3bdb2b4178db5c9b6709ab0f30f",
+        "output_bytes": 1602,
+        "seconds": 4.657000000006519,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 186,
+      "operator": "eq->ne",
+      "original": "        .find(|entry| entry.get(\"sha256\").and_then(Value::as_str) == Some(digest))\n",
+      "mutated": "        .find(|entry| entry.get(\"sha256\").and_then(Value::as_str) != Some(digest))\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0053.log",
+        "log_sha256": "e39a8c10295bfeef4000437c39dc2bbfbfd5e2457852854b9ed9691772765aae",
+        "output_bytes": 7527,
+        "seconds": 10.375,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 194,
+      "operator": "eq->ne",
+      "original": "    let record_ok = serde_json::from_slice::<Value>(raw).ok().is_some_and(|record| entry.get(\"record\") == Some(&record));\n",
+      "mutated": "    let record_ok = serde_json::from_slice::<Value>(raw).ok().is_some_and(|record| entry.get(\"record\") != Some(&record));\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0054.log",
+        "log_sha256": "7d486f9faeb6a56279869e6999075528d28a5a1b33860ed01af4e4b3906fc84f",
+        "output_bytes": 6740,
+        "seconds": 7.01600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 195,
+      "operator": "eq->ne",
+      "original": "    record_ok && digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()\n",
+      "mutated": "    record_ok && digest != Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0055.log",
+        "log_sha256": "c515fd68c16145a6bd4ed5390b60fe7ae103e58393fc86a0645a80b9b1b90929",
+        "output_bytes": 6221,
+        "seconds": 4.0,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 195,
+      "operator": "eq->ne",
+      "original": "    record_ok && digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()\n",
+      "mutated": "    record_ok && digest == Some(hex(&Sha256::digest(raw)).as_str()) && length != u64::try_from(raw.len()).ok()\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0056.log",
+        "log_sha256": "56e24d0dcd2b0b2d50f60530353d3a130392acca2c7d35051882c38268cd79f1",
+        "output_bytes": 6220,
+        "seconds": 6.546999999962281,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 195,
+      "operator": "and->or",
+      "original": "    record_ok && digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()\n",
+      "mutated": "    record_ok || digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0057.log",
+        "log_sha256": "ce0e53f27b0ae1cd81b716b79ae9dd3b318d867e34e555a3faff63f216545165",
+        "output_bytes": 1174,
+        "seconds": 4.422000000020489,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/descriptor.rs",
+      "line": 195,
+      "operator": "and->or",
+      "original": "    record_ok && digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()\n",
+      "mutated": "    record_ok && digest == Some(hex(&Sha256::digest(raw)).as_str()) || length == u64::try_from(raw.len()).ok()\n",
+      "source_sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0058.log",
+        "log_sha256": "d5fcf5f174c808ac9ecac3b6b0bc574145c17ce231663220f99a919b8dbf0de6",
+        "output_bytes": 1173,
+        "seconds": 9.077999999979511,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 128,
+      "operator": "is_none->is_some",
+      "original": "        self.failures().next().is_none()\n",
+      "mutated": "        self.failures().next().is_some()\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0059.log",
+        "log_sha256": "4d9460d24f9a435ef6f978ef783b1256fb4c155d9f7ded2f648be4ca0c6deda1",
+        "output_bytes": 4055,
+        "seconds": 5.51600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 178,
+      "operator": "eq->ne",
+      "original": "        Some(entry) if entry.sha256 == sha256 => BaselineStatus::Unchanged,\n",
+      "mutated": "        Some(entry) if entry.sha256 != sha256 => BaselineStatus::Unchanged,\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0060.log",
+        "log_sha256": "e8810bdab2cbe795eeab31375980f66f535396de5deb74a5d32417009311fb56",
+        "output_bytes": 2538,
+        "seconds": 7.76600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 181,
+      "operator": "eq->ne",
+      "original": "    if status == BaselineStatus::Unchanged {\n",
+      "mutated": "    if status != BaselineStatus::Unchanged {\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0061.log",
+        "log_sha256": "81baa3f900cc7404f6abf4b6d87b3f9c1388c46b86653cbdae64438987fc0c67",
+        "output_bytes": 5396,
+        "seconds": 10.65700000000652,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 184,
+      "operator": "eq->ne",
+      "original": "    if policy.pinned_for(rel_path).is_some_and(|pin| pin.sha256 == sha256) {\n",
+      "mutated": "    if policy.pinned_for(rel_path).is_some_and(|pin| pin.sha256 != sha256) {\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0062.log",
+        "log_sha256": "45cefb152d567e5d663209a95d47d6fb29ecf43275fe50c373921b82adc935e4",
+        "output_bytes": 1509,
+        "seconds": 10.952999999979511,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 199,
+      "operator": "not-removed",
+      "original": "    if !companion.is_file() {\n",
+      "mutated": "    if companion.is_file() {\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0063.log",
+        "log_sha256": "ed1084dbcb90e8728b4aa6382a64568d576086f1a7798f87f5251a3aa78619e6",
+        "output_bytes": 4564,
+        "seconds": 6.8439999999827705,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 210,
+      "operator": "ne->eq",
+      "original": "    if violations.iter().all(|v| v.rule() != Rule::Completeness) {\n",
+      "mutated": "    if violations.iter().all(|v| v.rule() == Rule::Completeness) {\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0064.log",
+        "log_sha256": "f60909ea6176a5c103898d370c0ad7aced10a91775ec5ec0862ca20cdca62865",
+        "output_bytes": 693,
+        "seconds": 5.76500000001397,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 210,
+      "operator": "all->any",
+      "original": "    if violations.iter().all(|v| v.rule() != Rule::Completeness) {\n",
+      "mutated": "    if violations.iter().any(|v| v.rule() != Rule::Completeness) {\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0065.log",
+        "log_sha256": "4acd5c18eb0427ed76537594ffc1a431b4b83b1c01bff93adea85173b475cdf3",
+        "output_bytes": 1261,
+        "seconds": 7.51500000001397,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 213,
+      "operator": "is_empty-negated",
+      "original": "    match (violations.is_empty(), descriptor.token()) {\n",
+      "mutated": "    match (!violations.is_empty(), descriptor.token()) {\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0066.log",
+        "log_sha256": "a76b0e122a508346ac986504cd26d13a4fe95c9f96c5510d17c6e688a247cfb1",
+        "output_bytes": 2512,
+        "seconds": 13.51600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 214,
+      "operator": "true->false",
+      "original": "        (true, Ok(Some(token))) => Ok(token),\n",
+      "mutated": "        (false, Ok(Some(token))) => Ok(token),\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0067.log",
+        "log_sha256": "03a01ba7624dfca13862af64a8034b411089f084440f98453a8f7d6a9703b8a1",
+        "output_bytes": 2431,
+        "seconds": 3.8280000000377186,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 215,
+      "operator": "true->false",
+      "original": "        (true, _) => Err(vec![Violation::Completeness {\n",
+      "mutated": "        (false, _) => Err(vec![Violation::Completeness {\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0068.log",
+        "log_sha256": "775b25a74218b5abaa9e26056fdcc45f3ef1cd796ce010302b922bd51101d07c",
+        "output_bytes": 1186,
+        "seconds": 0.6709999999729916,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/lib.rs",
+      "line": 221,
+      "operator": "false->true",
+      "original": "        (false, _) => Err(violations),\n",
+      "mutated": "        (true, _) => Err(violations),\n",
+      "source_sha256": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0069.log",
+        "log_sha256": "00b85252aa04100ca7aed4ebe879e85b72e3b5a5aa9542e0755fd307442b3834",
+        "output_bytes": 1516,
+        "seconds": 0.5619999999762513,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 79,
+      "operator": "eq->ne",
+      "original": "        rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p == part))\n",
+      "mutated": "        rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p != part))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0070.log",
+        "log_sha256": "396576da63c500fce4e970a331348cd692a8aa23cc47e7d653e5d39187e19d8f",
+        "output_bytes": 7202,
+        "seconds": 3.7040000000270084,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 79,
+      "operator": "any->all",
+      "original": "        rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p == part))\n",
+      "mutated": "        rel_path.split('/').all(|part| self.path_parts.iter().any(|p| p == part))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0071.log",
+        "log_sha256": "70a124c2fcb96bd43c4c0347ed3ac4f0e3b5eda95fa367906f0d496e254f3e38",
+        "output_bytes": 1089,
+        "seconds": 4.8439999999827705,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 79,
+      "operator": "any->all",
+      "original": "        rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p == part))\n",
+      "mutated": "        rel_path.split('/').any(|part| self.path_parts.iter().all(|p| p == part))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0072.log",
+        "log_sha256": "5caf12cb231720846de5f8400b16c7eb07e7019d300a99f30518bcd62b7f1a2b",
+        "output_bytes": 706,
+        "seconds": 5.10899999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 80,
+      "operator": "or->and",
+      "original": "            || self.path_globs.iter().any(|glob| glob_match(glob, rel_path))\n",
+      "mutated": "            && self.path_globs.iter().any(|glob| glob_match(glob, rel_path))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0073.log",
+        "log_sha256": "19687ff93d097613977c5ff36ac15dc37363535c4e78304d9385dbbfc4d6c2b8",
+        "output_bytes": 1081,
+        "seconds": 4.717999999993481,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 80,
+      "operator": "any->all",
+      "original": "            || self.path_globs.iter().any(|glob| glob_match(glob, rel_path))\n",
+      "mutated": "            || self.path_globs.iter().all(|glob| glob_match(glob, rel_path))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0074.log",
+        "log_sha256": "274432f5443d9ede338091db1932c7f25066dcb1667f67dc9031819c457785b6",
+        "output_bytes": 689,
+        "seconds": 5.51600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 96,
+      "operator": "and->or",
+      "original": "        !self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))\n",
+      "mutated": "        !self.exclusions().excludes(rel_path) || self.source_globs().iter().any(|glob| glob_match(glob, rel_path))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0075.log",
+        "log_sha256": "8144fb6967f03b080ad4bc5de1ae89c210d575bb16291f5e3cf7a0b3ae61b07f",
+        "output_bytes": 2033,
+        "seconds": 1.6570000000065193,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 96,
+      "operator": "any->all",
+      "original": "        !self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))\n",
+      "mutated": "        !self.exclusions().excludes(rel_path) && self.source_globs().iter().all(|glob| glob_match(glob, rel_path))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0076.log",
+        "log_sha256": "103ec86937234db65e1c07e830468c511be56ca6c183fb4fd8eedc3ea06ddffc",
+        "output_bytes": 689,
+        "seconds": 4.98399999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 96,
+      "operator": "not-removed",
+      "original": "        !self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))\n",
+      "mutated": "        self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0077.log",
+        "log_sha256": "a1be6041b3a7d5ef609ddffe5e31011e4ebdcb848ce8d3011742ff4ec0727869",
+        "output_bytes": 7206,
+        "seconds": 3.8119999999762513,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 206,
+      "operator": "ne->eq",
+      "original": "            suffix.trim_start_matches('.') != ext && exists(&candidate)\n",
+      "mutated": "            suffix.trim_start_matches('.') == ext && exists(&candidate)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0078.log",
+        "log_sha256": "ebf6bcf7377cfb3c96e44f5feb4533ea8d3cf40bf2659ae192826eebed11605e",
+        "output_bytes": 5421,
+        "seconds": 3.5320000000065193,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 206,
+      "operator": "and->or",
+      "original": "            suffix.trim_start_matches('.') != ext && exists(&candidate)\n",
+      "mutated": "            suffix.trim_start_matches('.') != ext || exists(&candidate)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0079.log",
+        "log_sha256": "12ab33e4234a1e2ffda25f676635721c6e7465856e3412a048f0c391c74a45de",
+        "output_bytes": 5429,
+        "seconds": 8.26600000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 208,
+      "operator": "any->all",
+      "original": "        let base = if self.companion.collision_suffixes.iter().any(sibling) { name } else { stem };\n",
+      "mutated": "        let base = if self.companion.collision_suffixes.iter().all(sibling) { name } else { stem };\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0080.log",
+        "log_sha256": "5e26ebd604217a9e1dfbcd340fc9a9fe9fd29cdd8f8ceafae34435783454194c",
+        "output_bytes": 1136,
+        "seconds": 4.704000000027008,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 214,
+      "operator": "is_empty-negated",
+      "original": "    if dir.is_empty() {\n",
+      "mutated": "    if !dir.is_empty() {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0081.log",
+        "log_sha256": "744c02fef1109a9b894f680bcbb18fd20e2b6572c011a0dbdafc03f3b6a4efac",
+        "output_bytes": 3278,
+        "seconds": 3.797000000020489,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 253,
+      "operator": "is_empty-negated",
+      "original": "    if populations.is_empty() {\n",
+      "mutated": "    if !populations.is_empty() {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0082.log",
+        "log_sha256": "11bfcdc4ff49db41a22455018feb614a0e13a3c726fda421f56c9cccbb68d58e",
+        "output_bytes": 9870,
+        "seconds": 2.125,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 265,
+      "operator": "eq->ne",
+      "original": "    if env == MODE_ENV {\n",
+      "mutated": "    if env != MODE_ENV {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0083.log",
+        "log_sha256": "9f5abb724338ec97c049d79cb1fb95a4802f0efb871d866fe9901e5043883199",
+        "output_bytes": 9786,
+        "seconds": 1.625,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 277,
+      "operator": "is_empty-negated",
+      "original": "    if globs.is_empty() {\n",
+      "mutated": "    if !globs.is_empty() {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0084.log",
+        "log_sha256": "42803256797e90543ebe7cb38d95afc68c0b6df1ac2ec03c22ec0d2b9fd1afa0",
+        "output_bytes": 9918,
+        "seconds": 1.6560000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 286,
+      "operator": "not-removed",
+      "original": "    if !is_sha256(sha256) {\n",
+      "mutated": "    if is_sha256(sha256) {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0085.log",
+        "log_sha256": "904e66f2b9d84e235a4b5975065151ab2f267d781b03ae9381d0c3a1532ed753",
+        "output_bytes": 10231,
+        "seconds": 2.375,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 335,
+      "operator": "eq->ne",
+      "original": "        self.entries.get(rel_path).is_some_and(|entry| entry.sha256 == sha256)\n",
+      "mutated": "        self.entries.get(rel_path).is_some_and(|entry| entry.sha256 != sha256)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0086.log",
+        "log_sha256": "229c271427e4325b57c79a39f1f1376f20712196aa02afab88d37925b904cc2f",
+        "output_bytes": 1248,
+        "seconds": 5.5310000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 354,
+      "operator": "is_empty-negated",
+      "original": "        if lines.is_empty() {\n",
+      "mutated": "        if !lines.is_empty() {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0087.log",
+        "log_sha256": "d09f850c15ac6c0ca09aa486396328f46d254a37f838d8215ab70e950bb5631a",
+        "output_bytes": 1792,
+        "seconds": 4.8439999999827705,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 366,
+      "operator": "not-removed",
+      "original": "    if !is_sha256(sha256) {\n",
+      "mutated": "    if is_sha256(sha256) {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0088.log",
+        "log_sha256": "6ae85b9c265a735fe190d9f4e1233057eebb0d93232ebaaa7d573a268a6f95b2",
+        "output_bytes": 1373,
+        "seconds": 4.375,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 417,
+      "operator": "eq->ne",
+      "original": "    if string(root, \"schema_version\")? == schema {\n",
+      "mutated": "    if string(root, \"schema_version\")? != schema {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0089.log",
+        "log_sha256": "b3719e87aff5c2c4cbfc7fcc4bebdec5751c36d4a2e6de186deeaaafc35a855a",
+        "output_bytes": 10419,
+        "seconds": 2.4219999999622814,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 454,
+      "operator": "eq->ne",
+      "original": "    text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))\n",
+      "mutated": "    text.len() != 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0090.log",
+        "log_sha256": "00ee1a73e32258ab4fdfa32c68ab4be6254a68a255d9d3beb4c9e8494b2053f4",
+        "output_bytes": 10952,
+        "seconds": 6.594000000040978,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 454,
+      "operator": "and->or",
+      "original": "    text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))\n",
+      "mutated": "    text.len() == 64 || text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0091.log",
+        "log_sha256": "e8620df5d9d71a65907254a07a3c9e0c8d546e6e6005d18af71ebdff260f5a8a",
+        "output_bytes": 591,
+        "seconds": 13.25,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 454,
+      "operator": "or->and",
+      "original": "    text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))\n",
+      "mutated": "    text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() && (b'a'..=b'f').contains(&b))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0092.log",
+        "log_sha256": "d18989a4458ca4e8ade76e8d366ddf1f71e7d2677f5b9335cb52d00a47f70f06",
+        "output_bytes": 10946,
+        "seconds": 5.2810000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 454,
+      "operator": "all->any",
+      "original": "    text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))\n",
+      "mutated": "    text.len() == 64 && text.bytes().any(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0093.log",
+        "log_sha256": "3c34d8ec5bf9d68a225fce7f8ae8768917b53b2b995b22579dc1ef81468ae874",
+        "output_bytes": 591,
+        "seconds": 5.577999999979511,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 465,
+      "operator": "eq->ne",
+      "original": "    wildcard(&pattern, &path, |p| *p == \"**\", |p, s| match_component(p, s))\n",
+      "mutated": "    wildcard(&pattern, &path, |p| *p != \"**\", |p, s| match_component(p, s))\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0094.log",
+        "log_sha256": "23d69223abb9ac6bff730a03770af9845342a17bc8abfb80491eaba70aa9c91b",
+        "output_bytes": 7484,
+        "seconds": 5.702999999979511,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 471,
+      "operator": "eq->ne",
+      "original": "    wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)\n",
+      "mutated": "    wildcard(&pattern, &text, |c| *c != '*', |c, t| *c == '?' || c == t)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0095.log",
+        "log_sha256": "98b8473541ccd47c8f90350f846cbae5fad62491c53925cba6cce6921d434930",
+        "output_bytes": 7453,
+        "seconds": 1.6089999999967404,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 471,
+      "operator": "eq->ne",
+      "original": "    wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)\n",
+      "mutated": "    wildcard(&pattern, &text, |c| *c == '*', |c, t| *c != '?' || c == t)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0096.log",
+        "log_sha256": "e2756e9d215815f071cedfd4bfd5855bc4f71f89221d905e8af102602500f4b1",
+        "output_bytes": 1852,
+        "seconds": 2.1410000000032596,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 471,
+      "operator": "eq->ne",
+      "original": "    wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)\n",
+      "mutated": "    wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c != t)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0097.log",
+        "log_sha256": "6982b7c9a4c72751dfa1fd5c25a75f4cd1f742319cd89c26751f73c245a5b5dd",
+        "output_bytes": 7444,
+        "seconds": 1.4679999999934807,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 471,
+      "operator": "or->and",
+      "original": "    wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)\n",
+      "mutated": "    wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' && c == t)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0098.log",
+        "log_sha256": "455d3a4c943370f88234abe822a873049696d7aed36cffecef46262290be0f12",
+        "output_bytes": 7435,
+        "seconds": 1.4380000000237487,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 478,
+      "operator": "true->false",
+      "original": "    let mut row: Vec<bool> = std::iter::once(true).chain(text.iter().map(|_| false)).collect();\n",
+      "mutated": "    let mut row: Vec<bool> = std::iter::once(false).chain(text.iter().map(|_| false)).collect();\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0099.log",
+        "log_sha256": "0e707b1d9d3758c89b40d6c2167e99778f22ef902b775f5574a0d6a83a455913",
+        "output_bytes": 7458,
+        "seconds": 2.1560000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 478,
+      "operator": "false->true",
+      "original": "    let mut row: Vec<bool> = std::iter::once(true).chain(text.iter().map(|_| false)).collect();\n",
+      "mutated": "    let mut row: Vec<bool> = std::iter::once(true).chain(text.iter().map(|_| true)).collect();\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0100.log",
+        "log_sha256": "b05ee47437170b30872b84919f46b45ef8ad3f605a7f801585e3e2ca737cbcf9",
+        "output_bytes": 567,
+        "seconds": 4.64100000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 483,
+      "operator": "and->or",
+      "original": "            std::iter::once(false).chain(row.iter().zip(text).map(|(&reached, item)| reached && single(element, item))).collect()\n",
+      "mutated": "            std::iter::once(false).chain(row.iter().zip(text).map(|(&reached, item)| reached || single(element, item))).collect()\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0101.log",
+        "log_sha256": "903a5890188321287902affb3aa57739135f863875708998aae982c6c00fd726",
+        "output_bytes": 7450,
+        "seconds": 1.625,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 483,
+      "operator": "false->true",
+      "original": "            std::iter::once(false).chain(row.iter().zip(text).map(|(&reached, item)| reached && single(element, item))).collect()\n",
+      "mutated": "            std::iter::once(true).chain(row.iter().zip(text).map(|(&reached, item)| reached && single(element, item))).collect()\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0102.log",
+        "log_sha256": "7ddc2c2f288770a8f0025b7e9d59b2ee91a64d48a41ac73df56f051d424b3749",
+        "output_bytes": 7458,
+        "seconds": 1.3429999999934807,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 486,
+      "operator": "eq->ne",
+      "original": "    row.last() == Some(&true)\n",
+      "mutated": "    row.last() != Some(&true)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0103.log",
+        "log_sha256": "57e27975c47ef204a1ccc2f7071e8513eb634a8f32a05a489602d2e9a8dd0fef",
+        "output_bytes": 1823,
+        "seconds": 4.547000000020489,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 486,
+      "operator": "true->false",
+      "original": "    row.last() == Some(&true)\n",
+      "mutated": "    row.last() == Some(&false)\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0104.log",
+        "log_sha256": "d7c7655026a0aba5364e3e563ff586775157205e3f55d81849c09302bbbbcb1f",
+        "output_bytes": 1818,
+        "seconds": 3.5630000000237487,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 492,
+      "operator": "false->true",
+      "original": "        .scan(false, |seen, &reached| {\n",
+      "mutated": "        .scan(true, |seen, &reached| {\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0105.log",
+        "log_sha256": "8bfcc435fb3870756e42ff040004204703c533389798a239a95a0f866a7bbd54",
+        "output_bytes": 7469,
+        "seconds": 1.5310000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 493,
+      "operator": "or->and",
+      "original": "            *seen = *seen || reached;\n",
+      "mutated": "            *seen = *seen && reached;\n",
+      "source_sha256": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0106.log",
+        "log_sha256": "d326d88a11f7701a866d40981cf87553535180a014d2805099f1236d4d450219",
+        "output_bytes": 7449,
+        "seconds": 2.2339999999967404,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 65,
+      "operator": "not-removed",
+      "original": "    parts.map(|p| p.join(\"/\")).filter(|s| !s.is_empty())\n",
+      "mutated": "    parts.map(|p| p.join(\"/\")).filter(|s| s.is_empty())\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0107.log",
+        "log_sha256": "1fa64fd52b4d0b8688564ebc4c380979e7fb42cfed006c4c16c8f4341dbbbb52",
+        "output_bytes": 3822,
+        "seconds": 4.0310000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 93,
+      "operator": "ge->gt",
+      "original": "        if Instant::now() >= deadline {\n",
+      "mutated": "        if Instant::now() > deadline {\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "SURVIVED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 0,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0108.log",
+        "log_sha256": "1b58fcbbee6409af428bb23e4c6a3cf66df2537185be6a5706390313aaecb13f",
+        "output_bytes": 167,
+        "seconds": 3.8910000000032596,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 105,
+      "operator": "or->and",
+      "original": "    thread::spawn(move || {\n",
+      "mutated": "    thread::spawn(move && {\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "INCONCLUSIVE",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0109.log",
+        "log_sha256": "16ab2340b09140492f6b6480b15d7e9e5833b13d4dcc3c0b7eaba6a131f9a395",
+        "output_bytes": 295,
+        "seconds": 0.875,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 132,
+      "operator": "eq->ne",
+      "original": "    bytes.split(|b| *b == 0).filter(|s| !s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()\n",
+      "mutated": "    bytes.split(|b| *b != 0).filter(|s| !s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0110.log",
+        "log_sha256": "86d5fe18592cb70507a8f273c8e03c14b397870194ee273a694d04ec4de14367",
+        "output_bytes": 1202,
+        "seconds": 2.0630000000237487,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 132,
+      "operator": "not-removed",
+      "original": "    bytes.split(|b| *b == 0).filter(|s| !s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()\n",
+      "mutated": "    bytes.split(|b| *b == 0).filter(|s| s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0111.log",
+        "log_sha256": "5e20bb09970ddf384a9050042848580aefd0a017490dbb16a8f50c5c028f9c88",
+        "output_bytes": 1196,
+        "seconds": 2.0310000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 141,
+      "operator": "and->or",
+      "original": "        nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_some() && root.join(p).is_file()).collect();\n",
+      "mutated": "        nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_some() || root.join(p).is_file()).collect();\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0112.log",
+        "log_sha256": "67ef748ae20ce492fc0643f707cb3f553a756e3b475ee237e9e29674a9000787",
+        "output_bytes": 814,
+        "seconds": 1.5,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 141,
+      "operator": "is_some->is_none",
+      "original": "        nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_some() && root.join(p).is_file()).collect();\n",
+      "mutated": "        nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_none() && root.join(p).is_file()).collect();\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0113.log",
+        "log_sha256": "edcae60906133fabf3b2dbeec24c7d6b7cdfe7c087e1f68d1c8e5ff55f05fb44",
+        "output_bytes": 758,
+        "seconds": 4.077999999979511,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 167,
+      "operator": "not-removed",
+      "original": "    if !run_git(root, &[\"cat-file\", \"-e\", &spec], GIT_TIMEOUT)?.status.success() {\n",
+      "mutated": "    if run_git(root, &[\"cat-file\", \"-e\", &spec], GIT_TIMEOUT)?.status.success() {\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0114.log",
+        "log_sha256": "c11dd6d154db69a57821f2aa87732dec22c6de3825636597b6919364d3d74dfe",
+        "output_bytes": 686,
+        "seconds": 1.6570000000065193,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 199,
+      "operator": "eq->ne",
+      "original": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");\n",
+      "mutated": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n != \"target\" || n == \".git\");\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0115.log",
+        "log_sha256": "95e58e05bc12c483d3f37f22cc0a4d2a5893d40b1795ef60a1daeadbe5da7356",
+        "output_bytes": 2913,
+        "seconds": 3.639999999955762,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 199,
+      "operator": "eq->ne",
+      "original": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");\n",
+      "mutated": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n != \".git\");\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0116.log",
+        "log_sha256": "c6df4cacc1342d45e015562855dbc98513d11a373aa8eb1cb3004c356a0e8e66",
+        "output_bytes": 2913,
+        "seconds": 4.4689999999827705,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 199,
+      "operator": "or->and",
+      "original": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");\n",
+      "mutated": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() && path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0117.log",
+        "log_sha256": "3a3f79504763f1e677bb477cb555b2d05a2d4026306ef269fc95227fb74e7083",
+        "output_bytes": 846,
+        "seconds": 4.0,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 199,
+      "operator": "or->and",
+      "original": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");\n",
+      "mutated": "    let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" && n == \".git\");\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0118.log",
+        "log_sha256": "a90ba6b95c28c421af32b30741baf20f9383f6fa0485230785f36b56f41573de",
+        "output_bytes": 1309,
+        "seconds": 4.063000000023749,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 201,
+      "operator": "true->false",
+      "original": "        (true, false) => Entry::Descend,\n",
+      "mutated": "        (false, false) => Entry::Descend,\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0119.log",
+        "log_sha256": "95d61b117d99f768fbf6ece8ca895031d5f6aedd6f31656cb589b7bcc31e1f80",
+        "output_bytes": 685,
+        "seconds": 0.45300000003771856,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 201,
+      "operator": "false->true",
+      "original": "        (true, false) => Entry::Descend,\n",
+      "mutated": "        (true, true) => Entry::Descend,\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0120.log",
+        "log_sha256": "d8a8737ba9637ed858864f29df19ba3234b9906a2464d2eb0606df52af0b2551",
+        "output_bytes": 1084,
+        "seconds": 0.48399999999674037,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 202,
+      "operator": "true->false",
+      "original": "        (true, true) => Entry::Skip,\n",
+      "mutated": "        (false, true) => Entry::Skip,\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0121.log",
+        "log_sha256": "550a9ade0b733dbdf2c4b704fb1887a4279dc1cff53e8cfd49007452bd9fa1a9",
+        "output_bytes": 682,
+        "seconds": 0.40600000001722947,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 202,
+      "operator": "true->false",
+      "original": "        (true, true) => Entry::Skip,\n",
+      "mutated": "        (true, false) => Entry::Skip,\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0122.log",
+        "log_sha256": "4831cac9cbe1e1644d00d284bd0fe80953bce4553f7cd84221038506e8f89dd8",
+        "output_bytes": 1085,
+        "seconds": 0.3600000000442378,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 203,
+      "operator": "eq->ne",
+      "original": "        (false, _) if path.extension().is_some_and(|e| e == \"rs\") => Entry::Source,\n",
+      "mutated": "        (false, _) if path.extension().is_some_and(|e| e != \"rs\") => Entry::Source,\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0123.log",
+        "log_sha256": "43d2f8cd1afccdd0ce8906852899087b648e94c06576c174383615cb77d9153e",
+        "output_bytes": 3529,
+        "seconds": 4.125,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 203,
+      "operator": "false->true",
+      "original": "        (false, _) if path.extension().is_some_and(|e| e == \"rs\") => Entry::Source,\n",
+      "mutated": "        (true, _) if path.extension().is_some_and(|e| e == \"rs\") => Entry::Source,\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0124.log",
+        "log_sha256": "32bbfc9457e80cf74ac32b86a118f924fd55949b5c6efa5d4e91a84fb2d4bb97",
+        "output_bytes": 3496,
+        "seconds": 3.5780000000377186,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/repo.rs",
+      "line": 204,
+      "operator": "false->true",
+      "original": "        (false, _) => Entry::Skip,\n",
+      "mutated": "        (true, _) => Entry::Skip,\n",
+      "source_sha256": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0125.log",
+        "log_sha256": "1d4d2516ce8d5fa391a38926e3e14601bb985503571518006c797a5d8e4b32a6",
+        "output_bytes": 1552,
+        "seconds": 0.4220000000204891,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 50,
+      "operator": "eq->ne",
+      "original": "            .find(|level| level.as_str() == text)\n",
+      "mutated": "            .find(|level| level.as_str() != text)\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0126.log",
+        "log_sha256": "2b5b98170cf2e1b33631822c7d70b32e25ef6a9be26dc1bbfb9456f9d022b960",
+        "output_bytes": 5607,
+        "seconds": 3.7339999999967404,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 101,
+      "operator": "eq->ne",
+      "original": "            .find(|grade| grade.as_str() == text)\n",
+      "mutated": "            .find(|grade| grade.as_str() != text)\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0127.log",
+        "log_sha256": "44b69f4b2520e7a4b10a6677ae1af3c15ffa69c2b0bd471c186bb38471dce1d9",
+        "output_bytes": 4278,
+        "seconds": 3.5160000000032596,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 149,
+      "operator": "eq->ne",
+      "original": "            .find(|gate| gate.as_str() == text)\n",
+      "mutated": "            .find(|gate| gate.as_str() != text)\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0128.log",
+        "log_sha256": "85371e1c0578addc7483109331fb4407951ac9b07908ae55f90938ef462d159f",
+        "output_bytes": 702,
+        "seconds": 4.5,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 182,
+      "operator": "or->and",
+      "original": "        let malformed = || ScoreError::MalformedToken(text.to_owned());\n",
+      "mutated": "        let malformed = && ScoreError::MalformedToken(text.to_owned());\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "INVALID",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0129.log",
+        "log_sha256": "13bdfe40562b78cc69ffe39acb59f6494b5ae1a32805a6c7b5a2c78a1bd6987e",
+        "output_bytes": 3296,
+        "seconds": 0.5630000000237487,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 227,
+      "operator": "is_none->is_some",
+      "original": "        Gate::ALL.into_iter().filter(|gate| self.get(*gate).is_none()).collect()\n",
+      "mutated": "        Gate::ALL.into_iter().filter(|gate| self.get(*gate).is_some()).collect()\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0130.log",
+        "log_sha256": "126b2dae1d71b8745fa58efce0cb1ccc965fe691a7bd6bc12dd0a9b4b9d1c99b",
+        "output_bytes": 7487,
+        "seconds": 3.4060000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 237,
+      "operator": "min->max",
+      "original": "        Gate::ALL.into_iter().filter_map(|gate| self.get(gate)).min()\n",
+      "mutated": "        Gate::ALL.into_iter().filter_map(|gate| self.get(gate)).max()\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0131.log",
+        "log_sha256": "a4ce68d247d79e6184187290922332b5523997c437ea318d5ac5989b0bb0ee17",
+        "output_bytes": 2161,
+        "seconds": 3.7660000000032596,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 246,
+      "operator": "eq->ne",
+      "original": "        if self.is_complete() || ceiling == Some(Grade::E) {\n",
+      "mutated": "        if self.is_complete() || ceiling != Some(Grade::E) {\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0132.log",
+        "log_sha256": "513fad9e8ccb18a1d50938082c461f1046f81d24e18b1f2275beb4fa2069f5c8",
+        "output_bytes": 757,
+        "seconds": 8.405999999959022,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 246,
+      "operator": "or->and",
+      "original": "        if self.is_complete() || ceiling == Some(Grade::E) {\n",
+      "mutated": "        if self.is_complete() && ceiling == Some(Grade::E) {\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0133.log",
+        "log_sha256": "b7ba698d3a9cdaf6b092e812910d4caf3e4b6056a8b0a8054bf241e7b13e2120",
+        "output_bytes": 7058,
+        "seconds": 3.2040000000270084,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 366,
+      "operator": "not-removed",
+      "original": "        if !missing.is_empty() {\n",
+      "mutated": "        if missing.is_empty() {\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0134.log",
+        "log_sha256": "8799d6bc5b2ac1ff05af9de7e629985d1d5a51a6bd67944d707d46a28c6a5623",
+        "output_bytes": 6219,
+        "seconds": 5.14100000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 369,
+      "operator": "not-removed",
+      "original": "        if !self.is_complete {\n",
+      "mutated": "        if self.is_complete {\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0135.log",
+        "log_sha256": "dd9aeba20b24e4a6f0126baaa551255381e30203c2f9df6f4358da72af686137",
+        "output_bytes": 5571,
+        "seconds": 5.25,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 375,
+      "operator": "ne->eq",
+      "original": "        if self.composite != Some(composite) {\n",
+      "mutated": "        if self.composite == Some(composite) {\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0136.log",
+        "log_sha256": "b3927b8abcdd0b038968124340d53889b2ca63a0831125cee020b20fd1762fbf",
+        "output_bytes": 5609,
+        "seconds": 4.51500000001397,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 379,
+      "operator": "ne->eq",
+      "original": "        if self.token != Some(expected) {\n",
+      "mutated": "        if self.token == Some(expected) {\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0137.log",
+        "log_sha256": "017946ebf065f882bf199f345fc3001b7fbe3a996a5514d00effe2057837b3aa",
+        "output_bytes": 5175,
+        "seconds": 4.25,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 398,
+      "operator": "ge->gt",
+      "original": "        token.level >= self.min_level && token.grade >= self.min_grade\n",
+      "mutated": "        token.level > self.min_level && token.grade >= self.min_grade\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0138.log",
+        "log_sha256": "930b5050063ee8eff25c2d3e34ba248f20c5b769bb028e8ebc85fcf82d412a9f",
+        "output_bytes": 3251,
+        "seconds": 4.938000000023749,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 398,
+      "operator": "ge->gt",
+      "original": "        token.level >= self.min_level && token.grade >= self.min_grade\n",
+      "mutated": "        token.level >= self.min_level && token.grade > self.min_grade\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0139.log",
+        "log_sha256": "deff724f949f2e0470f4ab66b7c147694a7372f70adbba7d7312200707b1f17e",
+        "output_bytes": 1997,
+        "seconds": 3.594000000040978,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/score.rs",
+      "line": 398,
+      "operator": "and->or",
+      "original": "        token.level >= self.min_level && token.grade >= self.min_grade\n",
+      "mutated": "        token.level >= self.min_level || token.grade >= self.min_grade\n",
+      "source_sha256": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0140.log",
+        "log_sha256": "acfeda4ebc19c051cf2296212ef3da4b2310d53d2bdc605a2ffa9d431bea3e33",
+        "output_bytes": 2618,
+        "seconds": 3.8439999999827705,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 192,
+      "operator": "ne->eq",
+      "original": "    if d.document_schema.as_deref() != Some(expected) {\n",
+      "mutated": "    if d.document_schema.as_deref() == Some(expected) {\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0141.log",
+        "log_sha256": "9476fbea003b50e90466ec80b614747257b0eede90ff457e6c570e6c32e461e7",
+        "output_bytes": 5990,
+        "seconds": 3.8439999999827705,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 195,
+      "operator": "first->last",
+      "original": "    if let Some(key) = d.missing_keys.first() {\n",
+      "mutated": "    if let Some(key) = d.missing_keys.last() {\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0142.log",
+        "log_sha256": "e8f24f62f847d1f0b7ace3667b427ee5a91bc54a32fb428cf64278215c0ca309",
+        "output_bytes": 728,
+        "seconds": 5.092999999993481,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 198,
+      "operator": "not-removed",
+      "original": "    if !d.contract_view_ok {\n",
+      "mutated": "    if d.contract_view_ok {\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0143.log",
+        "log_sha256": "93c90149fea8386c8eff4870f19d383c6ad02fefb78419e96a71394deab5b815",
+        "output_bytes": 5854,
+        "seconds": 5.60899999999674,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 207,
+      "operator": "not-removed",
+      "original": "    if !score.digest_ok {\n",
+      "mutated": "    if score.digest_ok {\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0144.log",
+        "log_sha256": "51e16a6039f9f345a2407afffc2aacdaa19bfbfabb66aaf6bf5e629af4c79aa4",
+        "output_bytes": 6138,
+        "seconds": 6.2810000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 211,
+      "operator": "ne->eq",
+      "original": "    if score.schema_version.as_deref() != Some(expected) {\n",
+      "mutated": "    if score.schema_version.as_deref() == Some(expected) {\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0145.log",
+        "log_sha256": "74655d583e1527d6266c2cf520e99563f8fbac56ab2e512c7209e8007e7db05f",
+        "output_bytes": 5384,
+        "seconds": 6.39100000000326,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 214,
+      "operator": "is_none->is_some",
+      "original": "    if score.is_complete.is_none() {\n",
+      "mutated": "    if score.is_complete.is_some() {\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0146.log",
+        "log_sha256": "ee384310ab695cebd1e3a3aca1ca44dd858c5519cfcbb572145933e28506f69e",
+        "output_bytes": 5483,
+        "seconds": 4.313000000023749,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 240,
+      "operator": "ne->eq",
+      "original": "        match checks.into_iter().find(|(_, expected, found)| Some(*expected) != *found) {\n",
+      "mutated": "        match checks.into_iter().find(|(_, expected, found)| Some(*expected) == *found) {\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0147.log",
+        "log_sha256": "1c358c43d62418878fb17b2fcbb5eb40d1b106e795b43011bd65d803389a3bf3",
+        "output_bytes": 4310,
+        "seconds": 6.875,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 272,
+      "operator": "eq->ne",
+      "original": "        is_complete: d.current_score.as_ref().and_then(|s| s.is_complete) == Some(true),\n",
+      "mutated": "        is_complete: d.current_score.as_ref().and_then(|s| s.is_complete) != Some(true),\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0148.log",
+        "log_sha256": "13b46cd3517f97907670fa8a1c37c1b75ec79738e81474fee513faa193867994",
+        "output_bytes": 3857,
+        "seconds": 6.313000000023749,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 272,
+      "operator": "true->false",
+      "original": "        is_complete: d.current_score.as_ref().and_then(|s| s.is_complete) == Some(true),\n",
+      "mutated": "        is_complete: d.current_score.as_ref().and_then(|s| s.is_complete) == Some(false),\n",
+      "source_sha256": "e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\evidence\\quality\\pr215_l4_repair\\mutations\\mutant-0149.log",
+        "log_sha256": "c9e4ebeb96d8609030f069d7793141bc9bb8b08781a717ab92893b90bf443226",
+        "output_bytes": 4331,
+        "seconds": 11.311999999976251,
+        "error": ""
+      }
+    }
+  ],
+  "sources_unchanged": true,
+  "summary": {
+    "KILLED": 137,
+    "SURVIVED": 2,
+    "INVALID": 10,
+    "INCONCLUSIVE": 1,
+    "UNRUN": 0,
+    "EQUIVALENT": 0,
+    "eligible_denominator": 140,
+    "killed_numerator": 137,
+    "conservative_ratio": "137/140"
+  }
+}

@@ -1,0 +1,28 @@
+
+running 10 tests
+...... 6/10
+tests::affected_sources_maps_companions_back_to_sources --- FAILED
+. 8/10
+tests::a_policy_or_baseline_change_selects_the_whole_population --- FAILED
+.
+failures:
+
+---- tests::affected_sources_maps_companions_back_to_sources stdout ----
+
+thread 'tests::affected_sources_maps_companions_back_to_sources' (43828) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:459:51:
+called `Result::unwrap()` on an `Err` value: "git ls-files --cached --others --exclude-standard -z failed: fatal: not a git repository (or any of the parent directories): .git"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::a_policy_or_baseline_change_selects_the_whole_population stdout ----
+
+thread 'tests::a_policy_or_baseline_change_selects_the_whole_population' (27712) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:587:9:
+assertion failed: affected_sources(&r, &["docs/readme.md".to_owned()]).unwrap().is_empty()
+
+
+failures:
+    tests::a_policy_or_baseline_change_selects_the_whole_population
+    tests::affected_sources_maps_companions_back_to_sources
+
+test result: FAILED. 8 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.32s
+
+error: test failed, to rerun pass `--bin governance-check`

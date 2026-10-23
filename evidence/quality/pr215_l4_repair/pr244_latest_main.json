@@ -1,0 +1,88 @@
+{
+  "AuthorityEffect": "None",
+  "base": "e14b116631a0453a59c951f5611a69f855157a37",
+  "steps": [
+    {
+      "argv": [
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map written: 925 nodes, grades {'E0': 189, 'E1': 252, 'E2': 42, 'E3': 442, 'E4': 0}, 254 flags\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "-m",
+        "pytest",
+        "dag/pfp/test_retained_collections.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "..................................                                       [100%]\n============================== warnings summary ===============================\n..\\..\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Lib\\site-packages\\_pytest\\config\\__init__.py:1464\n  C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\.venv-l4-review\\Lib\\site-packages\\_pytest\\config\\__init__.py:1464: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n34 passed, 1 warning in 1.15s\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "e14b116631a0453a59c951f5611a69f855157a37"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 30,\n    \"valid_contracts_and_scores\": 30,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 1,\n      \"Python\": 2,\n      \"Rust\": 27\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 9,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 10,\n    \"pinned_boilerplate\": 20,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 30\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since e14b116631a0453a59c951f5611a69f855157a37 (merge base 816245a4d23b), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "e14b116631a0453a59c951f5611a69f855157a37"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 81,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "e14b116631a0453a59c951f5611a69f855157a37",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since e14b116631a0453a59c951f5611a69f855157a37 (merge base 816245a4d23b); HIGH=0 MEDIUM=0 LOW=9\n",
+      "stderr": ""
+    }
+  ]
+}

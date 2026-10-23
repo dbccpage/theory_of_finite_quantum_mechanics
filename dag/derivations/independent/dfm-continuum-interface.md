@@ -50,6 +50,31 @@ Three concrete checks, recomputed by `checks/independent/dfm-continuum-interface
 - In `SL(2, Z)`, the same pattern with outer matrices `[[1, 1], [0, 1]]` and `[[1, 2], [0, 1]]` gives those matrices as the dressed chords.
 - A non-identity choice `U(eRP) = [[1, 1], [0, 1]]`, `U(ePA) = [[1, 0], [1, 1]]`, `U(eRB) = [[1, 3], [0, 1]]`, `U(eAB) = [[0, -1], [1, 0]]` has dressed chord `[[-4, -5], [1, 1]]`. Replacing only `U(eRP)` by `[[1, 2], [0, 1]]` changes it to `[[-4, -9], [1, 2]]`. The opposite multiplication order is a different matrix, so the later-on-the-left convention is part of the result.
 
+## General dependency API
+
+For any group and directed graph, a typed walk is built from an empty walk,
+an edge, reversal and composable concatenation. Its edge list is empty,
+a singleton, unchanged by reversal, or the concatenation of the child lists.
+Induction on the walk proves that labels agreeing on this list have equal
+transport, including the noncommutative multiplication order.
+
+A Plan supplies a root and a typed path to every vertex. For edge e its
+footprint is e together with the two endpoint path lists. The evaluator uses
+the inverse destination transport, the edge label and the source transport.
+Agreement on this footprint therefore implies agreement of the evaluator.
+Contrapositively, different outputs require at least one changed label in
+the footprint. Any superset remains a sound certificate. This is a conservative
+support, not a claim that every listed edge is necessary: cancellation can
+make some dependencies redundant. No spanning-tree existence is inferred.
+
+The original four-vertex example is a Plan client. The outside edge eRP occurs
+in its footprint even though it misses the chord's closed star. The existing
+finite counterexample therefore illustrates the boundary of the general API.
+An independent exact SL(2,Z) checker exercises 85 loop words of length at most
+three, 255 append cases, reversal and off-support changes; three malformed
+paths are refused. Three selected semantic faults are detected. These finite
+tests supplement the general kernel proof and do not establish a continuum.
+
 ## What is proved
 
 On this supplied rooted tree, the dressed chord is `U(eRB)^{-1} U(eAB) U(ePA) U(eRP)`. Changing only the edge outside the closed star of the chord changes the dressed chord, while every label on that star stays fixed. The additive pair `2` and `5` is one witness.

@@ -1,0 +1,32 @@
+{
+  "error": "Initial wrapper omitted baseline.log; no mutation began. Corrected retry runs an actual baseline first.",
+  "mutants": [
+    {
+      "file": "src/policy.rs",
+      "line": 217,
+      "operator": "reverse-digest-match",
+      "original": "            Some(pin) if pin.sha256 == digest => Floor { min_level: Level::L1, min_grade: self.floor.min_grade.max(Grade::D) },\n",
+      "mutated": "            Some(pin) if pin.sha256 != digest => Floor { min_level: Level::L1, min_grade: self.floor.min_grade.max(Grade::D) },\n",
+      "source_sha256": "8e092b4b2b2b47443e3024dd059d47f2bc6a62bd2e071e0356244d517cafa2d4",
+      "outcome": "UNRUN"
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 217,
+      "operator": "allow-grade-e",
+      "original": "            Some(pin) if pin.sha256 == digest => Floor { min_level: Level::L1, min_grade: self.floor.min_grade.max(Grade::D) },\n",
+      "mutated": "            Some(pin) if pin.sha256 == digest => Floor { min_level: Level::L1, min_grade: Grade::E },\n",
+      "source_sha256": "8e092b4b2b2b47443e3024dd059d47f2bc6a62bd2e071e0356244d517cafa2d4",
+      "outcome": "UNRUN"
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 292,
+      "operator": "bypass-floor",
+      "original": "        let completed = completed_score(d)?;\n",
+      "mutated": "        let completed = completed_score(d)?;\n        return Ok(());\n",
+      "source_sha256": "e5cb7c5f5944958f06f3dbf159afcb36919e4e350ac9a443314e2b4cffc82dcc",
+      "outcome": "UNRUN"
+    }
+  ]
+}

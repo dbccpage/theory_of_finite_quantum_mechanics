@@ -111,6 +111,24 @@ def validate(fragment: dict, dag: dict) -> list[str]:
     if len({r['id'] for r in routes}) != len(routes):
         errs.append('duplicate frontier route ids')
     known = ids | others
+    _validate_node_evidence(nodes, fragment, errs)
+    _validate_routes_and_statuses(nodes, routes, ids, others, known, errs)
+    record_ids = {r['id'] for r in records}
+    existing = {r['id'] for r in dag['records'] if r.get('source_slice') != SLICE}
+    if record_ids & existing:
+        errs.append('frontier record id collides with an existing record')
+    for r in records:
+        if r['source_slice'] != SLICE or r['parent_id'] not in (record_ids | existing):
+            errs.append(f'{r["id"]}: bad slice or parent')
+    named = {x for r in records for x in r['existing_derivation_dag_ids']}
+    if named != ids:
+        errs.append('records and nodes of the fragment do not name each other')
+    blob = json.dumps(fragment, ensure_ascii=False)
+    errs += [f'forbidden word in fragment: {w}' for w in forbidden_words(blob)]
+    return errs
+
+
+def _validate_node_evidence(nodes, fragment, errs):
     for n in nodes:
         if n['stage'] not in fragment['stages']:
             errs.append(f'{n["id"]}: stage {n["stage"]} not in the fragment stages')
@@ -126,6 +144,9 @@ def validate(fragment: dict, dag: dict) -> list[str]:
             errs.append(f'{n["id"]}: an external result needs an external: source')
         if n['status'] == 'PROVED_LEAN' and not n['lean']:
             errs.append(f'{n["id"]}: PROVED_LEAN without a Lean reference')
+
+
+def _validate_routes_and_statuses(nodes, routes, ids, others, known, errs):
     for r in routes:
         if not r['id'].startswith(ROUTE_PREFIX) or r['output'] not in known or any(i not in known for i in r['inputs']):
             errs.append(f'route {r["id"]}: bad id or endpoint')
@@ -137,19 +158,6 @@ def validate(fragment: dict, dag: dict) -> list[str]:
             errs.append(f'{n["id"]}: no incoming route')
         if n['status'] == 'OPEN' and any(r['status'] not in ('GAP_NO_DERIVATION',) for r in out_routes):
             errs.append(f'{n["id"]}: an OPEN node may only have gap routes')
-    record_ids = {r['id'] for r in records}
-    existing = {r['id'] for r in dag['records'] if r.get('source_slice') != SLICE}
-    if record_ids & existing:
-        errs.append('frontier record id collides with an existing record')
-    for r in records:
-        if r['source_slice'] != SLICE or r['parent_id'] not in (record_ids | existing):
-            errs.append(f'{r["id"]}: bad slice or parent')
-    named = {x for r in records for x in r['existing_derivation_dag_ids']}
-    if named != ids:
-        errs.append('records and nodes of the fragment do not name each other')
-    blob = json.dumps(fragment, ensure_ascii=False)
-    errs += [f'forbidden word in fragment: {w}' for w in forbidden_words(blob)]
-    return errs
 
 
 def render_paper(node: dict, record: dict, fragment: dict, paths: dict[str, str]) -> str:
@@ -230,34 +238,7 @@ def generated_files(root: Path) -> dict[Path, bytes]:
     route_ids = {r['id'] for r in routes}
     record_ids = {r['id'] for r in records}
 
-    # sync_genesis_to_higher.py owns the block after this one. Keep it last.
-    # sync_foc035_observer_presheaf.py owns the block after that one. Keep both last.
-    late_tags = (views.GTH_TAG, views.OPS_TAG)
-    late_prefixes = (views.GTH_ROUTE_PREFIX, views.OPS_ROUTE_PREFIX)
-    late_slices = (views.GTH_SLICE, views.OPS_SLICE)
-    late_nodes = [n for n in dag['nodes'] if views.GTH_TAG in n.get('tags', [])] \
-        + [n for n in dag['nodes'] if views.OPS_TAG in n.get('tags', [])]
-    late_routes = [r for r in dag['routes'] if r['id'].startswith(views.GTH_ROUTE_PREFIX)] \
-        + [r for r in dag['routes'] if r['id'].startswith(views.OPS_ROUTE_PREFIX)]
-    dag['nodes'] = [n for n in dag['nodes'] if TAG not in n.get('tags', []) and n['id'] not in ids
-                    and not any(t in n.get('tags', []) for t in late_tags)] + nodes + late_nodes
-    dag['routes'] = [r for r in dag['routes'] if not r['id'].startswith(ROUTE_PREFIX) and r['id'] not in route_ids
-                     and not r['id'].startswith(late_prefixes)] + routes + late_routes
-    for stage in fragment['stages']:
-        if stage not in dag['stages']:
-            dag['stages'].append(stage)
-    late_records = [r for r in dag['records'] if r.get('source_slice') == views.GTH_SLICE] \
-        + [r for r in dag['records'] if r.get('source_slice') == views.OPS_SLICE]
-    kept = [r for r in dag['records'] if r.get('source_slice') not in (SLICE, *late_slices)
-            and r['id'] not in record_ids]
-    dag['records'] = [views.canonical_record(r) for r in kept + records + late_records]
-    doc = dag['index_document']
-    late_stages = [s for s in (views.GTH_STAGE, views.OPS_STAGE) if s in doc['application_stages']]
-    doc['application_stages'] = [s for s in doc['application_stages']
-                                 if s not in fragment['stages'] and s not in late_stages] + list(fragment['stages'])
-    doc['application_stages'].extend(late_stages)
-    dag['segment_notes'][SLICE] = [fragment['segment_note']]
-    dag['schema_notes'] = [patch_schema_note(s) for s in dag['schema_notes']]
+    _replace_frontier_graph(dag, fragment, nodes, routes, records, ids, route_ids, record_ids)
 
     paths = paper_paths(root)
     for r in records:
@@ -318,6 +299,41 @@ def main():
                 path.write_bytes(expected)
     print('stale=' + ','.join(differences) if differences else 'frontier branches synchronized')
     return int(bool(differences) and args.check)
+
+
+
+
+
+
+def _replace_frontier_graph(dag, fragment, nodes, routes, records, ids, route_ids, record_ids):
+    # sync_genesis_to_higher.py owns the block after this one. Keep it last.
+    # sync_foc035_observer_presheaf.py owns the block after that one. Keep both last.
+    late_tags = (views.GTH_TAG, views.OPS_TAG)
+    late_prefixes = (views.GTH_ROUTE_PREFIX, views.OPS_ROUTE_PREFIX)
+    late_slices = (views.GTH_SLICE, views.OPS_SLICE)
+    late_nodes = [n for n in dag['nodes'] if views.GTH_TAG in n.get('tags', [])] \
+        + [n for n in dag['nodes'] if views.OPS_TAG in n.get('tags', [])]
+    late_routes = [r for r in dag['routes'] if r['id'].startswith(views.GTH_ROUTE_PREFIX)] \
+        + [r for r in dag['routes'] if r['id'].startswith(views.OPS_ROUTE_PREFIX)]
+    dag['nodes'] = [n for n in dag['nodes'] if TAG not in n.get('tags', []) and n['id'] not in ids
+                    and not any(t in n.get('tags', []) for t in late_tags)] + nodes + late_nodes
+    dag['routes'] = [r for r in dag['routes'] if not r['id'].startswith(ROUTE_PREFIX) and r['id'] not in route_ids
+                     and not r['id'].startswith(late_prefixes)] + routes + late_routes
+    for stage in fragment['stages']:
+        if stage not in dag['stages']:
+            dag['stages'].append(stage)
+    late_records = [r for r in dag['records'] if r.get('source_slice') == views.GTH_SLICE] \
+        + [r for r in dag['records'] if r.get('source_slice') == views.OPS_SLICE]
+    kept = [r for r in dag['records'] if r.get('source_slice') not in (SLICE, *late_slices)
+            and r['id'] not in record_ids]
+    dag['records'] = [views.canonical_record(r) for r in kept + records + late_records]
+    doc = dag['index_document']
+    late_stages = [s for s in (views.GTH_STAGE, views.OPS_STAGE) if s in doc['application_stages']]
+    doc['application_stages'] = [s for s in doc['application_stages']
+                                 if s not in fragment['stages'] and s not in late_stages] + list(fragment['stages'])
+    doc['application_stages'].extend(late_stages)
+    dag['segment_notes'][SLICE] = [fragment['segment_note']]
+    dag['schema_notes'] = [patch_schema_note(s) for s in dag['schema_notes']]
 
 
 if __name__ == '__main__':

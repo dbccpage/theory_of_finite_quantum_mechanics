@@ -108,6 +108,32 @@ def validate(fragment: dict, dag: dict, root: Path) -> list[str]:
         errs.append('duplicate route ids')
     known = ids | others
     cited = {c['ref'] for c in fragment['citations'].values()}
+    _validate_node_evidence(nodes, cited, root, errs)
+    _validate_routes_and_statuses(nodes, routes, ids, others, known, errs, root)
+    record_ids = {r['id'] for r in records}
+    existing = {r['id'] for r in dag['records'] if r.get('source_slice') != SLICE}
+    if record_ids & existing:
+        errs.append('record id collides with an existing record')
+    node_by_id = {n['id']: n for n in nodes}
+    for r in records:
+        if r['source_slice'] != SLICE or r['stage'] != STAGE:
+            errs.append(f'{r["id"]}: bad slice or stage')
+        if r['parent_id'] not in (record_ids | existing):
+            errs.append(f'{r["id"]}: bad parent')
+        if r['existing_derivation_dag_ids'] != [r['local_id']]:
+            errs.append(f'{r["id"]}: record does not name its node')
+        node = node_by_id.get(r['local_id'])
+        if node is None or r['record_status'] != RECORD_STATUS.get(node['status']):
+            errs.append(f'{r["id"]}: record status does not follow the node status')
+    named = {x for r in records for x in r['existing_derivation_dag_ids']}
+    if named != ids:
+        errs.append('records and nodes of the fragment do not name each other')
+    blob = json.dumps(fragment, ensure_ascii=False)
+    errs += [f'forbidden word in fragment: {w}' for w in forbidden_words(blob)]
+    return errs
+
+
+def _validate_node_evidence(nodes, cited, root, errs):
     for n in nodes:
         nid = n['id']
         if not nid.startswith(NODE_PREFIX) or n['stage'] != STAGE:
@@ -116,17 +142,7 @@ def validate(fragment: dict, dag: dict, root: Path) -> list[str]:
             errs.append(f'{nid}: status {n["status"]} is not allowed in this fragment')
         if TAG not in n['tags']:
             errs.append(f'{nid}: missing tag {TAG}')
-        for ref in n['source']:
-            if ref.startswith('external:'):
-                if ref not in cited:
-                    errs.append(f'{nid}: external source {ref} has no citation entry')
-            elif not ref.startswith('dag/derivations/' + FOLDER + '/'):  # the generated paper is written below
-                path = ref.split('#', 1)[0]
-                if not (root / path).is_file():
-                    errs.append(f'{nid}: source path missing: {ref}')
-        for field in ('lean', 'rust'):
-            for ref in n[field]:
-                errs += symbol_errors(root, nid, field, ref)
+        _validate_node_references(n, nid, cited, root, errs)
         if n['status'] == 'IMPORTED_ASSUMPTION' and not n['imported_structure']:
             errs.append(f'{nid}: an import needs imported_structure')
         if n['status'] == 'PROVED_LEAN':
@@ -139,6 +155,9 @@ def validate(fragment: dict, dag: dict, root: Path) -> list[str]:
             errs.append(f'{nid}: COMPUTATIONALLY_CHECKED must cite the independent check or an imported Python test')
         if n['status'] == 'CONDITIONAL' and 'not run here' not in n['bottleneck'] and 'cited, not re-run' not in n['bottleneck']:
             errs.append(f'{nid}: a CONDITIONAL bottleneck must say what is not run here or not re-run')
+
+
+def _validate_routes_and_statuses(nodes, routes, ids, others, known, errs, root):
     for r in routes:
         if not r['id'].startswith(ROUTE_PREFIX) or r['output'] not in ids or any(i not in known for i in r['inputs']):
             errs.append(f'route {r["id"]}: bad id or endpoint')
@@ -159,27 +178,6 @@ def validate(fragment: dict, dag: dict, root: Path) -> list[str]:
             errs.append(f'{n["id"]}: {n["status"]} but every incoming route is a gap')
         if n['status'] == 'PROVED_LEAN' and not any(r['status'] == 'DERIVED_LEAN' for r in incoming):
             errs.append(f'{n["id"]}: PROVED_LEAN without a DERIVED_LEAN route')
-    record_ids = {r['id'] for r in records}
-    existing = {r['id'] for r in dag['records'] if r.get('source_slice') != SLICE}
-    if record_ids & existing:
-        errs.append('record id collides with an existing record')
-    node_by_id = {n['id']: n for n in nodes}
-    for r in records:
-        if r['source_slice'] != SLICE or r['stage'] != STAGE:
-            errs.append(f'{r["id"]}: bad slice or stage')
-        if r['parent_id'] not in (record_ids | existing):
-            errs.append(f'{r["id"]}: bad parent')
-        if r['existing_derivation_dag_ids'] != [r['local_id']]:
-            errs.append(f'{r["id"]}: record does not name its node')
-        node = node_by_id.get(r['local_id'])
-        if node is None or r['record_status'] != RECORD_STATUS[node['status']]:
-            errs.append(f'{r["id"]}: record status does not follow the node status')
-    named = {x for r in records for x in r['existing_derivation_dag_ids']}
-    if named != ids:
-        errs.append('records and nodes of the fragment do not name each other')
-    blob = json.dumps(fragment, ensure_ascii=False)
-    errs += [f'forbidden word in fragment: {w}' for w in forbidden_words(blob)]
-    return errs
 
 
 def render_paper(node: dict, record: dict, fragment: dict, paths: dict[str, str]) -> str:
@@ -304,6 +302,24 @@ def main():
                 path.write_bytes(expected)
     print('stale=' + ','.join(differences) if differences else 'foc035 observer presheaf synchronized')
     return int(bool(differences) and args.check)
+
+
+
+
+
+
+def _validate_node_references(n, nid, cited, root, errs):
+    for ref in n['source']:
+        if ref.startswith('external:'):
+            if ref not in cited:
+                errs.append(f'{nid}: external source {ref} has no citation entry')
+        elif not ref.startswith('dag/derivations/' + FOLDER + '/'):  # the generated paper is written below
+            path = ref.split('#', 1)[0]
+            if not (root / path).is_file():
+                errs.append(f'{nid}: source path missing: {ref}')
+    for field in ('lean', 'rust'):
+        for ref in n[field]:
+            errs += symbol_errors(root, nid, field, ref)
 
 
 if __name__ == '__main__':

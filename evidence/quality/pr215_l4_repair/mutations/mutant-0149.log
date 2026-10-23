@@ -1,0 +1,85 @@
+
+running 52 tests
+................................ 32/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+. 35/52
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+...... 42/52
+tests::binding_failure_still_reports_the_floor --- FAILED
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+.... 48/52
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+. 51/52
+repo::tests::git_population_changes_and_history --- FAILED
+
+failures:
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (2128) panicked at ..\code\rust\src\governance\src\verify.rs:342:9:
+assertion `left == right` failed
+  left: Err(Completeness { path: "code/x.contract.score.yaml", field: "is_complete", expected: "true", found: "false" })
+ right: Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (42220) panicked at ..\code\rust\src\governance\src\verify.rs:404:9:
+assertion `left == right` failed
+  left: Err(Completeness { path: "code/x.contract.score.yaml", field: "is_complete", expected: "true", found: "false" })
+ right: Ok(())
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (9008) panicked at ..\code\rust\src\governance\src\verify.rs:367:9:
+code/x.contract.score.yaml: [COMPLETENESS] is_complete: expected true, found false
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (16504) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Binding, Completeness]
+ right: [Binding, Floor]
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (42464) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 0 pass, 0 grandfathered, 1 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.contract.score.yaml: [COMPLETENESS] is_complete: expected true, found false\n")
+ right: Ok(())
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (38600) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Completeness { path: "code/t.rs.contract.score.yaml", field: "is_complete", expected: "true", found: "false" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (3344) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Fail([Completeness { path: "code/a.contract.score.yaml", field: "is_complete", expected: "true", found: "false" }])
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (12168) panicked at ..\code\rust\src\governance\src\repo.rs:325:34:
+called `Result::unwrap()` on an `Err` value: Os { code: 32, kind: Uncategorized, message: "The process cannot access the file because it is being used by another process." }
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    repo::tests::git_population_changes_and_history
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+
+test result: FAILED. 44 passed; 8 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.73s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,28 @@
+
+running 52 tests
+..... 5/52
+descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes --- FAILED
+...................................... 44/52
+verify::tests::schema_failures_are_specific --- FAILED
+.......
+failures:
+
+---- descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes stdout ----
+
+thread 'descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes' (9452) panicked at ..\code\rust\src\governance\src\descriptor.rs:349:9:
+a changed score cannot reuse another record's digest
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (37832) panicked at ..\code\rust\src\governance\src\verify.rs:419:61:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+
+failures:
+    descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 50 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.72s
+
+error: test failed, to rerun pass `--lib`
