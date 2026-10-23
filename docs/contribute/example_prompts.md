@@ -38,7 +38,7 @@ python -I -X utf8 dag/pfp/llm_ladder/ladder.py --node DFM-BPHZ-SECTOR-KERNEL --s
 2. Record the reply as a run folder in the same tree the ladder uses, named `<UTC date and time>_byhand_<your handle>`. For example, for the worked-example node, handle `alice` and 23 October 2026, 10:15 UTC: `dag/results/DFM-BPHZ-SECTOR-KERNEL/runs/20261023T101500Z_byhand_alice/`. Put the reply there, **unmodified**, as `reply.txt`.
 3. Next to it, write `NOTES.md` with the model name and version, the date, any settings, and what you checked yourself.
 
-Do not put replies under `docs/`: that directory is the source of the published site, and a model reply that contains `{{` or `{%` would break its build. A by-hand reply is not host-verified. It is recorded as an unverified proposal. Ladder tools ignore folders that do not end in `_ladder`, and the campaign queue does not count a `_byhand_` folder as an attempt.
+Do not put replies under `docs/`: that directory is the source of the published site, and a model reply that contains <code>&#123;&#123;</code> or <code>&#123;%</code> (Liquid template markers) would break its build. A by-hand reply is not host-verified. It is recorded as an unverified proposal. Ladder tools ignore folders that do not end in `_ladder`, and the campaign queue does not count a `_byhand_` folder as an attempt.
 
 ### What the ladder writes
 
