@@ -36,3 +36,8 @@ Assessment: L2D, with an adjacent byte-bound scored contract. The canonical
 workspace/build hook and optional external packages were not compiled through
 the test harness. Governance still requires L4; no exception, baseline or policy
 change is applied. Sealed sources and derivation statuses are unchanged.
+
+Superseded (2026-10-23): explicit maintainer approval later permitted an
+exact-source baseline-floor exception for these source bytes; see
+evidence/quality/functor_shell_pr/exception_authorization.json. The L2D score
+and the global L4/D floor are unchanged. The assessment above is historical.
