@@ -121,8 +121,9 @@ def test_papers_and_forbidden_words():
 
 def test_source_copies_are_byte_identical_to_the_recorded_digests():
     prov = json.loads((ROOT / 'sources/atlas/PROVENANCE.json').read_text(encoding='utf-8'))
+    entries = {entry['in_repo_path']: entry for entry in prov['files']}
     for path in (LEDGER, NOTE):
-        entry = prov['files'][path.relative_to(ROOT).as_posix()]
+        entry = entries[path.relative_to(ROOT).as_posix()]
         data = path.read_bytes()
         assert hashlib.sha256(data).hexdigest() == entry['sha256'] and len(data) == entry['size_bytes']
         assert b'\r' not in data

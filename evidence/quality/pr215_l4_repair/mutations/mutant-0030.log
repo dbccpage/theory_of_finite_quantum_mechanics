@@ -1,0 +1,29 @@
+
+running 10 tests
+.... 4/10
+tests::baseline_plan_only_shrinks_without_allow_add --- FAILED
+tests::baseline_deficit_is_the_first_violation_and_stale_entries_are_counted --- FAILED
+....
+failures:
+
+---- tests::baseline_plan_only_shrinks_without_allow_add stdout ----
+
+thread 'tests::baseline_plan_only_shrinks_without_allow_add' (45108) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:502:9:
+assertion `left == right` failed
+  left: ["code/changed.rs"]
+ right: ["code/legacy.rs"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::baseline_deficit_is_the_first_violation_and_stale_entries_are_counted stdout ----
+
+thread 'tests::baseline_deficit_is_the_first_violation_and_stale_entries_are_counted' (42148) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:573:55:
+called `Option::unwrap()` on a `None` value
+
+
+failures:
+    tests::baseline_deficit_is_the_first_violation_and_stale_entries_are_counted
+    tests::baseline_plan_only_shrinks_without_allow_add
+
+test result: FAILED. 8 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 12.06s
+
+error: test failed, to rerun pass `--bin governance-check`

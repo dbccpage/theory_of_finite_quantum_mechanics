@@ -1,0 +1,183 @@
+
+running 52 tests
+... 3/52
+policy::tests::baseline_round_trip_and_grandfathering --- FAILED
+.. 6/52
+policy::tests::companion_naming_follows_collision_rule --- FAILED
+... 10/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+.. 13/52
+policy::tests::policy_rejects_wrong_orders_and_shapes --- FAILED
+........ 22/52
+repo::tests::git_population_changes_and_history --- FAILED
+buildtime::tests::new_mode_aborts_when_any_failure_is_new --- FAILED
+buildtime::tests::decide_respects_mode --- FAILED
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+...... 34/52
+buildtime::tests::missing_or_broken_policy --- FAILED
+. 36/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+tests::binding_and_completeness_are_both_reported --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::changed_bytes_lose_grandfathering --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+tests::malformed_companion_and_unreadable_source --- FAILED
+verify::tests::binding_mismatch_names_the_field --- FAILED
+. 45/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+. 48/52
+verify::tests::null_gate_is_incomplete --- FAILED
+verify::tests::schema_failures_are_specific --- FAILED
+..
+failures:
+
+---- policy::tests::baseline_round_trip_and_grandfathering stdout ----
+
+thread 'policy::tests::baseline_round_trip_and_grandfathering' (31032) panicked at ..\code\rust\src\governance\src\policy.rs:637:47:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-baseline.v1" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- policy::tests::companion_naming_follows_collision_rule stdout ----
+
+thread 'policy::tests::companion_naming_follows_collision_rule' (26496) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (38052) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- policy::tests::policy_rejects_wrong_orders_and_shapes stdout ----
+
+thread 'policy::tests::policy_rejects_wrong_orders_and_shapes' (44588) panicked at ..\code\rust\src\governance\src\policy.rs:548:9:
+assertion failed: matches!(Policy::from_json(&swapped), Err(PolicyError::Field { field, .. }) if
+    field == "grade_order")
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (33212) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- buildtime::tests::new_mode_aborts_when_any_failure_is_new stdout ----
+
+thread 'buildtime::tests::new_mode_aborts_when_any_failure_is_new' (32236) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (8364) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (27240) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (45784) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (37260) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- buildtime::tests::missing_or_broken_policy stdout ----
+
+thread 'buildtime::tests::missing_or_broken_policy' (24956) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (4908) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (28460) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (30804) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (24092) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- tests::changed_bytes_lose_grandfathering stdout ----
+
+thread 'tests::changed_bytes_lose_grandfathering' (2032) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (16144) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- tests::malformed_companion_and_unreadable_source stdout ----
+
+thread 'tests::malformed_companion_and_unreadable_source' (37492) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- verify::tests::binding_mismatch_names_the_field stdout ----
+
+thread 'verify::tests::binding_mismatch_names_the_field' (46976) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (42916) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (22496) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- verify::tests::null_gate_is_incomplete stdout ----
+
+thread 'verify::tests::null_gate_is_incomplete' (25188) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (33292) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "schema_version", expected: "tfqm.governance-policy.v1" }
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    buildtime::tests::decide_respects_mode
+    buildtime::tests::missing_or_broken_policy
+    buildtime::tests::new_mode_aborts_when_any_failure_is_new
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+    policy::tests::baseline_round_trip_and_grandfathering
+    policy::tests::companion_naming_follows_collision_rule
+    policy::tests::policy_parses_floor_and_populations
+    policy::tests::policy_rejects_wrong_orders_and_shapes
+    repo::tests::git_population_changes_and_history
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::changed_bytes_lose_grandfathering
+    tests::malformed_companion_and_unreadable_source
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::binding_mismatch_names_the_field
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+    verify::tests::null_gate_is_incomplete
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 29 passed; 23 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+error: test failed, to rerun pass `--lib`

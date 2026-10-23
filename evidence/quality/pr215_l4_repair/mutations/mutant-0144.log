@@ -1,0 +1,111 @@
+
+running 52 tests
+.............................. 30/52
+tests::binding_and_completeness_are_both_reported --- FAILED
+. 32/52
+verify::tests::binding_mismatch_names_the_field --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+. 36/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+.. 40/52
+verify::tests::null_gate_is_incomplete --- FAILED
+. 42/52
+verify::tests::schema_failures_are_specific --- FAILED
+.... 47/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (9596) panicked at ..\code\rust\src\governance\src\lib.rs:353:9:
+assertion `left == right` failed: floor is not repeated when completeness fails
+  left: [Schema]
+ right: [Binding, Completeness]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- verify::tests::binding_mismatch_names_the_field stdout ----
+
+thread 'verify::tests::binding_mismatch_names_the_field' (23528) panicked at ..\code\rust\src\governance\src\verify.rs:382:9:
+code/x.contract.score.yaml: [SCHEMA] scoring_history[current].raw_utf8: expected bytes hashing to 28ad34c1f5831a215b303b33aa65ffad7b349b893a92902d155733fc36dfa8dd, found different bytes or length
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (39624) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Schema]
+ right: [Binding, Floor]
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (9656) panicked at ..\code\rust\src\governance\src\verify.rs:404:9:
+assertion `left == right` failed
+  left: Err(Schema { path: "code/x.contract.score.yaml", field: "scoring_history[current].raw_utf8", expected: "bytes hashing to abb1eef6ebfb0ea575c58f00357ea9df07f52b6fbcad3cf9ebecaf1c81c25f78", found: "different bytes or length" })
+ right: Ok(())
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (18480) panicked at ..\code\rust\src\governance\src\verify.rs:342:9:
+assertion `left == right` failed
+  left: Err(Schema { path: "code/x.contract.score.yaml", field: "scoring_history[current].raw_utf8", expected: "bytes hashing to 7771c4e94682264d307a1da5650629a263e0d6fa63625229edb7d1abb2cedd27", found: "different bytes or length" })
+ right: Ok(())
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (41752) panicked at ..\code\rust\src\governance\src\verify.rs:367:9:
+code/x.contract.score.yaml: [SCHEMA] scoring_history[current].raw_utf8: expected bytes hashing to e52a79fccab33acfbd8792d247c986eeebf8d00d662e00a16fca71de11a7f647, found different bytes or length
+
+---- verify::tests::null_gate_is_incomplete stdout ----
+
+thread 'verify::tests::null_gate_is_incomplete' (15228) panicked at ..\code\rust\src\governance\src\verify.rs:358:9:
+assertion `left == right` failed
+  left: Schema
+ right: Completeness
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (22740) panicked at ..\code\rust\src\governance\src\verify.rs:419:61:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (39148) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 0 pass, 0 grandfathered, 1 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.contract.score.yaml: [SCHEMA] scoring_history[current].raw_utf8: expected bytes hashing to a764e575e47f6b61e4c7223e706c1db14c105481e454577f39b5d646f4246037, found different bytes or length\n")
+ right: Ok(())
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (15316) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Schema { path: "code/t.rs.contract.score.yaml", field: "scoring_history[current].raw_utf8", expected: "bytes hashing to 5d14495579e6eeca84c7e535b0b7256b7df25d576a94a736f6aef4b15faf50dd", found: "different bytes or length" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (16448) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Fail([Schema { path: "code/a.contract.score.yaml", field: "scoring_history[current].raw_utf8", expected: "bytes hashing to fd29cd1ad3de5c85f36c9be9686524a5f9404a17397cf20c1e451b2ab58163ed", found: "different bytes or length" }])
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::binding_mismatch_names_the_field
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+    verify::tests::null_gate_is_incomplete
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 41 passed; 11 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.24s
+
+error: test failed, to rerun pass `--lib`

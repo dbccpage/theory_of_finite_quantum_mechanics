@@ -4,14 +4,14 @@
   "checked_at": "2026-10-23T12:00:00+00:00",
   "source_base": "4a1e551210459ca8b410fada1e8eddb75e7b052c",
   "source_commit": "7eb2b5d696eb93a0daa3fa7b4b929b5b672cd684",
-  "proof_boundary": "Finite non-locality of one supplied rooted tree dressing. The dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with trivial star labels give dressed chords 2 and 5. Smooth fields, topology, refinement limits, continuum patching and continuum dynamics are not proved. The node stays OPEN.",
+  "proof_boundary": "Arbitrary-group supplied rooted-path API with computed conservative edge footprint, agreement and changed-label certificates; original finite closed-star countermodel. No spanning-tree construction, minimal footprint or continuum result.",
   "lean_replay": {
     "lean_version": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)",
     "lake_version": "Lake 5.0.0-src+eb6cafb",
     "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
     "lakefile_sha256": "a4769c90d0c14c6da636ea307a3f3c276e45d2f8a072d7fa33a0dc5316be977b",
-    "command": "lake build CampaignDfmContinuumInterface",
-    "cwd": "lean4",
+    "command": "lake --no-cache -d lean4 build CampaignDfmContinuumInterface",
+    "cwd": ".",
     "library": "CampaignDfmContinuumInterface (non-default lean_lib)",
     "build_directory": "lean4/b (removed before commit)",
     "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed before commit)",
@@ -25,22 +25,52 @@
         "module": "CampaignDfmContinuumInterface",
         "dag_node": "DFM-CONTINUUM-INTERFACE",
         "source": "lean4/CampaignDfmContinuumInterface.lean",
-        "sha256": "251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d",
-        "hash_basis": "LF bytes of lean4/CampaignDfmContinuumInterface.lean; identical to the file compiled by lake build",
+        "sha256": "c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4",
+        "sha256_after_build": "c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4",
+        "source_unchanged_during_build": true,
         "exit_code": 0,
-        "admission_scan_passed": true,
         "axiom_audit_passed": true,
         "anchors": [
+          "CampaignDfmContinuumInterface.Dependency.transport_agrees",
+          "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_formula",
+          "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees",
+          "CampaignDfmContinuumInterface.Dependency.Plan.changed_label",
+          "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset",
+          "CampaignDfmContinuumInterface.witness_plan_evaluate",
+          "CampaignDfmContinuumInterface.outer_in_footprint",
           "CampaignDfmContinuumInterface.dressed_chord_formula",
           "CampaignDfmContinuumInterface.dressed_chord_witness",
           "CampaignDfmContinuumInterface.not_star_local",
           "CampaignDfmContinuumInterface.witness_star_agrees",
-          "CampaignDfmContinuumInterface.outer_misses_star",
           "CampaignDfmContinuumInterface.witness_two_five",
-          "CampaignDfmContinuumInterface.witness_two_ne_five"
+          "CampaignDfmContinuumInterface.witness_two_ne_five",
+          "CampaignDfmContinuumInterface.outer_misses_star"
         ],
         "anchors_reported": true,
         "axioms": {
+          "CampaignDfmContinuumInterface.Dependency.transport_agrees": [
+            "propext"
+          ],
+          "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_formula": [
+            "propext"
+          ],
+          "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees": [
+            "propext"
+          ],
+          "CampaignDfmContinuumInterface.Dependency.Plan.changed_label": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset": [
+            "propext"
+          ],
+          "CampaignDfmContinuumInterface.witness_plan_evaluate": [
+            "propext"
+          ],
+          "CampaignDfmContinuumInterface.outer_in_footprint": [
+            "propext"
+          ],
           "CampaignDfmContinuumInterface.dressed_chord_formula": [
             "propext"
           ],
@@ -53,7 +83,6 @@
           "CampaignDfmContinuumInterface.witness_star_agrees": [
             "propext"
           ],
-          "CampaignDfmContinuumInterface.outer_misses_star": [],
           "CampaignDfmContinuumInterface.witness_two_five": [
             "propext",
             "Quot.sound"
@@ -61,10 +90,76 @@
           "CampaignDfmContinuumInterface.witness_two_ne_five": [
             "propext",
             "Quot.sound"
-          ]
+          ],
+          "CampaignDfmContinuumInterface.outer_misses_star": []
         },
-        "output": "Build completed successfully. dressed_chord_formula, dressed_chord_witness, not_star_local and witness_star_agrees depend only on propext. outer_misses_star depends on no axioms. witness_two_five and witness_two_ne_five depend on propext and Quot.sound. No sorry, admit, axiom declaration, native_decide or unsafe."
+        "stdout": "\u26a0 [766/768] Built FiniteGraphDressing (19s)\nwarning: FiniteGraphDressing.lean: imports `Mathlib.Algebra.Group.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: FiniteGraphDressing.lean: imports `Mathlib.Tactic.Group` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: FiniteGraphDressing.lean:134:0: 'FiniteGraphDressing.neutralizable_iff_closed_walks' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:135:0: 'FiniteGraphDressing.neutralizable_iff_closed_walks_forest' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:136:0: 'FiniteGraphDressing.tree_dressing_iff' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:137:0: 'FiniteGraphDressing.change_dressing' depends on axioms: [propext]\ninfo: FiniteGraphDressing.lean:138:0: 'FiniteGraphDressing.neutralizers_constant' depends on axioms: [propext]\n\u26a0 [767/768] Built CampaignDfmContinuumInterface (9.0s)\nwarning: CampaignDfmContinuumInterface.lean: imports `Mathlib.Algebra.Group.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmContinuumInterface.lean: imports `Mathlib.Algebra.Group.TypeTags.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmContinuumInterface.lean: imports `Mathlib.Tactic.Group` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignDfmContinuumInterface.lean:83:2: `push_neg` has been deprecated. Prefer using `push Not` instead.\nIf you'd rather continue using `push_neg` in your project, you can implement it as follows:\n```\nopen Lean.Parser.Tactic in\nmacro \"push_neg\" cfg:optConfig loc:(location)? : tactic =>\n  `(tactic| push $cfg:optConfig Not $[$loc]?)\n```\ninfo: CampaignDfmContinuumInterface.lean:237:0: 'CampaignDfmContinuumInterface.Dependency.transport_agrees' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:238:0: 'CampaignDfmContinuumInterface.Dependency.Plan.evaluate_formula' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:239:0: 'CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:240:0: 'CampaignDfmContinuumInterface.Dependency.Plan.changed_label' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignDfmContinuumInterface.lean:241:0: 'CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:242:0: 'CampaignDfmContinuumInterface.witness_plan_evaluate' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:243:0: 'CampaignDfmContinuumInterface.outer_in_footprint' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:244:0: 'CampaignDfmContinuumInterface.dressed_chord_formula' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:245:0: 'CampaignDfmContinuumInterface.dressed_chord_witness' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:246:0: 'CampaignDfmContinuumInterface.not_star_local' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:247:0: 'CampaignDfmContinuumInterface.witness_star_agrees' depends on axioms: [propext]\ninfo: CampaignDfmContinuumInterface.lean:248:0: 'CampaignDfmContinuumInterface.outer_misses_star' does not depend on any axioms\ninfo: CampaignDfmContinuumInterface.lean:249:0: 'CampaignDfmContinuumInterface.witness_two_five' depends on axioms: [propext, Quot.sound]\ninfo: CampaignDfmContinuumInterface.lean:250:0: 'CampaignDfmContinuumInterface.witness_two_ne_five' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (768 jobs).\n",
+        "stderr": ""
       }
     ]
-  }
+  },
+  "historical_replays": [
+    {
+      "lean_version": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)",
+      "lake_version": "Lake 5.0.0-src+eb6cafb",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "a4769c90d0c14c6da636ea307a3f3c276e45d2f8a072d7fa33a0dc5316be977b",
+      "command": "lake build CampaignDfmContinuumInterface",
+      "cwd": "lean4",
+      "library": "CampaignDfmContinuumInterface (non-default lean_lib)",
+      "build_directory": "lean4/b (removed before commit)",
+      "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed before commit)",
+      "allowed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "results": [
+        {
+          "module": "CampaignDfmContinuumInterface",
+          "dag_node": "DFM-CONTINUUM-INTERFACE",
+          "source": "lean4/CampaignDfmContinuumInterface.lean",
+          "sha256": "251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d",
+          "hash_basis": "LF bytes of lean4/CampaignDfmContinuumInterface.lean; identical to the file compiled by lake build",
+          "exit_code": 0,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignDfmContinuumInterface.dressed_chord_formula",
+            "CampaignDfmContinuumInterface.dressed_chord_witness",
+            "CampaignDfmContinuumInterface.not_star_local",
+            "CampaignDfmContinuumInterface.witness_star_agrees",
+            "CampaignDfmContinuumInterface.outer_misses_star",
+            "CampaignDfmContinuumInterface.witness_two_five",
+            "CampaignDfmContinuumInterface.witness_two_ne_five"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignDfmContinuumInterface.dressed_chord_formula": [
+              "propext"
+            ],
+            "CampaignDfmContinuumInterface.dressed_chord_witness": [
+              "propext"
+            ],
+            "CampaignDfmContinuumInterface.not_star_local": [
+              "propext"
+            ],
+            "CampaignDfmContinuumInterface.witness_star_agrees": [
+              "propext"
+            ],
+            "CampaignDfmContinuumInterface.outer_misses_star": [],
+            "CampaignDfmContinuumInterface.witness_two_five": [
+              "propext",
+              "Quot.sound"
+            ],
+            "CampaignDfmContinuumInterface.witness_two_ne_five": [
+              "propext",
+              "Quot.sound"
+            ]
+          },
+          "output": "Build completed successfully. dressed_chord_formula, dressed_chord_witness, not_star_local and witness_star_agrees depend only on propext. outer_misses_star depends on no axioms. witness_two_five and witness_two_ne_five depend on propext and Quot.sound. No sorry, admit, axiom declaration, native_decide or unsafe."
+        }
+      ]
+    }
+  ]
 }

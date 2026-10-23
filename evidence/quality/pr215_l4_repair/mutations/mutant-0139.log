@@ -1,0 +1,50 @@
+
+running 52 tests
+...................... 22/52
+score::tests::floor_cases --- FAILED
+.... 27/52
+score::tests::completion_boundary_exhausts_every_gate_assignment --- FAILED
+.... 32/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+.............. 47/52
+tests::twin_sources_use_qualified_companions --- FAILED
+....
+failures:
+
+---- score::tests::floor_cases stdout ----
+
+thread 'score::tests::floor_cases' (14268) panicked at ..\code\rust\src\governance\src\score.rs:532:9:
+assertion failed: floor.admits(t("L4D"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- score::tests::completion_boundary_exhausts_every_gate_assignment stdout ----
+
+thread 'score::tests::completion_boundary_exhausts_every_gate_assignment' (36744) panicked at ..\code\rust\src\governance\src\score.rs:568:13:
+assertion `left == right` failed
+  left: false
+ right: true
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (42292) panicked at ..\code\rust\src\governance\src\verify.rs:342:9:
+assertion `left == right` failed
+  left: Err(Floor { path: "code/x.contract.score.yaml", expected: "a completed token with level >= L4 and grade >= D", found: "L4D" })
+ right: Ok(())
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (15048) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Floor { path: "code/t.rs.contract.score.yaml", expected: "a completed token with level >= L4 and grade >= D", found: "L4D" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+
+failures:
+    score::tests::completion_boundary_exhausts_every_gate_assignment
+    score::tests::floor_cases
+    tests::twin_sources_use_qualified_companions
+    verify::tests::floor_pass_and_fail_cases
+
+test result: FAILED. 48 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.40s
+
+error: test failed, to rerun pass `--lib`

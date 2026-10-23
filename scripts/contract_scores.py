@@ -327,6 +327,44 @@ def migrate(apply: bool = False) -> None:
     print("All original bytes verified; legacy files removed.", flush=True)
 
 
+def verify_history(document: dict[str, Any], name: str, versions: dict[tuple[str, str, str], int]) -> None:
+    """Verify stored original bytes before using their readable history records."""
+    for history in ("contract_history", "scoring_history"):
+        seen = set()
+        for entry in document[history]:
+            raw = entry["raw_utf8"].encode("utf-8")
+            if entry["sha256"] in seen:
+                raise ValueError("Duplicate history version")
+            seen.add(entry["sha256"])
+            if sha(raw) != entry["sha256"] or len(raw) != entry["bytes"]:
+                raise ValueError("Corrupt history bytes")
+            if json.dumps(parse(raw.decode("utf-8")), sort_keys=True) != json.dumps(entry["record"], sort_keys=True):
+                raise ValueError("Readable record differs from original bytes")
+            for alias in entry["original_paths"]:
+                versions[(name, alias, entry["sha256"])] = len(raw)
+
+
+def changed_companions(changed: set[str], targets: set[str], errors: list[dict[str, str]]) -> set[str]:
+    """Select affected companions and report missing non-exempt sources."""
+    scope = load_scope_module()
+    wanted = set()
+    for name in changed:
+        if name.endswith(SUFFIX) and (ROOT / name).is_file():
+            wanted.add(name.replace("\\", "/"))
+    for source in scope.sources_in_change(changed):
+        source_name = scope.rel(source)
+        companion = scope.rel(scope.companion_for(source))
+        if source_name not in changed and companion not in changed:
+            continue
+        if (ROOT / companion).is_file():
+            wanted.add(companion)
+        elif not scope.exempt_without_companion(source_name, sha(source.read_bytes())):
+            errors.append({"path": source_name, "error": "missing companion"})
+    targets = {name for name in targets if name in wanted}
+    targets.update(name for name in wanted if (ROOT / name).is_file())
+    return targets
+
+
 def check(changed: set[str] | None = None) -> None:
     """Verify companion history.
 
@@ -340,40 +378,13 @@ def check(changed: set[str] | None = None) -> None:
         if name.endswith(SUFFIX):
             targets.add(name)
     if changed is not None:
-        scope = load_scope_module()
-        wanted = set()
-        for name in changed:
-            if name.endswith(SUFFIX) and (ROOT / name).is_file():
-                wanted.add(name.replace("\\", "/"))
-        for source in scope.sources_in_change(changed):
-            source_name = scope.rel(source)
-            companion = scope.rel(scope.companion_for(source))
-            if source_name not in changed and companion not in changed:
-                continue
-            if (ROOT / companion).is_file():
-                wanted.add(companion)
-            elif not scope.exempt_without_companion(source_name, sha(source.read_bytes())):
-                errors.append({"path": source_name, "error": "missing companion"})
-        targets = {name for name in targets if name in wanted}
-        targets.update(name for name in wanted if (ROOT / name).is_file())
+        targets = changed_companions(changed, targets, errors)
     for name in sorted(targets):
         try:
             target = (ROOT / name).resolve()
             target.relative_to(ROOT)
             document = load(target)
-            for history in ("contract_history", "scoring_history"):
-                seen = set()
-                for entry in document[history]:
-                    raw = entry["raw_utf8"].encode("utf-8")
-                    if entry["sha256"] in seen:
-                        raise ValueError("Duplicate history version")
-                    seen.add(entry["sha256"])
-                    if sha(raw) != entry["sha256"] or len(raw) != entry["bytes"]:
-                        raise ValueError("Corrupt history bytes")
-                    if json.dumps(parse(raw.decode("utf-8")), sort_keys=True) != json.dumps(entry["record"], sort_keys=True):
-                        raise ValueError("Readable record differs from original bytes")
-                    for alias in entry["original_paths"]:
-                        versions[(name, alias, entry["sha256"])] = len(raw)
+            verify_history(document, name, versions)
             contracts = {e["sha256"]: e["record"] for e in document["contract_history"]}
             if document["contract"] != contracts.get(document["current_contract"]):
                 raise ValueError("Current contract view differs from history")

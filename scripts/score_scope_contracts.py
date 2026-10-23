@@ -504,6 +504,8 @@ def validate_document(document: Dict[str, Any], source_name: str, source_digest:
         current_error = valid_current_entry(entry)
         if current_error:
             raise ValueError(kind + " " + current_error)
+    if c_entry is None or s_entry is None:
+        raise ValueError("missing current history entry")
     contract = document.get("contract")
     if contract != c_entry.get("record"):
         raise ValueError("current contract view differs from current history")

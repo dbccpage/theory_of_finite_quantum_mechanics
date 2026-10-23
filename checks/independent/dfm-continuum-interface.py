@@ -11,6 +11,7 @@ Exits 0 on success.
 from __future__ import annotations
 
 from collections.abc import Sequence
+from itertools import product
 import sympy as sp  # type: ignore[import-untyped]  # SymPy does not ship typing metadata.
 
 
@@ -150,7 +151,60 @@ def check_star_enumeration() -> None:
     print(f"  star: {star}")
 
 
+
+# All words are valid walks on a one-vertex graph with named loop edges.
+SignedPath = tuple[tuple[str, int], ...]
+
+
+def path_transport(labels: dict[str, sp.Matrix], path: SignedPath) -> sp.Matrix:
+    value = eye()
+    for edge, sign in path:
+        if sign not in (-1, 1) or type(sign) is not int:
+            raise ValueError("orientation must be integer +1 or -1")
+        if edge not in labels:
+            raise ValueError("unknown edge")
+        factor = labels[edge] if sign == 1 else labels[edge].inv()
+        value = factor * value
+    return value
+
+
+def footprint(path: SignedPath) -> set[str]:
+    return {edge for edge, _ in path}
+
+
+def check_path_laws(path: SignedPath, labels: dict[str, sp.Matrix]) -> None:
+    result = path_transport(labels, path)
+    rev = tuple((e, -sign) for e, sign in reversed(path))
+    require(path_transport(labels, rev) == result.inv(), "reverse transport")
+    changed = dict(labels)
+    changed["outside"] = mat([[1, 7], [0, 1]])
+    require(path_transport(changed, path) == result, "outside footprint stability")
+    changed["x"] = mat([[1, 2], [0, 1]])
+    other = path_transport(changed, path)
+    if result != other:
+        require(any(labels[e] != changed[e] for e in footprint(path)), "changed-label certificate")
+    for suffix in ((), (("x", 1),), (("y", -1),)):
+        require(path_transport(labels, path + suffix) == path_transport(labels, suffix) * result,
+                "append transport order")
+
+
+def check_general_dependencies() -> None:
+    labels = {"x": mat([[1, 1], [0, 1]]), "y": mat([[1, 0], [1, 1]]), "outside": eye()}
+    letters = (("x", 1), ("x", -1), ("y", 1), ("y", -1))
+    paths = [tuple(word) for n in range(4) for word in product(letters, repeat=n)]
+    for path in paths:
+        check_path_laws(path, labels)
+    for invalid in ((("x", 0),), (("x", True),), (("missing", 1),)):
+        try:
+            path_transport(labels, invalid)
+        except ValueError:
+            continue
+        raise AssertionError("invalid signed path admitted")
+    print(f"dependency API: {len(paths)} loop words, {3 * len(paths)} append cases; 3 invalid paths refused")
+
+
 def main() -> int:
+    check_general_dependencies()
     check_additive()
     check_identity_matrices()
     check_noncommutative_order()
