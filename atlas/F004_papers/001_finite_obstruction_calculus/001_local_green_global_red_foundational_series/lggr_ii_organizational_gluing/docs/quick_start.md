@@ -7,7 +7,7 @@ Run every command from the package root unless the command changes directory.
 
 ## Python
 
-The project supports Python 3.10 or later; this release lock was resolved and
+The project supports Python 3.11 or later; this release lock was resolved and
 verified with Python 3.12. Use the checked-in `uv.lock` without re-resolving it:
 
 ```bash

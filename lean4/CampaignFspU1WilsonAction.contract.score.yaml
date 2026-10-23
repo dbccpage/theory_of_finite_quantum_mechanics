@@ -26,11 +26,15 @@
       },
       {
         "path": "dag/research/campaign_fsp-u1-wilson-action_independent.json",
-        "sha256": "4884af83fbbf04fdfb827f9cca374399b9f7ab04035fb61f5b32baa42dbb6220"
+        "sha256": "092f820d03fc02aa5c97519a536625201028c3312f6ac4c684aaaaacd84a6e42"
       },
       {
         "path": "dag/derivations/independent/fsp-u1-wilson-action.md",
         "sha256": "d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957"
+      },
+      {
+        "path": "dag/research/pr247_independent_validation.json",
+        "sha256": "a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20"
       }
     ],
     "inputs": [
@@ -392,10 +396,190 @@
         ]
       },
       "sha256": "6d2f2dd0772f2e1924acda50e23bf543dfc7fe19cfeb392b10a91293547a5772"
+    },
+    {
+      "sha256": "b6688b3848ae1ceb8ac82ce307392a2a04328343876f313f37ead3393d02d9be",
+      "bytes": 3519,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspU1WilsonAction.lean",
+          "sha256": "5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0"
+        },
+        "boundaries": [
+          "Links are functions of ordered vertex pairs; for L <= 2 on (ZMod L)^d parallel links are identified.",
+          "No fermion-sign consequence, non-abelian action, reflection positivity, transfer matrix or continuum limit.",
+          "Status change of FSP-U1-WILSON-ACTION is subject to maintainer review of the statement-vs-theorem table."
+        ],
+        "contract_id": "campaign-fsp-u1-wilson-action",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json",
+            "sha256": "a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_independent.json",
+            "sha256": "f3efe4c498bb1ba911c1f476e0897a35a3a9485e6665e8bcfd47a0e74234bb94"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-u1-wilson-action.md",
+            "sha256": "d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c"
+          }
+        ],
+        "inputs": [
+          "Vertex type V; group or commutative group G (Circle for the action); link field V -> V -> G; gauge function V -> G; finite plaquette index type with closed paths; real coupling beta; real angles."
+        ],
+        "outputs": [
+          "Gauged link field, path and closed-path holonomy, Wilson action value, and theorems about them."
+        ],
+        "owned_invariants": [
+          "Holonomy covariance H(gU) = g(start) H(U) g(end)^-1 in every group.",
+          "Closed-path holonomy and the Wilson action are gauge invariant for U(1).",
+          "S >= 0 for beta >= 0; S = 0 iff every plaquette holonomy is 1 for beta > 0; beta >= 0 cannot be dropped.",
+          "Angle shift A_ab + theta_a - theta_b equals the gauge action of exp(i theta)."
+        ],
+        "purpose": "Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "gaugeAct",
+          "holonomy",
+          "endpoint",
+          "ClosedPath",
+          "loopHolonomy",
+          "wilsonAction",
+          "linkOfAngle",
+          "gaugeAngle",
+          "pathAngle",
+          "plaquette",
+          "hypercubicWilson",
+          "holonomy_gaugeAct",
+          "loopHolonomy_gaugeAct_conj",
+          "loopHolonomy_gaugeAct",
+          "gaugeAct_one",
+          "gaugeAct_gaugeAct",
+          "gaugeAct_reversal",
+          "wilsonAction_gauge_invariant",
+          "one_sub_re_nonneg",
+          "re_eq_one_iff",
+          "wilsonAction_nonneg",
+          "wilsonAction_eq_zero_iff",
+          "wilsonAction_negative_beta_witness",
+          "wilsonAction_nonneg_needs_beta",
+          "linkOfAngle_gaugeAngle",
+          "holonomy_linkOfAngle",
+          "wilsonAction_linkOfAngle",
+          "fsp_u1_wilson_action",
+          "hypercubicWilson_gauge_invariant",
+          "hypercubicWilson_nonneg"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspU1WilsonAction.lean\",\n    \"sha256\": \"5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0\"\n  },\n  \"boundaries\": [\n    \"Links are functions of ordered vertex pairs; for L <= 2 on (ZMod L)^d parallel links are identified.\",\n    \"No fermion-sign consequence, non-abelian action, reflection positivity, transfer matrix or continuum limit.\",\n    \"Status change of FSP-U1-WILSON-ACTION is subject to maintainer review of the statement-vs-theorem table.\"\n  ],\n  \"contract_id\": \"campaign-fsp-u1-wilson-action\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json\",\n      \"sha256\": \"a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_independent.json\",\n      \"sha256\": \"f3efe4c498bb1ba911c1f476e0897a35a3a9485e6665e8bcfd47a0e74234bb94\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-u1-wilson-action.md\",\n      \"sha256\": \"d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c\"\n    }\n  ],\n  \"inputs\": [\n    \"Vertex type V; group or commutative group G (Circle for the action); link field V -> V -> G; gauge function V -> G; finite plaquette index type with closed paths; real coupling beta; real angles.\"\n  ],\n  \"outputs\": [\n    \"Gauged link field, path and closed-path holonomy, Wilson action value, and theorems about them.\"\n  ],\n  \"owned_invariants\": [\n    \"Holonomy covariance H(gU) = g(start) H(U) g(end)^-1 in every group.\",\n    \"Closed-path holonomy and the Wilson action are gauge invariant for U(1).\",\n    \"S >= 0 for beta >= 0; S = 0 iff every plaquette holonomy is 1 for beta > 0; beta >= 0 cannot be dropped.\",\n    \"Angle shift A_ab + theta_a - theta_b equals the gauge action of exp(i theta).\"\n  ],\n  \"purpose\": \"Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"gaugeAct\",\n    \"holonomy\",\n    \"endpoint\",\n    \"ClosedPath\",\n    \"loopHolonomy\",\n    \"wilsonAction\",\n    \"linkOfAngle\",\n    \"gaugeAngle\",\n    \"pathAngle\",\n    \"plaquette\",\n    \"hypercubicWilson\",\n    \"holonomy_gaugeAct\",\n    \"loopHolonomy_gaugeAct_conj\",\n    \"loopHolonomy_gaugeAct\",\n    \"gaugeAct_one\",\n    \"gaugeAct_gaugeAct\",\n    \"gaugeAct_reversal\",\n    \"wilsonAction_gauge_invariant\",\n    \"one_sub_re_nonneg\",\n    \"re_eq_one_iff\",\n    \"wilsonAction_nonneg\",\n    \"wilsonAction_eq_zero_iff\",\n    \"wilsonAction_negative_beta_witness\",\n    \"wilsonAction_nonneg_needs_beta\",\n    \"linkOfAngle_gaugeAngle\",\n    \"holonomy_linkOfAngle\",\n    \"wilsonAction_linkOfAngle\",\n    \"fsp_u1_wilson_action\",\n    \"hypercubicWilson_gauge_invariant\",\n    \"hypercubicWilson_nonneg\"\n  ]\n}\n",
+      "original_paths": [
+        "lean4/CampaignFspU1WilsonAction.contract.score.yaml#pr247-independent-review"
+      ]
+    },
+    {
+      "sha256": "f1ec1ad4ffcf253c2161a00be3b1553dea76e3b8b275895af171388e20185bc2",
+      "bytes": 3519,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspU1WilsonAction.lean",
+          "sha256": "5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0"
+        },
+        "boundaries": [
+          "Links are functions of ordered vertex pairs; for L <= 2 on (ZMod L)^d parallel links are identified.",
+          "No fermion-sign consequence, non-abelian action, reflection positivity, transfer matrix or continuum limit.",
+          "Status change of FSP-U1-WILSON-ACTION is subject to maintainer review of the statement-vs-theorem table."
+        ],
+        "contract_id": "campaign-fsp-u1-wilson-action",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json",
+            "sha256": "a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_independent.json",
+            "sha256": "092f820d03fc02aa5c97519a536625201028c3312f6ac4c684aaaaacd84a6e42"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-u1-wilson-action.md",
+            "sha256": "d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20"
+          }
+        ],
+        "inputs": [
+          "Vertex type V; group or commutative group G (Circle for the action); link field V -> V -> G; gauge function V -> G; finite plaquette index type with closed paths; real coupling beta; real angles."
+        ],
+        "outputs": [
+          "Gauged link field, path and closed-path holonomy, Wilson action value, and theorems about them."
+        ],
+        "owned_invariants": [
+          "Holonomy covariance H(gU) = g(start) H(U) g(end)^-1 in every group.",
+          "Closed-path holonomy and the Wilson action are gauge invariant for U(1).",
+          "S >= 0 for beta >= 0; S = 0 iff every plaquette holonomy is 1 for beta > 0; beta >= 0 cannot be dropped.",
+          "Angle shift A_ab + theta_a - theta_b equals the gauge action of exp(i theta)."
+        ],
+        "purpose": "Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "gaugeAct",
+          "holonomy",
+          "endpoint",
+          "ClosedPath",
+          "loopHolonomy",
+          "wilsonAction",
+          "linkOfAngle",
+          "gaugeAngle",
+          "pathAngle",
+          "plaquette",
+          "hypercubicWilson",
+          "holonomy_gaugeAct",
+          "loopHolonomy_gaugeAct_conj",
+          "loopHolonomy_gaugeAct",
+          "gaugeAct_one",
+          "gaugeAct_gaugeAct",
+          "gaugeAct_reversal",
+          "wilsonAction_gauge_invariant",
+          "one_sub_re_nonneg",
+          "re_eq_one_iff",
+          "wilsonAction_nonneg",
+          "wilsonAction_eq_zero_iff",
+          "wilsonAction_negative_beta_witness",
+          "wilsonAction_nonneg_needs_beta",
+          "linkOfAngle_gaugeAngle",
+          "holonomy_linkOfAngle",
+          "wilsonAction_linkOfAngle",
+          "fsp_u1_wilson_action",
+          "hypercubicWilson_gauge_invariant",
+          "hypercubicWilson_nonneg"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspU1WilsonAction.lean\",\n    \"sha256\": \"5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0\"\n  },\n  \"boundaries\": [\n    \"Links are functions of ordered vertex pairs; for L <= 2 on (ZMod L)^d parallel links are identified.\",\n    \"No fermion-sign consequence, non-abelian action, reflection positivity, transfer matrix or continuum limit.\",\n    \"Status change of FSP-U1-WILSON-ACTION is subject to maintainer review of the statement-vs-theorem table.\"\n  ],\n  \"contract_id\": \"campaign-fsp-u1-wilson-action\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json\",\n      \"sha256\": \"a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_independent.json\",\n      \"sha256\": \"092f820d03fc02aa5c97519a536625201028c3312f6ac4c684aaaaacd84a6e42\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-u1-wilson-action.md\",\n      \"sha256\": \"d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20\"\n    }\n  ],\n  \"inputs\": [\n    \"Vertex type V; group or commutative group G (Circle for the action); link field V -> V -> G; gauge function V -> G; finite plaquette index type with closed paths; real coupling beta; real angles.\"\n  ],\n  \"outputs\": [\n    \"Gauged link field, path and closed-path holonomy, Wilson action value, and theorems about them.\"\n  ],\n  \"owned_invariants\": [\n    \"Holonomy covariance H(gU) = g(start) H(U) g(end)^-1 in every group.\",\n    \"Closed-path holonomy and the Wilson action are gauge invariant for U(1).\",\n    \"S >= 0 for beta >= 0; S = 0 iff every plaquette holonomy is 1 for beta > 0; beta >= 0 cannot be dropped.\",\n    \"Angle shift A_ab + theta_a - theta_b equals the gauge action of exp(i theta).\"\n  ],\n  \"purpose\": \"Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"gaugeAct\",\n    \"holonomy\",\n    \"endpoint\",\n    \"ClosedPath\",\n    \"loopHolonomy\",\n    \"wilsonAction\",\n    \"linkOfAngle\",\n    \"gaugeAngle\",\n    \"pathAngle\",\n    \"plaquette\",\n    \"hypercubicWilson\",\n    \"holonomy_gaugeAct\",\n    \"loopHolonomy_gaugeAct_conj\",\n    \"loopHolonomy_gaugeAct\",\n    \"gaugeAct_one\",\n    \"gaugeAct_gaugeAct\",\n    \"gaugeAct_reversal\",\n    \"wilsonAction_gauge_invariant\",\n    \"one_sub_re_nonneg\",\n    \"re_eq_one_iff\",\n    \"wilsonAction_nonneg\",\n    \"wilsonAction_eq_zero_iff\",\n    \"wilsonAction_negative_beta_witness\",\n    \"wilsonAction_nonneg_needs_beta\",\n    \"linkOfAngle_gaugeAngle\",\n    \"holonomy_linkOfAngle\",\n    \"wilsonAction_linkOfAngle\",\n    \"fsp_u1_wilson_action\",\n    \"hypercubicWilson_gauge_invariant\",\n    \"hypercubicWilson_nonneg\"\n  ]\n}\n",
+      "original_paths": [
+        "lean4/CampaignFspU1WilsonAction.contract.score.yaml#pr247-sampling-doc-review"
+      ]
     }
   ],
-  "current_contract": "6d2f2dd0772f2e1924acda50e23bf543dfc7fe19cfeb392b10a91293547a5772",
-  "current_scoring": "87861648c13010260419262ccbb7e24035549230e597961c8e671a6f1a7c6bd1",
+  "current_contract": "f1ec1ad4ffcf253c2161a00be3b1553dea76e3b8b275895af171388e20185bc2",
+  "current_scoring": "f6ba0c492e240604c62e7b063aadf72a6bd46b8543ec70fd99c5461e276a1a8b",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -606,6 +790,154 @@
         "support_exception": false
       },
       "sha256": "87861648c13010260419262ccbb7e24035549230e597961c8e671a6f1a7c6bd1"
+    },
+    {
+      "sha256": "12b69380927b974e02169b3f7ea8e0c054940a5f99e153daf4c65bcd131e1e87",
+      "bytes": 3635,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspU1WilsonAction.lean",
+          "sha256": "5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0"
+        },
+        "assessment_id": "pr247-independent-review",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Each claim of the narrowed node statement maps to a named declaration; fsp_u1_wilson_action states the full narrowed claim. The table is in docs/overclaim/reviews/2026-10-23_campaign-fsp-u1-wilson-action-precommit.md. Self-assessed; no independent human review yet.",
+          "G2": "Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.",
+          "G3": "No sorry, admit, axiom, native_decide or unsafe. Hypotheses are explicit (beta >= 0, beta > 0, closedness as a structure field); the necessity of beta >= 0 is a theorem. Empty paths and the one-vertex self-loop are handled.",
+          "G4": "Eight one-ingredient Lean mutants, all rejected by lake env lean (two consistent mutants kill through theorems, not restated definitions). The independent check includes 20 single-link non-gauge rotations and a wrong gauge rule, all detected. Not an exhaustive mutation campaign.",
+          "G5": "One module of about 320 lines in sections: group layer, commutative layer, Wilson action, angle form, hypercubic instance. Short proofs by induction and rewriting; no performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T20:37:59.230119+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json",
+            "sha256": "a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_independent.json",
+            "sha256": "f3efe4c498bb1ba911c1f476e0897a35a3a9485e6665e8bcfd47a0e74234bb94"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-u1-wilson-action.md",
+            "sha256": "d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.",
+        "open_higher_grade_findings": [
+          "No independent human review of the statement-vs-theorem table.",
+          "Vertex-pair link model only; no multigraph links and no non-abelian action.",
+          "Mutation set is selected, not exhaustive.",
+          "Six module-system import warnings remain; no warning-free build is claimed."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspU1WilsonAction.lean\",\n    \"sha256\": \"5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0\"\n  },\n  \"assessment_id\": \"pr247-independent-review\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Each claim of the narrowed node statement maps to a named declaration; fsp_u1_wilson_action states the full narrowed claim. The table is in docs/overclaim/reviews/2026-10-23_campaign-fsp-u1-wilson-action-precommit.md. Self-assessed; no independent human review yet.\",\n    \"G2\": \"Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.\",\n    \"G3\": \"No sorry, admit, axiom, native_decide or unsafe. Hypotheses are explicit (beta >= 0, beta > 0, closedness as a structure field); the necessity of beta >= 0 is a theorem. Empty paths and the one-vertex self-loop are handled.\",\n    \"G4\": \"Eight one-ingredient Lean mutants, all rejected by lake env lean (two consistent mutants kill through theorems, not restated definitions). The independent check includes 20 single-link non-gauge rotations and a wrong gauge rule, all detected. Not an exhaustive mutation campaign.\",\n    \"G5\": \"One module of about 320 lines in sections: group layer, commutative layer, Wilson action, angle form, hypercubic instance. Short proofs by induction and rewriting; no performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T20:37:59.230119+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json\",\n      \"sha256\": \"a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_independent.json\",\n      \"sha256\": \"f3efe4c498bb1ba911c1f476e0897a35a3a9485e6665e8bcfd47a0e74234bb94\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-u1-wilson-action.md\",\n      \"sha256\": \"d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.\",\n  \"open_higher_grade_findings\": [\n    \"No independent human review of the statement-vs-theorem table.\",\n    \"Vertex-pair link model only; no multigraph links and no non-abelian action.\",\n    \"Mutation set is selected, not exhaustive.\",\n    \"Six module-system import warnings remain; no warning-free build is claimed.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "lean4/CampaignFspU1WilsonAction.contract.score.yaml#pr247-independent-review"
+      ]
+    },
+    {
+      "sha256": "f6ba0c492e240604c62e7b063aadf72a6bd46b8543ec70fd99c5461e276a1a8b",
+      "bytes": 3635,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspU1WilsonAction.lean",
+          "sha256": "5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0"
+        },
+        "assessment_id": "pr247-independent-review",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Each claim of the narrowed node statement maps to a named declaration; fsp_u1_wilson_action states the full narrowed claim. The table is in docs/overclaim/reviews/2026-10-23_campaign-fsp-u1-wilson-action-precommit.md. Self-assessed; no independent human review yet.",
+          "G2": "Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.",
+          "G3": "No sorry, admit, axiom, native_decide or unsafe. Hypotheses are explicit (beta >= 0, beta > 0, closedness as a structure field); the necessity of beta >= 0 is a theorem. Empty paths and the one-vertex self-loop are handled.",
+          "G4": "Eight one-ingredient Lean mutants, all rejected by lake env lean (two consistent mutants kill through theorems, not restated definitions). The independent check includes 20 single-link non-gauge rotations and a wrong gauge rule, all detected. Not an exhaustive mutation campaign.",
+          "G5": "One module of about 320 lines in sections: group layer, commutative layer, Wilson action, angle form, hypercubic instance. Short proofs by induction and rewriting; no performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T20:37:59.230119+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json",
+            "sha256": "a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a"
+          },
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_independent.json",
+            "sha256": "092f820d03fc02aa5c97519a536625201028c3312f6ac4c684aaaaacd84a6e42"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-u1-wilson-action.md",
+            "sha256": "d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.",
+        "open_higher_grade_findings": [
+          "No independent human review of the statement-vs-theorem table.",
+          "Vertex-pair link model only; no multigraph links and no non-abelian action.",
+          "Mutation set is selected, not exhaustive.",
+          "Six module-system import warnings remain; no warning-free build is claimed."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspU1WilsonAction.lean\",\n    \"sha256\": \"5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0\"\n  },\n  \"assessment_id\": \"pr247-independent-review\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Each claim of the narrowed node statement maps to a named declaration; fsp_u1_wilson_action states the full narrowed claim. The table is in docs/overclaim/reviews/2026-10-23_campaign-fsp-u1-wilson-action-precommit.md. Self-assessed; no independent human review yet.\",\n    \"G2\": \"Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.\",\n    \"G3\": \"No sorry, admit, axiom, native_decide or unsafe. Hypotheses are explicit (beta >= 0, beta > 0, closedness as a structure field); the necessity of beta >= 0 is a theorem. Empty paths and the one-vertex self-loop are handled.\",\n    \"G4\": \"Eight one-ingredient Lean mutants, all rejected by lake env lean (two consistent mutants kill through theorems, not restated definitions). The independent check includes 20 single-link non-gauge rotations and a wrong gauge rule, all detected. Not an exhaustive mutation campaign.\",\n    \"G5\": \"One module of about 320 lines in sections: group layer, commutative layer, Wilson action, angle form, hypercubic instance. Short proofs by induction and rewriting; no performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T20:37:59.230119+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json\",\n      \"sha256\": \"a33a1dbc6a57eca73c490bb7430c8471c2e9fe83f202c7344c86429af5d6792a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_independent.json\",\n      \"sha256\": \"092f820d03fc02aa5c97519a536625201028c3312f6ac4c684aaaaacd84a6e42\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-u1-wilson-action.md\",\n      \"sha256\": \"d0c1b888b6261efa44ab3b452f77664ae6198b43b2792c4cdc20fa02e89d9957\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Typed API for lattice U(1) gauge theory on any vertex type: gauge action on link fields over a group with unit, composition and orientation-reversal laws; path holonomy and its gauge covariance; closed-path conjugation (any group) and invariance (commutative group); the Wilson action on a finite plaquette family with gauge invariance, nonnegativity for beta >= 0, the flatness criterion and a beta < 0 witness; the angle form; the periodic hypercubic plaquettes.\",\n  \"open_higher_grade_findings\": [\n    \"No independent human review of the statement-vs-theorem table.\",\n    \"Vertex-pair link model only; no multigraph links and no non-abelian action.\",\n    \"Mutation set is selected, not exhaustive.\",\n    \"Six module-system import warnings remain; no warning-free build is claimed.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "lean4/CampaignFspU1WilsonAction.contract.score.yaml#pr247-sampling-doc-review"
+      ]
     }
   ]
 }

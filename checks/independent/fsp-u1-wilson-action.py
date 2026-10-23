@@ -9,7 +9,7 @@ U(1) link fields and local gauge transformations from scratch and recomputes the
 Wilson action S = beta * sum_p (1 - Re U_p) with exact arithmetic:
 
 * unit complex numbers with rational coordinates, z(t) = ((1 - t^2) + 2 t i) / (1 + t^2),
-  held as pairs of fractions.Fraction (no floating point anywhere in parts 1-4);
+  held as pairs of fractions.Fraction (exact checked arithmetic; random sampling is separate);
 * SymPy exact trigonometry for the angle form U = exp(i A) in part 5.
 
 It exits 0 when every check passes and 1 otherwise, and prints what it checked.
@@ -90,7 +90,7 @@ def plaquettes(d: int, L: int):
 
 
 class LinkField:
-    """Forward links U(x, x+mu) stored once; U(x+mu, x) = conj U(x, x+mu)."""
+    """Directed vertex-pair lookup; a missing forward edge uses a conjugate reverse."""
 
     def __init__(self, d: int, L: int, forward: dict):
         self.d, self.L, self.forward = d, L, forward

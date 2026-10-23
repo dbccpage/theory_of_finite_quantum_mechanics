@@ -27,7 +27,7 @@
       },
       {
         "path": "governance/policy.json",
-        "sha256": "8a58de2c5c0362ee5a792d2ade5f6d48a4976d6fdbfa69b080512b4e8b7ce80b"
+        "sha256": "39552f35ec58b01879c128e2b42356be8c6f83c3f879336eb2de26ce04fcdecb"
       }
     ],
     "owned_invariants": [
@@ -596,10 +596,302 @@
       "original_paths": [
         "code/rust/src/governance/src/buildtime.contract.score.yaml#three-proof-integration"
       ]
+    },
+    {
+      "sha256": "33447992e7b321408dfbc0afdf76d5cc1319a7c681965ad2277448dcccc64f14",
+      "bytes": 2542,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "boundaries": [
+          "run() panics on purpose to fail the build; that is the build-script failure channel, not an error path."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:buildtime:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "8e3be35ace9372dbd7f9fbcbd721f2931f86c495f6449e245b757e96e51ed13a"
+          }
+        ],
+        "owned_invariants": [
+          "Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.",
+          "check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.",
+          "decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.",
+          "Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R7-build": {
+            "symbols": [
+              "Mode",
+              "BuildError",
+              "PackageCheck",
+              "check_package",
+              "Decision",
+              "decide",
+              "run_with",
+              "run"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+        "subject": "code/rust/src/governance/src/buildtime.rs",
+        "symbols": [
+          "Mode",
+          "BuildError",
+          "PackageCheck",
+          "check_package",
+          "Decision",
+          "decide",
+          "run_with",
+          "run"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"boundaries\": [\n    \"run() panics on purpose to fail the build; that is the build-script failure channel, not an error path.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:buildtime:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"8e3be35ace9372dbd7f9fbcbd721f2931f86c495f6449e245b757e96e51ed13a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.\",\n    \"check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.\",\n    \"decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.\",\n    \"Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R7-build\": {\n      \"symbols\": [\n        \"Mode\",\n        \"BuildError\",\n        \"PackageCheck\",\n        \"check_package\",\n        \"Decision\",\n        \"decide\",\n        \"run_with\",\n        \"run\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\",\n  \"subject\": \"code/rust/src/governance/src/buildtime.rs\",\n  \"symbols\": [\n    \"Mode\",\n    \"BuildError\",\n    \"PackageCheck\",\n    \"check_package\",\n    \"Decision\",\n    \"decide\",\n    \"run_with\",\n    \"run\"\n  ]\n}\n",
+      "original_paths": [
+        "code\\rust\\src\\governance\\src\\buildtime.contract.score.yaml#pr239-repair"
+      ]
+    },
+    {
+      "sha256": "399ba5c3f79d99b947ca2fd8adf46348f93d75c7bcbb0054aa116c3a98d10535",
+      "bytes": 2542,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "boundaries": [
+          "run() panics on purpose to fail the build; that is the build-script failure channel, not an error path."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:buildtime:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "134ae95f643b4f65294f4a39e119ea77b59c1282aa0fbfec47de558bfc72ee06"
+          }
+        ],
+        "owned_invariants": [
+          "Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.",
+          "check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.",
+          "decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.",
+          "Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R7-build": {
+            "symbols": [
+              "Mode",
+              "BuildError",
+              "PackageCheck",
+              "check_package",
+              "Decision",
+              "decide",
+              "run_with",
+              "run"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+        "subject": "code/rust/src/governance/src/buildtime.rs",
+        "symbols": [
+          "Mode",
+          "BuildError",
+          "PackageCheck",
+          "check_package",
+          "Decision",
+          "decide",
+          "run_with",
+          "run"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"boundaries\": [\n    \"run() panics on purpose to fail the build; that is the build-script failure channel, not an error path.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:buildtime:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"134ae95f643b4f65294f4a39e119ea77b59c1282aa0fbfec47de558bfc72ee06\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.\",\n    \"check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.\",\n    \"decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.\",\n    \"Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R7-build\": {\n      \"symbols\": [\n        \"Mode\",\n        \"BuildError\",\n        \"PackageCheck\",\n        \"check_package\",\n        \"Decision\",\n        \"decide\",\n        \"run_with\",\n        \"run\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\",\n  \"subject\": \"code/rust/src/governance/src/buildtime.rs\",\n  \"symbols\": [\n    \"Mode\",\n    \"BuildError\",\n    \"PackageCheck\",\n    \"check_package\",\n    \"Decision\",\n    \"decide\",\n    \"run_with\",\n    \"run\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/buildtime.contract.score.yaml#pr239-latest-main"
+      ]
+    },
+    {
+      "sha256": "73e5eb8288d6820aea05b279fe72a57e1318d3520a1efa6cef5dbb17ab4f3729",
+      "bytes": 2542,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "boundaries": [
+          "run() panics on purpose to fail the build; that is the build-script failure channel, not an error path."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:buildtime:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "6b161968400460ff830260db71d8fd3cbf33c2fdaf8e877601a2d8641823adc6"
+          }
+        ],
+        "owned_invariants": [
+          "Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.",
+          "check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.",
+          "decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.",
+          "Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R7-build": {
+            "symbols": [
+              "Mode",
+              "BuildError",
+              "PackageCheck",
+              "check_package",
+              "Decision",
+              "decide",
+              "run_with",
+              "run"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+        "subject": "code/rust/src/governance/src/buildtime.rs",
+        "symbols": [
+          "Mode",
+          "BuildError",
+          "PackageCheck",
+          "check_package",
+          "Decision",
+          "decide",
+          "run_with",
+          "run"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"boundaries\": [\n    \"run() panics on purpose to fail the build; that is the build-script failure channel, not an error path.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:buildtime:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"6b161968400460ff830260db71d8fd3cbf33c2fdaf8e877601a2d8641823adc6\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.\",\n    \"check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.\",\n    \"decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.\",\n    \"Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R7-build\": {\n      \"symbols\": [\n        \"Mode\",\n        \"BuildError\",\n        \"PackageCheck\",\n        \"check_package\",\n        \"Decision\",\n        \"decide\",\n        \"run_with\",\n        \"run\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\",\n  \"subject\": \"code/rust/src/governance/src/buildtime.rs\",\n  \"symbols\": [\n    \"Mode\",\n    \"BuildError\",\n    \"PackageCheck\",\n    \"check_package\",\n    \"Decision\",\n    \"decide\",\n    \"run_with\",\n    \"run\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/buildtime.contract.score.yaml#pr239-final-base"
+      ]
+    },
+    {
+      "sha256": "3e949d1afb8b33d0e7fa71626d75073988d70a49c354a44fe20572462e4db7d2",
+      "bytes": 2542,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "boundaries": [
+          "run() panics on purpose to fail the build; that is the build-script failure channel, not an error path."
+        ],
+        "consumers": [
+          "Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt."
+        ],
+        "contract_urn": "urn:tfqm:governance:buildtime:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "39552f35ec58b01879c128e2b42356be8c6f83c3f879336eb2de26ce04fcdecb"
+          }
+        ],
+        "owned_invariants": [
+          "Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.",
+          "check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.",
+          "decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.",
+          "Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R7-build": {
+            "symbols": [
+              "Mode",
+              "BuildError",
+              "PackageCheck",
+              "check_package",
+              "Decision",
+              "decide",
+              "run_with",
+              "run"
+            ],
+            "text": "verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+        "subject": "code/rust/src/governance/src/buildtime.rs",
+        "symbols": [
+          "Mode",
+          "BuildError",
+          "PackageCheck",
+          "check_package",
+          "Decision",
+          "decide",
+          "run_with",
+          "run"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"boundaries\": [\n    \"run() panics on purpose to fail the build; that is the build-script failure channel, not an error path.\"\n  ],\n  \"consumers\": [\n    \"Standalone governance manifest and the existing build-hook/CLI integration. The full optional workspace was not rebuilt.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:buildtime:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"39552f35ec58b01879c128e2b42356be8c6f83c3f879336eb2de26ce04fcdecb\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Mode::parse maps unset, empty and warn to Warn, and off, new and enforce to themselves; any other value is an error that aborts the build.\",\n    \"check_package reports every .rs file of the package and lists policy, baseline, sources, existing companions, missing companions of failing files and source directories (not one holding target/) for rerun-if-changed.\",\n    \"decide: Off or a clean report is silent; Enforce, or New with a failure outside the baseline, aborts with the full report; otherwise warnings.\",\n    \"Without governance/policy.json the hook warns in warn mode and aborts in new and enforce modes.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R7-build\": {\n      \"symbols\": [\n        \"Mode\",\n        \"BuildError\",\n        \"PackageCheck\",\n        \"check_package\",\n        \"Decision\",\n        \"decide\",\n        \"run_with\",\n        \"run\"\n      ],\n      \"text\": \"verify_crate_contracts!() for build.rs: discovery, rerun-if-changed, warn/new/enforce modes\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\",\n  \"subject\": \"code/rust/src/governance/src/buildtime.rs\",\n  \"symbols\": [\n    \"Mode\",\n    \"BuildError\",\n    \"PackageCheck\",\n    \"check_package\",\n    \"Decision\",\n    \"decide\",\n    \"run_with\",\n    \"run\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/buildtime.contract.score.yaml#pr247-independent-review"
+      ]
     }
   ],
-  "current_contract": "922e93550cacb7eadba8c41d1218d1dd08c24d05d6d3d50067f50376f5abd9d3",
-  "current_scoring": "1fa9a25ca0c96f3d527de747d991a55006509c3cbf3b5d2f4d1a91778d354bb1",
+  "current_contract": "3e949d1afb8b33d0e7fa71626d75073988d70a49c354a44fe20572462e4db7d2",
+  "current_scoring": "9a560db37fbb65851d4ee88e0621cbd2f5d84c496b0d42509784990d7e12bfb0",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -1174,6 +1466,322 @@
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.\",\n    \"G2\": \"Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.\",\n    \"G3\": \"Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"8a58de2c5c0362ee5a792d2ade5f6d48a4976d6fdbfa69b080512b4e8b7ce80b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 4,\n    \"lizard_production_functions\": 9\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 12,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
       "original_paths": [
         "code/rust/src/governance/src/buildtime.contract.score.yaml#three-proof-integration"
+      ]
+    },
+    {
+      "sha256": "a90bd3f1373b41e8bcbfd89132e5ac29842b5dd1db8fb0d0a22fc0fd4095e6fe",
+      "bytes": 3135,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.",
+          "G2": "Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.",
+          "G3": "Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "8e3be35ace9372dbd7f9fbcbd721f2931f86c495f6449e245b757e96e51ed13a"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 4,
+          "lizard_production_functions": 9
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 12,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.\",\n    \"G2\": \"Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.\",\n    \"G3\": \"Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"8e3be35ace9372dbd7f9fbcbd721f2931f86c495f6449e245b757e96e51ed13a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 4,\n    \"lizard_production_functions\": 9\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 12,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code\\rust\\src\\governance\\src\\buildtime.contract.score.yaml#pr239-repair"
+      ]
+    },
+    {
+      "sha256": "47f1c3b10a4f8b0354ee5c993ef84e089bb29d4590abb3765776c853034b58d6",
+      "bytes": 3135,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.",
+          "G2": "Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.",
+          "G3": "Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "134ae95f643b4f65294f4a39e119ea77b59c1282aa0fbfec47de558bfc72ee06"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 4,
+          "lizard_production_functions": 9
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 12,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.\",\n    \"G2\": \"Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.\",\n    \"G3\": \"Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"134ae95f643b4f65294f4a39e119ea77b59c1282aa0fbfec47de558bfc72ee06\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 4,\n    \"lizard_production_functions\": 9\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 12,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/buildtime.contract.score.yaml#pr239-latest-main"
+      ]
+    },
+    {
+      "sha256": "653796c3e1fa40b5d6e5229acf40e7a36682f7660e1ac829dd3dc88fab515a07",
+      "bytes": 3135,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.",
+          "G2": "Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.",
+          "G3": "Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "6b161968400460ff830260db71d8fd3cbf33c2fdaf8e877601a2d8641823adc6"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 4,
+          "lizard_production_functions": 9
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 12,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.\",\n    \"G2\": \"Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.\",\n    \"G3\": \"Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"6b161968400460ff830260db71d8fd3cbf33c2fdaf8e877601a2d8641823adc6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 4,\n    \"lizard_production_functions\": 9\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 12,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/buildtime.contract.score.yaml#pr239-final-base"
+      ]
+    },
+    {
+      "sha256": "9a560db37fbb65851d4ee88e0621cbd2f5d84c496b0d42509784990d7e12bfb0",
+      "bytes": 3135,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/buildtime.rs",
+          "sha256": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.",
+          "G2": "Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.",
+          "G3": "Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.",
+          "G4": "Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.",
+          "G5": "Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json",
+            "sha256": "a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/support_mutations/receipt.json",
+            "sha256": "87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "39552f35ec58b01879c128e2b42356be8c6f83c3f879336eb2de26ce04fcdecb"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 9,
+          "lizard_max_ccn_tests": 4,
+          "lizard_production_functions": 9
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 12,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/buildtime.rs\",\n    \"sha256\": \"dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"URN urn:tfqm:governance:buildtime:v1, AuthorityEffect None, exact digest; R7 maps to Mode, check_package, decide, run_with and run and back; consumers are the 20 build hooks, which all ran in the stripped workspace copy.\",\n    \"G2\": \"Mode table tested in full; the deliberate negative test (an uncontracted file in genesis_tm) warned by default and aborted the build under TFQM_GOVERNANCE=enforce in the workspace copy; mixed new and changed failures are tested under new mode.\",\n    \"G3\": \"Typed BuildError; the only panics are the documented build aborts in run(); no unsafe. C.\",\n    \"G4\": \"Current standalone crate tests and selected support-boundary faults were replayed; old full-workspace and mutation claims are not renewed.\",\n    \"G5\": \"Production max CCN and clippy thresholds as in metrics; B as above. Max production CCN 9 (check_package) over 9 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_policy_replay/receipt.json\",\n      \"sha256\": \"a9ca7238e42b1cc56d8c0b94985d7b86222ac5a3ae02cbf975b6d1e214ee81af\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/support_mutations/receipt.json\",\n      \"sha256\": \"87c7795308432f3d07de53003b4fc37142f75dea57fab22bac55735eeeb562ec\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"39552f35ec58b01879c128e2b42356be8c6f83c3f879336eb2de26ce04fcdecb\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4: a complete build-script integration (modes, rerun directives that avoid needless reruns, fail-closed abort) separated into a testable run_with over any writer and a thin run for cargo.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 9,\n    \"lizard_max_ccn_tests\": 4,\n    \"lizard_production_functions\": 9\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 12,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"Windows standalone crate scope; full optional workspace not rebuilt. Score-record integrity is not evidence that the assessed subject deserves its grade.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/buildtime.contract.score.yaml#pr247-independent-review"
       ]
     }
   ]

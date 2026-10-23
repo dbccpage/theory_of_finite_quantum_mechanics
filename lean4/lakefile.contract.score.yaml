@@ -7,7 +7,7 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/lakefile.lean",
-      "sha256": "75747016c8a14d11cb19d6eb9ccc97f94587ab5103559dc17e50b6c0f28de3c2"
+      "sha256": "94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8"
     },
     "boundaries": [
       "Registry only; no mathematical theorem or runtime implementation."
@@ -17,6 +17,10 @@
       {
         "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
         "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+      },
+      {
+        "path": "dag/research/pr247_independent_validation.json",
+        "sha256": "a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20"
       }
     ],
     "owned_invariants": [
@@ -3174,10 +3178,240 @@
         "schema_id": "tfqm.source-contract.v1"
       },
       "sha256": "88d6bfaf46ae1274d6631b2919991109338142d6c76494d3e57944631f7076f0"
+    },
+    {
+      "sha256": "272d459d487225ed30173e5ea976e2be6959adc2a4ab013fb1a0e57bd3aae2e8",
+      "bytes": 1249,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr239-finite-clock",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "c11ee6bb9b3794c9cdf5cd96bafb0715354a98beeeaf37bb84580cb73bde5e0a",
+          "language": "Lean 4"
+        },
+        "AuthorityEffect": "None",
+        "purpose": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "owned_invariants": [
+          "Registry bytes recorded in scoped replay.",
+          "Existing registrations preserved, finite-clock target resolves.",
+          "No custom proof axioms or runtime behavior added.",
+          "Lake built the registered target; whole registry is not independently rebuilt.",
+          "Declarative entries only, no substantive API."
+        ],
+        "boundaries": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "9402adcfb4bef1539ce07e28500bff5956aa1136a8657fc6e61a9b931ac5b7f3"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"c11ee6bb9b3794c9cdf5cd96bafb0715354a98beeeaf37bb84580cb73bde5e0a\"\n  },\n  \"boundaries\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"contract_id\": \"pr239-finite-clock\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"9402adcfb4bef1539ce07e28500bff5956aa1136a8657fc6e61a9b931ac5b7f3\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Registry bytes recorded in scoped replay.\",\n    \"Existing registrations preserved, finite-clock target resolves.\",\n    \"No custom proof axioms or runtime behavior added.\",\n    \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"Declarative entries only, no substantive API.\"\n  ],\n  \"purpose\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-repair"
+      ]
+    },
+    {
+      "sha256": "5b20681629827a1d044d76b031ffe47d75d2147e242a07330526362390136e89",
+      "bytes": 1249,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr239-finite-clock",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3",
+          "language": "Lean 4"
+        },
+        "AuthorityEffect": "None",
+        "purpose": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "owned_invariants": [
+          "Registry bytes recorded in scoped replay.",
+          "Existing registrations preserved, finite-clock target resolves.",
+          "No custom proof axioms or runtime behavior added.",
+          "Lake built the registered target; whole registry is not independently rebuilt.",
+          "Declarative entries only, no substantive API."
+        ],
+        "boundaries": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3\"\n  },\n  \"boundaries\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"contract_id\": \"pr239-finite-clock\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Registry bytes recorded in scoped replay.\",\n    \"Existing registrations preserved, finite-clock target resolves.\",\n    \"No custom proof axioms or runtime behavior added.\",\n    \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"Declarative entries only, no substantive API.\"\n  ],\n  \"purpose\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-latest-main"
+      ]
+    },
+    {
+      "sha256": "7936f6dbca989f3b0b17ef1ae2937891981d6cd36103f185fe8c13225c7abab2",
+      "bytes": 1249,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr239-finite-clock",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3",
+          "language": "Lean 4"
+        },
+        "AuthorityEffect": "None",
+        "purpose": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "owned_invariants": [
+          "Registry bytes recorded in scoped replay.",
+          "Existing registrations preserved, finite-clock target resolves.",
+          "No custom proof axioms or runtime behavior added.",
+          "Lake built the registered target; whole registry is not independently rebuilt.",
+          "Declarative entries only, no substantive API."
+        ],
+        "boundaries": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3\"\n  },\n  \"boundaries\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"contract_id\": \"pr239-finite-clock\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Registry bytes recorded in scoped replay.\",\n    \"Existing registrations preserved, finite-clock target resolves.\",\n    \"No custom proof axioms or runtime behavior added.\",\n    \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"Declarative entries only, no substantive API.\"\n  ],\n  \"purpose\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-negative-history-check"
+      ]
+    },
+    {
+      "sha256": "a12e0145f9f420046dac8ad51d6e797ca1e5c14812308a3d01f0105b1a4bc5a1",
+      "bytes": 1249,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr239-finite-clock",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "68a94ed20f98ecdf860a66217316901641171c726b40d37f7036439beaf6e4b4",
+          "language": "Lean 4"
+        },
+        "AuthorityEffect": "None",
+        "purpose": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "owned_invariants": [
+          "Registry bytes recorded in scoped replay.",
+          "Existing registrations preserved, finite-clock target resolves.",
+          "No custom proof axioms or runtime behavior added.",
+          "Lake built the registered target; whole registry is not independently rebuilt.",
+          "Declarative entries only, no substantive API."
+        ],
+        "boundaries": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "085892753f3ce2833bcad4f51f7db1656a1ce3712ab721bde2adc10b010f0b74"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"68a94ed20f98ecdf860a66217316901641171c726b40d37f7036439beaf6e4b4\"\n  },\n  \"boundaries\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"contract_id\": \"pr239-finite-clock\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"085892753f3ce2833bcad4f51f7db1656a1ce3712ab721bde2adc10b010f0b74\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Registry bytes recorded in scoped replay.\",\n    \"Existing registrations preserved, finite-clock target resolves.\",\n    \"No custom proof axioms or runtime behavior added.\",\n    \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"Declarative entries only, no substantive API.\"\n  ],\n  \"purpose\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-final-base"
+      ]
+    },
+    {
+      "sha256": "1c1011e1954ff0f4ff3d61eddff94d4b6a0bcb48b1dbb7d8f6b7ecfd3c7d23f2",
+      "bytes": 994,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8"
+        },
+        "boundaries": [
+          "Registry only; no mathematical theorem or runtime implementation."
+        ],
+        "contract_id": "campaign-fsp-u1-wilson-action-registry",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c"
+          }
+        ],
+        "owned_invariants": [
+          "Existing registrations preserved with unique library names; the CampaignFspU1WilsonAction target is non-default."
+        ],
+        "purpose": "Declarative non-default target registration; authorized build-file support exception.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\"\n  ],\n  \"contract_id\": \"campaign-fsp-u1-wilson-action-registry\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Existing registrations preserved with unique library names; the CampaignFspU1WilsonAction target is non-default.\"\n  ],\n  \"purpose\": \"Declarative non-default target registration; authorized build-file support exception.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr247-independent-review"
+      ]
+    },
+    {
+      "sha256": "226d6458952e9dece659682c702014603ab6bb42b9693714fa400c46c1e52771",
+      "bytes": 994,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8"
+        },
+        "boundaries": [
+          "Registry only; no mathematical theorem or runtime implementation."
+        ],
+        "contract_id": "campaign-fsp-u1-wilson-action-registry",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20"
+          }
+        ],
+        "owned_invariants": [
+          "Existing registrations preserved with unique library names; the CampaignFspU1WilsonAction target is non-default."
+        ],
+        "purpose": "Declarative non-default target registration; authorized build-file support exception.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\"\n  ],\n  \"contract_id\": \"campaign-fsp-u1-wilson-action-registry\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Existing registrations preserved with unique library names; the CampaignFspU1WilsonAction target is non-default.\"\n  ],\n  \"purpose\": \"Declarative non-default target registration; authorized build-file support exception.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr247-sampling-doc-review"
+      ]
     }
   ],
-  "current_contract": "88d6bfaf46ae1274d6631b2919991109338142d6c76494d3e57944631f7076f0",
-  "current_scoring": "efc691a0e0c8cba104f46be70e4e4e2ecf88cca7717f02de322f2403f5dbff88",
+  "current_contract": "226d6458952e9dece659682c702014603ab6bb42b9693714fa400c46c1e52771",
+  "current_scoring": "954753710d161cd8cbe9d450946a315f907dfcbb07c8d75e5f72e8ffc0bd39f9",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "lean4/lakefile.contract.score.yaml#campaign-pgw-minimal-or-initial-refused-contract": "11ffff4efa0db03d85581c8aa3ea568044c9a63143fe43adbd33e476cbfa0b4e",
@@ -7928,6 +8162,366 @@
         "support_exception": true
       },
       "sha256": "efc691a0e0c8cba104f46be70e4e4e2ecf88cca7717f02de322f2403f5dbff88"
+    },
+    {
+      "sha256": "2a2bb2cf1220e13f8d6f5ba6289a579bb088665886f3e73b3798ffaa82ec0346",
+      "bytes": 1767,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr239-finite-clock",
+        "assessment_status": "complete",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "c11ee6bb9b3794c9cdf5cd96bafb0715354a98beeeaf37bb84580cb73bde5e0a",
+          "language": "Lean 4"
+        },
+        "profile": "Symbolic/Formal",
+        "level": "L1",
+        "level_basis": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "composite_grade": "D",
+        "score_token": "L1D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T19:20:50.017941+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "9402adcfb4bef1539ce07e28500bff5956aa1136a8657fc6e61a9b931ac5b7f3"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05"
+          }
+        ],
+        "basis": {
+          "G1": "Registry bytes recorded in scoped replay.",
+          "G2": "Existing registrations preserved, finite-clock target resolves.",
+          "G3": "No custom proof axioms or runtime behavior added.",
+          "G4": "Lake built the registered target; whole registry is not independently rebuilt.",
+          "G5": "Declarative entries only, no substantive API."
+        },
+        "open_higher_grade_findings": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "support_exception": true
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"c11ee6bb9b3794c9cdf5cd96bafb0715354a98beeeaf37bb84580cb73bde5e0a\"\n  },\n  \"assessment_id\": \"pr239-finite-clock\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Registry bytes recorded in scoped replay.\",\n    \"G2\": \"Existing registrations preserved, finite-clock target resolves.\",\n    \"G3\": \"No custom proof axioms or runtime behavior added.\",\n    \"G4\": \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"G5\": \"Declarative entries only, no substantive API.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T19:20:50.017941+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"9402adcfb4bef1539ce07e28500bff5956aa1136a8657fc6e61a9b931ac5b7f3\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"open_higher_grade_findings\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-repair"
+      ]
+    },
+    {
+      "sha256": "ef7b6422d7a1b03060f4e12ccb83ad092f246b6f640cc861e0d21ce0169e96f2",
+      "bytes": 1767,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr239-finite-clock",
+        "assessment_status": "complete",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3",
+          "language": "Lean 4"
+        },
+        "profile": "Symbolic/Formal",
+        "level": "L1",
+        "level_basis": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "composite_grade": "D",
+        "score_token": "L1D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T19:20:50.017941+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05"
+          }
+        ],
+        "basis": {
+          "G1": "Registry bytes recorded in scoped replay.",
+          "G2": "Existing registrations preserved, finite-clock target resolves.",
+          "G3": "No custom proof axioms or runtime behavior added.",
+          "G4": "Lake built the registered target; whole registry is not independently rebuilt.",
+          "G5": "Declarative entries only, no substantive API."
+        },
+        "open_higher_grade_findings": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "support_exception": true
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3\"\n  },\n  \"assessment_id\": \"pr239-finite-clock\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Registry bytes recorded in scoped replay.\",\n    \"G2\": \"Existing registrations preserved, finite-clock target resolves.\",\n    \"G3\": \"No custom proof axioms or runtime behavior added.\",\n    \"G4\": \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"G5\": \"Declarative entries only, no substantive API.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T19:20:50.017941+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"a2bcfdfb4d54cd577b5921057576c20e72955253f4814d381b5585f57c85ea05\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"open_higher_grade_findings\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-latest-main"
+      ]
+    },
+    {
+      "sha256": "68cf7f26f15a9c63ed2685ac98882c9b789dc69cf5c5703cd8b076b6489c3879",
+      "bytes": 1767,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr239-finite-clock",
+        "assessment_status": "complete",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3",
+          "language": "Lean 4"
+        },
+        "profile": "Symbolic/Formal",
+        "level": "L1",
+        "level_basis": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "composite_grade": "D",
+        "score_token": "L1D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T19:20:50.017941+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce"
+          }
+        ],
+        "basis": {
+          "G1": "Registry bytes recorded in scoped replay.",
+          "G2": "Existing registrations preserved, finite-clock target resolves.",
+          "G3": "No custom proof axioms or runtime behavior added.",
+          "G4": "Lake built the registered target; whole registry is not independently rebuilt.",
+          "G5": "Declarative entries only, no substantive API."
+        },
+        "open_higher_grade_findings": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "support_exception": true
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"56ad08364876fe6f82658eb4eeee81cf40c22fcf64fdd16d011dbe7ba947d4e3\"\n  },\n  \"assessment_id\": \"pr239-finite-clock\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Registry bytes recorded in scoped replay.\",\n    \"G2\": \"Existing registrations preserved, finite-clock target resolves.\",\n    \"G3\": \"No custom proof axioms or runtime behavior added.\",\n    \"G4\": \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"G5\": \"Declarative entries only, no substantive API.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T19:20:50.017941+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"69ce0513f71aebd664202aa5299ef2fd5f890078cdbd6f5c491597a45f16e86d\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"open_higher_grade_findings\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-negative-history-check"
+      ]
+    },
+    {
+      "sha256": "9ab3da1844e020b76b0f1888a12dd86488e75de7c259c0a54a4d72944b096c12",
+      "bytes": 1767,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr239-finite-clock",
+        "assessment_status": "complete",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "sha256": "68a94ed20f98ecdf860a66217316901641171c726b40d37f7036439beaf6e4b4",
+          "language": "Lean 4"
+        },
+        "profile": "Symbolic/Formal",
+        "level": "L1",
+        "level_basis": "Declarative library registrations; adds one isolated nondefault finite-clock target.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "composite_grade": "D",
+        "score_token": "L1D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T19:20:50.017941+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-relational-time-fence_lean_replay.json",
+            "sha256": "085892753f3ce2833bcad4f51f7db1656a1ce3712ab721bde2adc10b010f0b74"
+          },
+          {
+            "path": "dag/research/pr239_independent_validation.json",
+            "sha256": "8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce"
+          }
+        ],
+        "basis": {
+          "G1": "Registry bytes recorded in scoped replay.",
+          "G2": "Existing registrations preserved, finite-clock target resolves.",
+          "G3": "No custom proof axioms or runtime behavior added.",
+          "G4": "Lake built the registered target; whole registry is not independently rebuilt.",
+          "G5": "Declarative entries only, no substantive API."
+        },
+        "open_higher_grade_findings": [
+          "User-authorized build-registration exception; no substantive proof logic.",
+          "Only scoped target rebuilt, not the entire default library."
+        ],
+        "support_exception": true
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"68a94ed20f98ecdf860a66217316901641171c726b40d37f7036439beaf6e4b4\"\n  },\n  \"assessment_id\": \"pr239-finite-clock\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Registry bytes recorded in scoped replay.\",\n    \"G2\": \"Existing registrations preserved, finite-clock target resolves.\",\n    \"G3\": \"No custom proof axioms or runtime behavior added.\",\n    \"G4\": \"Lake built the registered target; whole registry is not independently rebuilt.\",\n    \"G5\": \"Declarative entries only, no substantive API.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T19:20:50.017941+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-relational-time-fence_lean_replay.json\",\n      \"sha256\": \"085892753f3ce2833bcad4f51f7db1656a1ce3712ab721bde2adc10b010f0b74\"\n    },\n    {\n      \"path\": \"dag/research/pr239_independent_validation.json\",\n      \"sha256\": \"8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative library registrations; adds one isolated nondefault finite-clock target.\",\n  \"open_higher_grade_findings\": [\n    \"User-authorized build-registration exception; no substantive proof logic.\",\n    \"Only scoped target rebuilt, not the entire default library.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr239-final-base"
+      ]
+    },
+    {
+      "sha256": "e8ca21bb6893f45cbc812bd368c8a6135ddf7adea89026f5fd28390d2a3c06e7",
+      "bytes": 1936,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8"
+        },
+        "assessment_id": "pr247-independent-review",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Declarative registry checked by scoped Lake build; support exception only.",
+          "G2": "Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.",
+          "G3": "Declarative registry checked by scoped Lake build; support exception only.",
+          "G4": "Declarative registry checked by scoped Lake build; support exception only.",
+          "G5": "Declarative registry checked by scoped Lake build; support exception only."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T20:37:59.210842+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Declarative non-default target registration; authorized build-file support exception.",
+        "open_higher_grade_findings": [
+          "Registry only; no mathematical theorem or runtime implementation.",
+          "Six module-system import warnings remain; no warning-free build is claimed."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L1D",
+        "support_exception": true
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8\"\n  },\n  \"assessment_id\": \"pr247-independent-review\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Declarative registry checked by scoped Lake build; support exception only.\",\n    \"G2\": \"Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.\",\n    \"G3\": \"Declarative registry checked by scoped Lake build; support exception only.\",\n    \"G4\": \"Declarative registry checked by scoped Lake build; support exception only.\",\n    \"G5\": \"Declarative registry checked by scoped Lake build; support exception only.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T20:37:59.210842+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"9b18a92848fe6e8638eefca3eccf93e217a0ad7cf6a32760bd89f5d0118b418c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative non-default target registration; authorized build-file support exception.\",\n  \"open_higher_grade_findings\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\",\n    \"Six module-system import warnings remain; no warning-free build is claimed.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr247-independent-review"
+      ]
+    },
+    {
+      "sha256": "954753710d161cd8cbe9d450946a315f907dfcbb07c8d75e5f72e8ffc0bd39f9",
+      "bytes": 1936,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8"
+        },
+        "assessment_id": "pr247-independent-review",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Declarative registry checked by scoped Lake build; support exception only.",
+          "G2": "Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.",
+          "G3": "Declarative registry checked by scoped Lake build; support exception only.",
+          "G4": "Declarative registry checked by scoped Lake build; support exception only.",
+          "G5": "Declarative registry checked by scoped Lake build; support exception only."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T20:37:59.210842+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-u1-wilson-action_lean_replay.json",
+            "sha256": "cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08"
+          },
+          {
+            "path": "dag/research/pr247_independent_validation.json",
+            "sha256": "a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Declarative non-default target registration; authorized build-file support exception.",
+        "open_higher_grade_findings": [
+          "Registry only; no mathematical theorem or runtime implementation.",
+          "Six module-system import warnings remain; no warning-free build is claimed."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L1D",
+        "support_exception": true
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"94aec3c78dd8aba13e2dd1b5b5acc4ade07e2429d7e51b49a77fed21aa666fc8\"\n  },\n  \"assessment_id\": \"pr247-independent-review\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Declarative registry checked by scoped Lake build; support exception only.\",\n    \"G2\": \"Fresh scoped Lake and direct Lean checks pass with twelve permitted-axiom reports; the scoped Lake build has six module-system import warnings.\",\n    \"G3\": \"Declarative registry checked by scoped Lake build; support exception only.\",\n    \"G4\": \"Declarative registry checked by scoped Lake build; support exception only.\",\n    \"G5\": \"Declarative registry checked by scoped Lake build; support exception only.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T20:37:59.210842+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-u1-wilson-action_lean_replay.json\",\n      \"sha256\": \"cc720256d9072e4ad232cc06bc30793e2e90b0c8b9f5acfb438bf2e88f8a3a08\"\n    },\n    {\n      \"path\": \"dag/research/pr247_independent_validation.json\",\n      \"sha256\": \"a0920b0f7fc091dc0c56628315b954c5e0563e1ff49eb071e693ee8e6f16da20\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative non-default target registration; authorized build-file support exception.\",\n  \"open_higher_grade_findings\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\",\n    \"Six module-system import warnings remain; no warning-free build is claimed.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#pr247-sampling-doc-review"
+      ]
     }
   ]
 }
