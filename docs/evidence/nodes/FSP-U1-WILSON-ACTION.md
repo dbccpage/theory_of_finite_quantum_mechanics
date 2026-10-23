@@ -11,8 +11,8 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `PROVED_LEAN`. Evidenc
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 12
-- cited Lean declarations covered by a current replay receipt: 12
+- cited Lean, Rust or Python symbols found in their in-repo files: 13
+- cited Lean declarations covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for every g: V -\> U(1) and for every angle shift A_ij -\> A_ij + theta_i - theta_j) and nonnegativity for beta_g \>= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice (ZMod L)^d is one instance. beta_g \>= 0 is required: one self-link plaquette with phase -1 and beta_g = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L \<= 2 the two parallel links between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity, transfer matrix or non-abelian action is claimed.
+Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for every g: V -\> U(1) and for every angle shift A_ij -\> A_ij + theta_i - theta_j) and nonnegativity for beta_g \>= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice (ZMod L)^d is one instance. beta_g \>= 0 is required: one self-link plaquette with phase -1 and beta_g = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L \<= 2 the two parallel links between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity, transfer matrix or non-abelian action is claimed. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.
 
 ## Source status
 
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignFspU1WilsonAction.holonomy_gaugeAct` | yes | yes | yes | propext | `#print axioms CampaignFspU1WilsonAction.holonomy_gaugeAct` |
 | `CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant` |
 | `CampaignFspU1WilsonAction.hypercubicWilson_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspU1WilsonAction.hypercubicWilson_nonneg` |
+| `CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle` | yes | yes | yes | module-level | `#print axioms CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle` |
 | `CampaignFspU1WilsonAction.loopHolonomy_gaugeAct` | yes | yes | yes | propext | `#print axioms CampaignFspU1WilsonAction.loopHolonomy_gaugeAct` |
 | `CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff` |
 | `CampaignFspU1WilsonAction.wilsonAction_gauge_invariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspU1WilsonAction.wilsonAction_gauge_invariant` |
@@ -70,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md](../../../dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md)
-- sha256 (`lf-normalised`): `df234f1d24941382fb027ba17db4ba90e6c76931ac418a2d5cbc1a372796971a`
+- sha256 (`lf-normalised`): `6a35677edfc6a9891d9ea667dc4180b4f981d70ac84f2de6f395a09c4f9c9109`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1196
 - counts toward the grade: no
@@ -85,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
 - file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `3268ac1be0222f75b9b9238508325cab337a6f767114e2d25afff56163a42cf4`
+- sha256 (`lf-normalised`): `ad94021f09fb60b94e1a91553294c46ef5d3903f8093297b6289f124386e7178`
 - cited in: node.source
 - counts toward the grade: yes
 

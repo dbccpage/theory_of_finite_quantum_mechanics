@@ -452,11 +452,11 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Status:** `PROVED_LEAN`
 - **Parent Nodes:** `FSP-DERIV-031`
 - **Derivation Summary (~500 chars):**
-  > With link phases U_ij = exp(i A_ij) on ordered vertex pairs and oriented closed-path products U_p over a finite plaquette family, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and is nonnegative for beta_g >= 0.
+  > Formulates compact lattice QED by placing U(1) phase variables U_ij = exp(i A_ij) on lattice links. Derives local U(1) gauge invariance of the Wilson action S_gauge = beta_g sum_p (1 - Re U_p) where U_p is the oriented product of links around plaquette p. Verifies that the compact gauge action is strictly positive and bounded by the Haar measure on U(1)^|E|.
 - **Verification Triad:**
   * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/tests/test_u1_qed.py::test_plaquette_holonomy`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/tests/test_u1_qed.py)
   * **Rust:** [`omega_holonomy::strict_zero_float::lattice_u1_gauge_action`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
-  * **Lean 4:** [`CampaignFspU1WilsonAction.fsp_u1_wilson_action`](../../../lean4/CampaignFspU1WilsonAction.lean)
+  * **Lean 4:** [`NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
 #### FSP-DERIV-033: Wilson Dirac Operator and gamma5-Hermiticity Positivity
 
