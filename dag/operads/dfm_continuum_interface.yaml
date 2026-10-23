@@ -7,8 +7,12 @@ target:
     locality and continuum dynamics as separate obligations.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Specify a refinement family, compatibility maps and convergence theorem before transporting
-    finite identities to smooth gauge theory.
+  source_bottleneck: 'Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b
+    with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5
+    with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a,
+    b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are
+    still required before transporting finite identities to smooth gauge theory. Smooth-field existence,
+    continuum patching and continuum dynamics stay open.'
   source_refs:
   - dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md
   - dag/research/electroweak_dfm_weinberg_finite_map.md
@@ -21,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md
-    sha256: 9b89d268122f0c17bf1a11c2b4f78e500d10772751cd32051ff84bab5fb12d04
+    sha256: 07382677404f96207c41331bcad7fadfdcf634571bb9b6957cc7981f9cad07f4
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -29,9 +33,263 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_continuum_interface_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: src
+  line: 39
+  signature_excerpt: |-
+    def src : Edg → Vtx
+      | .eRP => .root
+      | .ePA => .p
+      | .eRB => .root
+      | .eAB => .a
+
+    def dst : Edg → Vtx
+      | .eRP => .p
+      | .ePA => .a
+      | .eRB => .b
+      | .eAB => .b
+
+    /-- The edge meets the chord `a → b` at `a` or at `b`. -/
+    def incidentChord (e : Edg) : Prop
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dst
+  line: 45
+  signature_excerpt: |-
+    def dst : Edg → Vtx
+      | .eRP => .p
+      | .ePA => .a
+      | .eRB => .b
+      | .eAB => .b
+
+    /-- The edge meets the chord `a → b` at `a` or at `b`. -/
+    def incidentChord (e : Edg) : Prop
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: conn
+  line: 69
+  signature_excerpt: |-
+    def conn {G : Type*} [Group G] (xRP xPA xRB xAB : G) : Edg → G
+      | .eRP => xRP
+      | .ePA => xPA
+      | .eRB => xRB
+      | .eAB => xAB
+
+    /-- Supplied rooted tree paths. The tree is data, not a proved spanning theorem. -/
+    def treePath : (v : Vtx) → Walk src dst Vtx.root v
+      | .root => .nil Vtx.root
+      | .p => .edge Edg.eRP
+      | .a => .append (.edge Edg.eRP) (.edge Edg.ePA)
+      | .b => .edge Edg.eRB
+
+    def treeTransport {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treeDressing
+  line: 85
+  signature_excerpt: 'def treeDressing {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Edg
+  line: 32
+  signature_excerpt: |-
+    inductive Edg
+      | eRP
+      | ePA
+      | eRB
+      | eAB
+      deriving DecidableEq
+
+    def src : Edg → Vtx
+      | .eRP => .root
+      | .ePA => .p
+      | .eRB => .root
+      | .eAB => .a
+
+    def dst : Edg → Vtx
+      | .eRP => .p
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Vtx
+  line: 25
+  signature_excerpt: |-
+    inductive Vtx
+      | root
+      | p
+      | a
+      | b
+      deriving DecidableEq
+
+    inductive Edg
+      | eRP
+      | ePA
+      | eRB
+      | eAB
+      deriving DecidableEq
+
+    def src : Edg → Vtx
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treeTransport
+  line: 82
+  signature_excerpt: 'def treeTransport {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: treePath
+  line: 76
+  signature_excerpt: |-
+    def treePath : (v : Vtx) → Walk src dst Vtx.root v
+      | .root => .nil Vtx.root
+      | .p => .edge Edg.eRP
+      | .a => .append (.edge Edg.eRP) (.edge Edg.ePA)
+      | .b => .edge Edg.eRB
+
+    def treeTransport {G : Type*} [Group G] (U : Edg → G) (v : Vtx) : G
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: incidentChord
+  line: 52
+  signature_excerpt: 'def incidentChord (e : Edg) : Prop'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: dressed_chord_formula
+  line: 99
+  signature_excerpt: |-
+    theorem dressed_chord_formula {G : Type*} [Group G] (xRP xPA xRB xAB : G) :
+        dress src dst (conn xRP xPA xRB xAB) (treeDressing (conn xRP xPA xRB xAB)) .eAB
+          = xRB⁻¹ * xAB * xPA * xRP
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: not_star_local
+  line: 133
+  signature_excerpt: |-
+    theorem not_star_local {G : Type*} [Group G] (x x' : G) (hne : x ≠ x') :
+        dress src dst (conn x 1 1 1) (treeDressing (conn x 1 1 1)) .eAB ≠
+          dress src dst (conn x' 1 1 1) (treeDressing (conn x' 1 1 1)) .eAB
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_two_ne_five
+  line: 148
+  signature_excerpt: |-
+    theorem witness_two_ne_five :
+        dress src dst (conn (Multiplicative.ofAdd (2 : ℤ)) 1 1 1)
+            (treeDressing (conn (Multiplicative.ofAdd (2 : ℤ)) 1 1 1)) .eAB ≠
+          dress src dst (conn (Multiplicative.ofAdd (5 : ℤ)) 1 1 1)
+            (treeDressing (conn (Multiplicative.ofAdd (5 : ℤ)) 1 1 1)) .eAB
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_star_agrees
+  line: 128
+  signature_excerpt: |-
+    theorem witness_star_agrees {G : Type*} [Group G] (x x' : G) (e : Edg)
+        (he : incidentChord e) :
+        conn x (1 : G) 1 1 e = conn x' 1 1 1 e
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: outer_misses_star
+  line: 55
+  signature_excerpt: 'theorem outer_misses_star : ¬ incidentChord .eRP'
+  source: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  source_sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.dressed_chord_formula
+  availability: local
+  symbol: CampaignDfmContinuumInterface.dressed_chord_formula
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  declaration_status: declaration_found_not_proof_checked
+  line: 99
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.not_star_local
+  availability: local
+  symbol: CampaignDfmContinuumInterface.not_star_local
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  declaration_status: declaration_found_not_proof_checked
+  line: 133
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_two_ne_five
+  availability: local
+  symbol: CampaignDfmContinuumInterface.witness_two_ne_five
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  declaration_status: declaration_found_not_proof_checked
+  line: 148
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_star_agrees
+  availability: local
+  symbol: CampaignDfmContinuumInterface.witness_star_agrees
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  declaration_status: declaration_found_not_proof_checked
+  line: 128
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_misses_star
+  availability: local
+  symbol: CampaignDfmContinuumInterface.outer_misses_star
+  path: lean4/CampaignDfmContinuumInterface.lean
+  repository: this_repository
+  sha256: 251415c6989141c8c9414b1b41d6c80169d272fb0f05fd8bd01bb2a5a962bb0d
+  declaration_status: declaration_found_not_proof_checked
+  line: 55
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -69,8 +327,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
