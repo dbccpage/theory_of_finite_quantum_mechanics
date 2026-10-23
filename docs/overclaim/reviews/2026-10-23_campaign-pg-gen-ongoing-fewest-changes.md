@@ -8,7 +8,7 @@ constructor guard and both directions of the replay relation, the cost-bound
 quantifiers, compatibility port and independent census. Not rebuilt by this
 review; the campaign replay supplies compilation evidence.
 
-Result: FULL for the stated finite-game mathematics, provisional. Existing
+Result: 3 FULL, 0 NARROWED, 0 OVERCLAIM for the stated finite-game mathematics, provisional. Existing
 node statuses are unchanged. The original source Rename failure is retained.
 
 | Atomic claim | Declaration and exact line | Verdict |
@@ -44,3 +44,27 @@ bounds, also confirmed independently. General proofs have no state/label bound.
 What the scanner cannot decide: whether an external runtime implements this
 wire model faithfully or a human accepts the compatibility port and scope.
 The failed original source is not claimed to have passed a replay.
+
+Numeric LOW triage (exact SymPy, all historical blocks):
+
+- `dag/derivations/02_genesis/tfq_0388_ongoing_obstruction_answers.md:69`: [570, -1140, 855] plus 855 = 1140; 4*57 + 3*2 + 3 = 237; 124 - 61 - 2 = 61.
+- `dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md:68`: [590, -1180, 885] plus 885 = 1180; 4*59 + 3*2 + 2 = 244; 128 - 63 - 2 = 63.
+- `dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md:81`: [580, -1160, 870] plus 870 = 1160; 4*58 + 3*2 + 4 = 242; 126 - 62 - 2 = 62.
+- `dag/derivations/02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md:71`: [590, -1180, 885] plus 885 = 1180; 4*59 + 3*2 + 2 = 244; 128 - 63 - 2 = 63.
+
+These descriptor identities are not premises of the source game proof. The new note's census is independently recomputed; 4.35.0 is a toolchain identifier. Three further LOW findings are inherited tensor receipt/numeric metadata. Receipt attribution was corrected so port symbols are assigned to the port file, with explicit port citations; no new broken reference is accepted.
+
+The port also explicitly audits `Seed.Second.Step3.rename`, `Reach3.rename`,
+`fewest_changes3_every_writing_A` and `_B` in `lean4/CampaignGenesisOngoingRename.lean`, retaining their second-seed scopes. These are additional direct witnesses for the original rewriting node, separate from the four-move first-seed wrappers.
+
+Second-seed exact anchors: `Seed.Second.Step3.rename`
+(`lean4/CampaignGenesisOngoingRename.lean:81`), `Reach3.rename` (:97),
+`fewest_changes3_every_writing_A` (:218) and `_B` (:243). Their apart-name and
+asserted-given premises are retained; they are not the unrestricted first-seed
+four-move formula. Final successful replay reports 49 distinct audit anchors:
+29 refinement declarations, 16 compatibility declarations, and four source
+build declarations. Every axiom is permitted. All 24 prescribed campaign tests
+and static campaign gates pass. Scanner HIGH=0, MEDIUM=0, LOW=7; all numeric
+findings are triaged above. The two additional repository diagnostic failures
+remain the unchanged HilbertLiftOperators JSON error and TFQ-0084 prompt delta.
+The regenerated evidence map introduces no broken reference or uncited module.

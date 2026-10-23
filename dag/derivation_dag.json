@@ -1731,19 +1731,25 @@
       "source_status": "Obstruction: adding xrx, or identifying related terms, is obstructed (Genesis Ongoing)",
       "statement": "An attempted change is obstructed exactly when it adds some xrx or identifies two related terms; the three answers are refuse, remove the obstruction, build structure.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md",
+        "dag/derivations/independent/pg-gen-ongoing-fewest-changes.md"
       ],
       "lean": [
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Finite.lean::identify_legal_iff",
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Finite.lean::adding_xrx_always_obstructed",
-        "lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last"
+        "lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.identify_obstruction_iff",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.assertion_obstruction_iff",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.build_two_steps",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.build_lower_bound",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.wire_build_lower_bound"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Formalize the full Legal/WF/Reach refinement and the build-structure answer with its minimality theorem. The illegal intermediate image is diagnostic, not an authorized performed change.",
+      "bottleneck": "Full source/wire Legal/WF/Step/Reach correspondence and exact obstruction iff statements now compile. A legal build is constructed in two steps, with a general two-step lower bound under the stated quotient-fixes-old-terms premise. An illegal diagnostic image is not a performed change. External runtime/compiler refinement remains separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-ONGOING-OBSTRUCTION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1760,7 +1766,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "An attempted change is obstructed exactly when it adds some xrx or identifies two related terms; the three answers are refuse, remove the obstruction, build structure.",
         "prior_bottleneck": "none for the finite game; this is a game-level obstruction, separate from the L1 Phi1/Gamma2 obstruction.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json"
+        ]
       }
     },
     {
@@ -1770,19 +1778,30 @@
       "source_status": "Fewest-changes formula (D8-D10)",
       "statement": "The fewest changes to reach a result is the first derivation's size-plus-twice-destroyed-givens formula, with matching lower and upper bounds (fewest_changes_A/B).",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md",
+        "dag/derivations/independent/pg-gen-ongoing-fewest-changes.md"
       ],
       "lean": [
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::fewest_changes_A",
         "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::reach_by_edits",
-        "lean4/Imported/GenesisOngoing/H3V7N5QF/Cost.lean::Reach.names_stay_merged"
+        "lean4/Imported/GenesisOngoing/H3V7N5QF/Cost.lean::Reach.names_stay_merged",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.decode_encode",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.legal_iff_source",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.wf_iff_source",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.exact_transition_representation",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.costA_exact",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.costB_exact",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.full_fewest_A",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.full_fewest_B",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes_every_writing_A",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes_every_writing_B"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Extend the refinement to merged-name states, arbitrary labels and all source identification steps and prove the full lower/upper transport. This apart-state search is not the unrestricted fewest_changes_A/B theorem.",
+      "bottleneck": "The complete source/wire state, Legal/WF/Step/Reach and cost refinement now covers merged names, arbitrary labels and every identification. Matching lower/upper bounds are transported for some initial writing and all-writing lower bounds. The unchanged original Second/Rename fails Lean 4.35.0; a separately scored compatibility proof port compiles. External runtime/compiler and serialization refinement remain separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1799,7 +1818,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "The fewest changes to reach a result is the first derivation's size-plus-twice-destroyed-givens formula, with matching lower and upper bounds (fewest_changes_A/B).",
         "prior_bottleneck": "Extension to every writing of the terms is discharged via PG-GEN-REWRITING-COMMUTATION (mechanized in Second/Rename.lean and DerivationDagQMClosure.lean).",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json"
+        ]
       }
     },
     {
@@ -1812,7 +1833,8 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md:92,95",
         "lean4/Imported/GenesisOngoing/Second/Rename.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "lean4/DerivationDagQMClosure.lean"
+        "lean4/DerivationDagQMClosure.lean",
+        "dag/derivations/independent/pg-gen-ongoing-fewest-changes.md"
       ],
       "lean": [
         "lean4/Imported/GenesisOngoing/Second/Rename.lean::Step3.rename",
@@ -1820,14 +1842,24 @@
         "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_A",
         "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_B",
         "lean4/Imported/GenesisOngoing/Second/Carry.lean::Reach3.obstruction_persists",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.decode_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.source_step_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.source_reach_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.renaming_costs",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.wire_reach_rename",
+        "lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.tracked_obstruction_persists",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.Step3.rename",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.Reach3.rename",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes3_every_writing_A",
+        "lean4/CampaignGenesisOngoingRename.lean::Seed.Second.fewest_changes3_every_writing_B"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_rewriting_and_sameness_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove source Step/ReachNoRemove and cost-potential transports for all term writings and the multi-step obstruction persistence theorem. Do not promote a finite permutation test into that source-wide result.",
+      "bottleneck": "General source step/history rewriting, exact costs and wire transports for injective natural term writings, and multi-step tracked obstruction persistence now compile via an explicit compatibility proof port. The original Second/Rename remains unchanged and fails its old proof scripts; no finite permutation census is promoted into the general result.",
       "tags": [
         "alias:MUB6-DERIV-004"
       ],
@@ -1846,7 +1878,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Changes commute with injective rewriting of terms (Step.rename, Reach.rename, fewest_changes_every_writing_A/B for O3), and asserted obstructions persist across multi-step ReachNoRemove sequences (obstruction_persists_reach for O6).",
         "prior_bottleneck": "First-seed and second-seed injective term renamings (O3) and multi-step obstruction persistence (O6) are mechanized in DerivationDagQMClosure.lean and Second/Rename.lean.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json"
+        ]
       }
     },
     {
