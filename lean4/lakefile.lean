@@ -978,3 +978,7 @@ lean_lib CampaignGenesisCarrierBridge where
 -- Declared demand-policy extension. Non-default.
 lean_lib CampaignGenesisDemandPolicy where
   roots := #[`CampaignGenesisDemandPolicy]
+
+-- Supplied rooted-tree Borel dressing. Non-default.
+lean_lib CampaignDfmHierarchicalBorel where
+  roots := #[`CampaignDfmHierarchicalBorel]
