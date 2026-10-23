@@ -1,0 +1,22 @@
+{
+  "schema_version": "campaign_independent_check.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23",
+  "dag_node": "PGW-SN-PROTECTED-ANSWER-TRANSPORT",
+  "script": "checks/independent/pgw-sn-protected-answer-transport.py",
+  "script_sha256": "ee96ee345459279a849c15f14dea3bcadcccc2dc6775203859421c0e1c666a92",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": "python -B -X utf8 checks/independent/pgw-sn-protected-answer-transport.py",
+      "exit_code": 0,
+      "stdout": "PASS pgw-sn-protected-answer-transport: checks=3698 underdetermined_cases=20 commuting=12 non_commuting=96 refusals=48"
+    },
+    {
+      "mode": "optimized",
+      "command": "python -O -B -X utf8 checks/independent/pgw-sn-protected-answer-transport.py",
+      "exit_code": 0,
+      "stdout": "PASS pgw-sn-protected-answer-transport: checks=3698 underdetermined_cases=20 commuting=12 non_commuting=96 refusals=48"
+    }
+  ]
+}

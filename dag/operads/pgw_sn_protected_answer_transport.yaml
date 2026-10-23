@@ -5,19 +5,30 @@ collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: S(6) recovers the old image exactly, but transporting a protected answer F across
     the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires
-    the corresponding commuting transition equations. The sources state these as requirements and supply
-    no theorem that produces F′ or the commuting squares. The old-image identity alone establishes neither
-    a logical conservative extension, nor an adjunction, nor resolution of an unrelated demand.
+    the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced
+    transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition
+    lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square)
+    and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square),
+    while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer).
+    Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined),
+    unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample),
+    and the old-image identity alone establishes neither a logical conservative extension off the image
+    (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction),
+    nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: 'Requirement only: no answer-transport or commuting-square theorem is recorded for
-    SnCarrier or for the Python S6Descent model, and the exercise value s₆ = 1 records an issued descent-checking
-    obligation, not a forced survivor.'
+  source_bottleneck: The canonical retraction-induced transport, counterpart count, k-step commuting-square
+    preservation, SnCarrier and integer S6Descent instances, and non-implication countermodels are checked
+    in Lean 4; the node remains OPEN because arbitrary future target transitions require case-by-case
+    commuting-square verification, the external Python S6Descent class in 002_oesn/code/sn_core.py is
+    outside this checkout, and the exercise value s₆ = 1 records an issued descent-checking obligation,
+    not a forced survivor.
   source_refs:
   - dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:237
   - omega_engine_education/documentation/002_oesn/levels/level_06_tower_extension_retraction.md:39-42
   - omega_engine_education/documentation/002_oesn/sn.md:97-99
+  - dag/derivations/independent/pgw-sn-protected-answer-transport.md:13-18
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -31,9 +42,417 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/mssn_sn_pgw_sn_protected_answer_transport_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: AnswerTransport
+  line: 86
+  signature_excerpt: 'def AnswerTransport {A B Q : Type} (u : A → B) (F : A → Q) (F'' : B → Q) : Prop'
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: retractionTransport
+  line: 91
+  signature_excerpt: 'def retractionTransport {A B E Q : Type} (r : B → A ⊕ E) (F : A → Q) (d : E → Q)
+    : B → Q'
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: TransitionSquare
+  line: 204
+  signature_excerpt: 'def TransitionSquare {A B : Type} (u : A → B) (T : A → A) (T'' : B → B) : Prop'
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: canonicalTransitionLift
+  line: 231
+  signature_excerpt: |-
+    def canonicalTransitionLift {A B E : Type} (u : A → B) (r : B → A ⊕ E)
+        (T : A → A) (b_ref : B) : B → B
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: snRetract
+  line: 304
+  signature_excerpt: 'def snRetract (n : Nat) (p : SnPresentation) : BasePresentation ⊕ Unit'
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decodeBase
+  line: 292
+  signature_excerpt: |-
+    def decodeBase : SnPresentation → Option BasePresentation
+      | .ground g => some (.ground g)
+      | .supplied s => some (.supplied s)
+      | .relation r => some (.relation r)
+      | _ => none
+
+    theorem decodeBase_toPresentation (b : BasePresentation) :
+        decodeBase b.toPresentation = some b
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: s6Lift
+  line: 423
+  signature_excerpt: 'def s6Lift (x : Int) : Int × Int'
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: s6Retract
+  line: 427
+  signature_excerpt: 'def s6Retract (p : Int × Int) : Int ⊕ Unit'
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gapLift
+  line: 499
+  signature_excerpt: |-
+    def gapLift : Fin 2 → Fin 3
+      | ⟨0, _⟩ => ⟨1, by decide⟩
+      | ⟨1, _⟩ => ⟨2, by decide⟩
+
+    def gapRetract : Fin 3 → Fin 2 ⊕ Unit
+      | ⟨0, _⟩ => Sum.inr ()
+      | ⟨1, _⟩ => Sum.inl ⟨0, by decide⟩
+      | ⟨2, _⟩ => Sum.inl ⟨1, by decide⟩
+
+    theorem gap_old_image_law : OldImageLaw gapLift gapRetract
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: retraction_transport_law
+  line: 101
+  signature_excerpt: |-
+    theorem retraction_transport_law {A B E Q : Type} (u : A → B) (r : B → A ⊕ E)
+        (hr : OldImageLaw u r) (F : A → Q) (d : E → Q) :
+        AnswerTransport u F (retractionTransport r F d)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: transport_off_image_underdetermined
+  line: 138
+  signature_excerpt: |-
+    theorem transport_off_image_underdetermined {A B Q : Type} (u : A → B) (hu : Function.Injective u)
+        (F : A → Q) (b₀ : B) (hb₀ : ∀ a, u a ≠ b₀) (q₀ q₁ : Q) (hq : q₀ ≠ q₁) :
+        ∃ F₀' F₁' : B → Q,
+          AnswerTransport u F F₀' ∧ AnswerTransport u F F₁' ∧
+            F₀' b₀ = q₀ ∧ F₁' b₀ = q₁ ∧ F₀' ≠ F₁'
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: transport_counterpart_card
+  line: 163
+  signature_excerpt: |-
+    theorem transport_counterpart_card {A B Q : Type} [Fintype A] [Fintype B] [Fintype Q]
+        (u : A → B) (hu : Function.Injective u) (F : A → Q) :
+        Nat.card {F' : B → Q // AnswerTransport u F F'} =
+          (Fintype.card Q) ^ (Fintype.card B - Fintype.card A)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: commuting_square_preserves_transported_answer
+  line: 222
+  signature_excerpt: |-
+    theorem commuting_square_preserves_transported_answer {A B Q : Type}
+        (u : A → B) (F : A → Q) (F' : B → Q) (T : A → A) (T' : B → B)
+        (hF : AnswerTransport u F F') (hT : TransitionSquare u T T')
+        (k : Nat) (a : A) :
+        F' ((T'^[k]) (u a)) = F ((T^[k]) a)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: canonical_transition_lift_commutes
+  line: 240
+  signature_excerpt: |-
+    theorem canonical_transition_lift_commutes {A B E : Type} (u : A → B) (r : B → A ⊕ E)
+        (hr : OldImageLaw u r) (T : A → A) (b_ref : B) :
+        TransitionSquare u T (canonicalTransitionLift u r T b_ref)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: commuting_square_iff_boolean_answers_preserved_on_image
+  line: 250
+  signature_excerpt: |-
+    theorem commuting_square_iff_boolean_answers_preserved_on_image {A B E : Type} [DecidableEq A]
+        (u : A → B) (r : B → A ⊕ E) (hr : OldImageLaw u r)
+        (T : A → A) (T' : B → B) (a : A) (him : T' (u a) ∈ Set.range u) :
+        T' (u a) = u (T a) ↔
+          ∀ (F : A → Bool) (d : E → Bool),
+            retractionTransport r F d (T' (u a)) = F (T a)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: snCarrier_answer_transport
+  line: 342
+  signature_excerpt: |-
+    theorem snCarrier_answer_transport {Q : Type} (n : Nat)
+        (F : BasePresentation → Q) (d : Unit → Q) :
+        AnswerTransport (sectionLift n) F (retractionTransport (snRetract n) F d)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: snCarrier_canonical_transition_square
+  line: 348
+  signature_excerpt: |-
+    theorem snCarrier_canonical_transition_square (n : Nat) (T : BasePresentation → BasePresentation) :
+        TransitionSquare (sectionLift n) T
+          (canonicalTransitionLift (sectionLift n) (snRetract n) T (.nonDescent ⟨()⟩))
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: snCarrier_transition_counterexample
+  line: 400
+  signature_excerpt: |-
+    theorem snCarrier_transition_counterexample :
+        let F : BasePresentation → Nat
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s6Descent_answer_transport
+  line: 444
+  signature_excerpt: |-
+    theorem s6Descent_answer_transport {Q : Type} (F : Int → Q) (d : Unit → Q) :
+        AnswerTransport s6Lift F (retractionTransport s6Retract F d)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s6Descent_transition_counterexample
+  line: 456
+  signature_excerpt: |-
+    theorem s6Descent_transition_counterexample :
+        let F : Int → Int
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: not_conservative_extension_off_image
+  line: 479
+  signature_excerpt: |-
+    theorem not_conservative_extension_off_image {A B : Type} (u : A → B) (b₀ : B)
+        (hb₀ : ∀ a, u a ≠ b₀) :
+        ∃ P' : B → Prop, (∀ a : A, P' (u a)) ∧ ¬ (∀ b : B, P' b)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: old_image_not_left_galois_adjunction
+  line: 514
+  signature_excerpt: |-
+    theorem old_image_not_left_galois_adjunction :
+        ¬ ∃ p : Fin 3 → Fin 2, ∀ (a : Fin 2) (b : Fin 3), gapLift a ≤ b ↔ a ≤ p b
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: unrelated_demand_not_resolved_by_lift
+  line: 527
+  signature_excerpt: |-
+    theorem unrelated_demand_not_resolved_by_lift {A B : Type} (u : A → B)
+        (D : A → Prop) (D' : B → Prop) (hD : AnswerTransport u D D')
+        (a₀ : A) (ha₀ : D a₀) :
+        D' (u a₀)
+  source: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  source_sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.retraction_transport_law
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.retraction_transport_law
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 101
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.transport_off_image_underdetermined
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.transport_off_image_underdetermined
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 138
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.transport_counterpart_card
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.transport_counterpart_card
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 163
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.commuting_square_preserves_transported_answer
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.commuting_square_preserves_transported_answer
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 222
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.canonical_transition_lift_commutes
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.canonical_transition_lift_commutes
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 240
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 250
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_answer_transport
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.snCarrier_answer_transport
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 342
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_canonical_transition_square
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.snCarrier_canonical_transition_square
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 348
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_transition_counterexample
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.snCarrier_transition_counterexample
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 400
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.s6Descent_answer_transport
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.s6Descent_answer_transport
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 444
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.s6Descent_transition_counterexample
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.s6Descent_transition_counterexample
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 456
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.not_conservative_extension_off_image
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.not_conservative_extension_off_image
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 479
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.old_image_not_left_galois_adjunction
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.old_image_not_left_galois_adjunction
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 514
+  role: source_lead_only
+- original_ref: lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift
+  availability: local
+  symbol: CampaignSnProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift
+  path: lean4/CampaignSnProtectedAnswerTransport.lean
+  repository: this_repository
+  sha256: dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd
+  declaration_status: declaration_found_not_proof_checked
+  line: 527
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +490,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -1043,3 +1043,7 @@ lean_lib CampaignDfmRelationalTimeFence where
 -- Campaign: PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
 lean_lib CampaignSnE08WeightedL1Duality where
   roots := #[`CampaignSnE08WeightedL1Duality]
+
+-- Campaign: PGW-SN-PROTECTED-ANSWER-TRANSPORT. Not a default target.
+lean_lib CampaignSnProtectedAnswerTransport where
+  roots := #[`CampaignSnProtectedAnswerTransport]
