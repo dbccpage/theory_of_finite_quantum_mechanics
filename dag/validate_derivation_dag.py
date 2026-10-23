@@ -128,6 +128,8 @@ STAGES = (
     "LOOP_QUANTUM_GRAVITY",
     # Genesis to higher categories (sync_genesis_to_higher.py).
     "GENESIS_TO_HIGHER",
+    # FOC-035 observer presheaf (sync_foc035_observer_presheaf.py).
+    "OBSERVER_PRESHEAF",
 )
 STATUSES = (
     "ADMITTED_PRIMITIVE",

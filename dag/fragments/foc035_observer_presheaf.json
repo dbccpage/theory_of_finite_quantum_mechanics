@@ -1,0 +1,2248 @@
+{
+  "schema_version": "foc035_observer_presheaf.v1",
+  "authority_effect": "None",
+  "stages": [
+    "OBSERVER_PRESHEAF"
+  ],
+  "segment_note": "FOC-035 observer presheaf added 2026-10-22. One stage, OBSERVER_PRESHEAF, maps the 40 rows of the claim ledger of FOC-035 (copied byte for byte under sources/atlas/) to 33 nodes at the status the evidence supports in this repository. PROVED_LEAN is used only for the narrowed statements of lean4/LggrFiniteResults.lean. COMPUTATIONALLY_CHECKED is used where checks/independent/foc035_observer_presheaf.py or an imported Python test recomputes the instance values here; rows whose computing test is a Rust test stay CONDITIONAL, because the Rust module needs the external omega_solvers crate and its tests are not run here. Cited results are IMPORTED_ASSUMPTION, with external identifiers checked against the arXiv and Crossref records. WDP chapters 14 and 15 have no node in this graph, so links into them are GAP_NO_DERIVATION. Negative-evidence rows are REFUTED, except PR 1050, which is a SOURCE_RECORD.",
+  "citations": {
+    "abramsky2011": {
+      "ref": "external:arXiv:1102.0264",
+      "text": "S. Abramsky and A. Brandenburger, The sheaf-theoretic structure of non-locality and contextuality, New Journal of Physics 13 (2011) 113036, arXiv:1102.0264."
+    },
+    "abramsky2012": {
+      "ref": "external:arXiv:1111.3620",
+      "text": "S. Abramsky, S. Mansfield and R. S. Barbosa, The cohomology of non-locality and contextuality, EPTCS 95 (2012) 1-14, arXiv:1111.3620."
+    },
+    "abramsky2017": {
+      "ref": "external:arXiv:1705.07918",
+      "text": "S. Abramsky, R. S. Barbosa and S. Mansfield, The contextual fraction as a measure of contextuality, Physical Review Letters 119 (2017) 050504, arXiv:1705.07918."
+    },
+    "vorobev1962": {
+      "ref": "external:doi:10.1137/1107014",
+      "text": "N. N. Vorob'ev, Consistent families of measures and their extensions, Theory of Probability and its Applications 7 (1962) 147-163, doi:10.1137/1107014."
+    }
+  },
+  "nodes": [
+    {
+      "id": "OPS-OBSERVER-TUPLE",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "DEFINITION",
+      "source_status": "Ledger row L035-A1, status cited: the row cites the repository's own chapter-10 definitions. This node records the tuple as a definition, which is what Definition A1 of the note is.",
+      "statement": "Definition A1 of the source note. Fix a finite set M of measurements with finite outcome sets and a cover C of M by maximal contexts, and write E(U) for the set of outcome assignments on U. An observer tuple is O = (K, Adm, norm, Term, L). K = (M, C, E). Adm is the convex hull conv(A) of the vectors (delta_g restricted to C) over all contexts C, for g in E(M). The norm is the l1 norm on the stacked context distributions. Term maps the defect and the claim to a status: defect 0 gives ExactRepair, defect above 0 with a support-level global section gives ClosedResidual, and otherwise OpenObstruction. L is the diagnostic layer. The defect of a claim e = (e_C), one distribution per context, is Delta_O(e) = min over p in Adm of the l1 norm of (e - p). The five components are a projection of the four packets of WDP chapter 10 (presentation, memory, evaluator, policy) and of the chapter 15 grade. The monograph defines no five-tuple of its own; the ledger row records a search for \"5-tuple\" that returned nothing.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A1",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1-1.2",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A reading of WDP-CH10-D01 to D04, not a derivation. WDP chapter 15 has no node in this graph, so the layer component has no repository node to attach to. No source relates the L1 observer axioms H1 to H5 to this five-component tuple.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2500",
+        "foc035"
+      ],
+      "see_also": [
+        "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY",
+        "L1-OBSERVER-AXIOMS-H1-H5"
+      ],
+      "ledger_rows": [
+        "L035-A1"
+      ]
+    },
+    {
+      "id": "OPS-PUSHFORWARD-FUNCTOR-LEAN",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_LEAN",
+      "source_status": "Ledger row L035-B1: proved + computed + Lean-checked for pushforward of finitely supported natural-number-weighted measures only. The Lean module is on main; this change did not rebuild it. The ledger records elaboration under Lean 4.34.0 with axioms propext and Quot.sound only, and this repository pins Lean 4.35.0.",
+      "statement": "In Lean (LggrFiniteResults), a finitely supported measure with natural-number weights is a list of (value, weight) pairs, and pushforward along f maps each value by f and keeps its weight. Then: push of the identity is the identity (push_id); push along g after f equals push along the composite (push_comp); total mass is unchanged (mass_push); and the weight at b of push f p equals the mass of the entries of p whose image is b (weightAt_push). The note reads marginalisation of a context distribution as such a pushforward along the restriction map, so these are the identity and composition laws of the functor from the opposite of the context poset to probability vectors (Lemma B2). That reading is not a Lean statement. Not covered: rational weights, normalisation to probability vectors, the context poset, and the Rust types. The ledger row states the same narrowing.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B1",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.1",
+        "lean4/LggrFiniteResults.lean",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md"
+      ],
+      "lean": [
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.push_id",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.push_comp",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.mass_push",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.weightAt_push"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The Lean statement is the narrowed one above. The functor over rational probability vectors is proved in prose in the note (Lemma B2) and its instances on the PR box and the noisy PR boxes are recomputed by the independent check, which does not test the Lean statement. Lean not rebuilt in this change.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2501",
+        "foc035"
+      ],
+      "see_also": [
+        "IMPL-LGGR-FINITE-RESULTS-LEAN"
+      ],
+      "ledger_rows": [
+        "L035-B1"
+      ]
+    },
+    {
+      "id": "OPS-PARITY-HOLONOMY-LEAN",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_LEAN",
+      "source_status": "Ledger row L035-B11: proved + computed + Lean-checked for the two clauses above, any n >= 1; the arc-cover and noncontextual-fraction clauses stay computed (node OPS-PARITY-CYCLE-DESCENT-NCF). The Lean module is on main; this change did not rebuild it. The ledger records Lean 4.34.0 with axioms propext and Quot.sound only.",
+      "statement": "In Lean (LggrFiniteResults), take a length n > 0 and edge parities b : Nat -> Bool. Let holonomy b k be the exclusive or of b 0, ..., b (k-1), and call g a section when, for every i < n, the exclusive or of g i and g ((i+1) mod n) equals b i. Then (section_exists_iff_holonomy_zero) a section exists if and only if holonomy b n = false. Further (no_joint_measure_when_holonomy_one), if holonomy b n = true then no finitely supported natural-weight measure on assignments Nat -> Bool with positive total mass has, for every i < n, zero pushforward weight on every pair of values (g i, g ((i+1) mod n)) whose exclusive or differs from b i. These are the clause \"G(e) is nonempty iff the holonomy h is 0\" and the clause \"holonomy 1 forbids a positive-mass joint measure with parity-supported marginals\" of Proposition B6. Not in Lean: the arc-cover clause, the noncontextual-fraction clause and the Cech-cohomology reading.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B11",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "lean4/LggrFiniteResults.lean",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md"
+      ],
+      "lean": [
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.section_exists_iff_holonomy_zero",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.no_joint_measure_when_holonomy_one"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Lean not rebuilt in this change.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2502",
+        "foc035"
+      ],
+      "see_also": [
+        "IMPL-LGGR-FINITE-RESULTS-LEAN",
+        "FQ-CONTEXTUALITY-CECH-F2"
+      ],
+      "ledger_rows": [
+        "L035-B11"
+      ]
+    },
+    {
+      "id": "OPS-NCF-LHV-EQUIVALENCE",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_PROSE",
+      "source_status": "Ledger row L035-B2: proved + computed. The note gives a direct proof of the clause; the equivalence with the local-hidden-variable condition is the statement of Abramsky and Brandenburger, whose publisher record was not checked by the note. The instance values are recomputed here by an exact script, not by the Rust tests.",
+      "statement": "Proposition B3(1). For an empirical model e = (e_C) on a finite scenario, let A be the matrix whose column g, for g in E(M), is the stacked vector of the point masses of g restricted to each context, and let NCF(e) = max of the sum of lambda_g over lambda >= 0 with A lambda <= e. Then these are equivalent: e has a global section (a probability vector d on E(M) with marginal e_C on every context C); e lies in conv(A); NCF(e) = 1. This is the local-hidden-variable condition. Instances recomputed exactly: the mixture (1/2)(delta_g1 + delta_g2), with g1 = (0,0,0,0) and g2 = (1,0,0,1) on (a, a', b, b'), has NCF 1; the noisy PR box (1 - lam) PR + lam U at lam = 1/2 has NCF 1 and a distribution as a global section.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B2",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "checks/independent/foc035_observer_presheaf.py",
+        "external:arXiv:1705.07918",
+        "external:arXiv:1102.0264",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Not formalised in Lean (ledger row L035-L1, node OPS-LEAN-GAP). The proof is in the note and is not machine-checked.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2503",
+        "foc035"
+      ],
+      "see_also": [
+        "FQ-BELL-CLASSICAL-JOINT-EXTENSION"
+      ],
+      "ledger_rows": [
+        "L035-B2"
+      ]
+    },
+    {
+      "id": "OPS-STRONG-CONTEXTUALITY-NCF-ZERO",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_PROSE",
+      "source_status": "Ledger row L035-B4: proved + computed. The instance values are recomputed here by an exact script.",
+      "statement": "Proposition B3(3). Write G(e) for the set of g in E(M) with e_C(g restricted to C) > 0 for every context C. Then e is strongly contextual (G(e) is empty) if and only if NCF(e) = 0: if lambda_g > 0 is feasible then e_C(g|C) >= lambda_g > 0 for every C, so g is in G(e); conversely g in G(e) makes lambda = (min over C of e_C(g|C)) delta_g feasible with positive weight. Instance recomputed exactly: the PR box on the Bell scenario (contexts ab, ab', a'b, a'b', each uniform on the two outcome pairs with parity 0, 0, 0, 1) has |G| = 0 and NCF 0. The four parity constraints x_a + x_b = 0, x_a + x_b' = 0, x_a' + x_b = 0 and x_a' + x_b' = 1 sum to 0 = 1 modulo 2, so none of the 16 assignments satisfies all.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B4",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Not formalised in Lean (ledger row L035-L1, node OPS-LEAN-GAP).",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2504",
+        "foc035"
+      ],
+      "see_also": [
+        "FQ-CONTEXTUALITY-CECH-F2"
+      ],
+      "ledger_rows": [
+        "L035-B4"
+      ]
+    },
+    {
+      "id": "OPS-NOISY-PR-NCF",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Ledger row L035-B5: computed by the Rust tests noisy_pr_box_has_exact_noncontextual_fraction_two_lambda and tampered_receipts_are_rejected_by_replay, which are not run here. This node is COMPUTATIONALLY_CHECKED on the strength of checks/independent/foc035_observer_presheaf.py, which restates the box, solves each linear programme exactly and re-verifies the answer with an explicit primal and dual certificate; it does not run the Rust code.",
+      "statement": "On the Bell scenario let the noisy PR box be e_lam = (1 - lam) PR + lam U, where U puts 1/4 on every local outcome pair. The exact noncontextual fraction is 1/2 at lam = 1/4 and 1 at lam = 1/2, which is 2 lam at both points. The l1 defect to conv(A) is positive at lam = 1/4 and 0 at lam = 1/2, and the global support has 16 elements at both points. The closed form 2 lam for every lam below 1/2 is not claimed.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B5",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md"
+      ],
+      "lean": [],
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs::noncontextual_fraction"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Tested points only. The Rust receipt replay clause of the ledger row is in node OPS-RUST-RECEIPTS-AND-LIMITS.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2505",
+        "foc035"
+      ],
+      "see_also": [
+        "OPS-RUST-RECEIPTS-AND-LIMITS"
+      ],
+      "ledger_rows": [
+        "L035-B5"
+      ]
+    },
+    {
+      "id": "OPS-MAXIMAL-COVER-DESCENT",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_PROSE",
+      "source_status": "Ledger row L035-B6: proved + computed. The statement here is about the set-level family S. The Rust classify_cover reading (the DescentOutcome variants read from finite_report_descent.rs) is not run here.",
+      "statement": "Proposition B4(1). Let S(U) be the set of assignments s on U whose restriction to every maximal context C inside U lies in the support of e_C; then S(M) = G(e). Over the cover of M by its maximal contexts, every matching family (s_C in S(C), agreeing on overlaps) glues to exactly one element of S(M). So a descent classifier on that cover reports no NoGlobalExtension, its fibers are in bijection with G(e), and strong contextuality appears as zero matching families, not as a failed gluing. Instances recomputed exactly: the PR box has 0 matching families; the noisy PR box at lam = 1/2 has 16, each with exactly one gluing.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B6",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The reading of the proposition as a statement about the Rust classifier is not checked here (not run here). Not formalised in Lean.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2506",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B6"
+      ]
+    },
+    {
+      "id": "OPS-ARC-COVER-NGE-WITNESS",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Ledger row L035-B7: computed by the Rust test a_noncontextual_model_can_still_fail_descent_on_an_arc_cover, not run here. The counts are recomputed by checks/independent/foc035_observer_presheaf.py by enumerating the families and the gluings.",
+      "statement": "Existence witness. On the Bell scenario let e = (1/2)(delta_g1 + delta_g2) with g1 = (a, a', b, b') = (0,0,0,0) and g2 = (1,0,0,1). Then NCF(e) = 1 and G(e) has 2 elements. Over the arc cover {a, a', b}, {a', b, b'}, which omits the context {a, b'}, there are 4 matching families; 2 of them have exactly one gluing in S(M) and 2 have none. So a noncontextual model can have matching families without a global extension on a cover that omits a context.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B7",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md"
+      ],
+      "lean": [],
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/descent.rs::summarize_descent"
+      ],
+      "imported_structure": [],
+      "bottleneck": "An existence claim with one witness. The Rust classifier outcome names (Unique, NoGlobalExtension) are read as: exactly one gluing, no gluing. Not run here for the Rust code.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2507",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B7"
+      ]
+    },
+    {
+      "id": "OPS-NGE-NOT-CONTEXTUALITY",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_PROSE",
+      "source_status": "Ledger row L035-B8: proved, from rows B6 and B7.",
+      "statement": "Consequence of nodes OPS-MAXIMAL-COVER-DESCENT and OPS-ARC-COVER-NGE-WITNESS. A descent outcome NoGlobalExtension on a matching family is a statement about the chosen cover, not about the model: on the maximal cover it never occurs, and on the arc cover above it occurs for a model with NCF 1. Strong contextuality is G(e) empty, reported as NCF 0 with a Bell functional as the replayable witness. So the note's local-green-global-red event (a matching family over a cover of M whose descent outcome is NoGlobalExtension) is evidence that the cover's local checks do not reach the global object, and not evidence that no global object exists.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B8",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A reading of two earlier nodes. No cover-independent sound reading of NoGlobalExtension is known to the note.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2508",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B8"
+      ]
+    },
+    {
+      "id": "OPS-CECH-COBOUNDARY",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_PROSE",
+      "source_status": "Ledger row L035-B9: proved + computed. The instance values are recomputed here by an exact script. The Rust tests, including the shape checks of the ledger row, are not run here (node OPS-RUST-RECEIPTS-AND-LIMITS).",
+      "statement": "Proposition B5. Let N be the nerve of the maximal-context cover and take cochains valued in the presheaf U -> Q^E(U), with (delta0 alpha)_(C,C') the restriction of alpha_C to the overlap minus the restriction of alpha_C', and delta1 the alternating sum of restrictions on triples. Then delta1 delta0 = 0; for an empirical model e read as a 0-cochain, delta0 e = 0 if and only if e is no-signalling; and Phi_1([omega]) = min over alpha of the l1 norm of (omega - delta0 alpha) is unchanged by omega -> omega - delta0 beta. Instances recomputed exactly: the Bell nerve has four edges (a 4-cycle) and no triple, so delta1 delta0 = 0 is vacuous there; on the cover {0,1}, {0,2}, {0,3} (one nerve triple, overlap {0}) delta1 delta0 alpha = 0 for a non-constant alpha while a 1-cochain supported on one pair has delta1 beta = [1, 0]; delta0 e = 0 for the PR box and is nonzero at the pair (0,1) for a model whose a-marginal differs between the contexts ab and ab'; the unit cochain (1, 1) on the first edge of the Bell nerve has Phi_1 = 2, by the value 2 at alpha = 0 and a dual witness of sup norm 1 that annihilates delta0, and Phi_1 is again 2 after adding delta0 of a coboundary.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B9",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Phi_1 is the quotient value of the WDP degree-1 window; no source in this graph identifies the Cech-cochain Phi_1 with PG-WDP-DEGREE1-WINDOW with J the l1 norm, so that route is a gap. Not formalised in Lean.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2509",
+        "foc035"
+      ],
+      "see_also": [
+        "PG-WDP-DEGREE1-WINDOW",
+        "L1-WDP-WINDOW-PHI1-GAMMA2",
+        "DS-QM074-NO-SIGNALING-MARGINAL",
+        "FQ-CONTEXTUALITY-CECH-F2"
+      ],
+      "ledger_rows": [
+        "L035-B9"
+      ]
+    },
+    {
+      "id": "OPS-ZERO-COCYCLE-BLIND",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_PROSE",
+      "source_status": "Ledger row L035-B10: proved; narrowed in the ledger from a stronger earlier sentence.",
+      "statement": "Every no-signalling model, the PR box included, has delta0 e = 0 (node OPS-CECH-COBOUNDARY). So the test delta0 e = 0 does not separate contextual from noncontextual no-signalling models. This is a statement about the test, not about the class of e: in the unaugmented complex H^0 = ker delta0, so distinct no-signalling models are distinct classes. What the class lacks is an invariant that separates conv(A) from its complement; that separation is a positivity constraint. The earlier sentence that the class \"carries no information about probabilistic contextuality\" is narrowed to this.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B10",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Not a statement about every possible cohomological invariant. Not formalised in Lean.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2510",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B10"
+      ]
+    },
+    {
+      "id": "OPS-PARITY-CYCLE-DESCENT-NCF",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Ledger row L035-B11, the clauses that stay computed: the Rust test parity_cycles_holonomy_decides_descent_and_strong_contextuality is not run here. The 56 cases are recomputed by checks/independent/foc035_observer_presheaf.py.",
+      "statement": "For n = 3, 4, 5 and every one of the 2^n parity-target vectors t on the n-cycle of binary measurements (contexts {m_i, m_(i+1 mod n)}, each distribution uniform on the two pairs with x_i xor x_(i+1) = t_i), let h be the exclusive or of the t_i. Then |G| is 2 if h = 0 and 0 if h = 1; the arc cover {m_0, ..., m_(n-2)}, {m_1, ..., m_(n-1)} has exactly 2 matching families, both with one gluing if h = 0 and both without a gluing if h = 1; and NCF is 1 if h = 0 and 0 if h = 1. That is 8 + 16 + 32 = 56 cases.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B11",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md"
+      ],
+      "lean": [],
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/parity.rs::ParityCycle"
+      ],
+      "imported_structure": [],
+      "bottleneck": "Finite cases n = 3, 4, 5 only. The two clauses proved in Lean for every n are in node OPS-PARITY-HOLONOMY-LEAN; the arc-cover and NCF clauses for general n are not claimed.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2511",
+        "foc035"
+      ],
+      "see_also": [
+        "OPS-PARITY-HOLONOMY-LEAN"
+      ],
+      "ledger_rows": [
+        "L035-B11"
+      ]
+    },
+    {
+      "id": "OPS-NO-SIGNALLING-SIGNED-SECTION",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Ledger row L035-B3: cited + computed. The external identifier was checked against the arXiv record (title and journal reference). The instance is recomputed by an exact script; the equivalence itself is not re-proved.",
+      "statement": "Assumed from Abramsky and Brandenburger (New Journal of Physics 13 (2011) 113036, arXiv:1102.0264), as the note cites it and does not prove it: an empirical model is no-signalling if and only if it has a signed global section, a function d on E(M) with values in Q, sum 1 and the given marginals. Instance recomputed exactly: the PR box, which is no-signalling, has a signed global section found by exact linear algebra, with sum 1, all 16 marginal equations satisfied and at least one negative entry.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B3",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "checks/independent/foc035_observer_presheaf.py",
+        "external:arXiv:1102.0264",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Abramsky-Brandenburger: no-signalling iff a signed global section exists (assumption; cited, not proved here)"
+      ],
+      "bottleneck": "The equivalence is cited, not derived here. The instance covers one no-signalling model and says nothing about the converse direction or about other models.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2512",
+        "foc035",
+        "external-import"
+      ],
+      "see_also": [
+        "DS-QM074-NO-SIGNALING-MARGINAL"
+      ],
+      "ledger_rows": [
+        "L035-B3"
+      ]
+    },
+    {
+      "id": "OPS-Z2-WITNESS-FALSE-NEGATIVES",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Ledger row L035-B12: cited. The external identifier was checked against the arXiv record. Not computed here.",
+      "statement": "Assumed from Abramsky, Mansfield and Barbosa (EPTCS 95 (2012) 1-14, arXiv:1111.3620), as the note cites it: the Z2 holonomy witness of parity constraints can be silent where the linear-programming witness is not, that is, it has false negatives on other families of scenarios. The note does not compute such a family and does not claim the behaviour away.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B12",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "external:arXiv:1111.3620",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Abramsky-Mansfield-Barbosa: the Z2 holonomy witness has false negatives on other families (assumption; cited)"
+      ],
+      "bottleneck": "Cited, not re-run. No family with a silent Z2 witness is exhibited in this repository.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2513",
+        "foc035",
+        "external-import"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B12"
+      ]
+    },
+    {
+      "id": "OPS-VOROBEV-THEOREM",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Ledger row L035-B13: proved (sketch) + computed, with the theorem cited. The DOI was checked against the Crossref record (title, volume, pages, year). The computed instances are in nodes OPS-VOROBEV-PATH-INSTANCE and OPS-TEST-482-REPAIR.",
+      "statement": "Assumed from Vorob'ev (Theory of Probability and its Applications 7 (1962) 147-163, doi:10.1137/1107014), as the note states it: if the hypergraph (M, C) is GYO-acyclic (it reduces to nothing by removing ears and absorbed vertices, equivalently it has a join tree), then every no-signalling model has a global section given on a join tree T by d(g) = (product over C of e_C(g|C)) / (product over the edges (C, C') of T of e_(C intersect C')(g|C intersect C')), with 0/0 = 0. The note gives an induction sketch, not a full proof. The converse (for every non-acyclic hypergraph some no-signalling family has no global section) is not implemented; the PR box on the 4-cycle is one instance.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
+        "external:doi:10.1137/1107014",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Vorob'ev: a GYO-acyclic cover glues every no-signalling model by the join-tree product formula (assumption; cited)"
+      ],
+      "bottleneck": "Cited theorem with a proof sketch in the note only. Not formalised in Lean.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2514",
+        "foc035",
+        "external-import"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B13"
+      ]
+    },
+    {
+      "id": "OPS-VOROBEV-PATH-INSTANCE",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Ledger row L035-B13, the computed part: the Rust test vorobev_product_formula_glues_acyclic_covers_and_refuses_cycles is not run here. The instance is recomputed by checks/independent/foc035_observer_presheaf.py.",
+      "statement": "On the path cover {0,1}, {1,2}, {2,3} of four binary measurements, with parity targets 0, 1, 1, the product formula of node OPS-VOROBEV-THEOREM (join-tree edges ({0,1},{1,2}) and ({1,2},{2,3})) gives a probability distribution on the 16 assignments whose three marginals equal the three given tables exactly, and NCF is 1. The GYO reduction empties the three-context path and the two-context path and does not empty the Bell 4-cycle or a triangle. This is one instance of the cited theorem, not a check of it.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md"
+      ],
+      "lean": [],
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs::acyclic_global_section"
+      ],
+      "imported_structure": [],
+      "bottleneck": "One path cover. The Rust join-tree code and its refusal of the 4-cycle (NotAcyclic) are not run here. The theorem itself is node OPS-VOROBEV-THEOREM.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2515",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B13"
+      ]
+    },
+    {
+      "id": "OPS-TEST-482-REPAIR",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Ledger row L035-B14: computed by the repaired test of the source repository (20 tests run there with unittest, exit 0). That test is not run here. The instances are recomputed by checks/independent/foc035_observer_presheaf.py, which restates the tables, the GYO reduction and the exhaustion.",
+      "statement": "The instances that the repaired Test 482 of the source repository checks: a GYO reduction accepts the path cover {ab, bc} and rejects the triangle cover {ab, bc, ac}; two rational tables on the path (p_ab with entries 1/2, 1/6, 1/12, 1/4 and p_bc with entries 1/3, 1/4, 1/6, 1/4) agree on the overlap and glue by the product formula p_ab p_bc / p_b to a joint of total mass 1 that reproduces both tables exactly; and the constraints a = b, b = c, a != c of the triangle parity cover have no compatible assignment among the eight. The earlier version of the source test assigned the literal True and asserted it, so it verified nothing. The source test itself is not imported (see the bottleneck).",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B14",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The source test was not imported: as one test with fixed inputs and no edge-case handling it would score L3 under SCORING.md, below the L4 floor this change set for code, so it was left out. The row's own caveat stands: other tests of the source file assert literals and are not repaired. The instances are two fixed covers and one pair of tables.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2516",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-B14"
+      ]
+    },
+    {
+      "id": "OPS-UNDERDETERMINATION",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "PROVED_PROSE",
+      "source_status": "Ledger row L035-A2: computed (K row; first receipt of the Adm row) + proved (second receipt of the Adm row) + derived by hand (norm and Term rows). The Rust receipts are not run here; the defects 2 and 0 are recomputed by the independent check.",
+      "statement": "Lemma A2. Let O' leave one of K, Adm, norm, Term undeclared, and require that an evaluation's receipt for a claim agree across every admissible completion of the undeclared component. Then no evaluation of O' meets that requirement: for each of the four components there are two admissible completions, agreeing elsewhere, whose receipts for one claim differ. Witnesses on the PR box (Bell scenario, parity targets 0, 0, 0, 1): K, the Bell cover gives defect 2 and the acyclic sub-cover {ab, ab'} gives defect 0; Adm, the noncontextual polytope gives 2 and the no-signalling polytope gives 0, because the PR box is no-signalling; norm, the l1 norm gives 2 and twice the l1 norm gives 4; Term, with defect 2 and empty global support the rule of the note gives OpenObstruction and the rule \"defect below 3 gives ExactRepair\" gives ExactRepair. The lemma does not say that no function from claims to receipts exists; any one completion defines a function. The layer has no row, because Definition A1 fixes it to diagnostic.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A2",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The norm and Term rows are arithmetic on the defect 2, not receipts of a configurable evaluator: the Rust evaluator implements one norm and one terminal rule. The second receipt of the Adm row is proved, not computed by the Rust code. Not formalised in Lean.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2517",
+        "foc035"
+      ],
+      "see_also": [
+        "OPS-STRONG-CONTEXTUALITY-NCF-ZERO"
+      ],
+      "ledger_rows": [
+        "L035-A2"
+      ]
+    },
+    {
+      "id": "OPS-OBSERVER-DECLARATION-REFUSAL",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "CONDITIONAL",
+      "source_status": "Ledger rows L035-A3 and L035-A4: computed + by construction, by the Rust tests an_undeclared_observer_component_is_refused_before_any_arithmetic, pr1080_blank_observer_fields_are_refused, pr1080_receipt_does_not_accept_an_unsupported_observer_profile and evaluation_receipts_carry_the_terminal_token_and_no_authority. Held at CONDITIONAL because those tests are not run in this repository.",
+      "statement": "As the note states it for the Rust evaluator evaluate_l1_claim (Policy A2' and the profile binding): before any arithmetic it refuses an undeclared, empty or whitespace component with UndeclaredObserverComponent(name), and a component the evaluator does not implement with UnsupportedObserverComponent { component, declared }. The kernel must equal the label of the scenario under evaluation (for the Bell scenario \"support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2\"); the other four components must equal the constants for the noncontextual polytope, the l1 norm, the terminal rule and the diagnostic layer. A supported tuple yields a receipt with authority_effect None, the terminal token and the typed profile. The refusal is a policy invariant by construction; the note does not derive it from Lemma A2.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A3",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A4",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.2-1.3",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md"
+      ],
+      "lean": [],
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/observer.rs::evaluate_l1_claim"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. The Python gate runs the same five-component refusal on its own observer field (node OPS-THREE-ROLE-GATE).",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2518",
+        "foc035"
+      ],
+      "see_also": [
+        "OPS-THREE-ROLE-GATE"
+      ],
+      "ledger_rows": [
+        "L035-A3",
+        "L035-A4"
+      ]
+    },
+    {
+      "id": "OPS-RUST-RECEIPTS-AND-LIMITS",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "CONDITIONAL",
+      "source_status": "Ledger rows L035-B15, L035-B16 and L035-B17 (and the shape clause of L035-B9): computed by the Rust tests convex_hull_distance_receipt_replays_and_rejects_shape_errors, tampered_receipts_are_rejected_by_replay, pr1080_embedded_lp_corruption_is_not_silently_accepted, pr1080_oversized_global_carrier_is_refused_without_overflow and pr1080_disconnected_cochain_shape_is_still_checked. Held at CONDITIONAL because those tests are not run in this repository.",
+      "statement": "As the ledger states them for the Rust module empirical_presheaf. (B15) The l1 defect receipt has zero duality gap: <phi*, e> + y0 equals the defect, with the sup norm of phi* at most 1 and A^T phi* + y0 <= 0, and replay rejects tampering and shape errors. (B17) verify_noncontextual_fraction and verify_l1_defect_receipt rebuild the linear programme, verify the embedded solution as its certificate, and bind primal, dual and value to the receipt's part, functional and fraction; the pivot trace is not bound. (B16) Every global and local section count is a checked fold against MAX_GLOBAL_ASSIGNMENTS = 2^20 returning EnumerationLimit, and dense allocations are bounded by MAX_LP_ENTRIES = 2^22 returning LpSizeLimit, with nothing of either size allocated or enumerated before the refusal: 64 binary singletons have 2^64 assignments and one context of 21 binary measurements has 2^21 sections, both above 2^20, while ten binary singletons give a 20 x 1024 incidence inside both ceilings. (B9, shape) The whole declared cochain is shape-checked before any incidence is read. Recomputed here: the ceiling arithmetic, and a zero-gap primal and dual pair for the PR box and the noisy boxes in the independent script's own solver, which does not test the Rust verifiers.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B15",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B16",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B17",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.6",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md"
+      ],
+      "lean": [],
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/lp.rs::bound_dense",
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs::verify_noncontextual_fraction",
+        "code/rust/src/sheaf_theory/empirical_presheaf/lp.rs::verify_l1_defect_receipt"
+      ],
+      "imported_structure": [],
+      "bottleneck": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2519",
+        "foc035"
+      ],
+      "see_also": [
+        "OPS-NOISY-PR-NCF",
+        "OPS-CECH-COBOUNDARY"
+      ],
+      "ledger_rows": [
+        "L035-B15",
+        "L035-B16",
+        "L035-B17"
+      ]
+    },
+    {
+      "id": "OPS-LEAN-GAP",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "OPEN",
+      "source_status": "Ledger row L035-L1, status open.",
+      "statement": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2520",
+        "foc035"
+      ],
+      "see_also": [
+        "IMPL-LGGR-FINITE-RESULTS-LEAN"
+      ],
+      "ledger_rows": [
+        "L035-L1"
+      ]
+    },
+    {
+      "id": "OPS-THREE-ROLE-GATE",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Ledger rows L035-C8, L035-C9 and L035-C10: computed. The Python tests run in this repository under pytest. The expected verdicts are data in the JSON fixture.",
+      "statement": "ThreeRoleGate(scope, admitted_roots) reads a packet (claim_id, scope, proposer, evaluator, authorizer, observer, authority_root, policy); each role binding is (identifier, principal) and the observer is the five-component declaration. Run here (code/python/tests/test_three_role_gate.py, 15 tests, 33 subtests, with a fixture of 17 cases): every fixture case yields its recorded verdict and reasons; every RefusalReason is reached by some fixture case; every verdict carries authority_effect None and GateVerdict refuses any other value; a missing field, an empty identifier, an unknown field or policy, a non-string value, and a missing or blank observer component are typed refusals, never a default; two identifiers on one principal give SHARED_PRINCIPAL, including the case (id-A/p1, id-B/p1, id-A/p2) that a count rule misses; a non-string mapping key at the top level, in a role binding or in the observer is a MALFORMED_PACKET refusal and is never coerced to a string; a self_attested_permitted policy gives SELF_ATTESTED, never ADMITTED_FOR_AUTHORIZATION.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C8",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C9",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C10",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.3",
+        "code/python/src/wdp/three_role_gate.py",
+        "code/python/src/wdp/three_role_provenance_fixtures.json",
+        "code/python/tests/test_three_role_gate.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2521_ops_three_role_gate.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A shape and separation check on one fixture. It does not evaluate the claim, compute a defect or promote anything, and it is not connected to the Rust evaluator: the observer strings in the fixture are copies of the evaluator's constants, compared as text. No node for WDP chapter 15 exists, so the link to the authority packet is a gap route.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2521",
+        "foc035"
+      ],
+      "see_also": [
+        "TFQ-0328",
+        "TFQ-0329",
+        "DS-QM090-092-AUTHORITY-FIREWALL"
+      ],
+      "ledger_rows": [
+        "L035-C8",
+        "L035-C9",
+        "L035-C10"
+      ]
+    },
+    {
+      "id": "OPS-SELF-CERTIFICATION-PACKET",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Ledger row L035-C6: proved + computed. The gate test runs here.",
+      "statement": "Read as a provenance packet, the sentence \"I verified this and certify it\" is (p, p, p): one identifier and one principal in the proposer, evaluator and authorizer roles. All three pairs of roles coincide. The gate returns REJECTED with the reasons SELF_AUTHORIZATION, EVALUATOR_IS_PROPOSER and EVALUATOR_IS_AUTHORIZER, in that order (fixture case i_verified_this_and_certify_it; test test_self_certification_sentence_is_rejected_on_three_counts). The note's reading of this as a single-patch gluing on the role cover with no descent data is prose, and is not computed.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C6",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.2",
+        "code/python/src/wdp/three_role_gate.py",
+        "code/python/src/wdp/three_role_provenance_fixtures.json",
+        "code/python/tests/test_three_role_gate.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The role policy is the authority note's PairwiseDistinct, principals included, which is declared by the regime and not derived from the evidence. A regime that permits self-attestation gives SELF_ATTESTED for the same packet.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2522",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-C6"
+      ]
+    },
+    {
+      "id": "OPS-AP-CARD-PROPOSAL",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "SOURCE_RECORD",
+      "source_status": "Ledger row L035-C7, status proposed: the source states it; nothing here is audited. The grep over the source repository's rule and pattern folders is not reproducible from this repository.",
+      "statement": "The note proposes AP_AB_UNADMITTED_SHEAF_BRIDGE as a candidate anti-pattern card, with the packet (p, p, p) as its fixture case. It records that neither this name nor RULE_AUTHORITY_SEPARATION_001 exists in the source repository; the nearest registered rule there is RULE_EVALUATOR_SUPREMACY_AUTHORITY_SEPARATION_001. Nothing is registered by this repository.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C7",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.2",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "A name offered, not a result. No card or rule is created here.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2523",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-C7"
+      ]
+    },
+    {
+      "id": "OPS-AXIS1-WELLFOUNDED-ADMISSION",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Ledger row L035-C1, status cited. Only a pinned copy of the Genesis claim ledger is in the source repository, and the note did not re-run it. This repository has not re-run it either.",
+      "statement": "Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus, in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify. It says nothing about other shapes of admission. Imported by name: the theorem is Genesis's.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C1",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Genesis theorem collapsed_of_no_insts: with no base instance no rule instance is admitted (assumption; cited by name, not re-run)"
+      ],
+      "bottleneck": "Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2524",
+        "foc035"
+      ],
+      "see_also": [
+        "PGW-GO-ADMISSION-GATE",
+        "PG-GEN-REGIME-EVENTS"
+      ],
+      "ledger_rows": [
+        "L035-C1"
+      ]
+    },
+    {
+      "id": "OPS-AXIS2-META-CARRIER",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "IMPORTED_ASSUMPTION",
+      "source_status": "Ledger row L035-C2: by construction + cited. Lemma D, named in the monograph, has no statement in the source repository and nothing here rests on it.",
+      "statement": "Axis 2. Let eval_n be the evaluator of a process on carrier K_n. The statement \"eval_n is sound\" relates eval_n to a standard of correctness for K_n; that standard is not an element of K_n, so the statement is a sentence of a carrier K_(n+1), and the output PASS of eval_n on it has no standing at K_(n+1) (ENC-0195, AuthorityEffect None). The level statement holds by construction of the carrier hierarchy. Imported: the strengthening by Tarski's undefinability theorem, which applies only when K_n interprets enough arithmetic, and the Genesis identifiers ENC-0118 and ENC-0195, cited by name.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C2",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "Tarski undefinability, conditional on a carrier that interprets arithmetic (assumption)",
+        "Genesis identifiers ENC-0118 and ENC-0195 (assumption; cited by name, not re-run)"
+      ],
+      "bottleneck": "Cited by name, not re-run. The level statement is a typing remark and not a theorem; the Tarski clause is conditional on the arithmetic hypothesis.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2525",
+        "foc035"
+      ],
+      "see_also": [
+        "GTH-LANG-LIMITS"
+      ],
+      "ledger_rows": [
+        "L035-C2"
+      ]
+    },
+    {
+      "id": "OPS-AXIS3-RELABELING",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "CONDITIONAL",
+      "source_status": "Ledger row L035-C3: proved (conditional on (iii)) + cited. NS-14 and CL-13 are read from the Argon synthesis; their Lean sources are not in the source repository and were cited, not re-run.",
+      "statement": "Axis 3 of WDP-CH14-T01 under three hypotheses. (i) NS-14: an injective renaming sigma of presentation tokens commutes with the transition step and with full-history replay. (ii) CL-13 (passage_charge_const): a quantity conserved by internal transitions is constant on reachable states and equals its genesis value. (iii) The verdict V reads a history only through a declared export Exp, so V = Vbar o Exp, with Exp(sigma(H)) = Exp(H) for every injective renaming sigma; this is the identical-accessible-exports premise of Proposition 3.1 of the Argon synthesis. Then V(sigma(H)) = V(H), because V(sigma(H)) = Vbar(Exp(sigma(H))) = Vbar(Exp(H)) = V(H). Without (iii) the statement is false (node OPS-REFUTED-AXIS3-WIDE). A drop in the internal defect Delta_O stays computable and renaming-invariant; whether a drop is a repair or a reinterpretation is a question about the grounding map of the tokens, which no export-reading verdict decides.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C3",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Conditional on (iii), and on (i) and (ii) as cited, not re-run. WDP-CH14 has no node in this graph; (iii) is read as the observer-quotient reading of WDP chapter 10.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2526",
+        "foc035"
+      ],
+      "see_also": [
+        "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY"
+      ],
+      "ledger_rows": [
+        "L035-C3"
+      ]
+    },
+    {
+      "id": "OPS-REGRESS-COROLLARY",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "CONDITIONAL",
+      "source_status": "Ledger row L035-C5: proved (conditional on (iii)), narrowed together with row C3.",
+      "statement": "WDP-CH14-C01 (an unhosted token predictor cannot issue self-authorizing certificates) follows from Axes 2 and 3 for a process whose only outputs are receipt-free presentations and whose self-evaluation, if any, factors through its internal exports (premise (iii) of Axis 3). The nonclaim WDP-CH14-N03 is kept: a process coupled to a receipt-emitting oracle, as in WDP-CH15-D02, is outside the statement.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C5",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Conditional on nodes OPS-AXIS2-META-CARRIER (cited, not re-run) and OPS-AXIS3-RELABELING. Not formalised in Lean.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2527",
+        "foc035"
+      ],
+      "see_also": [
+        "OPS-AXIS3-RELABELING"
+      ],
+      "ledger_rows": [
+        "L035-C5"
+      ]
+    },
+    {
+      "id": "OPS-REFUTED-AXIS3-WIDE",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "REFUTED",
+      "source_status": "Ledger row L035-N3: refuted (the note's own earlier statement), found in the review of PR 1080 of the source repository. The countermodel is recomputed here.",
+      "statement": "The earlier statement of Axis 3, \"V(sigma(H)) = V(H) for any verdict V that is a function of internal receipts and conserved charges\", is false. Countermodel: states a and b; sigma swaps them; the one transition swaps them, so hypothesis (i) holds; the only conserved charge is the constant 0, so (ii) holds; V(H) is \"the first token of H is a\". Then V((a)) = true and V(sigma((a))) = V((b)) = false. Recomputed by the independent check.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N3",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Refutes the unconditional form only; the form with the declared-export premise (iii) is node OPS-AXIS3-RELABELING.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2528",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-N3"
+      ]
+    },
+    {
+      "id": "OPS-REFUTED-NB9",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "REFUTED",
+      "source_status": "Ledger row L035-C4: refuted (cited). The refutation is recorded in the Argon synthesis and the Argon notebook review of 2026-10-15 of the source repository; it is cited, not re-run.",
+      "statement": "NB-9, a commuting diagram together with an injective encoding offered as a certificate of semantic transport, is refuted by budgetSim_enc_injective: the square commutes through budget writes alone. It is not used. Its refutation removes the one internal object that could have been mistaken for grounding, so it does not weaken Axis 3.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Cited, not re-run. A restored NB-9 with a proof would falsify this node.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2529",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-C4"
+      ]
+    },
+    {
+      "id": "OPS-REFUTED-EARLIER-GATE",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "REFUTED",
+      "source_status": "Ledger rows L035-N1 and L035-N8: refuted (the note's own earlier design and code). The failing run before the fix (2 failures) is recorded in the source repository and is not reproducible here.",
+      "statement": "Two earlier designs of the Python gate failed. (N1) The count rule \"the number of principals is below the number of identifiers\" missed the case evaluator_also_proposer (identical bindings) and the case (id-A/p1, id-B/p1, id-A/p2), where two identifiers share a principal and a third principal exists; for both, the principals and the identifiers are 2 in number, so the rule does not fire. It was replaced by a pairwise check. (N8) A non-string key in a packet mapping reached the string join in _reject_unknown and escaped evaluate_mapping as a TypeError; it is now a MALFORMED_PACKET refusal at every level. The counts are recomputed by the independent check; the earlier code is not in this repository.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N1",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N8",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.3",
+        "checks/independent/foc035_observer_presheaf.py",
+        "code/python/tests/test_three_role_gate.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Records two superseded designs. The current gate is node OPS-THREE-ROLE-GATE.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2530",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-N1",
+        "L035-N8"
+      ]
+    },
+    {
+      "id": "OPS-REFUTED-EARLIER-RUST",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "REFUTED",
+      "source_status": "Ledger rows L035-N4 to L035-N7: refuted (the note's own earlier code and text), found in the review of PR 1080 of the source repository; repaired by rows A2, A3, A4, B9, B16 and B17. The earlier head is not in this repository, so the defects are not reproduced here.",
+      "statement": "At head 0a0502646 of the source repository the following were wrong. (N4) Scenario::section_count multiplied arities without a check, and the limit was compared afterwards: 64 binary singletons (2^64 assignments) wrapped to 0 in a release build, so global_support returned an empty support and is_strongly_contextual returned true. (N5) ObserverDraft::declare accepted empty and whitespace strings, and the five strings were free text copied into the receipt: a norm \"L2\", a terminal \"always OpenObstruction\" and a layer \"authoritative\" each yielded the l1 value, ExactRepair and authority None. (N6) Proposition A2 claimed that no claim-to-receipt function exists, carried a layer row whose second completion was not an observer, and said the refusal test dropped five components when it dropped two; and verify_noncontextual_fraction read only lp.value from the embedded solution. (N7) delta0 checked only the number of entries, delta1 and flatten1 ignored extraneous keys and pairs outside every triple, and the only delta1 delta0 = 0 test ran on the Bell nerve, which has no triple. Recomputed here: 2^64 is 0 modulo 2^64.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N4",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N5",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N6",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N7",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.2-2.6",
+        "checks/independent/foc035_observer_presheaf.py",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Records superseded defects. The repaired behaviour is in nodes OPS-OBSERVER-DECLARATION-REFUSAL and OPS-RUST-RECEIPTS-AND-LIMITS, which are conditional (not run here).",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2531",
+        "foc035"
+      ],
+      "see_also": [
+        "OPS-OBSERVER-DECLARATION-REFUSAL",
+        "OPS-UNDERDETERMINATION"
+      ],
+      "ledger_rows": [
+        "L035-N4",
+        "L035-N5",
+        "L035-N6",
+        "L035-N7"
+      ]
+    },
+    {
+      "id": "OPS-PR1050-ABSENCE",
+      "stage": "OBSERVER_PRESHEAF",
+      "status": "SOURCE_RECORD",
+      "source_status": "Ledger row L035-N2: negative evidence recorded as computed (read). Held as SOURCE_RECORD, not REFUTED: it records an absence in another repository, and no claim of this repository is refuted by it. The git log is not reproducible from this repository.",
+      "statement": "The LGGR test of PR 1050 of the source repository was not on its main branch at commit ae38eaa89 and is not cited by the note or its ledger. The row records a git log over the normal-forms test folder of that repository.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N2",
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0",
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "An absence in a repository that is not part of this checkout.",
+      "tags": [
+        "foc035-observer-presheaf",
+        "TFQ-2532",
+        "foc035"
+      ],
+      "see_also": [],
+      "ledger_rows": [
+        "L035-N2"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "OPS-R-OBSERVER-TUPLE",
+      "inputs": [
+        "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY"
+      ],
+      "output": "OPS-OBSERVER-TUPLE",
+      "status": "RECORD_PARENT",
+      "mechanism": "Reading-order attachment. The tuple is the note's projection of the four packets of WDP chapter 10; the route is not a derivation.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1"
+      ]
+    },
+    {
+      "id": "OPS-R-OBSERVER-TUPLE-2",
+      "inputs": [
+        "L1-OBSERVER-AXIOMS-H1-H5"
+      ],
+      "output": "OPS-OBSERVER-TUPLE",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "No source relates the declared observer axioms H1 to H5 to the five-component observer tuple of the note."
+    },
+    {
+      "id": "OPS-R-PUSHFORWARD-FUNCTOR-LEAN",
+      "inputs": [
+        "IMPL-LGGR-FINITE-RESULTS-LEAN"
+      ],
+      "output": "OPS-PUSHFORWARD-FUNCTOR-LEAN",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The node restates the four declarations push_id, push_comp, mass_push and weightAt_push of the Lean module, at the scope of natural-number-weighted lists.",
+      "source": [
+        "lean4/LggrFiniteResults.lean"
+      ]
+    },
+    {
+      "id": "OPS-R-PARITY-HOLONOMY-LEAN",
+      "inputs": [
+        "IMPL-LGGR-FINITE-RESULTS-LEAN"
+      ],
+      "output": "OPS-PARITY-HOLONOMY-LEAN",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The node restates section_exists_iff_holonomy_zero and no_joint_measure_when_holonomy_one of the Lean module.",
+      "source": [
+        "lean4/LggrFiniteResults.lean"
+      ]
+    },
+    {
+      "id": "OPS-R-NCF-LHV-EQUIVALENCE",
+      "inputs": [
+        "OPS-OBSERVER-TUPLE"
+      ],
+      "output": "OPS-NCF-LHV-EQUIVALENCE",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Proposition B3(1) of the note, a direct argument from the definition of Adm as conv(A) and of NCF as a linear programme.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2"
+      ]
+    },
+    {
+      "id": "OPS-R-STRONG-CONTEXTUALITY-NCF-ZERO",
+      "inputs": [
+        "OPS-NCF-LHV-EQUIVALENCE"
+      ],
+      "output": "OPS-STRONG-CONTEXTUALITY-NCF-ZERO",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Proposition B3(3) of the note, from the definition of the global support G(e) and of NCF.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2"
+      ]
+    },
+    {
+      "id": "OPS-R-NOISY-PR-NCF",
+      "inputs": [
+        "OPS-NCF-LHV-EQUIVALENCE"
+      ],
+      "output": "OPS-NOISY-PR-NCF",
+      "status": "COMPUTED",
+      "mechanism": "Exact simplex with re-verified primal and dual certificates in the independent script.",
+      "source": [
+        "checks/independent/foc035_observer_presheaf.py"
+      ]
+    },
+    {
+      "id": "OPS-R-MAXIMAL-COVER-DESCENT",
+      "inputs": [
+        "OPS-STRONG-CONTEXTUALITY-NCF-ZERO"
+      ],
+      "output": "OPS-MAXIMAL-COVER-DESCENT",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Proposition B4(1) of the note: a matching family over the maximal contexts defines one assignment, which is in S(M).",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3"
+      ]
+    },
+    {
+      "id": "OPS-R-ARC-COVER-NGE-WITNESS",
+      "inputs": [
+        "OPS-MAXIMAL-COVER-DESCENT"
+      ],
+      "output": "OPS-ARC-COVER-NGE-WITNESS",
+      "status": "COMPUTED",
+      "mechanism": "Enumeration of the matching families and gluings of the arc cover in the independent script.",
+      "source": [
+        "checks/independent/foc035_observer_presheaf.py"
+      ]
+    },
+    {
+      "id": "OPS-R-NGE-NOT-CONTEXTUALITY",
+      "inputs": [
+        "OPS-MAXIMAL-COVER-DESCENT",
+        "OPS-ARC-COVER-NGE-WITNESS"
+      ],
+      "output": "OPS-NGE-NOT-CONTEXTUALITY",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Consequence stated in the note after Proposition B4.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3"
+      ]
+    },
+    {
+      "id": "OPS-R-CECH-COBOUNDARY",
+      "inputs": [
+        "OPS-PUSHFORWARD-FUNCTOR-LEAN"
+      ],
+      "output": "OPS-CECH-COBOUNDARY",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Proposition B5 of the note; the cancellation of delta1 delta0 uses the composition law of Lemma B2. The Lean statement covers natural-number weights only, so the rational case rests on the prose proof.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4"
+      ]
+    },
+    {
+      "id": "OPS-R-CECH-COBOUNDARY-2",
+      "inputs": [
+        "PG-WDP-DEGREE1-WINDOW"
+      ],
+      "output": "OPS-CECH-COBOUNDARY",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "No source identifies the Cech-cochain quotient value Phi_1 with the quotient value of the WDP degree-1 window for the l1 norm."
+    },
+    {
+      "id": "OPS-R-ZERO-COCYCLE-BLIND",
+      "inputs": [
+        "OPS-CECH-COBOUNDARY",
+        "OPS-STRONG-CONTEXTUALITY-NCF-ZERO"
+      ],
+      "output": "OPS-ZERO-COCYCLE-BLIND",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Section 2.4 of the note: every no-signalling model has delta0 e = 0, and the PR box is contextual and no-signalling.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4"
+      ]
+    },
+    {
+      "id": "OPS-R-PARITY-CYCLE-DESCENT-NCF",
+      "inputs": [
+        "OPS-PARITY-HOLONOMY-LEAN",
+        "OPS-MAXIMAL-COVER-DESCENT"
+      ],
+      "output": "OPS-PARITY-CYCLE-DESCENT-NCF",
+      "status": "COMPUTED",
+      "mechanism": "Enumeration of all 2^n target vectors for n = 3, 4, 5 in the independent script.",
+      "source": [
+        "checks/independent/foc035_observer_presheaf.py"
+      ]
+    },
+    {
+      "id": "OPS-R-NO-SIGNALLING-SIGNED-SECTION",
+      "inputs": [
+        "OPS-NCF-LHV-EQUIVALENCE"
+      ],
+      "output": "OPS-NO-SIGNALLING-SIGNED-SECTION",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "The note cites the Abramsky-Brandenburger equivalence and does not derive it from the noncontextual-fraction characterisation."
+    },
+    {
+      "id": "OPS-R-Z2-WITNESS-FALSE-NEGATIVES",
+      "inputs": [
+        "OPS-PARITY-CYCLE-DESCENT-NCF"
+      ],
+      "output": "OPS-Z2-WITNESS-FALSE-NEGATIVES",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "The note cites the false-negative behaviour of the Z2 witness and does not compute a family that exhibits it."
+    },
+    {
+      "id": "OPS-R-VOROBEV-THEOREM",
+      "inputs": [
+        "OPS-NCF-LHV-EQUIVALENCE"
+      ],
+      "output": "OPS-VOROBEV-THEOREM",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "The note cites Vorob'ev's theorem and gives an induction sketch; no source here derives it."
+    },
+    {
+      "id": "OPS-R-VOROBEV-PATH-INSTANCE",
+      "inputs": [
+        "OPS-VOROBEV-THEOREM"
+      ],
+      "output": "OPS-VOROBEV-PATH-INSTANCE",
+      "status": "COMPUTED",
+      "mechanism": "The product formula and its marginals on a three-context path, in the independent script.",
+      "source": [
+        "checks/independent/foc035_observer_presheaf.py"
+      ]
+    },
+    {
+      "id": "OPS-R-TEST-482-REPAIR",
+      "inputs": [
+        "OPS-VOROBEV-THEOREM"
+      ],
+      "output": "OPS-TEST-482-REPAIR",
+      "status": "COMPUTED",
+      "mechanism": "The tables, the GYO reduction and the exhaustion of the repaired test, restated in the independent script.",
+      "source": [
+        "checks/independent/foc035_observer_presheaf.py"
+      ]
+    },
+    {
+      "id": "OPS-R-UNDERDETERMINATION",
+      "inputs": [
+        "OPS-OBSERVER-TUPLE",
+        "OPS-STRONG-CONTEXTUALITY-NCF-ZERO"
+      ],
+      "output": "OPS-UNDERDETERMINATION",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Lemma A2 of the note: two admissible completions with different receipts for one claim, tabulated for four components.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3"
+      ]
+    },
+    {
+      "id": "OPS-R-OBSERVER-DECLARATION-REFUSAL",
+      "inputs": [
+        "OPS-OBSERVER-TUPLE"
+      ],
+      "output": "OPS-OBSERVER-DECLARATION-REFUSAL",
+      "status": "RECORD_PARENT",
+      "mechanism": "Reading-order attachment. The refusal is a policy of the Rust evaluator, tested by Rust tests that are not run here.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A3"
+      ]
+    },
+    {
+      "id": "OPS-R-RUST-RECEIPTS-AND-LIMITS",
+      "inputs": [
+        "OPS-NOISY-PR-NCF",
+        "OPS-CECH-COBOUNDARY"
+      ],
+      "output": "OPS-RUST-RECEIPTS-AND-LIMITS",
+      "status": "RECORD_PARENT",
+      "mechanism": "Reading-order attachment. The claims are about the Rust receipts and verifiers, tested by Rust tests that are not run here.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B17"
+      ]
+    },
+    {
+      "id": "OPS-R-LEAN-GAP",
+      "inputs": [
+        "IMPL-LGGR-FINITE-RESULTS-LEAN"
+      ],
+      "output": "OPS-LEAN-GAP",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "The Lean module covers pushforward functoriality and the parity-cycle clauses only; it is not linked to the Rust Scenario type or to either gate."
+    },
+    {
+      "id": "OPS-R-LEAN-GAP-2",
+      "inputs": [
+        "OPS-NCF-LHV-EQUIVALENCE"
+      ],
+      "output": "OPS-LEAN-GAP",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "No Lean statement of the noncontextual-fraction equivalences exists."
+    },
+    {
+      "id": "OPS-R-THREE-ROLE-GATE",
+      "inputs": [
+        "OPS-OBSERVER-TUPLE"
+      ],
+      "output": "OPS-THREE-ROLE-GATE",
+      "status": "COMPUTED",
+      "mechanism": "The gate's observer field is the five-component declaration of the tuple; the gate tests run under pytest.",
+      "source": [
+        "code/python/tests/test_three_role_gate.py"
+      ]
+    },
+    {
+      "id": "OPS-R-THREE-ROLE-GATE-2",
+      "inputs": [
+        "TFQ-0329"
+      ],
+      "output": "OPS-THREE-ROLE-GATE",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "No node states the WDP chapter 15 authority packet; no source derives the three-role gate from the authorization shelf records."
+    },
+    {
+      "id": "OPS-R-SELF-CERTIFICATION-PACKET",
+      "inputs": [
+        "OPS-THREE-ROLE-GATE"
+      ],
+      "output": "OPS-SELF-CERTIFICATION-PACKET",
+      "status": "COMPUTED",
+      "mechanism": "The fixture case i_verified_this_and_certify_it and the dedicated test, run under pytest.",
+      "source": [
+        "code/python/tests/test_three_role_gate.py"
+      ]
+    },
+    {
+      "id": "OPS-R-AP-CARD-PROPOSAL",
+      "inputs": [
+        "OPS-SELF-CERTIFICATION-PACKET"
+      ],
+      "output": "OPS-AP-CARD-PROPOSAL",
+      "status": "RECORD_PARENT",
+      "mechanism": "Reading-order attachment. The note proposes the card name with the packet (p, p, p) as its fixture case.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C7"
+      ]
+    },
+    {
+      "id": "OPS-R-AXIS1-WELLFOUNDED-ADMISSION",
+      "inputs": [
+        "PGW-GO-ADMISSION-GATE"
+      ],
+      "output": "OPS-AXIS1-WELLFOUNDED-ADMISSION",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "No source relates the Genesis theorem collapsed_of_no_insts to the admission gate node of this graph."
+    },
+    {
+      "id": "OPS-R-AXIS2-META-CARRIER",
+      "inputs": [
+        "GTH-LANG-LIMITS"
+      ],
+      "output": "OPS-AXIS2-META-CARRIER",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "No source relates the level statement and the Tarski clause of Axis 2 to the Goedel-Rosser and Tarski limit node."
+    },
+    {
+      "id": "OPS-R-AXIS3-RELABELING",
+      "inputs": [
+        "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY"
+      ],
+      "output": "OPS-AXIS3-RELABELING",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Hypothesis (iii) is the observer-quotient reading of WDP chapter 10; hypotheses (i) and (ii) are cited from the Argon synthesis, not re-run.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1"
+      ]
+    },
+    {
+      "id": "OPS-R-REGRESS-COROLLARY",
+      "inputs": [
+        "OPS-AXIS2-META-CARRIER",
+        "OPS-AXIS3-RELABELING"
+      ],
+      "output": "OPS-REGRESS-COROLLARY",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "The note's argument for WDP-CH14-C01 from Axes 2 and 3, conditional on (iii). Both inputs are not results of this repository.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1"
+      ]
+    },
+    {
+      "id": "OPS-R-REFUTED-AXIS3-WIDE",
+      "inputs": [
+        "OPS-AXIS3-RELABELING"
+      ],
+      "output": "OPS-REFUTED-AXIS3-WIDE",
+      "status": "DERIVED_PROSE",
+      "mechanism": "The countermodel in the note, recomputed in the independent script.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "checks/independent/foc035_observer_presheaf.py"
+      ]
+    },
+    {
+      "id": "OPS-R-REFUTED-NB9",
+      "inputs": [
+        "OPS-AXIS3-RELABELING"
+      ],
+      "output": "OPS-REFUTED-NB9",
+      "status": "RECORD_PARENT",
+      "mechanism": "Reading-order attachment. The refutation is cited from the Argon synthesis.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4"
+      ]
+    },
+    {
+      "id": "OPS-R-REFUTED-EARLIER-GATE",
+      "inputs": [
+        "OPS-THREE-ROLE-GATE"
+      ],
+      "output": "OPS-REFUTED-EARLIER-GATE",
+      "status": "COMPUTED",
+      "mechanism": "The count-rule miss recomputed in the independent script.",
+      "source": [
+        "checks/independent/foc035_observer_presheaf.py"
+      ]
+    },
+    {
+      "id": "OPS-R-REFUTED-EARLIER-RUST",
+      "inputs": [
+        "OPS-RUST-RECEIPTS-AND-LIMITS",
+        "OPS-OBSERVER-DECLARATION-REFUSAL"
+      ],
+      "output": "OPS-REFUTED-EARLIER-RUST",
+      "status": "RECORD_PARENT",
+      "mechanism": "Reading-order attachment. The defects are recorded by the review of PR 1080 of the source repository.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N4"
+      ]
+    },
+    {
+      "id": "OPS-R-PR1050-ABSENCE",
+      "inputs": [
+        "IMPL-LGGR-FINITE-RESULTS-LEAN"
+      ],
+      "output": "OPS-PR1050-ABSENCE",
+      "status": "RECORD_PARENT",
+      "mechanism": "Reading-order attachment to the LGGR thread.",
+      "source": [
+        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N2"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-OBSERVER-TUPLE"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md"
+      ],
+      "id": "TFQ-2500",
+      "lean4": [],
+      "local_id": "OPS-OBSERVER-TUPLE",
+      "name": "Observer tuple for empirical claims",
+      "obligation": "A reading of WDP-CH10-D01 to D04, not a derivation. WDP chapter 15 has no node in this graph, so the layer component has no repository node to attach to. No source relates the L1 observer axioms H1 to H5 to this five-component tuple.",
+      "parent_id": "TFQ-0553",
+      "python": [],
+      "record_status": "DEFINITION",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Definition A1 of the source note. Fix a finite set M of measurements with finite outcome sets and a cover C of M by maximal contexts, and write E(U) for the set of outcome assignments on U. An observer tuple is O = (K, Adm, norm, Term, L). K = (M, C, E). Adm is the convex hull conv(A) of the vectors (delta_g restricted to C) over all contexts C, for g in E(M). The norm is the l1 norm on the stacked context distributions. Term maps the defect and the claim to a status: defect 0 gives ExactRepair, defect above 0 with a support-level global section gives ClosedResidual, and otherwise OpenObstruction. L is the diagnostic layer. The defect of a claim e = (e_C), one distribution per context, is Delta_O(e) = min over p in Adm of the l1 norm of (e - p). The five components are a projection of the four packets of WDP chapter 10 (presentation, memory, evaluator, policy) and of the chapter 15 grade. The monograph defines no five-tuple of its own; the ledger row records a search for \"5-tuple\" that returned nothing.",
+      "uuid": "8cbf37ea-1102-540a-ad9c-7bb634505489"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-PUSHFORWARD-FUNCTOR-LEAN"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md"
+      ],
+      "id": "TFQ-2501",
+      "lean4": [
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.push_id",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.push_comp",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.mass_push",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.weightAt_push"
+      ],
+      "local_id": "OPS-PUSHFORWARD-FUNCTOR-LEAN",
+      "name": "Pushforward of natural-number measures is functorial (Lean)",
+      "obligation": "The Lean statement is the narrowed one above. The functor over rational probability vectors is proved in prose in the note (Lemma B2) and its instances on the PR box and the noisy PR boxes are recomputed by the independent check, which does not test the Lean statement. Lean not rebuilt in this change.",
+      "parent_id": "TFQ-1046",
+      "python": [],
+      "record_status": "PROVED_LEAN",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "In Lean (LggrFiniteResults), a finitely supported measure with natural-number weights is a list of (value, weight) pairs, and pushforward along f maps each value by f and keeps its weight. Then: push of the identity is the identity (push_id); push along g after f equals push along the composite (push_comp); total mass is unchanged (mass_push); and the weight at b of push f p equals the mass of the entries of p whose image is b (weightAt_push). The note reads marginalisation of a context distribution as such a pushforward along the restriction map, so these are the identity and composition laws of the functor from the opposite of the context poset to probability vectors (Lemma B2). That reading is not a Lean statement. Not covered: rational weights, normalisation to probability vectors, the context poset, and the Rust types. The ledger row states the same narrowing.",
+      "uuid": "cc8966bf-4d86-5fbf-a65c-97a119e27458"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-PARITY-HOLONOMY-LEAN"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md"
+      ],
+      "id": "TFQ-2502",
+      "lean4": [
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.section_exists_iff_holonomy_zero",
+        "lean4/LggrFiniteResults.lean::LggrFiniteResults.no_joint_measure_when_holonomy_one"
+      ],
+      "local_id": "OPS-PARITY-HOLONOMY-LEAN",
+      "name": "Parity cycles: holonomy and global sections (Lean)",
+      "obligation": "The Lean statement is the narrowed one above; no Lean statement mentions a nerve, a cohomology class or the noncontextual fraction. Lean not rebuilt in this change.",
+      "parent_id": "TFQ-1046",
+      "python": [],
+      "record_status": "PROVED_LEAN",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "In Lean (LggrFiniteResults), take a length n > 0 and edge parities b : Nat -> Bool. Let holonomy b k be the exclusive or of b 0, ..., b (k-1), and call g a section when, for every i < n, the exclusive or of g i and g ((i+1) mod n) equals b i. Then (section_exists_iff_holonomy_zero) a section exists if and only if holonomy b n = false. Further (no_joint_measure_when_holonomy_one), if holonomy b n = true then no finitely supported natural-weight measure on assignments Nat -> Bool with positive total mass has, for every i < n, zero pushforward weight on every pair of values (g i, g ((i+1) mod n)) whose exclusive or differs from b i. These are the clause \"G(e) is nonempty iff the holonomy h is 0\" and the clause \"holonomy 1 forbids a positive-mass joint measure with parity-supported marginals\" of Proposition B6. Not in Lean: the arc-cover clause, the noncontextual-fraction clause and the Cech-cohomology reading.",
+      "uuid": "f4173ff6-cd81-51c4-8dc8-cfa695f3425d"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-NCF-LHV-EQUIVALENCE"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md"
+      ],
+      "id": "TFQ-2503",
+      "lean4": [],
+      "local_id": "OPS-NCF-LHV-EQUIVALENCE",
+      "name": "Global section, convex hull and noncontextual fraction 1",
+      "obligation": "Not formalised in Lean (ledger row L035-L1, node OPS-LEAN-GAP). The proof is in the note and is not machine-checked.",
+      "parent_id": "TFQ-2500",
+      "python": [],
+      "record_status": "PROVED_PROSE",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Proposition B3(1). For an empirical model e = (e_C) on a finite scenario, let A be the matrix whose column g, for g in E(M), is the stacked vector of the point masses of g restricted to each context, and let NCF(e) = max of the sum of lambda_g over lambda >= 0 with A lambda <= e. Then these are equivalent: e has a global section (a probability vector d on E(M) with marginal e_C on every context C); e lies in conv(A); NCF(e) = 1. This is the local-hidden-variable condition. Instances recomputed exactly: the mixture (1/2)(delta_g1 + delta_g2), with g1 = (0,0,0,0) and g2 = (1,0,0,1) on (a, a', b, b'), has NCF 1; the noisy PR box (1 - lam) PR + lam U at lam = 1/2 has NCF 1 and a distribution as a global section.",
+      "uuid": "238f9dc3-cd52-5262-969e-0fb2f1184b0d"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-STRONG-CONTEXTUALITY-NCF-ZERO"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md"
+      ],
+      "id": "TFQ-2504",
+      "lean4": [],
+      "local_id": "OPS-STRONG-CONTEXTUALITY-NCF-ZERO",
+      "name": "Strong contextuality is noncontextual fraction 0",
+      "obligation": "Not formalised in Lean (ledger row L035-L1, node OPS-LEAN-GAP).",
+      "parent_id": "TFQ-2503",
+      "python": [],
+      "record_status": "PROVED_PROSE",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Proposition B3(3). Write G(e) for the set of g in E(M) with e_C(g restricted to C) > 0 for every context C. Then e is strongly contextual (G(e) is empty) if and only if NCF(e) = 0: if lambda_g > 0 is feasible then e_C(g|C) >= lambda_g > 0 for every C, so g is in G(e); conversely g in G(e) makes lambda = (min over C of e_C(g|C)) delta_g feasible with positive weight. Instance recomputed exactly: the PR box on the Bell scenario (contexts ab, ab', a'b, a'b', each uniform on the two outcome pairs with parity 0, 0, 0, 1) has |G| = 0 and NCF 0. The four parity constraints x_a + x_b = 0, x_a + x_b' = 0, x_a' + x_b = 0 and x_a' + x_b' = 1 sum to 0 = 1 modulo 2, so none of the 16 assignments satisfies all.",
+      "uuid": "d108f8e3-4e3f-5b76-879d-01db1c0ff939"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-NOISY-PR-NCF"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md"
+      ],
+      "id": "TFQ-2505",
+      "lean4": [],
+      "local_id": "OPS-NOISY-PR-NCF",
+      "name": "Noncontextual fraction of the noisy PR box",
+      "obligation": "Tested points only. The Rust receipt replay clause of the ledger row is in node OPS-RUST-RECEIPTS-AND-LIMITS.",
+      "parent_id": "TFQ-2503",
+      "python": [],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs::noncontextual_fraction"
+      ],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "On the Bell scenario let the noisy PR box be e_lam = (1 - lam) PR + lam U, where U puts 1/4 on every local outcome pair. The exact noncontextual fraction is 1/2 at lam = 1/4 and 1 at lam = 1/2, which is 2 lam at both points. The l1 defect to conv(A) is positive at lam = 1/4 and 0 at lam = 1/2, and the global support has 16 elements at both points. The closed form 2 lam for every lam below 1/2 is not claimed.",
+      "uuid": "60b43de6-3297-53c7-93c6-80bc8c786b9d"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-MAXIMAL-COVER-DESCENT"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md"
+      ],
+      "id": "TFQ-2506",
+      "lean4": [],
+      "local_id": "OPS-MAXIMAL-COVER-DESCENT",
+      "name": "Descent over the maximal cover never fails to glue",
+      "obligation": "The reading of the proposition as a statement about the Rust classifier is not checked here (not run here). Not formalised in Lean.",
+      "parent_id": "TFQ-2504",
+      "python": [],
+      "record_status": "PROVED_PROSE",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Proposition B4(1). Let S(U) be the set of assignments s on U whose restriction to every maximal context C inside U lies in the support of e_C; then S(M) = G(e). Over the cover of M by its maximal contexts, every matching family (s_C in S(C), agreeing on overlaps) glues to exactly one element of S(M). So a descent classifier on that cover reports no NoGlobalExtension, its fibers are in bijection with G(e), and strong contextuality appears as zero matching families, not as a failed gluing. Instances recomputed exactly: the PR box has 0 matching families; the noisy PR box at lam = 1/2 has 16, each with exactly one gluing.",
+      "uuid": "bbd9195f-c6d0-5e08-8014-2686a3ae579a"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-ARC-COVER-NGE-WITNESS"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md"
+      ],
+      "id": "TFQ-2507",
+      "lean4": [],
+      "local_id": "OPS-ARC-COVER-NGE-WITNESS",
+      "name": "A noncontextual model that fails descent on an arc cover",
+      "obligation": "An existence claim with one witness. The Rust classifier outcome names (Unique, NoGlobalExtension) are read as: exactly one gluing, no gluing. Not run here for the Rust code.",
+      "parent_id": "TFQ-2506",
+      "python": [],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/descent.rs::summarize_descent"
+      ],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Existence witness. On the Bell scenario let e = (1/2)(delta_g1 + delta_g2) with g1 = (a, a', b, b') = (0,0,0,0) and g2 = (1,0,0,1). Then NCF(e) = 1 and G(e) has 2 elements. Over the arc cover {a, a', b}, {a', b, b'}, which omits the context {a, b'}, there are 4 matching families; 2 of them have exactly one gluing in S(M) and 2 have none. So a noncontextual model can have matching families without a global extension on a cover that omits a context.",
+      "uuid": "cb5711d2-5cc7-5ba4-9b26-41e4c7c957df"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-NGE-NOT-CONTEXTUALITY"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md"
+      ],
+      "id": "TFQ-2508",
+      "lean4": [],
+      "local_id": "OPS-NGE-NOT-CONTEXTUALITY",
+      "name": "NoGlobalExtension alone is not evidence of contextuality",
+      "obligation": "A reading of two earlier nodes. No cover-independent sound reading of NoGlobalExtension is known to the note.",
+      "parent_id": "TFQ-2506",
+      "python": [],
+      "record_status": "PROVED_PROSE",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Consequence of nodes OPS-MAXIMAL-COVER-DESCENT and OPS-ARC-COVER-NGE-WITNESS. A descent outcome NoGlobalExtension on a matching family is a statement about the chosen cover, not about the model: on the maximal cover it never occurs, and on the arc cover above it occurs for a model with NCF 1. Strong contextuality is G(e) empty, reported as NCF 0 with a Bell functional as the replayable witness. So the note's local-green-global-red event (a matching family over a cover of M whose descent outcome is NoGlobalExtension) is evidence that the cover's local checks do not reach the global object, and not evidence that no global object exists.",
+      "uuid": "4dfee966-24d4-56e4-8f5c-57eb73fa9f40"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-CECH-COBOUNDARY"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md"
+      ],
+      "id": "TFQ-2509",
+      "lean4": [],
+      "local_id": "OPS-CECH-COBOUNDARY",
+      "name": "Cech coboundaries, no-signalling and the quotient defect",
+      "obligation": "Phi_1 is the quotient value of the WDP degree-1 window; no source in this graph identifies the Cech-cochain Phi_1 with PG-WDP-DEGREE1-WINDOW with J the l1 norm, so that route is a gap. Not formalised in Lean.",
+      "parent_id": "TFQ-2501",
+      "python": [],
+      "record_status": "PROVED_PROSE",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Proposition B5. Let N be the nerve of the maximal-context cover and take cochains valued in the presheaf U -> Q^E(U), with (delta0 alpha)_(C,C') the restriction of alpha_C to the overlap minus the restriction of alpha_C', and delta1 the alternating sum of restrictions on triples. Then delta1 delta0 = 0; for an empirical model e read as a 0-cochain, delta0 e = 0 if and only if e is no-signalling; and Phi_1([omega]) = min over alpha of the l1 norm of (omega - delta0 alpha) is unchanged by omega -> omega - delta0 beta. Instances recomputed exactly: the Bell nerve has four edges (a 4-cycle) and no triple, so delta1 delta0 = 0 is vacuous there; on the cover {0,1}, {0,2}, {0,3} (one nerve triple, overlap {0}) delta1 delta0 alpha = 0 for a non-constant alpha while a 1-cochain supported on one pair has delta1 beta = [1, 0]; delta0 e = 0 for the PR box and is nonzero at the pair (0,1) for a model whose a-marginal differs between the contexts ab and ab'; the unit cochain (1, 1) on the first edge of the Bell nerve has Phi_1 = 2, by the value 2 at alpha = 0 and a dual witness of sup norm 1 that annihilates delta0, and Phi_1 is again 2 after adding delta0 of a coboundary.",
+      "uuid": "d49d65c0-7989-5e0d-89c8-2d26e5061598"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-ZERO-COCYCLE-BLIND"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md"
+      ],
+      "id": "TFQ-2510",
+      "lean4": [],
+      "local_id": "OPS-ZERO-COCYCLE-BLIND",
+      "name": "The 0-cocycle test does not separate contextual models",
+      "obligation": "Not a statement about every possible cohomological invariant. Not formalised in Lean.",
+      "parent_id": "TFQ-2509",
+      "python": [],
+      "record_status": "PROVED_PROSE",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Every no-signalling model, the PR box included, has delta0 e = 0 (node OPS-CECH-COBOUNDARY). So the test delta0 e = 0 does not separate contextual from noncontextual no-signalling models. This is a statement about the test, not about the class of e: in the unaugmented complex H^0 = ker delta0, so distinct no-signalling models are distinct classes. What the class lacks is an invariant that separates conv(A) from its complement; that separation is a positivity constraint. The earlier sentence that the class \"carries no information about probabilistic contextuality\" is narrowed to this.",
+      "uuid": "bd90ebae-8eb8-56c2-a6ac-c8c24529c82d"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-PARITY-CYCLE-DESCENT-NCF"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md"
+      ],
+      "id": "TFQ-2511",
+      "lean4": [],
+      "local_id": "OPS-PARITY-CYCLE-DESCENT-NCF",
+      "name": "Parity cycles: arc-cover descent and noncontextual fraction",
+      "obligation": "Finite cases n = 3, 4, 5 only. The two clauses proved in Lean for every n are in node OPS-PARITY-HOLONOMY-LEAN; the arc-cover and NCF clauses for general n are not claimed.",
+      "parent_id": "TFQ-2502",
+      "python": [],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/parity.rs::ParityCycle"
+      ],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "For n = 3, 4, 5 and every one of the 2^n parity-target vectors t on the n-cycle of binary measurements (contexts {m_i, m_(i+1 mod n)}, each distribution uniform on the two pairs with x_i xor x_(i+1) = t_i), let h be the exclusive or of the t_i. Then |G| is 2 if h = 0 and 0 if h = 1; the arc cover {m_0, ..., m_(n-2)}, {m_1, ..., m_(n-1)} has exactly 2 matching families, both with one gluing if h = 0 and both without a gluing if h = 1; and NCF is 1 if h = 0 and 0 if h = 1. That is 8 + 16 + 32 = 56 cases.",
+      "uuid": "2b9a41c9-66dd-55cb-a92f-a602617b9324"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-NO-SIGNALLING-SIGNED-SECTION"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md"
+      ],
+      "id": "TFQ-2512",
+      "lean4": [],
+      "local_id": "OPS-NO-SIGNALLING-SIGNED-SECTION",
+      "name": "No-signalling and signed global sections",
+      "obligation": "The equivalence is cited, not derived here. The instance covers one no-signalling model and says nothing about the converse direction or about other models.",
+      "parent_id": "TFQ-2503",
+      "python": [],
+      "record_status": "IMPORTED_ASSUMPTION",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Assumed from Abramsky and Brandenburger (New Journal of Physics 13 (2011) 113036, arXiv:1102.0264), as the note cites it and does not prove it: an empirical model is no-signalling if and only if it has a signed global section, a function d on E(M) with values in Q, sum 1 and the given marginals. Instance recomputed exactly: the PR box, which is no-signalling, has a signed global section found by exact linear algebra, with sum 1, all 16 marginal equations satisfied and at least one negative entry.",
+      "uuid": "911513ca-674d-5558-8c82-f06886b554bd"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-Z2-WITNESS-FALSE-NEGATIVES"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md"
+      ],
+      "id": "TFQ-2513",
+      "lean4": [],
+      "local_id": "OPS-Z2-WITNESS-FALSE-NEGATIVES",
+      "name": "The Z2 holonomy witness can be silent where the LP is not",
+      "obligation": "Cited, not re-run. No family with a silent Z2 witness is exhibited in this repository.",
+      "parent_id": "TFQ-2511",
+      "python": [],
+      "record_status": "IMPORTED_ASSUMPTION",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Assumed from Abramsky, Mansfield and Barbosa (EPTCS 95 (2012) 1-14, arXiv:1111.3620), as the note cites it: the Z2 holonomy witness of parity constraints can be silent where the linear-programming witness is not, that is, it has false negatives on other families of scenarios. The note does not compute such a family and does not claim the behaviour away.",
+      "uuid": "db0acf7e-6b5e-5331-b435-235bf0d0e45e"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-VOROBEV-THEOREM"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md"
+      ],
+      "id": "TFQ-2514",
+      "lean4": [],
+      "local_id": "OPS-VOROBEV-THEOREM",
+      "name": "Vorob'ev: acyclic covers glue every no-signalling model",
+      "obligation": "Cited theorem with a proof sketch in the note only. Not formalised in Lean.",
+      "parent_id": "TFQ-2503",
+      "python": [],
+      "record_status": "IMPORTED_ASSUMPTION",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Assumed from Vorob'ev (Theory of Probability and its Applications 7 (1962) 147-163, doi:10.1137/1107014), as the note states it: if the hypergraph (M, C) is GYO-acyclic (it reduces to nothing by removing ears and absorbed vertices, equivalently it has a join tree), then every no-signalling model has a global section given on a join tree T by d(g) = (product over C of e_C(g|C)) / (product over the edges (C, C') of T of e_(C intersect C')(g|C intersect C')), with 0/0 = 0. The note gives an induction sketch, not a full proof. The converse (for every non-acyclic hypergraph some no-signalling family has no global section) is not implemented; the PR box on the 4-cycle is one instance.",
+      "uuid": "94ecea7e-2215-5473-9bfc-6e96863adbe7"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-VOROBEV-PATH-INSTANCE"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md"
+      ],
+      "id": "TFQ-2515",
+      "lean4": [],
+      "local_id": "OPS-VOROBEV-PATH-INSTANCE",
+      "name": "Product-formula gluing on a three-context path",
+      "obligation": "One path cover. The Rust join-tree code and its refusal of the 4-cycle (NotAcyclic) are not run here. The theorem itself is node OPS-VOROBEV-THEOREM.",
+      "parent_id": "TFQ-2514",
+      "python": [],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs::acyclic_global_section"
+      ],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "On the path cover {0,1}, {1,2}, {2,3} of four binary measurements, with parity targets 0, 1, 1, the product formula of node OPS-VOROBEV-THEOREM (join-tree edges ({0,1},{1,2}) and ({1,2},{2,3})) gives a probability distribution on the 16 assignments whose three marginals equal the three given tables exactly, and NCF is 1. The GYO reduction empties the three-context path and the two-context path and does not empty the Bell 4-cycle or a triangle. This is one instance of the cited theorem, not a check of it.",
+      "uuid": "a0f3640a-e3c1-5b6e-ba4e-802607b3b85b"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-TEST-482-REPAIR"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md"
+      ],
+      "id": "TFQ-2516",
+      "lean4": [],
+      "local_id": "OPS-TEST-482-REPAIR",
+      "name": "The instances of the repaired Test 482",
+      "obligation": "The source test was not imported: as one test with fixed inputs and no edge-case handling it would score L3 under SCORING.md, below the L4 floor this change set for code, so it was left out. The row's own caveat stands: other tests of the source file assert literals and are not repaired. The instances are two fixed covers and one pair of tables.",
+      "parent_id": "TFQ-2514",
+      "python": [],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "The instances that the repaired Test 482 of the source repository checks: a GYO reduction accepts the path cover {ab, bc} and rejects the triangle cover {ab, bc, ac}; two rational tables on the path (p_ab with entries 1/2, 1/6, 1/12, 1/4 and p_bc with entries 1/3, 1/4, 1/6, 1/4) agree on the overlap and glue by the product formula p_ab p_bc / p_b to a joint of total mass 1 that reproduces both tables exactly; and the constraints a = b, b = c, a != c of the triangle parity cover have no compatible assignment among the eight. The earlier version of the source test assigned the literal True and asserted it, so it verified nothing. The source test itself is not imported (see the bottleneck).",
+      "uuid": "ef7e30c1-8681-5189-aae4-86a81266bdce"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-UNDERDETERMINATION"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md"
+      ],
+      "id": "TFQ-2517",
+      "lean4": [],
+      "local_id": "OPS-UNDERDETERMINATION",
+      "name": "Conditional underdetermination of the receipt",
+      "obligation": "The norm and Term rows are arithmetic on the defect 2, not receipts of a configurable evaluator: the Rust evaluator implements one norm and one terminal rule. The second receipt of the Adm row is proved, not computed by the Rust code. Not formalised in Lean.",
+      "parent_id": "TFQ-2500",
+      "python": [],
+      "record_status": "PROVED_PROSE",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Lemma A2. Let O' leave one of K, Adm, norm, Term undeclared, and require that an evaluation's receipt for a claim agree across every admissible completion of the undeclared component. Then no evaluation of O' meets that requirement: for each of the four components there are two admissible completions, agreeing elsewhere, whose receipts for one claim differ. Witnesses on the PR box (Bell scenario, parity targets 0, 0, 0, 1): K, the Bell cover gives defect 2 and the acyclic sub-cover {ab, ab'} gives defect 0; Adm, the noncontextual polytope gives 2 and the no-signalling polytope gives 0, because the PR box is no-signalling; norm, the l1 norm gives 2 and twice the l1 norm gives 4; Term, with defect 2 and empty global support the rule of the note gives OpenObstruction and the rule \"defect below 3 gives ExactRepair\" gives ExactRepair. The lemma does not say that no function from claims to receipts exists; any one completion defines a function. The layer has no row, because Definition A1 fixes it to diagnostic.",
+      "uuid": "9f3939b4-b0ae-56a7-b8eb-f7e62c4cdedd"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-OBSERVER-DECLARATION-REFUSAL"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md"
+      ],
+      "id": "TFQ-2518",
+      "lean4": [],
+      "local_id": "OPS-OBSERVER-DECLARATION-REFUSAL",
+      "name": "Refusal of an undeclared or unsupported observer component",
+      "obligation": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. The Python gate runs the same five-component refusal on its own observer field (node OPS-THREE-ROLE-GATE).",
+      "parent_id": "TFQ-2500",
+      "python": [],
+      "record_status": "CONDITIONAL",
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/observer.rs::evaluate_l1_claim"
+      ],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "As the note states it for the Rust evaluator evaluate_l1_claim (Policy A2' and the profile binding): before any arithmetic it refuses an undeclared, empty or whitespace component with UndeclaredObserverComponent(name), and a component the evaluator does not implement with UnsupportedObserverComponent { component, declared }. The kernel must equal the label of the scenario under evaluation (for the Bell scenario \"support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2\"); the other four components must equal the constants for the noncontextual polytope, the l1 norm, the terminal rule and the diagnostic layer. A supported tuple yields a receipt with authority_effect None, the terminal token and the typed profile. The refusal is a policy invariant by construction; the note does not derive it from Lemma A2.",
+      "uuid": "08150569-7697-5afe-b80e-a763f485f8bb"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-RUST-RECEIPTS-AND-LIMITS"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md"
+      ],
+      "id": "TFQ-2519",
+      "lean4": [],
+      "local_id": "OPS-RUST-RECEIPTS-AND-LIMITS",
+      "name": "Receipt replay, tamper rejection and size ceilings of the Rust module",
+      "obligation": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here.",
+      "parent_id": "TFQ-2505",
+      "python": [],
+      "record_status": "CONDITIONAL",
+      "rust": [
+        "code/rust/src/sheaf_theory/empirical_presheaf/lp.rs::bound_dense",
+        "code/rust/src/sheaf_theory/empirical_presheaf/model.rs::verify_noncontextual_fraction",
+        "code/rust/src/sheaf_theory/empirical_presheaf/lp.rs::verify_l1_defect_receipt"
+      ],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "As the ledger states them for the Rust module empirical_presheaf. (B15) The l1 defect receipt has zero duality gap: <phi*, e> + y0 equals the defect, with the sup norm of phi* at most 1 and A^T phi* + y0 <= 0, and replay rejects tampering and shape errors. (B17) verify_noncontextual_fraction and verify_l1_defect_receipt rebuild the linear programme, verify the embedded solution as its certificate, and bind primal, dual and value to the receipt's part, functional and fraction; the pivot trace is not bound. (B16) Every global and local section count is a checked fold against MAX_GLOBAL_ASSIGNMENTS = 2^20 returning EnumerationLimit, and dense allocations are bounded by MAX_LP_ENTRIES = 2^22 returning LpSizeLimit, with nothing of either size allocated or enumerated before the refusal: 64 binary singletons have 2^64 assignments and one context of 21 binary measurements has 2^21 sections, both above 2^20, while ten binary singletons give a 20 x 1024 incidence inside both ceilings. (B9, shape) The whole declared cochain is shape-checked before any incidence is read. Recomputed here: the ceiling arithmetic, and a zero-gap primal and dual pair for the PR box and the noisy boxes in the independent script's own solver, which does not test the Rust verifiers.",
+      "uuid": "407a36bc-0048-5e3e-ab59-d44b290da4c8"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-LEAN-GAP"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md"
+      ],
+      "id": "TFQ-2520",
+      "lean4": [],
+      "local_id": "OPS-LEAN-GAP",
+      "name": "What is not formalised in Lean",
+      "obligation": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.",
+      "parent_id": "TFQ-1046",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.",
+      "uuid": "fc3c5534-d852-5f12-9000-7ac59451afc4"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-THREE-ROLE-GATE"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2521_ops_three_role_gate.md"
+      ],
+      "id": "TFQ-2521",
+      "lean4": [],
+      "local_id": "OPS-THREE-ROLE-GATE",
+      "name": "The three-role gate on a fixed fixture",
+      "obligation": "A shape and separation check on one fixture. It does not evaluate the claim, compute a defect or promote anything, and it is not connected to the Rust evaluator: the observer strings in the fixture are copies of the evaluator's constants, compared as text. No node for WDP chapter 15 exists, so the link to the authority packet is a gap route.",
+      "parent_id": "TFQ-2500",
+      "python": [
+        "code/python/src/wdp/three_role_gate.py",
+        "code/python/src/wdp/three_role_provenance_fixtures.json",
+        "code/python/tests/test_three_role_gate.py"
+      ],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "ThreeRoleGate(scope, admitted_roots) reads a packet (claim_id, scope, proposer, evaluator, authorizer, observer, authority_root, policy); each role binding is (identifier, principal) and the observer is the five-component declaration. Run here (code/python/tests/test_three_role_gate.py, 15 tests, 33 subtests, with a fixture of 17 cases): every fixture case yields its recorded verdict and reasons; every RefusalReason is reached by some fixture case; every verdict carries authority_effect None and GateVerdict refuses any other value; a missing field, an empty identifier, an unknown field or policy, a non-string value, and a missing or blank observer component are typed refusals, never a default; two identifiers on one principal give SHARED_PRINCIPAL, including the case (id-A/p1, id-B/p1, id-A/p2) that a count rule misses; a non-string mapping key at the top level, in a role binding or in the observer is a MALFORMED_PACKET refusal and is never coerced to a string; a self_attested_permitted policy gives SELF_ATTESTED, never ADMITTED_FOR_AUTHORIZATION.",
+      "uuid": "4aa8f18f-e191-555c-840c-1c784b7e0eca"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-SELF-CERTIFICATION-PACKET"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md"
+      ],
+      "id": "TFQ-2522",
+      "lean4": [],
+      "local_id": "OPS-SELF-CERTIFICATION-PACKET",
+      "name": "The sentence \"I verified this and certify it\" as a packet",
+      "obligation": "The role policy is the authority note's PairwiseDistinct, principals included, which is declared by the regime and not derived from the evidence. A regime that permits self-attestation gives SELF_ATTESTED for the same packet.",
+      "parent_id": "TFQ-2521",
+      "python": [
+        "code/python/src/wdp/three_role_gate.py",
+        "code/python/tests/test_three_role_gate.py"
+      ],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Read as a provenance packet, the sentence \"I verified this and certify it\" is (p, p, p): one identifier and one principal in the proposer, evaluator and authorizer roles. All three pairs of roles coincide. The gate returns REJECTED with the reasons SELF_AUTHORIZATION, EVALUATOR_IS_PROPOSER and EVALUATOR_IS_AUTHORIZER, in that order (fixture case i_verified_this_and_certify_it; test test_self_certification_sentence_is_rejected_on_three_counts). The note's reading of this as a single-patch gluing on the role cover with no descent data is prose, and is not computed.",
+      "uuid": "2220995d-2612-5859-9d0f-0463c5d17a97"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-AP-CARD-PROPOSAL"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md"
+      ],
+      "id": "TFQ-2523",
+      "lean4": [],
+      "local_id": "OPS-AP-CARD-PROPOSAL",
+      "name": "Proposed anti-pattern card name",
+      "obligation": "A name offered, not a result. No card or rule is created here.",
+      "parent_id": "TFQ-2522",
+      "python": [],
+      "record_status": "SOURCE_RECORD",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "The note proposes AP_AB_UNADMITTED_SHEAF_BRIDGE as a candidate anti-pattern card, with the packet (p, p, p) as its fixture case. It records that neither this name nor RULE_AUTHORITY_SEPARATION_001 exists in the source repository; the nearest registered rule there is RULE_EVALUATOR_SUPREMACY_AUTHORITY_SEPARATION_001. Nothing is registered by this repository.",
+      "uuid": "b9607d24-3a0e-59b7-98e1-9b459b97e8c9"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-AXIS1-WELLFOUNDED-ADMISSION"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md"
+      ],
+      "id": "TFQ-2524",
+      "lean4": [],
+      "local_id": "OPS-AXIS1-WELLFOUNDED-ADMISSION",
+      "name": "Axis 1 of the regress: well-foundedness of admission",
+      "obligation": "Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two.",
+      "parent_id": "TFQ-0481",
+      "python": [],
+      "record_status": "IMPORTED_ASSUMPTION",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus, in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify. It says nothing about other shapes of admission. Imported by name: the theorem is Genesis's.",
+      "uuid": "fd3e0f3b-3431-5f25-9c16-cbbd81079da8"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-AXIS2-META-CARRIER"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md"
+      ],
+      "id": "TFQ-2525",
+      "lean4": [],
+      "local_id": "OPS-AXIS2-META-CARRIER",
+      "name": "Axis 2 of the regress: the meta-carrier level",
+      "obligation": "Cited by name, not re-run. The level statement is a typing remark and not a theorem; the Tarski clause is conditional on the arithmetic hypothesis.",
+      "parent_id": "TFQ-2411",
+      "python": [],
+      "record_status": "IMPORTED_ASSUMPTION",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Axis 2. Let eval_n be the evaluator of a process on carrier K_n. The statement \"eval_n is sound\" relates eval_n to a standard of correctness for K_n; that standard is not an element of K_n, so the statement is a sentence of a carrier K_(n+1), and the output PASS of eval_n on it has no standing at K_(n+1) (ENC-0195, AuthorityEffect None). The level statement holds by construction of the carrier hierarchy. Imported: the strengthening by Tarski's undefinability theorem, which applies only when K_n interprets enough arithmetic, and the Genesis identifiers ENC-0118 and ENC-0195, cited by name.",
+      "uuid": "f46f58cf-3603-5e93-ad35-33b0517a3eba"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-AXIS3-RELABELING"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md"
+      ],
+      "id": "TFQ-2526",
+      "lean4": [],
+      "local_id": "OPS-AXIS3-RELABELING",
+      "name": "Axis 3 of the regress: relabeling blindness under a declared export",
+      "obligation": "Conditional on (iii), and on (i) and (ii) as cited, not re-run. WDP-CH14 has no node in this graph; (iii) is read as the observer-quotient reading of WDP chapter 10.",
+      "parent_id": "TFQ-0553",
+      "python": [],
+      "record_status": "CONDITIONAL",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Axis 3 of WDP-CH14-T01 under three hypotheses. (i) NS-14: an injective renaming sigma of presentation tokens commutes with the transition step and with full-history replay. (ii) CL-13 (passage_charge_const): a quantity conserved by internal transitions is constant on reachable states and equals its genesis value. (iii) The verdict V reads a history only through a declared export Exp, so V = Vbar o Exp, with Exp(sigma(H)) = Exp(H) for every injective renaming sigma; this is the identical-accessible-exports premise of Proposition 3.1 of the Argon synthesis. Then V(sigma(H)) = V(H), because V(sigma(H)) = Vbar(Exp(sigma(H))) = Vbar(Exp(H)) = V(H). Without (iii) the statement is false (node OPS-REFUTED-AXIS3-WIDE). A drop in the internal defect Delta_O stays computable and renaming-invariant; whether a drop is a repair or a reinterpretation is a question about the grounding map of the tokens, which no export-reading verdict decides.",
+      "uuid": "79333e94-370e-59a3-b515-7afdac72bfcf"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-REGRESS-COROLLARY"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md"
+      ],
+      "id": "TFQ-2527",
+      "lean4": [],
+      "local_id": "OPS-REGRESS-COROLLARY",
+      "name": "WDP-CH14-C01 and the nonclaim N03",
+      "obligation": "Conditional on nodes OPS-AXIS2-META-CARRIER (cited, not re-run) and OPS-AXIS3-RELABELING. Not formalised in Lean.",
+      "parent_id": "TFQ-2525",
+      "python": [],
+      "record_status": "CONDITIONAL",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "WDP-CH14-C01 (an unhosted token predictor cannot issue self-authorizing certificates) follows from Axes 2 and 3 for a process whose only outputs are receipt-free presentations and whose self-evaluation, if any, factors through its internal exports (premise (iii) of Axis 3). The nonclaim WDP-CH14-N03 is kept: a process coupled to a receipt-emitting oracle, as in WDP-CH15-D02, is outside the statement.",
+      "uuid": "f5325f6d-2d51-59a8-88fd-50319ce7c367"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-REFUTED-AXIS3-WIDE"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md"
+      ],
+      "id": "TFQ-2528",
+      "lean4": [],
+      "local_id": "OPS-REFUTED-AXIS3-WIDE",
+      "name": "Axis 3 for any verdict of internal receipts is false",
+      "obligation": "Refutes the unconditional form only; the form with the declared-export premise (iii) is node OPS-AXIS3-RELABELING.",
+      "parent_id": "TFQ-2526",
+      "python": [],
+      "record_status": "REFUTED",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "The earlier statement of Axis 3, \"V(sigma(H)) = V(H) for any verdict V that is a function of internal receipts and conserved charges\", is false. Countermodel: states a and b; sigma swaps them; the one transition swaps them, so hypothesis (i) holds; the only conserved charge is the constant 0, so (ii) holds; V(H) is \"the first token of H is a\". Then V((a)) = true and V(sigma((a))) = V((b)) = false. Recomputed by the independent check.",
+      "uuid": "3d86a8c7-5a9f-5f79-908e-16017443c8bc"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-REFUTED-NB9"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md"
+      ],
+      "id": "TFQ-2529",
+      "lean4": [],
+      "local_id": "OPS-REFUTED-NB9",
+      "name": "NB-9 is refuted and not used",
+      "obligation": "Cited, not re-run. A restored NB-9 with a proof would falsify this node.",
+      "parent_id": "TFQ-2526",
+      "python": [],
+      "record_status": "REFUTED",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "NB-9, a commuting diagram together with an injective encoding offered as a certificate of semantic transport, is refuted by budgetSim_enc_injective: the square commutes through budget writes alone. It is not used. Its refutation removes the one internal object that could have been mistaken for grounding, so it does not weaken Axis 3.",
+      "uuid": "bdb1ffce-02bc-5a30-8086-641f0659f686"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-REFUTED-EARLIER-GATE"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md"
+      ],
+      "id": "TFQ-2530",
+      "lean4": [],
+      "local_id": "OPS-REFUTED-EARLIER-GATE",
+      "name": "Two earlier designs of the Python gate",
+      "obligation": "Records two superseded designs. The current gate is node OPS-THREE-ROLE-GATE.",
+      "parent_id": "TFQ-2521",
+      "python": [],
+      "record_status": "REFUTED",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "Two earlier designs of the Python gate failed. (N1) The count rule \"the number of principals is below the number of identifiers\" missed the case evaluator_also_proposer (identical bindings) and the case (id-A/p1, id-B/p1, id-A/p2), where two identifiers share a principal and a third principal exists; for both, the principals and the identifiers are 2 in number, so the rule does not fire. It was replaced by a pairwise check. (N8) A non-string key in a packet mapping reached the string join in _reject_unknown and escaped evaluate_mapping as a TypeError; it is now a MALFORMED_PACKET refusal at every level. The counts are recomputed by the independent check; the earlier code is not in this repository.",
+      "uuid": "add26133-e34c-54fd-b68e-e51714be8784"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-REFUTED-EARLIER-RUST"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md"
+      ],
+      "id": "TFQ-2531",
+      "lean4": [],
+      "local_id": "OPS-REFUTED-EARLIER-RUST",
+      "name": "Four defects of an earlier head of the Rust module and note",
+      "obligation": "Records superseded defects. The repaired behaviour is in nodes OPS-OBSERVER-DECLARATION-REFUSAL and OPS-RUST-RECEIPTS-AND-LIMITS, which are conditional (not run here).",
+      "parent_id": "TFQ-2519",
+      "python": [],
+      "record_status": "REFUTED",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "At head 0a0502646 of the source repository the following were wrong. (N4) Scenario::section_count multiplied arities without a check, and the limit was compared afterwards: 64 binary singletons (2^64 assignments) wrapped to 0 in a release build, so global_support returned an empty support and is_strongly_contextual returned true. (N5) ObserverDraft::declare accepted empty and whitespace strings, and the five strings were free text copied into the receipt: a norm \"L2\", a terminal \"always OpenObstruction\" and a layer \"authoritative\" each yielded the l1 value, ExactRepair and authority None. (N6) Proposition A2 claimed that no claim-to-receipt function exists, carried a layer row whose second completion was not an observer, and said the refusal test dropped five components when it dropped two; and verify_noncontextual_fraction read only lp.value from the embedded solution. (N7) delta0 checked only the number of entries, delta1 and flatten1 ignored extraneous keys and pairs outside every triple, and the only delta1 delta0 = 0 test ran on the Bell nerve, which has no triple. Recomputed here: 2^64 is 0 modulo 2^64.",
+      "uuid": "084d1b37-d48b-512d-a2d6-34c2d5cf50aa"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "OPS-PR1050-ABSENCE"
+      ],
+      "f004_refs": [
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md"
+      ],
+      "id": "TFQ-2532",
+      "lean4": [],
+      "local_id": "OPS-PR1050-ABSENCE",
+      "name": "PR 1050 of the source repository is not cited",
+      "obligation": "An absence in a repository that is not part of this checkout.",
+      "parent_id": "TFQ-1046",
+      "python": [],
+      "record_status": "SOURCE_RECORD",
+      "rust": [],
+      "source_slice": "foc035_observer_presheaf",
+      "stage": "OBSERVER_PRESHEAF",
+      "summary": "The LGGR test of PR 1050 of the source repository was not on its main branch at commit ae38eaa89 and is not cited by the note or its ledger. The row records a git log over the normal-forms test folder of that repository.",
+      "uuid": "fe128b3e-3f7e-5a71-a798-ab02fe4aa06d"
+    }
+  ],
+  "paper_cites": {
+    "OPS-OBSERVER-TUPLE": [],
+    "OPS-PUSHFORWARD-FUNCTOR-LEAN": [],
+    "OPS-PARITY-HOLONOMY-LEAN": [],
+    "OPS-NCF-LHV-EQUIVALENCE": [
+      "abramsky2017",
+      "abramsky2011"
+    ],
+    "OPS-STRONG-CONTEXTUALITY-NCF-ZERO": [],
+    "OPS-NOISY-PR-NCF": [],
+    "OPS-MAXIMAL-COVER-DESCENT": [],
+    "OPS-ARC-COVER-NGE-WITNESS": [],
+    "OPS-NGE-NOT-CONTEXTUALITY": [],
+    "OPS-CECH-COBOUNDARY": [],
+    "OPS-ZERO-COCYCLE-BLIND": [],
+    "OPS-PARITY-CYCLE-DESCENT-NCF": [],
+    "OPS-NO-SIGNALLING-SIGNED-SECTION": [
+      "abramsky2011"
+    ],
+    "OPS-Z2-WITNESS-FALSE-NEGATIVES": [
+      "abramsky2012"
+    ],
+    "OPS-VOROBEV-THEOREM": [
+      "vorobev1962"
+    ],
+    "OPS-VOROBEV-PATH-INSTANCE": [],
+    "OPS-TEST-482-REPAIR": [],
+    "OPS-UNDERDETERMINATION": [],
+    "OPS-OBSERVER-DECLARATION-REFUSAL": [],
+    "OPS-RUST-RECEIPTS-AND-LIMITS": [],
+    "OPS-LEAN-GAP": [],
+    "OPS-THREE-ROLE-GATE": [],
+    "OPS-SELF-CERTIFICATION-PACKET": [],
+    "OPS-AP-CARD-PROPOSAL": [],
+    "OPS-AXIS1-WELLFOUNDED-ADMISSION": [],
+    "OPS-AXIS2-META-CARRIER": [],
+    "OPS-AXIS3-RELABELING": [],
+    "OPS-REGRESS-COROLLARY": [],
+    "OPS-REFUTED-AXIS3-WIDE": [],
+    "OPS-REFUTED-NB9": [],
+    "OPS-REFUTED-EARLIER-GATE": [],
+    "OPS-REFUTED-EARLIER-RUST": [],
+    "OPS-PR1050-ABSENCE": []
+  }
+}

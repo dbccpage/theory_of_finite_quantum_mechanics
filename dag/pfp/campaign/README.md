@@ -65,6 +65,7 @@ PR #171 promoted 14 nodes to PROVED_LEAN, and only 3 held (see #176). So these r
    python -I -X utf8 dag/sync_pregenesis_to_wdp.py
    python -I -X utf8 dag/sync_frontier_branches.py
    python -I -X utf8 dag/sync_genesis_to_higher.py
+   python -I -X utf8 dag/sync_foc035_observer_presheaf.py
    ```
 2. **Generators:**
    ```
@@ -84,7 +85,7 @@ PR #171 promoted 14 nodes to PROVED_LEAN, and only 3 held (see #176). So these r
    - `dag/validate_derivation_dag.py --no-files` (it must print `failures=0`);
    - `scripts/build_readme_facts.py --check`;
    - `dag/research/repin_tensor_receipts.py --check`;
-   - `pytest dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py`;
+   - `pytest dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/test_foc035_observer_presheaf.py`;
    - your independent check script;
    - and `build_evidence.py --check` once `dag/evidence/` exists.
 
