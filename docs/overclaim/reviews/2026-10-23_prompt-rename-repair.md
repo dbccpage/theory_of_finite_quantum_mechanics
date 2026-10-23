@@ -4,6 +4,9 @@ AuthorityEffect: None. AI-drafted review, awaiting independent maintainer review
 
 Scope: tooling repair from `ff59f8fe712f4c8035069dca1b97521fb711d9ed`.
 No node statement, status, bottleneck, derivation note or sealed artifact changes.
+Integration base: `051091f7b6be583969482d323d4fac3e36b6ea8c`. The incoming
+source-import and observer-stage changes are retained; protected paths are
+compared with that base, not attributed to this repair.
 
 Method: read the generator's planning/write boundaries, the structural validator,
 the retained P0 histories and their delta artifacts, and the maintained Rename
@@ -48,6 +51,7 @@ semantic mutation coverage are not claimed.
 | 37 Rename theorem headers and audits | Signature comparison and complete cited-declaration audit in the compatibility replay receipt |
 | 83 broader passing tests | Output in `prompt_retention_targeted_validation.json`; includes the original 23 retention cases |
 | 30 final targeted passing cases | Same receipt; includes those 23 cases and the seven subsequent source-quote cases, so the counts overlap |
+| 54 passing cases after integration | Final campaign receipt: prescribed campaign tests plus the final custody/classification suite |
 | 8 designated mutants killed | `prompt_retention_challenges.json`, with all outcomes recorded; no survivor, invalid, equivalent, inconclusive or unrun candidate in that declared set |
 
 ## What the scanner cannot decide
