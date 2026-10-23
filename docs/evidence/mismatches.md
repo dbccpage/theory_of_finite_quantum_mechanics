@@ -4,7 +4,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 
 | Flag | Count |
 |---|---|
-| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 219 |
+| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 209 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 53 |
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 0 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
@@ -12,7 +12,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 55 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 26 |
 
-## `proved_lean_below_e3` (219)
+## `proved_lean_below_e3` (209)
 
 PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt. Ordered by downstream nodes, most first.
 
@@ -47,7 +47,6 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [PGW-SN2-OPAQUE-COLLAPSE](nodes/PGW-SN2-OPAQUE-COLLAPSE.md) | MSSN_SN | `PROVED_LEAN` | E0 | 31 | grade E0; 2 Lean reference(s) cited, 0 in this checkout |
 | [PGW-SN3-COST-TWO-UNARY-MARK](nodes/PGW-SN3-COST-TWO-UNARY-MARK.md) | MSSN_SN | `PROVED_LEAN` | E0 | 30 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
 | [L1-QM020-THM1-DIRECT-NORMALIZATION](nodes/L1-QM020-THM1-DIRECT-NORMALIZATION.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 26 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
-| [COMP-C1-CANONICAL-SEPARATED-ALPHABET](nodes/COMP-C1-CANONICAL-SEPARATED-ALPHABET.md) | COMPUTATION | `PROVED_LEAN` | E2 | 25 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [PGW-GO-REACH-CEILING](nodes/PGW-GO-REACH-CEILING.md) | GENESIS | `PROVED_LEAN` | E0 | 25 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
 | [PGW-GO-CONTRACTION-STEP2-STEP3](nodes/PGW-GO-CONTRACTION-STEP2-STEP3.md) | GENESIS | `PROVED_LEAN` | E0 | 24 | grade E0; 4 Lean reference(s) cited, 0 in this checkout |
 | [PGW-GO-MULTIPLICITY-MONOTONE](nodes/PGW-GO-MULTIPLICITY-MONOTONE.md) | GENESIS | `PROVED_LEAN` | E0 | 23 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
@@ -86,7 +85,6 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY](nodes/QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY.md) | COMPUTATION | `PROVED_LEAN` | E2 | 5 | grade E2; 10 Lean reference(s) cited, 10 in this checkout (replay: none 10) |
 | [AUTH-DTM1-TOKEN-CODE-ROUNDTRIP](nodes/AUTH-DTM1-TOKEN-CODE-ROUNDTRIP.md) | COMPUTATION | `PROVED_LEAN` | E2 | 4 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [AUTH-G5A-CLASS-RELATIVE-TRANSPORT](nodes/AUTH-G5A-CLASS-RELATIVE-TRANSPORT.md) | COMPUTATION | `PROVED_LEAN` | E2 | 4 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
-| [COMP-C3-BOUNDED-REACH-DECIDABLE](nodes/COMP-C3-BOUNDED-REACH-DECIDABLE.md) | COMPUTATION | `PROVED_LEAN` | E2 | 4 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [COMP-C7-MACHINE-HALTING-UNDECIDABLE](nodes/COMP-C7-MACHINE-HALTING-UNDECIDABLE.md) | COMPUTATION | `PROVED_LEAN` | E2 | 4 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
 | [FQ-DISCRETE-DYNAMICS-DICHOTOMY](nodes/FQ-DISCRETE-DYNAMICS-DICHOTOMY.md) | FINITE_QM_DYNAMICS | `PROVED_LEAN` | E2 | 4 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [FQ-IMPL-REALIFICATION-ADAPTER](nodes/FQ-IMPL-REALIFICATION-ADAPTER.md) | IMPLEMENTATION | `PROVED_LEAN` | E2 | 4 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
@@ -112,8 +110,6 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [QCV-OVERHEAD-GROWTH-CRITERION](nodes/QCV-OVERHEAD-GROWTH-CRITERION.md) | COMPUTATION | `PROVED_LEAN` | E2 | 3 | grade E2; 13 Lean reference(s) cited, 13 in this checkout (replay: none 13) |
 | [AUTHF-TERMINAL-ACCEPT-BIT](nodes/AUTHF-TERMINAL-ACCEPT-BIT.md) | COMPUTATION | `PROVED_LEAN` | E2 | 2 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [AUTHF-TRANSITION-INVARIANTS](nodes/AUTHF-TRANSITION-INVARIANTS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
-| [COMP-C3-VERDICT-SOUND](nodes/COMP-C3-VERDICT-SOUND.md) | COMPUTATION | `PROVED_LEAN` | E2 | 2 | grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7) |
-| [COMP-C4-STEPE-UNCAPPED](nodes/COMP-C4-STEPE-UNCAPPED.md) | COMPUTATION | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [DFM-EW-DOUBLET-REDUCTION](nodes/DFM-EW-DOUBLET-REDUCTION.md) | DRESSING_FIELD | `PROVED_LEAN` | E2 | 2 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY](nodes/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 2 | grade E2; 4 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [FQ-BELL-CLASSICAL-JOINT-EXTENSION](nodes/FQ-BELL-CLASSICAL-JOINT-EXTENSION.md) | FINITE_QM_CORE | `PROVED_LEAN` | E2 | 2 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
@@ -133,11 +129,7 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [AUTHF-REPLAY-BOUND-SUBMISSION](nodes/AUTHF-REPLAY-BOUND-SUBMISSION.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [AUTHF-TERMINAL-CLOSED-TWO-SIDED](nodes/AUTHF-TERMINAL-CLOSED-TWO-SIDED.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [AUTHF-TRANSITION-ADEQUACY](nodes/AUTHF-TRANSITION-ADEQUACY.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
-| [COMP-C2-LETTER-RENAME-COMMUTES](nodes/COMP-C2-LETTER-RENAME-COMMUTES.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
-| [COMP-C2-ONE-HOLE-CONTEXTS](nodes/COMP-C2-ONE-HOLE-CONTEXTS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
-| [COMP-C3-RUNNER-NEEDS-BLANKS](nodes/COMP-C3-RUNNER-NEEDS-BLANKS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [COMP-C6-FINITE-MARKS](nodes/COMP-C6-FINITE-MARKS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
-| [COMP-C8-BINARY-CODING](nodes/COMP-C8-BINARY-CODING.md) | COMPUTATION | `PROVED_LEAN` | E2 | 1 | grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6) |
 | [DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED](nodes/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 5 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [DS-QM081-CPTP-MONOTONE-NOT-SELECTING](nodes/DS-QM081-CPTP-MONOTONE-NOT-SELECTING.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
 | [DS-QM081-STOCHASTIC-L1-CONTRACTION](nodes/DS-QM081-STOCHASTIC-L1-CONTRACTION.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E2 | 1 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2) |
@@ -177,8 +169,6 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [AUTHF-SELF-RECEIPT-TOY](nodes/AUTHF-SELF-RECEIPT-TOY.md) | COMPUTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [AUTHF-TAPE-CONTROL-REPORTS](nodes/AUTHF-TAPE-CONTROL-REPORTS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [AUTHF-TERMINAL-BOOL-FIXTURE](nodes/AUTHF-TERMINAL-BOOL-FIXTURE.md) | COMPUTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
-| [COMP-C4-SUPPLY-GROWTH](nodes/COMP-C4-SUPPLY-GROWTH.md) | COMPUTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
-| [COMP-C5-MARK-BUDGET-RULE-LIST](nodes/COMP-C5-MARK-BUDGET-RULE-LIST.md) | COMPUTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [CQFT-NO-SIGNALLING-PRODUCT-LEAN](nodes/CQFT-NO-SIGNALLING-PRODUCT-LEAN.md) | CAUSAL_QFT | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [DFM-CABIBBO-CP-PHASE-ZERO](nodes/DFM-CABIBBO-CP-PHASE-ZERO.md) | DRESSING_FIELD | `PROVED_LEAN` | E2 | 0 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
 | [DFM-CKM-CYCLE-COUNT](nodes/DFM-CKM-CYCLE-COUNT.md) | DRESSING_FIELD | `PROVED_LEAN` | E2 | 0 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: none 1) |
@@ -322,7 +312,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 34 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0166](nodes/TFQ-0166.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 32 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [COMP-C1-FIRST-SEPARATION-REPLAY](nodes/COMP-C1-FIRST-SEPARATION-REPLAY.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E2 | 30 | 6 in-repo Rust or Python symbol(s) cited, none a test |
+| [COMP-C1-FIRST-SEPARATION-REPLAY](nodes/COMP-C1-FIRST-SEPARATION-REPLAY.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 30 | 6 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0131](nodes/TFQ-0131.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 30 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0013](nodes/TFQ-0013.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 29 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0015](nodes/TFQ-0015.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E0 | 27 | 0 in-repo Rust or Python symbol(s) cited, none a test |

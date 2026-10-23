@@ -1,42 +1,48 @@
 {
   "AuthorityEffect": "None",
   "artifact": "lean4/lakefile.lean",
-  "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
+  "assurance": "Scoped author assessment; human review pending. Lake configuration exception is explicit.",
   "contract": {
-    "artifact": {
-      "language": "Lean 4",
-      "path": "lean4/lakefile.lean",
-      "sha256": "a9bdb32663347e1005d95e1c154d60a3ca6744369277369bb62573e0ca29be29"
-    },
+    "schema_id": "tfqm.source-contract.v1",
+    "contract_id": "pgw-context-decision-procedure-v1",
     "authority_effect": "None",
-    "boundaries": [
-      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
-      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+    "subject": "lean4/lakefile.lean",
+    "artifact": {
+      "path": "lean4/lakefile.lean",
+      "language": "Lean 4",
+      "sha256": "eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd"
+    },
+    "source_sha256": "eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd",
+    "purpose": "Declarative non-default library registration. Explicit configuration exception to the L4 source floor; its level is not inferred from the theorem being registered.",
+    "operations": {
+      "context_domain": "All admitted forms and arity-matched tuples of optional admitted data with a hole; fill every hole; explicit instances or uniform all-tuples rules.",
+      "decision_boundary": "Exact collapse/separation, form exhaustion and quotient class count; no arbitrary inference language or history-level Y-2 theorem.",
+      "replay": "Build CampaignGenesisContextDecision and run the independent checker normally and optimized."
+    },
+    "owned_invariants": [
+      "Exact integer semantics.",
+      "No full-node status promotion.",
+      "Committed LF source custody and allowed-axiom audit."
     ],
-    "contract_id": "source-coverage-baseline-v1",
+    "boundaries": [
+      "No external Python/Rust refinement theorem.",
+      "Enumeration may be exponential in compact arity; no polynomial efficiency claim.",
+      "Default library not rebuilt."
+    ],
     "evidence": [
       {
-        "path": "lean4/lakefile.lean",
-        "sha256": "a9bdb32663347e1005d95e1c154d60a3ca6744369277369bb62573e0ca29be29"
+        "path": "dag/research/campaign_pgw-context-decision-procedure_lean_replay.json",
+        "sha256": "28ba3a2833c9e609df3c8edecf5c143c6c732e22813fc2928026a719f088a5aa"
+      },
+      {
+        "path": "dag/research/campaign_pgw-context-decision-procedure_independent.json",
+        "sha256": "81f0c37c81d25f3bec808fa89a6999d66c8c4917fffd18411ebb423695e4f61e"
       },
       {
         "path": "SCORING.md",
         "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
       }
-    ],
-    "operations": {
-      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
-      "source_identity": "The exact source bytes identified by subject and source_sha256."
-    },
-    "owned_invariants": [
-      "The companion identifies one source path and its exact current SHA-256 digest.",
-      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
-    ],
-    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
-    "role": "Lean 4 formal source module",
-    "schema_id": "tfqm.source-contract.v1",
-    "source_sha256": "a9bdb32663347e1005d95e1c154d60a3ca6744369277369bb62573e0ca29be29",
-    "subject": "lean4/lakefile.lean"
+    ]
   },
   "contract_history": [
     {
@@ -112,10 +118,60 @@
         "subject": "lean4/lakefile.lean"
       },
       "sha256": "f478c92b071cb4a6bbd1322e55ced319b2c59cfd53019ecdc96a0557c95af7cd"
+    },
+    {
+      "sha256": "9de1beaa05ccdf3d2008d04a382105ef31fec8eabb4ebc52158cd62c99ba5ccf",
+      "bytes": 1924,
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pgw-context-decision-procedure-v1\",\n  \"authority_effect\": \"None\",\n  \"subject\": \"lean4/lakefile.lean\",\n  \"artifact\": {\n    \"path\": \"lean4/lakefile.lean\",\n    \"language\": \"Lean 4\",\n    \"sha256\": \"eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd\"\n  },\n  \"source_sha256\": \"eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd\",\n  \"purpose\": \"Declarative non-default library registration. Explicit configuration exception to the L4 source floor; its level is not inferred from the theorem being registered.\",\n  \"operations\": {\n    \"context_domain\": \"All admitted forms and arity-matched tuples of optional admitted data with a hole; fill every hole; explicit instances or uniform all-tuples rules.\",\n    \"decision_boundary\": \"Exact collapse/separation, form exhaustion and quotient class count; no arbitrary inference language or history-level Y-2 theorem.\",\n    \"replay\": \"Build CampaignGenesisContextDecision and run the independent checker normally and optimized.\"\n  },\n  \"owned_invariants\": [\n    \"Exact integer semantics.\",\n    \"No full-node status promotion.\",\n    \"Committed LF source custody and allowed-axiom audit.\"\n  ],\n  \"boundaries\": [\n    \"No external Python/Rust refinement theorem.\",\n    \"Enumeration may be exponential in compact arity; no polynomial efficiency claim.\",\n    \"Default library not rebuilt.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-context-decision-procedure_lean_replay.json\",\n      \"sha256\": \"28ba3a2833c9e609df3c8edecf5c143c6c732e22813fc2928026a719f088a5aa\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-context-decision-procedure_independent.json\",\n      \"sha256\": \"81f0c37c81d25f3bec808fa89a6999d66c8c4917fffd18411ebb423695e4f61e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ]\n}\n",
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pgw-context-decision-procedure-v1",
+        "authority_effect": "None",
+        "subject": "lean4/lakefile.lean",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "language": "Lean 4",
+          "sha256": "eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd"
+        },
+        "source_sha256": "eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd",
+        "purpose": "Declarative non-default library registration. Explicit configuration exception to the L4 source floor; its level is not inferred from the theorem being registered.",
+        "operations": {
+          "context_domain": "All admitted forms and arity-matched tuples of optional admitted data with a hole; fill every hole; explicit instances or uniform all-tuples rules.",
+          "decision_boundary": "Exact collapse/separation, form exhaustion and quotient class count; no arbitrary inference language or history-level Y-2 theorem.",
+          "replay": "Build CampaignGenesisContextDecision and run the independent checker normally and optimized."
+        },
+        "owned_invariants": [
+          "Exact integer semantics.",
+          "No full-node status promotion.",
+          "Committed LF source custody and allowed-axiom audit."
+        ],
+        "boundaries": [
+          "No external Python/Rust refinement theorem.",
+          "Enumeration may be exponential in compact arity; no polynomial efficiency claim.",
+          "Default library not rebuilt."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-context-decision-procedure_lean_replay.json",
+            "sha256": "28ba3a2833c9e609df3c8edecf5c143c6c732e22813fc2928026a719f088a5aa"
+          },
+          {
+            "path": "dag/research/campaign_pgw-context-decision-procedure_independent.json",
+            "sha256": "81f0c37c81d25f3bec808fa89a6999d66c8c4917fffd18411ebb423695e4f61e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ]
+      },
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#campaign-pgw-context-decision-procedure"
+      ]
     }
   ],
-  "current_contract": "f478c92b071cb4a6bbd1322e55ced319b2c59cfd53019ecdc96a0557c95af7cd",
-  "current_scoring": "5c480865e4a828a52f9320bd06ba28e5a36f0ff36bde798ede8a5bd0b50ce8e4",
+  "current_contract": "9de1beaa05ccdf3d2008d04a382105ef31fec8eabb4ebc52158cd62c99ba5ccf",
+  "current_scoring": "fb645ff054101f36948022c5e143327c17be2aa4d7caa75bb4ef4b4b77666bc8",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "lean4/lakefile.lean.contract.yaml": "4fc4cae88a7859e634ffa98d3262cdeb996ab97c2f28d937d8316a3c0b1e38b4",
@@ -220,6 +276,74 @@
         "score_token": null
       },
       "sha256": "5c480865e4a828a52f9320bd06ba28e5a36f0ff36bde798ede8a5bd0b50ce8e4"
+    },
+    {
+      "sha256": "fb645ff054101f36948022c5e143327c17be2aa4d7caa75bb4ef4b4b77666bc8",
+      "bytes": 2566,
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"artifact\": {\n    \"path\": \"lean4/lakefile.lean\",\n    \"language\": \"Lean 4\",\n    \"sha256\": \"eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L1\",\n  \"level_assessment\": \"Declarative non-default library registration. Explicit configuration exception to the L4 source floor; its level is not inferred from the theorem being registered.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"C\"\n  },\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L1C\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T03:36:33.354032+00:00\",\n  \"assessment_status\": \"scoped_author_assessment_pending_human_review\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-context-decision-procedure_lean_replay.json\",\n      \"sha256\": \"28ba3a2833c9e609df3c8edecf5c143c6c732e22813fc2928026a719f088a5aa\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-context-decision-procedure_independent.json\",\n      \"sha256\": \"81f0c37c81d25f3bec808fa89a6999d66c8c4917fffd18411ebb423695e4f61e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gate_rationale\": {\n    \"G1\": \"Explicit node-to-declaration and source observation correspondence, with history and operational refinement fences.\",\n    \"G2\": \"Kernel proofs over Nat/list/finite sets; independent integer enumeration and SymPy powers; no floating-point certificate.\",\n    \"G3\": \"Only allowed theorem axioms; Python immutable bounded input and DomainError guards; standard strict typing passed.\",\n    \"G4\": \"Successful target build and complete domain-scoped independent census. D conservatively records legacy compatibility warnings and the absence of an operational program-refinement proof; no higher-grade assurance is inferred.\",\n    \"G5\": \"Recursive enumeration terminates structurally. Cost is output-sensitive; independent executable has explicit small-input bounds. This is not a polynomial compact-input algorithm.\"\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"requested_floor\": {\n    \"level\": \"L4\",\n    \"grade\": \"D\",\n    \"met\": false,\n    \"exception\": \"Declarative non-default library registration. Explicit configuration exception to the L4 source floor; its level is not inferred from the theorem being registered.\"\n  }\n}\n",
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "lean4/lakefile.lean",
+          "language": "Lean 4",
+          "sha256": "eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd"
+        },
+        "profile": "Non-Numeric",
+        "level": "L1",
+        "level_assessment": "Declarative non-default library registration. Explicit configuration exception to the L4 source floor; its level is not inferred from the theorem being registered.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "C"
+        },
+        "composite_grade": "C",
+        "score_token": "L1C",
+        "is_complete": true,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-23T03:36:33.354032+00:00",
+        "assessment_status": "scoped_author_assessment_pending_human_review",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-context-decision-procedure_lean_replay.json",
+            "sha256": "28ba3a2833c9e609df3c8edecf5c143c6c732e22813fc2928026a719f088a5aa"
+          },
+          {
+            "path": "dag/research/campaign_pgw-context-decision-procedure_independent.json",
+            "sha256": "81f0c37c81d25f3bec808fa89a6999d66c8c4917fffd18411ebb423695e4f61e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "gate_rationale": {
+          "G1": "Explicit node-to-declaration and source observation correspondence, with history and operational refinement fences.",
+          "G2": "Kernel proofs over Nat/list/finite sets; independent integer enumeration and SymPy powers; no floating-point certificate.",
+          "G3": "Only allowed theorem axioms; Python immutable bounded input and DomainError guards; standard strict typing passed.",
+          "G4": "Successful target build and complete domain-scoped independent census. D conservatively records legacy compatibility warnings and the absence of an operational program-refinement proof; no higher-grade assurance is inferred.",
+          "G5": "Recursive enumeration terminates structurally. Cost is output-sensitive; independent executable has explicit small-input bounds. This is not a polynomial compact-input algorithm."
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "requested_floor": {
+          "level": "L4",
+          "grade": "D",
+          "met": false,
+          "exception": "Declarative non-default library registration. Explicit configuration exception to the L4 source floor; its level is not inferred from the theorem being registered."
+        }
+      },
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#campaign-pgw-context-decision-procedure"
+      ]
     }
   ]
 }

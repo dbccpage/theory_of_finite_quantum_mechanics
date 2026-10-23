@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 89. Grades: E0 85, E1 1, E2 3. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 10, DEFINITION 16, SOURCE_RECORD 1, OPEN 13.
+Nodes: 89. Grades: E0 84, E1 1, E2 3, E3 1. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 10, DEFINITION 16, SOURCE_RECORD 1, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -87,7 +87,7 @@ Nodes: 89. Grades: E0 85, E1 1, E2 3. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, 
 | [PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD](../nodes/PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD.md) | `PROVED_LEAN` | E0 | The sealed GraphGenesis.ProposalRecord s is a represented growth proposal at state s whose fields are exactly: a block proved to be a mem... | none in this checkout | proved_lean_below_e3, proved_lean_external_only |
 | [PGW-GENESIS-TO-SN-CROSSWALK](../nodes/PGW-GENESIS-TO-SN-CROSSWALK.md) | `DEFINITION` | E0 | Declared here as the bridge table from the Genesis endpoint to the entry of S(n), taken from the pre-Genesis-to-MSS-N finite-stage crossw... | none in this checkout | - |
 | [PGW-RESPONDER-IN-LEAN](../nodes/PGW-RESPONDER-IN-LEAN.md) | `OPEN` | E0 | The sealed responder, a minimum of the sealed candidate space of at most two items and arity at most two under mu1 or mu2, has no Lean co... | none in this checkout | - |
-| [PGW-CONTEXT-DECISION-PROCEDURE](../nodes/PGW-CONTEXT-DECISION-PROCEDURE.md) | `OPEN` | E0 | No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, a... | none in this checkout | - |
+| [PGW-CONTEXT-DECISION-PROCEDURE](../nodes/PGW-CONTEXT-DECISION-PROCEDURE.md) | `OPEN` | E3 | A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples cont... | [CampaignGenesisContextDecision.lean](../../../lean4/CampaignGenesisContextDecision.lean): `binary_separation`, `classCount_eq_quotient_card`, `collapseTest_correct` +17<br>[pgw-context-decision-procedure.py](../../../checks/independent/pgw-context-decision-procedure.py): `main`<br>[pgw-context-decision-procedure.md](../../../dag/derivations/independent/pgw-context-decision-procedure.md) | - |
 | [PGW-DECLARED-INPUT-FLOOR](../nodes/PGW-DECLARED-INPUT-FLOOR.md) | `OPEN` | E0 | No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared b... | none in this checkout | - |
 | [PGW-PYTHON-LEAN-CARRIER-BRIDGE](../nodes/PGW-PYTHON-LEAN-CARRIER-BRIDGE.md) | `OPEN` | E0 | No refinement proof joins any Python computation to any Lean statement. The sealed Lean is a token-erased abstraction connected to the se... | none in this checkout | - |
 | [PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN](../nodes/PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN.md) | `OPEN` | E0 | CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-ch... | none in this checkout | - |

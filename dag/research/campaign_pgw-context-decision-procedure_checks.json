@@ -1,0 +1,319 @@
+{
+  "schema_version": "campaign_checks.v1",
+  "authority_effect": "None",
+  "node": "PGW-CONTEXT-DECISION-PROCEDURE",
+  "node_status": "OPEN",
+  "outcome": "Narrowed, provisional; general finite context decision theorem derived, original history/refinement bundle not discharged",
+  "base_sha": "3924d378ff1de685948bf2b419dc63a5a9560881",
+  "source_commit": "6cdc1d9eade109f77b9884491039bddccf22afcd",
+  "selection": {
+    "command": "python -I -X utf8 dag/pfp/campaign/make_queue.py",
+    "rank": 16,
+    "scope": "highest-ranked GENESIS or WDP node in the regenerated queue"
+  },
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pipeline": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py",
+      "exit_code": 0,
+      "stdout": "stale=dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md,dag/fragments/application_branches.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py",
+      "exit_code": 0,
+      "stdout": "stale=derivation_dag.json,theory_of_finite_qm.jsonl,theory_of_finite_qm.md\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py",
+      "exit_code": 0,
+      "stdout": "stale=dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 0,
+      "stdout": "Written: C:\\Users\\a343o\\.codex\\worktrees\\8ae8\\theory_of_finite_quantum_mechanics\\papers\\core\\master_derivation_ledger.md\nWritten: C:\\Users\\a343o\\.codex\\worktrees\\8ae8\\theory_of_finite_quantum_mechanics\\dag\\derivations\\MASTER_DERIVATION_LEDGER.md\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --write --all-missing",
+      "exit_code": 0,
+      "stdout": "refusing to rewrite executed prompts: TFQ-0084\n{\"created\": 0, \"rewritten\": 3, \"unchanged\": 711}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --write",
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --write",
+      "exit_code": 0,
+      "stdout": "finite_quantum_mechanics.md: updated\nfinite_quantum_mechanics_claim_ledger.md: already current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
+      "exit_code": 0,
+      "stdout": "evidence map written: 892 nodes, grades {'E0': 281, 'E1': 230, 'E2': 305, 'E3': 76, 'E4': 0}, 482 flags\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/pgw-context-decision-procedure --reason Record general finite Genesis context decisions and semantic quotient count; retain bundled node OPEN.",
+      "exit_code": 0,
+      "stdout": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha dag/fragments/application_branches.json\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\nrebound: tensor_countermodel_validation.json sha lean4/lakefile.lean\n5 stale pin(s)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/campaign/make_queue.py",
+      "exit_code": 0,
+      "stdout": "  1  549 TFQ-0006                                       L1_TO_L2               The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers d\n  2  426 L1-IMP-SECTOR-SYMMETRY-LAW                     L1_TO_L2               Transitive sector symmetry of the quadratic readout: relabelling sectors by any permutatio\n  3  240 TFQ-0008                                       FINITE_QM_DYNAMICS     After the finite carrier, the required dynamics are finite: an instrument or measurement u\n  4   57 TFQ-0009                                       FINITE_GAUGE           A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, \n  5   54 TFQ-0012                                       FINITE_QCD             quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_\n  6   39 PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT           PREGENESIS             Write P for the presented inscriptions and O for the internal observations. Supplying <a> \n  7   28 CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT          CONSTRUCTOR_THEORY     Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp. 2-3) and \n  8   28 FSP-HUBBARD-PROTECTED-REPRESENTATIONS          FERMION_SIGN           For the Trotter auxiliary-field Hubbard determinants, the spin-determinant product d_up d_\n  9   28 TFQ-0014                                       FINITE_QCD             finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). \n 10   25 MUB6-GLOBAL-OBLIGATIONS                        MUTUALLY_UNBIASED_BASES Separate exact stated-region exclusions and conditional reductions from a global dimension\n 11   25 TFQ-0017                                       FINITE_QCD             quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitar\n 12   24 FSP-U1-WILSON-ACTION                           FERMION_SIGN           With link phases U_ij = exp(i A_ij) and oriented plaquette products U_p, the Wilson action\n 13   24 PGW-SN-E08-WEIGHTED-L1-DUALITY                 MSSN_SN                Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weight\n 14   22 FSP-WILSON-DIRAC-GAMMA5                        FERMION_SIGN           The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenva\n 15   21 FSP-LATTICE-ANOMALY-INFLOW                     FERMION_SIGN           Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant\n 16   21 PGW-CONTEXT-DECISION-PROCEDURE                 GENESIS                A finite Genesis context decision procedure in the existing Regime enumerates every admitt\n 17   20 FSP-SU2-ADJOINT-REAL-DET                       FERMION_SIGN           For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary s\n 18   19 FSP-QCD-CHEMICAL-POTENTIAL-DET                 FERMION_SIGN           For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger,\n 19   17 FSP-IMAGINARY-MU-REAL-DET                      FERMION_SIGN           At mu = i mu_I with real mu_I, gamma5 D(i mu_I) gamma5 = D(i mu_I)^dagger, so det D(i mu_I\n 20   16 FSP-LATTICE-WESS-ZUMINO-SUSY                   FERMION_SIGN           Claimed: a finite-lattice 2D N=1 Wess-Zumino model with supercharges obeying {Q_a, Q_b} = \n 21   15 L1-IMP-TRANSITION-PROBABILITY-LAW              L1_TO_L2               Transition-probability preservation of the ray dynamics: the evolution of rays of the lift\n 22   14 FSP-MAJORANA-CLIFFORD-PARITY                   FERMION_SIGN           For N CAR modes, gamma_{2j-1} = c_j + c_j^dagger and gamma_{2j} = -i(c_j - c_j^dagger) are\n 23   14 FSP-WITTEN-INDEX-INVARIANCE                    FERMION_SIGN           On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dag\n 24   14 TFQ-0026                                       FINITE_QCD             lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and\n 25   13 FSP-KITAEV-HONEYCOMB-SOLUTION                  FERMION_SIGN           Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette f\n 26   13 TFQ-0027                                       FINITE_QCD             wilson_species_count in the same file counts corners where the rational expression mass + \n 27   12 FSP-LAUGHLIN-EXCHANGE-PHASE                    FERMION_SIGN           Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin s\n 28   12 PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER           WDP                    GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protect\n 29   11 CT-INFORMATION-MEDIA-INTEROPERABILITY          CONSTRUCTOR_THEORY     Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.\n 30   11 DFM-HIERARCHICAL-BOREL                         DRESSING_FIELD         Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem\n 31   10 FSP-BF-2GROUP-SIGN-CLAIM                       FERMION_SIGN           Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs c\n 32    9 FSP-COBORDISM-INTRINSIC-SIGN                   FERMION_SIGN           Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5\n 33    9 PGW-IDENTITY-CONVENTION-UNDECIDABLE            PREGENESIS             Whether <a> supplied after <> is a new state depends on an identity convention that no pro\n 34    8 CQFT-LOCAL-NET-AXIOMS-IMPORT                   CAUSAL_QFT             Imported structure: a spacetime with a causal order, and a family of unital star-algebras \n 35    8 DFM-CONTINUUM-INTERFACE                        DRESSING_FIELD         A finite graph dressing theorem leaves smooth-field existence, patching, topology, localit\n 36    8 FSP-REGGE-DEFICIT-ACTION                       FERMION_SIGN           On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon\n 37    6 FSP-DISCRETE-WDW-CONSTRAINT                    FERMION_SIGN           Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegativ\n 38    6 FSP-PACHNER-INVARIANCE-CLAIM                   FERMION_SIGN           Claimed: a discrete topological partition function on 4D triangulations is invariant under\n 39    6 GTH-SHADOW                                     GENESIS_TO_HIGHER      No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite \n 40    6 PGW-ENDOGENOUS-DEMAND-OB1                      GENESIS                No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successo\n 41    6 PGW-WDP-BRIDGE-ONGOING-TO-WINDOW               WDP                    GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked tripl\n 42    6 TFQ-0032                                       FINITE_QCD             The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a qua\n 43    5 FSP-CDT-FOLIATION-POSITIVITY                   FERMION_SIGN           Claimed: a global proper-time foliation in CDT forbids spatial branching, removes Lorentzi\n 44    5 GTH-TRUNC                                      GENESIS_TO_HIGHER      Let a finite shadow be a finite semi-simplicial set or a finite globular set as in GTH-SHA\n 45    5 TFQ-0033                                       FINITE_QCD             The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_\n 46    4 FSP-DIRAC-KAHLER-SPINFOAM-CLAIM                FERMION_SIGN           Claimed: Dirac-Kaehler fermions on simplicial lattices give 2^(D/2) flavors and EPRL-FK bo\n 47    4 GTH-HORNS                                      GENESIS_TO_HIGHER      The horn Lambda^k[n] is the union of all faces of the standard n-simplex except the face o\n 48    4 GTH-LANG-CORE                                  GENESIS_TO_HIGHER      The priced admission language is not defined. The reading intended for its primitives, whi\n 49    4 LQG-EPRL-VERTEX-IMPORT                         LOOP_QUANTUM_GRAVITY   Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:071\n 50    4 MAJ-IMPORT-COSET-WEIGHT-NP-HARD                MAJORANA               Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berl\n 51    4 MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE            MAJORANA               For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning ra\n 52    3 CT-TASK-CONSTRUCTOR-POSSIBILITY                CONSTRUCTOR_THEORY     Imported vocabulary, audited against Deutsch (2013, Section 1.1 eqs. (1)-(2) pp. 2-4) and \n 53    3 FSP-XCUBE-FRACTON-MODEL                        FERMION_SIGN           Vijay-Haah-Fu (2016): the X-cube model on an Lx x Ly x Lz periodic cubic lattice has pairw\n 54    3 GTH-HOTT-MODEL                                 GENESIS_TO_HIGHER      No deep embedding of a dependent type theory, and no finite model of such a theory, is con\n 55    3 GTH-LANG-REFLECT                               GENESIS_TO_HIGHER      No quotation layer for the priced admission language is defined, because that language is \ntotal 160\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/pgw-context-decision-procedure --reason Re-pin last after canonical campaign queue refresh.",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    }
+  ],
+  "checks": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": "",
+      "repair": "Evidence was regenerated after the tensor receipt re-pin, then successfully rechecked."
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing",
+      "exit_code": 1,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 714,\n  \"executed_stale_needs_manual_delta\": {\n    \"TFQ-0084\": [\n      \"generator_output_or_file_changed\"\n    ]\n  },\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check",
+      "exit_code": 1,
+      "stdout": "{\n  \"originals\": 0,\n  \"combined_files\": 8659,\n  \"all_passed\": false,\n  \"errors\": [\n    {\n      \"path\": \"lean4/HilbertLiftOperators.contract.score.yaml\",\n      \"error\": \"Expecting ',' delimiter: line 202 column 7 (char 10999)\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 -m pytest dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/test_pregenesis_to_wdp.py -q --basetemp=.lake/context-pytest-temp",
+      "exit_code": 0,
+      "stdout": "................................s                                        [100%]\n32 passed, 1 skipped in 101.98s (0:01:41)\n"
+    },
+    {
+      "command": "TFQ_SYMBOL_GAME_ROOT=<known sibling checkout> python -I -X utf8 -m pytest dag/test_pregenesis_to_wdp.py::test_citations_resolve_offline -q",
+      "exit_code": 0,
+      "stdout": ".                                                                        [100%]\n1 passed in 1.25s\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 3924d378ff1d); HIGH=0 MEDIUM=0 LOW=3\n"
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-context-decision-procedure.py",
+      "exit_code": 0,
+      "stdout_receipt": "dag/research/campaign_pgw-context-decision-procedure_independent.json"
+    },
+    {
+      "command": "python -I -O -X utf8 checks/independent/pgw-context-decision-procedure.py",
+      "exit_code": 0,
+      "output_identical_to_normal": true
+    },
+    {
+      "command": "python -I -X utf8 -m mypy --strict checks/independent/pgw-context-decision-procedure.py",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file"
+    },
+    {
+      "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --check",
+      "exit_code": 0
+    }
+  ],
+  "remaining_failures": [
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing",
+      "exit_code": 1
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check",
+      "exit_code": 1
+    }
+  ],
+  "known_failure_context": {
+    "prompt": "Only executed_stale_needs_manual_delta TFQ-0084; no unexecuted stale or missing prompts.",
+    "contracts": "Malformed JSON in unchanged lean4/HilbertLiftOperators.contract.score.yaml at line 202 column 7. The three campaign companions pass history/source checks."
+  },
+  "repair_notes": [
+    "Initial source-fragment entry needed its required line range and quote; corrected before all successful syncs.",
+    "The pre-existing TFQ-0016 YAML scalar was quoted without changing its text, then generator pins refreshed.",
+    "Evidence pages were regenerated after tensor re-pinning.",
+    "Legacy-module import mode was required to import unchanged GenesisComputation; final allowed-axiom audit passed with compatibility warnings preserved."
+  ],
+  "source_provenance": [
+    {
+      "repository": "dbccpage/the_symbol_game",
+      "commit": "7351ed452e518cb8cf2bf973d4c4881289084bce",
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
+      "committed_sha256": "78443d67e613d9cc9924538fe2e0a5acaf81f4654440bfe8586e16652f0317ba",
+      "current_matches_pinned_lf": true
+    },
+    {
+      "repository": "dbccpage/the_symbol_game",
+      "commit": "7351ed452e518cb8cf2bf973d4c4881289084bce",
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs",
+      "committed_sha256": "f64df9adecf931d7b57907b47c03240742cd710230500c561b4ce14bba7c4d8f",
+      "current_matches_pinned_lf": true
+    },
+    {
+      "repository": "dbccpage/the_symbol_game",
+      "commit": "7351ed452e518cb8cf2bf973d4c4881289084bce",
+      "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
+      "committed_sha256": "7e774b9a5cd0b326f884716c49a18055df522968e659438910dceeaa332b73ad",
+      "current_matches_pinned_lf": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "lean4/CampaignGenesisContextDecision.lean",
+      "sha256": "621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6"
+    },
+    {
+      "path": "lean4/GenesisComputation.lean",
+      "sha256": "f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994"
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "eb68b977957b43e6651bb612e078f9f82f83caa4448ea468679a716a99afddfd"
+    },
+    {
+      "path": "checks/independent/pgw-context-decision-procedure.py",
+      "sha256": "5330a7fb0d052d5438055f0ed034e7d2f82872d9845558a3ed09e325d9b020fa"
+    },
+    {
+      "path": "dag/derivations/independent/pgw-context-decision-procedure.md",
+      "sha256": "36b426be2b4a346e353993091ed47d351606bfebd15f58877e9f13e14f424224"
+    },
+    {
+      "path": "dag/research/campaign_pgw-context-decision-procedure_lean_replay.json",
+      "sha256": "28ba3a2833c9e609df3c8edecf5c143c6c732e22813fc2928026a719f088a5aa"
+    },
+    {
+      "path": "dag/research/campaign_pgw-context-decision-procedure_independent.json",
+      "sha256": "81f0c37c81d25f3bec808fa89a6999d66c8c4917fffd18411ebb423695e4f61e"
+    },
+    {
+      "path": "dag/derivation_dag.json",
+      "sha256": "e9c802a5ecc4e494be5153d8a58cab782a818d49205e911e41a4a44da275007e"
+    },
+    {
+      "path": "dag/fragments/pregenesis_to_wdp.json",
+      "sha256": "82d2c3b7a715d9197bd7acc4d26f0899d293e0207c117faacdce85c77d2928c8"
+    },
+    {
+      "path": "dag/fragments/unified_dag.json",
+      "sha256": "7036fe8df79b4dff57875e854ad0b1d90003ba4872619c31aae2ccb7768cdad7"
+    },
+    {
+      "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-context-decision-procedure.md",
+      "sha256": "e0031104143205884e5c95d75519b86cca29b1d33fa1d88579ddc1ba0644093f"
+    }
+  ],
+  "scoring": "New Lean and checker L4D; declarative Lake registration L1C under explicit configuration exception; author assessment pending review.",
+  "node_status_changes": []
+}
