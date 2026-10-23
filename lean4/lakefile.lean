@@ -624,3 +624,6 @@ lean_lib GenesisHottTruncation where
 lean_lib GenesisHottHorns where
   roots := #[`GenesisHottHorns, `GenesisHottModel]
 
+lean_lib AdmitLang where
+  roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
+
