@@ -16720,20 +16720,29 @@
     {
       "id": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
       "stage": "MSSN_SN",
-      "status": "CONDITIONAL",
-      "source_status": "002_oesn levels/level_08 (declared construction; LP duality cited)",
+      "status": "PROVED_LEAN",
+      "source_status": "002_oesn levels/level_08 (declared construction); Lean CampaignSnE08WeightedL1Duality (Fourier-Motzkin LP strong duality over Q)",
       "statement": "Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weights ω_e, and states that the minimum over g of Σ_e ω_e |c_e − (d₀g)_e| equals the maximum of cᵀy subject to d₀ᵀy = 0 and |y_e| ≤ ω_e, as finite linear-programming duality for the stated feasible bounded problem. Matching primal and dual feasible values certify optimality. An ℓ¹ minimizer need not be unique and is not in general the ℓ² harmonic residual. The page separately defines a categorical adjunction by functors, unit, counit and triangle identities, and says these maps are not the matrix pair d₀, d₀ᵀ.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md",
         "omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:19-29",
         "omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:40-44",
-        "omega_engine_education/documentation/002_oesn/levels/README.md:20"
+        "omega_engine_education/documentation/002_oesn/levels/README.md:20",
+        "dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::farkas",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose"
+      ],
       "rust": [],
-      "imported_structure": [
-        "Strong duality for finite feasible bounded linear programs over ℚ, cited by E08 and not proved there (assumption)"
-      ],
+      "imported_structure": [],
       "bottleneck": "E08 is a declared mathematical construction that grammar cases do not verify; AdjunctionCochain implements only x ↦ (x,0) and first-coordinate projection, and no adjunction is claimed until objects, functors, naturality and triangle laws are supplied.",
       "tags": [
         "pregenesis-to-wdp",
@@ -34641,7 +34650,7 @@
         "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE"
       ],
       "output": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md",
         "omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:19-29",
@@ -60205,14 +60214,23 @@
       "f004_refs": [],
       "id": "TFQ-0522",
       "lean4": [
-        "absent: no Lean statement of the weighted l1 duality in the S(n) strand"
+        "lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::farkas",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose"
       ],
       "local_id": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
       "name": "sn-e08-weighted-l1-duality",
       "obligation": "For a declared weighted ℓ¹ cochain problem, certify a value by a primal g and a dual y with d₀ᵀy = 0, |y_e| ≤ ω_e and equal objective values, and keep the categorical adjunction a separate construction.",
       "parent_id": "TFQ-0516",
       "python": [
-        "absent: AdjunctionCochain in sn_realizations.py implements a product section and projection, not this linear program"
+        "checks/independent/pgw-sn-e08-weighted-l1-duality.py::solve_primal",
+        "checks/independent/pgw-sn-e08-weighted-l1-duality.py::solve_dual"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [

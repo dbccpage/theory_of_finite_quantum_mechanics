@@ -1032,3 +1032,7 @@ lean_lib CampaignDfmSymanzikQedAeFence where
 -- Campaign: DFM-REGGE-GRAVITY-FENCE. Not a default target.
 lean_lib CampaignDfmReggeGravityFence where
   roots := #[`CampaignDfmReggeGravityFence]
+
+-- Campaign: PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
+lean_lib CampaignSnE08WeightedL1Duality where
+  roots := #[`CampaignSnE08WeightedL1Duality]

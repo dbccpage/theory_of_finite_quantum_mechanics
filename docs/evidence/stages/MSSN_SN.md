@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 28. Grades: E0 16, E3 12. Statuses: PROVED_LEAN 11, PROVED_PROSE 6, CONDITIONAL 1, DEFINITION 9, OPEN 1.
+Nodes: 28. Grades: E0 15, E3 13. Statuses: PROVED_LEAN 12, PROVED_PROSE 6, DEFINITION 9, OPEN 1.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -20,7 +20,7 @@ Nodes: 28. Grades: E0 16, E3 12. Statuses: PROVED_LEAN 11, PROVED_PROSE 6, CONDI
 | [PGW-SN-PROTECTED-ANSWER-TRANSPORT](../nodes/PGW-SN-PROTECTED-ANSWER-TRANSPORT.md) | `OPEN` | E0 | S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u =... | none in this checkout | - |
 | [PGW-SN-POSTNIKOV-REFUSAL](../nodes/PGW-SN-POSTNIKOV-REFUSAL.md) | `PROVED_PROSE` | E0 | The construction index n of S(n) is distinct from Postnikov depth j. For j ≥ 0 the Postnikov truncations of a fixed space preserve π₀, so... | none in this checkout | proved_prose_no_in_repo_document |
 | [PGW-SN-REPRESENTATION-QUOTIENT](../nodes/PGW-SN-REPRESENTATION-QUOTIENT.md) | `PROVED_LEAN` | E3 | In a supplied complex model with one coordinate at each of two sites, the balance map T sends the ordinary tensor coefficients (rr, ri, i... | [ComplexTensorBalancing.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean): `balance_kernel_iff`, `balance_section`, `twice_project_square` | - |
-| [PGW-SN-E08-WEIGHTED-L1-DUALITY](../nodes/PGW-SN-E08-WEIGHTED-L1-DUALITY.md) | `CONDITIONAL` | E0 | Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weights ω_e, and states that the minimum over g of Σ_... | none in this checkout | - |
+| [PGW-SN-E08-WEIGHTED-L1-DUALITY](../nodes/PGW-SN-E08-WEIGHTED-L1-DUALITY.md) | `PROVED_LEAN` | E3 | Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weights ω_e, and states that the minimum over g of Σ_... | [CampaignSnE08WeightedL1Duality.lean](../../../lean4/CampaignSnE08WeightedL1Duality.lean): `adjunctionCochain_not_cycD_transpose`, `adjunctionCochain_section_retraction`, `certificate_optimal` +20<br>[pgw-sn-e08-weighted-l1-duality.py](../../../checks/independent/pgw-sn-e08-weighted-l1-duality.py): `solve_dual`, `solve_primal`<br>[pgw-sn-e08-weighted-l1-duality.md](../../../dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md) | - |
 | [PGW-SN-E12-CIRCULATION-FUNCTIONAL](../nodes/PGW-SN-E12-CIRCULATION-FUNCTIONAL.md) | `PROVED_LEAN` | E3 | Example E12 takes the oriented triangle a→b→c→a with C₀ = C₁ = ℤ³, coboundary d₀ and supplied edge record x = (1,0,0). On the open path a... | [Cochain.lean](../../../lean4/Imported/PreGenesisToMssn/Cochain.lean): `triangle_repair_exact_iff`, `triangle_repair_invariant` | - |
 | [PGW-SN-E18-L1-TIES-L2-CENTER](../nodes/PGW-SN-E18-L1-TIES-L2-CENTER.md) | `PROVED_PROSE` | E0 | Example E18 keeps the unfilled triangle with x = (1,0,0) and I(x) = 1, so every residual r = x − d₀g has I(r) = 1. Under ℓ¹ the bound ‖r‖... | none in this checkout | proved_prose_no_in_repo_document |
 | [PGW-SN-E19-TORSION-ERASED-OVER-Q](../nodes/PGW-SN-E19-TORSION-ERASED-OVER-Q.md) | `PROVED_PROSE` | E0 | Example E19 takes the free chain complex C₂ = ℤ → C₁ = ℤ → C₀ = ℤ with ∂₂(1) = 2 and ∂₁ = 0. The cycle z = 1 is nonzero in H₁ = ℤ/2 becau... | none in this checkout | proved_prose_no_in_repo_document |

@@ -123,7 +123,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/authority_gap.rs`
 
 - file: [code/rust/src/wdp/authority_gap.rs](../../../code/rust/src/wdp/authority_gap.rs)
-- sha256 (`bytes`): `0868299c878fb62cb4b194ba0f63b96aae2c2c39de916fb698aa252cc4a5399c`
+- sha256 (`bytes`): `0935eea0366625f5c3aac8a1aed38fd8233f64389b3580a43910fc07ffbb82a7`
 - cited in: record TFQ-0347
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
@@ -131,7 +131,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/wdp_kernel_check.rs`
 
 - file: [code/rust/src/wdp/wdp_kernel_check.rs](../../../code/rust/src/wdp/wdp_kernel_check.rs)
-- sha256 (`bytes`): `ed19fff6227820f276fbe81f21c2338bccb3337e7ef165188a99923ae59b94ec`
+- sha256 (`bytes`): `9ee522fb3bedf0ab9f1d557c32b4e658aefddf1b88f123d775536dde41146107`
 - cited in: record TFQ-0347
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes

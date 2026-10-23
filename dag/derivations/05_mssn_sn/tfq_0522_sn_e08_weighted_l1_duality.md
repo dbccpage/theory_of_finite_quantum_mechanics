@@ -21,9 +21,6 @@ In accordance with strict constructive principles:
 - **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
 - **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
 
-### Admitted Structural Imports
-- **Admitted**: `Strong duality for finite feasible bounded linear programs over ℚ, cited by E08 and not proved there (assumption)`
-
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
 > E08 is a declared mathematical construction that grammar cases do not verify; AdjunctionCochain implements only x ↦ (x,0) and first-coordinate projection, and no adjunction is claimed until objects, functors, naturality and triangle laws are supplied.
@@ -33,13 +30,22 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: no Lean statement of the weighted l1 duality in the S(n) strand`
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::farkas`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust LP solver in the S(n) strand; the page assigns evaluation to existing mathematics owners`
 
 ### Python Oracles & Numerical Evaluators
-- `missing obligation: AdjunctionCochain in sn_realizations.py implements a product section and projection, not this linear program`
+- [`checks/independent/pgw-sn-e08-weighted-l1-duality.py::solve_dual`](../../../checks/independent/pgw-sn-e08-weighted-l1-duality.py)
+- [`checks/independent/pgw-sn-e08-weighted-l1-duality.py::solve_primal`](../../../checks/independent/pgw-sn-e08-weighted-l1-duality.py)
 
 ---
 
@@ -56,3 +62,4 @@ In accordance with strict constructive principles:
   - `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:19-29`
   - `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:40-44`
   - `omega_engine_education/documentation/002_oesn/levels/README.md:20`
+  - `dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3`
