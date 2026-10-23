@@ -8868,9 +8868,9 @@ Obligation: These are polynomial identities over Q, not triangle-diagram anomaly
 - DAG node: `DFM-ELECTROWEAK-CONTINUUM-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md)
 
-The residual U(1)_Y covariance u(e^{i alpha/2} Phi) = u(Phi) diag(e^{-i alpha/2}, e^{i alpha/2}), the dressed gauge field with derivative term, and the reading as an electroweak model without spontaneous symmetry breaking are not established by the finite artifacts.
+For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4; dividing by the respective rational roots 1 and 2 makes the normalized (1, 2) entries 1 and 2, so they differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.
 
-Obligation: Generic phases e^{i alpha/2} are not in Q(i); keep the residual covariance on declared rational phases and keep the continuum Standard Model and Elitzur reading as interfaces.
+Obligation: The normalized residual law is recorded when z lies in Q(i), the squared modulus of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.
 
 ### TFQ-1123 Bipartite flavour graph rephasing and Jarlskog plaquettes
 

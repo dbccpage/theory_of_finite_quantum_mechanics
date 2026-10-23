@@ -987,6 +987,10 @@ lean_lib CampaignGenesisDemandPolicy where
 lean_lib CampaignDfmHierarchicalBorel where
   roots := #[`CampaignDfmHierarchicalBorel]
 
+-- Campaign: DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmElectroweakContinuumFence where
+  roots := #[`CampaignDfmElectroweakContinuumFence]
+
 -- Exact no-return engine replay, reusing the sealed source library.
 lean_lib CampaignGenesisNoReturn where
   roots := #[`CampaignGenesisNoReturn]
@@ -1012,6 +1016,4 @@ lean_lib CampaignGenesisProcessComparison where
 lean_lib CampaignDfmContinuumInterface where
   roots := #[`CampaignDfmContinuumInterface]
 
--- Campaign: DFM-BPHZ-CONTINUUM-FENCE. Not a default target.
-lean_lib CampaignDfmBphzContinuumFence where
-  roots := #[`CampaignDfmBphzContinuumFence]
+
