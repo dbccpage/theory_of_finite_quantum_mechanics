@@ -1,0 +1,143 @@
+schema_id: omega.pfp.finite-qm.operad-delta.v1
+node_id: GTH-LANG-INTERPRET
+stage_id: P0_MINE_OPERAD
+attempt_id: p0
+authority_effect: None
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: fail:admit_interpret_readings_are_not_the_function
+  outer_operation: GTH-LANG-INTERPRET interpretation function
+  input_slot: quotation_layer
+  inner_operation: AdmitInterpret
+  colour_match: false
+  hypothesis_match: The route input is GTH-LANG-REFLECT. That node cites no Lean. AdmitInterpret imports AdmitCore only.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitInterpret.lean
+    declaration: AdmitInterpret
+    line: 8
+  - path: lean4/AdmitInterpret.lean
+    declaration: AdmitInterpret.IdJudg
+    line: 31
+  - path: lean4/AdmitInterpret.lean
+    declaration: AdmitInterpret.id_sound
+    line: 51
+  - path: lean4/AdmitInterpret.lean
+    declaration: AdmitInterpret.Edge
+    line: 76
+  - path: lean4/AdmitInterpret.lean
+    declaration: AdmitInterpret.edge_not_held_in_empty
+    line: 110
+  - path: lean4/AdmitInterpret.lean
+    declaration: AdmitInterpret.HF
+    line: 118
+  - path: lean4/AdmitInterpret.lean
+    declaration: AdmitInterpret.cut_hf_sound
+    line: 144
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.Regime
+    line: 42
+  reason: The header says three scoped readings and that none is an embedding of the whole of the named theory.
+    IdJudg has only refl. id_sound concludes an AdmitCore data judgment on twoPoint together with metatheoretic
+    equality of the atoms. Edge is a separated pair of naturals in this file, and edge_not_held_in_empty refuses
+    that edge in the empty regime. HF is built by empty and insert without extensionality. cut_hf_sound reads one
+    admitted cut as membership in an insert-pair, and the header says conservativity over the core is not claimed.
+    These readings are not one function from a quotation layer into the three named targets. They are not admitted
+    as generators. AdmitCore.Regime is not a theorem of this node.
+- id: fail:quoteJudg_is_not_the_route_input
+  outer_operation: interpretation domain
+  input_slot: GTH-LANG-REFLECT
+  inner_operation: AdmitReflect.quoteJudg
+  colour_match: false
+  hypothesis_match: GTH-LANG-REFLECT states that no quotation layer is defined, because the core language is not defined.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitReflect.lean
+    declaration: AdmitReflect.quoteJudg
+    line: 78
+  reason: quoteJudg sends AdmitCore.Judg to QJudg. The header says the round trip transports AdmitCore.Step and that
+    there is no truth predicate. That module is not the missing quotation layer, and it is not cited by GTH-LANG-REFLECT.
+- id: fail:hott_model_interp_is_another_fragment
+  outer_operation: interpretation into a Martin-Lof identity fragment
+  input_slot: reflection_codes
+  inner_operation: GenesisHottModel.interp
+  colour_match: false
+  hypothesis_match: The file imports GenesisHottHorns. It does not import a quotation of the priced admission language.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottModel.lean
+    declaration: GenesisHottModel.interp
+    line: 83
+  - path: lean4/GenesisHottModel.lean
+    declaration: GenesisHottModel.soundness
+    line: 221
+  - path: lean4/GenesisHottModel.lean
+    declaration: GenesisHottModel.edge_reading_refutes_refl
+    line: 257
+  reason: interp reads terms whose types are vtx, iden, and pi into vertices of GenesisHottHorns. The header says
+    identity elimination J is not a rule of the fragment, and that an identity type is read as Lean equality of
+    vertices. soundness is about Deriv in that fragment. edge_reading_refutes_refl says a 1-simplex is not an
+    identity proof. The node lean list is empty. Not a generator of this node.
+- id: fail:horns_are_declared_finite_data
+  outer_operation: finite semi-simplicial structure once a shadow exists
+  input_slot: shadow_from_reflection
+  inner_operation: GenesisHottHorns.inner_horn_refused
+  colour_match: false
+  hypothesis_match: The horn carrier is declared in GenesisHottHorns. It is not the output of GTH-LANG-REFLECT.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.inner_horn_refused
+    line: 173
+  - path: checks/independent/genesis_hott_horns.py
+    declaration: main
+    line: 35
+  reason: inner_horn_refused refuses a filler for one declared inner horn on this finite object. The header says
+    the third vertex, the extra edges, and the unique 2-simplex are declared data and are not taken from the cut.
+    The independent check restates that same carrier. Neither is a function from GTH-LANG-REFLECT.
+- id: fail:shadow_reading_is_not_unique
+  outer_operation: globular structure
+  input_slot: unique_reading_of_an_edge_regime
+  inner_operation: GenesisHottShadow.edge_regime_does_not_determine_globular1
+  colour_match: false
+  hypothesis_match: The header says a globe reading of a length-2 tuple is not stated by the regime.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottShadow.lean
+    declaration: edge_regime_does_not_determine_globular1
+    line: 364
+  reason: The theorem states that one edge regime recovers both globeForward and globeBackward and that those
+    readings differ. The header says the reading is used to show it is not unique. Not an interpretation function,
+    and not cited by this node.
+counterexamples:
+- id: cx:three_scoped_readings_are_not_the_interpretation
+  class: wrong_carrier
+  claim_kind: generator
+  claim: The three scoped readings in AdmitInterpret are the interpretation function this node says is undefined,
+    they embed Martin-Lof type theory with identity types, a finite semi-simplicial or globular structure, and
+    hereditarily finite sets, and they are theorems of GTH-LANG-INTERPRET.
+  evidence: 'Header at lean4/AdmitInterpret.lean:8-20. IdJudg at lines 31-32 has one constructor, refl. Edge at
+    lines 76-79 stops at separated endpoints. HF at lines 118-120 has no extensionality, and insert_order_differs
+    at lines 151-155 separates the two insert orders. The node lean list is empty. The route status is
+    GAP_NO_DERIVATION. The route input is GTH-LANG-REFLECT.'
+  confidence: exact
+  node_id: GTH-LANG-INTERPRET
+open_obligations:
+- No generator admitted at P0. Do not invent an interpretation function or a reading bundle.
+- Route GTH-R-GTH-LANG-INTERPRET stays GAP_NO_DERIVATION. Node status stays OPEN.
+- 'Next missing dependency: a quotation layer from GTH-LANG-REFLECT. That layer is not defined. AdmitReflect quotes
+  AdmitCore and is not that layer.'
+- AdmitCore is not a theorem of this node.
+- GenesisHottModel, GenesisHottHorns, and GenesisHottShadow are not theorems of this node.
+- Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted.
+- The external HoTT book named in the source list was not opened. No local declaration extracts an interpretation
+  function from it.
+verified_numeric_claims: []
+verified_lemma_statements: []

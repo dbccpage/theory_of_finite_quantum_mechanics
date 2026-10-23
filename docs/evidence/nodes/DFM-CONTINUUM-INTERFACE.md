@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-continuum-interface.py`
 
 - file: [checks/independent/dfm-continuum-interface.py](../../../checks/independent/dfm-continuum-interface.py)
-- sha256 (`bytes`): `5e27ec1ae53867db474e0e71f8065fd570f653132bfa77d5bf8ca7bf8c1e2a31`
+- sha256 (`bytes`): `478e92d04862f6afc6ce2b9783f3b46688f6fce66e0c8a4da93a5b39eb5041b2`
 - cited in: record TFQ-0401
 - counts toward the grade: yes
 
@@ -100,7 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-DFM-CONTINUUM-INTERFACE` `GAP_NO_DERIVATION`: [DFM-HIERARCHICAL-BOREL](DFM-HIERARCHICAL-BOREL.md) (OPEN), [FQ-GAP-CONTINUUM-HILBERT-LIFT](FQ-GAP-CONTINUUM-HILBERT-LIFT.md) (CONDITIONAL)
+- `APP-R-DFM-CONTINUUM-INTERFACE` `GAP_NO_DERIVATION`: [DFM-HIERARCHICAL-BOREL](DFM-HIERARCHICAL-BOREL.md) (PROVED_LEAN), [FQ-GAP-CONTINUUM-HILBERT-LIFT](FQ-GAP-CONTINUUM-HILBERT-LIFT.md) (CONDITIONAL)
 
 Outgoing (7):
 

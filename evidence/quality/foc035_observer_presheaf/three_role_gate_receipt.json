@@ -1,0 +1,69 @@
+{
+  "schema_version": "foc035.gate-evidence.v1",
+  "authority_effect": "None",
+  "subject": "code/python/src/wdp/three_role_gate.py",
+  "source_sha256": "8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1",
+  "test": "code/python/tests/test_three_role_gate.py",
+  "test_sha256": "8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d",
+  "fixture_sha256": "bea22cced6a7a851f67ecaab5e5adbe6472a9c35e88ccd937fd0be4936793287",
+  "origin": {
+    "repository": "the_symbol_game",
+    "commit": "28a98c069133de6165f4461b19af943d3e32e1f4",
+    "source_file": "omega_engine_pfp/domain/provenance/three_role_gate.py",
+    "source_file_sha256_before_docstring_edit": "a2128acc7b8d888fc74f90d6cf10814a1924406829724512c175f696a93b3c18"
+  },
+  "tools": {
+    "python": "3.14.2",
+    "pytest": "9.1.1",
+    "radon": "6.0.1",
+    "lizard": "1.24.1"
+  },
+  "test_command": "python -I -X utf8 -m pytest code/python/tests/test_three_role_gate.py -q",
+  "test_result": "15 passed, 33 subtests passed",
+  "mutation": {
+    "tool": "evidence/quality/foc035_observer_presheaf/mutate_three_role_gate.py (a small AST operator set written for this change; not mutmut)",
+    "operators": [
+      "comparison swap (== != is is-not in not-in)",
+      "and/or swap",
+      "drop not",
+      "flip bool constant",
+      "append X to a string constant outside docstrings",
+      "replace raise by pass",
+      "if-condition to True",
+      "if-condition to False",
+      "return None"
+    ],
+    "counts": {
+      "killed": 191,
+      "survived": 63,
+      "demonstrably_equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "conservative_ratio": 0.7519685039370079,
+    "conservative_ratio_exact": "191/254",
+    "survivor_policy": "No survivor was judged equivalent and none was excluded. Of the 63 survivors, 39 are string-constant mutants (detail messages and keys of messages that no test pins exactly) and the rest are guard removals (raise to pass, if-condition to False) in defence-in-depth checks reachable only by direct construction of a dataclass or by a non-mapping role value. They are test gaps, listed in mutation_results.json.",
+    "results_file": "evidence/quality/foc035_observer_presheaf/mutation_results.json"
+  },
+  "metrics_command": "python -I -X utf8 evidence/quality/foc035_observer_presheaf/metrics_three_role_gate.py",
+  "metrics": {
+    "code/python/src/wdp/three_role_gate.py": {
+      "radon_max_ccn": 9,
+      "lizard_max_ccn": 9,
+      "ast_max_control_nesting": 2,
+      "ast_max_cognitive_approximation": 10
+    },
+    "code/python/tests/test_three_role_gate.py": {
+      "radon_max_ccn": 4,
+      "lizard_max_ccn": 4,
+      "ast_max_control_nesting": 3,
+      "ast_max_cognitive_approximation": 9
+    }
+  },
+  "metrics_note": "Cognitive complexity and nesting are an AST approximation written for this change (control statements, comprehensions and boolean operators; nested functions skipped), not the Sonar tool.",
+  "limits": [
+    "Not run: mutmut or any second mutation tool; an alternate test harness; a type checker (mypy is not installed here).",
+    "The test file is the source repository's, with imports and the fixture path adapted; the tests were not strengthened."
+  ]
+}

@@ -932,6 +932,10 @@ lean_lib CampaignCtMediatorEntanglement where
 lean_lib CampaignTfq0016B2Dressing where
   roots := #[`CampaignTfq0016B2Dressing]
 
+-- Campaign: FSP-WILSON-DIRAC-GAMMA5. Not a default target.
+lean_lib CampaignFspWilsonDiracGamma5 where
+  roots := #[`CampaignFspWilsonDiracGamma5]
+
 -- Finite combinatorial shadow of Genesis admission. Not a default target.
 lean_lib GenesisHottShadow where
   roots := #[`GenesisHottShadow]
@@ -945,6 +949,10 @@ lean_lib GenesisHottHorns where
 lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
+-- All finite Genesis slot contexts, beyond the unary-only mirror. Non-default.
+lean_lib CampaignGenesisContextDecision where
+  roots := #[`CampaignGenesisContextDecision]
+
 -- Finite regulator obstruction; not a default target.
 lean_lib CampaignFspLatticeAnomalyInflow where
   roots := #[`CampaignFspLatticeAnomalyInflow]
@@ -952,6 +960,48 @@ lean_lib CampaignFspLatticeAnomalyInflow where
 -- Operational hypotheses and exact countermodels. Not a default build target.
 lean_lib CampaignTransitionProbability where
   roots := #[`CampaignTransitionProbability]
+
+-- Compile the immutable, provenance-bound Genesis source through the shared cache.
+lean_lib CampaignGenesisSealedSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
+  roots := #[`Derivation.Basic, `Derivation.Erasure, `Derivation.Inertia, `SecondRun.Run]
+  globs := #[.submodules `Derivation, .submodules `SecondRun]
+
+-- Exact array/copy/source partial replay transport. Non-default.
+lean_lib CampaignGenesisReplayRefinement where
+  roots := #[`CampaignGenesisReplayRefinement]
+
+-- Certified carrier bridge reuses the sealed Genesis source library above.
+lean_lib CampaignGenesisCarrierBridge where
+  roots := #[`CampaignGenesisCarrierBridge]
+
+-- Declared demand-policy extension. Non-default.
+lean_lib CampaignGenesisDemandPolicy where
+  roots := #[`CampaignGenesisDemandPolicy]
+
+-- Supplied rooted-tree Borel dressing. Non-default.
+lean_lib CampaignDfmHierarchicalBorel where
+  roots := #[`CampaignDfmHierarchicalBorel]
+
+-- Exact no-return engine replay, reusing the sealed source library.
+lean_lib CampaignGenesisNoReturn where
+  roots := #[`CampaignGenesisNoReturn]
+
+-- Immutable Genesis-Ongoing dependencies; non-default source and proof targets.
+lean_lib CampaignGenesisOngoingSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4"
+  roots := #[`H3V7N5QF.Answers, `Second.Cost]
+  globs := #[.submodules `H3V7N5QF, .submodules `Second]
+
+lean_lib CampaignGenesisOngoingRename where
+  roots := #[`CampaignGenesisOngoingRename]
+
+lean_lib CampaignGenesisOngoingRefinement where
+  roots := #[`CampaignGenesisOngoingRefinement]
+
+-- Explicit comparison classes, reusing the sealed source library above.
+lean_lib CampaignGenesisProcessComparison where
+  roots := #[`CampaignGenesisProcessComparison]
 
 -- Campaign target: DFM-CONTINUUM-INTERFACE.
 -- Not a default target: build with `lake build CampaignDfmContinuumInterface`.

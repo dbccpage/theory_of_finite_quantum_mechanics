@@ -1,0 +1,388 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/governance/src/score.rs",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Rust",
+      "path": "code/rust/src/governance/src/score.rs",
+      "sha256": "227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba"
+    },
+    "boundaries": [
+      "Vocabulary only; it does not read companions or decide grandfathering."
+    ],
+    "consumers": [
+      "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+      ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+      "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+    ],
+    "contract_urn": "urn:tfqm:governance:score:v1",
+    "evidence": [
+      {
+        "path": "evidence/quality/pr215_independent_review.json",
+        "sha256": "7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b"
+      }
+    ],
+    "owned_invariants": [
+      "Grade order is E < D < C < B < A < A+ and level order L1 < ... < L5, as derived Ord on closed enums.",
+      "ScoreToken parses exactly L1..L5 followed by one grade spelling and displays back to the same text.",
+      "GateGrades::composite is the minimum of five graded gates, E whenever a known E exists, otherwise None.",
+      "Floor::admits(t) holds exactly when t.level >= min_level and t.grade >= min_grade."
+    ],
+    "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+    "requirements": {
+      "R1-types": {
+        "symbols": [
+          "Level",
+          "Grade",
+          "Gate",
+          "ScoreToken",
+          "GateGrades",
+          "Floor",
+          "ScoreError"
+        ],
+        "text": "Level, Grade, ScoreToken, Gate, GateGrades with SCORING.md order and weakest-link composite"
+      }
+    },
+    "role": "governance crate source module",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796",
+    "subject": "code/rust/src/governance/src/score.rs",
+    "symbols": [
+      "Level",
+      "Grade",
+      "Gate",
+      "ScoreToken",
+      "GateGrades",
+      "Floor",
+      "ScoreError"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3216,
+      "original_paths": [
+        "code/rust/src/governance/src/score.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/score.rs\",\n    \"sha256\": \"b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796\"\n  },\n  \"boundaries\": [\n    \"Vocabulary only; it does not read companions or decide grandfathering.\"\n  ],\n  \"consumers\": [\n    \"20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped\",\n    \".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)\",\n    \"scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:score:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Grade order is E < D < C < B < A < A+ and level order L1 < ... < L5, as derived Ord on closed enums.\",\n    \"ScoreToken parses exactly L1..L5 followed by one grade spelling and displays back to the same text.\",\n    \"GateGrades::composite is the minimum of five graded gates, E whenever a known E exists, otherwise None.\",\n    \"Floor::admits(t) holds exactly when t.level >= min_level and t.grade >= min_grade.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R1-types\": {\n      \"symbols\": [\n        \"Level\",\n        \"Grade\",\n        \"Gate\",\n        \"ScoreToken\",\n        \"GateGrades\",\n        \"Floor\",\n        \"ScoreError\"\n      ],\n      \"text\": \"Level, Grade, ScoreToken, Gate, GateGrades with SCORING.md order and weakest-link composite\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796\",\n  \"subject\": \"code/rust/src/governance/src/score.rs\",\n  \"symbols\": [\n    \"Level\",\n    \"Grade\",\n    \"Gate\",\n    \"ScoreToken\",\n    \"GateGrades\",\n    \"Floor\",\n    \"ScoreError\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/score.rs",
+          "sha256": "b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796"
+        },
+        "boundaries": [
+          "Vocabulary only; it does not read companions or decide grandfathering."
+        ],
+        "consumers": [
+          "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+          ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+          "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+        ],
+        "contract_urn": "urn:tfqm:governance:score:v1",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "owned_invariants": [
+          "Grade order is E < D < C < B < A < A+ and level order L1 < ... < L5, as derived Ord on closed enums.",
+          "ScoreToken parses exactly L1..L5 followed by one grade spelling and displays back to the same text.",
+          "GateGrades::composite is the minimum of five graded gates, E whenever a known E exists, otherwise None.",
+          "Floor::admits(t) holds exactly when t.level >= min_level and t.grade >= min_grade."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R1-types": {
+            "symbols": [
+              "Level",
+              "Grade",
+              "Gate",
+              "ScoreToken",
+              "GateGrades",
+              "Floor",
+              "ScoreError"
+            ],
+            "text": "Level, Grade, ScoreToken, Gate, GateGrades with SCORING.md order and weakest-link composite"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796",
+        "subject": "code/rust/src/governance/src/score.rs",
+        "symbols": [
+          "Level",
+          "Grade",
+          "Gate",
+          "ScoreToken",
+          "GateGrades",
+          "Floor",
+          "ScoreError"
+        ]
+      },
+      "sha256": "6688ffa60433859e21ebd1ed9e15550055acc21945b38e8c37f49068702a1c0d"
+    },
+    {
+      "sha256": "68b69ac94e8dd1a61a2e14a0bfa775178ac74c87955634d674b19a6cfefd99e7",
+      "bytes": 2302,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/score.rs",
+          "sha256": "227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba"
+        },
+        "boundaries": [
+          "Vocabulary only; it does not read companions or decide grandfathering."
+        ],
+        "consumers": [
+          "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+          ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+          "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+        ],
+        "contract_urn": "urn:tfqm:governance:score:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_independent_review.json",
+            "sha256": "7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b"
+          }
+        ],
+        "owned_invariants": [
+          "Grade order is E < D < C < B < A < A+ and level order L1 < ... < L5, as derived Ord on closed enums.",
+          "ScoreToken parses exactly L1..L5 followed by one grade spelling and displays back to the same text.",
+          "GateGrades::composite is the minimum of five graded gates, E whenever a known E exists, otherwise None.",
+          "Floor::admits(t) holds exactly when t.level >= min_level and t.grade >= min_grade."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R1-types": {
+            "symbols": [
+              "Level",
+              "Grade",
+              "Gate",
+              "ScoreToken",
+              "GateGrades",
+              "Floor",
+              "ScoreError"
+            ],
+            "text": "Level, Grade, ScoreToken, Gate, GateGrades with SCORING.md order and weakest-link composite"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796",
+        "subject": "code/rust/src/governance/src/score.rs",
+        "symbols": [
+          "Level",
+          "Grade",
+          "Gate",
+          "ScoreToken",
+          "GateGrades",
+          "Floor",
+          "ScoreError"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/score.rs\",\n    \"sha256\": \"227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba\"\n  },\n  \"boundaries\": [\n    \"Vocabulary only; it does not read companions or decide grandfathering.\"\n  ],\n  \"consumers\": [\n    \"20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped\",\n    \".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)\",\n    \"scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:score:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_independent_review.json\",\n      \"sha256\": \"7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Grade order is E < D < C < B < A < A+ and level order L1 < ... < L5, as derived Ord on closed enums.\",\n    \"ScoreToken parses exactly L1..L5 followed by one grade spelling and displays back to the same text.\",\n    \"GateGrades::composite is the minimum of five graded gates, E whenever a known E exists, otherwise None.\",\n    \"Floor::admits(t) holds exactly when t.level >= min_level and t.grade >= min_grade.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R1-types\": {\n      \"symbols\": [\n        \"Level\",\n        \"Grade\",\n        \"Gate\",\n        \"ScoreToken\",\n        \"GateGrades\",\n        \"Floor\",\n        \"ScoreError\"\n      ],\n      \"text\": \"Level, Grade, ScoreToken, Gate, GateGrades with SCORING.md order and weakest-link composite\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796\",\n  \"subject\": \"code/rust/src/governance/src/score.rs\",\n  \"symbols\": [\n    \"Level\",\n    \"Grade\",\n    \"Gate\",\n    \"ScoreToken\",\n    \"GateGrades\",\n    \"Floor\",\n    \"ScoreError\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/score.contract.score.yaml#independent-review"
+      ]
+    }
+  ],
+  "current_contract": "68b69ac94e8dd1a61a2e14a0bfa775178ac74c87955634d674b19a6cfefd99e7",
+  "current_scoring": "58d4d4f7e9a2aa9d259d8f5173b6341d9750dfb8ef502101a1dff0b3ad7516be",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 4851,
+      "original_paths": [
+        "code/rust/src/governance/src/score.contract.score.yaml#governance-crate-self-assessment-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/score.rs\",\n    \"sha256\": \"b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"complete\",\n  \"assessor\": \"Claude Opus 5.5 (model-drafted; requires maintainer review)\",\n  \"basis\": {\n    \"G1\": \"Claim URN urn:tfqm:governance:score:v1, AuthorityEffect None, exact source digest. Requirement R1 maps to the exported symbols and back (contract.requirements); consumers are verify.rs, descriptor.rs, policy.rs and the CLI, all in this crate and audited in this review.\",\n    \"G2\": \"Non-Numeric profile. Domains are closed enums; text enters only through FromStr, which rejects every malformed spelling tested (lower case, whitespace, B+, A-, L0, L6, extra characters, non-ASCII). Composite follows sections 1.2 and 1.4 including the known-E rule (scenario 4).\",\n    \"G3\": \"No unsafe (crate forbids it); clippy denies unwrap, expect, indexing, panic and arithmetic side effects in non-test code, and every function is a match over closed enums or a bounded str::get, so no production path can panic; the only error is the typed ScoreError.\",\n    \"G4\": \"Exhaustive enumeration as the generator: all 30 tokens round-trip, every grade at every gate position is checked for the minimum, all 30 tokens are checked against the floor (10 admitted). Every ScoreError variant is produced by a negative test. Mutation ratio from the campaign below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 10, survived 0, invalid 1, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).\",\n    \"G5\": \"Production functions: lizard max CCN as recorded in metrics; clippy cognitive complexity <= 15 and nesting <= 3 hold as errors. Not claimed A: allocation behaviour (unassessed() allocates a small Vec) was not benchmarked. Max production CCN 6 (as_str) over 21 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-10-23T04:46:53+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/mutation.json\",\n      \"sha256\": \"7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/receipt.json\",\n      \"sha256\": \"b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/cargo-test.log\",\n      \"sha256\": \"16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/clippy.log\",\n      \"sha256\": \"3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8\"\n    },\n    {\n      \"path\": \"evidence/governance/20261023T043243Z/lizard.csv\",\n      \"sha256\": \"f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"governance/policy.json\",\n      \"sha256\": \"2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"L4 on production craft: closed enumerations make invalid levels, grades, gates and tokens unrepresentable; the single text entry point is strict parsing with a typed ScoreError; the weakest-link and unassessed rules of SCORING.md sections 1.2 and 1.4 are encoded once. It is the smallest module and the most debatable L4 claim: a reviewer may judge it L3 (structured domain modelling), which would put it below the floor.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 6,\n    \"lizard_max_ccn_tests\": 3,\n    \"lizard_production_functions\": 21\n  },\n  \"mutation_accounting\": {\n    \"conservative_ratio\": 1.0,\n    \"demonstrably_equivalent\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 1,\n    \"killed\": 10,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"open_higher_grade_findings\": [\n    \"No property-based generators outside score.rs (G4 B needs them).\",\n    \"Panic freedom rests on clippy lints and review, not on a proof (G3 B).\",\n    \"Allocation behaviour not benchmarked (G5 A).\",\n    \"Grades drafted by the model that wrote the code; an independent review is still needed.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/score.rs",
+          "sha256": "b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "complete",
+        "assessor": "Claude Opus 5.5 (model-drafted; requires maintainer review)",
+        "basis": {
+          "G1": "Claim URN urn:tfqm:governance:score:v1, AuthorityEffect None, exact source digest. Requirement R1 maps to the exported symbols and back (contract.requirements); consumers are verify.rs, descriptor.rs, policy.rs and the CLI, all in this crate and audited in this review.",
+          "G2": "Non-Numeric profile. Domains are closed enums; text enters only through FromStr, which rejects every malformed spelling tested (lower case, whitespace, B+, A-, L0, L6, extra characters, non-ASCII). Composite follows sections 1.2 and 1.4 including the known-E rule (scenario 4).",
+          "G3": "No unsafe (crate forbids it); clippy denies unwrap, expect, indexing, panic and arithmetic side effects in non-test code, and every function is a match over closed enums or a bounded str::get, so no production path can panic; the only error is the typed ScoreError.",
+          "G4": "Exhaustive enumeration as the generator: all 30 tokens round-trip, every grade at every gate position is checked for the minimum, all 30 tokens are checked against the floor (10 admitted). Every ScoreError variant is produced by a negative test. Mutation ratio from the campaign below. Campaign (governance/tools/mutation_campaign.py, 18 operator kinds over non-test code): killed 10, survived 0, invalid 1, inconclusive 0, no mutant classed equivalent; R = 1.0. Suites: 47 library tests and 10 binary tests pass (cargo-test.log).",
+          "G5": "Production functions: lizard max CCN as recorded in metrics; clippy cognitive complexity <= 15 and nesting <= 3 hold as errors. Not claimed A: allocation behaviour (unassessed() allocates a small Vec) was not benchmarked. Max production CCN 6 (as_str) over 21 functions; clippy -D cognitive_complexity (15) -D excessive_nesting (3) exit 0."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-10-23T04:46:53+00:00",
+        "evidence": [
+          {
+            "path": "evidence/governance/20261023T043243Z/mutation.json",
+            "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/receipt.json",
+            "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/cargo-test.log",
+            "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/clippy.log",
+            "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
+          },
+          {
+            "path": "evidence/governance/20261023T043243Z/lizard.csv",
+            "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "governance/policy.json",
+            "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "L4 on production craft: closed enumerations make invalid levels, grades, gates and tokens unrepresentable; the single text entry point is strict parsing with a typed ScoreError; the weakest-link and unassessed rules of SCORING.md sections 1.2 and 1.4 are encoded once. It is the smallest module and the most debatable L4 claim: a reviewer may judge it L3 (structured domain modelling), which would put it below the floor.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 6,
+          "lizard_max_ccn_tests": 3,
+          "lizard_production_functions": 21
+        },
+        "mutation_accounting": {
+          "conservative_ratio": 1.0,
+          "demonstrably_equivalent": 0,
+          "inconclusive": 0,
+          "invalid": 1,
+          "killed": 10,
+          "survived": 0,
+          "unrun": 0
+        },
+        "open_higher_grade_findings": [
+          "No property-based generators outside score.rs (G4 B needs them).",
+          "Panic freedom rests on clippy lints and review, not on a proof (G3 B).",
+          "Allocation behaviour not benchmarked (G5 A).",
+          "Grades drafted by the model that wrote the code; an independent review is still needed."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "be52764b27bb261551515ce4d2c9ecf183a6d55989bf27fbaff87c810b33b795"
+    },
+    {
+      "sha256": "58d4d4f7e9a2aa9d259d8f5173b6341d9750dfb8ef502101a1dff0b3ad7516be",
+      "bytes": 2916,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/governance/src/score.rs",
+          "language": "Rust",
+          "sha256": "227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Codex independent review",
+        "basis": {
+          "G1": "The current source hash and independent receipt bind this assessment; old claims remain historical and are not reused as current mutation evidence.",
+          "G2": "The forged-record regression fails before repair and passes after it; focused snapshot and classification boundary tests pass. No mathematical status changes.",
+          "G3": "Explicit refusal replaces destructive directory reuse and ambiguous outcome handling. Process-tree cleanup and broader resource lifecycle coverage remain absent in the Python utilities.",
+          "G4": "Fresh Rust tests and clippy plus 13 focused Python regressions pass. Strict typing of the three repaired Python files passes. The complete mutation campaign was not rerun and is not claimed.",
+          "G5": "Recorded lizard, radon and cognitive-complexity measurements support the scoped structural review; full workspace performance and resource bounds are not established."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T07:30:07.974405+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_independent_review.json",
+            "sha256": "7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Finite domain vocabulary or bounded verification utility; not relabelled L4 solely to pass acceptance.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 6,
+          "lizard_max_ccn_tests": 3,
+          "lizard_production_functions": 21
+        },
+        "open_higher_grade_findings": [
+          "The original mutation campaign is historical; its classifications were not independently established from raw per-mutant test logs.",
+          "The evidence harnesses remain bounded L3 utilities, with incomplete process-tree timeout cleanup, retained scratch copies and no resource benchmark.",
+          "The score vocabulary module remains L3: closed enum parsing and floor comparison are not a substantive L4 operational architecture.",
+          "Whole-PR acceptance is withheld: support exceptions do not cover these substantive L3 modules, and additional changed original artifacts still need complete reviewed contracts."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/score.rs\",\n    \"sha256\": \"227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Codex independent review\",\n  \"basis\": {\n    \"G1\": \"The current source hash and independent receipt bind this assessment; old claims remain historical and are not reused as current mutation evidence.\",\n    \"G2\": \"The forged-record regression fails before repair and passes after it; focused snapshot and classification boundary tests pass. No mathematical status changes.\",\n    \"G3\": \"Explicit refusal replaces destructive directory reuse and ambiguous outcome handling. Process-tree cleanup and broader resource lifecycle coverage remain absent in the Python utilities.\",\n    \"G4\": \"Fresh Rust tests and clippy plus 13 focused Python regressions pass. Strict typing of the three repaired Python files passes. The complete mutation campaign was not rerun and is not claimed.\",\n    \"G5\": \"Recorded lizard, radon and cognitive-complexity measurements support the scoped structural review; full workspace performance and resource bounds are not established.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T07:30:07.974405+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_independent_review.json\",\n      \"sha256\": \"7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Finite domain vocabulary or bounded verification utility; not relabelled L4 solely to pass acceptance.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 6,\n    \"lizard_max_ccn_tests\": 3,\n    \"lizard_production_functions\": 21\n  },\n  \"open_higher_grade_findings\": [\n    \"The original mutation campaign is historical; its classifications were not independently established from raw per-mutant test logs.\",\n    \"The evidence harnesses remain bounded L3 utilities, with incomplete process-tree timeout cleanup, retained scratch copies and no resource benchmark.\",\n    \"The score vocabulary module remains L3: closed enum parsing and floor comparison are not a substantive L4 operational architecture.\",\n    \"Whole-PR acceptance is withheld: support exceptions do not cover these substantive L3 modules, and additional changed original artifacts still need complete reviewed contracts.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/score.contract.score.yaml#independent-review"
+      ]
+    }
+  ]
+}
