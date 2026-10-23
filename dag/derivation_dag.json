@@ -1526,18 +1526,23 @@
       "statement": "Supplying an item does not change the regime (supply is a no-op); only an admission event does. Reading L: <> supplied but not admitted; Reading F: <> admitted as datum 0. Both readings are kept.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:190-227",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:279-341"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:279-341",
+        "dag/derivations/independent/pg-gen-supply-erasure.md"
       ],
       "lean": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::supply_no_op",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::collapsed_of_no_insts"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::collapsed_of_no_insts",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.source_supply_no_op",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_supply_no_op",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.copy_step_commutes",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.reading_arrays"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the exact source Regime representation bridge and retain both Reading L and Reading F. An external presentation cannot license an unrecorded admission.",
+      "bottleneck": "The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/PG-GEN-SUPPLY-NO-OP/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
@@ -1554,7 +1559,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Supplying an item does not change the regime (supply is a no-op); only an admission event does. Reading L: <> supplied but not admitted; Reading F: <> admitted as datum 0. Both readings are kept.",
         "prior_bottleneck": "none.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-supply-erasure_lean_replay.json"
+        ]
       }
     },
     {
@@ -1567,18 +1574,25 @@
         "external:prompts/fable_theorems_2026-10-17/03_genesis_supply_erasure.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Erasure.lean:79-138",
         "omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
+        "dag/derivations/independent/pg-gen-supply-erasure.md"
       ],
       "lean": [
         "omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply",
-        "omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only"
+        "omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.source_supply_erasure",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_supply_erasure",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.copy_replay_commutes",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_replay_exact",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_failure_exact",
+        "lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.token_array_replay"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_supply_erasure_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Not covered by the PFP review: Prove the partial Option/failure and five-field Regime representation bridge for every source history. Erasure does not erase guard failures, actual admissions or external custody requirements.",
+      "bottleneck": "The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.",
       "tags": [
         "fable-in-progress"
       ],
@@ -1597,7 +1611,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Genesis supply erasure: removing supply events from a history leaves the replayed regime unchanged (SupplyErasure.replayE_filter_supply).",
         "prior_bottleneck": "Scoped to Genesis supply events on the core regime projection; full history provenance tags remain distinct from core regime equality.",
-        "superseded_by": []
+        "superseded_by": [
+          "dag/research/campaign_pg-gen-supply-erasure_lean_replay.json"
+        ]
       }
     },
     {

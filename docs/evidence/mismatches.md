@@ -4,21 +4,20 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 
 | Flag | Count |
 |---|---|
-| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 219 |
-| `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 53 |
+| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 217 |
+| `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 51 |
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 0 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 13 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 55 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 26 |
 
-## `proved_lean_below_e3` (219)
+## `proved_lean_below_e3` (217)
 
 PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt. Ordered by downstream nodes, most first.
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-GEN-SUPPLY-NO-OP](nodes/PG-GEN-SUPPLY-NO-OP.md) | GENESIS | `PROVED_LEAN` | E0 | 690 | grade E0; 2 Lean reference(s) cited, 0 in this checkout |
 | [PG-GEN-NO-RETURN](nodes/PG-GEN-NO-RETURN.md) | GENESIS | `PROVED_LEAN` | E0 | 660 | grade E0; 3 Lean reference(s) cited, 0 in this checkout |
 | [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `PROVED_LEAN` | E2 | 462 | grade E2; 6 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 | [L1-QM020-THM2A-L1-ADDITIVITY-DEFECT](nodes/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT.md) | L1_TO_L2 | `PROVED_LEAN` | E2 | 144 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
@@ -225,7 +224,6 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [MUB6-TAO-LAURENT-NORM-NINE](nodes/MUB6-TAO-LAURENT-NORM-NINE.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [MUB6-TRANSITION-BALANCE-SYZYGY](nodes/MUB6-TRANSITION-BALANCE-SYZYGY.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
 | [MUB6-WORD-PROJECTOR-EXTRACTION](nodes/MUB6-WORD-PROJECTOR-EXTRACTION.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3) |
-| [PG-GEN-SUPPLY-ERASURE](nodes/PG-GEN-SUPPLY-ERASURE.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 2 Lean reference(s) cited, 0 in this checkout |
 | [PGW-CANONICAL-KEY-CLASSIFICATION](nodes/PGW-CANONICAL-KEY-CLASSIFICATION.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 5 Lean reference(s) cited, 0 in this checkout |
 | [PGW-CHALLENGE0-INERTIA-SECOND-TOKEN](nodes/PGW-CHALLENGE0-INERTIA-SECOND-TOKEN.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 4 Lean reference(s) cited, 0 in this checkout |
 | [PGW-COLLECTION-EXTENSIONALITY](nodes/PGW-COLLECTION-EXTENSIONALITY.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | grade E0; 4 Lean reference(s) cited, 0 in this checkout |
@@ -238,13 +236,12 @@ PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay r
 | [QCV-REPAIR-NEEDED-BUT-COSTLY](nodes/QCV-REPAIR-NEEDED-BUT-COSTLY.md) | COMPUTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4) |
 | [QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS](nodes/QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS.md) | COMPUTATION | `PROVED_LEAN` | E2 | 0 | grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5) |
 
-## `proved_lean_external_only` (53)
+## `proved_lean_external_only` (51)
 
 PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout. Ordered by downstream nodes, most first.
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-GEN-SUPPLY-NO-OP](nodes/PG-GEN-SUPPLY-NO-OP.md) | GENESIS | `PROVED_LEAN` | E0 | 690 | all 2 cited Lean reference(s) lie outside this checkout |
 | [PG-GEN-NO-RETURN](nodes/PG-GEN-NO-RETURN.md) | GENESIS | `PROVED_LEAN` | E0 | 660 | all 3 cited Lean reference(s) lie outside this checkout |
 | [PGW-POLICY-ENDPOINT-ALL-SEPARATED](nodes/PGW-POLICY-ENDPOINT-ALL-SEPARATED.md) | GENESIS | `PROVED_LEAN` | E0 | 135 | all 1 cited Lean reference(s) lie outside this checkout |
 | [PG-GEN-IRREFLEXIVE-DISTINCT](nodes/PG-GEN-IRREFLEXIVE-DISTINCT.md) | GENESIS | `PROVED_LEAN` | E0 | 115 | all 3 cited Lean reference(s) lie outside this checkout |
@@ -288,7 +285,6 @@ PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none 
 | [PGW-REPLAY-NECESSITY](nodes/PGW-REPLAY-NECESSITY.md) | PREGENESIS | `PROVED_LEAN` | E0 | 1 | all 2 cited Lean reference(s) lie outside this checkout |
 | [PGW-SN-ENDPOINT-LEMMA](nodes/PGW-SN-ENDPOINT-LEMMA.md) | MSSN_SN | `PROVED_LEAN` | E0 | 1 | all 4 cited Lean reference(s) lie outside this checkout |
 | [IMPL-THYMUS-SCREENING-SOUNDNESS](nodes/IMPL-THYMUS-SCREENING-SOUNDNESS.md) | IMPLEMENTATION | `PROVED_LEAN` | E0 | 0 | all 2 cited Lean reference(s) lie outside this checkout |
-| [PG-GEN-SUPPLY-ERASURE](nodes/PG-GEN-SUPPLY-ERASURE.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 2 cited Lean reference(s) lie outside this checkout |
 | [PGW-CANONICAL-KEY-CLASSIFICATION](nodes/PGW-CANONICAL-KEY-CLASSIFICATION.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 5 cited Lean reference(s) lie outside this checkout |
 | [PGW-CHALLENGE0-INERTIA-SECOND-TOKEN](nodes/PGW-CHALLENGE0-INERTIA-SECOND-TOKEN.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 4 cited Lean reference(s) lie outside this checkout |
 | [PGW-COLLECTION-EXTENSIONALITY](nodes/PGW-COLLECTION-EXTENSIONALITY.md) | GENESIS | `PROVED_LEAN` | E0 | 0 | all 4 cited Lean reference(s) lie outside this checkout |

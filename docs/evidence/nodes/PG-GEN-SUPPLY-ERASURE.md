@@ -1,6 +1,6 @@
 # PG-GEN-SUPPLY-ERASURE
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,20 +8,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 26
+- cited Lean declarations covered by a current replay receipt: 26
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E0; 2 Lean reference(s) cited, 0 in this checkout. PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
-- `proved_lean_external_only`: all 2 cited Lean reference(s) lie outside this checkout. PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -29,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Not covered by the PFP review: Prove the partial Option/failure and five-field Regime representation bridge for every source history. Erasure does not erase guard failures, actual admissions or external custody requirements.
+The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.
 
 ## Source status
 
@@ -45,6 +44,45 @@ MECHANIZED in SupplyErasure.lean (replayE_filter_supply and replayE_supply_only)
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignGenesisReplayRefinement.lean`
+
+- file: [lean4/CampaignGenesisReplayRefinement.lean](../../../lean4/CampaignGenesisReplayRefinement.lean)
+- sha256 (`bytes`): `d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e`
+- cited in: node.lean, receipt dag/research/campaign_pg-gen-supply-erasure_lean_replay.json (CampaignGenesisReplayRefinement)
+- replay: `verified`
+  - receipt [dag/research/campaign_pg-gen-supply-erasure_lean_replay.json](../../../dag/research/campaign_pg-gen-supply-erasure_lean_replay.json) (module `CampaignGenesisReplayRefinement`): recorded sha256 `d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGenesisReplayRefinement`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignGenesisReplayRefinement.arrayInsert_toList` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.arrayInsert_toList` |
+| `CampaignGenesisReplayRefinement.array_failure_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_failure_exact` |
+| `CampaignGenesisReplayRefinement.array_replay_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_replay_commutes` |
+| `CampaignGenesisReplayRefinement.array_replay_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_replay_exact` |
+| `CampaignGenesisReplayRefinement.array_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_step_commutes` |
+| `CampaignGenesisReplayRefinement.array_supply_erasure` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_supply_erasure` |
+| `CampaignGenesisReplayRefinement.array_supply_no_op` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_supply_no_op` |
+| `CampaignGenesisReplayRefinement.copy_replay_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.copy_replay_commutes` |
+| `CampaignGenesisReplayRefinement.copy_source` | yes | yes | yes | none | `#print axioms CampaignGenesisReplayRefinement.copy_source` |
+| `CampaignGenesisReplayRefinement.copy_source_event` | yes | yes | yes | none | `#print axioms CampaignGenesisReplayRefinement.copy_source_event` |
+| `CampaignGenesisReplayRefinement.copy_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.copy_step_commutes` |
+| `CampaignGenesisReplayRefinement.decode_encode` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.decode_encode` |
+| `CampaignGenesisReplayRefinement.decode_injective` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.decode_injective` |
+| `CampaignGenesisReplayRefinement.encode_decode` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.encode_decode` |
+| `CampaignGenesisReplayRefinement.invalid_after_supply` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.invalid_after_supply` |
+| `CampaignGenesisReplayRefinement.reading_arrays` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.reading_arrays` |
+| `CampaignGenesisReplayRefinement.secondRegime_injective` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.secondRegime_injective` |
+| `CampaignGenesisReplayRefinement.second_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.second_step_commutes` |
+| `CampaignGenesisReplayRefinement.sourceRegime_injective` | yes | yes | yes | none | `#print axioms CampaignGenesisReplayRefinement.sourceRegime_injective` |
+| `CampaignGenesisReplayRefinement.source_change_strict` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.source_change_strict` |
+| `CampaignGenesisReplayRefinement.source_copy` | yes | yes | yes | none | `#print axioms CampaignGenesisReplayRefinement.source_copy` |
+| `CampaignGenesisReplayRefinement.source_copy_event` | yes | yes | yes | none | `#print axioms CampaignGenesisReplayRefinement.source_copy_event` |
+| `CampaignGenesisReplayRefinement.source_step_nondecreasing` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.source_step_nondecreasing` |
+| `CampaignGenesisReplayRefinement.source_supply_erasure` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.source_supply_erasure` |
+| `CampaignGenesisReplayRefinement.source_supply_no_op` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.source_supply_no_op` |
+| `CampaignGenesisReplayRefinement.token_array_replay` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.token_array_replay` |
+- counts toward the grade: yes
 
 ### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Erasure.lean`
 
@@ -74,6 +112,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0386
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pg-gen-supply-erasure.md`
+
+- file: [dag/derivations/independent/pg-gen-supply-erasure.md](../../../dag/derivations/independent/pg-gen-supply-erasure.md)
+- sha256 (`lf-normalised`): `125f661fc6acf060ee4939ef9ac1c759a7d4ddd0f71920dcc3e8bf0a173b741f`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
 
