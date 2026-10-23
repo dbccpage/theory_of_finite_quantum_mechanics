@@ -17,6 +17,7 @@ import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 HERE = Path(__file__).resolve().parent
 if str(HERE) not in sys.path:  # python -I does not put the script directory on sys.path
@@ -43,11 +44,11 @@ FORBIDDEN_CUE = re.compile(r"validator(?:'s)?\b.*\b(?:refuses|FORBIDDEN|forbidde
 class Reference:
     axioms: frozenset[str]
     tokens: frozenset[str]
-    ranks: dict
+    ranks: dict[str, int]
     forbidden: frozenset[str]
 
 
-def literal_assignment(root: Path, rel: str, name: str):
+def literal_assignment(root: Path, rel: str, name: str) -> Any:
     """The literal value assigned to a module-level name, read without importing the module."""
     text = read_text(root, rel)
     if text is None:
@@ -57,6 +58,8 @@ def literal_assignment(root: Path, rel: str, name: str):
     except SyntaxError as error:
         raise AuditError(f"{rel} does not parse: {error}") from error
     for node in tree.body:
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)):
+            continue
         targets = node.targets if isinstance(node, ast.Assign) else [node.target] if isinstance(node, ast.AnnAssign) else []
         if any(isinstance(t, ast.Name) and t.id == name for t in targets) and node.value is not None:
             try:

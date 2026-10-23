@@ -18,6 +18,7 @@ import json
 import sys
 import warnings
 from pathlib import Path
+from typing import Any
 
 HERE = Path(__file__).resolve().parent
 if str(HERE) not in sys.path:  # python -I does not put the script directory on sys.path
@@ -81,9 +82,9 @@ def parse_python(root: Path, rel: str) -> ast.Module | None:
 def rule_o1(root: Path, rel: str, tree: ast.Module, top_names: set[str]) -> list[Finding]:
     found: list[Finding] = []
     for node in ast.walk(tree):
-        for name in _imported_names(node):
+        for name in _imported_names(node) if isinstance(node, (ast.Import, ast.ImportFrom)) else []:
             if name.split(".")[0] in top_names:
-                found.append(Finding("O1", "HIGH", rel, node.lineno, f"independent check imports repository module `{name}`"))
+                found.append(Finding("O1", "HIGH", rel, getattr(node, "lineno", 0), f"independent check imports repository module `{name}`"))
         if isinstance(node, ast.ImportFrom) and node.level:
             found.append(Finding("O1", "HIGH", rel, node.lineno, "independent check uses a relative import"))
         if isinstance(node, ast.Call) and _edits_sys_path(node.func):
@@ -218,7 +219,7 @@ def rule_o2(graph: dict[str, set[str]], focus: set[str] | None) -> list[Finding]
 # O3: a derived route needs every input; an OPEN or REFUTED input means the route as recorded does not hold
 
 
-def load_dag(text: str | None, label: str) -> dict:
+def load_dag(text: str | None, label: str) -> dict[str, Any]:
     if text is None:
         raise AuditError(f"{label} is missing")
     try:
@@ -239,15 +240,15 @@ def id_lines(text: str) -> dict[str, int]:
     return lines
 
 
-def changed_dag_ids(current: dict, base: dict) -> set[str]:
+def changed_dag_ids(current: dict[str, Any], base: dict[str, Any]) -> set[str]:
     """Ids of nodes and routes whose record differs from the base (new ones included)."""
     old = {item.get("id"): item for item in base["nodes"] + base["routes"]}
     return {item.get("id") for item in current["nodes"] + current["routes"] if old.get(item.get("id")) != item}
 
 
-def rule_o3(doc: dict, lines: dict[str, int], changed: set[str] | None) -> list[Finding]:
+def rule_o3(doc: dict[str, Any], lines: dict[str, int], changed: set[str] | None) -> list[Finding]:
     status = {node.get("id"): node.get("status") for node in doc["nodes"]}
-    incoming: dict[str, list[dict]] = {}
+    incoming: dict[str, list[dict[str, Any]]] = {}
     for route in doc["routes"]:
         if route.get("status") != "RECORD_PARENT":
             incoming.setdefault(route.get("output"), []).append(route)
@@ -267,7 +268,7 @@ def rule_o3(doc: dict, lines: dict[str, int], changed: set[str] | None) -> list[
     return found
 
 
-def _unheld_inputs(route: dict, status: dict) -> list[str]:
+def _unheld_inputs(route: dict[str, Any], status: dict[str, Any]) -> list[str]:
     if route.get("status") not in DERIVED_ROUTES:
         return []
     return [item for item in route.get("inputs", []) if status.get(item) in UNHELD_INPUTS]

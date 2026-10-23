@@ -52,7 +52,7 @@ def _line_of(text: str, offset: int) -> int:
     return text.count("\n", 0, offset) + 1
 
 
-def blank(pattern: re.Pattern, text: str) -> str:
+def blank(pattern: re.Pattern[str], text: str) -> str:
     """Replace each match with spaces, keeping newlines, so offsets and line numbers still hold."""
     return pattern.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
 
@@ -80,8 +80,9 @@ def wording_findings(rel: str, text: str) -> list[Finding]:
     """the_symbol_game-only paths, and authority-unsafe wording outside negated sentences."""
     found: list[Finding] = []
     for number, line in enumerate(text.splitlines(), 1):
-        if FOREIGN.search(line) and not FOREIGN_EXEMPT.search(line):
-            found.append(Finding("FOREIGN_PATH", "HIGH", rel, number, "names a path that exists only in the_symbol_game", FOREIGN.search(line).group(0)))
+        foreign = FOREIGN.search(line)
+        if foreign and not FOREIGN_EXEMPT.search(line):
+            found.append(Finding("FOREIGN_PATH", "HIGH", rel, number, "names a path that exists only in the_symbol_game", foreign.group(0)))
         for sentence in sentences(MENTION.sub(lambda m: " " * len(m.group(0)), line)):
             hit = UNSAFE.search(sentence)
             if hit and not NEGATED.search(sentence[: hit.start()]):

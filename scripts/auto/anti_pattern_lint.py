@@ -55,11 +55,14 @@ ADMIT_TACTIC_END = re.compile(r"\s*(?:$|[)};,\]|<]|--|=>)")
 IDENTIFIER_CONTEXT = re.compile(r"(?:\b(?:def|theorem|lemma|abbrev|instance|unfold|delta)|[\[,])\s*$")
 
 
-def not_the_tactic(line: str, hit: re.Match) -> bool:
+def not_the_tactic(line: str, hit: re.Match[str], constructor: bool = False) -> bool:
     """True when the matched token is a name (constructor, match arm, or the identifier `admit`), not the tactic."""
     before = line[: hit.start()].rstrip()
-    if before.endswith("|"):
-        return True  # a constructor or match-arm name (as overclaim rule R3)
+    if before.endswith("|") and hit.group(1) == "admit":
+        # A tactic alternative also starts with |; only constructor context or
+        # an actual match-arm arrow identifies the ordinary identifier here.
+        if constructor or "=>" in line[hit.end() :]:
+            return True
     if hit.group(1) != "admit":
         return False
     return bool(IDENTIFIER_CONTEXT.search(before)) or not ADMIT_TACTIC_END.match(line[hit.end() :])
@@ -120,10 +123,15 @@ def _audit_card(root: Path, stem: str, path: Path, cards: dict[str, Path]) -> li
 
 def lean_findings(rel: str, text: str, only_lines: set[int] | None) -> list[Finding]:
     found: list[Finding] = []
+    constructor = False
     for number, line in enumerate(strip_lean(text).splitlines(), 1):
+        if re.match(r"^\s*(?:(?:private|protected)\s+)*inductive\b", line):
+            constructor = True
+        elif re.match(r"^\s*(?:(?:private|protected|noncomputable)\s+)*(?:def|theorem|lemma|example|instance|abbrev|namespace|end)\b", line):
+            constructor = False
         if only_lines is not None and number not in only_lines:
             continue
-        hit = next((m for m in ADMISSION_RE.finditer(line) if not not_the_tactic(line, m)), None)
+        hit = next((m for m in ADMISSION_RE.finditer(line) if not not_the_tactic(line, m, constructor)), None)
         if hit:
             found.append(Finding("AP_LN_001", "HIGH", rel, number, f"Lean admission token `{hit.group(1)}` outside comments and strings"))
         if AXIOM_DECL_RE.match(line):
@@ -202,7 +210,7 @@ def python_ast_findings(rel: str, text: str) -> list[Finding]:
             found.append(Finding("AP_PY_019", "MEDIUM", rel, node.lineno, "pytest.raises around a bare raise; no code under test runs"))
         elif independent and isinstance(node, ast.Call) and _float_call(node.func):
             found.append(Finding("AP_MATH_011", "MEDIUM", rel, node.lineno, f"floating-point call `{_call_name(node.func)}` in an independent check"))
-        elif independent and _float_constant(node):
+        elif independent and isinstance(node, ast.Attribute) and _float_constant(node):
             found.append(Finding("AP_MATH_011", "MEDIUM", rel, node.lineno, f"floating-point constant `math.{node.attr}` in an independent check"))
     return found
 

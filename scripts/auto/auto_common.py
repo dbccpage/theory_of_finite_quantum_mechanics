@@ -15,7 +15,7 @@ import re
 import subprocess
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import Any, Callable, Iterable, Sequence
 
 ROOT = Path(__file__).resolve().parents[2]
 SEVERITIES = ("HIGH", "MEDIUM", "LOW")
@@ -135,7 +135,7 @@ def read_text(root: Path, rel: str) -> str | None:
         return None
 
 
-def parse_front_matter(text: str) -> tuple[dict | None, str, str]:
+def parse_front_matter(text: str) -> tuple[dict[str, Any] | None, str, str]:
     """Return (mapping, body, error). error is empty on success; mapping is None when absent or invalid."""
     import yaml  # PyYAML; imported here so modules that never parse front matter do not need it
 
@@ -224,7 +224,7 @@ def emit(tool: str, title: str, findings: Sequence[Finding], args: argparse.Name
     return exit_status(ordered, args.fail_on)
 
 
-def run_main(tool: str, body) -> int:
+def run_main(tool: str, body: Callable[[], int]) -> int:
     """Wrap a scanner main: AuditError becomes exit status 2 with one message on stderr."""
     import sys
 
