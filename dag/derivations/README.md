@@ -825,7 +825,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-1134](./24_dressing_field/tfq_1134_dfm_boost_plane_lean.md) | Boost-plane Lorentz invariance of the tetrad metric | `PROVED_LEAN` | [TFQ-1133](./24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md) | `DFM-BOOST-PLANE-LEAN` |
 | [TFQ-1135](./24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md) | Frame-invariant, metric-compatible dressed transport | `PROVED_PROSE` | [TFQ-1133](./24_dressing_field/tfq_1133_dfm_cartan_regge_tetrad.md) | `DFM-DRESSED-AFFINE-TRANSPORT` |
 | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | Artificial versus substantial hinge holonomy witness | `COMPUTATIONAL_CONTROL` | [TFQ-1135](./24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md) | `DFM-HINGE-HOLONOMY-WITNESS` |
-| [TFQ-1137](./24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md) | Regge geometry, spinor coupling and continuum gravity remain open | `OPEN_OBLIGATION` | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | `DFM-REGGE-GRAVITY-FENCE` |
+| [TFQ-1137](./24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md) | Cosine-law data for lengths 3, 4, 5 differs from block trace 16/3 | `OPEN_OBLIGATION` | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | `DFM-REGGE-GRAVITY-FENCE` |
 
 ### MUTUALLY_UNBIASED_BASES (67 derivations)
 
