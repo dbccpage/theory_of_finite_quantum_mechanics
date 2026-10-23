@@ -1,0 +1,165 @@
+{
+  "task_id": "GTH-LANG-IMPORT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "5697b907150caaee481e400e5b96aad92218fa9c371a3b513d364bf25c4e1729",
+  "input_pin": "dag/prompts/genesis_to_higher_gth_lang_import_open.yaml",
+  "status": "incomplete",
+  "authority_effect": "None",
+  "status_note": "incomplete means the mathematical dependency is still missing, so this turn does not enter P1. The operad stage_history entry status completed means this mining turn finished as a reviewed negative.",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "REVIEWED_ABSENT",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "Not FILLED. No carrier of the priced admission language was admitted."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "REVIEWED_ABSENT",
+      "operations": [],
+      "composition_plan": [],
+      "note": "Not FILLED. No operation was admitted."
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "REVIEWED_ABSENT",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [],
+      "note": "Not FILLED. No relation was admitted."
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "REVIEWED_ABSENT",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [],
+      "note": "Not FILLED. The node cites no Lean and no Rust declaration."
+    }
+  },
+  "source_checks": [
+    {
+      "path": "dag/derivation_dag.json",
+      "finding": "GTH-LANG-IMPORT has status OPEN, lean [], rust []. GTH-R-GTH-LANG-IMPORT has status GAP_NO_DERIVATION and its only input is GTH-LANG-INTERPRET. GTH-LANG-INTERPRET has status OPEN and lean []."
+    },
+    {
+      "path": "dag/operads/gth_lang_import.yaml",
+      "sha256": "cceaba0c137330d762c067b7fe3e64faff741a25e142a57990a4c1d5f63f5f9d",
+      "finding": "Before this turn, operation_candidates, relation_candidates, source_bindings, and stage_history were empty. Every mission slot was UNREVIEWED."
+    },
+    {
+      "path": "dag/derivations/34_genesis_to_higher/tfq_2410_gth_lang_import.md",
+      "sha256": "35fb9c2ad44336a23623bbd5e927c4146f68d9edc424a376a073cb25d221b63c",
+      "finding": "The paper restates the node and the gap route. It gives no grammar and no Lean declaration. Its sha256 matches the operad paper pin."
+    },
+    {
+      "path": "dag/derivations/independent/gth_lang_import.md",
+      "sha256": "9178701e8ab04c496024e67056d43da8e121bd95b8d5b220f5bd55fa0baca0ad",
+      "finding": "The note says nothing is in Lean. Its prose names the four roles of a record and does not give a grammar, a structure, or a checker. That prose is not a defined format."
+    },
+    {
+      "path": "lean4/AdmitImport.lean",
+      "sha256": "e8b43805382555f07138ebc27593005be95d7349b6295b6c57c3d0e716565489",
+      "finding": "ImportRecord at lines 19-23 is a String name, a List String of axiom names, a String costName, and a ConsStatus tag. writeImport at line 32 only conses onto Packed.imports. write_import_iff at line 35 is Iff.rfl for coreHolds, which reads only the AdmitCore regime. import_is_not_a_core_derivation at line 83 is one absent apart-judgment on the empty regime, by empty_not_apart. Excluded. Not cited by the node."
+    },
+    {
+      "path": "lean4/AdmitInterpret.lean",
+      "sha256": "b40793e4a299dc276eee22ea206d47d0efdf522a5de256996f644e3e4e70b56f",
+      "finding": "The header at lines 8-20 says the file gives three scoped readings and that none is an embedding of the whole of the named theory. It imports AdmitCore. It is not the missing interpretation function of GTH-LANG-INTERPRET."
+    },
+    {
+      "path": "lean4/AdmitCore.lean",
+      "sha256": "c8e46cf7f11884572047e863c8d3b8bc1328f73a9bb4ea04f9e001f91abc61d9",
+      "finding": "Regime at lines 42-45 stores data, forms, and cuts. empty_not_apart at line 196 is one absent judgment. This module is not an input of the route and is not a theorem of this node."
+    },
+    {
+      "path": "checks/independent/genesis_language.py",
+      "sha256": "e0219a9d7050cbf1f6c0d164569a7178718701fa76cbfcac486bd18baf8ca8f7",
+      "finding": "core_holds_apart at lines 57-59 deletes imports. The list at line 100 has only a name key. The check is not cited by the node."
+    }
+  ],
+  "next_missing_dependency": "An interpretation function from a stated core syntax into one target named by GTH-LANG-INTERPRET. No such function is defined, so no record format is derived from it.",
+  "operad_delta": {
+    "schema_id": "omega.pfp.finite-qm.operad-delta.v1",
+    "node_id": "GTH-LANG-IMPORT",
+    "stage_id": "P0_MINE_OPERAD",
+    "attempt_id": "p0",
+    "authority_effect": "None",
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "fail:writeImport_not_from_interpret",
+        "outer_operation": "GTH-LANG-IMPORT record format",
+        "input_slot": "interpretation_function",
+        "inner_operation": "AdmitImport.writeImport",
+        "colour_match": false,
+        "hypothesis_match": "The route input is GTH-LANG-INTERPRET. That node cites no Lean and states that no interpretation function is defined.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {
+            "path": "lean4/AdmitImport.lean",
+            "declaration": "AdmitImport.writeImport",
+            "line": 32
+          },
+          {
+            "path": "lean4/AdmitImport.lean",
+            "declaration": "AdmitImport.ImportRecord",
+            "line": 19
+          },
+          {
+            "path": "lean4/AdmitImport.lean",
+            "declaration": "AdmitImport.NonDerivability",
+            "line": 71
+          }
+        ],
+        "reason": "writeImport conses an ImportRecord onto AdmitImport.Packed.imports. Packed.regime is AdmitCore.Regime, which is not an input of GTH-R-GTH-LANG-IMPORT. ImportRecord.costName is String, not the sentences the core does not derive. NonDerivability is a separate structure and is not that cost field."
+      },
+      {
+        "id": "fail:core_holds_apart_discards_imports",
+        "outer_operation": "GTH-LANG-IMPORT record format",
+        "input_slot": "imports",
+        "inner_operation": "checks/independent/genesis_language.py::core_holds_apart",
+        "colour_match": false,
+        "hypothesis_match": "The imports argument is deleted before the judgment is read.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {
+            "path": "checks/independent/genesis_language.py",
+            "declaration": "core_holds_apart",
+            "line": 57
+          }
+        ],
+        "reason": "core_holds_apart deletes imports and returns holds_apart on the regime. The list at line 100 has dicts with only a name key. That is not a four-role record and it is not a theorem of this node."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "cx:import_record_cost_is_a_string_label",
+        "class": "wrong_carrier",
+        "claim_kind": "generator",
+        "claim": "AdmitImport.ImportRecord is the format this node says is undefined, its cost is the sentences the core does not derive, and the declaration is a theorem of GTH-LANG-IMPORT.",
+        "evidence": "Fields at lean4/AdmitImport.lean:19-23 are name : String, axiomsNamed : List String, costName : String, and conservativity : ConsStatus. ConsStatus has constructors named proved and openStatus at lines 15-17. write_import_iff at line 35 is Iff.rfl. coreHolds at lines 29-30 is AdmitCore.Holds of Packed.regime only. The node lean list is empty. The route status is GAP_NO_DERIVATION.",
+        "confidence": "exact",
+        "node_id": "GTH-LANG-IMPORT"
+      }
+    ],
+    "open_obligations": [
+      "No generator admitted at P0. Do not invent a record format.",
+      "Route GTH-R-GTH-LANG-IMPORT stays GAP_NO_DERIVATION. Node status stays OPEN.",
+      "Next missing dependency: an interpretation function from a stated core syntax into one target named by GTH-LANG-INTERPRET. That function is not defined. AdmitInterpret.lean is a separate AdmitCore reading and is not that function.",
+      "AdmitCore is not a theorem of this node.",
+      "Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "This turn read the route, the two derivation notes, the empty operad candidate lists, AdmitImport.ImportRecord, AdmitInterpret's header, AdmitCore.Regime, and genesis_language.core_holds_apart. None of those declarations is an input of GTH-R-GTH-LANG-IMPORT, and none was admitted as a generator.",
+    "does_not_support": "A defined record format. A derivation of added axioms from the core. A sentence of the priced admission language about a sentence it does not derive. Any use of AdmitCore, AdmitImport, AdmitInterpret, or genesis_language.py as a theorem of this node. Any status above OPEN.",
+    "narrowest_claim": "P0 admits no generator for GTH-LANG-IMPORT. The gap route stays GAP_NO_DERIVATION. The node status stays OPEN.",
+    "next_test": "When an interpretation function into one GTH-LANG-INTERPRET target exists, ask whether a record format is a consequence of that function. Until then, do not fill the mission slots."
+  },
+  "execution": "Local source reading. No provider call. Lean was not rebuilt. No theorem accepted."
+}
