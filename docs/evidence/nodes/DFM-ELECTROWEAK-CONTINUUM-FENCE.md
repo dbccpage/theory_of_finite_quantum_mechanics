@@ -4,15 +4,15 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = \[\[conj phi2, phi1\], \[-conj phi1, phi2\]\] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4; dividing by the respective rational roots 1 and 2 makes the normalized (1, 2) entries 1 and 2, so they differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.
+> For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi) = \[\[conj phi2, phi1\], \[-conj phi1, phi2\]\] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same Phi, z = 2 has squared norms 1 and 4. The (1, 2) entry of U(2 Phi)/2 is 1, whereas the (1, 2) entry of (U(Phi)/1) diag(2, 2) is 2; these two sides of the proposed normalized covariance law differ. Continuum phases, the dressed derivative term, and an electroweak reading without a declared rational square root stay unproved.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 16
+- cited Lean, Rust or Python symbols found in their in-repo files: 26
+- cited Lean declarations covered by a current replay receipt: 26
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -46,12 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignDfmElectroweakContinuumFence.lean`
 
 - file: [lean4/CampaignDfmElectroweakContinuumFence.lean](../../../lean4/CampaignDfmElectroweakContinuumFence.lean)
-- sha256 (`bytes`): `d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-electroweak-continuum-fence_integrated_lean_replay.json (CampaignDfmElectroweakContinuumFence), receipt dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json (CampaignDfmElectroweakContinuumFence), receipt dag/research/campaign_dfm-electroweak-continuum-fence_repair_lean_replay.json (CampaignDfmElectroweakContinuumFence), record TFQ-1122
+- sha256 (`bytes`): `4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2`
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json (CampaignDfmElectroweakContinuumFence), record TFQ-1122
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-electroweak-continuum-fence_integrated_lean_replay.json](../../../dag/research/campaign_dfm-electroweak-continuum-fence_integrated_lean_replay.json) (module `CampaignDfmElectroweakContinuumFence`): recorded sha256 `d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json) (module `CampaignDfmElectroweakContinuumFence`): recorded sha256 `d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/campaign_dfm-electroweak-continuum-fence_repair_lean_replay.json](../../../dag/research/campaign_dfm-electroweak-continuum-fence_repair_lean_replay.json) (module `CampaignDfmElectroweakContinuumFence`): recorded sha256 `d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json) (module `CampaignDfmElectroweakContinuumFence`): recorded sha256 `4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignDfmElectroweakContinuumFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -62,6 +60,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignDfmElectroweakContinuumFence.GR.mul_comm` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.GR.mul_comm` |
 | `CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj` |
 | `CampaignDfmElectroweakContinuumFence.GR.norm2_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.GR.norm2_mul` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.Input.act` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.Input.act` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.act` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.act` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.compose` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.UnitPhase.compose` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.action_composes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.action_composes` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.check_accepts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.check_accepts` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.check_preserves` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.check_preserves` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant` |
+| `CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant` |
 | `CampaignDfmElectroweakContinuumFence.div_rightDiag` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.div_rightDiag` |
 | `CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ` |
 | `CampaignDfmElectroweakContinuumFence.unit_normalized_covariance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmElectroweakContinuumFence.unit_normalized_covariance` |
@@ -77,14 +85,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-electroweak-continuum-fence.py`
 
 - file: [checks/independent/dfm-electroweak-continuum-fence.py](../../../checks/independent/dfm-electroweak-continuum-fence.py)
-- sha256 (`bytes`): `576e69471ffec7098a701a6ea8415bbdd5ef538549d9c9e48717385939017928`
+- sha256 (`bytes`): `4c8ff3cf3c8bb851b02f6bd248b2c19793357cf71d4cbbdcb611f7d84f116dd0`
 - cited in: node.source, record TFQ-1122
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md](../../../dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md)
-- sha256 (`lf-normalised`): `6e04e208eabd9c2f37162b54c11ea6f8d45e4f0ac950138785793e216f1c1fbf`
+- sha256 (`lf-normalised`): `15ae5f65d24e40eb7bb554fee828c55bde7d5f45e0406cfff0e67966d351530d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1122
 - counts toward the grade: no
@@ -92,7 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-electroweak-continuum-fence.md`
 
 - file: [dag/derivations/independent/dfm-electroweak-continuum-fence.md](../../../dag/derivations/independent/dfm-electroweak-continuum-fence.md)
-- sha256 (`lf-normalised`): `34d0cd2b42d10d27efe41550cfc22c1fb1edf9e14519a86574e0f5fb26318063`
+- sha256 (`lf-normalised`): `eccb2b3cb79458f9ccebeaaddf22c0d39170e92960593a54095ba197a67ce174`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -1,0 +1,77 @@
+{
+  "AuthorityEffect": "None",
+  "base": "8b09af71610ebdc005c8c742bc81039ada205b52",
+  "input_head": "52c13e9d4dd24d7866cbb246f0c21146c0b6410a",
+  "reason": "Replayed immutable EW checker; unchanged Lean/DAG/registry bytes retain prior 40-step coverage; refresh affected receipt views and acceptance",
+  "steps": [
+    {
+      "argv": [
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map written: 925 nodes, grades {'E0': 189, 'E1': 249, 'E2': 42, 'E3': 445, 'E4': 0}, 254 flags\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "8b09af71610ebdc005c8c742bc81039ada205b52"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 7,\n    \"valid_contracts_and_scores\": 7,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 4,\n      \"Rust\": 3\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 4,\n      \"Symbolic/Formal\": 3\n    },\n    \"completed_scores\": 7,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 7\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 8b09af71610ebdc005c8c742bc81039ada205b52 (merge base 8b09af71610e), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "8b09af71610ebdc005c8c742bc81039ada205b52"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 10,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "8b09af71610ebdc005c8c742bc81039ada205b52",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since 8b09af71610ebdc005c8c742bc81039ada205b52 (merge base 8b09af71610e); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    }
+  ]
+}

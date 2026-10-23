@@ -1,0 +1,138 @@
+{
+  "AuthorityEffect": "None",
+  "base": "09f3170fe2c851973219d04662fe319321892762",
+  "reason": "Joint integration of the reviewed BPHZ, electroweak and CKM APIs without a physical-status promotion",
+  "steps": [
+    {
+      "argv": [
+        "dag/sync_pfp_results.py"
+      ],
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_unified_dag.py"
+      ],
+      "exit_code": 0,
+      "stdout": "stale=dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md,dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md,dag/fragments/application_branches.json\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_application_branches.py"
+      ],
+      "exit_code": 0,
+      "stdout": "stale=derivation_dag.json,theory_of_finite_qm.jsonl\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_pregenesis_to_wdp.py"
+      ],
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_frontier_branches.py"
+      ],
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_genesis_to_higher.py"
+      ],
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_foc035_observer_presheaf.py"
+      ],
+      "exit_code": 0,
+      "stdout": "foc035 observer presheaf synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_master_derivation_ledger.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Written: C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\papers\\core\\master_derivation_ledger.md\nWritten: C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\dag\\derivations\\MASTER_DERIVATION_LEDGER.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/pfp/generate_prompts.py",
+        "--write",
+        "--all-missing"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"created\": 0, \"rewritten\": 2, \"unchanged\": 746}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "papers/core/tools/build_results_audit_table.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "finite_quantum_mechanics.md: updated\nfinite_quantum_mechanics_claim_ledger.md: already current\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/research/repin_tensor_receipts.py",
+        "--run",
+        "PR227 PR230 PR233 L4 integration",
+        "--reason",
+        "Combined canonical proof API references and preserved physical gaps"
+      ],
+      "exit_code": 0,
+      "stdout": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha dag/fragments/application_branches.json\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\nrebound: tensor_countermodel_validation.json sha lean4/lakefile.lean\n5 stale pin(s)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "evidence map written: 925 nodes, grades {'E0': 189, 'E1': 249, 'E2': 42, 'E3': 445, 'E4': 0}, 254 flags\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "stdout": "stale=dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md,dag/fragments/application_branches.json\n",
+      "stderr": ""
+    }
+  ]
+}

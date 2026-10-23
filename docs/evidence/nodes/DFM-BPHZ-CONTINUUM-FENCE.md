@@ -11,8 +11,8 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 17
-- cited Lean declarations covered by a current replay receipt: 17
+- cited Lean, Rust or Python symbols found in their in-repo files: 28
+- cited Lean declarations covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -45,16 +45,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignDfmBphzContinuumFence.lean`
 
 - file: [lean4/CampaignDfmBphzContinuumFence.lean](../../../lean4/CampaignDfmBphzContinuumFence.lean)
-- sha256 (`bytes`): `cd03332ae8a26bce3741327cc8b3c3fe772d23f7e0b4b2dda38cdb26e5b91bcf`
+- sha256 (`bytes`): `93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8`
 - cited in: node.lean, receipt dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json (CampaignDfmBphzContinuumFence), record TFQ-1110
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json) (module `CampaignDfmBphzContinuumFence`): recorded sha256 `cd03332ae8a26bce3741327cc8b3c3fe772d23f7e0b4b2dda38cdb26e5b91bcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json) (module `CampaignDfmBphzContinuumFence`): recorded sha256 `93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignDfmBphzContinuumFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `CampaignDfmBphzContinuumFence.Subtraction.Projector.kills_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.Projector.kills_remainder` |
+| `CampaignDfmBphzContinuumFence.Subtraction.kernelProjector` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.kernelProjector` |
+| `CampaignDfmBphzContinuumFence.Subtraction.map_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.map_remainder` |
+| `CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs` |
+| `CampaignDfmBphzContinuumFence.Subtraction.reduce_append` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_append` |
+| `CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed` |
+| `CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff` |
+| `CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent` |
+| `CampaignDfmBphzContinuumFence.Subtraction.reduce_killed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_killed` |
 | `CampaignDfmBphzContinuumFence.compatible_LG` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.compatible_LG` |
 | `CampaignDfmBphzContinuumFence.compatible_RG` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.compatible_RG` |
+| `CampaignDfmBphzContinuumFence.evaluations_compatible` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.evaluations_compatible` |
 | `CampaignDfmBphzContinuumFence.nested_all_compatible` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.nested_all_compatible` |
 | `CampaignDfmBphzContinuumFence.nested_forest_count` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.nested_forest_count` |
 | `CampaignDfmBphzContinuumFence.not_compatible_LR` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.not_compatible_LR` |
@@ -68,6 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignDfmBphzContinuumFence.sector_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sector_value` |
 | `CampaignDfmBphzContinuumFence.share_edge_two` | yes | yes | yes | propext | `#print axioms CampaignDfmBphzContinuumFence.share_edge_two` |
 | `CampaignDfmBphzContinuumFence.sixSum_eq_inclusion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sixSum_eq_inclusion` |
+| `CampaignDfmBphzContinuumFence.sixSum_is_reduction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sixSum_is_reduction` |
 | `CampaignDfmBphzContinuumFence.threeSum_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.threeSum_eq` |
 | `CampaignDfmBphzContinuumFence.witness_half_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.witness_half_third` |
 - counts toward the grade: yes
@@ -75,14 +86,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-bphz-continuum-fence.py`
 
 - file: [checks/independent/dfm-bphz-continuum-fence.py](../../../checks/independent/dfm-bphz-continuum-fence.py)
-- sha256 (`bytes`): `7c0c0536b49de93f95ef86ba6ce3bc5b6cb7ddf15f7146fdb2d655b00745836c`
+- sha256 (`bytes`): `0cad33ad25b1937de952b38c978ac1ef1058f91a938dc39efb5ad18f5be27752`
 - cited in: record TFQ-1110
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md](../../../dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md)
-- sha256 (`lf-normalised`): `21758af3c53fbc6b73c114abc61d10af4811ee7a354cef4c83f3470254687ea9`
+- sha256 (`lf-normalised`): `fa03986a245e68500de6567e165d3b1821f43141b8ae16e5cd5c31da70401a56`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1110
 - counts toward the grade: no
@@ -90,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-bphz-continuum-fence.md`
 
 - file: [dag/derivations/independent/dfm-bphz-continuum-fence.md](../../../dag/derivations/independent/dfm-bphz-continuum-fence.md)
-- sha256 (`lf-normalised`): `90265f93e2d5c066615de056d04da04c6e29fa227b62a1fb7f44e7a4732bf764`
+- sha256 (`lf-normalised`): `c3f1dcdb556b82a5398c4423a6e3a54366b441965d3f4fb20d0be2b31bbc77d1`
 - cited in: node.source
 - counts toward the grade: yes
 

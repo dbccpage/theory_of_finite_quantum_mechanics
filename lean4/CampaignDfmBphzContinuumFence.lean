@@ -11,6 +11,87 @@ and not a convergence statement for continuum loop integration.
 -/
 namespace CampaignDfmBphzContinuumFence
 
+/-! Finite subtraction API over supplied commuting additive projectors.
+No integrand, Taylor degree or continuum convergence is inferred. -/
+namespace Subtraction
+variable {A : Type*} [AddCommGroup A]
+
+structure Projector (A : Type*) [AddCommGroup A] where
+  map : A →+ A
+  idempotent : ∀ x, map (map x) = map x
+
+def Projector.remainder (p : Projector A) : A →+ A := AddMonoidHom.id A - p.map
+
+def Commute (p q : Projector A) : Prop := ∀ x, p.map (q.map x) = q.map (p.map x)
+
+def Compatible (ps : List (Projector A)) : Prop :=
+  ∀ p ∈ ps, ∀ q ∈ ps, Commute p q
+
+def reduce : List (Projector A) → A →+ A
+  | [] => AddMonoidHom.id A
+  | p :: ps => p.remainder.comp (reduce ps)
+
+theorem Projector.kills_remainder (p : Projector A) (x : A) :
+    p.map (p.remainder x) = 0 := by
+  simp [Projector.remainder, map_sub, p.idempotent]
+
+theorem map_remainder (p q : Projector A) (h : Commute p q) (x : A) :
+    p.map (q.remainder x) = q.remainder (p.map x) := by
+  simp [Projector.remainder, map_sub, h x]
+
+theorem reduce_fixed (ps : List (Projector A)) (x : A)
+    (h : ∀ p ∈ ps, p.map x = 0) : reduce ps x = x := by
+  induction ps with
+  | nil => rfl
+  | cons p ps ih =>
+    have ht : ∀ q ∈ ps, q.map x = 0 := fun q hq => h q (List.mem_cons_of_mem _ hq)
+    have hp := h p (List.mem_cons_self)
+    simp [reduce, ih ht, Projector.remainder, hp]
+
+theorem reduce_killed (ps : List (Projector A)) (hc : Compatible ps)
+    (p : Projector A) (hp : p ∈ ps) (x : A) : p.map (reduce ps x) = 0 := by
+  induction ps with
+  | nil => simp at hp
+  | cons q qs ih =>
+    have ht : Compatible qs := fun a ha b hb =>
+      hc a (List.mem_cons_of_mem _ ha) b (List.mem_cons_of_mem _ hb)
+    rcases List.mem_cons.mp hp with he | hm
+    · subst p
+      exact q.kills_remainder (reduce qs x)
+    · have hcomm := hc p (List.mem_cons_of_mem _ hm) q List.mem_cons_self
+      change p.map (q.remainder (reduce qs x)) = 0
+      rw [map_remainder p q hcomm, ih ht hm]
+      exact q.remainder.map_zero
+
+theorem reduce_idempotent (ps : List (Projector A)) (hc : Compatible ps) (x : A) :
+    reduce ps (reduce ps x) = reduce ps x :=
+  reduce_fixed ps _ (fun p hp => reduce_killed ps hc p hp x)
+
+theorem reduce_fixed_iff (ps : List (Projector A)) (hc : Compatible ps) (x : A) :
+    reduce ps x = x ↔ ∀ p ∈ ps, p.map x = 0 := by
+  constructor
+  · intro h p hp
+    rw [← h]
+    exact reduce_killed ps hc p hp x
+  · exact reduce_fixed ps x
+
+/-- A reusable projector onto the intersection of the supplied kernels. -/
+def kernelProjector (ps : List (Projector A)) (hc : Compatible ps) : Projector A :=
+  ⟨reduce ps, reduce_idempotent ps hc⟩
+
+theorem reduce_append (ps qs : List (Projector A)) (x : A) :
+    reduce (ps ++ qs) x = reduce ps (reduce qs x) := by
+  induction ps with
+  | nil => rfl
+  | cons p ps ih => simp [reduce, ih]
+
+/-- Further subtraction by a subfamily leaves a jointly reduced value unchanged. -/
+theorem reduce_absorbs (ps qs : List (Projector A)) (hc : Compatible qs)
+    (hsub : ∀ p ∈ ps, p ∈ qs) (x : A) : reduce ps (reduce qs x) = reduce qs x :=
+  reduce_fixed ps _ (fun p hp => reduce_killed qs hc p (hsub p hp) x)
+
+end Subtraction
+
 inductive Piece
   | L
   | R
@@ -124,6 +205,26 @@ theorem sixSum_eq_inclusion (I : ℚ → ℚ → ℚ) (x y : ℚ) :
   unfold sixSum evalL evalR evalG
   ring
 
+/-- Concrete client: evaluation at zero is an additive idempotent. -/
+def leftProjection : Subtraction.Projector (ℚ → ℚ → ℚ) where
+  map := { toFun := evalL, map_zero' := rfl, map_add' := fun _ _ => rfl }
+  idempotent := fun _ => rfl
+
+def rightProjection : Subtraction.Projector (ℚ → ℚ → ℚ) where
+  map := { toFun := evalR, map_zero' := rfl, map_add' := fun _ _ => rfl }
+  idempotent := fun _ => rfl
+
+theorem evaluations_compatible : Subtraction.Compatible [leftProjection, rightProjection] := by
+  intro p hp q hq I
+  simp only [List.mem_cons, List.not_mem_nil, or_false] at hp hq
+  rcases hp with rfl | rfl <;> rcases hq with rfl | rfl <;> rfl
+
+theorem sixSum_is_reduction (I : ℚ → ℚ → ℚ) (x y : ℚ) :
+    sixSum I x y = Subtraction.reduce [leftProjection, rightProjection] I x y := by
+  rw [sixSum_eq_inclusion]
+  change I x y - I 0 y - I x 0 + I 0 0 = (I x y - I x 0) - (I 0 y - I 0 0)
+  ring
+
 /-- Declared numerator, not a Feynman integrand. -/
 def N (x y : ℚ) : ℚ := 2 + 3 * x + 5 * y + 7 * x * y
 
@@ -181,6 +282,17 @@ theorem sector_formal_zero :
     ((3 : ℚ) / 5) * (3 / 5) = 9 / 25 ∧ (9 : ℚ) / 25 ≠ 7 := by
   norm_num
 
+#print axioms evaluations_compatible
+#print axioms sixSum_is_reduction
+#print axioms Subtraction.Projector.kills_remainder
+#print axioms Subtraction.map_remainder
+#print axioms Subtraction.reduce_fixed
+#print axioms Subtraction.reduce_killed
+#print axioms Subtraction.reduce_idempotent
+#print axioms Subtraction.reduce_fixed_iff
+#print axioms Subtraction.kernelProjector
+#print axioms Subtraction.reduce_append
+#print axioms Subtraction.reduce_absorbs
 #print axioms share_edge_two
 #print axioms not_compatible_LR
 #print axioms compatible_LG
