@@ -1,0 +1,1416 @@
+{
+ "schema": "tfqm.mutation-campaign.v1",
+ "AuthorityEffect": "None",
+ "tool": "governance/tools/mutation_campaign.py",
+ "rule": "R = killed / (killed + survived + inconclusive + unrun); no mutant classed equivalent",
+ "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)",
+ "sources": {
+  "src/bin/governance-check.rs": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+  "src/buildtime.rs": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+  "src/descriptor.rs": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b",
+  "src/lib.rs": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+  "src/policy.rs": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+  "src/repo.rs": "1c0b7bc298330a2042603285c8c7555805fafd809cccd6e271490e9bbf46d2e6",
+  "src/score.rs": "b6821d07cbfbc75e04058a85e029972452e0a7a4405376550695c6c676e61796",
+  "src/verify.rs": "d565eab3a4949834bbf4e3d134093aaaf2f8f02c9b37d1521a31e9fdb6cd850b"
+ },
+ "summary": {
+  "src/bin/governance-check.rs": {
+   "KILLED": 34,
+   "SURVIVED": 1,
+   "INVALID": 3,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 0.9714
+  },
+  "src/buildtime.rs": {
+   "KILLED": 12,
+   "SURVIVED": 0,
+   "INVALID": 0,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 1.0
+  },
+  "src/descriptor.rs": {
+   "KILLED": 7,
+   "SURVIVED": 0,
+   "INVALID": 0,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 1.0
+  },
+  "src/lib.rs": {
+   "KILLED": 9,
+   "SURVIVED": 0,
+   "INVALID": 2,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 1.0
+  },
+  "src/policy.rs": {
+   "KILLED": 37,
+   "SURVIVED": 0,
+   "INVALID": 0,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 1.0
+  },
+  "src/repo.rs": {
+   "KILLED": 12,
+   "SURVIVED": 1,
+   "INVALID": 6,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 0.9231
+  },
+  "src/score.rs": {
+   "KILLED": 10,
+   "SURVIVED": 0,
+   "INVALID": 1,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 1.0
+  },
+  "src/verify.rs": {
+   "KILLED": 12,
+   "SURVIVED": 0,
+   "INVALID": 0,
+   "INCONCLUSIVE": 0,
+   "UNRUN": 0,
+   "EQUIVALENT": 0,
+   "conservative_ratio": 1.0
+  }
+ },
+ "mutants": [
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 69,
+   "operator": "not-removed",
+   "original": "[path] if !path.starts_with(\"--\") => Ok(Command::Explain { path: path.replace('\\\\', \"/\") }),",
+   "mutated": "[path] if path.starts_with(\"--\") => Ok(Command::Explain { path: path.replace('\\\\', \"/\") }),",
+   "outcome": "KILLED",
+   "seconds": 35.6
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 78,
+   "operator": "and->or",
+   "original": "match options.iter().find(|o| o.starts_with(\"--\") && !known.contains(o)) {",
+   "mutated": "match options.iter().find(|o| o.starts_with(\"--\") || !known.contains(o)) {",
+   "outcome": "KILLED",
+   "seconds": 28.0
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 78,
+   "operator": "not-removed",
+   "original": "match options.iter().find(|o| o.starts_with(\"--\") && !known.contains(o)) {",
+   "mutated": "match options.iter().find(|o| o.starts_with(\"--\") && known.contains(o)) {",
+   "outcome": "KILLED",
+   "seconds": 27.4
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 87,
+   "operator": "is_some->is_none",
+   "original": "if options.contains(&\"--allow-add\") != reason.is_some() {",
+   "mutated": "if options.contains(&\"--allow-add\") != reason.is_none() {",
+   "outcome": "KILLED",
+   "seconds": 31.5
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 87,
+   "operator": "ne->eq",
+   "original": "if options.contains(&\"--allow-add\") != reason.is_some() {",
+   "mutated": "if options.contains(&\"--allow-add\") == reason.is_some() {",
+   "outcome": "KILLED",
+   "seconds": 31.9
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 94,
+   "operator": "eq->ne",
+   "original": "match options.iter().position(|o| *o == flag) {",
+   "mutated": "match options.iter().position(|o| *o != flag) {",
+   "outcome": "KILLED",
+   "seconds": 28.7
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 97,
+   "operator": "not-removed",
+   "original": "Some(value) if !value.starts_with(\"--\") => Ok(Some((*value).to_owned())),",
+   "mutated": "Some(value) if value.starts_with(\"--\") => Ok(Some((*value).to_owned())),",
+   "outcome": "KILLED",
+   "seconds": 4.7
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 119,
+   "operator": "or->and",
+   "original": "let baseline = if baseline_file.is_file() || need_baseline {",
+   "mutated": "let baseline = if baseline_file.is_file() && need_baseline {",
+   "outcome": "KILLED",
+   "seconds": 12.0
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 130,
+   "operator": "any->all",
+   "original": "if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {",
+   "mutated": "if changed.iter().all(|p| p == POLICY_PATH || p == BASELINE_PATH) {",
+   "outcome": "KILLED",
+   "seconds": 9.3
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 130,
+   "operator": "eq->ne",
+   "original": "if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {",
+   "mutated": "if changed.iter().any(|p| p != POLICY_PATH || p == BASELINE_PATH) {",
+   "outcome": "KILLED",
+   "seconds": 11.4
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 130,
+   "operator": "eq->ne",
+   "original": "if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {",
+   "mutated": "if changed.iter().any(|p| p == POLICY_PATH || p != BASELINE_PATH) {",
+   "outcome": "KILLED",
+   "seconds": 10.2
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 130,
+   "operator": "or->and",
+   "original": "if changed.iter().any(|p| p == POLICY_PATH || p == BASELINE_PATH) {",
+   "mutated": "if changed.iter().any(|p| p == POLICY_PATH && p == BASELINE_PATH) {",
+   "outcome": "KILLED",
+   "seconds": 10.8
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 135,
+   "operator": "and->or",
+   "original": "if r.policy.spec_for(path).is_some() && r.root.join(path).is_file() {",
+   "mutated": "if r.policy.spec_for(path).is_some() || r.root.join(path).is_file() {",
+   "outcome": "KILLED",
+   "seconds": 11.9
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 135,
+   "operator": "is_some->is_none",
+   "original": "if r.policy.spec_for(path).is_some() && r.root.join(path).is_file() {",
+   "mutated": "if r.policy.spec_for(path).is_none() && r.root.join(path).is_file() {",
+   "outcome": "KILLED",
+   "seconds": 7.2
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 149,
+   "operator": "and->or",
+   "original": ".filter(|c| r.policy.spec_for(c).is_some() && r.root.join(c).is_file())",
+   "mutated": ".filter(|c| r.policy.spec_for(c).is_some() || r.root.join(c).is_file())",
+   "outcome": "KILLED",
+   "seconds": 10.3
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 149,
+   "operator": "is_some->is_none",
+   "original": ".filter(|c| r.policy.spec_for(c).is_some() && r.root.join(c).is_file())",
+   "mutated": ".filter(|c| r.policy.spec_for(c).is_none() && r.root.join(c).is_file())",
+   "outcome": "KILLED",
+   "seconds": 12.9
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 150,
+   "operator": "eq->ne",
+   "original": ".filter(|c| r.policy.companion_path(c, |p| r.root.join(p).is_file()) == companion)",
+   "mutated": ".filter(|c| r.policy.companion_path(c, |p| r.root.join(p).is_file()) != companion)",
+   "outcome": "KILLED",
+   "seconds": 12.1
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 173,
+   "operator": "ne->eq",
+   "original": "let grown = new.entries.iter().filter(|(path, entry)| old.entries.get(*path).is_none_or(|prior| prior.sha256 != entry.sha256));",
+   "mutated": "let grown = new.entries.iter().filter(|(path, entry)| old.entries.get(*path).is_none_or(|prior| prior.sha256 == entry.sha256));",
+   "outcome": "KILLED",
+   "seconds": 11.7
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 174,
+   "operator": "is_some->is_none",
+   "original": "let (with_reason, without): (Vec<_>, Vec<_>) = grown.partition(|(_, entry)| entry.reason.is_some());",
+   "mutated": "let (with_reason, without): (Vec<_>, Vec<_>) = grown.partition(|(_, entry)| entry.reason.is_none());",
+   "outcome": "KILLED",
+   "seconds": 9.7
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 196,
+   "operator": "gt->ge",
+   "original": "if stale > 0 {",
+   "mutated": "if stale >= 0 {",
+   "outcome": "SURVIVED",
+   "seconds": 13.3
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 199,
+   "operator": "and->or",
+   "original": "Ok(report.is_clean() && growth.is_empty())",
+   "mutated": "Ok(report.is_clean() || growth.is_empty())",
+   "outcome": "KILLED",
+   "seconds": 7.7
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 199,
+   "operator": "is_empty-negated",
+   "original": "Ok(report.is_clean() && growth.is_empty())",
+   "mutated": "Ok(report.is_clean() && !growth.is_empty())",
+   "outcome": "KILLED",
+   "seconds": 4.3
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 204,
+   "operator": "not-removed",
+   "original": "r.baseline.entries.keys().filter(|p| !r.root.join(p).is_file()).count()",
+   "mutated": "r.baseline.entries.keys().filter(|p| r.root.join(p).is_file()).count()",
+   "outcome": "KILLED",
+   "seconds": 15.2
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 208,
+   "operator": "and->or",
+   "original": "if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {",
+   "mutated": "if initial || (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {",
+   "outcome": "KILLED",
+   "seconds": 9.6
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 208,
+   "operator": "is_some->is_none",
+   "original": "if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {",
+   "mutated": "if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_none()) {",
+   "outcome": "KILLED",
+   "seconds": 16.5
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 208,
+   "operator": "or->and",
+   "original": "if initial && (r.root.join(BASELINE_PATH).is_file() || reason.is_some()) {",
+   "mutated": "if initial && (r.root.join(BASELINE_PATH).is_file() && reason.is_some()) {",
+   "outcome": "KILLED",
+   "seconds": 14.3
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 212,
+   "operator": "is_some->is_none",
+   "original": "let plan = plan_baseline(r, &paths, initial || reason.is_some(), reason);",
+   "mutated": "let plan = plan_baseline(r, &paths, initial || reason.is_none(), reason);",
+   "outcome": "KILLED",
+   "seconds": 10.3
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 212,
+   "operator": "or->and",
+   "original": "let plan = plan_baseline(r, &paths, initial || reason.is_some(), reason);",
+   "mutated": "let plan = plan_baseline(r, &paths, initial && reason.is_some(), reason);",
+   "outcome": "KILLED",
+   "seconds": 11.8
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 228,
+   "operator": "true->false",
+   "original": "Ok(true)",
+   "mutated": "Ok(false)",
+   "outcome": "KILLED",
+   "seconds": 9.5
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 247,
+   "operator": "first->last",
+   "original": "let (Some(sha256), Some(first)) = (file.sha256.clone(), file.violations().first()) else { continue };",
+   "mutated": "let (Some(sha256), Some(first)) = (file.sha256.clone(), file.violations().last()) else { continue };",
+   "outcome": "KILLED",
+   "seconds": 16.0
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 251,
+   "operator": "eq->ne",
+   "original": "Some(old) if old.sha256 == sha256 => {",
+   "mutated": "Some(old) if old.sha256 != sha256 => {",
+   "outcome": "KILLED",
+   "seconds": 14.3
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 262,
+   "operator": "not-removed",
+   "original": "plan.removed = r.baseline.entries.keys().filter(|p| !plan.next.entries.contains_key(*p)).count();",
+   "mutated": "plan.removed = r.baseline.entries.keys().filter(|p| plan.next.entries.contains_key(*p)).count();",
+   "outcome": "KILLED",
+   "seconds": 14.5
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 277,
+   "operator": "not-removed",
+   "original": "let ok = !file.failed();",
+   "mutated": "let ok = file.failed();",
+   "outcome": "KILLED",
+   "seconds": 15.5
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 316,
+   "operator": "true->false",
+   "original": "Ok(true)",
+   "mutated": "Ok(false)",
+   "outcome": "KILLED",
+   "seconds": 6.7
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 321,
+   "operator": "not-removed",
+   "original": "let needs_baseline = !matches!(command, Command::Baseline { initial: true, .. } | Command::List);",
+   "mutated": "let needs_baseline = matches!(command, Command::Baseline { initial: true, .. } | Command::List);",
+   "outcome": "KILLED",
+   "seconds": 16.9
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 321,
+   "operator": "true->false",
+   "original": "let needs_baseline = !matches!(command, Command::Baseline { initial: true, .. } | Command::List);",
+   "mutated": "let needs_baseline = !matches!(command, Command::Baseline { initial: false, .. } | Command::List);",
+   "outcome": "INVALID",
+   "seconds": 2.9
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 334,
+   "operator": "true->false",
+   "original": "Ok(true) => ExitCode::SUCCESS,",
+   "mutated": "Ok(false) => ExitCode::SUCCESS,",
+   "outcome": "INVALID",
+   "seconds": 1.4
+  },
+  {
+   "file": "src/bin/governance-check.rs",
+   "line": 335,
+   "operator": "false->true",
+   "original": "Ok(false) => ExitCode::from(1),",
+   "mutated": "Ok(true) => ExitCode::from(1),",
+   "outcome": "INVALID",
+   "seconds": 2.1
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 102,
+   "operator": "or->and",
+   "original": "if root.join(&companion).is_file() || file.failed() {",
+   "mutated": "if root.join(&companion).is_file() && file.failed() {",
+   "outcome": "KILLED",
+   "seconds": 28.5
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 113,
+   "operator": "not-removed",
+   "original": "let mut dirs: Vec<PathBuf> = sources.iter().filter_map(|s| s.parent()).filter(|d| !d.join(\"target\").is_dir()).map(Path::to_path_buf).collect();",
+   "mutated": "let mut dirs: Vec<PathBuf> = sources.iter().filter_map(|s| s.parent()).filter(|d| d.join(\"target\").is_dir()).map(Path::to_path_buf).collect();",
+   "outcome": "KILLED",
+   "seconds": 30.4
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 132,
+   "operator": "eq->ne",
+   "original": "if mode == Mode::Off || report.is_clean() {",
+   "mutated": "if mode != Mode::Off || report.is_clean() {",
+   "outcome": "KILLED",
+   "seconds": 29.4
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 132,
+   "operator": "or->and",
+   "original": "if mode == Mode::Off || report.is_clean() {",
+   "mutated": "if mode == Mode::Off && report.is_clean() {",
+   "outcome": "KILLED",
+   "seconds": 29.2
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 135,
+   "operator": "any->all",
+   "original": "let new_failure = report.failures().any(|f| f.baseline == BaselineStatus::Absent);",
+   "mutated": "let new_failure = report.failures().all(|f| f.baseline == BaselineStatus::Absent);",
+   "outcome": "KILLED",
+   "seconds": 25.0
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 135,
+   "operator": "eq->ne",
+   "original": "let new_failure = report.failures().any(|f| f.baseline == BaselineStatus::Absent);",
+   "mutated": "let new_failure = report.failures().any(|f| f.baseline != BaselineStatus::Absent);",
+   "outcome": "KILLED",
+   "seconds": 29.4
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 136,
+   "operator": "and->or",
+   "original": "if mode == Mode::Enforce || (mode == Mode::New && new_failure) {",
+   "mutated": "if mode == Mode::Enforce || (mode == Mode::New || new_failure) {",
+   "outcome": "KILLED",
+   "seconds": 30.2
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 136,
+   "operator": "eq->ne",
+   "original": "if mode == Mode::Enforce || (mode == Mode::New && new_failure) {",
+   "mutated": "if mode != Mode::Enforce || (mode == Mode::New && new_failure) {",
+   "outcome": "KILLED",
+   "seconds": 27.9
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 136,
+   "operator": "eq->ne",
+   "original": "if mode == Mode::Enforce || (mode == Mode::New && new_failure) {",
+   "mutated": "if mode == Mode::Enforce || (mode != Mode::New && new_failure) {",
+   "outcome": "KILLED",
+   "seconds": 30.5
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 136,
+   "operator": "or->and",
+   "original": "if mode == Mode::Enforce || (mode == Mode::New && new_failure) {",
+   "mutated": "if mode == Mode::Enforce && (mode == Mode::New && new_failure) {",
+   "outcome": "KILLED",
+   "seconds": 29.9
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 161,
+   "operator": "eq->ne",
+   "original": "if mode == Mode::Off {",
+   "mutated": "if mode != Mode::Off {",
+   "outcome": "KILLED",
+   "seconds": 29.3
+  },
+  {
+   "file": "src/buildtime.rs",
+   "line": 166,
+   "operator": "eq->ne",
+   "original": "Err(error) if mode == Mode::Warn => {",
+   "mutated": "Err(error) if mode != Mode::Warn => {",
+   "outcome": "KILLED",
+   "seconds": 26.9
+  },
+  {
+   "file": "src/descriptor.rs",
+   "line": 81,
+   "operator": "not-removed",
+   "original": "let missing_keys = REQUIRED_KEYS.into_iter().filter(|key| !doc.contains_key(*key)).collect();",
+   "mutated": "let missing_keys = REQUIRED_KEYS.into_iter().filter(|key| doc.contains_key(*key)).collect();",
+   "outcome": "KILLED",
+   "seconds": 28.2
+  },
+  {
+   "file": "src/descriptor.rs",
+   "line": 85,
+   "operator": "and->or",
+   "original": ".is_some_and(|entry| entry.get(\"record\") == doc.get(\"contract\") && digest_ok(entry));",
+   "mutated": ".is_some_and(|entry| entry.get(\"record\") == doc.get(\"contract\") || digest_ok(entry));",
+   "outcome": "KILLED",
+   "seconds": 33.4
+  },
+  {
+   "file": "src/descriptor.rs",
+   "line": 85,
+   "operator": "eq->ne",
+   "original": ".is_some_and(|entry| entry.get(\"record\") == doc.get(\"contract\") && digest_ok(entry));",
+   "mutated": ".is_some_and(|entry| entry.get(\"record\") != doc.get(\"contract\") && digest_ok(entry));",
+   "outcome": "KILLED",
+   "seconds": 35.3
+  },
+  {
+   "file": "src/descriptor.rs",
+   "line": 186,
+   "operator": "eq->ne",
+   "original": ".find(|entry| entry.get(\"sha256\").and_then(Value::as_str) == Some(digest))",
+   "mutated": ".find(|entry| entry.get(\"sha256\").and_then(Value::as_str) != Some(digest))",
+   "outcome": "KILLED",
+   "seconds": 32.8
+  },
+  {
+   "file": "src/descriptor.rs",
+   "line": 194,
+   "operator": "and->or",
+   "original": "digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()",
+   "mutated": "digest == Some(hex(&Sha256::digest(raw)).as_str()) || length == u64::try_from(raw.len()).ok()",
+   "outcome": "KILLED",
+   "seconds": 12.9
+  },
+  {
+   "file": "src/descriptor.rs",
+   "line": 194,
+   "operator": "eq->ne",
+   "original": "digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()",
+   "mutated": "digest != Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()",
+   "outcome": "KILLED",
+   "seconds": 33.3
+  },
+  {
+   "file": "src/descriptor.rs",
+   "line": 194,
+   "operator": "eq->ne",
+   "original": "digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()",
+   "mutated": "digest == Some(hex(&Sha256::digest(raw)).as_str()) && length != u64::try_from(raw.len()).ok()",
+   "outcome": "KILLED",
+   "seconds": 32.9
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 128,
+   "operator": "is_none->is_some",
+   "original": "self.failures().next().is_none()",
+   "mutated": "self.failures().next().is_some()",
+   "outcome": "KILLED",
+   "seconds": 36.6
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 178,
+   "operator": "eq->ne",
+   "original": "Some(entry) if entry.sha256 == sha256 => BaselineStatus::Unchanged,",
+   "mutated": "Some(entry) if entry.sha256 != sha256 => BaselineStatus::Unchanged,",
+   "outcome": "KILLED",
+   "seconds": 36.4
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 181,
+   "operator": "eq->ne",
+   "original": "if status == BaselineStatus::Unchanged {",
+   "mutated": "if status != BaselineStatus::Unchanged {",
+   "outcome": "KILLED",
+   "seconds": 38.6
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 184,
+   "operator": "eq->ne",
+   "original": "if policy.pinned_for(rel_path).is_some_and(|pin| pin.sha256 == sha256) {",
+   "mutated": "if policy.pinned_for(rel_path).is_some_and(|pin| pin.sha256 != sha256) {",
+   "outcome": "KILLED",
+   "seconds": 38.1
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 199,
+   "operator": "not-removed",
+   "original": "if !companion.is_file() {",
+   "mutated": "if companion.is_file() {",
+   "outcome": "KILLED",
+   "seconds": 37.3
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 210,
+   "operator": "all->any",
+   "original": "if violations.iter().all(|v| v.rule() != Rule::Completeness) {",
+   "mutated": "if violations.iter().any(|v| v.rule() != Rule::Completeness) {",
+   "outcome": "KILLED",
+   "seconds": 28.9
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 210,
+   "operator": "ne->eq",
+   "original": "if violations.iter().all(|v| v.rule() != Rule::Completeness) {",
+   "mutated": "if violations.iter().all(|v| v.rule() == Rule::Completeness) {",
+   "outcome": "KILLED",
+   "seconds": 16.2
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 213,
+   "operator": "is_empty-negated",
+   "original": "match (violations.is_empty(), descriptor.token()) {",
+   "mutated": "match (!violations.is_empty(), descriptor.token()) {",
+   "outcome": "KILLED",
+   "seconds": 40.4
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 214,
+   "operator": "true->false",
+   "original": "(true, Ok(Some(token))) => Ok(token),",
+   "mutated": "(false, Ok(Some(token))) => Ok(token),",
+   "outcome": "KILLED",
+   "seconds": 39.0
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 215,
+   "operator": "true->false",
+   "original": "(true, _) => Err(vec![Violation::Completeness {",
+   "mutated": "(false, _) => Err(vec![Violation::Completeness {",
+   "outcome": "INVALID",
+   "seconds": 2.3
+  },
+  {
+   "file": "src/lib.rs",
+   "line": 221,
+   "operator": "false->true",
+   "original": "(false, _) => Err(violations),",
+   "mutated": "(true, _) => Err(violations),",
+   "outcome": "INVALID",
+   "seconds": 3.2
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 79,
+   "operator": "any->all",
+   "original": "rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p == part))",
+   "mutated": "rel_path.split('/').all(|part| self.path_parts.iter().any(|p| p == part))",
+   "outcome": "KILLED",
+   "seconds": 38.7
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 79,
+   "operator": "any->all",
+   "original": "rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p == part))",
+   "mutated": "rel_path.split('/').any(|part| self.path_parts.iter().all(|p| p == part))",
+   "outcome": "KILLED",
+   "seconds": 37.9
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 79,
+   "operator": "eq->ne",
+   "original": "rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p == part))",
+   "mutated": "rel_path.split('/').any(|part| self.path_parts.iter().any(|p| p != part))",
+   "outcome": "KILLED",
+   "seconds": 14.2
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 80,
+   "operator": "any->all",
+   "original": "|| self.path_globs.iter().any(|glob| glob_match(glob, rel_path))",
+   "mutated": "|| self.path_globs.iter().all(|glob| glob_match(glob, rel_path))",
+   "outcome": "KILLED",
+   "seconds": 33.8
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 80,
+   "operator": "or->and",
+   "original": "|| self.path_globs.iter().any(|glob| glob_match(glob, rel_path))",
+   "mutated": "&& self.path_globs.iter().any(|glob| glob_match(glob, rel_path))",
+   "outcome": "KILLED",
+   "seconds": 37.8
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 96,
+   "operator": "and->or",
+   "original": "!self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))",
+   "mutated": "!self.exclusions().excludes(rel_path) || self.source_globs().iter().any(|glob| glob_match(glob, rel_path))",
+   "outcome": "KILLED",
+   "seconds": 9.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 96,
+   "operator": "any->all",
+   "original": "!self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))",
+   "mutated": "!self.exclusions().excludes(rel_path) && self.source_globs().iter().all(|glob| glob_match(glob, rel_path))",
+   "outcome": "KILLED",
+   "seconds": 16.7
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 96,
+   "operator": "not-removed",
+   "original": "!self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))",
+   "mutated": "self.exclusions().excludes(rel_path) && self.source_globs().iter().any(|glob| glob_match(glob, rel_path))",
+   "outcome": "KILLED",
+   "seconds": 13.5
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 206,
+   "operator": "and->or",
+   "original": "suffix.trim_start_matches('.') != ext && exists(&candidate)",
+   "mutated": "suffix.trim_start_matches('.') != ext || exists(&candidate)",
+   "outcome": "KILLED",
+   "seconds": 35.8
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 206,
+   "operator": "ne->eq",
+   "original": "suffix.trim_start_matches('.') != ext && exists(&candidate)",
+   "mutated": "suffix.trim_start_matches('.') == ext && exists(&candidate)",
+   "outcome": "KILLED",
+   "seconds": 38.0
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 208,
+   "operator": "any->all",
+   "original": "let base = if self.companion.collision_suffixes.iter().any(sibling) { name } else { stem };",
+   "mutated": "let base = if self.companion.collision_suffixes.iter().all(sibling) { name } else { stem };",
+   "outcome": "KILLED",
+   "seconds": 18.0
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 214,
+   "operator": "is_empty-negated",
+   "original": "if dir.is_empty() {",
+   "mutated": "if !dir.is_empty() {",
+   "outcome": "KILLED",
+   "seconds": 35.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 253,
+   "operator": "is_empty-negated",
+   "original": "if populations.is_empty() {",
+   "mutated": "if !populations.is_empty() {",
+   "outcome": "KILLED",
+   "seconds": 6.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 265,
+   "operator": "eq->ne",
+   "original": "if env == MODE_ENV {",
+   "mutated": "if env != MODE_ENV {",
+   "outcome": "KILLED",
+   "seconds": 6.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 277,
+   "operator": "is_empty-negated",
+   "original": "if globs.is_empty() {",
+   "mutated": "if !globs.is_empty() {",
+   "outcome": "KILLED",
+   "seconds": 6.8
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 286,
+   "operator": "not-removed",
+   "original": "if !is_sha256(sha256) {",
+   "mutated": "if is_sha256(sha256) {",
+   "outcome": "KILLED",
+   "seconds": 6.9
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 335,
+   "operator": "eq->ne",
+   "original": "self.entries.get(rel_path).is_some_and(|entry| entry.sha256 == sha256)",
+   "mutated": "self.entries.get(rel_path).is_some_and(|entry| entry.sha256 != sha256)",
+   "outcome": "KILLED",
+   "seconds": 23.2
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 354,
+   "operator": "is_empty-negated",
+   "original": "if lines.is_empty() {",
+   "mutated": "if !lines.is_empty() {",
+   "outcome": "KILLED",
+   "seconds": 20.7
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 366,
+   "operator": "not-removed",
+   "original": "if !is_sha256(sha256) {",
+   "mutated": "if is_sha256(sha256) {",
+   "outcome": "KILLED",
+   "seconds": 20.8
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 417,
+   "operator": "eq->ne",
+   "original": "if string(root, \"schema_version\")? == schema {",
+   "mutated": "if string(root, \"schema_version\")? != schema {",
+   "outcome": "KILLED",
+   "seconds": 8.9
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 454,
+   "operator": "all->any",
+   "original": "text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))",
+   "mutated": "text.len() == 64 && text.bytes().any(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))",
+   "outcome": "KILLED",
+   "seconds": 21.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 454,
+   "operator": "and->or",
+   "original": "text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))",
+   "mutated": "text.len() == 64 || text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))",
+   "outcome": "KILLED",
+   "seconds": 26.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 454,
+   "operator": "eq->ne",
+   "original": "text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))",
+   "mutated": "text.len() != 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))",
+   "outcome": "KILLED",
+   "seconds": 9.0
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 454,
+   "operator": "or->and",
+   "original": "text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))",
+   "mutated": "text.len() == 64 && text.bytes().all(|b| b.is_ascii_digit() && (b'a'..=b'f').contains(&b))",
+   "outcome": "KILLED",
+   "seconds": 6.3
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 465,
+   "operator": "eq->ne",
+   "original": "wildcard(&pattern, &path, |p| *p == \"**\", |p, s| match_component(p, s))",
+   "mutated": "wildcard(&pattern, &path, |p| *p != \"**\", |p, s| match_component(p, s))",
+   "outcome": "KILLED",
+   "seconds": 8.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 471,
+   "operator": "eq->ne",
+   "original": "wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)",
+   "mutated": "wildcard(&pattern, &text, |c| *c != '*', |c, t| *c == '?' || c == t)",
+   "outcome": "KILLED",
+   "seconds": 8.3
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 471,
+   "operator": "eq->ne",
+   "original": "wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)",
+   "mutated": "wildcard(&pattern, &text, |c| *c == '*', |c, t| *c != '?' || c == t)",
+   "outcome": "KILLED",
+   "seconds": 16.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 471,
+   "operator": "eq->ne",
+   "original": "wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)",
+   "mutated": "wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c != t)",
+   "outcome": "KILLED",
+   "seconds": 16.4
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 471,
+   "operator": "or->and",
+   "original": "wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' || c == t)",
+   "mutated": "wildcard(&pattern, &text, |c| *c == '*', |c, t| *c == '?' && c == t)",
+   "outcome": "KILLED",
+   "seconds": 14.4
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 478,
+   "operator": "false->true",
+   "original": "let mut row: Vec<bool> = std::iter::once(true).chain(text.iter().map(|_| false)).collect();",
+   "mutated": "let mut row: Vec<bool> = std::iter::once(true).chain(text.iter().map(|_| true)).collect();",
+   "outcome": "KILLED",
+   "seconds": 42.3
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 478,
+   "operator": "true->false",
+   "original": "let mut row: Vec<bool> = std::iter::once(true).chain(text.iter().map(|_| false)).collect();",
+   "mutated": "let mut row: Vec<bool> = std::iter::once(false).chain(text.iter().map(|_| false)).collect();",
+   "outcome": "KILLED",
+   "seconds": 14.9
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 483,
+   "operator": "and->or",
+   "original": "std::iter::once(false).chain(row.iter().zip(text).map(|(&reached, item)| reached && single(element, item))).collect()",
+   "mutated": "std::iter::once(false).chain(row.iter().zip(text).map(|(&reached, item)| reached || single(element, item))).collect()",
+   "outcome": "KILLED",
+   "seconds": 12.5
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 483,
+   "operator": "false->true",
+   "original": "std::iter::once(false).chain(row.iter().zip(text).map(|(&reached, item)| reached && single(element, item))).collect()",
+   "mutated": "std::iter::once(true).chain(row.iter().zip(text).map(|(&reached, item)| reached && single(element, item))).collect()",
+   "outcome": "KILLED",
+   "seconds": 12.4
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 486,
+   "operator": "eq->ne",
+   "original": "row.last() == Some(&true)",
+   "mutated": "row.last() != Some(&true)",
+   "outcome": "KILLED",
+   "seconds": 41.5
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 486,
+   "operator": "true->false",
+   "original": "row.last() == Some(&true)",
+   "mutated": "row.last() == Some(&false)",
+   "outcome": "KILLED",
+   "seconds": 41.1
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 492,
+   "operator": "false->true",
+   "original": ".scan(false, |seen, &reached| {",
+   "mutated": ".scan(true, |seen, &reached| {",
+   "outcome": "KILLED",
+   "seconds": 13.0
+  },
+  {
+   "file": "src/policy.rs",
+   "line": 493,
+   "operator": "or->and",
+   "original": "*seen = *seen || reached;",
+   "mutated": "*seen = *seen && reached;",
+   "outcome": "KILLED",
+   "seconds": 10.8
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 65,
+   "operator": "not-removed",
+   "original": "parts.map(|p| p.join(\"/\")).filter(|s| !s.is_empty())",
+   "mutated": "parts.map(|p| p.join(\"/\")).filter(|s| s.is_empty())",
+   "outcome": "KILLED",
+   "seconds": 40.2
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 93,
+   "operator": "ge->gt",
+   "original": "if Instant::now() >= deadline {",
+   "mutated": "if Instant::now() > deadline {",
+   "outcome": "SURVIVED",
+   "seconds": 38.1
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 105,
+   "operator": "or->and",
+   "original": "thread::spawn(move || {",
+   "mutated": "thread::spawn(move && {",
+   "outcome": "INVALID",
+   "seconds": 5.9
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 132,
+   "operator": "eq->ne",
+   "original": "bytes.split(|b| *b == 0).filter(|s| !s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()",
+   "mutated": "bytes.split(|b| *b != 0).filter(|s| !s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()",
+   "outcome": "KILLED",
+   "seconds": 6.8
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 132,
+   "operator": "not-removed",
+   "original": "bytes.split(|b| *b == 0).filter(|s| !s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()",
+   "mutated": "bytes.split(|b| *b == 0).filter(|s| s.is_empty()).map(|s| utf8(s).map(|p| p.replace('\\\\', \"/\"))).collect()",
+   "outcome": "KILLED",
+   "seconds": 9.9
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 141,
+   "operator": "and->or",
+   "original": "nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_some() && root.join(p).is_file()).collect();",
+   "mutated": "nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_some() || root.join(p).is_file()).collect();",
+   "outcome": "KILLED",
+   "seconds": 10.4
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 141,
+   "operator": "is_some->is_none",
+   "original": "nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_some() && root.join(p).is_file()).collect();",
+   "mutated": "nul_separated(&listed)?.into_iter().filter(|p| policy.spec_for(p).is_none() && root.join(p).is_file()).collect();",
+   "outcome": "KILLED",
+   "seconds": 10.9
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 167,
+   "operator": "not-removed",
+   "original": "if !run_git(root, &[\"cat-file\", \"-e\", &spec], GIT_TIMEOUT)?.status.success() {",
+   "mutated": "if run_git(root, &[\"cat-file\", \"-e\", &spec], GIT_TIMEOUT)?.status.success() {",
+   "outcome": "KILLED",
+   "seconds": 12.8
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 199,
+   "operator": "eq->ne",
+   "original": "let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");",
+   "mutated": "let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n != \"target\" || n == \".git\");",
+   "outcome": "KILLED",
+   "seconds": 36.7
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 199,
+   "operator": "eq->ne",
+   "original": "let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");",
+   "mutated": "let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n != \".git\");",
+   "outcome": "KILLED",
+   "seconds": 37.2
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 199,
+   "operator": "or->and",
+   "original": "let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");",
+   "mutated": "let skipped_dir = path.join(\"Cargo.toml\").is_file() && path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");",
+   "outcome": "KILLED",
+   "seconds": 20.9
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 199,
+   "operator": "or->and",
+   "original": "let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" || n == \".git\");",
+   "mutated": "let skipped_dir = path.join(\"Cargo.toml\").is_file() || path.file_name().is_some_and(|n| n == \"target\" && n == \".git\");",
+   "outcome": "KILLED",
+   "seconds": 20.2
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 201,
+   "operator": "false->true",
+   "original": "(true, false) => Entry::Descend,",
+   "mutated": "(true, true) => Entry::Descend,",
+   "outcome": "INVALID",
+   "seconds": 2.6
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 201,
+   "operator": "true->false",
+   "original": "(true, false) => Entry::Descend,",
+   "mutated": "(false, false) => Entry::Descend,",
+   "outcome": "INVALID",
+   "seconds": 2.0
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 202,
+   "operator": "true->false",
+   "original": "(true, true) => Entry::Skip,",
+   "mutated": "(false, true) => Entry::Skip,",
+   "outcome": "INVALID",
+   "seconds": 5.5
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 202,
+   "operator": "true->false",
+   "original": "(true, true) => Entry::Skip,",
+   "mutated": "(true, false) => Entry::Skip,",
+   "outcome": "INVALID",
+   "seconds": 3.5
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 203,
+   "operator": "eq->ne",
+   "original": "(false, _) if path.extension().is_some_and(|e| e == \"rs\") => Entry::Source,",
+   "mutated": "(false, _) if path.extension().is_some_and(|e| e != \"rs\") => Entry::Source,",
+   "outcome": "KILLED",
+   "seconds": 37.7
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 203,
+   "operator": "false->true",
+   "original": "(false, _) if path.extension().is_some_and(|e| e == \"rs\") => Entry::Source,",
+   "mutated": "(true, _) if path.extension().is_some_and(|e| e == \"rs\") => Entry::Source,",
+   "outcome": "KILLED",
+   "seconds": 37.5
+  },
+  {
+   "file": "src/repo.rs",
+   "line": 204,
+   "operator": "false->true",
+   "original": "(false, _) => Entry::Skip,",
+   "mutated": "(true, _) => Entry::Skip,",
+   "outcome": "INVALID",
+   "seconds": 1.9
+  },
+  {
+   "file": "src/score.rs",
+   "line": 50,
+   "operator": "eq->ne",
+   "original": ".find(|level| level.as_str() == text)",
+   "mutated": ".find(|level| level.as_str() != text)",
+   "outcome": "KILLED",
+   "seconds": 31.5
+  },
+  {
+   "file": "src/score.rs",
+   "line": 101,
+   "operator": "eq->ne",
+   "original": ".find(|grade| grade.as_str() == text)",
+   "mutated": ".find(|grade| grade.as_str() != text)",
+   "outcome": "KILLED",
+   "seconds": 31.2
+  },
+  {
+   "file": "src/score.rs",
+   "line": 149,
+   "operator": "eq->ne",
+   "original": ".find(|gate| gate.as_str() == text)",
+   "mutated": ".find(|gate| gate.as_str() != text)",
+   "outcome": "KILLED",
+   "seconds": 35.9
+  },
+  {
+   "file": "src/score.rs",
+   "line": 182,
+   "operator": "or->and",
+   "original": "let malformed = || ScoreError::MalformedToken(text.to_owned());",
+   "mutated": "let malformed = && ScoreError::MalformedToken(text.to_owned());",
+   "outcome": "INVALID",
+   "seconds": 1.9
+  },
+  {
+   "file": "src/score.rs",
+   "line": 227,
+   "operator": "is_none->is_some",
+   "original": "Gate::ALL.into_iter().filter(|gate| self.get(*gate).is_none()).collect()",
+   "mutated": "Gate::ALL.into_iter().filter(|gate| self.get(*gate).is_some()).collect()",
+   "outcome": "KILLED",
+   "seconds": 31.6
+  },
+  {
+   "file": "src/score.rs",
+   "line": 237,
+   "operator": "min->max",
+   "original": "Gate::ALL.into_iter().filter_map(|gate| self.get(gate)).min()",
+   "mutated": "Gate::ALL.into_iter().filter_map(|gate| self.get(gate)).max()",
+   "outcome": "KILLED",
+   "seconds": 36.4
+  },
+  {
+   "file": "src/score.rs",
+   "line": 246,
+   "operator": "eq->ne",
+   "original": "if self.is_complete() || ceiling == Some(Grade::E) {",
+   "mutated": "if self.is_complete() || ceiling != Some(Grade::E) {",
+   "outcome": "KILLED",
+   "seconds": 36.9
+  },
+  {
+   "file": "src/score.rs",
+   "line": 246,
+   "operator": "or->and",
+   "original": "if self.is_complete() || ceiling == Some(Grade::E) {",
+   "mutated": "if self.is_complete() && ceiling == Some(Grade::E) {",
+   "outcome": "KILLED",
+   "seconds": 38.4
+  },
+  {
+   "file": "src/score.rs",
+   "line": 266,
+   "operator": "and->or",
+   "original": "token.level >= self.min_level && token.grade >= self.min_grade",
+   "mutated": "token.level >= self.min_level || token.grade >= self.min_grade",
+   "outcome": "KILLED",
+   "seconds": 18.3
+  },
+  {
+   "file": "src/score.rs",
+   "line": 266,
+   "operator": "ge->gt",
+   "original": "token.level >= self.min_level && token.grade >= self.min_grade",
+   "mutated": "token.level > self.min_level && token.grade >= self.min_grade",
+   "outcome": "KILLED",
+   "seconds": 15.3
+  },
+  {
+   "file": "src/score.rs",
+   "line": 266,
+   "operator": "ge->gt",
+   "original": "token.level >= self.min_level && token.grade >= self.min_grade",
+   "mutated": "token.level >= self.min_level && token.grade > self.min_grade",
+   "outcome": "KILLED",
+   "seconds": 34.3
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 192,
+   "operator": "ne->eq",
+   "original": "if d.document_schema.as_deref() != Some(expected) {",
+   "mutated": "if d.document_schema.as_deref() == Some(expected) {",
+   "outcome": "KILLED",
+   "seconds": 17.0
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 195,
+   "operator": "first->last",
+   "original": "if let Some(key) = d.missing_keys.first() {",
+   "mutated": "if let Some(key) = d.missing_keys.last() {",
+   "outcome": "KILLED",
+   "seconds": 21.3
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 198,
+   "operator": "not-removed",
+   "original": "if !d.contract_view_ok {",
+   "mutated": "if d.contract_view_ok {",
+   "outcome": "KILLED",
+   "seconds": 41.0
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 207,
+   "operator": "not-removed",
+   "original": "if !score.digest_ok {",
+   "mutated": "if score.digest_ok {",
+   "outcome": "KILLED",
+   "seconds": 38.4
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 211,
+   "operator": "ne->eq",
+   "original": "if score.schema_version.as_deref() != Some(expected) {",
+   "mutated": "if score.schema_version.as_deref() == Some(expected) {",
+   "outcome": "KILLED",
+   "seconds": 17.8
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 214,
+   "operator": "is_none->is_some",
+   "original": "if score.is_complete.is_none() {",
+   "mutated": "if score.is_complete.is_some() {",
+   "outcome": "KILLED",
+   "seconds": 20.3
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 240,
+   "operator": "ne->eq",
+   "original": "match checks.into_iter().find(|(_, expected, found)| Some(*expected) != *found) {",
+   "mutated": "match checks.into_iter().find(|(_, expected, found)| Some(*expected) == *found) {",
+   "outcome": "KILLED",
+   "seconds": 43.2
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 266,
+   "operator": "not-removed",
+   "original": "if !unassessed.is_empty() {",
+   "mutated": "if unassessed.is_empty() {",
+   "outcome": "KILLED",
+   "seconds": 40.7
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 270,
+   "operator": "ne->eq",
+   "original": "if d.current_score.as_ref().and_then(|s| s.is_complete) != Some(true) {",
+   "mutated": "if d.current_score.as_ref().and_then(|s| s.is_complete) == Some(true) {",
+   "outcome": "KILLED",
+   "seconds": 40.5
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 270,
+   "operator": "true->false",
+   "original": "if d.current_score.as_ref().and_then(|s| s.is_complete) != Some(true) {",
+   "mutated": "if d.current_score.as_ref().and_then(|s| s.is_complete) != Some(false) {",
+   "outcome": "KILLED",
+   "seconds": 38.1
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 275,
+   "operator": "ne->eq",
+   "original": "if stored != composite {",
+   "mutated": "if stored == composite {",
+   "outcome": "KILLED",
+   "seconds": 32.1
+  },
+  {
+   "file": "src/verify.rs",
+   "line": 281,
+   "operator": "ne->eq",
+   "original": "if token != expected {",
+   "mutated": "if token == expected {",
+   "outcome": "KILLED",
+   "seconds": 11.7
+  }
+ ]
+}

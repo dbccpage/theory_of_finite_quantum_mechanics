@@ -1,0 +1,30 @@
+
+running 10 tests
+......... 9/10
+tests::end_to_end_with_git --- FAILED
+
+failures:
+
+---- tests::end_to_end_with_git stdout ----
+checked 1: 1 pass, 0 grandfathered, 0 boilerplate, 0 failed
+changed since main (f395debdafed82e7993650dd75843533b5941210): 0 paths
+checked 0: 0 pass, 0 grandfathered, 0 boilerplate, 0 failed
+code/a.rs
+changed since main (f395debdafed82e7993650dd75843533b5941210): 1 paths
+checked 1: 0 pass, 0 grandfathered, 0 boilerplate, 1 failed
+FAIL code/new.rs (new or not grandfathered)
+  code/new.rs: [MISSING_COMPANION] expected companion code/new.contract.score.yaml, found none
+
+thread 'tests::end_to_end_with_git' (1984) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:526:9:
+assertion `left == right` failed: a new uncontracted file fails
+  left: Ok(true)
+ right: Ok(false)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::end_to_end_with_git
+
+test result: FAILED. 9 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.56s
+
+error: test failed, to rerun pass `--bin governance-check`

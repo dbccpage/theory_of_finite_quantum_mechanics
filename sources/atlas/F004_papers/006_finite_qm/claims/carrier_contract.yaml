@@ -1,0 +1,37 @@
+# AuthorityEffect: None. Citation: sealed-derivation-v1 (3100c4e)
+contract_id: FQM-CARRIER-CONTRACT-V2
+title: Cyclotomic Carrier & Directed Tower Contract
+status: REVIEWED_DECLARATIONS
+historical_v1: 'PR #205 source 516e14b61f9c292d52f66ce1d9d07e4bd7ab033b'
+minimality_proved: false
+all_target_amplitudes_embedding_verified: false
+committed_date: 2026-09-05
+campaign: 50-step finite QM cyclotomic carrier derivation
+declared_target_lcm_conductor: 120
+target_lcm_field: Q(zeta_120)
+directed_tower_law: "m | n ==> Q(zeta_m) <= Q(zeta_n); iff holds for normalized conductors (m, n not= 2 mod 4)"
+colimit_carrier_interpretation: "Q^ab = colim_n Q(zeta_n); not constructed in H052"
+kronecker_weber_status: DECLARED
+kronecker_weber_citation: "L. Kronecker (1853), H. Weber (1886); Hilbert's twelfth problem foundation"
+
+target_conductors_lcm: 120
+distinct_conductors: [1, 2, 3, 4, 5, 8, 12]
+total_targets_covered: 23
+
+real_subfield_invariance:
+  definition: "Q(zeta_n)^+ = Q(zeta_n + zeta_n^{-1}) = Q(zeta_n) cap R"
+  automorphism: "sigma_{-1}: zeta_n -> zeta_n^{-1}"
+  born_weight_landing: "w_j = |psi_j|^2 = psi_j * sigma_{-1}(psi_j) in Q(zeta_n)^+"
+  positivity: "w_j >= 0 under all real embeddings"
+
+achievable_born_weights:
+  definition: "B_d(Q(zeta_n)) = { (w_1, ..., w_d) in (Q(zeta_n)^+)^d | w_j >= 0, sum_{j=1}^d w_j = 1, exists psi in Q(zeta_n)^d: |psi_j|^2 = w_j }"
+  structure: "Declared norm-image subset; no global convexity classification proved"
+  density: "Not proved by this application"
+  continuity: "Countability does not imply discreteness. No continuity or completion necessity theorem proved."
+
+artifacts:
+  inventory: "evidence/carrier_inventory.json"
+  python_engine: "code/cyclotomic_tower.py"
+  rust_crate: "code_rs/src/tower.rs"
+  lean4_formalization: "lean4/H052CyclotomicTowerDirected.lean"

@@ -1003,6 +1003,19 @@ lean_lib CampaignGenesisOngoingRefinement where
 lean_lib CampaignGenesisProcessComparison where
   roots := #[`CampaignGenesisProcessComparison]
 
+-- Campaign target: DFM-CONTINUUM-INTERFACE.
+-- Not a default target: build with `lake build CampaignDfmContinuumInterface`.
+lean_lib CampaignDfmContinuumInterface where
+  roots := #[`CampaignDfmContinuumInterface]
+
+-- Campaign: DFM-BPHZ-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmBphzContinuumFence where
+  roots := #[`CampaignDfmBphzContinuumFence]
+
+-- Campaign: DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmElectroweakContinuumFence where
+  roots := #[`CampaignDfmElectroweakContinuumFence]
+
 -- Campaign: DFM-CKM-PHYSICS-FENCE. Not a default target.
 lean_lib CampaignDfmCkmPhysicsFence where
   roots := #[`CampaignDfmCkmPhysicsFence]

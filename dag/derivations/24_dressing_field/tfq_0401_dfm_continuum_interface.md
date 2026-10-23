@@ -20,9 +20,25 @@ rational carrier, with nonzero radial norm and residual symmetry hypotheses.
 Neither that control nor TFQ-0398 derives a continuum Standard Model. Keep these
 interfaces explicit when linking the existing QED, electroweak and QCD papers.
 
+## Finite non-locality witness
+
+On the supplied rooted tree with vertices `{root, p, a, b}`, tree edges
+`root → p`, `p → a` and `root → b`, and chord `a → b`, the rooted dressing
+`u(v) = T(v)^{-1}` gives the dressed chord
+
+`U(root → b)^{-1} U(a → b) U(p → a) U(root → p)`,
+
+with the later path factor on the left. The edge `root → p` does not meet
+`{a, b}`. Connections that differ only there have the same labels on the closed
+star of the chord and unequal dressed chords. With the other three labels
+trivial, outer labels `2` and `5` give dressed chords `2` and `5`. This does
+not supply a refinement family, a topology, or a convergence theorem.
+
 ## Evidence and next obligation
 
 - [dag/research/electroweak_dfm_weinberg_finite_map.md](../../../dag/research/electroweak_dfm_weinberg_finite_map.md)
 - [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
+- [lean4/CampaignDfmContinuumInterface.lean](../../../lean4/CampaignDfmContinuumInterface.lean)
+- [checks/independent/dfm-continuum-interface.py](../../../checks/independent/dfm-continuum-interface.py)
 
-Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.
+The finite witness is proved. A refinement family, compatibility maps and a convergence theorem are still required before transporting finite identities to smooth gauge theory.

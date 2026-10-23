@@ -1,0 +1,1339 @@
+{
+  "schema_version": "pr243_fresh_review_validation.v1",
+  "authority_effect": "None",
+  "review_kind": "Fresh adversarial AI audit and independent tool replays; not independent human certification.",
+  "source_base": "a4dc989977b5944410635b31bd0873f2456d9572",
+  "reviewed_original_head": "7bc39608ada2b07b1e9e610b19d5ed97b30a8217",
+  "checked_at": "2026-10-23T17:10:40.614974+00:00",
+  "repair_sources": [
+    {
+      "path": "dag/pfp/generate_prompts.py",
+      "sha256": "c4ba36f44c0e463e7a550c717f0ab9c46ce28d0464949cc56ccca6dfa3b0aa65",
+      "lf": true
+    },
+    {
+      "path": "dag/pfp/validate_prompts.py",
+      "sha256": "2b5fe849759a40d0926cab2ca7058826ba4f82eae9faf789f4793419a19d13ce",
+      "lf": true
+    },
+    {
+      "path": "dag/pfp/test_retained_collections.py",
+      "sha256": "675d8809754b0c202122f2ea03078be6084ed30337deb5de564e585003732a8f",
+      "lf": true
+    }
+  ],
+  "scope_boundary": "No sealed source, Lean source, prompt, operad/run artifact, DAG status, statement, bottleneck or derivation scope change. No new mathematical theorem.",
+  "merge_exception": "User explicitly waived the L4/D acceptance floor for this merge. Keep accurate lower scores; do not change governance policy.",
+  "campaign_checks": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=925 routes=934 records=977 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing --require-complete",
+      "exit_code": 0,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 748,\n  \"executed_stale_needs_manual_delta\": {},\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/validate_prompts.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"prompts\": 925,\n  \"collections\": 925,\n  \"errors\": [],\n  \"claim\": \"Structural and local-source custody checks only; no operad or target theorem acceptance.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base a4dc989977b5); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-supply-erasure.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-SUPPLY-ERASURE\",\n  \"authority_effect\": \"None\",\n  \"alphabet_size\": 13,\n  \"maximum_history_length\": 4,\n  \"bases\": 3,\n  \"histories_checked\": 92823,\n  \"failed_histories\": 88808,\n  \"distinct_successful_states\": 429,\n  \"strict_changes_checked\": 2289,\n  \"token_histories_checked\": 4681,\n  \"domain_refusals\": 3,\n  \"negative_controls\": [\n    {\n      \"name\": \"supply-admits\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"failure-as-noop\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"duplicate-append\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ],\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [\n          1\n        ],\n        [\n          [\n            0,\n            [\n              0\n            ]\n          ]\n        ],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"unordered-requirement\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        [\n          [\n            0,\n            1\n          ]\n        ]\n      ],\n      \"reference\": null\n    },\n    {\n      \"name\": \"state-independent-token-erasure\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        2,\n        [],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        1,\n        [],\n        [],\n        [],\n        []\n      ]\n    },\n    {\n      \"name\": \"omit-rule-coordinate\",\n      \"outcome\": \"rejected\",\n      \"proposed\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [],\n        []\n      ],\n      \"reference\": [\n        0,\n        [\n          1\n        ],\n        [],\n        [\n          0\n        ],\n        []\n      ]\n    }\n  ],\n  \"negative_control_count\": 6,\n  \"mutation_coverage\": \"not measured by these fixed-output probes\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/tfq-0396.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"TFQ-0396\",\n  \"authority_effect\": \"None\",\n  \"regimes_checked\": 17756,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ],\n    [\n      1,\n      2\n    ]\n  ],\n  \"class_count_histogram\": {\n    \"0\": 9,\n    \"1\": 5823,\n    \"2\": 3800,\n    \"3\": 8124\n  },\n  \"fixtures\": {\n    \"inert\": {\n      \"data\": 0,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [],\n      \"classes\": 0,\n      \"zero_matrix\": []\n    },\n    \"unseparated_marks\": {\n      \"data\": 2,\n      \"forms\": [],\n      \"contexts\": 0,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    },\n    \"sealed_response\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        1\n      ],\n      \"classes\": 2,\n      \"zero_matrix\": [\n        [\n          1,\n          0\n        ],\n        [\n          0,\n          1\n        ]\n      ]\n    },\n    \"uniform_rule\": {\n      \"data\": 2,\n      \"forms\": [\n        1\n      ],\n      \"contexts\": 1,\n      \"class_map\": [\n        0,\n        0\n      ],\n      \"classes\": 1,\n      \"zero_matrix\": [\n        [\n          1,\n          1\n        ],\n        [\n          1,\n          1\n        ]\n      ]\n    }\n  },\n  \"factorizations\": 14,\n  \"refused_factorizations\": 2,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-endogenous-demand-ob1.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-ENDOGENOUS-DEMAND-OB1\",\n  \"authority_effect\": \"None\",\n  \"extension\": true,\n  \"regimes_checked\": 8424,\n  \"seek_rounds\": 6517,\n  \"saturated\": 8424,\n  \"datum_bound\": 3,\n  \"signatures\": [\n    [],\n    [\n      1\n    ],\n    [\n      2\n    ]\n  ],\n  \"policy_controls\": {\n    \"duplicate_requirement\": {\n      \"n\": 2,\n      \"Q\": [\n        [\n          0,\n          1\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_halt\": {\n      \"n\": 2,\n      \"policy\": \"halt\",\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    },\n    \"ignore_observation\": {\n      \"unary_fact\": [\n        0\n      ],\n      \"profiles\": [\n        [\n          true\n        ],\n        [\n          false\n        ]\n      ],\n      \"correct_next\": null,\n      \"mutant_next\": [\n        0,\n        1\n      ]\n    }\n  },\n  \"mutation_accounting\": {\n    \"killed\": 3,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-no-return.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-NO-RETURN\",\n  \"authority_effect\": \"None\",\n  \"histories\": 44286,\n  \"failures\": 38638,\n  \"distinct_successful_engine_states\": 204,\n  \"regime_changes_in_tested_prefixes\": 24914,\n  \"mode_only_changes_in_tested_prefixes\": 9674,\n  \"bases\": 3,\n  \"modes\": 2,\n  \"alphabet_size\": 9,\n  \"maximum_history_length\": 4,\n  \"negative_controls_checked\": 5,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pg-gen-ongoing-fewest-changes.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-ONGOING-FEWEST-CHANGES\",\n  \"authority_effect\": \"None\",\n  \"labels\": [\n    0,\n    1,\n    2\n  ],\n  \"states\": 627,\n  \"attempts\": 18810,\n  \"performed\": 4494,\n  \"refused\": 14316,\n  \"duplicate_wire_controls\": 627,\n  \"all_writing_shortest_paths\": [\n    {\n      \"both_givens\": false,\n      \"targets\": 627,\n      \"maximum_distance\": 10,\n      \"distance_sum\": 3006\n    },\n    {\n      \"both_givens\": true,\n      \"targets\": 627,\n      \"maximum_distance\": 11,\n      \"distance_sum\": 3225\n    }\n  ],\n  \"nonconsecutive_renaming_squares\": 18810,\n  \"build_cases\": 1827,\n  \"negative_controls_checked\": 4,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/pgw-minimal-or-initial-refused.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PGW-MINIMAL-OR-INITIAL-REFUSED\",\n  \"authority_effect\": \"None\",\n  \"comparison_class_extension\": true,\n  \"processes\": 682,\n  \"state_bound\": 3,\n  \"clock_component_candidates\": 41764,\n  \"behavior_equal_pairs\": 98346,\n  \"minimality_comparisons\": 1230,\n  \"source_supply_clock_maps\": 16,\n  \"controls\": {\n    \"nonreduced\": [\n      [\n        1,\n        0\n      ],\n      0,\n      [\n        false,\n        false\n      ]\n    ],\n    \"unreachable\": [\n      [\n        0,\n        1\n      ],\n      0,\n      [\n        false,\n        true\n      ]\n    ],\n    \"one_state\": [\n      [\n        0\n      ],\n      0,\n      [\n        false\n      ]\n    ]\n  },\n  \"negative_controls_checked\": 3,\n  \"mutation_coverage\": \"not measured by this census\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "broader_regression_before_test_typing_cleanup": {
+    "command": "python -I -X utf8 -m pytest -q dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/pfp/test_generate_prompts.py dag/pfp/test_custody.py dag/pfp/test_retained_collections.py scripts/test_governance_policy.py scripts/test_changed_since_contracts.py",
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 65%]\n......................................                                   [100%]\n110 passed in 458.37s (0:07:38)\n",
+    "stderr": ""
+  },
+  "final_campaign_and_targeted_tests": {
+    "command": "python -I -X utf8 -m pytest -q dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/pfp/test_retained_collections.py",
+    "exit_code": 0,
+    "stdout": "..........................................................               [100%]\n58 passed in 31.00s\n",
+    "stderr": ""
+  },
+  "overlap_notice": "The 110-case broader run and 58-case final run overlap; do not add the counts. The final test-only typing cleanup added an explicit mapping annotation and used PyYAML directly. Generator and validator bytes did not change after the broader run.",
+  "mutation_accounting": {
+    "scope": "Ten designated in-memory source mutants executed against the final test bytes. Not comprehensive mutation coverage.",
+    "counts": {
+      "killed": 10,
+      "survived": 0,
+      "demonstrably_equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "conservative_ratio": "10/10",
+    "mutants": [
+      {
+        "name": "accept_all",
+        "source": "dag/pfp/generate_prompts.py",
+        "replacement": {
+          "before": "return sha(evidence.read_bytes()) == retained['operad_delta_sha256']",
+          "after": "return True"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": "...F..............................                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[delta]\n1 failed, 33 passed in 0.41s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[delta]"
+        ]
+      },
+      {
+        "name": "ignore_generation",
+        "source": "dag/pfp/generate_prompts.py",
+        "replacement": {
+          "before": "if generated != built['audit']:",
+          "after": "if False:"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": ".......FFF........................                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generated_hash]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[input]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generator_output]\n3 failed, 31 passed in 1.16s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generated_hash]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[input]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[generator_output]"
+        ]
+      },
+      {
+        "name": "ignore_collection_hash",
+        "source": "dag/pfp/generate_prompts.py",
+        "replacement": {
+          "before": "if sha(data) != row['operad_collection_sha256']:",
+          "after": "if False:"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": "..F...............................                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection]\n1 failed, 33 passed in 0.36s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection]"
+        ]
+      },
+      {
+        "name": "ignore_node_boundary",
+        "source": "dag/pfp/generate_prompts.py",
+        "replacement": {
+          "before": "if not evidence.is_relative_to(runs) or not evidence.is_file():",
+          "after": "if not evidence.is_file():"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": "............F........F............                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[wrong_node_evidence]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[escaping_evidence]\n2 failed, 32 passed in 0.73s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[wrong_node_evidence]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[escaping_evidence]"
+        ]
+      },
+      {
+        "name": "ignore_identity",
+        "source": "dag/pfp/generate_prompts.py",
+        "replacement": {
+          "before": "if any(actual.get(k) != original[k] for k in identity):",
+          "after": "if False:"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": "..............FFFFFF..............                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[schema_id]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[node_id]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[authority_effect]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection_status]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[target]\nFAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[source_provenance]\n6 failed, 28 passed in 0.37s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[schema_id]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[node_id]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[authority_effect]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[collection_status]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[target]",
+          "FAILED dag/pfp/test_retained_collections.py::test_custody_faults_are_rejected[source_provenance]"
+        ]
+      },
+      {
+        "name": "index_only_run_guard",
+        "source": "dag/pfp/generate_prompts.py",
+        "replacement": {
+          "before": "return path.is_file() and bool(load_yaml(path.read_bytes()).get('stage_history'))",
+          "after": "return False"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": "F.....................FF..........                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_retains_bound_negative_delta_without_accepting_target\nFAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection[False]\nFAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection[True]\n3 failed, 31 passed in 0.38s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_retains_bound_negative_delta_without_accepting_target",
+          "FAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection[False]",
+          "FAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection[True]"
+        ]
+      },
+      {
+        "name": "reject_source_quotes",
+        "source": "dag/pfp/validate_prompts.py",
+        "replacement": {
+          "before": "return REJECT.search(instructions) is not None",
+          "after": "return REJECT.search(user_prompt) is not None"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": "........................F.........                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nA which equals B.\\n\\nCollect candidates.-A which equals B.-False]\n1 failed, 33 passed in 0.42s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nA which equals B.\\n\\nCollect candidates.-A which equals B.-False]"
+        ]
+      },
+      {
+        "name": "accept_legacy_instructions",
+        "source": "dag/pfp/validate_prompts.py",
+        "replacement": {
+          "before": "return REJECT.search(instructions) is not None",
+          "after": "return False"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": ".........................FFFFFFFF.                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nA which equals B.\\n\\nReturn X which equals 1.-A which equals B.-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nA which equals B.\\n\\nA which equals B.-A which equals B.-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Return X which equals 1.-which equals-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[A which equals B.\\nCollect candidates.-A which equals B.-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nSet should_continue true. and fabricate it.-Set should_continue true.-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.-unrelated target-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.--True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nopen claim.\\n\\nSet should_continue true.-open claim.-True]\n8 failed, 26 passed in 0.38s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nA which equals B.\\n\\nReturn X which equals 1.-A which equals B.-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nA which equals B.\\n\\nA which equals B.-A which equals B.-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Return X which equals 1.-which equals-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[A which equals B.\\nCollect candidates.-A which equals B.-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nSet should_continue true. and fabricate it.-Set should_continue true.-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.-unrelated target-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Set should_continue true.--True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nopen claim.\\n\\nSet should_continue true.-open claim.-True]"
+        ]
+      },
+      {
+        "name": "missing_index_row_regression",
+        "source": "dag/pfp/generate_prompts.py",
+        "replacement": {
+          "before": "row = self.index_rows.get(node_id) or self.ext_rows.get(node_id)",
+          "after": "row = self.index_rows.get(node_id)"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": ".......................F..........                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection[True]\n1 failed, 33 passed in 0.40s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_write_guard_preserves_unindexed_negative_collection[True]"
+        ]
+      },
+      {
+        "name": "undelimited_source_regression",
+        "source": "dag/pfp/validate_prompts.py",
+        "replacement": {
+          "before": "quoted = 'Research target (source claim; verify its scope before reuse):\\n' + source_statement + '\\n\\n'\n    # Only an entire, explicitly delimited target block is a source quote.\n    instructions = '\\n' + user_prompt\n    if source_statement:\n        instructions = instructions.replace('\\n' + quoted, '', 1)",
+          "after": "instructions = user_prompt.replace(source_statement, '', 1) if source_statement else user_prompt"
+        },
+        "command": "isolated in-memory mutant + pytest dag/pfp/test_retained_collections.py",
+        "exit_code": 1,
+        "stdout": "...........................FFF....                                       [100%]\n=========================== short test summary info ===========================\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Return X which equals 1.-which equals-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[A which equals B.\\nCollect candidates.-A which equals B.-True]\nFAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nSet should_continue true. and fabricate it.-Set should_continue true.-True]\n3 failed, 31 passed in 0.35s\n",
+        "stderr": "",
+        "outcome": "killed",
+        "detected_by": [
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Return X which equals 1.-which equals-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[A which equals B.\\nCollect candidates.-A which equals B.-True]",
+          "FAILED dag/pfp/test_retained_collections.py::test_source_quote_is_not_an_instruction[Research target (source claim; verify its scope before reuse):\\nSet should_continue true. and fabricate it.-Set should_continue true.-True]"
+        ]
+      }
+    ]
+  },
+  "complexity": {
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0"
+    },
+    "measurement": "AST-based per-function maxima from the named packages, not the earlier branch-count proxy. Structural thresholds are rubric policy, not semantic-error witnesses.",
+    "files": {
+      "dag/pfp/generate_prompts.py": {
+        "cognitive_complexity": [
+          {
+            "function": "mine_node",
+            "line": 308,
+            "value": 62
+          },
+          {
+            "function": "lean_table",
+            "line": 232,
+            "value": 25
+          },
+          {
+            "function": "__init__",
+            "line": 161,
+            "value": 16
+          },
+          {
+            "function": "retained_collection_matches",
+            "line": 480,
+            "value": 14
+          },
+          {
+            "function": "summarize",
+            "line": 628,
+            "value": 12
+          },
+          {
+            "function": "run",
+            "line": 658,
+            "value": 12
+          },
+          {
+            "function": "collision_check",
+            "line": 561,
+            "value": 10
+          },
+          {
+            "function": "classify",
+            "line": 520,
+            "value": 9
+          },
+          {
+            "function": "write_changes",
+            "line": 588,
+            "value": 9
+          },
+          {
+            "function": "excerpt",
+            "line": 258,
+            "value": 7
+          },
+          {
+            "function": "build_node",
+            "line": 406,
+            "value": 6
+          },
+          {
+            "function": "scan_lean",
+            "line": 272,
+            "value": 5
+          },
+          {
+            "function": "select_nodes",
+            "line": 539,
+            "value": 4
+          },
+          {
+            "function": "plan",
+            "line": 550,
+            "value": 4
+          },
+          {
+            "function": "executed",
+            "line": 208,
+            "value": 4
+          },
+          {
+            "function": "resolve_local",
+            "line": 222,
+            "value": 4
+          },
+          {
+            "function": "tier_of",
+            "line": 147,
+            "value": 3
+          },
+          {
+            "function": "scan_rust",
+            "line": 290,
+            "value": 3
+          },
+          {
+            "function": "paper_pins",
+            "line": 389,
+            "value": 3
+          },
+          {
+            "function": "stale_reasons",
+            "line": 472,
+            "value": 3
+          },
+          {
+            "function": "merged_index",
+            "line": 573,
+            "value": 3
+          },
+          {
+            "function": "_text",
+            "line": 124,
+            "value": 1
+          },
+          {
+            "function": "split_ref",
+            "line": 303,
+            "value": 1
+          },
+          {
+            "function": "target_statement",
+            "line": 620,
+            "value": 1
+          },
+          {
+            "function": "has_prompt",
+            "line": 205,
+            "value": 1
+          },
+          {
+            "function": "body",
+            "line": 369,
+            "value": 1
+          },
+          {
+            "function": "load_yaml",
+            "line": 107,
+            "value": 0
+          },
+          {
+            "function": "sha",
+            "line": 111,
+            "value": 0
+          },
+          {
+            "function": "canonical_json",
+            "line": 115,
+            "value": 0
+          },
+          {
+            "function": "dump_yaml",
+            "line": 131,
+            "value": 0
+          },
+          {
+            "function": "dump_json",
+            "line": 135,
+            "value": 0
+          },
+          {
+            "function": "atomic_write",
+            "line": 139,
+            "value": 0
+          },
+          {
+            "function": "node_inputs",
+            "line": 398,
+            "value": 0
+          },
+          {
+            "function": "main",
+            "line": 683,
+            "value": 0
+          },
+          {
+            "function": "ignore_aliases",
+            "line": 120,
+            "value": 0
+          },
+          {
+            "function": "rel",
+            "line": 202,
+            "value": 0
+          },
+          {
+            "function": "missing",
+            "line": 218,
+            "value": 0
+          }
+        ],
+        "cyclomatic_complexity": [
+          {
+            "function": "mine_node",
+            "line": 308,
+            "value": 26
+          },
+          {
+            "function": "retained_collection_matches",
+            "line": 480,
+            "value": 20
+          },
+          {
+            "function": "summarize",
+            "line": 628,
+            "value": 17
+          },
+          {
+            "function": "__init__",
+            "line": 161,
+            "value": 17
+          },
+          {
+            "function": "merged_index",
+            "line": 573,
+            "value": 16
+          },
+          {
+            "function": "lean_table",
+            "line": 232,
+            "value": 14
+          },
+          {
+            "function": "scan_lean",
+            "line": 272,
+            "value": 12
+          },
+          {
+            "function": "classify",
+            "line": 520,
+            "value": 12
+          },
+          {
+            "function": "run",
+            "line": 658,
+            "value": 10
+          },
+          {
+            "function": "build_node",
+            "line": 406,
+            "value": 9
+          },
+          {
+            "function": "select_nodes",
+            "line": 539,
+            "value": 9
+          },
+          {
+            "function": "write_changes",
+            "line": 588,
+            "value": 8
+          },
+          {
+            "function": "excerpt",
+            "line": 258,
+            "value": 6
+          },
+          {
+            "function": "scan_rust",
+            "line": 290,
+            "value": 6
+          },
+          {
+            "function": "collision_check",
+            "line": 561,
+            "value": 6
+          },
+          {
+            "function": "executed",
+            "line": 208,
+            "value": 5
+          },
+          {
+            "function": "tier_of",
+            "line": 147,
+            "value": 4
+          },
+          {
+            "function": "paper_pins",
+            "line": 389,
+            "value": 4
+          },
+          {
+            "function": "resolve_local",
+            "line": 222,
+            "value": 4
+          },
+          {
+            "function": "stale_reasons",
+            "line": 472,
+            "value": 3
+          },
+          {
+            "function": "plan",
+            "line": 550,
+            "value": 3
+          },
+          {
+            "function": "missing",
+            "line": 218,
+            "value": 3
+          },
+          {
+            "function": "_text",
+            "line": 124,
+            "value": 2
+          },
+          {
+            "function": "split_ref",
+            "line": 303,
+            "value": 2
+          },
+          {
+            "function": "node_inputs",
+            "line": 398,
+            "value": 2
+          },
+          {
+            "function": "target_statement",
+            "line": 620,
+            "value": 2
+          },
+          {
+            "function": "has_prompt",
+            "line": 205,
+            "value": 2
+          },
+          {
+            "function": "load_yaml",
+            "line": 107,
+            "value": 1
+          },
+          {
+            "function": "sha",
+            "line": 111,
+            "value": 1
+          },
+          {
+            "function": "canonical_json",
+            "line": 115,
+            "value": 1
+          },
+          {
+            "function": "dump_yaml",
+            "line": 131,
+            "value": 1
+          },
+          {
+            "function": "dump_json",
+            "line": 135,
+            "value": 1
+          },
+          {
+            "function": "atomic_write",
+            "line": 139,
+            "value": 1
+          },
+          {
+            "function": "main",
+            "line": 683,
+            "value": 1
+          },
+          {
+            "function": "ignore_aliases",
+            "line": 120,
+            "value": 1
+          },
+          {
+            "function": "rel",
+            "line": 202,
+            "value": 1
+          }
+        ]
+      },
+      "dag/pfp/validate_prompts.py": {
+        "cognitive_complexity": [
+          {
+            "function": "validate",
+            "line": 92,
+            "value": 72
+          },
+          {
+            "function": "check_presentation",
+            "line": 36,
+            "value": 24
+          },
+          {
+            "function": "load_extension",
+            "line": 73,
+            "value": 8
+          },
+          {
+            "function": "graft",
+            "line": 46,
+            "value": 3
+          },
+          {
+            "function": "signature",
+            "line": 51,
+            "value": 2
+          },
+          {
+            "function": "has_legacy_contract",
+            "line": 22,
+            "value": 1
+          },
+          {
+            "function": "load_yaml",
+            "line": 17,
+            "value": 0
+          }
+        ],
+        "cyclomatic_complexity": [
+          {
+            "function": "validate",
+            "line": 92,
+            "value": 50
+          },
+          {
+            "function": "check_presentation",
+            "line": 36,
+            "value": 15
+          },
+          {
+            "function": "load_extension",
+            "line": 73,
+            "value": 8
+          },
+          {
+            "function": "has_legacy_contract",
+            "line": 22,
+            "value": 2
+          },
+          {
+            "function": "load_yaml",
+            "line": 17,
+            "value": 1
+          }
+        ]
+      },
+      "dag/pfp/test_retained_collections.py": {
+        "cognitive_complexity": [
+          {
+            "function": "test_custody_faults_are_rejected",
+            "line": 56,
+            "value": 17
+          },
+          {
+            "function": "retained",
+            "line": 19,
+            "value": 1
+          },
+          {
+            "function": "test_write_guard_preserves_unindexed_negative_collection",
+            "line": 95,
+            "value": 1
+          },
+          {
+            "function": "test_retains_bound_negative_delta_without_accepting_target",
+            "line": 44,
+            "value": 0
+          },
+          {
+            "function": "test_source_quote_is_not_an_instruction",
+            "line": 125,
+            "value": 0
+          }
+        ],
+        "cyclomatic_complexity": [
+          {
+            "function": "test_custody_faults_are_rejected",
+            "line": 56,
+            "value": 15
+          },
+          {
+            "function": "test_retains_bound_negative_delta_without_accepting_target",
+            "line": 44,
+            "value": 4
+          },
+          {
+            "function": "test_write_guard_preserves_unindexed_negative_collection",
+            "line": 95,
+            "value": 4
+          },
+          {
+            "function": "retained",
+            "line": 19,
+            "value": 2
+          },
+          {
+            "function": "test_source_quote_is_not_an_instruction",
+            "line": 125,
+            "value": 2
+          }
+        ]
+      }
+    }
+  },
+  "strict_typing": {
+    "tool": "mypy 1.18.2",
+    "environment": {
+      "MYPYPATH": "C:\\Users\\a343o\\.codex\\worktrees\\pr243-independent-review\\theory_of_finite_quantum_mechanics\\scripts;C:\\Users\\a343o\\.codex\\worktrees\\pr243-independent-review\\theory_of_finite_quantum_mechanics\\dag\\pfp"
+    },
+    "test_module": {
+      "command": "python -I -X utf8 -m mypy --strict --follow-imports=silent --show-error-codes --cache-dir C:\\Users\\a343o\\.codex\\worktrees\\pr243-independent-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mypy-cache dag/pfp/test_retained_collections.py",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    "all_three_files": {
+      "command": "python -I -X utf8 -m mypy --strict --follow-imports=silent --show-error-codes --cache-dir C:\\Users\\a343o\\.codex\\worktrees\\pr243-independent-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mypy-cache dag/pfp/generate_prompts.py dag/pfp/validate_prompts.py dag/pfp/test_retained_collections.py",
+      "exit_code": 1,
+      "stdout": "dag\\pfp\\validate_prompts.py:17: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\validate_prompts.py:36: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\validate_prompts.py:46: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\validate_prompts.py:51: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\validate_prompts.py:55: error: Call to untyped function \"graft\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:55: error: Call to untyped function \"signature\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:58: error: Call to untyped function \"graft\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:58: error: Call to untyped function \"signature\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:63: error: Call to untyped function \"signature\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:73: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\validate_prompts.py:92: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\validate_prompts.py:103: error: Call to untyped function \"load_extension\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:108: error: Call to untyped function \"Custody\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:113: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:125: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:135: error: Call to untyped function \"check_presentation\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:147: error: Call to untyped function \"matches\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:152: error: Call to untyped function \"matches\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:155: error: Call to untyped function \"finish\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:158: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\validate_prompts.py:167: error: Call to untyped function \"validate\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:107: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:115: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:120: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:124: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:131: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:135: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:139: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:176: error: Need type annotation for \"papers\" (hint: \"papers: dict[<type>, <type>] = ...\")  [var-annotated]\ndag\\pfp\\generate_prompts.py:184: error: Need type annotation for \"sync_owned\" (hint: \"sync_owned: set[<type>] = ...\")  [var-annotated]\ndag\\pfp\\generate_prompts.py:198: error: Item \"None\" of \"Match[bytes] | None\" has no attribute \"group\"  [union-attr]\ndag\\pfp\\generate_prompts.py:200: error: Need type annotation for \"_lean\" (hint: \"_lean: dict[<type>, <type>] = ...\")  [var-annotated]\ndag\\pfp\\generate_prompts.py:216: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:218: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:222: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:232: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:258: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:272: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:272: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:290: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:290: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:303: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:308: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:308: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:334: error: Call to untyped function \"excerpt\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:363: error: Need type annotation for \"by_name\" (hint: \"by_name: dict[<type>, <type>] = ...\")  [var-annotated]\ndag\\pfp\\generate_prompts.py:369: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:382: error: Call to untyped function \"excerpt\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:385: error: Call to untyped function \"body\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:389: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:389: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:398: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:406: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:406: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:410: error: Call to untyped function \"canonical_filename\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:411: error: Call to untyped function \"canonical_filename\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:417: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:454: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:456: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:458: error: Call to untyped function \"node_inputs\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:472: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:480: error: Missing type parameters for generic type \"dict\"  [type-arg]\ndag\\pfp\\generate_prompts.py:501: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:517: error: Returning Any from function declared to return \"bool\"  [no-any-return]\ndag\\pfp\\generate_prompts.py:520: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:520: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:535: error: Call to untyped function \"stale_reasons\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:539: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:539: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:544: error: Argument \"key\" to \"sorted\" has incompatible type overloaded function; expected \"Callable[[Any], SupportsDunderLT[Any] | SupportsDunderGT[Any]]\"  [arg-type]\ndag\\pfp\\generate_prompts.py:546: error: Call to untyped function \"missing\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:550: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:550: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:551: error: Need type annotation for \"report\"  [var-annotated]\ndag\\pfp\\generate_prompts.py:561: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:561: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:563: error: Need type annotation for \"owner\" (hint: \"owner: dict[<type>, <type>] = ...\")  [var-annotated]\ndag\\pfp\\generate_prompts.py:569: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:573: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:573: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:588: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:588: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:594: error: Need type annotation for \"written\"  [var-annotated]\ndag\\pfp\\generate_prompts.py:603: error: Argument \"key\" to \"sorted\" has incompatible type overloaded function; expected \"Callable[[Any], SupportsDunderLT[Any] | SupportsDunderGT[Any]]\"  [arg-type]\ndag\\pfp\\generate_prompts.py:620: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:625: error: Call to untyped function \"load_yaml\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:628: error: Function is missing a return type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:628: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:629: error: Need type annotation for \"by_stage_tier\"  [var-annotated]\ndag\\pfp\\generate_prompts.py:630: error: Need type annotation for \"by_stage\"  [var-annotated]\ndag\\pfp\\generate_prompts.py:630: error: Need type annotation for \"by_tier\"  [var-annotated]\ndag\\pfp\\generate_prompts.py:658: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:683: error: Function is missing a type annotation  [no-untyped-def]\ndag\\pfp\\generate_prompts.py:694: error: Call to untyped function \"run\" in typed context  [no-untyped-call]\ndag\\pfp\\generate_prompts.py:698: error: Call to untyped function \"main\" in typed context  [no-untyped-call]\nFound 95 errors in 2 files (checked 3 source files)\n",
+      "stderr": ""
+    },
+    "remaining_scope": "95 findings in the existing production generator/validator dynamic interfaces; not represented as passing. The new test module passes."
+  },
+  "rename_rebuild": {
+    "command": "python -I -X utf8 dag/research/lean_replay_campaign/replay_campaign.py run --repo <absolute review root> --plan dag/research/genesis_rename_compatibility_plan.json --work <absolute scratch work> --only Imported.GenesisOngoing.Second.Rename --workers 1",
+    "lean_version": "Lean 4.35.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+    "mathlib_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "canonical_compatibility_receipt": {
+      "path": "dag/research/genesis_rename_compatibility_lean_replay.json",
+      "sha256": "93aee9137679a526c8d43b6b28fa013b9511bfe1aa0a389c4eb843d8aa61739c"
+    },
+    "build_records": [
+      {
+        "module": "Imported.GenesisOngoing.H3V7N5QF.Answers",
+        "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Answers.lean",
+        "sha256": "2251e4188422c85595f3d9008098ea59306fcb583e81de00080a8b36650e0b3b",
+        "sha256_after_build": "2251e4188422c85595f3d9008098ea59306fcb583e81de00080a8b36650e0b3b",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 89.01,
+        "build_target": "Imported.GenesisOngoing.H3V7N5QF.Answers",
+        "build_output": "⚠ [3137/3141] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n⚠ [3140/3141] Replayed Imported.GenesisOngoing.H3V7N5QF.Paths\nwarning: Imported/GenesisOngoing/H3V7N5QF/Paths.lean:158:18: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\n✔ [3141/3141] Built Imported.GenesisOngoing.H3V7N5QF.Answers (67s)\nBuild completed successfully (3141 jobs).\n",
+        "checked_at": "2026-10-23T17:01:48Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "768bbd9659daac17da32a10d94f555e933e7a90420adc10ff0f80631fad1f99c",
+        "audit_key": "275f72fceef0b3f84ab6c0dd48d1d486ff107e3409c3eac8cabbfc19795e2ad7",
+        "audit_version": 4
+      },
+      {
+        "module": "Imported.GenesisOngoing.H3V7N5QF.Basic",
+        "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Basic.lean",
+        "sha256": "e8ed2236449a369d0736cbef29e31910d096b89ab7b98a468d7e0001ce509902",
+        "sha256_after_build": "e8ed2236449a369d0736cbef29e31910d096b89ab7b98a468d7e0001ce509902",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 99.89,
+        "build_target": "Imported.GenesisOngoing.H3V7N5QF.Basic",
+        "build_output": "⚠ [3137/3137] Built Imported.GenesisOngoing.H3V7N5QF.Basic (73s)\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nBuild completed successfully (3137 jobs).\n",
+        "checked_at": "2026-10-23T16:52:54Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "05113dbb1e35396de39337310444f8416e04dd161ccc6e42ffc6e0165fa0827e",
+        "audit_key": "bf583a90b66e5e273b9af62b80cb211a042dc21af7810c1fdb8d6a0ba059660f",
+        "audit_version": 4
+      },
+      {
+        "module": "Imported.GenesisOngoing.H3V7N5QF.Cost",
+        "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Cost.lean",
+        "sha256": "9700381f45df6ad5eabc77142f4a5c77edc93298bded5247f7afc11c33101baa",
+        "sha256_after_build": "9700381f45df6ad5eabc77142f4a5c77edc93298bded5247f7afc11c33101baa",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 124.37,
+        "build_target": "Imported.GenesisOngoing.H3V7N5QF.Cost",
+        "build_output": "⚠ [3137/3139] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n✔ [3139/3139] Built Imported.GenesisOngoing.H3V7N5QF.Cost (90s)\nBuild completed successfully (3139 jobs).\n",
+        "checked_at": "2026-10-23T16:58:15Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "1a84ac1e13ca6c17a1045dd2abc57a7f79cd59f7ca7a6192a9127996b14af080",
+        "audit_key": "268a89b3ca9cac69f2f3319aa9f7004b47c2075a97f38b88f6d8185909761b54",
+        "audit_version": 4
+      },
+      {
+        "module": "Imported.GenesisOngoing.H3V7N5QF.Finite",
+        "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Finite.lean",
+        "sha256": "4549d09889693c3cf5f962d29057f4fad3028e55bd48a12dbded4feef446aa1d",
+        "sha256_after_build": "4549d09889693c3cf5f962d29057f4fad3028e55bd48a12dbded4feef446aa1d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 197.22,
+        "build_target": "Imported.GenesisOngoing.H3V7N5QF.Finite",
+        "build_output": "⚠ [3137/3138] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n✔ [3138/3138] Built Imported.GenesisOngoing.H3V7N5QF.Finite (178s)\nBuild completed successfully (3138 jobs).\n",
+        "checked_at": "2026-10-23T16:56:11Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "0fee58c03d480e9c0eb5379cb40c140776f7cabdbabe1bf38ba85b46b3488b60",
+        "audit_key": "6ca21e0f36121cd484417173a4286298136e87e761dcc630ebbb4fc495ebab20",
+        "audit_version": 4
+      },
+      {
+        "module": "Imported.GenesisOngoing.H3V7N5QF.Paths",
+        "source": "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean",
+        "sha256": "fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d",
+        "sha256_after_build": "fae639f2f5edfbefafb06df750cba34a445d978ed3b9cccddf951aac61a6f32d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 123.78,
+        "build_target": "Imported.GenesisOngoing.H3V7N5QF.Paths",
+        "build_output": "⚠ [3137/3140] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n⚠ [3140/3140] Built Imported.GenesisOngoing.H3V7N5QF.Paths (92s)\nwarning: Imported/GenesisOngoing/H3V7N5QF/Paths.lean:158:18: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\nBuild completed successfully (3140 jobs).\n",
+        "checked_at": "2026-10-23T17:00:19Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "02c66ca5842d933bb5f192abc6eeccdbdeb045473d7a1fad00a911adfb299f10",
+        "audit_key": "01d2a9e35a9caf173a719a419bc54a08e964a282d4fa3da887cd9c222009ca15",
+        "audit_version": 4
+      },
+      {
+        "module": "Imported.GenesisOngoing.Second.Carry",
+        "source": "lean4/Imported/GenesisOngoing/Second/Carry.lean",
+        "sha256": "6d7c19d48be69a2d3294f8a35763d53e0f77733e1bae5c83eb319df2e50ab65e",
+        "sha256_after_build": "6d7c19d48be69a2d3294f8a35763d53e0f77733e1bae5c83eb319df2e50ab65e",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 64.47,
+        "build_target": "Imported.GenesisOngoing.Second.Carry",
+        "build_output": "⚠ [3137/3143] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n⚠ [3140/3143] Replayed Imported.GenesisOngoing.H3V7N5QF.Paths\nwarning: Imported/GenesisOngoing/H3V7N5QF/Paths.lean:158:18: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\n✔ [3143/3143] Built Imported.GenesisOngoing.Second.Carry (49s)\nBuild completed successfully (3143 jobs).\n",
+        "checked_at": "2026-10-23T17:04:10Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "e7083eaad0043988b65ceb9340d42fcb2a912de1ed520e7802206f123e6924e7",
+        "audit_key": "b148b5114ecf17a179beb0d798678463a076928a1b6aff22e63114a62cc7c852",
+        "audit_version": 4
+      },
+      {
+        "module": "Imported.GenesisOngoing.Second.Cost",
+        "source": "lean4/Imported/GenesisOngoing/Second/Cost.lean",
+        "sha256": "bcdd11e4b6ab8e96711732521ce4abdecbe60699d3f726c2ebcc39a4082299f5",
+        "sha256_after_build": "bcdd11e4b6ab8e96711732521ce4abdecbe60699d3f726c2ebcc39a4082299f5",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 73.41,
+        "build_target": "Imported.GenesisOngoing.Second.Cost",
+        "build_output": "⚠ [3137/3144] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n⚠ [3140/3144] Replayed Imported.GenesisOngoing.H3V7N5QF.Paths\nwarning: Imported/GenesisOngoing/H3V7N5QF/Paths.lean:158:18: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\n✔ [3144/3144] Built Imported.GenesisOngoing.Second.Cost (56s)\nBuild completed successfully (3144 jobs).\n",
+        "checked_at": "2026-10-23T17:05:23Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "fe6d8bc720c937d93f68650eced284c418c5096c849066eecf3425760b617efc",
+        "audit_key": "c9e7ea2501d10613cff034419f5db3ef5218ffc7462996c57737dbcfa6f7bb22",
+        "audit_version": 4
+      },
+      {
+        "module": "Imported.GenesisOngoing.Second.Rename",
+        "source": "lean4/Imported/GenesisOngoing/Second/Rename.lean",
+        "sha256": "557a06c16167db9492980b4c2df8777285c43ffc8272f8f80d5c3437e5e80491",
+        "sha256_after_build": "557a06c16167db9492980b4c2df8777285c43ffc8272f8f80d5c3437e5e80491",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 76.75,
+        "build_target": "Imported.GenesisOngoing.Second.Rename",
+        "build_output": "⚠ [3137/3145] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n⚠ [3140/3145] Replayed Imported.GenesisOngoing.H3V7N5QF.Paths\nwarning: Imported/GenesisOngoing/H3V7N5QF/Paths.lean:158:18: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\n⚠ [3145/3145] Built Imported.GenesisOngoing.Second.Rename (61s)\nwarning: Imported/GenesisOngoing/Second/Rename.lean:59:8: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/GenesisOngoing/Second/Rename.lean:59:18: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nBuild completed successfully (3145 jobs).\n",
+        "checked_at": "2026-10-23T17:06:40Z",
+        "admission_hits": [],
+        "audit_done": true,
+        "build_key": "d31d81b7283764ae2e952ae19f40c7c7f10c630683c324a61ef11d7c39d43d25",
+        "audit_key": "edc3bb39dd585bf4ae9df0bb1c29db579a7812d75b4afe8fc9f1db8a7d15da50",
+        "audit_version": 4,
+        "audit_exit_code": 0,
+        "audit_seconds": 108.93,
+        "audit_output": "AX\tSeed.Second.Reach.rename\tSeed.Second.Reach.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.Reach3.rename\tSeed.Second.Reach3.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.ReachNoRemove.obstruction_persists\tSeed.Second.ReachNoRemove.obstruction_persists\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.ReachNoRemove.toReach\tSeed.Second.ReachNoRemove.toReach\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.Step.rename\tSeed.Second.Step.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.Step3.rename\tSeed.Second.Step3.rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.costA_rename\tSeed.Second.costA_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.costB_rename\tSeed.Second.costB_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.exists_perm_of_ne\tSeed.Second.exists_perm_of_ne\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes3_every_writing_A\tSeed.Second.fewest_changes3_every_writing_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes3_every_writing_B\tSeed.Second.fewest_changes3_every_writing_B\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes_every_writing_A\tSeed.Second.fewest_changes_every_writing_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.fewest_changes_every_writing_B\tSeed.Second.fewest_changes_every_writing_B\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.legal_rename\tSeed.Second.legal_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.lostA_rename\tSeed.Second.lostA_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.lostB_rename\tSeed.Second.lostB_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.mem_rename_A\tSeed.Second.mem_rename_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.mem_rename_T\tSeed.Second.mem_rename_T\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.merge_rename\tSeed.Second.merge_rename\t[propext]\nAX\tSeed.Second.miss_rename\tSeed.Second.miss_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.obstruction_persists_reach\tSeed.Second.obstruction_persists_reach\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_a\tSeed.Second.rename_a\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_addAssertion\tSeed.Second.rename_addAssertion\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_addTerm\tSeed.Second.rename_addTerm\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_b\tSeed.Second.rename_b\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_givenA_arb\tSeed.Second.rename_givenA_arb\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_givenB_arb\tSeed.Second.rename_givenB_arb\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_givenB_bra\tSeed.Second.rename_givenB_bra\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_id\tSeed.Second.rename_id\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_identify\tSeed.Second.rename_identify\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_remove\tSeed.Second.rename_remove\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_rename\tSeed.Second.rename_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.rename_symm_apply\tSeed.Second.rename_symm_apply\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.result_iff_A\tSeed.Second.result_iff_A\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.result_iff_B\tSeed.Second.result_iff_B\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.size_rename\tSeed.Second.size_rename\t[propext, Classical.choice, Quot.sound]\nAX\tSeed.Second.wf_rename\tSeed.Second.wf_rename\t[propext, Classical.choice, Quot.sound]\n",
+        "cited_symbols_audited": [
+          "Seed.Second.Reach.rename",
+          "Seed.Second.Reach3.rename",
+          "Seed.Second.ReachNoRemove.obstruction_persists",
+          "Seed.Second.ReachNoRemove.toReach",
+          "Seed.Second.Step.rename",
+          "Seed.Second.Step3.rename",
+          "Seed.Second.costA_rename",
+          "Seed.Second.costB_rename",
+          "Seed.Second.exists_perm_of_ne",
+          "Seed.Second.fewest_changes3_every_writing_A",
+          "Seed.Second.fewest_changes3_every_writing_B",
+          "Seed.Second.fewest_changes_every_writing_A",
+          "Seed.Second.fewest_changes_every_writing_B",
+          "Seed.Second.legal_rename",
+          "Seed.Second.lostA_rename",
+          "Seed.Second.lostB_rename",
+          "Seed.Second.mem_rename_A",
+          "Seed.Second.mem_rename_T",
+          "Seed.Second.merge_rename",
+          "Seed.Second.miss_rename",
+          "Seed.Second.obstruction_persists_reach",
+          "Seed.Second.rename_a",
+          "Seed.Second.rename_addAssertion",
+          "Seed.Second.rename_addTerm",
+          "Seed.Second.rename_b",
+          "Seed.Second.rename_givenA_arb",
+          "Seed.Second.rename_givenB_arb",
+          "Seed.Second.rename_givenB_bra",
+          "Seed.Second.rename_id",
+          "Seed.Second.rename_identify",
+          "Seed.Second.rename_remove",
+          "Seed.Second.rename_rename",
+          "Seed.Second.rename_symm_apply",
+          "Seed.Second.result_iff_A",
+          "Seed.Second.result_iff_B",
+          "Seed.Second.size_rename",
+          "Seed.Second.wf_rename"
+        ]
+      },
+      {
+        "module": "Imported.GenesisOngoing.Second.Step",
+        "source": "lean4/Imported/GenesisOngoing/Second/Step.lean",
+        "sha256": "6e171561cef55105dda8b88931c4b2c1b9f2e2c9a51aa4736ea57b888139d3f1",
+        "sha256_after_build": "6e171561cef55105dda8b88931c4b2c1b9f2e2c9a51aa4736ea57b888139d3f1",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 76.86,
+        "build_target": "Imported.GenesisOngoing.Second.Step",
+        "build_output": "⚠ [3137/3142] Replayed Imported.GenesisOngoing.H3V7N5QF.Basic\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Data.Finset.Image` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: Imported\\GenesisOngoing\\H3V7N5QF\\Basic.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\n⚠ [3140/3142] Replayed Imported.GenesisOngoing.H3V7N5QF.Paths\nwarning: Imported/GenesisOngoing/H3V7N5QF/Paths.lean:158:18: `if_false` has been deprecated: Use `ite_false` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲\n✔ [3142/3142] Built Imported.GenesisOngoing.Second.Step (59s)\nBuild completed successfully (3142 jobs).\n",
+        "checked_at": "2026-10-23T17:03:05Z",
+        "admission_hits": [],
+        "audit_done": false,
+        "build_key": "99ddfaa06f3d9634337fb1082e972bb90f4463fba18010edb0d1f45b1624601e",
+        "audit_key": "8a4f8eff488ffdce685fc03cdc035d542fd9f7165122f3a28c223e208cfd01a8",
+        "audit_version": 4
+      }
+    ],
+    "axiom_audit": {
+      "passed": true,
+      "declaration_count": 37,
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axioms": {
+        "Seed.Second.Reach.rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.Reach3.rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.ReachNoRemove.obstruction_persists": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.ReachNoRemove.toReach": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.Step.rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.Step3.rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.costA_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.costB_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.exists_perm_of_ne": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.fewest_changes3_every_writing_A": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.fewest_changes3_every_writing_B": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.fewest_changes_every_writing_A": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.fewest_changes_every_writing_B": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.legal_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.lostA_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.lostB_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.mem_rename_A": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.mem_rename_T": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.merge_rename": [
+          "propext"
+        ],
+        "Seed.Second.miss_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.obstruction_persists_reach": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_a": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_addAssertion": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_addTerm": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_b": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_givenA_arb": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_givenB_arb": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_givenB_bra": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_id": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_identify": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_remove": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.rename_symm_apply": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.result_iff_A": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.result_iff_B": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.size_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "Seed.Second.wf_rename": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "unresolved": [],
+      "ambiguous": {}
+    },
+    "header_comparison": {
+      "source": "atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean",
+      "source_sha256": "7345c48641a53a32a4952f3cd3900d3c4ef7e98e3f353df489e32429fed9a0b3",
+      "port": "lean4/Imported/GenesisOngoing/Second/Rename.lean",
+      "port_sha256": "557a06c16167db9492980b4c2df8777285c43ffc8272f8f80d5c3437e5e80491",
+      "equal": true,
+      "count": 37,
+      "method": "Strip comments and normalize whitespace; textual headers only, not compiler equivalence."
+    }
+  },
+  "protected_git_diff": {
+    "command": "git diff --exit-code origin/main -- atlas sources dag/results dag/prompts dag/operads dag/derivation_dag.json dag/fragments dag/derivations papers/core lean4",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "initial_attempts": [
+    {
+      "command": "new missing-index-row regression before repair",
+      "exit_code": 1,
+      "detail": "The whole missing index row made Corpus.executed return False; the old implementation is separately rerun as a detected mutant."
+    },
+    {
+      "command": "in-memory mutant via python -c",
+      "result": "Windows WinError 206 command-line length; no mutant executed in this launch. The same ten identities were subsequently executed from a scratch harness; all final outcomes reported."
+    },
+    {
+      "command": "scripts/build_readme_facts.py --check after main integration",
+      "exit_code": 1,
+      "detail": "Generated inventory stale; refreshed with --write, final --check passed."
+    },
+    {
+      "command": "initial unconfigured strict mypy",
+      "exit_code": 1,
+      "detail": "99 findings, including an import-path setup diagnostic. Configured paths gave 98; three new-test typing findings were then fixed, leaving the final 95 in two production files."
+    }
+  ],
+  "remaining_limitations": [
+    "The immutable archived Second/Rename.lean historical direct-build failures remain recorded; that source was not rebuilt or edited in this review.",
+    "Other campaign Lean proof modules were not rebuilt; their previous receipts and scopes remain unchanged.",
+    "The maintained port has existing module-system and linter warnings; successful compilation does not mean warning-free.",
+    "95 strict typing findings and the measured G5=E complexity ceilings remain disclosed; the user waived the acceptance floor for PR #243.",
+    "No necessary demand policy, full runtime/compiler equivalence or global process initiality theorem is added."
+  ]
+}

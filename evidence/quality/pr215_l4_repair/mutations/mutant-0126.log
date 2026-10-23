@@ -1,0 +1,128 @@
+
+running 52 tests
+... 3/52
+descriptor::tests::invalid_vocabulary_is_reported_by_field --- FAILED
+. 5/52
+descriptor::tests::parses_a_complete_companion --- FAILED
+...... 12/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+policy::tests::policy_rejects_wrong_orders_and_shapes --- FAILED
+...... 20/52
+score::tests::every_token_round_trips --- FAILED
+score::tests::floor_cases --- FAILED
+.. 24/52
+score::tests::malformed_tokens_are_rejected --- FAILED
+. 26/52
+score::tests::vocabulary_parse_errors_are_typed --- FAILED
+..... 32/52
+tests::binding_failure_still_reports_the_floor --- FAILED
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+.. 36/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+. 38/52
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+.......... 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- descriptor::tests::invalid_vocabulary_is_reported_by_field stdout ----
+
+thread 'descriptor::tests::invalid_vocabulary_is_reported_by_field' (30316) panicked at ..\code\rust\src\governance\src\descriptor.rs:318:9:
+assertion failed: matches!(d.level(), Err(Violation::Schema { field, found, .. }) if field ==
+    "level" && found == "\"L7\"")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- descriptor::tests::parses_a_complete_companion stdout ----
+
+thread 'descriptor::tests::parses_a_complete_companion' (44840) panicked at ..\code\rust\src\governance\src\descriptor.rs:271:9:
+assertion `left == right` failed
+  left: L1
+ right: L4
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (24556) panicked at ..\code\rust\src\governance\src\policy.rs:531:9:
+assertion `left == right` failed
+  left: Floor { min_level: L1, min_grade: D }
+ right: Floor { min_level: L4, min_grade: D }
+
+---- policy::tests::policy_rejects_wrong_orders_and_shapes stdout ----
+
+thread 'policy::tests::policy_rejects_wrong_orders_and_shapes' (8844) panicked at ..\code\rust\src\governance\src\policy.rs:550:9:
+assertion failed: matches!(Policy::from_json(&bad_level), Err(PolicyError::Field { field, .. })
+    if field == "floor.min_level")
+
+---- score::tests::every_token_round_trips stdout ----
+
+thread 'score::tests::every_token_round_trips' (12732) panicked at ..\code\rust\src\governance\src\score.rs:463:17:
+assertion `left == right` failed
+  left: ScoreToken { level: L2, grade: E }
+ right: ScoreToken { level: L1, grade: E }
+
+---- score::tests::floor_cases stdout ----
+
+thread 'score::tests::floor_cases' (16264) panicked at ..\code\rust\src\governance\src\score.rs:532:9:
+assertion failed: floor.admits(t("L4D"))
+
+---- score::tests::malformed_tokens_are_rejected stdout ----
+
+thread 'score::tests::malformed_tokens_are_rejected' (20616) panicked at ..\code\rust\src\governance\src\score.rs:474:13:
+assertion `left == right` failed: "L6A"
+  left: Ok(ScoreToken { level: L1, grade: A })
+ right: Err(MalformedToken("L6A"))
+
+---- score::tests::vocabulary_parse_errors_are_typed stdout ----
+
+thread 'score::tests::vocabulary_parse_errors_are_typed' (472) panicked at ..\code\rust\src\governance\src\score.rs:480:9:
+assertion `left == right` failed
+  left: Ok(L1)
+ right: Err(UnknownLevel("L9"))
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (23912) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Binding]
+ right: [Binding, Floor]
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (44736) panicked at ..\code\rust\src\governance\src\verify.rs:408:49:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (7100) panicked at ..\code\rust\src\governance\src\verify.rs:347:9:
+code/x.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L1 and grade >= D, found L1E
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (45396) panicked at ..\code\rust\src\governance\src\verify.rs:365:83:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (23020) panicked at ..\code\rust\src\governance\src\lib.rs:301:9:
+assertion failed: matches!(outcome("code/low.rs"), Outcome::Fail(v) if v.len() == 1 &&
+    v[0].rule() == Rule::Floor)
+
+
+failures:
+    descriptor::tests::invalid_vocabulary_is_reported_by_field
+    descriptor::tests::parses_a_complete_companion
+    policy::tests::policy_parses_floor_and_populations
+    policy::tests::policy_rejects_wrong_orders_and_shapes
+    score::tests::every_token_round_trips
+    score::tests::floor_cases
+    score::tests::malformed_tokens_are_rejected
+    score::tests::vocabulary_parse_errors_are_typed
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+
+test result: FAILED. 39 passed; 13 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.03s
+
+error: test failed, to rerun pass `--lib`

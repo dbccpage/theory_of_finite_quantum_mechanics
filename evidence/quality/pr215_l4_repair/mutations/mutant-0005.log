@@ -1,0 +1,46 @@
+
+running 10 tests
+. 1/10
+tests::rejects_bad_command_lines --- FAILED
+tests::parses_commands --- FAILED
+.... 7/10
+tests::open_needs_a_baseline_only_when_asked --- FAILED
+. 9/10
+tests::end_to_end_with_git --- FAILED
+
+failures:
+
+---- tests::rejects_bad_command_lines stdout ----
+
+thread 'tests::rejects_bad_command_lines' (38984) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:373:13:
+"check --changed-since"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::parses_commands stdout ----
+
+thread 'tests::parses_commands' (31596) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:356:78:
+called `Result::unwrap()` on an `Err` value: "--changed-since needs a value"
+
+---- tests::open_needs_a_baseline_only_when_asked stdout ----
+
+thread 'tests::open_needs_a_baseline_only_when_asked' (34984) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:552:9:
+--initial takes no reason: --reason needs a value
+
+---- tests::end_to_end_with_git stdout ----
+checked 1: 1 pass, 0 grandfathered, 0 boilerplate, 0 failed
+
+thread 'tests::end_to_end_with_git' (9680) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:523:9:
+assertion `left == right` failed
+  left: Err("--changed-since needs a value")
+ right: Ok(true)
+
+
+failures:
+    tests::end_to_end_with_git
+    tests::open_needs_a_baseline_only_when_asked
+    tests::parses_commands
+    tests::rejects_bad_command_lines
+
+test result: FAILED. 6 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.48s
+
+error: test failed, to rerun pass `--bin governance-check`
