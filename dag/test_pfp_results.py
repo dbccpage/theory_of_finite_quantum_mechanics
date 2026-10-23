@@ -15,7 +15,8 @@ import validate_derivation_dag as validator
 
 REVIEW_FILES = ('final_delivery_review_result.json', 'delivery_review_result.json', 'review_result.json',
                 'audit_results.json', 'findings.json')
-GENERATED_SLICES = ('unified_dag', 'pregenesis_to_wdp', 'application_branches', 'frontier_branches')
+GENERATED_SLICES = ('unified_dag', 'pregenesis_to_wdp', 'application_branches', 'frontier_branches',
+                     'genesis_to_higher')
 
 
 def load(path):
