@@ -960,3 +960,12 @@ lean_lib CampaignFspLatticeAnomalyInflow where
 -- Operational hypotheses and exact countermodels. Not a default build target.
 lean_lib CampaignTransitionProbability where
   roots := #[`CampaignTransitionProbability]
+
+-- Explicit process-comparison classes; non-default source and proof targets.
+lean_lib CampaignGenesisComparisonSource where
+  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
+  roots := #[`Derivation.Basic]
+  globs := #[.submodules `Derivation]
+
+lean_lib CampaignGenesisProcessComparison where
+  roots := #[`CampaignGenesisProcessComparison]
