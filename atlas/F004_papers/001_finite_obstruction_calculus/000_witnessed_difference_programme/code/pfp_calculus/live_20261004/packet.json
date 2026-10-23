@@ -1,0 +1,46 @@
+{
+  "authority_effect": "None",
+  "system_prompt": "PFP TWO-LEVEL CONTRACT. You propose a mathematical witness; the host evaluates it. AuthorityEffect is None. The original seed and admitted profile below are immutable. Use exact canonical rational strings and polynomial coefficients in ascending powers. No floats, explanation, markdown, extra fields or evaluation claims. Return exactly one JSON object satisfying response_schema. An endpoint number alone does not establish the polynomial derivative identity. The host will replay your actual witness.",
+  "user_prompt": "{\n  \"original_seed\": \"Integrate the function f(x) = x from integer 0 to integer 10.\\nProvide the single exact numerical result.\",\n  \"admitted_profile\": {\n    \"profile_id\": \"demo001_real_qpoly_v1\",\n    \"domain\": \"real_interval\",\n    \"measure\": \"riemann_dx\",\n    \"integrand_coefficients\": [\n      \"0\",\n      \"1\"\n    ],\n    \"lower\": \"0\",\n    \"upper\": \"10\"\n  },\n  \"declaration\": \"Riemann integral over the real interval [0,10], measure dx; integer describes endpoints only.\",\n  \"task\": \"Return a polynomial antiderivative and the exact endpoint difference. Copy the input hash supplied by the response schema.\",\n  \"worked_example_for_different_problem\": {\n    \"problem\": \"Integrate the constant function 2 on the real interval [0,3].\",\n    \"antiderivative_coefficients\": [\n      \"0\",\n      \"2\"\n    ],\n    \"derivative_coefficients\": [\n      \"2\"\n    ],\n    \"endpoint_difference\": \"6\",\n    \"warning\": \"This example is not the requested problem or its answer.\"\n  },\n  \"response_schema\": {\n    \"type\": \"object\",\n    \"additionalProperties\": false,\n    \"properties\": {\n      \"profile_id\": {\n        \"const\": \"demo001_real_qpoly_v1\"\n      },\n      \"input_sha256\": {\n        \"const\": \"3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d\"\n      },\n      \"method\": {\n        \"const\": \"polynomial_antiderivative\"\n      },\n      \"antiderivative_coefficients\": {\n        \"type\": \"array\",\n        \"items\": {\n          \"type\": \"string\"\n        }\n      },\n      \"claimed_value\": {\n        \"type\": \"string\"\n      }\n    },\n    \"required\": [\n      \"profile_id\",\n      \"input_sha256\",\n      \"method\",\n      \"antiderivative_coefficients\",\n      \"claimed_value\"\n    ]\n  }\n}",
+  "response_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "profile_id": {
+        "const": "demo001_real_qpoly_v1"
+      },
+      "input_sha256": {
+        "const": "3c1d8306a9d6cc8d434f68332bcf473829233f8e803bea219c6555e0fbadc31d"
+      },
+      "method": {
+        "const": "polynomial_antiderivative"
+      },
+      "antiderivative_coefficients": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "claimed_value": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "profile_id",
+      "input_sha256",
+      "method",
+      "antiderivative_coefficients",
+      "claimed_value"
+    ]
+  },
+  "dispatch": {
+    "model": "stealth/space-bunny-alpha",
+    "max_tokens": 2048,
+    "temperature": 0,
+    "max_requests": 1,
+    "allow_fallbacks": false,
+    "response_format": {
+      "type": "json_object"
+    }
+  }
+}

@@ -3,17 +3,29 @@ node_id: TFQ-0016
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: The same QM-213 map factors each invertible upper-triangular matrix into a diagonal
-    torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing
-    by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection
-    on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended
-    diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3
-    and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean
-    for the substrings qm213, two_stage, and borel and does not find them.
+  source_statement: Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular
+    2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2').
+    Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart
+    x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed
+    under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2),
+    (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each
+    edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of
+    the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two
+    dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e)
+    = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A
+    as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and
+    K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance.
+    Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the
+    tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has
+    no non-commutative coefficients in the curvature statements. The Lean module records that the natural
+    numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py
+    searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms
-    and independently verified in checks/independent/tfq-0016.py.
+  source_bottleneck: 'Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate
+    of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the
+    extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py
+    tests with SymPy only; any color-transport statement.'
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md
   paper_refs:
@@ -24,7 +36,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md
-    sha256: 432097fa8f2bcfafdf93f57190b9f010ec23e800e5a06762f0e568f0d9a34588
+    sha256: ec3335df89e3be85c43be327a3f07b7b35c841c52a3fbceaf01908d20ebb0a98
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -35,63 +47,63 @@ source_provenance:
 operation_candidates:
 - kind: abbrev
   name: E5
-  line: 252
+  line: 254
   signature_excerpt: abbrev E5
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: structure
   name: UpperTri2
-  line: 28
+  line: 30
   signature_excerpt: structure UpperTri2
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: IsInvertible
-  line: 63
+  line: 65
   signature_excerpt: 'def IsInvertible (x : UpperTri2) : Prop'
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: abbrev
   name: V4
-  line: 244
+  line: 246
   signature_excerpt: abbrev V4
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: u_T
-  line: 438
+  line: 440
   signature_excerpt: 'def u_T (U : E5 → UpperTri2) (v : V4) : UpperTri2'
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: u_N
-  line: 305
+  line: 307
   signature_excerpt: 'def u_N (U : E5 → UpperTri2) (v : V4) : UpperTri2'
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: inv
-  line: 65
+  line: 67
   signature_excerpt: 'def inv (x : UpperTri2) : UpperTri2'
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: treeTransport
-  line: 281
+  line: 283
   signature_excerpt: |-
     def treeTransport (U : E5 → UpperTri2) : V4 → UpperTri2
       | 0 => 1
@@ -109,35 +121,82 @@ operation_candidates:
       | 3 => ⟨mul_ne_zero (hU 3).1 (hU 2).1, mul_ne_zero (hU 3).2 (hU 2).2⟩
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: D_tree
-  line: 297
+  line: 299
   signature_excerpt: 'def D_tree (U : E5 → UpperTri2) (v : V4) : UpperTri2'
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: torusProj
-  line: 122
+  line: 124
   signature_excerpt: 'def torusProj (x : UpperTri2) : UpperTri2'
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: unipotentPart
-  line: 125
+  line: 127
   signature_excerpt: 'def unipotentPart (x : UpperTri2) : UpperTri2'
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsTorus
+  line: 118
+  signature_excerpt: 'def IsTorus (x : UpperTri2) : Prop'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsUnipotent
+  line: 121
+  signature_excerpt: 'def IsUnipotent (x : UpperTri2) : Prop'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isTreeEdge
+  line: 271
+  signature_excerpt: |-
+    def isTreeEdge : E5 → Prop
+      | 0 => True
+      | 1 => False
+      | 2 => True
+      | 3 => True
+      | 4 => False
+
+    /-- Root-to-vertex transport along tree edges:
+        T(0) = 1
+        T(1) = U(0)
+        T(2) = U(2)
+        T(3) = U(3) * U(2) -/
+    def treeTransport (U : E5 → UpperTri2) : V4 → UpperTri2
+      | 0 => 1
+      | 1 => U 0
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: U_stage1
+  line: 361
+  signature_excerpt: 'def U_stage1 (U : E5 → UpperTri2) (e : E5) : UpperTri2'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 - kind: def
   name: edgeTarget
-  line: 261
+  line: 263
   signature_excerpt: |-
     def edgeTarget : E5 → V4
       | 0 => 1
@@ -155,101 +214,141 @@ operation_candidates:
       | 4 => False
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: U_stage1
-  line: 359
-  signature_excerpt: 'def U_stage1 (U : E5 → UpperTri2) (e : E5) : UpperTri2'
-  source: lean4/CampaignTfq0016B2Dressing.lean
-  repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: edgeSource
-  line: 254
-  signature_excerpt: |-
-    def edgeSource : E5 → V4
-      | 0 => 0
-      | 1 => 1
-      | 2 => 0
-      | 3 => 2
-      | 4 => 1
-
-    def edgeTarget : E5 → V4
-      | 0 => 1
-      | 1 => 2
-      | 2 => 2
-      | 3 => 3
-      | 4 => 3
-
-    /-- Spanning tree T = {e0, e2, e3}. -/
-  source: lean4/CampaignTfq0016B2Dressing.lean
-  repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: U_full
-  line: 494
-  signature_excerpt: 'def U_full (U : E5 → UpperTri2) (e : E5) : UpperTri2'
-  source: lean4/CampaignTfq0016B2Dressing.lean
-  repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: covariantDiff2
-  line: 546
-  signature_excerpt: 'def covariantDiff2 (A : R → R → R) (K : R → R → R → R) (u v w z : R) : R'
-  source: lean4/CampaignTfq0016B2Dressing.lean
-  repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: two_stage_factorization
-  line: 451
+  line: 453
   signature_excerpt: |-
     theorem two_stage_factorization (U : E5 → UpperTri2) (hU : ∀ e, IsInvertible (U e)) (v : V4) :
         u_T U v * u_N U v = inv (treeTransport U v)
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: b2_semidirect_factorization
-  line: 157
+  line: 159
   signature_excerpt: |-
     theorem b2_semidirect_factorization (x : UpperTri2) (h : IsInvertible x) :
         x = torusProj x * unipotentPart x
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: b2_factorization_unique
+  line: 173
+  signature_excerpt: |-
+    theorem b2_factorization_unique (x D n : UpperTri2) (hD : IsTorus D) (hn : IsUnipotent n)
+        (h_prod : x = D * n) (hx : IsInvertible x) :
+        D = torusProj x ∧ n = unipotentPart x
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unipotent_subgroup_normal
+  line: 203
+  signature_excerpt: |-
+    theorem unipotent_subgroup_normal (M n : UpperTri2) (hM : IsInvertible M) (hn : IsUnipotent n) :
+        IsUnipotent (M * n * inv M)
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage1_tree_edges_diagonal
+  line: 391
+  signature_excerpt: |-
+    theorem stage1_tree_edges_diagonal (U : E5 → UpperTri2) (hU : ∀ e, IsInvertible (U e)) (e : E5)
+        (he : isTreeEdge e) : IsTorus (U_stage1 U e)
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage1_preserves_quotient_projection
+  line: 365
+  signature_excerpt: |-
+    theorem stage1_preserves_quotient_projection (U : E5 → UpperTri2) (e : E5) :
+        torusProj (U_stage1 U e) = torusProj (U e)
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: stage2_reproduces_residual
-  line: 498
+  line: 500
   signature_excerpt: |-
     theorem stage2_reproduces_residual (U : E5 → UpperTri2) (hU : ∀ e, IsInvertible (U e)) (e : E5) :
         u_T U (edgeTarget e) * U_stage1 U e * inv (u_T U (edgeSource e)) = U_full U e
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: b_squared_zero
+  line: 553
+  signature_excerpt: |-
+    theorem b_squared_zero (A : R → R → R) (u v w z : R) :
+        b2 (b1 A) u v w z = 0
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: discrete_bianchi_identity
-  line: 559
+  line: 561
   signature_excerpt: |-
     theorem discrete_bianchi_identity (A : R → R → R) (u v w z : R) :
         covariantDiff2 A (curvature1 A) u v w z = 0
   source: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  source_sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: curvature_gauge_covariance
+  line: 569
+  signature_excerpt: |-
+    theorem curvature_gauge_covariance (A : R → R → R) (g g_inv : R → R)
+        (h_inv : ∀ v, g v * g_inv v = 1)
+        (A_gauge : R → R → R)
+        (hA : ∀ x y, A_gauge x y = g x * A x y * g_inv y)
+        (u v w : R) :
+        curvature1 A_gauge u v w = g u * curvature1 A u v w * g_inv w
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: b2_color_dimension_mismatch
+  line: 595
+  signature_excerpt: 'theorem b2_color_dimension_mismatch : (2 : ℕ) ≠ 3'
+  source: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  source_sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -259,36 +358,99 @@ source_bindings:
   symbol: CampaignTfq0016.two_stage_factorization
   path: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   declaration_status: declaration_found_not_proof_checked
-  line: 451
+  line: 453
   role: source_lead_only
 - original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization
   availability: local
   symbol: CampaignTfq0016.UpperTri2.b2_semidirect_factorization
   path: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   declaration_status: declaration_found_not_proof_checked
-  line: 157
+  line: 159
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique
+  availability: local
+  symbol: CampaignTfq0016.UpperTri2.b2_factorization_unique
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  declaration_status: declaration_found_not_proof_checked
+  line: 173
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal
+  availability: local
+  symbol: CampaignTfq0016.UpperTri2.unipotent_subgroup_normal
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  declaration_status: declaration_found_not_proof_checked
+  line: 203
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal
+  availability: local
+  symbol: CampaignTfq0016.stage1_tree_edges_diagonal
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  declaration_status: declaration_found_not_proof_checked
+  line: 391
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection
+  availability: local
+  symbol: CampaignTfq0016.stage1_preserves_quotient_projection
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  declaration_status: declaration_found_not_proof_checked
+  line: 365
   role: source_lead_only
 - original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual
   availability: local
   symbol: CampaignTfq0016.stage2_reproduces_residual
   path: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   declaration_status: declaration_found_not_proof_checked
-  line: 498
+  line: 500
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero
+  availability: local
+  symbol: CampaignTfq0016.b_squared_zero
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  declaration_status: declaration_found_not_proof_checked
+  line: 553
   role: source_lead_only
 - original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity
   availability: local
   symbol: CampaignTfq0016.discrete_bianchi_identity
   path: lean4/CampaignTfq0016B2Dressing.lean
   repository: this_repository
-  sha256: 8f859e9178ce0e9cfa29b3926724d261a65e4bdc44d265d80f987245562b6007
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
   declaration_status: declaration_found_not_proof_checked
-  line: 559
+  line: 561
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance
+  availability: local
+  symbol: CampaignTfq0016.curvature_gauge_covariance
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  declaration_status: declaration_found_not_proof_checked
+  line: 569
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b2_color_dimension_mismatch
+  availability: local
+  symbol: CampaignTfq0016.b2_color_dimension_mismatch
+  path: lean4/CampaignTfq0016B2Dressing.lean
+  repository: this_repository
+  sha256: d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97
+  declaration_status: declaration_found_not_proof_checked
+  line: 595
   role: source_lead_only
 presentation:
   colours: []

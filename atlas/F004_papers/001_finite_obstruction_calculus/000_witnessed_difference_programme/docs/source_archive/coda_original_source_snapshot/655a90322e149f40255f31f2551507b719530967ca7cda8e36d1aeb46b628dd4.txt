@@ -1,0 +1,634 @@
+# 005 Duration
+
+## 001_CODA Monograph Series (005_duration)
+
+**Date:** 2026-07-29 · **Version:** v1.0  
+**License:** Creative Commons Attribution 4.0 International (CC-BY-4.0)  
+**Status:** RELEASED  
+**Authority:** `AuthorityEffect::None`  
+
+## Mechanism inventory
+
+| Slot | Value / Description |
+| --- | --- |
+| **Primitive Differences** | $\delta c = \text{{defect mass}}$ |
+| **Carriers / Structure** | Finite Graph 0-Cochain / Hilbert Space |
+| **Cochain complex** | $C^0 \to C^1 \to C^2$ |
+| **Coboundary maps** | $\delta^0, \delta^1$ |
+| **ZeroRel** | Preserved under $L_1$ quotient |
+| **Licensed repairs** | None |
+| **Quotient / Q1** | Banach Quotient |
+| **Residuals** | $\delta c \neq 0$ boundary defect |
+| **Witnesses** | Replayable Python / Rust Certifiers |
+| **Observers / profiles** | Operational Observer |
+| **Anomalons** | None |
+| **CompletionLaw** | Finite Cochain Completion |
+| **Terminal / route** | Route to Anomalon Estate |
+| **AuthorityEffect** | None |
+
+## Paper 4 — Duration as an Additive Cochain
+
+GTOC Foundations — Physics-Contact Extension. Weighted Succession, Exactness, Coupled Clocks, and Continuum Debt
+
+**Date:** 2026-07-23 · **Version:** v0.1.3 (Python-Q residual-classification evidence binding) · **Series:** GTOC Foundations (see ../001_coda/gtoc/00_series_charter.md)
+**Claim ledger:** [005_duration_claim_ledger.md](005_duration_claim_ledger.md) · **Series controls:** [charter](gtoc.md) · [theorem ledger](gtoc_claim_ledger.md)
+**Requires:** Papers 0–3: retained cuts and recurrence (╬┤0), packet-indexed succession and constitutive order (╬┤1), finite tally and scalar construction (╬┤2), declarations and carrier scope (╬┤3).
+
+**Main claim:** duration is not primitive and is not identified with bare step count. On an admitted finite succession carrier, a duration field is a declared additive edge valuation carried in an ordered abelian group, with an edgewise positivity receipt
+
+$$
+\tau:E_{\mathrm{succ}}(P)\longrightarrow G,
+\qquad
+\tau(e)\in G_{\ge 0}\ \text{ for every admitted edge } e,
+$$
+
+where the coefficient packet supplies $G$, its positive cone $G_{\ge0}$, finite addition, equality, and order receipts. The carrier is the group $G$, not the cone: $G_{\ge0}$ is not closed under the subtraction that residuals require, and "1-cochain" is licensed only once the declared cochain contract is exhibited (§3.2). For an explicitly factorized finite chain packet $X$, duration is the sum of $\tau$ over its exhibited leaf-edge **occurrence** family, which is multiplicity-preserving by construction rather than identity-keyed. Unit step-tally is the special gauge $\tau_1(e)=1$. Endpoint-only duration is earned by an exactness certificate $\tau=d_0T$. Residuals are classified, not lumped: **exact** earns endpoint-potential duration; **closed nonexact** witnesses path dependence somewhere in the admitted carrier via an exhibited global period; **active closure failure** exhibits a *local* duration-composition defect; **undetermined** means the packet lacks the receipts to classify. A local defect does not by itself establish a global path-dependence class.
+
+**Non-claim:** no passage, presentness, simultaneity, physical proper time, preferred clock, universal unit, continuum, dynamics, or quantum time is derived.
+**Authority:** none. A duration or clock receipt licenses nothing.
+**State note:** all constructions inherit Paper 1’s M3, K11, and admissible-$\Sigma$ conditions and Paper 2’s conditional scalar package. No full cochain-complex authority is presumed beyond each explicitly supplied finite carrier and incidence receipt.
+**Retention inheritance note:** an evaporated ╬┤0 flicker supplies no handle, edge receipt, interval, duration, or clock reading. Duration is formed only from retained, co-exhibited succession receipts.
+
+Abstract
+
+This paper constructs finite duration as an additive edge valuation on a declared succession carrier, carried in an ordered abelian group with an edgewise positivity receipt. It proves scoped additivity and exactness-based endpoint dependence, separates local-face closure from global periods to classify duration receipts as exact, closed-nonexact, active closure failure, or undetermined, defines coupled clock packets with a typed adequacy outcome, and itemizes the topology, refinement, convergence, and completeness debts that block continuous time and $\exp(tH)$.
+
+
+§1 — The question and its price
+
+Succession provides an asymmetric relation but no magnitude. A magnitude requires additional data. This paper separates five objects that ordinary language often conflates:
+
+1. a finite succession carrier;
+2. an interval packet with explicit endpoints and factorization receipts;
+3. a duration edge valuation $\tau$ assigning a weight to each admitted succession edge (a 1-cochain once the §3.2 contract is exhibited);
+4. an exactness or residual receipt classifying endpoint dependence;
+5. a coupled clock packet comparing one exhibited change against another.
+
+Nothing in this list passes, flows, or becomes present. The construction is tenseless.
+
+### Import Ledger — §1
+
+| Term | Degree | Source / price |
+|---|---:|---|
+| retained cut and local exhibition | ╬┤0 | Paper 0 |
+| $\prec$, $\lhd$, $\succ_{\Sigma}$ | ╬┤1 | Paper 1; conditional on M3 + K11 + admissible $\Sigma$ |
+| finite tally and addition | ╬┤2 | Paper 2 |
+| ratios and ordered coefficient object | ╬┤2 | conditional on Paper 2’s scalar package |
+| carrier, declaration, calibration scope | ╬┤3 | declared and ledgered |
+| duration edge valuation and exactness class | ╬┤4 | constructed below; the 1-cochain name is licensed only per §3.2 |
+| passage, presentness, continuum | — | unconstructed |
+
+### Genesis-Bias Fence
+
+No timeline contains the carrier. No external observer places endpoints. No hidden sequence is traversed. Every handle, edge, factorization, weight, and calibration used below is co-exhibited in a finite packet. “From $\alpha$ to $\beta$” abbreviates an endpoint receipt and its displayed edge-factorization, not motion through a pre-existing interval.
+
+
+§2 — Interval packets without universal token identity
+
+**2.1 Cut handles.** A cut is referred to inside one packet by a **CutHandle**
+
+$$
+h=(\mathrm{artifact\_ref},\mathrm{exhibition\_ref},\mathrm{local\_handle}).
+$$
+
+Handle equality is a packet validation fact. It is not metaphysical identity across all exhibitions. Cross-packet transport requires a separate representation or transport receipt.
+
+**2.2 Endpoint receipts.** An **EndpointReceipt** binds two CutHandles to one carrier reference and records which is the source and which is the target. It passes only when both handles occur in that carrier and the packet exhibits a K11 witness from source to target.
+
+**2.3 FiniteChainPacket.** A finite chain packet contains:
+
+| Field | Required receipt |
+|---|---|
+| carrier reference | hash-bound admitted succession carrier |
+| cut-handle case table | finite co-exhibited handles, not a universal set |
+| immediate-edge receipts | one $\succ_{\Sigma}$ receipt for each displayed leaf edge |
+| endpoint receipt | source and target handles on this carrier |
+| linearity receipt | stated over **occurrences** (§3.2), not edge identities: exactly one displayed incoming occurrence and exactly one displayed outgoing occurrence at every internal handle; the source handle has no displayed incoming occurrence and exactly one outgoing; the target handle has exactly one incoming and no outgoing; every occurrence belongs to the same connected factorization; no occurrence appears in two leaf positions unless separately tokenized; and the projected leaf occurrences agree with the endpoint and factorization receipts. The earlier "one admitted continuation at every internal handle" is withdrawn as too weak — it admitted branching and disconnected edge families as chains |
+| factorization receipts | explicit binary decompositions of the interval into subinterval packets |
+| leaf-edge projection receipt | every K11 constructor term used for the interval projects to the displayed leaf-edge family |
+| provenance receipt | Witness-Robust or Curated status inherited from each succession edge |
+
+A FiniteChainPacket is therefore more than an asserted walk. The host may not infer missing intermediates, reorder handles, or search an ambient graph to manufacture a chain.
+
+**2.4 Interval extraction.** The interval $[\alpha,\beta]_X$ is the subpacket named by an explicit factorization receipt inside $X$. If a factorization
+
+$$
+X_{\alpha\gamma}\cong X_{\alpha\beta}\star X_{\beta\gamma}
+$$
+
+is not exhibited, neither subinterval nor additivity at $\beta$ is available. Interval extraction never relies on an unrecorded list position or a hidden traversal.
+
+**2.5 Incomparability.** If no EndpointReceipt and factorized FiniteChainPacket relate two handles, this paper assigns no duration to the pair. It does not infer simultaneity and does not assert that some unknown metric separation exists.
+
+### Import Ledger — §2
+
+| Term | Degree | Source / price |
+|---|---:|---|
+| CutHandle | protocol | packet-local reference, not universal identity |
+| EndpointReceipt | ╬┤4 | carrier membership + K11 witness |
+| FiniteChainPacket | ╬┤4 | declared finite receipt bundle |
+| interval | ╬┤4 | explicit factorization receipt |
+| hidden walk, ambient graph search, global token identity | — | refused |
+
+
+§3 — Duration fields
+
+**3.1 Coefficient packet.** Fix a declared coefficient packet $(G,+,0,\leq,G_{\ge0})$ with machine-checkable finite addition, equality, order, and positive-cone laws. No real-number completeness is used.
+
+**3.2 Duration edge valuation, and when it is a cochain (2026-07-18 review repair).** A duration field on carrier $P$ is first a declared **additive duration edge valuation**
+
+$$
+\tau:E_{\mathrm{succ}}(P)\longrightarrow G,
+\qquad
+\tau(e)\in G_{\ge0}\ \text{ for every admitted edge } e .
+$$
+
+> **Why the codomain is $G$ and not $G_{\ge0}$.** The positive cone $G_{\ge0}$ is a cone, **not** a group: it is not closed under the subtraction that coboundaries and signed path differences require, and $d_1\tau$ in §4.2 is literally a difference of two boundary sums. Writing $\tau:E\to G_{\ge0}$ and simultaneously calling it a 1-cochain conflates the **carrier** with the **restriction**. The corrected reading separates three things: the cochain carrier $G$; a **positivity receipt** certifying $\tau(e)\in G_{\ge0}$ edgewise; and the subtraction in $G$ that residuals need. Earlier text writing $\tau:E_{\mathrm{succ}}(P)\to G_{\ge0}$ as the definition of the cochain is withdrawn.
+
+The valuation is called a **1-cochain**, $\tau\in C^1(P;G)$, only once the declared cochain contract is exhibited for the packet; until then "additive duration edge valuation" is the accurate name. This matches the header state note: no unrestricted cochain-complex authority is presumed.
+
+**Edge occurrences, not edge identities.** Duration is summed over an exhibited family of **occurrences**, not of distinct edge handles. Each occurrence is a token
+
+$$
+\mathsf{EdgeOccurrence}=(\textit{occurrence\_handle},\ \textit{succession\_edge\_handle},\ \textit{source\_handle},\ \textit{target\_handle},\ \textit{provenance}),
+$$
+
+and $L(X)$ is the exhibited collection of occurrences of $X$. This is **structural, defensive typing**: an identity-keyed family would silently collapse any repetition of a succession-edge handle and under-count the duration. Note that intra-chain repetition is *already* excluded here — §2's linearity receipt forces exactly one incoming and one outgoing occurrence at each internal handle, and M3 acyclicity forbids it independently — so no claim in this paper depends on that case being realizable. The typing keeps unit tally, disjoint factorization, reassociation, duration sums, and replay determinism sound against carriers that relax those receipts, rather than repairing a live defect. Where $\#L(X)$ is used, the packet must carry a `TallyWitness` for the occurrence count.
+
+For a factorized chain packet $X_{\alpha\beta}$ with exhibited leaf-edge occurrence family $L(X_{\alpha\beta})$, define
+
+$$
+## \operatorname{Dur}_{\tau}(X_{\alpha\beta})
+\\sum_{o\\in L(X_{\\alpha\\beta})}\\tau(\\textit{succession\\_edge\\_handle}(o)).
+$$
+
+The finite sum is evaluated only over the displayed case table. A zero value is allowed by the coefficient packet; it does not erase the distinct endpoint handles or their succession receipts.
+
+**3.3 Unit-tally gauge.** The former definition by step count is retained as one special choice:
+
+$$
+\tau_1(e)=1,
+\qquad
+\operatorname{Dur}_{\tau_1}(X)=\#L(X).
+$$
+
+Calling this “the” duration would silently set every local unit equal. V1 therefore reports it as **UnitTallyGauge**, never as an unqualified metric.
+
+**3.4 Additivity theorem.** Suppose the packet exhibits
+
+$$
+X_{\alpha\gamma}\cong X_{\alpha\beta}\star X_{\beta\gamma}
+$$
+
+and the factorization receipt proves that the leaf-edge **occurrence** family of $X_{\alpha\gamma}$ is the disjoint exhibited union of the two subfamilies,
+
+$$
+L(X_{\alpha\gamma})\;\cong\;L(X_{\alpha\beta})\,\sqcup\,L(X_{\beta\gamma}),
+$$
+
+as a decomposition of occurrences (§3.2) rather than of edge identities. Defensively typed, consistent with §3.2: were a shared edge handle to appear in both factors it would have to be carried as two occurrences rather than identified — though §2's linearity receipt and M3 acyclicity already exclude that case on any carrier admitted here. Then
+
+$$
+## \operatorname{Dur}_{\tau}(X_{\alpha\gamma})
+\operatorname{Dur}_{\tau}(X_{\alpha\beta})
++
+\operatorname{Dur}_{\tau}(X_{\beta\gamma}).
+$$
+
+This follows from finite additivity in the coefficient packet. Without the factorization and disjointness receipts, the equation is not evaluated.
+
+**3.5 K11 reassociation invariance.** Duration is evaluated on the projected leaf-edge family, not on the syntax tree of a K11 witness. Two differently bracketed K11 terms receive the same duration only when a normalization or reassociation receipt proves that both project to the same leaf-edge case table. Associativity of $+$ then equates the sums. The paper does not silently assume that all K11 witness terms are definitionally equal.
+
+**3.6 Ratios, and a fence about density (narrowed 2026-07-18).** A ratio of two nonzero durations uses Paper 2's scalar package and inherits its conditional status; plain finite addition and order comparison do not require that ratio construction.
+
+> **SCOPE FENCE — density is a property of the coefficient object, not a result of this construction.** The admitted coefficient object may contain a dense scalar order. **No density of realized durations, realized ratios, or clock readings follows**, and none is claimed: a fixed finite carrier exhibits finitely many chains and therefore finitely many realized values. The earlier phrasing — that "candidate ratio values inherit that density" — is **withdrawn**: "candidate ratio value" was never a defined object of this paper, and the sentence read as a theorem about the duration construction when it is at most an observation about the scalar package. Nothing here bears on the continuum, which remains `OracleNeeded` at G7 (§5.2).
+
+### Import Ledger — §3
+
+| Term | Degree | Source / price |
+|---|---:|---|
+| edge-weight valuation $\tau$ (1-cochain once the §3.2 contract is exhibited) | ╬┤4 | declared on a hash-bound carrier |
+| unit-tally gauge $\tau_1$ | ╬┤4 | special constant cochain |
+| chain duration | ╬┤4 | finite sum over projected leaf edges |
+| additivity | ╬┤4 | factorization + disjointness + coefficient laws |
+| reassociation invariance | ╬┤4 | explicit leaf-edge normalization receipt |
+| ratio | ╬┤2/╬┤4 | conditional scalar package + nonzero denominator |
+
+
+§4 — Exactness, residuals, and clocks
+
+**4.1 Path comparisons and admitted 2-cells (boundary contract added 2026-07-18).** Two objects must be kept apart. Comparing two common-endpoint chains is *not* the same as exhibiting an admitted 2-cell with an oriented boundary, and only the latter can define $d_1$.
+
+A **`PathComparisonReceipt`** is the weaker object: two factorized `FiniteChainPacket`s $X$ and $Y$ sharing a source `CutHandle` $\alpha$ and target `CutHandle` $\omega$, together with $\tau$ evaluated on the leaf-edge occurrences of both. It compares two path sums and nothing more. **Not every common-endpoint path pair is thereby a declared 2-cell.**
+
+A **`DurationComparisonCell`** is an admitted **2-cell** — a generator of the chain group $C_2$, not an element of a cochain group — and must additionally carry an oriented boundary:
+
+$$
+\mathsf{DurationComparisonCell}=
+\begin{cases}
+\textit{positive\_chain},\ \textit{negative\_chain} & \text{the two factorized chains}\\
+\textit{shared\_source},\ \textit{shared\_target} & \text{common endpoint handles}\\
+\textit{positive\_orientation\_receipt} & \text{which chain is } X^{+}\\
+\textit{boundary\_receipt} & \partial_2 \text{ of the cell, as an oriented 1-chain}\\
+\textit{carrier\_binding} & \text{the declared face family this cell belongs to}
+\end{cases}
+$$
+
+Only with the orientation and boundary receipts — making it an admitted **2-cell**, a generator of the chain group $C_2$ rather than an element of a cochain group — is the evaluation
+
+$$
+(d_1\tau)(F)\;=\;\operatorname{Dur}_\tau(X_F^{+})-\operatorname{Dur}_\tau(X_F^{-})
+$$
+
+well defined — and note that this is a subtraction in $G$, which is why §3.2 carries the cochain in $G$ rather than in the cone $G_{\ge0}$. The diamond test below is exhibited as a `PathComparisonReceipt`; it becomes a `DurationComparisonCell` only when the orientation, boundary, and carrier-binding receipts are supplied.
+
+**4.1a Worked reproducible example — the diamond tests the unit gauge, not every duration.** Exhibit a `PathComparisonReceipt` (§4.1 — *not* a `DurationComparisonCell`: the diamond needs no orientation, boundary, or carrier-binding receipt to do its work, and claiming one would be the very conflation §4.1 separates) with five packet-local handles with succession edges
+$$
+\alpha\to\beta\to\omega,
+\qquad
+\alpha\to\zeta\to\eta\to\omega,
+$$
+each edge carrying an admissible $\Sigma$ receipt and the whole carrier carrying M3/K11 receipts. The two factorized chain packets share endpoint handles $(\alpha,\omega)$.
+
+For $\tau_1(e)=1$,
+$$
+\operatorname{Dur}_{\tau_1}(X_{\alpha\omega})=2,
+\qquad
+\operatorname{Dur}_{\tau_1}(Y_{\alpha\omega})=3.
+$$
+Thus the unit-tally gauge is not endpoint-only on this carrier. But the same comparison admits lawful nonunit weights: assign $(1,2)$ to the upper edges and $(1,1,1)$ to the lower edges. Both sums are $3$. The comparison therefore refutes universal pair-independence of unit tally; it does not prove that every lawful duration field is path-dependent, and — carrying no boundary receipt — it computes no $d_1\tau$ and classifies nothing.
+
+**4.2 Duration residual (classification repaired 2026-07-18).** Closure and nonexactness must be evaluated against **two different objects**, and the previous three-class table conflated them.
+
+> **The defect in the earlier table.** It read "closed nonexact" as: $d_1\tau=0$ everywhere locally, *but* an exhibited `DurationComparisonCell` witnesses $\Delta\operatorname{Dur}\ne0$. Since $d_1\tau$ is *defined* as the boundary difference of such a cell (§4.1), a cell with nonzero difference **is** a face on which $d_1\tau\ne0$ — which the same table classifies as **open**. The two rows therefore overlapped, and any packet meeting the closed-nonexact condition met the open condition as well. The repair is to fix which family closure is checked on, and to require a genuinely *global* witness for nonexactness.
+
+**Declared local face family.** The packet declares a finite family $F_{\mathrm{local}}$ of admitted 2-cells (§4.1). Closure is the audit
+
+$$
+(d_1\tau)(f)=0\qquad\text{for every } f\in F_{\mathrm{local}} .
+$$
+
+**Notation for this subsection (added 2026-07-19; these symbols are declared, not imported).** All four are packet-local finite objects on the declared carrier — no ambient chain complex is presumed:
+
+| Symbol | Reading on this carrier |
+|---|---|
+| $\partial_1$ | the boundary map sending a displayed edge occurrence to (target $-$ source) of its handles; a **1-chain** is a finite formal $\mathbb{Z}$-combination of occurrences |
+| $\partial_2$ | the boundary map sending an admitted 2-cell $F\in F_{\mathrm{local}}$ to the oriented 1-chain $X_F^{+}-X_F^{-}$ recorded by its `boundary_receipt` (§4.1) |
+| $\ker\partial_1$ | 1-chains whose endpoints cancel — the **cycles** of the carrier |
+| $\operatorname{im}\partial_2$ | 1-chains generated by the *declared* faces — the **boundaries**. These are cycles only where the contract supplies $\partial_1\circ\partial_2=0$, the dual of the identity the OBSTRUCTION below declines to presume; absent it, a boundary need not lie in $\ker\partial_1$ |
+| $\\langle\\tau,z\\rangle$ | evaluation of the duration valuation on a 1-chain, $\\sum_i n_i\\,\\tau(\\textit{succession\\_edge\\_handle}(o_i))$, taken in $G$ (which is why §3.2 carries $\\tau$ in the group) |
+
+**Global period witness.** Nonexactness requires a cycle that the declared faces do not generate:
+
+$$
+z\in\ker\partial_1,\qquad z\notin\operatorname{im}\partial_2,\qquad \langle\tau,z\rangle\ne0 .
+$$
+
+A common-endpoint difference *inside* $\operatorname{im}\partial_2$ is not a period — it is a face, and it belongs to the closure audit. With these separated, the classification is coherent:
+
+| Class | Machine condition | Meaning |
+|---|---|---|
+| **Exact** | a displayed potential $T$ satisfies $\tau=d_0T$, **and** either no declared face fails closure or the $d_1\circ d_0=0$ contract is exhibited | endpoint-only duration is earned on the scoped carrier |
+| **ClosedNonExact** | $(d_1\tau)(f)=0$ for all $f\in F_{\mathrm{local}}$ **and** a nontrivial global period $z$ is exhibited with $\langle\tau,z\rangle\ne0$ | local audits close, yet a global cycle not generated by the declared faces obstructs any endpoint potential; the nonexactness is *witnessed*, not inferred |
+| **ActiveClosureFailure** | $(d_1\tau)(f)\ne0$ for at least one $f\in F_{\mathrm{local}}$, **and** either no potential receipt is displayed or the $d_1\circ d_0=0$ contract is exhibited | a *localized* duration-composition defect is exhibited |
+| **ExactnessUndetermined** | **no other class's machine condition is met**, **or** the packet exhibits conflicting potential and face receipts absent the $d_1\circ d_0=0$ contract | the packet cannot classify; the host reports the weaker available receipt |
+
+> **A missing exactness receipt is never a proof of nonexactness.** Absence of a displayed potential, *with no exhibited period witness*, routes to `ExactnessUndetermined` and never to `ClosedNonExact`. The qualifier is load-bearing: a `ClosedNonExact` packet has no displayed potential by design, so the unqualified reading would make that class unreachable in exactly its canonical case. The quotient conclusion $[\tau]\ne0$ is drawn only when the finite cochain contract, the quotient contract, the declared face family, **and** an exhibited global period witness are all present. The former class name *open* is renamed `ActiveClosureFailure` because "open" was doing double duty for "a local face fails to close" and "we do not know", which are different terminals.
+
+> **OBSTRUCTION — what the cochain contract buys is that a *bare* potential receipt suffices for `Exact`; the four classes are disjoint either way.** *(Restated 2026-07-19 after a third audit iteration.)*
+>
+> **Disjointness — all six pairs, and exhaustiveness (completed 2026-07-19 under an operator budget extension).** `ExactnessUndetermined`'s first disjunct is **residual**: it fires exactly when no other class's machine condition is met. That single change makes both properties provable together, where the earlier "the required receipts are incomplete" phrasing could not — read broadly it overlapped three pairs in *canonical* cases, read narrowly it made classification depend on which class the host attempted.
+>
+> **The residual definition is well-founded.** `Exact`, `ClosedNonExact`, and `ActiveClosureFailure` each state their machine conditions **without reference to** `ExactnessUndetermined`, so \"no other class's machine condition is met\" is not circular. This is what licenses the complementation argument below; were any of the three to refer back to `ExactnessUndetermined`, the construction would collapse.
+>
+> **EU's two disjuncts overlap, and that is deliberate.** Whenever the second fires — a potential plus a failing face, absent the contract — all three other classes are excluded, so the residual fires too: the second disjunct is *subsumed* by the first. It is retained because it names the canonical undetermined case explicitly rather than leaving it implicit in a complement. Overlap *within* one class is a union, not a classification defect; a later editor should not \"simplify\" by deleting either.
+>
+> **Exhaustiveness** is then immediate: `ExactnessUndetermined` is by definition the complement of the other three, so every packet lands in at least one class.
+>
+> **The six pairs.** Among the three substantive classes:
+> `Exact` $\cap$ `ActiveClosureFailure` $=\varnothing$ — ACF exhibits a failing face, which kills `Exact`'s first disjunct, so `Exact` would need the contract; but contract plus $\tau=d_0T$ gives $(d_1\tau)(f)=(d_1\circ d_0)T(f)=0$ on every face, contradiction.
+> `Exact` $\cap$ `ClosedNonExact` $=\varnothing$ **unconditionally** — for $z\in\ker\partial_1$, $\langle d_0T,z\rangle=\langle T,\partial_1 z\rangle=0$ by adjointness of $d_0$ to $\partial_1$ alone, $\partial_2$ never entering, so no exact field admits a nonzero period.
+> `ClosedNonExact` $\cap$ `ActiveClosureFailure` $=\varnothing$ by construction — closure holds on every declared face in the first and fails on some declared face in the second.
+>
+> **The three pairs against `ExactnessUndetermined`** now split by disjunct. Against the **first** (residual) disjunct, `Exact` $\cap$ `EU`, `ClosedNonExact` $\cap$ `EU`, and `ActiveClosureFailure` $\cap$ `EU` are all empty **by construction**: that disjunct fires only when no other class's condition is met, so it cannot co-fire with any of them. Against the **second** disjunct — a packet holding both a potential and a failing face, absent the contract — `Exact` is excluded because its own second conjunct then fails, `ActiveClosureFailure` by the matching guard in its second conjunct, and `ClosedNonExact` because a failing declared face contradicts its closure requirement. Six of six.
+>
+> *Why the residual reading is the honest one.* A `ClosedNonExact` packet has **no displayed potential by design** — the period witness is precisely what shows none exists — so under the old "required receipts are incomplete" phrasing it satisfied EU as well, and the same held for an `ActiveClosureFailure` packet with no potential. Those were canonical cases, not edge cases. Making the disjunct residual removes the overlap without weakening any other class.
+>
+> **What is genuinely obstructed.** Not disjointness — the *strength of a potential receipt*. With $d_1\circ d_0=0$ supplied by the declared cochain contract, $\tau=d_0T$ **alone** certifies `Exact`. The header state note declines full cochain-complex authority, so **this paper does not presume $d_1\circ d_0=0$**; absent it a potential receipt must be accompanied by a clean face audit, and a packet displaying a potential *and* a failing face routes to `ExactnessUndetermined`. **Registered as PL-GTOC-35** (`proof_ledgers/proof_ledger_20260719.md`).
+>
+> *What the earlier wording got wrong, recorded rather than silently swapped.* It said the `Exact` / `ActiveClosureFailure` exclusion "is not free". Under the current narrowed conditions that exclusion is **definitional** — `Exact`'s own second conjunct supplies the contract or rules out a failing face — so the claim described a superseded version of this table. It also pointed at the wrong pair: the genuine overlap was `ActiveClosureFailure` $\cap$ `ExactnessUndetermined`, and it went undisclosed. This is the **third iteration of one defect** — the original three-class table overlapped; the first repair relocated the overlap to `Exact`/`ExactnessUndetermined`; the second relocated it to `ActiveClosureFailure`/`ExactnessUndetermined`. The guards are now carried by **both** classes that can see a conflicting receipt. **A fourth iteration was nevertheless found** (2026-07-19, terminal adversary cycle): the defect did not relocate to another class pair but into `ExactnessUndetermined`'s first disjunct, the one clause never given a machine condition. Under its broad reading three pairs overlap in *canonical* cases — a `ClosedNonExact` packet has no displayed potential **by design**, since the period witness is what shows none exists, so it satisfies "the required potential receipt is incomplete". Under a narrow reading disjointness holds but classification depends on which class the host attempts, which a machine condition cannot do. **This *was* registered OPEN below and is discharged in the note that follows**: at the time of writing the adversary budget for this paper was exhausted, and applying an unaudited fix to machinery that had failed four audits is exactly what produced the previous three iterations. The operator subsequently extended the budget for one pass, and the repair was applied and independently verified.
+
+> **DISCHARGED 2026-07-19 (operator budget extension) — the classification is now proved disjoint and exhaustive together.** The terminal adversary cycle established that §4.2 could not support both properties as written and specified the repair; it was carried here unapplied while the adversary budget was exhausted, and the operator subsequently extended the budget for exactly this pass. Applied: `ExactnessUndetermined`'s first disjunct is now **residual**, and the two missing pair arguments (`Exact`$\cap$`ExactnessUndetermined`, `ClosedNonExact`$\cap$`ExactnessUndetermined`) are supplied above, alongside the third EU pair, giving six of six. No change was needed to `Exact`, `ClosedNonExact`, `ActiveClosureFailure`, or PL-GTOC-35, and no new mathematics was introduced — the repair is a definitional tightening. **This was the fourth iteration of one defect and the first pass to close it rather than relocate it**; the difference is that the residual disjunct removes the unconditioned clause the defect kept migrating into, instead of adding another guard beside it.
+
+**4.2a Python-Q executable evidence for the classification (PR #1345; finite and partial).** Merged [PR #1345](https://github.com/dbccpage/anomalon/pull/1345) binds an exact-rational Python implementation to this four-way decision surface. On four explicitly displayed finite $\mathbb Q$-linear carriers, `THE_OBSTRUCTION_CRUCIBLE.py` plus `duration_profile.py` reproduces `Exact`, `ClosedNonExact`, `ActiveClosureFailure`, and `ExactnessUndetermined`. The `ClosedNonExact` fixture carries a separately typed period $z$ with
+
+$$
+\partial_1z=0,\qquad z\notin\operatorname{im}\partial_2,\qquad \langle\tau,z\rangle=1\ne0.
+$$
+
+The invalid-complex decision table exercises every potential/no-potential and closed/nonclosed combination while setting `cohomological_reading_licensed=false`. A bounded lexicographic sweep checks all $125$ cochains in $[-2,2]^3$ on one filled-triangle carrier; its class tally is a statement about that declared box only.
+
+This is **Python-$\mathbb Q$ executable partial evidence for P4-C6c**, not a universal proof and not Lean mechanization. The implementation does not quantify over arbitrary ordered abelian coefficient groups or all admitted finite carriers. Its `Exact` fixture exhibits one instance of the hypothesis $\tau=d_0T$ but does not mechanize P4-C6a's chain-telescoping theorem; it supplies none of P4-C6b's rooted coverage, selected-chain construction, or every-edge compatibility verifier. The replay receipt therefore records `REFUSE_PROMOTION`, the evaluation terminal is `oracle_needed`, and the independent adversarial gate remains open. **PL-GTOC-15 remains OPEN; Lean remains NOT-STARTED; AuthorityEffect is None.** The detailed Q-process receipt is [PL-GTOC-15 Duration Solver Receipt](../../../principia_anomalonica/historical_supplement/by_layer/q/pl_gtoc_15_duration_solver_receipt_20260723.md).
+
+**4.3 Exact duration theorem.** If a potential receipt exhibits $T$ with
+$$
+\tau(e)=T(\operatorname{target}e)-T(\operatorname{source}e)
+$$
+for every displayed succession edge, then every factorized chain sum telescopes:
+$$
+\operatorname{Dur}_{\tau}(X_{\alpha\beta})=T(\beta)-T(\alpha).
+$$
+Hence all admitted chain packets with the same endpoint handles receive the same value. This paper names this outcome **exactness-certified endpoint dependence** (formerly termed "packet-local absolute duration"). It is strictly relative to admitted paths in the fixed carrier, and is nothing more than a discrete telescoping sum. It is not absolute across every exhibition, nor does it imply a universal physical frame.
+
+**Corollary (monotone potential).** If in addition the positivity receipt of §3.2 holds — $\tau(e)\in G_{\ge0}$ for every admitted edge — then $\tau=d_0T$ gives $T(\operatorname{target}e)-T(\operatorname{source}e)\ge 0$, so **$T$ is monotone non-decreasing along every admitted succession edge**, and hence along every admitted chain by §3.4. This is a consequence of positivity plus exactness, not of exactness alone; it licenses no ordering between handles that no admitted chain connects.
+
+**Converse (rooted, edge-compatibility form; economized 2026-07-18).** On a finite rooted connected carrier it suffices to exhibit:
+
+1. one root-to-handle chain packet for **every** handle $h$ (root coverage);
+2. $T(h)$ defined as the duration of that *selected* chain; and
+3. for **every** admitted edge $u\to v$, a comparison receipt proving $T(v)=T(u)+\tau(u\to v)$.
+
+Then $\tau=d_0T$. Step 3 is per-edge compatibility with the constructed potential — it does **not** require comparing every pair of alternative paths, which the earlier formulation ("a receipt that all alternative admitted paths have equal duration") demanded and which is unnecessary: a finite packet needs only enough coverage to certify each edge against the selected chains. Without root coverage and per-edge compatibility receipts, "path-independent implies exact" is not claimed.
+
+> **Endpoint-only duration is not primitive. On a fixed admitted carrier, it is earned by an exactness certificate.** "Absolute duration" survives only as an external gloss that this paper explicitly rejects.
+
+**4.4 Coupled clock packet.** A clock is not merely another unrelated tally. A **ClockPacket** contains:
+
+| Field | Purpose |
+|---|---|
+| reference-process carrier $K$ | co-exhibited tick succession receipts |
+| target carrier and interval domain | states what is being compared |
+| coupling receipt | binds each target interval in scope to a displayed clock interval |
+| calibration receipt | declares the value or ratio assigned to one coupled comparison |
+| readout rule | finite sum or conditional ratio computation |
+| coverage receipt | identifies exactly which target intervals are measured |
+| stability receipt | states which conservative re-exhibitions preserve the calibration |
+| residual policy | blocks a reading when required duration or coupling residuals are open |
+| **nonzero-denominator receipt** | any *ratio* readout requires the reference duration to be nonzero in $G$; a zero reference issues no ratio |
+| **unit/dimension compatibility receipt** | target and reference values are comparable only under a declared conversion or unit contract; without it the readout is not formed |
+| **coupling functionality receipt** | the coupling maps each target interval in scope to exactly one reference interval; a target silently mapping to several incompatible reference intervals is refused unless the packet explicitly declares a relation-valued readout |
+| **reference residual status** | records the clock's *own* duration field as `Exact`, `ClosedNonExact`, `ActiveClosureFailure`, or `ExactnessUndetermined` (§4.2); a reference in active closure failure must not issue an ordinary reading |
+
+A clock is **adequate within scope** when these receipts validate and every requested interval lies in the covered coupling domain. No unindexed predicate "the clock is right" is formed. Adequacy is reported as a typed outcome, never as a boolean:
+
+$$
+\mathsf{ClockAdequacy}=
+\begin{cases}
+\mathsf{ValidReading}\\
+\mathsf{OutsideCoverage}\\
+\mathsf{CalibrationMissing}\\
+\mathsf{CouplingAmbiguous}\\
+\mathsf{ReferenceResidualOpen}\\
+\mathsf{TargetResidualOpen}\\
+\mathsf{RatioDenominatorZero}\\
+\mathsf{UnitContractMissing}\\
+\mathsf{StabilityUndetermined}
+\end{cases}
+$$
+
+Only `ValidReading` licenses a duration comparison, and it licenses it *within the declared coverage and calibration scope only*. Every other outcome is a refusal that names its own cause; none of them is a reading with a caveat.
+
+> A clock does not measure time from outside the world. It compares one exhibited change against another.
+
+**4.5 Periodic clocks without incidence cycles.** Acyclic token succession is compatible with periodic clock state. Exhibit four distinct CutHandles $k_a,k_b,k_c,k_d$ with state labels $A,B,A,B$ and only the three forward succession-edge receipts displayed by that finite packet. Recurrence belongs to the declared state-label or calibration map; it does not identify distinct tokens, add a fourth closing edge, or violate M3.
+
+**4.6 Stability.** A conservative packet extension cannot alter an inherited edge weight, factorization, calibration, or exactness receipt whose declared support is unchanged. An extension that changes those records creates a new packet and a new duration claim.
+
+### Import Ledger — §4
+
+| Term | Degree | Source / price |
+|---|---:|---|
+| unit-gauge diamond defect | ╬┤4 | exhibited counterexample |
+| $d_1\tau$ | ╬┤4 | requires an **admitted 2-cell with an oriented boundary receipt** (`DurationComparisonCell`, §4.1); a bare common-endpoint `PathComparisonReceipt` is not sufficient |
+| declared local face family $F_{\mathrm{local}}$ | ╬┤4 | packet declaration; closure is audited only on it |
+| global period witness $z\in\ker\partial_1\setminus\operatorname{im}\partial_2$ | ╬┤4 | required for `ClosedNonExact`; not derivable from a face difference |
+| Exact / ClosedNonExact / ActiveClosureFailure / ExactnessUndetermined | ╬┤4 | finite cochain and quotient contracts as available; a missing receipt routes to Undetermined, never to nonexact |
+| EdgeOccurrence tokens, `TallyWitness` | ╬┤4 | multiplicity-preserving leaf family (§3.2); required before $\#L(X)$ is used |
+| potential $T$ and endpoint-only duration | ╬┤4 | exactness certificate |
+| ClockPacket and adequacy | ╬┤3/╬┤4 | declared coupling, calibration, coverage, and residual policy |
+| globally right clock | — | not formed |
+
+
+§5 — Boundaries and contact points
+
+**5.1 Passage and presentness.** A precedence structure does not pass. A duration does not elapse. Nothing in succession or duration constitutes passage, and no handle is selected as present. Passage and presentness remain unconstructed.
+
+**5.2 Continuous duration.** Completeness is necessary for the intended real-valued continuum construction but is not the only debt. A continuum packet would need, at minimum:
+
+1. a topology or convergence structure;
+2. a directed refinement system for finite chain packets;
+3. embeddings or comparison maps between refinements;
+4. convergence receipts for duration sums;
+5. compatibility of addition and order with limits;
+6. representation-transport and gauge-stability receipts;
+7. a finite-shadow certificate binding every continuum claim back to checked finite packets;
+8. the required completeness principle.
+
+Until all of these are admitted and verified, continuous duration is **OracleNeeded at G7**, not latent inside dense scalar values and not recovered from completeness alone. [Paper 9 — Space and Extension](../008_space_and_extension/008_space_and_extension.md) constructs only the finite part of items (1)–(3): a topology from an explicitly supplied finite order (its §2), monotone refinement maps with derived continuity, and their continuity receipts. It does **not** supply cofinality, convergence, completeness, or the bridge from finite DDA/CODA-A replay to a semigroup or $\exp(tH)$ — Paper 9's own P9-C8 records ─îech comparison, cofinality, convergence, and continuum promotion as `[OPEN / OracleNeeded]`, and its refinement boundary states plainly that one map is not a directed system, a directed family is not cofinality, cofinality is not convergence, and convergence is not completeness. The QM audit's M11 gap remains open.
+
+**5.3 Zeno.** At ╬┤4 there is no refinement order, no same-interval transport across refinements, and no limit object. **The classical *infinite-refinement* Zeno problem** therefore cannot yet be formulated in this language, because no infinite refinement or limit object has been admitted; it is not solved or dissolved. The narrower reading matters: a *finite* chain of decreasing durations is already perfectly formulable here — it is an ordinary admitted chain packet — and exhibits no regress. What is unavailable is the infinite subdivision the classical argument requires. A later Q-gated packet may reopen it by supplying refinement, transport, convergence, and limit receipts. Atomicity is claimed only for an edge inside one fixed FiniteChainPacket.
+
+**5.4 CODA-A contact.** Finite CODA-A path sums may use $\operatorname{Dur}_{\tau}(X)$ as a grading of an exhibited chain packet. The special unit-tally grading is only one case. Any expression involving a real parameter $t$, a continuum semigroup, or a continuum path integral inherits §5.2’s OracleNeeded boundary.
+
+**5.5 Physical proper time.** There is a fenced structural resonance: active-closure-failure or closed-nonexact duration fields can distinguish admitted paths with common endpoints, while exact fields cannot. No Lorentzian metric, signature, invariant interval, dynamics, or empirical law is present. The paper does not claim that path dependence is universal or that relativistic proper time has been derived.
+
+**5.6 Simultaneity and units.** Incomparability is not simultaneity. A unit is part of the coefficient or calibration packet, not a universal scale. Neither a global slice nor seconds are obtained.
+
+**5.7 The Lynds boundary: interval readings without an instant or chronon ontology.** [INTERPRETIVE] Peter Lynds's 2003 paper treats time operationally as a relative interval reading indicated by a clock, denies a literal physical flow, privileges relative order over reversible direction, and rejects placing the universe in an external time. That comparison sharpens this paper's clock boundary: a `ClockPacket` reading is the output of an exhibited coupling and calibration over a finite interval packet, not a measurement made from an external temporal viewpoint.
+
+[SCOPE FENCE] The agreement does not license Lynds's stronger claim that every physical magnitude must be ontically indeterminate. An exact coordinate value is compatible with nonzero mathematical change - for example, $x(t)=t$ is exact at every real argument while $dx/dt=1$. This is a countermodel to *exact point value implies stasis*, not a physical ontology. Conversely, the present paper does not claim that clock readings necessarily have non-singleton physical support unless a resolution model is separately supplied.
+
+A finite succession edge is an incidence receipt, not a chronon. Its duration value may be zero or nonunit under the admitted coefficient packet, and no indivisible universal time quantum is asserted. Finiteness therefore neither proves discrete physical time nor rules out a later continuum lift. The topology, refinement, transport, convergence, finite-shadow, and completeness debts of §5.2 remain open; Zeno remains neither solved nor dissolved.
+
+### Import Ledger — §5
+
+| Term | Status |
+|---|---|
+| passage, presentness, simultaneity | unconstructed |
+| continuum duration | OracleNeeded at G7; multi-part debt listed in §5.2 |
+| Zeno regress | not formulable at ╬┤4; may reopen under a refinement packet |
+| CODA-A grading | finite and carrier-scoped |
+| physical proper time | interpretive resonance only |
+| Lynds interval / instant / chronon boundary | external [INTERPRETIVE] comparison only; no universal indeterminacy, chronon ontology, or continuum theorem imported |
+
+
+§6 — Claim ledger, review disposition, and boundary
+
+**6.1 Claim Ledger.**
+
+The source-local identifiers are retained so the canonical theorem and proof ledgers do not silently rebind old receipts.
+
+| ID | Claim | Type | Basis / notes |
+|---|---|---|---|
+| P4-C1 | CutHandle, EndpointReceipt, and FiniteChainPacket define packet-local intervals (§2) | [DEFINITIONAL, CONDITIONAL WELL-FORMEDNESS] | the packet types *define* intervals; their validators remain to be implemented or proved. H: M3 + K11 + admissible $\Sigma$; explicit factorization required; the §2 linearity receipt is now stated over occurrences (§3.2) |
+| P4-C2a | Duration edge valuation $\tau:E_{\mathrm{succ}}(P)\to G$ with an edgewise positivity receipt $\tau(e)\in G_{\ge0}$ (§3.1–§3.2) | [DEFINITIONAL] | declared coefficient and carrier packets. The carrier is the **group** $G$; $G_{\ge0}$ is a cone and is not closed under the subtraction $d_1\tau$ requires. "1-cochain" is licensed only once the declared cochain contract is exhibited |
+| P4-C2b | Unit step-tally is one special gauge, not the definition of duration (§3.3) | [PROVEN, CONDITIONAL] | H: the coefficient packet and an exhibited occurrence family; $\operatorname{Dur}_{\tau_1}(X)=\#L(X)$ requires a `TallyWitness` over occurrences. Supersedes "duration = step count" without rebinding the claim identifier |
+| P4-C3 | Duration is additive and K11-reassociation invariant when the stated receipts pass (§3.4–§3.5) | [PROVEN, CONDITIONAL] | factorization, disjointness, leaf projection, normalization, coefficient associativity; PL-GTOC-14 amended |
+| P4-C4a | ClockPacket and the typed `ClockAdequacy` outcome (§4.4) | [DEFINITIONAL] | fields: coupling, calibration, coverage, stability, residual policy, nonzero-denominator, unit/dimension compatibility, coupling functionality, reference residual status. Adequacy is a typed outcome, never a boolean |
+| P4-C4b | Ratio readout correctness within the declared coverage and calibration scope (§3.6, §4.4) | [PROVEN, CONDITIONAL] | H: Paper 2's scalar package, a nonzero reference duration, a declared unit/conversion contract, and a functional coupling. Only `ValidReading` licenses a comparison |
+| P4-C5 | The diamond refutes endpoint-only unit tally but not every duration field (§4.1a) | [PROVEN by exhibited counterexample] | two versus three unit edges; equal nonunit weighting also exhibited; PL-GTOC-14 amended |
+| P4-C6a | Exactness implies endpoint-only duration (§4.3) | [PROVEN, CONDITIONAL] | H: a displayed potential $T$ with $\tau=d_0T$ on every displayed edge. Finite telescoping. **Mechanization: OPEN — PL-GTOC-15.** PR #1345 exhibits one finite $\mathbb Q$-linear hypothesis instance but does not mechanize telescoping over factorized chains. Corollary: with the §3.2 positivity receipt, $T$ is monotone along every admitted succession edge |
+| P4-C6b | Rooted converse in edge-compatibility form (§4.3) | [PROVEN, CONDITIONAL] | H: finite rooted connected carrier, root coverage by selected chains, and a per-edge receipt $T(v)=T(u)+\tau(u\to v)$ for every admitted edge. Does **not** require comparing all alternative path pairs. **Mechanization: OPEN — PL-GTOC-15.** PR #1345 supplies no rooted-coverage or every-edge compatibility verifier |
+| P4-C6c | Residual classification: Exact / ClosedNonExact / ActiveClosureFailure / ExactnessUndetermined (§4.2) | [DEFINITIONAL] | closure is audited on a declared local face family; `ClosedNonExact` additionally requires an exhibited global period $z\in\ker\partial_1\setminus\operatorname{im}\partial_2$ with $\langle\tau,z\rangle\ne0$. **All four classes are pairwise disjoint and the set is exhaustive; §4.2 proves all six pairs plus exhaustiveness** (completed 2026-07-19). `ExactnessUndetermined`'s first disjunct is **residual** — it fires only when no other class's machine condition is met — which yields exhaustiveness by complementation and the three EU pairs by construction. What remains conditional is not disjointness but the *strength of a potential receipt*: only where the cochain contract supplies $d_1\circ d_0=0$ does $\tau=d_0T$ alone certify `Exact` (PL-GTOC-35). Two earlier bases are withdrawn: one claimed "proves this in full" when four of six pairs were argued, the other reported the properties as not jointly certified, which was true only before this repair. The earlier three-class table was internally inconsistent and is withdrawn. **Python-$\mathbb Q$ executable partial evidence (PR #1345):** four finite fixtures reproduce all four classes, including a typed nonboundary period witness and honest invalid-complex routing. **PL-GTOC-15 remains OPEN; Lean NOT-STARTED; independent adversary OPEN / `oracle_needed`; AuthorityEffect::None.** |
+| P4-C6d | `DurationComparisonCell` boundary evaluation $(d_1\tau)(F)=\operatorname{Dur}_\tau(X_F^{+})-\operatorname{Dur}_\tau(X_F^{-})$ (§4.1) | [DEFINITIONAL] | requires an admitted 2-cell (a generator of the chain group $C_2$) carrying orientation, boundary, and carrier-binding receipts. A bare common-endpoint `PathComparisonReceipt` is **not** a 2-cell and does not define $d_1$. The subtraction is taken in $G$ |
+| P4-C7a | Density is a property of the admitted coefficient object only (§3.6) | [SCOPE FENCE] | the admitted scalar order may be dense; **no density of realized durations, realized ratios, or clock readings follows** and none is claimed. "Candidate ratio values inherit that density" is withdrawn — "candidate ratio value" was never a defined object of this paper |
+| P4-C7b | Continuous duration remains unconstructed with the full debt list (§5.2) | [SCOPE FENCE / OPEN] | debt: topology, refinement, transport, convergence, compatibility, finite-shadow, completeness. **Terminal: `OracleNeeded` at G7** — a routing outcome, not a claim type |
+| P4-C8 | Finite CODA-A path sums may use $\operatorname{Dur}_{\tau}$ as a carrier-scoped grading (§5.4) | [STANDARD within corpus, CONDITIONAL] | unit tally is one grading; continuum parameter remains OracleNeeded |
+| P4-C9a | Periodic clock state on distinct tokens without an incidence cycle (§4.5) | [PROVEN by finite exhibition] | four distinct handles with state labels $A,B,A,B$ and three forward edges; recurrence lives in the state-label map and adds no closing edge, so M3 is not violated |
+| P4-C9b | The classical infinite-refinement Zeno problem is not formulable at ╬┤4 (§5.3) | [SCOPE FENCE] | no refinement order, same-interval transport, or limit object is admitted. A **finite** decreasing-duration chain *is* formulable and exhibits no regress; Zeno is neither solved nor dissolved |
+| P4-C9c | Proper-time contact (§5.5) | [INTERPRETIVE] | a fenced structural resonance only; no Lorentzian metric, signature, invariant interval, dynamics, or empirical law is present |
+| P4-C10 | Lynds interval / instant / chronon boundary (§5.7, §6.6) | [INTERPRETIVE] | the cited single paper supplies bounded external positioning only. The $x(t)=t$ countermodel blocks exact point value implying stasis; no universal physical indeterminacy, quantum claim, continuum result, or chronon ontology is imported |
+| P4-C11 | Relational and configurational time comparisons (§6.6) | [INTERPRETIVE] | Rovelli removes a preferred independent time variable while retaining a relational classical/quantum formalism; Barbour begins from complete relative configurations, comparison, best matching, curves, and extremal action. Neither supplies a GTOC derivation, duration gauge, clock receipt, or authority |
+**6.2 Falsifiability.** This paper must be revised if a validator can:
+
+* extract an interval without its endpoint and factorization receipts;
+* treat CutHandle equality as universal cross-exhibition identity;
+* report unit tally as the only lawful duration gauge;
+* claim the diamond forces every $\tau$ to be path-dependent;
+* report endpoint-only duration without an exactness receipt or the stated rooted converse packet;
+* classify a cochain as closed or exact without the required boundary or potential checks;
+* change duration by K11 bracketing despite a valid common leaf-edge normalization receipt;
+* accept a clock reading without a target-clock coupling and coverage receipt;
+* identify recurring clock state with a closed incidence witness;
+* claim continuous duration from completeness alone;
+* claim Zeno solved at ╬┤4;
+* call a finite succession edge a chronon, or use a finite packet to prove or refute continuum time or universal physical indeterminacy; or
+* infer passage, presentness, simultaneity, physical time, or authority from any duration receipt.
+
+**6.3 Disposition of the 2026-07-17 internal review.**
+
+| Review point | Disposition | Repair |
+|---|---|---|
+| Unit step count silently fixed the duration gauge | **Accepted.** | $\tau$ is now a general edge-weight cochain; $\tau_1=1$ is UnitTallyGauge. |
+| The diamond overgeneralized path dependence | **Accepted.** | It now proves only a unit-gauge defect and exhibits an equal-sum nonunit weighting. |
+| Duration fields needed exact/closed/open classes | **Accepted.** | §4.2 introduces finite receipt classes and §4.3 prices endpoint duration by exactness. |
+| Clock comparison lacked coupling | **Accepted.** | ClockPacket requires coupling, calibration, coverage, stability, and residual policy. |
+| “Right clock” was framed from nowhere | **Accepted.** | Only scoped adequacy is defined. |
+| Observer-relative presentness was imported | **Accepted.** | Presentness is unconstructed. |
+| Token identity was too metaphysical | **Accepted.** | CutHandle and EndpointReceipt are packet-local. |
+| Interval extraction hid a walk or sequence | **Accepted.** | FiniteChainPacket and explicit binary factorization receipts replace inference by traversal. |
+| K11 reassociation could alter step tally | **Accepted.** | Duration is evaluated on a receipt-normalized leaf-edge family. |
+| Periodic clocks appeared to conflict with acyclicity | **Accepted.** | Distinct acyclic tokens may recur in type or state. |
+| Zeno was declared dissolved too early | **Accepted.** | It is not yet formulable and may reopen under a Q-gated refinement packet. |
+| Continuum debt was reduced to completeness | **Accepted.** | §5.2 lists topology, refinement, transport, convergence, compatibility, finite-shadow, and completeness obligations. |
+
+**6.4 What this paper does not claim.** No derivation of time as substance, passage, becoming, presentness, simultaneity, physical seconds, preferred clock, relativistic proper time, dynamics, continuum, universal physical indeterminacy, chronons, a complete Zeno solution, or authority. Exactness is packet-local and does not mint a universal temporal potential.
+
+**6.5 Why this matters.** The old step-count account conflated one convenient gauge with the concept it was meant to model. The repaired construction exposes the real decision points. Duration is an additive field on admitted succession edges. Unit tally is optional. Path dependence is a residual question. Pair-independent duration is an exactness certificate. A clock is a coupled comparison system, not an external spectator.
+
+> Duration is not what flows. It is what survives—or vanishes—when path differences are audited.
+
+**6.6 Nearest neighbors.** [INTERPRETIVE positioning. Exact sources are linked where a specific external construction is compared. Every bullet states only how this paper claims *less* than its neighbor; none licenses, grounds, or endorses a result here.]
+
+* Discrete differential geometry and cohomology: exact 1-cochains telescope; closed nonexact classes retain global residuals. This paper uses only explicitly supplied finite contracts.
+* Causal-set counting (J. Henson, ["The causal set approach to quantum gravity"](https://arxiv.org/abs/gr-qc/0601121), 2006; S. Surya, ["Directions in Causal Set Quantum Gravity"](https://arxiv.org/abs/1103.6272), 2011): element count estimates spacetime volume only under a faithful continuum/sprinkling correspondence. A duration or timelike-distance proxy needs additional dimension and interval correspondence. Here constant unit weighting is one declared gauge, not a causal-set theorem, a volume law, or a universal duration.
+* Relativistic proper time: different worldlines may carry different elapsed times. Here only the abstract common-endpoint/path audit is present; no metric or physics is imported.
+* Operational clock theory: a reading depends on coupling and calibration. ClockPacket makes those obligations explicit and authority-neutral.
+* Carlo Rovelli, ["Forget time"](https://arxiv.org/abs/0903.3832), 2009: the preferred independent variable is removed in favor of relations among variables, but a classical and quantum formalism of relational variables is retained. This is a later deparametrization/correlation setting. It does not construct GTOC's ╬┤1 succession or select a ╬┤4 duration gauge; its clock lesson enters here only as a bounded analogy for declared coupling.
+* J. B. Barbour, ["The Emergence of Time and Its Arrow from Timelessness"](https://cqi.inf.usi.ch/qic/94_Barbour.pdf), 1994: the construction starts with complete relative configurations, a configuration space of structured wholes, comparison and best matching, curves, and an extremal action. Those inputs make it distinct from Rovelli and downstream of the admitted-cut root. Best matching resembles a later comparator/gauge problem only after configurations, transformations, a difference functional, and an adequacy rule have been supplied.
+* Peter Lynds, "Time and Classical and Quantum Mechanics: Indeterminacy vs. Discontinuity", *Foundations of Physics Letters* **16**(4):343–355, 2003 ([arXiv:physics/0310055](https://arxiv.org/abs/physics/0310055)): the paper's interval/clock, no-flow, relative-order, and no-external-time framing is a close conceptual neighbor. This paper does not import its universal-indeterminacy premise or its conclusions about Zeno, imaginary time, and chronons; finite duration packets remain compatible with multiple later continuum outcomes (§5.7).
+
+### Consolidated Import Ledger
+
+| Object | Status |
+|---|---|
+| succession carrier and provenance | inherited conditionally from Paper 1 |
+| coefficient laws and ratios | inherited conditionally from Paper 2 |
+| CutHandle, interval, duration edge valuation (1-cochain per §3.2), residual class, ClockPacket | constructed or declared at ╬┤4 |
+| endpoint-only duration | earned by exactness, or by the explicitly hypothesized rooted converse |
+| Lynds interval / instant / chronon claims | external comparison only; no theorem, physical ontology, or continuum result imported |
+| Rovelli relational variables; Barbour configurations and best matching | external comparison only; no ╬┤1 construction, duration gauge, clock receipt, physical law, or authority imported |
+| universal clock, passage, presentness, continuum | unconstructed / refused / OracleNeeded |
+| authority effect | None |
+
+Genesis-Bias audit: every duration claim is bound to a finite carrier, local handles, and explicit receipts. There is no ambient timeline, external observer, hidden walk, universal token identity, or global quantification over unexhibited paths.
+
+
+Post-paper protocol
+
+1. Red-team the exactness and rooted-converse hypotheses with finite countermodels.
+2. Mechanize FiniteChainPacket validation and leaf-edge normalization before upgrading any proof tag.
+3. Bind $d_1\tau$ and quotient claims only to the canonical contracted cochain types.
+4. Keep continuum work behind G7 and require finite-shadow receipts.
+5. Record every clock result as scoped adequacy with AuthorityEffect::None.
+
+
+Changelog
+
+* **2026-07-23 — PR #1345 Python-Q evidence binding (v0.1.3, Stage 1 producer proposal).** Added §4.2a and synchronized P4-C6a–C6c with the merged executable evidence. Exact rational fixtures reproduce all four packet-local residual classes; the closed-nonexact case carries a typed nonboundary period, and invalid complexes retain an honest non-cohomological route. The bounded search is fenced to one declared box. P4-C6c is materially advanced only as finite $\mathbb Q$ executable evidence: P4-C6a's general telescoping theorem is not mechanized, P4-C6b is untouched, the independent adversary remains open with terminal `oracle_needed`, **PL-GTOC-15 remains OPEN**, Lean remains NOT-STARTED, and `AuthorityEffect::None`.
+
+* **2026-07-22 — cross-model proposal triage and literature repair (v0.1.2, Stage 1 producer proposal).** Repaired §6.6 after primary-source checking. Causal-set counting now carries its faithful-embedding/sprinkling and continuum-correspondence prerequisites, with duration/timelike distance requiring further dimension and interval structure. Rovelli's relational removal of a preferred time variable is separated from Barbour's complete-configuration and best-matching construction. Added P4-C11 to both claim surfaces and one import-ledger row; the claim is [INTERPRETIVE], closes no obligation, and imports no gauge, clock reading, physical time, or authority.
+
+* **2026-07-22 — Lynds single-source integration and scope repair (v0.1.1, Stage 1 producer proposal).** Added §5.7 and one exact citation in §6.6. The paper adopts only the bounded comparison that clock readings are relative interval outputs and that neither flow nor external time is supplied. It explicitly refuses the stronger inferences to universal physical indeterminacy, a complete Zeno solution, and chronon ontology. The $x(t)=t$ countermodel blocks only the inference from exact point values to stasis. Added interpretive claim P4-C10 on both claim surfaces, an import-ledger row, a falsifier, and matching nonclaims. No mathematical claim was strengthened, no theorem was imported, no proof obligation was opened, §5.2 remains `OracleNeeded at G7`, and `AuthorityEffect::None` is unchanged.
+
+* **2026-07-18 — publication-review repairs (external publication review).** Nine repairs; **no claim strengthened, two demoted, one new OBSTRUCTION registered.** **(1) Cochain carrier corrected.** $\tau$ is carried in the group $G$ with an edgewise positivity receipt $\tau(e)\in G_{\ge0}$, not defined into the cone: $G_{\ge0}$ is not closed under the subtraction $d_1\tau$ requires, so writing $\tau:E\to G_{\ge0}$ and calling it a 1-cochain conflated carrier with restriction. "1-cochain" is now licensed only once the declared cochain contract is exhibited; until then the accurate name is *additive duration edge valuation*. **(2) `DurationComparisonCell` given a boundary contract.** It now carries orientation, boundary, and carrier-binding receipts, and is distinguished from the weaker `PathComparisonReceipt`; not every common-endpoint path pair is a declared 2-cell, and only an admitted $C^2$ cell defines $(d_1\tau)(F)=\operatorname{Dur}_\tau(X_F^{+})-\operatorname{Dur}_\tau(X_F^{-})$. **(3) The residual classification was internally inconsistent and is repaired.** The old table read "closed nonexact" as *$d_1\tau=0$ locally but an exhibited cell shows $\Delta\operatorname{Dur}\ne0$* — yet $d_1\tau$ is *defined* as that cell's boundary difference, so such a cell is a face with $d_1\tau\ne0$, which the same table called *open*. The rows overlapped. Closure is now audited on a **declared local face family** $F_{\mathrm{local}}$, and nonexactness requires an exhibited **global period** $z\in\ker\partial_1\setminus\operatorname{im}\partial_2$ with $\langle\tau,z\rangle\ne0$. Four classes replace three: Exact / ClosedNonExact / ActiveClosureFailure / **ExactnessUndetermined** — a missing receipt is never a proof of nonexactness. **(4) A new OBSTRUCTION records that class disjointness is conditional on $d_1\circ d_0=0$, which the header state note declines to presume**; this was not raised by the reviewer and was found while checking the repair. **(5) Main claim narrowed:** a local defect no longer counts as establishing a global path-dependence class. **(6) Occurrence multiplicity preserved.** $L(X)$ is a family of `EdgeOccurrence` tokens, not edge identities, so repeated traversal cannot silently collapse; additivity is a disjoint decomposition of *occurrences*, and $\#L(X)$ requires a `TallyWitness`. The §2 linearity receipt is restated over occurrences with in/out degree conditions, replacing "one admitted continuation at every internal handle", which admitted branching and disconnected families. **(7) Exactness theorem gains a monotone-potential corollary** (positivity + exactness ΓçÆ $T$ non-decreasing along admitted edges), the endpoint-only slogan replaces the "absolute duration" phrasing, and the rooted converse is restated in **edge-compatibility** form — per-edge receipts against selected root chains, not a comparison of all alternative path pairs. **(8) Clock adequacy hardened** with nonzero-denominator, unit/dimension-compatibility, coupling-functionality, and reference-residual-status receipts, and a typed `ClockAdequacy` outcome replacing any boolean reading. **(9) Density demoted to a SCOPE FENCE** — the coefficient object may be dense; no density of realized durations, ratios, or readings follows, and "candidate ratio values" was never a defined object. The Paper 9 forward reference now links [008_space_and_extension](../008_space_and_extension/008_space_and_extension.md) (verified to support exactly what is attributed, including its own `[OPEN / OracleNeeded]` cofinality/convergence/completeness debt); the Zeno fence is narrowed to the *classical infinite-refinement* problem, since finite decreasing-duration chains are already formulable; and §6.6's "citations remain VERIFY" is withdrawn as misleading, the bullets naming research areas rather than works. **Metadata:** date advanced to 2026-07-18 and the qualifier to *publication review repair*. **The version stays at v0.1** and the reviewer's suggested v0.2 bump was declined — but on **convention, not a charter rule**. *Correction (2026-07-19): an earlier wording said the stamp is "charter-fixed". `00_series_charter.md` states no version policy at all; its only version string is its own header. The evidence is also not unanimous — 050–059 carry v0.1, but sibling `009_embodiment` carries **v0.1.1**, bumped 2026-07-18 for a narrower editorial pass. So holding v0.1 here is defensible de facto practice, not a rule, and 060 is a standing counter-example.* Claim rows restructured on both surfaces: P4-C1 demoted to [DEFINITIONAL, CONDITIONAL WELL-FORMEDNESS]; P4-C2, P4-C4, P4-C6, P4-C9 split so no row carries two evidential statuses; P4-C6d added for the boundary evaluation; P4-C7a demoted to [SCOPE FENCE]; P4-C7b's `OracleNeeded` separated from its claim type as a routing terminal; mechanization recorded as its own field rather than composited into the type.
+* **2026-07-19 — adversary repair cycle 2.** Five findings. **The blocking one was a repair that reported itself complete and was not:** cycle 1's changelog stated that "admitted $C^2$ cell" had been corrected to a 2-cell, but the correction had landed in **one of three** live sites — §4.1's definition and claim row **P4-C6d on both canonical surfaces** still read $C^2$. That is the same failure mode as cycle 1's own blocking finding (a claim of registration that had not happened), and it is now fixed at every live site; the two changelog lines that mention $C^2$ are history and are deliberately left. **This entry was verified by an exhaustive scan of every occurrence in both surfaces, not by recollection of what was edited** — the two prior entries were written the other way round, which is precisely how both misses occurred. **Also fixed: (2)** cycle 1's `ExactnessUndetermined` widening had made that class **overlap `Exact`** — a packet with a potential *and* a failing face, absent the contract, satisfied both. `Exact`'s machine condition is now narrowed to require that either no declared face fails closure or the $d_1\circ d_0=0$ contract is exhibited, restoring disjointness. **(3)** The OBSTRUCTION lede and P4-C6c's tag still said disjointness *tout court* was conditional, though the bodies had been narrowed; lede and tag now say **one pairwise exclusion** is conditional (`[DEFINITIONAL, PARTIALLY CONDITIONAL DISJOINTNESS]`). **(4)** §5.5 still used the class name **open**, withdrawn in the 2026-07-18 rename to `ActiveClosureFailure` — a pre-existing miss, not new. **(5)** The §1 list, the §1/§3 Import Ledgers, and the Consolidated Import Ledger still priced "duration cochain" / "edge-weight 1-cochain" unlicensed, though the header and P4-C2a had been corrected; the §3 row in particular was a price ledger naming a price §3.2 says must be earned. All now read *edge valuation*, with the 1-cochain name explicitly licensed per §3.2. §3.4's shared-edge clause is likewise recast as defensive typing consistent with §3.2. No claim strengthened; §4.2's mathematics was not reopened.
+* **2026-07-19 — adversary repair cycle 1 (Stage 2 of the paper-hygiene pipeline).** Ten findings, **all of them defects introduced by the 2026-07-18 repair itself**; two were blocking. **(1) The diamond was never reclassified.** §4.1 introduced the `PathComparisonReceipt` / `DurationComparisonCell` distinction, but §4.1a still said "Exhibit a `DurationComparisonCell`" — the repair committed the very conflation it existed to remove, on the example that P4-C5 and P4-C6d cite. The diamond is now a `PathComparisonReceipt`, and it is stated that, carrying no boundary receipt, it computes no $d_1\tau$ and classifies nothing. **(2) A false ledger claim.** §4.2 asserted the $d_1\circ d_0=0$ obligation was "registered as an open obligation"; it was registered nowhere. It is now genuinely minted as **PL-GTOC-35** (`proof_ledger_20260719.md`) and cited by id. **(3) An over-hedge, now withdrawn:** the paper claimed `Exact` excludes `ClosedNonExact` "using the same identity" as the `ActiveClosureFailure` exclusion. It does not — $\langle d_0T,z\rangle=\langle T,\partial_1 z\rangle=0$ for $z\in\ker\partial_1$ follows from the definitions of $d_0$ and $\partial_1$ alone, with $\partial_2$ absent, so that exclusion is **unconditional**. Only the `Exact`/`ActiveClosureFailure` exclusion is conditional; P4-C6c is narrowed accordingly on both surfaces. **(4)** The $\operatorname{im}\partial_2$ notation row glossed boundaries as "cycles", silently asserting $\partial_1\circ\partial_2=0$ — the dual of the identity declined twenty lines later; now qualified. **(5)** `ClockAdequacy` gained `UnitContractMissing`, without which the new unit/dimension receipt had no failure outcome despite the claim that every outcome names its cause. **(6)** The v0.1 justification is corrected again: the charter states no version policy, and the evidence is not unanimous — sibling `009_embodiment` carries **v0.1.1**. Holding v0.1 is convention, not a rule, and 060 is a standing counter-example. **(7)** The header no longer asserts $\tau\in C^1(P;G)$ unconditionally, which contradicted §3.2's own licensing condition; mirrored in P4-C2a. **(8)** `ExactnessUndetermined` now covers the conflicting-potential-and-face case the OBSTRUCTION routes to it. **(9)** The occurrence-multiplicity motivation no longer cites repeated traversal, which §2's linearity receipt and M3 acyclicity both forbid; it is recast as defensive typing. **(10)** "admitted $C^2$ cell" corrected to a 2-cell, a generator of the chain group $C_2$. No claim strengthened; one obligation newly registered.
+* **2026-07-17 — internal review reconstruction.** Replaced “duration = step count” with a general additive edge-weight cochain; retained step count as UnitTallyGauge. Added packet-local handles, endpoint and factorization receipts, K11 leaf-edge normalization, the exact/closed-nonexact/open classification, the exactness theorem and scoped converse, coupled clock adequacy, periodic state recurrence on distinct tokens, corrected Zeno status, and the full continuum debt. The diamond is narrowed to a unit-gauge counterexample and now includes a lawful equal-sum nonunit weighting. Passage, presentness, simultaneity, physical time, continuum, and authority remain unconstructed or explicitly fenced.
+* **2026-07-15 to 2026-07-17 — superseded draft history.** Earlier drafts defined duration solely by step tally, treated the diamond as a general no-absolute-duration result, described clocks as uncoupled reference chains, called Zeno dissolved, and reduced continuum debt primarily to completeness. Those formulations are withdrawn by the current review repair.
+
+
+Appendix — 008 dual-home absorption (2026-07-26)
+
+**AuthorityEffect:** `None`  
+**Source (archived):** `008_engine_runtime/006_duration_and_gtta.md` (+ claim ledger + change log)  
+**Destination monographs:** `005_duration.md`, `coda_a.md`  
+**Display topic:** Duration & CODA-A
+
+### What was absorbed
+
+The 008 file was a **thin runtime dual-home shell** (protocol packaging under
+`008_engine_runtime`, ~3–6 KB) that restated this CODA layer pair as an
+“Omega Engine Runtime” module. It did **not** carry independent theorem status.
+
+| Field | Value |
+| --- | --- |
+| Absorption class | Dual-home shell → CODA monograph (packaging) |
+| Proof status change | **None** — no OPEN→PROVED |
+| Authority | `AuthorityEffect: None` |
+| Archive path | `008_engine_runtime/_support/absorbed_to_001_coda/006_duration_and_gtta.*` |
+
+### Binding
+
+Runtime programme `008_engine_runtime` continues to own **runtime-native**
+surfaces (`000_omega_engine_dev_goals`, `007_the_symbol_game_monograph`,
+`008_engine_runtime_master`, demos, contracts). CODA tower math and layer
+identity remain under **`001_coda`** (operator called this “002_coda”; live path
+is `001_coda`).
+
+Any `RUN-*` dual-home claim rows from the 008 shell ledger are historical packaging
+rows only — status is still CONDITIONAL / packaging, not estate GlobalGreen.
+
+<!-- claim-id-body-index:begin -->
+
+Claim-ID body index (packaging)
+
+| ID | Home |
+|---|---|
+| `P4-C1` | sibling `005_duration_claim_ledger.md` |
+| `P4-C2a` | sibling `005_duration_claim_ledger.md` |
+| `P4-C2b` | sibling `005_duration_claim_ledger.md` |
+| `P4-C3` | sibling `005_duration_claim_ledger.md` |
+| `P4-C4a` | sibling `005_duration_claim_ledger.md` |
+| `P4-C4b` | sibling `005_duration_claim_ledger.md` |
+| `P4-C5` | sibling `005_duration_claim_ledger.md` |
+| `P4-C6a` | sibling `005_duration_claim_ledger.md` |
+| `P4-C6b` | sibling `005_duration_claim_ledger.md` |
+| `P4-C6c` | sibling `005_duration_claim_ledger.md` |
+| `P4-C6d` | sibling `005_duration_claim_ledger.md` |
+| `P4-C7a` | sibling `005_duration_claim_ledger.md` |
+| `P4-C7b` | sibling `005_duration_claim_ledger.md` |
+| `P4-C8` | sibling `005_duration_claim_ledger.md` |
+| `P4-C9a` | sibling `005_duration_claim_ledger.md` |
+| `P4-C9b` | sibling `005_duration_claim_ledger.md` |
+| `P4-C9c` | sibling `005_duration_claim_ledger.md` |
+| `P4-C10` | sibling `005_duration_claim_ledger.md` |
+| `P4-C11` | sibling `005_duration_claim_ledger.md` |
+| `P4-C2` | sibling `005_duration_claim_ledger.md` |
+| `P4-C4` | sibling `005_duration_claim_ledger.md` |
+| `P4-C6` | sibling `005_duration_claim_ledger.md` |
+| `P4-C9` | sibling `005_duration_claim_ledger.md` |
+| `ABSORB-008-006_duration_and_gtta-01` | sibling `005_duration_claim_ledger.md` |
+| `ABSORB-008-006_duration_and_gtta-02` | sibling `005_duration_claim_ledger.md` |
+
+<!-- claim-id-body-index:end -->

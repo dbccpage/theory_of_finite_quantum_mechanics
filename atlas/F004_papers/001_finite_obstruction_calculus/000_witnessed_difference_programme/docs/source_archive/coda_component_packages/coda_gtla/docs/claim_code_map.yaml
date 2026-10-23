@@ -1,0 +1,219 @@
+{
+  "paper_identity": "CODA-GTLA",
+  "version": "3.2.1",
+  "authority_effect": "None",
+  "claims": [
+    {
+      "id": "GTLA-T1",
+      "statement": "Diagonal cost is zero",
+      "lean": [
+        "CodaGtla.diagSpan_cost_zero"
+      ],
+      "module": "lean4/T01SpanPullback.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.diagSpan_cost_zero": []
+      }
+    },
+    {
+      "id": "GTLA-T2",
+      "statement": "Defined composite cost is at most the sum (in fact equal)",
+      "lean": [
+        "CodaGtla.compSpan_cost_subadditive"
+      ],
+      "module": "lean4/T01SpanPullback.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.compSpan_cost_subadditive": []
+      }
+    },
+    {
+      "id": "GTLA-T3",
+      "statement": "Identity trace work is zero",
+      "lean": [
+        "CodaGtla.idTrace_work_zero"
+      ],
+      "module": "lean4/T01SpanPullback.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.idTrace_work_zero": []
+      }
+    },
+    {
+      "id": "GTLA-T4",
+      "statement": "Erasure preserves the defined identity",
+      "lean": [
+        "CodaGtla.eraseTrace_id"
+      ],
+      "module": "lean4/T01SpanPullback.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.eraseTrace_id": []
+      }
+    },
+    {
+      "id": "GTLA-T5",
+      "statement": "Erasure preserves the defined composition",
+      "lean": [
+        "CodaGtla.eraseTrace_comp"
+      ],
+      "module": "lean4/T01SpanPullback.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.eraseTrace_comp": []
+      }
+    },
+    {
+      "id": "GTLA-T6",
+      "statement": "A false sieve flag routes to refusal",
+      "lean": [
+        "CodaGtla.pipeline_empty_sieve_refused"
+      ],
+      "module": "lean4/T02MasterNormalForm.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.pipeline_empty_sieve_refused": [
+          "propext"
+        ]
+      }
+    },
+    {
+      "id": "GTLA-T7",
+      "statement": "Successful earlier flags and positive Phi/zero Gamma route to residual",
+      "lean": [
+        "CodaGtla.pipeline_closed_residual_anomalon"
+      ],
+      "module": "lean4/T02MasterNormalForm.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.pipeline_closed_residual_anomalon": [
+          "propext"
+        ]
+      }
+    },
+    {
+      "id": "GTLA-T8",
+      "statement": "The three local constructors are pairwise disjoint",
+      "lean": [
+        "CodaGtla.auth_disjoint_anomalon",
+        "CodaGtla.auth_disjoint_refused",
+        "CodaGtla.anomalon_disjoint_refused"
+      ],
+      "module": "lean4/T03AuthorityFirewall.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.auth_disjoint_anomalon": [
+          "propext"
+        ],
+        "CodaGtla.auth_disjoint_refused": [
+          "propext"
+        ],
+        "CodaGtla.anomalon_disjoint_refused": [
+          "propext"
+        ]
+      }
+    },
+    {
+      "id": "GTLA-T9",
+      "statement": "An explicit zero-distance/unlicensed record refuses",
+      "lean": [
+        "CodaGtla.non_promotion_firewall"
+      ],
+      "module": "lean4/T03AuthorityFirewall.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.non_promotion_firewall": [
+          "propext"
+        ]
+      }
+    },
+    {
+      "id": "GTLA-T10",
+      "statement": "Two records share distances but differ in declared licence and output",
+      "lean": [
+        "CodaGtla.observation_collision_distinct_authority"
+      ],
+      "module": "lean4/T03AuthorityFirewall.lean",
+      "python_evidence": "Finite model examples only; no claim of Python proof of the Lean statement.",
+      "axioms_by_declaration": {
+        "CodaGtla.observation_collision_distinct_authority": [
+          "propext"
+        ]
+      }
+    },
+    {
+      "id": "GTLA-01",
+      "statement": "Sequential finite procedure, not a categorical functor theorem",
+      "python": "coda_gtla_core.execute_master_normal_form",
+      "lean": null,
+      "test": "test_review_regressions.py::test_all_intersections_are_checked_and_global_section_restricts"
+    },
+    {
+      "id": "GTLA-03",
+      "statement": "Repair/residual report; no extension or tie enumeration",
+      "python": "coda_gtla_core.execute_two_rule_repair_loop",
+      "lean": null,
+      "test": "test_coda_gtla.py::test_two_rule_repair_loop"
+    },
+    {
+      "id": "CD-12",
+      "statement": "Finite regular action checked against the full supplied groupoid table",
+      "python": "coda_gtla_core.FaithfulGroupoidEmbedding",
+      "lean": null,
+      "test": "test_review_regressions.py::test_regular_action_handles_noncyclic_groups_and_arrow_renaming"
+    },
+    {
+      "id": "MUR-04",
+      "statement": "Bounded two-row E2 target ker(dv20)/dh10(ker(dv10)); no general spectral-sequence construction",
+      "python": "coda_gtla_core.Bicomplex2Nerve.certify_d2_quotient_bounds",
+      "lean": null,
+      "test": "test_spectral_sequence_nerve.py::test_nonzero_d2_uses_cycle_quotient_while_total_class_is_zero"
+    },
+    {
+      "id": "A-01",
+      "statement": "Residual zero iff fixed; for idempotent additive C, residual is in ker C, is idempotent, and range C equals fixed set",
+      "lean": [
+        "Coda.A.residual_zero_iff",
+        "Coda.A.residual_in_kernel",
+        "Coda.A.residual_idempotent",
+        "Coda.A.range_fixed_iff"
+      ],
+      "axioms_by_declaration": {
+        "Coda.A.residual_zero_iff": [
+          "propext"
+        ],
+        "Coda.A.residual_in_kernel": [],
+        "Coda.A.residual_idempotent": [],
+        "Coda.A.range_fixed_iff": []
+      },
+      "module": "lean4/A.lean",
+      "scope": "Vendored additive-group algebra; no vector-space, category or external-authority conclusion."
+    },
+    {
+      "id": "A-02",
+      "statement": "Additive T commuting with C and D carries residuals to residuals",
+      "lean": [
+        "Coda.A.residual_transport"
+      ],
+      "axioms_by_declaration": {
+        "Coda.A.residual_transport": []
+      },
+      "module": "lean4/A.lean",
+      "scope": "Vendored additive-group algebra; no vector-space, category or external-authority conclusion."
+    },
+    {
+      "id": "A-03",
+      "statement": "An additive map annihilating a declared subgroup has a unique factor through its quotient",
+      "lean": [
+        "Coda.A.quotient_universal"
+      ],
+      "axioms_by_declaration": {
+        "Coda.A.quotient_universal": [
+          "Quot.sound"
+        ]
+      },
+      "module": "lean4/A.lean",
+      "scope": "Vendored additive-group algebra; no vector-space, category or external-authority conclusion."
+    }
+  ]
+}

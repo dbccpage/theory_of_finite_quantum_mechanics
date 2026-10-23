@@ -38,16 +38,62 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_retention_packet_definition.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: BehavioralEq
+  line: 38
+  signature_excerpt: |-
+    def BehavioralEq {State : Type u} {Context : Type v} {Readout : Type w}
+        (action : Context → State → State) (observe : State → Readout)
+        (x y : State) : Prop
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean
+  repository: this_repository
+  source_sha256: a253353fd82047d9c632583c7fe39cd358b226806d9ef61e3de6de3335c812bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: run
+  line: 32
+  signature_excerpt: |-
+    def run {State : Type u} {Context : Type v}
+        (action : Context → State → State) : List Context → State → State
+      | [], x => x
+      | c :: word, x => run action word (action c x)
+
+    /-- Equality of all finite-word readouts, including the empty word. -/
+    def BehavioralEq {State : Type u} {Context : Type v} {Readout : Type w}
+        (action : Context → State → State) (observe : State → Readout)
+        (x y : State) : Prop
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean
+  repository: this_repository
+  source_sha256: a253353fd82047d9c632583c7fe39cd358b226806d9ef61e3de6de3335c812bf
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: greatest_invariant_relation
+  line: 62
+  signature_excerpt: |-
+    theorem greatest_invariant_relation
+        {State : Type u} {Context : Type v} {Readout : Type w}
+        (action : Context → State → State) (observe : State → Readout)
+        (R : State → State → Prop)
+        (hobserve : ∀ x y, R x y → observe x = observe y)
+        (haction : ∀ c x y, R x y → R (action c x) (action c y)) :
+        ∀ x y, R x y → BehavioralEq action observe x y
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean
+  repository: this_repository
+  source_sha256: a253353fd82047d9c632583c7fe39cd358b226806d9ef61e3de6de3335c812bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/BehavioralQuotient.lean::greatest_invariant_relation
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean::greatest_invariant_relation
+  availability: local
   symbol: greatest_invariant_relation
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/BehavioralQuotient.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean
+  repository: this_repository
+  sha256: a253353fd82047d9c632583c7fe39cd358b226806d9ef61e3de6de3335c812bf
+  declaration_status: declaration_found_not_proof_checked
+  line: 62
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient
   availability: external
@@ -98,8 +144,6 @@ operad_slots:
       (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

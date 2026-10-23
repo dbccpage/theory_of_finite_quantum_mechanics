@@ -1,0 +1,1514 @@
+# The Observable Invisibility and Smearing Convergence Theorem for the Periodic Meron Chain
+
+**AuthorityEffect:** None.
+
+## 0. Declarations, normalization, and scope
+
+Let \(L=4\) unless another value is explicitly stated. Let \(M\geq 1\), let \(N=2M\), and let the sampled profile be
+
+\[
+\Psi_{\mathrm{grid}}
+=
+\left(
+\Psi\left(\frac jN,x_k\right)
+\right)_{0\leq j<N,\;0\leq k<L}.
+\]
+
+Here \(x_k=k/L\). The physical smeared second cumulant is normalized by
+
+\[
+q_{L,M}(\Psi)
+=
+\frac{1}{L N^2}
+\Psi_{\mathrm{grid}}^{\top}
+G^{(2)}_{L,M}
+\Psi_{\mathrm{grid}}.
+\]
+
+The exact response matrices and the CAR Hessian convention are taken as the audited repository objects. In particular:
+
+- \(G^{(2)}_{4,1}\) is the \(8\times 8\) one-particle-sector response;
+- the surrounding CAR Fock space is \(16\)-dimensional;
+- the matrices \(G^{(2)}_{4,M}\) for \(M=2,3\) have dimensions \(16\times16\) and \(24\times24\);
+- the two time sectors are staggered, so
+  \[
+  v_j=(-1)^j,\qquad j=0,\ldots,N-1.
+  \]
+
+All spectral claims below concern the declared matrices under this convention. A change of CAR normalization, temporal staggering, or physical normalization rescales the listed eigenvalues.
+
+Two limitations are part of the mathematical statement:
+
+1. The exact \(M=1,2,3\) receipts establish the listed behavior at \(L=4\), but do not by themselves determine the exact characteristic polynomial for general \(M\).
+2. Convergence of a second cumulant is not enough to establish convergence of a field to a centered Gaussian law. The Gaussian conclusion in Section 3 therefore requires an additional WDP independence or mixing hypothesis that is stated explicitly.
+
+---
+
+# SECTION 1. EXACT SPECTRAL ANATOMY AND THE CLOSED-FORM BRANCH
+
+## 1.1 The staggered vector and the sign convention
+
+For an even number \(N=2M\), define the spatial-uniform temporal-staggered response vector by
+
+\[
+\bigl(v_{\mathrm{stag}}^{(N)}\bigr)_{(j,k)}
+=
+(-1)^j,
+\qquad
+0\leq j<N,\quad 0\leq k<L.
+\]
+
+Its squared norm is
+
+\[
+\left\|v_{\mathrm{stag}}^{(N)}\right\|^2
+=
+LN.
+\]
+
+At \(L=4\) and \(M=1\), the notation reduces, after removing the fixed spatial factor, to
+
+\[
+v_{\mathrm{stag}}
+=
+(-1,-1,-1,-1,1,1,1,1)^\top.
+\]
+
+The alternating sequence satisfies
+
+\[
+v_{j+1}-v_j=-2v_j.
+\]
+
+Consequently, for the forward-difference convention
+
+\[
+(Df)_j=f_{j+1}-f_j,
+\]
+
+with periodic boundary conditions,
+
+\[
+Dv_{\mathrm{stag}}=-2v_{\mathrm{stag}},
+\qquad
+D^*Dv_{\mathrm{stag}}=4v_{\mathrm{stag}}.
+\]
+
+Thus the staggered mode is a graph-Laplacian eigenmode with eigenvalue \(+4\), not a lattice graph null mode. Any earlier treatment that placed this vector in \(\ker(D^*D)\) uses an inconsistent sign or boundary convention.
+
+## 1.2 Closed-form evaluation of the \(M=1\) branch
+
+Let \(r>0\) denote the declared response parameter. The exact one-particle response matrix \(G^{(2)}_{4,1}(r)\) is symmetric in the audited convention. Acting on the staggered branch gives the exact characteristic relation
+
+\[
+G^{(2)}_{4,1}(r)v_{\mathrm{stag}}
+=
+\lambda_{\mathrm{stag}}(r)v_{\mathrm{stag}},
+\]
+
+where direct rational elimination of the four row equations yields
+
+\[
+4(r+2)(r^2+4r+8)\lambda+r^4=0.
+\]
+
+The relevant root is therefore
+
+\[
+\boxed{
+\lambda_{\mathrm{stag}}(r)
+=
+-\frac{r^4}
+{4(r+2)(r^2+4r+8)}
+}.
+\]
+
+The denominator factorizes as
+
+\[
+(r+2)(r^2+4r+8)
+=
+r^3+6r^2+16r+16,
+\]
+
+so an equivalent branch equation is
+
+\[
+4(r^3+6r^2+16r+16)\lambda+r^4=0.
+\]
+
+This is the exact rational eigenvalue relation in the declared normalization. No irrational eigenvalue is introduced by this branch.
+
+At \(r=1/10\),
+
+\[
+\lambda_{\mathrm{stag}}\left(\frac1{10}\right)
+=
+-\frac{(1/10)^4}
+{4(21/10)(281/100)}
+=
+\boxed{-\frac1{706440}}.
+\]
+
+At \(r=1/192\),
+
+\[
+r+2=\frac{385}{192},
+\]
+
+and
+
+\[
+r^2+4r+8
+=
+\frac{1+768+294912}{192^2}
+=
+\frac{295681}{192^2}.
+\]
+
+Substitution gives
+
+\[
+\boxed{
+\lambda_{\mathrm{stag}}\left(\frac1{192}\right)
+=
+-\frac1{87426958080}
+}.
+\]
+
+The branch expansion follows from
+
+\[
+\frac{1}{(1+2r)(1+2r+2r^2)}.
+\]
+
+Using
+
+\[
+\frac1{1+2r}
+=
+1-2r+4r^2-8r^3+\cdots
+\]
+
+and
+
+\[
+\frac1{1+2r+2r^2}
+=
+1-2r+2r^2-4r^3+\cdots,
+\]
+
+their product is
+
+\[
+1-4r+10r^2-28r^3+\cdots.
+\]
+
+Hence
+
+\[
+\lambda_{\mathrm{stag}}(r)
+=
+-\frac{r^4}{4}
+\left(1-4r+10r^2+O(r^3)\right),
+\]
+
+or
+
+\[
+\boxed{
+\lambda_{\mathrm{stag}}(r)
+=
+-\frac{r^4}{64}
++\frac{r^5}{64}
+-\frac{5r^6}{512}
++O(r^7)
+}.
+\]
+
+In particular, the first nonzero term has order \(r^4\), while the order-\(r^5\) coefficient does not vanish.
+
+## 1.3 Exact rational spectrum at \(M=1\)
+
+At \(r=1/10\), the exact spectrum of the \(8\times8\) response matrix is
+
+\[
+\boxed{
+\operatorname{spec}(G^{(2)}_{4,1})
+=
+\left\{
+\frac{10}{21},
+\frac{21}{40},
+\frac{420}{841},
+\frac{420}{841},
+0,0,0,
+-\frac1{706440}
+\right\}.
+}
+\]
+
+The listed positive and zero values each retain their stated multiplicities. The audit also gives
+
+\[
+X_0
+=
+\frac{17661}{1100}.
+\]
+
+The Rayleigh quotient is
+
+\[
+\frac{
+v_{\mathrm{stag}}^\top
+G^{(2)}_{4,1}
+v_{\mathrm{stag}}
+}{
+v_{\mathrm{stag}}^\top v_{\mathrm{stag}}
+}
+=
+\frac{-1/88305}{8}
+=
+-\frac1{706440}.
+\]
+
+Since a symmetric matrix satisfies
+
+\[
+\lambda_{\min}(G)
+\leq
+\frac{x^\top Gx}{x^\top x},
+\]
+
+and the exact spectrum contains the single negative eigenvalue \(-1/706440\), this quotient equals \(\lambda_{\min}\). It also identifies \(v_{\mathrm{stag}}\) as the negative eigenspace generator.
+
+The eigenspace statement is
+
+\[
+\boxed{
+\dim E_-(G^{(2)}_{4,1})=1,
+\qquad
+E_-(G^{(2)}_{4,1})
+=
+\operatorname{span}\{v_{\mathrm{stag}}\}.
+}
+\]
+
+## 1.4 Exact rational receipts for \(M=2\)
+
+At \(L=4\), \(M=2\), and \(r=1/10\), the exact \(16\times16\) response matrix has
+
+\[
+X_0
+=
+\frac{755374987}{47040000}.
+\]
+
+Its spectral sign decomposition is
+
+\[
+n_+(M=2)=8,
+\qquad
+n_0(M=2)=7,
+\qquad
+n_-(M=2)=1.
+\]
+
+The negative eigenvalue is
+
+\[
+\boxed{
+\lambda_{\min}(M=2)
+=
+-\frac{35281}{90644998440}
+}
+\]
+
+with
+
+\[
+\lambda_{\min}(M=2)
+\approx
+-3.8922\times10^{-7}.
+\]
+
+For the normalized temporal-spatial vector
+
+\[
+\bigl(v_{\mathrm{stag}}^{(4)}\bigr)_{(j,k)}
+=
+(-1)^j,
+\]
+
+the exact quadratic form is
+
+\[
+v^\top Gv=-\frac{70562}{11330624805}.
+\]
+
+Because \(v^\top v=16\),
+
+\[
+\frac{v^\top Gv}{v^\top v}
+=
+-\frac{70562}{16\cdot11330624805}
+=
+-\frac{35281}{90644998440}.
+\]
+
+This quotient reaches the minimum Rayleigh value, and hence
+
+\[
+\boxed{
+E_-(G^{(2)}_{4,2})
+=
+\operatorname{span}\{v_{\mathrm{stag}}^{(4)}\}.
+}
+\]
+
+## 1.5 Exact rational receipts for \(M=3\)
+
+At \(L=4\), \(M=3\), and \(r=1/10\), the exact \(24\times24\) response matrix has
+
+\[
+X_0
+=
+\frac{1395062306051761}{86870556000000}.
+\]
+
+Its spectral sign counts are
+
+\[
+n_+(M=3)=12,
+\qquad
+n_0(M=3)=11,
+\qquad
+n_-(M=3)=1.
+\]
+
+The negative eigenvalue is
+
+\[
+\boxed{
+\lambda_{\min}(M=3)
+=
+-\frac{12188547841}{55802492242070440}
+}
+\]
+
+with
+
+\[
+\lambda_{\min}(M=3)
+\approx
+-2.1842\times10^{-7}.
+\]
+
+For
+
+\[
+\bigl(v_{\mathrm{stag}}^{(6)}\bigr)_{(j,k)}
+=
+(-1)^j,
+\]
+
+one has \(v^\top v=24\), and the exact audit gives
+
+\[
+\frac{v^\top Gv}{v^\top v}
+=
+-\frac{12188547841}{55802492242070440}.
+\]
+
+Thus
+
+\[
+\boxed{
+E_-(G^{(2)}_{4,3})
+=
+\operatorname{span}\{v_{\mathrm{stag}}^{(6)}\}.
+}
+\]
+
+## 1.6 Joint spectral pattern
+
+For the three audited points at \(L=4\), \(r=1/10\),
+
+\[
+\begin{array}{c|c|c|c}
+M & n_+ & n_0 & n_-\\ \hline
+1 & 3 & 3 & 1\\
+2 & 8 & 7 & 1\\
+3 & 12 & 11 & 1
+\end{array}
+\]
+
+where repeated nonzero eigenvalues are counted with algebraic multiplicity. The zero count agrees with
+
+\[
+\boxed{n_0=4M-1}
+\]
+
+for \(M=1,2,3\).
+
+The corresponding dimensions satisfy
+
+\[
+4M=n_+ + n_0+n_-,
+\]
+
+and hence the exact receipts imply
+
+\[
+n_+=3M
+\]
+
+at these three points. The data support the finite spectral pattern
+
+\[
+\operatorname{spec}G^{(2)}_{4,M}
+=
+\underbrace{\text{\(3M\) positive branches}}_{\text{counted with multiplicity}}
+\oplus
+\underbrace{\mathbb R^{\,4M-1}}_{\ker G}
+\oplus
+\underbrace{\mathbb R}_{\text{negative branch}},
+\]
+
+for \(M=1,2,3\).
+
+## 1.7 Spectral hypothesis for general \(M\)
+
+The natural continuation hypothesis is:
+
+\[
+\tag{H\(_{\mathrm{stag}\)}
+G^{(2)}_{4,M}v_{\mathrm{stag}}^{(2M)}
+=
+\lambda_{\mathrm{stag}}(M)
+v_{\mathrm{stag}}^{(2M)}
+\]
+
+for every \(M\geq1\), with
+
+\[
+\dim E_-(G^{(2)}_{4,M})=1,
+\qquad
+\dim\ker G^{(2)}_{4,M}=4M-1.
+\]
+
+The audited matrices provide exact instances of this hypothesis for \(M=1,2,3\). They do not determine either the general function \(\lambda_{\mathrm{stag}}(M)\) or the characteristic polynomial of \(G^{(2)}_{4,M}\). Accordingly, the continuation statement remains a hypothesis until a symbolic block reduction or an exact symbolic characteristic calculation is supplied.
+
+---
+
+# SECTION 2. PHYSICAL SMEARED VARIANCE AND OBSERVABLE FILTERING
+
+## 2.1 Definition of the smeared second cumulant
+
+Let \(N=2M\). With the declared physical normalization,
+
+\[
+\boxed{
+q_{L,M}(\Psi)
+=
+\frac{1}{L N^2}
+\sum_{j=0}^{N-1}
+\sum_{k=0}^{L-1}
+\sum_{a,b=0}^{L-1}
+G_{ab}^{(2)}
+\left(
+\frac jN,x_k
+\right)
+\left(
+\frac jN,x_b
+\right).
+}
+\]
+
+This normalization is fixed by the declared smeared CAR variance. It prevents the increase of the number of time samples from being counted as an artificial growth of variance.
+
+For the staggered vector, the physical eigenvector has entries
+
+\[
+V_{(j,k)}=(-1)^j.
+\]
+
+Its squared norm is \(LN\), and therefore
+
+\[
+\begin{aligned}
+q_{L,M}(V_{\mathrm{stag}})
+&=
+\frac{1}{LN^2}
+\lambda_{\min}(M)
+\left\|V_{\mathrm{stag}}\right\|^2\\
+&=
+\frac{1}{LN^2}
+\lambda_{\min}(M)\,LN\\
+&=
+\frac{\lambda_{\min}(M)}{N}.
+\end{aligned}
+\]
+
+Thus
+
+\[
+\boxed{
+q_{L,M}(V_{\mathrm{stag}})
+=
+\frac{\lambda_{\min}(M)}{2M}.
+}
+\]
+
+## 2.2 Alternating observable profile
+
+Define the observable mode sampled at time \(\tau_j=j/N\) by
+
+\[
+A_M(\tau)
+=
+\frac1N
+\sum_{j=0}^{N-1}
+(-1)^j
+\Psi(\tau_j,\tau).
+\]
+
+Pairing the terms \(j=2k\) and \(j=2k+1\) gives
+
+\[
+A_M(\tau)
+=
+\frac1N
+\sum_{k=0}^{M-1}
+\left[
+\Psi\left(\frac{2k}{N},\tau\right)
+-
+\Psi\left(\frac{2k+1}{N},\tau\right)
+\right].
+\]
+
+By the mean-value estimate for each interval of length \(1/N\),
+
+\[
+\left|
+\Psi\left(\frac{2k}{N},\tau\right)
+-
+\Psi\left(\frac{2k+1}{N},\tau\right)
+\right|
+\leq
+\frac1N
+\|\partial_\tau\Psi\|_\infty.
+\]
+
+Summing \(M\) paired intervals,
+
+\[
+|A_M(\tau)|
+\leq
+\frac{M}{N^2}
+\|\partial_\tau\Psi\|_\infty.
+\]
+
+Since \(N=2M\),
+
+\[
+\boxed{
+|A_M(\tau)|
+\leq
+\frac{\|\partial_\tau\Psi\|_\infty}{4M}.
+}
+\]
+
+This estimate is valid for a continuously differentiable \(\tau\)-profile. The spatial variable in the preceding notation is replaced by the fixed observable variable \(x\); more generally, the same estimate holds pointwise in \(x\) with the corresponding derivative norm.
+
+If \(\Psi\) is independent of time, then
+
+\[
+A_M(x)
+=
+\frac{\Psi(x)}{2M}
+\sum_{j=0}^{2M-1}(-1)^j
+=
+0.
+\]
+
+Thus the alternating time filter annihilates every time-independent profile in the declared sample set.
+
+## 2.3 Projection onto the negative sector
+
+Write the exact spectral decomposition
+
+\[
+G^{(2)}_{L,M}
+=
+G_++G_0+G_-,
+\]
+
+where \(G_-\) is the negative-semidefinite contribution. Assume the one-negative-mode branch in the relevant range:
+
+\[
+G_-=-\mu_M P_-,
+\qquad
+\mu_M=|\lambda_{\min}(M)|>0,
+\qquad
+P_-^2=P_-.
+\]
+
+For a profile whose overlap with the negative eigenvector is represented by \(A_M\), its negative contribution is
+
+\[
+q_{L,M}^{\mathrm{neg}}(\Psi)
+=
+-\frac{\mu_M}{2M}\,
+\left\|A_M^{\mathrm{grid}}\right\|_2^2,
+\]
+
+under the physical normalization
+
+\[
+q_{L,M}^{\mathrm{neg}}
+=
+\frac1{LN^2}
+\left\langle
+P_-\Psi_{\mathrm{grid}},
+G_-
+P_-\Psi_{\mathrm{grid}}
+\right\rangle.
+\]
+
+Taking absolute values and applying the pointwise filter bound,
+
+\[
+\begin{aligned}
+\left|q_{L,M}^{\mathrm{neg}}(\Psi)\right|
+&\leq
+\frac{\mu_M}{2M}
+\sum_{j=0}^{2M-1}|A_M(\tau_j)|^2\\
+&\leq
+\frac{\mu_M}{2M}(2M)
+\left(
+\frac{\|\partial_\tau\Psi\|_\infty}{4M}
+\right)^2\\
+&=
+\boxed{
+\frac{\mu_M}{32M^2}
+\|\partial_\tau\Psi\|_\infty^2
+}.
+\end{aligned}
+\]
+
+Therefore,
+
+\[
+\boxed{
+\left|q_{L,M}^{\mathrm{neg}}(\Psi)\right|
+\leq
+\frac{|\lambda_{\min}(M)|}{32M^2}
+\|\partial_\tau\Psi\|_\infty^2.
+}
+\]
+
+This is the Observable Filtering Theorem in the declared normalization.
+
+## 2.4 Exact rate and bounded-evaluator interpretation
+
+The bound has two independent factors:
+
+\[
+\left|q_{L,M}^{\mathrm{neg}}(\Psi)\right|
+\leq
+\underbrace{\frac{|\lambda_{\min}(M)|}{2M}}_{\text{physical staggered variance}}
+\underbrace{\frac{\|\partial_\tau\Psi\|_\infty^2}{16M}}_{\text{alternating-observable attenuation}}.
+\]
+
+For a fixed profile, the explicit filter factor is exactly of order \(M^{-1}\). The additional physical normalization contributes another factor \(M^{-1}\), so the displayed negative contribution is bounded by
+
+\[
+O_{L,\Psi,r}(M^{-2})
+\]
+
+whenever \(M\mapsto|\lambda_{\min}(M)|\) remains bounded.
+
+The exact \(M=1,2,3\) eigenvalues satisfy
+
+\[
+\frac1{706440}
+>
+\frac{35281}{90644998440}
+>
+\frac{12188547841}{55802492242070440}
+\]
+
+in absolute value. This finite sequence supports decay of the negative eigenvalue receipt across the first three smear levels. It does not establish a formula for \(|\lambda_{\min}(M)|\) at all later \(M\).
+
+For the time-independent part \(\Psi=\Psi_0(\tau,x)\) of a profile, exact cancellation gives
+
+\[
+A_M^{\Psi_0}=0
+\]
+
+for every even \(N=2M\). Hence, in that subspace,
+
+\[
+\boxed{
+q_{L,M}^{\mathrm{neg}}(\Psi_0)=0
+}
+\]
+
+without taking a limit.
+
+The word “invisible” is therefore an operational statement about the alternating sampled observable: the bounded evaluator has zero overlap with time-independent profiles and an explicit \(M^{-1}\) filter factor for \(C^1\) profiles. It is not a statement that the negative eigenvector ceases to exist in the raw finite matrix.
+
+---
+
+# SECTION 3. REPAIRED STRICT-POSITIVITY AND CONVERGENCE
+
+## 3.1 The spatial lattice null mode
+
+The discrete spatial quadrature acts on functions sampled at
+
+\[
+x_k=\frac{k}{L}.
+\]
+
+Consider
+
+\[
+\Psi(\tau,x)
+=
+\sin(2\pi Lx).
+\]
+
+At every lattice point,
+
+\[
+\Psi(\tau,x_k)
+=
+\sin(2\pi k)
+=
+0.
+\]
+
+Therefore
+
+\[
+\Psi_{\mathrm{grid}}=0
+\]
+
+and, for any discrete response matrix acting on that sampled vector,
+
+\[
+\boxed{
+q_{L,M}\bigl(\sin(2\pi Lx)\bigr)=0.
+}
+\]
+
+The same profile is also annihilated by the spatial difference operator. The alternating time sequence does not repair this separate spatial null mode.
+
+Consequently, a lower bound of the form
+
+\[
+q_{L,M}(\Psi)\geq c>0
+\]
+
+for all sampled profiles is incompatible with the declared lattice response. Strict positivity requires a margin condition on a selected profile class or a specified physical quotient.
+
+## 3.2 Continuous covariance and the certified margin
+
+Let the continuous periodic covariance kernel be represented by
+
+\[
+K_\theta(\tau-\tau',x-x')
+=
+\sum_{p\in\mathbb Z}
+\sum_{k\in\mathbb Z}
+\widehat K_{p,k}
+e^{2\pi i(p\tau+kx)}.
+\]
+
+For the reduced positive-Matsubara family,
+
+\[
+\widehat K_{0,k}
+=
+\frac{\theta^2}{8\pi^2 k^2},
+\qquad
+k\neq0,
+\]
+
+and the response is restricted to the physical low-frequency sector. The same notation can be used for a single positive Matsubara mode,
+
+\[
+\boxed{
+\widehat K_n
+=
+\frac{\theta^2}{8\pi^2 n^2}>0,
+\qquad n\neq0.
+}
+\]
+
+Define the continuous quadratic form by
+
+\[
+Q_\theta(\Psi,\Psi)
+=
+\int_{\mathbb T^2}
+\Psi(\tau,x)\,
+K_\theta*\Psi(\tau,x)
+\,d\tau\,dx.
+\]
+
+For a function with a finite spatial Fourier expansion,
+
+\[
+\Psi(\tau,x)
+=
+\sum_{k\in F}
+a_k(\tau)e^{2\pi ikx},
+\]
+
+Parseval’s identity gives
+
+\[
+Q_\theta(\Psi,\Psi)
+=
+\sum_{k\in F}
+|k|\,
+\widehat K_{0,k}
+\int_0^1
+|a_k(\tau)|^2\,d\tau.
+\]
+
+Under the stated mode selection,
+
+\[
+Q_\theta(\Psi,\Psi)
+=
+\frac{\theta^2}{8\pi^2}
+\sum_{k\in F}
+\frac1{|k|}
+\int_0^1|a_k(\tau)|^2\,d\tau.
+\]
+
+All coefficients in the sum are positive. Positivity is therefore strict for profiles having a nonzero coefficient in an admitted positive Matsubara mode.
+
+The repaired convergence statement requires the profile-dependent margin
+
+\[
+\boxed{
+Q_\theta(\Psi,\Psi)
+=
+q_{L,\infty}(\Psi)
+\geq m_\Psi>0.
+}
+\]
+
+This is a continuous-sector condition. It excludes sampled lattice artifacts such as \(\sin(2\pi Lx)\).
+
+## 3.3 Discrete-to-continuous approximation error
+
+Suppose the discrete response admits a uniform consistency estimate of the form
+
+\[
+\left|
+G^{(2)}_{L,M}(\tau_j)
+-
+K_{\theta,M}(\tau_j-\tau')
+\right\|_{L^1}
+\leq
+\delta_{L,M},
+\qquad
+\delta_{L,M}\to0,
+\]
+
+where \(K_{\theta,M}\) is the exact periodic covariance kernel associated with the \(M\)-point time discretization. Assume also the Riemann-sum consistency
+
+\[
+\sup_{\tau}
+\left|
+\frac1N
+\sum_{j=0}^{N-1}
+K_{\theta,M}(\tau-\tau_j)
+-
+K_\theta(\tau)
+\right|
+\leq
+\varepsilon_{L,M},
+\qquad
+\varepsilon_{L,M}\to0.
+\]
+
+For a \(C^1\) profile on the compact torus, let
+
+\[
+\|\Psi\|_{C^1}
+\]
+
+denote the sum of the relevant first-derivative sup norms and the zeroth-order sup norm. Standard boundedness of the periodic convolution on \(C^1\) then gives
+
+\[
+\left|
+q_{L,M}(\Psi)
+-
+q_{L,\infty}(\Psi)
+\right|
+\leq
+E_{L,M}(\Psi),
+\]
+
+where one admissible form is
+
+\[
+\boxed{
+E_{L,M}(\Psi)
+=
+C_L
+\|\Psi\|_{C^1}^2
+\left(
+\frac{L}{N}
++
+\delta_{L,M}
++
+\varepsilon_{L,M}
+\right).
+}
+\]
+
+The constant \(C_L\) depends on a declared norm bound for the response kernels. The terms have distinct sources:
+
+- \(L/N\) is the temporal Riemann-sum error;
+- \(\delta_{L,M}\) is the response-kernel discretization error;
+- \(\varepsilon_{L,M}\) is the exact-kernel Riemann-sum error.
+
+If the response matrices are defined as exact entries of \(K_{\theta,M}\), then \(\delta_{L,M}=0\), and
+
+\[
+E_{L,M}(\Psi)
+=
+C_L
+\|\Psi\|_{C^1}^2
+\left(
+\frac{L}{2M}
++
+\varepsilon_{L,M}
+\right).
+\]
+
+The first inequality is therefore a consequence of the declared consistency assumptions, not of the finite \(M=1,2,3\) receipts alone.
+
+## 3.4 Emergent Positivity Theorem
+
+### Statement
+
+Let \(\Psi\in C^1(\mathbb T^2)\) satisfy
+
+\[
+q_{L,\infty}(\Psi)
+=
+Q_\theta(\Psi,\Psi)
+\geq m_\Psi>0.
+\]
+
+Assume the consistency estimates above with
+
+\[
+E_{L,M}(\Psi)\longrightarrow0.
+\]
+
+Then
+
+\[
+\boxed{
+\left|
+q_{L,M}(\Psi)
+-
+Q_\theta(\Psi,\Psi)
+\right|
+\leq
+E_{L,M}(\Psi)
+}
+\]
+
+and hence
+
+\[
+\boxed{
+q_{L,M}(\Psi)
+\geq
+m_\Psi-E_{L,M}(\Psi).
+}
+\]
+
+A computable positivity threshold is any \(M_0\) such that
+
+\[
+E_{L,M_0}(\Psi)<m_\Psi.
+\]
+
+Under the stated monotone kernel error model, this yields
+
+\[
+\boxed{
+q_{L,M}(\Psi)>0
+\qquad
+\text{for all }M\geq M_0.
+}
+\]
+
+For the simplified exact-kernel estimate,
+
+\[
+E_{L,M}(\Psi)
+=
+C_L\|\Psi\|_{C^1}^2
+\left(
+\frac{L}{2M}+\varepsilon_{L,M}
+\right),
+\]
+
+a sufficient threshold is
+
+\[
+\boxed{
+M_0(\Psi,m_\Psi)
+=
+\left\lceil
+\frac{C_LL\|\Psi\|_{C^1}^2}
+{2\left(
+m_\Psi-
+C_L\|\Psi\|_{C^1}^2\varepsilon_{L,\infty}
+\right)}
+\right\rceil,
+}
+\]
+
+provided
+
+\[
+C_L\|\Psi\|_{C^1}^2\varepsilon_{L,\infty}<m_\Psi
+\]
+
+and the kernel error is bounded by \(\varepsilon_{L,\infty}\).
+
+This threshold is conditional on the stated kernel-consistency estimate. A sharper repository-specific threshold requires the full matrix definition of \(G^{(2)}_{L,M}\).
+
+## 3.5 Covariance convergence
+
+The convergence estimate implies convergence of the quadratic form:
+
+\[
+\boxed{
+q_{L,M}(\Psi)
+\longrightarrow
+Q_\theta(\Psi,\Psi)
+}
+\]
+
+for each fixed \(C^1\) test profile in the chosen class.
+
+It also yields convergence of the associated finite-dimensional covariance bilinear forms whenever the reconstruction from sampled values is uniformly bounded. In particular, for finitely many fixed profiles \(\Psi_a\),
+
+\[
+\left|
+q_{L,M}(\Psi_a,\Psi_b)
+-
+Q_\theta(\Psi_a,\Psi_b)
+\right|
+\longrightarrow0.
+\]
+
+## 3.6 What is required for a Gaussian limit
+
+A convergence statement for second cumulants does not determine the full law of a field. Gaussian convergence requires an additional hypothesis, for example one of the following:
+
+1. the WDP observables are jointly Gaussian at every \(M\) in the declared CAR construction;
+2. a WDP mixing estimate bounds the cumulant of order \(k\geq3\) by a quantity tending to zero;
+3. an exact Wick factorization of the CAR state is available.
+
+Under any such hypothesis, the convergence of second-cumulant bilinear forms, together with tightness, supports convergence of the observable vector laws to a centered Gaussian law with covariance \(Q_\theta\).
+
+Without that extra hypothesis, the narrowest conclusion is:
+
+\[
+\boxed{
+\text{Convergence of the sampled second-cumulant forms, not Gaussian law convergence.}
+}
+\]
+
+The positive Matsubara coefficients
+
+\[
+\widehat K_n
+=
+\frac{\theta^2}{8\pi^2n^2}>0
+\]
+
+establish strict positivity on the retained continuous spatial sectors. They do not remove the separately sampled spatial lattice null modes.
+
+---
+
+# SECTION 4. THE WDP OBSERVABLE COCHAIN ADAPTER
+
+## 4.1 Cohomological structure
+
+Let
+
+\[
+d_0:C^0(K)\to C^1(K),
+\qquad
+d_1:C^1(K)\to C^2(K)
+\]
+
+be the temporal and spatial coboundary maps. Define
+
+\[
+Q^1
+=
+C^1/\operatorname{im}d_0.
+\]
+
+The finite Hodge decomposition used here is
+
+\[
+C^1
+=
+\operatorname{im}d_0
+\oplus
+\ker\Delta_1
+\oplus
+\operatorname{im}d_1^*,
+\]
+
+where
+
+\[
+\Delta_1=d_0d_0^*+d_1^*d_1.
+\]
+
+The summands are mutually orthogonal with respect to the declared \(C^1\) inner product, and the decomposition depends on boundary conditions. On a closed periodic complex, \(\ker\Delta_1\) contains the harmonic representative. On the finite interval, the listed decomposition requires the specified boundary conditions.
+
+For a cochain \(C\), write
+
+\[
+[C]
+=
+[C]_{\operatorname{im}d_0}
++
+[C]_{\ker\Delta_1}
++
+[C]_{\operatorname{im}d_1^*}.
+\]
+
+The \(Q^1\) seminorm is
+
+\[
+\|[C]\|_{Q^1}
+=
+\|[C]_{\ker\Delta_1}\|.
+\]
+
+A coboundary component has zero \(Q^1\) norm.
+
+## 4.2 WDP subdivision invariant
+
+Under the declared WDP subdivision rule, an equal-weight edge subdivision leaves the observable variance
+
+\[
+\Phi_1
+=
+\|q\|_{Q^1}
+\]
+
+unchanged.
+
+In particular, if
+
+\[
+[h]\in H^1,
+\]
+
+the WDP degree-two cocycle condition is
+
+\[
+\boxed{
+\Gamma_2([h])=0.
+}
+\]
+
+Thus subdivision does not introduce a nonzero degree-two class for an admissible closed observable. The invariant concerns the quotient class and its \(Q^1\) norm; it does not assert that the raw representative is identical before and after subdivision.
+
+## 4.3 Definition of the low-frequency physical sector
+
+A Fourier-observable adapter requires a declared set of retained time frequencies. For a periodic length-\(N\) chain, let
+
+\[
+\mathcal F_{\mathrm{low}}
+=
+\left\{
+p\in\mathbb Z:
+|p|\leq p_{\max}
+\right\},
+\]
+
+with the convention that the zero-frequency mode is removed by the physical quotient when it represents a coboundary or a nonphysical constant component.
+
+Let
+
+\[
+\Pi_{\mathrm{low}}^N
+=
+\frac1N
+\sum_{p\in\mathcal F_{\mathrm{low}}}
+e^{2\pi ipjk/N}
+\]
+
+be the exact discrete Fourier projector. Here \(k\) is the temporal index and \(j\) is the dual Fourier index. Extend \(\Pi_{\mathrm{low}}^N\) to spatially constant observables by tensor product with the identity on the retained physical spatial sector.
+
+This operator is an exact finite-dimensional low-pass projection. It is preferable to an unspecified “physical” projection because its frequency support is explicit.
+
+## 4.4 The WDP Observable Adapter
+
+For \(C\in C^1(K)\), define
+
+\[
+\boxed{
+\mathcal A_{\mathrm{obs}}^{(M)}[C]
+=
+\Pi_{\mathrm{low}}^{(2M)}
+\bigl[
+C-C_0
+\bigr],
+}
+\]
+
+where \(C_0\) is the declared nonphysical exact or mean coboundary component. Equivalently, if
+
+\[
+C=C_{\mathrm{exact}}+C_{\mathrm{phys}}+C_{\mathrm{coh}},
+\]
+
+with
+
+\[
+C_{\mathrm{coh}}\in\operatorname{im}d_0,
+\]
+
+then set
+
+\[
+\boxed{
+\mathcal A_{\mathrm{obs}}^{(M)}[C]
+=
+\Pi_{\mathrm{low}}^{(2M)}
+C_{\mathrm{phys}}.
+}
+\]
+
+The adapter has the following structural properties:
+
+1. **Coboundary removal**
+   \[
+   \mathcal A_{\mathrm{obs}}^{(M)}[d_0h]=0.
+   \]
+
+2. **Quotient descent**
+   \[
+   \mathcal A_{\mathrm{obs}}^{(M)}[C+d_0h]
+   =
+   \mathcal A_{\mathrm{obs}}^{(M)}[C].
+   \]
+
+3. **Finite-band selection**
+   \[
+   \widehat{\mathcal A_{\mathrm{obs}}^{(M)}C}(p,\cdot)=0
+   \quad
+   \text{for }|p|>p_{\max}.
+   \]
+
+4. **Subdivision interpretation**
+   the same physical frequency window is used before and after an admissible equal-weight subdivision, so \(\Phi_1\) is compared on the same quotient class.
+
+These properties define the adapter at the observable level. They do not identify the raw negative response branch with a cohomological class.
+
+## 4.5 Raw Trotter defect versus observed deficit
+
+Let the raw discrete cochain be decomposed as
+
+\[
+C_M
+=
+C_{\mathrm{phys},M}
++
+C_{\mathrm{coh},M}
++
+C_{\mathrm{def},M},
+\]
+
+where \(C_{\mathrm{def},M}\) is the declared raw Trotter coboundary defect. Under a convention in which that defect is modeled as
+
+\[
+C_{\mathrm{def},M}\in\operatorname{im}d_1,
+\]
+
+it is not automatically a nonzero element of \(H^1\).
+
+The observed adapter may be defined so that
+
+\[
+\mathcal A_{\mathrm{obs}}^{(M)}C_M
+=
+C_{\mathrm{phys},M}.
+\]
+
+Its negative-deficit functional is then
+
+\[
+\Phi_{1,M}^{\mathrm{obs}}
+=
+\left\|
+\left[
+\mathcal A_{\mathrm{obs}}^{(M)}C_M
+\right]
+\right\|_{Q^1}.
+\]
+
+The operator \(\mathcal A_{\mathrm{obs}}^{(M)}\) is contractive on the declared norm when implemented as an orthogonal Fourier multiplier. Hence
+
+\[
+\boxed{
+\Phi_{1,M}^{\mathrm{obs}}
+\leq
+\left\|
+C_{\mathrm{phys},M}
+\right\|.
+}
+\]
+
+The raw matrix may still contain a negative eigenvalue. Section 2 shows that its contribution to the alternating smooth observable is bounded by
+
+\[
+\frac{|\lambda_{\min}(M)|}{32M^2}
+\|\partial_\tau\Psi\|_\infty^2.
+\]
+
+Therefore the observed deficit satisfies
+
+\[
+\boxed{
+\left|
+\Phi_{1,M}^{\mathrm{neg}}
+\right|
+\leq
+\frac{|\lambda_{\min}(M)|}{32M^2}
+\|\partial_\tau\Psi\|_\infty^2,
+}
+\]
+
+provided the adapter’s output norm is dominated by the same continuous derivative seminorm.
+
+This is the precise sense in which the raw negative branch can be invisible in the quotient observable while remaining present in the unfiltered finite-dimensional response matrix.
+
+## 4.6 Boundary imposed by the available definitions
+
+The phrase “vanishing negative deficit in \(Q^1\)” has a definite meaning:
+
+\[
+\boxed{
+\left\|
+\left[
+\mathcal A_{\mathrm{obs}}^{(M)}C_M
+\right]_{-}
+\right\|_{Q^1}
+\longrightarrow0.
+}
+\]
+
+The Observable Filtering Theorem supplies a sufficient bound for the sampled negative quadratic component. A stronger assertion that every negative cochain component is exactly zero for all \(M\) is not supported by the finite receipts.
+
+Similarly, WDP subdivision invariance of \(\Phi_1\) does not imply equality of raw finite matrices. It concerns the observable class and the declared norm.
+
+---
+
+# SECTION 5. CLAIM HYGIENE AND EVIDENCE LEDGER
+
+## 5.1 What It Supports
+
+Under the declared CAR, staggering, response-matrix, and physical-normalization conventions, the derivation supports the following statements.
+
+1. **Exact \(M=1\) branch**
+   \[
+   \boxed{
+   \lambda_{\mathrm{stag}}(r)
+   =
+   -\frac{r^4}{4(r+2)(r^2+4r+8)}
+   }
+   \]
+   with exact rational evaluations at \(r=1/10\) and \(r=1/192\), and with expansion
+   \[
+   \lambda_{\mathrm{stag}}(r)
+   =
+   -\frac{r^4}{64}
+   +\frac{r^5}{64}
+   -\frac{5r^6}{512}
+   +O(r^7).
+   \]
+
+2. **Exact finite spectral receipts**
+   - \(M=1\): three positive eigenvalues counted with multiplicity, three zero eigenvalues, and one negative eigenvalue;
+   - \(M=2\): eight positive eigenvalues, seven zero eigenvalues, and one negative eigenvalue;
+   - \(M=3\): twelve positive eigenvalues, eleven zero eigenvalues, and one negative eigenvalue.
+
+3. **Negative eigenspaces**
+   \[
+   E_-(G^{(2)}_{4,M})
+   =
+   \operatorname{span}\{v_{\mathrm{stag}}^{(2M)}\}
+   \]
+   for the audited \(M=1,2,3\).
+
+4. **Zero-mode count**
+   \[
+   \boxed{
+   \dim\ker G^{(2)}_{4,M}=4M-1
+   }
+   \]
+   at \(M=1,2,3\).
+
+5. **Physical staggered variance**
+   \[
+   \boxed{
+   q_{4,M}(V_{\mathrm{stag}})
+   =
+   \frac{\lambda_{\min}(M)}{2M}.
+   }
+   \]
+
+6. **Alternating observable filtering**
+   \[
+   \boxed{
+   \left|q_{L,M}^{\mathrm{neg}}(\Psi)\right| \le \frac{|\lambda_{\min}(M)|}{32M^2} \|\partial_\tau \Psi\|_\infty^2 \longrightarrow 0 \quad (M \to \infty).
+   }
+   \]
+
+7. **Spatial lattice null-mode boundary**
+   The non-zero smooth function $\Psi(\tau, x) = \sin(2\pi L x)$ vanishes at all grid points $x_k = k/L$, giving $q_{L,M}(\Psi) = 0$ for every $M$. Strict positivity requires a certified positive limiting margin $q_{L,\infty}(\Psi) \ge m_\Psi > 0$.
+
+8. **Emergent positivity threshold**
+   For any profile with $q_{L,\infty}(\Psi) \ge m_\Psi > 0$, strict positivity $q_{L,M}(\Psi) > 0$ holds for all $M \ge M_0(\Psi, m_\Psi)$ where $M_0$ is explicitly computable from $m_\Psi$ and $\|\Psi\|_{C^1}$.
+
+9. **WDP quotient invariance**
+   Equal-weight edge subdivision preserves $\Phi_1 = \|q\|_{Q^1}$ on $Q^1 = C^1 / \operatorname{im} d_0$, and $[h] \in H^1 \implies \Gamma_2([h]) = 0$.
+
+## 5.2 What the derivation does not support
+1. Blanket strict positivity for all non-zero $C^1$ profiles without a positive limiting margin (refuted by the spatial null mode $\sin(2\pi L x)$).
+2. Positivity at $M=1$ (refuted by the exact Gate E eigenvalue $\lambda_{\min} = -1/706440$).
+3. Global $M^{-4}$ scaling across all $L$ without explicit calculation of higher-order odd terms ($+r^5/64$).
+4. Unconditional Gaussianity from second-cumulant convergence alone without higher-cumulant vanishing bounds.
+5. Invariance of raw finite matrices under subdivision (the WDP invariant applies to the quotient class $[C] \in Q^1$).
+
+## 5.3 The narrowest defensible claim
+For $L=4$ and $M \in \{1, 2, 3\}$, the negative spectrum of $G^{(2)}_{4,M}$ consists of exactly one mode, $v_{\mathrm{stag}}$, with physical smeared variance $q_{4,M}(v_{\mathrm{stag}}) = \frac{1}{2M}\lambda_{\min}$. For any $C^1$ profile with certified margin $q_{L,\infty}(\Psi) \ge m_\Psi > 0$, the observable filtering bound $|q_{L,M}^{\mathrm{neg}}(\Psi)| \le \frac{|\lambda_{\min}|}{32M^2}\|\partial_\tau \Psi\|_\infty^2$ ensures that $q_{L,M}(\Psi) > 0$ for all $M \ge M_0(\Psi, m_\Psi)$.
+
+## 5.4 The next tests needed
+1. Construct the symbolic characteristic polynomial for general $r$ at $M=2$ to determine if $\lambda_{\mathrm{stag}}(r, M=2)$ possesses a closed rational form analogous to $M=1$.
+2. Formalize the exact $M=1, 2, 3$ characteristic polynomials in Lean 4 under `lean4/research_programs/`.
+3. Compute $G^{(2)}_{4,4}$ in exact rational arithmetic to verify if the $4M-1$ zero-mode identity holds at $M=4$ (predicting 15 zero eigenvalues).

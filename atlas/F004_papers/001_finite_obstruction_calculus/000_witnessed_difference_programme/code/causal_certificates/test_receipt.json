@@ -1,0 +1,22 @@
+{
+  "schema": "wdp-causal-scoped-tests-v1",
+  "authority_effect": "None",
+  "date": "2026-10-04",
+  "python": "3.12.14",
+  "python_runtime": "bundled Codex primary runtime",
+  "pytest_libraries": "explicit primary checkout .venv/Lib/site-packages",
+  "pytest_plugin_autoload": false,
+  "working_directory": "WDP paper package root",
+  "command": "python -B -m pytest code/unit_tests/test_causal_execution.py code/unit_tests/test_causal_three_cells.py --basetemp <fresh existing-temp-parent>/wdp-causal-<uuid> -o addopts= -q --tb=short",
+  "native_configuration": {
+    "binary": "repository-root/target/causal_replay/target/debug/wdp_causal_replay.exe",
+    "build_receipt": "repository-root/target/causal_replay/native_build_receipt.json",
+    "source_root": "C:/Users/a343o/source/repos/the_symbol_game"
+  },
+  "result": "35 passed in 31.77s",
+  "passed": 35,
+  "failed": 0,
+  "skipped": 0,
+  "lint": "py -3.12 -m ruff check --select F401,F841,I: all six added Python files passed",
+  "scope": "two named native integration test files only; no whole-repository sweep, Lean build, or global coherence claim"
+}

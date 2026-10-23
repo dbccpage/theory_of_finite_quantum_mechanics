@@ -1,0 +1,238 @@
+{
+  "audit_cost": [
+    {
+      "adapter": "2",
+      "combined_per_rule": "2",
+      "rules": 2,
+      "source_per_rule": "1"
+    },
+    {
+      "adapter": "2",
+      "combined_per_rule": "2",
+      "rules": 3,
+      "source_per_rule": "1"
+    },
+    {
+      "adapter": "2",
+      "combined_per_rule": "1",
+      "rules": 4,
+      "source_per_rule": "1"
+    },
+    {
+      "adapter": "0",
+      "combined_per_rule": "1",
+      "rules": 4,
+      "source_per_rule": "1"
+    },
+    {
+      "adapter": "0",
+      "combined_per_rule": "1",
+      "rules": 4,
+      "source_per_rule": "2"
+    },
+    {
+      "adapter": "0",
+      "combined_per_rule": "1",
+      "rules": 0,
+      "source_per_rule": "2"
+    }
+  ],
+  "circulation": {
+    "d0": [
+      [
+        "-1",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "-1",
+        "1"
+      ],
+      [
+        "-1",
+        "0",
+        "1"
+      ]
+    ],
+    "dual": [
+      "1",
+      "1",
+      "-1"
+    ],
+    "queries": {
+      "curved": [
+        "1",
+        "1",
+        "0"
+      ],
+      "gradient": [
+        "1",
+        "-1",
+        "0"
+      ],
+      "projected": [
+        "1/3",
+        "1/3",
+        "2/3"
+      ],
+      "zero": [
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "tolerance": "0",
+    "weights": [
+      "1",
+      "1",
+      "1"
+    ]
+  },
+  "cost": {
+    "evaluation": "1",
+    "guard": "1/10",
+    "setup": "1",
+    "units": "declared evaluation units"
+  },
+  "polynomial": [
+    {
+      "candidates": {
+        "five-x": [
+          "0",
+          "5"
+        ]
+      },
+      "source_integrand": [
+        "0",
+        "1"
+      ],
+      "target_integrand": [
+        "5"
+      ],
+      "truncate_degree": null
+    },
+    {
+      "candidates": {
+        "five-x": [
+          "0",
+          "5"
+        ]
+      },
+      "source_integrand": [
+        "5"
+      ],
+      "target_integrand": [
+        "5"
+      ],
+      "truncate_degree": null
+    },
+    {
+      "candidates": {
+        "x-cubed": [
+          "0",
+          "0",
+          "0",
+          "1"
+        ]
+      },
+      "source_integrand": [
+        "0",
+        "0",
+        "3"
+      ],
+      "target_integrand": [
+        "0",
+        "0",
+        "3"
+      ],
+      "truncate_degree": 2
+    },
+    {
+      "candidates": {
+        "x-squared": [
+          "0",
+          "0",
+          "1"
+        ]
+      },
+      "source_integrand": [
+        "0",
+        "2"
+      ],
+      "target_integrand": [
+        "0",
+        "2"
+      ],
+      "truncate_degree": 2
+    }
+  ],
+  "schema": "wdp-antibody-input-v1",
+  "transfer": {
+    "adapter": {
+      "curved": "curved",
+      "gradient": "gradient",
+      "zero": "zero"
+    },
+    "outside_domain": "not_applicable",
+    "pool": [
+      "zero",
+      "gradient",
+      "curved",
+      "curved"
+    ],
+    "rules": [
+      {
+        "id": "circulation",
+        "rejects": [
+          "curved"
+        ]
+      },
+      {
+        "id": "unsafe-point",
+        "rejects": [
+          "gradient"
+        ]
+      },
+      {
+        "id": "invalid-source-rule",
+        "rejects": [
+          "zero"
+        ]
+      }
+    ],
+    "source": {
+      "carrier": [
+        "zero",
+        "gradient",
+        "curved"
+      ],
+      "id": "zero-repairs",
+      "profile": {
+        "field": "Q",
+        "repairs": "zero-only",
+        "tolerance": "0"
+      },
+      "valid": [
+        "zero"
+      ]
+    },
+    "target": {
+      "carrier": [
+        "zero",
+        "gradient",
+        "curved"
+      ],
+      "id": "all-triangle-repairs",
+      "profile": {
+        "field": "Q",
+        "repairs": "all-potentials",
+        "tolerance": "0"
+      },
+      "valid": [
+        "zero",
+        "gradient"
+      ]
+    }
+  }
+}

@@ -1,0 +1,92 @@
+paper_identity: "CODA-OR"
+title: "Omniversal Re-Presentation (CODA-OR)"
+version: "v1.0 Pre-Print"
+authority_effect: "None"
+
+claims:
+  OR-D1:
+    statement: "Pair compatibility on shared overlap slot"
+    python: "000_two_pairs_need_to_agree.ipynb"
+    lean: "Coda.OR.pair_gluing"
+    test: "000_two_pairs_need_to_agree.ipynb"
+
+  OR-D2:
+    statement: "Four-case square defect classification under enriched complex"
+    python: "coda_or_core.classify_diagram_square"
+    lean: "CodaOr.HasSquareStatus"
+    test: "test_coda_or.py::test_section_6a_worked_example_reproduction"
+
+  OR-D3:
+    statement: "Standing of comparison object requires bound support sieve, local terminalizer, and descent triplet"
+    python: "coda_or_core.ComparisonObject"
+    lean: "CodaOr.ComparisonObject"
+    test: "test_coda_or.py::test_target_binding_arrow_sieve_mismatch"
+
+  OR-D4:
+    statement: "Limit candidate standing requires valid cone legs and declared local terminalizer"
+    python: "coda_or_core.evaluate_comparison_authority"
+    lean: "CodaOr.LimitCandidate.hasLimitAuthority"
+    test: "test_coda_or.py::test_or_edge_cases_and_uncovered_branches"
+
+  OR-T1:
+    statement: "Compatible pairs glue uniquely to a triple"
+    python: "000_two_pairs_need_to_agree.ipynb"
+    lean: "Coda.OR.pair_gluing"
+    test: "000_two_pairs_need_to_agree.ipynb"
+
+  OR-T2:
+    statement: "A glue requires overlap compatibility"
+    python: "000_two_pairs_need_to_agree.ipynb"
+    lean: "Coda.OR.gluing_requires_overlap"
+    test: "000_two_pairs_need_to_agree.ipynb"
+
+  OR-T3:
+    statement: "Incompatible countermodel refuses gluing"
+    python: "000_two_pairs_need_to_agree.ipynb"
+    lean: "Coda.OR.incompatible_countermodel"
+    test: "000_two_pairs_need_to_agree.ipynb"
+
+  OR-T4:
+    statement: "Exact repairs are closed: d1(d0 alpha) = 0"
+    python: "coda_or_core.reproduce_section_6a_worked_example"
+    lean: "CodaOr.exact_repair_is_closed"
+    test: "test_coda_or.py::test_section_6a_worked_example_reproduction"
+
+  OR-T5:
+    statement: "Empty support sieve implies zero comparison authority"
+    python: "coda_or_core.evaluate_comparison_authority"
+    lean: "CodaOr.empty_support_sieve_implies_zero_authority"
+    test: "test_coda_or.py::test_gtor_04_support_sieve_necessity"
+
+  OR-T6:
+    statement: "Envelope membership does not confer standing"
+    python: "coda_or_core.evaluate_comparison_authority"
+    lean: "CodaOr.completion_reflector_does_not_create_authority"
+    test: "test_coda_or.py::test_gtor_02_non_creation_firewall"
+
+  OR-T7:
+    statement: "Missing terminalizer or invalid leg blocks limit standing"
+    python: "coda_or_core.evaluate_comparison_authority"
+    lean: "CodaOr.limit_missing_terminalizer_lacks_authority"
+    test: "test_coda_or.py::test_or_edge_cases_and_uncovered_branches"
+
+  OR-T8:
+    statement: "Global omniversal comparison object is not assumed"
+    python: null
+    lean: "CodaOr.omniversal_not_assumed"
+    test: null
+    status: "Definitional scope fence; numerical square examples are not evidence for it"
+
+  OR-T9:
+    statement: "Trace generation does not supply the standing fields"
+    python: null
+    lean: null
+    test: null
+    status: "Declared scope fence"
+
+  OR-T10:
+    statement: "External applications enforce their declared resource budgets"
+    python: null
+    lean: null
+    test: null
+    status: "Declared policy; no runtime budget scheduler in this package"

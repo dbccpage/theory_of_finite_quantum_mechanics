@@ -3,20 +3,35 @@ node_id: L1-IMP-TRANSITION-PROBABILITY-LAW
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Transition-probability preservation of the ray dynamics: the evolution of rays of
-    the lift preserves the Born probability of every rank-one effect in every state. Under this law the
-    dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it,
-    any bijection of rays is admissible. Supplied, not derived from primitive difference.'
+  source_statement: 'Imported dynamical law: the evolution of rays preserves the Born probability of every
+    transported rank-one effect in every state; conditional on this law the dynamics is a linear or conjugate-linear
+    similarity. Campaign hypothesis map on Q(i)^n: a supplied linear lift with finite orthogonality calibration
+    and a nonzero anchor preserves transition probabilities; fixed-frame statistics for all basis, real
+    pair and imaginary pair probes in every nonzero state, together with nonvanishing, also suffice and
+    fix every ray. On Q(i)^2, reversible ray dynamics can preserve norms, basis and real pair statistics,
+    report-swap covariance and orthogonality while changing a transition probability from 9/10 to 1/10.
+    A reversible linear subspace-lattice automorphism changes another probability from 1/2 to 1/5. The
+    dynamical law remains supplied, not derived from primitive difference.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - 'transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption'
-  source_bottleneck: No finite-theory primitive forces the ray dynamics to preserve the Born readout of
-    rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on
-    the lift) is item 1 of the run next steps.
+  - 'For the conditional linear route: LinearLift, OrthogonalCalibration and NonzeroAnchor.'
+  - 'For the fixed-frame route: Nonvanishing and TomographicStatistics; these force each ray to be fixed.'
+  source_bottleneck: 'The sufficient packages add explicit structure: a Gaussian-rational linear lift
+    plus finite zero-probability calibration, or nonvanishing plus all-state fixed-frame tomographic statistics.
+    Neither package is a derivation from primitive difference or a strictly weaker replacement for the
+    full law. Static Born readout, reversibility, report-swap covariance, norms, basis and real pair statistics
+    and orthogonality are jointly insufficient in dimension two. Subspace order preservation without orthocomplement
+    preservation is also insufficient. Arbitrary ray bijections in higher dimensions under orthogonality
+    alone, affine positive-effect automorphisms and evolving measurement-frame covariance are not classified
+    here.'
   source_refs:
   - dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md
   - dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md
   - lean4/FiniteWignerTheorem.lean
+  - dag/derivations/independent/l1-imp-transition-probability-law.md
+  - dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json
+  - checks/independent/l1-imp-transition-probability-law.py
   paper_refs:
   - dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -25,7 +40,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md
-    sha256: 9d8bf5432cf3807345efd0f3f8cf827cf8ecd08c9bf94e9d83432870fe14851b
+    sha256: eb6121daf844f6943e16f480096ea1e11aacf6ab71b54d86bc1c9411b51dd9ff
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -49,6 +64,22 @@ operation_candidates:
   source: lean4/FiniteWignerKernel.lean
   repository: this_repository
   source_sha256: 29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: countermodelRayEquiv
+  line: 268
+  signature_excerpt: 'def countermodelRayEquiv : Ray 2 ≃ Ray 2'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: stretchRayEquiv
+  line: 427
+  signature_excerpt: 'def stretchRayEquiv : Ray 2 ≃ Ray 2'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
 - kind: def
   name: F
@@ -98,6 +129,54 @@ operation_candidates:
   repository: this_repository
   source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
   status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Vec
+  line: 14
+  signature_excerpt: 'abbrev Vec (n : ℕ)'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: LinearLift
+  line: 31
+  signature_excerpt: 'def LinearLift (T : Vec n → Vec n) : Prop'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: OrthogonalCalibration
+  line: 34
+  signature_excerpt: 'structure OrthogonalCalibration (T : Vec n → Vec n) : Prop'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: NonzeroAnchor
+  line: 38
+  signature_excerpt: 'def NonzeroAnchor (T : Vec n → Vec n) (i : Fin n) : Prop'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Nonvanishing
+  line: 23
+  signature_excerpt: 'def Nonvanishing (T : Vec n → Vec n) : Prop'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: TomographicStatistics
+  line: 310
+  signature_excerpt: 'def TomographicStatistics (T : Vec n → Vec n) : Prop'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: tp_eq_born
@@ -132,6 +211,104 @@ relation_candidates:
   source: lean4/FiniteWignerTheorem.lean
   repository: this_repository
   source_sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: linear_calibration_tpPreserving
+  line: 71
+  signature_excerpt: |-
+    theorem linear_calibration_tpPreserving {T : Vec n → Vec n} (i₀ : Fin n)
+        (hl : LinearLift T) (hc : OrthogonalCalibration T) (ha : NonzeroAnchor T i₀) :
+        TpPreserving T
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: linear_calibration_wigner
+  line: 90
+  signature_excerpt: |-
+    theorem linear_calibration_wigner {T : Vec n → Vec n} (i₀ : Fin n)
+        (hl : LinearLift T) (hc : OrthogonalCalibration T) (ha : NonzeroAnchor T i₀) :
+        ∃ (F : Matrix (Fin n) (Fin n) GaussRat) (d ε : ℚ), 0 < d ∧
+          Similarity F d ∧ (ε = 1 ∨ ε = -1) ∧
+          ∀ x, x ≠ 0 → ∃ μ : GaussRat, μ ≠ 0 ∧ T x = μ • (F *ᵥ twist ε x)
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tomography_tpPreserving
+  line: 365
+  signature_excerpt: |-
+    theorem tomography_tpPreserving {T : Vec n → Vec n} (hn : Nonvanishing T)
+        (ht : TomographicStatistics T) : TpPreserving T
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tomography_sameRay
+  line: 314
+  signature_excerpt: |-
+    theorem tomography_sameRay {x y : Vec n} (hx : x ≠ 0) (hy : y ≠ 0)
+        (h : ProbeStatistics x y) : SameRay x y
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: insufficient_operational_package
+  line: 290
+  signature_excerpt: |-
+    theorem insufficient_operational_package :
+        BornRule (tp (n
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conditionalConjugation_realProbes
+  line: 450
+  signature_excerpt: 'theorem conditionalConjugation_realProbes : RealProbeStatistics conditionalConjugation'
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: insufficient_lattice_package
+  line: 488
+  signature_excerpt: |-
+    theorem insufficient_lattice_package :
+        BornRule (tp (n
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: oneSector_tpPreserving
+  line: 512
+  signature_excerpt: |-
+    theorem oneSector_tpPreserving {T : Vec 1 → Vec 1} (hn : Nonvanishing T) :
+        TpPreserving T
+  source: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -181,6 +358,96 @@ source_bindings:
   declaration_status: declaration_found_not_proof_checked
   line: 812
   role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_tpPreserving
+  availability: local
+  symbol: CampaignTransitionProbability.linear_calibration_tpPreserving
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_wigner
+  availability: local
+  symbol: CampaignTransitionProbability.linear_calibration_wigner
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_tpPreserving
+  availability: local
+  symbol: CampaignTransitionProbability.tomography_tpPreserving
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 365
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_sameRay
+  availability: local
+  symbol: CampaignTransitionProbability.tomography_sameRay
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 314
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_operational_package
+  availability: local
+  symbol: CampaignTransitionProbability.insufficient_operational_package
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 290
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.countermodelRayEquiv
+  availability: local
+  symbol: CampaignTransitionProbability.countermodelRayEquiv
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 268
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.conditionalConjugation_realProbes
+  availability: local
+  symbol: CampaignTransitionProbability.conditionalConjugation_realProbes
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 450
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_lattice_package
+  availability: local
+  symbol: CampaignTransitionProbability.insufficient_lattice_package
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 488
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.stretchRayEquiv
+  availability: local
+  symbol: CampaignTransitionProbability.stretchRayEquiv
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 427
+  role: source_lead_only
+- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.oneSector_tpPreserving
+  availability: local
+  symbol: CampaignTransitionProbability.oneSector_tpPreserving
+  path: lean4/CampaignTransitionProbability.lean
+  repository: this_repository
+  sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
+  declaration_status: declaration_found_not_proof_checked
+  line: 512
+  role: source_lead_only
 - original_ref: code/rust/src/qm/finite_wigner.rs::transition_probability
   availability: local
   symbol: transition_probability
@@ -228,6 +495,8 @@ operad_slots:
     coefficient_ring: null
     assumptions:
     - 'transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption'
+    - 'For the conditional linear route: LinearLift, OrthogonalCalibration and NonzeroAnchor.'
+    - 'For the fixed-frame route: Nonvanishing and TomographicStatistics; these force each ray to be fixed.'
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -245,6 +514,8 @@ operad_slots:
     anchors: []
     unpaid_imports:
     - 'transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption'
+    - 'For the conditional linear route: LinearLift, OrthogonalCalibration and NonzeroAnchor.'
+    - 'For the fixed-frame route: Nonvanishing and TomographicStatistics; these force each ray to be fixed.'
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.

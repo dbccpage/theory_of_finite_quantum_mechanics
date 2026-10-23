@@ -19,7 +19,7 @@ target:
   source_refs:
   - dag/derivations/02_genesis/tfq_0482_go_leftover_unboundedness.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/sixteenth/claim_ledger.md:48
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean:141-144
+  - lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean:150-153
   - omega_engine_education/documentation/005_oegenong/levels/level_18_leftovers_unboundedness.md:38
   paper_refs: []
   source_claim_label: PROVED_LEAN
@@ -35,23 +35,47 @@ source_provenance:
   path: dag/prompts/genesis_pgw_go_leftover_unboundedness_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: Reach16.unbounded
+  line: 152
+  signature_excerpt: |-
+    theorem Reach16.unbounded {s t : RSt} {n : ℕ} (h : Reach16 s t n) (hw : s.WF) (hne : s.st.T.Nonempty) (k : ℕ) :
+        Reach16 s t (2 * k + n)
+  source: lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean
+  repository: this_repository
+  source_sha256: a566d3fd20c1d547de13b81216d8da513ee7b427cc9d8d51e9cdd2a2cf76e7b1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: admit_remove_unbounded
+  line: 158
+  signature_excerpt: 'theorem admit_remove_unbounded (k : ℕ) : Reach16 ara16 ara16 (2 * k)'
+  source: lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean
+  repository: this_repository
+  source_sha256: a566d3fd20c1d547de13b81216d8da513ee7b427cc9d8d51e9cdd2a2cf76e7b1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean::Reach16.unbounded
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean::Reach16.unbounded
+  availability: local
   symbol: Reach16.unbounded
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean
+  repository: this_repository
+  sha256: a566d3fd20c1d547de13b81216d8da513ee7b427cc9d8d51e9cdd2a2cf76e7b1
+  declaration_status: declaration_found_not_proof_checked
+  line: 152
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean::admit_remove_unbounded
-  availability: external
+- original_ref: lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean::admit_remove_unbounded
+  availability: local
   symbol: admit_remove_unbounded
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean
+  repository: this_repository
+  sha256: a566d3fd20c1d547de13b81216d8da513ee7b427cc9d8d51e9cdd2a2cf76e7b1
+  declaration_status: declaration_found_not_proof_checked
+  line: 158
   role: source_lead_only
 presentation:
   colours: []
@@ -90,8 +114,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

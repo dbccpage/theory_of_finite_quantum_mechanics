@@ -1,0 +1,192 @@
+{
+  "authority_effect": "None",
+  "candidate_id": "wdp-repair-space-bunny-001",
+  "provider_response_sha256": "a67d9bbba1c06c5ea062982fc0ad409d725d3e69b7843b3b1be6af798d2b82ec",
+  "negative_controls": {
+    "printed_observation_table": {
+      "input": {
+        "states": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "visible": [
+          "*",
+          "*",
+          "*",
+          "*",
+          "*",
+          "*",
+          "*",
+          "*"
+        ],
+        "query": [
+          "1",
+          "1",
+          "2",
+          "2",
+          "3",
+          "3",
+          "4",
+          "4"
+        ],
+        "instruments": [
+          {
+            "name": "A",
+            "outcomes": [
+              "0",
+              "1",
+              "0",
+              "1",
+              "0",
+              "0",
+              "1",
+              "1"
+            ],
+            "cost": "1"
+          },
+          {
+            "name": "B",
+            "outcomes": [
+              "0",
+              "0",
+              "1",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "cost": "3"
+          },
+          {
+            "name": "C",
+            "outcomes": [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "1",
+              "1"
+            ],
+            "cost": "3"
+          }
+        ]
+      },
+      "accepted": false,
+      "reason": "full shelf has equal readings but unequal query values",
+      "indistinguishable_pair": [
+        "1",
+        "5"
+      ],
+      "fixed_feasible": false,
+      "adaptive_feasible": false
+    },
+    "unsafe_original_accumulation": {
+      "input": {
+        "source": {
+          "id": "S",
+          "carrier": [
+            "0",
+            "1"
+          ],
+          "valid": [
+            "0"
+          ],
+          "profile": {
+            "kind": "finite_validity"
+          }
+        },
+        "target": {
+          "id": "T",
+          "carrier": [
+            "0",
+            "1"
+          ],
+          "valid": [
+            "1"
+          ],
+          "profile": {
+            "kind": "finite_validity"
+          }
+        },
+        "adapter": {
+          "0": "0",
+          "1": "1"
+        },
+        "outside_domain": "not_applicable",
+        "rules": [
+          {
+            "id": "D",
+            "rejects": [
+              "1"
+            ]
+          }
+        ],
+        "pool": [
+          "0",
+          "1"
+        ]
+      },
+      "accepted": false,
+      "reason": "source soundness does not establish target soundness",
+      "checker": {
+        "input_sha256": "e126951a87236dadc5915ead6411d5c3f4444690df3e389b4d62eec0b9e32568",
+        "adapter_safe": false,
+        "adapter_counterexamples": [
+          "1"
+        ],
+        "valid_inputs_outside_domain": [],
+        "rules": [
+          {
+            "id": "D",
+            "source_sound": true,
+            "source_counterexamples": [],
+            "transfer_safe": false,
+            "target_counterexamples": [
+              "1"
+            ],
+            "transferred_rejection": [
+              "1"
+            ],
+            "admitted": false
+          }
+        ],
+        "active_rules": [],
+        "rejected": [],
+        "retained": [
+          "0",
+          "1"
+        ],
+        "pool_occurrences": 2,
+        "hits": 0,
+        "valid_occurrences": 1,
+        "out_of_domain_occurrences": 0,
+        "accumulation_sound": true,
+        "authority_effect": "None"
+      }
+    }
+  },
+  "prose_evidence_status": "PROPOSED_REVISION_NOT_AUTOMATIC_THEOREM_CREDIT",
+  "checker_sources": {
+    "derivation_repair_round\\check.py": "b93738c8be2a2d2136acd005cdb6b5f0bfd43be95147f73aa22f766059a5ae8a",
+    "derivation_repair_round\\round.py": "25abae8a47a7408ccf8bdcf966632b64fe525b37ad238d14dd225befeb99cc6d",
+    "finite_observation\\solver.py": "08c46e16d97f5a00d5163ccd7b68d30bd5070ffe4a4e4dcbf5ddf57e39c53e0f",
+    "antibody_transfer\\checker.py": "8979f2404fefc3a7121bf6a42d585159c75eae9a8888e006cea42c4b63e74bb0"
+  },
+  "accepted": false,
+  "status": "REFUSED_INCOMPLETE_PROVIDER_RESPONSE",
+  "finish_reasons": [
+    "length"
+  ],
+  "candidate_status": "NO_ACCEPTED_CANDIDATE",
+  "mathematical_candidate_status": "NOT_PARSED_OR_EVALUATED",
+  "reason": "No complete provider response; no candidate is manufactured or repaired by the host"
+}

@@ -1815,11 +1815,11 @@
         "lean4/DerivationDagQMClosure.lean"
       ],
       "lean": [
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Step.rename",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Reach.rename",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes_every_writing_A",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes_every_writing_B",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::obstruction_persists_reach",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Step3.rename",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Reach3.rename",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_A",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_B",
+        "lean4/Imported/GenesisOngoing/Second/Carry.lean::Reach3.obstruction_persists",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence"
       ],
       "rust": [
@@ -3669,19 +3669,32 @@
       "id": "L1-IMP-TRANSITION-PROBABILITY-LAW",
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Supplied law of the ray dynamics in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner: the dynamics sends nonzero vectors of the exact carrier Q(i)^n to nonzero vectors and preserves the transition probability tp x y = |<x,y>|^2/(|x|^2|y|^2) between nonzero vectors (Theorem.TpPreserving), equivalently the normalised Born readout hf (P x) y / vnorm y of rank-one effects (Similarity.tpPreserving_iff_born, Kernel.tp_eq_born). Nothing in the finite theory forces a dynamics to preserve this readout; it is the operational hypothesis of the Wigner theorem.",
-      "statement": "Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.",
+      "source_status": "Supplied law of the ray dynamics in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner: the dynamics sends nonzero vectors of the exact carrier Q(i)^n to nonzero vectors and preserves the transition probability tp x y = |<x,y>|^2/(|x|^2|y|^2) between nonzero vectors (Theorem.TpPreserving), equivalently the normalised Born readout hf (P x) y / vnorm y of rank-one effects (Similarity.tpPreserving_iff_born, Kernel.tp_eq_born). Nothing in the finite theory forces a dynamics to preserve this readout; it is the operational hypothesis of the Wigner theorem. Campaign outcome Narrowed: conditional sufficient packages and exact global two-sector ray countermodels, with no status promotion; see the campaign derivation note and Lean replay receipt.",
+      "statement": "Imported dynamical law: the evolution of rays preserves the Born probability of every transported rank-one effect in every state; conditional on this law the dynamics is a linear or conjugate-linear similarity. Campaign hypothesis map on Q(i)^n: a supplied linear lift with finite orthogonality calibration and a nonzero anchor preserves transition probabilities; fixed-frame statistics for all basis, real pair and imaginary pair probes in every nonzero state, together with nonvanishing, also suffice and fix every ray. On Q(i)^2, reversible ray dynamics can preserve norms, basis and real pair statistics, report-swap covariance and orthogonality while changing a transition probability from 9/10 to 1/10. A reversible linear subspace-lattice automorphism changes another probability from 1/2 to 1/5. The dynamical law remains supplied, not derived from primitive difference.",
       "source": [
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
-        "lean4/FiniteWignerTheorem.lean"
+        "lean4/FiniteWignerTheorem.lean",
+        "dag/derivations/independent/l1-imp-transition-probability-law.md",
+        "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
+        "checks/independent/l1-imp-transition-probability-law.py"
       ],
       "lean": [
         "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving",
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp",
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born",
         "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born",
-        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity"
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_wigner",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_sameRay",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_operational_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.countermodelRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.conditionalConjugation_realProbes",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_lattice_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.stretchRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.oneSector_tpPreserving"
       ],
       "rust": [
         "code/rust/src/qm/finite_wigner.rs::transition_probability",
@@ -3689,9 +3702,11 @@
         "code/rust/src/qm/finite_wigner.rs::verify_induced"
       ],
       "imported_structure": [
-        "transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption"
+        "transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption",
+        "For the conditional linear route: LinearLift, OrthogonalCalibration and NonzeroAnchor.",
+        "For the fixed-frame route: Nonvanishing and TomographicStatistics; these force each ray to be fixed."
       ],
-      "bottleneck": "No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.",
+      "bottleneck": "The sufficient packages add explicit structure: a Gaussian-rational linear lift plus finite zero-probability calibration, or nonvanishing plus all-state fixed-frame tomographic statistics. Neither package is a derivation from primitive difference or a strictly weaker replacement for the full law. Static Born readout, reversibility, report-swap covariance, norms, basis and real pair statistics and orthogonality are jointly insufficient in dimension two. Subspace order preservation without orthocomplement preservation is also insufficient. Arbitrary ray bijections in higher dimensions under orthogonality alone, affine positive-effect automorphisms and evolving measurement-frame covariance are not classified here.",
       "tags": [
         "gap",
         "readout-law"
@@ -9571,19 +9586,26 @@
       "stage": "FINITE_QCD",
       "status": "PROVED_LEAN",
       "source_status": "TFQ record_status PROVED_LEAN (source slice 08)",
-      "statement": "The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
+      "statement": "Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md"
       ],
       "lean": [
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual",
-        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity"
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b2_color_dimension_mismatch"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.",
+      "bottleneck": "Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py tests with SymPy only; any color-transport statement.",
       "tags": [
         "unified-dag",
         "TFQ-0016",
@@ -20840,19 +20862,28 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-035 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
+      "statement": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "rust": [],
       "imported_structure": [
         "Callan-Harvey continuum anomaly inflow (literature)"
       ],
-      "bottleneck": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "bottleneck": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -35675,7 +35706,7 @@
       ],
       "output": "FSP-LATTICE-ANOMALY-INFLOW",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "mechanism": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -39523,12 +39554,19 @@
       "lean4": [
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual",
-        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity"
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b2_color_dimension_mismatch"
       ],
       "local_id": "A08-005",
       "name": "Add a Lean replay of the two-stage dressing or leave QM-213 as",
-      "obligation": "Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.",
+      "obligation": "Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py tests with SymPy only; any color-transport statement.",
       "parent_id": "TFQ-0015",
       "python": [
         "checks/independent/tfq-0016.py"
@@ -39539,7 +39577,7 @@
       ],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
+      "summary": "Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
       "uuid": "e48544d7-d14e-5ebc-8e7e-ca7fdf7232a2"
     },
     {
@@ -55041,7 +55079,10 @@
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
-        "lean4/FiniteWignerTheorem.lean"
+        "lean4/FiniteWignerTheorem.lean",
+        "dag/derivations/independent/l1-imp-transition-probability-law.md",
+        "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
+        "checks/independent/l1-imp-transition-probability-law.py"
       ],
       "id": "TFQ-1047",
       "lean4": [
@@ -55049,11 +55090,21 @@
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp",
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born",
         "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born",
-        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity"
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_wigner",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_sameRay",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_operational_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.countermodelRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.conditionalConjugation_realProbes",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_lattice_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.stretchRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.oneSector_tpPreserving"
       ],
       "local_id": "L1-IMP-TRANSITION-PROBABILITY-LAW",
       "name": "l1-imp-transition-probability-law",
-      "obligation": "No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.",
+      "obligation": "The sufficient packages add explicit structure: a Gaussian-rational linear lift plus finite zero-probability calibration, or nonvanishing plus all-state fixed-frame tomographic statistics. Neither package is a derivation from primitive difference or a strictly weaker replacement for the full law. Static Born readout, reversibility, report-swap covariance, norms, basis and real pair statistics and orthogonality are jointly insufficient in dimension two. Subspace order preservation without orthocomplement preservation is also insufficient. Arbitrary ray bijections in higher dimensions under orthogonality alone, affine positive-effect automorphisms and evolving measurement-frame covariance are not classified here.",
       "parent_id": "TFQ-0303",
       "python": [],
       "record_status": "IMPORTED_ASSUMPTION",
@@ -55064,7 +55115,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.",
+      "summary": "Imported dynamical law: the evolution of rays preserves the Born probability of every transported rank-one effect in every state; conditional on this law the dynamics is a linear or conjugate-linear similarity. Campaign hypothesis map on Q(i)^n: a supplied linear lift with finite orthogonality calibration and a nonzero anchor preserves transition probabilities; fixed-frame statistics for all basis, real pair and imaginary pair probes in every nonzero state, together with nonvanishing, also suffice and fix every ray. On Q(i)^2, reversible ray dynamics can preserve norms, basis and real pair statistics, report-swap covariance and orthogonality while changing a transition probability from 9/10 to 1/10. A reversible linear subspace-lattice automorphism changes another probability from 1/2 to 1/5. The dynamical law remains supplied, not derived from primitive difference.",
       "uuid": "e3bc6875-5cb5-523c-bc4f-5674205306c9"
     },
     {
@@ -63152,17 +63203,28 @@
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:25-25"
       ],
       "id": "TFQ-1199",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "local_id": "FSP-LATTICE-ANOMALY-INFLOW",
       "name": "Callan-Harvey anomaly inflow on a finite slab lattice",
-      "obligation": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "obligation": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "parent_id": "TFQ-1197",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-lattice-anomaly-inflow.py::main"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
+      "summary": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.",
       "uuid": "2cdcb333-b712-5422-b362-c252224f2839"
     },
     {

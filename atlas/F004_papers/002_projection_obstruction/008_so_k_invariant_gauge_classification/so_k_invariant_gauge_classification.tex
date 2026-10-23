@@ -1,0 +1,1169 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{255,255,255}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{\textbf{\colorbox[rgb]{0.97,0.90,0.90}{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.79,0.38,0.79}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.39,0.29,0.61}{\textbf{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.57,0.30,0.62}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.54,0.53,0.53}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.00,0.58,1.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.67,0.33,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.38,0.47,0.50}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{\underline{#1}}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.58,1.00}{\textbf{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.39,0.29,0.61}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{1.00,0.33,0.00}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.69,0.50,0.00}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.12,0.11,0.11}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.43,0.16}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.00,0.43,0.16}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{\colorbox[rgb]{0.88,0.91,0.97}{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.24,0.68,0.91}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{1.00,0.33,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.34,0.68}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% Publication template for GS-002.
+%
+%  Typesetting is not evidence for any claim.
+%
+% Built 2026-09-08.
+%
+% xelatex, not pdflatex: the manuscript uses unicode characters that pdflatex
+% cannot set without per-character declarations.
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=0.85]
+\setmathfont{Latin Modern Math}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newunicodechar}
+\newcommand{\um}[1]{\ensuremath{#1}}
+\newunicodechar{ℝ}{\um{\mathbb{R}}}
+\newunicodechar{⁰}{\um{^0}}
+\newunicodechar{₀}{\um{_0}}
+\newunicodechar{₁}{\um{_1}}
+\newunicodechar{₂}{\um{_2}}
+\newunicodechar{¹}{\um{^1}}
+\newunicodechar{²}{\um{^2}}
+\newunicodechar{∘}{\um{\circ}}
+\newunicodechar{δ}{\um{\delta}}
+\newunicodechar{⟨}{\um{\langle}}
+\newunicodechar{⟩}{\um{\rangle}}
+\newunicodechar{φ}{\um{\varphi}}
+\newunicodechar{ᵀ}{\um{^\top}}
+\newunicodechar{𝛷}{\um{\Phi}}
+\newunicodechar{Φ}{\um{\Phi}}
+\newunicodechar{Γ}{\um{\Gamma}}
+\newunicodechar{α}{\um{\alpha}}
+\newunicodechar{β}{\um{\beta}}
+\newunicodechar{κ}{\um{\kappa}}
+\newunicodechar{∂}{\um{\partial}}
+\newunicodechar{∈}{\um{\in}}
+\newunicodechar{−}{\um{-}}
+\newunicodechar{∞}{\um{\infty}}
+\newunicodechar{≠}{\um{\neq}}
+\newunicodechar{≤}{\um{\le}}
+\newunicodechar{≥}{\um{\ge}}
+\newunicodechar{⟺}{\um{\iff}}
+\newunicodechar{→}{\um{\to}}
+\newunicodechar{─}{-}
+\newunicodechar{│}{|}
+\newunicodechar{┌}{+}
+\newunicodechar{┐}{+}
+\newunicodechar{└}{+}
+\newunicodechar{┘}{+}
+\newunicodechar{┬}{+}
+\newunicodechar{┴}{+}
+\newunicodechar{▼}{v}
+\newunicodechar{ℓ}{\um{\ell}}
+\newunicodechar{Ω}{\um{\Omega}}
+\newunicodechar{Σ}{\um{\Sigma}}
+\newunicodechar{·}{\um{\cdot}}
+\newunicodechar{×}{\um{\times}}
+\newunicodechar{⊂}{\um{\subset}}
+\newunicodechar{ₙ}{\um{_n}}
+\newunicodechar{∎}{\um{\blacksquare}}
+\newunicodechar{∼}{\um{\sim}}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{microtype}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue,
+            citecolor=RoyalBlue,breaklinks=true]{hyperref}
+\usepackage{fvextra}
+\usepackage{framed}
+\fvset{breaklines=true,breakanywhere=true,fontsize=\small}
+
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\definecolor{quoterule}{gray}{0.75}
+\renewenvironment{quote}
+  {\begin{leftbar}\small}
+  {\end{leftbar}}
+
+\usepackage[htt]{hyphenat}
+\usepackage{xurl}
+\emergencystretch=3em
+\sloppy
+
+\newenvironment{nonclaim}{\begin{quote}\textbf{Non-claim:\ }}{\end{quote}}
+\newenvironment{claimblock}{\begin{quote}}{\end{quote}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={SO(k)-Invariant Gauge Rigidity for Declared Euclidean Stalks: Local l2 Selection and Outer l1 Aggregation (GS-002)},
+  pdfauthor={Jeremy H. Carroll},
+  colorlinks=true,
+  linkcolor={RoyalBlue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\date{2026-09-21}
+
+\begin{document}
+\begin{center}
+{\LARGE \textbf{SO(k)-Invariant Gauge Rigidity for Declared Euclidean Stalks}}\\[0.4em]
+{\large \textbf{Local \(\ell^2\) Selection and Outer \(\ell^1\) Aggregation (GS-002)}}\\[1em]
+\textbf{Author:} Jeremy H. Carroll \quad \textbf{Date:} 2026-09-21\\[0.4em]
+\textbf{Version:} v2.0.0 Pre-Print \quad \textbf{License:} CC-BY-4.0
+\end{center}
+\vspace{1em}
+
+\subsection{Abstract}\label{abstract}
+
+We study vector-valued defect diagnostics on finite directed graphs with
+declared Euclidean stalks. The classical sphere-transitivity argument
+shows that a faithful absolutely homogeneous
+\(\mathrm{SO}(k)\)-invariant local gauge is a positive multiple of
+\(\|\cdot\|_2\). Substitution into a separately declared strong edgewise
+sum gives \(J_{2,1,c}(\omega)=\sum_e c_e\|\omega_e\|_2\); symmetry alone
+does not determine the outer aggregation. Edge exchange symmetry makes
+weights constant on declared orbits, while unit normalization fixes them
+to one.
+
+For identity transports, finite-dimensional convex duality identifies
+the quotient norm modulo vertex repairs with a maximum over
+divergence-free vector witnesses satisfying \(\|\varphi_e\|_2\le c_e\).
+We give an attained single-cycle formula
+\((\min_e c_e)\|S(\omega)\|_2\), a normalized triangle separation of
+\(2\) versus \(\sqrt2\), and a closure bound under \(d_1d_0=0\). These
+are applications of standard norm, cycle-space, and convex-duality
+results with explicit observer hypotheses. The companion Lean
+development mechanizes finite and abstract kernels, including planar
+rotation transitivity and weak duality; general \(\mathrm{SO}(k)\)
+transitivity and strong duality remain prose or imported steps. Python
+examples evaluate analytical formulas and numerical certificates in
+floating-point arithmetic. Finite here describes the carrier and stalk
+dimension; the Euclidean scalar and symmetry structures are declared
+continuum inputs.
+
+\begin{quote}
+\textbf{What this does not claim.} This paper does not claim global
+Euclidean physics, global \(\ell^1\) geometry, unweighted
+\(\ell^1(E;\ell^2)\) without edge normalization, or that every
+vector-valued observer must use \(\mathrm{SO}(k)\). It does not claim
+that the triangle example shows the general theory by itself. It claims
+only that, under declared \(\mathrm{SO}(k)\)-invariant local gauge
+symmetry and exact edge-additive replica extensivity, the licensed
+finite diagnostic is weighted \(\ell^1(E;\ell^2)\), with unweighted form
+requiring normalization or edge-uniformity.
+
+\textbf{Why a researcher should care.} Many finite obstruction systems
+have vector-valued local defects: displacement fields, force/strain
+residuals, multi-channel sensor mismatches, projected dynamics errors,
+and vector-valued presheaf gluing failures. Treating such a defect as
+independent scalar coordinates gives a different diagnostic from
+treating it as one Euclidean vector. This paper identifies the precise
+observer assumption that justifies the Euclidean treatment: continuous
+\(\mathrm{SO}(k)\) rotational invariance of the local gauge. It then
+separates that local symmetry choice from the outer edge aggregation
+assumption, showing that \(\ell^1(E;\ell^2)\) is a conditional observer
+geometry, not a global metric.
+\end{quote}
+
+\subsection{1. Introduction and Structural
+Placement}\label{introduction-and-structural-placement}
+
+The classification of diagnostic geometries over finite graphs forms the
+basis of categorical obstruction analysis. Previous classification
+theorems show that when an observer's operational domain demands
+edge-decomposable aggregation and maximal bounded-linear compatibility
+on scalar stalks, the resulting diagnostic is a weighted \(\ell^1\)
+coboundary norm, becoming uniform only under edge-uniformity
+assumptions.
+
+However, moving from scalar signals to Euclidean geometries requires
+stating the structural constraints governing vector variables.
+Evaluating a 2D vector defect \(\vec{\delta} = (\delta_x, \delta_y)\)
+via \(|\delta_x| + |\delta_y|\) treats the two coordinates as
+independently observed scalar channels.
+
+Conversely, treating \(\vec{\delta}\) as a single vector under
+continuous rotation selects the local stalk gauge
+\(\|\vec{\delta}\|_2\), up to scale.
+
+The aggregate measuring these local bounds independently across edges is
+then the mixed \(\ell^1(E; \ell^2)\) measure. This work formalizes the
+geometric separation between coordinate-separable scalar error
+components and vector-valued Euclidean defects.
+
+\textbf{Falsifiability.} A proposed use of this paper fails if it cannot
+specify the finite carrier, vector stalk dimension \(k\ge2\), local
+\(\mathrm{SO}(k)\)-invariant gauge assumption, edge-decomposable and
+disjoint-additive aggregation assumptions, positive edge weights
+\(c_e\), and the normalization or edge-orbit condition used to pass from
+weighted to unweighted \(\ell^1(E;\ell^2)\). The duality claim fails if
+a finite counterexample satisfies the primal quotient problem but
+violates the stated divergence-free Euclidean-ball dual formula.
+
+\subsubsection{1.1 Related Work and
+Positioning}\label{related-work-and-positioning}
+
+This paper is closest to five bodies of work:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Invariant norm and convex-body classification.} The
+  \(\mathrm{SO}(k)\) result is a special case of norm classification
+  under group actions: transitivity on the Euclidean unit sphere forces
+  an invariant norm to be Euclidean up to scale (a classical fact of
+  convex geometry / normed-space theory --- a finite-dimensional norm
+  whose linear isometry group acts transitively on the unit sphere is
+  induced by an inner product). This paper differs by applying that
+  local classification to finite obstruction cochains.
+\item
+  \textbf{Banach-space direct sums and mixed norms.} The resulting
+  diagnostic is a mixed norm: \(\ell^1\) across edges and \(\ell^2\)
+  inside each vector stalk. Mixed \(\ell^p(\ell^q)\) spaces are standard
+  in functional analysis (e.g., Benedek--Panzone-type mixed-norm
+  spaces). This paper differs by deriving the inner/outer split from
+  separate observer assumptions rather than choosing the mixed norm as a
+  modeling convention.
+\item
+  \textbf{Finite cochain and quotient-norm obstruction theory.} The
+  primal obstruction is a quotient norm modulo exact repairs. This paper
+  differs by specializing the cochain geometry to
+  \(\mathrm{SO}(k)\)-invariant vector stalks and deriving the
+  corresponding dual witnesses.
+\item
+  \textbf{Convex duality / Fenchel duality and network flow.} The mixed
+  duality theorem is a finite-dimensional convex-duality result: the
+  dual of \(c_e\|\cdot\|_2\) is the Euclidean ball
+  \(\|\varphi_e\|_2\le c_e\) by Fenchel--Rockafellar convex duality. The
+  divergence-free constraint \(d_0^*\varphi=0\) makes the dual a
+  vector-valued network-flow / min-cost-circulation problem. This paper
+  differs by interpreting those dual variables as divergence-free vector
+  circulations.
+\item
+  \textbf{Vector-valued sensor, strain, and displacement diagnostics.}
+  Many applied systems are \emph{modelled} with Euclidean vector defects
+  rather than coordinate-separable scalar errors. This paper differs by
+  giving the finite observer assumptions under which that Euclidean
+  local geometry is licensed. That such systems \emph{are} Euclidean is
+  a modelling declaration, not a finding of this paper; the applied
+  vocabulary in §1 and §5 names interpretation candidates, not realized
+  physics (register row \textbf{I8}).
+\end{enumerate}
+
+These are positioning anchors. The cited external results are used only
+for background context unless explicitly invoked in a theorem.
+
+\subsubsection{1.2 Evidence and Computational
+Scope}\label{evidence-and-computational-scope}
+
+The companion claim ledger distinguishes local proofs, imported results,
+and partial mechanizations. The Lean radial-collapse theorem uses a
+declared ambient norm and assumes sphere constancy; the explicit planar
+circle-transitivity result is a separate algebraic theorem. The finite
+cycle repair kernel uses an anchored presentation, and the full
+graph-incidence identification is supplied by the prose argument in §5.
+Strong duality and attainment in §4 use standard finite-dimensional
+convex analysis, beyond the Lean weak-duality kernel.
+
+The executable graph engine implements nonempty finite carriers with
+identity transports, common vector dimension, and scalar signed face
+incidence. Its analytical cycle formula is exact as mathematics, but its
+numerical evaluation and residuals use floating-point arithmetic. A
+numerical \texttt{is\_optimal} flag means that the reported gap,
+divergence, and ball violation pass the declared tolerance; it is not an
+exact-arithmetic theorem certificate. Rotation and sphere audits test
+finitely many samples and cannot establish unbounded invariance. Fresh
+build and notebook replay evidence is recorded separately from retained
+historical outputs in \texttt{docs/publication\_review.md}.
+
+\subsection{2. General M-Compatible Gauge
+Classification}\label{general-m-compatible-gauge-classification}
+
+Evaluating obstruction geometries over finite carriers requires mapping
+local measurement constraints onto an admissible transformation monoid.
+
+\subsubsection{2.1 Definition}\label{definition}
+
+Let \(V\) be a finite-dimensional normed vector space and let
+\[M \subset \text{End}(V)\] be an admissible transformation monoid
+representing local observer symmetries.
+
+A faithful gauge \(j: V \to \mathbb{R}_{\geq 0}\) is
+\textbf{M-compatible} if:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(j(x) = 0 \iff x = 0\)
+\item
+  \(j(\lambda x) = |\lambda| j(x)\)
+\item
+  \(j(x + y) \leq j(x) + j(y)\)
+\item
+  \(j(Tx) \leq \|T\|_{\|\cdot\|_V\to\|\cdot\|_V} j(x)\) for all
+  \(T \in M\), where \(\|\cdot\|_V\) is the declared ambient norm.
+\end{enumerate}
+
+Equivalently, \(j\) is a norm whose unit ball is compatible with the
+action of \(M\).
+
+\begin{quote}
+\textbf{{[}IMPORTED EVIDENCE FROM THE M-COMPATIBLE GAUGE PAPER; NOT
+LOCALLY PROVED{]} Theorem 2.1 --- General M-Compatible Gauge
+Classification}
+
+Let \(V\) be finite-dimensional and \(M \subset \text{End}(V)\) an
+admissible transformation monoid. There is a one-to-one correspondence
+between \(M\)-compatible faithful gauges \(j\) and closed, convex,
+balanced, absorbing, \textbf{bounded} unit bodies \(B \subset V\)
+satisfying \[T(B) \subset \|T\| B \quad \text{for all } T \in M.\] The
+correspondence is given by the Minkowski functional
+\(j_B(x) = \inf\{\lambda > 0 : x \in \lambda B\}\).
+
+Consequently, classifying M-compatible obstruction theories is
+equivalent to classifying M-contractive symmetric convex bodies.
+Increasing \(M\) shrinks the admissible body class. The maximal case
+\(M = \text{End}_b(V)\) collapses the body class to scalar multiples of
+the native Banach unit ball, recovering a unique local norm (up to
+scale); \(\ell^1\) arises only after imposing replica-extensive
+aggregation across edges.
+
+This statement is reproduced solely as an imported dependency. This
+paper supplies neither a local proof nor a Lean mechanization of Theorem
+2.1; any use below is conditional on the cited companion source and
+inherits its claim status.
+
+Boundedness is essential and matches the companion source's
+finite-dimensional statement. For example, \(B=V\) is closed, convex,
+balanced, and absorbing, but its Minkowski functional is identically
+zero and is not faithful. In finite dimension a closed balanced convex
+absorbing body is a neighborhood of zero; boundedness excludes nonzero
+directions with zero gauge.
+\end{quote}
+
+\subsubsection{2.2 Corollaries}\label{corollaries}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{{[}IMPORTED FROM THE M-COMPATIBLE GAUGE PAPER / PROVEN{]}
+  Corollary 1 (Order Reversal):} If \(M_1 \subset M_2\), then
+  \(\text{Gauge}(V, M_2) \subset \text{Gauge}(V, M_1)\). More symmetry
+  weakly reduces the admissible gauge class; strict reduction requires a
+  separating example.
+\item
+  \textbf{{[}IMPORTED FROM THE M-COMPATIBLE GAUGE PAPER / PROVEN,
+  CONDITIONAL + Hahn--Banach / native norm{]} Corollary 2 (Maximal
+  Symmetry):} If \(M = \text{End}_b(V)\), then
+  \(\text{Gauge}(V, M) = \{ c\|\cdot\| : c > 0 \}\). This recovers the
+  maximal-local-symmetry endpoint used by the companion
+  gauge-classification paper.
+\item
+  \textbf{{[}PROVEN, CONDITIONAL + isometric group action{]} Corollary 3
+  (Group Symmetry \& Native Norm Rigidity):} If \(M=G\) is a group of
+  linear isometries on a normed space \((V, \|\cdot\|_V)\), then
+  \(j(gx) = j(x)\) for all \(g \in G\), and the \(M\)-compatible gauges
+  are exactly the \(G\)-invariant norms. Equivalently, the unit body
+  \(B_j\) is a \(G\)-invariant symmetric convex body. If \(G\) acts
+  transitively on the native unit sphere \(\{x \in V : \|x\|_V = 1\}\),
+  then positive homogeneity and faithfulness determine the local gauge
+  up to scale as \(j(x)=c\|x\|_V\) for some \(c > 0\). In particular,
+  when \(V = \mathbb{R}^k\) is equipped with the standard Euclidean
+  inner product and \(G = \mathrm{SO}(k)\), this specializes to
+  \(j(x) = c \|x\|_2\).
+\item
+  \textbf{{[}IMPORTED FROM THE M-COMPATIBLE GAUGE PAPER / STANDARD /
+  PROVEN, CONDITIONAL + compact group + Haar measure{]} Corollary 4
+  (Compact Group Construction):} If \(G\) is compact, acts continuously
+  and linearly, and \(q\) is any norm, then
+  \(j_G(x) := \int_G q(gx) dg\) is a \(G\)-invariant norm. Thus, compact
+  symmetry classes generally admit vast continuous families of gauges
+  unless the group acts transitively enough to collapse them.
+\item
+  \textbf{{[}STANDARD / SUPPORT LEMMA{]} Support Lemma S8 (Orbit Convex
+  Hull Description):} For a compact group \(G\) acting continuously and
+  linearly on finite-dimensional \(V\) and a bounded seed set \(S\)
+  spanning \(V\), the closed balanced convex hull
+  \(B=\overline{\operatorname{aconv}}(\bigcup_{g\in G}gS)\) is bounded,
+  absorbing, and \(G\)-invariant. Its Minkowski functional is a faithful
+  \(G\)-invariant norm. If \(S\) is already balanced, the ordinary
+  closed convex hull suffices.
+\end{itemize}
+
+\emph{Warning:} There is generally \textbf{no finite list} of
+\(M\)-compatible gauges. The classification maps
+\(M \to \text{family of invariant/contractive convex bodies}\). Only
+restrictive maximal monoids collapse the hierarchy to a single local
+gauge class.
+
+\subsection{\texorpdfstring{3. Formal Framework: Directed Graph Complex
+and \(\mathrm{SO}(k)\)
+Geometry}{3. Formal Framework: Directed Graph Complex and \textbackslash mathrm\{SO\}(k) Geometry}}\label{formal-framework-directed-graph-complex-and-mathrmsok-geometry}
+
+Let \(G = (V, E, s, t)\) be a finite directed graph with vertex set
+\(V\), an indexed edge set \(E\), and source and target maps
+\(s,t:E\to V\). Indexed edges allow parallel comparisons with the same
+endpoints. We write \(e=(u\to v)\) when \(s(e)=u\) and \(t(e)=v\).
+
+\subsubsection{\texorpdfstring{3.1 \textbf{{[}DEFINITION{]}} The
+Vector-Valued Cochain
+Spaces}{3.1 {[}DEFINITION{]} The Vector-Valued Cochain Spaces}}\label{definition-the-vector-valued-cochain-spaces}
+
+Each vertex \(v \in V\) carries a vector assignment
+\(a(v) \in \mathbb{R}^k\). For each directed edge
+\(e = (u \to v) \in E\), declare transport
+\(r_{v,u}:\mathbb R^k_u\to\mathbb R^k_v\) in
+\(\mathrm{GL}(k,\mathbb R)\). The target-stalk comparison defect is
+\[\delta_e(a) = a(v) - r_{v,u}a(u)\] where
+\(\delta_e \in \mathbb{R}^k\).
+
+In the standard flat reference setting \(r_{v,u} = I\), the coboundary
+operator \(d_0: C^0(G; \mathbb{R}^k) \to C^1(G; \mathbb{R}^k)\) acts on
+vertex fields \(\alpha \in C^0(G; \mathbb{R}^k)\) by:
+\[(d_0 \alpha)_e = \alpha(v) - \alpha(u).\]
+
+The graph \(G = (V, E)\), the edge transports, and the field assignments
+are declared combinatorial data. They provide an explicit combinatorial
+index for exhibited edge comparisons rather than presupposing a
+continuous ambient embedding, an antecedent physical space, or an
+unindexed observer. Common over-interpretations are explicitly scoped
+out:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(G\) is a declared combinatorial complex indexing comparisons, not an
+  unindexed spatial continuum.
+\item
+  The assignment \(a\) parameterizes local vertex values; \(\delta_e\)
+  is an exhibited cochain defect.
+\item
+  \(\mathrm{SO}(k)\) is a declared local gauge group acting on stalk
+  fibers, not an external coordinate rotation of physical space.
+\end{enumerate}
+
+\subsubsection{3.2 Local Gauge Theorem}\label{local-gauge-theorem}
+
+\textbf{{[}PROVEN, CONDITIONAL + \(k\ge2\), faithful absolute
+homogeneous convex gauge{]} Theorem 3.1 --- \(\mathrm{SO}(k)\)
+Invariance Forces the Euclidean Local Gauge.} Let \(k\ge2\) and let
+\(j:\mathbb R^k\to\mathbb R_{\ge0}\) be a faithful absolute homogeneous
+convex gauge satisfying \[
+j(Rx)=j(x)
+\qquad
+\forall R\in\mathrm{SO}(k),\ x\in\mathbb R^k.
+\] Then there is a constant \(c>0\) such that \[
+j(x)=c\|x\|_2
+\qquad
+\forall x\in\mathbb R^k.
+\]
+
+The \(k=1\) case is the scalar one-dimensional case: every faithful
+homogeneous norm is proportional to absolute value. The SO(k)
+transitivity proof is only needed for \(k \ge 2\).
+
+\emph{Proof.} The group \(\mathrm{SO}(k)\) acts transitively on every
+Euclidean sphere \[
+S_r^{k-1}=\{x\in\mathbb R^k:\|x\|_2=r\}
+\] for \(k\ge2\). Therefore \(j\) is constant on each sphere. Define \[
+\phi(r):=j(x)
+\quad\text{for any }x\text{ with }\|x\|_2=r.
+\] This is well-defined by \(\mathrm{SO}(k)\) invariance. By positive
+homogeneity of the gauge, \[
+\phi(r)=j(ru)=rj(u)
+\] for any Euclidean unit vector \(u\). Since \(j\) is constant on the
+unit sphere, \(j(u)=c\) for all \(\|u\|_2=1\). Faithfulness gives
+\(c>0\). Hence \[
+j(x)=c\|x\|_2
+\] for all \(x\ne0\), and the formula also holds at \(x=0\). \(\square\)
+
+This theorem is local. It selects the Euclidean stalk gauge only after
+the observer has declared full continuous rotational symmetry.
+Signed-permutation symmetry alone would not select \(\ell^2\); it admits
+many unconditional norms.
+
+The radial argument itself uses only invariance, nonnegativity,
+faithfulness, and positive homogeneity; convexity and subadditivity are
+not needed for this step. They remain part of the norm hypotheses used
+for cycle minimization and convex duality below.
+
+\begin{quote}
+\textbf{IMPORT --- the inner product is admitted together with
+\(\mathrm{SO}(k)\); it is not constructed at this degree.}
+
+\(\mathrm{SO}(k)=\{R\in GL(k,\mathbb R): R^\top R=I,\ \det R=1\}\) is
+\emph{definitionally} the isometry group of the standard inner product
+on \(\mathbb R^k\): the condition \(R^\top R=I\) cannot be stated
+without that inner product, and the proof above quantifies over the
+Euclidean spheres \(\|x\|_2=r\) --- the selected norm appears in the
+proof of its own selection. \textbf{Declaring \(\mathrm{SO}(k)\) is
+therefore declaring the inner product.} Theorem 3.1 is a \emph{rigidity}
+theorem relative to an already-admitted structure: a gauge declared
+invariant under the isometry group of an admitted inner product cannot
+differ from that inner product's norm, up to scale. It is \textbf{not} a
+construction of the \(\ell^2\) fibre at this paper's declared degree,
+and it does not make that fibre cheaper than the structure it arrives
+with. See the \emph{Import / Oracle boundary} register, rows
+\textbf{I1--I3}.
+
+The theorem's mathematical force is real and is \textbf{not} withdrawn:
+among all faithful absolutely homogeneous convex gauges on
+\(\mathbb R^k\), the \(\mathrm{SO}(k)\)-invariant ones are exactly the
+positive multiples of \(\|\cdot\|_2\) --- a genuine, non-vacuous
+restriction of the gauge class. What is priced here is the
+\emph{direction of supply}, not the validity of the implication.
+
+The paper's own mechanization exhibits this boundary rather than hiding
+it. In \texttt{lean4/gs002\_l003\_02\_s\_ok\_local\_gauge.lean}, while
+an explicit constructive \(\mathrm{SO}(2)\) circle-transitivity theorem
+(\texttt{so2\_transitive\_on\_circle}) is formalized for
+\(\mathbb{R}^2\), the general \(k\)-dimensional theorem
+\texttt{so\_k\_local\_gauge\_simplified} is stated over an arbitrary
+\texttt{NormedAddCommGroup\ V}: it \emph{assumes} unit-sphere constancy
+rather than constructing a general Lie group \(\mathrm{SO}(k)\) action
+on \(\mathbb{R}^k\), and concludes \(j=c\|\cdot\|\) for \textbf{the
+declared ambient norm} --- instantiated at \((\mathbb R^2,\ell^1)\) it
+returns \(j=c\|\cdot\|_1\). The Euclidean content for general \(k\) is
+carried entirely by the choice of ambient norm, i.e.~by the import. This
+note records what it costs.
+
+\subsubsection{3.3 Edge Aggregation and
+Normalization}\label{edge-aggregation-and-normalization}
+\end{quote}
+
+\textbf{{[}CONDITIONAL / DEFINITIONAL AGGREGATION; local rigidity
+supplied by Theorem 3.1{]} Theorem 3.2 --- Weighted Mixed Norm Under
+Declared Strong Edge Aggregation.} Let \(P\) be a finite directed graph
+with edge defects \(\omega_e\in\mathbb R^k\), \(k\ge2\). Suppose:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  each local gauge \(j_e\) is faithful, homogeneous, convex, and
+  \(\mathrm{SO}(k)\)-invariant;
+\item
+  the global diagnostic is declared strongly edge-decomposable, meaning
+  \(J(\omega)=\sum_{e\in E}j_e(\omega_e)\);
+\item
+  this declared edgewise sum is additive over disjoint replicas.
+\end{enumerate}
+
+Then there are positive edge weights \(c_e>0\) such that \[
+J_{2,1,c}(\omega)=
+\sum_{e\in E}c_e\|\omega_e\|_2.
+\] If edges are exchange-equivalent, the weights are constant on each
+edge orbit. If, in addition, a singleton-edge normalization is imposed,
+\[
+j_e(x)=\|x\|_2
+\quad\text{on every normalized edge type,}
+\] then \(c_e=1\) on those edge types and \[
+J_{2,1}(\omega)=\sum_{e\in E}\|\omega_e\|_2.
+\]
+
+\emph{Proof.} By Theorem 3.1, for each edge \(e\) there exists \(c_e>0\)
+such that \[
+j_e(x)=c_e\|x\|_2.
+\] Hypothesis (2) declares that the global diagnostic is a sum of local
+edge terms: \[
+J(\omega)=\sum_{e\in E}j_e(\omega_e).
+\] No independent derivation of separability is claimed in this theorem.
+Substitution gives the weighted mixed norm: \[
+J(\omega)=\sum_{e\in E}c_e\|\omega_e\|_2.
+\] If the observer declares edge-exchange equivalence, then isomorphic
+edge data must receive the same singleton diagnostic, so \(c_e\) is
+constant on each declared edge orbit. This gives an orbit-weighted mixed
+norm. If the observer further declares singleton-edge normalization
+\(j_e(x)=\|x\|_2\), then each normalized edge has \(c_e=1\). Thus the
+unweighted \(\ell^1(E;\ell^2)\) form is not automatic; it is exactly the
+normalized single-orbit endpoint. \(\square\)
+
+\begin{quote}
+\textbf{Remark (what is, and is not, claimed in Theorem 3.2).} Theorem
+3.1 pins each local factor to \(c_e\|\cdot\|_2\). The outer summation
+\(J(\omega)=\sum_e j_e(\omega_e)\) is \emph{not} a consequence of
+rotational symmetry and is not newly proved here; it is the explicit
+strong aggregation declaration in hypothesis (2). Support lemma
+\textbf{S3} is a separate finite theorem: under its stronger zero and
+disjoint-support splitting hypotheses it can derive an edgewise sum.
+Weaker aggregate-statistic readings remain outside both results. Theorem
+3.2 is therefore a conditional substitution statement, not an
+independent aggregation theorem.
+
+Thus, \(\mathrm{SO}(k)\) selects the local \(\ell^2\) factor, while the
+declared strong edgewise rule supplies the outer \(\ell^1\) sum. The
+unweighted expression is licensed only under edge normalization or
+equivalent single-orbit scaling data.
+\end{quote}
+
+\subsection{4. Primal Quotient Obstruction and Analytical
+Duality}\label{primal-quotient-obstruction-and-analytical-duality}
+
+In this section and §5, transports are the identity and repairs use
+\((d_0\alpha)_e=\alpha(v)-\alpha(u)\). Local adjustment fields
+\(\alpha\in C^0(G,\mathbb R^k)\) determine the \textbf{Quotient
+Obstruction \(\Phi_{2,1,c}\)}. For nonidentity transports the analogous
+repair operator is \((d_{0,r}\alpha)_e=\alpha(v)-r_{v,u}\alpha(u)\), and
+its adjoint replaces the ordinary divergence in the dual; the simple
+untransported cycle-sum formula is not asserted in that setting.
+
+\textbf{{[}DEFINITION{]} Definition 4.1 (Primal Form):} For positive
+edge weights \(c_e>0\), define \[
+J_{2,1,c}(\eta):=\sum_e c_e\|\eta_e\|_2
+\] and \[
+\Phi_{2,1,c}([\omega])
+:=
+\inf_{\alpha\in C^0(G,\mathbb R^k)}
+\sum_e c_e\|\omega_e-(d_0\alpha)_e\|_2.
+\] The normalized case is \(c_e=1\) for all \(e\), written
+\(\Phi_{2,1}\).
+
+The quotient here is \(C^1/\operatorname{im}d_0\). When faces are
+present, it is not the cohomology space
+\(H^1=\ker d_1/\operatorname{im}d_0\): nonclosed cochains are allowed,
+and \(\Gamma\) records their closure defect. On the cycle graph without
+2-cells, \(d_1=0\) and this quotient agrees with graph \(H^1\).
+
+\begin{quote}
+\textbf{{[}STANDARD CONVEX DUALITY / PROVEN FINITE APPLICATION{]}
+Theorem 4.2 --- Mixed Vector Obstruction Duality} Let \(G\) be a finite
+directed graph with identity transports, edge defects in
+\(\mathbb{R}^k\), and positive edge weights \(c_e>0\). The primal
+quotient obstruction satisfies: \[
+\Phi_{2,1,c}([\omega])
+=
+\max_\varphi \sum_e \langle \varphi_e, \omega_e \rangle
+\] Subject to explicit structural bounds:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Gauge Invariance / Divergence-Free Constraint: \(d_0^* \varphi = 0\)
+\item
+  Weighted Euclidean Witness Bounds: \(\|\varphi_e\|_2 \le c_e\) for all
+  edges \(e \in E\).
+\end{enumerate}
+
+\emph{Proof.} Write the primal problem as \[
+\inf_{\alpha}\sum_e c_e\|\omega_e-(d_0\alpha)_e\|_2.
+\] The convex conjugate of the function \[
+x\mapsto c_e\|x\|_2
+\] is the indicator function of the closed Euclidean ball \[
+\{\varphi_e:\|\varphi_e\|_2\le c_e\}.
+\] Using \[
+c_e\|r_e\|_2=
+\max_{\|\varphi_e\|_2\le c_e}\langle\varphi_e,r_e\rangle,
+\] the primal becomes \[
+\inf_\alpha
+\max_{\|\varphi_e\|_2\le c_e}
+\sum_e
+\left\langle\varphi_e,\omega_e-(d_0\alpha)_e\right\rangle.
+\] Because all spaces are finite-dimensional, the objective is proper,
+convex, and continuous, and the primal is feasible. Fenchel--Rockafellar
+duality permits exchanging infimum and supremum. The
+\(\alpha\)-dependent term is \[
+-\left\langle d_0^*\varphi,\alpha\right\rangle.
+\] The infimum over unconstrained \(\alpha\) is finite exactly when \[
+d_0^*\varphi=0.
+\] Otherwise the infimum is \(-\infty\). Therefore admissible dual
+witnesses are precisely divergence-free vector circulations with
+weighted Euclidean bounds. Thus \[
+\Phi_{2,1,c}([\omega])=
+\max_{\substack{d_0^*\varphi=0\\ \|\varphi_e\|_2\le c_e}}
+\sum_e\langle\varphi_e,\omega_e\rangle.
+\] \(\square\)
+\end{quote}
+
+Both extrema are attained. The repair image is a closed
+finite-dimensional subspace. Positive weights make \(J_{2,1,c}\) a norm,
+so its sublevel sets on the affine residual class are compact and
+contain a minimizer; a repair field exists for that residual, although
+it need not be unique. The dual feasible set is a closed bounded
+intersection of edge balls with \(\ker d_0^*\), contains zero, and is
+compact. Its linear objective therefore attains a maximum. These
+attainment arguments supplement the continuity qualification used for
+strong duality above.
+
+In the normalized case \(c_e=1\), the dual constraints reduce to \[
+\|\varphi_e\|_2\le1.
+\] Thus unweighted Euclidean-unit-bounded circulations are exactly the
+edge-normalized endpoint, not the general weighted case.
+
+\subsection{5. Finite Triangle-Anomaly
+Separation}\label{finite-triangle-anomaly-separation}
+
+To isolate the observer-level distinction, we identify a concrete finite
+cycle defect.
+
+Consider a minimal closed triangle network \(V=\{0,1,2\}\) with directed
+edges \(E=\{(0,1),(1,2),(2,0)\}\). Let the defect signal over the edges
+be:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\omega_{01} = (1,0)\)
+\item
+  \(\omega_{12} = (0,1)\)
+\item
+  \(\omega_{20} = (0,0)\)
+\end{itemize}
+
+The total cycle circulation evaluates to:
+\[c = \omega_{01} + \omega_{12} + \omega_{20} = (1,1)\]
+
+\textbf{{[}STANDARD --- graph cycle-space / \(H^1\) of a single cycle;
+finite exactness kernel Lean-mechanized{]}} For a single directed cycle
+with identity restrictions, the quotient class is determined by the
+total circulation \[
+S(\omega)=\sum_{e\in C}\omega_e.
+\] Indeed, exact repairs \(d_0\alpha\) have zero cycle sum, and any two
+cochains with the same cycle sum differ by an exact repair (the cochains
+of fixed circulation form a single coset of \(\operatorname{im} d_0\) on
+a one-cycle graph).
+
+Explicitly, label the cycle edges \(e_i=(v_i\to v_{i+1})\), with vertex
+indices modulo \(n\). For \(q=\omega-\eta\) with \(\sum_i q_{e_i}=0\),
+set \(\alpha(v_0)=0\) and \(\alpha(v_i)=\sum_{r=0}^{i-1}q_{e_r}\) for
+\(1\le i<n\). Then \((d_0\alpha)_{e_i}=q_{e_i}\) on every nonclosing
+edge, and the closing equation follows from the zero sum. If stored edge
+directions are reversed, use the signed traversal circulation
+\(\sum_i\varepsilon_i\omega_{e_i}\) with \(\varepsilon_i\in\{\pm1\}\);
+reorienting the cochain reduces to the same construction.
+
+The finite algebraic core of this bridge is mechanized in Lean as
+\texttt{same\_circulation\_iff\_difference\_anchored\_cycle} and
+\texttt{same\_circulation\_iff\_anchored\_cycle\_coset}: after choosing
+an anchored cycle presentation with one closing edge, two cochains have
+the same circulation exactly when their pointwise difference is an
+anchored zero-circulation cycle repair, equivalently when they lie in
+the same anchored repair coset. The remaining prose-standard step is
+only the identification of that anchored presentation with the usual
+graph coboundary notation for a concrete cycle.
+
+\textbf{{[}PROVEN, CONDITIONAL + single cycle + normalized equal edge
+weights + norm gauge{]} Lemma 5.1 (Cycle quotient norm).} Let \(C\) be a
+finite directed cycle with edge-local norm \(j\) and normalized edge
+weights. For any vector-valued cochain \(\omega\), \[
+\Phi_j([\omega])=j(S(\omega)).
+\]
+
+\emph{Proof.} Let \(c=S(\omega)\). Every representative \(\eta\) of the
+same quotient class satisfies \(S(\eta)=c\). By the triangle inequality,
+\[
+\sum_{e\in C}j(\eta_e)\ge j\left(\sum_{e\in C}\eta_e\right)=j(c).
+\] Conversely, place all circulation on a single edge: choose
+\(\eta_{e_0}=c\) and \(\eta_e=0\) for \(e\ne e_0\). This representative
+has cycle sum \(c\) and cost \(j(c)\). Therefore the quotient infimum
+equals \(j(c)\). \(\square\)
+
+The normalized normed-additive kernel of this argument is mechanized in
+Lean as \texttt{normalized\_cycle\_quotient}.
+
+\textbf{{[}PROVEN, CONDITIONAL + single cycle + positive weights{]}
+Weighted refinement.} If the edge weights are \(w_e>0\), the same
+argument gives \[
+\Phi_{j,w}([\omega])=
+\left(\min_{e\in C}w_e\right)j(S(\omega)).
+\] The lower bound follows from
+\(\sum_e w_e j(\eta_e)\ge w_{\min}\sum_e j(\eta_e)\ge w_{\min}j(S(\eta))\),
+and the upper bound is achieved by placing all circulation on an edge of
+minimal weight. Thus clean numerical comparison requires equal
+normalized edge weights. The weighted finite-cycle refinement is
+mechanized in Lean as \texttt{weighted\_cycle\_quotient}.
+
+\textbf{{[}PROVEN, NUMERICAL / DIRECT COMPUTATION{]} Theorem 5.2 (Finite
+triangle-anomaly separation).} On the normalized triangle above, \[
+\Phi_{1,1}([\omega])=2,
+\qquad
+\Phi_{2,1}([\omega])=\sqrt2.
+\] Hence coordinate-separable scalar observers and
+\(\mathrm{SO}(2)\)-invariant vector observers assign different
+obstruction magnitudes to the same finite cycle class.
+
+\begin{quote}
+\textbf{Algebraic Extension Note on \(\sqrt{2}\).}
+
+The two magnitudes are on distinct scalar footings. \(\Phi_{1,1} = 2\)
+is a rational scalar obtained by summing integer-valued cochain
+components. \(\Phi_{2,1} = \sqrt{2}\) is irrational and requires at
+minimum the quadratic field extension \(\mathbb{Q}(\sqrt{2})\) over the
+rationals.
+
+In the formalization in
+\texttt{lean4/gs002\_l003\_01\_triangle\_separation.lean}, this boundary
+is verified rationally by proving the squared inequality \(2^2 \ne 2\)
+(that is, \(4 \ne 2\)) in \(\mathbb{Q}\), certifying that the coordinate
+\(\ell^1\) cost and \(\mathrm{SO}(2)\) Euclidean cost are separated
+without requiring the non-constructive continuum square root.
+
+Minimal replay:
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ math}
+
+\NormalTok{omega01 }\OperatorTok{=}\NormalTok{ (}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{omega12 }\OperatorTok{=}\NormalTok{ (}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{omega20 }\OperatorTok{=}\NormalTok{ (}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{c }\OperatorTok{=} \BuiltInTok{tuple}\NormalTok{(a }\OperatorTok{+}\NormalTok{ b }\OperatorTok{+}\NormalTok{ d }\ControlFlowTok{for}\NormalTok{ a, b, d }\KeywordTok{in} \BuiltInTok{zip}\NormalTok{(omega01, omega12, omega20))}
+
+\NormalTok{phi\_11 }\OperatorTok{=} \BuiltInTok{abs}\NormalTok{(c[}\DecValTok{0}\NormalTok{]) }\OperatorTok{+} \BuiltInTok{abs}\NormalTok{(c[}\DecValTok{1}\NormalTok{])}
+\NormalTok{phi\_21 }\OperatorTok{=}\NormalTok{ math.sqrt(c[}\DecValTok{0}\NormalTok{]}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ c[}\DecValTok{1}\NormalTok{]}\OperatorTok{**}\DecValTok{2}\NormalTok{)}
+
+\BuiltInTok{print}\NormalTok{(c)}
+\BuiltInTok{print}\NormalTok{(phi\_11)}
+\BuiltInTok{print}\NormalTok{(phi\_21)}
+\end{Highlighting}
+\end{Shaded}
+
+Expected output:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(1, 1)}
+\NormalTok{2}
+\NormalTok{1.4142135623730951}
+\end{Highlighting}
+\end{Shaded}
+
+This replay checks only the normalized triangle quotient values. It does
+not certify the general duality theorem or the replica-extensive
+aggregation theorem.
+
+\emph{Proof.} The cycle sum is \[
+c=(1,0)+(0,1)+(0,0)=(1,1).
+\] For the coordinate-separable scalar observer, the local gauge is \[
+j_{1,1}(x,y)=|x|+|y|.
+\] By Lemma 5.1, \[
+\Phi_{1,1}([\omega])=j_{1,1}(c)=|1|+|1|=2.
+\] For the \(\mathrm{SO}(2)\)-invariant vector observer, the local gauge
+is \[
+j_{2}(x,y)=\|(x,y)\|_2.
+\] Again by Lemma 5.1, \[
+\Phi_{2,1}([\omega])=j_2(c)=\sqrt{1^2+1^2}=\sqrt2.
+\] Since \(2\ne\sqrt2\), the finite triangle separates the observer
+classes. \(\square\)
+
+\subsubsection{\texorpdfstring{Prediction A --- Scalar-Coordinate
+\(\ell^1\)
+(\(J_{1,1}\))}{Prediction A --- Scalar-Coordinate \textbackslash ell\^{}1 (J\_\{1,1\})}}\label{prediction-a-scalar-coordinate-ell1-j_11}
+
+If the topological observer separates variables (e.g.~tracking
+independent coordinate channels):
+\(J_{1,1}(\omega) = \sum_e (|\omega_{e,x}| + |\omega_{e,y}|)\) yields a
+quotient obstruction of: \[\Phi_{1,1} = \|c\|_1 = |1| + |1| = 2\]
+
+\subsubsection{\texorpdfstring{Prediction B --- Vector Mixed Norm
+(\(J_{2,1}\))}{Prediction B --- Vector Mixed Norm (J\_\{2,1\})}}\label{prediction-b-vector-mixed-norm-j_21}
+
+If the topological observer operates under continuous \(\mathrm{SO}(k)\)
+rotational invariance: \(J_{2,1}(\omega) = \sum_e \|\omega_e\|_2\)
+yields a quotient obstruction of:
+\[\Phi_{2,1} = \|c\|_2 = \sqrt{1^2 + 1^2} = \sqrt{2} \approx 1.414\]
+
+\subsubsection{Finite Numerical
+Consequence}\label{finite-numerical-consequence}
+
+\textbf{{[}PROVEN, CONDITIONAL on normalization{]}} The two observers
+assign different quotient norms to the same cycle class.
+
+An observer declaring separable coordinates (\(J_{1,1}\)) --- the
+\emph{component-counting} reading --- assigns the class magnitude
+\textbf{2}. An observer declaring \(\mathrm{SO}(k)\)-invariant vector
+stalks (\(J_{2,1}\)) --- the \emph{Euclidean-distance} reading ---
+assigns the same class magnitude \textbf{\(\sqrt{2}\)}.
+
+Both numbers are computed from declared gauges on declared data. Naming
+the first a ``component-counting anomaly detector'' and the second a
+``structural strain sensor'' describes \emph{candidate interpretations}
+of the two observer classes; neither is an instrument reading, neither
+measures a physical system, and no claim is made that any physical
+detector realizes either gauge (register row \textbf{I8}).
+
+This distinguishes observer classes at the level of local gauge choice;
+it does not by itself test replica-extensive aggregation or dual
+structure.
+
+The weighted refinement is important. If the scalar-coordinate observer
+uses edge weights \(a_e\) and the \(\mathrm{SO}(2)\) observer uses edge
+weights \(b_e\), then the triangle values become \[
+\Phi_{1,1,a}=2\min_e a_e,
+\qquad
+\Phi_{2,1,b}=\sqrt2\min_e b_e.
+\] Thus the canonical \(2\) versus \(\sqrt2\) separation is a normalized
+comparison. Without normalization, the theorem shows observer-class
+dependence together with explicit scale dependence, not an absolute
+numerical invariant.
+
+\subsection{6. Closure Invariant Bound
+Extension}\label{closure-invariant-bound-extension}
+
+Under topological evaluation, the 2-cell failure metric inherits the
+declared mixed geometry. Let \[
+C^0\xrightarrow{d_0}C^1\xrightarrow{d_1}C^2,
+\qquad
+d_1d_0=0
+\] be a finite obstruction complex with
+\(C^1=\bigoplus_{e\in E}\mathbb R^k\) and
+\(C^2=\bigoplus_{f\in F}\mathbb R^{m_f}\). Equip \(C^1\) with \[
+\|\eta\|_{1,2,c}:=\sum_{e\in E}c_e\|\eta_e\|_2
+\] and equip \(C^2\) with a declared mixed closure norm \[
+\|\zeta\|_{1,2,u}:=\sum_{f\in F}u_f\|\zeta_f\|_2,
+\qquad
+c_e,u_f>0.
+\]
+
+Define \[
+\Phi_{2,1,c}([h])
+:=
+\inf_\alpha \|h-d_0\alpha\|_{1,2,c}
+\] and \[
+\Gamma_{2,1,u}([h])
+:=
+\|d_1h\|_{1,2,u}.
+\] The closure diagnostic is well-defined on quotient classes because
+\(d_1d_0=0\).
+
+\textbf{{[}PROVEN, CONDITIONAL + finite complex + \(d_1d_0=0\) +
+declared mixed norms{]} Theorem 6.1 --- Mixed Closure Bound.} With the
+definitions above, \[
+\Gamma_{2,1,u}([h])
+\le
+\|d_1\|_{(1,2,c)\to(1,2,u)}
+\,
+\Phi_{2,1,c}([h]).
+\]
+
+\emph{Proof.} Since \(d_1d_0=0\), for every repair field \(\alpha\), \[
+d_1(h-d_0\alpha)=d_1h.
+\] By the operator norm definition, \[
+\|d_1h\|_{1,2,u}=
+\|d_1(h-d_0\alpha)\|_{1,2,u}
+\le
+\|d_1\|_{(1,2,c)\to(1,2,u)}
+\,
+\|h-d_0\alpha\|_{1,2,c}.
+\] Taking the infimum over all \(\alpha\) gives \[
+\Gamma_{2,1,u}([h])
+\le
+\|d_1\|_{(1,2,c)\to(1,2,u)}
+\Phi_{2,1,c}([h]).
+\] \(\square\)
+
+In the normalized case \(c_e=u_f=1\), this reduces to the unweighted
+bound \[
+\Gamma_2([h])
+\le
+\|d_1\|_{(2,1\to2,1)}
+\Phi_{2,1}([h]).
+\] This shows the mixed closure bound --- the \(\Phi\to\Gamma\) link of
+the \(\Phi\Gamma R_{\mathrm{cl}}\) flow --- holds for Euclidean
+rotational fields, with the operator constant carrying the declared edge
+and face normalization data. The closure ratio \(R_{cl}=\Gamma/\Phi\) is
+defined only when \(\Phi>0\). When \(\Phi=0\), the ratio is not used;
+the bound is the \(\Phi\to\Gamma\) inequality itself.
+
+For the implementation's common stalk dimension and scalar signed
+incidence matrix \(A=d_1\), the operator constant has the explicit
+formula \[
+\|d_1\|_{(1,2,c)\to(1,2,u)}
+=\max_{e\in E}\frac{\sum_{f\in F}u_f|A_{fe}|}{c_e}.
+\] The triangle inequality bounds each face norm by
+\(\sum_e|A_{fe}|\|h_e\|_2\), giving the upper bound after weighted
+summation. A cochain supported on a maximizing edge attains it. This
+formula concerns scalar incidence acting on equal-dimensional stalks;
+the abstract theorem also allows the more general declared linear
+operator and face dimensions specified above.
+
+\subsection{7. Conclusion}\label{conclusion}
+
+Continuous \(\mathrm{SO}(k)\) invariance makes the local gauge Euclidean
+up to scale. The separately declared edgewise sum supplies the outer
+\(\ell^1\) form, with weights fixed by singleton normalization or other
+declared scaling data. Edge exchange symmetry alone supplies common
+weights on each orbit. In the flat finite graph setting, the resulting
+quotient norm has the stated dual witnesses, single-cycle formula, and
+closure bound. The contribution is this explicit separation of
+hypotheses and their finite obstruction consequences.
+
+\subsubsection{7.1 Connection to General Obstruction
+Theory}\label{connection-to-general-obstruction-theory}
+
+The \(\ell^1(E; \ell^2)\) geometry derived here integrates into general
+finite obstruction theory as a specific gauge selection within the
+broader family of \(M\)-compatible gauges:
+
+\textbf{Observer passivity.} In general obstruction models, observers
+are contractive quotient maps satisfying
+\(\Phi_{\mathcal O}(\mathcal O(q)) \le \Phi(q)\). When \(\Phi\) is
+computed using the weighted or normalized \(\ell^1(E; \ell^2)\)
+geometry, the observer passivity bound constrains how
+\(\mathrm{SO}(k)\)-measured defects can be processed by downstream
+observer maps: no observer quotient can create obstruction absent from
+the rotationally gauged cochain core.
+
+\textbf{Contextual distinction.} The testable triangle prediction (§5)
+should be read as an observer-class separation: separable-coordinate and
+\(\mathrm{SO}(k)\)-invariant observers assign different quotient
+magnitudes to the same cycle class (\(2\) versus \(\sqrt{2}\)). It
+illustrates that quotient defect magnitudes depend essentially on
+declared local measurement symmetry rather than reflecting a single
+observer-independent metric.
+
+\textbf{Sheaf and network gluing.} The target-stalk defect
+\(\delta_e(a)=a(v)-r_{v,u}a(u)\) represents local mismatch. Declared
+\(\mathrm{SO}(k)\)-invariant local gauges and the strong edgewise sum
+give the weighted or normalized \(\ell^1(E;\ell^2)\) diagnostic. Theorem
+4.2 supplies ordinary divergence-free witnesses for identity transports.
+With nonidentity transports, dual witnesses instead satisfy the adjoint
+constraint for \(d_{0,r}\); no untwisted circulation formula or holonomy
+lower bound is supplied here.
+
+\newpage
+
+\subsection{References}\label{references}
+
+{[}1{]} J. H. Carroll, ``Primitive Axiomatics of Finite Obstruction
+Calculus: Evaluation Preorders, Quotient Residuals, Closure Charge, and
+Observer-Selected Geometry,'' preprint, 2026.
+\href{https://github.com/dbccpage/the_symbol_game/tree/adc3d57001a0491945fce1ccd203f696c57c389b/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/006_primitive_axiomatics}{Repository
+source}.
+
+{[}2{]} J. H. Carroll, ``M-Compatible Gauge Classification for Banach
+Presheaf Coboundaries: The ℓ¹ Maximal-Symmetry Endpoint,'' preprint,
+2026. \href{https://zenodo.org/records/20677155}{Zenodo record
+20677155}.
+\href{https://github.com/dbccpage/the_symbol_game/tree/adc3d57001a0491945fce1ccd203f696c57c389b/omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/007_m_compatible_gauge_classification}{Companion
+source at the reviewed commit}, finite-dimensional unit-body
+correspondence, §2.2, Theorem 2.2.
+
+{[}3{]} J. H. Carroll, ``Projection Obstruction for Factorized States:
+Nonlinear Dynamics, Conditional ℓ1 Diagnostics, and Finite-Time Defect
+Bounds,'' preprint, 2026.
+\href{https://zenodo.org/records/21752743}{Zenodo record 21752743}.
+
+{[}4{]} J. H. Carroll, ``Coordinate-Wise Additivity and the ℓ¹ Norm on
+Finite Graph Cochains,'' preprint, 2026.
+\href{https://zenodo.org/records/20723753}{Zenodo record 20723753}.
+
+{[}5{]} J. H. Carroll, ``L1-Native Cohomology of Finite Defect Fields:
+Quotient Norms, Dual Circulations, Sparse Representatives, and Integral
+Optima,'' preprint, 2026.
+\href{https://zenodo.org/records/21783292}{Zenodo record 21783292}.
+
+{[}6{]} R. T. Rockafellar, \emph{Convex Analysis}. Princeton University
+Press, 1970. (For invariant norms, convex-body classification, and
+Fenchel convex duality).
+
+{[}7{]} A. Benedek and R. Panzone, ``The space \(L^p\), with mixed
+norm,'' \emph{Duke Math. J.} 28(3): 301-324, 1961. (For mixed-norm
+spaces).
+
+{[}8{]} R. K. Ahuja, T. L. Magnanti, and J. B. Orlin, \emph{Network
+Flows: Theory, Algorithms, and Applications}. Prentice Hall, 1993. (For
+network-flow / circulation duality).
+\end{document}

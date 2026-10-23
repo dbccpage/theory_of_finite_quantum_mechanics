@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
 - cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
@@ -59,6 +59,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence` |
 - counts toward the grade: yes
 
+### Lean: `lean4/Imported/GenesisOngoing/Second/Carry.lean`
+
+- file: [lean4/Imported/GenesisOngoing/Second/Carry.lean](../../../lean4/Imported/GenesisOngoing/Second/Carry.lean)
+- sha256 (`bytes`): `6d7c19d48be69a2d3294f8a35763d53e0f77733e1bae5c83eb319df2e50ab65e`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Second.Carry`): recorded sha256 `6d7c19d48be69a2d3294f8a35763d53e0f77733e1bae5c83eb319df2e50ab65e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Second/Carry.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `Reach3.obstruction_persists` | yes | yes | yes | module-level | `#print axioms Reach3.obstruction_persists` |
+- counts toward the grade: yes
+
 ### Lean: `lean4/Imported/GenesisOngoing/Second/Rename.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Second/Rename.lean](../../../lean4/Imported/GenesisOngoing/Second/Rename.lean)
@@ -70,11 +84,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `Reach.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Reach.rename` |
-| `Step.rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Step.rename` |
-| `fewest_changes_every_writing_A` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms fewest_changes_every_writing_A` |
-| `fewest_changes_every_writing_B` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms fewest_changes_every_writing_B` |
-| `obstruction_persists_reach` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms obstruction_persists_reach` |
+| `Reach3.rename` | yes | yes | yes | module-level | `#print axioms Reach3.rename` |
+| `Step3.rename` | yes | yes | yes | module-level | `#print axioms Step3.rename` |
+| `fewest_changes3_every_writing_A` | yes | yes | yes | module-level | `#print axioms fewest_changes3_every_writing_A` |
+| `fewest_changes3_every_writing_B` | yes | yes | yes | module-level | `#print axioms fewest_changes3_every_writing_B` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

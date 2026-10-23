@@ -18,7 +18,7 @@ target:
   source_refs:
   - dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:414-422
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean:85-87
+  - lean4/Imported/Genesis19l57g1/Derivation/Mention.lean:94-96
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:742-747
   paper_refs: []
   source_claim_label: PROVED_LEAN
@@ -33,48 +33,140 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_pruning_lemmas_cost_two_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: dropRules
+  line: 49
+  signature_excerpt: |-
+    def dropRules : List Item → List Item
+      | [] => []
+      | .newRuleAll _ :: rest => dropRules rest
+      | it :: rest => it :: dropRules rest
+
+    /-- Admission never removes a rule. -/
+    theorem applyItem_rules_mono {r s : Regime} {it : Item}
+        (h : applyItem r it = some s) : ∀ g ∈ r.rules, g ∈ s.rules
+  source: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean
+  repository: this_repository
+  source_sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: separable_of_subrules
+  line: 211
+  signature_excerpt: |-
+    theorem separable_of_subrules (s : Regime) (rs' : List Nat)
+        (hsub : ∀ g ∈ rs', g ∈ s.rules) (d d' : Nat)
+        (h : separable s d d') :
+        separable ⟨s.data, s.forms, s.insts, rs', s.reqs⟩ d d'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean
+  repository: this_repository
+  source_sha256: 1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rule_item_never_minimal
+  line: 268
+  signature_excerpt: |-
+    theorem rule_item_never_minimal {r : Regime} {i j : Nat} {δ : List Item}
+        {f : Nat} (hf : Item.newRuleAll f ∈ δ)
+        (h : validResponse r i j δ) :
+        validResponse r i j (dropRules δ) ∧
+        (dropRules δ).length < δ.length ∧
+        aritySum (dropRules δ) = aritySum δ
+  source: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean
+  repository: this_repository
+  source_sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapsed_append_unmentioning
+  line: 97
+  signature_excerpt: |-
+    theorem collapsed_append_unmentioning
+        (r : Regime) (new : List Inst) (d d' : Nat)
+        (hd : ∀ p ∈ new, d ∉ p.2) (hd' : ∀ p ∈ new, d' ∉ p.2) :
+        collapsed { r with insts
+  source: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  repository: this_repository
+  source_sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapsed_fresh_datum
+  line: 133
+  signature_excerpt: |-
+    theorem collapsed_fresh_datum (r : Regime) (d d' : Nat)
+        (hwf : ∀ p ∈ r.insts, ∀ a ∈ p.2, a < r.data) :
+        collapsed { r with data
+  source: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  repository: this_repository
+  source_sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapsed_fresh_form
+  line: 177
+  signature_excerpt: |-
+    theorem collapsed_fresh_form (r : Regime) (d d' : Nat) (k : Nat)
+        (hinst : ∀ p ∈ r.insts, p.1 < r.forms.length)
+        (hrule : ∀ f ∈ r.rules, f < r.forms.length) :
+        collapsed { r with forms
+  source: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  repository: this_repository
+  source_sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::separable_of_subrules
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::separable_of_subrules
+  availability: local
   symbol: separable_of_subrules
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean
+  repository: this_repository
+  sha256: 1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce
+  declaration_status: declaration_found_not_proof_checked
+  line: 211
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean::rule_item_never_minimal
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal
+  availability: local
   symbol: rule_item_never_minimal
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean
+  repository: this_repository
+  sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
+  declaration_status: declaration_found_not_proof_checked
+  line: 268
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_append_unmentioning
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_append_unmentioning
+  availability: local
   symbol: collapsed_append_unmentioning
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  repository: this_repository
+  sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
+  declaration_status: declaration_found_not_proof_checked
+  line: 97
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_datum
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum
+  availability: local
   symbol: collapsed_fresh_datum
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  repository: this_repository
+  sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
+  declaration_status: declaration_found_not_proof_checked
+  line: 133
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_form
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_form
+  availability: local
   symbol: collapsed_fresh_form
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  repository: this_repository
+  sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
+  declaration_status: declaration_found_not_proof_checked
+  line: 177
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas
   availability: external
@@ -129,8 +221,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
