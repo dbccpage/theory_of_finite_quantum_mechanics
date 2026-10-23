@@ -14,6 +14,8 @@ Every governed source file needs a companion `<name>.contract.score.yaml` next t
 
 **Governed sources** are the populations in [`policy.json`](policy.json): `code/**/*.rs`, `code/**/*.py` and `lean4/**/*.lean`, minus build and cache directories (`target`, `__pycache__`, `.lake`, `node_modules`) and sealed snapshots (`dag/results/**`, `dag/sealed_runs/**`, `sealed_runs/**`, `atlas/**`, `papers/**/archive/**`). Discovery is `git ls-files --cached --others --exclude-standard`, the same rule as `scripts/score_scope_contracts.py`.
 
+**Reviewed support exceptions.** The maintainer authorized lower capability levels for declarative build registrations, regression tests and byte-identical source archives, while keeping grade D and all integrity checks. `support_exceptions` pins each reviewed path and source digest, category and reason. Current entries cover only `lean4/lakefile.lean` and `code/python/tests/test_three_role_gate.py`. A changed hash or different path loses the exception; incomplete scores and grade E still fail. Substantive runtime and proof modules retain L4D. These are not baseline additions.
+
 **Grandfathering.** No existing source had a completed score when this was introduced, so the floor applies to new and changed files. [`baseline.json`](baseline.json) lists every source that lacked a completed in-floor score on 2026-10-22, with the SHA-256 of its bytes then and its first deficit. A listed file with unchanged bytes is exempt. Changing it removes the exemption: the changed file must then meet the floor. The baseline only shrinks (see below).
 
 **Pinned boilerplate.** The build hook [`hook/build.rs`](hook/build.rs) (two comment lines and a `main` that calls the macro) is copied byte for byte into every workspace package. Its SHA-256 is pinned in `policy.json`, and only identical copies are exempt from needing a companion. The code it calls is scored with the governance crate.
@@ -72,13 +74,14 @@ The `code/rust` workspace resolves only with a local `[patch]` for the optional 
 cd code/rust && cargo run -p governance --bin governance-check -- check
 ```
 
-Without it, build the crate outside the workspace, as CI does. It has no path dependencies and keeps its own `Cargo.lock`:
+Without it, use the standalone manifest, which points directly at the existing source files and has its own lockfile:
 
 ```
-cp -r code/rust/src/governance /tmp/governance
-cargo build --locked --release --manifest-path /tmp/governance/Cargo.toml
-/tmp/governance/target/release/governance-check --root . check --changed-since origin/main
+cargo build --locked --release --manifest-path governance/Cargo.toml
+governance/target/release/governance-check --root . check --changed-since origin/main
 ```
+
+This validates the governance crate, not the optional external workspace crates.
 
 | Command | Purpose |
 |---|---|

@@ -1,0 +1,158 @@
+{
+  "authority_effect": "None",
+  "reviewed_author_head": "d3163344f60ed01e71154b174fb4e9a257bb494d",
+  "source_hashes": {
+    "lean4/CampaignGenesisNoReturn.lean": "348bd7e00a4f19a9631e67d6ed1e52539517e74b743f7dba91f7b27786870a79",
+    "checks/independent/pg-gen-no-return.py": "3800b224b819805cabc09b1341f57b458035628b80cd5cebba7bd45cbd90067a"
+  },
+  "source_custody": [
+    {
+      "source": "atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+      "sha256": "1520b392f4061af568e00ca4fd235feb03facf6d3612c030c1d60018539e3eed",
+      "matches": true
+    },
+    {
+      "source": "atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Erasure.lean",
+      "sha256": "a52cdd98aed2dfafbc4ed8eba2a904f813b582071f0c233098fdeb1fea516d30",
+      "matches": true
+    },
+    {
+      "source": "atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Kernel.lean",
+      "sha256": "274e62062c31cc5f1244183f44b29db12b44e9808287f4669e4c530686211490",
+      "matches": true
+    },
+    {
+      "source": "atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean",
+      "sha256": "bf29bf397be25c76b7f1c0173fe4cec06f932d900d9021ad3eb5f0a08c0b5c15",
+      "matches": true
+    }
+  ],
+  "sealed_git_blob": "610d8fc982853807eb892eaaf683fc4eb2959cc1",
+  "external_commit_is_author_pin_not_fetched_anew": "3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a",
+  "checks": {
+    "checker": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/pg-gen-no-return.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T07:55:23.991519+00:00",
+      "completed": "2026-10-23T07:55:24.948254+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-NO-RETURN\",\n  \"authority_effect\": \"None\",\n  \"histories\": 44286,\n  \"failures\": 38638,\n  \"distinct_successful_engine_states\": 204,\n  \"regime_changes_in_tested_prefixes\": 24914,\n  \"mode_only_changes_in_tested_prefixes\": 9674,\n  \"bases\": 3,\n  \"modes\": 2,\n  \"alphabet_size\": 9,\n  \"maximum_history_length\": 4,\n  \"negative_controls_checked\": 5,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    "optimized": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/pg-gen-no-return.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T07:55:24.949325+00:00",
+      "completed": "2026-10-23T07:55:25.711485+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"node\": \"PG-GEN-NO-RETURN\",\n  \"authority_effect\": \"None\",\n  \"histories\": 44286,\n  \"failures\": 38638,\n  \"distinct_successful_engine_states\": 204,\n  \"regime_changes_in_tested_prefixes\": 24914,\n  \"mode_only_changes_in_tested_prefixes\": 9674,\n  \"bases\": 3,\n  \"modes\": 2,\n  \"alphabet_size\": 9,\n  \"maximum_history_length\": 4,\n  \"negative_controls_checked\": 5,\n  \"mutation_coverage\": \"not measured by fixed regression fixtures\"\n}\n",
+      "stderr": ""
+    },
+    "mypy": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "--no-incremental",
+        "checks/independent/pg-gen-no-return.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T07:55:25.711485+00:00",
+      "completed": "2026-10-23T07:55:26.896969+00:00",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    "build": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignGenesisNoReturn"
+      ],
+      "cwd": "C:\\gw\\tp205\\lean4",
+      "started": "2026-10-23T07:55:26.896969+00:00",
+      "completed": "2026-10-23T07:55:40.197548+00:00",
+      "exit_code": 0,
+      "stdout": "\u26a0 [99/103] Replayed Derivation.Erasure\nwarning: ../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Erasure.lean:96:33: This simp argument is unused:\n  h\n\nHint: Omit it from the simp argument list.\n  [apply] simp [stepT, eraseEvent, stepE, TRegime.erase]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n\u26a0 [102/103] Built CampaignGenesisNoReturn (3.9s)\nwarning: CampaignGenesisNoReturn.lean: imports `Mathlib.Tactic.SplitIfs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignGenesisNoReturn.lean:62:59: This simp argument is unused:\n  arrayInsert_toList\n\nHint: Omit it from the simp argument list.\n  [apply] simp [arrayStep, Derivation.stepE, decode, h]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: CampaignGenesisNoReturn.lean:85:39: This simp argument is unused:\n  hx\n\nHint: Omit it from the simp argument list.\n  [apply] simp [\u2190 hs]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: CampaignGenesisNoReturn.lean:132:91: This simp argument is unused:\n  Derivation.insertNew\n\nHint: Omit it from the simp argument list.\n  [apply] simp [Derivation.stepE, SecondRun.Sealed.stepE, secondRegime, secondEvent, SecondRun.Sealed.insertNew, h]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: CampaignGenesisNoReturn.lean:132:113: This simp argument is unused:\n  SecondRun.Sealed.insertNew\n\nHint: Omit it from the simp argument list.\n  [apply] simp [Derivation.stepE, SecondRun.Sealed.stepE, secondRegime, secondEvent, Derivation.insertNew, h]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: CampaignGenesisNoReturn.lean:132:144: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignGenesisNoReturn.lean:132:148: Unused tactic linter: `split_ifs` does nothing.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignGenesisNoReturn.lean:132:158: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignGenesisNoReturn.lean:132:162: Unused tactic linter: `simp_all` does nothing.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignGenesisNoReturn.lean:135:144: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignGenesisNoReturn.lean:138:144: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignGenesisNoReturn.lean:141:144: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nwarning: CampaignGenesisNoReturn.lean:228:37: This simp argument is unused:\n  he\n\nHint: Omit it from the simp argument list.\n  [apply] simp [\u2190 hs]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\ninfo: CampaignGenesisNoReturn.lean:282:0: 'CampaignGenesisNoReturn.decode_encode' depends on axioms: [propext]\ninfo: CampaignGenesisNoReturn.lean:283:0: 'CampaignGenesisNoReturn.encode_decode' depends on axioms: [propext]\ninfo: CampaignGenesisNoReturn.lean:284:0: 'CampaignGenesisNoReturn.array_step_commutes' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:285:0: 'CampaignGenesisNoReturn.array_replay_exact' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:286:0: 'CampaignGenesisNoReturn.array_failure_exact' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:287:0: 'CampaignGenesisNoReturn.second_step_commutes' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:288:0: 'CampaignGenesisNoReturn.engine_step_commutes' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:289:0: 'CampaignGenesisNoReturn.engine_replay_commutes' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:290:0: 'CampaignGenesisNoReturn.engine_replay_failure_exact' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:291:0: 'CampaignGenesisNoReturn.engine_replay_source' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:292:0: 'CampaignGenesisNoReturn.no_return' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:293:0: 'CampaignGenesisNoReturn.cycle_regime_const' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:294:0: 'CampaignGenesisNoReturn.strict_potential' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:295:0: 'CampaignGenesisNoReturn.two_switches_return' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:297:0: 'CampaignGenesisNoReturn.source_array' depends on axioms: [propext]\ninfo: CampaignGenesisNoReturn.lean:298:0: 'CampaignGenesisNoReturn.array_source' depends on axioms: [propext]\ninfo: CampaignGenesisNoReturn.lean:299:0: 'CampaignGenesisNoReturn.sourceState_injective' depends on axioms: [propext]\ninfo: CampaignGenesisNoReturn.lean:300:0: 'CampaignGenesisNoReturn.engine_replay_exact' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisNoReturn.lean:302:0: 'CampaignGenesisNoReturn.sourceEvent_arrayEvent' does not depend on any axioms\ninfo: CampaignGenesisNoReturn.lean:303:0: 'CampaignGenesisNoReturn.arrayEvent_sourceEvent' does not depend on any axioms\ninfo: CampaignGenesisNoReturn.lean:305:0: 'CampaignGenesisNoReturn.cumulative_potential' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (103 jobs).\n",
+      "stderr": ""
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "CampaignGenesisNoReturn.lean"
+      ],
+      "cwd": "C:\\gw\\tp205\\lean4",
+      "started": "2026-10-23T07:55:40.198612+00:00",
+      "completed": "2026-10-23T07:55:45.416218+00:00",
+      "exit_code": 0,
+      "stdout": "CampaignGenesisNoReturn.lean:62:59: warning: This simp argument is unused:\n  arrayInsert_toList\n\nHint: Omit it from the simp argument list.\n  [apply] simp [arrayStep, Derivation.stepE, decode, h]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nCampaignGenesisNoReturn.lean:85:39: warning: This simp argument is unused:\n  hx\n\nHint: Omit it from the simp argument list.\n  [apply] simp [\u2190 hs]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nCampaignGenesisNoReturn.lean:132:91: warning: This simp argument is unused:\n  Derivation.insertNew\n\nHint: Omit it from the simp argument list.\n  [apply] simp [Derivation.stepE, SecondRun.Sealed.stepE, secondRegime, secondEvent, SecondRun.Sealed.insertNew, h]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nCampaignGenesisNoReturn.lean:132:113: warning: This simp argument is unused:\n  SecondRun.Sealed.insertNew\n\nHint: Omit it from the simp argument list.\n  [apply] simp [Derivation.stepE, SecondRun.Sealed.stepE, secondRegime, secondEvent, Derivation.insertNew, h]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nCampaignGenesisNoReturn.lean:132:144: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignGenesisNoReturn.lean:132:148: warning: Unused tactic linter: `split_ifs` does nothing.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignGenesisNoReturn.lean:132:158: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignGenesisNoReturn.lean:132:162: warning: Unused tactic linter: `simp_all` does nothing.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignGenesisNoReturn.lean:135:144: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignGenesisNoReturn.lean:138:144: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignGenesisNoReturn.lean:141:144: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\nCampaignGenesisNoReturn.lean:228:37: warning: This simp argument is unused:\n  he\n\nHint: Omit it from the simp argument list.\n  [apply] simp [\u2190 hs]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\n'CampaignGenesisNoReturn.decode_encode' depends on axioms: [propext]\n'CampaignGenesisNoReturn.encode_decode' depends on axioms: [propext]\n'CampaignGenesisNoReturn.array_step_commutes' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.array_replay_exact' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.array_failure_exact' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.second_step_commutes' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.engine_step_commutes' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.engine_replay_commutes' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.engine_replay_failure_exact' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.engine_replay_source' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.no_return' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.cycle_regime_const' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.strict_potential' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.two_switches_return' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.source_array' depends on axioms: [propext]\n'CampaignGenesisNoReturn.array_source' depends on axioms: [propext]\n'CampaignGenesisNoReturn.sourceState_injective' depends on axioms: [propext]\n'CampaignGenesisNoReturn.engine_replay_exact' depends on axioms: [propext, Quot.sound]\n'CampaignGenesisNoReturn.sourceEvent_arrayEvent' does not depend on any axioms\n'CampaignGenesisNoReturn.arrayEvent_sourceEvent' does not depend on any axioms\n'CampaignGenesisNoReturn.cumulative_potential' depends on axioms: [propext, Quot.sound]\n",
+      "stderr": ""
+    },
+    "source-mutant": {
+      "source_sha256": "3800b224b819805cabc09b1341f57b458035628b80cd5cebba7bd45cbd90067a",
+      "mutant_sha256": "38fb66cb8ca15b52a7dd0533406370e03c29ac8d2b56e9b762ed4493dba694a9",
+      "mutation": "source implementation omits mode toggle; separate array implementation unchanged",
+      "outcomes": {
+        "killed": 1,
+        "survived": 0,
+        "demonstrably_equivalent": 0,
+        "invalid": 0,
+        "inconclusive": 0,
+        "unrun": 0
+      },
+      "runs": [
+        {
+          "command": [
+            "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+            "-I",
+            "-X",
+            "utf8",
+            "lean4\\b\\pr224-review\\mode-mutant.py"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr224-review\\mode-mutant.py\", line 168, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"C:\\gw\\tp205\\lean4\\b\\pr224-review\\mode-mutant.py\", line 132, in main\n    require(answer==engine_replay(history,start,True),'full engine replay including failure')\n  File \"C:\\gw\\tp205\\lean4\\b\\pr224-review\\mode-mutant.py\", line 24, in require\n    raise RuntimeError(message)\nRuntimeError: full engine replay including failure\n",
+          "outcome": "killed"
+        },
+        {
+          "command": [
+            "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+            "-I",
+            "-O",
+            "-X",
+            "utf8",
+            "lean4\\b\\pr224-review\\mode-mutant.py"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"C:\\gw\\tp205\\lean4\\b\\pr224-review\\mode-mutant.py\", line 168, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"C:\\gw\\tp205\\lean4\\b\\pr224-review\\mode-mutant.py\", line 132, in main\n    require(answer==engine_replay(history,start,True),'full engine replay including failure')\n  File \"C:\\gw\\tp205\\lean4\\b\\pr224-review\\mode-mutant.py\", line 24, in require\n    raise RuntimeError(message)\nRuntimeError: full engine replay including failure\n",
+          "outcome": "killed"
+        }
+      ]
+    },
+    "metrics": {
+      "lines": 168,
+      "radon_max": 16,
+      "cognitive_max": 38
+    }
+  },
+  "scope": "Mathematical full five-coordinate plus Boolean-mode source/array interpreter. Runtime/compiler and responder licensing remain open.",
+  "mutation_boundary": "Five fixed regression controls are not a mutation-coverage measurement. One independent source mutant omits the mode toggle and is killed in both modes."
+}

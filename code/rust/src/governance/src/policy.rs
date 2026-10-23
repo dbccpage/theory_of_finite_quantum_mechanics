@@ -147,6 +147,18 @@ pub struct PinnedBoilerplate {
     pub reason: String,
 }
 
+/// A reviewed support artifact may use L1..L3, while still requiring D or better.
+/// The exception applies only to one exact repository path and source digest.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct SupportException {
+    /// Exact source digest admitted by the review.
+    pub sha256: String,
+    /// One of build_registration, regression_test, or source_archive.
+    pub category: String,
+    /// User authorization and artifact-specific rationale.
+    pub reason: String,
+}
+
 /// The parsed `governance/policy.json`.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Policy {
@@ -162,6 +174,8 @@ pub struct Policy {
     pub pinned_boilerplate: Vec<PinnedBoilerplate>,
     /// Environment variable that selects the build-time mode.
     pub mode_env: String,
+    /// Exact-byte support exceptions; all companion integrity checks still apply.
+    pub support_exceptions: BTreeMap<String, SupportException>,
 }
 
 impl Policy {
@@ -177,6 +191,7 @@ impl Policy {
             populations: parse_populations(root, &exclusions)?,
             pinned_boilerplate: parse_pins(root)?,
             mode_env: parse_mode_env(root)?,
+            support_exceptions: parse_support_exceptions(root)?,
             exclusions,
         })
     }
@@ -194,6 +209,14 @@ impl Policy {
     /// The pin that admits this path, if its glob matches.
     pub fn pinned_for(&self, rel_path: &str) -> Option<&PinnedBoilerplate> {
         self.pinned_boilerplate.iter().find(|pin| glob_match(&pin.glob, rel_path))
+    }
+
+    /// Use the support floor only for a reviewed path at its exact source bytes.
+    pub fn floor_for(&self, path: &str, digest: &str) -> Floor {
+        match self.support_exceptions.get(path) {
+            Some(pin) if pin.sha256 == digest => Floor { min_level: Level::L1, min_grade: self.floor.min_grade.max(Grade::D) },
+            _ => self.floor,
+        }
     }
 
     /// The companion path of a source. A stem shared with a sibling source of another
@@ -223,6 +246,29 @@ fn check_header(root: &Map<String, Value>) -> Result<(), PolicyError> {
     expect_schema(root, POLICY_SCHEMA)?;
     check_order(root, "level_order", &Level::ALL.map(Level::as_str))?;
     check_order(root, "grade_order", &Grade::ALL.map(Grade::as_str))
+}
+
+fn parse_support_exceptions(root: &Map<String, Value>) -> Result<BTreeMap<String, SupportException>, PolicyError> {
+    let Some(value) = root.get("support_exceptions") else { return Ok(BTreeMap::new()) };
+    let entries = value.as_object().ok_or_else(|| field("support_exceptions", "an object"))?;
+    entries.iter().map(|(path, value)| support_exception(path, value).map(|pin| (path.clone(), pin))).collect()
+}
+
+fn support_exception(path: &str, value: &Value) -> Result<SupportException, PolicyError> {
+    if path.contains(['*', '?', ':', '\\']) || path.split('/').any(|p| p.is_empty() || p == "." || p == "..") {
+        return Err(field("support_exceptions.path", "an exact relative POSIX path without wildcards"));
+    }
+    let item = value.as_object().ok_or_else(|| field("support_exceptions[]", "an object"))?;
+    let sha256 = string(item, "sha256")?;
+    let category = string(item, "category")?;
+    let reason = string(item, "reason")?;
+    if !is_sha256(sha256) || reason.trim().is_empty() {
+        return Err(field("support_exceptions[]", "a valid source digest and nonempty review reason"));
+    }
+    if !matches!(category, "build_registration" | "regression_test" | "source_archive") {
+        return Err(field("support_exceptions.category", "build_registration, regression_test or source_archive"));
+    }
+    Ok(SupportException { sha256: sha256.into(), category: category.into(), reason: reason.into() })
 }
 
 fn parse_floor(root: &Map<String, Value>) -> Result<Floor, PolicyError> {
@@ -593,7 +639,7 @@ pub(crate) mod tests {
         assert!(glob_match("a/**/b/**/c", "a/x/b/y/z/c"));
         assert!(!glob_match("a/**/b/**/c", "a/x/c"));
         assert!(glob_match("*.contract.*", "m.contract.score.yaml"));
-        assert!(glob_match("é?/*", "éx/ü.py"), "? and * work on characters");
+        assert!(glob_match("ÃƒÂ©?/*", "ÃƒÂ©x/ÃƒÂ¼.py"), "? and * work on characters");
         // Pathological patterns stay polynomial (no backtracking blow-up).
         let long = "a".repeat(200);
         assert!(!glob_match(&format!("{}b", "*a".repeat(30)), &long));
@@ -662,4 +708,30 @@ pub(crate) mod tests {
         }
         assert_eq!(ArtifactKind::from_key("go"), None);
     }
+    #[test]
+    fn support_exceptions_are_exact_and_fail_closed() {
+        let mut value: Value = serde_json::from_str(POLICY).unwrap();
+        let pin = serde_json::json!({"sha256": "a".repeat(64), "category": "regression_test", "reason": "reviewed fixture"});
+        value["support_exceptions"] = serde_json::json!({"code/test.py": pin});
+        let policy = Policy::from_json(&value.to_string()).unwrap();
+        assert_eq!(policy.floor_for("code/test.py", &"a".repeat(64)).min_level, Level::L1);
+        assert_eq!(policy.floor_for("code/test.py", &"b".repeat(64)), policy.floor);
+        assert_eq!(policy.floor_for("code/other.py", &"a".repeat(64)), policy.floor);
+        for path in ["../test.py", "/test.py", "code/*.py", "C:/test.py", "code//test.py"] {
+            value["support_exceptions"] = serde_json::json!({path: pin});
+            assert!(Policy::from_json(&value.to_string()).is_err(), "{path}");
+        }
+    }
+
+    #[test]
+    fn support_exception_requires_review_metadata() {
+        for (key, bad) in [("sha256", "bad"), ("category", "runtime"), ("reason", " ")] {
+            let mut value: Value = serde_json::from_str(POLICY).unwrap();
+            let mut pin = serde_json::json!({"sha256": "a".repeat(64), "category": "regression_test", "reason": "review"});
+            pin[key] = Value::String(bad.into());
+            value["support_exceptions"] = serde_json::json!({"code/test.py": pin});
+            assert!(Policy::from_json(&value.to_string()).is_err(), "{key}");
+        }
+    }
+
 }

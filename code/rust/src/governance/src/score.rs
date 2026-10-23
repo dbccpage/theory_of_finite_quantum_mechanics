@@ -251,6 +251,138 @@ impl GateGrades {
     }
 }
 
+/// A declared score awaiting consistency validation. Parsing a token alone does
+/// not establish completion; this boundary binds it to all five gate grades.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct ScoreClaim {
+    /// Independently assessed capability axis.
+    pub level: Level,
+    /// The five assessed grades, including explicit missing evidence.
+    pub gates: GateGrades,
+    /// The author's completion flag.
+    pub is_complete: bool,
+    /// The author's stored weakest-link grade.
+    pub composite: Option<Grade>,
+    /// The author's stored score token.
+    pub token: Option<ScoreToken>,
+}
+
+/// A completed, internally consistent assessment. Its fields are private so
+/// callers cannot construct this certificate from an unverified token.
+/// This certificate checks record consistency, not whether grades are deserved.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct CompletedScore {
+    token: ScoreToken,
+    gates: GateGrades,
+}
+
+impl CompletedScore {
+    /// The token certified against every gate and the declared capability.
+    pub fn token(self) -> ScoreToken {
+        self.token
+    }
+
+    /// The gate grades that justify this token's composite.
+    pub fn gates(self) -> GateGrades {
+        self.gates
+    }
+
+    /// Apply both independent acceptance axes to this completed assessment.
+    pub fn admitted_by(self, floor: Floor) -> bool {
+        floor.admits(self.token)
+    }
+}
+
+/// A precise refusal at the assessment-completion boundary.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum CompletionError {
+    /// Missing evidence blocks completion, while retaining a known E ceiling.
+    Unassessed {
+        /// Exactly the missing gates, in gate order.
+        gates: Vec<Gate>,
+        /// The minimum known grade; a demonstrated E is never hidden.
+        known_ceiling: Option<Grade>,
+    },
+    /// The record explicitly does not claim completion.
+    IncompleteFlag,
+    /// Stored composite disagrees with the independently computed minimum.
+    CompositeMismatch {
+        /// Minimum of all five gate grades.
+        expected: Grade,
+        /// Stored value, possibly absent.
+        found: Option<Grade>,
+    },
+    /// Stored token disagrees with either capability or composite grade.
+    TokenMismatch {
+        /// Token implied by the declared level and gate minimum.
+        expected: ScoreToken,
+        /// Stored value, possibly absent.
+        found: Option<ScoreToken>,
+    },
+}
+
+impl CompletionError {
+    /// The score-record key responsible for this refusal.
+    pub fn field(&self) -> &'static str {
+        match self {
+            Self::Unassessed { .. } => "gates",
+            Self::IncompleteFlag => "is_complete",
+            Self::CompositeMismatch { .. } => "composite_grade",
+            Self::TokenMismatch { .. } => "score_token",
+        }
+    }
+
+    /// Expected and observed values for a precise public diagnostic.
+    pub fn values(&self) -> (String, String) {
+        match self {
+            Self::Unassessed { gates, .. } => {
+                let names: Vec<&str> = gates.iter().map(|gate| gate.as_str()).collect();
+                ("a grade on every gate".into(), format!("unassessed {}", names.join(", ")))
+            }
+            Self::IncompleteFlag => ("true".into(), "false".into()),
+            Self::CompositeMismatch { expected, found } =>
+                (expected.to_string(), found.map_or_else(|| "nothing".into(), |grade| grade.to_string())),
+            Self::TokenMismatch { expected, found } =>
+                (expected.to_string(), found.map_or_else(|| "nothing".into(), |token| token.to_string())),
+        }
+    }
+}
+
+impl fmt::Display for CompletionError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let (expected, found) = self.values();
+        write!(f, "{}: expected {expected}, found {found}", self.field())
+    }
+}
+
+impl std::error::Error for CompletionError {}
+
+impl ScoreClaim {
+    /// Validate the complete record and return a certificate only when every
+    /// gate, flag, composite and token agrees. Missing grades never become D.
+    /// Cost and allocation are bounded by the fixed five-gate schema.
+    pub fn validate(self) -> Result<CompletedScore, CompletionError> {
+        let missing = self.gates.unassessed();
+        if !missing.is_empty() {
+            return Err(CompletionError::Unassessed { gates: missing, known_ceiling: self.gates.ceiling() });
+        }
+        if !self.is_complete {
+            return Err(CompletionError::IncompleteFlag);
+        }
+        let Some(composite) = self.gates.composite() else {
+            return Err(CompletionError::Unassessed { gates: Gate::ALL.to_vec(), known_ceiling: None });
+        };
+        if self.composite != Some(composite) {
+            return Err(CompletionError::CompositeMismatch { expected: composite, found: self.composite });
+        }
+        let expected = ScoreToken::new(self.level, composite);
+        if self.token != Some(expected) {
+            return Err(CompletionError::TokenMismatch { expected, found: self.token });
+        }
+        Ok(CompletedScore { token: expected, gates: self.gates })
+    }
+}
+
 /// The acceptance floor: a minimum level and a minimum composite grade.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Floor {
@@ -411,5 +543,73 @@ mod tests {
             .count();
         assert_eq!(admitted, 2 * 5);
         assert_eq!(floor.to_string(), "level >= L4 and grade >= D");
+    }
+
+    fn assignment(mut code: usize) -> [Option<Grade>; 5] {
+        let choices = [None, Some(Grade::E), Some(Grade::D), Some(Grade::C),
+                       Some(Grade::B), Some(Grade::A), Some(Grade::APlus)];
+        std::array::from_fn(|_| {
+            let grade = choices[code % 7];
+            code /= 7;
+            grade
+        })
+    }
+
+    fn check_assignment(grades: [Option<Grade>; 5]) {
+        let gates = GateGrades::new(grades);
+        let minimum = grades.iter().copied().flatten().min();
+        let expected = minimum.map(|grade| ScoreToken::new(Level::L4, grade));
+        let claim = ScoreClaim { level: Level::L4, gates, is_complete: true,
+                                 composite: minimum, token: expected };
+        if grades.iter().all(Option::is_some) {
+            let completed = claim.validate().unwrap();
+            assert_eq!(Some(completed.token()), expected);
+            assert_eq!(completed.gates(), gates);
+            assert_eq!(completed.admitted_by(Floor { min_level: Level::L4, min_grade: Grade::D }),
+                       minimum >= Some(Grade::D));
+            return;
+        }
+        let missing = Gate::ALL.into_iter().zip(grades)
+            .filter_map(|(gate, grade)| grade.is_none().then_some(gate)).collect();
+        assert_eq!(claim.validate(), Err(CompletionError::Unassessed { gates: missing, known_ceiling: minimum }));
+    }
+
+    #[test]
+    fn completion_boundary_exhausts_every_gate_assignment() {
+        for code in 0..16807 {
+            check_assignment(assignment(code));
+        }
+    }
+
+    fn good_claim() -> ScoreClaim {
+        ScoreClaim { level: Level::L4, gates: GateGrades::new([Some(Grade::C); 5]),
+            is_complete: true, composite: Some(Grade::C), token: Some(ScoreToken::new(Level::L4, Grade::C)) }
+    }
+
+    #[test]
+    fn completion_refuses_false_flag_and_absent_values() {
+        let claim = good_claim();
+        assert!(claim.validate().is_ok());
+        assert_eq!(ScoreClaim { is_complete: false, ..claim }.validate(), Err(CompletionError::IncompleteFlag));
+        assert!(matches!(ScoreClaim { token: None, ..claim }.validate(), Err(CompletionError::TokenMismatch { .. })));
+        assert!(matches!(ScoreClaim { composite: None, ..claim }.validate(), Err(CompletionError::CompositeMismatch { .. })));
+    }
+
+    #[test]
+    fn completion_refuses_forged_composites() {
+        let claim = good_claim();
+        for grade in Grade::ALL.into_iter().filter(|grade| *grade != Grade::C) {
+            assert!(matches!(ScoreClaim { composite: Some(grade), ..claim }.validate(), Err(CompletionError::CompositeMismatch { .. })));
+        }
+    }
+
+    #[test]
+    fn completion_refuses_forged_axes() {
+        let claim = good_claim();
+        let tokens = Level::ALL.into_iter().flat_map(|level|
+            Grade::ALL.into_iter().map(move |grade| ScoreToken::new(level, grade)));
+        for token in tokens.filter(|token| Some(*token) != claim.token) {
+            assert!(matches!(ScoreClaim { token: Some(token), ..claim }.validate(), Err(CompletionError::TokenMismatch { .. })));
+        }
     }
 }

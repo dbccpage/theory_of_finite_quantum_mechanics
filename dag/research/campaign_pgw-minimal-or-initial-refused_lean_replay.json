@@ -1,0 +1,185 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "source_base": "4d50f22373578df83989dc8ec09fdface91289c2",
+  "source_commit": "f34f0b8e6e60b3153cbe9aacc8b44fd9f7cdc393",
+  "checked_at": "2026-10-23T08:27:39.851725+00:00",
+  "proof_boundary": "Explicit comparison classes, all-word observable clock extensions, exact source-regime replay and conditional finite-state minimum-cardinality criterion. No Alpha runtime/license model, unconditional program/declaration minimum, or unspecified-category initiality claim.",
+  "lean_replay": {
+    "lean_version": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "b0bdaf7214ef2de44593fccfd295cca76993c5855a43d4c3908cd19990b8164e",
+    "command": "lake build CampaignGenesisProcessComparison",
+    "cwd": "lean4",
+    "library": "CampaignGenesisProcessComparison (non-default lean_lib)",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignGenesisProcessComparison",
+        "dag_node": "PGW-MINIMAL-OR-INITIAL-REFUSED",
+        "source": "lean4/CampaignGenesisProcessComparison.lean",
+        "source_commit": "f34f0b8e6e60b3153cbe9aacc8b44fd9f7cdc393",
+        "sha256": "3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2",
+        "exit_code": 0,
+        "anchors": [
+          "CampaignGenesisProcessComparison.run_add",
+          "CampaignGenesisProcessComparison.hom_run",
+          "CampaignGenesisProcessComparison.every_challenge_answer_agrees",
+          "CampaignGenesisProcessComparison.no_map_to_clock_lift",
+          "CampaignGenesisProcessComparison.reduced_reachable_is_minimal",
+          "CampaignGenesisProcessComparison.nonminimal_adequate_process",
+          "CampaignGenesisProcessComparison.oneState_is_reduced_reachable",
+          "CampaignGenesisProcessComparison.labelled_append",
+          "CampaignGenesisProcessComparison.all_words_agree",
+          "CampaignGenesisProcessComparison.no_initial_in_clock_closed_class",
+          "CampaignGenesisProcessComparison.all_words_minimum_size",
+          "CampaignGenesisProcessComparison.no_clock_hom_of_self_loop",
+          "CampaignGenesisProcessComparison.source_advance_matches",
+          "CampaignGenesisProcessComparison.source_run_matches",
+          "CampaignGenesisProcessComparison.source_supply_self_loop",
+          "CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "CampaignGenesisProcessComparison.run_add": [],
+          "CampaignGenesisProcessComparison.hom_run": [
+            "propext"
+          ],
+          "CampaignGenesisProcessComparison.every_challenge_answer_agrees": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.no_map_to_clock_lift": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.reduced_reachable_is_minimal": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.nonminimal_adequate_process": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.oneState_is_reduced_reachable": [],
+          "CampaignGenesisProcessComparison.labelled_append": [],
+          "CampaignGenesisProcessComparison.all_words_agree": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.no_initial_in_clock_closed_class": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.all_words_minimum_size": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.no_clock_hom_of_self_loop": [
+            "propext",
+            "Quot.sound"
+          ],
+          "CampaignGenesisProcessComparison.source_advance_matches": [
+            "propext"
+          ],
+          "CampaignGenesisProcessComparison.source_run_matches": [
+            "propext"
+          ],
+          "CampaignGenesisProcessComparison.source_supply_self_loop": [
+            "propext"
+          ],
+          "CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "hash_basis": "COMMITTED LF blob bytes, equal to compiled source",
+        "output": "⚠ [665/666] Built CampaignGenesisProcessComparison (11s)\nwarning: CampaignGenesisProcessComparison.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignGenesisProcessComparison.lean: imports `Mathlib.Data.Fin.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignGenesisProcessComparison.lean:41:17: `simp` already closes the goal\n\nHint: Use `simp` instead of `simpa`:\n  [apply] simp [run, f.step, ih]\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\ninfo: CampaignGenesisProcessComparison.lean:257:0: 'CampaignGenesisProcessComparison.run_add' does not depend on any axioms\ninfo: CampaignGenesisProcessComparison.lean:258:0: 'CampaignGenesisProcessComparison.hom_run' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:259:0: 'CampaignGenesisProcessComparison.every_challenge_answer_agrees' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:260:0: 'CampaignGenesisProcessComparison.no_map_to_clock_lift' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:261:0: 'CampaignGenesisProcessComparison.reduced_reachable_is_minimal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:262:0: 'CampaignGenesisProcessComparison.nonminimal_adequate_process' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:263:0: 'CampaignGenesisProcessComparison.oneState_is_reduced_reachable' does not depend on any axioms\ninfo: CampaignGenesisProcessComparison.lean:264:0: 'CampaignGenesisProcessComparison.labelled_append' does not depend on any axioms\ninfo: CampaignGenesisProcessComparison.lean:265:0: 'CampaignGenesisProcessComparison.all_words_agree' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:266:0: 'CampaignGenesisProcessComparison.no_initial_in_clock_closed_class' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:267:0: 'CampaignGenesisProcessComparison.all_words_minimum_size' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:269:0: 'CampaignGenesisProcessComparison.no_clock_hom_of_self_loop' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGenesisProcessComparison.lean:270:0: 'CampaignGenesisProcessComparison.source_advance_matches' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:271:0: 'CampaignGenesisProcessComparison.source_run_matches' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:272:0: 'CampaignGenesisProcessComparison.source_supply_self_loop' depends on axioms: [propext]\ninfo: CampaignGenesisProcessComparison.lean:273:0: 'CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (666 jobs).\n"
+      }
+    ]
+  },
+  "axiom_audit": {
+    "passed": true,
+    "declaration_count": 16,
+    "expected_declarations": [
+      "CampaignGenesisProcessComparison.run_add",
+      "CampaignGenesisProcessComparison.hom_run",
+      "CampaignGenesisProcessComparison.every_challenge_answer_agrees",
+      "CampaignGenesisProcessComparison.no_map_to_clock_lift",
+      "CampaignGenesisProcessComparison.reduced_reachable_is_minimal",
+      "CampaignGenesisProcessComparison.nonminimal_adequate_process",
+      "CampaignGenesisProcessComparison.oneState_is_reduced_reachable",
+      "CampaignGenesisProcessComparison.labelled_append",
+      "CampaignGenesisProcessComparison.all_words_agree",
+      "CampaignGenesisProcessComparison.no_initial_in_clock_closed_class",
+      "CampaignGenesisProcessComparison.all_words_minimum_size",
+      "CampaignGenesisProcessComparison.no_clock_hom_of_self_loop",
+      "CampaignGenesisProcessComparison.source_advance_matches",
+      "CampaignGenesisProcessComparison.source_run_matches",
+      "CampaignGenesisProcessComparison.source_supply_self_loop",
+      "CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class"
+    ],
+    "reported_declarations": [
+      "CampaignGenesisProcessComparison.run_add",
+      "CampaignGenesisProcessComparison.hom_run",
+      "CampaignGenesisProcessComparison.every_challenge_answer_agrees",
+      "CampaignGenesisProcessComparison.no_map_to_clock_lift",
+      "CampaignGenesisProcessComparison.reduced_reachable_is_minimal",
+      "CampaignGenesisProcessComparison.nonminimal_adequate_process",
+      "CampaignGenesisProcessComparison.oneState_is_reduced_reachable",
+      "CampaignGenesisProcessComparison.labelled_append",
+      "CampaignGenesisProcessComparison.all_words_agree",
+      "CampaignGenesisProcessComparison.no_initial_in_clock_closed_class",
+      "CampaignGenesisProcessComparison.all_words_minimum_size",
+      "CampaignGenesisProcessComparison.no_clock_hom_of_self_loop",
+      "CampaignGenesisProcessComparison.source_advance_matches",
+      "CampaignGenesisProcessComparison.source_run_matches",
+      "CampaignGenesisProcessComparison.source_supply_self_loop",
+      "CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class"
+    ],
+    "unexpected_axioms": []
+  },
+  "source_dependencies": [
+    {
+      "source": "atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+      "source_commit": "f34f0b8e6e60b3153cbe9aacc8b44fd9f7cdc393",
+      "sha256": "1520b392f4061af568e00ca4fd235feb03facf6d3612c030c1d60018539e3eed",
+      "hash_basis": "committed blob bytes"
+    }
+  ],
+  "compilation_scope": {
+    "compiled": [
+      "CampaignGenesisProcessComparison",
+      "Lake configuration"
+    ],
+    "imported_local_cache": [
+      "Derivation.Basic"
+    ],
+    "not_rebuilt": [
+      "default FiniteQuantum library",
+      "Mathlib",
+      "other campaign PR modules",
+      "Derivation.Initiality"
+    ],
+    "warnings": "One unnecessary simpa linter warning retained; all successful theorem audits use only permitted axioms."
+  },
+  "sealed_source": {
+    "repository": "dbccpage/19L57G1",
+    "commit": "3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a",
+    "path": "lean4/Derivation/Basic.lean",
+    "git_blob": "610d8fc982853807eb892eaaf683fc4eb2959cc1",
+    "sha256": "1520b392f4061af568e00ca4fd235feb03facf6d3612c030c1d60018539e3eed",
+    "local_bytes_equal_fetched_blob": true
+  }
+}

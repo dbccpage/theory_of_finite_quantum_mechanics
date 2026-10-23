@@ -1,0 +1,103 @@
+
+running 52 tests
+...... 6/52
+descriptor::tests::parses_a_complete_companion --- FAILED
+. 8/52
+descriptor::tests::invalid_vocabulary_is_reported_by_field --- FAILED
+... 12/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+. 14/52
+policy::tests::policy_rejects_wrong_orders_and_shapes --- FAILED
+..... 20/52
+score::tests::every_token_round_trips --- FAILED
+. 22/52
+score::tests::floor_cases --- FAILED
+. 24/52
+score::tests::malformed_tokens_are_rejected --- FAILED
+. 26/52
+score::tests::vocabulary_parse_errors_are_typed --- FAILED
+........ 35/52
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+verify::tests::floor_pass_and_fail_cases --- FAILED
+...............
+failures:
+
+---- descriptor::tests::parses_a_complete_companion stdout ----
+
+thread 'descriptor::tests::parses_a_complete_companion' (26584) panicked at ..\code\rust\src\governance\src\descriptor.rs:272:9:
+assertion `left == right` failed
+  left: Some(E)
+ right: Some(C)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- descriptor::tests::invalid_vocabulary_is_reported_by_field stdout ----
+
+thread 'descriptor::tests::invalid_vocabulary_is_reported_by_field' (5588) panicked at ..\code\rust\src\governance\src\descriptor.rs:320:9:
+assertion failed: matches!(d.gate_grades(), Err(Violation::Schema { field, .. }) if field ==
+    "gates.G3")
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (41692) panicked at ..\code\rust\src\governance\src\policy.rs:531:9:
+assertion `left == right` failed
+  left: Floor { min_level: L4, min_grade: E }
+ right: Floor { min_level: L4, min_grade: D }
+
+---- policy::tests::policy_rejects_wrong_orders_and_shapes stdout ----
+
+thread 'policy::tests::policy_rejects_wrong_orders_and_shapes' (40788) panicked at ..\code\rust\src\governance\src\policy.rs:552:9:
+assertion failed: matches!(Policy::from_json(&bad_grade), Err(PolicyError::Field { field, .. })
+    if field == "floor.min_grade")
+
+---- score::tests::every_token_round_trips stdout ----
+
+thread 'score::tests::every_token_round_trips' (8540) panicked at ..\code\rust\src\governance\src\score.rs:463:17:
+assertion `left == right` failed
+  left: ScoreToken { level: L1, grade: D }
+ right: ScoreToken { level: L1, grade: E }
+
+---- score::tests::floor_cases stdout ----
+
+thread 'score::tests::floor_cases' (32664) panicked at ..\code\rust\src\governance\src\score.rs:532:9:
+assertion failed: floor.admits(t("L4D"))
+
+---- score::tests::malformed_tokens_are_rejected stdout ----
+
+thread 'score::tests::malformed_tokens_are_rejected' (14512) panicked at ..\code\rust\src\governance\src\score.rs:474:13:
+assertion `left == right` failed: "L4"
+  left: Ok(ScoreToken { level: L4, grade: E })
+ right: Err(MalformedToken("L4"))
+
+---- score::tests::vocabulary_parse_errors_are_typed stdout ----
+
+thread 'score::tests::vocabulary_parse_errors_are_typed' (27208) panicked at ..\code\rust\src\governance\src\score.rs:481:9:
+assertion `left == right` failed
+  left: Ok(E)
+ right: Err(UnknownGrade("F"))
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (34468) panicked at ..\code\rust\src\governance\src\verify.rs:365:83:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (45608) panicked at ..\code\rust\src\governance\src\verify.rs:345:46:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+
+failures:
+    descriptor::tests::invalid_vocabulary_is_reported_by_field
+    descriptor::tests::parses_a_complete_companion
+    policy::tests::policy_parses_floor_and_populations
+    policy::tests::policy_rejects_wrong_orders_and_shapes
+    score::tests::every_token_round_trips
+    score::tests::floor_cases
+    score::tests::malformed_tokens_are_rejected
+    score::tests::vocabulary_parse_errors_are_typed
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+
+test result: FAILED. 42 passed; 10 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.25s
+
+error: test failed, to rerun pass `--lib`

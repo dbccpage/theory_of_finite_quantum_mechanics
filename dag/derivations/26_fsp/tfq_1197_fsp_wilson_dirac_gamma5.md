@@ -14,10 +14,10 @@
 The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.
 
 ### Governing Obligation
-A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.
+A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::wilson_dirac_gamma5_hermiticity_positivity does not exist; NonAbelianGaugeSigns has no Dirac operator. regge_wdw_core.lean::wilson_term_decouples_doublers is a Nat-scaled predicate in an unbuilt file.
+Cited NonAbelianGaugeSigns.lean::wilson_dirac_gamma5_hermiticity_positivity does not exist; NonAbelianGaugeSigns has no Dirac operator. regge_wdw_core.lean::wilson_term_decouples_doublers is a Nat-scaled predicate in an unbuilt file. CampaignFspWilsonDiracGamma5.lean checks Euclidean Clifford data in dimensions 2 and 4 and does not state the gamma5 adjoint.
 
 ---
 
@@ -58,3 +58,4 @@ Cited NonAbelianGaugeSigns.lean::wilson_dirac_gamma5_hermiticity_positivity does
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:461-473`
+  - `dag/derivations/independent/fsp-wilson-dirac-gamma5.md`

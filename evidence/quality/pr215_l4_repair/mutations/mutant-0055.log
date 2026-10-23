@@ -1,0 +1,119 @@
+
+running 52 tests
+..... 5/52
+descriptor::tests::parses_a_complete_companion --- FAILED
+......................... 31/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+tests::binding_and_completeness_are_both_reported --- FAILED
+. 35/52
+verify::tests::binding_mismatch_names_the_field --- FAILED
+. 37/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::null_gate_is_incomplete --- FAILED
+. 40/52
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+verify::tests::schema_failures_are_specific --- FAILED
+.... 46/52
+tests::twin_sources_use_qualified_companions --- FAILED
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+. 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- descriptor::tests::parses_a_complete_companion stdout ----
+
+thread 'descriptor::tests::parses_a_complete_companion' (45852) panicked at ..\code\rust\src\governance\src\descriptor.rs:262:9:
+assertion failed: d.contract_view_ok
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (12628) panicked at ..\code\rust\src\governance\src\verify.rs:404:9:
+assertion `left == right` failed
+  left: Err(Schema { path: "code/x.contract.score.yaml", field: "contract", expected: "equal to the intact current_contract history record", found: "a differing or corrupt record" })
+ right: Ok(())
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (29620) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Schema]
+ right: [Binding, Floor]
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (22260) panicked at ..\code\rust\src\governance\src\lib.rs:353:9:
+assertion `left == right` failed: floor is not repeated when completeness fails
+  left: [Schema]
+ right: [Binding, Completeness]
+
+---- verify::tests::binding_mismatch_names_the_field stdout ----
+
+thread 'verify::tests::binding_mismatch_names_the_field' (9076) panicked at ..\code\rust\src\governance\src\verify.rs:382:9:
+code/x.contract.score.yaml: [SCHEMA] contract: expected equal to the intact current_contract history record, found a differing or corrupt record
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (21924) panicked at ..\code\rust\src\governance\src\verify.rs:342:9:
+assertion `left == right` failed
+  left: Err(Schema { path: "code/x.contract.score.yaml", field: "contract", expected: "equal to the intact current_contract history record", found: "a differing or corrupt record" })
+ right: Ok(())
+
+---- verify::tests::null_gate_is_incomplete stdout ----
+
+thread 'verify::tests::null_gate_is_incomplete' (44628) panicked at ..\code\rust\src\governance\src\verify.rs:358:9:
+assertion `left == right` failed
+  left: Schema
+ right: Completeness
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (35896) panicked at ..\code\rust\src\governance\src\verify.rs:367:9:
+code/x.contract.score.yaml: [SCHEMA] contract: expected equal to the intact current_contract history record, found a differing or corrupt record
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (15280) panicked at ..\code\rust\src\governance\src\verify.rs:434:9:
+code/x.contract.score.yaml: [SCHEMA] contract: expected equal to the intact current_contract history record, found a differing or corrupt record
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (19812) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Fail([Schema { path: "code/t.rs.contract.score.yaml", field: "contract", expected: "equal to the intact current_contract history record", found: "a differing or corrupt record" }])
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (40868) panicked at ..\code\rust\src\governance\src\buildtime.rs:237:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=enforce):\nchecked 2: 0 pass, 0 grandfathered, 1 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (new or not grandfathered)\n  code/rust/p/src/lib.contract.score.yaml: [SCHEMA] contract: expected equal to the intact current_contract history record, found a differing or corrupt record\n")
+ right: Ok(())
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (34012) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Fail([Schema { path: "code/a.contract.score.yaml", field: "contract", expected: "equal to the intact current_contract history record", found: "a differing or corrupt record" }])
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    descriptor::tests::parses_a_complete_companion
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::binding_mismatch_names_the_field
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+    verify::tests::null_gate_is_incomplete
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 40 passed; 12 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.60s
+
+error: test failed, to rerun pass `--lib`

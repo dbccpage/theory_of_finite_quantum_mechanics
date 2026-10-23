@@ -1,0 +1,216 @@
+{
+  "task_id": "GTH-LANG-INTERPRET",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "c20aa8161108ddd0439c8e2b09a9d34b6fd7ef04257ac3b5fc25b45291b584aa",
+  "input_pin": "dag/prompts/genesis_to_higher_gth_lang_interpret_open.yaml",
+  "status": "incomplete",
+  "authority_effect": "None",
+  "status_note": "incomplete means the mathematical dependency is still missing, so this turn does not enter P1. The operad stage_history entry status completed means this mining turn finished as a reviewed negative.",
+  "mission_patch": {
+    "slot_m1_layer0_ambient_carrier": {
+      "mining_status": "REVIEWED_ABSENT",
+      "carrier": null,
+      "coefficient_ring": null,
+      "note": "Not FILLED. No carrier of an interpretation of the priced admission language was admitted."
+    },
+    "slot_m2_layer1_forward_morphisms": {
+      "mining_status": "REVIEWED_ABSENT",
+      "operations": [],
+      "composition_plan": [],
+      "note": "Not FILLED. No interpretation function was admitted."
+    },
+    "slot_m3_layer2_ideals_and_annihilators": {
+      "mining_status": "REVIEWED_ABSENT",
+      "algebraic_relations": [],
+      "rejection_predicates": [],
+      "negative_control_plan": [],
+      "note": "Not FILLED. Faithfulness, soundness and conservativity stay open. No relation was admitted."
+    },
+    "slot_m4_tri_language_witness_anchors": {
+      "mining_status": "REVIEWED_ABSENT",
+      "certificate_predicates": [],
+      "anchors": [],
+      "unpaid_imports": [],
+      "note": "Not FILLED. The node cites no Lean declaration and no Rust declaration."
+    }
+  },
+  "source_checks": [
+    {
+      "path": "dag/derivation_dag.json",
+      "finding": "GTH-LANG-INTERPRET has status OPEN, lean [], rust []. GTH-R-GTH-LANG-INTERPRET has status GAP_NO_DERIVATION and its only input is GTH-LANG-REFLECT. GTH-LANG-REFLECT has status OPEN and lean []."
+    },
+    {
+      "path": "dag/operads/gth_lang_interpret.yaml",
+      "sha256": "e4002ca9e3aa1557919f45720271e0d4a06d46c40b126ba6c43c1435963eac59",
+      "finding": "Before this turn, operation_candidates, relation_candidates, source_bindings, and stage_history were empty. Every mission slot was UNREVIEWED. collection_status was source_candidates_collected_semantic_mining_open."
+    },
+    {
+      "path": "dag/derivations/34_genesis_to_higher/tfq_2409_gth_lang_interpret.md",
+      "sha256": "fcc40d284aede0df2cb837cc868bb91a099f856740af31923a73b4ac6599a0a7",
+      "finding": "The paper restates the node and the gap route. It gives no interpretation function and no Lean declaration. Its sha256 matches the operad paper pin. The external HoTT book is named and was not opened."
+    },
+    {
+      "path": "dag/derivations/independent/gth_lang_interpret.md",
+      "sha256": "a0dc150ed6034f89b41a46d0513d0576064b3133ae7607b28a26825980d7c3cd",
+      "finding": "The note says nothing is in Lean. It names the three targets and says an interpretation function, faithfulness, soundness, and conservativity are open."
+    },
+    {
+      "path": "lean4/AdmitInterpret.lean",
+      "sha256": "b40793e4a299dc276eee22ea206d47d0efdf522a5de256996f644e3e4e70b56f",
+      "finding": "Header at lines 8-20 says three scoped readings and that none is an embedding of the whole of the named theory. IdJudg at lines 31-32 is reflexivity only. id_sound at lines 51-57 targets AdmitCore data on twoPoint. Edge at lines 76-79 is dimension at most 1 in this file. HF at lines 118-120 has no extensionality. Excluded. Not cited by the node. Not assembled into a reading bundle."
+    },
+    {
+      "path": "lean4/AdmitReflect.lean",
+      "sha256": "cae58872087525d97409cf1d08a26956f8517855f5873c11c940655f83974997",
+      "finding": "quoteJudg at line 78 quotes AdmitCore.Judg. Header at lines 8-10 says there is no truth predicate. Not the quotation layer of GTH-LANG-REFLECT."
+    },
+    {
+      "path": "lean4/AdmitCore.lean",
+      "sha256": "c8e46cf7f11884572047e863c8d3b8bc1328f73a9bb4ea04f9e001f91abc61d9",
+      "finding": "Regime at lines 42-45 stores data, forms, and cuts. This module is not an input of the route and is not a theorem of this node."
+    },
+    {
+      "path": "lean4/GenesisHottModel.lean",
+      "sha256": "c45d71added44fdedcb3644027bc9ca45217e557bdda1361c8ff13464e25c407",
+      "finding": "interp at line 83 and soundness at line 221 concern a fragment imported from GenesisHottHorns. Header at lines 16-22 says J is not a rule. Not cited by this node."
+    },
+    {
+      "path": "lean4/GenesisHottHorns.lean",
+      "sha256": "3624cda43202a07963cf0b009ad114482641263dba82de04701402f473861f2f",
+      "finding": "inner_horn_refused at line 173 is one refusal on declared finite data. Header at lines 21-23 says that data is not taken from the cut. Not an interpretation function from reflection."
+    },
+    {
+      "path": "lean4/GenesisHottShadow.lean",
+      "sha256": "9d8b8e3405350236ab2505c2f1e6f561fc258569af3a18a396b888ed417a04bc",
+      "finding": "edge_regime_does_not_determine_globular1 at lines 364-368 records unequal forward and backward globe readings of one edge regime. Header at lines 36-39 says the reading is not stated by the regime."
+    },
+    {
+      "path": "checks/independent/genesis_hott_horns.py",
+      "sha256": "d09c80ee63d8c86b222cfbaf694bd1dd5c7c4d870082d90a4be27f7b1034ddff",
+      "finding": "The check restates the finite horn carrier. It imports no repository code. It is not cited by the node."
+    }
+  ],
+  "next_missing_dependency": "A quotation layer from GTH-LANG-REFLECT. No such layer is defined, so no interpretation function has a domain.",
+  "operad_delta": {
+    "schema_id": "omega.pfp.finite-qm.operad-delta.v1",
+    "node_id": "GTH-LANG-INTERPRET",
+    "stage_id": "P0_MINE_OPERAD",
+    "attempt_id": "p0",
+    "authority_effect": "None",
+    "add_or_refine_generators": [],
+    "add_or_refine_relations": [],
+    "checked_compositions": [],
+    "failed_compositions": [
+      {
+        "id": "fail:admit_interpret_readings_are_not_the_function",
+        "outer_operation": "GTH-LANG-INTERPRET interpretation function",
+        "input_slot": "quotation_layer",
+        "inner_operation": "AdmitInterpret",
+        "colour_match": false,
+        "hypothesis_match": "The route input is GTH-LANG-REFLECT. That node cites no Lean. AdmitInterpret imports AdmitCore only.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/AdmitInterpret.lean", "declaration": "AdmitInterpret", "line": 8},
+          {"path": "lean4/AdmitInterpret.lean", "declaration": "AdmitInterpret.IdJudg", "line": 31},
+          {"path": "lean4/AdmitInterpret.lean", "declaration": "AdmitInterpret.id_sound", "line": 51},
+          {"path": "lean4/AdmitInterpret.lean", "declaration": "AdmitInterpret.Edge", "line": 76},
+          {"path": "lean4/AdmitInterpret.lean", "declaration": "AdmitInterpret.edge_not_held_in_empty", "line": 110},
+          {"path": "lean4/AdmitInterpret.lean", "declaration": "AdmitInterpret.HF", "line": 118},
+          {"path": "lean4/AdmitInterpret.lean", "declaration": "AdmitInterpret.cut_hf_sound", "line": 144},
+          {"path": "lean4/AdmitCore.lean", "declaration": "AdmitCore.Regime", "line": 42}
+        ],
+        "reason": "The header says three scoped readings and that none is an embedding of the whole of the named theory. IdJudg has only refl. id_sound concludes an AdmitCore data judgment on twoPoint together with metatheoretic equality of the atoms. Edge is a separated pair of naturals in this file, and edge_not_held_in_empty refuses that edge in the empty regime. HF is built by empty and insert without extensionality. cut_hf_sound reads one admitted cut as membership in an insert-pair, and the header says conservativity over the core is not claimed. These readings are not one function from a quotation layer into the three named targets. They are not admitted as generators. AdmitCore.Regime is not a theorem of this node."
+      },
+      {
+        "id": "fail:quoteJudg_is_not_the_route_input",
+        "outer_operation": "interpretation domain",
+        "input_slot": "GTH-LANG-REFLECT",
+        "inner_operation": "AdmitReflect.quoteJudg",
+        "colour_match": false,
+        "hypothesis_match": "GTH-LANG-REFLECT states that no quotation layer is defined, because the core language is not defined.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/AdmitReflect.lean", "declaration": "AdmitReflect.quoteJudg", "line": 78}
+        ],
+        "reason": "quoteJudg sends AdmitCore.Judg to QJudg. The header says the round trip transports AdmitCore.Step and that there is no truth predicate. That module is not the missing quotation layer, and it is not cited by GTH-LANG-REFLECT."
+      },
+      {
+        "id": "fail:hott_model_interp_is_another_fragment",
+        "outer_operation": "interpretation into a Martin-Lof identity fragment",
+        "input_slot": "reflection_codes",
+        "inner_operation": "GenesisHottModel.interp",
+        "colour_match": false,
+        "hypothesis_match": "The file imports GenesisHottHorns. It does not import a quotation of the priced admission language.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.interp", "line": 83},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.soundness", "line": 221},
+          {"path": "lean4/GenesisHottModel.lean", "declaration": "GenesisHottModel.edge_reading_refutes_refl", "line": 257}
+        ],
+        "reason": "interp reads terms whose types are vtx, iden, and pi into vertices of GenesisHottHorns. The header says identity elimination J is not a rule of the fragment, and that an identity type is read as Lean equality of vertices. soundness is about Deriv in that fragment. edge_reading_refutes_refl says a 1-simplex is not an identity proof. The node lean list is empty. Not a generator of this node."
+      },
+      {
+        "id": "fail:horns_are_declared_finite_data",
+        "outer_operation": "finite semi-simplicial structure once a shadow exists",
+        "input_slot": "shadow_from_reflection",
+        "inner_operation": "GenesisHottHorns.inner_horn_refused",
+        "colour_match": false,
+        "hypothesis_match": "The horn carrier is declared in GenesisHottHorns. It is not the output of GTH-LANG-REFLECT.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottHorns.lean", "declaration": "GenesisHottHorns.inner_horn_refused", "line": 173},
+          {"path": "checks/independent/genesis_hott_horns.py", "declaration": "main", "line": 35}
+        ],
+        "reason": "inner_horn_refused refuses a filler for one declared inner horn on this finite object. The header says the third vertex, the extra edges, and the unique 2-simplex are declared data and are not taken from the cut. The independent check restates that same carrier. Neither is a function from GTH-LANG-REFLECT."
+      },
+      {
+        "id": "fail:shadow_reading_is_not_unique",
+        "outer_operation": "globular structure",
+        "input_slot": "unique_reading_of_an_edge_regime",
+        "inner_operation": "GenesisHottShadow.edge_regime_does_not_determine_globular1",
+        "colour_match": false,
+        "hypothesis_match": "The header says a globe reading of a length-2 tuple is not stated by the regime.",
+        "licensing_relations": [],
+        "evidence_status": "excluded_not_a_generator",
+        "source_pins": [
+          {"path": "lean4/GenesisHottShadow.lean", "declaration": "edge_regime_does_not_determine_globular1", "line": 364}
+        ],
+        "reason": "The theorem states that one edge regime recovers both globeForward and globeBackward and that those readings differ. The header says the reading is used to show it is not unique. Not an interpretation function, and not cited by this node."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "cx:three_scoped_readings_are_not_the_interpretation",
+        "class": "wrong_carrier",
+        "claim_kind": "generator",
+        "claim": "The three scoped readings in AdmitInterpret are the interpretation function this node says is undefined, they embed Martin-Lof type theory with identity types, a finite semi-simplicial or globular structure, and hereditarily finite sets, and they are theorems of GTH-LANG-INTERPRET.",
+        "evidence": "Header at lean4/AdmitInterpret.lean:8-20. IdJudg at lines 31-32 has one constructor, refl. Edge at lines 76-79 stops at separated endpoints. HF at lines 118-120 has no extensionality, and insert_order_differs at lines 151-155 separates the two insert orders. The node lean list is empty. The route status is GAP_NO_DERIVATION. The route input is GTH-LANG-REFLECT.",
+        "confidence": "exact",
+        "node_id": "GTH-LANG-INTERPRET"
+      }
+    ],
+    "open_obligations": [
+      "No generator admitted at P0. Do not invent an interpretation function or a reading bundle.",
+      "Route GTH-R-GTH-LANG-INTERPRET stays GAP_NO_DERIVATION. Node status stays OPEN.",
+      "Next missing dependency: a quotation layer from GTH-LANG-REFLECT. That layer is not defined. AdmitReflect quotes AdmitCore and is not that layer.",
+      "AdmitCore is not a theorem of this node.",
+      "GenesisHottModel, GenesisHottHorns, and GenesisHottShadow are not theorems of this node.",
+      "Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted.",
+      "The external HoTT book named in the source list was not opened. No local declaration extracts an interpretation function from it."
+    ],
+    "verified_numeric_claims": [],
+    "verified_lemma_statements": []
+  },
+  "claim_boundary": {
+    "supports": "This turn read the route, the two derivation notes, the empty operad candidate lists, AdmitInterpret's three scoped readings, AdmitReflect.quoteJudg, AdmitCore.Regime, GenesisHottModel.interp, GenesisHottHorns.inner_horn_refused, and GenesisHottShadow.edge_regime_does_not_determine_globular1. None of those declarations is an input of GTH-R-GTH-LANG-INTERPRET, and none was admitted as a generator.",
+    "does_not_support": "An interpretation function into Martin-Lof type theory with identity types, into a finite semi-simplicial or globular structure, or into hereditarily finite sets. Faithfulness, soundness, or conservativity of any such function. Any use of AdmitCore, AdmitInterpret, AdmitReflect, GenesisHottModel, GenesisHottHorns, or GenesisHottShadow as a theorem of this node. A reading bundle assembled from those files. Any status above OPEN.",
+    "narrowest_claim": "P0 admits no generator for GTH-LANG-INTERPRET. The gap route stays GAP_NO_DERIVATION. The node status stays OPEN.",
+    "next_test": "When a quotation layer for the priced admission language exists, ask whether a function from those codes into one named target is defined. Until then, do not fill the mission slots."
+  },
+  "execution": "Local source reading. No provider call. Lean was not rebuilt. No theorem accepted."
+}

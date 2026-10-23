@@ -231,25 +231,31 @@ def generated_files(root: Path) -> dict[Path, bytes]:
     record_ids = {r['id'] for r in records}
 
     # sync_genesis_to_higher.py owns the block after this one. Keep it last.
-    gth_nodes = [n for n in dag['nodes'] if views.GTH_TAG in n.get('tags', [])]
-    gth_routes = [r for r in dag['routes'] if r['id'].startswith(views.GTH_ROUTE_PREFIX)]
+    # sync_foc035_observer_presheaf.py owns the block after that one. Keep both last.
+    late_tags = (views.GTH_TAG, views.OPS_TAG)
+    late_prefixes = (views.GTH_ROUTE_PREFIX, views.OPS_ROUTE_PREFIX)
+    late_slices = (views.GTH_SLICE, views.OPS_SLICE)
+    late_nodes = [n for n in dag['nodes'] if views.GTH_TAG in n.get('tags', [])] \
+        + [n for n in dag['nodes'] if views.OPS_TAG in n.get('tags', [])]
+    late_routes = [r for r in dag['routes'] if r['id'].startswith(views.GTH_ROUTE_PREFIX)] \
+        + [r for r in dag['routes'] if r['id'].startswith(views.OPS_ROUTE_PREFIX)]
     dag['nodes'] = [n for n in dag['nodes'] if TAG not in n.get('tags', []) and n['id'] not in ids
-                    and views.GTH_TAG not in n.get('tags', [])] + nodes + gth_nodes
+                    and not any(t in n.get('tags', []) for t in late_tags)] + nodes + late_nodes
     dag['routes'] = [r for r in dag['routes'] if not r['id'].startswith(ROUTE_PREFIX) and r['id'] not in route_ids
-                     and not r['id'].startswith(views.GTH_ROUTE_PREFIX)] + routes + gth_routes
+                     and not r['id'].startswith(late_prefixes)] + routes + late_routes
     for stage in fragment['stages']:
         if stage not in dag['stages']:
             dag['stages'].append(stage)
-    gth_records = [r for r in dag['records'] if r.get('source_slice') == views.GTH_SLICE]
-    kept = [r for r in dag['records'] if r.get('source_slice') not in (SLICE, views.GTH_SLICE)
+    late_records = [r for r in dag['records'] if r.get('source_slice') == views.GTH_SLICE] \
+        + [r for r in dag['records'] if r.get('source_slice') == views.OPS_SLICE]
+    kept = [r for r in dag['records'] if r.get('source_slice') not in (SLICE, *late_slices)
             and r['id'] not in record_ids]
-    dag['records'] = [views.canonical_record(r) for r in kept + records + gth_records]
+    dag['records'] = [views.canonical_record(r) for r in kept + records + late_records]
     doc = dag['index_document']
-    had_gth_stage = views.GTH_STAGE in doc['application_stages']
+    late_stages = [s for s in (views.GTH_STAGE, views.OPS_STAGE) if s in doc['application_stages']]
     doc['application_stages'] = [s for s in doc['application_stages']
-                                 if s not in fragment['stages'] and s != views.GTH_STAGE] + list(fragment['stages'])
-    if had_gth_stage:
-        doc['application_stages'].append(views.GTH_STAGE)
+                                 if s not in fragment['stages'] and s not in late_stages] + list(fragment['stages'])
+    doc['application_stages'].extend(late_stages)
     dag['segment_notes'][SLICE] = [fragment['segment_note']]
     dag['schema_notes'] = [patch_schema_note(s) for s in dag['schema_notes']]
 
