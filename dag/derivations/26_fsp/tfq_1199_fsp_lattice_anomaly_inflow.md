@@ -11,10 +11,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. A fixed-basis Wilson-slab construction and a lifted cup-product CS candidate now have exact obstruction witnesses; the full anomalous cancellation remains open.
+Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.
 
 ### Governing Obligation
-Construct a regulated chiral determinant and a compatible induced bulk inflow term. Fixed site-matched chiral bases have invariant determinants, while the tested lifted CS candidate has nonzero variation and integer-lift dependence. This failed candidate does not exclude other regulators; continuum Callan-Harvey inflow remains a literature import.
+Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.
 
 ### Witness Audit
 Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exist; callan_harvey_cancellation states q + (-q) = 0 for the packet <q, -q>, and the other lemmas are Nat inequalities. Ledger GIN-C15 marks the module a historical illustrative fixture with its physical reading withdrawn. Current campaign supplies scoped transport/cochain proofs and exact failed-candidate computations; it does not validate the historical physical reading.

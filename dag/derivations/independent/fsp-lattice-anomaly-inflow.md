@@ -1,11 +1,36 @@
 Status: AI-drafted, awaiting human review.
 
-# Finite Wilson slabs: a fixed-basis obstruction, not anomaly inflow
+# Finite Wilson slabs with fixed bases: a failed inflow candidate
 
 AuthorityEffect: None. Target: FSP-LATTICE-ANOMALY-INFLOW, still OPEN.
-Provisional campaign class: **Narrowed**; the reviewer decides. The finite
-construction below fails to realize the requested chiral cancellation. It is
-not a counterexample to the existence of a different lattice regulator.
+Campaign class after review (docs/overclaim/reviews/2026-10-22_pr-203.md):
+**no result on the node's claim**. No special case of the cancellation is
+proved, and the claim is not refuted, so neither "Narrowed" nor "Refuted"
+applies. The finite construction below does not realize the requested chiral
+cancellation. It is not a counterexample to the existence of a different
+lattice regulator, and it is not an obstruction to lattice inflow.
+
+## Why this result is expected (read first)
+
+A background U(1) gauge change acts on any gauge-covariant lattice Dirac
+matrix by a diagonal similarity, `D' = G^-1 D G`. Every determinant of a
+block whose row and column index sets are fixed and carry the same site
+charges is therefore unchanged: the full, interior, Schur and fixed-basis
+chiral determinants below are gauge invariant by construction. A fixed-basis
+truncation of a vector-like Wilson regulator cannot register a chiral gauge
+anomaly. In the constructions where a lattice anomaly and its inflow appear,
+the chiral boundary determinant is defined with a gauge-field-dependent
+projector and basis, and the anomaly sits in the gauge variation of that
+measure (Luscher, Nucl. Phys. B 549 (1999) 295, for the Ginsparg-Wilson /
+overlap formulation), or the total domain-wall determinant is gauge invariant
+and inflow is the Chern-Simons current of the heavy bulk modes flowing onto
+the wall (Kaplan, Phys. Lett. B 288 (1992) 342; Jansen, Phys. Lett. B 288
+(1992) 348; Golterman, Jansen and Kaplan, Phys. Lett. B 301 (1993) 219, in
+2+1 dimensions; continuum mechanism Callan and Harvey, Nucl. Phys. B 250
+(1985) 427). The CS candidate below is specified, not induced by these
+fermions: it does not depend on the mass profile m(z), so pairing it with an
+invariant determinant gives a non-invariant product without testing inflow.
+The tested setup is the wrong one for inflow; no new obstruction is found.
 
 ## Geometry, field and fermions
 
@@ -71,8 +96,9 @@ being silently attributed to this Wilson regulator.
 
 Row and column bases of K have identical gauge charge at each site, so
 `K'=G_B^-1 K G_B` in these bases and `det K'=det K`.
-`chiral_fixed_basis_det` states this obstruction for arbitrary finite fixed
-bases with the same site charges. `transport_inverse` and `schur_covariant`
+`chiral_fixed_basis_det` states this invariance for arbitrary finite fixed
+bases with the same site charges; its hypothesis `hsite` is what makes the
+block a similarity, so the invariance is built into the choice of bases. `transport_inverse` and `schur_covariant`
 show that elimination preserves covariance whenever the inverse certificate
 exists. The Lean development does not construct or kernel-evaluate the
 explicit Wilson determinants; those are independently checked in SymPy.
@@ -102,10 +128,12 @@ Delta S_CS = (alpha_1-alpha_0) F_123 / 2
               +alpha_0 F_013-alpha_0 F_012) / 2.
 ```
 
-The latter is the signed boundary pairing. `cs_cell_variation` and
-`cs_chain_variation` prove the formula for arbitrary rational cochains and
-finite signed tetrahedral chains. The checker constructs all triangular
-faces and cancels interior faces independently. Lateral faces are included.
+The latter is the cellwise boundary expression. `cs_cell_variation` states
+the formula for one tetrahedron and arbitrary rational cochains, and
+`cs_chain_variation` sums it over any finite signed tetrahedral chain.
+Neither Lean statement says that interior faces cancel. The checker
+constructs all triangular faces and cancels interior faces independently,
+for the three boxes only. Lateral faces are included.
 
 For the two width-two boxes, the only nonzero axial lift is `1/4` on
 `(0,0,1)->(0,1,1)`; alpha is `1/4` at `(0,0,0)` and zero elsewhere.
@@ -116,14 +144,23 @@ face, so missing side inflow cannot explain that witness.
 In each case `S_CS(a)=0` and `S_CS(a')=1/32`.
 `slab_three_cs` and `slab_four_cs` compute the width-two actions from the
 coordinate construction in Lean; the width-three value is SymPy evidence.
+In Lean the lifted potential `slabPotential` is entered as the closed form
+of the path lift of the single active link; that it equals the path lift is
+checked by the independent checker, not stated in Lean.
 No signed charge pair was inserted to make the result cancel.
 
 Use the named cyclotomic field Q(zeta_32) for phases, containing Q(i) through
 `i=zeta_32^8`. The cyclotomic polynomial is `X^16+1`. The phase ratio is
 `zeta_32`, whereas every nonzero fermion determinant ratio is one.
 The combined ratio is therefore `zeta_32`, not one. The independent checker
-reduces the residual to `X-1` modulo `X^16+1`; `phase_obstruction` and
-`phase_times_det_ne` give the corresponding field-theoretic obstruction.
+reduces the residual to `X-1` modulo `X^16+1`. `phase_obstruction` and
+`phase_times_det_ne` state the field arithmetic behind the inequality: in
+characteristic zero, `z^16+1=0` gives `z != 1`, hence `z*d != d` for
+`d != 0`. That z is the CS phase and d a fermion determinant is the
+computational identification above, not a Lean statement. Since the
+determinants are invariant by similarity and the CS term is not induced by
+the fermions, this inequality records a mismatch of the chosen pair, not an
+obstruction to inflow.
 No branch of a logarithm or floating-point exponential is used.
 
 There is a second failure: change the nonzero alpha from `1/4` to one.
@@ -164,10 +201,12 @@ import, not an inference from this calculation.
 
 General gauge-transport, inverse-certificate, fixed-basis determinant and
 Schur-covariance identities; general rational cochain variation; the two
-width-two CS values; and the algebraic cyclotomic obstruction are Lean results.
-Exact finite Wilson matrix determinants and the width-three control are
-independent computational witnesses. For this specified candidate pair,
-cancellation fails exactly, with no claimed lattice-spacing error bound.
+width-two CS values; and the cyclotomic inequality (`z^16+1=0` gives
+`z != 1`) are Lean results. Exact finite Wilson matrix determinants and the
+width-three control are independent computational witnesses. For this
+specified candidate pair, cancellation fails exactly, as expected for a
+fixed-basis truncation of a vector-like regulator paired with a CS term not
+induced by the fermions, with no claimed lattice-spacing error bound.
 
 ## What is assumed
 

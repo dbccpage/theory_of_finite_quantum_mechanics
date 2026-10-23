@@ -1,6 +1,10 @@
 # Review of campaign FSP-LATTICE-ANOMALY-INFLOW
 
-AuthorityEffect: None. AI self-review, awaiting human review.
+AuthorityEffect: None. AI self-review by the PR author, awaiting human review.
+
+Superseded by the independent review `docs/overclaim/reviews/2026-10-22_pr-203.md`,
+which reclassifies the outcome from Narrowed to no result (failed candidate) and
+corrects the "obstruction" framing. This file is kept as the author's record.
 
 Scope: campaign/fsp-lattice-anomaly-inflow against origin/main
 3924d378ff1de685948bf2b419dc63a5a9560881. Compiled source commit:
@@ -28,7 +32,8 @@ refutes the existence of other finite regulators.
   faces; that excludes missing side support as an explanation of this witness.
 - The default library and the historical anomaly module were not rebuilt.
 - The new proof/checker are assessed L4C/L4D. The declarative Lake registration
-  is L1C, an explicit user-accepted exception to the per-file L4 floor.
+  is L1C, a disclosed exception to the per-file L4 floor (on main the same
+  companion is L1 with no grade).
 
 ## Per-node statement-versus-theorem table
 
