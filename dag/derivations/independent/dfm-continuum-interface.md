@@ -42,9 +42,9 @@ The last step is associativity only. No element is assumed to commute.
 
 ## The star does not determine the dressed chord
 
-Keep `U(ePA)`, `U(eRB)` and `U(eAB)` fixed, and replace `U(eRP)` by a different group element. The three star labels are unchanged, because `eRP` is not one of them. The displayed product changes whenever the two values of `U(eRP)` differ, since right multiplication by a fixed element `U(eRB)^{-1} * U(eAB) * U(ePA)` is bijective. In particular, if the three star labels are the identity and the outer label is `x`, the dressed chord equals `x`.
+Keep `U(ePA)`, `U(eRB)` and `U(eAB)` fixed, and replace `U(eRP)` by a different group element. The three star labels are unchanged, because `eRP` is not one of them. The displayed product changes whenever the two values of `U(eRP)` differ, since left multiplication by a fixed element `U(eRB)^{-1} * U(eAB) * U(ePA)` is bijective. In particular, if the three star labels are the identity and the outer label is `x`, the dressed chord equals `x`.
 
-Two concrete checks, recomputed by `checks/independent/dfm-continuum-interface.py`:
+Three concrete checks, recomputed by `checks/independent/dfm-continuum-interface.py`:
 
 - In the additive group of the integers, outer labels `2` and `5` with the other three labels `0` give dressed chords `2` and `5`.
 - In `SL(2, Z)`, the same pattern with outer matrices `[[1, 1], [0, 1]]` and `[[1, 2], [0, 1]]` gives those matrices as the dressed chords.
