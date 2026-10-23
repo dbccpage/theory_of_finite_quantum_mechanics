@@ -584,6 +584,11 @@ lean_lib FrontierTargets where
     `FrontierPrAllowedRegion
   ]
 
+-- Campaign target: FSP-HUBBARD-PROTECTED-REPRESENTATIONS.
+-- Not a default target: build with `lake build CampaignFspHubbardProtected`.
+lean_lib CampaignFspHubbardProtected where
+  roots := #[`CampaignFspHubbardProtected]
+
 -- Campaign target 1: L1-IMP-SECTOR-SYMMETRY-LAW
 -- Not a default target: build with `lake build CampaignL1SectorSymmetry`
 lean_lib CampaignL1SectorSymmetry where
