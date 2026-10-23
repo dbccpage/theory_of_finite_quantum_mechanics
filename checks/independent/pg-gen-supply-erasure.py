@@ -111,8 +111,8 @@ READING_L: State = (2, (), (), (), ((0, 1),))
 READING_F: State = (3, (), (), (), ((1, 2),))
 
 
-def main() -> None:
-    cases = failures = changed = 0
+def history_census() -> tuple[int, int, set[State]]:
+    cases = failures = 0
     seen: set[State] = set()
     for base in (EMPTY, READING_L, READING_F):
         for length in range(5):
@@ -127,6 +127,11 @@ def main() -> None:
                     seen.add(answer)
     expected = 3 * sum(sp.Integer(len(ALPHABET))**k for k in range(5))
     require(cases == expected, "history census count")
+    return cases, failures, seen
+
+
+def check_state_changes(seen: set[State]) -> int:
+    changed = 0
     for r in seen:
         require(potential(r) == sp.Matrix([r[0], *(len(xs) for xs in r[1:])]).dot(sp.ones(5, 1)),
                 "independent exact potential")
@@ -138,6 +143,10 @@ def main() -> None:
                 if s != r:
                     require(potential(r) < potential(s), "real source change did not raise potential")
                     changed += 1
+    return changed
+
+
+def token_history_census() -> int:
     # Token-aware replay and state-dependent erasure: repeated tokens become supply.
     token_cases = 0
     token_alphabet = (Event("supply", 0), Event("datum", 0), Event("datum", 1),
@@ -159,13 +168,18 @@ def main() -> None:
             require(token_state == replay(tuple(erased), EMPTY, True), "state-dependent token erasure")
             token_cases += 1
     require(token_cases == sum(sp.Integer(len(token_alphabet))**k for k in range(5)), "token census")
-    # Each generated mutation has an explicit incorrect result and a reference result.
+    return token_cases
+
+
+def negative_controls() -> tuple[tuple[str, State | None, State | None], ...]:
+    # Fixed incorrect-output probes compare proposed results with independent references.
+    # These probes do not execute altered source programs or measure mutation coverage.
     repeated = (Event("datum"), Event("form", 1), Event("inst", args=(0,)), Event("inst", args=(0,)))
     dup = replay(repeated, EMPTY)
     rules = replay((Event("form", 1), Event("rule", 0)), EMPTY)
     if dup is None or rules is None:
-        raise RuntimeError("mutation fixture failed admission")
-    mutants: tuple[tuple[str, State | None, State | None], ...] = (
+        raise RuntimeError("negative-control fixture failed admission")
+    probes: tuple[tuple[str, State | None, State | None], ...] = (
         ("supply-admits", (1, (), (), (), ()), replay((Event("supply", 0),), EMPTY)),
         ("failure-as-noop", replay((Event("datum"),), EMPTY),
          replay((Event("form", 0), Event("datum")), EMPTY)),
@@ -175,8 +189,12 @@ def main() -> None:
         ("state-independent-token-erasure", replay((Event("datum", 0), Event("datum", 0)), EMPTY),
          replay((Event("datum", 0), Event("supply", 0)), EMPTY)),
         ("omit-rule-coordinate", (rules[0], rules[1], rules[2], (), rules[4]), rules))
-    for name, mutated, reference in mutants:
-        require(mutated != reference, name + " survived")
+    for name, proposed, reference in probes:
+        require(proposed != reference, name + " was not a negative control")
+    return probes
+
+
+def malformed_event_refusals() -> int:
     refused = 0
     bad_inputs: tuple[Callable[[], Event], ...] = (
         lambda: Event("datum", True), lambda: Event("inst", -1), lambda: Event("form", False))
@@ -187,15 +205,24 @@ def main() -> None:
             refused += 1
         else:
             raise RuntimeError("malformed event admitted")
+    return refused
+
+
+def main() -> None:
+    cases, failures, seen = history_census()
+    changed = check_state_changes(seen)
+    token_cases = token_history_census()
+    probes = negative_controls()
+    refused = malformed_event_refusals()
     print(json.dumps({"node": "PG-GEN-SUPPLY-ERASURE", "authority_effect": "None",
                       "alphabet_size": len(ALPHABET), "maximum_history_length": 4,
                       "bases": 3, "histories_checked": cases, "failed_histories": failures,
                       "distinct_successful_states": len(seen), "strict_changes_checked": changed,
                       "token_histories_checked": token_cases, "domain_refusals": refused,
-                      "mutants": [{"name": name, "outcome": "killed", "mutated": m, "reference": r}
-                                  for name, m, r in mutants],
-                      "mutation_accounting": {"killed": len(mutants), "survived": 0, "demonstrably_equivalent": 0,
-                                              "invalid": 0, "inconclusive": 0, "unrun": 0}}, indent=2))
+                      "negative_controls": [{"name": name, "outcome": "rejected", "proposed": m, "reference": r}
+                                            for name, m, r in probes],
+                      "negative_control_count": len(probes),
+                      "mutation_coverage": "not measured by these fixed-output probes"}, indent=2))
 
 
 if __name__ == "__main__":

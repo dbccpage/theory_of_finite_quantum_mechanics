@@ -966,4 +966,3 @@ lean_lib CampaignGenesisSealedSource where
 -- Exact array/copy/source partial replay transport. Non-default.
 lean_lib CampaignGenesisReplayRefinement where
   roots := #[`CampaignGenesisReplayRefinement]
-

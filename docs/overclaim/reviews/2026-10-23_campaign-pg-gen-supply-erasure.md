@@ -40,7 +40,7 @@ The final replay receipt binds each printed declaration to the compiled file.
 | 92,823 histories from three bases, alphabet size 13, lengths through four | `3 * sum(13**k for k in range(5))`, independently in SymPy | match |
 | 88,808 failing histories, 429 successful states, 2,289 strict changes | exhaustive independent interpreters | match |
 | 4,681 token histories | `sum(8**k for k in range(5))`, independently in SymPy | match |
-| Six killed semantic mutations, three malformed-input refusals | explicit counterexample records and refusal calls | match |
+| Six fixed incorrect-output probes rejected, three malformed-input refusals | explicit counterexample records and refusal calls | match |
 | 26 new declaration audits and two source-erasure audits | terminal print commands matched to parsed successful build output | match |
 | Both reading-array coordinates and failure after supply | Lean `reading_arrays` (`lean4/CampaignGenesisReplayRefinement.lean:278`), `invalid_after_supply` (`lean4/CampaignGenesisReplayRefinement.lean:282`); independent replay | match |
 
