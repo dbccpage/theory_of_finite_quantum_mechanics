@@ -75,9 +75,11 @@ What is assumed
 
 The explicit comparison class, observation interface and strict morphisms.
 The source instance uses actual pinned Basic definitions and their supply rule.
-All sixteen theorem audits use only the permitted kernel axioms. The Lean and
-checker are author-assessed L4D; Lake registration is L1C under the explicit
-configuration exception. Human review is pending.
+All sixteen theorem audits use only the permitted kernel axioms. Independent batch review assesses the proof L4D, the bounded regression
+checker L3D under the support exception, and Lake registration L1D. The three
+fixed controls are not mutations. A separate actual root-only-equivalence
+source mutant is rejected in both Python modes; broad mutation coverage is
+not established. Human review is pending.
 
 What is open
 

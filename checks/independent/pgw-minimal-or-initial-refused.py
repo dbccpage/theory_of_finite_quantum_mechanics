@@ -71,7 +71,7 @@ def main() -> None:
         processes=len(processes),state_bound=3,clock_component_candidates=hom_candidates,
         behavior_equal_pairs=equal_pairs,minimality_comparisons=minimal_pairs,
         source_supply_clock_maps=supply_clock_maps,controls={'nonreduced':hidden,'unreachable':unreachable,'one_state':one},
-        mutation_accounting=dict(killed=3,survived=0,demonstrably_equivalent=0,invalid=0,inconclusive=0,unrun=0)),indent=2))
+        negative_controls_checked=3,mutation_coverage='not measured by this census'),indent=2))
 
 if __name__=='__main__':
     main()
