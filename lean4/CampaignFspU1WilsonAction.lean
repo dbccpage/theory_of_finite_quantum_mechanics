@@ -69,7 +69,8 @@ theorem gaugeAct_reversal {U : V → V → G} (hU : ∀ a b, U b a = (U a b)⁻�
   rw [hU a b]
   simp [mul_assoc]
 
-/-- Ordered product of link variables along the path `a → l₀ → l₁ → ⋯`. -/
+/-- Ordered product of link variables along the path `a → l₀ → l₁ → ⋯`.
+Each ordered vertex pair uses its supplied value in `U`; an empty list gives `1`. -/
 def holonomy (U : V → V → G) : V → List V → G
   | _, [] => 1
   | a, b :: rest => U a b * holonomy U b rest
@@ -169,7 +170,8 @@ theorem wilsonAction_nonneg (plaq : ι → ClosedPath V) {β : ℝ} (hβ : 0 ≤
     (U : V → V → Circle) : 0 ≤ wilsonAction plaq β U :=
   mul_nonneg hβ (Finset.sum_nonneg fun _ _ => one_sub_re_nonneg _)
 
-/-- For `β > 0`, the Wilson action vanishes exactly on flat configurations. -/
+/-- For `β > 0`, the Wilson action vanishes exactly when every path in the selected
+family `plaq` has holonomy `1`. -/
 theorem wilsonAction_eq_zero_iff (plaq : ι → ClosedPath V) {β : ℝ} (hβ : 0 < β)
     (U : V → V → Circle) :
     wilsonAction plaq β U = 0 ↔ ∀ p, loopHolonomy U (plaq p) = 1 := by
@@ -210,7 +212,7 @@ section Angle
 
 variable {V : Type*}
 
-/-- Link phases from real link angles, `U a b = exp(i A a b)`. -/
+/-- Link phases from real link angles in radians, `U a b = exp(i A a b)`. -/
 def linkOfAngle (A : V → V → ℝ) : V → V → Circle :=
   fun a b => Circle.exp (A a b)
 
@@ -226,7 +228,8 @@ theorem linkOfAngle_gaugeAngle (θ : V → ℝ) (A : V → V → ℝ) :
     div_eq_mul_inv]
   rw [mul_comm (Circle.exp (A a b))]
 
-/-- Sum of link angles along the path `a → l₀ → l₁ → ⋯`. -/
+/-- Sum of link angles in radians along the path `a → l₀ → l₁ → ⋯`.
+An empty list gives `0`; the sum is not reduced modulo `2π`. -/
 def pathAngle (A : V → V → ℝ) : V → List V → ℝ
   | _, [] => 0
   | a, b :: rest => A a b + pathAngle A b rest
@@ -287,7 +290,9 @@ def plaquette (i : PlaqIndex d L) : ClosedPath (Site d L) where
     i.1 + unitVec d L i.2.1.2, i.1]
   closed := rfl
 
-/-- The hypercubic Wilson action `β Σ_{x, μ<ν} (1 - Re U_{μν}(x))`. -/
+/-- The hypercubic Wilson action `β Σ_{x, μ<ν} (1 - Re U_{μν}(x))`.
+Links are indexed by ordered vertex pairs, so distinct parallel links are identified
+when `L ≤ 2`. -/
 def hypercubicWilson (β : ℝ) (U : Site d L → Site d L → Circle) : ℝ :=
   wilsonAction (plaquette d L) β U
 
