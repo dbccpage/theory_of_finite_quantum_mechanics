@@ -16230,14 +16230,26 @@
         "dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:531-537",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:70-71",
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88",
+        "dag/derivations/independent/pgw-endogenous-demand-ob1.md:1"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
+      ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
       ],
       "imported_structure": [],
-      "bottleneck": "Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.",
+      "bottleneck": "A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0504",
@@ -58122,14 +58134,25 @@
       ],
       "id": "TFQ-0504",
       "lean4": [
-        "absent: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)"
+        "absent: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+        "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
       ],
       "local_id": "PGW-ENDOGENOUS-DEMAND-OB1",
       "name": "endogenous-demand-ob1",
       "obligation": "Derive an object-language rule that generates the next unresolved requirement from admitted structure without reading token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation, or keep every demand host-supplied and recorded.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::leftover_as_demand"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::leftover_as_demand",
+        "checks/independent/pgw-endogenous-demand-ob1.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [

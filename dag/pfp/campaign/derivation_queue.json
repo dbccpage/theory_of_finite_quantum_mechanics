@@ -1,7 +1,7 @@
 {
  "generated_from": "dag/derivation_dag.json at HEAD",
  "rule": "Run from the repository root: python -I -X utf8 dag/pfp/campaign/make_queue.py\n\nWrite the derivation-campaign queue: unattempted OPEN/CONDITIONAL/IMPORTED nodes with a mathematical statement, ranked by\ndownstream impact (trunk weighted x3). Coordination/custody records are excluded by stage and by statement shape.",
- "count": 160,
+ "count": 159,
  "queue": [
   {
    "node_id": "TFQ-0006",
@@ -113,7 +113,7 @@
     "Opaque identity convention: a state is what the regime can tell apart, so internal identity is the quotient by ≈ₙ (assumption)"
    ],
    "lean": [
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal",
+    "lean4/Imported/PreGenesisToMssn/Observation.lean::empty_profiles_equal",
     "lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only"
    ],
    "rust": [],
@@ -253,7 +253,7 @@
    "downstream_nodes": 22,
    "score": 22,
    "statement": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
-   "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+   "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
    "imported_structure": [
     "Wilson-Dirac lattice fermion operator with r = 1 (standard lattice QCD)"
    ],
@@ -520,7 +520,7 @@
     "Declared report map from the S(n)/MSS-N realized report image to the WDP observer presentation, with the protected decision on the actual cases (assumption)"
    ],
    "lean": [
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy"
+    "lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy"
    ],
    "rust": [
     "omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel"
@@ -701,9 +701,20 @@
    "downstream_nodes": 2,
    "score": 6,
    "statement": "No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successor research S2): a demand is a target pair (i, j) with 0 ≤ i < j < n_data supplied by the host together with the measure and the declared bounds, nothing in the harness chooses a next demand, and the collapsed pairs left after an admission are returned as observations, not demands (leftover_as_demand refuses). The sealed derivation's pair-separation closure policy is declared metatheory, not a harness function, and the sealed result is that no object-language endogenous demand generator was derived.",
-   "bottleneck": "Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.",
+   "bottleneck": "A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.",
    "imported_structure": [],
-   "lean": [],
+   "lean": [
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced",
+    "lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates"
+   ],
    "rust": [
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
    ],
@@ -722,7 +733,7 @@
     "Fixed carrier and declared marked triples F from the chosen Genesis Ongoing source contexts (assumption)"
    ],
    "lean": [
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums"
+    "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums"
    ],
    "rust": [
     "omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter"
@@ -989,8 +1000,8 @@
    "bottleneck": "Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size.",
    "imported_structure": [],
    "lean": [
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean::rule_item_never_minimal",
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_datum"
+    "lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal",
+    "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum"
    ],
    "rust": [
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas"
@@ -1294,20 +1305,6 @@
    "rank": 76
   },
   {
-   "node_id": "GTH-LANG-IMPORT",
-   "stage": "GENESIS_TO_HIGHER",
-   "status": "OPEN",
-   "downstream_nodes": 1,
-   "score": 1,
-   "statement": "An import record for the priced admission language names a theory, the axioms added, the cost as the sentences the core does not derive, and a conservativity status that is either established or still open. Writing that record does not derive the added axioms from the core. No format for the record is defined. The language is not shown to state, of itself, a sentence it does not derive.",
-   "bottleneck": "An import record names axioms, cost and a conservativity status (established or open). The record is not a derivation of those axioms. No record format is defined.",
-   "imported_structure": [],
-   "lean": [],
-   "rust": [],
-   "python": [],
-   "rank": 77
-  },
-  {
    "node_id": "LQG-PR-ASYMPTOTICS-IMPORT",
    "stage": "LOOP_QUANTUM_GRAVITY",
    "status": "IMPORTED_ASSUMPTION",
@@ -1321,7 +1318,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 78
+   "rank": 77
   },
   {
    "node_id": "LQG-SPIN-NETWORK-STATES-IMPORT",
@@ -1338,7 +1335,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 79
+   "rank": 78
   },
   {
    "node_id": "MAJ-OPEN-LIEB-ROBINSON-LOCALITY",
@@ -1352,7 +1349,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 80
+   "rank": 79
   },
   {
    "node_id": "MAJ-OPEN-MULTITERMINAL-ENVELOPE",
@@ -1375,7 +1372,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 81
+   "rank": 80
   },
   {
    "node_id": "MUB-PRIME-POWER-CONSTRUCTION",
@@ -1389,7 +1386,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 82
+   "rank": 81
   },
   {
    "node_id": "MUB6-CONJECTURE2-PREMISE",
@@ -1405,7 +1402,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 83
+   "rank": 82
   },
   {
    "node_id": "MUB6-KRAWCZYK-GLOBAL-COVER-CLAIM",
@@ -1419,7 +1416,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 84
+   "rank": 83
   },
   {
    "node_id": "MUB6-POSITIVSTELLENSATZ-CLAIM",
@@ -1433,7 +1430,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 85
+   "rank": 84
   },
   {
    "node_id": "MUB6-PSI-GLUING-CLAIM",
@@ -1447,7 +1444,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 86
+   "rank": 85
   },
   {
    "node_id": "MUB6-WEYL-HEISENBERG-D6",
@@ -1463,7 +1460,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 87
+   "rank": 86
   },
   {
    "node_id": "TFQ-0039",
@@ -1477,7 +1474,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 88
+   "rank": 87
   },
   {
    "node_id": "TFQ-0050",
@@ -1494,7 +1491,7 @@
     "code/rust/src/fusion_categories/su2_level.rs"
    ],
    "python": [],
-   "rank": 89
+   "rank": 88
   },
   {
    "node_id": "TFQ-0106",
@@ -1510,7 +1507,7 @@
     "code/rust/src/general_relativity/cosmological_constant.rs"
    ],
    "python": [],
-   "rank": 90
+   "rank": 89
   },
   {
    "node_id": "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
@@ -1524,7 +1521,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 91
+   "rank": 90
   },
   {
    "node_id": "ADS-REGGE-AREA-RT-GAP",
@@ -1538,7 +1535,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 92
+   "rank": 91
   },
   {
    "node_id": "CT-GENESIS-SEPARATION-TASK-ANALOGY",
@@ -1552,7 +1549,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 93
+   "rank": 92
   },
   {
    "node_id": "CT-REFUSAL-OBSTRUCTION-ANALOGY",
@@ -1566,7 +1563,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 94
+   "rank": 93
   },
   {
    "node_id": "DFM-CKM-PHYSICS-FENCE",
@@ -1583,7 +1580,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 95
+   "rank": 94
   },
   {
    "node_id": "DFM-GRIBOV-CONTINUUM-FENCE",
@@ -1600,7 +1597,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 96
+   "rank": 95
   },
   {
    "node_id": "DFM-REGGE-GRAVITY-FENCE",
@@ -1616,7 +1613,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 97
+   "rank": 96
   },
   {
    "node_id": "DFM-RELATIONAL-TIME-FENCE",
@@ -1633,7 +1630,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 98
+   "rank": 97
   },
   {
    "node_id": "DFM-SYMANZIK-QED-AE-FENCE",
@@ -1650,7 +1647,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 99
+   "rank": 98
   },
   {
    "node_id": "DFM-Z1-Z2-COUNTERTERM-FENCE",
@@ -1667,7 +1664,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 100
+   "rank": 99
   },
   {
    "node_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
@@ -1697,7 +1694,7 @@
     "code/rust/src/finite_probability/operational_filters.rs"
    ],
    "python": [],
-   "rank": 101
+   "rank": 100
   },
   {
    "node_id": "FSP-FIBONACCI-ANYON-DATA",
@@ -1713,7 +1710,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 102
+   "rank": 101
   },
   {
    "node_id": "FSP-NICOLAI-MAP-CLAIM",
@@ -1727,7 +1724,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 103
+   "rank": 102
   },
   {
    "node_id": "FSP-THETA-TERM-COMPLEX-WEIGHT",
@@ -1743,7 +1740,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 104
+   "rank": 103
   },
   {
    "node_id": "FSP-TRIALITY-CENTER-PROJECTION",
@@ -1757,7 +1754,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 105
+   "rank": 104
   },
   {
    "node_id": "GTH-IMPORT-INFTY-1-CATEGORY",
@@ -1773,7 +1770,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 106
+   "rank": 105
   },
   {
    "node_id": "GTH-IMPORT-INFTY-GROUPOID",
@@ -1789,7 +1786,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 107
+   "rank": 106
   },
   {
    "node_id": "GTH-IMPORT-UNIVALENT-UNIVERSE",
@@ -1805,7 +1802,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 108
+   "rank": 107
   },
   {
    "node_id": "MAJ-DISTANCE-WEIGHT-CORRECTION",
@@ -1824,7 +1821,7 @@
     "code/rust/src/majorana/repair_capacity.rs::assert_repair_capacity_invariant"
    ],
    "python": [],
-   "rank": 109
+   "rank": 108
   },
   {
    "node_id": "MAJ-ISING-BRAID-EXACT-OPEN",
@@ -1838,7 +1835,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 110
+   "rank": 109
   },
   {
    "node_id": "MAJ-LEGACY-CARRIER-RETRACTION",
@@ -1856,7 +1853,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 111
+   "rank": 110
   },
   {
    "node_id": "MAJ-OPEN-DISTANCE-FAMILY",
@@ -1870,7 +1867,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 112
+   "rank": 111
   },
   {
    "node_id": "MAJ-OPEN-EVIDENCE-ADEQUACY",
@@ -1884,7 +1881,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 113
+   "rank": 112
   },
   {
    "node_id": "MAJ-OPEN-LP-DUAL-CERTIFIED-CEILING",
@@ -1898,7 +1895,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 114
+   "rank": 113
   },
   {
    "node_id": "MAJ-OPEN-NON-MARKOVIAN-ENVELOPE",
@@ -1920,7 +1917,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 115
+   "rank": 114
   },
   {
    "node_id": "MAJ-OPEN-POISSON-SCHRODINGER",
@@ -1934,7 +1931,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 116
+   "rank": 115
   },
   {
    "node_id": "MUB6-COMMUTATIVITY-DEFECT-CLAIM",
@@ -1948,7 +1945,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 117
+   "rank": 116
   },
   {
    "node_id": "MUB6-CUSP-PUISEUX-CLAIM",
@@ -1962,7 +1959,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 118
+   "rank": 117
   },
   {
    "node_id": "MUB6-DEGREE2-SDP-GAP-CLAIM",
@@ -1976,7 +1973,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 119
+   "rank": 118
   },
   {
    "node_id": "MUB6-FINITE-CORNER-REDUCTION",
@@ -1992,7 +1989,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 120
+   "rank": 119
   },
   {
    "node_id": "MUB6-GRAM-NULLSTELLENSATZ-CLAIM",
@@ -2006,7 +2003,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 121
+   "rank": 120
   },
   {
    "node_id": "MUB6-GROEBNER-ELIMINATION-CLAIM",
@@ -2020,7 +2017,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 122
+   "rank": 121
   },
   {
    "node_id": "MUB6-MAX-MUB-SIX-EQUALS-THREE",
@@ -2034,7 +2031,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 123
+   "rank": 122
   },
   {
    "node_id": "MUB6-NO-FIELD-OF-ORDER-SIX",
@@ -2050,7 +2047,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 124
+   "rank": 123
   },
   {
    "node_id": "MUB6-OPENAI-FAMILY-LE-FIVE",
@@ -2066,7 +2063,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 125
+   "rank": 124
   },
   {
    "node_id": "MUB6-PHI1-CIRCULATION-CLAIM",
@@ -2080,7 +2077,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 126
+   "rank": 125
   },
   {
    "node_id": "MUB6-RATIONAL-LDL-CLAIM",
@@ -2094,7 +2091,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 127
+   "rank": 126
   },
   {
    "node_id": "MUB6-RESIDUAL-FENCE-CLAIM",
@@ -2108,7 +2105,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 128
+   "rank": 127
   },
   {
    "node_id": "MUB6-ROUTE-C-LANDING-CLAIM",
@@ -2122,7 +2119,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 129
+   "rank": 128
   },
   {
    "node_id": "MUB6-SMALE-ALPHA-CLAIM",
@@ -2136,7 +2133,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 130
+   "rank": 129
   },
   {
    "node_id": "MUB6-TORUS-CAD-EMPTINESS-CLAIM",
@@ -2150,7 +2147,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 131
+   "rank": 130
   },
   {
    "node_id": "MUB6-WEYL-STABILIZER-BOUND",
@@ -2164,7 +2161,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 132
+   "rank": 131
   },
   {
    "node_id": "PGW-CONTEXT-FIDELITY",
@@ -2180,7 +2177,7 @@
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies"
    ],
    "python": [],
-   "rank": 133
+   "rank": 132
   },
   {
    "node_id": "PGW-DECLARED-INPUT-FLOOR",
@@ -2194,7 +2191,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 134
+   "rank": 133
   },
   {
    "node_id": "PGW-DRIVER-B-SEVENTH-EVENT",
@@ -2210,7 +2207,7 @@
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event"
    ],
    "python": [],
-   "rank": 135
+   "rank": 134
   },
   {
    "node_id": "PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN",
@@ -2226,7 +2223,7 @@
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::canonical_bruteforce"
    ],
    "python": [],
-   "rank": 136
+   "rank": 135
   },
   {
    "node_id": "PGW-PYTHON-LEAN-CARRIER-BRIDGE",
@@ -2238,13 +2235,13 @@
    "bottleneck": "Open; agreement between Python and Lean is evidenced by executable checks on the inputs checked, which is not a refinement proof.",
    "imported_structure": [],
    "lean": [
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Kernel.lean::replayE"
+    "lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean::replayE"
    ],
    "rust": [
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay"
    ],
    "python": [],
-   "rank": 137
+   "rank": 136
   },
   {
    "node_id": "PGW-RESPONDER-IN-LEAN",
@@ -2260,7 +2257,7 @@
     "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses"
    ],
    "python": [],
-   "rank": 138
+   "rank": 137
   },
   {
    "node_id": "PGW-SN-PROTECTED-ANSWER-TRANSPORT",
@@ -2274,7 +2271,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 139
+   "rank": 138
   },
   {
    "node_id": "PGW-WDP-HANDOFF-TO-L1",
@@ -2290,7 +2287,7 @@
     "omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family"
    ],
    "python": [],
-   "rank": 140
+   "rank": 139
   },
   {
    "node_id": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
@@ -2302,12 +2299,12 @@
    "bottleneck": "Neither file states the transport; boundary_boundary_filled is a chain-level fact in the incidence edge order, the incidence construction (TFQ-0460) does not derive the WDP window from Genesis admission (TFQ-0344), and the orientation test in Python stays inside the WDP convention.",
    "imported_structure": [],
    "lean": [
-    "omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::boundary_boundary_filled",
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::triD1"
+    "lean4/Imported/OeWdp/GenesisIncidence.lean::boundary_boundary_filled",
+    "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1"
    ],
    "rust": [],
    "python": [],
-   "rank": 141
+   "rank": 140
   },
   {
    "node_id": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
@@ -2322,13 +2319,13 @@
     "Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)"
    ],
    "lean": [
-    "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
+    "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
    ],
    "rust": [
     "omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt"
    ],
    "python": [],
-   "rank": 142
+   "rank": 141
   },
   {
    "node_id": "TFQ-0010",
@@ -2342,7 +2339,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 143
+   "rank": 142
   },
   {
    "node_id": "TFQ-0011",
@@ -2356,7 +2353,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 144
+   "rank": 143
   },
   {
    "node_id": "TFQ-0038",
@@ -2372,7 +2369,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 145
+   "rank": 144
   },
   {
    "node_id": "TFQ-0040",
@@ -2389,7 +2386,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 146
+   "rank": 145
   },
   {
    "node_id": "TFQ-0042",
@@ -2405,7 +2402,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 147
+   "rank": 146
   },
   {
    "node_id": "TFQ-0090",
@@ -2419,7 +2416,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 148
+   "rank": 147
   },
   {
    "node_id": "TFQ-0107",
@@ -2436,7 +2433,7 @@
     "code/rust/src/general_relativity/hamiltonian_constraint.rs"
    ],
    "python": [],
-   "rank": 149
+   "rank": 148
   },
   {
    "node_id": "TFQ-0117",
@@ -2450,7 +2447,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 150
+   "rank": 149
   },
   {
    "node_id": "TFQ-0118",
@@ -2464,7 +2461,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 151
+   "rank": 150
   },
   {
    "node_id": "TFQ-0119",
@@ -2478,7 +2475,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 152
+   "rank": 151
   },
   {
    "node_id": "TFQ-0123",
@@ -2492,7 +2489,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 153
+   "rank": 152
   },
   {
    "node_id": "TFQ-0171",
@@ -2514,7 +2511,7 @@
     "code/rust/src/finite_probability/marginal_compatibility.rs"
    ],
    "python": [],
-   "rank": 154
+   "rank": 153
   },
   {
    "node_id": "TFQ-0183",
@@ -2533,7 +2530,7 @@
     "code/rust/src/majorana/pauli_noise.rs"
    ],
    "python": [],
-   "rank": 155
+   "rank": 154
   },
   {
    "node_id": "TFQ-0184",
@@ -2549,7 +2546,7 @@
     "code/rust/src/wdp/lib.rs"
    ],
    "python": [],
-   "rank": 156
+   "rank": 155
   },
   {
    "node_id": "TFQ-0191",
@@ -2563,7 +2560,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 157
+   "rank": 156
   },
   {
    "node_id": "TFQ-0199",
@@ -2584,7 +2581,7 @@
     "code/rust/src/general_relativity/einstein_hilbert_action.rs"
    ],
    "python": [],
-   "rank": 158
+   "rank": 157
   },
   {
    "node_id": "TFQ-0376",
@@ -2598,7 +2595,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 159
+   "rank": 158
   },
   {
    "node_id": "TFQ-0396",
@@ -2621,7 +2618,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 160
+   "rank": 159
   }
  ]
 }
