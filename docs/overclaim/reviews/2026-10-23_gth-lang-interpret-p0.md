@@ -25,3 +25,11 @@ Corrections to the stage text:
 
 ## Prompt validator
 `python -X utf8 dag/pfp/validate_prompts.py` on origin/main at e681e50fc3f9, with and without this diff, reports the same two pre-existing errors: TFQ-0084 local source pin changed, and LQG-PR-ALLOWED-REGION-TARGET legacy fabricated contract. GTH-LANG-INTERPRET is not in that list. The whole validator is not claimed green. Isolated `-I` invocation fails to import custody; the normal script invocation was used. No Lean rebuild is claimed.
+
+## Independent batch review
+
+Reviewed b547259e859d3efc52540984849a081fb38a4369 against current main c5e49a418cec7e70931fdb96f9f67d31a82f1922. Ten source-content pins, the prompt input pin, and equality of the embedded JSON and YAML operad delta are verified. The pre-turn operad pin is checked at the merge base; all other pins match current referenced bytes. All four slots remain REVIEWED_ABSENT with no admitted operation or relation. GTH-LANG-INTERPRET and GTH-LANG-REFLECT remain OPEN; GTH-R-GTH-LANG-INTERPRET remains GAP_NO_DERIVATION with GTH-LANG-REFLECT as its input.
+
+Independent source inspection confirms the exclusions: AdmitInterpret.lean:31-32,51-63 provides only reflexivity judgments and its explicit conjunction, lines 76-114 are one-edge data, and lines 118-155 are HF syntax without extensionality. AdmitReflect.lean:78 quotes AdmitCore.Judg. GenesisHottModel.lean:83,221,257 interprets its own fragment, whose header excludes object-language J. GenesisHottHorns.lean:173 refuses one declared filler. GenesisHottShadow.lean:364 supplies two unequal readings of one regime. None is silently accepted as the missing node interpretation.
+
+Strict changed-branch scan passes with 0 HIGH, 0 MEDIUM and 0 LOW. Current branch and current main independently produce the same sole prompt-validator error: LQG-PR-ALLOWED-REGION-TARGET legacy fabricated contract. The historical two-error report above is retained as an earlier observation, not the current result. No new code or theorem is delivered, so no new source score is applicable. Lean was not rebuilt for this negative mining record; no whole-estate validator success is claimed. AuthorityEffect: None.
