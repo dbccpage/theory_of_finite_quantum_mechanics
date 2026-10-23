@@ -7,15 +7,16 @@ target:
     {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi
     for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time
     reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued
-    schedule, cumulative transport conjugates under frame change, and a periodic frame cancels all edges
-    iff total transport is identity. Normalized cycle blocks are identity on interior edges and total
-    transport on the closing edge. A checked positive-period constructor returns a closure certificate
-    or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history
-    coordinates preserving the evolution law.
+    schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic
+    frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior
+    edges and total transport on the closing edge. A checked positive-period constructor returns a closure
+    certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible
+    change of history coordinates preserving the evolution law.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - continuous time and Stone generator
   - Hamiltonian constraint of a physical theory
+  - group-valued schedule and group action
   source_bottleneck: The group, links, action, step and vector are supplied. General finite-cycle transport
     and its closure criterion are established for these inputs; deriving them from primitive difference,
     continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.
@@ -33,7 +34,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md
-    sha256: c808b5a4cdc8116fb930621910e47ae5cd9495cae51d0e2591713385fdfa957a
+    sha256: 4cd0117afb03cbe6ed819e6ea826a506b5700e991e385487081465811cdc2210
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -445,6 +446,7 @@ operad_slots:
     assumptions:
     - continuous time and Stone generator
     - Hamiltonian constraint of a physical theory
+    - group-valued schedule and group action
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -463,6 +465,7 @@ operad_slots:
     unpaid_imports:
     - continuous time and Stone generator
     - Hamiltonian constraint of a physical theory
+    - group-valued schedule and group action
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.

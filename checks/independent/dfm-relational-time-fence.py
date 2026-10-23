@@ -123,6 +123,10 @@ def gauge_regression(links: tuple[Perm, ...], g: tuple[Perm, ...]) -> None:
               "evolution covariance")
         stationary = tuple(inverse(f[t])[x] for t, x in enumerate(history))
         check(all(x == initial for x in stationary), "stationary coordinates")
+        bad = history[:-1] + ((history[-1] + 1) % 3,)
+        bad_coords = tuple(inverse(g[t])[x] for t, x in enumerate(bad))
+        check(bad_coords[-1] != changed[-1][bad_coords[-2]],
+              "frame change must not turn a nonevolving history into an evolving one")
 
 
 def cycle_regression(links: tuple[Perm, ...]) -> None:
@@ -138,7 +142,8 @@ def cycle_regression(links: tuple[Perm, ...]) -> None:
     for t, u in enumerate(links):
         block = compose(inverse(f[(t + 1) % n]), compose(u, f[t]))
         check(block == (eye if t + 1 < n else f[-1]), "seam normal form")
-    check((closure(links) == "ok") == (f[-1] == eye), "closure decision")
+    expected_status = "ok" if f[-1] == eye else "nontrivialHolonomy"
+    check(closure(links) == expected_status, "closure decision and failure tag")
     # Exhaust all possible initial frames; edge cancellation forces each later frame.
     for g0 in permutations(range(3)):
         g = tuple(compose(a, g0) for a in f)

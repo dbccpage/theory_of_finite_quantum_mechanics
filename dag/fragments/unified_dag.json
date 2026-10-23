@@ -1463,11 +1463,12 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport conjugates under frame change, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
-        "Hamiltonian constraint of a physical theory"
+        "Hamiltonian constraint of a physical theory",
+        "group-valued schedule and group action"
       ],
       "parent_nodes": [
         "DFM-CLOCK-DRESSING-INTERTWINER",
@@ -1499,7 +1500,7 @@
         "dag/derivations/independent/dfm-relational-time-fence.md",
         "checks/independent/dfm-relational-time-fence.py"
       ],
-      "audit": "step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks records the four products equal to I. psi_recover records norm 1, four transports back to psi, and two first-component inequalities with 3/5. The Lean module does not build an 8 by 8 matrix. No continuous-time generator and no Wheeler-DeWitt constraint is constructed. Status stays OPEN. Continuous time and a Hamiltonian constraint stay imported.",
+      "audit": "step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks records the four products equal to I. psi_recover records norm 1, four transports back to psi, and two first-component inequalities with 3/5. The Lean module does not build an 8 by 8 matrix. No continuous-time generator and no Wheeler-DeWitt constraint is constructed. Status stays OPEN. Continuous time and a Hamiltonian constraint stay imported. Clock.frame_dress, periodic_trivialization_iff, cycleBlock_normal_form, validate_success_iff, validate_period, evolves_iff and stationary_iff supply the general finite-clock API and its typed boundary. This is algebra over supplied structures, not a derivation of physical time.",
       "see_also": [
         "FQ-GAP-STONE-CONTINUOUS-TIME",
         "GP-IMPORT-CONTINUOUS-TIME"
@@ -2101,12 +2102,12 @@
       "record_id": "TFQ-1132",
       "node_id": "DFM-GRIBOV-CONTINUUM-FENCE",
       "slug": "dfm-gribov-continuum-fence",
-      "name": "Continuum Gribov ambiguity, ghosts and Yang-Mills remain open",
+      "name": "Two generator quadratic forms on Omega1 differ",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established by the finite diamond checks.",
-      "obligation": "A refinement family of lattices, the full Faddeev-Popov operator spectrum and a limit theorem are needed before transporting the finite comparison.",
+      "statement": "For the rational matrices I = diag(1, 1, 1), Omega1 = diag(1, -1, -1), H23 with ones in positions (2, 3) and (3, 2), and H12 with ones in positions (1, 2) and (2, 1), H23^2 = diag(0, 1, 1), H12^2 = diag(1, 1, 0), Omega1^2 = I, the product of Omega1's diagonal entries is 1, Tr(I) = 3, Tr(Omega1) = -1, Tr(I H23^2) = 2, Tr(Omega1 H23^2) = -2, and Tr(Omega1 H12^2) = 0, so those two Omega1 forms differ. Continuum Gribov-Singer, a Faddeev-Popov operator spectrum, ghost-free quantization, and a Yang-Mills mass gap stay unproved.",
+      "obligation": "The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.",
       "imported_structure": [
         "continuum Yang-Mills theory",
         "Faddeev-Popov quantization"
@@ -2116,15 +2117,26 @@
         "DFM-CONTINUUM-INTERFACE"
       ],
       "parent_record": "TFQ-1130",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmGribovContinuumFence.lean::h23_square",
+        "lean4/CampaignDfmGribovContinuumFence.lean::h12_square",
+        "lean4/CampaignDfmGribovContinuumFence.lean::omega1_square_and_det",
+        "lean4/CampaignDfmGribovContinuumFence.lean::trace_pair",
+        "lean4/CampaignDfmGribovContinuumFence.lean::forms_differ"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-gribov-continuum-fence.py"
+      ],
       "external_witnesses": [],
       "sources": [
         "papers/ravera_dfm_dossier.md:32",
-        "papers/ravera_dfm_dossier.md:288"
+        "papers/ravera_dfm_dossier.md:288",
+        "lean4/CampaignDfmGribovContinuumFence.lean",
+        "dag/derivations/independent/dfm-gribov-continuum-fence.md",
+        "checks/independent/dfm-gribov-continuum-fence.py"
       ],
-      "audit": "The dossier scope (section 5) itself excludes continuum existence and mass gap.",
+      "audit": "h23_square and h12_square are the generator squares. omega1_square_and_det records Omega1^2 = I, diagonal product 1, and traces 3 and -1. trace_pair records 2, -2, and 0. forms_differ records that -2 and 0 differ. No graph, tree, Faddeev-Popov spectrum, or continuum limit is constructed. Status stays OPEN. Continuum Yang-Mills theory and Faddeev-Popov quantization stay imported.",
       "see_also": [
         "DFM-CONTINUUM-INTERFACE",
         "TFQ-0031"

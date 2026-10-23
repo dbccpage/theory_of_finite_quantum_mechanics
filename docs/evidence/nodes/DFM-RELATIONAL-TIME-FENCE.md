@@ -4,7 +4,7 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> For U = \[\[0, -1\], \[1, 0\]\] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport conjugates under frame change, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
+> For U = \[\[0, -1\], \[1, 0\]\] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
 
 ## Grade
 
@@ -26,6 +26,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 - continuous time and Stone generator
 - Hamiltonian constraint of a physical theory
+- group-valued schedule and group action
 
 ## Bottleneck
 
@@ -83,14 +84,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-relational-time-fence.py`
 
 - file: [checks/independent/dfm-relational-time-fence.py](../../../checks/independent/dfm-relational-time-fence.py)
-- sha256 (`bytes`): `b959e5e2567577710cf96d6d7e0cdfec57424675e2a04157a8736c0f93d60199`
+- sha256 (`bytes`): `cb011f2b1d9f811d83462d65b8540a2c5965abed525a5edda99e1c9a061f734c`
 - cited in: node.source, record TFQ-1117
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md](../../../dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md)
-- sha256 (`lf-normalised`): `c808b5a4cdc8116fb930621910e47ae5cd9495cae51d0e2591713385fdfa957a`
+- sha256 (`lf-normalised`): `4cd0117afb03cbe6ed819e6ea826a506b5700e991e385487081465811cdc2210`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1117
 - counts toward the grade: no

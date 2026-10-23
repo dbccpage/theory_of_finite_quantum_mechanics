@@ -8808,7 +8808,7 @@ Obligation: Exact checks exist only for N = 4, d = 2, U_S = [[0,-1],[1,0]] and p
 - DAG node: `DFM-RELATIONAL-TIME-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md)
 
-For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport conjugates under frame change, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
+For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
 
 Obligation: The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.
 
@@ -8980,7 +8980,7 @@ On the diamond graph with five fixed non-commuting Pythagorean SU(3, Q(i)) links
 
 Obligation: The statement for every group and graph is the specialization of TFQ-0398 and TFQ-0399 (root-fixing gauges leave residuals unchanged); continuum uniqueness is not claimed.
 
-### TFQ-1132 Continuum Gribov ambiguity, ghosts and Yang-Mills remain open
+### TFQ-1132 Two generator quadratic forms on Omega1 differ
 
 - UUID: `ad3d49ba-73e3-51ab-9a2b-7385f2e42227`
 - Parent: `TFQ-1130`
@@ -8988,9 +8988,9 @@ Obligation: The statement for every group and graph is the specialization of TFQ
 - DAG node: `DFM-GRIBOV-CONTINUUM-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md)
 
-Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established by the finite diamond checks.
+For the rational matrices I = diag(1, 1, 1), Omega1 = diag(1, -1, -1), H23 with ones in positions (2, 3) and (3, 2), and H12 with ones in positions (1, 2) and (2, 1), H23^2 = diag(0, 1, 1), H12^2 = diag(1, 1, 0), Omega1^2 = I, the product of Omega1's diagonal entries is 1, Tr(I) = 3, Tr(Omega1) = -1, Tr(I H23^2) = 2, Tr(Omega1 H23^2) = -2, and Tr(Omega1 H12^2) = 0, so those two Omega1 forms differ. Continuum Gribov-Singer, a Faddeev-Popov operator spectrum, ghost-free quantization, and a Yang-Mills mass gap stay unproved.
 
-Obligation: A refinement family of lattices, the full Faddeev-Popov operator spectrum and a limit theorem are needed before transporting the finite comparison.
+Obligation: The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.
 
 ### TFQ-1133 Rational Lorentz boosts, simplex tetrads and dressed affine transport
 

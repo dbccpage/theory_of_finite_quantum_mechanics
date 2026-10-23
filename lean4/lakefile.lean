@@ -1021,6 +1021,9 @@ lean_lib CampaignDfmContinuumInterface where
   roots := #[`CampaignDfmContinuumInterface]
 
 
+-- Campaign: DFM-GRIBOV-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmGribovContinuumFence where
+  roots := #[`CampaignDfmGribovContinuumFence]
 
 lean_lib CampaignDfmRelationalTimeFence where
   roots := #[`CampaignDfmRelationalTimeFence]
