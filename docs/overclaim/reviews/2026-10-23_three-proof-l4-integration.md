@@ -152,3 +152,8 @@ explicitly superseded, preserving original raw bytes and digests; they do not
 certify the current L4 module. Active YAML records bind the new checker and
 replay, and the substantive L3 exemption is absent. Affected generated views
 and acceptance checks are replayed against this base before merge.
+
+The post-PR230 affected-view replay passes all seven steps (both evidence and
+inventory modes, both contract validators, strict scanner). Governance again
+has zero failures, and all 92 active bindings match. Immutable-number checking
+keeps the 15/14 complexity maxima and all four selected faults are killed.
