@@ -1039,3 +1039,7 @@ lean_lib CampaignDfmReggeGravityFence where
 
 lean_lib CampaignDfmRelationalTimeFence where
   roots := #[`CampaignDfmRelationalTimeFence]
+
+-- Campaign: DFM-Z1-Z2-COUNTERTERM-FENCE. Not a default target.
+lean_lib CampaignDfmZ1Z2CountertermFence where
+  roots := #[`CampaignDfmZ1Z2CountertermFence]
