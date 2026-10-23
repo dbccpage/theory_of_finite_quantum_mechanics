@@ -1,0 +1,191 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "scripts/auto/anti_pattern_lint.py",
+  "contract": {
+    "schema_id": "finite-qm.code-companion.v1",
+    "subject": "scripts/auto/anti_pattern_lint.py",
+    "source_sha256": "e4f6866d54f1375c95fb70f45c1798cf3299e48979d739ab52163cc86fd49ca6",
+    "authority_effect": "None",
+    "contract_urn": "urn:finite-qm:auto:anti-pattern-lint:e4f6866d54f1375c95fb",
+    "claim": "Checks the .agents/patterns catalog layout and finds the mechanical signatures of the cards that have one: Lean admission tokens and axiom declarations (added lines only with --changed-since), blanket type ignores, host-absolute paths, tautological tests and floating point in independent checks.",
+    "symbols": [
+      "_all_constant",
+      "_audit_card",
+      "_call_name",
+      "_float_call",
+      "_float_constant",
+      "_is_float_literal",
+      "_python_tokens",
+      "_raises_only_raise",
+      "_tautological_assert",
+      "audit_catalog",
+      "is_test_file",
+      "lean_findings",
+      "main",
+      "not_the_tactic",
+      "python_ast_findings",
+      "python_token_findings",
+      "scan",
+      "scan_file"
+    ],
+    "owned_invariants": [
+      "With --changed-since, the only HIGH rules (AP_LN_001, AP_LN_004) read added Lean lines after comments and strings are blanked by scripts/overclaim_lean.py strip_lean, and a token preceded by | is skipped as overclaim rule R3 does.",
+      "LEAN_FORBIDDEN is a literal equal to the overclaim scanner's admission tokens plus axiom; scripts/auto/symmetry_scan.py checks this.",
+      "Sealed run snapshots (dag/results/, dag/sealed_runs/, sealed_runs/), atlas/ and build directories are never scanned."
+    ],
+    "boundaries": [
+      "A finding is a prompt for the human pass of auto-code-anti-pattern-hunter; an empty scan does not show code is free of anti-patterns.",
+      "AP_PY_019 and AP_MATH_011 are syntactic: a float used only for display after an exact comparison is still reported."
+    ],
+    "evidence": [
+      "scripts/auto/test_auto_checks.py",
+      ".agents/patterns/README.md",
+      "SCORING.md"
+    ]
+  },
+  "current_contract": "9049af5aceb1ee6f963d8f890ee6f017bae7b7a97182d1606f24d93a7b4624e2",
+  "current_scoring": "017730122955e57576cc37c0b7ee57769357c00e3e39aedf0f130235990cb8a2",
+  "contract_history": [
+    {
+      "sha256": "9049af5aceb1ee6f963d8f890ee6f017bae7b7a97182d1606f24d93a7b4624e2",
+      "bytes": 1935,
+      "record": {
+        "schema_id": "finite-qm.code-companion.v1",
+        "subject": "scripts/auto/anti_pattern_lint.py",
+        "source_sha256": "e4f6866d54f1375c95fb70f45c1798cf3299e48979d739ab52163cc86fd49ca6",
+        "authority_effect": "None",
+        "contract_urn": "urn:finite-qm:auto:anti-pattern-lint:e4f6866d54f1375c95fb",
+        "claim": "Checks the .agents/patterns catalog layout and finds the mechanical signatures of the cards that have one: Lean admission tokens and axiom declarations (added lines only with --changed-since), blanket type ignores, host-absolute paths, tautological tests and floating point in independent checks.",
+        "symbols": [
+          "_all_constant",
+          "_audit_card",
+          "_call_name",
+          "_float_call",
+          "_float_constant",
+          "_is_float_literal",
+          "_python_tokens",
+          "_raises_only_raise",
+          "_tautological_assert",
+          "audit_catalog",
+          "is_test_file",
+          "lean_findings",
+          "main",
+          "not_the_tactic",
+          "python_ast_findings",
+          "python_token_findings",
+          "scan",
+          "scan_file"
+        ],
+        "owned_invariants": [
+          "With --changed-since, the only HIGH rules (AP_LN_001, AP_LN_004) read added Lean lines after comments and strings are blanked by scripts/overclaim_lean.py strip_lean, and a token preceded by | is skipped as overclaim rule R3 does.",
+          "LEAN_FORBIDDEN is a literal equal to the overclaim scanner's admission tokens plus axiom; scripts/auto/symmetry_scan.py checks this.",
+          "Sealed run snapshots (dag/results/, dag/sealed_runs/, sealed_runs/), atlas/ and build directories are never scanned."
+        ],
+        "boundaries": [
+          "A finding is a prompt for the human pass of auto-code-anti-pattern-hunter; an empty scan does not show code is free of anti-patterns.",
+          "AP_PY_019 and AP_MATH_011 are syntactic: a float used only for display after an exact comparison is still reported."
+        ],
+        "evidence": [
+          "scripts/auto/test_auto_checks.py",
+          ".agents/patterns/README.md",
+          "SCORING.md"
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"finite-qm.code-companion.v1\",\n  \"subject\": \"scripts/auto/anti_pattern_lint.py\",\n  \"source_sha256\": \"e4f6866d54f1375c95fb70f45c1798cf3299e48979d739ab52163cc86fd49ca6\",\n  \"authority_effect\": \"None\",\n  \"contract_urn\": \"urn:finite-qm:auto:anti-pattern-lint:e4f6866d54f1375c95fb\",\n  \"claim\": \"Checks the .agents/patterns catalog layout and finds the mechanical signatures of the cards that have one: Lean admission tokens and axiom declarations (added lines only with --changed-since), blanket type ignores, host-absolute paths, tautological tests and floating point in independent checks.\",\n  \"symbols\": [\n    \"_all_constant\",\n    \"_audit_card\",\n    \"_call_name\",\n    \"_float_call\",\n    \"_float_constant\",\n    \"_is_float_literal\",\n    \"_python_tokens\",\n    \"_raises_only_raise\",\n    \"_tautological_assert\",\n    \"audit_catalog\",\n    \"is_test_file\",\n    \"lean_findings\",\n    \"main\",\n    \"not_the_tactic\",\n    \"python_ast_findings\",\n    \"python_token_findings\",\n    \"scan\",\n    \"scan_file\"\n  ],\n  \"owned_invariants\": [\n    \"With --changed-since, the only HIGH rules (AP_LN_001, AP_LN_004) read added Lean lines after comments and strings are blanked by scripts/overclaim_lean.py strip_lean, and a token preceded by | is skipped as overclaim rule R3 does.\",\n    \"LEAN_FORBIDDEN is a literal equal to the overclaim scanner's admission tokens plus axiom; scripts/auto/symmetry_scan.py checks this.\",\n    \"Sealed run snapshots (dag/results/, dag/sealed_runs/, sealed_runs/), atlas/ and build directories are never scanned.\"\n  ],\n  \"boundaries\": [\n    \"A finding is a prompt for the human pass of auto-code-anti-pattern-hunter; an empty scan does not show code is free of anti-patterns.\",\n    \"AP_PY_019 and AP_MATH_011 are syntactic: a float used only for display after an exact comparison is still reported.\"\n  ],\n  \"evidence\": [\n    \"scripts/auto/test_auto_checks.py\",\n    \".agents/patterns/README.md\",\n    \"SCORING.md\"\n  ]\n}\n",
+      "original_paths": [
+        "scripts/auto/anti_pattern_lint.contract.score.yaml#contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "017730122955e57576cc37c0b7ee57769357c00e3e39aedf0f130235990cb8a2",
+      "bytes": 3601,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "scripts/auto/anti_pattern_lint.py",
+          "language": "Python",
+          "sha256": "e4f6866d54f1375c95fb70f45c1798cf3299e48979d739ab52163cc86fd49ca6"
+        },
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "level": "L4",
+        "level_basis": "Production lint: token-level (tokenize) and AST-level rules instead of line regexes, comment/string stripping shared with the overclaim scanner, diff-scoped gating on added lines, typed refusal on a non-checkout, deterministic output.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "C",
+          "G5": "B"
+        },
+        "basis": {
+          "G1": "Docstring header (Origin, Claim, AuthorityEffect None, Scope Fence); contract URN bound to the source digest; contract symbols are the module's top-level definitions; owned invariants and boundaries stated. Not B: no audited bidirectional map from every requirement to code and to downstream consumers.",
+          "G2": "Non-Numeric profile fixed before testing. Primary paths checked against git fixture repositories built in tmp_path; inputs validated at entry (git checkout, DAG shape, front-matter type, literal constants). Heuristic rules are declared as prompts in the boundaries, not as semantic verdicts.",
+          "G3": "Every environment failure is a typed AuditError mapped to exit status 2; no bare except; unreadable or unparseable inputs become LOW findings instead of being dropped; all git calls are read-only; no file outside a caller-named --summary path is written.",
+          "G4": "scripts/auto/test_auto_checks.py: 78 tests (unit, CLI, git-fixture integration, python -I subprocess). Mutation campaign: conservative ratio R = 0.9677 (no mutant declared equivalent). Not B: no property-based generator tests.",
+          "G5": "Max cyclomatic complexity 15, cognitive complexity 14, control nesting 3; SCORING.md 3.5 ceilings give B."
+        },
+        "metrics": {
+          "radon_ccn_max": 15,
+          "lizard_ccn_max": 15,
+          "cognitive_complexity_max": 14,
+          "control_nesting_max": 3,
+          "tools": "radon 6.0.1, lizard, cognitive_complexity (PyPI); nesting by an AST walk treating elif as one level"
+        },
+        "mutation_accounting": {
+          "killed": 90,
+          "survived": 3,
+          "invalid": 0,
+          "inconclusive": 0,
+          "demonstrably_equivalent": 0,
+          "unrun": 0,
+          "conservative_ratio": 0.9677,
+          "harness": "AST mutation (compare-op swap, and/or swap, not removal, bool flip, severity rotation); pytest scripts/auto/test_auto_checks.py -x per mutant; no mutant declared equivalent",
+          "survivors": [
+            "L202 MEDIUM->LOW",
+            "L206 MEDIUM->LOW",
+            "L85 MEDIUM->LOW"
+          ]
+        },
+        "is_complete": true,
+        "composite_grade": "C",
+        "score_token": "L4C",
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-23T12:00:00+00:00",
+        "assessor": "Claude Opus 5.5 (AI-drafted assessment, awaiting human review)",
+        "open_higher_grade_findings": [
+          "No property-based tests over generated Lean",
+          "Rules are syntactic; no semantic Lean check",
+          "No independent alternate harness"
+        ],
+        "evidence": [
+          {
+            "path": "scripts/auto/test_auto_checks.py",
+            "sha256": "e1381481bb1d49ad89cf0c3c2e965514f014300651bb46fc399ff16071f6d441"
+          },
+          {
+            "path": ".agents/patterns/README.md",
+            "sha256": "299021b70184f226617fe4f2f56a64f8dd26b2399ae85722507a691408e70529"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"scripts/auto/anti_pattern_lint.py\",\n    \"language\": \"Python\",\n    \"sha256\": \"e4f6866d54f1375c95fb70f45c1798cf3299e48979d739ab52163cc86fd49ca6\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"level\": \"L4\",\n  \"level_basis\": \"Production lint: token-level (tokenize) and AST-level rules instead of line regexes, comment/string stripping shared with the overclaim scanner, diff-scoped gating on added lines, typed refusal on a non-checkout, deterministic output.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"C\",\n    \"G5\": \"B\"\n  },\n  \"basis\": {\n    \"G1\": \"Docstring header (Origin, Claim, AuthorityEffect None, Scope Fence); contract URN bound to the source digest; contract symbols are the module's top-level definitions; owned invariants and boundaries stated. Not B: no audited bidirectional map from every requirement to code and to downstream consumers.\",\n    \"G2\": \"Non-Numeric profile fixed before testing. Primary paths checked against git fixture repositories built in tmp_path; inputs validated at entry (git checkout, DAG shape, front-matter type, literal constants). Heuristic rules are declared as prompts in the boundaries, not as semantic verdicts.\",\n    \"G3\": \"Every environment failure is a typed AuditError mapped to exit status 2; no bare except; unreadable or unparseable inputs become LOW findings instead of being dropped; all git calls are read-only; no file outside a caller-named --summary path is written.\",\n    \"G4\": \"scripts/auto/test_auto_checks.py: 78 tests (unit, CLI, git-fixture integration, python -I subprocess). Mutation campaign: conservative ratio R = 0.9677 (no mutant declared equivalent). Not B: no property-based generator tests.\",\n    \"G5\": \"Max cyclomatic complexity 15, cognitive complexity 14, control nesting 3; SCORING.md 3.5 ceilings give B.\"\n  },\n  \"metrics\": {\n    \"radon_ccn_max\": 15,\n    \"lizard_ccn_max\": 15,\n    \"cognitive_complexity_max\": 14,\n    \"control_nesting_max\": 3,\n    \"tools\": \"radon 6.0.1, lizard, cognitive_complexity (PyPI); nesting by an AST walk treating elif as one level\"\n  },\n  \"mutation_accounting\": {\n    \"killed\": 90,\n    \"survived\": 3,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 0.9677,\n    \"harness\": \"AST mutation (compare-op swap, and/or swap, not removal, bool flip, severity rotation); pytest scripts/auto/test_auto_checks.py -x per mutant; no mutant declared equivalent\",\n    \"survivors\": [\n      \"L202 MEDIUM->LOW\",\n      \"L206 MEDIUM->LOW\",\n      \"L85 MEDIUM->LOW\"\n    ]\n  },\n  \"is_complete\": true,\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L4C\",\n  \"grade_ceiling\": \"C\",\n  \"evaluation_timestamp\": \"2026-10-23T12:00:00+00:00\",\n  \"assessor\": \"Claude Opus 5.5 (AI-drafted assessment, awaiting human review)\",\n  \"open_higher_grade_findings\": [\n    \"No property-based tests over generated Lean\",\n    \"Rules are syntactic; no semantic Lean check\",\n    \"No independent alternate harness\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"scripts/auto/test_auto_checks.py\",\n      \"sha256\": \"e1381481bb1d49ad89cf0c3c2e965514f014300651bb46fc399ff16071f6d441\"\n    },\n    {\n      \"path\": \".agents/patterns/README.md\",\n      \"sha256\": \"299021b70184f226617fe4f2f56a64f8dd26b2399ae85722507a691408e70529\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "scripts/auto/anti_pattern_lint.contract.score.yaml#scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {},
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "First assessment of newly ported code; AI-drafted, not independently reviewed or promoted."
+}
