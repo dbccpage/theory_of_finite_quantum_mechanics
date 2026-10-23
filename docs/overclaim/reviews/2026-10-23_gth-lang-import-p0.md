@@ -7,7 +7,7 @@ Method: read the node and route in dag/derivation_dag.json, the operad, both der
 Result: 0 FULL, 0 NARROWED, 0 OVERCLAIM. No node was raised. The mining record is a negative. It passes the stage bound.
 
 Corrections to the stage text:
-- None. The diff does not say the node is proved, and it does not treat AdmitImport.ImportRecord as the missing format.
+- collection_status stays source_candidates_collected_semantic_mining_open. dag/pfp/validate_prompts.py rejects every other value as a fabricated mining completion. The reviewed negative stays in stage_history and dag/results/GTH-LANG-IMPORT.
 
 ## Per-node table
 | Node | Declarations that discharge it | Verdict | Reason |
