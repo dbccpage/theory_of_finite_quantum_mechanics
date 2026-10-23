@@ -1,0 +1,174 @@
+
+running 52 tests
+.. 2/52
+policy::tests::companion_naming_follows_collision_rule --- FAILED
+......... 12/52
+policy::tests::policy_parses_floor_and_populations --- FAILED
+policy::tests::policy_rejects_wrong_orders_and_shapes --- FAILED
+. 15/52
+buildtime::tests::clean_package_emits_reruns_only --- FAILED
+buildtime::tests::decide_respects_mode --- FAILED
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+. 20/52
+buildtime::tests::new_mode_aborts_when_any_failure_is_new --- FAILED
+repo::tests::git_population_changes_and_history --- FAILED
+........... 33/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+verify::tests::binding_mismatch_names_the_field --- FAILED
+verify::tests::floor_pass_and_fail_cases --- FAILED
+verify::tests::inconsistent_composite_flag_or_token_is_incomplete --- FAILED
+. 38/52
+verify::tests::null_gate_is_incomplete --- FAILED
+verify::tests::schema_failures_are_specific --- FAILED
+.. 42/52
+buildtime::tests::missing_or_broken_policy --- FAILED
+tests::binding_and_completeness_are_both_reported --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::changed_bytes_lose_grandfathering --- FAILED
+tests::malformed_companion_and_unreadable_source --- FAILED
+...
+failures:
+
+---- policy::tests::companion_naming_follows_collision_rule stdout ----
+
+thread 'policy::tests::companion_naming_follows_collision_rule' (25816) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- policy::tests::policy_parses_floor_and_populations stdout ----
+
+thread 'policy::tests::policy_parses_floor_and_populations' (18632) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- policy::tests::policy_rejects_wrong_orders_and_shapes stdout ----
+
+thread 'policy::tests::policy_rejects_wrong_orders_and_shapes' (40548) panicked at ..\code\rust\src\governance\src\policy.rs:560:9:
+assertion failed: matches!(Policy::from_json(&bad_pin), Err(PolicyError::Field { field, .. }) if
+    field == "pinned_boilerplate[].sha256")
+
+---- buildtime::tests::clean_package_emits_reruns_only stdout ----
+
+thread 'buildtime::tests::clean_package_emits_reruns_only' (5224) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (22012) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (39608) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (41728) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- buildtime::tests::new_mode_aborts_when_any_failure_is_new stdout ----
+
+thread 'buildtime::tests::new_mode_aborts_when_any_failure_is_new' (17836) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- repo::tests::git_population_changes_and_history stdout ----
+
+thread 'repo::tests::git_population_changes_and_history' (26040) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (11352) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- verify::tests::binding_mismatch_names_the_field stdout ----
+
+thread 'verify::tests::binding_mismatch_names_the_field' (25740) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (21416) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- verify::tests::inconsistent_composite_flag_or_token_is_incomplete stdout ----
+
+thread 'verify::tests::inconsistent_composite_flag_or_token_is_incomplete' (26336) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- verify::tests::null_gate_is_incomplete stdout ----
+
+thread 'verify::tests::null_gate_is_incomplete' (46856) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- verify::tests::schema_failures_are_specific stdout ----
+
+thread 'verify::tests::schema_failures_are_specific' (27028) panicked at ..\code\rust\src\governance\src\policy.rs:525:35:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- buildtime::tests::missing_or_broken_policy stdout ----
+
+thread 'buildtime::tests::missing_or_broken_policy' (18672) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (5464) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (24060) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (26608) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (27816) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- tests::changed_bytes_lose_grandfathering stdout ----
+
+thread 'tests::changed_bytes_lose_grandfathering' (19616) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+---- tests::malformed_companion_and_unreadable_source stdout ----
+
+thread 'tests::malformed_companion_and_unreadable_source' (34064) panicked at ..\code\rust\src\governance\src\lib.rs:254:59:
+called `Result::unwrap()` on an `Err` value: Field { field: "populations", expected: "at least one population" }
+
+
+failures:
+    buildtime::tests::clean_package_emits_reruns_only
+    buildtime::tests::decide_respects_mode
+    buildtime::tests::missing_or_broken_policy
+    buildtime::tests::new_mode_aborts_when_any_failure_is_new
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+    policy::tests::companion_naming_follows_collision_rule
+    policy::tests::policy_parses_floor_and_populations
+    policy::tests::policy_rejects_wrong_orders_and_shapes
+    repo::tests::git_population_changes_and_history
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::changed_bytes_lose_grandfathering
+    tests::malformed_companion_and_unreadable_source
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::binding_mismatch_names_the_field
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::inconsistent_composite_flag_or_token_is_incomplete
+    verify::tests::null_gate_is_incomplete
+    verify::tests::schema_failures_are_specific
+
+test result: FAILED. 30 passed; 22 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+error: test failed, to rerun pass `--lib`

@@ -1,0 +1,48 @@
+
+running 10 tests
+tests::parses_commands --- FAILED
+. 2/10
+tests::rejects_bad_command_lines --- FAILED
+.... 7/10
+tests::open_needs_a_baseline_only_when_asked --- FAILED
+. 9/10
+tests::end_to_end_with_git --- FAILED
+
+failures:
+
+---- tests::parses_commands stdout ----
+
+thread 'tests::parses_commands' (19260) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:356:78:
+called `Result::unwrap()` on an `Err` value: "unknown option --changed-since"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::rejects_bad_command_lines stdout ----
+
+thread 'tests::rejects_bad_command_lines' (24652) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:373:13:
+"check --bogus"
+
+---- tests::open_needs_a_baseline_only_when_asked stdout ----
+
+thread 'tests::open_needs_a_baseline_only_when_asked' (30220) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:553:9:
+assertion `left == right` failed: --initial without a baseline file is allowed
+  left: Err("unknown option --initial")
+ right: Ok(true)
+
+---- tests::end_to_end_with_git stdout ----
+checked 1: 1 pass, 0 grandfathered, 0 boilerplate, 0 failed
+
+thread 'tests::end_to_end_with_git' (11124) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:523:9:
+assertion `left == right` failed
+  left: Err("unknown option --changed-since")
+ right: Ok(true)
+
+
+failures:
+    tests::end_to_end_with_git
+    tests::open_needs_a_baseline_only_when_asked
+    tests::parses_commands
+    tests::rejects_bad_command_lines
+
+test result: FAILED. 6 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.59s
+
+error: test failed, to rerun pass `--bin governance-check`

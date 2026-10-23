@@ -14,7 +14,7 @@ use std::fmt;
 
 use super::descriptor::ContractDescriptor;
 use super::policy::{ArtifactKind, Baseline, Policy};
-use super::score::ScoreToken;
+use super::score::{CompletedScore, ScoreClaim};
 
 /// The rule a violation breaks; its code is what the baseline records as a deficit.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -260,29 +260,23 @@ impl Verifier for CompletenessVerifier {
     }
 
     fn verify(&self, _ctx: &Context<'_>, d: &ContractDescriptor) -> Result<(), Violation> {
-        let fail = |field: &str, expected: String, found: String| Violation::Completeness { path: d.companion_path.clone(), field: field.to_owned(), expected, found };
-        let gates = d.gate_grades()?;
-        let unassessed = gates.unassessed();
-        if !unassessed.is_empty() {
-            let names: Vec<&str> = unassessed.iter().map(|g| g.as_str()).collect();
-            return Err(fail("gates", "a grade on every gate".into(), format!("unassessed {}", names.join(", "))));
-        }
-        if d.current_score.as_ref().and_then(|s| s.is_complete) != Some(true) {
-            return Err(fail("is_complete", "true".into(), "false".into()));
-        }
-        let composite = gates.composite();
-        let stored = d.composite()?;
-        if stored != composite {
-            return Err(fail("composite_grade", show(composite.map(|g| g.as_str())), show(stored.map(|g| g.as_str()))));
-        }
-        let level = d.level()?;
-        let expected = composite.map(|grade| ScoreToken::new(level, grade));
-        let token = d.token()?;
-        if token != expected {
-            return Err(fail("score_token", show(expected.map(|t| t.to_string()).as_deref()), show(token.map(|t| t.to_string()).as_deref())));
-        }
+        completed_score(d)?;
         Ok(())
     }
+}
+
+fn completed_score(d: &ContractDescriptor) -> Result<CompletedScore, Violation> {
+    let claim = ScoreClaim {
+        level: d.level()?,
+        gates: d.gate_grades()?,
+        is_complete: d.current_score.as_ref().and_then(|s| s.is_complete) == Some(true),
+        composite: d.composite()?,
+        token: d.token()?,
+    };
+    claim.validate().map_err(|error| {
+        let (expected, found) = error.values();
+        Violation::Completeness { path: d.companion_path.clone(), field: error.field().into(), expected, found }
+    })
 }
 
 /// The token meets the floor, unless the baseline lists this path with these exact bytes.
@@ -295,18 +289,19 @@ impl Verifier for FloorVerifier {
     }
 
     fn verify(&self, ctx: &Context<'_>, d: &ContractDescriptor) -> Result<(), Violation> {
+        let completed = completed_score(d)?;
         if ctx.baseline.grandfathers(&ctx.source.rel_path, &ctx.source.sha256) {
             return Ok(());
         }
-        let floor = ctx.policy.floor;
-        let found = d.token()?;
-        match found {
-            Some(token) if floor.admits(token) => Ok(()),
-            other => Err(Violation::Floor {
+        let floor = ctx.policy.floor_for(&ctx.source.rel_path, &ctx.source.sha256);
+        if completed.admitted_by(floor) {
+            Ok(())
+        } else {
+            Err(Violation::Floor {
                 path: d.companion_path.clone(),
                 expected: format!("a completed token with {floor}"),
-                found: show(other.map(|t| t.to_string()).as_deref()),
-            }),
+                found: completed.token().to_string(),
+            })
         }
     }
 }
@@ -465,4 +460,25 @@ mod tests {
         let names: Vec<&str> = standard_verifiers().iter().map(|v| v.name()).collect();
         assert_eq!(names, ["schema", "binding", "completeness", "floor"]);
     }
+    #[test]
+    fn support_pin_never_accepts_incomplete_or_grade_e() {
+        let sha = "a".repeat(64);
+        let mut policy = policy();
+        policy.support_exceptions.insert(PATH.into(), crate::policy::SupportException {
+            sha256: sha.clone(), category: "regression_test".into(), reason: "reviewed test".into(),
+        });
+        let source = source(&sha);
+        let baseline = Baseline::default();
+        let ctx = Context { policy: &policy, baseline: &baseline, source: &source };
+        let good = companion(PATH, &sha, score(PATH, &sha, "L2", [Some("D"); 5], Some("D"), Some("L2D"), true));
+        let d = ContractDescriptor::parse(&source.companion, &good).unwrap();
+        assert_eq!(FloorVerifier.verify(&ctx, &d), Ok(()));
+        let bad = companion(PATH, &sha, score(PATH, &sha, "L2", [Some("E"); 5], Some("E"), Some("L2E"), true));
+        let d = ContractDescriptor::parse(&source.companion, &bad).unwrap();
+        assert!(matches!(FloorVerifier.verify(&ctx, &d), Err(Violation::Floor { .. })));
+        let bad = companion(PATH, &sha, score(PATH, &sha, "L2", [None; 5], None, None, false));
+        let d = ContractDescriptor::parse(&source.companion, &bad).unwrap();
+        assert!(matches!(FloorVerifier.verify(&ctx, &d), Err(Violation::Completeness { .. })));
+    }
+
 }

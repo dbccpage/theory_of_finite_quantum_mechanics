@@ -1,0 +1,22 @@
+
+running 52 tests
+.............................. 30/52
+repo::tests::package_sources_skip_nested_packages_and_target --- FAILED
+.....................
+failures:
+
+---- repo::tests::package_sources_skip_nested_packages_and_target stdout ----
+
+thread 'repo::tests::package_sources_skip_nested_packages_and_target' (33804) panicked at ..\code\rust\src\governance\src\repo.rs:266:9:
+assertion `left == right` failed
+  left: ["build.rs", "src/inner/lib.rs", "src/lib.rs", "src/m/n.rs", "target/debug/x.rs"]
+ right: ["build.rs", "src/lib.rs", "src/m/n.rs"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    repo::tests::package_sources_skip_nested_packages_and_target
+
+test result: FAILED. 51 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.24s
+
+error: test failed, to rerun pass `--lib`

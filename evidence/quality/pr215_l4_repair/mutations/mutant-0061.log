@@ -1,0 +1,113 @@
+
+running 52 tests
+................... 19/52
+buildtime::tests::decide_respects_mode --- FAILED
+.... 24/52
+buildtime::tests::new_mode_aborts_when_any_failure_is_new --- FAILED
+....... 32/52
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+.. 35/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+. 37/52
+tests::changed_bytes_lose_grandfathering --- FAILED
+... 41/52
+tests::binding_and_completeness_are_both_reported --- FAILED
+.... 46/52
+tests::binding_failure_still_reports_the_floor --- FAILED
+tests::malformed_companion_and_unreadable_source --- FAILED
+tests::twin_sources_use_qualified_companions --- FAILED
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (33544) panicked at ..\code\rust\src\governance\src\buildtime.rs:332:9:
+assertion failed: matches!(decide(Mode::Warn, &report), Decision::Warn(lines) if lines.len() ==
+    2)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::new_mode_aborts_when_any_failure_is_new stdout ----
+
+thread 'buildtime::tests::new_mode_aborts_when_any_failure_is_new' (40908) panicked at ..\code\rust\src\governance\src\buildtime.rs:319:9:
+assertion `left == right` failed
+  left: 0
+ right: 2
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (5024) panicked at ..\code\rust\src\governance\src\buildtime.rs:258:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-new-5\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-new-5\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-new-5\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-new-5\code/rust/p\src\lib.rs
+
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (33324) panicked at ..\code\rust\src\governance\src\buildtime.rs:282:9:
+cargo:rerun-if-env-changed=TFQM_GOVERNANCE
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-changed-3\governance/policy.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-changed-3\governance/baseline.json
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-changed-3\code/rust/p\src
+cargo:rerun-if-changed=C:\Users\a343o\AppData\Local\Temp\tfqm-gov-19832-bt-changed-3\code/rust/p\src\lib.rs
+
+
+---- tests::changed_bytes_lose_grandfathering stdout ----
+
+thread 'tests::changed_bytes_lose_grandfathering' (3272) panicked at ..\code\rust\src\governance\src\lib.rs:319:9:
+assertion `left == right` failed
+  left: Fail([MissingCompanion { path: "lean4/A.lean", expected: "lean4/A.contract.score.yaml" }])
+ right: Grandfathered
+
+---- tests::binding_and_completeness_are_both_reported stdout ----
+
+thread 'tests::binding_and_completeness_are_both_reported' (21616) panicked at ..\code\rust\src\governance\src\lib.rs:353:9:
+assertion `left == right` failed: floor is not repeated when completeness fails
+  left: []
+ right: [Binding, Completeness]
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (44152) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: []
+ right: [Binding, Floor]
+
+---- tests::malformed_companion_and_unreadable_source stdout ----
+
+thread 'tests::malformed_companion_and_unreadable_source' (14800) panicked at ..\code\rust\src\governance\src\lib.rs:333:9:
+assertion failed: matches!(file.violations(), [Violation::MalformedJson { path, .. }] if path ==
+    "code/m.contract.score.yaml")
+
+---- tests::twin_sources_use_qualified_companions stdout ----
+
+thread 'tests::twin_sources_use_qualified_companions' (34376) panicked at ..\code\rust\src\governance\src\lib.rs:375:9:
+assertion `left == right` failed
+  left: Grandfathered
+ right: Pass(ScoreToken { level: L4, grade: D })
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (2568) panicked at ..\code\rust\src\governance\src\lib.rs:300:9:
+assertion `left == right` failed
+  left: Grandfathered
+ right: Pass(ScoreToken { level: L4, grade: C })
+
+
+failures:
+    buildtime::tests::decide_respects_mode
+    buildtime::tests::new_mode_aborts_when_any_failure_is_new
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+    tests::binding_and_completeness_are_both_reported
+    tests::binding_failure_still_reports_the_floor
+    tests::changed_bytes_lose_grandfathering
+    tests::malformed_companion_and_unreadable_source
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    tests::twin_sources_use_qualified_companions
+
+test result: FAILED. 42 passed; 10 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.77s
+
+error: test failed, to rerun pass `--lib`

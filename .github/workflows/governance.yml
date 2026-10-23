@@ -20,9 +20,8 @@ concurrency:
 env:
   TFQM_GOVERNANCE: enforce
   CARGO_TERM_COLOR: never
-  # The code/rust workspace resolves only with a local [patch] for the optional external
-  # omega crates, so the governance crate (no path dependencies) is built out of tree.
-  GOV_DIR: ${{ github.workspace }}/../governance-build
+  # The standalone manifest points directly at the existing source files.
+  GOV_DIR: ${{ github.workspace }}/governance
 
 jobs:
   governance:
@@ -43,11 +42,6 @@ jobs:
       - name: Install Python tools
         run: python -m pip install --disable-pip-version-check pyyaml pytest
 
-      - name: Copy the governance crate out of the workspace
-        run: |
-          rm -rf "$GOV_DIR"
-          cp -r code/rust/src/governance "$GOV_DIR"
-
       - name: Cache cargo registry and governance target
         uses: actions/cache@v4
         with:
@@ -55,7 +49,7 @@ jobs:
             ~/.cargo/registry/index
             ~/.cargo/registry/cache
             ${{ env.GOV_DIR }}/target
-          key: governance-${{ runner.os }}-${{ hashFiles('code/rust/src/governance/Cargo.lock') }}
+          key: governance-${{ runner.os }}-${{ hashFiles('governance/Cargo.lock') }}
 
       - name: Test the governance crate
         run: cargo test --locked --manifest-path "$GOV_DIR/Cargo.toml"

@@ -1,0 +1,80 @@
+warning: unreachable statement
+   --> ..\code\rust\src\governance\src\verify.rs:294:9
+    |
+293 |           return Ok(());
+    |           ------------- any code following this expression is unreachable
+294 | /         if ctx.baseline.grandfathers(&ctx.source.rel_path, &ctx.source.sha256) {
+295 | |             return Ok(());
+296 | |         }
+    | |_________^ unreachable statement
+    |
+    = note: `#[warn(unreachable_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `ctx`
+   --> ..\code\rust\src\governance\src\verify.rs:291:22
+    |
+291 |     fn verify(&self, ctx: &Context<'_>, d: &ContractDescriptor) -> Result<(), Violation> {
+    |                      ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `completed`
+   --> ..\code\rust\src\governance\src\verify.rs:292:13
+    |
+292 |         let completed = completed_score(d)?;
+    |             ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_completed`
+
+
+running 55 tests
+................................ 32/55
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+tests::binding_failure_still_reports_the_floor --- FAILED
+....... 41/55
+verify::tests::floor_pass_and_fail_cases --- FAILED
+. 43/55
+verify::tests::support_pin_never_accepts_incomplete_or_grade_e --- FAILED
+........ 52/55
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (20460) panicked at ..\code\rust\src\governance\src\verify.rs:409:49:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (43732) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Binding]
+ right: [Binding, Floor]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (23760) panicked at ..\code\rust\src\governance\src\verify.rs:346:46:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- verify::tests::support_pin_never_accepts_incomplete_or_grade_e stdout ----
+
+thread 'verify::tests::support_pin_never_accepts_incomplete_or_grade_e' (33584) panicked at ..\code\rust\src\governance\src\verify.rs:479:9:
+assertion failed: matches!(FloorVerifier.verify(&ctx, &d), Err(Violation::Floor { .. }))
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (36020) panicked at ..\code\rust\src\governance\src\lib.rs:301:9:
+assertion failed: matches!(outcome("code/low.rs"), Outcome::Fail(v) if v.len() == 1 &&
+    v[0].rule() == Rule::Floor)
+
+
+failures:
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::floor_pass_and_fail_cases
+    verify::tests::support_pin_never_accepts_incomplete_or_grade_e
+
+test result: FAILED. 50 passed; 5 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.75s
+
+error: test failed, to rerun pass `--lib`

@@ -47,6 +47,8 @@ def subjects(tmp_path: Path) -> Subjects:
     shutil.copyfile(SOURCE.parent / "SCORING.md", tmp_path / "SCORING.md")
     for name in ("contract_scores.py", "score_scope_contracts.py"):
         shutil.copyfile(SOURCE / name, scripts / name)
+    (tmp_path / "governance").mkdir()
+    shutil.copyfile(SOURCE.parent / "governance/policy.json", tmp_path / "governance/policy.json")
     (tmp_path / "code/python").mkdir(parents=True)
     audit = tmp_path / "evidence/contract_score_coverage_scope_audit.json"
     audit.parent.mkdir()
