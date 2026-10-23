@@ -165,3 +165,63 @@ def test_only_accepts_paths_and_module_names():
     assert rc.Runner.normalise_only(_Stub, None) == (None, None)
     with pytest.raises(SystemExit):
         rc.Runner.normalise_only(_Stub, ["Nope"])
+
+
+# ----------------------------------------------------------------- replay input boundary
+
+
+def test_public_imports_are_in_the_dependency_closure(tmp_path):
+    lean = tmp_path / "lean4"
+    lean.mkdir()
+    (lean / "A.lean").write_text("module\npublic import B\n", encoding="utf-8")
+    (lean / "B.lean").write_text("module\npublic meta import C\n", encoding="utf-8")
+    (lean / "C.lean").write_text("module\n", encoding="utf-8")
+    graph = rc.Graph(tmp_path)
+    assert graph.closure(["A"]) == {"A", "B", "C"}
+
+
+@pytest.mark.parametrize("changed", ["lean-toolchain", "lake-manifest.json", "lakefile.lean"])
+def test_cache_context_changes_with_package_configuration(tmp_path, monkeypatch, changed):
+    lean = tmp_path / "lean4"
+    lean.mkdir()
+    for name in ("lean-toolchain", "lake-manifest.json", "lakefile.lean"):
+        (lean / name).write_text("original\n", encoding="utf-8")
+    monkeypatch.setattr(rc, "tool_versions", lambda _: ("Lean fixture", "Lake fixture"))
+    runner = rc.Runner(tmp_path, tmp_path / "work", {}, 1)
+    before = runner.build_context()
+    (lean / changed).write_text("changed\n", encoding="utf-8")
+    assert runner.build_context() != before
+
+
+def test_failed_sibling_compile_stops_before_using_old_object(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    lean = tmp_path / "lean4"
+    lean.mkdir()
+    paper = tmp_path / "papers"
+    paper.mkdir()
+    (paper / "A.lean").write_text("import B\n", encoding="utf-8")
+    (paper / "B.lean").write_text("broken fixture\n", encoding="utf-8")
+    runner = rc.Runner(tmp_path, tmp_path / "work", {}, 1)
+    monkeypatch.setattr(runner, "lean_file", lambda *_: SimpleNamespace(
+        returncode=1, stdout="", stderr="fixture compile failure"))
+    with pytest.raises(RuntimeError, match="Sibling compile failed"):
+        runner.compile_siblings(paper / "A.lean")
+
+
+
+def test_assembly_refuses_old_input_binding(tmp_path, monkeypatch):
+    import json
+    lean = tmp_path / "lean4"
+    lean.mkdir()
+    (lean / "A.lean").write_text("theorem example_ok : True := trivial\n", encoding="utf-8")
+    (lean / "lean-toolchain").write_text("fixture\n", encoding="utf-8")
+    (lean / "lakefile.lean").write_text("fixture\n", encoding="utf-8")
+    (lean / "lake-manifest.json").write_text(json.dumps({"packages": [{"name": "mathlib", "rev": "fixture"}]}), encoding="utf-8")
+    work = tmp_path / "work"
+    results = work / "results"
+    results.mkdir(parents=True)
+    (results / "A.json").write_text(json.dumps({"build_key": "old", "audit_key": "old"}), encoding="utf-8")
+    monkeypatch.setattr(rc, "tool_versions", lambda _: ("Lean fixture", "Lake fixture"))
+    plan = {"lean4/A.lean": {"nodes": [["FIXTURE", "CONDITIONAL", "FIXTURE"]], "decls": {"example_ok": ["FIXTURE"]}}}
+    with pytest.raises(SystemExit, match="Stale replay inputs"):
+        rc.assemble(tmp_path, work, plan, tmp_path)

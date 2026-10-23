@@ -34,7 +34,7 @@ SOURCE_BASE = "10be79e94"  # origin/main when the campaign started
 AUDIT_VERSION = 4  # 4: exact matching only; whole-file audit never sets the pass flag
 EXTPKG = ("Mathlib", "Std", "Lean", "Init", "Batteries", "Aesop", "Qq", "ProofWidgets", "Plausible",
           "LeanSearchClient", "Cli", "ImportGraph")
-IMPORT = re.compile(r"^\s*import\s+(.+)$", re.M)
+IMPORT = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*import\s+(.+)$", re.M)
 
 
 _IDENT = re.compile(r"[\w.'!?]")
@@ -314,6 +314,15 @@ class Runner:
             out[m] = self._sha_cache[m]
         return out
 
+    def build_context(self) -> str:
+        """Bind resumable results to the package configuration and compiler versions."""
+        pins = {name: sha256_file(self.lean4 / name) for name in
+                ("lean-toolchain", "lake-manifest.json", "lakefile.lean")}
+        with self.lock:
+            if not hasattr(self, "_compiler_versions"):
+                self._compiler_versions = tool_versions(self.lean4)
+        return hashlib.sha256(json.dumps([pins, self._compiler_versions], sort_keys=True).encode()).hexdigest()
+
     @staticmethod
     def keys(sha0: str, deps: dict[str, str], symbols: list[str] | None) -> tuple[str, str]:
         """(build key, audit key). The build depends on the file and its transitive local imports; the audit
@@ -328,7 +337,9 @@ class Runner:
         cache = self.res_file(module)
         sha0 = sha256_file(path)
         symbols = sorted(cited["decls"]) if cited is not None else None
-        build_key, audit_key = self.keys(sha0, self.dep_shas(module), symbols)
+        dependencies = self.dep_shas(module)
+        dependencies["@build-context"] = self.build_context()
+        build_key, audit_key = self.keys(sha0, dependencies, symbols)
         reuse = None
         if cache.exists():
             old = json.loads(cache.read_text(encoding="utf-8"))
@@ -411,7 +422,22 @@ class Runner:
                     continue
                 seen.add(tok)
                 self.compile_siblings(sib, seen)
-                self.lean_file(sib, self.work / "olean" / (tok + ".olean"))
+                result = self.lean_file(sib, self.work / "olean" / (tok + ".olean"))
+                if result.returncode != 0:
+                    raise RuntimeError(f"Sibling compile failed: {sib}\n{result.stdout}{result.stderr}")
+
+    def standalone_dependencies(self, path: Path) -> dict[str, str]:
+        files = [path, *self.sibling_files(path)]
+        dependencies = {str(p.relative_to(self.repo)): sha256_file(p) for p in files[1:]}
+        roots = set()
+        for source in files:
+            for match in IMPORT.finditer(strip_comments(source.read_text(encoding="utf-8"))):
+                roots.update(tok.strip("«»") for tok in match.group(1).split()
+                             if tok.strip("«»") in self.graph.path_of)
+        for module in self.graph.closure(roots):
+            dependencies["lake:" + module] = sha256_file(self.repo / self.graph.path_of[module])
+        dependencies["@build-context"] = self.build_context()
+        return dependencies
 
     def process_standalone(self, rel: str, cited: dict):
         """A Lean file that is not a module of the lake graph (a paper-local copy): compile it with `lake env lean`
@@ -421,7 +447,7 @@ class Runner:
         cache = self.res_file(key)
         sha0 = sha256_file(path)
         symbols = sorted(cited["decls"])
-        siblings = {s.name: sha256_file(s) for s in self.sibling_files(path)}
+        siblings = self.standalone_dependencies(path)
         build_key, audit_key = self.keys(sha0, siblings, symbols)
         if cache.exists():
             old = json.loads(cache.read_text(encoding="utf-8"))
@@ -562,6 +588,7 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
     mathlib = json.loads((repo / "lean4/lake-manifest.json").read_text(encoding="utf-8"))
     msha = next(p["rev"] for p in mathlib["packages"] if p["name"] == "mathlib")
     lakefile_sha = sha256_file(repo / "lean4/lakefile.lean")
+    validator = Runner(repo, work, plan, 1)
     by_group: dict[str, list] = collections.defaultdict(list)
     deps_built: dict[str, list] = collections.defaultdict(list)
     rows_by_module = {}
@@ -573,6 +600,16 @@ def assemble(repo: Path, work: Path, plan: dict, groups_out: Path):
         if m not in rows_by_module:
             continue
         r = rows_by_module[m]
+        if module_of(path):
+            inputs = validator.dep_shas(m)
+            inputs["@build-context"] = validator.build_context()
+        else:
+            inputs = validator.standalone_dependencies(repo / path)
+        expected_build, expected_audit = validator.keys(sha256_file(repo / path), inputs, sorted(ent["decls"]))
+        if r.get("build_key") != expected_build or r.get("audit_key") != expected_audit:
+            raise SystemExit(f"Stale replay inputs for {path}; rerun the driver before assembling receipts")
+        if not r.get("source_unchanged_during_build"):
+            raise SystemExit(f"Source changed during replay: {path}")
         stage_count = collections.Counter(n[2] for n in ent["nodes"])
         group = sorted(stage_count.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
         if sha256_file(repo / r["source"]) != r["sha256"]:
