@@ -4,15 +4,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: 
 
 ## Statement
 
-> Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.
+> The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.
+Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.
 
 ## Source status
 
@@ -42,12 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignGenesisContextDecision.lean`
+
+- file: [lean4/CampaignGenesisContextDecision.lean](../../../lean4/CampaignGenesisContextDecision.lean)
+- sha256 (`bytes`): `621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6`
+- cited in: node.lean, record TFQ-1293
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `CampaignGenesisContextDecision`): recorded sha256 `621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGenesisContextDecision`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignGenesisContextDecision.collapseTest_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.collapseTest_correct` |
+- counts toward the grade: yes
+
 ### Lean: `lean4/GenesisComputation.lean`
 
 - file: [lean4/GenesisComputation.lean](../../../lean4/GenesisComputation.lean)
 - sha256 (`bytes`): `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994`
 - cited in: node.lean, node.source, record TFQ-1293
 - replay: `verified`
+  - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
   - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GenesisComputation`
 
@@ -85,7 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md`
 
 - file: [dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md](../../../dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md)
-- sha256 (`lf-normalised`): `bb8b5defd4adee92a0fb99aff7ea6ecf24a9aa10fa23e31dd3f5cfc3ac3dbdb1`
+- sha256 (`lf-normalised`): `d5096df113159d1be9025cd6d5ade2edebfa4fc85894fbc18d1bfc675c01f23b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1293
 - counts toward the grade: no

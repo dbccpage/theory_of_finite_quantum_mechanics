@@ -16039,19 +16039,30 @@
       "stage": "GENESIS",
       "status": "OPEN",
       "source_status": "continuation.txt §13 decision procedure over contexts (X-1); §7 count of observational classes",
-      "statement": "No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).",
+      "statement": "A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish, and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level uniformity necessity and external implementation refinement remain open.",
       "source": [
         "dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1073-1076",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:484",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:171-175"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:171-175",
+        "dag/derivations/independent/pgw-context-decision-procedure.md:5-8"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.mem_contexts",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_none_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.profile_eq_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.exhaustionTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.uniform_rule_exhausted",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.holdsTwo_iff_classCount",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.classCount_eq_quotient_card"
+      ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts"
       ],
       "imported_structure": [],
-      "bottleneck": "Open; the existing census results decide these rows by finite computation over rung three's rectangle or by Lean statements for every history where cited, not by a procedure over contexts.",
+      "bottleneck": "The finite context, class-count, holding-two and exhaustion clauses have local Lean evidence for arbitrary finite regimes in the declared slot/all-tuples-rule language. The bundled node remains OPEN for first-count existence, Y-2 necessity and the external Python/Rust refinement; the earlier unary-only mirror is not used as a full context decider.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0497",
@@ -23335,7 +23346,7 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3c claims OPEN; audited status OPEN",
-      "statement": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "statement": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -23344,14 +23355,15 @@
       "lean": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ],
       "rust": [
         "code/rust/src/wdp/genesis_tm.rs::unary_sep",
         "code/rust/src/wdp/genesis_tm.rs::collapsed"
       ],
       "imported_structure": [],
-      "bottleneck": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "bottleneck": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -37083,7 +37095,7 @@
       ],
       "output": "COMP-C3-CONTEXT-DECISION-PARTIAL",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "mechanism": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -57860,14 +57872,23 @@
       ],
       "id": "TFQ-0497",
       "lean4": [
-        "absent: no decision procedure over contexts in Lean (X-1)"
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.mem_contexts",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_none_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.profile_eq_iff",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.exhaustionTest_correct",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.uniform_rule_exhausted",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.holdsTwo_iff_classCount",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.classCount_eq_quotient_card"
       ],
       "local_id": "PGW-CONTEXT-DECISION-PROCEDURE",
       "name": "context-decision-procedure",
-      "obligation": "Build a decision procedure for collapse and separability over the well-formed contexts of a finite regime, prove it correct in Lean, and use it to decide Y-2, T-1, holding two and exhaustion.",
+      "obligation": "Use the complete finite context decisions for the remaining first-count and Y-2 history claims under their explicit predicates; establish the external implementation refinement separately.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable",
+        "checks/independent/pgw-context-decision-procedure.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -57875,7 +57896,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
-      "summary": "No decision procedure over contexts is built (X-1); collapse of two data means every well-formed context derives their pluggings alike, and separability that some well-formed context tells them apart. The existence of a first count, the necessity of uniformity (Y-2), the class count as a number (T-1), and deciding holding two or exhaustion at a regime in Lean wait on it, and the number of observational classes is a finite computation and OPEN in Lean (SD-C-2).",
+      "summary": "A finite Genesis context decision procedure in the existing Regime enumerates every admitted form with all arity-matched slot tuples containing a hole, including multiple holes and uniform all-tuples rule coverage. Collapse and separability are decidable; returned witnesses distinguish, and no witness is equivalent to collapse. Computed profiles coincide exactly for collapsed data, their finite image cardinality equals the cardinality of the observational quotient, holding two is equivalent to at least two classes, and form exhaustion is decidable. First-count existence, Y-2 history-level uniformity necessity and external implementation refinement remain open.",
       "uuid": "5e9af5a2-14e5-5838-8153-60f15fb2000d"
     },
     {
@@ -65917,11 +65938,12 @@
       "lean4": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ],
       "local_id": "COMP-C3-CONTEXT-DECISION-PARTIAL",
       "name": "Unary collapse is decidable; TFQ-0497 stays open",
-      "obligation": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "obligation": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "parent_id": "TFQ-1291",
       "python": [
         "code/python/src/qm/genesis_tm.py::unary_sep",
@@ -65934,7 +65956,7 @@
       ],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "summary": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
       "uuid": "16af2250-0735-5b8b-bbc4-082ecd606063"
     },
     {

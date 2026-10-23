@@ -5768,7 +5768,7 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3c claims OPEN; audited status OPEN",
-      "statement": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "statement": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -5777,14 +5777,15 @@
       "lean": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ],
       "rust": [
         "code/rust/src/wdp/genesis_tm.rs::unary_sep",
         "code/rust/src/wdp/genesis_tm.rs::collapsed"
       ],
       "imported_structure": [],
-      "bottleneck": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "bottleneck": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -10972,7 +10973,7 @@
       ],
       "output": "COMP-C3-CONTEXT-DECISION-PARTIAL",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "mechanism": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -18116,8 +18117,8 @@
       "stage": "COMPUTATION",
       "parent_id": "TFQ-1291",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
-      "obligation": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "summary": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
+      "obligation": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "COMP-C3-CONTEXT-DECISION-PARTIAL"
@@ -18140,7 +18141,8 @@
       "lean4": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ]
     },
     {

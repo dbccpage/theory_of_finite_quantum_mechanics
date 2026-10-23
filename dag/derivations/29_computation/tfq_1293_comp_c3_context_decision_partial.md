@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.
+The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.
 
 ### Governing Obligation
-Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.
+Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.
 
 ### Witness Audit
-The instances come from unarySep_iff and pairwiseSeparated_iff over List.range of the admitted forms; they cover only unary forms with the hole as the sole slot.
+The original unary instances remain scoped to unary forms. The campaign module supplies the full finite slot-context decision and quotient-count theorems, while the larger bundled target remains open.
 
 ---
 
@@ -37,6 +37,7 @@ The instances come from unarySep_iff and pairwiseSeparated_iff over List.range o
 - `lean4/GenesisComputation.lean::unarySep_iff`
 - `lean4/GenesisComputation.lean::pairwiseSeparated_iff`
 - `lean4/GenesisComputation.lean::two_marks_without_forms_collapsed`
+- `lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct`
 
 ### Rust Certifiers
 - `code/rust/src/wdp/genesis_tm.rs::unary_sep`
