@@ -1,0 +1,56 @@
+# Claim Ledger — The Continuum Shadow (CODA-CS)
+
+**Paper Key:** `coda_atlas/F005_coda/cs`  
+**Paper Identity:** `CODA-CS` (`coda_cs.md`, canonical version: `v1.1`)  
+
+This ledger catalogs the active mathematical claims and definitions of `CODA-CS` v1.1. Each claim is typed, with explicit governing hypotheses, paper section references, packaged Lean 4 formalization declarations, and Python verification tests.
+
+---
+
+## 1. Active Claim-by-Claim Matrix (CODA-CS v1.1)
+
+| ID | Claim | Type | Hypotheses | Paper Section | Formal Proof (Lean 4) | Executable Test (Python) | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **CS-D1** | Fibre constancy: $\mathsf{FiberConstant}(p,q) :\iff \forall x,y.\ p(x)=p(y) \implies q(x)=q(y)$. | DEFINITION | Maps $p:X\to P$, $q:X\to Y$ | §1 | `Coda.FiberConstant` (`Algebra.lean`) | `test_coda_cs.py::test_bridge_admissibility_gates` | Mechanized |
+| **CS-D2** | Factorization: $\mathsf{Factors}(p,q) :\iff \exists g:P\to Y.\ \forall x.\ g(p(x))=q(x)$. | DEFINITION | Maps $p:X\to P$, $q:X\to Y$ | §1 | `Coda.Factors` (`Algebra.lean`) | `test_coda_cs.py::test_bridge_admissibility_gates` | Mechanized |
+| **CS-D3** | Refinement: $p = \mathrm{forget} \circ \mathrm{fine}$ for fine observation and forgetful map. | DEFINITION | Fine look $\mathrm{fine}:X\to B$, $\mathrm{forget}:B\to A$ | §1 | Embedded in `Coda.CS.refinement_preserves_descent` | `test_coda_cs.py::test_cs_d3_refinement_composite_identity` | Mechanized |
+| **CS-L1** | Factorization implies fibre constancy: $\mathsf{Factors}(p,q) \implies \mathsf{FiberConstant}(p,q)$. | LEMMA | $q$ factors through $p$ | §1 | `Coda.factor_implies_constant` (`Algebra.lean`) | `test_coda_cs.py::test_worked_example_reproduction` | Mechanized (0 axioms) |
+| **CS-T1** | Refinement preserves descent: if $q$ is fibre-constant for $\mathrm{forget}\circ\mathrm{fine}$, it is fibre-constant for $\mathrm{fine}$. | THEOREM | $q$ fibre-constant on coarse composite | §2 | `Coda.CS.refinement_preserves_descent` (`Algebra.lean`) | `test_coda_cs.py::test_cs03_factors_fst_snd_is_false_on_bool_pair` | Mechanized (0 axioms) |
+| **CS-T2** | Family observation equality is pointwise: $(i \mapsto \mathrm{observe}_i(x)) = (i \mapsto \mathrm{observe}_i(y)) \iff \forall i.\ \mathrm{observe}_i(x) = \mathrm{observe}_i(y)$. | THEOREM | Family of observations indexed by $I$ | §3 | `Coda.CS.family_observation` (`Algebra.lean`) | `test_coda_cs.py::test_cs_t2_family_observation_equality` | Mechanized (`Quot.sound`) |
+| **CS-T3** | First coordinate collision obstructs second coordinate factorization: $\neg\mathsf{Factors}(x \mapsto x.1, x \mapsto x.2)$ on $\mathbf{2}\times\mathbf{2}$. | THEOREM | States $\mathbf{2}\times\mathbf{2}$, first-coordinate projection | §4 | `Coda.CS.finite_shadow_collision` (`Algebra.lean`) | `test_coda_cs.py::test_cs03_factors_fst_snd_is_false_on_bool_pair` | Mechanized (0 axioms) |
+| **CS-T4** | Strict refinement countermodel: the fine look can factor when the coarse look cannot ($\mathsf{Factors}(\mathrm{id}, x.2) \land \neg\mathsf{Factors}(x.1, x.2)$). | THEOREM | States $\mathbf{2}\times\mathbf{2}$, identity vs first-coordinate looks | §4 | `Coda.CS.refinement_strict_countermodel` (`Algebra.lean`) | `test_coda_cs.py::test_cs03_factors_fst_snd_is_false_on_bool_pair` | Mechanized (0 axioms) |
+| **CS-T5** | Missing terminalizer blocks query authority: $\forall X, q, b,\ b.\mathrm{has\_local\_terminalizer} = \mathsf{false} \implies \neg\mathsf{HasQueryAuthority}(X, q, b)$. | THEOREM | Declared 8-flag bridge record $b$ with false terminalizer | §5 | `CodaCs.terminalizer_absence_blocks_query_authority` (`L01ContinuumNonCreation.lean`) | `test_coda_cs.py::test_continuum_non_creation_firewall` | Mechanized (0 axioms) |
+
+---
+
+## 2. Mathematical Scoping & Non-Claims
+
+1. **CS-T5 is an Authority Refusal, not Analytic Nondetermination**:
+   The constant-zero query $q(X) = 0$ has a uniquely determined value that factors through every profile. When $b.\mathrm{has\_local\_terminalizer} = \mathsf{false}$, `HasQueryAuthority X q b` fails strictly because an authorization flag is missing. CS-T5 establishes that limit notation does not mint authority; it does not claim mathematical nondetermination of values (which is governed by the fibre collision in CS-T3).
+2. **Total Factorization Converse Qualification**:
+   As noted after CS-L1, if $p$ is not surjective, a function factoring through the image $p(X)\subseteq P$ can be extended to $P$ only if $Y$ is nonempty and a default choice is made off the image. Fibre constancy is sufficient for image factorization, not for a canonical total decoder.
+3. **Obstruction vs Converse Equivalence**:
+   `collision_obstructs_factor` provides the contrapositive obstruction:
+   $$\neg\mathsf{FiberConstant}(p, q) \implies \neg\mathsf{Factors}(p, q)$$
+   It does not assert the converse implication $\mathsf{FiberConstant}(p, q) \implies \mathsf{Factors}(p, q)$ without classical extension choices.
+4. **Standalone Self-Containment**:
+   All Lean formalizations compile under `lake build` without external dependencies. All Python tests execute under `python -m pytest` with zero external repo imports.
+
+---
+
+## 3. Historical Claim Ledger (Superseded GTTC / BRIDGE Identifiers)
+
+*The entries below are preserved for audit lineage and represent superseded pre-v1.1 identifiers.*
+
+| Legacy ID | Superseded Title | Mapping to v1.1 | Status |
+| --- | --- | --- | --- |
+| `GTTC-01` | Cofinal shadow query authority | Mapped to `CS-T5` and 8-step admission gate | Re-scoped to 8-step boolean authority |
+| `GTTC-02` | Continuum Non-Creation Firewall | Mapped to `CS-T5` (`continuum_limit_does_not_create_authority`) | Pointwise authority refusal |
+| `GTTC-03` | Query-relative scope | Mapped to `CS-T5` / `BridgeAdmissible8` | Conjunction of 8 declared flags |
+| `GTTC-04` | Shallow authority vs reflected split | Withdrawn from compact theorem paper | Excluded |
+| `GTTC-05` | Authorized gluing bridge | Withdrawn from compact theorem paper | Declared OPEN (H3'' obstruction) |
+| `BRIDGE-001` | Shadow conservativity & Q-factorization | Mapped to `CS-L1` (forward) and `CS-T3` (collision obstruction) | Forward proved; converse qualified |
+| `BRIDGE-002` | Higher query families | Withdrawn from compact theorem paper | Excluded from v1.1 deposit |
+| `BRIDGE-003` | 14-Tuple Bridge Packet | Mapped to `BridgeAdmissible8` in `code/` and `lean4/` | 8-step gate preserved in companion |
+| `BRIDGE-004` | Translation semigroup adapter | Withdrawn from compact theorem paper | Excluded from v1.1 deposit |
+| `BRIDGE-005` | Hamilton-Jacobi infinitesimal generator | Withdrawn from compact theorem paper | Excluded from v1.1 deposit |

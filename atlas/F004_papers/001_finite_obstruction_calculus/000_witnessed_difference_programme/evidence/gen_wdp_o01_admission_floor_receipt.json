@@ -1,0 +1,666 @@
+{
+  "schema": "wdp.gen_wdp_o01_admission_floor.v1",
+  "witness_id": "gen-wdp-o01-admission-floor",
+  "problem_sha256": "5317764cd6eace9c04d85bdc68109402c64d7ae5b3d3f4704791a594e7674d86",
+  "canonical_payload_sha256": "5317764cd6eace9c04d85bdc68109402c64d7ae5b3d3f4704791a594e7674d86",
+  "scope": "explicit admission of the primitive-to-witness carrier, signature, irreflexivity law, and no-form challenge floor; a stronger floor is not proved",
+  "witness": {
+    "schema": "wdp.gen_wdp_o01_admission_floor.v1",
+    "witness_id": "gen-wdp-o01-admission-floor",
+    "authority_effect": "none",
+    "admitted_object": "primitive-to-witness-admission-floor",
+    "admitted": [
+      "carrier",
+      "signature",
+      "irreflexivity-law",
+      "no-form-challenge-generation-floor"
+    ],
+    "source_anchors": [
+      "docs/genesis_bridge_register.md | GEN-WDP-O01",
+      "docs/primitive_admission_and_transport.md ## The primitive floor",
+      "docs/primitive_execution_refinement.md ## All-arity floor with persistent requirements",
+      "docs/source_replay_and_remaining_derivations.md ## 2. The initial challenge floor and its alternatives",
+      "lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean"
+    ],
+    "register_row_remains_open": true,
+    "stronger_floor_proved": false,
+    "stronger_floor_has_theorem_and_falsifier": false,
+    "genesis_cost_floor_proved": false,
+    "declared_responses_exhaust_every_language": false,
+    "all_regime_challenge_refinement_proved": false,
+    "irreflexivity_chosen_by_observational_floor": false,
+    "program_refinement_proved": false,
+    "generated_token_freshness_proved": false,
+    "forward_cut": {
+      "name": "forward",
+      "carrier": [
+        0,
+        1
+      ],
+      "signature": "binary-relation-R",
+      "law": "forall x, not R(x, x)",
+      "instance": [
+        0,
+        1
+      ],
+      "instance_holds": true,
+      "law_holds": true,
+      "endpoints_apart": true
+    },
+    "reverse_cut": {
+      "name": "reverse",
+      "carrier": [
+        0,
+        1
+      ],
+      "signature": "binary-relation-R",
+      "law": "forall x, not R(x, x)",
+      "instance": [
+        1,
+        0
+      ],
+      "instance_holds": true,
+      "law_holds": true,
+      "endpoints_apart": true
+    },
+    "law_selects_one_orientation": false,
+    "orientations_retained": 2,
+    "singleton_instance_without_law": true,
+    "singleton_law_without_instance": true,
+    "subsingleton_cut_refused": true,
+    "collapsed_endpoints_force_diagonal": true,
+    "collapsed_image_obeys_instance_and_law": false,
+    "identity_transport_preserves_separation": true,
+    "inscription": {
+      "glyph": "<>",
+      "supply_leaves_components_unchanged": true,
+      "dedup_datum_count": 1,
+      "form_count": 0,
+      "law_present": false,
+      "orientation_present": false
+    },
+    "declared_price_responses": [
+      {
+        "name": "unary-mark",
+        "item_cost": 2,
+        "arity_cost": 1
+      },
+      {
+        "name": "binary-link",
+        "item_cost": 2,
+        "arity_cost": 2
+      }
+    ],
+    "raw_item_costs_tie": true,
+    "declared_arity_selects_unary": true,
+    "declared_prices_are_not_a_cost_theorem": true,
+    "datum_without_form_separates": false,
+    "form_without_instance_separates": false,
+    "uniform_rule_separates": false,
+    "pair_cover_size": 1,
+    "pair_mu1_count": 6,
+    "pair_mu1_item_cost": 2,
+    "pair_mu2_count": 2,
+    "pair_mu2_arity": 1,
+    "pair_mu1": [
+      {
+        "arity": 1,
+        "instance": [
+          0
+        ],
+        "mentioned": [
+          0
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 1,
+        "instance": [
+          1
+        ],
+        "mentioned": [
+          1
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 2,
+        "instance": [
+          0,
+          0
+        ],
+        "mentioned": [
+          0
+        ],
+        "profiles_differ": true,
+        "diagonal": true,
+        "exact_minimum_cover": false
+      },
+      {
+        "arity": 2,
+        "instance": [
+          0,
+          1
+        ],
+        "mentioned": [
+          0,
+          1
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": false
+      },
+      {
+        "arity": 2,
+        "instance": [
+          1,
+          0
+        ],
+        "mentioned": [
+          0,
+          1
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": false
+      },
+      {
+        "arity": 2,
+        "instance": [
+          1,
+          1
+        ],
+        "mentioned": [
+          1
+        ],
+        "profiles_differ": true,
+        "diagonal": true,
+        "exact_minimum_cover": false
+      }
+    ],
+    "diagonal_instances_retained": true,
+    "triangle_cover_size": 2,
+    "triangle_mu2_count": 6,
+    "triangle_mu2_arity": 2,
+    "triangle_mu2": [
+      {
+        "arity": 2,
+        "instance": [
+          0,
+          1
+        ],
+        "mentioned": [
+          0,
+          1
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 2,
+        "instance": [
+          0,
+          2
+        ],
+        "mentioned": [
+          0,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 2,
+        "instance": [
+          1,
+          0
+        ],
+        "mentioned": [
+          0,
+          1
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 2,
+        "instance": [
+          1,
+          2
+        ],
+        "mentioned": [
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 2,
+        "instance": [
+          2,
+          0
+        ],
+        "mentioned": [
+          0,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 2,
+        "instance": [
+          2,
+          1
+        ],
+        "mentioned": [
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      }
+    ],
+    "tetrahedron_cover_size": 3,
+    "tetrahedron_arity_2_count": 0,
+    "tetrahedron_mu2_count": 24,
+    "tetrahedron_mu2_arity": 3,
+    "tetrahedron_mu2": [
+      {
+        "arity": 3,
+        "instance": [
+          0,
+          1,
+          2
+        ],
+        "mentioned": [
+          0,
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          0,
+          1,
+          3
+        ],
+        "mentioned": [
+          0,
+          1,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          0,
+          2,
+          1
+        ],
+        "mentioned": [
+          0,
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          0,
+          2,
+          3
+        ],
+        "mentioned": [
+          0,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          0,
+          3,
+          1
+        ],
+        "mentioned": [
+          0,
+          1,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          0,
+          3,
+          2
+        ],
+        "mentioned": [
+          0,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          1,
+          0,
+          2
+        ],
+        "mentioned": [
+          0,
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          1,
+          0,
+          3
+        ],
+        "mentioned": [
+          0,
+          1,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          1,
+          2,
+          0
+        ],
+        "mentioned": [
+          0,
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          1,
+          2,
+          3
+        ],
+        "mentioned": [
+          1,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          1,
+          3,
+          0
+        ],
+        "mentioned": [
+          0,
+          1,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          1,
+          3,
+          2
+        ],
+        "mentioned": [
+          1,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          2,
+          0,
+          1
+        ],
+        "mentioned": [
+          0,
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          2,
+          0,
+          3
+        ],
+        "mentioned": [
+          0,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          2,
+          1,
+          0
+        ],
+        "mentioned": [
+          0,
+          1,
+          2
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          2,
+          1,
+          3
+        ],
+        "mentioned": [
+          1,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          2,
+          3,
+          0
+        ],
+        "mentioned": [
+          0,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          2,
+          3,
+          1
+        ],
+        "mentioned": [
+          1,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          3,
+          0,
+          1
+        ],
+        "mentioned": [
+          0,
+          1,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          3,
+          0,
+          2
+        ],
+        "mentioned": [
+          0,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          3,
+          1,
+          0
+        ],
+        "mentioned": [
+          0,
+          1,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          3,
+          1,
+          2
+        ],
+        "mentioned": [
+          1,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          3,
+          2,
+          0
+        ],
+        "mentioned": [
+          0,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      },
+      {
+        "arity": 3,
+        "instance": [
+          3,
+          2,
+          1
+        ],
+        "mentioned": [
+          1,
+          2,
+          3
+        ],
+        "profiles_differ": true,
+        "diagonal": false,
+        "exact_minimum_cover": true
+      }
+    ]
+  }
+}

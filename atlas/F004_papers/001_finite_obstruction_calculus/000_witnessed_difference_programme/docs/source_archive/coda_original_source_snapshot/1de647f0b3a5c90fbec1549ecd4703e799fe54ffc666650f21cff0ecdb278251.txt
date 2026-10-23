@@ -1,0 +1,2559 @@
+# 007 Wd7 Witness Relative Cosmogenesis
+
+## 000_WITNESSED_DIFFERENCE Monograph Series (007_wd7_witness_relative_cosmogenesis)
+
+**Date:** 2026-07-29 · **Version:** v1.0  
+**License:** Creative Commons Attribution 4.0 International (CC-BY-4.0)  
+**Status:** RELEASED  
+**Authority:** `AuthorityEffect::None`  
+
+## Mechanism inventory
+
+| Slot | Value / Description |
+| --- | --- |
+| **Primitive Differences** | $\delta c = \text{{defect mass}}$ |
+| **Carriers / Structure** | Finite Graph 0-Cochain / Hilbert Space |
+| **Cochain complex** | $C^0 \to C^1 \to C^2$ |
+| **Coboundary maps** | $\delta^0, \delta^1$ |
+| **ZeroRel** | Preserved under $L_1$ quotient |
+| **Licensed repairs** | None |
+| **Quotient / Q1** | Banach Quotient |
+| **Residuals** | $\delta c \neq 0$ boundary defect |
+| **Witnesses** | Replayable Python / Rust Certifiers |
+| **Observers / profiles** | Operational Observer |
+| **Anomalons** | None |
+| **CompletionLaw** | Finite Cochain Completion |
+| **Terminal / route** | Route to Anomalon Estate |
+| **AuthorityEffect** | None |
+
+## Paper 007 — Witness-Relative Cosmogenesis
+
+> **Legacy Paper Metadata**: `LegacyPaperId: 089` | `Ordinal: 007`
+
+Relative completeness for observer-indexed worlds, and the status of the unwitnessed
+
+**Version:** v0.1 (Pre-Print) — **OUTLINE, NOT DRAFTED**
+**Date:** 2026-07-20
+**Programme:** `000_wd0_witnessed_difference_programme` (The Witnessed Difference Programme)
+**Sequence position:** WD-7 — the terminal synthesis; **conditional on every prior layer**
+**AuthorityEffect:** `None`
+
+> **Status.** This document is a structural outline. No section below is a
+> drafted proof, and no claim in it is established. The claim ledger types every
+> substantive row ``OPEN``, `[CONJECTURE]`, or `[INTERPRETIVE]`. Its purpose is
+> to fix the statement, the proof strategy, the falsifiers, the conditionality,
+> and above all the **non-claims** before any mathematics is written.
+>
+> This paper carries the programme's heaviest interpretive load. Every
+> metaphysical sentence in it is `[INTERPRETIVE]` and fenced as such. A reader
+> who finds an unfenced metaphysical sentence in a later draft has found a
+> defect and should report it against `PL-WDP007-9`.
+
+
+1. Abstract (target lead sentence)
+
+
+*Target payoff sentence — to be drafted to this specification:*
+
+> Fix an observer $\mathcal{O}$ with a declared report grammar
+> $\mathcal{L}_{\mathcal{O}}$, a declared evidence base, and a declared
+> terminalization procedure. Then every well-typed finite claim of
+> $\mathcal{L}_{\mathcal{O}}$ receives exactly one certified status from the
+> fixed exhaustive set $\{\texttt{Proved}, \texttt{Refuted},
+> \texttt{Underdetermined}, \texttt{OutsideProfile}, \texttt{Refused}\}$, each
+> carrying a finite witness of its own type; and the statuses of two observers
+> descend along their shared subgrammar exactly when a computable obstruction
+> class vanishes. **This is completeness of routing and evidence relative to a
+> grammar. It does not prove that there is nothing outside the grammar or the
+> observer.**
+
+**Drafting constraint (hygiene Part A).** The final sentence above, or a
+sentence with the same content, **must appear in the abstract itself** — not
+only in §11 and not only in the ledger. It is the sentence that separates this
+paper from the failure mode it is written to avoid. The first paragraph must be
+evaluable by a reader who has opened no other paper in the corpus: it is a
+statement about a formal language, a decision procedure, and a status set.
+
+**Second drafting constraint.** The abstract must not use the words
+"universe", "reality", "creates", or "consciousness". *Corrected this pass:* this
+sentence said those words "belong to §10 and appear there fenced". §10 is
+**Falsifiability** and contains none of them. Their fenced homes are **§8.2**
+("manufactures an external universe") and **§11** ("creates, manufactures, or
+sustains an external universe"; "does not derive consciousness"). **The word
+"reality" has no fenced home anywhere in the paper's own argumentative text**, so
+there is nothing to point at — a drafter who needs it must build one first.
+
+*Corrected this pass — the previous form of that sentence was self-invalidating.*
+It read *"the word **'reality' occurs nowhere else in this paper at all**"*, a
+lexical sweep claim about the document that **this same pass falsified while
+making it**: §9b's `ENC-1197` row, added in this pass, quotes *"not a completeness
+result over unrepresented reality"*. The claim was true when computed and false as
+shipped. The substantive claim — that no section of the paper fences the word for
+the abstract to defer to — is what was meant, is unaffected by quotations of other
+documents, and cannot be invalidated by adding one.
+
+2. Why a researcher should care
+
+
+The corpus rule is *no ontology before witness*. A programme obeying that rule
+appears to forfeit the one thing cosmology-adjacent work usually wants: a
+complete account of a world. This paper is the argument that the forfeiture is
+only apparent, and that what remains is both stronger and more checkable.
+
+The strongest defensible target is **not** an absolute complete cosmology. It is
+a *witness-relative cosmogenesis*: an account of how stable, observer-indexed
+worlds are constructed from retained distinctions, together with a **relative
+completeness theorem** for claims expressible and witnessable inside a declared
+observer grammar. That target is compatible with the corpus's own rule; an
+absolute one is not, because an absolute completeness claim quantifies over a
+domain no observer in the programme has constructed or witnessed.
+
+Three constituencies should care:
+
+* **Formal-methods and verification readers.** T1–T2 are a totality-and-soundness
+  statement for a status-routing procedure. That is an ordinary, checkable
+  specification property, and §6 is designed to make it a reproducible number
+  rather than a posture. *Corrected this pass:* this read "§6 **makes** it a
+  reproducible number" — §6's own heading says the packet is **not yet built**, so
+  the present tense claimed a deliverable that does not exist (`PL-WDP007-7`).
+  ``OPEN`` — `WDP007-C2`, `WDP007-C11`.
+
+* **Foundations readers.** T4 is *targeted as* an independence result: the
+  boundary token `OutsideProfile` would be shown underivable in either direction
+  from inside the system. This is where the paper would earn the right to say "we
+  do not know" as a result rather than as modesty. *Corrected this pass:* this
+  read "T4 **is** an independence result … the paper **earns** the right … as a
+  *theorem*". §5 states plainly that T4 has **no proof and no strategy in
+  L1–L3**, and the Claim Ledger types it `[CONJECTURE]`. Asserting theoremhood
+  three sections from the section that withdraws it is the defect this paper
+  exists to avoid. `[CONJECTURE]` — `WDP007-C8`, `PL-WDP007-5`.
+
+* **Physics-adjacent readers.** T5 targets the construction order, and would
+  foreclose the reading that a mind is the **root** from which a world is made.
+  See §8.2. *Corrected this pass:* this read "T5 **fixes** the construction
+  order, and **therefore forecloses** the reading that a mind manufactures a
+  world". Two overstatements. (i) T5 is ``OPEN`` (`WDP007-C10`, `PL-WDP007-6`), not
+  fixed. (ii) T5's content is *no O3 observer at constructor depth $0$*; that
+  forecloses the **root-primitive** version of the reading and **not** the claim
+  that some late observer manufactures an external universe, which T5 does not
+  reach. The stronger foreclosure the paper wants is carried in §4 T5's Reading
+  paragraph by an **empirical** premise about humans, which §4 T5 now prices.
+
+3. Setting
+
+
+### 3.1 The observer-relative world
+
+Carried forward unchanged from WD-3. For an observer $\mathcal{O}$ with profile
+map $p_{\mathcal{O}}$,
+
+$$
+W_{\mathcal{O}}
+\;=\;
+\bigl(
+\operatorname{im} p_{\mathcal{O}},\;
+C_{\mathcal{O}},\;
+H_{\mathcal{O}},\;
+\Vdash_{\mathcal{O}},\;
+\mathcal{L}_{\mathcal{O}}
+\bigr),
+$$
+
+where $\operatorname{im} p_{\mathcal{O}}$ is the presented image, $C_{\mathcal{O}}$
+the admissible contexts, $H_{\mathcal{O}}$ the retained histories (supplied by
+the WD-1 retention constructor), $\Vdash_{\mathcal{O}}$ the witness relation, and
+$\mathcal{L}_{\mathcal{O}}$ the report grammar.
+
+**None of the five components is derived in this paper.** Each is imported from a
+named prior layer, and §7 records what happens to WD-7 if that layer fails.
+
+### 3.2 The claim grammar
+
+$\mathcal{L}_{\mathcal{O}}$ is a declared formal language whose atoms are report
+classes in $\operatorname{im} p_{\mathcal{O}}$, context actions in
+$C_{\mathcal{O}}$, and finite retained histories in $H_{\mathcal{O}}$. Write
+$\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$ for its **well-typed finite claims**:
+claims of bounded syntactic depth over finitely many atoms.
+
+The restriction to $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$ is a hypothesis of
+every theorem below, not a convenience. Dropping it is the fastest route to a
+false theorem; see §9.1.
+
+### 3.3 The status set
+
+$$
+\mathrm{Status}
+\;=\;
+\{\texttt{Proved},\;\texttt{Refuted},\;\texttt{Underdetermined},\;
+\texttt{OutsideProfile},\;\texttt{Refused}\}.
+$$
+
+Each status is **witness-typed**: it is not a label but a pair (label, finite
+receipt of the label's own type).
+
+| Status | Required receipt | Informal reading |
+|---|---|---|
+| `Proved` | A finite derivation from the declared evidence base | The evidence settles it affirmatively |
+| `Refuted` | A finite counter-witness in $\Vdash_{\mathcal{O}}$ | The evidence settles it negatively |
+| `Underdetermined` | Two admissible extensions of the evidence base disagreeing on the claim | Expressible, witnessable in principle, not settled by what is retained |
+| `OutsideProfile` | A proof that no context action in $C_{\mathcal{O}}$ separates the claim's truth conditions | Expressible, **not** witnessable by this observer |
+| `Refused` | A typed obstruction receipt (ill-typed, unbounded, or gate-blocked) | The claim does not enter the evaluation at all |
+
+**The distinction between `Underdetermined` and `OutsideProfile` is the paper's
+technical core.** The first is ignorance inside the profile; the second is a
+boundary of the profile. Collapsing them makes T1 true and worthless.
+
+### 3.4 Evaluation
+
+The declared evaluation and terminal system is a map
+
+$$
+\mathrm{Ev}_{\mathcal{O}} \colon \mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}
+\longrightarrow \mathrm{Status},
+$$
+
+specified by the paper, not assumed to exist. T1 asserts totality and
+single-valuedness of a *specific* $\mathrm{Ev}_{\mathcal{O}}$; it does not assert
+that every conceivable evaluation is total.
+
+**Interpretive fence.** `[INTERPRETIVE]` — `WDP007-C17`, non-claims `WD7-N1`–`WD7-N3`.
+Writing $\operatorname{im} p_{\mathcal{O}}$ presupposes a
+domain for $p_{\mathcal{O}}$. This paper does **not** claim that domain is "the
+universe", nor that it is exhausted by any $W_{\mathcal{O}}$, nor that it exists
+independently of observers, nor that it does not. That question is precisely what
+receives status `OutsideProfile` in §4, T4, and it is not answered anywhere in
+this paper. See **§14**, which asks *"What supplies the domain of
+$p_{\mathcal{O}}$, given that $\operatorname{im} p_{\mathcal{O}}$ presupposes
+one?"* *Corrected this pass:* this pointed at §13 (Open obligations), where the
+domain of $p_{\mathcal{O}}$ is never mentioned; the pointer resolved but its
+target said nothing about the sentence it was supporting.
+
+**This four-way fence is the paper's strongest single sentence and should be
+preserved verbatim in the draft.** It refuses the realist, the idealist, and both
+anti-readings in one clause, which is exactly the discipline "witness-relative"
+otherwise invites a reader to drop. Note what it does *not* do: it does not
+license reading `OutsideProfile` as evidence that a domain-independent world is
+*unlikely*, or *unnecessary*, or *unparsimonious*. Those are all the same
+category error wearing a hedge.
+
+4. Theorem targets
+
+
+Stated as targets. None is proved here. Each is conditional on §7.
+
+### 4.0 — Producer-pass finding: the status set does not typecheck against its own domain
+
+*Raised by the 2026-07-21 Stage-1 `/paper-improver` pass. Nothing here is a
+proof, a promotion, or an acceptance; each item is a defect in the paper as
+received, with the enumeration or derivation that found it named.*
+
+**(i) `Refused`'s domain is under-specified: two of its three triggers are
+excluded by $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$, and the third is
+undefined.** ``OPEN`` — `WDP007-C21`.
+§3.2 defines $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$ as the **well-typed**
+finite claims *of bounded syntactic depth*. §3.3 defines the `Refused` receipt as
+*"a typed obstruction receipt (**ill-typed, unbounded, or gate-blocked**)"* — a
+**three-way disjunction**. §3.4 declares
+$\mathrm{Ev}_{\mathcal{O}} \colon \mathcal{L}_{\mathcal{O}}^{\mathrm{fin}} \to
+\mathrm{Status}$. Match the disjuncts against the domain:
+
+| `Refused` trigger | Excluded by §3.2's domain? |
+|---|---|
+| ill-typed | **Yes** — the domain is the well-typed claims |
+| unbounded | **Yes** — the domain is claims of bounded syntactic depth |
+| gate-blocked | **Undetermined** — not a syntactic property, and **`gate-blocked` is defined nowhere** |
+
+So `Refused` cannot occur *via its ill-typed or unbounded triggers*; whether
+`gate-blocked` can fire on a well-typed, bounded claim is **undetermined, because
+`gate-blocked` is defined nowhere**. The substantive finding, stated without any
+count: **`gate-blocked` is defined nowhere in the corpus; every occurrence of the
+term is a *use*.** Neither tree that could supply an external definition contains
+the term at all — **0 occurrences in `research/encyclopedia/entries/` (983
+files)** and **0 in `omega_engine/lean4/` (583 `.lean` files)** — so there is
+nothing to inherit either. **No count of this term's occurrences in this document
+is stated here, or anywhere in these three files**; see the strengthened audit
+rule in the note below. Excluding one disjunct
+does not exclude the
+disjunction; the paper's own §3.3 makes `Refused` a three-way trigger and the
+domain excludes two of the three.
+
+> **Self-audit note, recorded because two successive passes committed the very
+> defect they were repairing.** The sentence above first read *"`gate-blocked`
+> occurs **exactly twice** in the whole corpus … with **zero** occurrences
+> anywhere in `research/encyclopedia/` or `omega_engine/lean4/`"*. **Both halves
+> were falsified by the act of writing them:** naming the term throughout
+> §4.0(i), the Claim Ledger, and the global proof ledger multiplied it, and the
+> global proof ledger **lives under `research/encyclopedia/`**. That was
+> **instance 7** of *the self-invalidating sweep claim*, produced by the same pass
+> that catalogued the other six.
+>
+> **The prescribed remedy then produced instance 8.** The scoped replacement —
+> *"in the paper as received the term occurred exactly twice … §3.3's table row
+> and this section's quotation of it"* — was **also false**: §4.0 did not exist in
+> the received paper, so its quotation cannot have been one of the two, and the
+> received paper carried the §3.3 row alone. **A scoped count is not safe
+> either.** Verifying one requires re-deriving a version that is no longer on
+> disk, using the very version whose additions invalidated it.
+>
+> **The rule is therefore strengthened, and this paper now follows the stronger
+> form: a sweep claim about this document must be SUBSTANTIVE. Lexical counts of
+> this document are not permitted at all — not even scoped ones.** Nulls scoped
+> to *other* named trees (`entries/`, `lean4/`) remain permitted, because writing
+> here cannot change them. Every count of an occurrence in this document has been
+> deleted from these three files, and a drafter must not add one. The rule is
+> routed to `PL-WDP007-9`.
+
+*A fallback reading is available and is not relied on here.* §3.3's row also
+carries the gloss *"the claim does not enter the evaluation at all"*, which would
+put `Refused` out of the domain outright. That gloss sits in a column headed
+**"Informal reading"**, and it is contradicted by the three corpus quotations
+cited two paragraphs below — all of which make `Refused` a **routing act the
+router emits** (*"routed, not classified"*), and T1's own title is *Relative
+completeness (**routing**)*. The reading that would settle (i) by fiat is
+therefore the reading the corpus doctrine rejects, and it is not used.
+
+The consequences are load-bearing, not cosmetic:
+
+* **T2.2 may lose one of its two boundary statuses.** The anti-vacuity condition
+  is stated over *"the fraction of $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$
+  [`Refused` and `OutsideProfile`] absorb"*. To the extent `Refused` is
+  unattainable on the domain, that fraction is contributed by `OutsideProfile`
+  alone, and the **vacuity indicator of §6.3 is mis-defined** (see §6.2a). How
+  much of `Refused` survives depends on the repair chosen below.
+
+* **§6's packet total changes.** Its $150$ includes $6$ ill-typed probes that are
+  not in $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$; the well-typed total is
+  $135 + 3 + 6 = 144$ (§6.2a). This consequence does **not** depend on the
+  gate-blocked question: the six probes are declared ill-typed by §6.2 itself.
+
+* **T1's exhaustiveness reading is what decides it.** See (ii).
+
+**The corpus has already settled this distinction and the paper does not cite
+it.** The GTOC/GTLA doctrine is that *classification* and *routing* are different
+acts with different domains: `gt_tower_master_design.md` — *"A fourth outcome,
+**typed refusal / new-packet request**, is a **routing** act, not a cohomology
+class"*; `000_projection_obstruction_v5_6.md` §"Trichotomy scope" — *"`NoRule` /
+`Refused` is a fourth, distinct routing-and-terminal outcome, and is not a
+cohomological class"*; `030_Shadows of Infinity…` (now
+`007_authority_firewall/006_shadows_of_infinity_and_large_language_models`;
+quotation re-verified at source 2026-07-21, cycle 3) — *"A residual that reaches
+no rule is **routed, not classified**."* **Three repairs are available**, each
+precedented, and the paper must pick one rather than leave the type error:
+
+| Repair | Move | Cost |
+|---|---|---|
+| **R1 — widen the domain** | Let $\mathrm{Ev}_{\mathcal{O}}$ take **raw syntax** and let `Refused` be exactly the non-membership verdict; restate T1 over the raw domain, with $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$ as the `Refused`-free subdomain | T1 stops being a statement about a *grammar* and becomes one about a *parser*; §9.1's Gödel fence must be re-checked against the wider domain |
+| **R2 — narrow the status set** | Keep the domain; **delete `Refused`**, leaving a four-element $\mathrm{Status}$ | Changes T1, T2.2, §6.2's $150 \to 144$, §6.3's table, and the vacuity indicator; the ill-typed probes leave the packet |
+| **R3 — narrow the *receipt*** | Keep the domain **and** the five-element $\mathrm{Status}$; define `Refused` = **gate-blocked only** — a well-typed, bounded claim that a **declared gate** refuses to evaluate. T1 is unchanged in shape | **Define "gate-blocked"**, which the paper never does; and redesign §6's six *ill-typed* probes as **gate-blocked** probes, since ill-typed claims are no longer `Refused`'s trigger — **if all six probes can be so re-specified, which cannot be checked until "gate-blocked" is defined** |
+
+**R3 is the repair this paper's own cited doctrine points at.** The corpus
+quotations above say `Refused` is a **routing act the router performs** — which
+requires the router to reach the claim, hence requires the claim to be *in* the
+domain. R1 and R2 both treat `Refused` as a verdict *about membership*; only R3
+treats it as the corpus does, as a refusal issued *inside* the evaluation. Under
+R3 `Refused` is **neither out of domain nor identically zero**, and §6's total
+need not drop: the six probes would be re-specified rather than removed — **if
+all six admit such a re-specification, which cannot be checked until
+"gate-blocked" is defined.**
+
+**None of the three is adopted here.** Choosing is **`PL-WDP007-2`**, restated this
+pass to carry it — no new id is minted, because fixing
+$\mathrm{Ev}_{\mathcal{O}}$'s domain *is* the act `PL-WDP007-2` already demands
+("fix a concrete $\mathcal{L}_{\mathcal{O}}$ and a concrete
+$\mathrm{Ev}_{\mathcal{O}}$").
+
+*Method note, recorded against this pass's own reasoning.* This table listed
+**two** repairs and called them *"both available"*, which asserted exhaustiveness
+over a repair space no one had enumerated. WD-5 was blocked at exactly this
+shape — an R1/R2 dichotomy presented as exhaustive with a third repair missing.
+A two-option repair table is a defect smell, and three options are not a proof of
+exhaustiveness either: **no claim is made that R1–R3 exhaust the repair space.**
+
+**(ii) T1's "Equivalently" is not an equivalence, and one reading of it is a
+definition wearing a theorem.** ``OPEN`` — `WDP007-C22`. T1 states the routing
+property and then says *"Equivalently: $\mathrm{Ev}_{\mathcal{O}}$ is total and
+single-valued, and $\mathrm{Status}$ is exhaustive and mutually exclusive."* Read
+one way this is empty: a **function** into $\mathrm{Status}$ is total and
+single-valued *by definition of function*, and "mutually exclusive" is the same
+fact restated, so the sentence asserts nothing beyond §3.4's declaration. Read
+the other way — "exhaustive" as **every status is attained** (surjectivity) and
+"mutually exclusive" as **the independent characterizations of the five statuses
+do not overlap** — it is a substantive and different claim, and by (i) its
+surjectivity half is **unestablished, and false under R2**. *Corrected this pass:*
+this read "**false as the paper stands**", which overstated (i): (i) excludes two
+of `Refused`'s three triggers and leaves the third undetermined, so surjectivity
+is not shown to fail — it is not shown to hold. Under **R2** it is outright false
+(`Refused` is deleted); under **R3** it may well hold. The word "Equivalently"
+conceals the choice. This is the corpus's most common self-deception in its
+standard habitat, and the hygiene standard names it explicitly: *a definition
+presented as a theorem*. The same defect recurs in **T2.1**, whose clause *"a
+`Proved` receipt is a derivation and a `Refuted` receipt is a counter-witness"*
+is §3.3's table restated; only *"the two are never simultaneously constructible"*
+carries content.
+
+**(iii) `Underdetermined` and `OutsideProfile` are not shown disjoint, and T4
+supplies a reason to expect they are not.** ``OPEN`` — `WDP007-C23`. §3.3 calls the
+distinction *"the paper's technical core"* and warns that collapsing them makes
+T1 *"true and worthless"*. But compare **§3.3's printed `Underdetermined` receipt
+against T4's printed conclusion about `OutsideProfile` claims** — the two are not
+both receipts, and the asymmetry is the point:
+
+* `Underdetermined`, **receipt** (§3.3): *two admissible extensions of the
+  **evidence base** disagreeing on the claim*;
+
+* `OutsideProfile`, **T4's conclusion** (§4 T4 — *not* its receipt, which §3.3
+  states separately as *"a proof that no context action in $C_{\mathcal{O}}$
+  separates the claim's truth conditions"*): *two admissible extensions $W^{+},
+  W^{-}$ of the **observer-relative world**, both consistent with every receipt
+  issued, disagreeing on the claim*.
+
+*Corrected this pass:* this lead-in read *"compare the two **receipts** as
+printed"*, which mis-described the second item — it is T4's conclusion, not
+`OutsideProfile`'s receipt. The finding is unaffected and arguably sharpened: T4
+attaches an `Underdetermined`-**shaped** object to every `OutsideProfile` claim,
+which is what threatens disjointness, and it does so without either receipt being
+restated. These are the same shape. Mutual exclusivity therefore rests entirely on the
+distinction between *extending the evidence base* and *extending
+$W_{\mathcal{O}}$* — and **the paper defines neither notion of admissible
+extension anywhere**. As stated, T4 says every `OutsideProfile` claim carries an
+`Underdetermined`-shaped receipt one level up. Until the two extension relations
+are defined and separated, the disjointness half of T1 is not merely unproved: it
+has a candidate counterexample built from the paper's own T4.
+
+*The sibling papers already treat this as the hard part.* WD-3's five-class
+disagreement taxonomy (D1–D5) is typed **`[DEFINITION]`** with *"exhaustiveness
+is **not** assumed"*, its mutual exclusivity `[CONJECTURE]`, a **suspected D2/D3
+overlap** recorded, and obligation `PL-WD3-5` opened to resolve it. WD-7 asserts
+for five statuses what its immediate upstream declined to assume for five
+classes, and does not say why it may.
+
+**(iv) An exhaustiveness claim is the programme's known failure shape.** WD-0's
+T4 — the injection classification — records that *"the exhaustiveness claim is
+unprovable and T4 must be weakened to a classification of **known** injections"*
+(`PL-WD0-4`). T1's "$\mathrm{Status}$ is exhaustive" is an exhaustiveness claim of
+exactly that form, and `PL-WDP007-1` routes WD-7's imports onto a list whose own
+exhaustiveness is ``OPEN`` upstream. The paper should state the weakened fallback
+in advance, as WD-0 does, rather than discover it under audit.
+
+### T1 — Relative completeness (routing)
+
+For every $\varphi \in \mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$, the evaluation
+$\mathrm{Ev}_{\mathcal{O}}(\varphi)$ is defined and returns exactly one element of
+$\mathrm{Status}$ together with a receipt of that status's declared type.
+
+*Claim type:* ``OPEN`` — `WDP007-C2`, `WDP007-C3`; `PL-WDP007-2`.
+
+~~Equivalently:~~ **Not equivalently** — see §4.0(ii), which finds this sentence
+either empty or a different claim, and does not choose:
+$\mathrm{Ev}_{\mathcal{O}}$ is total and single-valued, and
+$\mathrm{Status}$ is exhaustive and mutually exclusive on
+$\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$.
+
+**In-corpus prior art the drafter must consume, not re-derive.** `[STANDARD + citation]`
+— `WDP007-C24`.
+
+* **`TERM-DISJ-001`** (`qm_092_qm_typed_authority_boundary_suite`, encyclopedia
+  `ENC-1064`, typed `[PROVEN] (decidable classifier)`). **Statement-level
+  correction, 2026-07-21 (Stage-3 blocker repair): this bullet previously read
+  "already proves exhaustiveness *and* pairwise disjointness for a
+  four-constructor terminal enum". Both halves are false. The error came from
+  re-resolving the module *name* without reading its *statements*.**
+  Mechanized in Lean module **`OmegaCosmology.Primitives.TerminalDisjointness`**
+  (library `OmegaCosmology`; declarations sit in namespace **`OmegaCore.QM`**, not
+  `OmegaCosmology`); textually `sorry`-free with `#print axioms` emitted. What the
+  module actually contains, read at source:
+
+  * **Pairwise disjointness is 3 of 6.** Only `terminal_disjoint_exact_survivor`,
+    `terminal_disjoint_exact_open`, and `terminal_disjoint_exact_refusal` are
+    proved — `exactRepair` against each of the other three constructors. The
+    remaining three pairs (`stabilizedSurvivor`/`openObstruction`,
+    `stabilizedSurvivor`/`refusal`, `openObstruction`/`refusal`) **are proved
+    nowhere in the tree.** The enum derives `DecidableEq`, so each is one `decide`
+    away; the point is that the work is **not done** and this paper cited it as
+    though it were.
+
+  * **`classify_unique` is not exhaustiveness.** Its statement is
+    $\exists t.\; \mathrm{Tri}(x) = t \wedge \forall y.\; \mathrm{Tri}(x) = y \to y = t$
+    and its proof is `Exists.intro (Tri x) (And.intro rfl (fun _ h => h.symm))` —
+    **single-valuedness of a function, true of any function whatever**, with no
+    dependence on `Terminal` having four constructors or any. It does not assert
+    that every constructor is attained, which is what "exhaustive" would mean.
+
+  * The displayed $\forall x.\; \lvert\{t \mid \mathrm{Tri}(x) = t\}\rvert = 1$ is
+    therefore the **cardinality-one** reading — a restatement of functionhood —
+    not the exhaustive-and-disjoint reading T1 needs. This is exactly the
+    definition-wearing-a-theorem defect §4.0(ii) diagnoses in T1's own
+    "Equivalently", now found in the Lean this paper offered as T1's target shape.
+  **Two cautions carried with it:** QM_092 itself fences that the enum theorem
+  *"does not license a direct conversion from obstruction diagnostics to a current
+  GtocTerminal or AuthorityStatus"*; and the corpus red-team file
+  `reviews/gtoc_gtla_red_024.md` raises **"P1-4. `classify_unique` oversold"**.
+  Cite it as the shape T1 must reach, and read the objection first —
+  **but note that the file is no longer in the tree** (§5a): it was deleted with
+  the rest of `research/published/reviews/` by `0f12e92f8` (#1215) and survives
+  only in git history.
+
+* **GTLA `math_spine.md` Theorem VII.2** proves a **six**-status terminalization
+  decidable by an ordered first-match pipeline, typed `[PROVED]`, with the fence
+  *"Decidability is verifier-scoped, not semantic"* — which is precisely T1's
+  "routed, not decided" distinction, already stated and already proved for a
+  different status set.
+
+*The module is cited by name because the encyclopedia's `lean_refs` filesystem
+paths are stale after the `00N_programme/` reorganization — **and the scale,
+stated numerically 2026-07-21 (Stage-3 blocker repair) because this paper gives
+exact figures for everything else and gave only a qualitative claim here: of the
+entries this paper cites, 20 carry `lean_refs` paths, totalling 22 paths, of
+which 20 are dead (90.9%), and 18 of the 20 entries have every path dead. Every
+dead path's leaf file still exists — it is pure `00N_` path rot, not deletion.**
+Module names survived it better than paths did. **Not perfectly** — corrected 2026-07-21 (cycle 3) from
+"module names are stable, paths are not": the same reorganization deleted the
+library `Paper043`, whose module this paper cited in §5 until this pass (§5a). A
+module name is the better anchor; `PL-WDP007-14` requires it to carry the revision
+at which it resolved.*
+
+### T2 — Soundness and non-triviality
+
+1. **Soundness.** No claim receives both `Proved` and `Refuted` under any
+   admissible extension of the evidence base; a `Proved` receipt is a derivation
+   and a `Refuted` receipt is a counter-witness, and the two are never
+   simultaneously constructible.
+
+2. **Non-triviality (the anti-vacuity condition).** `Refused` and
+   `OutsideProfile` are independently characterized by conditions stated *before*
+   the evaluation is defined, and the fraction of $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$
+   they absorb is bounded and reported.
+
+*Claim type:* T2.1 ``OPEN`` — `WDP007-C4`; T2.2 ``OPEN`` — `WDP007-C5`; `PL-WDP007-3`.
+Note that T2.1's second clause is §3.3's definition restated (§4.0(ii)); its
+content is the non-constructibility conjunct only. Note also that T2.1 quantifies
+over *"any admissible extension of the evidence base"* while its own falsifier
+(§10, `WD7-F2`) quantifies over *"one admissible evidence base"* — see §10.
+
+**T2.2 is not decoration.** A status set containing a catch-all makes T1 provable
+by routing every difficult claim to the catch-all. The paper is worthless without
+a prior, independent characterization of the two boundary statuses. This is
+tracked as the programme's real research risk (`WD7-L4`).
+
+**The corpus has already stated T2.2's condition, proved a version of it, and
+caught a live instance of its failure. None of this is cited.** `[STANDARD + citation]`
+— `WDP007-C25`.
+
+* **GTLA `math_spine.md` Theorem VII.1** distinguishes an ordering condition
+  $(D_{\mathrm{ord}})$ from a defaulting condition $(D_{\mathrm{def}})$ and states
+  the exact hazard T2.2 names: *"a table whose universal fallback is the
+  certificate satisfies [$D_{\mathrm{ord}}$] yet certifies by default (the
+  forbidden 'promote fallback to authority'); only $(D_{\mathrm{def}})$ closes
+  that."* T2.2 is the same condition on a status set rather than a certificate
+  table, and $(D_{\mathrm{def}})$ is the formulation to adapt.
+
+* **WD-3's T2 gluing target** carries the sibling form of the same rule: *"A
+  gluing theorem with no exhibited failure case is decoration"*, with `WD3-C5`
+  typed ``OPEN`` and marked **"vacuous unless a non-gluing example is
+  exhibited"**. §6.3's adversarial requirement below is WD-3's rule inherited;
+  say so.
+
+* **The failure mode has fired in this corpus already.** Red-team file
+  `reviews/gtoc_gtla_red_041.md` — **deleted from the tree by `0f12e92f8` (#1215)
+  and recoverable only from git history** (§5a) — records *"Trichotomy Case 3 (`OpenObstruction`,
+  $\Gamma_2 > 0$) is **structurally unreachable** in every packet the paper
+  constructs"* — a status class empty by construction, found by audit rather than
+  by the authoring paper. That is `WD7-L4` realized, and it is the reason the
+  vacuity indicator must be a **precondition of shipping**, not a reported number.
+
+* **A mechanized non-vacuity witness pattern exists** — `gt_tower_master_design.md`
+  records GTFOC-L20A (`ENC-0058`) as *"5 theorems + a 3-class non-vacuity `decide`
+  witness"*, sorry-free and axiom-free. `PL-WDP007-7` should target that shape.
+
+### T3 — Inter-observer descent
+
+Let $\mathcal{O}_1, \mathcal{O}_2$ be observers with a nonempty shared subgrammar
+$\mathcal{L}_{12} \subseteq \mathcal{L}_{\mathcal{O}_1} \cap \mathcal{L}_{\mathcal{O}_2}$
+in the sense of WD-3. If the two evaluations agree on $\mathcal{L}_{12}$ and a
+cocycle condition holds on triple overlaps, then there is a unique glued
+evaluation on the joint grammar $\mathcal{L}_{\mathcal{O}_1} \vee
+\mathcal{L}_{\mathcal{O}_2}$ restricting to each.
+
+The obstruction to gluing over an observer family $\{\mathcal{O}_i\}_{i \in I}$ is
+a class
+
+$$
+\omega \;\in\; H^{1}\!\left(\mathcal{N}(\{\mathcal{O}_i\}),\, \underline{\mathrm{Status}}\right)
+$$
+
+in the first cohomology of the nerve of the observer cover with the status sheaf
+as coefficients, and gluing succeeds iff $\omega = 0$.
+
+*Claim type:* ``OPEN`` — `WDP007-C6`, `WDP007-C7`; `PL-WDP007-4`. Non-claim `WD7-N10`
+(the observer family is not asserted to cover anything) is load-bearing here.
+
+**Honesty note for the drafter.** The coefficient object $\underline{\mathrm{Status}}$
+must be shown to be a sheaf (or the statement must be weakened to a presheaf
+obstruction with an explicit sheafification cost). This is not free, and
+asserting it is the most likely place for a silent import. Tracked as `PL-WDP007-4`.
+
+**Producer-pass additions to that note — three of them sharpen it, and one is a
+standing corpus objection to precisely this move.** `[STANDARD + citation]` —
+`WDP007-C26`.
+
+1. **The upstream apparatus is WD-3's, and T3 must be stated as consuming it.**
+   WD-3's T2 already gives $(\phi_i)_{i \in I}$ glues uniquely $\iff
+   \mathrm{ObsDesc}^{1}(D,\phi_\bullet) = 0$, with sub-targets (a) separated
+   presheaf, (b) **sheaf iff a stated grammar condition**, (c)
+   $\mathrm{ObsDesc}^{1}$ finite and computable from receipts — typed
+   `[OPEN → WD3-C4]`, `[OPEN → WD3-C5]`, `[OPEN → WD3-C6]` respectively. WD-3
+   also records that *"the descent apparatus itself — matching families,
+   separated presheaves, coverage — is imported `[STANDARD]`; only the
+   observer-packet site is new."* **WD-7's `PL-WDP007-4` is therefore not a fresh
+   problem but WD-3's `WD3-C5` restated one layer up**, and the two must not be
+   discharged independently or counted twice. WD-3 §12 states the hand-off in
+   terms: it gives WD-7 *"its exact machinery and its exact fence."*
+
+2. **A finite nerve is admissible only if priced exactly as `059` prices it.**
+   `008_space_and_extension` §3.2 builds a *declared-cover nerve* and fences
+   it: *"This is the finite Čech/nerve construction. The word 'Čech' imports no
+   continuum and no sheaf theorem."* Its own comparison and convergence questions
+   are `[OPEN / OracleNeeded]` (`P9-C8`, `PL-GTOC-30`; Lean obligation
+   `PL-GTOC-29` **OPEN / NOT-STARTED**). WD-7 must copy that fence, not the
+   vocabulary alone.
+
+3. **The corpus has a standing red-team refusal of asserting $\check{H}^1$ as
+   *the* obstruction measure.** `reviews/gtoc_gtla_red_040g.md` **P0-2** — **deleted
+   from the tree by `0f12e92f8` (#1215), git history only** (§5a) — *"Čech
+   cohomology requires a site, a cover, restriction maps, and a gluing axiom — a
+   **prior host**"*, with the prescribed fix being to fence at the point of use.
+   T3 as written asserts the class first and prices the site afterwards, which is
+   the order the objection forbids.
+
+4. **There is no mechanized nerve to build on.** A sweep of all $583$ `.lean`
+   files in `omega_engine/lean4/` finds **no Čech complex, no nerve
+   construction, and no presheaf** anywhere in the tree. *Stated substantively
+   this pass:* the earlier lexical form ("zero hits for `Čech`/`Cech`,
+   `nerve`, `presheaf`") was **false** — `Cech` appears once in a **disclaimer**
+   comment, `nerve` twice in comments describing a *declared* nerve, and
+   `Presheaf` three times inside a paper-title string. None constructs anything;
+   see §5's table. The nearest mechanized gluing is
+   **`PaperAF000.L011_07_EdgeCoverGluing`** (library `PaperAF000`, namespace
+   `PaperAF000`), which carries `DeclaredFiniteEdgeCover`, `EdgePairCompatible`,
+   `EdgeTripleCompatible`, `edge_pair_compatibility_glues_global_section`, and
+   `exists_edge_cover_local_green_global_red`; and
+   **`PaperAF000.L011_08_SubgraphCoverSheaf`**, carrying `SubgraphCoverAtlas`,
+   `subgraph_pair_compatibility_glues_global_section`, and
+   `subgraph_global_section_iff_pair_compatible`. Both are textually
+   `sorry`-free with `#print axioms` emitted. **Neither builds a nerve or a
+   sheaf**; they establish gluing from pairwise compatibility on a *declared
+   finite cover*, which is the honest weakening `PL-WDP007-4` should consider before
+   attempting the sheaf. `PaperAE006.L025_32_SheafAnalogyNotEquivalence` exists
+   specifically to disclaim the sheaf analogy and should be read first.
+
+   **Correction, 2026-07-21 (Stage-3 blocker repair): `EdgeTripleCompatible` was
+   bolded above as *"the triple-overlap cocycle condition T3 needs"*. It is
+   defined but load-bearing for nothing.** Read at source: it feeds only
+   `EdgeCoverGluingClosed` → `EdgeCoverAccept`, and otherwise appears in a single
+   definitional `Iff.rfl` (`subgraph_d1_residual_iff_triple_compatible`). **Every
+   gluing theorem consumes `hAccept.1.1` — the *pairwise* conjunct**; no theorem
+   takes the triple-overlap condition as a hypothesis. **T3's cocycle condition
+   therefore has no mechanized antecedent anywhere, including in the module named
+   here as nearest**, and `PL-WDP007-4` must not read this module as supplying one.
+
+### T4 — Boundary non-collapse (independence of the outside)
+
+Let $\varphi$ be a claim with $\mathrm{Ev}_{\mathcal{O}}(\varphi) =
+\texttt{OutsideProfile}$. Then there exist two admissible extensions
+$W^{+} \supseteq W_{\mathcal{O}}$ and $W^{-} \supseteq W_{\mathcal{O}}$ of the
+observer-relative world, both consistent with $\mathrm{Ev}_{\mathcal{O}}$ and with
+every receipt it has issued, such that $\varphi$ is witnessed in $W^{+}$ and
+refuted in $W^{-}$.
+
+**Consequence, and the point of the paper.** From
+$\mathrm{Ev}_{\mathcal{O}}(\varphi) = \texttt{OutsideProfile}$ one may derive
+neither "$\varphi$ holds" nor "$\varphi$ fails". In particular, "we cannot
+witness an outside" licenses **neither** "there is an outside" **nor** "there is
+no outside".
+
+*Claim type:* `[CONJECTURE]` — `WDP007-C8`, `WDP007-C9`; `PL-WDP007-5`. **No proof and no
+strategy exists** (§5), so every sentence in this paper that calls T4 a theorem
+is an overclaim; five such sentences were found and repaired this pass.
+
+T4 is the **intended** formal counterpart of programme stop condition 7.
+*Corrected this pass:* this read "T4 **is** the formal statement of programme stop
+condition 7", which asserts both that T4 holds and that it captures the stop
+condition. Neither is established. Note further that the two are not the same
+shape: stop condition 7 says that treating unwitnessed as nonexistent leaves *"the
+absolute cosmological conclusion **unsupported**"* — a claim about warrant — while
+T4 asserts **underivability inside the declared system**. Underivability is
+stronger and does not follow from unsupportedness; the drafter owes the bridge or
+a weaker phrasing. Treating `OutsideProfile` or `Unwitnessed` as `Refuted`
+remains a category error, and it remains the single most likely failure mode of
+this paper.
+
+**`OutsideProfile` has an older corpus name and a `[PROVED-PROSE]`
+antecedent, neither cited.** `[STANDARD + citation]` — `WDP007-C27`.
+The CODA-OR theorem ledger carries **GTOR-9**: $\neg\mathcal{R}(x)\!\downarrow
+\Rightarrow \mathsf{Unrepresented}(x) \Rightarrow \neg\mathsf{Auth}(x)$, typed
+**`[PROVED-PROSE]`** at source over the declared Kleisli
+pipeline $\Pi^{\sharp}$.
+
+*Corrected in the 2026-07-21 cycle-2 repair pass — this was a promotion of a
+cited antecedent's typing.* GTOR-9 was typed **`[PROVEN, CONDITIONAL]`** at five
+sites across this paper and its Claim Ledger. **At source it is
+`PROVED-PROSE`:** `001_gtoc_gtla/coda_or/theorem_ledger.md` types the GTOR-9 row
+`PROVED-PROSE` and contains **no occurrence of the string "PROVEN"** anywhere;
+its claim-typing table types `C16–C19` (which covers GTOR-9's row `C19`)
+`PROVED-PROSE`; and `ENC-0491`'s front matter reads `status: PROVED-PROSE` with
+**`conditional_on: []`**, so the *"CONDITIONAL"* qualifier was unsourced as well.
+This paper's own §9b already said `PROVED-PROSE`, so the document contradicted
+itself. **Provenance, recorded because it is where the error came from and not
+because it excuses it:** the `[PROVEN, CONDITIONAL]` form survives in
+`coda_or/_archive/996_gtor_claim_ledger.md` (`status: v001.1`), an **archived**
+companion superseded by the live theorem ledger. Citing an archived typing over a
+live one, in the promoting direction, is exactly what `WD7-N16` exists to
+prevent. GTLA's paper states the narrowest defensible form: *"If
+$\mathcal{R}(x)\uparrow$, terminalization returns typed refusal
+$\mathsf{Unrepresented}(x)$, which cannot be promoted to authority under the
+declared assumptions."* **This is not T4** — it establishes
+*non-authorization* from unrepresentedness, which is a statement about promotion,
+whereas T4 claims *non-derivability of the claim or its negation*, a statement
+about the object language. The distinction is exactly the one the programme keeps
+insisting on, and the paper is stronger for drawing it than for omitting the
+neighbour. `WD7-N16` records that no priority over GTOR-9 is claimed.
+
+**The nearest mechanized precedent for T4's method** is
+**`QM.BornQuadraticCountermodel`** (library `QM`, namespace
+`QM.BornQuadraticCountermodel`; `sorry`-free, `#print axioms` emitted), which
+exhibits two distinct normalized rules on one witness — `powProb` and
+`bornProb` — and concludes `born_not_forced_by_normalization`. That is a genuine
+two-model non-selection construction of the shape `PL-WDP007-5` needs. **It is a
+method precedent only:** a sweep of all $583$ `.lean` files finds **no** two-model
+*non-discharge* theorem, and the published corpus contains no completed
+independence result of T4's form. T4 would be the first, which is a reason for
+more caution and not less.
+
+### T5 — Late-observer constraint (construction order)
+
+Let $\mathrm{ord}(\cdot)$ be the constructor depth in the WD-1/WD-2 construction
+order. Then any structure satisfying the **O3** axioms of WD-5 (its A1–A4) has
+
+$$
+\mathrm{ord}(\mathcal{O}_{\mathrm{O3}}) \;>\; \mathrm{ord}(H_{\mathcal{O}})
+\;>\; \mathrm{ord}(\text{retention constructor}) \;>\; 0,
+$$
+
+so no O3 observer occurs at constructor depth $0$.
+
+*Claim type:* ``OPEN`` — `WDP007-C10`; `PL-WDP007-6`.
+
+**Correction this pass — the O4 half of this target was unearned, twice.** The
+statement read *"any structure satisfying the **O3/O4** axioms of WD-5"* and
+concluded *"no O3 **or O4** observer occurs at constructor depth $0$"*. Two
+defects:
+
+1. **WD-5 supplies no O4 axioms.** A search of WD-5 for an axiom attached to O4
+   returns nothing, and the programme charter §5 states for the O4 row that *no
+   mathematical bridge is supplied*. There is nothing to satisfy, so the
+   hypothesis "satisfying the O4 axioms" has no referent.
+
+2. **The displayed inequality never mentions O4.** It orders
+   $\mathcal{O}_{\mathrm{O3}}$ only. Extending the conclusion to O4 asserts a
+   constructor depth for **conscious subjects**, which is the one thing stop
+   condition 6 exists to prevent this programme from asserting *in either
+   direction* — and it did so in the paper's own theorem statement, not in a
+   fenced section.
+
+   This is also a **cross-file inconsistency the paper did not catch**: the Claim
+   Ledger's `WDP007-C10`, support lemma `WD7-L7`, and falsifier `WD7-F5` all say
+   **"the WD-5 O3 axioms"** and are correct; only the paper's §4 T5 and §7 table
+   said "O3/O4", and the Claim Ledger's §5 *Consumes* paragraph said it too.
+   Three sites corrected, in two files.
+
+**Reading, and the contrast the paper must state explicitly.** What the theory
+*can* say is that observer-indexed world-*presentations* become possible, stable,
+comparable, and — conditionally, per WD-6 — sometimes quantum. What the theory
+**must not** say is that a human mind manufactures an external universe.
+
+**What T5 does and does not foreclose — stated precisely, because the paper
+previously overstated it.** T5's content is *no O3 observer at constructor depth
+$0$*. That forecloses the **root-primitive** reading: the observer is not the
+base from which the construction proceeds. It does **not** foreclose the claim
+that some late-arising observer manufactures an external universe, because T5
+says nothing about what a structure at positive depth can do. The paper's
+non-claim `WD7-N6` is therefore **not** discharged by T5 alone.
+
+**The unpriced import in this paragraph, now named.** `[INTERPRETIVE]` —
+`WDP007-C28`; boundary cost recorded at `WD7-L9`. The sentence that carries the
+foreclosure is *"Humans require biology, memory, time, embodiment, and a world
+rich enough to support them"*. **Every term in it is an empirical import that
+this programme has not constructed and, in three cases, has explicitly refused:**
+
+| Imported term | Status in this corpus |
+|---|---|
+| biology | Never constructed at any degree; not on any ladder |
+| memory | Nearest constructed object is WD-1's retention constructor; *retention is not memory*, and the identification is unmade |
+| time | `001_time` **REFUSES** index / numeral / sequence-position as an import ("would be circular"); charter stop condition 10, *iteration is not time* |
+| embodiment | **Corrected 2026-07-21 (cycle 3):** `060` is now `009_gtoc_ground_up/009_embodiment`, and it is **not an outline** — it is a drafted paper (v0.1.1) supplying an *operational* classification of embodiment (four receipt-gated modes: embodied, embedded, enacted, extended). It explicitly derives **no** body ontology, agency, or physical observer, so it does **not** supply the empirical sense this fence imports — but it is live prior art and `PL-WDP007-1` must consume it rather than record a gap |
+| "a world rich enough to support them" | An informal richness ordering on worlds; no such order is defined anywhere in this paper or its antecedents |
+
+The programme's own rule is that an unpriced import is the defect, whichever
+direction it points. **A paper whose thesis is that nothing enters unpriced
+cannot buy its central anti-idealist fence with five unpriced empirical terms.**
+Two honest repairs are available and neither is taken here: state the sentence as
+an explicitly `[INTERPRETIVE]` appeal to ordinary knowledge about humans, marked
+as *outside* the formal system and load-bearing for nothing; or drop it and let
+`WD7-N6` rest on the weaker, earned foreclosure above. Choosing is
+**`PL-WDP007-1`**, restated this pass to cover **prose** imports as well as the five
+components of $W_{\mathcal{O}}$ — it is already this paper's import-ledger
+obligation, and an unpriced import in a load-bearing paragraph is exactly what an
+import ledger is for. No new id is minted.
+
+*What is genuinely absent, and should stay absent — stated substantively, not
+lexically.* **No physical-cosmology object is imported anywhere in this paper:**
+no Big Bang, no manifold, no metric, no light cone, no entropy, no energy, no
+initial condition, no measure-theoretic object, no time parameter, and no causal
+structure. **`spacetime` is never used argumentatively**: where the paper's own
+argument names it, it names it in the §11 non-claim box **as a refusal**, and
+every other appearance is audit commentary about that refusal. That is the
+correct state and the draft must preserve it.
+
+*Corrected across two repair passes — the claim above was previously lexical and
+self-invalidating.* It read *"A sweep of this paper finds **zero** occurrences of
+[the ten terms]"* and *"`spacetime` occurs **once**"*. Both were true of the
+paper when computed and **false of the paper that shipped them**: the asserting
+sentence contains one of each of the ten terms and a second of `spacetime`, so
+the claim was invalidated by the act of making it. **`measure` additionally
+carries a legitimate non-physics sense here — *"obstruction measure"* (§4 T3, §9a)
+and *"depth measure"* (§4 T5) — which a lexical null would have to score as
+violations and a substantive one correctly does not.** *Cycle 2 removed the
+residual counts from this paragraph (**"once"**, **"three times"**) under the
+strengthened rule of §4.0(i): a substantive statement about what the paper
+imports needs no tally of how often the audit says the word.* The substantive
+form is what was meant, it is what a reader needs, and it cannot self-invalidate.
+`WD7-N20` is corrected to match.
+
+*Terminology note.* **No prior published work defines $\mathrm{ord}(\cdot)$, and
+none uses "constructor depth" or "late instances of observer structure" — the
+vocabulary and the function are both introduced here.** *(Stated substantively
+2026-07-21, cycle 2; the earlier "occur only in this paper" was a lexical claim
+about this document.)* A sweep of all $583$ `.lean` files
+returns zero hits for `constructorDepth`, `construction order`, and
+`WellFounded` — **there is no well-founded depth measure anywhere in the Lean
+tree**. *Corrected this pass:* `termination_by` was listed as a zero and is
+**not** — it occurs once, in a **prose comment** in module `OmegaCore.IX_Rewrite`
+proposing a route (*"replace `partial normalize` with a well-founded version
+`termination_by (w.length, inversions w)`"*). That is a proposal, not a
+definition, so the substantive claim stands and the lexical one did not.
+T5's ordering is therefore a fresh definition, and `PL-WDP007-6`
+correctly demands it be proved against *actual* WD-1/WD-2 constructor
+definitions rather than a sketch. The nearest published antecedents are the
+charter's Track-S ladder $S_0 \dots S_6$ and the $\delta_0/\delta_1/\delta_2$
+degree ladder of the `009_gtoc_ground_up` series — both **orderings of stages,
+not depth functions on objects**, so neither supplies $\mathrm{ord}$.
+
+5. Proof strategy — three independent levels
+
+
+The methodological claim is the same as WD-0's: establish the statement three
+ways, and treat agreement between the three as evidence.
+
+| Level | Instrument | Purpose |
+|---|---|---|
+| L1 | Prose proof over a finitely presented $\mathcal{L}_{\mathcal{O}}$ with an explicit evaluation algorithm | Human-checkable; establishes T1, T2, T5 by structural induction on claim depth |
+| L2 | Lean 4 development: status set as an inductive type, $\mathrm{Ev}_{\mathcal{O}}$ as a total function, T1 as totality plus a decidable-eq disjointness lemma | Mechanized; the totality obligation cannot be waved past a type checker |
+| L3 | Executable evaluator run on the §6 finite system, reporting status counts and descent obstructions | Empirical; produces the reproducible numbers |
+
+**L2 placement.** Per repository convention any Lean development belongs under
+`omega_engine/lean4/` and nowhere else.
+
+**Heading count, corrected this pass.** The heading says *three* independent
+levels; the section then requires a fourth instrument for T4 and a fifth for T3.
+Five instruments are needed, and the heading undercounts them. The count is left
+in the heading with this note rather than silently changed, because which
+instruments are *independent* is itself unsettled — see the next paragraph.
+
+**Independence caveat.** L2 mechanizes the statement L1 proves and L3 runs the
+algorithm L1 describes, so agreement among L1–L3 is not three independent
+confirmations of a mathematical fact; it is one argument checked in three
+notations. WD-0's own table is more careful, describing its L2 as a guard *"against
+a definitional slip in L1"* rather than as an independent witness. The drafted
+paper should adopt WD-0's weaker framing. `[INTERPRETIVE]` — `WDP007-C29`.
+
+**Verified Lean scaffolding for L2 — modules that exist, cited by module name.**
+`[STANDARD + citation]` — `WDP007-C30`. A sweep of all $583$ `.lean` files under
+`omega_engine/lean4/` establishes that **T1's routing shape is already
+mechanized for other status sets, and T3's is not mechanized at all**:
+
+| Module (library) | What it supplies | Relevance |
+|---|---|---|
+| `PaperER007.L007_08_TerminalizerPolicy` (`PaperER007`, ns `PaperER007`) | **Substantive:** `certificate_implies_every_gate`, `refusal_rows_preempt_certificate`, `repair_rows_preempt_certificate`, **`refusal_or_repair_preempts_certificate`**; also `inductive ValidatorReport`, `validator_report_exhaustive`, `instance : Fintype ValidatorReport`, `terminalize`. **Vacuous, and disclosed as such:** `terminalizer_total` is `⟨terminalize report, rfl⟩` and `terminalizer_deterministic` is `rw [← hLeft, ← hRight]` | **Corrected 2026-07-21 (Stage-3 blocker repair).** This row read *"the cleanest existing **total, deterministic routing map over a finite report type** — T1's exact shape"*, resting on the two theorems that carry **no content**: both are true of *any* total function, exactly as §4.0(ii) says of T1's own "Equivalently". **The module's value for this paper is the four preemption theorems**, which say a certificate cannot be emitted unless every gate holds and that refusal/repair rows **preempt** it — the no-default-certification shape GTLA Thm VII.1's $(D_{\mathrm{def}})$ states and **T2.2** needs. `sorry`-free, `#print axioms` emitted. *Also re-resolved cycle 3 from `Paper043.L043_08_TerminalizerPolicy` (§5a)* |
+| `OmegaCosmology.Primitives.TerminalDisjointness` (`OmegaCosmology`, ns **`OmegaCore.QM`**) | `inductive Terminal` (4 constructors, `DecidableEq`); `terminal_disjoint_exact_{survivor,open,refusal}`; `classify_unique` | **Corrected 2026-07-21 (Stage-3 blocker repair)** from *"T1's disjointness half"*. Pairwise disjointness is **3 of 6** — only `exactRepair` against the other three; the other three pairs are proved **nowhere in the tree**. `classify_unique` is **single-valuedness of a function**, provable for any function, **not** exhaustiveness. See §4 T1. `sorry`-free, `#print axioms` emitted |
+| `PaperQF005.L042_31_SemanticTotality` (`PaperQF005`, ns **`PaperQF005.SemanticTotality`** — *corrected 2026-07-21 from `PaperQF005`*) | `semanticTerminalize_total` and two declared-domain variants | A second totality precedent — and, being a totality claim, subject to the same vacuity question as `terminalizer_total`; **its statements were not read this pass** and no content claim is made for it. `sorry`-free; **no `#print axioms` in-file** |
+| `PaperAF000.L011_07_EdgeCoverGluing`, `PaperAF000.L011_08_SubgraphCoverSheaf` (`PaperAF000`) | `EdgePairCompatible`, `EdgeTripleCompatible`, `*_glues_global_section`, `exists_*_local_green_global_red` | The nearest mechanized gluing work for T3 — over a **declared finite cover**, with no nerve and no sheaf. **Corrected 2026-07-21 (Stage-3 blocker repair): `EdgeTripleCompatible` is defined but load-bearing for nothing.** It feeds only `EdgeCoverGluingClosed` → `EdgeCoverAccept`, and appears once more in a definitional `Iff.rfl` (`subgraph_d1_residual_iff_triple_compatible`). **Every gluing theorem consumes `hAccept.1.1`, the *pairwise* conjunct**; none takes the triple-overlap condition as a hypothesis. So **T3's triple-overlap cocycle has no mechanized antecedent even here** — this row previously bolded it as *"the triple-overlap cocycle condition T3 needs"*. Both `sorry`-free with `#print axioms` |
+| `PaperFOC000.L000_06_FiniteObserverFamilyPoset` (`PaperFOC000`, **no namespace**) | `l000_Observer`, `l000_KernelLe`, `observer_kernel_preorder` | An observer refinement order — the raw material for $\mathcal{L}_{12}$. `sorry`-free, `#print axioms` emitted |
+| `QM.BornQuadraticCountermodel` (`QM`) | `born_not_forced_by_normalization` | The two-model method precedent for `PL-WDP007-5`. **Its statements were not read this pass**; the characterization carries forward at the confidence earlier passes recorded |
+| `PaperAF004` (declaration `toyVacuum_family_underdetermined`) | the mechanized *underdetermined* family verdict cited at `ENC-1093` | **Added 2026-07-21 (Stage-3 blocker repair) for symmetry.** The file is a single 462-line module carrying **zero `#print axioms`**, so **no axiom audit exists for it at any depth**. This paper discloses exactly that absence for `PaperQF005.L042_31_*` and did not for `PaperAF004`; both are now disclosed |
+
+**Negative results from the same sweep, recorded because they bound what L2 can
+claim — stated substantively, with the lexical hits that survive named.**
+**Nothing in T3, T4, T5, or §9.1 has any mechanized antecedent in this
+repository:** no presheaf, no Čech complex, no nerve construction, no
+well-founded depth measure, and no self-reference/diagonalization development
+exists anywhere in the tree. `PL-WDP007-8` should therefore be scoped to T1 and
+T2.1 only, as it already is — and no draft may imply a Lean basis for T3–T5.
+
+| Token | Case-sensitive hits | What the hits are |
+|---|---|---|
+| `OutsideProfile`, `constructorDepth`, `WellFounded`, `godel`/`löb`/`lawvere`/`self-reference` | **0** | genuinely absent |
+| `Underdetermined` (capitalised) | **0** | but lowercase `underdetermined` occurs **6 times in 3 files**, including the constructor `TerminalVerdict.underdetermined` and the theorem **`PaperAF004.toyVacuum_family_underdetermined`** — a real mechanized family verdict (`ENC-1093`). **The ground is occupied; only the capitalisation is free** |
+| `presheaf` | **0** | `Presheaf` occurs 3 times, each inside a *paper-title string in a comment* ("Banach Presheaf Coboundaries") — no presheaf is constructed |
+| `Čech` / `Cech` | **0** / **1** | the one `Cech` hit is a **disclaimer** comment in `PaperAE006.L025_26_GtfocComparisonDeclarations` (*"not a quotient/Cech/obstruction class"*) — no Čech complex is built |
+| `nerve` | **0** as a construction | 2 lowercase mentions in `OmegaCosmology/SymbolGame/*` comments describing a *declared* nerve; neither constructs one |
+| `termination_by` | **1** | a prose comment proposing a well-founded rewrite (module `OmegaCore.IX_Rewrite`); not a definition |
+
+*Corrected this pass:* the list above previously read *"Zero hits, tree-wide"*
+for every token, which is **false for four of them** — `Underdetermined`,
+`presheaf`, `Cech`, and `termination_by` — under a case-insensitive search. The
+substantive conclusion is unchanged and is now stated in the form that carries
+it. The `Underdetermined` row is the one that changes what a drafter should do:
+`PaperAF004` has a mechanized underdetermined verdict, so T1's `Underdetermined`
+must be positioned against `ENC-1093` rather than presented as unoccupied ground.
+
+*Caution carried from the sweep:* module paths and namespaces diverge in this
+tree. `OmegaCosmology.Primitives.*` declares into namespace `OmegaCore`;
+`PaperFOC000.*` declares into **no** namespace. Cite modules, never filesystem
+paths — the `00N_programme/` reorganization made the encyclopedia's `lean_refs`
+paths stale, and module names survived it **better**, not perfectly.
+*Corrected 2026-07-21 (cycle 3): this read "while module names stayed stable",
+which the same reorganization falsifies — `Paper043.L043_08_TerminalizerPolicy`,
+cited in the §5 table until this pass, **no longer exists**; the library is now
+`PaperER007` (§5a). Module names are the better anchor and are still not a
+stable one, which is why `PL-WDP007-14` requires a resolving revision rather than a
+citation form.*
+
+**T4 needs a fourth instrument.** T4 is an independence result and is not
+established by any of L1–L3. It requires an explicit **two-model construction**:
+build $W^{+}$ and $W^{-}$, and verify that $\mathrm{Ev}_{\mathcal{O}}$ and every
+issued receipt are invariant under passage to each. Until that construction
+exists, T4 is a conjecture and the paper's central boundary claim is unsupported.
+Tracked as `PL-WDP007-5`.
+
+**T3 needs a fifth.** The nerve cohomology computation must be carried out on at
+least the two-observer and three-observer cases of §6, with the cocycle checked
+by machine rather than asserted.
+
+5a — Producer-pass finding: the paper's external citations rot under corpus renames, and its own audit rule did not cover that
+
+``OPEN`` — `WDP007-C34`; **`PL-WDP007-14`** (net-new this pass). *Raised by the
+2026-07-21 cycle-3 `/paper-improver` pass, which re-resolved every external
+citation in these two files against the tree at revision `64d9e6371`.*
+
+**The shape.** §4.0(i) and the `PL-WDP007-9` audit rule forbid lexical counts *of
+this document* and permit nulls scoped to other named trees, on the stated
+ground that *"writing here cannot change them."* That ground is true and
+**insufficient**. Writing here cannot change another tree — but a **rename or
+deletion commit in that tree can**, and did. Between this paper's cycle-2 pass
+and this one the corpus was reorganized, and anchors that were correct when
+computed went false **without a single edit to this document**. This is a
+different failure from instances 1–8, which were self-invalidating; these are
+**corpus-invalidated**, and no rule in the paper covered them.
+
+*Two distinct findings live in this section and must not be merged.* The
+**corpus-invalidation** finding above is new in kind and is what `PL-WDP007-14`
+tracks. **Instance 9**, recorded in the verification note below, is *not* new in
+kind — it is an ordinary self-invalidating count of the 1–8 family, produced by
+this pass, and it belongs to `PL-WDP007-9`. Its lesson is narrower and sharper:
+`PL-WDP007-9`'s rule as written — *lexical counts of this document are not
+permitted at all* — **already forbade what this pass did**. The pass carved an
+exception for a supposedly stable class of self-count and was falsified by its
+own next edit. The rule needed no amendment; it needed obeying.
+
+**What was found, by re-resolving every citation.** Each row was checked against
+the tree, not against a previous pass's transcription.
+
+| Anchor as carried | State at `64d9e6371` | Disposition |
+|---|---|---|
+| Lean library/module `Paper043.L043_08_TerminalizerPolicy` | **Gone.** No `lean_lib «Paper043»` in `lakefile.lean` | Re-resolved to **`PaperER007.L007_08_TerminalizerPolicy`** (ns `PaperER007`, `srcDir` `008_engine_runtime`); all six cited declarations present, `sorry`-free, `#print axioms` emitted |
+| `598` `.lean` files | **583** (`find` and `git ls-files` agree) | Corrected at every live site |
+| `546` published `.md` files | **428** | Corrected at every live site |
+| `presheaf`, case-insensitive: `29 files / 67 matches` | **20 files / 39 matches**; matched no scope re-run | Corrected; the **case-sensitive** figures (20 / 35, 18 in `gtfoc`) re-ran **exact** |
+| `reviews/gtoc_gtla_red_024.md`, `_040g.md`, `_041.md` | **All three deleted** by `0f12e92f8` (#1215), which removed `research/published/reviews/` entire | Marked at every site as git-history-only; **not** silently dropped — each carries a live objection this paper leans on |
+| `ENC-1197`, `ENC-1199` named as *Paper070 …* | Entries now read **`PaperER008` …** (`aliases: paper:er008:*`) | Names corrected |
+| `attic_papers/034 Constructor Topos Theory` | **No such directory, no such paper** | Struck; §9.2's caution re-based on `ENC-0094`, which is live |
+| `040c` | **Resolves to nothing** | Dropped rather than guessed at |
+| `001_Projection_Obstruction_v5_6` | Wrong number **and** casing; real file `000_projection_obstruction_v5_6.md` | Corrected; §4.0(i) already cited it correctly, so the document disagreed with itself |
+| `000b_The Observer Object…`, `Paper 024`, `030`, `059`, `060`, `901` | Live, under **renumbered** paths | Current paths added alongside the legacy labels |
+| `060` *"is an outline; nothing is constructed"* | **False** — `009_embodiment` is drafted (v0.1.1) with four receipt-gated modes | Corrected in §4 T5; the *fence's* point survives, the factual claim did not |
+
+**What re-ran exact, recorded because a null that survives is evidence.**
+*Exactly one **standing** count about this document appears below in this
+section — the **Lean-anchor tally** — and it is recorded as falsifiable rather
+than defended as stable. Withdrawn forms quoted as records below are reports of a
+repaired defect, not counts this document asserts. **Instances 9 and 10**,
+recorded because this pass produced both while repairing the shape they name.*
+
+The cycle-3 pass first
+wrote *"All **57 distinct** `ENC-####` ids resolve"* under an explicit guard:
+that a **distinct-id** count is the one kind of self-count `PL-WDP007-9`'s rule does
+not destabilise, since *"audit prose that re-cites an already-cited id cannot
+change it."* **That guard was true and insufficient, in exactly the way
+`PL-WDP007-14` found the paper's other-tree rationale to be.** Re-citing a listed id
+is safe; **citing a new one is not** — and this pass's own repair of the
+`ENC-1199` row named `ENC-0162` and `ENC-0935`, moving the total and falsifying
+the sentence as shipped. The failure was not the *bareness* of the count but the
+belief that some class of self-count is stable. **No class is.**
+
+**Instance 10, and it is the same error one turn later.** The repair of instance
+9 asserted that *"every count of this document is therefore gone from this
+section"* — **false when written**. The Lean-anchor tally later in this section
+was left standing, and was in fact *expanded* by the same pass, which had been
+asked to state its denominator and did so while believing the section cleared.
+**A sweeping claim of purity is itself a claim about this document, and it failed
+the way every other one has.** The tally is **kept** — its facts are true and a
+drafter needs them — and the guard is narrowed to match what is actually there.
+What `PL-WDP007-9` forbids is not a number but the assertion that a number is safe:
+the tally below **can** be moved by a later citation, exactly as the `ENC-1199`
+repair moved the id total, and is recorded as falsifiable under `PL-WDP007-14`
+rather than removed or defended. Both instances routed to `PL-WDP007-9`, whose rule
+as written already forbade the guarantee in each.
+
+**Every distinct** `ENC-####` id cited across these two files **resolves**, and
+`kind`, `status`, `lean_status`, and `conditional_on` were re-verified against
+source front matter for **every one of them**. **`uses:` was not**: it was
+re-verified only for the rows individually named in this pass, and the claim is
+scoped accordingly. *Scoped 2026-07-21 (cycle-3 repair): the blanket form
+asserted `uses:` agreement for every cited id and is **refuted by `ENC-1199`** —
+§9b records its chain as reaching terminals `ENC-0031`, `ENC-0030`, `ENC-0024`,
+but at source it carries `uses: ["ENC-0031","ENC-0641","ENC-0952"]`, whose chain
+reaches **at least two further terminals the row does not list** — `ENC-0162`
+(via `ENC-0641`) and `ENC-0935` (via `ENC-0952`). The §9b row is flagged there
+and **not** rewritten: replacing its list would assert a completed terminal set,
+which is the exhaustiveness shape §4.0(iv) names as this programme's known
+failure mode. Routed to `PL-WDP007-14`.*
+
+*The tally that follows is that one standing self-count. It is
+true at `64d9e6371` and **falsifiable by any later citation** — naming a further
+Lean anchor moves it, exactly as the `ENC-1199` repair moved the id total. It is
+kept for its content, flagged rather than defended, and routed to `PL-WDP007-14`.*
+Of the **eleven cited Lean anchors** — **nine** true module names (`PaperAF000`
+and `PaperAE006` each contribute two), one **declaration** reference
+(`PaperAF004.toyVacuum_family_underdetermined`), and one anchor the base cited in
+**path** form (`OmegaCore/IX_Rewrite.lean`, converted to module form this pass) —
+**all eleven resolve**, and ten of the eleven carry the namespace claimed.
+*Corrected 2026-07-21 (Stage-3 blocker repair) from "ten … eight … nine": the
+module count omitted the second module contributed by each of `PaperAF000` and
+`PaperAE006`. The namespace exception is `PaperQF005.L042_31_SemanticTotality`,
+whose namespace is `PaperQF005.SemanticTotality`, not `PaperQF005`.*
+**Resolution is not fidelity.** Every anchor resolving says nothing about whether
+this paper describes what the Lean *says*; the Stage-3 authority witness read the
+statements and found six characterizations wrong, repaired at §4 T1, §4 T3, and
+§5. Disclosures that survive re-reading: `PaperFOC000.L000_06_*` has **no**
+namespace; `PaperQF005.L042_31_*` has **no** in-file `#print axioms`; and
+`PaperAF004` carries **no `#print axioms` at all** in its single 462-line module,
+so no axiom audit exists for it at any depth. Every
+token-level Lean sweep (`WellFounded`, `constructorDepth`, `OutsideProfile`,
+`Underdetermined`, `Cech`, `nerve`, `Presheaf`, `termination_by`, lowercase
+`underdetermined`) re-ran **exact**, as did the 13 layers, the
+`gate-blocked` nulls, and the charter and GTLA-spine quotations. **The tokens
+were stable; the file counts and the paths were not** — which is the diagnosis:
+renames move and delete files without touching their contents.
+
+**Why this is load-bearing and not bookkeeping.** Three of the dead citations
+(`red_024`, `red_040g`, `red_041`) are the paper's *adversarial* evidence — the
+objections it instructs a drafter to read **before** relying on `classify_unique`,
+before asserting $\check{H}^1$, and as the realized instance of `WD7-L4`. A
+citation that no longer resolves is the quiet form of dropping an objection, and
+this paper's whole method is that objections are not dropped. They are preserved
+here with their provenance so they can still be read.
+
+**The rule this adds, routed to `PL-WDP007-14`.** *An external anchor — a count, a
+path, a module, or an entry name — must be recorded with the revision at which it
+was resolved, and re-resolved rather than transcribed at each pass.* Every
+external count in this paper is as at `64d9e6371` (2026-07-21). **No claim is
+made that the citations not listed above are immune**; the ones listed are the
+ones re-resolved.
+
+6. Empirical application packet (required deliverable, not yet built)
+
+
+*Specification for the artifact that must exist before this paper ships.*
+
+**This section is what separates the paper from philosophy.** Without a finite,
+checkable system carrying a reportable result, T1–T3 are unfalsifiable posture.
+The packet must be small enough to print in full and cheap enough to rerun.
+
+### 6.1 The system
+
+A finite transition system $M = (S, A, \delta)$ with $|S| = 6$,
+$A = \{a, b\}$, and $\delta \colon S \times A \to S$ given by an explicit
+$6 \times 2$ table printed in the paper. Two observers with profile maps
+
+$$
+p_1, p_2 \colon S \longrightarrow \{0, 1, 2\},
+$$
+
+each collapsing $S$ into three report classes, chosen so that
+$\ker p_1 \neq \ker p_2$ and neither refines the other. Context actions
+$C_{\mathcal{O}} = \{a, b\}^{\leq 3}$.
+
+### 6.2 The claim grammar, counted
+
+| Claim family | Form | Count |
+|---|---|---|
+| Transition claims | "from class $u$, word $w$ with $\lvert w \rvert \leq 3$ yields class $v$" | $3 \times 15 \times 3 = 135$ |
+| Distinguishability claims | "classes $u, u'$ are separated within horizon $3$" | $\binom{3}{2} = 3$ |
+| Latent-variable probes | claims referring to a declared hidden coordinate absent from $\operatorname{im} p_i$ | $6$ |
+| Ill-typed probes | syntactically malformed or unbounded-horizon claims | $6$ |
+| **Total** | | **$150$** |
+
+(Words of length $\leq 3$ over $\{a,b\}$: $1 + 2 + 4 + 8 = 15$.)
+
+The latent-variable probes exist so that `OutsideProfile` is exercised on claims
+the designer knows in advance are unwitnessable by $p_i$. The ill-typed probes
+exercise `Refused`. Both families are declared **before** the evaluator is run.
+
+### 6.2a — Producer-pass arithmetic audit
+
+*Every anchor below was re-derived by explicit enumeration. What was **not**
+checked is listed at the end. No blanket claim of correctness is made, here or
+anywhere in this pass.*
+
+**Anchors that are arithmetically correct.**
+
+| Anchor as printed | Enumeration run | Verdict |
+|---|---|---|
+| Words of length $\leq 3$ over $\{a,b\}$: $1+2+4+8=15$ | $\sum_{\ell=0}^{3} 2^{\ell} = 1+2+4+8$ | **Correct.** $15$ |
+| Transition claims $3 \times 15 \times 3 = 135$ | $3$ source classes $\times$ $15$ words $\times$ $3$ target classes | **Correct as a product.** $135$ — but see the well-definedness defect below |
+| Distinguishability claims $\binom{3}{2} = 3$ | unordered pairs from $\{0,1,2\}$: $\{0,1\},\{0,2\},\{1,2\}$ | **Correct.** $3$ |
+| Total $150$ | $135 + 3 + 6 + 6$ | **Correct as a sum.** $150$ — but the summands are not all in the domain; see (A) |
+| $C_{\mathcal{O}} = \{a,b\}^{\leq 3}$ vs the $15$ words | same enumeration as row 1 | **Consistent.** The two uses of $15$ agree |
+| $\lvert S \rvert = 6$, $A = \{a,b\}$, explicit $6 \times 2$ table | $6 \times 2 = 12$ transition entries | **Consistent** |
+
+**An existence check the paper asserts but does not verify — verified here.**
+§6.1 requires $p_1, p_2 \colon S \to \{0,1,2\}$ each onto three classes with
+$\ker p_1 \neq \ker p_2$ and **neither refining the other**. Such a pair exists:
+surjections $S \to \{0,1,2\}$ number $3^6 - 3\cdot 2^6 + 3 = 729 - 192 + 3 = 540$,
+i.e. $S(6,3) = 540/3! = 90$ distinct partitions into three nonempty blocks; and
+e.g. $\ker p_1 = \{\{1,2\},\{3,4\},\{5,6\}\}$ with
+$\ker p_2 = \{\{1,3\},\{2,5\},\{4,6\}\}$ is such a pair. **The specification is
+satisfiable.** This was not stated in the paper and is now checked.
+
+**Defects found.**
+
+**(A) The $150$ is not a count of $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$.**
+Six of the $150$ are *"syntactically malformed or unbounded-horizon"* probes,
+which §3.2 excludes from the well-typed finite claims that are
+$\mathrm{Ev}_{\mathcal{O}}$'s stated domain. **The well-typed total is
+$135 + 3 + 6 = 144$.** §6.3 asks for five counts *"summing to $150$"* per
+observer, which applies $\mathrm{Ev}_{\mathcal{O}}$ outside its declared domain.
+This is §4.0(i) showing up as a number, and it is not repairable by arithmetic —
+it needs the R1/R2 choice under `PL-WDP007-2` (§4.0(i)).
+
+**(B) The vacuity indicator is mis-defined, in two independent ways.** It is
+printed as $(\lvert\texttt{OutsideProfile}\rvert + \lvert\texttt{Refused}\rvert)/150$.
+First, the denominator should be the size of the domain over which T1 is claimed
+($144$ under R2, the raw-syntax total under R1, or $150$ under R3 **only if** the
+six probes are re-specified as gate-blocked and therefore in-domain) — not $150$
+as the paper currently reaches it under any repair. Second, **under R2 the
+`Refused` term is identically zero** and the indicator collapses to
+$\lvert\texttt{OutsideProfile}\rvert/144$; **under R3 it is not** — R3 keeps
+`Refused` attainable, so the numerator retains both terms and the indicator keeps
+the two-boundary-status form T2.2 requires. The numerator therefore depends on
+the §4.0(i) choice and not only the denominator. Since the indicator is
+the paper's designated answer to the referee objection in §9.6 and the
+falsifier in §10, **the paper's one reportable number is currently the wrong
+ratio**. `PL-WDP007-7` is extended accordingly.
+
+**(C) The transition-claim family has no stated truth condition, and the
+indicator depends on which is meant.** *"From class $u$, word $w$ yields class
+$v$"* is a claim about **classes**, while $\delta$ acts on **states**. Since
+$\ker p_i$ is nontrivial ($\lvert S\rvert = 6$ onto $3$ classes), the induced map
+on classes need not be well defined, and the claim has a truth value only under a
+declared convention — universal (*for every $s$ with $p(s) = u$,
+$p(\delta^{*}(s,w)) = v$*) or existential (*for some such $s$*). **The two give
+different status distributions**: under the universal reading many transition
+claims become `Underdetermined` or `OutsideProfile`; under the existential
+reading far fewer do. The vacuity indicator is therefore not determined by §6 as
+written. This is a specification gap, not an arithmetic error, and it gates
+`PL-WDP007-7`.
+
+**(D) $\mathcal{L}_{12}$ is invoked and never constructed.** §6.3 requires a
+descent report on the shared subgrammar — *"number of shared claims"* — but §6.1
+chooses $p_1, p_2$ with $\ker p_1 \neq \ker p_2$ and neither refining the other,
+so the label sets $\{0,1,2\}$ coincide while the partitions they name do not. A
+claim mentioning "class $1$" is a **different** claim for each observer. What
+makes a claim *shared* is left undefined, and without it the descent report,
+$\omega$, and the "adversarial requirement" below are all unspecified. Gated by
+`PL-WDP007-4` and `PL-WDP007-7` jointly.
+
+**What was NOT verified in this section.** The $6 \times 2$ transition table
+$\delta$ is **not printed in the paper**, so nothing about it could be checked —
+including whether any $\delta$ makes the §6.3 adversarial requirement
+($\omega \neq 0$ for at least one system) satisfiable. The counts **$6$
+latent-variable probes** and **$6$ ill-typed probes** are **design stipulations,
+not derived quantities**; there is nothing to enumerate and they are recorded as
+declared, not as verified. No status count was computed for either observer,
+because no evaluator exists. $\omega$ was not computed. The three-observer case
+named in §5 was not examined. **No claim is made that the anchors not listed
+above are correct.**
+
+### 6.3 The reportable result
+
+The packet must emit, for each observer, a table of five counts summing to $150$:
+
+| Observer | `Proved` | `Refuted` | `Underdetermined` | `OutsideProfile` | `Refused` | Sum |
+|---|---|---|---|---|---|---|
+| $\mathcal{O}_1$ | — | — | — | — | — | $150$ |
+| $\mathcal{O}_2$ | — | — | — | — | — | $150$ |
+
+plus, for T2.2, the ratio $(\lvert\texttt{OutsideProfile}\rvert +
+\lvert\texttt{Refused}\rvert) / 150$ reported explicitly as the **vacuity
+indicator**. A packet whose vacuity indicator approaches $1$ has demonstrated
+that the theorem is empty, and the paper must say so rather than report T1 as a
+success.
+
+plus a descent report on $\mathcal{L}_{12}$:
+
+* number of shared claims,
+* number on which $\mathrm{Ev}_{\mathcal{O}_1}$ and $\mathrm{Ev}_{\mathcal{O}_2}$
+  agree,
+
+* the computed $\omega \in H^1$ and whether it vanishes,
+* for each disagreement, the finite witness of disagreement.
+
+**Adversarial requirement.** The packet must include at least one system for
+which $\omega \neq 0$. A packet that only ever glues has not tested T3; it has
+tested a choice of example.
+
+7. Conditionality ledger
+
+
+WD-7 is the programme's terminal synthesis, and its conclusion is conditional on
+every layer beneath it. This section states the dependence explicitly and, for
+each prior result, what becomes of WD-7 if that result fails or is refuted.
+
+| Prior | What WD-7 consumes from it | If it fails or is refuted |
+|---|---|---|
+| **WD-0** (symmetry no-go) | The verdict that bare non-sameness selects nothing, hence that a second channel must be declared | **WD-7 survives, motivation weakens.** If the no-go *fails* — structure is selectable from bare difference — then observer-indexing is optional rather than forced, and T1–T4 are **unaffected** but stop being the only honest framing. WD-7 would then need a new §2. *Corrected this pass:* this read "T1–T4 **remain true**", which presupposes they are true; all four are ``OPEN`` or `[CONJECTURE]`. |
+| **WD-0 proves the no-go** (the expected case) | The injection classification | **WD-7 must declare its own injections.** Every component of $W_{\mathcal{O}}$ must be located on the WD-0 T4 list. `PL-WDP007-1`. *Producer-pass note:* WD-0 itself records that *"the exhaustiveness claim is unprovable and T4 must be weakened to a classification of **known** injections"* (`PL-WD0-4`), so this row consumes a list whose completeness is ``OPEN`` upstream. Locating a component on it is evidence that the import is *recognised*, never that the list is closed. |
+| **WD-1** (retention constructor) | $H_{\mathcal{O}}$, the retained-histories component | **FATAL.** With no retention constructor, $W_{\mathcal{O}}$ has no fourth component and T1 cannot be stated. WD-7 does not degrade; it fails to typecheck. |
+| **WD-2** (observer packet) | $p_{\mathcal{O}}$, $C_{\mathcal{O}}$, the O1/O2 levels | **Downgrade.** If observer genesis is circular (stop condition 2), WD-7 must be restated as a theorem about *declared profiles* with no claim that a profile is an observer. T1–T4 survive verbatim under that renaming; T5 does not. |
+| **WD-3** (intersubjective descent) | $\mathcal{L}_{12}$, the shared-subgrammar apparatus | **T3 falls; T1, T2, T4, T5 survive** as single-observer results. WD-7 becomes a completeness paper without a descent theorem, and §6's descent report becomes a negative result. |
+| **WD-6** (quantum reconstruction or classical no-go) | Nothing load-bearing | **No effect on T1–T5.** If WD-6 proves the classical no-go (stop condition 3), WD-7 must delete the quantum clause wherever the paper's argumentative text carries one. **The paper's argumentative text carries it in §4 T5's Reading paragraph and in §8.2's first printed sentence; every other appearance of the phrase is this row's own instruction or a changelog record of it, so deleting those two leaves nothing load-bearing behind.** *Restated substantively 2026-07-21 (cycle 2) from "the only two sites, verified by search", a lexical claim whose own asserting sentence contained the phrase.* *Corrected this pass:* this named "§4 T5 and §10"; §10 is Falsifiability and contains no quantum clause, so the instruction pointed at a section that has nothing to delete while leaving §8.2 uncovered. **WD-7's mathematical conclusion is quantum-independent by construction, and the draft must not create a dependence.** |
+| **WD-5** (awareness boundary) | The **O3** self-witness axioms (WD-5's A1–A4) used in T5's depth ordering. *Corrected this pass:* this cell read "the O3/O4 axioms", and **WD-5 supplies no O4 axioms** — the charter §5 O4 row states that *no mathematical bridge is supplied* — so T5 is statable over O3 packets only | **T5 weakens, T1–T4 unaffected.** Under stop condition 6 *as amended 2026-07-20* (quoted below), T5 still forecloses depth-$0$ O3 observers but says nothing about consciousness **in either direction**, and §8's interpretive material must shrink accordingly. *Corrected this pass:* this cell quoted the superseded stop condition and pointed at §10 (Falsifiability), which carries no interpretive paragraph. |
+| **WD-4** (natural projection to cochain systems) | **Nothing.** Recorded so that this section's "conditional on every layer beneath it" is not a false universal | **No effect on T1–T5.** *Added this pass:* WD-4, WD-5, and WD-5 were absent from this table while the section header asserted dependence on *every* layer. Their absence is now a stated non-dependence rather than an omission, and `PL-WDP007-10` is extended to re-check it. |
+| **WD-5** (spatial/history obstruction bicomplex) | **Nothing.** As above | **No effect on T1–T5.** *Added this pass.* |
+| **WD-5** (finite witness history integral) | **Nothing.** As above | **No effect on T1–T5.** *Added this pass.* |
+
+**Stop condition 6, in its current form — verified at source this pass.** The
+charter `000_wd0_witnessed_difference_programme.md` §8 was amended on 2026-07-20, crediting
+WD-5 and discharging `PL-WD5-7`. It now reads:
+
+> 6. **Consciousness overreach.** If finite automata satisfy the self-witness
+>    axioms, those axioms do not *determine* phenomenal consciousness — in
+>    either direction.
+
+*Claim type:* `[STANDARD + citation]` — a quotation of the governing charter,
+read at source in `000_wd0_witnessed_difference_programme.md` §8, not paraphrased.
+
+The wording this paper carried until now — *"if finite **non-conscious** automata
+satisfy the self-witness axioms, those axioms do not **imply** phenomenal
+consciousness"* — is **superseded**. It is defective in exactly the way the
+charter's own repair note records: it presupposes knowing that the automata are
+non-conscious, which is precisely what the programme declines to assert, and so
+smuggles in the attribution the condition exists to fence. WD-5's producer pass
+recorded this stale quotation as finding `WD5-N26` and deliberately did **not**
+edit this file; the repair is made here. **Consequence for WD-7 specifically:**
+the §7 row above previously licensed the reading that T5 "says nothing about
+consciousness" *because the automata are known not to be conscious*. Under the
+amended condition the correct reading is weaker and symmetric — the axioms
+settle the question in **neither** direction — and no sentence of this paper may
+rely on the stronger one.
+
+**Standing rule.** The drafted paper must reproduce this table in full and must
+state, in §1 and §12, that its conclusion is conditional. A draft that presents
+T1–T5 as unconditional has misrepresented the programme. *Producer-pass note:*
+the §1 abstract specification as written does **not** discharge this rule — it
+states conditionality on the observer's own declarations only, not on WD-0
+through WD-5. Amending the §1 specification is part of `PL-WDP007-10`.
+
+8. The honest fork
+
+
+### 8.1 The boundary token, and what it does not license
+
+The phrase "we cannot witness an outside" is a statement about
+$\Vdash_{\mathcal{O}}$ and $C_{\mathcal{O}}$. It licenses **neither** of:
+
+1. "There is an outside." — This asserts a witnessed content the observer does
+   not have.
+
+2. "There is no outside." — This treats unwitnessed as nonexistent, which is
+   programme stop condition 7 and a category error.
+
+The correct status is the explicit boundary token `OutsideProfile` (equivalently
+`Unwitnessed`), and T4 is the **conjecture** that this token cannot be discharged
+in either direction from inside the system. *Corrected this pass:* "the theorem".
+T4 is `[CONJECTURE]` (`WDP007-C8`) with no proof and no strategy (§5); this section
+is the paper's fence, and a fence that overstates its own support is the failure
+it is fencing against. **Note what follows: until `PL-WDP007-5` is discharged, the
+two positions below are separated by a conjecture, not by a result.**
+
+Two honest positions are therefore available, and the paper must name which it
+takes:
+
+* **Position A — boundary-token realism about the method.** The system reports
+  `OutsideProfile` and stops. Nothing further is claimed, and the paper's
+  cosmological content is exactly the construction theory plus T1–T4.
+
+* **Position B — grammar extension.** A larger domain is *constructed and
+  witnessed*, and completeness is re-proved over the larger grammar. This is
+  permitted by stop condition 8, but the extension must be exhibited, not
+  gestured at.
+
+**The paper must not present Position B as achieved by Position A.** Doing so is
+the principal self-deception this outline exists to prevent, and it is the exact
+analogue of WD-0 §7's warning against presenting an enriched primitive as a
+derivation.
+
+### 8.2 The late-observer contrast (must be stated explicitly)
+
+Two sentences, to be printed adjacently in the drafted paper:
+
+> **What the theory says.** Observer-indexed world-presentations become possible,
+> stable, comparable, and — conditionally, per WD-6 — sometimes quantum, once
+> retention and witnessing constructors are admitted.
+
+> **What the theory does not say.** That a human mind manufactures an external
+> universe. Humans require biology, memory, time, embodiment, and a world rich
+> enough to support them. On the programme's own construction order they are late
+> instances of observer structure, not root primitives (T5).
+
+The contrast is stated as a contrast because readers will otherwise supply the
+second sentence themselves, with the negation removed.
+
+9. Related work (to be written — nearest neighbours)
+
+
+At minimum the drafted paper must situate itself against the following. **Cite
+only what fits**; a padded related-work section on a paper this exposed reads as
+compensation.
+
+### 9.1 Gödel incompleteness — the careful part
+
+This is where a crank overreaches, so the paper must be pedantic.
+
+Relative completeness as stated in T1 is **not** in tension with the first
+incompleteness theorem, for a specific and checkable reason: T1 asserts that a
+routing procedure assigns exactly one *status* to every claim, where the status
+set includes `Underdetermined`, `OutsideProfile`, and `Refused`. It does **not**
+assert that $\mathrm{Ev}_{\mathcal{O}}$ decides truth.
+
+The honest fence, which must be printed:
+
+> If $\mathcal{L}_{\mathcal{O}}$ interprets a sufficiently strong arithmetic and
+> $\mathrm{Ev}_{\mathcal{O}}$ is effective, then the set of claims receiving
+> `Proved` is recursively enumerable and therefore cannot coincide with the set
+> of arithmetical truths. Relative completeness is consistent with this only
+> because `Underdetermined` is a permitted output. **T1 must never be read as
+> "every claim is decided."** It is read as "every claim is *routed*, with a
+> receipt."
+
+The paper should additionally state whether the intended
+$\mathcal{L}_{\mathcal{O}}$ interprets arithmetic at all. For the §6 packet it
+does not — the grammar is finite and depth-bounded — which is why the packet is
+a legitimate demonstration and not an evasion.
+
+### 9.2 Internal logic of a topos; relative consistency
+
+The observer-relative world is a candidate site, and the intended reading of
+"true in $W_{\mathcal{O}}$" is internal rather than external. The nearest
+technical neighbours are the internal logic of a topos and relative-consistency
+results in proof theory. The paper must state whether $W_{\mathcal{O}}$ is
+claimed to *be* a topos (it should not be, absent a proof) or merely to be
+analogous to one, and must not borrow the word's authority without the structure.
+
+### 9.3 Constructive and intuitionistic treatments of the unwitnessed
+
+The refusal to infer existence or non-existence from unwitnessability is
+recognisably a rejection of excluded middle on the relevant class of statements.
+The paper should locate `OutsideProfile` against the constructive treatment of
+undecided propositions, and be explicit about where it agrees and where the
+analogy stops — in particular, `OutsideProfile` is a statement about a *profile's
+separating power*, not about the availability of a proof.
+
+### 9.4 Participatory-universe proposals (Wheeler) — a neighbour to be distanced from
+
+Wheeler's participatory-universe proposals are the nearest *interpretive*
+neighbour and must be discussed **in order to be distanced from**, not endorsed.
+The distinction to be drawn precisely:
+
+* The participatory reading assigns constitutive power to observation over the
+  world.
+
+* This paper assigns constitutive power to retention and witnessing over the
+  *observer-indexed presentation* $W_{\mathcal{O}}$, and makes T5 the explicit
+  statement that observers are late.
+
+The paper must not cite Wheeler as support. It cites Wheeler as the position the
+reader will otherwise mistake it for.
+
+### 9.5 Rovelli, Relational Quantum Mechanics
+
+<https://arxiv.org/abs/quant-ph/9609002>. The nearest neighbour for the
+observer-indexing move itself: physical description as relative to an observing
+system. The paper should mark the agreement (states are relative), the difference
+(WD-7 makes no quantum commitment; see §7's WD-6 row), and the added structure
+(a status set, receipts, and an explicit inter-observer descent obstruction where
+RQM has a consistency requirement).
+
+### 9.6 Anomalon antecedents
+
+WD-0 through WD-5, plus Papers 000, 000c, 001h. The programme charter's stop
+conditions 7 and 8 are the governing constraints on this paper specifically.
+
+**Anticipated referee objection, to be answered in-paper:** *"Relative
+completeness is trivial — just define the status set to absorb everything hard."*
+The response is T2.2 and the §6 vacuity indicator, and the paper must be
+structured so a reader who raises this objection is directed to a number.
+*Producer-pass caveat:* §6.2a(B) finds that number is currently mis-defined, so
+the objection is not yet answerable as written.
+
+### 9a. In-corpus prior art omitted from §9.6
+
+*Added by the 2026-07-21 producer pass. §9.6 named three papers plus the WD
+siblings. A sweep of the published tree (428 `.md` files, recursive) and of all
+583 `.lean` files found the following bearing directly on T1–T5. Each is cited at
+its **source**, and each is listed because the paper currently reads as if the
+ground were unoccupied.* `[STANDARD + citation]` — `WDP007-C24` … `WDP007-C27`,
+`WDP007-C30`.
+
+| Antecedent | Bears on | Why it must be cited |
+|---|---|---|
+| `TERM-DISJ-001` (`QM_092`, `ENC-1064`, `[PROVEN]`; Lean `OmegaCosmology.Primitives.TerminalDisjointness`, ns `OmegaCore.QM`) | **T1** | Exhaustiveness **and** pairwise disjointness already proved and mechanized for a four-constructor terminal enum. Read `reviews/gtoc_gtla_red_024.md` P1-4 (*"`classify_unique` oversold"*) before relying on it — **file deleted by `0f12e92f8` (#1215); git history only** (§5a) |
+| GTLA `math_spine.md` **Thm VII.2** (`[PROVED]`) | **T1** | A six-status terminalization, decidable by ordered first-match, with the fence *"decidability is verifier-scoped, not semantic"* — T1's routed-not-decided distinction, already made |
+| GTLA `math_spine.md` **Thm VII.1**, condition $(D_{\mathrm{def}})$ | **T2.2** | The corpus's existing statement of the catch-all hazard, and the condition that closes it |
+| GTLA `math_spine.md` **Thms IV.4 / IV.8** | **§9.1** | *"the finiteness hypothesis is the exact decidable/undecidable line"* — the corpus's own version of §9.1's argument, currently uncited |
+| **GTOR-9** (`coda_or/theorem_ledger.md`, GTOR-9 row and claim `C19`, both **`[PROVED-PROSE]`**; `ENC-0491` `status: PROVED-PROSE`, **`conditional_on: []`**) + GTLA's narrowest-defensible form | **T4** | `Unrepresented` is `OutsideProfile`'s older corpus name, with a prose theorem attached. It gives *non-authorization*, **not** T4's non-derivability — the difference is the paper's contribution and must be stated, not elided. **Corrected 2026-07-21 (cycle 2)** from `[PROVEN, CONDITIONAL]`, which promoted a cited antecedent's typing; see §4 T4 |
+| **WD-3 T2** (`WD3-C4`–`WD3-C6`, all ``OPEN``) and WD-3 §12's hand-off | **T3** | WD-7's sheaf obligation is WD-3's `WD3-C5` one layer up; do not discharge or count them twice. WD-3 already types the descent apparatus itself as imported `[STANDARD]` |
+| **WD-3's D1–D5 taxonomy** (`[DEFINITION]`; exhaustiveness *not* assumed; mutual exclusivity `[CONJECTURE]`; D2/D3 overlap suspected; `PL-WD3-5`) | **T1, §4.0(iii)** | The immediate upstream paper declined to assume for five classes what T1 asserts for five statuses. WD-7 owes the reason it may |
+| `008_space_and_extension` §3.2 (`P9-C8` `[OPEN / OracleNeeded]`, `PL-GTOC-30`) | **T3** | The corpus's declared-cover nerve, with the fence *"the word 'Čech' imports no continuum and no sheaf theorem"* — the pricing model T3 must copy |
+| `reviews/gtoc_gtla_red_040g.md` **P0-2** — **deleted by `0f12e92f8` (#1215); git history only** (§5a) | **T3** | A standing red-team refusal of asserting $\check{H}^1$ as *the* obstruction measure without first declaring the site |
+| `reviews/gtoc_gtla_red_041.md` — **deleted by `0f12e92f8` (#1215); git history only** (§5a) | **T2.2** | A status class found **structurally unreachable** in every packet its paper built — `WD7-L4` realized, and found by audit rather than by the author |
+| `gt_tower_master_design.md`; `000_projection_obstruction_v5_6.md` §"Trichotomy scope"; `030` = `007_authority_firewall/006_shadows_of_infinity_and_large_language_models` | **§4.0(i)** | The corpus's settled classification-vs-routing distinction, which is the precedent for repairing `Refused`'s domain. *Re-resolved 2026-07-21 (cycle 3): the second item was cited as `001_Projection_Obstruction_v5_6`, wrong in both number and casing; `040c` was cited and **resolves to nothing in the tree**, so it is dropped rather than guessed at* |
+| `002_finite_obstruction_calculus/001_the_observer_object` (old label `000b_The Observer Object…`; `PL-000b-1`, discharged at `ENC-0517` `PROVED-PROSE`, scope-conditional) | **T1** | The corpus's one existing packet-completeness result, and its explicit refusal to claim *"that every conceivable evaluation factors through these nine components"* — the same fence T1 needs |
+| Paper 024 §**AF-18** (`[STANDARD + citation]`; now `007_authority_firewall/001_the_authority_firewall…`); `901 Woland` = `901_project_anomalon_codename_woland` (Lawvere unifying Cantor/Gödel/Tarski/Turing) | **§9.1** | The corpus's existing self-verification-limit fences. 901 is a positioning document exhibiting no proof; cite, do not rely |
+| ~~`attic_papers/034 Constructor Topos Theory`~~ — **resolves to nothing: there is no `attic_papers/` directory and no `034` topos paper in the tree** (checked 2026-07-21, cycle 3) | **§9.2** | Cited as the corpus's one topos-labelled paper, self-typed as an **interpretive label** and self-recording its own vacuity risk. **The citation cannot be verified and must not be relied on until a live locus is found**; §9.2's caution stands on `ENC-0094` alone, which *is* live |
+
+**Two citation hygiene items for §9.4 and §9.5.**
+
+* **Wheeler.** The corpus's only substantive Wheeler citation
+  (`007_information`, *"It from bit"*, Wheeler 1990) carries a **`[VERIFY]`**
+  tag — it is unverified. §9.4 must inherit that tag or verify the reference
+  independently; it must not launder an unverified citation by restating it.
+
+* **Rovelli.** The arXiv id in §9.5 (`quant-ph/9609002`) matches the one used by
+  WD-2 §9 and WD-6 §9, so the corpus is internally consistent. **It was not
+  HEAD-checked or title-matched by this pass.** WD-2 additionally carries
+  `WD2-N10` — *"does not claim priority over, or improvement on, RQM or QBism"* —
+  and WD-7 had no analogue; `WD7-N17` now supplies one.
+
+### 9b. Encyclopedia entries bearing on T1–T5
+
+*All 13 layers of `research/encyclopedia/entries/` were searched — `epk`,
+`foundations`, `gtfda`, `gtfoc`, `gtla`, `gtmur`, `gtor`, `gtta`, `gttc`,
+`operad`, `q`, `quantum`, `symbol-game` — 983 entries. Every entry below is cited
+at the **terminal source** its `uses:` chain reaches, never at a re-export.*
+`[STANDARD + citation]` — `WDP007-C32`.
+
+*Count flag, 2026-07-21 (Stage-3 blocker repair). The `983` in this section and in
+the null lists below is the size of `entries/` **when these sweeps were run**, and
+is left as recorded: rewriting it would misstate what was actually swept, which is
+the error this paper's cycle-1 repair was blocked for. **At carrier `HEAD` the
+directory holds 949 entries** — 34 fewer. Every null and figure in §9b was
+computed over the 983 and has **not** been re-run at 949; a drafter must re-run
+them rather than assume they carry over. Routed to `PL-WDP007-14`.*
+
+| Entry | Status | `uses:` | Bears on |
+|---|---|---|---|
+| **`ENC-1064`** *Terminal Disjointness and Unique Classification* (layer **`quantum`**) | `MECHANIZED` | **`[]` — terminal** | **T1.** $\forall x.\;\lvert\{t \mid \mathrm{Tri}(x)=t\}\rvert = 1$, mechanized. **Cite this, not `ENC-1068` / `ENC-1071`, which re-export it** (both carry `ENC-1064` in `uses:` and cite it textually). Further dependents that also re-export it: **`ENC-1130`** (`quantum`, *Survival Theorem / finite descent*, `uses:` includes `ENC-1064`) |
+| **`ENC-0774`** *Prop. O6 — grammar cardinality / observer resolution bound* (`gtfoc`) | `PROVED-PROSE`, Lean `MECHANIZED` | `["ENC-0022"]` → terminal | **T1, §9.1.** The corpus's existing *completeness relative to a declared grammar*: a finite report grammar exposes only finitely many distinctions, and over capacity **any** grammar-valued observer identifies two classes |
+| **`ENC-0491`** *GTOR-9 Representation Gate* (`gtor`) | `PROVED-PROSE` | **`[]` — terminal** | **T4.** The boxed $\neg\mathcal{R}(x)\!\downarrow \Rightarrow \mathsf{Unrepresented}(x) \Rightarrow \neg\mathsf{Auth}(x)$. **No entry in the corpus cites `ENC-0491`** — it has no re-exports (see the re-export correction below) |
+| **`ENC-0302`** *Refusal of completeness is a valid terminal* (`gtfoc`) | `PROVED-PROSE` | **`[]` — terminal** | **T1, T2.2.** Four typed refusals (`NoLiftFound`, `BudgetUnknown`, `LiftClassIncomplete`, `Refused`) — and note its proof is by **vacuous antecedent**, which is the hazard T2.2 guards |
+| **`ENC-0952`** *Claim-machine statuses are not authority terminals* (`q`) | `MECHANIZED` | → … → **`ENC-0935`** terminal | **T1.** The nearest existing analogue of WD-7's status set: eight **packet-relative** statuses including `proven_under_packet`, `refuted_under_packet`, and **`non_identifiable`** — the nearest corpus object to `Underdetermined` **by role**, since `non_identifiable` occupies `Underdetermined`'s slot inside a status set. *Superlative disambiguated 2026-07-21 (cycle 2):* this row and `ENC-1093`'s each claimed to be "the closest" and both entries are `MECHANIZED`, so the two could not both hold; `ENC-1093` is the nearest **by name and verdict** |
+| **`ENC-1199`** *PaperER008 Nonauthority Run Outcomes* (`gtla`) — *entry renamed from “Paper070…” by the `008_engine_runtime` renumber; re-resolved 2026-07-21 (cycle 3)* | `DEFINED` | → `ENC-0031`, `ENC-0030`, `ENC-0024` terminals. **Incomplete — recorded 2026-07-21 (cycle 3), not rewritten.** At source `uses: ["ENC-0031","ENC-0641","ENC-0952"]`, and that chain reaches **at least two further terminals this list omits**: `ENC-0162` (via `ENC-0641`) and `ENC-0935` (via `ENC-0952`). The list is left as carried rather than replaced, because a replacement would assert a **completed** terminal set — the exhaustiveness shape §4.0(iv) names as this programme's known failure mode. `PL-WDP007-14` | **T1.** A **nine**-element outcome set separating `NoRule`, `Refused`, `BudgetExhausted`, `DetectorInadequate` — evidence that five statuses may be too few, and that the corpus splits what WD-7 merges |
+| **`ENC-0837`** *EPK sheaf analogy is **not** EPK equivalence* (`epk`) | `MECHANIZED` | → `ENC-0822`, `ENC-0818` terminals. **Incomplete — recorded 2026-07-21 (Stage-3 blocker repair), not rewritten.** The chain from `uses: ["ENC-0829","ENC-0834"]` reaches **seven** terminals; this list names two, omitting `ENC-0018`, `ENC-0019`, `ENC-0026`, `ENC-0027`, and `ENC-0107`. Left as carried rather than replaced, for the same reason as `ENC-1199`: a replacement would assert a **completed** terminal set, the exhaustiveness shape §4.0(iv) names as this programme's known failure mode. **This is the second such incomplete list found, so the defect is a pattern in this paper's `uses:` transcription, not an isolated slip** — `PL-WDP007-14` | **T3.** *"local sheaf consistency alone does not establish EPK equivalence … routed to **analogy-only** status."* The corpus has already mechanized the refusal T3 risks assuming past |
+| **`ENC-0065`** *Finite Čech gate soundness* (`gtfoc`) | `PROVED-PROSE` | **`[]` — terminal** | **T3.** The corpus's finite Čech gate, with `ENC-0064` as its definition |
+| **`ENC-0771`** *Prop. O3 — observer reconciliation / pullback* (`gtfoc`) | `CONDITIONAL` | `["ENC-0050","ENC-0207"]` | **T3.** The nearest existing inter-observer construction: a pullback reconciling $\mathcal{O}_A, \mathcal{O}_B$, **conditional on the reconciliation fibre being nonempty** — a hypothesis T3 does not currently carry |
+| **`ENC-0211`** *Observer object* $O = (K,F,R,\delta,d_0,d_1,J,M,\tau)$ (`gtfoc`) | `DEFINED` | **`[]` — terminal** | **§3.1.** A **nine**-component observer object against $W_{\mathcal{O}}$'s five. `PL-WDP007-1` must reconcile them |
+| **`ENC-1197`** *PaperER008 Claim-Indexed Detector Coverage* (`gtfoc`) — *entry renamed from “Paper070…” by the `008_engine_runtime` renumber; re-resolved 2026-07-21 (cycle 3)* | `DEFINED` | `["ENC-0068","ENC-0630","ENC-1182"]` | **§3.4, T4.** *"It is **not a completeness result over unrepresented reality**, and zero visible defect does not establish detector adequacy."* The doctrine §3.4's fence states, already in the encyclopedia |
+| **`ENC-1137`** *No authority without descent* (`foundations`) | `MECHANIZED` | **`[]` — terminal** | **T2.2.** Its own Notes say it *"holds **by construction** … **Mechanized and axiom-free, but not a nontrivial theorem**."* The corpus's own worked example of T1's failure mode, self-reported |
+| **`ENC-0059`** *CT-6 / $\Gamma_2$ vacuity* (`gtfoc`); **`ENC-0530`**, **`ENC-0457`** *typed non-absorption of residue* (`gtta`) | `CONDITIONAL` / — | — | **T2.2.** The corpus's existing vacuity diagnosis and its anti-absorption doctrine — the nearest thing to a stated `WD7-L4` |
+| **`ENC-0087`** *Unrestricted NL fidelity is undecidable* (`symbol-game`) | `PROVED-PROSE` | **`[]` — terminal** | **§9.1.** *"the finiteness hypothesis is the exact decidable/undecidable line."* Note its own 2026-07-19 reconciliation: `lean_status` is **NOT-STARTED**; it is prose, not mechanized |
+| **`ENC-0094`** *Residual-closure layer as classifying ∞-category* (`gtta`) | `DEFINED` | **`[]` — terminal** | **§9.2.** The corpus's single topos-adjacent statement, self-flagged as a **conjectural** classifier. §9.2's caution is corpus policy, not just this paper's |
+| **`ENC-1138`** *Stratified root boundary* / **`ENC-1140`** *PD-priority conjecture* (`foundations`) | `DEFINED` / **`OPEN`** | `[]` terminal / → `ENC-1138` | **T5, §14.** `ENC-1138` supplies the only ordering doctrine in the encyclopedia and fences it: *"The order is a **definability order, never an authority order**."* T5's $\mathrm{ord}(\cdot)$ must inherit that fence |
+| **`ENC-1093`** *Paper 028 Three-Vacua Terminal Taxonomy* (`gtla`, L6) — **added this pass** | `MECHANIZED` | `["ENC-0562","ENC-1092"]` | **T1.** A **terminal taxonomy** with a mechanized *"family verdict is **underdetermined**"* row and the Lean theorem **`PaperAF004.toyVacuum_family_underdetermined`**. This is the nearest mechanized object to `Underdetermined` **by name and verdict** — it carries the word and a mechanized verdict bearing it — while `ENC-0952` is the nearest **by role**; *the two superlatives were disambiguated 2026-07-21 (cycle 2), both entries being `MECHANIZED`*. It was missed because the §9b null was computed **case-sensitively**. Note its own fence: *"a toy bookkeeping theorem, not a claim about actual string vacua"*, and *"no candidate reaches the authority terminal"* |
+
+**Encyclopedia NULL results — recorded in full, because the pattern matters.**
+Zero hits, across all 983 entries, for: `OutsideProfile`; `Undetermined`
+(capitalised); `Refuted` (capitalised); "internally complete"; "nerve of a
+cover"; "observer cover"; "triple overlap"; **"sheafification"**,
+**"sheaf condition"**, **"sheaf of statuses"**; "inter-observer",
+"intersubjective", "shared subgrammar"; "constructor depth", "construction
+order", "late observer", "depth-0"; **"Gödel"**, "recursively enumerable",
+"arithmetic interpretation", "Löb", "Rosser"; "internal logic", "Grothendieck
+site", "Heyting", "Kripke"; "cosmogenesis", "anthropic", "idealism"; and —
+completely — **`Rovelli`, `Wheeler`, `participatory`, `relational quantum`,
+`RQM`**.
+
+*Uniformity flag added 2026-07-21 (cycle 2).* `Undetermined` carried no
+capitalisation qualifier while `Refuted` did, which is the asymmetry that lost
+`Underdetermined`/`ENC-1093` below. It now carries one, and the lowercase check
+was run: lowercase `undetermined` appears in exactly three entries — `ENC-0222`,
+`ENC-0765`, `ENC-1208` — and in all three it is an **ordinary adjective**
+(*"constants remain undetermined"*, *"undetermined here"*), naming no status and
+no verdict. **So the substantive null survives**: no encyclopedia entry carries
+`Undetermined` as a status token. This is the outcome the `Underdetermined` row
+did **not** have, and the two are recorded differently for that reason.
+
+**Two entries were wrongly on that list and are now stated positively.**
+``OPEN`` — `WDP007-C32`. Both were removed after re-running the searches this pass;
+`"sheafification"` was re-verified and **is** genuinely zero (0 files, 0 matches,
+case-insensitive).
+
+| Token | True count across the 983 entries | What the drafter must do with it |
+|---|---|---|
+| **`presheaf`** | **NOT zero.** **20 files / 35 matches** case-sensitive; **20 files / 39 matches** case-insensitive. Concentrated in **`gtfoc`** (18 of the 20 files, case-sensitive and case-insensitive alike), plus one each in `gttc` (`ENC-0228`) and `epk` (`ENC-1109`). *Case-insensitive figures corrected 2026-07-21 (cycle 3) from "29 files / 67 matches … 27 of the 29", which matched neither `entries/` nor any wider tree when re-run; the case-sensitive figures re-ran exact* | **`PL-WDP007-4` must consume them before weakening T3 to a presheaf statement.** The corpus has an existing presheaf vocabulary; a "weaken to a presheaf" repair is a move onto **occupied** ground, not into a gap |
+| **`Underdetermined`** | Zero **only case-sensitively**. **6 lowercase hits** — 5 in **`ENC-1093`** (`gtla`, mechanized *"family verdict is underdetermined"*, Lean `PaperAF004.toyVacuum_family_underdetermined`) and 1 in `ENC-0374` (`gtmur`) | Position T1's `Underdetermined` against `ENC-1093` (row added to the table above), not as unoccupied ground |
+
+**The `presheaf` correction invalidated a derived sentence, which is withdrawn.**
+This section previously concluded *"the sheaf refusal is `MECHANIZED` at
+`ENC-0837` while the word `presheaf` never appears"*. The second half is false.
+Worse, **`ENC-0065` — cited two rows above in this very table as the corpus's
+finite Čech gate — itself contains `presheaf`** (*"presheaf with finite
+replayable restriction maps"*), as does its definitional companion `ENC-0064`
+(twice, including *"additive local-repair presheaf"*). The example chosen to
+prove the absence was carrying the word.
+
+**How to read the remaining nulls.** They are **not** a novelty signal. Two are
+demonstrably occupied elsewhere: the Gödel/undecidability line is a
+`PROVED-PROSE` theorem at `ENC-0087` and in GTLA's `math_spine.md` under
+*undecidability* rather than *incompleteness* vocabulary; and **Rovelli is cited
+in the published tree without an encyclopedia entry** — at WD-2 §9, WD-6 §9,
+`QM_090`, and `QM_110` (*Quantum Gravity*, 2004), which is a **wider** published
+footprint than the encyclopedia null suggests and therefore strengthens the
+argument. *Corrected 2026-07-21 (cycle 2): this said "three published papers" and
+omitted `QM_110`.* An empty `entries/` result means the vocabulary is
+absent, not the result — **and a non-empty one may still be missed if the search
+is run case-sensitively, which is how `Underdetermined` and `ENC-1093` were lost
+above.** All three trees were searched, and the encyclopedia was
+the least reliable of them for this paper's topics.
+
+**Re-export correction — four of six named "re-exports" were not re-exports.**
+``OPEN`` — `WDP007-C24`, `WDP007-C27`. This pass originally listed six entries as
+re-exports to be avoided. **Verified at source this pass, entry by entry:**
+
+| Named as a re-export | Verdict | Evidence |
+|---|---|---|
+| `ENC-1068` | **Genuine re-export of `ENC-1064`** | `uses: ["ENC-1064","ENC-1065"]`; cites `[[ENC-1064]]` in its Proof |
+| `ENC-1071` | **Genuine re-export of `ENC-1064`** | `uses: ["ENC-1064","ENC-1068"]`; cites `[[ENC-1064]]` twice |
+| `ENC-1079` | **NOT a re-export** | `uses: []`; **zero** textual reference to `ENC-1064`; unrelated content — *Possibility Boundaries*, three typed non-implications (Deutsch / Everett / Wolfram) |
+| `ENC-0189` (`gtfda`) | **NOT a re-export** | `uses: ["ENC-0024"]`; **zero** reference to `ENC-0491`. An **independent** derivation of $\neg\mathcal{R}(x)\!\downarrow \Rightarrow \neg\mathsf{Auth}_S(x)$ from the GTLA-L9.1 chain |
+| `ENC-0636` (`gtla`, `CONDITIONAL`) | **NOT a re-export** | `uses: ["ENC-0024","ENC-0030","ENC-0648"]`; **zero** reference to `ENC-0491` |
+| `ENC-0637` (`gtla`, `CONDITIONAL`) | **NOT a re-export** | `uses: ["ENC-0189","ENC-0190","ENC-0191","ENC-0192","ENC-0193"]`; **zero** reference to `ENC-0491` |
+
+**The `ENC-0491` re-export clause is withdrawn entirely.** `ENC-0189`,
+`ENC-0636`, and `ENC-0637` state a related implication from an **independent**
+chain (`ENC-0024`); **no entry in the corpus cites `ENC-0491`** — a search of all
+983 entries returns `ENC-0491` only inside its own file. It has no re-exports to
+be confused with, and the previous text instructed a drafter to **suppress three
+independent results as duplicates**. They should be read as independent
+corroboration, and the difference between `ENC-0189`'s $\neg\mathsf{Auth}_S$ and
+`ENC-0491`'s $\neg\mathsf{Auth}$ is itself worth the drafter's attention.
+
+**Where the error came from, recorded because it is mitigating and because the
+encyclopedia should be told.** `ENC-1064`'s **own Notes** assert *"Reused by
+TRI-001 ([[ENC-1068]]), M2-TRI-001 ([[ENC-1071]]), COFIBER-001 ([[ENC-1079]])"* —
+so the source entry is where the `ENC-1079` claim originated. **The two
+disagree:** `ENC-1064` says `ENC-1079` reuses it; `ENC-1079` has `uses: []` and
+no textual reference. The label is wrong too — **COFIBER-001 is `ENC-1077`**, not
+`ENC-1079`. This is recorded for a **separate encyclopedia ticket** and is **not
+fixed here**; no encyclopedia entry was edited by this pass.
+
+**A second `ENC-1064` defect found by this paper's cite-by-module-name policy,
+also for a separate ticket and also not fixed.** `ENC-1064`'s `sources:` and
+`lean_refs:` both point at [index:index:TerminalDisjointness.lean](omega_engine/research/_indexes/_master_index.yaml),
+**which does not exist**. The real module is
+`OmegaCosmology.Primitives.TerminalDisjointness`
+([index:index:TerminalDisjointness.lean](omega_engine/research/_indexes/_master_index.yaml)) — the one this
+paper cites in §4 T1 and §5. The policy of citing Lean by **module name** rather
+than by filesystem path, adopted for the `00N_programme/` reorganization, caught
+an encyclopedia error it was not designed to catch.
+
+**A NULL result that survives all three trees, recorded because an empty search
+is not a novelty signal.** No paper states a proved *relative completeness*
+theorem; **no other document defines a vacuity indicator, a constructor depth, or
+a late-observer thesis** *(stated substantively 2026-07-21, cycle 2, from "occur
+only in this paper", a lexical claim about this document)*; no H¹ over an
+**observer** cover exists outside this paper;
+sheafification cost is priced nowhere; and no completed two-model non-discharge
+theorem exists anywhere. These are genuine gaps rather than oversights **only
+because** the matching obligations are `NOT-STARTED` upstream — WD-3's `WD3-C5`,
+`059`'s `PL-GTOC-29`/`-30`, `ENC-1140` — and not because the questions are
+unasked.
+
+10. Falsifiability
+
+
+> **This paper fails if** any of the following is exhibited:
+>
+> * a well-typed finite claim $\varphi \in \mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$
+>   on which $\mathrm{Ev}_{\mathcal{O}}$ returns no status, or two statuses (refutes T1);
+> * a claim admitting both a `Proved` receipt and a `Refuted` receipt under one
+>   admissible evidence base (refutes T2.1);
+> * a derivation, inside the declared system, from
+>   $\mathrm{Ev}_{\mathcal{O}}(\varphi) = \texttt{OutsideProfile}$ to either
+>   $\varphi$ or $\lnot\varphi$ (refutes T4 and returns the paper to stop
+>   condition 7);
+> * two observers satisfying the T3 hypotheses whose statuses fail to glue while
+>   $\omega = 0$ (refutes T3);
+> * a structure satisfying the WD-5 O3 axioms at constructor depth $0$ (refutes T5);
+> * a §6 packet whose vacuity indicator is close to $1$ under an
+>   independently reasonable grammar (refutes T2.2, and empties T1).
+
+**Producer-pass findings on this section.** ``OPEN`` — `WDP007-C33`.
+
+1. **Quantifier mismatch between T2.1 and its own falsifier.** T2.1 claims
+   soundness *"under **any** admissible extension of the evidence base"*; the
+   second bullet above fires only on *"**one** admissible evidence base"*. The
+   falsifier is strictly weaker than the claim, so **T2.1 can be false without
+   this falsifier ever firing** — the paper is unfalsifiable at exactly the
+   strength it asserts. The same mismatch is in the Claim Ledger at `WD7-F2`;
+   both files are flagged, neither is rewritten, because fixing it requires
+   deciding which quantifier T2.1 means (`PL-WDP007-3`).
+
+2. **The vacuity bullet inherits §6.2a(B)'s defect.** "Vacuity indicator close to
+   $1$" cannot be evaluated until the ratio is well defined; under the R2 repair
+   its `Refused` term is identically zero.
+
+3. **No falsifier covers T2.2's *prior-characterization* clause.** T2.2 has two
+   conjuncts — that the boundary statuses are characterized **before** the
+   evaluation is defined, and that their absorbed fraction is bounded. Only the
+   second has a falsifier. A paper that characterized the boundary statuses
+   *after* seeing the evaluation would satisfy every bullet above, which is the
+   precise way `WD7-L4` is lost.
+
+4. **No falsifier covers §4.0(iii)'s disjointness gap.** Exhibiting a claim with
+   both an `Underdetermined` and an `OutsideProfile` receipt would refute T1's
+   mutual-exclusivity half, and no bullet asks for it. Recorded as the missing
+   falsifier `WD7-F7`.
+
+11. What this paper does NOT claim
+
+
+* It does **not** claim the observer's world is the whole of what there is.
+* It does **not** claim there is an outside to what can be witnessed.
+* It does **not** claim there is no outside. The status of that question is
+  `OutsideProfile` / `Unwitnessed`, and T4 is the **conjecture** — not yet a
+  theorem — that it stays there. *Corrected this pass:* "the theorem". The Claim
+  Ledger's matching non-claim `WD7-N3` says only *"and stays there"*, without
+  asserting theoremhood; the paper was the stronger of the two files, so the
+  overclaim was invisible to any check that read the ledger alone.
+
+* It does **not** claim completeness over any domain larger than the declared
+  grammar $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$. Stop condition 8 is binding.
+
+* It does **not** claim to decide the truth of every claim — only to route every
+  claim to a status with a receipt. See §9.1.
+
+* It does **not** claim that a human mind creates, manufactures, or sustains an
+  external universe. T5 states the opposite ordering.
+
+* It does **not** derive quantum mechanics, and its conclusion is independent of
+  whether WD-6 succeeds or proves a classical no-go.
+
+* It does **not** derive consciousness, and does not claim that any
+  $W_{\mathcal{O}}$ has a subject.
+
+* It does **not** claim $W_{\mathcal{O}}$ is a topos, a model of set theory, or a
+  physical spacetime.
+
+* It does **not** claim the observer family $\{\mathcal{O}_i\}$ covers anything.
+  Nerve cohomology over a family is not a claim that the family is a cover of a
+  world.
+
+* It does **not** establish any of T1–T5 unconditionally; see §7.
+* It carries `AuthorityEffect: None`. Nothing in it promotes, certifies, or
+  terminalizes any corpus artifact.
+
+12. Consequences for the programme
+
+
+If T1–T5 hold under the §7 conditions, the programme's terminal reading is:
+
+> A world, in the only sense this programme has earned, is an observer-indexed
+> presentation built from retained distinctions, together with a routing
+> procedure that assigns every finite claim it can express a status and a
+> receipt. Such a world is internally complete in the sense that nothing
+> expressible inside it goes unrouted. It is silent, provably and permanently
+> from the inside, about what lies outside its own grammar.
+
+This is the programme's synthesis and its ceiling. It is weaker than a cosmology
+and stronger than an interpretation, and it is the strongest statement compatible
+with *no ontology before witness*.
+
+*Claim type of the block quote:* `[INTERPRETIVE]` — `WDP007-C15` (the definitional
+half) and `WDP007-C16` (the reading of the word "world"). It is stated under the
+hypothesis *"If T1–T5 hold"* and must never be quoted without it. Note that even
+under that hypothesis "silent, **provably** … from the inside" asserts more than
+the hypothesis grants: T4 *holding* and T4 *being proved* are different, and only
+the second licenses "provably".
+
+**Stop conditions engaged.** Condition 7 (cosmological category error) is
+targeted for conversion from a hazard into T4 — **and T4 is a conjecture, so the
+conversion has not occurred.** *Corrected this pass:* this read "is converted from
+a hazard into T4, a theorem", asserted outside the "If T1–T5 hold" conditional
+that governs the rest of the section. This was the fifth and last of the
+T4-as-theorem sites. Condition 8 (completeness overreach) is respected by
+construction: every completeness statement in this paper carries its grammar as
+an explicit index — that one is genuinely discharged by the paper's form rather
+than by a result.
+
+### 12a — Producer-pass finding: the title names the half the paper does not do
+
+``OPEN`` — `WDP007-C31`; **`PL-WDP007-13`** (net-new this pass).
+
+**The title's key term is used in this document only to name and price its own
+absence: "cosmogenesis" is defined nowhere, and no target constructs what it
+names.** There is
+no witness-relative genesis predicate, no genesis theorem, and no target T1–T5
+that constructs a world; §2's gloss — *"an account of
+how stable, observer-indexed worlds are constructed from retained distinctions"* —
+is the only content the word has, and that account is imported (below).
+
+*Corrected across two repair passes — the previous forms were self-invalidating,
+and the second attempt at a fix was too.* The finding originally read
+*"'Cosmogenesis' appears **twice** in this document"*, which the same pass's own
+additions falsified. Cycle 1 replaced that with a count **scoped to the paper as
+received**, and cycle 2 found the scoped count wrong as well. **Both counts are
+now deleted, here and at every other site in these three files**, and the
+arithmetic of how many the audit added is deleted with them. **The count was
+never the finding**; the finding is the substantive property stated above, which
+no amount of audit prose about the word can invalidate. This is the strengthened
+rule of §4.0(i) applied: *lexical counts of this document are not permitted at
+all.*
+
+That account is **entirely imported**. §3.1 states it plainly: *"None of the five
+components is derived in this paper."* $H_{\mathcal{O}}$ comes from WD-1,
+$p_{\mathcal{O}}$ and $C_{\mathcal{O}}$ from WD-2, $\mathcal{L}_{12}$ from WD-3.
+So the paper's stated target has two halves — *a witness-relative cosmogenesis*
+**and** *a relative completeness theorem* — and it delivers targets for the second
+only. **The construction half is consumed, not contributed.**
+
+This is not a false claim; §3.1 and §7 are scrupulous about the imports. It is a
+**title-versus-content gap**, and the hygiene standard's Part A item 12 asks that
+a title be *"a claim or a clear object, not a mood."* Three honest resolutions
+exist and none is taken here:
+
+1. Define a formal witness-relative genesis predicate and add it as a target — the
+   most work, and the only route that earns the current title.
+
+2. Retitle to name what the paper does: *relative completeness for
+   observer-indexed worlds*, which is already the subtitle.
+
+3. Keep the title and add one sentence to §1 and §2 stating that the cosmogenesis
+   is WD-1/WD-2/WD-3's and this paper contributes the completeness theorem over it.
+
+**The charter itself supports resolution 2, and this was not noticed until this
+repair pass.** `[STANDARD + citation]` — a quotation of the governing charter,
+read at source. The programme charter `000_wd0_witnessed_difference_programme.md` §6 sequence
+table gives WD-7 the row:
+
+> | WD-7 | `007_wd7_witness_relative_cosmogenesis` | **What does it mean for an
+> observer-indexed world to be internally complete?** | Outline |
+
+The charter's own framing of this paper's question is a **completeness** question.
+It names no genesis, no construction, and no cosmogenesis; the word appears in the
+charter's *folder name* for the paper and not in what the charter says the paper
+is for. So resolution 2 — retitle to the existing subtitle — does not merely
+*preserve* the charter's intent, it **restores** it, and the file name is the only
+thing carrying the cosmogenesis reading. That materially strengthens resolution 2
+against resolution 1, and it is recorded here rather than acted on: retitling
+remains outside a producer pass's authority.
+
+**Why this matters more here than it would elsewhere.** "Cosmogenesis" is the one
+word in this programme that a reader will most readily hear as *an account of the
+origin of the universe*. The paper's fences against that reading are good — §3.4's
+four-way fence, §8.2's contrast, `WD7-N1`–`WD7-N6`, `WD7-N9` — but a fence in §11
+does not reach a reader who has read only the title. A word doing no formal work
+and all of the rhetorical work is precisely the shape of overclaim this pipeline
+exists to catch, and the fact that the paper is otherwise disciplined is what
+makes the exposure worth naming rather than excusing.
+
+*Recorded and not fixed, deliberately:* retitling a published-programme paper
+changes the charter's §6 sequence table and the folder name, which is outside a
+producer pass's authority. `AuthorityEffect: None`.
+
+13. Open obligations
+
+
+*Ten obligations were declared in the paper as received. **`PL-WDP007-1`,
+`PL-WDP007-2`, `PL-WDP007-3`, `PL-WDP007-4`, `PL-WDP007-7`, and `PL-WDP007-10` are restated in
+place** by the 2026-07-21 producer pass — none renumbered, none retired, none
+discharged. **`PL-WDP007-11`, `PL-WDP007-12`, and `PL-WDP007-13` are net-new.** First-mint
+precedence applies; these ids must not be reused. **`PL-WDP007-14` is net-new in the
+2026-07-21 cycle-3 pass**; `PL-WDP007-4` is restated in place there, and no id is
+renumbered, retired, or discharged.*
+
+| Id | Obligation |
+|---|---|
+| PL-WDP007-1 | Locate every component of $W_{\mathcal{O}}$ on the WD-0 T4 injection list; publish the import ledger for this paper. **Restated 2026-07-21:** (a) the WD-0 T4 list's own exhaustiveness is ``OPEN`` upstream (`PL-WD0-4`), so locating a component evidences *recognition*, never closure; (b) extend the ledger to **prose** imports, specifically §4 T5 / §8.2's *"biology, memory, time, embodiment, and a world rich enough to support them"* — five unpriced empirical terms carrying the paper's central anti-idealist fence, three of which the corpus has explicitly refused or not constructed (§4 T5); (c) reconcile the five-tuple $W_{\mathcal{O}}$ against `ENC-0211`'s nine-component observer object |
+| PL-WDP007-2 | Fix a concrete $\mathcal{L}_{\mathcal{O}}$ and a concrete $\mathrm{Ev}_{\mathcal{O}}$; prove T1 by structural induction. **Restated 2026-07-21:** this must first repair §4.0(i) — two of `Refused`'s three triggers are excluded by $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$ and the third, *gate-blocked*, is **defined nowhere**, so the domain and the status set do not typecheck against each other. Choose **R1** (widen $\mathrm{Ev}_{\mathcal{O}}$ to raw syntax, `Refused` = non-membership), **R2** (delete `Refused`, four-element $\mathrm{Status}$), **or R3** (keep the domain and the five-element $\mathrm{Status}$; define `Refused` = **gate-blocked only**, which requires *defining* "gate-blocked" and re-specifying §6's six ill-typed probes as gate-blocked probes), and say which; every downstream count in §6 depends on the choice. Also settle §4.0(ii): whether "exhaustive" means totality (empty) or surjectivity (substantive, unestablished, and false under R2) |
+| PL-WDP007-3 | State and prove T2, including the **independent prior characterization** of `Refused` and `OutsideProfile` required by T2.2. **Restated 2026-07-21:** (a) T2.1's quantifier must be settled — the theorem says "any admissible extension", its falsifier `WD7-F2` says "one admissible evidence base" (§10); (b) T2.1's second clause is §3.3's definition restated and carries no content (§4.0(ii)); (c) **define the two admissible-extension relations** — of the evidence base, and of $W_{\mathcal{O}}$ — since T1's disjointness rests entirely on their difference and T4 supplies a candidate collapse (§4.0(iii)); (d) adapt GTLA `math_spine.md` Thm VII.1's $(D_{\mathrm{def}})$ rather than restating the hazard |
+| PL-WDP007-4 | Prove that $\underline{\mathrm{Status}}$ is a sheaf on the observer nerve, or weaken T3 to a presheaf statement with the sheafification cost priced. **Restated 2026-07-21:** this is WD-3's `WD3-C5` one layer up and must not be discharged or counted twice; price the nerve as `059` §3.2 prices its declared-cover nerve; answer `reviews/gtoc_gtla_red_040g.md` P0-2 before asserting the class (**that file is no longer in the tree — deleted by `0f12e92f8` (#1215); retrieve it from git history**, §5a); consider the weaker declared-finite-cover route already mechanized at `PaperAF000.L011_07_EdgeCoverGluing`; and read `ENC-0837`, which **mechanizes** the refusal that local sheaf consistency establishes equivalence. **Corrected in the 2026-07-21 repair pass:** `presheaf` occurs in **20 encyclopedia entries** (20 files / 35 matches case-sensitive; 20 / 39 case-insensitive — *case-insensitive figures corrected 2026-07-21, cycle 3*), chiefly **`gtfoc`** — including `ENC-0065` and `ENC-0064`, both already cited by this paper — so **the presheaf ground is occupied and `PL-WDP007-4` must consume those entries before weakening T3 to a presheaf statement.** The earlier restatement rested on a null result that was false (§9b). Jointly with `PL-WDP007-7`, construct $\mathcal{L}_{12}$ for §6, which §6.3 uses and §6 never defines (§6.2a(D)) |
+| PL-WDP007-5 | Build the two-model construction $W^{+}, W^{-}$ and prove T4; until this exists T4 is a conjecture |
+| PL-WDP007-6 | Prove T5's depth ordering against the actual WD-1/WD-2 constructor definitions, not against a sketch |
+| PL-WDP007-7 | Build the §6 empirical application packet, including at least one $\omega \neq 0$ system, and report the vacuity indicator. **Restated 2026-07-21:** (a) the indicator is currently mis-defined — wrong denominator, and a `Refused` term that is identically zero under R2 (§6.2a(B)); (b) print the $6\times2$ table $\delta$, which the paper omits, so that nothing in §6 is uncheckable; (c) declare the universal-or-existential truth condition for transition claims, on which the whole status distribution depends (§6.2a(C)); (d) target the mechanized non-vacuity witness shape of GTFOC-L20A (`ENC-0058`) |
+| PL-WDP007-8 | Mechanize T1 and T2.1 in Lean 4 under `omega_engine/lean4/` |
+| PL-WDP007-9 | Audit every sentence of the drafted paper for unfenced metaphysical content; each such sentence is a defect. **Carries the audit rule, strengthened 2026-07-21 (cycle 2) after the cycle-1 form produced instance 8:** *a sweep claim about this document must be **substantive**; **lexical counts of this document are not permitted at all**, not even ones scoped to a named prior version, because verifying a scoped count requires re-deriving a version no longer on disk.* Nulls scoped to other named trees (`research/encyclopedia/entries/`, `omega_engine/lean4/`) remain permitted. The audit must reject any such count a draft reintroduces. The superseded cycle-1 form was *"substantive, or scoped to a named prior version, never bare"* |
+| PL-WDP007-10 | Re-verify the §7 conditionality ledger against the *actual* verdicts of WD-0 through WD-5 once those papers are drafted; the table above is written against outlines. **Restated 2026-07-21:** also (a) re-check the WD-4/WD-5/WD-5 non-dependence rows added this pass, and (b) amend the §1 abstract specification, which does not carry the conditionality that §7's own standing rule requires of it |
+| **PL-WDP007-11** | **Net-new 2026-07-21 — the metatheoretic boundary.** Establish that relative completeness survives once the **metatheory the theorems are proved inside** is itself accounted for rather than presupposed — **or** reformulate the §4/§12 verdict to state that boundary explicitly. See §14a |
+| **PL-WDP007-12** | **Net-new 2026-07-21 — scheduling.** Complete the §14 genesis-bias audit **before drafting, not after**: answer its six questions in writing as a precondition of a draft existing. §14's heading says "mandatory before drafting" and no obligation required it |
+| **PL-WDP007-13** | **Net-new 2026-07-21 — title scope.** Resolve the gap between the title's *cosmogenesis* and the paper's delivered content: define a formal witness-relative genesis predicate, retitle to the subtitle, or state in §1 and §2 that the construction is WD-1/WD-2/WD-3's and this paper contributes the completeness theorem over it. **Extended in the 2026-07-21 repair pass:** the programme charter's own §6 sequence-table row for WD-7 frames the question as *"What does it mean for an observer-indexed world to be **internally complete**?"* — the charter treats WD-7 as a **completeness** paper, not a cosmogenesis paper, and names no genesis anywhere in that row. This materially strengthens the retitle-to-the-subtitle resolution, which restores the charter's framing rather than departing from it. See §12a |
+| **PL-WDP007-14** | **Net-new 2026-07-21 (cycle 3) — citation durability.** Re-resolve every external anchor this paper carries — encyclopedia id, Lean module, filesystem path, and tree count — against the repository at a **named revision**, and record that revision with the anchor; re-resolve rather than transcribe at each subsequent pass. Minted because the corpus was renamed under the paper between passes: `Paper043.L043_08_TerminalizerPolicy` ceased to exist, `research/published/reviews/` was deleted entire (`0f12e92f8`, #1215) taking three cited red-team objections with it, two `ENC-*` entries were renamed `Paper070…` → `PaperER008…`, and three tree counts went false — **none of it caused by an edit to this document**, which is why `PL-WDP007-9`'s rule did not reach it. See §5a |
+
+14. Genesis-bias audit (mandatory before drafting)
+
+
+Per the programme charter and the repository's Genesis Bias doctrine, this paper
+must answer, for its own construction:
+
+* Where did the observer $\mathcal{O}$ come from, and at what constructor depth?
+* Where did the grammar $\mathcal{L}_{\mathcal{O}}$ come from? Who declared it,
+  and is the declaration itself inside or outside $W_{\mathcal{O}}$?
+
+* What supplies the finiteness and depth bound of
+  $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$?
+
+* What supplies the domain of $p_{\mathcal{O}}$, given that
+  $\operatorname{im} p_{\mathcal{O}}$ presupposes one?
+
+* What supplies the index set $I$ of the observer family in T3, and what
+  licenses treating it as a cover?
+
+* What licenses the ambient metatheory in which "exactly one status" is proved,
+  and in which $H^{1}$ of the nerve is formed?
+
+The last two questions are not rhetorical, and they are sharper here than in
+WD-0. **A completeness theorem proved inside a structured metatheory does not
+establish completeness *of* that metatheory, and an observer-relativity result
+proved from outside every observer is stated from a position the paper's own
+thesis says does not exist.** The paper must state this boundary explicitly,
+name it as a residual cost, and decline to resolve it — rather than let it pass
+in silence, which on a capstone paper would be the programme's final and worst
+overreach.
+
+**Producer-pass finding: §14's heading says "mandatory before drafting" and no
+obligation required it.** The six questions above had no id. `PL-WDP007-9` audits a
+**drafted** paper, so it fires strictly after the point §14 declares the deadline.
+A drafting convention must not suppress an identified gap; **`PL-WDP007-12`** is
+minted for the scheduling duty. WD-6 carries the structurally identical duty as
+`PL-WD6-12` and WD-5 as `PL-WD5-14`, in both cases **distinct** from that paper's
+boundary obligation — the same two-id split is correct here.
+
+14a. The metatheoretic boundary, given an id
+
+*Minted 2026-07-21 by the Stage-1 producer pass as **`PL-WDP007-11`**. Until this
+pass the boundary above was stated in prose and typed at `WDP007-C20`
+`[INTERPRETIVE]` with non-claim `WD7-N14`, and **carried no `PL` id** — a prose
+and non-claim home with nothing that could discharge it. Fence **`WD7-L9`**
+(Claim Ledger §2a) is its standing form.*
+
+**Statement.** Establish that the §4 relative-completeness verdict survives once
+the metatheory it is reached inside is itself accounted for rather than
+presupposed — a declared formal language and a notion of well-typedness; a
+**depth bound** on $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$ that the difference
+calculus does not supply; a **domain** for $p_{\mathcal{O}}$, which
+$\operatorname{im} p_{\mathcal{O}}$ presupposes and §3.4 explicitly declines to
+characterize; an **index set** $I$ for the observer family, together with
+whatever licenses forming the nerve of it and calling it a cover; and the ambient
+combinatorics in which *"exactly one status"* and $H^{1}$ are formed — **or**
+reformulate the §4 and §12 verdicts to state that boundary explicitly, in §1 and
+again in the conclusion, as §14 demands.
+
+**Why it is sharper in this paper than in any sibling.** WD-7's thesis is that
+completeness is only ever *relative to a declared grammar*. Its own theorems are
+proved in a metatheory whose grammar is **not declared and not indexed** — so the
+paper's central claim, applied to the paper, says that its own completeness
+result is complete only relative to an undeclared grammar. That is not a
+contradiction, but it is the exact self-application the paper never performs, and
+a capstone that declines to perform it is asserting from outside the very
+relativization it argues for. §14's closing sentence says as much; this section
+gives it an id so it can be tracked rather than admired.
+
+**A second, paper-specific twist.** T3 forms $H^{1}$ of the nerve of
+$\{\mathcal{O}_i\}_{i \in I}$. Non-claim `WD7-N10` correctly refuses to call the
+family a cover of anything. But the metatheory in which the nerve is formed
+treats $I$ as a completed index set and the family as a diagram — which is a
+vantage over all observers at once. **The paper reasons from a position that
+surveys every observer, in order to prove that every claim is observer-relative.**
+No such vantage is *used* as a premise of any theorem, and declining to name a
+covered object is not naming one — but a paper that makes observer-relativity its
+thesis owes the accounting in its own voice.
+
+**Every existing obligation was checked and ruled out as its discharger.**
+
+| Ruled out | Why it does not discharge `WD7-L9` / `PL-WDP007-11` |
+|---|---|
+| `PL-WDP007-9` (audit every sentence for unfenced metaphysical content) | **The nearest.** It compares the drafted paper against a fencing standard — sentence by sentence, both inside the metatheory. Confirming every metaphysical sentence is tagged is a different act from establishing what a completeness verdict reached inside a structured metatheory is a verdict *about* |
+| `PL-WDP007-1` (locate imports on the WD-0 T4 list) | **Prices the injections** by locating each on a list. That is the same distinction WD-5 drew between `PL-WD5-10` and `PL-WD5-11`: pricing an import is an act *inside* the setting, and the metatheory is not an item on the list |
+| `PL-WDP007-2`, `PL-WDP007-3` (fix $\mathcal{L}_{\mathcal{O}}$, $\mathrm{Ev}_{\mathcal{O}}$; prove T1, T2) | Presuppose the ambient setting. Fixing a grammar and an evaluation *inside* a metatheory is the paradigm inside-facing act, and is precisely what generates the boundary rather than crossing it |
+| `PL-WDP007-4` (the sheaf condition) | A mathematical property of a coefficient object **of** the metatheory |
+| `PL-WDP007-5` (build $W^{+}, W^{-}$) | The most inside-facing of all: $W^{+}$ and $W^{-}$ are objects *of* the metatheory, and an independence result proved in it is still a result in it |
+| `PL-WDP007-6` (T5's depth ordering) | Orders constructors **within** the declared construction order; it does not order the setting that declares them |
+| `PL-WDP007-7` (build the §6 packet) | A computation over objects of the setting |
+| `PL-WDP007-8` (Lean mechanization) | Re-expresses the setting in a **second** formal system. Mechanizing a metatheory inside another metatheory relocates the question rather than answering it |
+| `PL-WDP007-10` (re-verify §7 against WD-0…WD-5) | Compares this paper against **sibling papers written inside the same ambient metatheory**. It settles which verdicts are consumed, not what a verdict inside the setting is about |
+| `PL-WDP007-12` (complete §14 before drafting) | **Minted the same pass, deliberately separate.** A **scheduling** duty — *when* §14's six questions are answered — not *what a verdict reached inside the metatheory is about*. Answering them in writing leaves the fence exactly where it stands |
+| `PL-WDP007-13` (title scope) | A **scope and naming** duty over the paper's title. Retitling changes what is promised, not what a verdict inside the metatheory reaches |
+
+§14's other rows — the origins of $\mathcal{O}$, of $\mathcal{L}_{\mathcal{O}}$,
+and of the finiteness bound — are the same boundary applied to individual
+imports, and belong with `PL-WDP007-1` and `PL-WDP007-2`, not here.
+
+**Standing.** This is the paper's deepest honesty risk, and it is a **boundary**
+risk rather than a mathematical gap. It is parallel to WD-0's `PL-WD0-8` (fence
+`WD0-L5`), WD-1's `PL-WD1-11` (fence `WD1-L8`), WD-2's `PL-WD2-12` (fence
+`WD2-L9`), WD-3's `PL-WD3-11` (fence `WD3-L9`), WD-4's `PL-WD4-11` (fence
+`WD4-L9`), WD-5's `PL-WD5-13` (fence `WD5-L9`), WD-5's `PL-WD5-11` (fence
+`WD5-L8`), WD-6's `PL-WD6-13` (fence `WD6-L9`), and WD-5's `PL-WD5-13` (fence
+`WD5-L9`) — **each of the nine siblings carries exactly one, and WD-7 was the
+only paper in the programme without one.** *List made symmetric 2026-07-21
+(cycle 2): WD-0 through WD-3 gave obligation ids only, though their fences exist
+too, which made WD-7's gap look narrower than it was. The gap was in the
+`PL` **id**, and that claim is unchanged.* Discharging `PL-WDP007-11` does not
+retire fence `WD7-L9`: the obligation either exhibits the accounting, which
+narrows what the fence excludes, or reformulates the verdict to state the
+boundary explicitly, which puts the fence in the paper's own voice. Neither
+outcome removes it. *Type:* `Prose` (possible reformulation). *Standing:*
+**OPEN / NOT-STARTED.** *AuthorityEffect:* `None`.
+
+Changelog
+
+**Version is deliberately NOT bumped.** The paper remains
+**v0.1 (Pre-Print) — OUTLINE, NOT DRAFTED**, per the WD-programme convention that
+all ten outlines carry a uniform version and date their passes here instead. The
+header date `2026-07-20` is the outline's authoring date and is left as authored;
+this pass ran on 2026-07-21.
+
+### 2026-07-21 — Stage-3 blocker repair, producer role (statement fidelity)
+
+*Applied after `/paper-proof-signoff` — the authority witness, a third role, neither the producer nor
+the Stage-2 evaluator — returned **BLOCKED@proof**. **Version deliberately not bumped.** No row was
+promoted, retired, renumbered, or discharged. **No Lean file was edited:** this pass corrects the
+paper's *description* of the Lean, never the Lean. Nothing here is self-certified and no ACCEPT is
+declared.*
+
+**What the witness established that the producer had not.** It **ran the builds** — all seven
+libraries green, zero errors, zero `sorry`, standard-trio axioms only — and confirmed every anchor
+resolves. **The blocker was not existence. It was statement fidelity.** The cycle-3 pass re-resolved
+every anchor's *name* and recorded in `WDP007-C30`'s own evidence cell that *"no build was run"*; it
+never opened the *statements*. An existence check cannot tell a theorem that carries content from one
+whose proof term is `rfl` — and here it did not.
+
+**The sharpest instance.** `PaperER007.L007_08_TerminalizerPolicy`'s `terminalizer_total` is
+`⟨terminalize report, rfl⟩` and `terminalizer_deterministic` is `rw [← hLeft, ← hRight]`. **Both hold
+of any total function whatever.** §5 called this *"the cleanest existing **total, deterministic
+routing map over a finite report type** — T1's exact shape"*, so the paper **rejected the empty
+reading of T1 in prose (§4.0(ii)) and endorsed its Lean instantiation as the target**, with
+`PL-WDP007-8` pointing a drafter at the vacuous form. The module's real content — the four preemption
+theorems `certificate_implies_every_gate`, `refusal_rows_preempt_certificate`,
+`repair_rows_preempt_certificate`, `refusal_or_repair_preempts_certificate`, which say a certificate
+cannot be emitted unless every gate holds and that refusal/repair rows **preempt** it — was cited
+nowhere. That is the no-default-certification shape **T2.2** needs, not T1.
+
+**Also corrected, each read at source.** `ENC-1064` was claimed to prove *"exhaustiveness **and**
+pairwise disjointness"* — **false on both halves**: disjointness is **3 of 6** (only `exactRepair`
+against the others; the remaining three pairs are proved **nowhere in the tree**), and
+`classify_unique` is single-valuedness of a function, not exhaustiveness. **`EdgeTripleCompatible`**
+was bolded as *"the triple-overlap cocycle condition T3 needs"* and is **load-bearing for nothing** —
+every gluing theorem consumes the *pairwise* conjunct, so T3's cocycle has no mechanized antecedent
+even in the module named as nearest. **`PaperAF004`** carries **zero `#print axioms`** in its single
+462-line module — an absence the paper disclosed for `PaperQF005` and not for it.
+**`PaperQF005.L042_31_SemanticTotality`**'s namespace is `PaperQF005.SemanticTotality`. The anchor
+tally is **eleven**, not ten (`PaperAF000` and `PaperAE006` each contribute two modules) — kept,
+flagged falsifiable, routed to `PL-WDP007-14` per the option already chosen for this class. **`ENC-0837`**
+is a **second** incomplete `uses:` terminal list (two of seven named), flagged in place and not
+rewritten, which makes the transcription defect a pattern rather than a slip. The encyclopedia holds
+**949** entries, not `983`. `lean_refs` rot is given its scale: **20 of 22 cited paths dead (90.9%),
+18 of 20 entries wholly dead**, every leaf still existing — pure `00N_` path rot.
+
+**`PL-WDP007-14` extended and narrowed.** Extended to require **statement** verification, not only
+name/path/count re-resolution — that gap is the root cause of the three Lean findings above.
+Condition (i) **narrowed**: the witness retrieved all three deleted red-team files from `0f12e92f8^`
+and verified all three quotations **exact**, so the condition is **dischargeable**, not impossible.
+
+**Not done, and owed.** **This pass ran no build** — the green result is the witness's and is cited as
+such. Statements were read for `PaperER007.L007_08_*`, `OmegaCosmology.Primitives.TerminalDisjointness`,
+and the `PaperAF000` gluing modules only; those of `PaperQF005.L042_31_*`, `QM.BornQuadraticCountermodel`,
+`PaperFOC000.L000_06_*`, and the `PaperAE006` pair were **not** read and are named as unread rather
+than left looking verified. No encyclopedia entry was edited; no `ENC-*` status re-adjudicated; §6 not
+recomputed. **No blanket certification is made and no ACCEPT is declared.**
+
+### 2026-07-21 — cycle-3 `/paper-improver` producer pass (rename-breakage re-resolution)
+
+*Role: producer. Evidence ceiling `AuthorityEffect: None`. **Nothing below is
+self-certified and no ACCEPT is declared**; a separate independent adversary
+re-audits it. No row was promoted, retired, renumbered, or discharged; no
+encyclopedia entry and no other paper's files were edited. **Version deliberately
+not bumped.***
+
+**Scope.** Every external citation in the paper and its Claim Ledger was
+**re-resolved against the repository at revision `64d9e6371`** rather than
+transcribed from a prior pass. Prior passes audited the paper against itself;
+this one audited it against the tree, which had been reorganized underneath it.
+
+**Part A rubric — verified present, unchanged.** All six elements remain as the
+Stage-1 pass found them; none was manufactured, padded, or removed. No claim was
+retyped and no claim's type changed.
+
+**The finding, new in kind.** Instances 1–8 catalogued in the cycle-1 changelog
+are *self-invalidating* claims — falsified by the pass that wrote them. This pass
+found a different shape: **corpus-invalidated** anchors, correct when computed and
+falsified by rename and deletion commits in *other* trees, with no edit to this
+document. `PL-WDP007-9`'s rule explicitly permits nulls scoped to other trees
+*"because writing here cannot change them"* — true, and insufficient. **`PL-WDP007-14`
+is minted** for the gap, and §5a records the full re-resolution table.
+
+**Repairs, each verified at source.** Lean library/module
+`Paper043.L043_08_TerminalizerPolicy` no longer exists and was re-resolved to
+**`PaperER007.L007_08_TerminalizerPolicy`** (ns `PaperER007`), all six cited
+declarations confirmed present, `sorry`-free, `#print axioms` emitted. Three
+red-team files this paper leans on for its *adversarial* evidence —
+`reviews/gtoc_gtla_red_024.md`, `_040g.md`, `_041.md` — were **deleted entire** by
+`0f12e92f8` (#1215); every citation is now marked git-history-only rather than
+left resolving to nothing. `ENC-1197` and `ENC-1199` were cited under their old
+*Paper070* names and now read **`PaperER008`**. `attic_papers/034 Constructor
+Topos Theory` and `040c` **resolve to nothing** and are struck rather than
+guessed at. `001_Projection_Obstruction_v5_6` was wrong in number and casing.
+Legacy labels `000b`, `024`, `030`, `901` were given their current paths.
+Two `.lean` filesystem paths were converted to module form, which the paper's own
+§5 policy already required of them. §4 T5's *"`060` is an outline; nothing is
+constructed"* is **false** — `009_embodiment` is drafted with four
+receipt-gated modes; the fence's point survives, the factual claim did not.
+
+**Counts corrected in live text:** `598` → **583** `.lean` files, `546` → **428**
+published `.md` files, and `presheaf` case-insensitive `29 files / 67 matches` →
+**20 / 39**. Dated changelog and repair-record entries above are **left as
+written** — they record what a past pass computed — and are superseded by this
+entry rather than rewritten.
+
+**What re-ran exact, recorded because a surviving null is evidence.** **Every
+distinct** `ENC-####` id cited across these two files **resolves** — stated
+without a count, the *"57 distinct"* form having been falsified by this pass's own
+repair (**instance 9**, §5a) — with `kind`/`status`/`lean_status`/
+`conditional_on` matching the paper's assertions. **`uses:` does not belong on
+that list**: it was re-verified only for the rows individually named, and is
+**refuted for `ENC-1199`** (§5a). *Corrected within cycle 3: this sentence
+carried `uses:` in the blanket list, contradicting §5a in the same pass that
+wrote both — a drafter reading the changelog got the false claim and one reading
+§5a got the true one.* **Nine of the ten cited Lean anchors** — the term §5a
+uses, not "modules", since the ten comprise eight module names, one declaration
+reference, and one base-path-form anchor — resolve with the exact namespaces and
+declarations claimed; that tally is a self-count, falsifiable by a later
+citation, and is flagged as such at §5a under `PL-WDP007-14`. Every
+token-level Lean sweep, the `983` entries, the 13 layers, the `gate-blocked`
+nulls, and the charter and GTLA-spine quotations re-ran unchanged. The tokens
+were stable; the paths and file counts were not.
+
+**Not done, and owed to the next stage.** No proof was written or checked. **No
+`lake`, `cargo`, or Lean build was run** — module and declaration claims rest on
+reading source text and `lakefile.lean`, so "`sorry`-free" means textual absence,
+**not** that anything compiles. No `ENC-*` status was re-adjudicated and no
+encyclopedia entry was edited, including the two `ENC-1064` metadata defects
+still open from cycle 1. §6 was not recomputed and no status count or $\omega$ was
+computed. The deleted red-team files were **not** retrieved from git history and
+their contents were not re-read; only their deletion was verified. The Rovelli
+arXiv id was still not HEAD-checked. **No blanket claim of correctness is made
+for any anchor not individually named in §5a, and no ACCEPT is declared.**
+
+### 2026-07-21 — Stage-1 `/paper-improver` producer pass
+
+*Role: producer. Evidence ceiling `AuthorityEffect: None`. **Nothing below is
+self-certified and no ACCEPT is declared**; a separate independent adversary
+re-audits it. No row was promoted, retired, or renumbered.*
+
+**Part A rubric — verified present, not padded.** All six elements already
+existed: (a) lead-sentence specification §1, (b) why-care §2, (c) related work §9
+(six neighbours), (d) worked example §6, (e) falsifiability §10, (f)
+does-not-claim box §11. **None was manufactured.** Two were *repaired* for
+overclaim (§1's second drafting constraint, §2's three bullets), two *extended*
+with omitted in-corpus prior art (§9a, §9b), one *audited* arithmetically
+(§6.2a), and one *audited* for missing falsifiers (§10).
+
+**The mandated stale item, fixed.** §7's WD-5 row quoted the **superseded** form
+of programme stop condition 6. The charter was amended 2026-07-20 — crediting
+WD-5 and discharging `PL-WD5-7` — and now reads *"If finite automata satisfy the
+self-witness axioms, those axioms do not **determine** phenomenal consciousness —
+in either direction."* Verified by reading `000_wd0_witnessed_difference_programme.md` §8 at
+source. The old wording presupposed knowing the automata are non-conscious, which
+is what the programme declines to assert. WD-5 recorded this as `WD5-N26` and
+deliberately left it for this file. Repaired, with the consequence for WD-7
+stated: the row previously licensed a stronger, asymmetric reading of T5.
+
+**Mathematical findings — each by explicit derivation or enumeration, none by
+transcription.**
+
+1. **§4.0(i) — the status set does not typecheck against its own domain.**
+   `Refused`'s receipt is a **three-way** trigger (*ill-typed, unbounded, or
+   gate-blocked*); $\mathrm{Ev}_{\mathcal{O}}$'s domain excludes the first two and
+   leaves the third **undetermined, because "gate-blocked" is defined nowhere** —
+   `gate-blocked` is **defined nowhere in the corpus** and every occurrence of it
+   is a *use*. *Corrected in the 2026-07-21 cycle-2 repair pass from "two
+   occurrences corpus-wide, both in this paper", an unscoped count that was false
+   when written and is deleted rather than rescoped.*
+   **Three** repairs tabulated (R1 widen the domain / R2 delete `Refused` / R3
+   narrow the *receipt* to gate-blocked only); **none adopted**. Consequences
+   reach T2.2, §6's total, and the vacuity indicator. *Corrected in the
+   2026-07-21 repair pass:* this said `Refused` "is unattainable and
+   $\mathrm{Status}$ is not surjective", which asserted more than the argument
+   derives — excluding one disjunct does not exclude the disjunction — and it
+   listed **two** repairs as though they exhausted the space.
+
+2. **§4.0(ii) — T1's "Equivalently" is not an equivalence**, and one reading of
+   it is a definition wearing a theorem (a function *is* total and
+   single-valued). The same defect recurs in T2.1's receipt clause.
+
+3. **§4.0(iii) — `Underdetermined` and `OutsideProfile` are not shown disjoint**,
+   and **T4 supplies the candidate collapse**: its two-admissible-extension
+   conclusion is the same shape as the `Underdetermined` receipt. The paper
+   defines neither notion of admissible extension. This sits at what §3.3 itself
+   calls "the paper's technical core".
+
+4. **§4 T5 — the O4 half of the target was unearned.** WD-5 supplies **no O4
+   axioms** (charter §5: *no mathematical bridge is supplied*), and the displayed
+   inequality orders O3 only. Corrected at **three sites in two files**; the Claim
+   Ledger's `WDP007-C10`, `WD7-L7`, and `WD7-F5` were already correct, so the paper
+   was the stronger of the two files — invisible to any ledger-only check.
+
+5. **§4 T5 — the anti-idealist fence is bought with five unpriced empirical
+   imports** (*biology, memory, time, embodiment, a world rich enough*). Three are
+   refused or unconstructed in this corpus — `001_time` **refuses**
+   sequence-position as an import; retention is not memory; `060` is an outline.
+   Named and tabulated; **not fixed** (`PL-WDP007-1`).
+
+6. **§6.2a — arithmetic audit.** Six anchors re-derived and **correct**
+   ($15$; $3\times15\times3=135$; $\binom{3}{2}=3$; $135+3+6+6=150$; the two uses
+   of $15$ agree; $6\times2=12$). One satisfiability check the paper asserts but
+   never verifies was **verified here** ($S(6,3)=90$ partitions; an explicit
+   non-refining pair exhibited). **Four defects found:** the $150$ is not a count
+   of $\mathcal{L}_{\mathcal{O}}^{\mathrm{fin}}$ (well-typed total $144$); the
+   vacuity indicator is mis-defined two ways; transition claims have no stated
+   truth condition, and the indicator depends on which is meant;
+   $\mathcal{L}_{12}$ is used and never constructed.
+
+7. **§7 — the conditionality table covered six of nine layers** while the section
+   header asserted dependence on *every* layer beneath. WD-4, WD-5, and WD-5 rows
+   added as explicit non-dependence.
+
+8. **§12a — the title names the half the paper does not do.** "Cosmogenesis"
+   is **never defined and names no target**; the construction account is
+   **entirely imported** per §3.1's own *"None of the five components is derived
+   in this paper."* Three resolutions offered; **none taken** — retitling is
+   outside a producer pass's authority. `PL-WDP007-13`. *Corrected in the 2026-07-21
+   repair pass:* the count *"occurs twice"* was scoped to the paper as received;
+   this pass's own additions took it to nine, so the unscoped count was false as
+   shipped. The count was never the finding.
+
+9. **§10 — four falsifier defects**, including a **quantifier mismatch** between
+   T2.1 ("any admissible extension") and `WD7-F2` ("one admissible evidence
+   base"), which leaves the paper unfalsifiable at the strength it asserts.
+
+**Overclaim repairs — T4 called a theorem at five sites.** §2, §8.1, §11, and §12
+(twice). T4 is `[CONJECTURE]` with **no proof and no strategy** by §5's own
+admission. The §11 site is the worst: a non-claims box asserting theoremhood, in a
+file whose ledger row `WD7-N3` does not. Also repaired: §2's *"§6 **makes** it a
+reproducible number"* (§6 is not built), §2's *"T5 **fixes** … and therefore
+forecloses"* (T5 is ``OPEN``, and forecloses only the root-primitive reading),
+and §7's *"T1–T4 **remain true**"* (all four are ``OPEN`` or `[CONJECTURE]`).
+
+**False cross-references — three found, all resolving to the wrong target.**
+§1's *"those words belong to §10"* (§10 is Falsifiability and contains none of
+them; and *"reality"* has no fenced home anywhere in the paper's own
+argumentative text — *corrected in the 2026-07-21 repair pass from the lexical
+"occurs nowhere else in the paper", which this pass's own §9b addition
+falsified*); §3.4's *"See §13"* (§13
+never mentions the domain of $p_{\mathcal{O}}$; §14 asks about it directly);
+§7's *"delete every 'sometimes quantum' clause from §4 T5 and §10"* (the two
+sites are §4 T5 and **§8.2**). **Two cross-file pointers were checked and found
+TRUE** and are recorded as verified: WD-0 §7's enriched-primitive warning, and
+WD-0 §5's three-level methodology.
+
+**Prior art (§9a, §9b).** §9.6 cited three papers plus the siblings. Sweeps of
+all three trees — 546 published `.md` files, 983 encyclopedia entries across all
+**13** layers, 598 `.lean` files — found **fourteen** published antecedents (§9a,
+counted as table rows) and **seventeen** encyclopedia rows (§9b) naming **twenty**
+entries cited as sources, plus their chain terminals and **two** verified
+re-exports of `ENC-1064` (`ENC-1068`, `ENC-1071`) recorded
+so they are **not** cited in a source's place. Each source is cited at its
+terminal. The decisive entry, `ENC-1064`, is filed under **`quantum`** — not a
+layer a T1-shaped search would try first. *These are counted figures, not
+estimates; the §9a and §9b tables are the count.* **Corrected in the 2026-07-21
+repair pass:** this read *"**six** named re-exports (`ENC-1068`, `ENC-1071`,
+`ENC-1079`, `ENC-0189`, `ENC-0636`, `ENC-0637`)"*. **Four of the six were not
+re-exports** — verified at source, entry by entry — and the `ENC-0491` clause is
+withdrawn entirely because **no entry in the corpus cites `ENC-0491`**. See §9b's
+re-export correction table. The row count rises by one with `ENC-1093`, added the
+same pass.
+
+**Obligations.** Ten became thirteen. `PL-WDP007-1`, `-2`, `-3`, `-4`, `-7`, `-10`
+**restated in place**, none renumbered, none discharged; **`PL-WDP007-11`** (the
+metatheoretic boundary, §14a — WD-7 was the only paper in the programme without
+one), **`PL-WDP007-12`** (the §14 scheduling duty), and **`PL-WDP007-13`** (title
+scope) **newly minted**, each with every predecessor named and ruled out.
+
+**Not done, and owed to the next stage.** No proof was written or checked. **No
+`lake`, `cargo`, or Lean build was run** — every Lean statement above rests on
+reading source text and the lakefile's library→`srcDir` map, so "`sorry`-free"
+means textual absence, **not** that anything compiles. No `ENC-*` status was
+re-adjudicated. No status count was computed for either observer and $\omega$ was
+not computed, because no evaluator exists. The §6 transition table is not printed
+in the paper and so could not be checked at all. T3, T4, and T5 were not verified.
+The Rovelli arXiv id was **not** HEAD-checked; the Wheeler reference carries an
+inherited `[VERIFY]`. The external literature of §9.1–§9.3 was not consulted.
+**No blanket claim of correctness is made for any anchor not individually named
+above, and no claim about how thoroughly the paper was checked is itself
+checkable. A fresh adversary re-audits this pass.**
+
+### 2026-07-21 — repair pass (cycle 1 of 3), producer role
+
+*Repairs to the Stage-1 producer pass above, against findings raised by an
+independent adversary. **Version deliberately not bumped** — the paper remains
+**v0.1 (Pre-Print) — OUTLINE, NOT DRAFTED**. No id was promoted, retired,
+renumbered, or minted; no obligation was created or discharged; no other paper's
+files were touched. **Nothing below is self-certified and no ACCEPT is
+declared.***
+
+**Five blocking findings, each repaired at every site.**
+
+1. **§9b's `presheaf` null result was false.** The null list asserted zero hits
+   across all 983 entries. Re-run this pass: **20 files / 35 matches
+   case-sensitive; 29 files / 67 matches case-insensitive**, concentrated in
+   `gtfoc`. **`ENC-0065`, which §9b itself cites, contains the word**, as does
+   `ENC-0064`. `presheaf` is removed from the null list and replaced with a
+   positive row; the derived sentence *"the sheaf refusal is `MECHANIZED` at
+   `ENC-0837` while the word `presheaf` never appears"* is **withdrawn**;
+   `PL-WDP007-4`'s restatement is corrected to say the presheaf ground is
+   **occupied** and must be consumed. `"sheafification"` was re-verified and **is**
+   genuinely zero, and stays.
+
+2. **§4.0(i) asserted more than it derives.** `Refused` is a **three-way**
+   trigger; the domain excludes ill-typed and unbounded but **not** gate-blocked,
+   which is *"defined nowhere"* — **no definition of `gate-blocked` exists
+   anywhere in the corpus; every occurrence is a use**, with **0 occurrences in
+   `research/encyclopedia/entries/` (983 files)** and **0 in
+   `omega_engine/lean4/` (598 `.lean` files)**. *Corrected in the 2026-07-21
+   cycle-2 repair pass: this sentence read "verified: two occurrences
+   corpus-wide, both in this paper, zero in `research/encyclopedia/` or
+   `omega_engine/lean4/`". **Both halves were false** — the count was wrong, and
+   the global proof ledger, which carries this paper's obligations, **lives under
+   `research/encyclopedia/`**. This is the sentence the cycle-1 R7 entry three
+   paragraphs below condemns, which had survived verbatim in the changelog while
+   being repaired in the body.*
+   Retitled to *"`Refused`'s domain is under-specified"*; *"cannot occur"* →
+   *"cannot occur via its ill-typed or unbounded triggers"*; the fallback leg
+   (the *"does not enter the evaluation"* gloss) is demoted to a named,
+   unused reading, since it sits in an **"Informal reading"** column and is
+   contradicted by the three routing quotations the section itself cites.
+   *"False as the paper stands"* → *"unestablished, and false under R2"* in
+   §4.0(ii).
+
+3. **R1/R2 were presented as exhaustive; R3 exists.** **R3 — narrow the
+   *receipt*, not the domain or the status set**: define `Refused` =
+   **gate-blocked only**. Domain unchanged, `Status` stays five-element, T1
+   unchanged in shape; cost is defining "gate-blocked" and re-specifying §6's six
+   ill-typed probes as gate-blocked probes. Under R3 `Refused` is neither out of
+   domain nor identically zero and §6's total need not drop. Added to §4.0(i)'s
+   table; *"Both available repairs"* → *"Three repairs are available"*;
+   `PL-WDP007-2` amended to *"choose R1, R2, or R3"*; §6.2a(B) qualified. **No claim
+   of exhaustiveness is made for R1–R3 either** — WD-5 was blocked for exactly
+   this shape, and a two-option repair table is recorded as a defect smell.
+
+4. **Four of six named "re-exports" were not re-exports.** Verified at source:
+   `ENC-1068` and `ENC-1071` genuinely `use` `ENC-1064`; **`ENC-1079` has
+   `uses: []`**, zero textual reference, and unrelated content;
+   **`ENC-0189` / `ENC-0636` / `ENC-0637` reference nothing of `ENC-0491`**, and
+   **no entry in all 983 cites `ENC-0491` at all**. The `ENC-0491` clause is
+   **withdrawn entirely** — the text had instructed a drafter to suppress four
+   independent results as duplicates. Recorded as mitigating: **`ENC-1064`'s own
+   Notes** assert reuse by `ENC-1079` (mislabelled COFIBER-001, which is
+   `ENC-1077`), so the source entry is where the error originated. Two
+   `ENC-1064` metadata defects are **recorded for a separate encyclopedia ticket
+   and not fixed here**; no encyclopedia entry was edited.
+
+5. **A third cross-file directional defect, in the opposite direction from the
+   first two.** The **global** proof ledger's WD-7 block said §3.3 *"defines the
+   `Refused` receipt for **ill-typed** claims"*, silently dropping *"unbounded, or
+   gate-blocked"* **from the definition itself** — there the ledger was the weaker
+   file, where the two found in the Stage-1 pass had the paper stronger. Repaired
+   in the global ledger with the full quotation restored.
+
+**The seventh defect shape, found in this paper's own Stage-1 pass and repaired
+at every instance.** *A "verified by search / occurs exactly N times / occurs
+nowhere else" assertion **about this document** which the same pass's own
+additions falsify — true when computed, false as shipped, withdrawn by nothing.*
+Six instances found, four named by the adversary and two more by self-audit:
+
+| # | Site | Claim as shipped | Repaired to |
+|---|---|---|---|
+| 1 | §1 | *"'reality' occurs **nowhere else in this paper at all**"* — falsified by §9b's `ENC-1197` row (*"unrepresented reality"*) added the same pass | Substantive: *"has no fenced home anywhere in the paper's own argumentative text"* |
+| 2 | §12a + global ledger | *"'Cosmogenesis' appears **twice** in this document"* — falsified by the same pass's own additions | Cycle 1 scoped it to *"the paper as received"*; **cycle 2 deleted the count entirely** at both sites, leaving only the substantive finding (the term is undefined and names no target) |
+| 3 | §4 T5 | *"`spacetime` occurs **once**"* — now twice; the asserting sentence contains it | Substantive: *"the only occurrence outside this pass's own commentary is in §11, as a refusal"* |
+| 4 | §4 T5 | *"**zero** occurrences of Big Bang, manifold, metric, … measure …"* — the sentence contains one of each, and *measure* occurs 3× more in a legitimate non-physics sense (*obstruction measure*, *depth measure*) | Substantive: *"no physical-cosmology object is imported anywhere"* |
+| 5 | Claim Ledger `WD7-N20` | *"Verified by search: **zero occurrences** of each in the paper"* — same defect, restated in the ledger. **Found by self-audit** | Substantive, matching §4 T5 |
+| 6 | §5 + §4 T3 Lean sweep | *"**Zero hits, tree-wide**"* for a nine-token list — **false for four**: `presheaf`/`Presheaf` (3, in a paper-title comment), `Cech` (1, in a **disclaimer**), `termination_by` (1, in a comment **proposing** a route), and lowercase `underdetermined` (**6, including the mechanized `PaperAF004.toyVacuum_family_underdetermined`**). **Found by self-audit** | Substantive claim kept (*no presheaf, Čech complex, nerve, or well-founded depth measure is constructed*), with a table naming every surviving lexical hit |
+| **7** | **§4.0(i) — written *by the cycle-1 repair pass*** | *"`gate-blocked` occurs **exactly twice** in the whole corpus … **zero** occurrences in `research/encyclopedia/` or `omega_engine/lean4/`"* — **both halves falsified while being written**: naming the term across the three files multiplied it, and the global proof ledger **lives under `research/encyclopedia/`**. **Found by self-audit of that pass's own new text** | Substantive: *"no definition of 'gate-blocked' exists anywhere in the corpus"*, with the null scoped to `entries/` and `lean4/` where it holds. **The count was scoped rather than deleted, which produced instance 8 — see the row below** |
+| **8** | **§4.0(i), §12a, and both ledgers — written *by the cycle-1 repair of instance 7*** | The **scoped** replacement *"in the paper as received the term occurred exactly twice … §3.3's table row and this section's quotation of it"* was **also false**: §4.0 did not exist in the received paper, so its quotation cannot have been one of the two. The same scoping was applied to *cosmogenesis* and was wrong there too. **Found by the cycle-2 adversary** | **The rule is strengthened rather than re-applied.** A scoped count is unverifiable without re-deriving a version no longer on disk, so **lexical counts of this document are now forbidden outright**. Every such count is deleted from these three files; only substantive statements and nulls scoped to *other* named trees remain. Routed to `PL-WDP007-9` |
+
+**Instances 7 and 8 are the finding, not an embarrassment to be buried.** The pass
+that catalogued six instances of the self-invalidating sweep claim **produced a
+seventh while writing the catalogue**, and **the remedy it prescribed for the
+seventh produced an eighth**. That is evidence the shape is a **structural hazard
+of audit prose** rather than an author's lapse: an audit that names a rare token
+is the very act that makes the token common, so any lexical count stated *about
+the document doing the counting* is unstable by construction — **and scoping the
+count to a prior version does not stabilise it**, because verifying a scoped
+count means re-deriving a version that is no longer on disk, from the version
+that invalidated it. `PL-WDP007-9` inherits the **strengthened** audit rule:
+
+> **A sweep claim about this document must be SUBSTANTIVE. Lexical counts of this
+> document are not permitted at all — not even scoped ones.**
+
+Nulls scoped to *other* named trees (`research/encyclopedia/entries/`,
+`omega_engine/lean4/`) remain permitted, because writing in this document cannot
+change them. The weaker cycle-1 form — *"substantive, or scoped to a named prior
+version, never bare"* — is **superseded**, and every count it licensed has been
+deleted.
+
+**Instance 6 changed a finding, not only a sentence.** The `Underdetermined` null
+was true only **case-sensitively**, and `ENC-1093` (`gtla`, `MECHANIZED`) carries
+a *"family verdict is underdetermined"* row and the Lean theorem
+`PaperAF004.toyVacuum_family_underdetermined`. It is now a §9b row. A drafter was
+being told the ground was unoccupied when it is not.
+
+**Advisories applied.** `ENC-1093` added to §9b; `ENC-1130` recorded as an
+unlisted `ENC-1064` dependent; §4.0(iii)'s lead-in corrected — the second item is
+**T4's conclusion**, not `OutsideProfile`'s receipt, and the finding is sharpened
+rather than weakened by saying so; `PL-WDP007-13` extended with the charter's own
+WD-7 row, which frames the paper as a **completeness** paper
+(*"What does it mean for an observer-indexed world to be internally
+complete?"*) — materially strengthening the retitle-to-the-subtitle resolution,
+which **restores** the charter's framing rather than departing from it.
+
+**Not done in this repair pass.** No proof was written or checked; **no `lake`,
+`cargo`, or Lean build was run** — every Lean statement still rests on reading
+source text. No `ENC-*` status was re-adjudicated and **no encyclopedia entry was
+edited**, including the two `ENC-1064` metadata defects found. §6 was not
+recomputed under R3, and no status count or $\omega$ was computed. The §9a
+published-tree sweep was **not** re-run; only the encyclopedia and Lean sweeps
+named above were. Sections not named above were not re-audited. **No blanket
+certification is made and no claim about how thoroughly the rest was checked is
+itself checkable. This is not an acceptance and declares no ACCEPT; a fresh
+independent adversary re-audits this repair.**
+
+### 2026-07-21 — repair pass (cycle 2 of 3), producer role
+
+*Repairs to the cycle-1 repair pass above, against four blocking findings from an
+independent adversary who confirmed cycle 1's five repairs as genuinely
+discharged and recomputed every number stated there, matching exactly. **Version
+deliberately not bumped** — the paper remains **v0.1 (Pre-Print) — OUTLINE, NOT
+DRAFTED**. No id was promoted, retired, renumbered, or minted; no obligation was
+created or discharged; no other paper's files were edited; no row of the global
+ledger above the WD-7 block was disturbed. **Nothing below is self-certified and
+no ACCEPT is declared.***
+
+**The audit rule this paper minted was insufficient, and is replaced.** Cycle 1
+wrote *"substantive, or scoped to a named prior version, never bare"*. The
+adversary produced **instance 8** by applying it: the *scoped* count
+*"in the paper as received … exactly twice"* is itself false, because §4.0 did
+not exist in the received paper. The strengthened rule — **substantive only; no
+lexical count of this document at all** — is recorded above, routed to
+`PL-WDP007-9`, and applied at every site.
+
+**Four blocking findings, each repaired at every site.**
+
+1. **The `gate-blocked` count was fixed at one site and live-false at three.**
+   §4.0(i)'s scoped count (instance 8), §12a-adjacent changelog item 1's
+   *"two occurrences corpus-wide"*, and the cycle-1 changelog's *"verified: two
+   occurrences corpus-wide … zero in `research/encyclopedia/` or
+   `omega_engine/lean4/`"* — **the last being the very sentence cycle 1's own R7
+   entry condemns, surviving verbatim**, with both halves false, since the global
+   proof ledger lives under `research/encyclopedia/`. The fourth site is in the
+   global ledger. All four now carry the substantive form only —
+   ***`gate-blocked` is defined nowhere in the corpus; every occurrence is a
+   use*** — with the genuine nulls scoped precisely to **`entries/` (983 files)**
+   and **`lean4/` (598 `.lean` files)**, and **every count of an occurrence in
+   this document deleted**.
+
+2. **A live obligation carried a false null** (global ledger, `PL-WDP007-6`):
+   *"`WellFounded`, `termination_by`: zero hits"*. `termination_by` occurs once,
+   in a comment proposing a route — a fact the same file had already recorded in
+   its Lean-sweep repair. The paper propagated that fix and the obligation did
+   not; a drafter reads the obligation. Repaired to match.
+
+3. **A bare count sat inside the correction that forbids bare counts.** §12a's
+   *"the count is now nine"* and the instance table's *"— now nine, six of them
+   added"* disagreed with each other and with §12a's *"added seven more"*. All are
+   deleted; the finding is now stated substantively — **the title's key term is
+   used in this document only to name and price its own absence** — and the
+   arithmetic of how many the audit added is gone.
+
+4. **A cited antecedent's typing had been promoted.** GTOR-9 was typed
+   **`[PROVEN, CONDITIONAL]`** at five sites (§4 T4 ×2, §9a, and Claim Ledger
+   `WDP007-C27` / `WD7-N16`). At source it is **`PROVED-PROSE`**: the CODA-OR theorem
+   ledger contains no occurrence of the string "PROVEN", and `ENC-0491` reads
+   `status: PROVED-PROSE` with `conditional_on: []`, so the *CONDITIONAL*
+   qualifier was unsourced too. §9b of this paper already said `PROVED-PROSE`, so
+   the document contradicted itself. All five patched, with the provenance
+   recorded: the promoted form survives only in an **archived** CODA-OR claim ledger
+   superseded by the live one. **For contrast, `TERM-DISJ-001 [PROVEN] (decidable
+   classifier)` was re-checked against QM_092's Claim Ledger and is exact — it is
+   unchanged.**
+
+**Advisories applied.** Rovelli's published footprint restated substantively and
+widened to include **`QM_110`** (*Quantum Gravity*, 2004), which strengthens the
+argument; `Undetermined` flagged **(capitalised)** for uniformity with `Refuted`,
+with the lowercase check run and reported (three ordinary-adjective uses, so the
+substantive null survives); the `ENC-0952` / `ENC-1093` superlative collision
+reconciled (**by role** versus **by name and verdict**, both `MECHANIZED`); §14a's
+sibling list made symmetric by naming the WD-0 … WD-3 fences (`WD0-L5`, `WD1-L8`,
+`WD2-L9`, `WD3-L9`), the *only-paper-with-no-id* claim being unaffected; §7's
+WD-6 row rewritten substantively because the sentence asserting *"the only two
+sites, verified by search"* contained the phrase it was counting; and **R3's cost
+extended** with *"if all six probes can be so re-specified — which cannot be
+checked until 'gate-blocked' is defined"*, in the §4.0(i) table and in the
+sentence that relied on it.
+
+**Remaining sweep claims, swept and dispositioned.** Every *"occurs N times /
+zero occurrences / nowhere else / null result / verified by search / the only /
+tree-wide / as received / now N"* in this file was re-read. Those about **other**
+trees (the `.lean` sweep table in §5, the encyclopedia null list in §9b, the
+`entries/` and `lean4/` nulls in §4.0(i)) are **kept**: writing here cannot
+change them. Those about **this document** are either converted to the
+substantive form (`spacetime`; the ten physical-cosmology terms; *constructor
+depth* / *late instances*; the §9b closing null; §7's quantum clause) or deleted
+(*cosmogenesis*; `gate-blocked`; *measure*'s three non-physics uses). Quotations
+of already-withdrawn wording inside the instance table and the correction notes
+are **retained as records**, since they report a repaired defect rather than
+assert a live count.
+
+**Not done in this repair pass.** No proof was written or checked; **no `lake`,
+`cargo`, or Lean build was run**. **No encyclopedia entry was edited**, including
+the two `ENC-1064` metadata defects. No `ENC-*` status was re-adjudicated —
+`ENC-0491` was **read**, not re-adjudicated, and the correction moves this
+paper's citation into line with the entry rather than changing the entry. §6 was
+not recomputed under R3 and no status count or $\omega$ was computed. The §9a
+published-tree sweep was not re-run; the `gate-blocked`, `termination_by`,
+`WellFounded`, `Undetermined`, Rovelli, and GTOR-9 checks named above were run
+fresh. Findings not named above were not re-verified, and the earlier passes'
+unrepaired statements carry forward at the confidence they recorded. **No blanket
+certification is made, no ACCEPT is declared, and no row is accepted by this
+repair; a fresh independent adversary re-audits it.**
+
+> **Pedagogical Crosswalk Notice:** Streamlined pedagogical exposition for this kernel is provided under [`100_mathematical_foundations/`](../100_mathematical_foundations/). This monograph remains the primary mathematical home under `AuthorityEffect: None`.
+
+<!-- claim-id-body-index:begin -->
+
+Claim-ID body index (packaging)
+
+| ID | Home |
+|---|---|
+| `WDP007-C1` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C2` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C3` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C4` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C5` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C6` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C7` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C8` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C9` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C10` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C11` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C12` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C13` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C14` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C15` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C16` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C17` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C18` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C19` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C20` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C21` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C22` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C23` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C24` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C25` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C26` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C27` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C28` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C29` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C30` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C31` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C32` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WDP007-C33` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L1` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L2` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L3` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L4` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L5` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L6` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L7` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-L8` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N1` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N2` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N3` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N4` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N5` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N6` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N7` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N8` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N9` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N10` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N11` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N12` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N13` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N14` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N15` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N16` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N17` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N18` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N19` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `WD7-N20` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R1` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R2` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R3` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R4` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R5` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R6` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R7` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R8` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R9` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R10` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R11` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R12` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R13` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R14` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R15` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R16` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R17` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R18` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R19` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R20` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R21` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R22` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R23` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R24` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R25` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R26` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R27` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R28` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+| `R29` | sibling `007_wd7_witness_relative_cosmogenesis_claim_ledger.md` |
+
+<!-- claim-id-body-index:end -->

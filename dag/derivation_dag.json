@@ -1815,11 +1815,11 @@
         "lean4/DerivationDagQMClosure.lean"
       ],
       "lean": [
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Step.rename",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Reach.rename",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes_every_writing_A",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes_every_writing_B",
-        "lean4/Imported/GenesisOngoing/Second/Rename.lean::obstruction_persists_reach",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Step3.rename",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::Reach3.rename",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_A",
+        "lean4/Imported/GenesisOngoing/Second/Rename.lean::fewest_changes3_every_writing_B",
+        "lean4/Imported/GenesisOngoing/Second/Carry.lean::Reach3.obstruction_persists",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence"
       ],
       "rust": [
@@ -3669,19 +3669,32 @@
       "id": "L1-IMP-TRANSITION-PROBABILITY-LAW",
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Supplied law of the ray dynamics in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner: the dynamics sends nonzero vectors of the exact carrier Q(i)^n to nonzero vectors and preserves the transition probability tp x y = |<x,y>|^2/(|x|^2|y|^2) between nonzero vectors (Theorem.TpPreserving), equivalently the normalised Born readout hf (P x) y / vnorm y of rank-one effects (Similarity.tpPreserving_iff_born, Kernel.tp_eq_born). Nothing in the finite theory forces a dynamics to preserve this readout; it is the operational hypothesis of the Wigner theorem.",
-      "statement": "Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.",
+      "source_status": "Supplied law of the ray dynamics in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner: the dynamics sends nonzero vectors of the exact carrier Q(i)^n to nonzero vectors and preserves the transition probability tp x y = |<x,y>|^2/(|x|^2|y|^2) between nonzero vectors (Theorem.TpPreserving), equivalently the normalised Born readout hf (P x) y / vnorm y of rank-one effects (Similarity.tpPreserving_iff_born, Kernel.tp_eq_born). Nothing in the finite theory forces a dynamics to preserve this readout; it is the operational hypothesis of the Wigner theorem. Campaign outcome Narrowed: conditional sufficient packages and exact global two-sector ray countermodels, with no status promotion; see the campaign derivation note and Lean replay receipt.",
+      "statement": "Imported dynamical law: the evolution of rays preserves the Born probability of every transported rank-one effect in every state; conditional on this law the dynamics is a linear or conjugate-linear similarity. Campaign hypothesis map on Q(i)^n: a supplied linear lift with finite orthogonality calibration and a nonzero anchor preserves transition probabilities; fixed-frame statistics for all basis, real pair and imaginary pair probes in every nonzero state, together with nonvanishing, also suffice and fix every ray. On Q(i)^2, reversible ray dynamics can preserve norms, basis and real pair statistics, report-swap covariance and orthogonality while changing a transition probability from 9/10 to 1/10. A reversible linear subspace-lattice automorphism changes another probability from 1/2 to 1/5. The dynamical law remains supplied, not derived from primitive difference.",
       "source": [
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
-        "lean4/FiniteWignerTheorem.lean"
+        "lean4/FiniteWignerTheorem.lean",
+        "dag/derivations/independent/l1-imp-transition-probability-law.md",
+        "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
+        "checks/independent/l1-imp-transition-probability-law.py"
       ],
       "lean": [
         "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving",
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp",
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born",
         "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born",
-        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity"
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_wigner",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_sameRay",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_operational_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.countermodelRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.conditionalConjugation_realProbes",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_lattice_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.stretchRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.oneSector_tpPreserving"
       ],
       "rust": [
         "code/rust/src/qm/finite_wigner.rs::transition_probability",
@@ -3689,9 +3702,11 @@
         "code/rust/src/qm/finite_wigner.rs::verify_induced"
       ],
       "imported_structure": [
-        "transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption"
+        "transition-probability (Born rank-one readout) preservation by the ray dynamics: assumption",
+        "For the conditional linear route: LinearLift, OrthogonalCalibration and NonzeroAnchor.",
+        "For the fixed-frame route: Nonvanishing and TomographicStatistics; these force each ray to be fixed."
       ],
-      "bottleneck": "No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.",
+      "bottleneck": "The sufficient packages add explicit structure: a Gaussian-rational linear lift plus finite zero-probability calibration, or nonvanishing plus all-state fixed-frame tomographic statistics. Neither package is a derivation from primitive difference or a strictly weaker replacement for the full law. Static Born readout, reversibility, report-swap covariance, norms, basis and real pair statistics and orthogonality are jointly insufficient in dimension two. Subspace order preservation without orthocomplement preservation is also insufficient. Arbitrary ray bijections in higher dimensions under orthogonality alone, affine positive-effect automorphisms and evolving measurement-frame covariance are not classified here.",
       "tags": [
         "gap",
         "readout-law"
@@ -9571,19 +9586,26 @@
       "stage": "FINITE_QCD",
       "status": "PROVED_LEAN",
       "source_status": "TFQ record_status PROVED_LEAN (source slice 08)",
-      "statement": "The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
+      "statement": "Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md"
       ],
       "lean": [
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual",
-        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity"
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b2_color_dimension_mismatch"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.",
+      "bottleneck": "Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py tests with SymPy only; any color-transport statement.",
       "tags": [
         "unified-dag",
         "TFQ-0016",
@@ -13804,8 +13826,8 @@
         "dag/derivations/01_pregenesis/tfq_0429_bundled_extension_refused.md"
       ],
       "lean": [
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::form_then_instance_separates",
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::single_admission_does_not_separate"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::form_then_instance_separates",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::single_admission_does_not_separate"
       ],
       "rust": [],
       "imported_structure": [],
@@ -20840,19 +20862,28 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-035 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
+      "statement": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "rust": [],
       "imported_structure": [
         "Callan-Harvey continuum anomaly inflow (literature)"
       ],
-      "bottleneck": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "bottleneck": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -35675,7 +35706,7 @@
       ],
       "output": "FSP-LATTICE-ANOMALY-INFLOW",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "mechanism": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -39523,12 +39554,19 @@
       "lean4": [
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection",
         "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual",
-        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity"
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance",
+        "lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b2_color_dimension_mismatch"
       ],
       "local_id": "A08-005",
       "name": "Add a Lean replay of the two-stage dressing or leave QM-213 as",
-      "obligation": "Formalized in Lean 4 (CampaignTfq0016B2Dressing.lean) with zero sorry/admit/axioms and independently verified in checks/independent/tfq-0016.py.",
+      "obligation": "Not proved in Lean: that the triple model is the QM-213 map; that u_N is a conjugate of the tree unipotent; that U_full is tree_gauge_indexed.residual; the curvature statements on the extended diamond poset P_5 and with non-commutative (matrix) coefficients, which checks/independent/tfq-0016.py tests with SymPy only; any color-transport statement.",
       "parent_id": "TFQ-0015",
       "python": [
         "checks/independent/tfq-0016.py"
@@ -39539,7 +39577,7 @@
       ],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The same QM-213 map factors each invertible upper-triangular matrix into a diagonal torus element and a unit upper-triangular factor in the normal subgroup N of B_2(Q). Stage-one dressing by a conjugate of the tree unipotent leaves tree edges diagonal and preserves the quotient projection on all five edges. Stage-two torus dressing reproduces tree_gauge_indexed.residual. On the extended diamond poset, curvature is the incidence combination bA + A cup A. The Lean module records (2 : ℕ) ≠ 3 and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
+      "summary": "Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
       "uuid": "e48544d7-d14e-5ebc-8e7e-ca7fdf7232a2"
     },
     {
@@ -53381,8 +53419,7 @@
         "L1-OPERATOR-LIFT-TRACE-EMBED-013"
       ],
       "f004_refs": [
-        "dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md",
-        "lean4/Imported/OperatorLifts/Lifts.lean:100"
+        "dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md"
       ],
       "id": "TFQ-1000",
       "lean4": [
@@ -54922,7 +54959,6 @@
       ],
       "f004_refs": [
         "dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md",
-        "lean4/SwitchingNormalForm.lean",
         "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
         "lean4/SwitchingNormalForm.lean"
       ],
@@ -54966,8 +55002,7 @@
         "IMPL-THYMUS-SCREENING-SOUNDNESS"
       ],
       "f004_refs": [
-        "dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md",
-        "lean4/Imported/OePfp/ThymusScreening.lean"
+        "dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md"
       ],
       "id": "TFQ-1045",
       "lean4": [
@@ -55041,7 +55076,10 @@
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
         "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
-        "lean4/FiniteWignerTheorem.lean"
+        "lean4/FiniteWignerTheorem.lean",
+        "dag/derivations/independent/l1-imp-transition-probability-law.md",
+        "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
+        "checks/independent/l1-imp-transition-probability-law.py"
       ],
       "id": "TFQ-1047",
       "lean4": [
@@ -55049,11 +55087,21 @@
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp",
         "lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born",
         "lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born",
-        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity"
+        "lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_wigner",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_tpPreserving",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_sameRay",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_operational_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.countermodelRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.conditionalConjugation_realProbes",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_lattice_package",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.stretchRayEquiv",
+        "lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.oneSector_tpPreserving"
       ],
       "local_id": "L1-IMP-TRANSITION-PROBABILITY-LAW",
       "name": "l1-imp-transition-probability-law",
-      "obligation": "No finite-theory primitive forces the ray dynamics to preserve the Born readout of rank-one effects; deriving it (for instance from report relabelling invariance and the Born rule on the lift) is item 1 of the run next steps.",
+      "obligation": "The sufficient packages add explicit structure: a Gaussian-rational linear lift plus finite zero-probability calibration, or nonvanishing plus all-state fixed-frame tomographic statistics. Neither package is a derivation from primitive difference or a strictly weaker replacement for the full law. Static Born readout, reversibility, report-swap covariance, norms, basis and real pair statistics and orthogonality are jointly insufficient in dimension two. Subspace order preservation without orthocomplement preservation is also insufficient. Arbitrary ray bijections in higher dimensions under orthogonality alone, affine positive-effect automorphisms and evolving measurement-frame covariance are not classified here.",
       "parent_id": "TFQ-0303",
       "python": [],
       "record_status": "IMPORTED_ASSUMPTION",
@@ -55064,7 +55112,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Transition-probability preservation of the ray dynamics: the evolution of rays of the lift preserves the Born probability of every rank-one effect in every state. Under this law the dynamics is a linear or conjugate-linear similarity (L1-IMP-LINEAR-ISOMETRIC-DYNAMICS); without it, any bijection of rays is admissible. Supplied, not derived from primitive difference.",
+      "summary": "Imported dynamical law: the evolution of rays preserves the Born probability of every transported rank-one effect in every state; conditional on this law the dynamics is a linear or conjugate-linear similarity. Campaign hypothesis map on Q(i)^n: a supplied linear lift with finite orthogonality calibration and a nonzero anchor preserves transition probabilities; fixed-frame statistics for all basis, real pair and imaginary pair probes in every nonzero state, together with nonvanishing, also suffice and fix every ray. On Q(i)^2, reversible ray dynamics can preserve norms, basis and real pair statistics, report-swap covariance and orthogonality while changing a transition probability from 9/10 to 1/10. A reversible linear subspace-lattice automorphism changes another probability from 1/2 to 1/5. The dynamical law remains supplied, not derived from primitive difference.",
       "uuid": "e3bc6875-5cb5-523c-bc4f-5674205306c9"
     },
     {
@@ -55225,12 +55273,13 @@
         "PGW-R-OBSERVATIONAL-EQUIVALENCE"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean"
       ],
       "id": "TFQ-0421",
       "lean4": [
-        "lean4/Imported/PreGenesisToMssn/Observation.lean::SameProfile",
-        "lean4/Imported/PreGenesisToMssn/Observation.lean::empty_profiles_equal"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::SameProfile",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal"
       ],
       "local_id": "PGW-OBSERVATIONAL-EQUIVALENCE",
       "name": "observational-equivalence",
@@ -55255,10 +55304,12 @@
         "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
         "PGW-R-PRESENTATION-NOT-EXPRESSIVE-LIFT"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean"
+      ],
       "id": "TFQ-0422",
       "lean4": [
-        "lean4/Imported/PreGenesisToMssn/Observation.lean::empty_profiles_equal",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal",
         "lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only"
       ],
       "local_id": "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
@@ -55345,14 +55396,17 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean"
       ],
       "id": "TFQ-0425",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::separation_not_on_quotient",
-        "lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quotient_barrier",
-        "lean4/Imported/PreGenesisToMssn/Observation.lean::collapsed_quotient_barrier"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::separation_not_on_quotient",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::quotient_barrier",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::collapsed_quotient_barrier"
       ],
       "local_id": "PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE",
       "name": "forced-separation-lift-not-unique",
@@ -55381,12 +55435,13 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs"
       ],
       "id": "TFQ-0426",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::insufficient_history_view",
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::no_factor_through_common_view"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::insufficient_history_view",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::no_factor_through_common_view"
       ],
       "local_id": "PGW-REPLAY-NECESSITY",
       "name": "replay-necessity",
@@ -55444,11 +55499,12 @@
         "PGW-R-ADMISSION-BEFORE-DISTINCTION"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean"
       ],
       "id": "TFQ-0428",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::single_admission_does_not_separate"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::single_admission_does_not_separate"
       ],
       "local_id": "PGW-ADMISSION-BEFORE-DISTINCTION",
       "name": "admission-before-distinction",
@@ -55474,12 +55530,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean"
       ],
       "id": "TFQ-0429",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::form_then_instance_separates",
-        "lean4/Imported/Genesis19l57g1/Paper000.lean::single_admission_does_not_separate"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::form_then_instance_separates",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::single_admission_does_not_separate"
       ],
       "local_id": "PGW-0429",
       "name": "bundled-extension-refused",
@@ -55508,12 +55565,13 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean"
       ],
       "id": "TFQ-0430",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::order_visible_to_metatheory",
-        "lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::order_erased_at_object_level"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::order_visible_to_metatheory",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::order_erased_at_object_level"
       ],
       "local_id": "PGW-METATHEORY-OBJECT-LANGUAGE-SPLIT",
       "name": "metatheory-object-language-split",
@@ -55543,13 +55601,15 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_mathematics.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0431",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::Iso",
-        "lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean::sortPair_eq_minmax",
-        "lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean::sortPair_comm"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::Iso",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean::sortPair_eq_minmax",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCanon.lean::sortPair_comm"
       ],
       "local_id": "PGW-REGIME-ISOMORPHISM-UNORDERED-PAIRS",
       "name": "regime-isomorphism-unordered-pairs",
@@ -55578,14 +55638,16 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean"
       ],
       "id": "TFQ-0432",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::underivable_of_empty",
-        "lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::single_token_carrier_bound",
-        "lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::second_token_required"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::genesis_underivable",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::underivable_of_empty",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::single_token_carrier_bound",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::second_token_required"
       ],
       "local_id": "PGW-CHALLENGE0-INERTIA-SECOND-TOKEN",
       "name": "challenge0-inertia-second-token",
@@ -55614,15 +55676,16 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean"
       ],
       "id": "TFQ-0433",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::wfCtx",
-        "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::plug",
-        "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::derivable",
-        "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::collapsed",
-        "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::separable"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::wfCtx",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::plug",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::derivable",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::collapsed",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::separable"
       ],
       "local_id": "PGW-CONTEXTS-PLUGGING-PROFILES",
       "name": "contexts-plugging-profiles",
@@ -55654,11 +55717,12 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0434",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::collapsed_of_no_insts"
       ],
       "local_id": "PGW-COLLAPSE-WITHOUT-INSTANCES",
       "name": "collapse-without-instances",
@@ -55686,15 +55750,16 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean"
       ],
       "id": "TFQ-0435",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2L_collapsed",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2F_collapsed",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::admission_without_expressive_increase",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyL_replays",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyF_replays"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::R2L_collapsed",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::R2F_collapsed",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::admission_without_expressive_increase",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::historyL_replays",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::historyF_replays"
       ],
       "local_id": "PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED",
       "name": "challenge2-admitted-but-collapsed",
@@ -55724,13 +55789,14 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0436",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_length",
-        "lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_mem",
-        "lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_nodup"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::contextWords_length",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::contextWords_mem",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::contextWords_nodup"
       ],
       "local_id": "PGW-CONTEXT-COUNT-FORMULA",
       "name": "context-count-formula",
@@ -55760,14 +55826,15 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0437",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::derivable_ext",
-        "lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::collapsed_ext",
-        "lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::separable_ext",
-        "lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::validResponse_ext"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::derivable_ext",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::collapsed_ext",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::separable_ext",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Ext.lean::validResponse_ext"
       ],
       "local_id": "PGW-COLLECTION-EXTENSIONALITY",
       "name": "collection-extensionality",
@@ -55797,13 +55864,15 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/measure.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/response.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0438",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::applyDelta",
-        "lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::validResponse",
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::aritySum"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::applyDelta",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean::validResponse",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::aritySum"
       ],
       "local_id": "PGW-RESPONSES-COSTS-MU1-MU2",
       "name": "responses-costs-mu1-mu2",
@@ -55834,13 +55903,14 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean"
       ],
       "id": "TFQ-0439",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::barrier_R2L",
-        "lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quot_barrier",
-        "lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quotient_barrier"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::barrier_R2L",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::quot_barrier",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Quot.lean::quotient_barrier"
       ],
       "local_id": "PGW-CHALLENGE3-CURRENT-REGIME-FAILS",
       "name": "challenge3-current-regime-fails",
@@ -55868,12 +55938,13 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean"
       ],
       "id": "TFQ-0440",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::mu1_minimum_not_unique",
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::U0_not_iso_BL"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::mu1_minimum_not_unique",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::U0_not_iso_BL"
       ],
       "local_id": "PGW-MU1-MINIMUM-NOT-UNIQUE-L",
       "name": "mu1-minimum-not-unique-l",
@@ -55900,13 +55971,14 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0441",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::deltaK_valid",
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::deltaK_length",
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::markK_pairwise_noniso"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::deltaK_valid",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::deltaK_length",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::markK_pairwise_noniso"
       ],
       "local_id": "PGW-MU1-ARITY-INDEXED-TIE-FAMILY",
       "name": "mu1-arity-indexed-tie-family",
@@ -56002,14 +56074,15 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean"
       ],
       "id": "TFQ-0444",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent",
-        "lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_rename_fwd",
-        "lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_image_total",
-        "lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::validCount_rename"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_rename_fwd",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_image_total",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::validCount_rename"
       ],
       "local_id": "PGW-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR",
       "name": "orbit-branching-repairs-least-pair",
@@ -56038,12 +56111,13 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0445",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress",
-        "lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::derivable_extend"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::mark_progress",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::derivable_extend"
       ],
       "local_id": "PGW-RESPONSE-EXISTENCE-MARK-PROGRESS",
       "name": "response-existence-mark-progress",
@@ -56071,15 +56145,18 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean"
       ],
       "id": "TFQ-0446",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::separable_of_subrules",
-        "lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal",
-        "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_append_unmentioning",
-        "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum",
-        "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_form"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::separable_of_subrules",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean::rule_item_never_minimal",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_append_unmentioning",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_datum",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_form"
       ],
       "local_id": "PGW-PRUNING-LEMMAS-COST-TWO",
       "name": "pruning-lemmas-cost-two",
@@ -56111,14 +56188,17 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean"
       ],
       "id": "TFQ-0447",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsed_rename",
-        "lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsedCount_rename",
-        "lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean::collapsed_transport",
-        "lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean::collapsed_renameDataForm"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsed_rename",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/CountTransport.lean::collapsedCount_rename",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/IsoCollapse.lean::collapsed_transport",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/FormTransport.lean::collapsed_renameDataForm"
       ],
       "local_id": "PGW-COUNT-INVARIANCE-TRANSPORT",
       "name": "count-invariance-transport",
@@ -56183,11 +56263,12 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean"
       ],
       "id": "TFQ-0449",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
       ],
       "local_id": "PGW-CLOSED-BASELINE-TERMINATES",
       "name": "closed-baseline-terminates",
@@ -56216,12 +56297,13 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/axiom_report.txt",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0450",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Paper.lean::policy_terminal_separates"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper.lean::policy_terminal_separates"
       ],
       "local_id": "PGW-POLICY-ENDPOINT-ALL-SEPARATED",
       "name": "policy-endpoint-all-separated",
@@ -56249,12 +56331,14 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean"
       ],
       "id": "TFQ-0451",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Counting.lean::allPairs_length",
-        "lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean::allPairs_length",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty"
       ],
       "local_id": "PGW-NO-ENDOGENOUS-DEMAND-GENERATOR",
       "name": "no-endogenous-demand-generator",
@@ -56282,11 +56366,12 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean"
       ],
       "id": "TFQ-0452",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean::U0F"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean::U0F"
       ],
       "local_id": "PGW-IDENTITY-IS-INDEX-NOT-PROFILE",
       "name": "identity-is-index-not-profile",
@@ -56312,7 +56397,8 @@
         "PGW-R-MINIMAL-OR-INITIAL-REFUSED"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Initiality.lean"
       ],
       "id": "TFQ-0453",
       "lean4": [
@@ -56373,12 +56459,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0455",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::D2_initial_pointed",
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::irrefl_witness_ne"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::D2_initial_pointed",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::irrefl_witness_ne"
       ],
       "local_id": "PGW-D2-INITIAL-POINTED",
       "name": "d2-initial-pointed",
@@ -56435,14 +56522,15 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0457",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_surjective",
-        "lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement",
-        "lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_compose",
-        "lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_surjective",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::collapseMap_compose",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes"
       ],
       "local_id": "PGW-QUOTIENT-RETENTION",
       "name": "quotient-retention",
@@ -56469,12 +56557,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0458",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent",
-        "lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_to_coherent"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PresentationDescent.lean::faithful_descent_to_coherent"
       ],
       "local_id": "PGW-FAITHFUL-DESCENT-ROUND-TRIP",
       "name": "faithful-descent-round-trip",
@@ -56503,15 +56592,19 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/portable_key.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/CanonicalMinimizer.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperCanonical.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperWire.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md"
       ],
       "id": "TFQ-0459",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/CanonicalMinimizer.lean::key_classification",
-        "lean4/Imported/Genesis19l57g1/PaperCanonical.lean::serializedRelabel_sound",
-        "lean4/Imported/Genesis19l57g1/PaperWire.lean::portableBytes_injective",
-        "lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalKey_attained",
-        "lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalBytes_classification"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/CanonicalMinimizer.lean::key_classification",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperCanonical.lean::serializedRelabel_sound",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperWire.lean::portableBytes_injective",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean::canonicalKey_attained",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/PaperSearch.lean::canonicalBytes_classification"
       ],
       "local_id": "PGW-CANONICAL-KEY-CLASSIFICATION",
       "name": "canonical-key-classification",
@@ -56542,10 +56635,10 @@
       ],
       "id": "TFQ-0460",
       "lean4": [
-        "lean4/Imported/OeWdp/GenesisIncidence.lean::cycle_rational_betti",
-        "lean4/Imported/OeWdp/GenesisIncidence.lean::filled_rational_betti",
-        "lean4/Imported/OeWdp/GenesisIncidence.lean::cycle_incidence_eq",
-        "lean4/Imported/OeWdp/GenesisIncidence.lean::filled_incidence_eq"
+        "external:the_symbol_game/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::cycle_rational_betti",
+        "external:the_symbol_game/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::filled_rational_betti",
+        "external:the_symbol_game/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::cycle_incidence_eq",
+        "external:the_symbol_game/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::filled_incidence_eq"
       ],
       "local_id": "PGW-INCIDENCE-CONSTRUCTION-BETTI",
       "name": "incidence-construction-betti",
@@ -56609,11 +56702,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/supply.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean"
       ],
       "id": "TFQ-0462",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::supply_no_op"
       ],
       "local_id": "PGW-RUNG0-INHERITANCE-REPLAY",
       "name": "rung0-inheritance-replay",
@@ -57046,14 +57140,15 @@
         "PGW-R-C2-RUN-FORWARD-EVERY-HISTORY"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean"
       ],
       "id": "TFQ-0475",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_le",
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::no_return",
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::cycle_regime_const",
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::not_separable_through"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::ereplay_elems_le",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::no_return",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::cycle_regime_const",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::not_separable_through"
       ],
       "local_id": "PGW-C2-RUN-FORWARD-EVERY-HISTORY",
       "name": "c2-run-forward-every-history",
@@ -57080,11 +57175,12 @@
         "PGW-R-FORCED-CENSUS-COLUMN"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean"
       ],
       "id": "TFQ-0476",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_le"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::ereplay_elems_le"
       ],
       "local_id": "PGW-FORCED-CENSUS-COLUMN",
       "name": "forced-census-column",
@@ -57112,13 +57208,14 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/xry/explore.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md"
       ],
       "id": "TFQ-0477",
       "lean4": [
-        "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::reach_by_edits",
-        "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::givenA_to_oneTerm",
-        "lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::givenB_to_oneTerm"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::reach_by_edits",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::givenA_to_oneTerm",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::givenB_to_oneTerm"
       ],
       "local_id": "PGW-GO-REACH-CEILING",
       "name": "go-reach-ceiling",
@@ -57146,15 +57243,17 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/second/reach.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/third/reach.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Third/Step.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/second/claim_ledger.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/third/claim_ledger.md"
       ],
       "id": "TFQ-0478",
       "lean4": [
-        "lean4/Imported/GenesisOngoing/Second/Carry.lean::Step3.carries",
-        "lean4/Imported/GenesisOngoing/Second/Carry.lean::Reach3.carries",
-        "lean4/Imported/GenesisOngoing/Third/Step.lean::Step2.toStep3",
-        "lean4/Imported/GenesisOngoing/Third/Step.lean::Reach2.toReach3"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean::Step3.carries",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean::Reach3.carries",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Third/Step.lean::Step2.toStep3",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Third/Step.lean::Reach2.toReach3"
       ],
       "local_id": "PGW-GO-CONTRACTION-STEP2-STEP3",
       "name": "go-contraction-step2-step3",
@@ -57182,13 +57281,14 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fourth/invariants.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/fourth/claim_ledger.md"
       ],
       "id": "TFQ-0479",
       "lean4": [
-        "lean4/Imported/GenesisOngoing/Fourth/Contain.lean::Reach4.mult_le",
-        "lean4/Imported/GenesisOngoing/Fourth/Contain.lean::Reach4.arb_mult_le",
-        "lean4/Imported/GenesisOngoing/Fourth/Contain.lean::Reach4.contains"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean::Reach4.mult_le",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean::Reach4.arb_mult_le",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourth/Contain.lean::Reach4.contains"
       ],
       "local_id": "PGW-GO-MULTIPLICITY-MONOTONE",
       "name": "go-multiplicity-monotone",
@@ -57215,14 +57315,16 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Ninth/Reach.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Ninth/State.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/ninth/claim_ledger.md"
       ],
       "id": "TFQ-0480",
       "lean4": [
-        "lean4/Imported/GenesisOngoing/Ninth/State.lean::swap9_swap",
-        "lean4/Imported/GenesisOngoing/Ninth/State.lean::proj_ofR9_false",
-        "lean4/Imported/GenesisOngoing/Ninth/State.lean::proj_ofR9_true",
-        "lean4/Imported/GenesisOngoing/Ninth/Reach.lean::reach9_swap"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Ninth/State.lean::swap9_swap",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Ninth/State.lean::proj_ofR9_false",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Ninth/State.lean::proj_ofR9_true",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Ninth/Reach.lean::reach9_swap"
       ],
       "local_id": "PGW-GO-TWO-RELATIONS-SWAP",
       "name": "go-two-relations-swap",
@@ -57250,12 +57352,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fifteenth/admission.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/Step.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/fifteenth/claim_ledger.md"
       ],
       "id": "TFQ-0481",
       "lean4": [
-        "lean4/Imported/GenesisOngoing/Fifteenth/Step.lean::reaching_does_not_admit",
-        "lean4/Imported/GenesisOngoing/Fifteenth/Step.lean::reaching_ne_admitted"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/Step.lean::reaching_does_not_admit",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/Step.lean::reaching_ne_admitted"
       ],
       "local_id": "PGW-GO-ADMISSION-GATE",
       "name": "go-admission-gate",
@@ -57282,12 +57385,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/sixteenth/reach.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/sixteenth/claim_ledger.md"
       ],
       "id": "TFQ-0482",
       "lean4": [
-        "lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean::Reach16.unbounded",
-        "lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean::admit_remove_unbounded"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean::Reach16.unbounded",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean::admit_remove_unbounded"
       ],
       "local_id": "PGW-GO-LEFTOVER-UNBOUNDEDNESS",
       "name": "go-leftover-unboundedness",
@@ -57314,14 +57418,17 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Cost.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Plain.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentysecond/claim_ledger.md"
       ],
       "id": "TFQ-0483",
       "lean4": [
-        "lean4/Imported/GenesisOngoingCore/Twentysecond/Same.lean::same_iff_excess",
-        "lean4/Imported/GenesisOngoingCore/Twentysecond/Same.lean::gen_iff_same",
-        "lean4/Imported/GenesisOngoingCore/Twentysecond/Plain.lean::plain_reduced",
-        "lean4/Imported/GenesisOngoingCore/Twentysecond/Cost.lean::fewest_changes"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean::same_iff_excess",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean::gen_iff_same",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Plain.lean::plain_reduced",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Cost.lean::fewest_changes"
       ],
       "local_id": "PGW-GO-H1-CANCELLATION-EXCESS",
       "name": "go-h1-cancellation-excess",
@@ -57350,15 +57457,18 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentythird/claim_ledger.md"
       ],
       "id": "TFQ-0484",
       "lean4": [
-        "lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean::excess_raise",
-        "lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean::gen3_iff_same3",
-        "lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::Same3.around",
-        "lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::same3_nothing_iff",
-        "lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::step_of_same3_fails"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean::excess_raise",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean::gen3_iff_same3",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::Same3.around",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::same3_nothing_iff",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::step_of_same3_fails"
       ],
       "local_id": "PGW-GO-H2-STATE-RAISING-GAUGE",
       "name": "go-h2-state-raising-gauge",
@@ -57387,18 +57497,22 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfourth/state.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Blind.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Same.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Tell.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfifth/claim_ledger.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfourth/claim_ledger.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/research/twentyfifth/reading_the_seed.md"
       ],
       "id": "TFQ-0485",
       "lean4": [
-        "lean4/Imported/GenesisOngoingCore/Twentyfourth/Same.lean::balances_iff",
-        "lean4/Imported/GenesisOngoingCore/Twentyfourth/Tell.lean::told_iff",
-        "lean4/Imported/GenesisOngoingCore/Twentyfifth/Balance.lean::nothing_balanced",
-        "lean4/Imported/GenesisOngoingCore/Twentyfifth/Balance.lean::told_iff",
-        "lean4/Imported/GenesisOngoingCore/Twentyfifth/Blind.lean::blind_three_iff",
-        "lean4/Imported/GenesisOngoingCore/Twentyfifth/Blind.lean::cone_decides"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Same.lean::balances_iff",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfourth/Tell.lean::told_iff",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean::nothing_balanced",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean::told_iff",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Blind.lean::blind_three_iff",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Blind.lean::cone_decides"
       ],
       "local_id": "PGW-GO-H3-TWIN-FILLS-HOLONOMY",
       "name": "go-h3-twin-fills-holonomy",
@@ -57460,14 +57574,17 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/local_strategy.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Generator.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean"
       ],
       "id": "TFQ-0487",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
-        "lean4/Imported/Genesis19l57g1/Derivation/Generator.lean::generation_never_dries",
-        "lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::g1_class_exclusion",
-        "lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::clears_does_not_imply_not_fires"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Generator.lean::generation_never_dries",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean::g1_class_exclusion",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean::clears_does_not_imply_not_fires"
       ],
       "local_id": "PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS",
       "name": "endogenous-demands-exogenous-payments",
@@ -57526,13 +57643,16 @@
         "PGW-R-TYPED-REQUIREMENT-KINDS"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Constitution.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/ControllerCategory.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean"
       ],
       "id": "TFQ-0489",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Counting.lean::allPairs_length",
-        "lean4/Imported/Genesis19l57g1/Derivation/Constitution.lean::allDescs_length",
-        "lean4/Imported/Genesis19l57g1/Derivation/ControllerCategory.lean::allKinds_length"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean::allPairs_length",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Constitution.lean::allDescs_length",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/ControllerCategory.lean::allKinds_length"
       ],
       "local_id": "PGW-TYPED-REQUIREMENT-KINDS",
       "name": "typed-requirement-kinds",
@@ -57562,12 +57682,14 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean"
       ],
       "id": "TFQ-0490",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal",
-        "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/RuleBridge.lean::rule_item_never_minimal",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Mention.lean::collapsed_fresh_datum"
       ],
       "local_id": "PGW-K-ITEM-DELTA-GRAMMAR",
       "name": "k-item-delta-grammar",
@@ -57594,12 +57716,13 @@
         "PGW-R-CAPABILITY-STAGE-COUNTER"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean"
       ],
       "id": "TFQ-0491",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::estep_elems_lt_of_ne",
-        "lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_lt_of_ne"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::estep_elems_lt_of_ne",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::ereplay_elems_lt_of_ne"
       ],
       "local_id": "PGW-CAPABILITY-STAGE-COUNTER",
       "name": "capability-stage-counter",
@@ -57626,11 +57749,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean"
       ],
       "id": "TFQ-0492",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::two_rule"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::two_rule"
       ],
       "local_id": "PGW-CANDIDATE-EXTENSION-GENERATOR",
       "name": "candidate-extension-generator",
@@ -57657,14 +57781,15 @@
         "PGW-R-FOUR-GATE-ACTIVE-OBSTRUCTION"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean"
       ],
       "id": "TFQ-0493",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obstP_factors",
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obst_of_gates",
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::gates_of_obst",
-        "lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obstP_factors",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::obst_of_gates",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimitivePassage.lean::gates_of_obst",
+        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obstP_factors"
       ],
       "local_id": "PGW-FOUR-GATE-ACTIVE-OBSTRUCTION",
       "name": "four-gate-active-obstruction",
@@ -57690,13 +57815,14 @@
         "PGW-R-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean"
       ],
       "id": "TFQ-0494",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::ProposalRecord",
-        "lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::proposal_confers_no_execution",
-        "lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::upProposal"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean::ProposalRecord",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean::proposal_confers_no_execution",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/GraphGenesis.lean::upProposal"
       ],
       "local_id": "PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD",
       "name": "stage-change-contract-proposal-record",
@@ -57851,11 +57977,12 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Kernel.lean"
       ],
       "id": "TFQ-0499",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean::replayE"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Kernel.lean::replayE"
       ],
       "local_id": "PGW-PYTHON-LEAN-CARRIER-BRIDGE",
       "name": "python-lean-carrier-bridge",
@@ -57915,11 +58042,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean"
       ],
       "id": "TFQ-0501",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::mark_progress"
       ],
       "local_id": "PGW-RUNS-PAST-DECLARED-BOUNDS",
       "name": "runs-past-declared-bounds",
@@ -58101,8 +58229,8 @@
       "f004_refs": [],
       "id": "TFQ-0507",
       "lean4": [
-        "lean4/Imported/OePfp/CarrierOrigin.lean::no_difference_without_distinguishability",
-        "lean4/Imported/OePfp/CarrierOrigin.lean::nilpotency_composition"
+        "external:the_symbol_game/omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean::no_difference_without_distinguishability",
+        "external:the_symbol_game/omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean::nilpotency_composition"
       ],
       "local_id": "PGW-PFP-CARRIER-ORIGIN-NILPOTENCY",
       "name": "pfp-carrier-origin-nilpotency",
@@ -58214,14 +58342,15 @@
         "PGW-R-SN0-GROUND-INERTIA"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean"
       ],
       "id": "TFQ-0511",
       "lean4": [
-        "lean4/Imported/OeSn/SnTheorems.lean::ground_presentation_vs_carrier",
-        "lean4/Imported/OeSn/SnTheorems.lean::ground_carrier_empty",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op"
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnTheorems.lean::ground_presentation_vs_carrier",
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnTheorems.lean::ground_carrier_empty",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::genesis_underivable",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::supply_no_op"
       ],
       "local_id": "PGW-SN0-GROUND-INERTIA",
       "name": "sn0-ground-inertia",
@@ -58247,12 +58376,13 @@
         "PGW-R-SN1-SUPPLY-NOT-ADMISSION"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean"
       ],
       "id": "TFQ-0512",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::supply_no_op",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::collapsed_of_no_insts"
       ],
       "local_id": "PGW-SN1-SUPPLY-NOT-ADMISSION",
       "name": "sn1-supply-not-admission",
@@ -58278,12 +58408,13 @@
         "PGW-R-SN2-OPAQUE-COLLAPSE"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean"
       ],
       "id": "TFQ-0513",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2L_collapsed",
-        "lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2F_collapsed"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::R2L_collapsed",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::R2F_collapsed"
       ],
       "local_id": "PGW-SN2-OPAQUE-COLLAPSE",
       "name": "sn2-opaque-collapse",
@@ -58311,13 +58442,15 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean"
       ],
       "id": "TFQ-0514",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::cost1_insufficient_general",
-        "lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::mu2_unique",
-        "lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean::mu2_unique_F"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::cost1_insufficient_general",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::mu2_unique",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean::mu2_unique_F"
       ],
       "local_id": "PGW-SN3-COST-TWO-UNARY-MARK",
       "name": "sn3-cost-two-unary-mark",
@@ -58344,14 +58477,15 @@
         "PGW-R-SN-ENDPOINT-LEMMA"
       ],
       "f004_refs": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md"
       ],
       "id": "TFQ-0515",
       "lean4": [
-        "lean4/Imported/OeSn/SnTheorems.lean::irrefl_witness_distinct",
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::irrefl_witness_ne",
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::single_oriented_witness_consistent",
-        "lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::D2_initial_pointed"
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnTheorems.lean::irrefl_witness_distinct",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::irrefl_witness_ne",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::single_oriented_witness_consistent",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/PrimDiff.lean::D2_initial_pointed"
       ],
       "local_id": "PGW-SN-ENDPOINT-LEMMA",
       "name": "sn-endpoint-lemma",
@@ -58377,12 +58511,13 @@
         "PGW-R-SN4-POLICY-CLOSURE-CYCLE-SPACE"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean"
       ],
       "id": "TFQ-0516",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
-        "lean4/Imported/OeSn/SnTheorems.lean::dual_ledger_independence_at_stage_4"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty",
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnTheorems.lean::dual_ledger_independence_at_stage_4"
       ],
       "local_id": "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE",
       "name": "sn4-policy-closure-cycle-space",
@@ -58441,11 +58576,11 @@
       "f004_refs": [],
       "id": "TFQ-0518",
       "lean4": [
-        "lean4/Imported/OeSn/SnOffImage.lean::accepted_only_from_section",
-        "lean4/Imported/OeSn/SnOffImage.lean::nonDescent_iff_off_image",
-        "lean4/Imported/OeSn/SnOffImage.lean::sectionLift_injective",
-        "lean4/Imported/OeSn/SnOffImage.lean::retraction_stage_strict",
-        "lean4/Imported/OeSn/SnOffImage.lean::inImage_iff"
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::accepted_only_from_section",
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::nonDescent_iff_off_image",
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::sectionLift_injective",
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::retraction_stage_strict",
+        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::inImage_iff"
       ],
       "local_id": "PGW-SN-OFF-IMAGE-REFUSAL-PROPOSAL",
       "name": "sn-off-image-refusal-proposal",
@@ -58532,13 +58667,14 @@
         "PGW-R-SN-REPRESENTATION-QUOTIENT"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/complex_tensor_balancing.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/complex_tensor_balancing.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ComplexTensorBalancing.lean"
       ],
       "id": "TFQ-0521",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean::balance_section",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean::balance_kernel_iff",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean::twice_project_square"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ComplexTensorBalancing.lean::balance_section",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ComplexTensorBalancing.lean::balance_kernel_iff",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ComplexTensorBalancing.lean::twice_project_square"
       ],
       "local_id": "PGW-SN-REPRESENTATION-QUOTIENT",
       "name": "sn-representation-quotient",
@@ -58593,12 +58729,13 @@
         "PGW-R-SN-E12-CIRCULATION-FUNCTIONAL"
       ],
       "f004_refs": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md"
       ],
       "id": "TFQ-0523",
       "lean4": [
-        "lean4/Imported/PreGenesisToMssn/Cochain.lean::triangle_repair_exact_iff",
-        "lean4/Imported/PreGenesisToMssn/Cochain.lean::triangle_repair_invariant"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean::triangle_repair_exact_iff",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean::triangle_repair_invariant"
       ],
       "local_id": "PGW-SN-E12-CIRCULATION-FUNCTIONAL",
       "name": "sn-e12-circulation-functional",
@@ -58916,11 +59053,11 @@
       "f004_refs": [],
       "id": "TFQ-0534",
       "lean4": [
-        "lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors",
-        "lean4/Imported/OeMssn/MssnObstructionDetector.lean::obst_of_gates",
-        "lean4/Imported/OeMssn/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes",
-        "lean4/Imported/OeMssn/MssnObstructionDetector.lean::circulation_flux_obstruction",
-        "lean4/Imported/OeMssn/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux"
+        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obstP_factors",
+        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obst_of_gates",
+        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes",
+        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::circulation_flux_obstruction",
+        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux"
       ],
       "local_id": "PGW-MSSN-CIRCULATION-OBSTRUCTION",
       "name": "mssn-circulation-obstruction",
@@ -59011,11 +59148,12 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_pointed_relation.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/pointed_relation.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0537",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean::pointed_relation_independence_fin"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean::pointed_relation_independence_fin"
       ],
       "local_id": "PGW-WDP-POINTED-APARTNESS",
       "name": "wdp-pointed-apartness",
@@ -59043,12 +59181,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0538",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::Repair",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::Q1"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::Repair",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::Q1"
       ],
       "local_id": "PGW-WDP-QUOTIENT-DEFECT-ROOT-P",
       "name": "wdp-quotient-defect-root-p",
@@ -59106,11 +59245,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/symmetry.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0540",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean::no_invariant_oriented_edge"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean::no_invariant_oriented_edge"
       ],
       "local_id": "PGW-WDP-ASYMMETRY-INJECTION-LEDGER",
       "name": "wdp-asymmetry-injection-ledger",
@@ -59138,12 +59278,13 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/retention_choices.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/BehavioralQuotient.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md"
       ],
       "id": "TFQ-0541",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean::greatest_invariant_relation"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/BehavioralQuotient.lean::greatest_invariant_relation"
       ],
       "local_id": "PGW-WDP-RETENTION-PACKET",
       "name": "wdp-retention-packet",
@@ -59171,11 +59312,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0542",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::Q1"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::Q1"
       ],
       "local_id": "PGW-WDP-GRAPH-COCHAIN-HOST",
       "name": "wdp-graph-cochain-host",
@@ -59203,12 +59345,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0543",
       "lean4": [
-        "lean4/Imported/OeWdp/GenesisIncidence.lean::boundary_boundary_filled",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1"
+        "external:the_symbol_game/omega_engine_education/documentation/006_oewdp/lean4/GenesisIncidence.lean::boundary_boundary_filled",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::triD1"
       ],
       "local_id": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
       "name": "wdp-incidence-orientation-transport",
@@ -59236,11 +59379,12 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0544",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
       ],
       "local_id": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
       "name": "wdp-phi-well-defined-l1-duality",
@@ -59268,11 +59412,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0545",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_well_defined"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_well_defined"
       ],
       "local_id": "PGW-WDP-CLOSURE-NEEDS-DEGREE",
       "name": "wdp-closure-needs-degree",
@@ -59298,13 +59443,14 @@
         "PGW-R-WDP-EXACT-SEQUENCE-H1-Q1"
       ],
       "f004_refs": [
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0546",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_exact_sequence",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_well_defined",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_mk"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_exact_sequence",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_well_defined",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_mk"
       ],
       "local_id": "PGW-WDP-EXACT-SEQUENCE-H1-Q1",
       "name": "wdp-exact-sequence-h1-q1",
@@ -59331,12 +59477,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0547",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::closure_charge_le_opnorm_mul_phi",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::closure_ratio_signature"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::closure_charge_le_opnorm_mul_phi",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::closure_ratio_signature"
       ],
       "local_id": "PGW-WDP-TRICHOTOMY-BOUNDS",
       "name": "wdp-trichotomy-bounds",
@@ -59364,11 +59511,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0548",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::filled_triangle_signature"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::filled_triangle_signature"
       ],
       "local_id": "PGW-WDP-FILLED-TRIANGLE",
       "name": "wdp-filled-triangle",
@@ -59428,12 +59576,13 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/relational_retention.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0550",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::chain_constitutive_order_separates_immediate_succession",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::constitutiveOrder_trans"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::chain_constitutive_order_separates_immediate_succession",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::constitutiveOrder_trans"
       ],
       "local_id": "PGW-WDP-SUCCESSION-STRICT-ORDER",
       "name": "wdp-succession-strict-order",
@@ -59461,12 +59610,13 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/duration.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0551",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::duration_append",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::exact_duration_path_independent"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::duration_append",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::exact_duration_path_independent"
       ],
       "local_id": "PGW-WDP-DURATION-EXACTNESS-PERIOD-WITNESS",
       "name": "wdp-duration-exactness-period-witness",
@@ -59495,11 +59645,12 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Probability.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0552",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Probability.lean::sum_normalizedMultiplicity"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Probability.lean::sum_normalizedMultiplicity"
       ],
       "local_id": "PGW-WDP-FINITE-VALUATIONS",
       "name": "wdp-finite-valuations",
@@ -59528,13 +59679,15 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_quotient_observer.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md"
       ],
       "id": "TFQ-0553",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::observer_passivity_of_infimum",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean::declared_family_order",
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/ObserverResolution.lean::grammar_resolution_bound"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::observer_passivity_of_infimum",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean::declared_family_order",
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean::grammar_resolution_bound"
       ],
       "local_id": "PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY",
       "name": "wdp-observer-quotient-passivity",
@@ -59565,11 +59718,12 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean"
       ],
       "id": "TFQ-0554",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean::triangle_parity_pairwise_distinct"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/FoundationalBridges.lean::triangle_parity_pairwise_distinct"
       ],
       "local_id": "PGW-WDP-GENESIS-BRIDGES-LEDGER",
       "name": "wdp-genesis-bridges-ledger",
@@ -59596,11 +59750,12 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/RootGaugeNormalization.lean"
       ],
       "id": "TFQ-0555",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums"
       ],
       "local_id": "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW",
       "name": "wdp-bridge-ongoing-to-window",
@@ -59628,11 +59783,12 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md",
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean"
       ],
       "id": "TFQ-0556",
       "lean4": [
-        "lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy"
       ],
       "local_id": "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
       "name": "wdp-bridge-report-fiber-observer",
@@ -63152,17 +63308,28 @@
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:25-25"
       ],
       "id": "TFQ-1199",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "local_id": "FSP-LATTICE-ANOMALY-INFLOW",
       "name": "Callan-Harvey anomaly inflow on a finite slab lattice",
-      "obligation": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "obligation": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "parent_id": "TFQ-1197",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-lattice-anomaly-inflow.py::main"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
+      "summary": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.",
       "uuid": "2cdcb333-b712-5422-b362-c252224f2839"
     },
     {

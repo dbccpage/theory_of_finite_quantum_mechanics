@@ -2,6 +2,8 @@
 
 **AuthorityEffect:** None. This file describes a process. It adds no result.
 
+> **On the use of AI.** Much of the code, proofs, prose and review in this repository is drafted by AI models and LLM coding agents (Claude, Gemini, Grok and others), directed and reviewed by the maintainer. That is the reason for the rules here, not an exception to them. Every claim must be backed by evidence a stranger can check: Lean proofs audited for axioms, exact computations, replay receipts and independent checks. Every code change carries a scored YAML contract and must clear the [acceptance rule](#acceptance-rule) below. Every status is reviewed statement against theorem by the overclaim gate. The same standard applies to every contributor, human or model, and to the maintainer. In practice it most often finds the work inadequate: AI-drafted claims are routinely narrowed in review (for example [#171](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/171) narrowed by [#176](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/176), and the campaign pull requests [#184](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/184), [#185](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/185) and [#187](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/187), recorded as Narrowed results), and we publish those corrections. This project is not here to promote unverified claims, speculation presented as result, or pretension. If something here overstates what is proved, that is a bug: please report it with a [bug report](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=bug_report.yml) or a [derivation review](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/issues/new?template=derivation_review.yml).
+
 This repository records how far finite, exact constructions reach toward quantum mechanics, and where structure has to be supplied from outside. Each step is a node in a derivation graph with a status label and the evidence for it. You can help in three ways. None of them needs the maintainer's permission to start.
 
 | Way | What you do | Skills | Time |
@@ -11,6 +13,18 @@ This repository records how far finite, exact constructions reach toward quantum
 | [3. Review](#3-review) | Read a node, its Lean file, its independent check and its derivation note, and report what you find. | Mathematics or physics background; Lean is useful but not required | 1 to 3 hours per node |
 
 Reviews are the most useful contribution at present. A reviewer who finds a statement that says more than its proof does is doing the project a service.
+
+## Acceptance rule
+
+**At this time, no code is accepted unless it comes with a YAML contract and scores L4 or higher with a composite grade of D or higher.** The terms are defined in [`SCORING.md`](SCORING.md). The full walk-through, with a real example contract and the commands, is on the wiki page [How to Contribute](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/wiki/How-to-Contribute).
+
+- **The score.** Every source or formal artifact receives one capability level (`L1` to `L5`) and one engineering grade on the scale `E < D < C < B < A < A+` ([§1](SCORING.md#1-overview-core-principles--scoring-calculus)). The token is written `L<level><grade>`, for example `L4C`. The grade is the minimum over the five gates G1 to G5, so one failing gate bounds the whole file ([§1.2](SCORING.md#12-the-fail-closed-weakest-link-rule)).
+- **The floor.** Capability level L4 or L5, **and** composite grade D or better. Rejected: any score at L1, L2 or L3 (for example `L3B`), and any score with grade E at any level (for example `L4E`, a demonstrated defect such as a float cast in an exact path or a hidden `sorryAx`; see the calibration scenarios in [§7](SCORING.md#7-calibration-scenarios--decision-ledger-18-scenarios)).
+- **Unassessed is not accepted.** When no assessed gate is a demonstrated failure, a gate with no evidence leaves the composite grade `null` and no token is issued ([§1.4](SCORING.md#14-missing-evidence-vs-demonstrated-failure-the-unassessed-discipline)). A known grade E stays on the record when other gates are unassessed (§7 scenario 4 is `L3E`). Either shape is rejected by this floor.
+- **The contract.** Every code addition or change carries a contract/score companion, `<name>.contract.score.yaml`, next to the source file. It is bound to the SHA-256 of the exact bytes you submit, so changing the source means updating the companion. Pull requests say which companion files they add or change and the score token of each (the [pull request template](.github/pull_request_template.md) has a line for it).
+- **How it is checked.** For the files this change adds or edits, run `python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main` and `python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main`. Both use the merge base of that ref and include ordinary untracked files. They exit 0 when every added or edited source under `code/` or `lean4/` has a companion bound to its current bytes, and that companion's stored history matches those bytes. A change that adds or edits no such source exits 0. Neither command reads the L4/D floor: the maintainer reads the gate grades against the evidence you cite. Neither command writes a file. The same commands without `--changed-since` scan the whole tree, already fail on `main`, and `score_scope_contracts.py check` rewrites the tracked file `evidence/contract_score_coverage_scope_audit.json`. Do not use those whole-tree runs as a merge check, do not repair unrelated companions, and do not commit that rewrite.
+
+The rule applies to code added or changed from now on. It does not rescore existing code, most of which carries only an explicitly incomplete baseline score. Proofs and DAG changes also follow the [honesty rules](#honesty-rules) below, which apply in addition.
 
 ## Setup
 
@@ -89,13 +103,17 @@ These apply to every contribution. They are the reason the project keeps its lab
    python -I -X utf8 dag/validate_derivation_dag.py --no-files      # must print failures=0
    python -I -X utf8 scripts/build_readme_facts.py --check
    python -I -X utf8 scripts/build_status.py --check
+   python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict
+   python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main
+   python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main
    ```
-   The last one rebuilds the generated status pages in memory, compares them with any copy on disk, and fails if a generated file is committed (it needs the full git history, not a shallow clone).
+   `build_status.py --check` rebuilds the generated status pages in memory, compares them with any copy on disk, and fails if a generated file is committed (it needs the full git history, not a shallow clone).
+   The two `--changed-since` commands look only at sources this change adds or edits. They do not read the grade floor and they do not write `evidence/contract_score_coverage_scope_audit.json`.
    A change to the DAG also runs the sync scripts in the order given in the reading note and the campaign protocol.
 2. **Scope check.** Does the pull request change only what it says? A prompt-result pull request adds only one run folder under `dag/results/<node id>/runs/`. It does not touch the shared index `dag/operads/_hallucination_index.json`, the budget ledger or any node status; the maintainer integrates those after review.
 3. **Statement-versus-theorem table.** The maintainer reads it against the Lean declarations. This is the step that decides whether a status may change.
 4. **Independent review.** For anything that changes a node, the maintainer asks a reviewer (see [`REVIEWING.md`](REVIEWING.md)) to read the statement, proof and prose. The outcome is recorded.
-5. **Merge.** The maintainer merges. Review is by one person on a best-effort basis; there is no service-level promise. A pull request that overstates its result is asked to narrow it, not rejected.
+5. **Merge.** The maintainer merges. Review is by one person on a best-effort basis; there is no service-level promise. A pull request that overstates its result is asked to narrow it, not rejected. Code that does not meet the [acceptance rule](#acceptance-rule) is not merged until it does.
 
 ## Questions and problems
 

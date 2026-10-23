@@ -1,0 +1,326 @@
+---
+title: "The Observer Object — Consolidating Finite Evaluation Structures"
+author: "Jeremy H. Carroll"
+date: "June 2026"
+---
+
+**Version:** v0.1 Pre-Print
+**Status:** Initial public pre-print candidate; never previously published.
+
+**Status:** foundational *definitional* paper. It names, in one place, the **observer object** that the obstruction-calculus corpus already uses — the declared evaluation structure relative to which a finite defect acquires a magnitude and a terminal status. It introduces no new tower and proves no new deep theorem; its three small results are a well-definedness check, a reconciliation with the form the observer already takes in Paper 008, and the structural statement behind "same data, different observer."
+
+**Dependency boundary.** This note depends only on the Lean-backed finite degree-1 core of Paper 000: declared finite carrier, repair coboundary, quotient residual, closure map, observer-selected gauge, and terminalizer boundary. It does not depend on any derived-category, ISO, EQUIV, ADJOINT, higher-cohomology, or global-authority upgrade.
+
+**Authority:** finite-dimensional, finite-graph *definitions* under a declared observer. No physical, dynamical, or empirical claims; no authority is conferred by this paper — authority is the terminalizer's job, and only as specified by the finite-descent layer (CODA-FDA).
+
+**Main claim.** The observer-relative evaluations checked here — especially the Paper 000/008 observer triple (Proposition B) and the Paper 000a gauge examples (Proposition C) — instantiate a single finite **observer object** $\mathcal{O}=(K,F,R,\delta,d_0,d_1,J,M,\tau)$. Corpus-wide completeness is not claimed here; it is recorded as PL-000b-1, discharged at the encyclopedia level on 2026-06-20 (ENC-0517, PROVED-PROSE, conditional; see §11) and not re-derived in this paper. Relative to $\mathcal{O}$, the residual *class* of a finite cochain defect is fixed by the repair coboundary $d_0$ alone (gauge-independent), while its measured *magnitude* $\Phi_{\mathcal{O}}$ is fixed by the declared gauge $J$, and no measurement authorizes an action — only the terminalizer $\tau$ does.
+
+**What this does not claim (summary; full box below).** No observer-independent authority; no derivation of quantum mechanics, the Born rule, or Hilbert-space ontology; no theory of the measurement problem or of consciousness; no claim that the packet is *complete* (that every conceivable evaluation factors through it) — only that the observers checked here (Papers 000/008 via Proposition B, 000a via Proposition C) do; the declared-corpus completion is PL-000b-1 — discharged at the encyclopedia level on 2026-06-20 (ENC-0517, conditional; §11), not re-derived here — and *every-conceivable-evaluation* completeness remains unclaimed.
+
+---
+
+**Abstract.**
+
+Across this corpus, a finite defect is never measured in the abstract: it is measured *relative to a declared evaluation structure* — what is compared, which repairs are admissible, what gauge measures the leftover, and what terminal status follows. That structure has been written three different ways: as the prose "observer object" of the general-media exposition, as the triple $(\mathcal{A},\mathcal{M},\mathcal{J})$ fixed in Paper 008, and as the "observer class $M$ / observer-visible quotient $Q^1_O$" language of the controlling spine. This paper consolidates them into one finite object, the **observer object** $\mathcal{O}=(K,F,R,\delta,d_0,d_1,J,M,\tau)$, and pins down its three load-bearing facts. (i) The observer-relative obstruction $\Phi_{\mathcal{O}}([\delta])=\inf_{f\in\mathrm{Adm}}J(\delta-d_0 f)$ is well-defined on the quotient $Q^1_{\mathcal{O}}=C^1/\operatorname{im}(d_0|_{\mathrm{Adm}})$. (ii) Paper 000/008's observer triple $(\mathcal{A},\mathcal{M},\mathcal{J})$ assembles into the packet — its aggregation law $\mathcal{A}$ and per-edge gauge $\mathcal{J}$ folding into the packet's single gauge $J$, and its transform class into $M$ — with the carrier and admissible repair class declared separately; so this is consolidation, not a competing definition. (iii) The residual class is gauge-independent while its magnitude is gauge-fixed; the worked $2$-vs-$\sqrt2$ instance lives in Paper 000a and is cited, not re-derived. The paper closes with the two-role typing (observer = evaluator, never proposer) and the terminalizer, the points at which observer theory hands off to the authority layer.
+
+**Why a researcher should care.** Anyone who reports "the model says," "the data shows," or "the measurement gives X" has already chosen an observer — a carrier, a comparison, a repair budget, a gauge, and a terminal rule — and usually left it undeclared. Undeclared, the same defect can be reported as two different numbers, or a proposal can be smuggled out as an authorized judgment. This paper gives the corpus one place to point at when it says "relative to the declared observer," so that downstream papers (conditional lift descent, density/Born lifts, vector and quantum gauges) inherit a single definition instead of re-improvising one. The practical payoff is narrow and concrete: it makes "under what observer?" a checkable question with a finite answer.
+
+**Falsifiability.** This frame fails as a faithful consolidation for the checked scope if the Paper 000/008 observer triple or the Paper 000a gauge examples cannot be written as instances of $\mathcal O=(K,F,R,\delta,d_0,d_1,J,M,\tau)$. The broader Papers 005, 009–020 reconciliation was PL-000b-1, discharged at the encyclopedia level on 2026-06-20 (ENC-0517, conditional; §11); it is recorded, not re-derived, here.
+
+**Notation.** $C^k(P)$, $d_0$, $d_1$ (with $d_1 d_0=0$), the quotient $Q^1$, the obstruction magnitude $\Phi$, the closure diagnostic $\Gamma_2$, the terminalizer $\tau$, and $\Pi^\sharp$/`IsAuth` follow Paper 000 and the canonical spine; they are recalled on first use here. The plain-language inventory of the same object (carrier, gauge, quotient, residual, closure, terminal status) is the LinkedIn master essay *"What the Hell Is an Observer?"*; this paper is its formal anchor.
+
+---
+
+1. Positioning: Relation to the Corpus and Nearest Neighbors
+
+------------------------------------------------------------
+
+**Within the corpus.** Paper 000 (*Primitive Axiomatics of Finite Obstruction Calculus*) supplies the Lean-backed degree-1 substrate this paper wraps: a finite carrier with cochain groups $C^0\xrightarrow{d_0}C^1\xrightarrow{d_1}C^2$, the repairable image $\operatorname{im}(d_0)$, the quotient $Q^1=C^1/\operatorname{im}(d_0)$, and the obstruction magnitude $\Phi$. Paper 000 answers *what an irreducible finite defect is*. This paper answers the prior question *relative to what is a defect even measured*, by packaging the surrounding declarations into one object. It is therefore filed as `000b`: a foundational companion to 000, not a result paper. Paper 000a (*When Obstruction Is Not Scalar*) is the worked instance — two and three non-scalar gauges on the same triangle — and Papers 008–010 are the first heavy consumers (conditional lift descent, the $\Xi$ density functional, the Born normalization lift).
+
+**Nearest neighbors (named, as the hygiene standard requires).**
+
+1. **Sheaf-theoretic contextuality (Abramsky–Brandenburger).** There, measurement contexts and restriction maps decide whether local data glues to a global section; non-gluing is the obstruction. The packet's $(R,\delta,d_0)$ is the finite-cochain analogue of context/restriction/repair, and $\Phi_{\mathcal{O}}>0$ is the quantitative analogue of "no global section." We stay strictly finite and quotient-normed rather than presheaf-cohomological. `[INTERPRETIVE — positioning]`
+2. **Quantum reference frames / operational measurement theory.** "Observer = declared measurement boundary, not a conscious witness" is the operational reading; the trace-distance instance of the packet is developed in Paper 000a (quantum branch) and Paper 005. `[INTERPRETIVE — positioning]`
+3. **Proposer/checker separation in formal verification** (proof-carrying code; specification vs. implementation). The two-role typing of §5 — generation proposes, only the terminalizer authorizes — is the obstruction-calculus form of that separation. `[INTERPRETIVE — positioning]`
+4. **Gauge theory, as a metaphor of structure.** $M$ plays the role of the redundancy group and $Q^1$ the role of gauge-invariant content: "change description without changing what is evaluated." The analogy is structural, not a claim about physical gauge fields. `[INTERPRETIVE — positioning]`
+5. **Obstruction theory proper.** $\Phi_{\mathcal{O}}$ is a quotient-norm obstruction; the novelty is not the cohomology but the *declared, finite* evaluation structure attached to it. `[STANDARD — positioning]`
+
+---
+
+2. The Observer Object
+
+----------------------
+
+> **Definition 2.1 (Observer object).** `[DEFINITION]`
+> An **observer object** over a finite carrier is a nine-tuple
+> $$
+> \mathcal{O}=(K,\;F,\;R,\;\delta,\;d_0,\;d_1,\;J,\;M,\;\tau),
+> $$
+> with the following components.
+>
+> | Symbol | Name | Role |
+> |---|---|---|
+> | $K$ | carrier | a finite set of sites with an incidence structure (a finite directed graph $P=(V,E)$, or a finite cell complex); $K=P$. |
+> | $F$ | local-state assignment | assigns to each site $v$ a finite-dimensional stalk $F(v)$ (e.g. $\mathbb{R}$, $\mathbb{R}^k$, $\operatorname{Herm}(H_v)$). Determines $C^0(P)=\prod_v F(v)$ and the edge groups $C^1,C^2$. |
+> | $R$ | comparison | for each edge $e=(a\to b)$ a comparison/restriction map $r_{b,a}$ declaring which local states are comparable. |
+> | $\delta$ | defect map | turns a section $s$ and observed edge field into the edge cochain $\delta_e\in C^1(P)$ (the comparison failure on $e$). |
+> | $d_0$ | repair coboundary | $d_0:C^0\to C^1$; $\operatorname{im}(d_0)$ is the space of defects produced by admissible local reference changes (gauge shift / calibration). |
+> | $d_1$ | closure | optional $d_1:C^1\to C^2$ with $d_1 d_0=0$; tests higher-order (loop/face) closure. |
+> | $J$ | gauge | a norm/functional on $C^1$ measuring residual defect (the observer-selected magnitude). |
+> | $M$ | transform class | the compatible transformations that preserve the evaluation (the redundancy/symmetry class declared lawful). |
+> | $\tau$ | terminalizer | a rule assigning a terminal status to the measured residual and its diagnostics. |
+>
+> A subspace $\mathrm{Adm}\subseteq C^0(P)$ (the **admissible repair class**, written $\mathrm{Adm}(P)$ or $A(P)$ in consumers) is declared; we take $\mathrm{Adm}$ to be a linear subspace, as in Papers 008–009. Write $d_0|_{\mathrm{Adm}}$ for the restriction.
+
+The packet records exactly the data needed to turn a local disagreement into an authorized evaluation, and nothing more. The first six components $(K,F,R,\delta,d_0,d_1)$ are the **carrier context** (what is compared and what counts as repairable); $J$ measures; $M$ declares sameness; $\tau$ terminalizes. The plain-language inventory of these nine is the body of the master essay; this is its typed form.
+
+---
+
+3. Observer-Relative Obstruction
+
+--------------------------------
+
+> **Definition 3.1 ($\Phi_{\mathcal{O}}$, $Q^1_{\mathcal{O}}$, $\Gamma_2$, $R_{cl}$).** `[DEFINITION]`
+> Given $\mathcal{O}$ and an observed defect $\delta\in C^1(P)$:
+> $$
+> \Phi_{\mathcal{O}}([\delta]) \;=\; \inf_{f\in\mathrm{Adm}} J\!\left(\delta-d_0 f\right),
+> \qquad
+> Q^1_{\mathcal{O}} \;=\; C^1(P)\,/\,\operatorname{im}(d_0|_{\mathrm{Adm}}).
+> $$
+> When $d_1$ is declared (so $d_1 d_0|_{\mathrm{Adm}}=0$), the **closure diagnostic** is
+> $$
+> \Gamma_2([\delta]) \;=\; J_2\!\left(d_1 \delta\right),
+> $$
+> which is independent of representative because $d_1(\delta+d_0 f)=d_1\delta$ for every $f\in\mathrm{Adm}$; equivalently, at a minimizer $h=\delta-d_0 f^\ast$ (Proposition A2), $\Gamma_2([\delta])=J_2(d_1 h)$. The **closure ratio** $R_{cl}=\Gamma_2/\Phi_{\mathcal{O}}$ is defined only when $\Phi_{\mathcal{O}}([\delta])>0$. Here $J_2$ is the declared $C^2$ gauge.
+
+> **Proposition A1 (Quotient well-definedness).** `[PROVEN]`
+> If $\mathrm{Adm}\subseteq C^0(P)$ is a linear subspace and $J$ is *any* function on $C^1$, then $\delta\mapsto\Phi_{\mathcal{O}}([\delta])=\inf_{f\in\mathrm{Adm}}J(\delta-d_0 f)$ is constant on cosets of $\operatorname{im}(d_0|_{\mathrm{Adm}})$ — hence descends to a well-defined function on $Q^1_{\mathcal{O}}$ — whenever the infimum is defined.
+>
+> *Proof.* Let $\delta'=\delta+d_0 g$ with $g\in\mathrm{Adm}$. Because $\mathrm{Adm}$ is a linear subspace, $f\mapsto f-g$ is a bijection of $\mathrm{Adm}$ onto itself, so
+> $$
+> \Phi_{\mathcal{O}}([\delta'])=\inf_{f\in\mathrm{Adm}}J(\delta+d_0 g-d_0 f)
+> =\inf_{f'\in\mathrm{Adm}}J(\delta-d_0 f')=\Phi_{\mathcal{O}}([\delta]),
+> $$
+> using the substitution $f'=f-g$. No norm or attainment property of $J$ is used. $\square$
+
+If a future consumer uses a non-linear admissible repair class, the quotient $Q^1_{\mathcal O}=C^1/\operatorname{im}(d_0|_{\mathrm{Adm}})$ and Proposition A1 do not automatically apply; that consumer must supply its own equivalence relation and well-definedness proof.
+
+> **Proposition A2 (Finite norm attainment).** `[PROVEN]`
+> If in addition $C^1(P)$ is finite-dimensional and $J$ is a norm, then the infimum $\Phi_{\mathcal{O}}([\delta])=\inf_{f\in\mathrm{Adm}}J(\delta-d_0 f)$ is attained at some $f^\ast$. If $J$ is strictly convex, the post-repair residual $h=\delta-d_0 f^\ast$ is well-defined (unique).
+>
+> *Proof.* The feasible set $\{\delta-d_0 f:f\in\mathrm{Adm}\}$ is a finite-dimensional affine subspace, hence closed; a norm attains its infimum over a nonempty closed set, so $f^\ast$ exists. If $J$ is strictly convex, the minimizer $d_0 f^\ast$ is unique, so any two minimizers $f^\ast, f^{\ast\prime}$ satisfy $f^\ast - f^{\ast\prime} \in \ker(d_0|_{\mathrm{Adm}})$, meaning $h$ is unique. $\square$
+
+This keeps the norm/attainment assumptions out of the general observer-object definition: Definition 2.1 allows $J$ to be a norm *or* a functional, so the quotient fact (A1) holds in full generality, while attainment (A2) is invoked only where a norm is declared.
+
+This is the finite, observer-relative version of the Paper 000 statement that $\Phi$ depends only on the cohomology class. Here the class is the *observer-visible* quotient $Q^1_{\mathcal{O}}$: what survives the declared repair budget $\mathrm{Adm}$, which need not be all of $C^0$.
+
+---
+
+4. Reconciliation: The Observer Triple Assembles Into the Packet
+
+----------------------------------------------------------------
+
+Paper 000 already names a coarser observer object — the **observer triple**
+$$
+\mathcal{O}_3=(\mathcal{A},\,\mathcal{M},\,\mathcal{J}),
+$$
+where $\mathcal{A}$ is the **aggregation law** combining per-edge defect magnitudes (Aczél form $\mathcal{A}(\{a_e\})=g^{-1}(\sum_e g(a_e))$, the plain sum for $\ell^1$), $\mathcal{J}$ is the **per-edge gauge** $j_e$, and $\mathcal{M}$ is the **compatible transformation (symmetry) class**. Paper 008 (*Conditional Lift Descent for Finite Observer-Relative Obstruction Systems*) fixes this triple — its §1.1 writes $\mathcal{O}=(\mathcal{A},\mathcal{M},\mathcal{J})$ with $J_{\mathcal{O}}=\|\cdot\|_1$ — and declares the carrier $(P,s,\omega)$, the admissible repair class $\mathrm{Adm}(P)$, and the coboundary $d_0$ **separately** in the same setup. The controlling spine likewise speaks of a "declared observer class $M$," an "observer-visible quotient $Q^1_O$," and "replayable observer-packet fields." We show these data assemble into one packet — so this paper consolidates rather than competes.
+
+> **Proposition B (Triple-to-packet reconciliation).** `[PROVEN — definitional specialization]`
+> The Paper 000 / Paper 008 observer triple $\mathcal{O}_3=(\mathcal{A},\mathcal{M},\mathcal{J})$, together with the separately declared carrier $(P,s,\omega)$, admissible repair class $\mathrm{Adm}(P)$, and coboundary $d_0$, assembles into an observer object $\mathcal{O}=(K,F,R,\delta,d_0,d_1,J,M,\tau)$ under:
+>
+> - $M=\mathcal{M}$ (transform class identical);
+> - $J$ = the **two-level gauge** built from the triple, $J(h)=\mathcal{A}\big(\{\mathcal{J}(h_e)\}_{e}\big)$ — so the triple's $\mathcal{A}$ (aggregation) and $\mathcal{J}$ (per-edge gauge) are the two factors of the packet's single gauge $J$; for Paper 008's choice $g=\mathrm{id},\ j_e=|\cdot|$ this is $J=\|\cdot\|_1$;
+> - $K=P$; $(F,R,\delta)$ the declared local-state / comparison / defect data; $d_0$ the declared coboundary, $d_1$ the optional $2$-cell; $\mathrm{Adm}=\mathrm{Adm}(P)$; and $\tau$ the terminal tags (refusal, budget-unknown, lift-incompleteness, licensed lift).
+>
+> Under these identifications the packet's $\Phi_{\mathcal{O}}$ (Definition 3.1) coincides term-for-term with Paper 008's $\Phi_{\mathcal{O}}(P,\omega;\mathrm{Adm})=J_{\mathcal{O}}(\omega-d_0 f^\ast)$.
+>
+> *Proof.* Definition-matching. The only non-trivial identification is the gauge: Paper 000's admissible global diagnostic has the Aczél form $J_E(x)=g^{-1}\!\big(\sum_e g(j_e(x_e))\big)=\mathcal{A}(\{\mathcal{J}(x_e)\})$, which is exactly the packet's $J$; Paper 008 specializes $g=\mathrm{id}$, $j_e=|\cdot|$, giving $J=\|\cdot\|_1$. The residual $h=\omega-d_0 f^\ast$ with $f^\ast\in\arg\min_{f\in\mathrm{Adm}}J(\omega-d_0 f)$ is Definition 3.1 verbatim once $\delta:=\omega$. The remaining components are exactly the carrier, repair class, and terminal tags Paper 008 declares around the triple. $\square$
+
+**What Proposition B does and does not say.** It is an *assembly*, not a forgetful projection onto a sub-triple. In particular $\mathcal{A}$ is an **aggregation law, not the admissible repair class** — Paper 008 declares $\mathrm{Adm}(P)$ as a *separate* object, so the naive reading "$\mathcal{A}=\mathrm{Adm}$" is false. The packet (i) **folds** the triple's two measurement slots — aggregation $\mathcal{A}$ and per-edge gauge $\mathcal{J}$ — into its single gauge $J$, and (ii) **promotes** the carrier, repair class, closure $d_1$, and terminalizer $\tau$ — left separate or implicit in the triple presentation — to named first-class components. The relation is therefore many-to-one in the other direction too: the triple alone does not determine the packet. Per the corpus reconciliation discipline, this section **adds** a disambiguation; it does not rewrite the observer-triple definition in Paper 000 or Paper 008, which remain canonical for their own scope. The same reading aligns the spine: its "observer class $M$" is the packet's $M$, its "$Q^1_O$" is $Q^1_{\mathcal{O}}$, and its "observer-packet fields" are the nine components.
+
+**Checked consumers (the scope of the Main claim's in-paper checks; the remaining consumers were discharged under PL-000b-1 at the encyclopedia level — ENC-0517, 2026-06-20, conditional; §11).**
+
+| Consumer | Packet fields checked | Status |
+|---|---|---|
+| Paper 008 | $K,F,R,\delta,d_0,J,M,\mathrm{Adm},\tau$ via the observer triple + declared repair class | checked by Proposition B |
+| Paper 000a | same carrier/repair, different $J$ | checked by the Proposition C worked instance |
+| Paper 005 | trace-norm quantum packet | checked at the encyclopedia level (ENC-0517 row, 2026-06-20, conditional); not re-derived here |
+| Papers 009–010 | density / Born-lift diagnostics over the declared observer | checked at the encyclopedia level (ENC-0517 rows, 2026-06-20, conditional); not re-derived here |
+| Paper 020 | evaluator stack as an observer reading | in-paper reading interpretive, not load-bearing; packet row checked in ENC-0517 (2026-06-20, conditional) |
+
+---
+
+5. Same Data, Different Observer
+
+--------------------------------
+
+> **Proposition C (Class is gauge-independent; magnitude is gauge-fixed).** `[PROVEN]`
+> Fix a carrier $P$ and a repair coboundary $d_0$ with admissible class $\mathrm{Adm}$. The quotient $Q^1_{\mathcal{O}}=C^1/\operatorname{im}(d_0|_{\mathrm{Adm}})$, and hence the residual class $[\delta]$ of any $\delta\in C^1$, depend only on $(C^1,d_0,\mathrm{Adm})$ and **not** on the gauge $J$. The magnitude $\Phi_{\mathcal{O}}([\delta])=\inf_{f\in\mathrm{Adm}}J(\delta-d_0f)$ depends on $J$. Consequently two observers that differ only in $J$ assign the same class but, in general, different magnitudes to the same $\delta$.
+>
+> *Proof.* $Q^1_{\mathcal{O}}$ is the cokernel of $d_0|_{\mathrm{Adm}}$, a construction in which $J$ does not appear; thus $[\delta]$ is gauge-independent. The magnitude is the $J$-distance from $\delta$ to $\operatorname{im}(d_0|_{\mathrm{Adm}})$, determined by $J$: if $J_1\le J_2$ pointwise then the corresponding distances satisfy the same inequality, but for unrelated gauges the magnitudes may differ without either dominating the other. $\square$
+
+**Worked instance (reproducible; imported).** `[STANDARD — imported, Paper 000a]` On the $3$-cycle with edge targets $\omega_{01}=(1,0),\ \omega_{12}=(0,1),\ \omega_{20}=(0,0)$ the cycle circulation is $c=(1,1)$, a fixed element of $Q^1_{\mathcal{O}}$ regardless of gauge. The coordinate-channel observer ($J=\ell^1$) reports $\Phi=|c|_1=2$; the Euclidean vector observer ($J=\ell^1(E;\ell^2)$) reports $\Phi=|c|_2=\sqrt2$. The two packets are identical except in their $J$; the full development, the dual-witness theory, and the self-contained Python replay (`2.000000` vs `1.414214`) are in Paper 000a, *When Obstruction Is Not Scalar*. This is the smallest instance of Proposition C and is the recommended reproducibility entry point.
+
+Proposition C is the structural content of "observer-relative": not "anything goes," but *the class is intrinsic, the number is declared.* A reported magnitude without a declared $J$ is therefore underspecified, not wrong.
+
+---
+
+6. Two-Role Typing: Observer Is an Evaluator, Never a Proposer
+
+--------------------------------------------------------------
+
+> **Definition 6.1 (Role typing).** `[DEFINITION; firewall imported]`
+> A **proposer** emits candidate sections, edge fields, repairs, or lifts; it has no authority. An **observer** $\mathcal{O}$ evaluates: it measures $\Phi_{\mathcal{O}}$, $\Gamma_2$, and applies $\tau$. The two roles are typed distinct and must not be collapsed: the system that proposes a value must not be the one that terminalizes it.
+
+This is the obstruction-calculus statement of the proposal/authority firewall. It is imported, not established here: the dependent-record firewall is canonical spine §II.2.2 (*Two-Role Typing*), and the machine-checked separation of evidence from authority is Paper 024 (*The Authority Firewall*). The packet merely *locates* the firewall — it is the boundary between $(\,K,F,R,\delta,d_0,d_1,J\,)$ (evidence: what was compared and measured) and $(\,M,\tau\,)$ together with the descent layer (authority: what is allowed to count). `[STANDARD — imported]`
+
+---
+
+7. The Terminalizer
+
+-------------------
+
+> **Definition 7.1 (Terminalizer).** `[DEFINITION]`
+> $\tau_{\mathcal{O}}([h],\,\Phi_{\mathcal{O}},\,\Gamma_2)\;\longrightarrow\;\textsf{TerminalTag}$
+> assigns a terminal status — e.g. *accept*, *reject*, *refuse*, *escalate*, *unresolved*, *authorized*, *not-authorized* — to a measured residual and its diagnostics.
+
+**Measurement is not authorization.** A positive $\Phi_{\mathcal{O}}$ records that the declared observer sees irreducible residual after exhausting the declared repair class; it does not, by itself, license any action. What follows — repair, refusal, escalation to a richer carrier (a *lift*, in the sense of Paper 008), or acceptance as tolerable — is supplied by $\tau$, and terminal *authority* is conferred only through the finite-descent gate ($\Pi^\sharp$ together with `IsAuth`) of the CODA-FDA layer, never by $\Phi_{\mathcal{O}}$ alone. `[STANDARD — imported, CODA-FDA]` This is the point at which observer theory hands off to authority theory; the packet defines the handoff interface, not the authority verdict.
+
+---
+
+8. Interpretive Coda
+
+--------------------
+
+`[INTERPRETIVE]` The same nine-component object underlies the plain-language readings of "observer" that motivate the corpus: a **quantum observer** as a declared measurement boundary (a $J=\tfrac12\|\cdot\|_1$ trace-distance gauge on operator-valued stalks; Paper 000a quantum branch, Paper 005), an **AI-LLM observer** as the declared evaluation stack around a proposal engine (Paper 020, where the local-green/global-red problem may be *read* as a failure of closure under composition), a **conscious report** entering shared authority only through a finite packet, and **institutions** as observers that can be audited by inspecting their declared carrier, comparison, repair rights, gauge, and terminalizer. None of these readings is forced by the mathematics; each is a clearly fenced interpretation. The extended exposition is the LinkedIn master essay *"What the Hell Is an Observer?"*, for which this paper is the formal anchor. No claim in §§2–7 depends on this section.
+
+---
+
+9. What This Does Not Claim
+
+---------------------------
+
+- **No observer-independent authority.** Authority is terminalized through finite descent (CODA-FDA), relative to a declared observer; nothing here confers it.
+- **No derivation of quantum mechanics, the Born rule, or Hilbert-space ontology.** The quantum reading is one instance of $J$ (trace distance), not a claim about nature; see Papers 000a, 005, 010 for the precise, fenced statements.
+- **No theory of the measurement problem or of consciousness.** The packet disciplines how such claims gain shared authority; it does not explain experience or collapse.
+- **No completed corpus-wide completeness claim *in this paper*.** This paper proves the checked reconciliations — Proposition B for the Paper 000/008 observer triple and Proposition C for the Paper 000a gauges — and records full corpus packet-completeness as PL-000b-1 below, discharged at the encyclopedia level on 2026-06-20 (ENC-0517, PROVED-PROSE, conditional on declared-corpus scope and propagated hypotheses) and not re-proved here. It does *not* claim that every conceivable evaluation factors through these nine components.
+- **No new gauge selection.** Which $J$ and which $M$ are lawful is *declared* per observer; selection results (e.g. SO$(k)$ for the $\ell^2$ stalk, Paper 003) live in their own papers, and the open trace-distance selection is `PL-000BN-1`.
+
+---
+
+10. Claim-Type Ledger
+
+---------------------
+
+| Result (location) | Type |
+|---|---|
+| Definition 2.1 — observer object $\mathcal{O}=(K,F,R,\delta,d_0,d_1,J,M,\tau)$ | `[DEFINITION]` |
+| Definition 3.1 — $\Phi_{\mathcal{O}},\ Q^1_{\mathcal{O}},\ \Gamma_2,\ R_{cl}$ | `[DEFINITION]` |
+| Proposition A1 — $\Phi_{\mathcal{O}}$ well-defined on $Q^1_{\mathcal{O}}$ (linear $\mathrm{Adm}$, any $J$) | `[PROVEN]` |
+| Proposition A2 — minimizer attained (finite-dim $C^1$, $J$ a norm) | `[PROVEN]` |
+| Proposition B — Paper 000/008 observer triple $(\mathcal{A},\mathcal{M},\mathcal{J})$ + separate carrier/$\mathrm{Adm}$ assembles into the packet ($J=\mathcal{A}\!\circ\!\mathcal{J}$, $M=\mathcal{M}$); $\Phi_{\mathcal{O}}$ coincides | `[PROVEN — definitional specialization]` |
+| Proposition C — class gauge-independent; magnitude gauge-fixed | `[PROVEN]` |
+| Worked $2$-vs-$\sqrt2$ triangle instance (§5) | `[STANDARD — imported, Paper 000a]` |
+| §6 two-role typing (observer = evaluator, not proposer) | `[STANDARD — imported, spine §II.2.2 / Paper 024]` |
+| §7 measurement $\neq$ authorization; authority via $\Pi^\sharp$+`IsAuth` | `[STANDARD — imported, CODA-FDA]` |
+| Nearest-neighbor positioning (§1) | `[INTERPRETIVE / STANDARD — positioning]` |
+| §8 quantum / AI / conscious / institutional readings | `[INTERPRETIVE]` |
+| Completeness of the packet — declared-corpus form (each consumer in Papers 005, 008–020, 000a factors through $\mathcal{O}$) | **NOT PROVED HERE** — PL-000b-1, discharged at the encyclopedia level (ENC-0517, PROVED-PROSE 2026-06-20, conditional on PL-000b-1-H1/H2/H3) |
+| Completeness of the packet — universal form (every conceivable evaluation factors through $\mathcal{O}$) | **NOT CLAIMED** — outside PL-000b-1's declared-corpus scope (H1); OPEN |
+
+**Companion ledger:** `001_the_observer_object_claim_ledger.md` (this directory).
+
+---
+
+11. Support Ledger
+
+------------------
+
+This is a definitional paper; Propositions A–C have no open proof obligations within their stated hypotheses, so the support ledger is short.
+
+- **PL-000b-1 — Packet completeness for the corpus.** *Statement (required):* exhibit, for each observer-relative construction in Papers 005, 008–020 and 000a, an explicit instance of $\mathcal{O}=(K,F,R,\delta,d_0,d_1,J,M,\tau)$ and a proof that the paper's declared $\Phi$/$\Gamma$/terminal output equals the packet's, with no dependence on data outside the nine components. *Upgrades:* promotes the Main claim from "checked on 008 (Proposition B) and 000a" to "checked across the consuming corpus." *Difficulty:* looks standard but laborious — one finite reconciliation per consumer; low counterexample risk where the consumer already uses $(C^1,d_0,J)$. *Checkable:* per-paper, by definition-matching (as in §4); no Lean required, though the $\Phi$ identities are numerically replayable. *Status:* DISCHARGED at the encyclopedia level, 2026-06-20 — ENC-0517 (*Observer-Packet Completeness Across the Consuming Corpus*), PROVED-PROSE, tier-T3 verified (three specialist verifiers ACCEPT + lead evaluator VERIFIED), all fifteen consumer rows (000a, 005, 008–020) CHECKED; conditional on PL-000b-1-H1 (declared-corpus scope only), PL-000b-1-H2 (propagated row hypotheses remain active), and PL-000b-1-H3 (policy/authority firewall); Lean NOT-PLANNED. This paper's own proofs remain Propositions B and C — the discharge is recorded here, not re-derived. Universal (every-conceivable-evaluation) completeness remains unclaimed and outside the obligation's scope.
+
+---
+
+12. Consumed By
+
+---------------
+
+Papers and artifacts whose "declared observer" this object anchors (forward citations to be wired in a separate pass):
+
+- **Paper 000a** — *When Obstruction Is Not Scalar*: vector ($\ell^1(E;\ell^2)$) and quantum (trace-distance) packets differing only in $J$ (Proposition C instances).
+- **Paper 008** — *Conditional Lift Descent…*: observer triple $(\mathcal{A},\mathcal{M},\mathcal{J})$ + separately-declared carrier/$\mathrm{Adm}$ assemble into the packet, with $J=\mathcal{A}(\{\mathcal{J}(\cdot_e)\})=\|\cdot\|_1$ and $M=\mathcal{M}$ (Proposition B).
+- **Paper 009** — *Conditional Density Lift and $\Xi$*: $\Phi_1$ as the packet's $\Phi_{\mathcal{O}}$ with $J=\ell^1$; $\Xi$ as a declared-tie-break diagnostic over the same packet.
+- **Paper 010** — *Born Normalization…*: the "declared $\ell^1$ disjoint-additive observer structure" is the packet with $J=\ell^1$ and additive stalks.
+- **Paper 005** — *CPTP-Invariant Obstruction Theory*: the trace-norm quantum packet.
+- **LinkedIn master essay** — *"What the Hell Is an Observer?"*: the plain-language exposition of Definition 2.1; its "Formal anchor" points here (and to Paper 000).
+
+---
+
+References
+----------
+
+- Abramsky, S., & Brandenburger, A. (2011). *The Sheaf-Theoretic Structure of Non-Locality and Contextuality*. New Journal of Physics, 13, 113036. arXiv:1102.0264.
+- Necula, G. C. (1997). *Proof-Carrying Code*. POPL '97, 106–119.
+- Hatcher, A. (2002). *Algebraic Topology*. Cambridge University Press.
+- Mac Lane, S. (1963). *Homology*. Springer.
+- Aczél, J. (1966). *Lectures on Functional Equations and Their Applications*. Academic Press.
+
+Changelog
+---------
+
+### Improver pass (2026-07-17)
+
+- **PL-000b-1 status sync (no new mathematics).** The declared-corpus packet-completeness obligation was discharged at the encyclopedia level on 2026-06-20 — ENC-0517, PROVED-PROSE, tier-T3 verified, all fifteen consumer rows (000a, 005, 008–020) CHECKED, conditional on PL-000b-1-H1/H2/H3 — after this paper's last pass, which had left the paper's surface reading "OPEN." Synced the status surface: Main-claim note, §"What this does not claim" summary, falsifiability line, §4 checked-consumers table, §9 fourth bullet, §10 ledger, §11 Support Ledger. The paper's own proof content (Propositions A1/A2/B/C) is unchanged and still claims only the in-paper checks.
+- Split the §10 completeness row into **declared-corpus** vs **universal** forms so the conditionally discharged statement and the still-unclaimed universal statement cannot be conflated; the universal form remains NOT CLAIMED / OPEN.
+- Fixed the §10 companion-ledger pointer to the actual sibling filename `001_the_observer_object_claim_ledger.md`.
+- **Version lineage note:** the "v1.0 (2026-06-09)" label below is the internal consolidation-draft label predating the public stamp; the header's `v0.1 Pre-Print` is canonical, and hygiene passes do not bump it (corpus pre-print stamp discipline).
+- Rubric audit (Part A a–f): verified present — payoff lead, why-care paragraph, five named neighbors, imported worked instance with replay pointer (Paper 000a), falsifiability line, does-not-claim box. Claim typing verified consistent with the encyclopedia (ENC-0211/0212/0216/0217 DEFINED; ENC-0213/0214/0215 PROVED-PROSE). No elements manufactured; no scope widened.
+
+### Release pre-flight pass (2026-06-11)
+
+- Normalized four `\(...\)` inline-math occurrences (Falsifiability ¶, scope note after Prop A1, Prop A2 statement, Prop A2 proof) to `$...$` for pdfLaTeX/pandoc compatibility.
+- Scrubbed `[OPEN]` tag syntax from §10 claim-type table and §11 Support Ledger body; obligation retained via PL-000b-1 reference (already tracked in `proof_ledger_20260611.md`).
+- No mathematical content changed.
+
+### Pre-publication audit lineage — internal narrowing pass before v0.1 public pre-print
+
+- Narrowed the Main claim and the §9 non-claim from "every observer-relative evaluation in this corpus" to the **checked** consumers (Paper 000/008 triple via Proposition B; Paper 000a gauges via Proposition C); corpus-wide completeness stays PL-000b-1, now made concrete by a checked-consumers table after Proposition B.
+- **Split Proposition A** into A1 (quotient well-definedness — linear $\mathrm{Adm}$, *any* $J$) and A2 (minimizer attainment — finite-dim $C^1$, $J$ a *norm*), so norm/attainment assumptions are not smuggled into the general Definition 2.1 (which permits $J$ a norm *or* functional).
+- Made the closure diagnostic $\Gamma_2([\delta])=J_2(d_1\delta)$ representative-independent explicitly ($d_1 d_0|_{\mathrm{Adm}}=0$), and guarded $R_{cl}$ to $\Phi_{\mathcal{O}}([\delta])>0$.
+- Fixed the Proposition C magnitude sentence (no canonical order on arbitrary gauges; monotone only under pointwise $J_1\le J_2$).
+- Added a References section (Abramsky–Brandenburger 2011; Necula 1997; Hatcher 2002; Mac Lane 1963; Aczél 1966). No scope widened; verdict after patch: ACCEPT for initial Zenodo pre-print as a foundational definitional companion.
+
+### v1.0 (2026-06-09) — Foundational Consolidation Pass
+
+- Created `000b` as the definitional anchor for the observer object, consolidating the prose nine-tuple (master essay), Paper 008's triple $(\mathcal{A},\mathcal{M},\mathcal{J})$, and the spine's "observer class / $Q^1_O$" language into one packet $\mathcal{O}=(K,F,R,\delta,d_0,d_1,J,M,\tau)$.
+- Stated and proved Proposition A (well-definedness on $Q^1_{\mathcal{O}}$), Proposition B (the Paper 000/008 observer triple $(\mathcal{A},\mathcal{M},\mathcal{J})$ + separately-declared carrier/repair assemble into the packet, $J=\mathcal{A}\!\circ\!\mathcal{J}$, $M=\mathcal{M}$), Proposition C (class gauge-independent, magnitude gauge-fixed); imported the two-role firewall (spine §II.2.2 / Paper 024) and the terminalization/authority handoff (CODA-FDA).
+- Claim-typed every statement; logged packet completeness as the sole open obligation (PL-000b-1).
+- Lean math core only: the AI/quantum/conscious/institutional readings are confined to a fenced `[INTERPRETIVE]` coda pointing at the master essay; the worked $2$-vs-$\sqrt2$ instance is cited to Paper 000a, not re-derived.
+
+> **Pedagogical Crosswalk Notice:** Streamlined pedagogical exposition for this kernel is provided under [`100_mathematical_foundations/`](../100_mathematical_foundations/). This monograph remains the primary mathematical home under `AuthorityEffect: None`.
+
+<!-- claim-id-body-index:begin -->
+
+Claim-ID body index (packaging)
+-------------------------------
+
+| ID | Home |
+|---|---|
+| `A1` | sibling `001_the_observer_object_claim_ledger.md` |
+| `A2` | sibling `001_the_observer_object_claim_ledger.md` |
+| `B1` | sibling `001_the_observer_object_claim_ledger.md` |
+| `B2` | sibling `001_the_observer_object_claim_ledger.md` |
+| `B3` | sibling `001_the_observer_object_claim_ledger.md` |
+| `C1a` | sibling `001_the_observer_object_claim_ledger.md` |
+| `C1b` | sibling `001_the_observer_object_claim_ledger.md` |
+| `C2` | sibling `001_the_observer_object_claim_ledger.md` |
+| `C3` | sibling `001_the_observer_object_claim_ledger.md` |
+| `C4` | sibling `001_the_observer_object_claim_ledger.md` |
+| `D1` | sibling `001_the_observer_object_claim_ledger.md` |
+| `D2` | sibling `001_the_observer_object_claim_ledger.md` |
+| `D3` | sibling `001_the_observer_object_claim_ledger.md` |
+| `D4` | sibling `001_the_observer_object_claim_ledger.md` |
+
+<!-- claim-id-body-index:end -->

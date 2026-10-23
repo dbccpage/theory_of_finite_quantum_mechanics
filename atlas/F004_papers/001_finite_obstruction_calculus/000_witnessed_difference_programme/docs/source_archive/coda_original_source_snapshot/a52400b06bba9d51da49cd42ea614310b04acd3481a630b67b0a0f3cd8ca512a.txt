@@ -1,0 +1,1077 @@
+# 015 Obstruction Diagnostics Observer Control
+
+## 008_ENGINE_RUNTIME Monograph Series (015_obstruction_diagnostics_observer_control)
+
+**Date:** 2026-07-29 · **Version:** v1.0  
+**License:** Creative Commons Attribution 4.0 International (CC-BY-4.0)  
+**Status:** RELEASED  
+**Authority:** `AuthorityEffect::None`  
+
+## Mechanism inventory
+
+| Slot | Value / Description |
+| --- | --- |
+| **Primitive Differences** | $\delta c = \text{{defect mass}}$ |
+| **Carriers / Structure** | Finite Graph 0-Cochain / Hilbert Space |
+| **Cochain complex** | $C^0 \to C^1 \to C^2$ |
+| **Coboundary maps** | $\delta^0, \delta^1$ |
+| **ZeroRel** | Preserved under $L_1$ quotient |
+| **Licensed repairs** | None |
+| **Quotient / Q1** | Banach Quotient |
+| **Residuals** | $\delta c \neq 0$ boundary defect |
+| **Witnesses** | Replayable Python / Rust Certifiers |
+| **Observers / profiles** | Operational Observer |
+| **Anomalons** | None |
+| **CompletionLaw** | Finite Cochain Completion |
+| **Terminal / route** | Route to Anomalon Estate |
+| **AuthorityEffect** | None |
+
+doc: oe_015_obstruction_diagnostics_observer_control.md
+status: published_living_document
+authority_effect: None
+document_class: CHAPTER_STEM_PAPER
+paper_id: "oe_015_obstruction_diagnostics_observer_control"
+series: "008_engine_runtime / oe_015_obstruction_diagnostics_observer_control"
+series_position: "OE-015"
+version: "v0.1.0"
+extraction_source: "008_omega_engine_master.md lines 13892-14364, 14363-15001"
+
+## Multi-Channel Obstruction Diagnostics and Observer-Robust Control
+
+**Series:** `008_engine_runtime` / `oe_015_obstruction_diagnostics_observer_control`
+**Series position:** OE-015 (Part V — Terminalization & residuals) — see [`_tables_of_contents.md`](_tables_of_contents.md)
+**Subsystem:** Obstruction channels; normalized composite score; operator selection; the $\Phi$-$\Gamma$ split; scalarization as observer choice
+**Date:** 2026-07-28
+**Version:** v0.1.0 (extraction from master archive)
+**Document class:** Chapter / stem paper
+**AuthorityEffect:** `None`
+
+> **Extraction provenance.** Body moved byte-faithfully from
+> [`008_omega_engine_master.md`](008_omega_engine_master.md) lines **13892-14364, 14363-15001**
+> (master state: 21,966 lines, 2026-07-28). Only this header was authored.
+> Two sources merged: constraint-level repair routing (Section 000) and observer-robust control (Section 001).
+
+> **Evidence-status fence.** Extraction changes no claim status. Every claim remains bound by
+> the evidence axis and ledger that owns it. `AuthorityEffect: None` holds unconditionally.
+> Hygiene passes (`/paper-improver` → `/paper-adversary`) have **not** been run on this extract.
+
+## Section: 000_constraint_level_regulation_via_multi_channel_obstruction_diagnostics
+
+## Constraint-Level Repair Routing via Multi-Channel Obstruction Diagnostics
+
+**Author:** Jeremy H. Carroll
+**Date:** June 2026
+**Version:** v2.1.1 Pre-Print
+
+Abstract
+
+**Main result (informal).** A second-order controller routes repair operators — numeric repair, structural lift, SAT repair, rollback, branch, or wait — by reading several observer-relative obstruction channels (geometric quotient residual, closure defect, representative distortion, logical UNSAT, relational drift). The normalized composite score it minimizes is a *routing utility only*: it is subordinate to per-channel diagnostics, the closure-ratio guardrail $R_{cl}\le R_{\max}$, and typed terminals, so the controller cannot "fake repair" **in a declared protected channel, at the resolution of the declared detector**, by lowering a weighted sum while that channel worsens. Both qualifiers are load-bearing and neither is free: a defect in an undeclared channel, or below detector resolution, is invisible to every guard in this paper (§5.2).
+
+This paper defines a second-order repair controller for constraint-system evolution. The system monitors separable obstruction channels, including geometric quotient residual, logical UNSAT residual, closure defect, representative distortion, and relational drift. It selects repair operators according to a cost-sensitive policy over declared constraint generators, while remaining subordinate to finite carriers, observer-relative diagnostics, guardrails, and typed operator contracts.
+
+The controller is an operational repair policy, not a model of cognition, consciousness, or subjective awareness. Its composite obstruction score is a routing utility, not an authority certificate. Acceptance is not the controller's to grant (§1); it is delegated to the guarded evaluator and remains governed by channel-level diagnostics, closure-ratio bounds, the declared evaluator policy, and typed terminal semantics.
+
+Constructed toy cases exhibit separable channel activation and show that operator routing can reduce composite obstruction in selected cases. These are **worked examples, not experiments**: this paper cites no implementation, and no Lean, Rust, or replay artifact exists for it (§0, §4). No claim is made beyond the specified mechanism.
+
+**Why a researcher should care.** A controller that repairs by minimizing one aggregate score is easy to game: it can drive the headline number down while quietly tearing a protected channel — for example lowering quotient residual by breaking topological closure, or fixing a logical conflict while damaging geometric structure. This paper separates *routing* from *authority*. It monitors channels that activate separately in constructed cases, routes operators by a normalized composite utility, and **refuses** any transition it can see to breach the closure-ratio guardrail or to worsen a declared protected channel beyond its declared tolerance.
+
+The transferable lesson is narrower than "multi-channel diagnostics plus a boundary guardrail keep repair honest," and the narrowing is the point. Adding channels does **not** compound into a guarantee: a combination of diagnostics is not stronger evidence than its parts, and this corpus licenses no inference from "several channels agree" to "the repair is sound." Two failure modes survive every guard stated here. First, **the joint blind spot**: §2 discloses each channel's blind spot individually, but a defect outside the declared manifest is invisible to all five at once, and lowers every monitored number. Second, **detector collapse**: on an acyclic carrier the geometric channel is identically zero for every input, which drives $R_{cl}\equiv 0$ and makes the guardrail structurally unable to fire (§5.2). What multi-channel monitoring buys is that the *specific* defect-hiding move of trading one declared channel against another is refused. That is a real property and it is not adequacy. A regulator built on a collapsing detector regulates nothing.
+
+0. GTOC / GTLA Compliance Note
+
+**Role:** control / routing layer. A second-order repair controller that *proposes and routes* repair operators inside a declared obstruction regime. It is an operator-proposal instrument, not an adjudicator: it reads diagnostics and emits a candidate operator plus a refusal condition. Every accept/reject decision is owned elsewhere (Paper 011's guarded evaluator).
+**Degree:** 1, in a 2-truncated regime. Residuals live in $C^1$; the repair gauge lives in $C^0$ via $d_0$; the closure channel $\Phi_{\mathrm{curv}}=\Gamma_2$ reads $d_1:C^1\to C^2$. See the regime declaration below.
+**Consumes:** a declared finite carrier $(V,E)$ with a declared 2-truncated cochain complex; the obstruction signature $(\Phi_1,\Gamma_2,R_{cl})$ and the $R_{cl}$ guardrail law of Paper 000; the $\Xi$ functional of Paper 009 (**imported, Hilbert-host-bearing** — see the register); the guarded descent *policy* of Paper 011; the replica-extensive $\ell^1$ observer; a deployment manifest supplying $\sigma_i,\epsilon_i,a,b,c,d$, $\tau_i$, $P_{\mathrm{prot}}$, $R_{\max}$, and the $R_{cl}$ stabilizer $\varepsilon$.
+**Produces:** an operator proposal $o_t\in\mathfrak O$; a normalized routing utility $\Phi_{\mathrm{total}}$; a per-channel diagnostic profile; the $R_{cl}$ guardrail **refusal**; typed terminals (nondeterminism, tradeoff).
+**Does not produce:** authority of any kind; acceptance; a certificate; a lift license; a `DetectorAdequacy` certificate; convergence of the routed descent loop (**PL-007-1, OPEN** — canonical home Paper 007); statistical or causal independence of the channels; a repair-completeness theorem; semantic truth; cognition, consciousness, or subjective awareness; a probability, chance, or entropy semantics over the $\ell^1$ weights (§6.2 prices the entropic reading as imported); a $d_1$, a $C^2$, or a proof of $d_1d_0=0$; a construction of $\Xi$ at this degree; a value for $R_{\max}$.
+**Authority status:** none. See the authority firewall below.
+**Declared imports:** see the import register below.
+**OracleNeeded / Q-gated items:** (i) the Hilbert host, density lift, trace norm, and $\ell^2$ inner product underlying $\Xi$ (**Q-gated**, imported from Paper 009, not constructed here); (ii) the $C^2$ / $d_1$ / $d_1d_0=0$ admission, which no upstream paper supplies and on which $\Gamma_2$'s representative-independence — hence the entire $R_{cl}$ guardrail — depends; (iii) the transition model, rollout estimator, or prior backing $\mathbb E[\cdot]$ in §1; (iv) `DetectorAdequacy` for the declared channel set (§5.2); (v) the value of $R_{\max}$, which is a deployment choice this paper does not fix.
+**GTLA boundary:** this paper is GTOC-side. It routes and prices obstruction; it mints nothing. An "accept" reached downstream of this controller is a **routing outcome under a declared policy**, not an authority terminal, not a certificate, and not a claim that the routed repair is correct. `SemanticAuthority` is **unavailable** here — no semantic adapter is declared. `IsAuth`, descent packets, evidence ceilings, and terminalizers are owned by CODA-FDA/GTLA and are not supplied here.
+**Mechanization status:** **none.** This paper cites no Lean, Rust, or replay artifact, and none exists for it: there is no `Paper018` library in `omega_engine/lean4/`. The unnamed "implementation" of §2 and §4 is **not a citable artifact** (§4 fence); the §7.2 numbers are acceptance-test templates, not observations of a verified system.
+**Remaining open obligations:** **PL-007-1** — convergence of the routed descent loop (Conjecture 4.3 of Paper 007; backlog 899); OPEN, routed, not owned here. A `DetectorAdequacy` certificate for the declared five-channel set (§5.2) — **owned here**, and required for any authority-bearing use. The three lift requirements §5.1 does not supply (obstruction witness, preservation witness, terminalizer route). The $\Phi_{\mathrm{sat}}/\Phi_{\mathrm{rel}}$ delegate gap (§5.1). A manifest schema binding $R_{\max}$, $\varepsilon$, and $\Xi$'s six declared selections.
+
+**Authority:** none. This paper may diagnose, price, route, or construct structure inside a declared obstruction regime. It does not mint authority. Any authority-bearing use requires a separate CODA-FDA / GTLA descent packet, terminalizer, evidence ceiling, replay witness, and `IsAuth` guard.
+
+Restated for the reader the word "regulation" will attract: this controller **regulates nothing on its own account**. It reports, ranks, and refuses. A refusal it emits is a valid terminal; an acceptance it appears to grant is not its to grant. Multi-channel monitoring, guardrails, replayability, and a clean audit manifest are **not** sources of authority — the guardrail can be perfectly replayable and still inert, if the detector that feeds it collapses (§5.2).
+
+### GTOC regime declaration
+
+| Slot | Declaration |
+|---|---|
+| `ObstructionRegime(k)` | $k=1$, 2-truncated: $C^0\xrightarrow{d_0}C^1\xrightarrow{d_1}C^2$ over a declared finite carrier |
+| $C^k,C^{k+1},C^{k+2}$ | $C^0$ (repair gauge), $C^1$ (edge residuals $\omega,h$), $C^2$ (closure charges read by $\Gamma_2$) |
+| $d_k,d_{k+1}$ | $d_0$ (repair/gauge action, §1, §2), $d_1$ (closure, $\Phi_{\mathrm{curv}}=\|d_1h\|_1$) |
+| $d_{k+1}\circ d_k=0$ | **Assumption — consumed, not proved here.** Paper 007 explicitly does not produce a $d_1$, a $C^2$, or a proof of $d_1d_0=0$. This paper inherits the admission and declares it. It is load-bearing: $\Gamma_2([h])$ is representative-independent only because $d_1(h+d_0f)=d_1h$, so without it $\Phi_{\mathrm{curv}}$ is gauge-dependent and $R_{cl}$ — hence §3's guardrail — is not well-defined |
+| ZeroRel / local sameness | $\Phi_{\mathrm{geom}}=0\iff\omega\in\operatorname{im}(d_0)$ (exact repair exists); per-channel tolerances $\tau_i$ and the stabilizer $\varepsilon$ are declared, not intrinsic |
+| Observer / gauge / norm | Declared: the replica-extensive $\ell^1$ observer (§2). $\ell^2$ Hodge-style harmonic geometry is **refused** for the geometric channel — but see the $\Xi$ row of the import register, which re-imports an $\ell^2$ inner product through Paper 009 |
+| Lift policy | **Proposal only** (§5.1). A cycle pattern *triggers* lift consideration; it does not license one. Three of the five bundle-required lift ingredients are absent (see §5.1) |
+| Terminal policy | Typed terminals emitted, not adjudicated: nondeterminism (§1), tradeoff (§5.1), nonconvergence-within-budget (§6.3), guardrail refusal (§3). Authority terminals are refused outright |
+
+Classification map for §3's distinction (L107): valid cycle obstruction ($\Phi_{\mathrm{geom}}$ high, $\Phi_{\mathrm{curv}}$ zero) is a `ClosedSurvivor`; broken structure ($\Phi_{\mathrm{geom}}$ high, $\Phi_{\mathrm{curv}}$ high) is an `ActiveClosureFailure`; $\Phi_{\mathrm{geom}}=0$ is `ExactRepair`; a tie the declared policy cannot break is `NoRule / Refused`. Both `ClosedSurvivor` and `ActiveClosureFailure` may **trigger** lift consideration; neither licenses a lift.
+
+### Import register
+
+| Imported structure | Where used | Status |
+|---|---|---|
+| Hilbert host (bra-ket, operator algebra), density operators, trace / Schatten-1 norm, $\ell^2$ inner product on $\mathbb R^E$ | the $\Xi$ channel (§2, §5.1 protected set, §2's tiebreaker rule) | `IMPORTED` / **Q-gated**. $\Xi=\|\rho(h_1^*)-\rho(\phi^*)\|_{\mathrm{tr}}$ is built inside a Hilbert host. Paper 009's own register marks each ingredient `IMPORTED` and concludes that **$\Xi$ is not constructed at that paper's declared degree**. It is not constructed at this one either. Note the tension this paper must own: §2 refuses $\ell^2$ observer geometry for $\Phi_{\mathrm{geom}}$ while $\Xi$ re-imports an $\ell^2$ inner product the $\ell^1$ cochain data does not supply |
+| $C^2$, $d_1$, and $d_1d_0=0$ | $\Phi_{\mathrm{curv}}=\Gamma_2=\|d_1h\|_1$; $R_{cl}$; the §3 guardrail | `IMPORTED` — admitted, not constructed. Unowned upstream (Paper 007 disclaims it) |
+| Expectation $\mathbb E[\cdot]$; transition model / rollout estimator / "empirical operator-performance prior" | §1 Definition 1.1 | `IMPORTED` — probability semantics. §1 supplies a deterministic fallback when no model is declared; absent that declaration the expectation is not available |
+| Shannon entropy, logarithm, action distribution $P_{W_t}$ | §6.2 | `IMPORTED` — the underlying object is a finite tally; the entropic/logarithmic reading is a convention this paper does not construct (§6.2) |
+| $R_{\max}$ | §1, §3, §5.1, Falsifiability | `IMPORTED` from Paper 000's $R_{cl}$-guarded-descent law as a **free policy parameter**. This paper does not fix its value and must not be read as supplying one |
+
+**Import / Oracle boundary.** Any use of Hilbert space, Born uniqueness, phase, continuum, probability semantics, dynamics, physical interpretation, tensor composition, or empirical realization is an imported representation structure unless explicitly constructed at this paper's declared degree. Imported structures are not DDA operations and do not produce authority.
+
+**Formalization-status firewall.** Any Lean, Rust, or replay artifact cited here supports only the exact finite statement it mechanizes. It does not automatically discharge PL-GTOC, Q, continuum, physical-realization, or GTLA authority obligations. A status upgrade requires an explicit theorem-ledger mapping, hypotheses check, build receipt, axiom/sorry audit, and adversary acceptance. *This paper cites no such artifact; the firewall is stated so that a future implementation citation inherits it rather than arriving unfenced.*
+
+1. Definition
+
+### 1.0 Genesis-Bias Fence — No Prior World Behind the Controller
+
+This paper does not begin with a world, a substrate, a law of motion, a possibility domain, or an authority source that the controller then discovers. It begins with **declared manifest data**: a finite carrier, a declared cochain complex, a declared observer, a declared operator set, and a declared policy.
+
+$S_t$ below is **not** a state of the world and $\mathfrak O$ is **not** a set of physically available actions. $S_t$ is the manifest-declared record the controller is permitted to read at step $t$; $\mathfrak O$ is the operator set the deployment declares. The index $t$ is a **step counter over an exhibited operator sequence** — not a duration, not physical time, and not a temporal order the controller is embedded in.
+
+Price of the common stronger readings: reading $S_t$ as a world-state imports a container the declaration does not supply; reading $t$ as time imports a temporal order; reading $\mathbb E[\cdot]$ as chance imports a possibility domain and a measure over it (declared as an import in §0, with a deterministic fallback in §1). None of the three is constructed here.
+
+> **GENESIS-BIAS AUDIT.** Does this section explain control by presupposing a prior container, substrate, state-space, law, observer, temporal order, possibility domain, sample space, Hilbert space, physical system, or authority source? If so, declare and price that antecedent, replace it with packet-local data, or stop with an OBSTRUCTION.
+
+Let:
+
+* $S_t$ be the declared controller-visible record at step $t$, including graph, constraints, section, solver state, and metadata;
+* $H_t=(S_0,o_0,S_1,o_1,\ldots,S_t)$ be the history;
+* $\mathfrak O=\{\Pi_{21},\Pi_{12},\text{SAT repair},\text{rollback},\text{branch},\text{wait}\}$ be the available operator set;
+* $\Phi_{\mathrm{total}}$ be a normalized composite obstruction score over multiple observer-relative channels.
+
+**Definition 1.1.** A second-order repair controller is a policy:
+
+$$
+\operatorname{Ctrl}:\operatorname{State}\times\operatorname{History}\to\mathfrak O
+$$
+
+that selects an operator $o_t\in\mathfrak O$ to reduce expected future obstruction subject to cost and validity constraints. Here \(\Pi_{12}\) denotes a representation-expanding lift from the base graph into an enriched structure, while \(\Pi_{21}\) denotes projection or repair back into the existing numeric carrier.
+
+Equivalently:
+
+$$
+o_t
+\in
+\arg\min_{o\in\mathfrak O}
+\mathbb E\left[
+\Phi_{\mathrm{total}}(S_{t+1})
++\operatorname{Cost}(o)
+\mid S_t,H_t,o
+\right]
+$$
+subject to the invariant guardrail $R_{cl} \le R_{\max}$, whose bound $R_{\max}$ is a declared deployment parameter this paper does not fix (§3).
+
+The expectation $\mathbb E[\cdot]$ is taken with respect to a declared transition model, rollout estimator, or empirical operator-performance prior. **This is an `IMPORTED` probability semantics** (§0 register): the declared degree supplies a finite carrier and finite diagnostics, not a possibility domain or a measure over it. If no such model is declared, the expectation is unavailable, and Ctrl is treated as a deterministic scoring policy over observed candidate successors rather than a stochastic optimizer. If multiple operators minimize the declared routing objective, the controller must use a deterministic tie-break rule or emit a typed nondeterminism terminal. Silent arbitrary operator selection is not certificate-grade.
+
+This is a definition of a controller, not a philosophical definition of mind. The controller **proposes and routes**; it does not accept, certify, or promote. Acceptance is delegated to the guarded evaluator of Paper 011 and its terminal semantics.
+
+**Ownership split (binding for the rest of this paper).** The deployment manifest declares. The controller proposes. The guarded evaluator judges. The audit manifest records. Promotion to any authority-bearing use is outside this paper entirely and requires a CODA-FDA / GTLA descent packet. Wherever the text below says a transition is "accepted" or "rejected", read: *the declared policy routed it, or the declared guard refused it* — never *the controller was entitled to decide it*. A refusal this controller emits is a valid terminal and needs no further license; an acceptance is not the controller's to grant.
+
+2. Obstruction Channels
+
+All obstruction channels are defined relative to a chosen observer $\mathcal{O}$.
+
+This specification declares five primary obstruction channels. (Read "the implementation" throughout as *a conforming implementation*: no artifact is cited by this paper, and conformance to the §1 interface is an audit obligation, not a reported fact — §0, §4.)
+
+| Channel | Definition | Measures | Detects | Blind to |
+|---|---|---|---|---|
+| $\Phi_{\mathrm{geom}}^{(\mathcal O)}$ | $\inf_f \mathrm{Obs}_{\mathcal O}(\omega - d_0 f)$ | quotient geometric residual | cycle-supported geometric obstruction | logical contradictions not encoded geometrically |
+| $\Phi_{\mathrm{curv}}$ | $\Gamma_2 = \|d_1 h\|_1$ | topological closure failure | broken structural boundary limits | valid repairable cycle obstruction |
+| $\Xi$ | representative distortion (imported from Paper 009 — **Hilbert-host-bearing**, see below) | selected primal-dual alignment | mismatch between selected residual and selected dual witness | absolute mass and closure status |
+| $\Phi_{\mathrm{sat}}$ | $\sum_{c\in\mathcal K} w_c\,\mathrm{viol}_c(S)$ | logical inconsistency | incompatible symbolic clauses | geometric cycle structure |
+| $\Phi_{\mathrm{rel}}$ | $\sum_{e\in E_{\mathrm{ref}}} w_e \|r_e^{(t)}-r_e^{(0)}\|$ | representational drift | deviation from saved relational baseline | topology and logical satisfiability |
+
+Here $\mathrm{viol}_c(S)\ge 0$ is a declared clause-violation functional, equal to zero exactly when clause $c$ is satisfied under the chosen symbolic encoding. $r_e^{(t)}$ denotes the relational value, restriction map, or encoded edge relation at time $t$, depending on the declared manifest.
+
+$\Xi$ serves as the third-order tiebreaker in the guarded descent **policy** declared in "Operator Proposal Layer for Finite ℓ¹ Obstruction Systems" (Paper 011 types it as a `[POLICY RULE]`, not an established law): when $\Phi_1$ and $\Gamma_2$ are both unchanged, $\Xi$ descent routes the tie. $R_{cl}$ is a hard gate in that policy, not a descent level; the descent priority is the ordered triple $(\Phi_1,\Gamma_2,\Xi)$.
+
+> **IMPORT — the $\Xi$ channel is not constructed at this paper's degree.** $\Xi=\|\rho(h_1^*)-\rho(\phi^*)\|_{\mathrm{tr}}$ is built inside a Hilbert host: it requires a density lift $\rho$, a trace / Schatten-1 norm, and an $\ell^2$ inner product on $\mathbb R^E$. Paper 009's own import register marks **every one of these `IMPORTED`** and concludes that $\Xi$ is not constructed at *its* declared degree either — the $\ell^1$ cochain data supplies no inner product. It is therefore `IMPORTED` / **Q-gated** here, and carries no authority. Two consequences this paper must own rather than paper over:
+>
+> 1. **A tension inside this very section.** The next paragraph refuses $\ell^2$ Hodge-style observer geometry for $\Phi_{\mathrm{geom}}$ — correctly, for the declared $\ell^1$ observer. But $\Xi$ re-imports an $\ell^2$ inner product through Paper 009. The refusal is real for the geometric channel and does **not** extend to $\Xi$. A deployment that puts $\Xi$ in $P_{\mathrm{prot}}$ (§5.1) or relies on it to route ties is running an imported Euclidean structure inside an $\ell^1$ paper, and should say so in its manifest.
+> 2. **$\Xi$ is conditional, and its conditions are not recorded here.** Paper 009's Theorem 5 establishes $\Xi$ as well-defined only `[PROVEN, CONDITIONAL + six declared choices]`: admissible repair class, primal tie-break, dual tie-break, density lift section, trace-norm convention, and edge ordering. This paper inherits none of the six into §3's or §7.1's manifest lists. So in exactly the case where $\Xi$ decides — $\Phi_1$ and $\Gamma_2$ tied — the routing outcome turns on six conventions no manifest records, and is not replayable. Binding a manifest schema for the six is an open obligation (§0).
+
+In this implementation, the observer for the geometric channel is the replica-extensive $\ell^1$ observer. The geometric channel operates as an observer-relative quotient residual, distinguishing from $\ell^2$ Hodge-style harmonic settings which employ a different observer geometry.
+
+3. Normalized Composite Score and The Diagnostic State Vector
+
+The raw quantities may live on different numerical scales. Operator selection should not depend on arbitrary units. Define normalized channel values:
+
+$$
+## \widehat{\Phi}_{i}(S_t)
+\frac{\Phi_i(S_t)}{\sigma_i+\epsilon_i},
+$$
+
+where $\sigma_i$ is a chosen scale factor.
+
+The composite obstruction is:
+$$
+## \Phi_{\mathrm{total}}(S_t)
+a\widehat{\Phi}_{\mathrm{geom}}
++b\widehat{\Phi}_{\mathrm{sat}}
++c\widehat{\Phi}_{\mathrm{rel}}
++d\widehat{\Phi}_{\mathrm{curv}},
+$$
+with $a,b,c,d\ge0$ specified by deployment policy. The scale factors \(\sigma_i\), stabilizers \(\epsilon_i\), and weights \(a,b,c,d\) are policy parameters. They must be recorded in the audit manifest; otherwise \(\Phi_{\mathrm{total}}\) is not replayable. Although \(\Xi\) is tracked, it is not included in the default composite score; it remains a guarded tiebreaker used only when the primary diagnostics are unchanged.
+
+**The same obligation binds the guard, and the earlier text did not say so.** $R_{\max}$, the $R_{cl}$ stabilizer $\varepsilon$ below, the tolerances $\tau_i$, the protected set $P_{\mathrm{prot}}$ (§5.1), and — if $\Xi$ is used — Paper 009's six declared selections (§2) are policy parameters on exactly the footing of $\sigma_i$ and $a,b,c,d$, and **must be recorded in the audit manifest**. Otherwise the guardrail is not replayable and the falsifiability criterion of this paper cannot be run: two deployments may choose different $R_{\max}$, both claim compliance, and disagree on every refusal. This paper **does not supply a value for $R_{\max}$**; it imports the bound from Paper 000's $R_{cl}$-guarded-descent law as a free parameter. A deployment that leaves $R_{\max}$ unrecorded has no guardrail, whatever its logs say.
+
+However, the controller does not operate *solely* on minimizing this single scalar $\Phi_{\mathrm{total}}$. As established in the General Theory (Paper 000 v004), a control policy acting on a single scalar $\Phi$ without boundary awareness can easily fake repair (lowering quotient residual while tearing the graph, thus artificially increasing $\Gamma_2$).
+
+The composite score is a routing utility, not an authority certificate. It may rank candidate actions, but it cannot override channel-level guardrails, terminal evaluator law, or typed refusal conditions.
+
+The controller **must** distinguish between valid cycle obstruction ($\Phi_{\mathrm{geom}}$ high, $\Phi_{\mathrm{curv}}$ zero) and broken structure ($\Phi_{\mathrm{geom}}$ high, $\Phi_{\mathrm{curv}}$ high).
+
+Therefore, the controller explicitly monitors the boundary ratio $R_{cl}$, importing the strict guardrail law from "Primitive Axiomatics of Finite Obstruction Calculus". In exact mathematics, \(R_{cl}=\Gamma_2/\Phi_{\mathrm{geom}}\) is meaningful only when \(\Phi_{\mathrm{geom}}>0\). The \(\varepsilon\)-piecewise version is an implementation guardrail convention for finite-precision evaluation:
+
+$$
+R_{cl} =
+\begin{cases}
+\Phi_{\mathrm{curv}}/\Phi_{\mathrm{geom}} & \Phi_{\mathrm{geom}}>\varepsilon,\\
+0 & \Phi_{\mathrm{geom}}\le\varepsilon \text{ and } \Phi_{\mathrm{curv}}\le\varepsilon,\\
++\infty & \Phi_{\mathrm{geom}}\le\varepsilon \text{ and } \Phi_{\mathrm{curv}}>\varepsilon.
+\end{cases}
+$$
+
+where $R_{cl}'$ abbreviates $R_{cl}(S_{t+1})$, the post-transition value.
+
+**Rule (refusal):** Refuse any transition where $R_{cl}' > R_{\max}$.
+
+This is a **refusal rule, not a licensing rule**. Its passing says only that the declared guard did not object; it is never a reason to accept, and acceptance is not this controller's to grant (§1). Refusing is a valid terminal and requires no further authority.
+
+> **OBSTRUCTION — the guardrail is inert exactly where the geometric channel is flat.** The $\varepsilon$-piecewise convention above extends $R_{cl}$ into the region $\Phi_{\mathrm{geom}}\le\varepsilon$, where the exact-mathematics ratio is *not defined* — and the guard reads that extension as "safe." The consequence is structural, not a rounding artifact. On an **acyclic** carrier, $\operatorname{im}(d_0)=C^1$ by dimension count ($\dim C^0=|V|$, $\ker d_0$ = constants, so $\dim\operatorname{im}d_0=|V|-1=|E|=\dim C^1$), hence
+>
+> $$\Phi_{\mathrm{geom}}\equiv 0 \quad\text{for \emph{every} input }\omega,$$
+>
+> and at the minimizer $h=\omega-d_0f^*=0$, so $\Phi_{\mathrm{curv}}=\|d_1h\|_1=0$ as well. Both land under $\varepsilon$, the second branch fires, $R_{cl}\equiv 0$, and the refusal rule **can never trigger**. The guardrail admits every transition on every acyclic carrier, regardless of what the transition does. This paper's own tables sit in that regime: the "Exact removal | path/tree" row of §7.2, and the "tree + conflict" row of §7.3 — where SAT repair runs with the closure guard structurally inert.
+>
+> What would have to be admitted to close this: a `DetectorAdequacy` certificate naming the carriers on which the geometric channel is non-degenerate, and a declared refusal to run the $R_{cl}$ guard as a safety argument outside them. What is lost if it is admitted: the guardrail stops being a general property of the controller and becomes a carrier-relative one — which is what it actually is. See §5.2.
+
+4. Channel-Separation Cases
+
+**Channel-Separation Cases** (named the *Empirical Channel-Separation Observation* through v2.1.1; "empirical" is withdrawn below and the name corrected to match). **[WORKED CASES — explicitly NOT statistical or causal independence, and NOT an observation of a verified system]** There are constructed cases in which each obstruction channel can activate while selected other channels remain below tolerance. This supports treating the channels as separate diagnostics for operator routing. It does not establish statistical independence or causal independence across arbitrary deployments.
+
+> **SCOPE FENCE — "the implementation" is not a citable artifact.** Earlier text attributed this observation to *the implementation*. No implementation is named anywhere in this paper, and none is cited: there is no Lean, Rust, or replay artifact for Paper 018 (§0). The cases below are **constructed worked examples**, and that is the whole of their evidential weight. They are reproducible by anyone who builds the stated carriers; they are not a report about a system whose conformance to §1's interface has been audited. Any future implementation citation must name the artifact and inherit the formalization-status firewall (§0) before this section may be read as empirical.
+
+Supported by constructed examples:
+
+* $\Phi_{\mathrm{geom}}>0$, $\Phi_{\mathrm{sat}}=0$: topological obstruction without logical conflict;
+* $\Phi_{\mathrm{geom}}=0$, $\Phi_{\mathrm{sat}}>0$: logical conflict without topological obstruction;
+* $\Phi_{\mathrm{rel}}>0$ while the other channels remain below tolerance: representational drift without new cycle or SAT obstruction.
+
+These cases justify a multi-channel controller. They do not prove statistical independence in arbitrary deployments.
+
+5. Operator Selection
+
+The controller maps obstruction patterns to candidate operators. A candidate operator is **proposed** only if it passes a cost-sensitive validation test; passing that test is a necessary condition for the proposal to be forwarded, never a sufficient condition for acceptance (§1).
+
+The rows below are **triggers, not licenses.** A pattern in the left column entitles the controller to *consider and propose* the operator in the middle column. It does not entitle anything to apply it. In the classification of §0: a `ClosedSurvivor` and an `ActiveClosureFailure` may both trigger lift consideration; neither licenses a lift.
+
+| Condition | Candidate operator (proposed, not licensed) | Intended effect |
+|---|---|---|
+| $\widehat{\Phi}_{\mathrm{geom}}$ dominant and cycles present | $\Pi_{12}$ structural lift | add structure that may absorb a cycle obstruction |
+| $\widehat{\Phi}_{\mathrm{geom}}$ dominant and no valid lift found | $\Pi_{21}$ numeric repair | adjust section/gauge without topology change |
+| $\widehat{\Phi}_{\mathrm{sat}}$ dominant | SAT repair | reinterpret, remove, or branch conflicting clauses |
+| $\widehat{\Phi}_{\mathrm{rel}}$ increasing | rollback or branch | restore baseline or preserve alternatives |
+| all channels below threshold | wait | no repair action |
+
+### 5.1 Structural Lift Proposal Gate
+
+A structural lift $\Lambda$ must not be chosen merely because cycles are present. It may be **proposed** only if it improves the validated composite score after cost penalty, and satisfies the structural guardrail:
+
+$$
+## \Delta_\Lambda
+## \Phi_{\mathrm{total}}(S_t)
+## \Phi_{\mathrm{total}}(S_t+\Lambda)
+\lambda_\Lambda|\Lambda|.
+$$
+
+Propose the lift **only if** — these are necessary conditions, jointly insufficient:
+
+1. $\Delta_\Lambda>0$
+2. $R_{cl}' \le R_{\max}$
+3. $\Phi_i(S_{t+1})\le \Phi_i(S_t)+\tau_i$ for all protected channels $i$.
+
+Satisfying 1–3 does **not** license the lift. Under the GTOC lift rule, a lift requires five ingredients: an obstruction witness, a preservation witness, a non-destruction check, a budget/authority boundary, and a terminalizer route. Conditions 2–3 are the **non-destruction check**; $\lambda_\Lambda|\Lambda|$ in $\Delta_\Lambda$ is the **budget**. The remaining three — obstruction witness, preservation witness, terminalizer route — are **not supplied by this paper** and are recorded as open (§0). A deployment that treats 1–3 as a lift license is running a three-fifths gate and calling it a guard.
+
+The protected-channel set \(P_{\mathrm{prot}}\subseteq\{\Phi_{\mathrm{geom}},\Phi_{\mathrm{curv}},\Phi_{\mathrm{sat}},\Phi_{\mathrm{rel}},\Xi\}\) must be declared in the deployment manifest and **must be non-empty**. The non-emptiness requirement is not decorative: $\subseteq$ admits $\varnothing$, and $P_{\mathrm{prot}}=\varnothing$ makes condition 3 vacuously true while satisfying the letter of "must be declared." Combined with the acyclic collapse of §3 — where condition 2 is also vacuous — an empty protected set reduces this gate to $\Delta_\Lambda>0$ alone: acceptance by a single weighted scalar, which is precisely the failure mode this section exists to prevent and which §3 opens by describing. Any increase beyond tolerance in a protected channel requires refusal or an explicit typed tradeoff terminal. The set may include \(\Xi\), even though \(\Xi\) is not part of the default composite score — a deployment that does so is protecting an imported, Hilbert-host-bearing quantity (§2) and must record Paper 009's six declared selections in its manifest.
+
+Within the declared protected set, and at the resolution of the declared detector, condition 3 blocks "fake repair" in which a weighted total score decreases while one protected channel (e.g. logical consistency) worsens significantly. That scoping is the honest statement of the property; §5.2 prices what it leaves open. The condition keeps the policy aligned with the corrected quotient-projection theory: structural expansion is an operator proposal evaluated against a declared observer metric, not a repair the controller is entitled to make.
+
+> **DELEGATE GAP — two of the five channels are invisible to the evaluator this paper delegates to.** §1 delegates acceptance to Paper 011's guarded evaluator. That evaluator is defined there as a function **only** of the tuple $(\Phi_1,\Gamma_2,R_{cl},\Xi)$ — Paper 011 is explicit that a proposal invisible to that tuple "is accepted or rejected on that tuple alone." $\Phi_{\mathrm{sat}}$ and $\Phi_{\mathrm{rel}}$ are **not in it**, and neither are $P_{\mathrm{prot}}$ or the tolerances $\tau_i$. So condition 3, for a protected set containing $\Phi_{\mathrm{sat}}$ or $\Phi_{\mathrm{rel}}$, has **no delegate that can enforce it**: either this controller enforces it — contradicting §1's ownership split and making the controller the decider after all — or nobody does, and a transition arbitrarily worsening logical consistency is accepted whenever the four-tuple descends.
+>
+> This paper does not resolve the gap; it declares it. What would have to be admitted to close it: an evaluator whose tuple spans the declared channel set, with $P_{\mathrm{prot}}$ and $\tau_i$ as evaluator-side declarations rather than controller-side intentions. What is lost if it is not: condition 3 is an intention this specification cannot cash, and no deployment should cite it as an enforced guard until an evaluator that reads $\Phi_{\mathrm{sat}}$ and $\Phi_{\mathrm{rel}}$ is declared and audited. Recorded as an open obligation (§0).
+
+### 5.2 Detector Adequacy
+
+**Detector adequacy warning.** A replayable detector/profile is not automatically adequate for a claim. A collapsing detector can make every profile exact. Any authority-bearing GTLA use requires a `DetectorAdequacy` certificate naming the protected distinctions, adversarial cases, and known blind spots for the declared claim scope.
+
+No such certificate is supplied by this paper. It is an open obligation owned here (§0). Three specific gaps are already known and must be named in any future certificate:
+
+1. **Detector collapse on acyclic carriers.** $\Phi_{\mathrm{geom}}\equiv0$ for every input, forcing $R_{cl}\equiv0$ and making the §3 refusal rule structurally unable to fire (§3 OBSTRUCTION). The guardrail is a carrier-relative property, not a general one.
+2. **The joint blind spot.** §2 discloses each channel's blind spot individually. It does not compute their intersection, and no channel covers a defect outside the declared manifest at all. Five channels agreeing is not evidence that a repair is sound: the channels are a five-number projection of the whole state, and two materially different transitions with equal profiles are routed identically. A combination of diagnostics is **not** stronger evidence than its parts, and nothing in this corpus licenses that inference.
+3. **Empty or narrow $P_{\mathrm{prot}}$.** The protected set is a deployment choice; the anti-fake-repair property is exactly as wide as that choice and no wider (§5.1).
+
+An "accept" reached downstream of this controller therefore means only: *the declared detector did not object, under the declared policy, gauge, tolerances, and solver convention, on a carrier where that detector is not degenerate.* It does not mean the transition is correct, adequate, safe, or true.
+
+6. Measurable Quantities
+
+### 6.1 Structural Churn
+
+Let $S_t$ denote the full system state. Let
+
+$$
+D_t=\operatorname{supp}(p_t^*)
+$$
+
+be the support of the selected dual witness at time $t$, where $p_t^*$ is an LP dual solution or documented witness estimate.
+
+Dual-support churn is
+
+$$
+## \mathcal C_t
+\frac{|D_t\Delta D_{t-1}|}{|D_t\cup D_{t-1}|},
+$$
+
+with $\mathcal C_t=0$ when both supports are empty. This measures volatility of the obstruction support, not full-state change.
+
+If full-state churn is needed, use a separate metric such as
+
+$$
+## \mathcal S_t
+\frac{|\operatorname{Feat}(S_t)\Delta\operatorname{Feat}(S_{t-1})|}
+{|\operatorname{Feat}(S_t)\cup\operatorname{Feat}(S_{t-1})|}.
+$$
+
+### 6.2 Action Dispersion
+
+For a sliding window $W_t$ of recent actions, let $P_{W_t}(o)$ be the **exhibited tally** of operator $o$ in $W_t$ divided by $|W_t|$ — a finite unit-sum weight profile over the declared operator set, obtained by counting. Define
+
+$$
+## H_t
+-
+\sum_{o\in\mathfrak O}P_{W_t}(o)\log P_{W_t}(o).
+$$
+
+Stable routing tends to lower $H_t$; oscillatory policies tend to raise it. This is diagnostic only and should not be treated as a proof of convergence.
+
+> **IMPORT — the entropic reading is borrowed, and the corpus refuses it upstream.** $P_{W_t}$ is a finite class-count over an exhibited window. It is **not** a probability: no chance semantics, sample space, source model, or measure is declared anywhere in this paper, and none is available at the declared degree. The scalar $H_t$ is a **dispersion score of a finite tally**; naming it "entropy," and the $\log$ that computes it, are an `IMPORTED` convention (§0 register), not a construction. Paper 007 — this paper's upstream — lists under *does not produce*: "any probability, chance, or entropy semantics over the $\ell^1$ weights (none is asserted anywhere)." This paper asserts none either, and the section title has been corrected accordingly. A later information-theoretic adapter may read this unit-sum profile as a distribution and $H_t$ as its Shannon entropy; **this paper does not supply that adapter**, and no Shannon-theoretic consequence — capacity, coding bound, mutual information — may be drawn from $H_t$ as defined here.
+
+### 6.3 Convergence Step Count
+
+For tolerance $\epsilon$ and maximum budget $T_{\max}$,
+
+$$
+## T_{\Phi<\epsilon}
+\min\{t:\Phi_{\mathrm{total}}(S_t)<\epsilon\}.
+$$
+
+\(T_{\Phi<\epsilon}\) counts **steps** to a low routing utility, not convergence to a certified optimum. It is an index over an exhibited operator sequence: not a duration, not physical time, and not convertible into one. Since \(\Phi_{\mathrm{total}}\) is a controller scalarization, reaching a threshold does not by itself imply evaluator acceptance, channel safety, or global repair. If no such $t$ occurs before $T_{\max}$, report nonconvergence within budget.
+
+> **Dependency caveat.** That the routed descent loop reaches $\Phi_{\mathrm{total}} < \epsilon$ at all depends on the open descent-convergence conjecture (**Conjecture 4.3 of Paper 007, tracked as PL-007-1**; backlog 899), whose canonical home is Paper 007 and which is **OPEN**. This paper routes the dependency there and does not own, restate, or discharge it. Paper 007's live code is a 1-step subgradient method, not the three-step iterator the conjecture concerns; its `PaperFOC004` Lean artifact is a conditional finite reduction that takes the strict-descent property as a hypothesis and therefore does not discharge the conjecture either. No result in this paper may be read as evidence for it.
+
+7. Experimental Evidence Format
+
+Implementation names and experiment formats are v2.1.1 snapshot references. Current build status, API names, solver behavior, and conformance tests must be checked separately.
+
+### 7.1 Reproducibility Metadata
+
+Each experiment should report:
+
+* graph family and size $(|V|,|E|)$, **and whether the carrier is acyclic** (if it is, the $R_{cl}$ guardrail is inert — §3),
+* the declared $C^2$ and $d_1$, and the $d_1d_0=0$ admission under which $\Gamma_2$ is representative-independent,
+* input defect construction,
+* seed if the construction is randomized,
+* LP solver and tolerance,
+* channel normalization constants $\sigma_i,\epsilon_i$ and composite weights $a,b,c,d$,
+* thresholds $\tau_{\mathrm{geom}},\tau_{\mathrm{sat}},\tau_{\mathrm{rel}}$,
+* **the guardrail bound $R_{\max}$ and the $R_{cl}$ stabilizer $\varepsilon$** (§3 — without both, the guardrail is not replayable and the falsifiability criterion cannot be run),
+* **the protected-channel set $P_{\mathrm{prot}}$** (§5.1 — non-empty),
+* **if $\Xi$ is used or protected: Paper 009's six declared selections** (admissible repair class, primal tie-break, dual tie-break, density lift section, trace-norm convention, edge ordering — §2),
+* support-localization criterion,
+* noise-rejection definition,
+* expected and observed obstruction values.
+
+### 7.2 Minimal Experiment Log
+
+The following table specifies the required evidence format. Numerical values should be treated as illustrative unless accompanied by the implementation manifest. The values in §7.2 are acceptance-test templates unless accompanied by graph, solver, tolerance, random seed, channel-normalization constants, and operator manifests. They should not be cited as empirical validation without those artifacts.
+
+| Experiment | Graph | Input defect | Expected $\Phi$ | Observed $\Phi$ | Tolerance |
+|---|---:|---|---:|---:|---:|
+| Exact removal | path/tree, small | $\omega=d_0f$ | 0.0 | 0.0 | $10^{-8}$ |
+| Cycle preservation | $C_3$ | unit cycle residual | 3.0 | 3.0 | $10^{-8}$ |
+| Support localization | $C_n$ or sparse cycle graph | residual on cycle edges | cycle support active | matched selected support criterion | $10^{-8}$ |
+| Noise rejection | cycle plus small exact noise | exact noise plus cycle residual | cycle residual preserved | within tolerance band | $\epsilon_{\mathrm{noise}}$ |
+| Basis decomposition | two-cycle graph | independent cycle amplitudes | separate amplitudes preserved | matched within tolerance | $10^{-8}$ |
+| Lift reduction | $C_3$ plus candidate lift | protected cycle before lift | 3.0 before, lower after accepted lift | 0.0 in toy case | $10^{-8}$ |
+
+The lift-reduction experiment demonstrates one lift reducing one protected cycle obstruction. It does not validate general lift completeness in arbitrary graphs. Here “unit cycle residual” means unit defect on all three oriented edges, so the cycle sum is $3$. This differs from the single-edge $C_3$ examples elsewhere in the corpus, where $\Phi=1$.
+
+### 7.3 Bridge Cases
+
+| Case | $\Phi_{\mathrm{geom}}$ | $\Phi_{\mathrm{sat}}$ | Interpretation |
+|---|---:|---:|---|
+| cycle + conflict | $>0$ | $>0$ | both channels fire |
+| cycle + consistent clauses | $>0$ | 0 | geometry alone |
+| tree + conflict | 0 | $>0$ | SAT alone |
+| relational drift only | 0 | 0 | drift channel alone |
+| mixed cycle + tree | cycle part active | clause-dependent | localized routing |
+
+These cases support channel separation for diagnostics and routing. They are not a proof of universal independence, and separation is not adequacy: that several channels can fire independently says nothing about whether they jointly cover the defects that matter (§5.2).
+
+**The two zero-$\Phi_{\mathrm{geom}}$ rows are the collapse regime, not a clean result.** On the "tree + conflict" and "relational drift only" rows, $\Phi_{\mathrm{geom}}=0$ holds *identically for every input*, not because the input is geometrically sound (§3 OBSTRUCTION). $R_{cl}\equiv0$ there, so the closure guardrail is structurally inert and the routing on those rows is guarded by condition 3 alone. "SAT alone" and "drift channel alone" name which channel fires; they must not be read as "the other guards checked and passed."
+
+8. What the System Is and Is Not
+
+**It is:**
+
+* a constraint-system controller,
+* a policy over repair operators,
+* a monitor of separable obstruction channels,
+* a cost-sensitive selector over state correction, structural lift, logical repair, rollback, branch, or wait.
+
+**It is not:**
+
+* self-awareness,
+* consciousness,
+* subjective reflection,
+* semantic understanding,
+* a proof that every obstruction is repairable,
+* a theorem of general repair completeness,
+* an authority of any kind, or a source of one,
+* an acceptance decision — the controller proposes and refuses; the guarded evaluator judges (§1),
+* an adequate detector — no `DetectorAdequacy` certificate is supplied, and the geometric channel collapses identically on acyclic carriers (§5.2),
+* a regulator. Despite the filename, this controller regulates nothing on its own account: it reports, ranks, routes, and refuses.
+
+The contribution is operational:
+
+$$
+\boxed{
+\text{multi-channel policy routing over finite obstruction diagnostics}
+}
+$$
+
+9. Conclusion
+
+This paper defines a second-order control layer over constraint-system evolution. The controller monitors observer-relative obstruction channels, normalizes them for policy routing, and proposes repair operators under explicit guardrails. The composite score is a routing utility, not an authority certificate. Acceptance is not the controller's to grant: it is delegated to the guarded evaluator, and remains subject to channel-level diagnostics, closure-ratio bounds, declared operator contracts, and typed terminal semantics.
+
+What the guardrails buy is narrow and worth stating plainly. Within a declared, non-empty protected set, on a carrier where the geometric channel is non-degenerate, and at the resolution of the declared detector, the controller cannot trade one protected channel against the composite score. Outside those three conditions the guards are inert: the $R_{cl}$ refusal cannot fire on an acyclic carrier, condition 3 is vacuous on an empty protected set, and no channel sees a defect outside the declared manifest. Multi-channel monitoring does not compound into adequacy, and a `DetectorAdequacy` certificate — which this paper does not supply — is required before any authority-bearing use. This is a routing instrument. It mints nothing.
+
+Falsifiability
+
+**Precondition — the criteria below are unrunnable without a manifest.** Both guardrail tests quantify over $R_{\max}$, $\varepsilon$, $\tau_i$, and $P_{\mathrm{prot}}$, none of which this paper fixes (§3, §5.1). A deployment that has not recorded them has not made a falsifiable claim, and cannot be caught violating one. Recording them is therefore not audit hygiene but the condition of this section's existence.
+
+Given a manifest, the guardrail discipline is falsified by an accepted transition with $R_{cl}' > R_{\max}$, or by an accepted transition that lowers the composite score while a declared protected channel rises beyond its declared tolerance $\tau_i$ without emitting a typed tradeoff terminal (§5.1, condition 3). **Both tests are void on an acyclic carrier**, where $R_{cl}\equiv0$ makes the first unfalsifiable-because-inert rather than confirmed (§3): a run that never trips the guardrail there is not evidence the guardrail works. A fair test of the closure guard requires a carrier on which $\Phi_{\mathrm{geom}}$ is not identically zero.
+
+The channel-separation cases (§4) are falsified by showing that the listed constructed cases — e.g. $\Phi_{\mathrm{geom}}>0$ with $\Phi_{\mathrm{sat}}=0$, or $\Phi_{\mathrm{rel}}>0$ with the other channels below tolerance — do not reproduce under the stated manifest in a conforming implementation. The paper asserts no statistical or causal independence, no detector adequacy, and no general repair completeness, so none of the three is offered as a falsifiable claim.
+
+Related Work and Positioning
+
+This controller positions against four lines:
+
+1. **Multicriteria / lexicographic optimization** [4]. The composite obstruction score is a declared scalarization of several channels; the contribution is keeping that scalar subordinate to per-channel guardrails so it cannot override a protected diagnostic.
+2. **Proposer–evaluator / actor–critic separation** [5]. The controller proposes and routes operators but holds no acceptance authority — acceptance is delegated to the guarded evaluator (cf. corpus paper 011).
+3. **Constraint repair under a Lyapunov-style control functional.** $\Phi_{\mathrm{total}}$ and $R_{cl}$ are used as control/monitoring functionals for routing; the paper explicitly does *not* prove descent to an optimum (see the dependency caveat in §6.3).
+4. **Companion corpus papers** 000 (the $R_{cl}$ guardrail and contextual congruence), 011 (operator proposal / guarded descent), 016 ($\Phi$ certificate), 019 (the observer-robust generalization of this controller), and 009/013 (the $\Xi$ channel).
+
+These are positioning anchors; the new contribution is the multi-channel routing policy with protected-channel guardrails, not a convergence theorem.
+
+References
+
+1. Carroll, J. H. (2026). *Primitive Axiomatics of Finite Obstruction Calculus.* Zenodo. <https://zenodo.org/records/20651224>
+2. Carroll, J. H. (2026). *Operator Dynamics and Structural Constraints in $\ell^1$ Obstruction Systems.* Zenodo. <https://zenodo.org/records/20213064>
+3. Carroll, J. H. (2026). *The Certificate Decomposition Theorem and Primal-Dual Verification Algorithms* Zenodo. <https://zenodo.org/uploads/20214046>
+4. M. Ehrgott, *Multicriteria Optimization*, 2nd ed., Springer, 2005.
+5. R. S. Sutton and A. G. Barto, *Reinforcement Learning: An Introduction*, 2nd ed., MIT Press, 2018.
+
+## Section: 001_observer_robust_control_of_obstruction_diagnostics
+
+## Section: 001_observer_robust_control_of_obstruction_diagnostics
+
+## Observer-Robust Control of Obstruction Diagnostics
+
+**Author:** Jeremy H. Carroll
+**Date:** June 2026
+**Version:** v2.1.1 Pre-Print  
+
+**Authority:** none. This paper may diagnose, price, route, or construct structure inside a declared obstruction regime. It does not mint authority. Any authority-bearing use requires a separate CODA-FDA / GTLA descent packet, terminalizer, evidence ceiling, replay witness, and `IsAuth` guard. In particular, a controller that *passes* Definition 5.1 has satisfied a diagnostic predicate; it has not earned a licence. Authority is not produced by successful diagnostics.
+
+**Formalization-status firewall.** Any Lean, Rust, or replay artifact cited here supports only the exact finite statement it mechanizes. It does not automatically discharge PL-GTOC, Q, continuum, physical-realization, or GTLA authority obligations. A status upgrade requires an explicit theorem-ledger mapping, hypotheses check, build receipt, axiom/sorry audit, and adversary acceptance. Concretely: **this paper cites no Lean and claims no mechanization** (no `lean4/Paper019` exists). The "validated" rows of §7, the "the implementation exhibits" observation of §8, and the "validated structural lift" of §9 name no crate, module, test, or manifest, and are **not replayable as published** — they are recorded as unwitnessed observations, not as evidence.
+
+**Import / Oracle boundary.** Any use of Hilbert space, Born uniqueness, phase, continuum, probability semantics, dynamics, physical interpretation, tensor composition, or empirical realization is an imported representation structure unless explicitly constructed at this paper's declared degree. Imported structures are not DDA operations and do not produce authority. This paper's import surface: the RE $\Rightarrow \ell^1$ classification (§7 — **conditional**, proved in Papers 001/002/004, not here); the structural identity $d_1d_0=0$ (Paper 000, not re-derived); the dual-witness trace metric $\Xi$ (Paper 009); the guarded descent evaluator (Paper 011); **trace-norm and Orlicz-style gauges (§2 — named as examples, not constructed at this degree; the trace-norm branch is Paper 000a's)**; and, for infinite $\mathfrak O$, a compactness/regularity or sampling condition (§5.4 — already priced there: absent it, the supremum is a formal specification, not a computable certificate). Nothing quantum, probabilistic, or continuum-valued is load-bearing: the carrier is a finite graph and the diagnostics are finite.
+
+**Detector adequacy warning.** A replayable detector/profile is not automatically adequate for a claim. A collapsing detector can make every profile exact. Any authority-bearing GTLA use requires a `DetectorAdequacy` certificate naming the protected distinctions, adversarial cases, and known blind spots for the declared claim scope. **This warning is load-bearing here and not boilerplate:** Definition 5.1 is a conjunction of *green* verdicts quantified over $\mathfrak O$, and a non-faithful gauge makes every one of them true vacuously. See §5.0, which states the admissibility condition this paper requires of $\mathfrak O$, and the red/green asymmetry that survives it.
+
+GTOC / GTLA Compliance Note
+
+**Role:** repair-policy layer — a control architecture that routes typed repair operators over observer-induced obstruction diagnostics. The observer-relativity capstone of the control layer: it demotes $\ell^1$ from foundation to *example observer*. Not a foundation; not an authority paper.
+**Degree:** degree-1 obstruction on a finite graph carrier — $\Phi_1$ on the quotient $Q^1 = C^1/\operatorname{im}(d_0)$ — with a degree-2 closure channel $\Gamma_2$. Repair class $\operatorname{Adm}=\operatorname{im}(d_0)$ (§2). Finite/rational arithmetic; declared tolerances.
+**Consumes:** a declared observer class $\mathfrak O$ of triples $(\mathcal A,\mathcal M,\mathcal J)$ [1]; the diagnostics those observers induce ($\Phi_1,\Gamma_2,R_{cl},\Xi,\Phi_{\mathrm{sat}},\Phi_{\mathrm{rel}}$); the guarded descent evaluator [2]; the conditional RE $\Rightarrow\ell^1$ classification (Papers 002/004).
+**Produces:** Definition 5.1 (a diagnostic predicate on controllers, relative to a declared $\mathfrak O$); a routing policy over $\mathsf{Ops}$; a structural failure-mode taxonomy; the discipline that scalarization is injected, never canonical.
+**Does not produce:** authority of any kind; a canonical obstruction metric; a canonical scalarization; a lift licence; adequacy of any detector; convergence of $\Pi_{21}$; lift completeness; semantic truth; a theory of intelligence, cognition, or alignment.
+**Authority status:** **none.** See the firewall above.
+**Declared imports:** listed in the Import / Oracle boundary above. The load-bearing one is the RE $\Rightarrow\ell^1$ classification, which is **`[PROVEN, CONDITIONAL]` in its proof homes and is imported with its hypotheses, not without them** (§7).
+**OracleNeeded / Q-gated items:** none load-bearing. Trace-norm observers (§2) are the one quantum-adjacent surface and are named as examples only, never used. The infinite-$\mathfrak O$ supremum (§5.4) is `OracleNeeded` for a *computable* robustness certificate: absent a declared test envelope, compactness/regularity condition, or sampling protocol, $\operatorname{Robust}_{\mathfrak O}$ is a formal specification only.
+**GTLA boundary:** GTOC diagnoses; it does not authorize. Definition 5.1 classifies a controller; it licenses nothing. The controller **proposes and routes**; the guarded evaluator **accepts** (§5.1, §9); promotion beyond that is a CODA-FDA/GTLA matter this paper does not touch. `SemanticAuthority` is unavailable: no semantic adapter is declared.
+**Mechanization status:** **none.** No Lean target; no Rust conformance target; no replay receipt. See the formalization-status firewall.
+**Remaining open obligations:**
+
+* **PL-007-1** — convergence of the 3-step local $\ell^1$ primal–dual iterator (Conjecture 4.3; Paper 007; backlog 899). Genuinely open. This paper's $\Pi_{21}$ operator depends on it (§9 caveat) and owns none of it.
+* **PL-008-1** — lift completeness. Open on the restricted-repair axis. See the §9 `OBSTRUCTION`: on this paper's *declared* scope the companion result runs the other way.
+* **Lemma S5** (Paper 000) — deriving the component-independence axiom under the RE $\Rightarrow\ell^1$ converse. Open; inherited by §7's import.
+* **Admissibility of $\mathfrak O$ (§5.0)** — this paper states a faithfulness/adequacy condition as an explicit hypothesis of Definition 5.1. Supplying a `DetectorAdequacy` certificate for any concrete deployment is not attempted here.
+* **§9's $C_3$ lift** — the declared-scope conflict recorded in the §9 `OBSTRUCTION` is not repaired here.
+
+Abstract
+
+**Main result (informal).** Repair control should not bake in a single privileged obstruction metric. Given a declared class of observers — each inducing its own obstruction geometry and diagnostics $(\Phi_1,\Gamma_2,R_{cl},\Xi,\Phi_{\mathrm{sat}},\Phi_{\mathrm{rel}})$ — this paper specifies an observer-robust controller that routes repair operators while keeping normalized failure indicators (guardrail violation, descent failure, cost divergence) bounded across the *whole* admissible observer class. Scalarization of those diagnostics is always a declared observer/deployment choice, never canonical.
+
+This paper defines an observer-robust control architecture for constraint-system evolution. It is not a foundation for obstruction theory; observer-relative foundations are supplied by the primitive finite-obstruction framework established in "Primitive Axiomatics of Finite Obstruction Calculus." The present paper studies a repair-policy layer that operates over declared observers, induced obstruction geometries, diagnostic channels, and typed repair operators.
+
+Given an admissible observer class, a constraint state, and observer-induced diagnostics such as $\Phi_1, \Gamma_2, R_{cl}, \Xi, \Phi_{\mathrm{sat}},$ and $\Phi_{\mathrm{rel}}$ (the dual-witness trace metric $\Xi$ is defined in Paper 009, "Conditional Density Lift and Dual-Witness Xi Functional"), the controller routes candidate repair operators under cost, guardrail, and terminal-semantics constraints. The composite policy score is a routing utility, not an authority certificate, and scalarization is always an observer or deployment choice.
+
+This is not a theory of intelligence, learning, cognition, consciousness, subjective awareness, or truth. It is a finite control architecture for state-dependent repair routing over observer-induced obstruction diagnostics.
+
+**Why a researcher should care.** Most repair controllers fix one error metric and one scalar score, which silently privileges a single observer geometry. When the deployment's actual observer differs from that built-in one, the controller can look healthy under its own metric while failing under another. This paper makes the observer choice explicit and demands robustness across a declared observer class: the same policy must keep guardrail violations and descent failures bounded for *every* admissible observer, and any scalarization is flagged as injected rather than discovered.
+
+**And the payoff is asymmetric — read §5.0 before relying on this criterion.** Quantifying over an observer class buys much less than it appears to. The criterion is a conjunction of *clean* readings, and a clean reading is the direction that fails silently: a gauge that is blind reports zero, and zero is indistinguishable from repaired. So the honest statement is not that the criterion survives a change of observer, but that **its failure reports survive one and its clean reports do not**. A violation seen by any admissible observer is a real defect and cannot be explained away by re-choosing the observer; agreement among all of them certifies only what the declared class was able to see. This paper therefore makes faithfulness of every declared observer an explicit hypothesis (§5.0(a)) rather than an assumption, and states the red/green asymmetry (§5.0(b)) rather than trading on it.
+
+### 0.1 What Is Not Claimed
+
+1. **No cognitive or biological-learning claim.** This is not a theory of intelligence, cognition, consciousness, or learning. It is a control architecture over declared observer-induced diagnostics.
+2. **No single privileged obstruction metric.** Scalarization is chosen, not discovered as canonical.
+3. **No universal foundations.** The foundations are observer-relative.
+4. **No universal invariance of SAT/topology.** Their separation depends on the chosen encodings.
+5. **No consciousness claim.** Nothing here implies consciousness, sentience, or subjective awareness.
+6. **No complete measure of all system health.** The diagnostics omit unmodeled constraints, external truth mismatch, and probabilistic uncertainty.
+7. **No general structural completeness theorem, and — on this paper's declared scope — no structural repair at all.** Earlier versions read: "Structural expansion is an operator that can reduce obstruction in specific cases." That is **corrected**: on the scope this paper declares ($\operatorname{Adm}=\operatorname{im}(d_0)$, $\ell^1$ observer, graph-only extensions), Paper 008's Theorem 4′ proves that **no** graph-only lift reduces $\Phi_1$ — not in specific cases, not in any case. Structural expansion may still move $\Gamma_2$, $\Phi_{\mathrm{sat}}$, or $\Phi_{\mathrm{rel}}$, and may reduce $\Phi_1$ on scopes outside Theorem 4′'s hypotheses (a different observer, an enlarged repair class), but any such deployment must declare that scope. See the `OBSTRUCTION` in §9.
+8. **No detector adequacy.** A declared observer class is not thereby an adequate one, and a clean report from every observer in it is not a certificate. See §5.0.
+
+1. Declaration Order
+
+The order in which this paper's data must be **declared before** the control layer can run:
+
+```text
+Primitive Axiomatics of Finite Obstruction Calculus   [imported; not re-derived here]
+    ↓  (declare)
+observer selection O = (A, M, J)
+    ↓  (declare)
+induced obstruction geometry (Phi_1, Gamma_2, R_cl)
+    ↓  (declare)
+diagnostic channels (geom, SAT, rel, etc.)
+    ↓
+control policy over repair operators                  [this paper]
+```
+
+The arrows are a **consumption/declaration order, not a genesis order**: nothing above produces, generates, or explains anything below it. Each row is data that must be on the table before the next row is well-posed. Read upward, the chain is a list of this paper's dependencies; read downward, it is not a derivation.
+
+The primitive observer-relative foundations are supplied by “Primitive Axiomatics of Finite Obstruction Calculus.” This paper supplies the repair-policy layer for controlling observer-induced obstruction diagnostics.
+
+It should not be read as asserting a single privileged obstruction metric.
+
+### Genesis-Bias Fence — No Prior Observer
+
+This paper does not begin with a prior state space, a canonical observer, a universal obstruction metric, a possibility domain, a physical system, or an authority source. It begins with **a declared observer class $\mathfrak O$ and the diagnostics its members induce** — packet-local data supplied by the deployment, not discovered by the theory.
+
+The central object, without host language: an *observer* here is a declared triple $(\mathcal A,\mathcal M,\mathcal J)$ — an aggregation law, a symmetry/compatibility monoid, and a gauge family — together with the diagnostics it induces on a declared finite carrier. It is a **selection**, not a subject: it has no viewpoint, no interior, and no access to anything the declared carrier does not exhibit. $\mathfrak O$ is a list, chosen and written down before evaluation (§5.4); it is not a space of all possible observers, and this paper never quantifies over one.
+
+Pricing the common stronger readings:
+
+* *"The foundations generate the observer."* Refused. The foundations are **imported** and constrain which triples are admissible; they do not produce $\mathfrak O$. $\mathfrak O$ is declared.
+* *"The observer generates the geometry."* "Induced" throughout this paper means **read off a declared triple by a stated construction**, not brought into being. Different declarations are read off differently; that is the whole content of observer-relativity.
+* *"Robustness across $\mathfrak O$ approximates robustness across all observers."* Refused. $\mathfrak O$ is a declared finite list (or a declared envelope, §5.4). A result quantified over $\mathfrak O$ says nothing about triples not on the list, and — see §5.0 — quantifying a *green* verdict over a list does not strengthen it.
+* *"$S_t$ is the state of the world."* Refused. $S_t$ (§4) is a declared record; "state" names its role in the policy, not a substrate.
+
+> **GENESIS-BIAS AUDIT.** Does this section explain observer-robust control by presupposing a prior container, substrate, state-space, law, observer, temporal order, possibility domain, sample space, Hilbert space, physical system, or authority source? If so, declare and price that antecedent, replace it with packet-local data, or stop with an OBSTRUCTION.
+
+2. Observer-Selected Obstruction Geometry
+
+The theory replaces the older single-metric view with an observer-relative structure.
+
+An observer is specified by data such as
+
+$$
+\mathcal O=(\mathcal A,\mathcal M,\mathcal J),
+$$
+
+where:
+
+* $\mathcal A$ is the aggregation law,
+* $\mathcal M$ is the symmetry or compatibility monoid,
+* $\mathcal J$ is the chosen gauge or channel family.
+
+Different observers induce different obstruction geometries. Examples include $\ell^1$ edge aggregation, $\ell^2$ edge aggregation, trace-norm observers, Orlicz-style gauges, or other $\mathcal M$-compatible geometries.
+
+The core quotient object for an $\ell^1$ replica-extensive observer is:
+
+$$
+## \Phi_1([\delta])
+\inf_f |\delta-d_0f|_{\mathcal J}.
+$$
+
+This is not the only possible obstruction metric. It is the geometry induced by the observer class satisfying replica extensivity, decomposability, and the selected symmetry assumptions.
+
+3. The $\Phi$–$\Gamma$ Split
+
+The observer-relative obstruction framework adds a necessary distinction:
+
+$$
+(\Phi_1,\Gamma_2).
+$$
+
+### 1. Irreducible Mass
+
+$$
+## \Phi_1([\delta])
+\inf_f |\delta-d_0f|_{\mathcal J}
+$$
+
+measures quotient-minimal residual mass under the selected observer.
+
+### 2. Closure Failure
+
+$$
+\Gamma_2
+$$
+
+measures failure of the relevant second-order closure condition. Closure is defined explicitly relative to the chosen cochain model and its higher-order compatibility operators (e.g., $d_1 d_0 = 0$).
+
+$\Gamma_2$ is defined as the observer-induced norm of the closure defect, typically of the form $\Gamma_2 = \|d_1 h\|_{\mathcal J}$ for a representative $h$, with the precise form determined by the selected observer and cochain model. The structural identity $d_1 d_0 = 0$ (derived in foundational theory) ensures this is well-defined on quotient classes. $\Gamma_2$ detects broken local closure or boundary failure that is not captured by irreducible mass alone.
+
+### 3. Closure Ratio
+
+When $\Phi_1>0$, define
+
+$$
+## R_{\mathrm{cl}}
+\frac{\Gamma_2}{\Phi_1}.
+$$
+
+with the zero-$\Phi_1$ cases handled by the evaluator convention. This ratio separates cases that the old scalar controller could conflate:
+
+| Case | $\Phi_1$ | $\Gamma_2$ | Interpretation |
+|---|---:|---:|---|
+| clean cycle obstruction | $>0$ | near $0$ | stable quotient obstruction |
+| broken local closure | $>0$ | $>0$ | obstruction plus closure failure |
+| closure-only diagnostic | near $0$ | $>0$ | local compatibility failure without large quotient mass |
+| quiet state | near $0$ | near $0$ | no detected obstruction in this observer |
+
+$R_{\mathrm{cl}}$ is the first stability diagnostic in this layer. The controller should use it before collapsing diagnostics to a single scalar.
+
+4. Operational Control Definition
+
+Let $S_t$ be a constraint-system state containing graph structure, constraints, section data, observer metadata, solver outputs, and history. Let
+
+$$
+## \mathcal D_{\mathcal O}(S_t)
+\{\Phi_1,\Gamma_2,R_{\mathrm{cl}},\Phi_{\mathrm{sat}},\Phi_{\mathrm{rel}},\ldots\}
+$$
+
+be the diagnostics induced by the chosen observer and any instrumented application layers. Diagnostics may be partial. If an observer does not define \(\Xi\), SAT residual, relational drift, or \(\Gamma_2\), the controller must either omit that coordinate by policy or terminalize as `DiagnosticNotDeclared`. Missing diagnostics must not be silently treated as zero. Implementation details for operator selection, cost gating, and diagnostics belong to the corresponding operator-policy and evaluator documents.
+
+An operational controller for a fixed observer is a policy
+
+$$
+\operatorname{Ctrl}_{\mathcal O}:
+\operatorname{State}\times\operatorname{History}
+\to
+\mathsf{Ops},
+$$
+
+where $\mathsf{Ops}$ is the operator set:
+
+$$
+## \mathsf{Ops}
+\{\Pi_{21},\Pi_{12},\text{SAT repair},\text{rollback},\text{branch},\text{wait},\ldots\}.
+$$
+
+For a class of admissible observers $\mathfrak O$, the observer-relative controller is
+
+$$
+\operatorname{Ctrl}:
+(S_t,\mathcal O,H_t)
+\to
+\mathsf{Ops},
+\qquad
+\mathcal O\in\mathfrak O.
+$$
+
+In this paper, we study the performance of such a policy under constraint pressure:
+
+$$
+\boxed{
+## \text{controller admissibility in this system}
+\text{stable operator control over observer-induced diagnostics}
+}
+$$
+
+This is independent of any claim that $\ell^1$ is universally foundational.
+
+5. Definition (Observer-Robust Control, Admissible Form)
+
+### 5.0 Admissibility of $\mathfrak O$, and What a Green Verdict Is Worth
+
+Definition 5.1 quantifies over a declared observer class. Two facts about that quantification are load-bearing, and both cut against the criterion rather than for it. They are stated here, before the definition, because the definition is unsound without the first and is routinely misread without the second.
+
+**(a) Faithfulness is a hypothesis, not a background assumption.** The gauge family $\mathcal J$ of an observer triple is a **seminorm** family. The classifications this paper imports (§7) carry faithfulness on their hypothesis lists precisely because it does not come for free: a non-faithful gauge ($\mathcal J\equiv0$ on the defect subspace; equivalently $w_e\equiv0$ or a vanishing scale) satisfies the aggregation, symmetry, and decomposability axioms and makes
+
+$$\Phi_{\mathcal O}\equiv 0,\qquad \Gamma_2\equiv 0$$
+
+identically — **every cochain reads exact**. Such an observer passes all four invariants of Definition 5.1 vacuously: descent (invariant 1) holds as $0\le0$; the $R_{cl}$ guardrail (invariant 2) passes through the $\Phi_1\le\varepsilon,\Gamma_2\le\varepsilon$ branch of its own piecewise definition; no channel dominates, so responsiveness (invariant 3) is vacuous; and, reporting no guardrail violations and no descent failures, it contributes the *minimum* to $\operatorname{Robust}_{\mathfrak O}$ (invariant 4). A controller doing arbitrary damage is certified observer-robust relative to a class of such observers.
+
+This is **not** the case §4 already handles. §4 refuses the silent-zero reading of a *missing* channel and terminalizes it as `DiagnosticNotDeclared`. A collapsing observer declares its channels and genuinely reports zero. It is a different failure and needs a different fence.
+
+> **Admissibility condition (hypothesis of Definition 5.1).** Every $\mathcal O\in\mathfrak O$ must be declared **faithful on the declared defect space**: $\mathcal J_{\mathcal O}(x)=0\iff x=0$ there (for the weighted $\ell^1$ family, $w_e>0$ for every carrier edge). A declared $\mathfrak O$ containing a non-faithful member does not satisfy Definition 5.1's hypotheses, and any robustness verdict computed over it is void. This paper does **not** supply a procedure for checking faithfulness of a proposed deployment gauge, and supplies no `DetectorAdequacy` certificate; it declares the requirement and stops.
+
+**(b) The verdict is asymmetric, and the criterion is built from the unsound side.** For any gauge, faithful or not, $\mathcal J(0)=0$; so from $\Phi_{\mathcal O}([\delta])=\inf_f\lVert\delta-d_0f\rVert_{\mathcal J}$:
+
+| Verdict | Reading | Status |
+|---|---|---|
+| $\Phi_{\mathcal O}>0$ (**RED**) | $\forall f,\ \delta-d_0f\neq0$, hence $\delta\notin\operatorname{im}(d_0)$ | **Sound for any declared gauge.** A positive reading certifies a real defect. An observer cannot manufacture obstruction that the carrier does not carry. |
+| $\Phi_{\mathcal O}=0$ (**GREEN**) | $\delta\in\operatorname{im}(d_0)$ | **Sound only if $\mathcal J$ is faithful.** Otherwise it yields only $\delta-d_0f\in\ker\mathcal J$: the observer's zero, not the carrier's. |
+
+Definition 5.1 is a **conjunction of green verdicts** — descent holds, the guardrail holds, instability stays low, for *each* $\mathcal O\in\mathfrak O$. It is therefore assembled entirely from the direction that can fail silently. The honest reading of the criterion:
+
+* **A failure report is trustworthy.** If any declared observer reports a guardrail violation or a descent failure, that is a real defect in the controller, and no change of observer within $\mathfrak O$ can explain it away.
+* **A clean report is not.** "Observer-robust relative to $\mathfrak O$" is a statement *about $\mathfrak O$*. Its strength is bounded by the finest, most faithful member of the declared class, and this paper does not require $\mathfrak O$ to contain a finest member. All-green across $\mathfrak O$ does not lift to a claim about the core.
+
+The same asymmetry arrives independently at the foundational layer, where an observer is a repair-compatible **quotient map** $\mathcal O:Q^1\to Q^1_{\mathcal O}$ rather than a gauge triple: Lemma O1 (observer passivity / no-creation) [1] gives $\Phi_{\mathcal O}(\mathcal O(q))\le\Phi(q)$, so observers *can* erase or identify obstruction and *cannot* create it — again, red sound, green not. That lemma is stated for the quotient-map notion of observer and is **not** imported here as a premise about the triples $(\mathcal A,\mathcal M,\mathcal J)$ this paper declares; it is cited only as corroboration that the asymmetry is a property of observation in this framework, not an artifact of one construction. Deployments that want O1's guarantee must declare their observers as repair-compatible quotients and check its hypotheses.
+
+Consequently the claim at the end of §5 — that the criterion is "strictly stronger than a single-observer scalar view" — is **withdrawn as stated** and corrected there.
+
+**Definition 5.1 — Observer-Robust Control Criterion.** Let $\mathfrak O$ be a declared class of observers, **each admissible in the sense of §5.0(a)**. A controller is defined as *observer-robust relative to $\mathfrak O$* if and only if it implements a robust policy:
+
+$$
+\operatorname{Ctrl}(S_t, \mathcal O, H_t) \to \mathsf{Ops}
+$$
+
+such that, for each $\mathcal O\in\mathfrak O$, the induced diagnostic dynamics satisfy the following four core topological and functional invariants:
+
+### 1. Descent (Quotient Reduction)
+
+The geometric quotient residual does not increase under accepted transitions. For each observer \(\mathcal O\in\mathfrak O\), let
+\[
+\Phi_{\mathcal O}
+\]
+denote the primary quotient residual induced by that observer’s declared gauge, aggregation, and repair model. The descent invariant is:
+\[
+\Phi_{\mathcal O}(S_{t+1})\le \Phi_{\mathcal O}(S_t)
+\]
+up to declared tolerance. Accepted transitions must satisfy the guarded evaluator: the $R_{cl}$ gate passes, $\Phi_{\mathcal O}$ does not increase, and tie-breaking proceeds through $\Gamma_2$ and then $\Xi$. The controller may propose exploratory operators, but acceptance is determined exclusively by the evaluator — no transition that violates descent is accepted into the committed state trajectory. This criterion applies to controllers using the guarded descent evaluator; other policies must declare their own admissible ordering. Here $S_{t+1}$ denotes the committed successor state, not an exploratory proposal.
+
+### 2. Stability (Boundary Guardrail)
+
+The structural boundary ratio $R_{cl}$ remains strictly bounded under accepted transitions:
+$$
+R_{cl}(S_{t+1}) \le R_{\max}
+$$
+which is intended to catch the *fake repair* failure mode of §10 — quotient mass falling while closure damage rises. The guardrail catches that mode in its **partial** form: if $\Phi_1$ collapses while $\Gamma_2$ does not, the piecewise rule below returns $+\infty$ and the transition is refused. It does **not** catch **total** collapse: an observer for which $\Phi_1$ and $\Gamma_2$ both vanish passes through the $R_{cl}=0$ branch. The bound is therefore a guardrail conditional on §5.0(a) admissibility, not a guarantee that repair cannot be faked; it is a declared acceptance condition, and it proves nothing on its own. For each observer $\mathcal O$, the policy must state its diagnostics, acceptance guardrails, failure terminals, and normalization rules. In exact mathematics, \(R_{cl}=\Gamma_2/\Phi_{\mathcal O}\) is defined only when \(\Phi_{\mathcal O}>0\). The \(\varepsilon\)-piecewise form is an implementation convention for finite-precision guardrails:
+
+$$
+R_{cl} =
+\begin{cases}
+\Gamma_2/\Phi_1 & \Phi_1>\varepsilon,\\
+0 & \Phi_1\le\varepsilon \text{ and } \Gamma_2\le\varepsilon,\\
++\infty & \Phi_1\le\varepsilon \text{ and } \Gamma_2>\varepsilon.
+\end{cases}
+$$
+
+### 3. Diagnostic Responsiveness
+
+The routing policy is diagnostic-responsive if its selected operator class depends on the dominant declared diagnostic channel. A policy that applies the same repair regardless of whether $\Phi_1$, $\Gamma_2$, $\Phi_{\mathrm{sat}}$, or $\Phi_{\mathrm{rel}}$ dominates is not responsive in this sense.
+
+### 4. Observer Robustness
+
+Performance degradation remains bounded under changes of observer within $\mathfrak O$. One possible robustness score is
+
+$$
+## \operatorname{Robust}_{\mathfrak O}
+\sup_{\mathcal O\in\mathfrak O}
+\operatorname{Instability}_{\mathcal O}(\operatorname{Ctrl}),
+$$
+
+The observer class \(\mathfrak O\) must be declared before evaluation. If \(\mathfrak O\) is finite, robustness is checked over that finite list. If \(\mathfrak O\) is infinite, the paper assumes a declared test envelope, compactness/regularity condition, or sampling protocol; otherwise the supremum is only a formal specification, not a computable certificate.
+
+where $\operatorname{Instability}_{\mathcal O}$ is a declared measure of policy failure. \(\operatorname{Instability}_{\mathcal O}\) is not canonical. Each deployment must define it, including units, normalization, thresholds, and failure indicators. Raw diagnostic magnitudes across observers must not be compared without normalization. Only declared normalized failure indicators, such as guardrail violation, descent failure, or normalized cost divergence, are compared. Smaller values indicate stronger observer-robust control.
+
+This criterion is **not** one observer, one scalar, or one notion of error. It is policy over a declared bundle of geometries.
+
+> **Correction (claim withdrawn).** Earlier versions read "This criterion is *strictly stronger* than a single-observer scalar view." That is withdrawn: it is false as stated. Definition 5.1 is a conjunction of green verdicts over $\mathfrak O$ (§5.0(b)), so its strength is bounded by the finest, most faithful member of the declared class — and nothing here requires $\mathfrak O$ to contain one. Against a $\mathfrak O$ whose members are all coarser than the single observer it replaces, the criterion is strictly *weaker*. What survives is a scoped and useful, but smaller, claim: **the criterion is stronger than a single-observer view exactly to the extent that $\mathfrak O$ is declared to contain observers that view is missing, and it is sound in the failure direction regardless** — a violation reported by any admissible $\mathcal O\in\mathfrak O$ is a real defect. Adding observers to $\mathfrak O$ adds conjuncts, which can only catch more failures; it never certifies more.
+
+6. Scalarization Is an Observer Choice
+
+The controller may scalarize diagnostics for routing, but scalarization is injected by the observer or deployment policy. It is not canonical.
+
+Given diagnostics $\Phi_i$, define normalized quantities
+
+$$
+## \widehat{\Phi}_i(S_t)
+\frac{\Phi_i(S_t)}{\sigma_i+\epsilon_i},
+$$
+
+where $\sigma_i$ is a declared scale such as a threshold, baseline, maximum admissible value, or robust historical scale.
+
+A policy scalar may be:
+
+$$
+## \Phi_{\mathrm{policy}}(S_t)
+\sum_i a_i\widehat{\Phi}_i(S_t),
+$$
+
+but this is a control score, not "the" obstruction of the system. A different observer or deployment may choose a vector-valued policy, lexicographic ordering, Pareto frontier, risk-sensitive utility, or nonadditive aggregation.
+
+The scalar expression
+
+$$
+\Phi_{\mathrm{geom}}
++\lambda_{\mathrm{sat}}\Phi_{\mathrm{sat}}
++\lambda_{\mathrm{rel}}\Phi_{\mathrm{rel}}
+$$
+
+is valid only as one chosen scalarization after scales and observer assumptions are declared. All scalarization choices — \(\sigma_i,\epsilon_i,a_i\), ordering rules, Pareto thresholds, and risk-sensitive utilities — are deployment-policy parameters and must be recorded in the audit manifest. Without them, \(\Phi_{\mathrm{policy}}\) is not replayable.
+
+7. Example Observer: RE Induces $\ell^1$ Obstruction Geometry
+
+The previous "$\ell^1$ foundation" is now an example.
+
+**[PROVEN, CONDITIONAL + H1–H5 / P1–P3 / faithfulness / monoid compatibility — IMPORTED, not proved here]** For an observer satisfying replica extensivity, decomposability, and the selected maximal symmetry assumptions, independent local violations are aggregated additively. In that observer class, the compatible edge gauge is weighted $\ell^1$:
+
+$$
+## \Phi_1([\delta])
+\inf_f |\delta-d_0f|_{\mathcal J}.
+$$
+
+> **Import register — the hypotheses come with it.** This result is **not** proved here and is **not** unconditional in its proof homes. It is `[PROVEN, CONDITIONAL]` there, and the conditions are **declared axioms, not derived results**:
+>
+> | Home | Statement | Status in the home |
+> |---|---|---|
+> | Paper 004, *Coordinate-Wise Additivity and the $\ell^1$ Norm* | edge locality + coordinate permutation symmetry + disjoint-coordinate additivity + seminorm absolute homogeneity $\Rightarrow$ coordinatewise $\ell^1$; graph invariance $\Rightarrow$ orbit-weighted $\ell^1$ | `[PROVEN, CONDITIONAL + H1–H5]`; **H1–H5 are each `[DECLARED AXIOM]`** — observer assumptions, not derived |
+> | Paper 002, *$\mathcal M$-Compatible Gauge Classification on Banach Presheaf Coboundaries* | faithful + edge-additive + maximal bounded-linear symmetry $\Rightarrow$ weighted $\ell^1$ | `[PROVEN, CONDITIONAL + finite poset, Banach presheaf, P1–P3, faithfulness, monoid compatibility]` |
+> | Paper 001 | RE1–RE5 $\Rightarrow$ edge-additive canonical form | `[PROVEN, CONDITIONAL + RE1–RE5]`; **RE1–RE5 are `[DECLARED AXIOM]`** |
+> | Paper 000 | "$\ell^1$ is uniquely determined **conditionally** under Replica Extensivity, decomposability, symmetry, and gauge structure" | the converse is `[PROVEN, CONDITIONAL ON the component-independence axiom]`, with **Lemma S5 ``OPEN``** — deriving that axiom is an open obligation this import inherits |
+>
+> Unweighted $\ell^1$ requires edge-transitivity or explicit normalization in every home; weighted $\ell^1$ is the general conclusion.
+>
+> **Faithfulness is on this list and is load-bearing elsewhere in this paper.** Paper 002 carries it explicitly; Paper 004 records the collapse it blocks ($\nu_G$ is a seminorm, so $w_e\equiv0$ satisfies H1–H5 and makes $\nu_G\equiv0$ — every cochain reads exact). §5.0(a) requires it of every member of $\mathfrak O$ for exactly that reason. An import that dropped it would silently unsound Definition 5.1 two sections earlier.
+
+This should be read as:
+
+> $\ell^1$ is the geometry induced by this observer class, **under that class's declared axioms**. Other observer classes require their own stated hypotheses and proofs.
+
+It should not be read as:
+
+> $\ell^1$ is the universal geometry of obstruction.
+
+and it should not be read as:
+
+> the $\ell^1$ selection is an unconditional theorem.
+
+The tested $\ell^1$ behaviors remain useful within this observer:
+
+| Property | Prediction | Status |
+|---|---|---|
+| exact removal | $\tau=d_0f\Rightarrow\Phi_1=0$ | validated on finite test graphs |
+| cycle preservation | cycle-supported residual remains nonzero | validated on tested cycle graphs |
+| support localization | residual support aligns with selected obstruction support | validated within criterion |
+| divergence-free dual | $d_0^Tp=0$ for dual witness | validated within solver tolerance |
+
+No universality across all graph families, observers, or encodings is claimed.
+
+> **Evidence status — unwitnessed as published.** The "validated" column names no crate, module, test, graph family, or manifest, and cites no receipt. As published these rows are therefore **unwitnessed observations, not replayable evidence**, and nothing in this paper depends on them. This is the same standard §6 imposes on scalarization ("Without them, $\Phi_{\mathrm{policy}}$ is not replayable") applied to this paper's own claims. Reattaching named artifacts is an open hygiene obligation, not a result.
+
+8. Diagnostic Channels Under a Chosen Modeling Split
+
+The earlier "two independent invariants" are now diagnostic channels under a chosen modeling split.
+
+In the $\ell^1+\mathrm{SAT}+\mathrm{rel}$ controller instance:
+
+* $\Phi_{\mathrm{geom}}$ is the geometric quotient residual induced by the selected observer;
+* $\Phi_{\mathrm{sat}}$ is an instrumented logical residual from the chosen SAT encoding;
+* $\Phi_{\mathrm{rel}}$ is representational drift from a declared reference.
+
+These are not universal invariants. They are diagnostics selected by the modeler.
+
+### Empirical Diagnostic-Separation Observation
+
+The implementation exhibits cases in which the geometric and SAT diagnostics can activate separately in constructed test cases. This supports treating them as separate channels in the tested controller. No claim is made of formal independence over all constraint encodings.
+
+In the standard edge-local encoding used here, logical and geometric diagnostics coincide when contradictions induce cycle-supported defects. Other encodings can place logical contradictions in tree-shaped or noncohomological structures.
+
+### The 2x2 Grid
+
+All interpretations below are relative to the chosen graph and SAT encoding.
+
+| Topology | SAT | $\Phi_{\mathrm{geom}}$ | $\Phi_{\mathrm{sat}}$ | Interpretation |
+|---|---|---:|---:|---|
+| Cycle | UNSAT | 1.0 | 1.0 | both channels fire in this encoding |
+| Cycle | SAT | 1.0 | 0.0 | geometric diagnostic fires without clause contradiction |
+| Tree | UNSAT | 0.0 | 2.0 | SAT diagnostic fires without cycle obstruction |
+| Tree | SAT | 0.0 | 0.0 | no obstruction detected by these channels |
+
+This grid is evidence for diagnostic separation in the tested system, not a universal taxonomy of inconsistency.
+
+9. Operator Policy
+
+The controller acts through operators over state, section, graph, observer data, and constraint generators.
+
+| Operator | Symbol | Input -> Output | Candidate condition |
+|---|---|---|---|
+| numeric repair | $\Pi_{21}$ | adjust section/gauge and re-project | quotient residual is dominant and local repair is available |
+| structural lift | $\Pi_{12}$ | add node/edges or lift topology | a reducing lift is available under validation |
+| closure repair | -- | adjust local compatibility data | $\Gamma_2$ or $R_{\mathrm{cl}}$ is dominant |
+| SAT repair | -- | reinterpret, remove, or branch conflicting clauses | SAT residual is dominant |
+| rollback | -- | restore previous state | relational drift is increasing |
+| branch | -- | preserve multiple alternatives | repair choice is ambiguous |
+| wait | -- | no modification | diagnostics below thresholds |
+
+> **Dependency caveat.** That the numeric repair operator $\Pi_{21}$ actually drives the quotient residual to its optimum depends on the open Conjecture 4.3; live code is a 1-step subgradient method — see 007 code-status note / 899 backlog. Its canonical home is the **open** proof-ledger obligation **PL-007-1** (convergence of the 3-step local $\ell^1$ primal–dual iterator). This paper owns none of it and must not be read as discharging it. Paper 007's own honest companion remark applies here too: the live 1-step implementation has only value-convergence under square-summable steps, and that must not be laundered into a proof of the 3-step claim.
+
+### Cost-Sensitive Acceptance
+
+A structural lift $\Lambda$ is accepted only if it improves the selected policy score after cost:
+
+$$
+## \Delta_\Lambda
+## \Phi_{\mathrm{policy}}(S_t)
+## \Phi_{\mathrm{policy}}(S_t+\Lambda)
+\lambda_\Lambda|\Lambda|.
+$$
+
+Accept the lift only if \(\Delta_\Lambda>0\). \(\Delta_\Lambda>0\) is a routing precondition, not acceptance authority. A structural lift enters the committed trajectory only if the guarded evaluator for the relevant observer also accepts it: primary residual non-worsening/descent, \(R_{cl}\) guardrail, protected-channel tolerances, rollback/cost conditions, and typed terminal semantics.
+
+For vector-valued policies, replace this scalar test with the declared ordering rule, such as Pareto improvement or lexicographic priority.
+
+### Structural Lift Observation **[WITHDRAWN AS A CLAIM — see the OBSTRUCTION below]**
+
+In one toy $\ell^1$ observer instance, a $C_3$ graph with $\tau=[1,1,1]$ has fixed-topology quotient residual
+
+$$
+\Phi_1=3.0.
+$$
+
+This value is correct and independently checkable: for any $f$ the cycle sum of $d_0f$ around the triangle is $0$, so the cycle sum of $\tau-d_0f$ is $3$; hence $\lVert\tau-d_0f\rVert_1\ge3$, attained at $f=0$.
+
+Earlier versions of this paper continued: *"After a specific structural lift, the observed residual becomes $\Phi_1=0.0$"*, and read that as one validated structural lift under one declared $\ell^1$ observer and one lift semantics. **That reading is withdrawn.** On this paper's declared scope the value $0.0$ is not merely unwitnessed — it is unreachable.
+
+> **OBSTRUCTION.** The following cannot be derived from what is available at this degree: **a structural lift that reduces $\Phi_1$ on the declared scope.**
+>
+> This paper declares $\Phi_1([\delta])=\inf_f\lVert\delta-d_0f\rVert_{\mathcal J}$ (§2, §7) — i.e. repair class $\operatorname{Adm}=\operatorname{im}(d_0)$ — under an $\ell^1$ observer, and defines $\Pi_{12}$ as "add node/edges or lift topology" (operator table above). Paper 008's **Theorem 4′ (No-Descent)**, `[PROVEN, CONDITIONAL + H: $\operatorname{Adm}=\operatorname{im}(d_0)$, $J_{\mathcal O}=\lVert\cdot\rVert_1$, $\mathcal L_{\mathrm{all}}$ = graph-only extensions]`, proves that for every $\Lambda\in\mathcal L_{\mathrm{all}}$,
+> $$\Phi_{\mathcal O}(G\cup\Lambda,\ \omega_\Lambda)\ \ge\ \Phi_{\mathcal O}(G,\omega),$$
+> by transporting the optimal dual circulation through each generator at unchanged objective — covering vertex/edge adjunction, chords, edge subdivision, higher cells ("cells move $\Gamma_2$, never $\Phi_1$"), and compositions. **No graph-only lift strictly reduces the obstruction.**
+>
+> Applied to this very instance: $\varphi^\ast=(1,1,1)$ is a unit-bounded divergence-free circulation on $C_3$ with $\langle\varphi^\ast,\tau\rangle=3=\Phi_1$, and Theorem 4′ transports it through any $\Lambda\in\mathcal L_{\mathrm{all}}$ at the same objective. Hence $\Phi_1(C_3\cup\Lambda)\ge3$ for **every** graph-only lift. $\Phi_1=0.0$ is impossible here.
+>
+> **What would have to be admitted** for the $0.0$ to stand — Paper 008 enumerates the only exits, and this paper declares none of them:
+>
+> 1. **The degenerate cone** (`AdjoinRepairGenerator`: adjoin a $C^0$ generator whose $d_0$-column is the residual itself). Paper 008 refuses it as *the forbidden trivializer* — admitting it collapses the theory, and its lift gate marks it out-of-class and never admits it. This exit is **refused**, not open.
+> 2. **Enlarging the repair class**, $\operatorname{Adm}\supsetneq\operatorname{im}(d_0)$. Theorem 4′ does not cover this axis and Paper 008 notes such a lift "may well descend". This is the genuinely ``OPEN`` obligation **PL-008-1** on the restricted-repair axis. Taking this exit means the lift is not repairing the defect under the declared observer — it is *changing what counts as a repair*, which must be declared and priced as a scope change, not reported as a descent.
+> 3. **New evidence** ($\hat\omega$ not extending $\omega$ by zero) — i.e. altering the defect data rather than repairing it.
+>
+> **What is lost if one is admitted:** exits 1 and 3 trivialize the diagnostic (any residual can be coned off, or defined away); exit 2 forfeits the fixed-observer, fixed-repair-class reading under which every other number in this section is stated, and lands on an open obligation.
+>
+> **Status of this instance:** the lift is unspecified in the source, so which exit (if any) it took cannot be recovered. The observation is therefore withdrawn as a claim and retained only as the record of a corpus conflict. It is **not** evidence that structural lift reduces $\Phi_1$, and no result in this paper may rest on it.
+>
+> **Provenance.** This is a corpus desync, not a disagreement: this paper is v2.1.1 (2026-06-09) and Theorem 4′ is later. The lift material here predates the companion result that proves it vacuous on the standing scope. Resolving it — by declaring an exit, restating the instance on a scope Theorem 4′ does not cover, or removing the lift operator from the declared scope — is left open and is **not** attempted in this hygiene pass.
+
+Two further statements in this paper are scoped by the same result and are corrected here rather than left standing:
+
+* The **$\Pi_{12}$ candidate condition** in the operator table ("a reducing lift is available under validation") is **never satisfiable on the declared scope**: by Theorem 4′ no such lift exists there. $\Pi_{12}$ remains in the operator set only for deployments that declare a repair class or lift semantics outside Theorem 4′'s hypotheses, and such a deployment must say so.
+* **§0.1 item 7** ("Structural expansion is an operator that can reduce obstruction in specific cases") is corrected there.
+
+What survives is the negative half, and it is worth stating plainly: on the declared scope, the honest terminal for a cycle-supported residual is **refusal**, not repair. Paper 008 reaches the same terminal (`NoLiftFound`) and proves it correct there.
+
+10. Structural Failure Modes
+
+Observer-relative control makes failure modes more precise than a single "error" scalar.
+
+| Failure | Meaning |
+|---|---|
+| $\Phi_1\downarrow$ but $\Gamma_2\uparrow$ | fake repair: quotient mass falls while closure damage rises |
+| $\Phi_{\mathrm{sat}}\downarrow$ but $\Phi_1\uparrow$ | logical fix breaks geometric structure under the selected observer |
+| observer instability | policy works for one observer but fails under another $\mathcal O\in\mathfrak O$ |
+| channel oscillation | dominant diagnostic alternates without durable repair |
+| scalarization failure | weighted sum hides a channel that violates its bound |
+| gratuitous lift | structure expands without positive cost-adjusted improvement |
+
+These failures are structural and diagnosable only after the observer and channel split have been declared.
+
+11. Relational Drift as One Instrumented Channel
+
+Within this controller, relational drift can be instrumented as one channel:
+
+$$
+## \Phi_{\mathrm{rel}}
+\text{drift from a declared reference representation}.
+$$
+
+Some applications may encode alignment-relevant constraints as relational drift or as separate external validation channels. This paper does not define AI alignment. If values, intent, law, preference, or safety constraints are needed, they must be encoded as additional observer-compatible diagnostics or external validation layers.
+
+12. Core Contribution
+
+The core contribution is:
+
+$$
+\boxed{
+\text{observer-robust repair control over declared diagnostics}
+}
+$$
+
+The valid pieces are:
+
+1. a policy map from state, observer, and history to repair operators;
+2. diagnostic channels selected by the observer and modeling split;
+3. cost-sensitive lift acceptance — **as a routing discipline**; on this paper's declared scope its geometric contribution is provably non-positive (§9 `OBSTRUCTION`), so the discipline is what carries, not the descent;
+4. routing between numeric repair, structural lift, logical repair, rollback, branch, and wait;
+5. the observation that selected diagnostics can activate separately in finite test systems — **unwitnessed as published** (§7, §8): no artifact is named, so this is a reported observation, not evidence;
+6. an observer-robustness criterion for evaluating policies across $\mathfrak O$ — **sound in the failure direction, and conditional on §5.0(a) admissibility in the clean direction.**
+
+Foundational theory supplies the observer-relative foundations; this paper supplies the repair-policy layer for controlling and stabilizing observer-induced obstruction geometries.
+
+> **What the contribution is not.** None of the six mints authority (see the firewall at the head of this paper), and the sixth is the one most likely to be over-read: a controller certified observer-robust relative to a declared $\mathfrak O$ has passed a diagnostic predicate over a class someone chose. The certificate is only as good as $\mathfrak O$ is faithful and complete, and this paper supplies no procedure for establishing either.
+
+13. One-Line Result
+
+$$
+\boxed{
+\text{Result} = \text{observer-robust repair control over declared diagnostics}
+}
+$$
+
+Observer-robust control is the property of a declared Ctrl policy that routes repairs over observer-induced diagnostics and keeps normalized failure indicators bounded across the admissible observer class $\mathfrak O$.
+
+Falsifiability
+
+The observer-robustness criterion (Definition 5.1) is falsified by a controller in the claimed class that, for some admissible observer $\mathcal O\in\mathfrak O$ (admissible in the sense of §5.0(a) — a non-faithful $\mathcal O$ is outside the hypotheses and falsifies nothing), violates one of its four invariants on a committed transition: $\Phi_1(S_{t+1})>\Phi_1(S_t)$ beyond tolerance, $R_{cl}(S_{t+1})>R_{\max}$, a routing decision independent of the dominant diagnostic channel, or a normalized failure indicator that diverges under a change of observer within $\mathfrak O$. The example claim "replica extensivity induces $\ell^1$" (§7) is falsified by a **faithful** replica-extensive, decomposable, maximally symmetric observer whose induced edge gauge is not weighted $\ell^1$ — faithfulness is required of the falsifier because the degenerate gauge $w_e\equiv0$ is *inside* the weighted-$\ell^1$ family, not outside it, and so refutes nothing. No single privileged obstruction metric is claimed, so none is offered as falsifiable.
+
+Two further falsifiable commitments are added by the 2026-07-17 pass:
+
+* **§5.0(b)'s asymmetry** is falsified by exhibiting a declared observer and a state with $\Phi_{\mathcal O}>0$ while the core class is exact — i.e. an observer that *creates* obstruction. (It cannot be done for the gauge family declared here: $\mathcal J(0)=0$ forces the red direction. A construction would mean the observer is not of the declared form.)
+* **§9's `OBSTRUCTION`** is falsified by exhibiting a finite graph-only lift (with $\hat\omega$ extending $\omega$ by zero, repair class $\operatorname{Adm}=\operatorname{im}(d_0)$, $\ell^1$ observer) that strictly reduces $\Phi_1$ on $C_3$ with $\tau=[1,1,1]$ — which would simultaneously refute Paper 008's Theorem 4′ and restore this paper's withdrawn $\Phi_1=0.0$ observation.
+
+Related Work and Positioning
+
+This control layer positions against four lines:
+
+1. **Multicriteria / vector optimization** [4]. Pareto, lexicographic, and scalarized policies are exactly the admissible aggregation choices here; the contribution is treating any scalar as an *injected* observer choice rather than a canonical obstruction.
+2. **Observer-relative obstruction foundations** [1]. The observer $\mathcal O=(\mathcal A,\mathcal M,\mathcal J)$ structure and the $\Phi_1/\Gamma_2$ split are supplied by the primitive axiomatics; this paper controls *over* them rather than re-deriving them.
+3. **Proposer–evaluator separation / guarded descent** [2]. Acceptance is delegated to the guarded evaluator; the controller proposes and routes only.
+4. **Companion corpus papers** 016 (the $\Phi$ certificate), 018 (the single-observer multi-channel controller this paper generalizes to an observer class), and 009/013 (the $\Xi$ diagnostic).
+
+These are positioning anchors; the new contribution is the observer-robustness criterion across a declared observer class, not a new obstruction metric.
+
+This paper should be cited for observer-robust repair control: a controller is evaluated not by success under one metric, but by bounded failure indicators across a declared observer class. Scalarization is permitted only as a declared routing policy and never as canonical obstruction authority.
+
+References
+
+1. Carroll, J. H. (2026). *Primitive Axiomatics of Finite Obstruction Calculus.* Zenodo. <https://zenodo.org/records/20651224>
+2. Carroll, J. H. (2026). *Operator Dynamics and Structural Constraints in $\ell^1$ Obstruction Systems.* Zenodo. <https://zenodo.org/records/20213064>
+3. Carroll, J. H. (2026). *The Certificate Decomposition Theorem and Primal-Dual Verification Algorithms* Zenodo. <https://zenodo.org/uploads/20214046>
+4. M. Ehrgott, *Multicriteria Optimization*, 2nd ed., Springer, 2005.
+5. Carroll, J. H. (2026). *$\mathcal M$-Compatible Gauge Classification on Banach Presheaf Coboundaries with the $\ell^1$ Maximal-Symmetry Endpoint.* Corpus paper 002 — **proof home** for the faithful + edge-additive + maximal-bounded-linear-symmetry $\Rightarrow$ weighted $\ell^1$ classification imported in §7. Status there: `[PROVEN, CONDITIONAL + finite poset, Banach presheaf, P1–P3, faithfulness, monoid compatibility]`.
+6. Carroll, J. H. (2026). *Coordinate-Wise Additivity and the $\ell^1$ Norm.* Corpus paper 004 — **proof home** for the coordinate-wise additivity classification imported in §7. Status there: `[PROVEN, CONDITIONAL + H1–H5]`, with H1–H5 each a `[DECLARED AXIOM]`.
+7. Carroll, J. H. (2026). *Conditional Lift Descent for Finite Observer-Relative Obstruction Systems.* Corpus paper 008 — §1.5.1 **Theorem 4′ (No-Descent)**, the result the §9 `OBSTRUCTION` turns on, and the `NoLiftFound` terminal it corroborates.
+
+*(References [5]–[7] added in the 2026-07-17 GTOC/GTLA pass: §7 previously cited its proof homes only as "companion papers", and §9's lift claim was stated without the companion result that governs it — in both cases the reader could not check the import. Cited by corpus title and section; no external record identifier is asserted for these three, as none was verified in that pass.)*

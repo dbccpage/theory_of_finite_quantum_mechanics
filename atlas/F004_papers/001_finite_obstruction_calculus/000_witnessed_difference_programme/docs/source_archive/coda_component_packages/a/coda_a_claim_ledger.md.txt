@@ -1,0 +1,39 @@
+Claim Ledger — CODA-A: Residuals of Projections, Kernels, and Cokernels
+========================================================================
+
+**Paper Title:** `CODA-A: Residuals of Projections, Kernels, and Cokernels — The Anomalon as a Typed Leftover`
+**Paper Key:** `omega_engine_atlas/coda_atlas/F005_coda/a`
+**Paper Identity:** `CODA-A` (`coda_a.md`, version: `v0.1.0`)
+**Date:** `2026-09-27`
+
+This ledger records of all definitions, theorems, scope fences, and computational procedures in `CODA-A` with their governing hypotheses, formal proof locations, mechanization status, and non-claims.
+
+---
+
+1. Claim-by-Claim Matrix
+
+| ID | Claim | Type | Hypotheses | Proof / support | Mechanization | Status | Non-claims |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| A-D1 | Residual of an endomorphism: residual(C, x) := x - C x, satisfying identity x = C x + residual(C, x). | DEFINITION | Endomorphism C on additive commutative group V | §1, Definition A-D1 | `Coda.A.residual`, `Coda.A.decomposition` in `lean4/A.lean`; `test_coda_a.py::test_decomposition_identity` | DEFINITION | Not an origin story; not an unproved decision record |
+| A-D2 | Projection endomorphism: an endomorphism C : V -> V satisfying idempotence C ∘ C = C. | DEFINITION | Endomorphism C on additive commutative group V | §2, Definition A-D2 | `coda_a_core.is_projection` in `code/coda_a_core.py`; `test_coda_a.py::test_decomposition_identity` | DEFINITION | Does not imply self-adjointness or orthogonal projection |
+| A-T1 | Leftover zero if and only if fixed: residual(C, x) = 0 <=> C x = x. | THEOREM | Endomorphism C on additive commutative group V | §1, Theorem A-T1 | `Coda.A.residual_zero_iff` in `lean4/A.lean`; `test_coda_a.py::test_at1_bidirectional_exact_examples` | LEAN-PROVED | Does not compare C x with 0; only compares C x with x |
+| A-T2 | A projection eats the leftover: C(residual(C, x)) = 0. | THEOREM | Endomorphism C with C ∘ C = C | §2, Theorem A-T2 | `Coda.A.residual_in_kernel` in `lean4/A.lean`; `test_coda_a.py::test_at2_projection_eats_leftover` | LEAN-PROVED | Fails when C is not a projection (e.g. nilpotent N) |
+| A-T3 | Leftover of a leftover: residual(C, residual(C, x)) = residual(C, x). | THEOREM | Endomorphism C with C ∘ C = C | §2, Theorem A-T3 | `Coda.A.residual_idempotent` in `lean4/A.lean`; `test_coda_a.py::test_at3_leftover_of_leftover` | LEAN-PROVED | Requires idempotence; fails for general linear corrections |
+| A-T4a | Image of a projection is the fixed set: x in im(C) <=> C x = x. | THEOREM | Endomorphism C with C ∘ C = C | §2, Theorem A-T4 | `Coda.A.range_fixed_iff` in `lean4/A.lean`; `test_coda_a.py::test_at4_range_equals_fixed_set` | LEAN-PROVED | Does not claim inner product or metric structure |
+| A-T4b | Direct-sum splitting: V = im(C) ⊕ ker(C) for any idempotent endomorphism. | THEOREM | Endomorphism C with C ∘ C = C | §2, Theorem A-T4 | `Coda.A.direct_sum_decomposition`, `Coda.A.direct_sum_unique` in `lean4/A.lean`; `test_coda_a.py::test_at4_range_equals_fixed_set` | LEAN-PROVED | Direct sum is internal algebraic splitting, not orthogonal decomposition |
+| A-T5 | A commuting map transports leftovers: T ∘ C = D ∘ T => T(residual(C, x)) = residual(D, T x). | THEOREM | Additive maps with intertwining condition T ∘ C = D ∘ T | §3, Theorem A-T5 | `Coda.A.residual_transport` in `lean4/A.lean`; `test_coda_a.py::test_at5_commuting_transport` | LEAN-PROVED | Leftovers are not transported by non-commuting linear maps |
+| A-T6 | Leftover classes match the cokernel: x - y in im(C) <=> residual(C, x) = residual(C, y). Induced section s : V/im(C) -> V. | THEOREM | Endomorphism C with C ∘ C = C | §4, Theorem A-T6 | `Coda.A.quotient_residual_iff`, `Coda.A.quotient_section` in `lean4/A.lean`; `test_coda_a.py::test_at6_leftover_classes_match_cokernel` | LEAN-PROVED | Does not construct an abstract cofiber category |
+| A-T7 | Unique induced map on the quotient: R ⊆ ker(f) => unique factorization g ∘ π = f through V/R. | THEOREM | Additive map f : V -> W with subgroup R ⊆ ker(f) | §4, Theorem A-T7 | `Coda.A.quotient_universal` in `lean4/A.lean`; `test_coda_a.py::test_at7_quotient_universal_factorization` | LEAN-PROVED | Lean proves the unique underlying function on a set quotient, with no scalar-linear quotient structure; scalar linearity is proved in prose and rational matrix instances |
+| A-T8 | Real_0 = Primitive Difference ∪ Structure. | DECLARED COMMITMENT | Project vocabulary | §5.1 | No Lean declaration or implementation evidence | NOT A THEOREM | Supplies no mathematical hypotheses or proof |
+| A-T9 | Positive quotient distance iff nonzero projection residual; declared-image repairs preserve both residual and distance. | THEOREM | V=Q^n, W=Q^m for finite n,m, coordinate l1 norm, C²=C, im(C)=im(d0) | §5.1 rational linear-program attainment and A-T4/A-T6; prior missing-hypothesis counterexample retained | No single Lean declaration; `test_a_t9_retention.py::test_retention_on_the_running_example` | PROSE PROOF / FINITE CHECKS | No arbitrary-optimizer invariance or register-policy conclusion |
+| A-S1 | Residual data are not decision or provenance data: residual(C, x) does not inhabit a decision record and supplies no origin of x. | SCOPE FENCE | Type discipline on module categories | §5, Scope fence A-S1 | Type disjointness in `lean4/D01D02Records.lean`; `test_coda_a.py::test_scope_fence_as1_terminal_disjointness` | INTERPRETIVE SCOPE FENCE | Residue is posterior to correction; not an act or origin |
+| COMP-01 | Exact rational linear algebra procedures: residual, is_projection, maps_commute, difference_in_image. | COMPUTATIONAL | Exact rational matrices over Q | §6, `code/coda_a_core.py` | `test_coda_a.py::test_reproduce_worked_example` | PYTHON-TESTED INSTANCE | Finite-dimensional rational instances; zero floats |
+| COMP-02 | Finite cochain 5-case residual classifier with exact L1 quotient solving and complex validation. | COMPUTATIONAL | Cochain complex d1 ∘ d0 = 0 and exact cochains | §6, `code/coda_a_core.py` | `test_coda_a.py::test_5_case_classification_suite` | PYTHON-TESTED INSTANCE | Discrete diagnosis; not an authority constructor; sentinels eliminated |
+
+---
+
+1. Axiom & Verification Audit
+
+- **Lean scope:** A-T1–A-T6, internal splitting, quotient section, and the underlying unique-function part of A-T7 are formalized over additive groups. Scalar linearity of the quotient factor is a prose argument, with rational matrix checks. A-T8 is a commitment; A-T9 is a finite rational l1 theorem with prose proof and finite tests.
+- **Axiom evidence:** `lean4/axiom_report.txt` is a historical selected-declaration transcript. It reports standard kernel dependencies, including `propext` and `Quot.sound`; replay the pinned toolchain entrypoint queries for current evidence. It is not a cryptographic attestation or an exhaustive audit of every definition.
+- **Toy Witness Status:** The pure-residual object in `lean4/T03ToyAnomalonWitness.lean` (`toy_anomalon_exists`) is constructible within the declared finite taxonomy. It does not claim an independently constructed cofiber or physical particle.

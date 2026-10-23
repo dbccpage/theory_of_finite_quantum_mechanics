@@ -1,0 +1,587 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% House preamble for the primitive-axiomatics paper line.
+%
+%  Typesetting is not evidence for any claim.
+%
+% Built 2026-09-08.
+%
+% xelatex, not pdflatex: the manuscript uses unicode characters that pdflatex
+% cannot set without per-character declarations.
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=0.85]
+\setmathfont{Latin Modern Math}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newunicodechar}
+\newcommand{\um}[1]{\ensuremath{#1}}
+\newunicodechar{ℝ}{\um{\mathbb{R}}}
+\newunicodechar{⁰}{\um{^0}}
+\newunicodechar{₀}{\um{_0}}
+\newunicodechar{₁}{\um{_1}}
+\newunicodechar{₂}{\um{_2}}
+\newunicodechar{¹}{\um{^1}}
+\newunicodechar{²}{\um{^2}}
+\newunicodechar{∘}{\um{\circ}}
+\newunicodechar{δ}{\um{\delta}}
+\newunicodechar{⟨}{\um{\langle}}
+\newunicodechar{⟩}{\um{\rangle}}
+\newunicodechar{φ}{\um{\varphi}}
+\newunicodechar{ᵀ}{\um{^\top}}
+\newunicodechar{𝛷}{\um{\Phi}}
+\newunicodechar{Φ}{\um{\Phi}}
+\newunicodechar{Γ}{\um{\Gamma}}
+\newunicodechar{α}{\um{\alpha}}
+\newunicodechar{β}{\um{\beta}}
+\newunicodechar{κ}{\um{\kappa}}
+\newunicodechar{∂}{\um{\partial}}
+\newunicodechar{∈}{\um{\in}}
+\newunicodechar{−}{\um{-}}
+\newunicodechar{∞}{\um{\infty}}
+\newunicodechar{≠}{\um{\neq}}
+\newunicodechar{≤}{\um{\le}}
+\newunicodechar{≥}{\um{\ge}}
+\newunicodechar{⟺}{\um{\iff}}
+\newunicodechar{→}{\um{\to}}
+\newunicodechar{─}{-}
+\newunicodechar{│}{|}
+\newunicodechar{┌}{+}
+\newunicodechar{┐}{+}
+\newunicodechar{└}{+}
+\newunicodechar{┘}{+}
+\newunicodechar{┬}{+}
+\newunicodechar{┴}{+}
+\newunicodechar{▼}{v}
+\newunicodechar{ℓ}{\um{\ell}}
+\newunicodechar{Ω}{\um{\Omega}}
+\newunicodechar{Σ}{\um{\Sigma}}
+\newunicodechar{·}{\um{\cdot}}
+\newunicodechar{×}{\um{\times}}
+\newunicodechar{⊂}{\um{\subset}}
+\newunicodechar{ₙ}{\um{_n}}
+\newunicodechar{∎}{\um{\blacksquare}}
+\newunicodechar{∼}{\um{\sim}}
+
+
+\usepackage[margin=0.85in]{geometry}
+\usepackage{pdflscape}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{bookmark}
+\urlstyle{tt}
+\hypersetup{colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue}
+\providecommand{\st}[1]{\emph{#1}}
+\newunicodechar{□}{\ensuremath{\square}}
+\newunicodechar{ℚ}{\ensuremath{\mathbb{Q}}}
+\newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{ψ}{\ensuremath{\psi}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{∧}{\ensuremath{\wedge}}
+\newunicodechar{∨}{\ensuremath{\vee}}
+\newunicodechar{¬}{\ensuremath{\neg}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+\newunicodechar{⊥}{\ensuremath{\perp}}
+\newunicodechar{₃}{\ensuremath{_3}}
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\emergencystretch}{4em}
+\newunicodechar{₄}{\ensuremath{_4}}
+\newunicodechar{₅}{\ensuremath{_5}}
+\newunicodechar{₆}{\ensuremath{_6}}
+\newunicodechar{₇}{\ensuremath{_7}}
+\newunicodechar{₈}{\ensuremath{_8}}
+\newunicodechar{₉}{\ensuremath{_9}}
+
+\hypersetup{pdftitle={CODA-A: Residuals of Projections, Kernels, and Cokernels --- The Anomalon as a Typed Leftover},pdfauthor={Jeremy H. Carroll}}
+\begin{document}
+\begin{center}
+{\Large\bfseries CODA-A: Residuals of Projections, Kernels, and Cokernels --- The Anomalon as a Typed Leftover}\par
+
+\textbf{Author:} Jeremy H. Carroll
+
+\textbf{Date:} 2026-09-27
+
+\textbf{Version:} v0.1.0 Pre-Print
+
+\textbf{Status:} release candidate
+
+\textbf{License:} Creative Commons Attribution 4.0 International (CC-BY-4.0)
+
+\end{center}
+
+\subsection{CODA Architecture \& Layers}\label{coda-architecture-layers}
+
+CODA stands for the Calculus of Obstruction, Descent, and Authorization. It is an exact, finite mathematical apparatus that enforces strict claim discipline by separating linear repairs, transport certificates, and finite descent from ungrounded authority claims. The system comprises eight operational layers governed by a single overarching authority architecture (GTLA).
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Abbreviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Layer / Component Name \& Scope
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \textbf{FOC} & Finite Obstruction Calculus \\
+2 & \textbf{MUR} & Meta \& Universal Re-Presentation (what presentations exist) \\
+3 & \textbf{CS} & Continuum Shadow (what continuum presentation may descend to a finite calculus system) \\
+4 & \textbf{CS\_Q} & Continuum Shadow to Continuum Bridge (how continuum presentations descend) \\
+5 & \textbf{Q} & The Continuum (continuum presentations via completion and enclosure) \\
+6 & \textbf{A} & Anomalon (global residuals not removed and typed instead) \\
+7 & \textbf{OR} & Omniversal Re-Presentation (what presentations can transport) \\
+8 & \textbf{FDA} & Finite Descent Authority (what presentation may descend to evaluation and authorization) \\
+9 & \textbf{GTLA} & Layered Authority Architecture for CODA \\
+\end{longtable}
+
+\subsection{Abstract}\label{abstract}
+
+A linear correction \(C\) applied to a vector \(x\) leaves \(\mathrm{residual}(C,x)=x-Cx\). That leftover is zero if and only if \(Cx=x\). When \(C\) is a projection, the leftover lies in the kernel of \(C\), and applying the leftover map a second time does nothing. A linear map that commutes with two such corrections carries leftovers to leftovers. Two vectors have the same leftover if and only if they differ by a vector in the image of \(C\); those leftover classes are the cokernel of the idempotent. A leftover is not a decision and not an origin story. A named toy constructible witness recorded in a companion Lean file demonstrates existence within the declared finite taxonomy without extra unproved axioms.
+
+\subsection{Introduction}\label{introduction}
+
+It is easy to treat a leftover as a verdict. You apply a correction, something remains, and you talk as if the remainder decided the original claim, or as if it explained where the difference came from. The remainder is a vector. This paper computes that vector.
+
+Within the discrete cochain classification setting of this apparatus (Layer 9), ``Anomalon'' is a project-specific name strictly denoting the \texttt{ClosedResidual} terminal state (\(d_1 x = 0\) with positive quotient distance against the declared repair subspace). It is not a synonym for every vector \(x - Cx\), nor for every nonzero residual of an endomorphism or projection. This terminology makes no claim about the historical nuclear-physics use of ``anomalon'' or about particle physics.
+
+A picture. Work in the plane, with coordinates written as columns. Let \(C\) keep the first coordinate and kill the second:
+
+\[
+C\begin{pmatrix}a\\b\end{pmatrix}
+=
+\begin{pmatrix}a\\0\end{pmatrix}.
+\]
+
+Then \(C\circ C=C\), so \(C\) is a projection (Axler 2015; Jacobson 1985). The vector \((3,4)\) is sent to \((3,0)\). The leftover is
+
+\[
+(3,4)-(3,0)=(0,4).
+\]
+
+Applying \(C\) to that leftover gives \((0,0)\). Applying the leftover map again to \((0,4)\) gives \((0,4)\). Stretching both coordinates by \(2\) commutes with \(C\) and stretches the leftover to \((0,8)\). Replacing \((3,4)\) by \((5,4)\) changes the vector by \((-2,0)\), which lies in the image of \(C\); the leftover is still \((0,4)\). Replacing \((3,4)\) by \((3,5)\) changes the second coordinate, which \(C\) cannot produce; the leftover becomes \((0,5)\).
+
+The theory is refuted by:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Mathematical counterexamples to Theorems A-T1--A-T7:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    a leftover that is nonzero while \(Cx=x\), or vice versa (falsifying A-T1);
+  \item
+    a projection whose leftover does not lie in the kernel (falsifying A-T2);
+  \item
+    a projection whose leftover map fails to be idempotent on some vector (falsifying A-T3);
+  \item
+    a projection with an image vector that is not fixed or a fixed vector not in its image (falsifying A-T4a);
+  \item
+    a projection for which the direct-sum splitting \(V = \operatorname{im} C \oplus \ker C\) fails (falsifying A-T4b);
+  \item
+    a linear map that commutes with the two corrections but fails to carry leftovers to leftovers (falsifying A-T5);
+  \item
+    two vectors that differ by an image vector of a projection and yet have different leftovers, or vice versa (falsifying A-T6); or
+  \item
+    a linear map \(f\) vanishing on \(R = \ker(\pi)\) that fails to have a unique linear factorisation \(g \circ \pi = f\) through the quotient \(V/R\) with surjective \(\pi\) (falsifying A-T7).
+  \end{itemize}
+\item
+  \textbf{Scope violations:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    a leftover treated as an authorization, rejection, or policy verdict; or
+  \item
+    a leftover treated as an origin story or causal provenance of the difference it records.
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Notation}\label{notation}
+
+For A-T1--A-T7, \(K\) is a field and \(V,W\) are modules over \(K\) (Axler 2015; Jacobson 1985). In the examples, \(K=\mathbb{Q}\) and the modules are finite-dimensional coordinate spaces. In the companion, every matrix entry is an exact rational. A-T9 is restricted to finite rational coordinate spaces with their coordinate \(\ell^1\) norm.
+
+\begin{itemize}
+\tightlist
+\item
+  \(C:V\to V\) is a linear endomorphism: a linear correction of \(V\).
+\item
+  \(D:W\to W\) is a linear correction of \(W\).
+\item
+  \(T:V\to W\) is a linear map of carriers.
+\item
+  \(\mathrm{residual}(C,x):=x-Cx\).
+\item
+  \(C\) is a \emph{projection} when \(C\circ C=C\). That is the same as \(C\) being idempotent as an endomorphism.
+\item
+  \(T\) \emph{commutes} with \((C,D)\) when \(T\circ C=D\circ T\).
+\item
+  \(\operatorname{im} C=\{Cy:y\in V\}\) is the image. \(\ker C=\{v:Cv=0\}\) is the kernel.
+\item
+  \(V/\operatorname{im} C\) is the cokernel of \(C\) as a map \(V\to V\) (Mac Lane 1998).
+\end{itemize}
+
+A \textbf{leftover} of \(C\) at \(x\) is the vector \(\mathrm{residual}(C,x)\). It is the output of a linear formula. It is not a policy.
+
+\subsection{1. Residual of a linear map}\label{residual-of-a-linear-map}
+
+\subsubsection{Definition A-D1 --- residual}\label{definition-a-d1-residual}
+
+For a linear endomorphism \(C:V\to V\) and a vector \(x\in V\), set
+
+\[
+\mathrm{residual}(C,x)
+:=
+x-Cx.
+\]
+
+The Lean definition is \texttt{Coda.A.residual}. Always, whether or not \(C\) is a projection,
+
+\[
+x
+=
+Cx
++
+\mathrm{residual}(C,x).
+\]
+
+That is an identity of vectors (Lean \nolinkurl{Coda.A.decomposition}), not a claim about decisions.
+
+\subsubsection{Theorem A-T1 --- leftover zero if and only if fixed}\label{theorem-a-t1-leftover-zero-if-and-only-if-fixed}
+
+\[
+\mathrm{residual}(C,x)=0
+\quad\text{if and only if}\quad
+Cx=x.
+\]
+
+\textbf{Proof.} \(x-Cx=0\) rearranges to \(Cx=x\). This is Lean \nolinkurl{Coda.A.residual_zero_iff}. □
+
+In the picture, \(C(3,0)=(3,0)\), so the leftover of \((3,0)\) is zero. \(C(3,4)=(3,0)\neq(3,4)\), so the leftover of \((3,4)\) is not zero. The companion function \texttt{residual} returns the exact column \(x-Cx\).
+
+A non-instance, not a counterexample: if one writes ``leftover zero'' to mean ``the first coordinate vanished,'' Theorem A-T1 is being misread. The theorem compares \(Cx\) with \(x\), not \(Cx\) with \(0\). For this \(C\), \(C(3,4)=(3,0)\neq 0\), and the leftover is \((0,4)\), not \((3,4)\).
+
+\subsection{2. When the correction is a projection}\label{when-the-correction-is-a-projection}
+
+\subsubsection{Definition A-D2 --- projection}\label{definition-a-d2-projection}
+
+A linear endomorphism \(C:V\to V\) is a projection when \(C\circ C=C\) (Axler 2015). The companion predicate \texttt{is\_projection} returns true exactly on square matrices with \(CC=C\).
+
+Not every linear correction is a projection. The nilpotent example
+
+\[
+N
+=
+\begin{pmatrix}0&1\\0&0\end{pmatrix}
+\]
+
+satisfies \(N^2=0\neq N\). For \(x=(0,1)\) one has \(Nx=(1,0)\) and leftover \((-1,1)\), and \(N\) applied to that leftover is \((1,0)\neq 0\). Kernel and idempotence statements below therefore assume \(C\circ C=C\).
+
+\subsubsection{Theorem A-T2 --- a projection eats the leftover}\label{theorem-a-t2-a-projection-eats-the-leftover}
+
+If \(C\circ C=C\), then
+
+\[
+C\bigl(\mathrm{residual}(C,x)\bigr)=0.
+\]
+
+\textbf{Proof.} Linearity gives \(C(x-Cx)=Cx-C(Cx)\). Idempotence gives \(C(Cx)=Cx\), so the difference is zero. This is Lean \nolinkurl{Coda.A.residual_in_kernel}. □
+
+In the picture, \(C(0,4)=(0,0)\). The leftover already has first coordinate zero, which is the only coordinate \(C\) keeps.
+
+\subsubsection{Theorem A-T3 --- leftover of a leftover}\label{theorem-a-t3-leftover-of-a-leftover}
+
+If \(C\circ C=C\), then
+
+\[
+\mathrm{residual}\bigl(C,\ \mathrm{residual}(C,x)\bigr)
+=
+\mathrm{residual}(C,x).
+\]
+
+\textbf{Proof.} Write \(r=\mathrm{residual}(C,x)\). Then \(\mathrm{residual}(C,r)=r-Cr\). Theorem A-T2 says \(Cr=0\), so this is \(r\). This is Lean \nolinkurl{Coda.A.residual_idempotent}. □
+
+Doing the leftover map twice does not produce a new leftover. On the nilpotent \(N\) above, the leftover of \((-1,1)\) is \((-2,1)\), which is not \((-1,1)\). Idempotence of the leftover map uses that \(C\) is a projection.
+
+\subsubsection{Theorem A-T4 --- image of a projection is the fixed set}\label{theorem-a-t4-image-of-a-projection-is-the-fixed-set}
+
+If \(C\circ C=C\), then \(x\in\operatorname{im} C\) if and only if \(Cx=x\).
+
+\textbf{Proof.} If \(x=Cy\), then \(Cx=C(Cy)=Cy=x\). If \(Cx=x\), then \(x=Cx\), so \(x\) lies in the image. This is Lean \nolinkurl{Coda.A.range_fixed_iff}. □
+
+Together with Theorem A-T1: for a projection, leftover zero, being fixed, and lying in the image are the same condition.
+
+The identity \(x=Cx+\mathrm{residual}(C,x)\) is then a splitting of \(V\) as \(\operatorname{im} C\oplus\ker C\) (Axler 2015). The first summand is the corrected part; the second is the leftover. The two summands meet only at \(0\): if \(v=Cy\) and \(Cv=0\), then \(v=C(Cy)=Cv=0\).
+
+\subsection{3. Moving leftovers with a linear map}\label{moving-leftovers-with-a-linear-map}
+
+Let \(C:V\to V\) and \(D:W\to W\) be linear corrections, and let \(T:V\to W\) be linear.
+
+\subsubsection{Theorem A-T5 --- a commuting map transports leftovers}\label{theorem-a-t5-a-commuting-map-transports-leftovers}
+
+If \(T\circ C=D\circ T\), then for every \(x\in V\),
+
+\[
+T\bigl(\mathrm{residual}(C,x)\bigr)
+=
+\mathrm{residual}\bigl(D,\ Tx\bigr).
+\]
+
+\textbf{Proof.} \(T(x-Cx)=Tx-T(Cx)=Tx-D(Tx)\). This is Lean \nolinkurl{Coda.A.residual_transport}. □
+
+The commuting hypothesis is used exactly once, as \(T(Cx)=D(Tx)\). No further naturality is required.
+
+In the picture, let \(T\) be scaling by \(2\) on the same plane, and let \(D=C\). Scaling commutes with \(C\):
+
+\[
+T\bigl(C(a,b)\bigr)=T(a,0)=(2a,0)=C(2a,2b)=C\bigl(T(a,b)\bigr).
+\]
+
+The leftover \((0,4)\) is sent to \((0,8)\), which is the leftover of \((6,8)\).
+
+A non-instance. Let \(S\) swap coordinates, \(S(a,b)=(b,a)\), and keep \(D=C\). Then \(S(C(3,4))=S(3,0)=(0,3)\), while \(C(S(3,4))=C(4,3)=(4,0)\). The two routes disagree, so Theorem A-T5 does not apply. Directly: \(S\) of the leftover \((0,4)\) is \((4,0)\), while the leftover of \(S(3,4)=(4,3)\) is \((0,3)\). Leftovers are not transported by an arbitrary linear map.
+
+The companion predicate \texttt{maps\_commute} checks \(TC=DT\) on exact rational matrices. The notebooks compute both sides of Theorem A-T5 and compare them.
+
+\subsection{4. Leftover classes and the cokernel}\label{leftover-classes-and-the-cokernel}
+
+Fix a projection \(C:V\to V\). The cokernel of \(C\), as an endomorphism, is the quotient module \(V/\operatorname{im} C\) (Mac Lane 1998). Two vectors \(x,y\) determine the same class in that quotient exactly when \(x-y\) lies in the image.
+
+\subsubsection{Theorem A-T6 --- leftover classes match the cokernel}\label{theorem-a-t6-leftover-classes-match-the-cokernel}
+
+If \(C\circ C=C\), then
+
+\[
+x-y\in\operatorname{im} C
+\quad\text{if and only if}\quad
+\mathrm{residual}(C,x)=\mathrm{residual}(C,y).
+\]
+
+\textbf{Proof.} By Theorem A-T4, \(x-y\) lies in the image if and only if \(C(x-y)=x-y\). Linearity rewrites the right-hand side as \(Cx-Cy=x-y\), which rearranges to \(x-Cx=y-Cy\). This is Lean \nolinkurl{Coda.A.quotient_residual_iff}. □
+
+In the picture, \((3,4)-(5,4)=(-2,0)=C(-2,0)\), and both leftovers are \((0,4)\). \((3,4)-(3,5)=(0,-1)\) does not lie in the image, and the leftovers are \((0,4)\) and \((0,5)\).
+
+The representative \(\mathrm{residual}(C,x)\) of the class of \(x\) lies in \(\ker C\) by Theorem A-T2. Different leftover vectors are different classes. Because \(r = I-C\) vanishes on \(\operatorname{im} C\), it induces a canonical representative map \(s : V / \operatorname{im} C \to V\), defined by \(s([x]) = x-Cx\), whose image lies in \(\ker C\). If \(q : V \to V / \operatorname{im} C\) is the quotient map, then \(q \circ s = \mathrm{id}\). Thus the induced residual representative map is a section of \(q\), and it identifies \(V / \operatorname{im} C\) canonically with \(\ker C\) (Lean \nolinkurl{Coda.A.quotient_section}). In Lean 4, this structure is mechanized over additive commutative groups with additive homomorphisms (\texttt{Coda.A.LinearMap}), proving well-definedness and uniqueness without requiring field scalars for these projection identities.
+
+\subsubsection{Theorem A-T7 --- unique induced map on the quotient}\label{theorem-a-t7-unique-induced-map-on-the-quotient}
+
+Let \(R\subseteq V\) be a submodule and \(f:V\to W\) a linear map with \(R\subseteq\ker f\). Then there exists a unique linear map \(g:V/R\to W\) such that \(g\circ\pi=f\), where \(\pi:V\to V/R\) is the quotient map.
+
+\textbf{Proof.} Existence is the ordinary factorisation of a linear map through a quotient on which it vanishes (Mac Lane 1998): \(g(\pi(x))=f(x)\) is well-defined because \(\pi(x)=\pi(x')\) implies \(x-x'\in R\subseteq\ker f\), so \(f(x)=f(x')\). Uniqueness: every class in \(V/R\) is \(\pi(x)\) for some \(x\), so \(g\) is determined on every class by \(f(x)\). Linearity follows from \(g([x]+[y])=f(x+y)=f(x)+f(y)\) and \(g(a[x])=f(ax)=af(x)\). Lean \nolinkurl{Coda.A.quotient_universal} establishes existence and uniqueness of the underlying function on a set quotient for additive groups. Its quotient carries no formalized scalar action, so the scalar-linearity assertion is proved here in prose; \nolinkurl{quotient_universal_factor} checks finite rational matrix instances. □
+
+Applied to \(R=\operatorname{im} C\) and to a linear \(f\) that vanishes on the image, the unique \(g\) reads leftover classes. Theorem A-T6 says that those classes are the same data as the leftover vectors of a projection. In the computational companion, \nolinkurl{quotient_universal_factor} requires \(\pi\) to be surjective onto the declared quotient space (\(\operatorname{rank}(\pi) = \operatorname{rows}(\pi)\)) and verifies the absence of free parameters, preventing underdetermined non-unique factors.
+
+The companion function \nolinkurl{difference_in_image} decides \(x-y\in\operatorname{im} C\) by an exact image-membership certificate, not by a floating-point rank.
+
+\subsection{5. A leftover is not a decision}\label{a-leftover-is-not-a-decision}
+
+The theorems above compute a vector, compare it with zero, place it in a kernel, transport it, and identify its class with a cokernel. None of those operations selects an action. In particular:
+
+\begin{itemize}
+\tightlist
+\item
+  leftover zero means \(Cx=x\). It does not mean ``accept \(x\),'' ``reject \(x\),'' or ``the original claim is settled'';
+\item
+  leftover nonzero means \(Cx\neq x\). It does not mean ``repair further,'' ``halt,'' or ``the original claim is false'';
+\item
+  a closed leftover in the sense of the discrete companion classifier of Section 6 is a vector whose next-stage image is zero and whose \(\ell^1\) leftover against a declared repair subspace is positive (Carroll 2026, CODA-FOC). That is a diagnosis of a cochain. It is not a licence to treat the leftover as a source of the difference it records.
+\end{itemize}
+
+Residue is posterior to applying \(C\). The formula \(x-Cx\) mentions \(C\) and \(x\). It does not construct \(x\), and it does not explain why \(x\) was present before \(C\) was applied. Calling the leftover an origin story confuses a difference computed after a correction with a generator of that difference.
+
+\subsubsection{Scope fence A-S1 --- residual data are not decision or provenance data}\label{scope-fence-a-s1-residual-data-are-not-decision-or-provenance-data}
+
+The value \(\mathrm{residual}(C,x)\), the predicate \(\mathrm{residual}(C,x)=0\), and the class of \(x\) in \(V/\operatorname{im} C\) do not inhabit a decision record, and they do not supply an origin of \(x\).
+
+\textbf{Explication.} Definition A-D1 is a vector. Theorem A-T1 is an equality of vectors. Theorem A-T6 is an equality of classes in a quotient. None of those mathematical types is a decision record (Carroll 2026, CODA-FDA). The formula \(x-Cx\) is defined only after \(C\) and \(x\) are given, so it is not a construction of \(x\). Definitions A-D1--A-D2 and Theorems A-T1--A-T7 supply no decision map and no origin map.
+
+The Lean file \nolinkurl{T03ToyAnomalonWitness.lean} formalizes a constructible pure-residual toy witness (\nolinkurl{toy_anomalon_exists}) within the declared finite taxonomy. That witness is constructible by direct definition in the toy model; it is not an unproved foundational axiom and does not claim an independently constructed cofiber or physical particle.
+
+\subsection{5.1. Declared boundary and finite cokernel retention}\label{declared-boundary-and-finite-cokernel-retention}
+
+\subsubsection{Declared commitment A-T8 --- The Anomalon Boundary}\label{declared-commitment-a-t8-the-anomalon-boundary}
+
+A-T8 is a declared ontological commitment, not a theorem. Its formula is \(\mathrm{Real}_0=\text{Primitive Difference}\cup\text{Structure}\). Here Primitive Difference names a nonzero declared obstruction, and Structure names what persists, composes, stabilizes, or records it. This vocabulary supplies no additional mathematical hypothesis or proof. The former theorem label was withdrawn on 2026-09-23; no external implementation is offered as evidence.
+
+\subsubsection{Theorem A-T9 --- finite cokernel retention}\label{theorem-a-t9-finite-cokernel-retention}
+
+Let \(V=\mathbb Q^n\) and \(W=\mathbb Q^m\) for finite nonnegative integers \(n,m\), with the coordinate \(\ell^1\) norm on \(V\). Let \(d_0:W\to V\) be a rational linear map and define \(\Phi_1([x])=\min_{f\in W}\|x-d_0f\|_1\). Let \(C:V\to V\) be rational linear with \(C^2=C\) and \(\operatorname{im}C=\operatorname{im}d_0\). Then:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\Phi_1([x])>0\iff x\notin\operatorname{im}d_0\iff x-Cx\ne0\).
+\item
+  For every \(f\in W\), \(\mathrm{residual}(C,x-d_0f)=\mathrm{residual}(C,x)\) and \(\Phi_1([x-d_0f])=\Phi_1([x])\).
+\item
+  Under the isomorphism \(\ker C\cong V/\operatorname{im}C\), the class of \(x\) corresponds to \(x-Cx\).
+\end{enumerate}
+
+If \(d_1d_0=0\), \(d_1x=0\), and \(\Phi_1([x])>0\), this is a closed leftover in the finite cochain classification of Section 6.
+
+\textbf{Proof.} Minimizing the finite coordinate \(\ell^1\) norm is a feasible rational linear program bounded below by zero: introduce variables \(t_i\) with \(-t_i\le(x-d_0f)_i\le t_i\) and minimize \(\sum_i t_i\). A finite rational linear program with a finite optimum attains that optimum at a rational solution. Thus the minimum is zero exactly when \(x=d_0f\) for some \(f\in\mathbb Q^m\); otherwise it is positive. By A-T4 and the equality of the images, \(x\in\operatorname{im}d_0\) exactly when \(Cx=x\). For (2), \(Cd_0f=d_0f\) makes the residual of \(d_0f\) vanish, and translation by \(f\) only shifts the representative without altering the residual while reindexing all repairs in the minimization. Part (3) is A-T6. □
+
+The earlier A-T9 was withdrawn on 2026-09-23 because it omitted \(\operatorname{im}C=\operatorname{im}d_0\) and claimed invariance under arbitrary optimization. Its counterexample is \(V=W=\mathbb Q\), \(C=I\), \(d_0=d_1=0\), \(x=1\): the quotient distance is \(1\) but \(x-Cx=0\). Also, \(\ker C\) is related to the quotient by an isomorphism, not a literal inclusion.
+
+\textbf{Evidence scope.} \nolinkurl{code/tests/test_a_t9_retention.py} checks this counterexample, the running example, and seeded finite rational instances. A-T9 has a prose proof and finite computational checks, with no single Lean declaration. Register storage and administrative terminal routing are additional application policies and are not conclusions of A-T9.
+
+\subsection{6. Computational companion}\label{computational-companion}
+
+The companion module \nolinkurl{code/coda_a_core.py} computes \(\mathrm{residual}(C,x)\) on exact rational matrices, tests \(CC=C\), tests \(TC=DT\), and decides image membership of \(x-y\) by an exact certificate. Arithmetic is exact rational; floats and booleans in scalar position raise \texttt{TypeError}.
+
+On the running example,
+
+\[
+C=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+x=\begin{pmatrix}3\\4\end{pmatrix},\qquad
+\mathrm{residual}(C,x)=\begin{pmatrix}0\\4\end{pmatrix}.
+\]
+
+Scaling by \(2\) commutes with \(C\) and sends the leftover to \((0,8)\). The swap map does not commute, and the two leftover computations disagree as in Section 3.
+
+The same module also classifies a finite cochain leftover against a declared repair matrix \(d_0\) and an optional next map \(d_1\), using the exact \(\ell^1\) quotient solver of the companion obstruction calculus (Carroll 2026, CODA-FOC). Prior to mathematical classification, the classifier computes the exact \(\ell^1\) quotient distance (\nolinkurl{LinearRepairProblem.quotient_l1_distance}) against the declared coboundary subspace; it never reports hardcoded or sentinel numbers. For administrative states (\texttt{RefusedClosure}, \texttt{LiftRequired}), \texttt{quotient\_distance} is strictly absent (\texttt{None}). That classifier returns one of five labels: absorbed (quotient distance \(0\)), closed leftover (\(d_1x=0\) and strictly positive distance), open leftover (\(d_1x\neq 0\) and strictly positive distance), a pending-lift flag (distance \texttt{None}), or an explicit refusal (distance \texttt{None}). Those labels are a discrete diagnosis. They are not Theorems A-T1--A-T7, and they are not a decision. Substituting an \(\ell^2\) projection leftover for the \(\ell^1\) quotient, or substituting \(x+Cx\) for \(x-Cx\), is a fault the tests are written to kill.
+
+Lean files in \texttt{lean4/}:
+
+\begin{itemize}
+\tightlist
+\item
+  \nolinkurl{Foundations.lean} --- factor and fiber foundation lemmas;
+\item
+  \nolinkurl{A.lean} --- core mechanization of Theorems A-T1--A-T7, internal direct-sum splitting \(V = \operatorname{im} C \oplus \ker C\) (\nolinkurl{direct_sum_decomposition}, \texttt{direct\_sum\_unique}), and induced quotient section;
+\item
+  \nolinkurl{D01D02Records.lean} --- records for a discrete leftover/absorbed/open taxonomy;
+\item
+  \nolinkurl{T01AnomalonTerminal.lean} --- taxonomy properties of the anomalon terminal;
+\item
+  \nolinkurl{T02ResidualNonCreation.lean} --- toy-level residual non-creation firewall;
+\item
+  \nolinkurl{T03ToyAnomalonWitness.lean} --- constructible toy witness within the finite taxonomy;
+\item
+  \nolinkurl{Algebra.lean} --- wraps reconstruction Theorems A-T1--A-T7, splitting, and quotient section;
+\item
+  \texttt{Core.lean} --- re-exports the files above and checks axioms.
+\end{itemize}
+
+The declarations and their precise scope are listed in \nolinkurl{docs/lean_claim_map.md}. \nolinkurl{lean4/axiom_report.txt} records the current named-declaration census, not an assertion that its results prove broader prose claims. Replay \texttt{lake\ build} and the entrypoint axiom queries with the pinned toolchain for the current sources. Standard kernel axioms such as \texttt{propext} and \texttt{Quot.sound} are distinguished from unproved custom axioms.
+
+Adversarial tests include: leftover \((0,4)\) on the running projection; a nilpotent correction whose leftover is not killed; a commuting scale and a non-commuting swap; two vectors with the same leftover class and two with different classes; float rejection; and cochain condition \(d_1 d_0 = 0\) validation.
+
+\subsection{7. Limitations}\label{limitations}
+
+A-T1--A-T7 are dimension-independent algebraic statements; the Lean quotient result for A-T7 establishes the underlying unique function, while scalar linearity is proved in prose. A-T9 and the Python quotient-distance solver require finite rational coordinate spaces with the coordinate \(\ell^1\) norm. A-T8 is a commitment without a mathematical proof.
+
+A cofiber of a closure functor is not constructed. Bicategories, higher simplicial duality, and an independent physical anomalon are not proved here. The toy witness in \nolinkurl{T03ToyAnomalonWitness.lean} establishes existence only by construction within the finite toy taxonomy.
+
+A leftover is a vector. Each additional statement uses the hypotheses displayed with it.
+
+\subsection{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  S. Axler, \emph{Linear Algebra Done Right}, 3rd ed., Springer, 2015. \href{https://doi.org/10.1007/978-3-319-11080-6}{doi:10.1007/978-3-319-11080-6}
+\item
+  S. Mac Lane, \emph{Categories for the Working Mathematician}, 2nd ed., Springer, 1998. \href{https://doi.org/10.1007/978-1-4757-4721-8}{doi:10.1007/978-1-4757-4721-8}
+\item
+  J. H. Carroll, \emph{The Finite Obstruction Calculus: Exact quotient diagnostics, dual witnesses, two-stage coherence, and transport (CODA-FOC)}, 2026. \href{https://github.com/dbccpage/the_symbol_game/blob/44aff3782df7aa58a7ffc88e063a5643fd26a428/omega_engine_atlas/coda_atlas/F005_coda/foc/coda_foc.md}{versioned repository source}
+\item
+  J. H. Carroll, \emph{Finite Descent Authority: Packets, Pipelines, and Seven Halt Guards: A proposal is not a decision (CODA-FDA)}, 2026. \href{https://github.com/dbccpage/the_symbol_game/blob/44aff3782df7aa58a7ffc88e063a5643fd26a428/omega_engine_atlas/coda_atlas/F005_coda/fda/coda_fda.md}{versioned repository source}
+\item
+  N. Jacobson, \emph{Basic Algebra I}, 2nd ed., W. H. Freeman, 1985. \href{https://www.worldcat.org/isbn/0716714809}{ISBN: 0-7167-1480-9}
+\end{enumerate}
+
+\end{document}

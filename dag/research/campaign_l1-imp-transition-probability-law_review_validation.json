@@ -1,0 +1,749 @@
+{
+  "schema_version": "tfqm.pr-review.v1",
+  "AuthorityEffect": "None",
+  "pr": 205,
+  "reviewed_head": "927e42784c0650fdf36c8d20017d85e010029a41",
+  "integrated_main": "611b954f66d5a3464512dd2a5e5ef6f88013ea84",
+  "source_sha256": {
+    "lean4/CampaignTransitionProbability.lean": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
+    "lean4/lakefile.lean": "03869b7cf5406aad29832d2c83cdd14ca0c01990d13be6607be060999cc08b85",
+    "checks/independent/l1-imp-transition-probability-law.py": "9641eb17d294a9160f69dc02f2102c18780b6ade7867246aa98da1072f4029d2"
+  },
+  "checks": [
+    {
+      "label": "checker-normal",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:02:42.512917+00:00",
+      "completed": "2026-10-23T04:03:06.904858+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"boundary_rejections\": [\n    \"boolean scalar\",\n    \"floating scalar\",\n    \"unchecked component\",\n    \"zero inverse\",\n    \"zero ray\",\n    \"zero effect\",\n    \"zero state\",\n    \"extra effect coordinate\",\n    \"extra state coordinate\",\n    \"extra ray coordinate\",\n    \"missing ray coordinate\",\n    \"mutable vector\",\n    \"boolean coordinate\",\n    \"floating coordinate\",\n    \"boolean scale\"\n  ],\n  \"countermodel_probabilities\": [\n    \"9/10\",\n    \"1/10\"\n  ],\n  \"grid\": {\n    \"ordered_pairs\": 6400,\n    \"orthogonal_pairs\": 512,\n    \"vectors\": 80\n  },\n  \"imaginary_probe_probabilities\": [\n    \"1\",\n    \"0\"\n  ],\n  \"mutations\": [\n    {\n      \"mutation\": \"drop probability denominator\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"drop conjugation in inner product\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"remove conditional branch: conjugate every vector\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"replace dynamics by identity\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"stretch inverse without reciprocal\",\n      \"outcome\": \"killed\"\n    }\n  ],\n  \"scope\": \"symbolic identities, exact witnesses, finite grid; no general claim from sampling\",\n  \"status\": \"PASS\",\n  \"stretch_probabilities\": [\n    \"1/2\",\n    \"1/5\"\n  ],\n  \"symbolic_identities\": [\n    \"norm_multiplicative\",\n    \"orthogonal_partner\",\n    \"real_probe\",\n    \"imaginary_probe\",\n    \"gram_calibration\"\n  ],\n  \"witness_inner_products\": [\n    \"3\",\n    \"-1\"\n  ],\n  \"witness_norms\": [\n    \"2\",\n    \"5\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "checker-optimized",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:03:06.905855+00:00",
+      "completed": "2026-10-23T04:03:48.373523+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"boundary_rejections\": [\n    \"boolean scalar\",\n    \"floating scalar\",\n    \"unchecked component\",\n    \"zero inverse\",\n    \"zero ray\",\n    \"zero effect\",\n    \"zero state\",\n    \"extra effect coordinate\",\n    \"extra state coordinate\",\n    \"extra ray coordinate\",\n    \"missing ray coordinate\",\n    \"mutable vector\",\n    \"boolean coordinate\",\n    \"floating coordinate\",\n    \"boolean scale\"\n  ],\n  \"countermodel_probabilities\": [\n    \"9/10\",\n    \"1/10\"\n  ],\n  \"grid\": {\n    \"ordered_pairs\": 6400,\n    \"orthogonal_pairs\": 512,\n    \"vectors\": 80\n  },\n  \"imaginary_probe_probabilities\": [\n    \"1\",\n    \"0\"\n  ],\n  \"mutations\": [\n    {\n      \"mutation\": \"drop probability denominator\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"drop conjugation in inner product\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"remove conditional branch: conjugate every vector\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"replace dynamics by identity\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"stretch inverse without reciprocal\",\n      \"outcome\": \"killed\"\n    }\n  ],\n  \"scope\": \"symbolic identities, exact witnesses, finite grid; no general claim from sampling\",\n  \"status\": \"PASS\",\n  \"stretch_probabilities\": [\n    \"1/2\",\n    \"1/5\"\n  ],\n  \"symbolic_identities\": [\n    \"norm_multiplicative\",\n    \"orthogonal_partner\",\n    \"real_probe\",\n    \"imaginary_probe\",\n    \"gram_calibration\"\n  ],\n  \"witness_inner_products\": [\n    \"3\",\n    \"-1\"\n  ],\n  \"witness_norms\": [\n    \"2\",\n    \"5\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "checker-mypy",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "checks/independent/l1-imp-transition-probability-law.py"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:03:48.375046+00:00",
+      "completed": "2026-10-23T04:04:11.116166+00:00",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    {
+      "label": "campaign-pytest",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "--basetemp=lean4/b/review-pytest-temp"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:38:38.036795+00:00",
+      "completed": "2026-10-23T04:40:17.895225+00:00",
+      "exit_code": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.12.10, pytest-8.3.5, pluggy-1.7.0\nrootdir: C:\\gw\\tp205\nconfigfile: pyproject.toml\ncollected 24 items\n\ndag\\test_tensor_countermodel_receipt.py ..                               [  8%]\ndag\\test_tensor_measurement_receipt.py ..                                [ 16%]\ndag\\test_application_branches.py ........                                [ 50%]\ndag\\test_frontier_branches.py ........                                   [ 83%]\ndag\\test_genesis_to_higher.py ....                                       [100%]\n\n============================== warnings summary ===============================\nlean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n================== 24 passed, 1 warning in 90.48s (0:01:30) ===================\n",
+      "stderr": ""
+    },
+    {
+      "label": "dag-validator",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:38:33.887849+00:00",
+      "completed": "2026-10-23T04:38:38.035177+00:00",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "label": "invariants",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:38:31.130123+00:00",
+      "completed": "2026-10-23T04:38:33.886315+00:00",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "label": "readme-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:34:12.220029+00:00",
+      "completed": "2026-10-23T04:46:56.969273+00:00",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "label": "overclaim",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:40:17.899722+00:00",
+      "completed": "2026-10-23T04:42:07.496575+00:00",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 3924d378ff1d); HIGH=0 MEDIUM=0 LOW=6\n",
+      "stderr": ""
+    },
+    {
+      "label": "build_evidence-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:37:08.699923+00:00",
+      "completed": "2026-10-23T04:38:31.127931+00:00",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "label": "build_results_audit_table-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "papers/core/tools/build_results_audit_table.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:36:03.188315+00:00",
+      "completed": "2026-10-23T04:36:04.067583+00:00",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "label": "build_status-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:36:04.068949+00:00",
+      "completed": "2026-10-23T04:37:08.697400+00:00",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    {
+      "label": "render_dag_views-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:35:59.751065+00:00",
+      "completed": "2026-10-23T04:36:02.317578+00:00",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "label": "repin_tensor_receipts-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:36:02.319580+00:00",
+      "completed": "2026-10-23T04:36:03.188315+00:00",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "label": "sync_application_branches-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:35:31.801196+00:00",
+      "completed": "2026-10-23T04:35:33.535299+00:00",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "label": "sync_frontier_branches-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:35:55.543533+00:00",
+      "completed": "2026-10-23T04:35:58.110989+00:00",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "label": "sync_genesis_to_higher-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:35:58.112517+00:00",
+      "completed": "2026-10-23T04:35:59.748508+00:00",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "label": "sync_pfp_results-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:35:27.098867+00:00",
+      "completed": "2026-10-23T04:35:28.622527+00:00",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "label": "sync_pregenesis_to_wdp-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:35:33.536296+00:00",
+      "completed": "2026-10-23T04:35:55.542006+00:00",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "label": "sync_unified_dag-check",
+      "command": [
+        "C:\\gw\\tp205\\lean4\\b\\check-python\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "cwd": "C:\\gw\\tp205",
+      "started": "2026-10-23T04:35:28.623527+00:00",
+      "completed": "2026-10-23T04:35:31.800193+00:00",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    }
+  ],
+  "kernel_audit": {
+    "passed": true,
+    "reports": {
+      "CampaignTransitionProbability.BornRule": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.born_rule": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.Nonvanishing": [
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.Orthogonality": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.BasisStatistics": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.NormPreserving": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.LinearLift": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.OrthogonalCalibration": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.NonzeroAnchor": [
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.ip_sub_left": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.ip_sub_right": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.calibration_norms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.calibration_similarity": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.linear_calibration_tpPreserving": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.orthogonality_calibration": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.linear_calibration_wigner": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.Balanced": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.balanced_star": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_involutive": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_reversible": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_norm": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_nonvanishing": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_coordinate_norm": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_basis": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.normSq_neg_local": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.balanced_of_orthogonal": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_orth_forward": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_orthogonality": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.witnessA": [
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.witnessB": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.witnessA_ne": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.witnessB_ne": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.countermodel_probabilities": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_not_tpPreserving": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.SameRay": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.sameRay_refl": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.sameRay_symm": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.sameRay_trans": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.NonzeroVec": [
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.raySetoid": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.Ray": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.RayCompatible": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.rayMap": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.involutiveRayEquiv": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.balanced_smul": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_rayCompatible": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.countermodelRayEquiv": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.reportSwap": [
+        "propext"
+      ],
+      "CampaignTransitionProbability.ReportSwapCovariant": [
+        "propext"
+      ],
+      "CampaignTransitionProbability.balanced_reportSwap": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_reportSwap": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.insufficient_operational_package": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.ProbeStatistics": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.TomographicStatistics": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.tomography_sameRay": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.tomography_tpPreserving": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.tomography_identity": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.stretch": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.SubspaceLatticeLift": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.stretchLattice": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.stretch_lattice": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.linearRayEquiv": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.stretchRayEquiv": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.stretch_probabilities": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.stretch_not_tpPreserving": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.RealProbeStatistics": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_realProbes": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.imaginary_probe_probabilities": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_not_linearLift": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.conditionalConjugation_not_tomographic": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.identity_calibration": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.identity_linearLift": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.identity_nonvanishing": [
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.stretch_linearLift": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.insufficient_lattice_package": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.oneSector_sameRay": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.oneSector_tpPreserving": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignTransitionProbability.Vec": [],
+      "CampaignTransitionProbability.Reversible": []
+    },
+    "local_import_source_sha256": {
+      "lean4/CampaignTransitionProbability.lean": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
+      "lean4/FiniteWignerSimilarity.lean": "d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37",
+      "lean4/FiniteWignerTheorem.lean": "b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292",
+      "lean4/FiniteWignerKernel.lean": "29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab",
+      "lean4/BornHermitianCarrier.lean": "ce59c8f922be95483f8e6c6319d92dfcca15244f23067af62a2564419e388336",
+      "lean4/BornEffectValuation.lean": "667f6f7a73ca630a4c395a424a68398c9daebfba404d5284abe56dfdbe2955cc",
+      "lean4/BornGaussRat.lean": "b3cd5a1f31afc2f074455cc29337108b57366739b707668448f2328d16c2c056",
+      "lean4/BornHermitianPsdDecomposition.lean": "35fe7beaeab4e29cc2c0b710a911d403aa1a573db5634e9c92af9618ce16eb32",
+      "lean4/SectorFormHermitian.lean": "78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc"
+    },
+    "kernel_output": "'CampaignTransitionProbability.Vec' does not depend on any axioms\n'CampaignTransitionProbability.BornRule' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.born_rule' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.Nonvanishing' depends on axioms: [propext, Quot.sound]\n'CampaignTransitionProbability.Reversible' does not depend on any axioms\n'CampaignTransitionProbability.Orthogonality' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.BasisStatistics' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.NormPreserving' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.LinearLift' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.OrthogonalCalibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.NonzeroAnchor' depends on axioms: [propext, Quot.sound]\n'CampaignTransitionProbability.ip_sub_left' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.ip_sub_right' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.calibration_norms' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.calibration_similarity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.linear_calibration_tpPreserving' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.orthogonality_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.linear_calibration_wigner' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.Balanced' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.balanced_star' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_involutive' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_reversible' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_norm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_nonvanishing' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_coordinate_norm' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_basis' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.normSq_neg_local' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.balanced_of_orthogonal' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_orth_forward' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_orthogonality' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.witnessA' depends on axioms: [propext, Quot.sound]\n'CampaignTransitionProbability.witnessB' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.witnessA_ne' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.witnessB_ne' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.countermodel_probabilities' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_not_tpPreserving' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.SameRay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.sameRay_refl' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.sameRay_symm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.sameRay_trans' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.NonzeroVec' depends on axioms: [propext, Quot.sound]\n'CampaignTransitionProbability.raySetoid' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.Ray' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.RayCompatible' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.rayMap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.involutiveRayEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.balanced_smul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_rayCompatible' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.countermodelRayEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.reportSwap' depends on axioms: [propext]\n'CampaignTransitionProbability.ReportSwapCovariant' depends on axioms: [propext]\n'CampaignTransitionProbability.balanced_reportSwap' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_reportSwap' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.insufficient_operational_package' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.ProbeStatistics' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.TomographicStatistics' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.tomography_sameRay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.tomography_tpPreserving' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.tomography_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.stretch' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.SubspaceLatticeLift' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.stretchLattice' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.stretch_lattice' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.linearRayEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.stretchRayEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.stretch_probabilities' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.stretch_not_tpPreserving' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.RealProbeStatistics' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_realProbes' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.imaginary_probe_probabilities' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_not_linearLift' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.conditionalConjugation_not_tomographic' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTransitionProbability.identity_calibration' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.identity_linearLift' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.identity_nonvanishing' depends on axioms: [propext, Quot.sound]\n'CampaignTransitionProbability.stretch_linearLift' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.insufficient_lattice_package' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.oneSector_sameRay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTransitionProbability.oneSector_tpPreserving' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  "limits": [
+    "Fresh AI-assisted review, not human approval.",
+    "No derivation from primitive difference and no change to IMPORTED_ASSUMPTION.",
+    "The entire default Lean library was not built; the target and local import closure were built.",
+    "Historical whole-tree contract defects are not claimed repaired."
+  ],
+  "support_file_exception": "User explicitly authorized declarative build-file exceptions on 2026-10-23; grade D minimum still applies."
+}

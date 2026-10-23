@@ -1,0 +1,14 @@
+# CodeQL configuration for the advanced setup in .github/workflows/codeql.yml.
+#
+# Ignored paths are archives and sealed records, not maintained code:
+#   atlas/        byte-identical source texts imported with provenance (atlas/PROVENANCE.json); editing them would break
+#                 the recorded hashes, so findings there are fixed upstream and re-imported
+#   sources/      the same, for individually imported source files
+#   dag/results/  sealed run records and user submissions kept as evidence, including deliberately broken attempts
+name: tfqm-codeql
+paths-ignore:
+  - atlas/**
+  - sources/**
+  - dag/results/**
+  - dag/sealed_runs/**
+  - sealed_runs/**

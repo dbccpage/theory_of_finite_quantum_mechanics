@@ -1,0 +1,24 @@
+[project]
+name = "coda"
+version = "2.0.1"
+
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+pythonpath = ["code"]
+addopts = "-ra"
+
+[tool.mypy]
+python_version = "3.12"
+mypy_path = ["code"]
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = [
+    "matplotlib.*",
+    "nbclient.*",
+    "nbformat.*",
+    "jupyter_client.*",
+]
+ignore_missing_imports = true
+

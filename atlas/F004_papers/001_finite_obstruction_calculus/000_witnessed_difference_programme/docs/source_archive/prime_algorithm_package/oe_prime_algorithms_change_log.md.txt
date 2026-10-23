@@ -1,0 +1,46 @@
+# Change Log: 000_oe_prime_algorithms.md
+
+All notable updates for OE-000 Algorithm Prime Triad are documented in this file.
+
+---
+
+## [Unreleased repository maintenance] - 2026-10-02
+
+- Regenerated the stale deposit manifest, ZIP and external checksums against
+  the current package. Six files in the previous archive differed from the
+  corresponding committed files.
+- Excluded the linter cache from deposit discovery, matching the existing
+  exclusions for other local build and test caches.
+- Added default verification of ZIP membership and payload bytes, so an outer
+  archive hash cannot admit an outdated payload.
+- Added explicit `--extracted` verification for unpacked deposits using the
+  internal manifest, without requiring recursively packaged external controls.
+- Restricted the coverage gate to `oe_prime_algorithms`, excluding test code.
+- Required a passing unchanged suite and actual JUnit-reported test failures
+  for mutation kills; runner and collection errors abort. Updated the stale
+  carrier-validation anchor and added regression coverage for the tooling.
+- Corrected the introductory notebook's stale assertion: a step without
+  diagnostics returns `STEP_EXECUTED`. Added fresh CPython execution of both
+  notebooks' code cells to the regression suite.
+- Recorded the fresh validation scope in
+  [deposit validation](docs/deposit_validation_2026_10_02.md).
+
+---
+
+## [1.0.0] - 2026-09-26
+
+- **Zenodo Republication & Mathematical Rigor Overhaul:**
+  - **L1 Simplex Primal-Dual Gauge Minimization:** Replaced trivial objective return with exact rational simplex solver computing true quotient potential $\Phi_1 = \|[h]\|_{Q1}$ and certifying zero-duality-gap dual witness $z \in [-1, 1]^{|E|}$ with $d_0^* z = 0$.
+  - **Discrete Hodge-Helmholtz Decomposition:** Implemented exact rational orthogonal decomposition $h = d_0 \phi + h_{\text{harm}} + d_1^* \psi$ with non-uniform edge weight support and exact harmonic adjoint checks.
+  - **Coupled Closed Repair:** Implemented coupled linear system solve $(B_1 B_1^T)\psi = B_1 h$ ensuring curl vanishes identically ($d_1 h_{\text{closed}} = 0$) across coupled adjacent faces.
+  - **Betti Homology Ranks:** Replaced heuristic cell-count estimates with exact row reduction over $\mathbb{Q}$ for $\partial_1$ and $\partial_2$, returning true Betti numbers $(b_0, b_1, b_2)$ for spheres, tori, and wedges.
+  - **Monotone Quotient Descent:** `monotone_l1_cycle_step` evaluates strict descent on exact quotient potential $\Phi_1$, rejecting cycles that reduce raw cochain norm while inflating quotient obstruction.
+  - **Tamper-Evident Tape Commitment:** SHA-256 Merkle chain hashes the canonical RFC 8785 JSON representation of the `outcome` payload, detecting post-hoc status mutation.
+  - **Manuscript Formatting & Scoped Claims:** Wrapped wide LaTeX display boxes and code blocks to eliminate PDF clipping; synchronized release version to 1.0.0, date to 2026-09-26, and claim ledger to 21 claims with 100% claim-ID bijection.
+
+---
+
+## [Historical Working Draft v2.0.0] - 2026-07-30
+
+*(Historical pre-release development draft superseded by Release 1.0.0)*
+- Unified stem monograph draft combining Prime -1, 000, 001, 002, and CODA $C^n$ ascent.
