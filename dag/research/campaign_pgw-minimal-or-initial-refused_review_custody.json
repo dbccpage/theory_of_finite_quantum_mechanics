@@ -55,5 +55,20 @@
     "stdout": "{\n  \"prompts\": 892,\n  \"collections\": 892,\n  \"errors\": [\n    \"LQG-PR-ALLOWED-REGION-TARGET: legacy fabricated contract\"\n  ],\n  \"claim\": \"Structural and local-source custody checks only; no operad or target theorem acceptance.\"\n}\n",
     "stderr": ""
   },
-  "limit": "Generator correctly reports manually reviewed collections as executed_stale; it must preserve them instead of regenerating empty slots."
+  "limit": "Generator correctly reports manually reviewed collections as executed_stale; it must preserve them instead of regenerating empty slots.",
+  "full_writer_replay": {
+    "command": [
+      "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/pfp/generate_prompts.py",
+      "--write",
+      "--all-missing"
+    ],
+    "exit_code": 0,
+    "stdout": "refusing to rewrite executed prompts: TFQ-0084, GTH-LANG-REFLECT, GTH-LANG-INTERPRET, GTH-LANG-IMPORT\n{\"created\": 0, \"rewritten\": 0, \"unchanged\": 711}\n",
+    "stderr": "",
+    "tracked_files_changed": []
+  }
 }
