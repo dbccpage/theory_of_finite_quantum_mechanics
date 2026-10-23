@@ -326,7 +326,7 @@ def main() -> int:
         bad = [f for f in prog_files if f["repo_path"] in codes and codes[f["repo_path"]] != 0]
         missing_rec = [f for f in prog_files if f["repo_path"] not in codes]
         roots = (repo / "lean4/lakefile.lean").read_text(encoding="utf-8")
-        in_lib = [f for f in prog_files if "`" + f["module"] in roots]
+        in_lib = [f for f in prog_files if re.search("`" + re.escape(f["module"]) + r"(?![\w.])", roots)]
         w(f"{len(prog_files)} files were imported; {len(ok)} built with exit code 0 and {len(in_lib)} of them are roots of `ImportedAtlas`; "
           f"{len(bad)} did not build and are kept out of the library; {len(missing_rec)} have no build record.")
         w("")
