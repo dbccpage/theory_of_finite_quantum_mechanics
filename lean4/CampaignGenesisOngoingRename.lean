@@ -509,3 +509,8 @@ end Seed.Second
 #print axioms Seed.Second.ReachNoRemove.pair_mem
 #print axioms Seed.Second.ReachNoRemove.obstruction_persists
 #print axioms Seed.Second.obstruction_persists_reach
+
+#print axioms Seed.Second.Step3.rename
+#print axioms Seed.Second.Reach3.rename
+#print axioms Seed.Second.fewest_changes3_every_writing_A
+#print axioms Seed.Second.fewest_changes3_every_writing_B
