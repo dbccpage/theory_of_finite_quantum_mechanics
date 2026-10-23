@@ -4,6 +4,7 @@ import json
 import re
 import sys
 import hashlib
+from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'dag'))
@@ -11,16 +12,19 @@ import sync_application_branches as sync
 import validate_derivation_dag as validator
 
 
-def fragment():
-    return json.loads((ROOT / 'dag/fragments/application_branches.json').read_text(encoding='utf-8'))
+def fragment() -> dict[str, Any]:
+    value = json.loads((ROOT / 'dag/fragments/application_branches.json').read_text(encoding='utf-8'))
+    if not isinstance(value, dict):
+        raise ValueError('application fragment must be an object')
+    return value
 
 
-def test_generated_indices_and_dag_match_fragment():
+def test_generated_indices_and_dag_match_fragment() -> None:
     for path, expected in sync.generated_files(ROOT).items():
         assert path.read_bytes() == expected, path
 
 
-def test_branches_have_resolved_papers_parents_and_local_source_symbols():
+def test_branches_have_resolved_papers_parents_and_local_source_symbols() -> None:
     f = fragment()
     records = [json.loads(line) for line in (ROOT / 'dag/theory_of_finite_qm.jsonl').read_text(encoding='utf-8').splitlines()]
     ids = {r['id'] for r in records}
@@ -28,10 +32,16 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols():
     unified = json.loads((ROOT / 'dag/fragments/unified_dag.json').read_text(encoding='utf-8'))
     frontier = json.loads((ROOT / 'dag/fragments/frontier_branches.json').read_text(encoding='utf-8'))
     gth = json.loads((ROOT / 'dag/fragments/genesis_to_higher.json').read_text(encoding='utf-8'))
+    ops = json.loads((ROOT / 'dag/fragments/foc035_observer_presheaf.json').read_text(encoding='utf-8'))
     assert len(ids) == len(records) == (397 + len(unified['node_records']) + len(pregenesis_to_wdp['records'])
-                                        + len(f["records"]) + len(frontier['records']) + len(gth['records']))
+                                        + len(f["records"]) + len(frontier['records']) + len(gth['records'])
+                                        + len(ops['records']))
     papers = list((ROOT / 'dag/derivations').rglob('tfq_*.md'))
-    paper_ids = ['TFQ-' + re.match(r'tfq_(\d{4})_', p.name)[1] for p in papers]
+    paper_ids: list[str] = []
+    for paper in papers:
+        match = re.match(r'tfq_(\d{4})_', paper.name)
+        assert match is not None, paper
+        paper_ids.append('TFQ-' + match[1])
     assert len(paper_ids) == len(set(paper_ids)) == len(records)
     assert set(paper_ids) == ids
     nodes = {n['id']: n for n in f['nodes']}
@@ -53,7 +63,7 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols():
     assert {r['stage'] for r in f['records']} == set(f['stages'])
 
 
-def test_application_routes_connect_to_existing_dag_without_cycles():
+def test_application_routes_connect_to_existing_dag_without_cycles() -> None:
     graph = json.loads((ROOT / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
     assert validator.check(graph, None) == []
     f = fragment()
@@ -67,7 +77,7 @@ def test_application_routes_connect_to_existing_dag_without_cycles():
     assert any('cycle among nodes' in error for error in validator.check(graph, None))
 
 
-def test_application_paper_and_index_links_resolve():
+def test_application_paper_and_index_links_resolve() -> None:
     files = [ROOT / n['source'][0] for n in fragment()['nodes']]
     index = ROOT / 'dag/derivations/README.md'
     # Earlier index text is outside this addition's custody.
@@ -80,7 +90,7 @@ def test_application_paper_and_index_links_resolve():
             assert (paper.parent / reference.split('#')[0]).is_file(), (paper, reference)
 
 
-def test_nf002_count_is_current_and_global_obligations_stay_open():
+def test_nf002_count_is_current_and_global_obligations_stay_open() -> None:
     graph = json.loads((ROOT / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
     nodes = {n['id']: n for n in graph['nodes']}
     nf = nodes['IMPL-FSP-SWITCHING-NORMAL-FORM-NF002']
@@ -88,15 +98,15 @@ def test_nf002_count_is_current_and_global_obligations_stay_open():
     assert 'normalForms_length' in nf['statement']
     assert 'one residual' not in nf['statement'] and 'draft PR' not in nf['statement']
     for name in ('MUB6-GLOBAL-OBLIGATIONS', 'FSP-EFFICIENT-SAMPLING-OBLIGATIONS',
-                 'DFM-HIERARCHICAL-BOREL', 'DFM-CONTINUUM-INTERFACE'):
+                 'DFM-CONTINUUM-INTERFACE'):
         assert nodes[name]['status'] == 'OPEN'
-    for name in ('DFM-GENERAL-GRAPH-DRESSING', 'DFM-TREE-CHANGE'):
+    for name in ('DFM-GENERAL-GRAPH-DRESSING', 'DFM-TREE-CHANGE', 'DFM-HIERARCHICAL-BOREL'):
         assert nodes[name]['status'] == 'PROVED_LEAN'
     lean = (ROOT / 'lean4/FiniteGraphDressing.lean').read_text(encoding='utf-8')
     assert not re.search(r'\b(sorry|admit|axiom)\b', lean)
 
 
-def test_nf002_port_preserves_sealed_source_except_conditional_lemma_spellings():
+def test_nf002_port_preserves_sealed_source_except_conditional_lemma_spellings() -> None:
     f = fragment()
     raw = (ROOT / f['nf002_source']).read_bytes()
     assert hashlib.sha256(raw).hexdigest() == f['nf002_sealed_sha256']
@@ -117,7 +127,7 @@ def test_nf002_port_preserves_sealed_source_except_conditional_lemma_spellings()
     assert port == expected
 
 
-def test_tensor_proof_boundaries_and_conditional_gap():
+def test_tensor_proof_boundaries_and_conditional_gap() -> None:
     graph = json.loads((ROOT / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
     nodes = {n['id']: n for n in graph['nodes']}
     assert nodes['FQ-GAP-TENSOR-UNIQUENESS']['status'] == 'CONDITIONAL'
@@ -137,7 +147,7 @@ def test_tensor_proof_boundaries_and_conditional_gap():
     assert 'variable {n : Type*} [Fintype n]' in lean
 
 
-def test_tensor_lean_replay_matches_sources_and_admission_policy():
+def test_tensor_lean_replay_matches_sources_and_admission_policy() -> None:
     receipt = json.loads((ROOT / 'dag/research/tensor_formalization_validation.json').read_text(encoding='utf-8'))
     replay = receipt['lean_replay']
     modules = {'TensorConeReconstruction', 'TensorTomography', 'TensorCoordinates',

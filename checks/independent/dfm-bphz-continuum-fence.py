@@ -24,7 +24,7 @@ def compatible(edges: dict[str, frozenset[int]]) -> Callable[[str, str], bool]:
 
 def forests(names: tuple[str, ...], edges: dict[str, frozenset[int]]) -> list[tuple[str, ...]]:
     ok = compatible(edges)
-    found = []
+    found: list[tuple[str, ...]] = []
     for subset in powerset(names):
         if all(ok(subset[i], subset[j]) for i in range(len(subset)) for j in range(i + 1, len(subset))):
             found.append(subset)
@@ -62,7 +62,14 @@ def N(x: Fraction | int, y: Fraction | int) -> Fraction:
 
 
 def six(x: Fraction | int, y: Fraction | int) -> Fraction:
-    return N(x, y) - N(0, y) - N(x, 0) - N(0, 0) + N(0, 0) + N(0, 0)
+    # {L,G} and {R,G} are the two nested forests. Both evaluate at (0, 0).
+    empty = N(x, y)
+    only_l = N(0, y)
+    only_r = N(x, 0)
+    only_g = N(0, 0)
+    nested_lg = N(0, 0)
+    nested_rg = N(0, 0)
+    return empty - only_l - only_r - only_g + nested_lg + nested_rg
 
 
 def inclusion(x: Fraction | int, y: Fraction | int) -> Fraction:

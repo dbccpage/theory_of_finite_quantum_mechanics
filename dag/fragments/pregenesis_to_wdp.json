@@ -2632,11 +2632,51 @@
       "summary": "Question 10 asks whether the final process is minimal or initial among a defined class of finite processes satisfying the same challenges. The sealed answer is that the claim is refused and tagged unresolved: no such initiality or minimality property was established. What is established is narrower: determinism of the artifacts across the exercised runs and platforms is a finite computation (byte-identical artifacts are repeated-run agreement, not an engine theorem), completeness of enumerations within declared bounds is a bounded theorem under its ledger conditions, and the per-stage minimality and uniqueness results are theorems with their stated scopes. An earlier wording, what is proved: determinism of the engine, was corrected on 2026-09-08.",
       "obligation": "Refuse any minimality or initiality claim for the whole process, and keep artifact determinism, bounded enumeration completeness and per-stage minimality under their own tags.",
       "imports": [],
-      "fence": "The later Derivation/Initiality.lean establishes minimality only relative to a declared 64-member constitution class and probe battery; that supplementary result does not answer Question 10 for the sealed process.",
+      "fence": "An explicit clock-closed observed-process class now has a proved initiality obstruction, including the actual source-regime supply self-loop, and a reachable/reduced finite-model minimum-state criterion. These supplementary results do not certify the full Alpha engine, its class membership, or minimum program/declaration cost; the historical refusal remains accurate.",
       "witnesses": {
         "lean": [
           {
             "absent": "no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.all_words_agree"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.no_initial_in_clock_closed_class"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.no_clock_hom_of_self_loop"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.source_run_matches"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.source_supply_self_loop"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.all_words_minimum_size"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisProcessComparison.lean",
+            "symbol": "CampaignGenesisProcessComparison.nonminimal_adequate_process"
           }
         ],
         "rust": [
@@ -2647,6 +2687,10 @@
         "python": [
           {
             "absent": "no Python check; artifact determinism is repeated-run byte agreement, not a program"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-minimal-or-initial-refused.py"
           }
         ]
       },
@@ -2668,6 +2712,12 @@
           "path": "lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean",
           "lines": "49-52",
           "quote": "No claim is made that the kernel is minimal in any wider, undeclared class"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-minimal-or-initial-refused.md",
+          "lines": "1",
+          "quote": "Status: AI-drafted, awaiting human review."
         }
       ],
       "coda_atlas_ids": [],
@@ -6484,11 +6534,61 @@
       "summary": "No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successor research S2): a demand is a target pair (i, j) with 0 ≤ i < j < n_data supplied by the host together with the measure and the declared bounds, nothing in the harness chooses a next demand, and the collapsed pairs left after an admission are returned as observations, not demands (leftover_as_demand refuses). The sealed derivation's pair-separation closure policy is declared metatheory, not a harness function, and the sealed result is that no object-language endogenous demand generator was derived.",
       "obligation": "Derive an object-language rule that generates the next unresolved requirement from admitted structure without reading token glyphs, supplying a fresh datum, importing a new goal or assuming the continuation, or keep every demand host-supplied and recorded.",
       "imports": [],
-      "fence": "Open; the reflective composite's generation_never_dries is a generator in a supplementary carrier, not a harness demand generator, and the closure policy terminates on a fixed datum set.",
+      "fence": "A declared policy and object-language SEEK extension now computes fresh targets from source contexts and records source impose events. This is a narrowed extension, not a derivation of the policy from frozen observations or a refinement of Alpha search/licensing. Requests do not satisfy demands; unbounded continuation remains open.",
       "witnesses": {
         "lean": [
           {
             "absent": "no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.mem_contexts"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.collapseTest_correct"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.mem_agenda"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.next_sound"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.next_none_iff"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.seek_is_recorded_source_step"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.instruction_records_demand"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.no_host_target_in_program"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.policy_is_not_forced"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignGenesisDemandPolicy.lean",
+            "symbol": "CampaignGenesisDemandPolicy.fixed_data_saturates"
           }
         ],
         "rust": [
@@ -6503,6 +6603,10 @@
             "root": "github19l",
             "path": "research/alpha_engine/harness.py",
             "symbol": "leftover_as_demand"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-endogenous-demand-ob1.py"
           }
         ]
       },
@@ -6524,6 +6628,12 @@
           "path": "docs/ALPHA_HANDOFF.md",
           "lines": "78-88",
           "quote": "nothing in the harness chooses a next demand, and a consumer must not expect it."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-endogenous-demand-ob1.md",
+          "quote": "Status: AI-drafted, awaiting human review.",
+          "lines": "1"
         }
       ],
       "coda_atlas_ids": [],

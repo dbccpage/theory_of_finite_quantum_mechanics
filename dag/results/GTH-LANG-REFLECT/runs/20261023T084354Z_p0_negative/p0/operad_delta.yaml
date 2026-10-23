@@ -1,0 +1,115 @@
+schema_id: omega.pfp.finite-qm.operad-delta.v1
+node_id: GTH-LANG-REFLECT
+stage_id: P0_MINE_OPERAD
+attempt_id: p0
+authority_effect: None
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: fail:quoteJudg_does_not_code_priced_sentences
+  outer_operation: quotation layer for the priced admission language
+  input_slot: priced_sentence
+  inner_operation: AdmitReflect.quoteJudg
+  colour_match: false
+  hypothesis_match: The route input is GTH-LANG-CORE. That node cites no Lean and states that the priced language has no syntax.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitReflect.lean
+    declaration: AdmitReflect.quoteJudg
+    line: 78
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.Judg
+    line: 34
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.Regime
+    line: 42
+  reason: quoteJudg sends AdmitCore.Judg to QJudg. Judg has constructors typed, admittedData, admittedForm,
+    admittedCut, and apart. Regime stores data, forms, and cuts. The AdmitCore header says rules, requirements,
+    readings L and F, impose, S(n), and MSS-N are not core constructors. That is not a code of a sentence of the
+    priced admission language. The declaration is not cited by this node and is not admitted as a generator.
+    AdmitCore is not a theorem of this node.
+- id: fail:qstep_sound_is_step_transport
+  outer_operation: soundness sentence for a represented fragment
+  input_slot: sentence_code
+  inner_operation: AdmitReflect.qstep_sound
+  colour_match: false
+  hypothesis_match: The header says soundness in this file is a round trip and transport of AdmitCore.Step, and that there is no truth predicate.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitReflect.lean
+    declaration: AdmitReflect.QStep
+    line: 131
+  - path: lean4/AdmitReflect.lean
+    declaration: AdmitReflect.qstep_sound
+    line: 134
+  - path: lean4/AdmitReflect.lean
+    declaration: AdmitReflect.unquote_quote_judg
+    line: 92
+  reason: QStep is defined as AdmitCore.Step of the unquoted regime and event. qstep_sound is the biconditional
+    of that transport with AdmitCore.Step. The comment says the relation is transport, not a truth predicate.
+    unquote_quote_judg is a round trip of AdmitCore.Judg. Neither states soundness for a represented fragment
+    of the priced admission language.
+- id: fail:quoted_token_not_data_stays_on_admitcore
+  outer_operation: soundness sentence for a represented fragment
+  input_slot: quoted_sentence
+  inner_operation: AdmitReflect.quoted_token_not_data
+  colour_match: false
+  hypothesis_match: The conclusion is a refused AdmitCore.Typed judgment, not a sentence about codes of the priced language.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitReflect.lean
+    declaration: AdmitReflect.quoted_token_not_data
+    line: 153
+  - path: lean4/AdmitReflect.lean
+    declaration: AdmitReflect.quoted_self_cut_refused
+    line: 143
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.self_cut_refused
+    line: 89
+  reason: quoted_token_not_data refuses AdmitCore.Typed of an unquoted token at kind dataK. quoted_self_cut_refused
+    refuses QStep of a self-cut by calling AdmitCore.self_cut_refused. Both stay inside the AdmitCore step and
+    typing relations. They are not a soundness sentence for a fragment of the priced language, and they are not
+    admitted as generators.
+- id: fail:genesis_language_has_no_quote
+  outer_operation: quotation layer for the priced admission language
+  input_slot: sentence_code
+  inner_operation: checks/independent/genesis_language.py::step
+  colour_match: false
+  hypothesis_match: The check reimplements Admit-core regime steps. It does not name codes of priced-language sentences.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: checks/independent/genesis_language.py
+    declaration: step
+    line: 19
+  - path: checks/independent/genesis_language.py
+    declaration: core_holds_apart
+    line: 57
+  reason: The module defines empty, step, holds_apart, holds_admitted_data, typed_form, and core_holds_apart.
+    None of those functions quotes a sentence. The check is not cited by this node.
+counterexamples:
+- id: cx:admit_reflect_is_not_the_priced_quotation_layer
+  class: wrong_carrier
+  claim_kind: generator
+  claim: AdmitReflect is the quotation layer this node says is undefined, QJudg names codes of sentences of the
+    priced admission language, qstep_sound is a soundness sentence for a represented fragment of that language,
+    and those declarations are theorems of GTH-LANG-REFLECT.
+  evidence: 'Header at lean4/AdmitReflect.lean:8-10. quoteJudg at line 78 consumes AdmitCore.Judg. qstep_sound at
+    lines 134-137 is an iff with AdmitCore.Step. The node lean list is empty. The route status is
+    GAP_NO_DERIVATION. The only route input is GTH-LANG-CORE, whose lean list is empty.'
+  confidence: exact
+  node_id: GTH-LANG-REFLECT
+open_obligations:
+- No generator admitted at P0. Do not invent a quotation layer or a reading bundle.
+- Route GTH-R-GTH-LANG-REFLECT stays GAP_NO_DERIVATION. Node status stays OPEN.
+- 'Next missing dependency: a syntax for the priced admission language. GTH-LANG-CORE does not define one, and its
+  route stays GAP_NO_DERIVATION.'
+- AdmitCore is not a theorem of this node.
+- AdmitReflect is not the missing quotation layer.
+- Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted.
+verified_numeric_claims: []
+verified_lemma_statements: []

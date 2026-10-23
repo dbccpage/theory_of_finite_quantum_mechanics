@@ -14,7 +14,7 @@
 On the diamond graph with one fixed tree, a pure-gauge B_2(Q) connection built from one rational vertex map is dressed to the identity on all 5 edges, and a connection with one chord multiplied by [[2,1],[0,3]] is dressed to the identity on tree edges and to a non-identity chord; stage-1 fields lie in N, stage-1 tree links are diagonal, and stage 2 reproduces the one-shot dressing.
 
 ### Governing Obligation
-The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.
+Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.
 
 ### Witness Audit
 The Python check uses one tree, one artificial and one substantial connection and does not evaluate any Bianchi or DGA curvature; the cited Lean theorem is the triangle Mat2 residual identity and says nothing about B_2(Q), N or T_2(Q).

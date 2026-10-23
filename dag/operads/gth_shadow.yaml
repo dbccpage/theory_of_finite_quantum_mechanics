@@ -52,27 +52,39 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     carrier: null
     coefficient_ring: null
     assumptions: []
     source_pins: []
     public_input: {}
+    note: Not FILLED. No carrier was admitted. The admission record is not a semi-simplicial set or a globular set.
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     operations: []
     composition_plan: []
+    note: Not FILLED. No face map, source map, or target map was admitted from the route.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     algebraic_relations: []
     rejection_predicates: []
     negative_control_plan: []
+    note: Not FILLED. The face identity and the globular equations were not admitted.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
+    mining_status: REVIEWED_ABSENT
     certificate_predicates: []
     anchors: []
     unpaid_imports: []
-stage_history: []
+    note: Not FILLED. The node cites no Lean declaration. GenesisHottShadow was not admitted.
+stage_history:
+- stage: P0_MINE_OPERAD
+  status: completed
+  result: reviewed_negative
+  attempt: p0
+  run: dag/results/GTH-SHADOW/runs/20261023T134642Z_p0_negative
+  operad_delta: dag/results/GTH-SHADOW/runs/20261023T134642Z_p0_negative/p0/operad_delta.yaml
+  authority_effect: None
+  slots_not_filled: true
 open_obligations:
 - No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
   premises; do not invent an operation.
@@ -80,4 +92,38 @@ open_obligations:
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
-excluded_relation_leads: []
+- P0 2026-10-23 reviewed negative. No generator admitted. Route GTH-R-GTH-SHADOW stays
+  GAP_NO_DERIVATION. The admission record does not supply face maps or source and target maps.
+excluded_relation_leads:
+- id: Seed.Fifteenth.reaching_does_not_admit
+  path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+  line: 38
+  reason: Equality of the reaching record with notAdmitted. Not a face map or a source or target map.
+- id: Seed.Fifteenth.reaching_ne_admitted
+  path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+  line: 43
+  reason: The two admission records differ. Not a semi-simplicial set or a globular set.
+- id: Seed.Fifteenth.admission_not_a_kind
+  path: lean4/Imported/GenesisOngoing/Fifteenth/Step.lean
+  line: 59
+  reason: The type is reaching = .notAdmitted. The docstring is not the type. Four kinds are not named.
+- id: GenesisHottShadow.shadowOf
+  path: lean4/GenesisHottShadow.lean
+  line: 68
+  reason: Copies five regime fields. No face map. The file does not import the admission gate.
+- id: GenesisHottShadow.FinSemiSimplicial1
+  path: lean4/GenesisHottShadow.lean
+  line: 231
+  reason: Degree at most 1, with no face identity required. Not a map from the admission record.
+- id: GenesisHottShadow.edge_regime_does_not_determine_semisimplicial1
+  path: lean4/GenesisHottShadow.lean
+  line: 295
+  reason: One declared edge regime has two unequal readings. Not a construction from the gate.
+- id: GenesisHottShadow.edge_regime_does_not_determine_globular1
+  path: lean4/GenesisHottShadow.lean
+  line: 364
+  reason: The same declared edge regime has two unequal globular readings. Not a construction from the gate.
+- id: AdmitCore.Regime
+  path: lean4/AdmitCore.lean
+  line: 42
+  reason: Stores data, forms, and cuts. Not an input of this route and not a theorem of this node.

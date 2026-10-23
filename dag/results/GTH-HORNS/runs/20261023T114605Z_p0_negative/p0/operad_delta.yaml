@@ -1,0 +1,180 @@
+schema_id: omega.pfp.finite-qm.operad-delta.v1
+node_id: GTH-HORNS
+stage_id: P0_MINE_OPERAD
+attempt_id: p0
+authority_effect: None
+add_or_refine_generators: []
+add_or_refine_relations: []
+checked_compositions: []
+failed_compositions:
+- id: fail:declared_inner_filler_is_not_the_route
+  outer_operation: filler of a finite object derived from Genesis admission
+  input_slot: GTH-TRUNC
+  inner_operation: GenesisHottHorns.inner_horn_filled
+  colour_match: false
+  hypothesis_match: Route GTH-R-GTH-HORNS is GAP_NO_DERIVATION. The node lean list is empty.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.inner_horn_filled
+    line: 165
+  - path: lean4/GenesisHottHorns.lean
+    declaration: module header
+    line: 23
+  - path: dag/derivation_dag.json
+    declaration: GTH-R-GTH-HORNS
+    line: 39102
+  reason: inner_horn_filled says there is a triangle that fills innerFilled. innerFilled at lines 160-163
+    is the edge pair d0 = e12 and d2 = e01. The header at lines 21-23 says the third vertex, the extra
+    edges, and the unique 2-simplex are declared data, not derived from the cut, and that every horn
+    lemma is about this finite object only. The node does not cite the file. The declaration is not
+    admitted as a generator.
+- id: fail:declared_refusal_is_not_the_node_counterexample
+  outer_operation: counterexample that a Genesis-derived finite object misses a filler
+  input_slot: counterexample
+  inner_operation: GenesisHottHorns.inner_horn_refused
+  colour_match: false
+  hypothesis_match: The node says no counterexample is exhibited because no such finite object is constructed.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.inner_horn_refused
+    line: 173
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.innerRefused
+    line: 168
+  - path: dag/derivation_dag.json
+    declaration: GTH-HORNS
+    line: 27284
+  reason: inner_horn_refused says there is no triangle that fills innerRefused. innerRefused at lines
+    168-171 is the edge pair d0 = e01 and d2 = e20. That refusal is about the declared object in the
+    file. The node statement says no counterexample is exhibited because no finite object derived from
+    Genesis admission is constructed. The node does not cite the file. The refusal is not admitted.
+- id: fail:not_every_inner_horn_is_not_the_kan_question
+  outer_operation: Kan condition or quasicategory condition for a Genesis-derived object
+  input_slot: every_horn
+  inner_operation: GenesisHottHorns.not_all_inner_2_horns_fill
+  colour_match: false
+  hypothesis_match: The node names Joyal's inner-horn condition. This theorem is about one declared carrier.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.not_all_inner_2_horns_fill
+    line: 206
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.InnerHorn
+    line: 133
+  - path: lean4/GenesisHottHorns.lean
+    declaration: module header
+    line: 34
+  reason: not_all_inner_2_horns_fill says it is not the case that every InnerHorn of this file has a
+    triangle filler. InnerHorn at lines 133-136 is a pair of edges with tgt d2 = src d0. That is not
+    Lambda^k[n] for a general n and k, and it is not a statement about an object derived from
+    GTH-TRUNC. The header at line 34 says Mathlib's SSet.horn is not imported. The theorem is not admitted.
+- id: fail:one_outer_filler_is_not_every_horn
+  outer_operation: filler of every outer horn of a Genesis-derived object
+  input_slot: outer_horn
+  inner_operation: GenesisHottHorns.outer_horn_k0_filled
+  colour_match: false
+  hypothesis_match: The node leaves outer horns open. These declarations are about one declared object.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.outer_horn_k0_filled
+    line: 184
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.not_all_outer_k0_horns_fill
+    line: 211
+  - path: lean4/GenesisHottHorns.lean
+    declaration: module header
+    line: 23
+  reason: outer_horn_k0_filled says one declared OuterHornK0 has a triangle filler. not_all_outer_k0_horns_fill
+    says not every OuterHornK0 of this file has a filler. The header says every horn lemma is about this
+    finite object only. The node does not cite either declaration. Neither is admitted.
+- id: fail:parent_shadow_is_not_constructed
+  outer_operation: horn fillers of a finite shadow
+  input_slot: GTH-TRUNC
+  inner_operation: GTH-TRUNC
+  colour_match: false
+  hypothesis_match: The route input is GTH-TRUNC. That node is OPEN and its own route is GAP_NO_DERIVATION.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: dag/derivation_dag.json
+    declaration: GTH-TRUNC
+    line: 27262
+  - path: dag/derivation_dag.json
+    declaration: GTH-R-GTH-TRUNC
+    line: 39088
+  - path: dag/derivation_dag.json
+    declaration: GTH-HORNS
+    line: 27294
+  reason: GTH-TRUNC has status OPEN at line 27264 and lean [] at line 27271. Its statement says none of
+    the quotients or presentations is constructed, because no shadow is constructed from the admission
+    gate. Route GTH-R-GTH-TRUNC has status GAP_NO_DERIVATION at line 39093. There is no constructed
+    shadow of which a horn filler could be shown. The parent is not a generator of this node.
+- id: fail:unique_faces_are_not_a_filler_theorem
+  outer_operation: uniqueness of horn fillers for this node
+  input_slot: filler_uniqueness
+  inner_operation: GenesisHottHorns.unique_inner_filler
+  colour_match: false
+  hypothesis_match: The node does not claim uniqueness of fillers. This theorem is about one triangle.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.unique_inner_filler
+    line: 300
+  - path: lean4/GenesisHottHorns.lean
+    declaration: GenesisHottHorns.Tri
+    line: 62
+  - path: dag/derivation_dag.json
+    declaration: GTH-HORNS
+    line: 27294
+  reason: unique_inner_filler at lines 300-302 says that if the faces of t012 are d0 and d2, then
+    d0 = e12 and d2 = e01. Tri has the single constructor t012 at line 63. That is a fact about the
+    one declared triangle. It does not say that every horn of a Genesis-derived object has a unique
+    filler. It is not admitted.
+- id: fail:admitcore_is_not_this_node
+  outer_operation: horn filler derived from Genesis admission
+  input_slot: admission
+  inner_operation: AdmitCore.Regime
+  colour_match: false
+  hypothesis_match: AdmitCore is not an input of GTH-R-GTH-HORNS. The node lean list is empty.
+  licensing_relations: []
+  evidence_status: excluded_not_a_generator
+  source_pins:
+  - path: lean4/AdmitCore.lean
+    declaration: AdmitCore.Regime
+    line: 42
+  - path: lean4/AdmitCore.lean
+    declaration: module header
+    line: 6
+  - path: dag/derivation_dag.json
+    declaration: GTH-R-GTH-HORNS
+    line: 39097
+  reason: AdmitCore.Regime stores data, forms, and cuts. Its header describes a regime-calculus fragment,
+    not a horn of a finite shadow. The route input is GTH-TRUNC. AdmitCore is not a theorem of this node.
+counterexamples:
+- id: cx:declared_horn_file_is_not_the_node_theorem
+  class: wrong_carrier
+  claim_kind: generator
+  claim: GenesisHottHorns.inner_horn_filled is a filler exhibited for GTH-HORNS, and AdmitCore supplies that object.
+  evidence: inner_horn_filled at lean4/GenesisHottHorns.lean:165 is existence for innerFilled of that file. The node lean list at dag/derivation_dag.json:27294 is empty. Route GTH-R-GTH-HORNS at dag/derivation_dag.json:39102 has status GAP_NO_DERIVATION. The header at lean4/GenesisHottHorns.lean:23 says the Genesis-determination claim is not proved. AdmitCore.Regime at lean4/AdmitCore.lean:42 stores data, forms, and cuts at lines 43-45.
+  confidence: exact
+  node_id: GTH-HORNS
+open_obligations:
+- No generator admitted at P0. Do not invent a horn filler or a missing filler for a Genesis-derived object.
+- Route GTH-R-GTH-HORNS stays GAP_NO_DERIVATION. Node status stays OPEN.
+- GenesisHottHorns.inner_horn_filled stays an excluded lead. It is not cited by the node.
+- The declared refusal is not the node's missing counterexample.
+- not_all_inner_2_horns_fill is not a Kan or quasicategory theorem for this node.
+- GTH-TRUNC stays OPEN. No shadow is constructed.
+- AdmitCore is not a theorem of this node.
+- Identity, unit, associativity, and grafting obligations stay unpaid because no generator was admitted.
+verified_numeric_claims: []
+verified_lemma_statements: []

@@ -1,0 +1,21 @@
+# Independent review of PR #220
+
+AuthorityEffect: None. AI-assisted review; no human approval is claimed.
+
+Scope: author head 6e807ed1476d1a7b5cd8c3949abec9b15c499e34 and the repairs recorded here. Result: 1 NARROWED. DFM-HIERARCHICAL-BOREL may retain PROVED_LEAN for its explicitly restricted statement; the campaign outcome is Narrowed, not Derived from the original general obligation.
+
+| Atomic claim | Lean declaration and location | Verdict / assumptions |
+| --- | --- | --- |
+| Unique B2(Q) factorization, normality and multiplicative torus projection | CampaignDfmHierarchicalBorel.lean:194-243, b2_semidirect_factorization, b2_factorization_unique, unipotent_subgroup_normal, torusProj_mul | FULL for invertible upper-triangular rational matrices; no general Lie group theorem. |
+| Rooted transport, stage-one diagonal edges, quotient preservation and residual torus | Same file:292-501, RootedTree, treeTransport_step, treeTransport_invertible, stage1_tree_edge, stage1_preserves_quotient, stage1_residual_torus | FULL given parent(root)=root, depth(root)=0, decreasing natural depth off root and invertible off-root labels. The tree is supplied. |
+| Conjugate form of u_N, two-stage inverse transport, identity iff coboundary, anchored uniqueness | Same file:504-640, u_N_eq_conjugate, two_stage_factorization, stage2_reproduces, dressed_one_iff, anchored_transport_unique | FULL for supplied rooted data; both iff directions and root anchoring are present. |
+| b squared zero, Bianchi and endpoint covariance | Same file:652-702, b1, b2, cup11, cup12, cup21, b_squared_zero, discrete_bianchi_identity, curvature_gauge_covariance | FULL for these specified scalar operators on A : R -> R -> R over a commutative ring, with supplied pointwise inverse for the gauge field. Not a bundled general incidence DGA. |
+| Negative controls and fixed diamond | Same file:269-281 and 707-765 | FULL for the singular and bad-projection witnesses, scalar source-only counterexample, arithmetic 2 != 3 and Fin 4 diamond. No color-group statement. |
+
+The DAG statement and imported_structure now state the root/depth and scalar-operator assumptions explicitly. The independent note and campaign log say Narrowed. General graph-to-tree construction, a bundled incidence DGA, noncommutative matrix curvature, cohomology computation, prism construction and continuum claims remain unpaid. DFM-LEVI-SPLIT and the fixed diamond retain their separate statuses.
+
+The original checker used assertions that disappear under Python -O. Changing its expected path entry from 8 to 9 failed normally but passed optimized. Explicit require calls now reject the same source mutant in both modes. Exact matrix inputs reject bool and float; parent maps reject missing roots/parents, cycles and missing labels, and inversion rejects singular/non-triangular matrices. A 1,500-edge chain succeeds without recursion. The anchoring control now right-multiplies every transport value by one constant, preserving all edge labels while changing the root. The previous control did not exhibit that property.
+
+Fresh targeted Lake build and direct Lean replay pass; all 24 printed theorem audits use only propext, Classical.choice and Quot.sound (or fewer). Normal and optimized independent outputs match. Strict pinned mypy passes for the checker and changed application regression module; all eight application tests pass after canonical synchronization. The preserved pre-sync failure is not counted as success. Exact recomputations include path transport [[8,27],[0,15]], fields -2 and -9/5, chord [[1/8,13/20],[0,1/15]], bad-projection off-diagonal 5 versus 3, source-only discrepancy 1, and 2 != 3.
+
+Scores: proof L4D (reusable typed transport/factorization interface); regression checker L3D; application regression module L2D; declarative Lake target L1D. The latter three use the user's explicit support exceptions. Checker maximum CCN/cognitive complexity is 14/14; application tests 20/12. This is focused evidence, not whole-repository certification. Source-bound commands, outputs, failures and limits are in dag/research/campaign_dfm-hierarchical-borel_review_validation.json. Final integrated campaign validation is recorded separately.
