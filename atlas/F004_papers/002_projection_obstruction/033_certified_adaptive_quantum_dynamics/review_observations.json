@@ -1,0 +1,143 @@
+{
+  "certificate_status": "HEURISTIC_UNCERTIFIED",
+  "configuration": {
+    "times": [
+      0.0,
+      0.05,
+      0.1,
+      0.15000000000000002,
+      0.2,
+      0.25,
+      0.30000000000000004,
+      0.35000000000000003,
+      0.4
+    ],
+    "adaptive_tol": 0.1,
+    "cluster_ceiling_qubits": 4,
+    "refine_threshold": 0.03,
+    "TFIM": {
+      "J": 1,
+      "h": 1,
+      "initial": "polarized_x"
+    },
+    "XXZ": {
+      "J": 1,
+      "delta": 1,
+      "h": 0.2,
+      "initial": "neel"
+    },
+    "periodic": false
+  },
+  "rows": [
+    {
+      "model": "TFIM",
+      "N": 4,
+      "observable": "C_mid",
+      "method": "mean_field",
+      "max_reference_error": 0.4185590672005607,
+      "final_sampled_estimate": 2.3999999999999995,
+      "min_sampled_margin": -1.5959455978986625e-16,
+      "sampled_margin_nonnegative": true,
+      "final_clusters": null,
+      "estimated_target_met": null
+    },
+    {
+      "model": "TFIM",
+      "N": 4,
+      "observable": "C_mid",
+      "method": "adaptive",
+      "max_reference_error": 0.07246891202765082,
+      "final_sampled_estimate": 0.29999999999999993,
+      "min_sampled_margin": -1.5959455978986625e-16,
+      "sampled_margin_nonnegative": true,
+      "final_clusters": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "estimated_target_met": false
+    },
+    {
+      "model": "XXZ",
+      "N": 4,
+      "observable": "M_stag",
+      "method": "mean_field",
+      "max_reference_error": 1.0448156401490492,
+      "final_sampled_estimate": 4.8,
+      "min_sampled_margin": -1.9984014443252818e-15,
+      "sampled_margin_nonnegative": true,
+      "final_clusters": null,
+      "estimated_target_met": null
+    },
+    {
+      "model": "XXZ",
+      "N": 4,
+      "observable": "M_stag",
+      "method": "adaptive",
+      "max_reference_error": 0.15535568218036544,
+      "final_sampled_estimate": 0.5966221938749097,
+      "min_sampled_margin": -1.9984014443252818e-15,
+      "sampled_margin_nonnegative": true,
+      "final_clusters": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "estimated_target_met": false
+    },
+    {
+      "model": "TFIM",
+      "N": 6,
+      "observable": "C_mid",
+      "method": "mean_field",
+      "max_reference_error": 0.41833034614971887,
+      "final_sampled_estimate": 4.0,
+      "min_sampled_margin": -8.847089727481716e-16,
+      "sampled_margin_nonnegative": true,
+      "final_clusters": null,
+      "estimated_target_met": null
+    },
+    {
+      "model": "TFIM",
+      "N": 6,
+      "observable": "C_mid",
+      "method": "adaptive",
+      "max_reference_error": 0.13918123297112045,
+      "final_sampled_estimate": 1.4000000000000021,
+      "min_sampled_margin": -8.847089727481716e-16,
+      "sampled_margin_nonnegative": true,
+      "final_clusters": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "estimated_target_met": false
+    }
+  ],
+  "counterexamples": {
+    "two_qubit_final_rate": 0.2995964410743472,
+    "two_qubit_final_sampled_estimate": 0.02995964410743472,
+    "two_qubit_reference_ZZ_error": 0.0001844703494793265,
+    "bell_boundary_site_marginal_rate": 0.0,
+    "bell_boundary_full_cluster_rate": 1.9999999999999996
+  },
+  "recorded_environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "caqd": "1.0.0"
+  }
+}

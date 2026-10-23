@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "pre-genesis-to-mssn"
+version = "1.0.0"
+description = "Exact finite preservation examples for From Pre-Genesis to MSS-N"
+requires-python = ">=3.12"
+dependencies = []
+[project.optional-dependencies]
+dev = ["pytest>=9", "ruff>=0.16", "nbclient>=0.10", "nbformat>=5", "ipykernel>=6", "Pillow>=10.1"]
+[tool.pytest.ini_options]
+testpaths = ["code/tests"]
+addopts = "-q --strict-markers"
+[tool.setuptools]
+packages = []

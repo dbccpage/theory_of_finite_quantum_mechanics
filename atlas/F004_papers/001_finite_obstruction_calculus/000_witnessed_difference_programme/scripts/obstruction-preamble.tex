@@ -1,0 +1,165 @@
+% House preamble for the primitive-axiomatics paper line.
+%
+%  Typesetting is not evidence for any claim.
+%
+% Built 2026-09-08.
+%
+% xelatex, not pdflatex: the manuscript uses unicode characters that pdflatex
+% cannot set without per-character declarations.
+
+\PassOptionsToPackage{protrusion=false}{microtype}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=0.85]
+\setmathfont{Latin Modern Math}
+\newfontfamily\wdpsymbolfont{Latin Modern Math}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newunicodechar}
+\newcommand{\um}[1]{\ensuremath{#1}}
+\newunicodechar{ℝ}{\um{\mathbb{R}}}
+\newunicodechar{⁰}{\um{^0}}
+\newunicodechar{₀}{\um{_0}}
+\newunicodechar{₁}{\um{_1}}
+\newunicodechar{₂}{\um{_2}}
+\newunicodechar{¹}{\um{^1}}
+\newunicodechar{²}{\um{^2}}
+\newunicodechar{∘}{\um{\circ}}
+\newunicodechar{δ}{\um{\delta}}
+\newunicodechar{⟨}{\um{\langle}}
+\newunicodechar{⟩}{\um{\rangle}}
+\newunicodechar{φ}{\um{\varphi}}
+\newunicodechar{ᵀ}{\um{^\top}}
+\newunicodechar{𝛷}{\um{\Phi}}
+\newunicodechar{Φ}{\um{\Phi}}
+\newunicodechar{Γ}{\um{\Gamma}}
+\newunicodechar{α}{\um{\alpha}}
+\newunicodechar{β}{\um{\beta}}
+\newunicodechar{κ}{\um{\kappa}}
+\newunicodechar{∂}{\um{\partial}}
+\newunicodechar{∈}{\um{\in}}
+\newunicodechar{−}{\um{-}}
+\newunicodechar{∞}{\um{\infty}}
+\newunicodechar{≠}{\um{\neq}}
+\newunicodechar{≤}{\um{\le}}
+\newunicodechar{≥}{\um{\ge}}
+\newunicodechar{⟺}{\um{\iff}}
+\newunicodechar{→}{\um{\to}}
+\newunicodechar{─}{-}
+\newunicodechar{│}{|}
+\newunicodechar{┌}{+}
+\newunicodechar{┐}{+}
+\newunicodechar{└}{+}
+\newunicodechar{┘}{+}
+\newunicodechar{┬}{+}
+\newunicodechar{┴}{+}
+\newunicodechar{▼}{v}
+\newunicodechar{ℓ}{\um{\ell}}
+\newunicodechar{Ω}{\um{\Omega}}
+\newunicodechar{Σ}{\um{\Sigma}}
+\newunicodechar{·}{\um{\cdot}}
+\newunicodechar{×}{\um{\times}}
+\newunicodechar{⊂}{\um{\subset}}
+\newunicodechar{ₙ}{\um{_n}}
+\newunicodechar{∎}{\um{\blacksquare}}
+\newunicodechar{∼}{\um{\sim}}
+\newunicodechar{∖}{\um{\setminus}}
+\newunicodechar{∩}{\um{\cap}}
+\newunicodechar{ε}{\um{\varepsilon}}
+\newunicodechar{⁻}{\um{^-}}
+\newunicodechar{↦}{\um{\mapsto}}
+\newunicodechar{∅}{\um{\emptyset}}
+\newunicodechar{⋯}{\um{\cdots}}
+\newunicodechar{⊆}{\um{\subseteq}}
+\newunicodechar{₅}{\um{_5}}
+% Draw the remaining mathematical characters from Latin Modern Math.
+% Slot numbers avoid recursion through unicode-math's active characters.
+% Modifier letters and the two primes use ordinary super/subscripts because
+% Latin Modern Math has no glyph for those code points. Primes are declared
+% at begin-document because unicode-math reclaims them.
+\newunicodechar{∥}{\ensuremath{\text{\wdpsymbolfont\char"2225}}}
+\newunicodechar{σ}{\ensuremath{\text{\wdpsymbolfont\char"03C3}}}
+\newunicodechar{ρ}{\ensuremath{\text{\wdpsymbolfont\char"03C1}}}
+\newunicodechar{θ}{\ensuremath{\text{\wdpsymbolfont\char"03B8}}}
+\newunicodechar{⊗}{\ensuremath{\text{\wdpsymbolfont\char"2297}}}
+\newunicodechar{⪰}{\ensuremath{\text{\wdpsymbolfont\char"2AB0}}}
+\newunicodechar{ψ}{\ensuremath{\text{\wdpsymbolfont\char"03C8}}}
+\newunicodechar{ν}{\ensuremath{\text{\wdpsymbolfont\char"03BD}}}
+\newunicodechar{⋃}{\ensuremath{\text{\wdpsymbolfont\char"22C3}}}
+\newunicodechar{τ}{\ensuremath{\text{\wdpsymbolfont\char"03C4}}}
+\newunicodechar{⇒}{\ensuremath{\text{\wdpsymbolfont\char"21D2}}}
+\newunicodechar{η}{\ensuremath{\text{\wdpsymbolfont\char"03B7}}}
+\newunicodechar{⪯}{\ensuremath{\text{\wdpsymbolfont\char"2AAF}}}
+\newunicodechar{⇐}{\ensuremath{\text{\wdpsymbolfont\char"21D0}}}
+\newunicodechar{⊕}{\ensuremath{\text{\wdpsymbolfont\char"2295}}}
+\newunicodechar{⇔}{\ensuremath{\text{\wdpsymbolfont\char"21D4}}}
+\newunicodechar{∣}{\ensuremath{\text{\wdpsymbolfont\char"2223}}}
+\newunicodechar{λ}{\ensuremath{\text{\wdpsymbolfont\char"03BB}}}
+\newunicodechar{∪}{\ensuremath{\text{\wdpsymbolfont\char"222A}}}
+\newunicodechar{≡}{\ensuremath{\text{\wdpsymbolfont\char"2261}}}
+\newunicodechar{π}{\ensuremath{\text{\wdpsymbolfont\char"03C0}}}
+\newunicodechar{∫}{\ensuremath{\text{\wdpsymbolfont\char"222B}}}
+\newunicodechar{∉}{\ensuremath{\text{\wdpsymbolfont\char"2209}}}
+\newunicodechar{ω}{\ensuremath{\text{\wdpsymbolfont\char"03C9}}}
+\newunicodechar{⊇}{\ensuremath{\text{\wdpsymbolfont\char"2287}}}
+\newunicodechar{∏}{\ensuremath{\text{\wdpsymbolfont\char"220F}}}
+\newunicodechar{⌊}{\ensuremath{\text{\wdpsymbolfont\char"230A}}}
+\newunicodechar{⌋}{\ensuremath{\text{\wdpsymbolfont\char"230B}}}
+\newunicodechar{μ}{\ensuremath{\text{\wdpsymbolfont\char"03BC}}}
+\newunicodechar{⁺}{\textsuperscript{+}}
+\newunicodechar{ⁿ}{\textsuperscript{n}}
+\newunicodechar{ᵖ}{\textsuperscript{p}}
+\newunicodechar{ᵐ}{\textsuperscript{m}}
+\newunicodechar{ᵉ}{\textsuperscript{e}}
+\newunicodechar{ʳ}{\textsuperscript{r}}
+\newunicodechar{⁴}{\textsuperscript{4}}
+\newunicodechar{⁵}{\textsuperscript{5}}
+\newunicodechar{⁶}{\textsuperscript{6}}
+\newunicodechar{⁷}{\textsuperscript{7}}
+\newunicodechar{₃}{\textsubscript{3}}
+\newunicodechar{₄}{\textsubscript{4}}
+\newunicodechar{↝}{\ensuremath{\rightsquigarrow}}
+\AtBeginDocument{%
+  \newunicodechar{′}{\textsuperscript{\ensuremath{\prime}}}%
+  \newunicodechar{″}{\textsuperscript{\ensuremath{\prime\prime}}}%
+}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{pdflscape}
+\usepackage[protrusion=false]{microtype}
+\microtypesetup{protrusion=false}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue,
+            citecolor=RoyalBlue,breaklinks=true]{hyperref}
+\usepackage{fvextra}
+\usepackage{framed}
+\fvset{breaklines=true,breakanywhere=true,fontsize=\small}
+
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\definecolor{quoterule}{gray}{0.75}
+\renewenvironment{quote}
+  {\begin{leftbar}\small}
+  {\end{leftbar}}
+
+\usepackage[htt]{hyphenat}
+\usepackage{xurl}
+% Reserve enough TOC space for this monograph's three-digit page numbers.
+\makeatletter
+\renewcommand{\@pnumwidth}{2.5em}
+\renewcommand{\@tocrmarg}{3.5em}
+\makeatother
+\emergencystretch=3em
+\sloppy
+
+\newenvironment{nonclaim}{\begin{quote}\textbf{Non-claim:\ }}{\end{quote}}
+\newenvironment{claimblock}{\begin{quote}}{\end{quote}}

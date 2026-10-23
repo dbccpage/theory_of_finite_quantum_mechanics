@@ -1,0 +1,546 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% House preamble for the primitive-axiomatics paper line.
+%
+%  Typesetting is not evidence for any claim.
+%
+% Built 2026-09-08.
+%
+% xelatex, not pdflatex: the manuscript uses unicode characters that pdflatex
+% cannot set without per-character declarations.
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=0.85]
+\setmathfont{Latin Modern Math}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newunicodechar}
+\newcommand{\um}[1]{\ensuremath{#1}}
+\newunicodechar{ℝ}{\um{\mathbb{R}}}
+\newunicodechar{⁰}{\um{^0}}
+\newunicodechar{₀}{\um{_0}}
+\newunicodechar{₁}{\um{_1}}
+\newunicodechar{₂}{\um{_2}}
+\newunicodechar{¹}{\um{^1}}
+\newunicodechar{²}{\um{^2}}
+\newunicodechar{∘}{\um{\circ}}
+\newunicodechar{δ}{\um{\delta}}
+\newunicodechar{⟨}{\um{\langle}}
+\newunicodechar{⟩}{\um{\rangle}}
+\newunicodechar{φ}{\um{\varphi}}
+\newunicodechar{ᵀ}{\um{^\top}}
+\newunicodechar{𝛷}{\um{\Phi}}
+\newunicodechar{Φ}{\um{\Phi}}
+\newunicodechar{Γ}{\um{\Gamma}}
+\newunicodechar{α}{\um{\alpha}}
+\newunicodechar{β}{\um{\beta}}
+\newunicodechar{κ}{\um{\kappa}}
+\newunicodechar{∂}{\um{\partial}}
+\newunicodechar{∈}{\um{\in}}
+\newunicodechar{−}{\um{-}}
+\newunicodechar{∞}{\um{\infty}}
+\newunicodechar{≠}{\um{\neq}}
+\newunicodechar{≤}{\um{\le}}
+\newunicodechar{≥}{\um{\ge}}
+\newunicodechar{⟺}{\um{\iff}}
+\newunicodechar{→}{\um{\to}}
+\newunicodechar{─}{-}
+\newunicodechar{│}{|}
+\newunicodechar{┌}{+}
+\newunicodechar{┐}{+}
+\newunicodechar{└}{+}
+\newunicodechar{┘}{+}
+\newunicodechar{┬}{+}
+\newunicodechar{┴}{+}
+\newunicodechar{▼}{v}
+\newunicodechar{ℓ}{\um{\ell}}
+\newunicodechar{Ω}{\um{\Omega}}
+\newunicodechar{Σ}{\um{\Sigma}}
+\newunicodechar{·}{\um{\cdot}}
+\newunicodechar{×}{\um{\times}}
+\newunicodechar{⊂}{\um{\subset}}
+\newunicodechar{ₙ}{\um{_n}}
+\newunicodechar{∎}{\um{\blacksquare}}
+\newunicodechar{∼}{\um{\sim}}
+
+
+\usepackage[margin=0.85in]{geometry}
+\usepackage{pdflscape}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{bookmark}
+\urlstyle{tt}
+\hypersetup{colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue}
+\providecommand{\st}[1]{\emph{#1}}
+\newunicodechar{□}{\ensuremath{\square}}
+\newunicodechar{ℚ}{\ensuremath{\mathbb{Q}}}
+\newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{ψ}{\ensuremath{\psi}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{∧}{\ensuremath{\wedge}}
+\newunicodechar{∨}{\ensuremath{\vee}}
+\newunicodechar{¬}{\ensuremath{\neg}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+\newunicodechar{⊥}{\ensuremath{\perp}}
+\newunicodechar{₃}{\ensuremath{_3}}
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\emergencystretch}{4em}
+\newunicodechar{₄}{\ensuremath{_4}}
+\newunicodechar{₅}{\ensuremath{_5}}
+\newunicodechar{₆}{\ensuremath{_6}}
+\newunicodechar{₇}{\ensuremath{_7}}
+\newunicodechar{₈}{\ensuremath{_8}}
+\newunicodechar{₉}{\ensuremath{_9}}
+
+\hypersetup{pdftitle={CODA-Q: Metric completion and midpoint enclosure},pdfauthor={Jeremy H. Carroll}}
+\begin{document}
+\begin{center}
+{\Large\bfseries CODA-Q: Metric completion and midpoint enclosure}\par
+\textbf{Subtitle:} Continuum Representations via Completion and Enclosure
+
+\textbf{Author:} Jeremy H. Carroll
+
+\textbf{Date:} 2026-09-28
+
+\textbf{Version:} 3.1.1 --- preprint
+
+\textbf{License:} Creative Commons Attribution 4.0 International
+
+\end{center}
+
+\subsection{CODA Architecture \& Layers}\label{coda-architecture-layers}
+
+CODA stands for the Calculus of Obstruction, Descent, and Authority. It is an exact, finite mathematical apparatus that enforces strict claim discipline by separating linear repairs, transport certificates, and finite descent from ungrounded authority claims. The system comprises eight operational layers governed by a single overarching authority architecture (GTLA).
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Abbreviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Layer / Component Name \& Scope
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \textbf{FOC} & Finite Obstruction Calculus \\
+2 & \textbf{MUR} & Meta \& Universal Re-Presentation (what presentations exist) \\
+3 & \textbf{CS} & Continuum Shadow (what continuum presentation may descend to a finite calculus system) \\
+4 & \textbf{CS\_Q} & Continuum Shadow to Continuum Bridge (how continuum presentations descend) \\
+5 & \textbf{Q} & The Continuum (continuum presentations via completion and enclosure) \\
+6 & \textbf{A} & Anomalon (global residuals not removed and typed instead) \\
+7 & \textbf{OR} & Omniversal Re-Presentation (what presentations can transport) \\
+8 & \textbf{FDA} & Finite Descent Authority (what presentation may descend to evaluation and authorization) \\
+9 & \textbf{GTLA} & Layered Authority Architecture for CODA \\
+\end{longtable}
+
+\subsection{Abstract}\label{abstract}
+
+The metric completion of a metric space is complete, and the original space is dense in it. The usual embedding \(\mathbb{Q}\to\mathbb{R}\) extends to an isometry of the completion of the rationals onto the real line. A uniformly continuous map into a complete metric space extends uniquely along that completion. If \(lo\le x\le hi\), the midpoint of the interval is never farther from \(x\) than half the width. A returned midpoint is not the enclosed number. A finite list of samples does not determine an arbitrary continuum query; that obstruction is recorded in the CS and CS--Q companions, not proved again here.
+
+\subsection{Introduction}\label{introduction}
+
+It is easy to treat a completed name as an answered query. You write \(\sqrt{2}\), or \(\widehat{\mathbb{Q}}\), or a midpoint \((lo+hi)/2\), and talk as if the notation had selected every value you might later ask for. Completion adds limit points. Enclosure names an interval. Neither act evaluates an arbitrary function of the completed point.
+
+A picture. Start with the rational interval \([1,2]\). The unknown \(\sqrt{2}\) lies in it, because \(1^2=1\le 2\) and \(2^2=4\ge 2\). The midpoint is \(3/2\). Squaring is exact:
+
+\[
+\bigl(\tfrac{3}{2}\bigr)^2=\tfrac{9}{4}>\ 2,
+\]
+
+so \(\sqrt{2}\) lives in \([1,3/2]\), not at \(3/2\). Half the width is \(1/2\), and
+
+\[
+\bigl|\sqrt{2}-\tfrac{3}{2}\bigr|\le\tfrac12
+\]
+
+is the enclosure bound, not an identification.
+
+A second picture. Rational numbers \(1, 7/5, 17/12, 41/29,\ldots\) can be chosen so that later terms lie close to one another. No rational squares to \(2\). Completing \(\mathbb{Q}\) adds the missing limit. The completed object is a point of a complete metric space. It is not, by itself, the value of a query that was never shown to be constant on the finite samples you actually hold.
+
+The theory is refuted by any of: a metric completion that fails to be complete; an original space that fails to be dense in its completion; a failure of the rational-completion map to be an isometry into \(\mathbb{R}\); a point of \([lo,hi]\) whose distance to the midpoint exceeds \((hi-lo)/2\); a midpoint treated as equal to the enclosed number; or a finite sample list treated, in this note, as determining an arbitrary continuum query.
+
+This note does not derive quantum mechanics.
+
+\subsection{Notation}\label{notation}
+
+\begin{itemize}
+\tightlist
+\item
+  \((X,d)\) is a metric space. Distances take values in \([0,\infty)\).
+\item
+  A sequence \((x_n)\) in \(X\) is \emph{Cauchy} when for every \(\varepsilon>0\) there is \(N\) such that \(d(x_m,x_n)<\varepsilon\) whenever \(m,n\ge N\).
+\item
+  Two Cauchy sequences \((x_n)\) and \((y_n)\) are \emph{equivalent} when \(d(x_n,y_n)\to 0\).
+\item
+  \(\widehat{X}\) denotes a metric completion of \(X\). In the Cauchy-sequence presentation, its points are equivalence classes of Cauchy sequences, and the distance of classes is \(\lim_n d(x_n,y_n)\). The library implementation uses the Hausdorff completion of the underlying uniform space; the Cauchy-sequence argument is the mathematical content.
+\item
+  \(i:X\to\widehat{X}\) sends \(x\) to the class of the constant sequence \(x,x,x,\ldots\) (equivalently, the image of \(X\) under the completion map).
+\item
+  \(\mathbb{Q}\) and \(\mathbb{R}\) carry their usual metrics, \(|x-y|\).
+\item
+  For \(lo,hi,x\in\mathbb{R}\), the \emph{midpoint} is \((lo+hi)/2\) and the \emph{half-width} is \((hi-lo)/2\).
+\end{itemize}
+
+A \textbf{rational enclosure} of a real \(x\) is a pair of rationals \(lo\le hi\) with \(lo\le x\le hi\). The enclosed point need not be rational. The endpoints are finite data.
+
+\subsection{1. Metric completion is complete and dense}\label{metric-completion-is-complete-and-dense}
+
+\subsubsection{Theorem Q-T1 --- completion is complete, isometric, and dense}\label{theorem-q-t1-completion-is-complete-isometric-and-dense}
+
+Let \(X\) be a metric space, and let \(\widehat{X}\) be its metric completion. Then \(\widehat{X}\) is a complete metric space, the map \(i:X\to\widehat{X}\) is an isometry, and the image of \(i\) is dense.
+
+\textbf{Proof.} In the Cauchy-sequence presentation, set
+
+\[
+d\bigl([(x_n)],[(y_n)]\bigr)
+:=
+\lim_n d(x_n,y_n).
+\]
+
+The real sequence \(n\mapsto d(x_n,y_n)\) is Cauchy by the triangle inequality, so the limit exists. Replacing either sequence by an equivalent one does not change the limit. The distance is zero exactly on the chosen equivalence relation, so the quotient is separated. Constant sequences preserve distances, so \(i\) is an isometry.
+
+For density: given a class \([(x_n)]\), the constant sequences \(i(x_N)\) for large \(N\) approach it, because \((x_n)\) is Cauchy: \(d(i(x_N),[(x_n)])=\lim_m
+d(x_N,x_m)\), which is small for large \(N\).
+
+For completeness: if \((z_k)\) is Cauchy in \(\widehat{X}\), choose \(x_k\in X\) with \(d(i(x_k),z_k)<2^{-k}\). Then for \(k\le \ell\),
+
+\[
+d(x_k,x_\ell)
+\le
+d\bigl(i(x_k),z_k\bigr)+d(z_k,z_\ell)+d\bigl(z_\ell,i(x_\ell)\bigr)
+<
+2^{-k}+d(z_k,z_\ell)+2^{-\ell}.
+\]
+
+The middle term is small for large \(k,\ell\) because \((z_k)\) is Cauchy, so \((x_k)\) is Cauchy in \(X\). Its class \(z\) satisfies \(d(z_k,z)\to 0\) by the same estimate with \(z\) in place of \(i(x_\ell)\) for large \(\ell\).
+
+Lean statements, wrapping mathlib's uniform completion:
+
+\begin{itemize}
+\tightlist
+\item
+  \nolinkurl{Coda.Q.completion_complete}
+\item
+  \nolinkurl{Coda.Q.completion_isometry}
+\item
+  \nolinkurl{Coda.Q.completion_dense}
+\end{itemize}
+
+\(\square\)
+
+Completeness is not compactness. Density is not a computable selection rule for an arbitrary presented metric space. The construction does not make an arbitrary sequence Cauchy.
+
+\subsection{2. Completing the rationals}\label{completing-the-rationals}
+
+Equip \(\mathbb{Q}\) with the metric \(|p-q|\). The ordinary inclusion \(\mathbb{Q}\to\mathbb{R}\) is an isometry, and \(\mathbb{R}\) is complete. Extending that inclusion along the completion of \(\mathbb{Q}\) produces a map
+
+\[
+F:\widehat{\mathbb{Q}}\longrightarrow\mathbb{R}.
+\]
+
+\subsubsection{\texorpdfstring{Theorem Q-T2 --- the rational completion maps isometrically onto \(\mathbb{R}\)}{Theorem Q-T2 --- the rational completion maps isometrically onto \textbackslash mathbb\{R\}}}\label{theorem-q-t2-the-rational-completion-maps-isometrically-onto-mathbbr}
+
+\(F\) is an isometry, \(F(i(q))=q\) for every rational \(q\), and \(F\) is bijective.
+
+\textbf{Proof.} The inclusion \(\mathbb{Q}\to\mathbb{R}\) is uniformly continuous, as it is an isometry. The uniformly continuous extension \(F\) therefore agrees with the inclusion on \(\mathbb{Q}\): that is \(F(i(q))=q\). Distances among completed points are limits of rational distances, and \(F\) preserves those limits, so \(F\) is an isometry, hence injective.
+
+The image of \(F\) contains every rational, and the rationals are dense in \(\mathbb{R}\), so the image is dense. An isometric image of a complete metric space is closed: a convergent sequence of image points is Cauchy, the inverse images are Cauchy, and completeness of \(\widehat{\mathbb{Q}}\) supplies their limit. A closed dense subset of \(\mathbb{R}\) is \(\mathbb{R}\). Thus \(F\) is surjective.
+
+Lean:
+
+\begin{itemize}
+\tightlist
+\item
+  \nolinkurl{Coda.Q.rational_completion_coe}
+\item
+  \nolinkurl{Coda.Q.rational_completion_isometry}
+\item
+  \nolinkurl{Coda.Q.rational_completion_surjective}
+\item
+  \nolinkurl{Coda.Q.rational_completion_bijective}
+\end{itemize}
+
+\(\square\)
+
+This identifies a constructed metric completion of \(\mathbb{Q}\) with the existing real line, as metric spaces. It does not bootstrap the field operations of \(\mathbb{R}\) from a primitive relation, and it does not supply an algorithm that decides equality of arbitrary completed points.
+
+\subsection{3. Extending a uniformly continuous map}\label{extending-a-uniformly-continuous-map}
+
+Completion is a place to extend maps that already have a modulus of uniform continuity.
+
+\subsubsection{Theorem Q-T3 --- unique uniformly continuous extension}\label{theorem-q-t3-unique-uniformly-continuous-extension}
+
+Let \(f:X\to Y\) be uniformly continuous, and let \(Y\) be a complete metric space. Then there is a uniformly continuous extension \(\widehat{f}:\widehat{X}\to Y\) with \(\widehat{f}(i(x))=f(x)\) for every \(x\in X\). If \(g:\widehat{X}\to Y\) is uniformly continuous and agrees with \(f\) on \(X\), then \(g=\widehat{f}\).
+
+\textbf{Proof.} Uniform continuity sends Cauchy sequences to Cauchy sequences and sends equivalent sequences to equivalent image sequences. Set \(\widehat{f}([(x_n)])=\lim_n f(x_n)\). Completeness of \(Y\) supplies the limit. Constant sequences give agreement on \(X\). Given a target tolerance, choose a source tolerance from uniform continuity; density of \(X\) and the triangle inequality transfer the same control to \(\widehat{f}\). For uniqueness, approximate a completed point by original points. Metric limits are unique, so any two uniformly continuous extensions that agree on \(X\) agree everywhere.
+
+Lean (the agreement theorem requires uniform continuity of \(f\)):
+
+\begin{itemize}
+\tightlist
+\item
+  \nolinkurl{Coda.Q.extension_agrees}
+\item
+  \nolinkurl{Coda.Q.extension_uniformly_continuous}
+\item
+  \nolinkurl{Coda.Q.extension_unique}
+\end{itemize}
+
+\(\square\)
+
+A function name without a uniform-continuity hypothesis is not this extension. Lipschitz maps are uniformly continuous, so a Lipschitz query on \(\mathbb{Q}\) extends; an arbitrary function \(\mathbb{Q}\to\mathbb{R}\) need not.
+
+\subsection{4. Squeezing a number between two rationals}\label{squeezing-a-number-between-two-rationals}
+
+Existence of \(\widehat{\mathbb{Q}}\) does not, by itself, print digits. For a selected point one can still keep two rationals around it and shrink the gap.
+
+\subsubsection{Theorem Q-T4 --- midpoint enclosure}\label{theorem-q-t4-midpoint-enclosure}
+
+If \(lo\le x\le hi\), then
+
+\[
+\biggl|x-\frac{lo+hi}{2}\biggr|
+\le
+\frac{hi-lo}{2}.
+\]
+
+\textbf{Proof.} Subtracting the midpoint from the two inequalities \(lo\le x\) and \(x\le hi\) gives
+
+\[
+-\frac{hi-lo}{2}
+\le
+x-\frac{lo+hi}{2}
+\le
+\frac{hi-lo}{2},
+\]
+
+which is the claimed absolute-value bound. Lean: \nolinkurl{Coda.Q.enclosure_error}. \(\square\)
+
+The bound is sharp: \(x=lo\) and \(x=hi\) both attain it. Equality at an endpoint is not a reason to treat the midpoint as \(x\).
+
+\subsubsection{\texorpdfstring{Definition Q-D1 --- one bisection step for \(\sqrt{2}\)}{Definition Q-D1 --- one bisection step for \textbackslash sqrt\{2\}}}\label{definition-q-d1-one-bisection-step-for-sqrt2}
+
+Start with rationals \(0\le lo\le hi\). Let \(m=(lo+hi)/2\). Replace the pair by \((m,hi)\) if \(m^2\le 2\), and by \((lo,m)\) otherwise. All comparisons are rational.
+
+\subsubsection{\texorpdfstring{Theorem Q-T5 --- the bisection step keeps \(\sqrt{2}\) and halves the width}{Theorem Q-T5 --- the bisection step keeps \textbackslash sqrt\{2\} and halves the width}}\label{theorem-q-t5-the-bisection-step-keeps-sqrt2-and-halves-the-width}
+
+Suppose \(0\le lo\le\sqrt{2}\le hi\). The step of Definition Q-D1 again produces nonnegative endpoints containing \(\sqrt{2}\), and the new width equals \((hi-lo)/2\).
+
+\textbf{Proof.} The midpoint \(m\) is nonnegative. On \([0,\infty)\) the map \(t\mapsto t^2\) is increasing, so \(m^2\le 2\) if and only if \(m\le\sqrt{2}\). If \(m^2\le 2\), the new interval is \([m,hi]\) and still contains \(\sqrt{2}\). If \(m^2>2\), then \(\sqrt{2}<m\), so \([lo,m]\) still contains \(\sqrt{2}\). In either case the width identity is subtraction. Lean: \nolinkurl{Coda.Q.sqrt_step_enclosure}. \(\square\)
+
+Starting from \([1,2]\) and iterating, the width after \(n\) steps is \(2^{-n}\). Theorem Q-T4 then says that the midpoint after \(n\) steps is at most \(2^{-n-1}\) from \(\sqrt{2}\). The companion calculation checks each rational enclosure by squaring its endpoints: \(lo^2\le 2\le hi^2\), all in \(\mathbb{Q}\). The first five intervals are:
+
+\begin{landscape}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1428}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1428}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1428}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1428}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1428}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1428}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1428}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\(n\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(lo\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(hi\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+midpoint
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(lo^2\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(hi^2\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+width
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(0\) & \(1\) & \(2\) & \(3/2\) & \(1\) & \(4\) & \(1\) \\
+\(1\) & \(1\) & \(3/2\) & \(5/4\) & \(1\) & \(9/4\) & \(1/2\) \\
+\(2\) & \(5/4\) & \(3/2\) & \(11/8\) & \(25/16\) & \(9/4\) & \(1/4\) \\
+\(3\) & \(11/8\) & \(3/2\) & \(23/16\) & \(121/64\) & \(9/4\) & \(1/8\) \\
+\(4\) & \(11/8\) & \(23/16\) & \(45/32\) & \(121/64\) & \(529/256\) & \(1/16\) \\
+\end{longtable}
+
+\end{landscape}
+
+Each row satisfies \(lo^2\le 2\le hi^2\). None of the midpoints squares to \(2\). The lower endpoints \(1,1,5/4,11/8,11/8,\ldots\) form a finite prefix of a Cauchy sequence: after index \(n\), later lowers differ by at most the width \(2^{-n}\). The upper endpoints and the midpoints are likewise Cauchy, and the three sequences are pairwise equivalent: their termwise distances tend to zero because they all live in an interval of shrinking width.
+
+A returned midpoint is not \(\sqrt{2}\). After one step from \([1,2]\) the interval is \([1,3/2]\) and the new midpoint is \(5/4\); \((5/4)^2=25/16\neq 2\). Enclosure is a bound, not an identification.
+
+\subsection{5. A finite list of samples is not an arbitrary query}\label{a-finite-list-of-samples-is-not-an-arbitrary-query}
+
+Completion supplies points. Enclosure supplies intervals. A \emph{query} is a function you would like to evaluate on those points. Finite data --- a list of sample values, a pair of rational endpoints --- determines a query only when the query is already constant on everything that shares that data.
+
+That obstruction is not a theorem of this note. In the CS companion, four Boolean pairs share two first coordinates, and the first coordinate does not determine the second (Theorem CS-T3). Family observations agree as one function if and only if they agree at every index (Theorem CS-T2). In the CS--Q companion, if a query factors through a bundled sample profile then it is constant on the fibres of that profile; a query that splits a fibre does not factor.
+
+A finite replay, not a new theorem. Take sample nodes \(\{0,1\}\) and the two signals \(f(t)=0\) and \(g(t)=t(t-1)\). Then
+
+\[
+f(0)=g(0)=0,\qquad f(1)=g(1)=0,\qquad f\bigl(\tfrac12\bigr)=0,\qquad
+g\bigl(\tfrac12\bigr)=-\tfrac14.
+\]
+
+Both sample lists on \(\{0,1\}\) are \((0,0)\). The query ``value at \(1/2\)'' returns \(0\) on \(f\) and \(-1/4\) on \(g\). The sample list does not determine the query. That is CS-T3 with a polynomial costume, and it is the CS--Q fibre collision on a two-point profile. This note cites those results; it does not re-prove them.
+
+The same distinction applies to nested enclosures of \(\sqrt{2}\). After \(n\) steps one holds a rational interval of width \(2^{-n}\). Every real in that interval has the same enclosure data. A query that is not constant on the interval --- for example the identity query, whose values still differ by as much as the width --- is not determined by the pair \((lo,hi)\). Theorem Q-T4 bounds the identity query by the half-width. It does not collapse the interval to a point.
+
+\subsubsection{Local authority vocabulary}\label{local-authority-vocabulary}
+
+The package retains a small declared sum type in which Q-status and authority constructors are disjoint, and a record whose authorized flag is the conjunction of seven fields (Q-AUTH1). These are local logical models. No theorem in this note connects metric completion or rational enclosure to authenticated institutional permission.
+
+\subsection{6. Computational companion}\label{computational-companion}
+
+The production modules \nolinkurl{code/coda_q_core.py} and \texttt{code/continuum.py} compute exact rational enclosures of \(\sqrt{2}\), the midpoint error bound, finite Cauchy-modulus checks on nested endpoints, and the two-signal sample collision of Section 5. Arithmetic is exact rational; floats and booleans in scalar position raise \texttt{TypeError}.
+
+On the running enclosure,
+
+\[
+[1,2]
+\ \longrightarrow\
+\bigl[1,\tfrac{3}{2}\bigr]
+\ \longrightarrow\
+\bigl[\tfrac{5}{4},\tfrac{3}{2}\bigr]
+\ \longrightarrow\ \cdots
+\]
+
+each pair satisfies \(lo^2\le 2\le hi^2\), and the midpoint of a pair is never farther from any enclosed rational than half the width. After five steps the half-width is \(1/64\). Substituting the midpoint for \(\sqrt{2}\), or accepting an interval whose squares fail to bracket \(2\), is a fault the tests are written to kill.
+
+Lean files in \texttt{lean4/}:
+
+\begin{itemize}
+\tightlist
+\item
+  \nolinkurl{Algebra.lean} --- wraps reconstruction Theorems Q-T1--Q-T5;
+\item
+  \texttt{Core.lean} --- re-exports the algebra wrapper.
+\end{itemize}
+
+There are no \texttt{sorry} stubs in those reconstruction theorems. The statements use mathlib's metric completion and the ordinary Lean kernel.
+
+Adversarial tests include: a midpoint treated as the enclosed number; a bisection step that drops the square comparison; two signals with the same sample list and different off-grid values; float rejection.
+
+\subsection{7. Limitations}\label{limitations}
+
+The reconstruction theorems are completeness, density, and isometry of metric completion; an isometric bijection \(\widehat{\mathbb{Q}}\to\mathbb{R}\); unique uniformly continuous extension into a complete target; and the midpoint bound, with a rational bisection step that keeps \(\sqrt{2}\). They hold in the stated metric setting.
+
+A finite list of samples does not determine an arbitrary continuum query. That is CS and CS--Q, cited in Section 5, not a theorem numbered here.
+
+The Python companion checks finite nested intervals and finite sample lists. It does not construct \(\widehat{X}\) for an arbitrary metric space, and it does not decide equality of arbitrary reals.
+
+Uniform continuity is required for Theorem Q-T3 as stated. Field operations on \(\widehat{\mathbb{Q}}\) beyond the metric identification of Theorem Q-T2 are not proved here. Compactness, effective equality, Hilbert-space uniqueness, and the Born rule are not theorems of this note.
+
+A midpoint is a rational. Theorem Q-T4 compares it with \(x\). That is the whole enclosure claim.
+
+\subsection{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  N. Bourbaki, \emph{General Topology}, Chapters 1--4, Springer, 1995. \url{https://doi.org/10.1007/978-3-642-61701-0}
+\item
+  W. Rudin, \emph{Principles of Mathematical Analysis}, 3rd ed., McGraw-Hill, 1976. \url{https://www.worldcat.org/isbn/007054235X}
+\item
+  T. Tao, \emph{Analysis I}, 3rd ed., Springer, 2016. \url{https://doi.org/10.1007/978-981-10-1789-6}
+\item
+  J. H. Carroll, \emph{The Continuum Shadow: Continuum Re-presentations that Descend to the Finite Calculus (CODA-CS)}, 2026. \url{https://github.com/dbccpage/the_symbol_game/blob/44aff3782df7aa58a7ffc88e063a5643fd26a428/omega_engine_atlas/coda_atlas/F005_coda/cs/coda_cs.md}
+\item
+  J. H. Carroll, \emph{The Continuum Shadow to Continuum Bridge: Finite completion and enclosure (CODA-CS-Q)}, 2026. \url{https://github.com/dbccpage/the_symbol_game/blob/44aff3782df7aa58a7ffc88e063a5643fd26a428/omega_engine_atlas/coda_atlas/F005_coda/cs_q/coda_cs_q.md}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1020" width="1200" height="1020">
+  <style>
+    .bg { fill: #0a0f1d; }
+    .card { fill: #111827; stroke: #1f2937; stroke-width: 1.5; rx: 8; ry: 8; }
+    .card-accent { fill: #162032; stroke: #38bdf8; stroke-width: 2; rx: 8; ry: 8; }
+    .card-warn { fill: #1e1b2e; stroke: #f43f5e; stroke-width: 2; rx: 8; ry: 8; }
+    .card-auth { fill: #172554; stroke: #60a5fa; stroke-width: 2; rx: 8; ry: 8; }
+    .card-green { fill: #064e3b; stroke: #10b981; stroke-width: 2; rx: 8; ry: 8; }
+    .card-amber { fill: #451a03; stroke: #f59e0b; stroke-width: 2; rx: 8; ry: 8; }
+    .card-purple { fill: #2e1065; stroke: #a855f7; stroke-width: 2; rx: 8; ry: 8; }
+    .title { font-family: system-ui, -apple-system, sans-serif; font-size: 22px; font-weight: 700; fill: #f8fafc; }
+    .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 400; fill: #94a3b8; }
+    .section-title { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #38bdf8; }
+    .text-main { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 400; fill: #cbd5e1; }
+    .text-bold { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #f1f5f9; }
+    .text-code { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; fill: #a5f3fc; }
+    .text-muted { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #64748b; }
+    .flow-line { stroke: #38bdf8; stroke-width: 2; fill: none; }
+    .flow-line-dashed { stroke: #94a3b8; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+    .flow-line-warn { stroke: #f43f5e; stroke-width: 2; fill: none; }
+    .flow-line-auth { stroke: #60a5fa; stroke-width: 2.5; fill: none; }
+    .flow-line-green { stroke: #10b981; stroke-width: 2; fill: none; }
+  </style>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrow-warn" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f43f5e" />
+    </marker>
+    <marker id="arrow-auth" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#60a5fa" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <linearGradient id="grad-header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1020" class="bg"/>
+  
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="1160" height="70" rx="8" fill="url(#grad-header)" stroke="#0284c7" stroke-width="1"/>
+  <text x="40" y="52" class="title">CODA: System-Wide Architectural Overview</text>
+  <text x="40" y="75" class="subtitle">Nine-Layer Canonical Architecture, Functors, Data Flows, and Master Normal Form</text>
+  <rect x="980" y="35" width="180" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="1070" y="52" text-anchor="middle" class="text-code">CODA-GTLA · SYS-001</text>
+  <text x="1070" y="80" text-anchor="middle" class="text-muted">AuthorityEffect: None</text>
+
+  <!-- Master Normal Form Equation Banner -->
+  <g transform="translate(40, 102)">
+    <rect x="0" y="0" width="860" height="46" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="20" y="29" class="text-bold" font-size="12" fill="#c7d2fe">Master Normal Form:</text>
+    <text x="165" y="29" class="text-code" font-size="11" fill="#38bdf8">&#928;^&#9839; = &#964;^&#9839; &#8728;_k FOC^&#9839; &#8728;_k D^&#9839; &#8728;_k &#961;^&#9839; &#8728;_k R^&#9839;</text>
+    <text x="845" y="29" text-anchor="end" class="text-muted" font-size="10">[Inward Factorization]</text>
+  </g>
+
+  <!-- Left Stack: 9 Layers + Root -->
+  <g transform="translate(40, 158)">
+
+    <!-- Layer 9: CODA-A -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#f43f5e" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#f43f5e" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#f43f5e" font-size="11">Layer 9</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-A: Residuals of Projections, Kernels, and Cokernels</text>
+      <text x="100" y="44" class="text-main" font-size="11">Residual x-Cx in ker C, leftover classes in V/im(C) (A-T6), unique quotient factor (A-T7), Anomalon survivor</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">tau_sharp</text>
+    </g>
+
+    <line x1="430" y1="62" x2="430" y2="70" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 8: CODA-Q -->
+    <g transform="translate(0, 70)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#fbbf24" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#fbbf24" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#fbbf24" font-size="11">Layer 8</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-Q: The Continuum (Completion and Enclosure)</text>
+      <text x="100" y="44" class="text-main" font-size="11">Metric completion dense isometry (Q-T1, Q-T2), uniform extension (Q-T3), rational midpoint enclosure (Q-T4, Q-T5)</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">Q_ext</text>
+    </g>
+
+    <line x1="430" y1="132" x2="430" y2="140" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 7: CODA-CS-Q -->
+    <g transform="translate(0, 140)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#f59e0b" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#f59e0b" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#f59e0b" font-size="11">Layer 7</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-CS-Q: Finite Profile Factorization and Sampling Limits</text>
+      <text x="100" y="44" class="text-main" font-size="11">Exact on image (CSQ-T1), 2*eps collision bound (CSQ-T2), Lipschitz access (CSQ-T3), endpoint sampling limit (CSQ-T4)</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">CSQ_bridge</text>
+    </g>
+
+    <line x1="430" y1="202" x2="430" y2="210" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 6: CODA-CS -->
+    <g transform="translate(0, 210)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#38bdf8" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#38bdf8" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#38bdf8" font-size="11">Layer 6</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-CS: The Continuum Shadow (Finite Descending Re-Presentations)</text>
+      <text x="100" y="44" class="text-main" font-size="11">Refinement preserves descent (CS-T1), family observation equality (CS-T2), 4 dots 2 shadows collision (CS-T3, CS-T4)</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">rho_CS</text>
+    </g>
+
+    <line x1="430" y1="272" x2="430" y2="280" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 5: CODA-OR -->
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#a855f7" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#a855f7" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#a855f7" font-size="11">Layer 5</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-OR: Omniversal Re-Presentation (Obstruction Sieve &amp; Anti-Consensus)</text>
+      <text x="100" y="44" class="text-main" font-size="11">Span gluing b=b' (OR-T1), 4 square diagnoses (OR-D2), empty support sieve refusal (OR-T5), anti-consensus doctrine</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">R_OR</text>
+    </g>
+
+    <line x1="430" y1="342" x2="430" y2="350" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 4: CODA-MUR -->
+    <g transform="translate(0, 350)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#818cf8" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#818cf8" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#818cf8" font-size="11">Layer 4</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-MUR: Certified Representation Transport &amp; Irreversible Forgetting</text>
+      <text x="100" y="44" class="text-main" font-size="11">Commuting square (MUR-D1), descent pasting (MUR-T2), collisions transport (MUR-T3), non-recoverability (MUR-T5)</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">T_MUR</text>
+    </g>
+
+    <line x1="430" y1="412" x2="430" y2="420" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 3: CODA-FDA -->
+    <g transform="translate(0, 420)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#60a5fa" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#60a5fa" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#60a5fa" font-size="11">Layer 3</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-FDA: Finite Descent Authority (Packets, Pipelines, Seven Halt Guards)</text>
+      <text x="100" y="44" class="text-main" font-size="11">5-field packet (K,E,V,tau,Lambda), 4-stage pipeline, dependent pair standing Sigma(t)(Pi#=inl(t) and IsAuth(t)), g1..g7</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">D_sharp</text>
+    </g>
+
+    <line x1="430" y1="482" x2="430" y2="490" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 2: CODA-FOC -->
+    <g transform="translate(0, 490)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#10b981" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#10b981" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#10b981" font-size="11">Layer 2</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-FOC: Finite Obstruction Calculus (Quotients, Dual Witnesses, Coherence)</text>
+      <text x="100" y="44" class="text-main" font-size="11">Quotient norms Phi_1, Gamma_2 (T1), dual witnesses (T2), trichotomy classifier (T3), transport (T5)</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">FOC_sharp</text>
+    </g>
+
+    <line x1="430" y1="552" x2="430" y2="560" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Layer 1: CODA-GTLA -->
+    <g transform="translate(0, 560)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#0ea5e9" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#0ea5e9" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#0ea5e9" font-size="11">Layer 1</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">CODA-GTLA: General Theory of Layered Authority (Overarching Architecture)</text>
+      <text x="100" y="44" class="text-main" font-size="11">Presentations (GTLA-D1), comparison spans (GTLA-D2), traces &amp; erasure (GTLA-D3..T5), evaluator firewall (GTLA-T6..T9)</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">GTLA_eval</text>
+    </g>
+
+    <line x1="430" y1="622" x2="430" y2="630" class="flow-line" marker-end="url(#arrow)"/>
+
+    <!-- Root: Foundations -->
+    <g transform="translate(0, 630)">
+      <rect x="0" y="0" width="860" height="62" rx="8" fill="#111827" stroke="#34d399" stroke-width="1.5"/>
+      <rect x="12" y="10" width="75" height="22" rx="4" fill="#34d399" fill-opacity="0.2"/>
+      <text x="49" y="25" text-anchor="middle" class="text-bold" fill="#34d399" font-size="11">Root</text>
+      <text x="100" y="25" class="text-bold" font-size="13" fill="#f8fafc">Foundations &amp; Primitives: Root W (Witnessed Non-Identification) vs Root P</text>
+      <text x="100" y="44" class="text-main" font-size="11">Root W (witnessed relation K, d=(a,b,w) with a!=b) vs Root P (primer delta, zero equivalence relation)</text>
+      <rect x="740" y="16" width="105" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="792" y="33" text-anchor="middle" class="text-code" font-size="11">Root_W</text>
+    </g>
+  </g>
+
+  <!-- Right Sidebar: Authority Firewall & Protocol Enforcement -->
+  <g transform="translate(920, 102)">
+    <!-- Firewall Box -->
+    <rect x="0" y="0" width="240" height="380" rx="8" class="card-warn"/>
+    <text x="16" y="26" class="text-bold" fill="#f43f5e" font-size="13">AUTHORITY FIREWALL</text>
+    <line x1="16" y1="34" x2="224" y2="34" stroke="#f43f5e" stroke-width="1" stroke-opacity="0.4"/>
+    
+    <text x="16" y="54" class="text-bold" fill="#fda4af" font-size="11">RULE: Evidence != Authority</text>
+    <text x="16" y="70" class="text-main" font-size="10">Obstruction evidence in</text>
+    <text x="16" y="85" class="text-code" font-size="11" fill="#fca5a5">[delta_b] in Q^1_b</text>
+    <text x="16" y="100" class="text-main" font-size="10">NEVER implies authorization:</text>
+    <text x="16" y="117" class="text-code" font-size="11" fill="#f43f5e">[delta_b] -/-&gt; Auth_L(x;q)</text>
+    
+    <rect x="16" y="130" width="208" height="58" rx="4" fill="#261019" stroke="#e11d48" stroke-width="1"/>
+    <text x="24" y="148" class="text-bold" fill="#f43f5e" font-size="11">AuthorityEffect: None</text>
+    <text x="24" y="164" class="text-main" font-size="10">Zero self-minting permission.</text>
+    <text x="24" y="177" class="text-main" font-size="10">Standing requires FDA grant.</text>
+    
+    <text x="16" y="206" class="text-bold" fill="#cbd5e1" font-size="11">Terminal Outcomes:</text>
+    <text x="24" y="224" class="text-code" fill="#10b981">T_auth: Authorized (FDA)</text>
+    <text x="24" y="242" class="text-code" fill="#f59e0b">T_res: Residual (A / FOC)</text>
+    <text x="24" y="260" class="text-code" fill="#f43f5e">F_term: Refusal (OR / GTLA)</text>
+    
+    <text x="16" y="284" class="text-muted" font-size="10">Partitions strictly disjoint (T8):</text>
+    <text x="24" y="300" class="text-code" font-size="10" fill="#cbd5e1">auth_disjoint_anomalon</text>
+    <text x="24" y="316" class="text-code" font-size="10" fill="#cbd5e1">auth_disjoint_refused</text>
+    <text x="24" y="332" class="text-code" font-size="10" fill="#cbd5e1">anomalon_disjoint_refused</text>
+    <text x="16" y="354" class="text-muted" font-size="10">Leftover is not standing (GTLA-T7).</text>
+    <text x="16" y="368" class="text-muted" font-size="10">Empty sieve is refusal (GTLA-T6).</text>
+  </g>
+
+  <!-- Genesis Demarcation Box -->
+  <g transform="translate(920, 500)">
+    <rect x="0" y="0" width="240" height="240" rx="8" class="card-accent"/>
+    <text x="16" y="26" class="text-bold" fill="#38bdf8" font-size="13">SEALED GENESIS BOUNDARY</text>
+    <line x1="16" y1="34" x2="224" y2="34" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.4"/>
+    
+    <text x="16" y="54" class="text-bold" fill="#93c5fd" font-size="11">dbccpage/19L57G1</text>
+    <text x="16" y="70" class="text-code" font-size="11">tag: sealed-derivation-v1</text>
+    <text x="16" y="86" class="text-code" font-size="10">commit: 3100c4e (2026-08-17)</text>
+    
+    <rect x="16" y="100" width="208" height="52" rx="4" fill="#0c2340" stroke="#0284c7" stroke-width="1"/>
+    <text x="24" y="118" class="text-bold" fill="#7dd3fc" font-size="10">Blind Derivation Firewall</text>
+    <text x="24" y="133" class="text-main" font-size="9">Zero copying of derivation internals.</text>
+    <text x="24" y="145" class="text-main" font-size="9">Cite the tag; do not import.</text>
+    
+    <text x="16" y="172" class="text-muted" font-size="10">Mechanical stopping conditions:</text>
+    <text x="24" y="188" class="text-code" font-size="10">435 tests · 99.10% line</text>
+    <text x="24" y="202" class="text-code" font-size="10">56 Lean sources · 1314 axioms</text>
+    <text x="16" y="222" class="text-muted" font-size="9">Receipt about commands, not verdict.</text>
+  </g>
+
+  <!-- Bottom Global Summary -->
+  <g transform="translate(40, 880)">
+    <rect x="0" y="0" width="1120" height="115" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="26" class="text-bold" fill="#60a5fa">Canonical Nine-Layer Authority Architecture (CODA):</text>
+    <text x="20" y="46" class="text-main" font-size="10.5">· Layers: GTLA (Overarching) -&gt; FOC (Quotients) -&gt; FDA (Standing) -&gt; MUR (Transport) -&gt; OR (Sieve) -&gt; CS/CS-Q (Shadows) -&gt; Q (Continuum) -&gt; A (Leftovers).</text>
+    <text x="20" y="64" class="text-main" font-size="10.5">· Discipline: Leftover is not standing (GTLA-T7). Proposal is not decision (FDA). Commuting square is not target standing (MUR). Midpoint is not enclosed number (Q).</text>
+    <text x="20" y="82" class="text-main">· Claim Hygiene: Narrow defensible claims only; no hype verbs; exact rational arithmetic; all outcomes formally typed.</text>
+    <text x="20" y="100" class="text-code" fill="#f87171">Universal Mandate across all 9 research papers: AuthorityEffect: None.</text>
+  </g>
+</svg>

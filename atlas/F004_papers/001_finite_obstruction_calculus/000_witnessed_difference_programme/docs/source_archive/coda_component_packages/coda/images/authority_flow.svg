@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" width="1100" height="780">
+  <style>
+    .bg { fill: #0a0f1d; }
+    .card { fill: #111827; stroke: #1f2937; stroke-width: 1.5; rx: 8; ry: 8; }
+    .card-accent { fill: #162032; stroke: #38bdf8; stroke-width: 2; rx: 8; ry: 8; }
+    .card-warn { fill: #1e1b2e; stroke: #f43f5e; stroke-width: 2; rx: 8; ry: 8; }
+    .card-auth { fill: #172554; stroke: #60a5fa; stroke-width: 2; rx: 8; ry: 8; }
+    .card-green { fill: #064e3b; stroke: #10b981; stroke-width: 2; rx: 8; ry: 8; }
+    .card-amber { fill: #451a03; stroke: #f59e0b; stroke-width: 2; rx: 8; ry: 8; }
+    .card-purple { fill: #2e1065; stroke: #a855f7; stroke-width: 2; rx: 8; ry: 8; }
+    .title { font-family: system-ui, -apple-system, sans-serif; font-size: 22px; font-weight: 700; fill: #f8fafc; }
+    .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 400; fill: #94a3b8; }
+    .section-title { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #38bdf8; }
+    .text-main { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 400; fill: #cbd5e1; }
+    .text-bold { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: #f1f5f9; }
+    .text-code { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; fill: #a5f3fc; }
+    .text-muted { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #64748b; }
+    .flow-line { stroke: #38bdf8; stroke-width: 2; fill: none; }
+    .flow-line-dashed { stroke: #94a3b8; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+    .flow-line-warn { stroke: #f43f5e; stroke-width: 2; fill: none; }
+    .flow-line-auth { stroke: #60a5fa; stroke-width: 2.5; fill: none; }
+    .flow-line-green { stroke: #10b981; stroke-width: 2; fill: none; }
+  </style>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrow-warn" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f43f5e" />
+    </marker>
+    <marker id="arrow-auth" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#60a5fa" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <linearGradient id="grad-header" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="780" class="bg"/>
+  
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="1060" height="70" rx="8" fill="url(#grad-header)" stroke="#0284c7" stroke-width="1"/>
+  <text x="40" y="52" class="title">CODA Authority Flow Across Nine Layers (GTLA Stack)</text>
+  <text x="40" y="75" class="subtitle">Strict Separation Between Evidence Propagation and Sovereign Authorization</text>
+  <rect x="880" y="35" width="180" height="26" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="970" y="52" text-anchor="middle" class="text-code">CODA-GTLA · AUTH-001</text>
+  <text x="970" y="80" text-anchor="middle" class="text-muted">AuthorityEffect: None</text>
+
+  <!-- Main Pipeline Flow (Left to Right) -->
+  <g transform="translate(40, 115)">
+    <!-- Column 1: Evidence Production -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="290" height="460" rx="8" class="card"/>
+      <text x="20" y="28" class="section-title">EVIDENCE PRODUCTION</text>
+      <text x="20" y="46" class="text-muted">Layers FOC, MUR, CS, CS-Q, Q, A</text>
+      
+      <!-- FOC -->
+      <rect x="15" y="60" width="260" height="60" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+      <text x="25" y="80" class="text-bold" fill="#34d399">CODA-FOC (Quotients &amp; Witnesses)</text>
+      <text x="25" y="96" class="text-code" font-size="10">Phi_1([x]), Gamma_2([d_1 x]), LP dual z</text>
+      <text x="25" y="110" class="text-muted" font-size="10">Exact repair, coherent residual, nonclosed</text>
+      
+      <!-- MUR -->
+      <rect x="15" y="128" width="260" height="60" rx="6" fill="#0f172a" stroke="#818cf8" stroke-width="1"/>
+      <text x="25" y="148" class="text-bold" fill="#a5b4fc">CODA-MUR (Transport &amp; Loss)</text>
+      <text x="25" y="164" class="text-code" font-size="10">chi_F: D_B F = F_bar D_A (MUR-D2)</text>
+      <text x="25" y="178" class="text-muted" font-size="10">Collisions travel; loss is irreversible</text>
+      
+      <!-- CS & CS-Q -->
+      <rect x="15" y="196" width="260" height="60" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+      <text x="25" y="216" class="text-bold" fill="#38bdf8">CODA-CS / CS-Q (Continuum Shadow)</text>
+      <text x="25" y="232" class="text-code" font-size="10">p = forget circ fine; FiberConstant(p,q)</text>
+      <text x="25" y="246" class="text-muted" font-size="10">4 dots 2 shadows; 2*eps collision bound</text>
+      
+      <!-- Q & A -->
+      <rect x="15" y="264" width="260" height="60" rx="6" fill="#0f172a" stroke="#fbbf24" stroke-width="1"/>
+      <text x="25" y="284" class="text-bold" fill="#fde68a">CODA-Q / CODA-A (Enclosure &amp; Residue)</text>
+      <text x="25" y="300" class="text-code" font-size="10">|x - (lo+hi)/2| &lt;= (hi-lo)/2; x-Cx in ker C</text>
+      <text x="25" y="314" class="text-muted" font-size="10">Midpoint is not x; leftover is not decision</text>
+      
+      <!-- Evidence Output -->
+      <rect x="15" y="336" width="260" height="108" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="25" y="356" class="text-bold" fill="#fca5a5">Finite Pipeline Record (GTLA-D5):</text>
+      <text x="25" y="374" class="text-code" font-size="10">(sieveNonEmpty, refinementConsistent,</text>
+      <text x="25" y="388" class="text-code" font-size="10"> gluingSucceeded, Phi_1, Gamma_2,</text>
+      <text x="25" y="402" class="text-code" font-size="10"> licenseGranted)</text>
+      <text x="25" y="424" class="text-muted" font-size="10">Evidence is input; does not decide standing</text>
+    </g>
+
+    <!-- Arrow to Firewall -->
+    <line x1="295" y1="230" x2="355" y2="230" class="flow-line" marker-end="url(#arrow)"/>
+    <text x="325" y="220" text-anchor="middle" class="text-code" font-size="10">Submit</text>
+
+    <!-- Column 2: The Authority Firewall (Central Barrier) -->
+    <g transform="translate(365, 0)">
+      <rect x="0" y="0" width="290" height="460" rx="8" class="card-warn"/>
+      <text x="20" y="28" class="section-title" fill="#f43f5e">AUTHORITY FIREWALL</text>
+      <text x="20" y="46" class="text-bold" fill="#fda4af">THE NON-PROMOTION GATE</text>
+      
+      <rect x="15" y="60" width="260" height="95" rx="6" fill="#20121d" stroke="#e11d48" stroke-width="1"/>
+      <text x="25" y="80" class="text-bold" fill="#fca5a5">Controlling Non-Implication:</text>
+      <text x="25" y="98" class="text-code" font-size="11" fill="#f43f5e">[delta_b] in Q^1_b -/-&gt; Auth</text>
+      <text x="25" y="116" class="text-main" font-size="10">No degree of coherence, witness,</text>
+      <text x="25" y="130" class="text-main" font-size="10">or green tests creates authority.</text>
+      <text x="25" y="144" class="text-code" font-size="9" fill="#fda4af">A leftover class is not standing (GTLA-T7)</text>
+      
+      <rect x="15" y="165" width="260" height="110" rx="6" fill="#261019" stroke="#f43f5e" stroke-width="1"/>
+      <text x="25" y="184" class="text-bold" fill="#fecdd3">CODA-OR: Hard Refusal Sieve</text>
+      <text x="25" y="200" class="text-main" font-size="10">· Empty support sieve -&gt; refused (OR-T5)</text>
+      <text x="25" y="216" class="text-main" font-size="10">· Incompatible overlap b != b' (OR-T3)</text>
+      <text x="25" y="232" class="text-main" font-size="10">· Anti-Consensus: Averaging D1!=D2 forbidden</text>
+      <text x="25" y="248" class="text-main" font-size="10">· Missing terminalizer blocks standing (CS-T5)</text>
+      <text x="25" y="264" class="text-code" font-size="10" fill="#fca5a5">Route to Refused / F_term</text>
+      
+      <rect x="15" y="285" width="260" height="155" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="25" y="305" class="text-bold" fill="#cbd5e1">Two-Sided Gate Check:</text>
+      <text x="25" y="323" class="text-main" font-size="10">1. Verification Check: verifier soundness</text>
+      <text x="25" y="337" class="text-main" font-size="10">2. Seven Halt Guards: g_1 .. g_7 all hold</text>
+      <text x="25" y="351" class="text-main" font-size="10">3. Authorization Licence: explicit flag</text>
+      <text x="25" y="371" class="text-code" font-size="10" fill="#60a5fa">Runner != Authorizer (Role Split)</text>
+      <text x="25" y="387" class="text-code" font-size="10" fill="#a5b4fc">Proposer != Evaluator</text>
+      <text x="25" y="405" class="text-muted" font-size="9">Zero residual w/o license refused (GTLA-T9)</text>
+      <text x="25" y="420" class="text-bold" font-size="10" fill="#f43f5e">AuthorityEffect: None</text>
+    </g>
+
+    <!-- Arrow from Firewall to Terminalization -->
+    <line x1="660" y1="230" x2="720" y2="230" class="flow-line-auth" marker-end="url(#arrow-auth)"/>
+    <text x="690" y="220" text-anchor="middle" class="text-code" font-size="10">Decide</text>
+
+    <!-- Column 3: Terminal Outlets -->
+    <g transform="translate(730, 0)">
+      <rect x="0" y="0" width="290" height="460" rx="8" class="card"/>
+      <text x="20" y="28" class="section-title">TERMINAL OUTCOMES</text>
+      <text x="20" y="46" class="text-muted">Pairwise Disjoint Partition (GTLA-T8)</text>
+      
+      <!-- T_auth -->
+      <rect x="15" y="60" width="260" height="115" rx="6" class="card-auth"/>
+      <text x="25" y="80" class="text-bold" fill="#93c5fd">T_auth: Authorized Standing</text>
+      <text x="25" y="98" class="text-main" font-size="10">CODA-FDA Certified Standing (FDA-D2):</text>
+      <text x="25" y="114" class="text-code" font-size="9" fill="#bfdbfe">Standing(p) := Sigma(t)(Pi#=inl(t) &amp; IsAuth(t))</text>
+      <text x="25" y="130" class="text-main" font-size="10">All seven derived halt guards g_1..g_7 hold.</text>
+      <text x="25" y="146" class="text-main" font-size="10">Only branch actuating external effects.</text>
+      <text x="25" y="162" class="text-code" font-size="9" fill="#60a5fa">IsAuth(t) = True (Standing branch)</text>
+      
+      <!-- T_res -->
+      <rect x="15" y="185" width="260" height="120" rx="6" class="card-warn"/>
+      <text x="25" y="206" class="text-bold" fill="#fda4af">T_res: Typed Residual (Anomalon)</text>
+      <text x="25" y="224" class="text-main" font-size="10">CODA-A Residual &amp; FOC CoherentResidual:</text>
+      <text x="25" y="240" class="text-code" font-size="10" fill="#fca5a5">x - Cx in ker C,  Phi_1 &gt; 0 &amp; Gamma_2 = 0</text>
+      <text x="25" y="256" class="text-main" font-size="10">Kept visible in cokernel V/im(C) (A-T6).</text>
+      <text x="25" y="272" class="text-main" font-size="10">Leftover class is NOT standing (GTLA-T7).</text>
+      <text x="25" y="288" class="text-code" font-size="9" fill="#fbbf24">closedResidual branch (Never promoted to Auth)</text>
+      
+      <!-- F_term -->
+      <rect x="15" y="315" width="260" height="130" rx="6" fill="#18181b" stroke="#71717a" stroke-width="1.5"/>
+      <text x="25" y="335" class="text-bold" fill="#e4e4e7">F_term: Typed Refusal</text>
+      <text x="25" y="353" class="text-main" font-size="10">CODA-OR / GTLA Refusal Branch:</text>
+      <text x="25" y="369" class="text-code" font-size="10" fill="#d4d4d8">RefusedClosure | EmptySieve | RouteRefused</text>
+      <text x="25" y="385" class="text-main" font-size="10">Triggered by empty sieve (GTLA-T6, OR-T5),</text>
+      <text x="25" y="399" class="text-main" font-size="10">inconsistent refinement, or Gamma_2 &gt; 0.</text>
+      <text x="25" y="415" class="text-code" font-size="9" fill="#f87171">refused branch (Halt state)</text>
+      <text x="25" y="432" class="text-muted" font-size="9">Budget exhaustion is refusal, NOT authority.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(40, 595)">
+    <rect x="0" y="0" width="1020" height="160" rx="8" fill="#111827" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="26" class="text-bold" fill="#60a5fa">The Authority Conservation Law &amp; Epistemic Discipline:</text>
+    <text x="20" y="48" class="text-main">1. Conservation: Authority cannot be created, augmented, or multiplied by internal derivation or iterative computation.</text>
+    <text x="20" y="66" class="text-main">2. Separation: Evaluator and Proposer roles are strictly barred from issuing sovereign authorization licenses.</text>
+    <text x="20" y="84" class="text-main">3. Pairwise Disjointness (GTLA-T8): T_auth cap T_res = empty,  T_auth cap F_term = empty,  T_res cap F_term = empty.</text>
+    <text x="20" y="102" class="text-main">4. Non-Promotion (GTLA-T7): A leftover class is never standing; a positive residual cannot inhabit the authorized branch.</text>
+    <text x="20" y="120" class="text-main">5. Universal Declaration: Every published CODA artifact unconditionally declares AuthorityEffect: None.</text>
+    <text x="20" y="142" class="text-code" fill="#f87171">Audited by GTLA Evaluator: auth_disjoint_anomalon, auth_disjoint_refused, anomalon_disjoint_refused hold 100%.</text>
+  </g>
+</svg>

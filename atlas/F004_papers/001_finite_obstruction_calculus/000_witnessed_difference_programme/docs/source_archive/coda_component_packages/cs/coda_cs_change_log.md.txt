@@ -1,0 +1,119 @@
+## 2026-09-27 — Publication review repairs
+
+- Made the Lean empty-shadow-tower authority predicate agree with Python and added empty, authorized-singleton, and unauthorized-singleton proofs.
+- Corrected the README authority/unique-answer distinction, synchronized the reference list and current replay instructions, and added target-binding and certificate boundary regressions.
+- Recovered the corrupt supplementary Witten PDF from the official arXiv v4 source (https://arxiv.org/pdf/1001.2933v4), preserving its 127-page version identity. SHA-256: `d10e8d591b29284dcf029c2bde74b27bf76be98f957173eeb545d04e3f79cfd6`. The root verifier found no decompression errors; a benign font-metric warning is recorded separately. Recovery does not independently establish that paper's mathematics.
+- Added replay dependencies and local notebook import bindings; normalized source imports and third-party typing boundaries for reproducible static checks.
+
+Validation receipts are recorded in the F005 review output. Test counts and coverage are measured by the coordinated runtime gate; fresh Lean and final figure/PDF receipts are separate. Earlier entries below describe historical versions.
+
+Change Log — The Continuum Shadow (CODA-CS)
+===========================================
+
+--- yaml
+title: The Continuum Shadow (CODA-CS) — Change Log
+subtitle: Continuum Re-Presentations that Descend to the Finite Calculus
+file_name: coda_cs_change_log.md
+file_location: coda_atlas/F005_coda/cs/
+status: Canonical
+authority_effect: None
+paper_id: CODA-CS
+canonical_version: v1.1
+date: 2026-09-13
+---
+
+2026-09-13 — v1.1.0 Fourth-Round Peer Review Resolution (All Remaining Runtime Findings Resolved)
+--------------------------------------------------------------------------------------------------
+
+* [P1] Verification Family Shortening & Unchecked Target Fallback:
+  * Immediate `tuple(test_signals)` snapshotting at both public entry points (`evaluate_query_authority` and `verify_bridge_admissibility`), making family iteration immutable and invariant to caller callback side effects (e.g. `family.pop()`).
+  * Removed unchecked fallback and display-ID fallbacks in `evaluate_query_authority`; strictly required target signal's `snapshot_key` to be present in `verified_values`, returning `inhabited=False, refusal_code="UnverifiedSignalTarget"` if missing.
+* [P2] Early-Exit Reporting Inaccuracies & CS-L1 Factorability:
+  * In `verify_bridge_admissibility`, when a fibre collision is witnessed, immediately set `is_factorable = False` per CS-L1 contrapositive ($\neg\mathsf{FiberConstant} \implies \neg\mathsf{Factors}$).
+  * Continued the full fibre constancy check across all signals even after an early decoder mismatch, preventing false certification of `is_fiber_constant=True` on unchecked signal prefixes.
+* [P2] Manuscript Editorial Synchronization:
+  * Updated Introduction refutation list and Section 7 limitations in `coda_cs.md` and `coda_cs.tex` to refer to "query-authority witness" rather than "unique answer" or "an answer". Recompiled `coda_cs.pdf`.
+  * Updated `coda_cs_claim_ledger.md` and `docs/claim_code_map.yaml` row CS-D3 to cite dedicated test `test_cs_d3_refinement_composite_identity`.
+* [P2] Quick Start Synchronization (`docs/000_quick_start.md`):
+  * Replaced nonexistent monorepo paths with standalone package paths (`code/tests`, `code/generate_figures.py`, `lean4/`).
+  * Replaced superseded GTTC/BRIDGE identifiers with active claim structure (`CS-D1`–`CS-D3`, `CS-L1`, `CS-T1`–`CS-T5`).
+* [P2] Mutation Audit Traceability (`docs/coda_cs_mutation_audit.md`):
+  * Replaced legacy pre-v1.1 test references with active test function names from `code/tests/test_cs_injected_mutations.py` and `code/tests/test_coda_cs.py`.
+  * Documented 8 active killed mutants and scoped claim boundaries per Claim Hygiene Rule.
+* [P2] Lean Lockfile Self-Containment (`lean4/lake-manifest.json`):
+  * Excised stale external package entries and monorepo path escapes (`coda_reconstruction`, mathlib, etc.) via clean `lake update`, establishing `packages: []` with zero external dependencies.
+* [P2] Human-Readable Package Description (`docs/descriptions.md`):
+  * Replaced raw file list and HTML markup with clear, human-readable prose explaining the mathematical core, blurry photo analogy, refinement descent, and authority refusal boundaries.
+* [P2] Companion Figure Panel 1 Clearance:
+  * Increased Y-axis limit in `code/generate_figures.py` to `(0, 2.0)`, providing generous vertical separation between the Refusal Code Key box and the bar annotations. Regenerated `public_export/fig1_authority_descent.png`.
+* [P2] Comprehensive Test Suite & Standalone Verification:
+  * Added 4 new regression tests in `code/tests/test_coda_cs.py` (`test_cs_d3_refinement_composite_identity`, `test_decoder_cannot_shorten_the_declared_verification_family`, `test_fibre_collision_cannot_be_reported_as_factorable`, `test_early_decoder_mismatch_must_not_certify_unchecked_fibre_constancy`), bringing test suite to 27 passed.
+  * Re-executed all Jupyter notebooks in fresh kernels; rebuilt and verified standalone archive `coda_cs_v1.1.zip`.
+
+2026-09-13 — v1.1.0 Second-Round Peer Review Resolution (All Held Republication Items Resolved)
+-----------------------------------------------------------------------------------------------
+
+* [P1] Verified-Value Cache & Duplicate Signal Identifiers: Refused duplicate `signal_id` in `test_signals` by raising `ValueError` in `verify_bridge_admissibility`. Added `snapshot_key` property to `ContinuumSignal` and keyed `verified_values` to the signal's exact snapshot to prevent family-order dependency and cross-signal value leaks.
+* [P2] Signal Sample Immutability: Replaced plain dictionary copy with `types.MappingProxyType` in `ContinuumSignal.samples`, strictly forbidding item assignment and deletion. Implemented custom `__hash__` and `__eq__` on `ContinuumSignal`.
+* [P2] Strict Boolean Boundary on Policy Flags: Added explicit `isinstance(..., bool)` type guards to `has_terminalizer` (in `verify_bridge_admissibility` and `evaluate_query_authority`), `ShadowSlice` flags (`has_local_authority`, `is_finite`), and `ShadowTower.is_cofinal`, rejecting strings (such as `"false"`), integers (`1`), and non-booleans with `TypeError`.
+* [P2] Manuscript Limitations and Section 5 Alignment: Removed "named witness that a packet with a false terminalizer flag does not determine a query" in Section 7 limitations, aligning with CS-T5 as an authority predicate refusal rather than mathematical nondetermination of query values. Updated Abstract, Section 5, and Section 6 in both `coda_cs.md` and `coda_cs.tex`, and recompiled `coda_cs.pdf`.
+* [P2] CS-T2 Evidence Mapping: Added dedicated `test_cs_t2_family_observation_equality` in `test_coda_cs.py` to test the pointwise family-observation equivalence in both directions, and updated `coda_cs_claim_ledger.md` and `docs/claim_code_map.yaml` accordingly. Added regressions for solver edge cases, duplicate IDs, immutability, and boolean validation.
+* [P2] Companion Figure Label Spacing: Replaced multi-line refusal labels at height 1.0 in Panel 1 with compact verdicts (`PASS\n0.0`, `REFUSED\n1.0`, etc.) and an inset refusal-code key box, eliminating label collisions.
+* Distribution Verification: Re-executed notebooks, re-generated figures, updated checksums (`SHA256SUMS`, `MANIFEST.sha256`), and verified clean standalone extraction outside the monorepo.
+
+2026-09-13 — v1.1 Republication Package Release Resolution (Initial Review Round)
+---------------------------------------------------------------------------------
+
+* [P1] CS-T5 Alignment: Re-scoped Theorem CS-T5 statement, proof, and limitations in `coda_cs.md` and `coda_cs.tex` to match the formal Lean predicate (`terminalizer_absence_blocks_query_authority`): missing terminalizer blocks query authority (HasQueryAuthority conjunction fails), clarifying that lack of authority is an administrative refusal rather than mathematical nondetermination of query values (which is governed by CS-T3).
+* [P1] Standalone Independence: Eliminated external monorepo `omega_engine` dependency. Packaged standalone exact rational `cochain_presentation.py` (`LinearRepairProblem` and `QuotientDistanceCertificate`). Removed external `require «coda_reconstruction»` from `lean4/lakefile.lean`; formalized CS-D1..D3, CS-L1, CS-T1..T4 self-contained in `lean4/coda_cs_algebra.lean`. All 7 Lean modules build cleanly with 0 warnings, 0 errors, 0 sorries.
+* [P1] Guard 4 Non-Empty Profile & Non-Vacuous Checks: Implemented non-empty profile check in `verify_bridge_admissibility`, returning `is_profile_surjective=False` and `R_NO_PROFILE` upon empty sample points; propagated actual boolean into reports. Fixed empty tower slices and empty test signals from passing vacuously.
+* [P1] Claim Ledger & Proof Maps: Rebuilt `coda_cs_claim_ledger.md`, `docs/claim_code_map.yaml`, and `docs/lean_claim_map.md` mapped strictly to the 9 active IDs (`CS-D1`–`CS-D3`, `CS-L1`, `CS-T1`–`CS-T5`). Preserved legacy GTTC/BRIDGE mappings in an explicit historical appendix. Corrected directional proof map to note contrapositive obstruction ($\neg C \implies \neg F$) rather than equivalence.
+* [P2] Exact Rational Constructor Boundary: Added `__post_init__` to `ContinuumSignal` and `ProfileMap` rejecting floats and booleans with `TypeError` on keys, values, and coordinates; enforced immutable snapshot against dictionary mutation.
+* [P2] Bound Verified Return Value: Captured verified query evaluation during admissibility verification and returned it directly in `evaluate_query_authority`, preventing stateful callable re-evaluation discrepancies.
+* [P2] Companion Figure & PDF / LaTeX: Updated `generate_figures.py` with 3-panel figure: assigned diagnostic score Y-axis with no text overlaps, discrete left quadrature sum $7/8$ (endpoint $t=1$ has zero weight in left sum), and Boolean fibre collision diagram in $\mathbf{2}\times\mathbf{2}$. Fixed duplicate year "2026. 2026." in `coda_cs.tex` reference 3. Recompiled `coda_cs.pdf`.
+* Version Synchronization: Harmonized software package version `1.1.0` in `pyproject.toml`, `CITATION.cff`, and Lake with manuscript `v1.1`.
+
+v1.0 (2026-07-25) — CODA Omega Tower Normalization
+--------------------------------------------------
+
+* Standardized primary paper identity as `CODA-CS — Continuum Finite-Shadow Tower` (legacy file: `coda_cs.md`, $\Omega\kappa$, Layer 4).
+* Defined cofinal shadow query authority $\mathsf{Auth}_\kappa(X;q) = \Sigma(\Lambda_0 : \mathsf{CofinalSubcat}(\Lambda)) [\prod_{\lambda \in \Lambda_0} \mathsf{Auth}_\lambda(q_\lambda(X)) \times \mathsf{Compat}_\chi(X,\Lambda_0)]$.
+* Re-stated doctrine: continuum coherence is not authority; authority is finite-shadow, cofinal, certificate-compatible, and query-relative.
+* Consolidated in-body version history into this companion change log.
+
+v0.1.0 (July 2026)
+------------------
+
+* Initial specification of Continuum Finite-Shadow Tower ($\Omega\kappa$).
+
+2026-07-27 — CODA-CS Rip-Papers & CODA-CS-Q Bridge Integration
+--------------------------------------------------------
+
+* Added §5b Mechanism Inventory Table and complete Part A Paper Rubric (Lead sentence, Why a researcher should care, Related work, Worked example, Falsifiability, What this does not claim).
+* Integrated CODA-CS-Q Bridge central equivalence $q = \bar{q} \circ \operatorname{Prof}_{\Lambda_0} \iff \text{fiber constancy}$ (`BRIDGE-001` through `BRIDGE-008`).
+* Verified Lean 4 mechanization (`001_gtcoda_cs_1_continuum_non_creation.lean` and `GttcQBridge.lean`) with zero `sorry`/`admit` and 0 custom axioms.
+* Registered proof obligations on `proof_ledger_20260727.md`.
+
+2026-09-12 — Woland High Arbiter & CS/A/GTLA Comprehensive Audit
+----------------------------------------------------------------
+
+* Standardized canonical title: `CODA-CS: Continuum Sieve — Finite-Shadow Tower and Refinement Law`.
+* Excised all legacy occurrences of "General Theory of the Continuum" and aligned metadata across CITATION.cff, README.md, pyproject.toml, docs, and notebook.
+* Applied strict claim hygiene (`RULE[user_global]`): purged un-scoped verbs and enforced explicit query-relative non-promotion boundaries.
+* Verified test suite `coda_atlas/F005_coda/cs/code/tests` passes cleanly (6/6 passed).
+
+2026-09-13 — v1.1 Pre-Print: Architectural Standardization & Pedagogical Elevation
+---------------------------------------------------------------------------------
+
+* Elevated canonical manuscript to `v1.1 Pre-Print` (`coda_cs.md`, `coda_cs.tex`, `coda_cs.pdf`).
+* Standardized title: `The Continuum Shadow (CODA-CS)` with subtitle `Continuum Re-Presentations that Descend to the Finite Calculus`.
+* Added 3-sentence CODA architectural definition and 9-row layer table.
+* Re-generated and compiled LaTeX (`coda_cs.tex`) and PDF (`coda_cs.pdf`) with standardized bibliography across CODA series.
+* Completely overhauled Jupyter Notebooks (`000`, `001`, `002`) with visual signal plots, exact rational quadrature demonstrations, 16-query Boolean truth table verification, and pre-computed execution outputs.
+* Consolidated bibliographic metadata into docs/references.md.
+* Registered Zenodo new-version deposit upload 22730852 (new version of record 20482296 / concept 20482295) with DOI 10.5281/zenodo.22730852.
+* Excised DOI and Zenodo references from manuscript text (`coda_cs.md`, `coda_cs.tex`, `coda_cs.pdf`).
+* Synchronized `docs/descriptions.md` into clean plain human text without HTML or LaTeX math syntax.
+* Enforced runtime protections in `coda_cs_core.py`: immutable snapshotting of test signals, unverified target rejection, and complete fiber constancy checking.
+* Synchronized `docs/000_quick_start.md`, `docs/coda_cs_mutation_audit.md`, and purged stale Lean lockfile entries.
+* Rebuilt and verified `coda_cs_v1.1.zip` standalone package with zero monorepo dependencies.
