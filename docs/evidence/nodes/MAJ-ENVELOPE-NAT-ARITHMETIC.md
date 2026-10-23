@@ -1,6 +1,6 @@
 # MAJ-ENVELOPE-NAT-ARITHMETIC
 
-Stage: [MAJORANA](../stages/MAJORANA.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MAJORANA](../stages/MAJORANA.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `PROVED_LEAN`. Evidence grade:
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 11
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 11 Lean reference(s) cited, 11 in this checkout (replay: none 11). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,22 +47,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/core/majorana/lean4/MajoranaCore.lean](../../../papers/core/majorana/lean4/MajoranaCore.lean)
 - sha256 (`bytes`): `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071`
 - cited in: node.lean, record TFQ-1180
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaCore`): recorded sha256 `10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `disorder_gap_degradation_lower_bound` | yes | yes | yes | - | `#print axioms disorder_gap_degradation_lower_bound` |
-| `multiterminal_crosstalk_channels_pos` | yes | yes | yes | - | `#print axioms multiterminal_crosstalk_channels_pos` |
-| `multiterminal_pareto_defect_pos` | yes | yes | yes | - | `#print axioms multiterminal_pareto_defect_pos` |
-| `multiterminal_transfer_defect_pos` | yes | yes | yes | - | `#print axioms multiterminal_transfer_defect_pos` |
-| `non_markovian_pareto_defect_pos` | yes | yes | yes | - | `#print axioms non_markovian_pareto_defect_pos` |
-| `non_markovian_transfer_defect_pos` | yes | yes | yes | - | `#print axioms non_markovian_transfer_defect_pos` |
-| `pareto_denominator_pos` | yes | yes | yes | - | `#print axioms pareto_denominator_pos` |
-| `sub_ohmic_exponent_shift` | yes | yes | yes | - | `#print axioms sub_ohmic_exponent_shift` |
-| `transfer_defect_lower_bound_pos` | yes | yes | yes | - | `#print axioms transfer_defect_lower_bound_pos` |
-| `transfer_gap_strictly_positive` | yes | yes | yes | - | `#print axioms transfer_gap_strictly_positive` |
-| `transfer_pareto_defect_pos` | yes | yes | yes | - | `#print axioms transfer_pareto_defect_pos` |
+| `disorder_gap_degradation_lower_bound` | yes | yes | yes | Quot.sound, propext | `#print axioms disorder_gap_degradation_lower_bound` |
+| `multiterminal_crosstalk_channels_pos` | yes | yes | yes | Quot.sound, propext | `#print axioms multiterminal_crosstalk_channels_pos` |
+| `multiterminal_pareto_defect_pos` | yes | yes | yes | Quot.sound, propext | `#print axioms multiterminal_pareto_defect_pos` |
+| `multiterminal_transfer_defect_pos` | yes | yes | yes | none | `#print axioms multiterminal_transfer_defect_pos` |
+| `non_markovian_pareto_defect_pos` | yes | yes | yes | Quot.sound, propext | `#print axioms non_markovian_pareto_defect_pos` |
+| `non_markovian_transfer_defect_pos` | yes | yes | yes | none | `#print axioms non_markovian_transfer_defect_pos` |
+| `pareto_denominator_pos` | yes | yes | yes | Quot.sound, propext | `#print axioms pareto_denominator_pos` |
+| `sub_ohmic_exponent_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms sub_ohmic_exponent_shift` |
+| `transfer_defect_lower_bound_pos` | yes | yes | yes | none | `#print axioms transfer_defect_lower_bound_pos` |
+| `transfer_gap_strictly_positive` | yes | yes | yes | none | `#print axioms transfer_gap_strictly_positive` |
+| `transfer_pareto_defect_pos` | yes | yes | yes | Quot.sound, propext | `#print axioms transfer_pareto_defect_pos` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1180_maj_envelope_nat_arithmetic.md`

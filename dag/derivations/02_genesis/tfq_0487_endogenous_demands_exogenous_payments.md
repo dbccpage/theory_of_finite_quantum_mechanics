@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean::clears_does_not_imply_not_fires`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean::g1_class_exclusion`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/G1Class.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Generator.lean::generation_never_dries`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Generator.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::clears_does_not_imply_not_fires`](../../../lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::g1_class_exclusion`](../../../lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Generator.lean::generation_never_dries`](../../../lean4/Imported/Genesis19l57g1/Derivation/Generator.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs)

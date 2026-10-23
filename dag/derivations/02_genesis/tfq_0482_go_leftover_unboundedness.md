@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean::Reach16.unbounded`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean::admit_remove_unbounded`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean)
+- [`lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean::Reach16.unbounded`](../../../lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean)
+- [`lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean::admit_remove_unbounded`](../../../lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: the H3V7N5QF package holds no Rust`
@@ -51,5 +51,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/sixteenth/claim_ledger.md:48`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/Reach.lean:141-144`
+  - `lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean:150-153`
   - `omega_engine_education/documentation/005_oegenong/levels/level_18_leftovers_unboundedness.md:38`

@@ -37,23 +37,59 @@ source_provenance:
   path: dag/prompts/wdp_pgw_wdp_trichotomy_bounds_proved_prose.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: closure_charge_le_opnorm_mul_phi
+  line: 162
+  signature_excerpt: |-
+    theorem closure_charge_le_opnorm_mul_phi {C0 C1 : Type} [Add C1]
+        (d0 : C0 → C1) (J Γ : C1 → ℚ) (Φ c : ℚ) (h : C1)
+        (hc : 0 ≤ c)
+        (descent : ∀ α, Γ (h + d0 α) = Γ h)
+        (opbound : ∀ x, Γ x ≤ c * J x)
+        (glb : ∀ b : ℚ, (∀ α, b ≤ J (h + d0 α)) → b ≤ Φ) :
+        Γ h ≤ c * Φ
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: closure_ratio_signature
+  line: 199
+  signature_excerpt: |-
+    theorem closure_ratio_signature {C0 C1 : Type} [Add C1]
+        (d0 : C0 → C1) (J Γ : C1 → ℚ) (Φ c : ℚ) (h : C1)
+        (hc : 0 ≤ c) (hΦ : 0 < Φ) (hΓ : 0 ≤ Γ h)
+        (descent : ∀ α, Γ (h + d0 α) = Γ h)
+        (opbound : ∀ x, Γ x ≤ c * J x)
+        (glb : ∀ b : ℚ, (∀ α, b ≤ J (h + d0 α)) → b ≤ Φ) :
+        0 ≤ Γ h / Φ ∧ Γ h / Φ ≤ c
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::closure_charge_le_opnorm_mul_phi
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::closure_charge_le_opnorm_mul_phi
+  availability: local
   symbol: closure_charge_le_opnorm_mul_phi
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 162
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::closure_ratio_signature
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::closure_ratio_signature
+  availability: local
   symbol: closure_ratio_signature
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 199
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::TriadSignature
   availability: external
@@ -102,8 +138,6 @@ operad_slots:
     - 'Norm hypothesis: F = R or C, or F = Q with J the restriction of a norm on the real extension (assumption)'
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

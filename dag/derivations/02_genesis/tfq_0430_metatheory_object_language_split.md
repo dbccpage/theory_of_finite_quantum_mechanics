@@ -36,8 +36,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::order_erased_at_object_level`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::order_visible_to_metatheory`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::order_erased_at_object_level`](../../../lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::order_visible_to_metatheory`](../../../lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs::tokens_are_forgotten_by_the_key`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs)

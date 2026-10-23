@@ -1,0 +1,220 @@
+{
+  "schema_version": "lean_replay_campaign.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-22",
+  "group": "FERMION_SIGN",
+  "result": "4 Lean module(s) cited by DAG nodes of stage FERMION_SIGN; 4 built with exit code 0, passed the admission scan and the axiom audit (every printed axiom list a subset of propext, Classical.choice, Quot.sound); the rest are listed with their failure.",
+  "source_base": "10be79e94",
+  "proof_boundary": "This receipt records that the file with the stated sha256 type-checks and which axioms the cited declarations depend on. It changes no DAG node status and does not say the declaration states the node's claim.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "1a68724e10f8b4f974b82d2315a5d5de5da2faaf172fbd7ccab02cfe696181f8",
+    "build_directory": "lean4/b (lakefile buildDir; removed after the run)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build <Module>   (one invocation per module, dependencies first)",
+    "parallelism": "modules of one dependency level were built side by side; seconds are wall-clock and include contention",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "papers.core.fsp.lean4.FermionGinCore",
+        "standalone_file": true,
+        "dag_nodes": [
+          "FSP-GIN-EQUAL-WEIGHT-PAIRING"
+        ],
+        "dag_node_statuses": {
+          "FSP-GIN-EQUAL-WEIGHT-PAIRING": "COMPUTATIONALLY_CHECKED"
+        },
+        "source": "papers/core/fsp/lean4/FermionGinCore.lean",
+        "sha256": "256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8",
+        "sha256_after_build": "256bae210455bd503809c9ef8a10e44b6692daa633ac8e13e253dcf78995d0b8",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 6.97,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "involution_pair_cancels_sign"
+        ],
+        "cited_resolution": {
+          "involution_pair_cancels_sign": [
+            "FermionGinCore.involution_pair_cancels_sign"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "FermionGinCore.involution_pair_cancels_sign": [
+            "propext"
+          ]
+        },
+        "output": "",
+        "axiom_audit_output": "AX\tinvolution_pair_cancels_sign\tFermionGinCore.involution_pair_cancels_sign\t[propext]\n",
+        "build_command": "cd lean4 && lake env lean papers/core/fsp/lean4/FermionGinCore.lean",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:25:55Z"
+      },
+      {
+        "module": "papers.core.fsp.lean4.FrustratedSpectrumObstruction",
+        "standalone_file": true,
+        "dag_nodes": [
+          "FSP-FREE-TRIANGLE-REPRESENTATION",
+          "FSP-INVOLUTION-PAIR-CANCELLATION"
+        ],
+        "dag_node_statuses": {
+          "FSP-FREE-TRIANGLE-REPRESENTATION": "COMPUTATIONALLY_CHECKED",
+          "FSP-INVOLUTION-PAIR-CANCELLATION": "PROVED_LEAN"
+        },
+        "source": "papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+        "sha256": "85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd",
+        "sha256_after_build": "85c88263bbce28035a35b9282b747a7e97959c514a66c3c49fa770d5db49f6cd",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 10.05,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "bipartite_pair_exact_cancellation",
+          "disjoint_pair_residual_nonzero",
+          "disjoint_spectra_obstructs_involution"
+        ],
+        "cited_resolution": {
+          "bipartite_pair_exact_cancellation": [
+            "FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation"
+          ],
+          "disjoint_pair_residual_nonzero": [
+            "FrustratedSpectrumObstruction.disjoint_pair_residual_nonzero"
+          ],
+          "disjoint_spectra_obstructs_involution": [
+            "FrustratedSpectrumObstruction.disjoint_spectra_obstructs_involution"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation": [
+            "propext"
+          ],
+          "FrustratedSpectrumObstruction.disjoint_pair_residual_nonzero": [
+            "Quot.sound",
+            "propext"
+          ],
+          "FrustratedSpectrumObstruction.disjoint_spectra_obstructs_involution": []
+        },
+        "output": "",
+        "axiom_audit_output": "AX\tbipartite_pair_exact_cancellation\tFrustratedSpectrumObstruction.bipartite_pair_exact_cancellation\t[propext]\nAX\tdisjoint_pair_residual_nonzero\tFrustratedSpectrumObstruction.disjoint_pair_residual_nonzero\t[propext, Quot.sound]\nAX\tdisjoint_spectra_obstructs_involution\tFrustratedSpectrumObstruction.disjoint_spectra_obstructs_involution\t[]\n",
+        "build_command": "cd lean4 && lake env lean papers/core/fsp/lean4/FrustratedSpectrumObstruction.lean",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:26:22Z"
+      },
+      {
+        "module": "papers.core.fsp.lean4.MeronCharacter",
+        "standalone_file": true,
+        "dag_nodes": [
+          "FSP-INVOLUTION-PAIR-CANCELLATION"
+        ],
+        "dag_node_statuses": {
+          "FSP-INVOLUTION-PAIR-CANCELLATION": "PROVED_LEAN"
+        },
+        "source": "papers/core/fsp/lean4/MeronCharacter.lean",
+        "sha256": "0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870",
+        "sha256_after_build": "0252c6f943a0bdf6a9975a60cbc041c932c58fe9cf335fa3381f1c987b9e1870",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 5.53,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "observable_doublet_counterexample",
+          "unequal_three_term_cancellation"
+        ],
+        "cited_resolution": {
+          "observable_doublet_counterexample": [
+            "MeronCharacter.observable_doublet_counterexample"
+          ],
+          "unequal_three_term_cancellation": [
+            "MeronCharacter.unequal_three_term_cancellation"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "MeronCharacter.observable_doublet_counterexample": [],
+          "MeronCharacter.unequal_three_term_cancellation": []
+        },
+        "output": "'MeronCharacter.meron_orbit_cancels' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.zero_meron_orbit_positive' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.compression_preserves_partition' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.unequal_three_term_cancellation' does not depend on any axioms\n'MeronCharacter.observable_doublet_counterexample' does not depend on any axioms\n",
+        "axiom_audit_output": "'MeronCharacter.meron_orbit_cancels' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.zero_meron_orbit_positive' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.compression_preserves_partition' depends on axioms: [propext, Quot.sound]\n'MeronCharacter.unequal_three_term_cancellation' does not depend on any axioms\n'MeronCharacter.observable_doublet_counterexample' does not depend on any axioms\nAX\tobservable_doublet_counterexample\tMeronCharacter.observable_doublet_counterexample\t[]\nAX\tunequal_three_term_cancellation\tMeronCharacter.unequal_three_term_cancellation\t[]\n",
+        "build_command": "cd lean4 && lake env lean papers/core/fsp/lean4/MeronCharacter.lean",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:26:45Z"
+      },
+      {
+        "module": "papers.core.fsp.lean4.MeronClusterInvolution",
+        "standalone_file": true,
+        "dag_nodes": [
+          "FSP-INVOLUTION-PAIR-CANCELLATION"
+        ],
+        "dag_node_statuses": {
+          "FSP-INVOLUTION-PAIR-CANCELLATION": "PROVED_LEAN"
+        },
+        "source": "papers/core/fsp/lean4/MeronClusterInvolution.lean",
+        "sha256": "82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f",
+        "sha256_after_build": "82aec60d21a474e25be9f3c7f1165b201bb6b6e2a972f047b6ae88758ba4044f",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "seconds": 7.81,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "cited_symbols": [
+          "fixed_point_contradiction",
+          "meron_pair_exact_cancellation"
+        ],
+        "cited_resolution": {
+          "fixed_point_contradiction": [
+            "MeronClusterInvolution.fixed_point_contradiction"
+          ],
+          "meron_pair_exact_cancellation": [
+            "MeronClusterInvolution.meron_pair_exact_cancellation"
+          ]
+        },
+        "unresolved_cited_symbols": [],
+        "ambiguous_cited_symbols": {},
+        "axiom_audit_basis": "cited declarations",
+        "axioms": {
+          "MeronClusterInvolution.fixed_point_contradiction": [],
+          "MeronClusterInvolution.meron_pair_exact_cancellation": [
+            "propext"
+          ]
+        },
+        "output": "",
+        "axiom_audit_output": "AX\tfixed_point_contradiction\tMeronClusterInvolution.fixed_point_contradiction\t[]\nAX\tmeron_pair_exact_cancellation\tMeronClusterInvolution.meron_pair_exact_cancellation\t[propext]\n",
+        "build_command": "cd lean4 && lake env lean papers/core/fsp/lean4/MeronClusterInvolution.lean",
+        "audit_command": "cd lean4 && lake env lean <scratch>.lean   # imports Lean and the module; Lean.collectAxioms over each constant named by a cited symbol",
+        "checked_at": "2026-10-22T22:27:13Z"
+      }
+    ]
+  },
+  "reproduction": [
+    "ln -s <shared Mathlib v4.35.0 package cache> lean4/.lake/packages   # Mathlib rev 56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "cd lean4 && lake build <module>   # modules of lean4/Imported are in the ImportedAtlas library",
+    "cd lean4 && lake env lean <scratch.lean>   # import Lean + the module; Lean.collectAxioms over the constants whose names end in a cited symbol (every theorem of the module when the DAG cites the file only)",
+    "python -I -X utf8 dag/research/lean_replay_campaign/replay_campaign.py run|assemble --repo . --plan plan.json --work <dir>"
+  ],
+  "limits": [
+    "A receipt covers a file, not a statement: it shows that the file type-checks and which axioms the named declarations use. Whether a declaration states a node's claim is the job of the PFP reviews.",
+    "Axiom lists come from Lean.collectAxioms (the function behind #print axioms) run in a scratch file; the sources were not edited. A cited symbol resolves only to a constant whose full name is the symbol or ends in '.' + the symbol; a symbol with no such constant, or only several suffix matches and no exact one, is listed under unresolved_cited_symbols / ambiguous_cited_symbols and is not audited. axiom_audit_passed is true only if every cited symbol resolved and every audited axiom is standard; the whole-file theorem audit (axioms_whole_file_extra) is information and never sets it. When the DAG cites a file without naming a declaration, the audit is of every theorem of the file.",
+    "seconds is wall-clock for one `lake build` invocation while up to four independent modules were built side by side; it includes contention and, for a module whose dependencies were built just before, only that module's own compile."
+  ]
+}

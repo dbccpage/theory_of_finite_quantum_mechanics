@@ -1,6 +1,6 @@
 # PGW-C2-RUN-FORWARD-EVERY-HISTORY
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,20 +8,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E0; 4 Lean reference(s) cited, 0 in this checkout. PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
-- `proved_lean_external_only`: all 4 cited Lean reference(s) lie outside this checkout. PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -44,17 +43,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean`
+### Lean: `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean, node.source
-- counts toward the grade: no
+- file: [lean4/Imported/Genesis19l57g1/SecondRun/Run.lean](../../../lean4/Imported/Genesis19l57g1/SecondRun/Run.lean)
+- sha256 (`bytes`): `4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e`
+- cited in: node.lean, node.source, record TFQ-0475
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.SecondRun.Run`): recorded sha256 `4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/SecondRun/Run.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `cycle_regime_const` | yes | yes | yes | Quot.sound, propext | `#print axioms cycle_regime_const` |
+| `ereplay_elems_le` | yes | yes | yes | Quot.sound, propext | `#print axioms ereplay_elems_le` |
+| `no_return` | yes | yes | yes | Quot.sound, propext | `#print axioms no_return` |
+| `not_separable_through` | yes | yes | yes | propext | `#print axioms not_separable_through` |
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0475_c2_run_forward_every_history.md`
 
 - file: [dag/derivations/02_genesis/tfq_0475_c2_run_forward_every_history.md](../../../dag/derivations/02_genesis/tfq_0475_c2_run_forward_every_history.md)
-- sha256 (`lf-normalised`): `c9a22fe9b5e12f14b0d301558b336067172c25a9f2d3a84eeb43adeca42ed00a`
+- sha256 (`lf-normalised`): `7ab6a8ab5182b23f88a16b131faf0f636688bc5c09824a51cd35669a6c7207b6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0475
 - counts toward the grade: no
@@ -72,10 +81,6 @@ Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_run/fwd_runs.py::build_run`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_run/fwd_runs.py::replay_mismatches`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::cycle_regime_const`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::ereplay_elems_le`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::no_return`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/SecondRun/Run.lean::not_separable_through`
 
 ## Absences recorded by the TFQ records
 

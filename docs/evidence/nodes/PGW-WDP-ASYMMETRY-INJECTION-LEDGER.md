@@ -1,6 +1,6 @@
 # PGW-WDP-ASYMMETRY-INJECTION-LEDGER
 
-Stage: [WDP](../stages/WDP.md). Status: `DEFINITION`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [WDP](../stages/WDP.md). Status: `DEFINITION`. Evidence grade: **E0**. [E
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 1
+- cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -42,17 +42,24 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean`
+### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+- file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean)
+- sha256 (`bytes`): `fe83013b661dd6d44ba76b39fd10d1c53cca158fb53136e60832a3cb7fb02e7c`
+- cited in: node.lean, record TFQ-0540
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Symmetry`): recorded sha256 `fe83013b661dd6d44ba76b39fd10d1c53cca158fb53136e60832a3cb7fb02e7c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `no_invariant_oriented_edge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_invariant_oriented_edge` |
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md`
 
 - file: [dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md](../../../dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md)
-- sha256 (`lf-normalised`): `ce3bc664c058c1cca1594791f795b209dbe274f63a726c527c09d96d0cd22213`
+- sha256 (`lf-normalised`): `3150d8467f4867d1fb9454b9b683235bbabb2441bb4ef5694b8fff68a97697e5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0540
 - counts toward the grade: no
@@ -76,7 +83,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/symmetry.py::exhaustive_relation_audit`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean::no_invariant_oriented_edge`
 
 ## Absences recorded by the TFQ records
 

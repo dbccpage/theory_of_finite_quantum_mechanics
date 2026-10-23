@@ -33,10 +33,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::second_token_required`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean::single_token_carrier_bound`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::genesis_underivable`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::underivable_of_empty`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::second_token_required`](../../../lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::single_token_carrier_bound`](../../../lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::underivable_of_empty`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge0_generates_nothing`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs)
@@ -57,4 +57,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:203-217`
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:218-224`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Bridge.lean:146-148`
+  - `lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean:155-157`

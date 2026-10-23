@@ -10,9 +10,9 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `PROVED_LEAN`. Evidence gr
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 9
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 16
+- cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -50,12 +50,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/HistoryReport.lean`
@@ -80,33 +81,63 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `HistoryReport.selector_exists` | yes | yes | yes | Classical.choice | `#print axioms HistoryReport.selector_exists` |
 - counts toward the grade: yes
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean`
+### Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [lean4/Imported/PreGenesisToMssn/Paper.lean](../../../lean4/Imported/PreGenesisToMssn/Paper.lean)
+- sha256 (`bytes`): `5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean`
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `history_factor_unique` | yes | yes | yes | Quot.sound | `#print axioms history_factor_unique` |
+| `history_report_criterion` | yes | yes | yes | Classical.choice | `#print axioms history_report_criterion` |
+- counts toward the grade: yes
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Descent.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+### Lean: `lean4/Imported/SnMssn/Paper001.lean`
+
+- file: [lean4/Imported/SnMssn/Paper001.lean](../../../lean4/Imported/SnMssn/Paper001.lean)
+- sha256 (`bytes`): `1a79ddc7a70157834ee80ed3890124aadd149093336ac49776eab3c167b4fb07`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `1a79ddc7a70157834ee80ed3890124aadd149093336ac49776eab3c167b4fb07` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/SnMssn/Paper001.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean`
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `descent_unique` | yes | yes | yes | none | `#print axioms descent_unique` |
+| `exists_descent_of_constant` | yes | yes | yes | Classical.choice | `#print axioms exists_descent_of_constant` |
+- counts toward the grade: yes
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ProposalAdmissionBridge.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Descent.lean`
+
+- file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Descent.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Descent.lean)
+- sha256 (`bytes`): `3c14552841a74335e9a2b0ad711dd31ea79b2892e2069f49a980350bca7535cf`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.Descent`): recorded sha256 `3c14552841a74335e9a2b0ad711dd31ea79b2892e2069f49a980350bca7535cf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Descent.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean`
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `function_descends_iff_fiber_constant` | yes | yes | yes | Classical.choice | `#print axioms function_descends_iff_fiber_constant` |
+- counts toward the grade: yes
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
+
+- file: [lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean)
+- sha256 (`bytes`): `dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge`): recorded sha256 `dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `factorization_iff_fiber_constancy` | yes | yes | yes | Classical.choice | `#print axioms factorization_iff_fiber_constancy` |
+- counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs`
 

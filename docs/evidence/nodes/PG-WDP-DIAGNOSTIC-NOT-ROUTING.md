@@ -10,9 +10,9 @@ Stage: [WDP](../stages/WDP.md). Status: `DEFINITION`. Evidence grade: **E3**. [E
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 34
-- cited Lean declarations covered by a current replay receipt: 33
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 36
+- cited Lean declarations covered by a current replay receipt: 36
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -50,12 +50,28 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+- counts toward the grade: yes
+
+### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean`
+
+- file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean)
+- sha256 (`bytes`): `ec70fc97a88d46e892a481f8b2f0b6cd48f61ecc335d60dbe583c4f74de0a566`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Routing`): recorded sha256 `ec70fc97a88d46e892a481f8b2f0b6cd48f61ecc335d60dbe583c4f74de0a566` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `outside_profile_ne_refuted` | yes | yes | yes | none | `#print axioms outside_profile_ne_refuted` |
+| `route` | yes | yes | yes | none | `#print axioms route` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/WdpDiagnosticRouting.lean`
@@ -103,13 +119,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WdpDiagnosticRouting.sealed_needs_witness` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.sealed_needs_witness` |
 | `WdpDiagnosticRouting.sealed_only_exact` | yes | yes | yes | propext | `#print axioms WdpDiagnosticRouting.sealed_only_exact` |
 - counts toward the grade: yes
-
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
 
 ### Rust: `code/rust/src/wdp/authority_gap.rs`
 

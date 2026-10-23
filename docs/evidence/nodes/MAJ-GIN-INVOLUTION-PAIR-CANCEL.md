@@ -1,6 +1,6 @@
 # MAJ-GIN-INVOLUTION-PAIR-CANCEL
 
-Stage: [MAJORANA](../stages/MAJORANA.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MAJORANA](../stages/MAJORANA.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `PROVED_LEAN`. Evidence grade:
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: none 2). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,13 +47,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/core/majorana/lean4/MajoranaGinCore.lean](../../../papers/core/majorana/lean4/MajoranaGinCore.lean)
 - sha256 (`bytes`): `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102`
 - cited in: node.lean, record TFQ-1175
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaGinCore`): recorded sha256 `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaGinCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `involution_pair_cancels_sign` | yes | yes | yes | - | `#print axioms involution_pair_cancels_sign` |
-| `is_exact_involution_partner` | yes | yes | yes | - | `#print axioms is_exact_involution_partner` |
+| `involution_pair_cancels_sign` | yes | yes | yes | propext | `#print axioms involution_pair_cancels_sign` |
+| `is_exact_involution_partner` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms is_exact_involution_partner` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1175_maj_gin_involution_pair_cancel.md`

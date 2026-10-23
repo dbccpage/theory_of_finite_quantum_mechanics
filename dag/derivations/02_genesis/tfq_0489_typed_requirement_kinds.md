@@ -36,9 +36,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Constitution.lean::allDescs_length`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Constitution.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/ControllerCategory.lean::allKinds_length`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/ControllerCategory.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean::allPairs_length`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Constitution.lean::allDescs_length`](../../../lean4/Imported/Genesis19l57g1/Derivation/Constitution.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/ControllerCategory.lean::allKinds_length`](../../../lean4/Imported/Genesis19l57g1/Derivation/ControllerCategory.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/Counting.lean::allPairs_length`](../../../lean4/Imported/Genesis19l57g1/Derivation/Counting.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust port of the stake menu`

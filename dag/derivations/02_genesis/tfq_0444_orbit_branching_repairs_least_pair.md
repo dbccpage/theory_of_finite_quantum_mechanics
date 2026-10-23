@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_image_total`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_rename_fwd`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::validCount_rename`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_image_total`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_rename_fwd`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::validCount_rename`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs)
@@ -56,4 +56,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:371-379`
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:385-391`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean:1058-1063`
+  - `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:1067-1072`

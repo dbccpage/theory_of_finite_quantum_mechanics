@@ -658,15 +658,18 @@ CREATE TABLE lean_file (
 --   Normal form : 6NF-style
 --   Candidate keys: (lean_path)
 --   Source      : the same items' "replay" field.  'verified' means a
---                 current replay receipt names the file; 'none' means
---                 the file exists with no such receipt; 'n/a' is used
+--                 current replay receipt names the file and passed;
+--                 'failed' means a receipt matches the file's sha256 but
+--                 does not pass (build, admission scan or axiom audit);
+--                 'stale' means only receipts for other bytes exist; 'none'
+--                 means the file exists with no such receipt; 'n/a' is used
 --                 when the file is not in this checkout.
 CREATE TABLE lean_file_replay (
   lean_path     CHARACTER VARYING(512) NOT NULL,
   replay_status CHARACTER VARYING(16) NOT NULL,
   CONSTRAINT pk_lean_file_replay PRIMARY KEY (lean_path),
   CONSTRAINT fk_lean_file_replay_file FOREIGN KEY (lean_path) REFERENCES lean_file (lean_path),
-  CONSTRAINT ck_lean_file_replay_status CHECK (replay_status IN ('verified', 'none', 'n/a'))
+  CONSTRAINT ck_lean_file_replay_status CHECK (replay_status IN ('verified', 'failed', 'stale', 'none', 'n/a'))
 );
 
 -- TABLE lean_declaration

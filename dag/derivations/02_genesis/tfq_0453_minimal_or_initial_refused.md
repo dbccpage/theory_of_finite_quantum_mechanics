@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:623-633`
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:626-629`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Initiality.lean:40-43`
+  - `lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean:49-52`
