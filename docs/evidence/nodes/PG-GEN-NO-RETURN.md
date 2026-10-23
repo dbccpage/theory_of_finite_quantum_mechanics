@@ -10,9 +10,9 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 24
+- cited Lean declarations covered by a current replay receipt: 24
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Not covered by the PFP review: Prove the complete array-to-source Regime interpreter refinement and that every real source regime change strictly raises the source potential. A count comparison alone is not that refinement.
+The complete five-field array and Boolean-mode source interpreter refinement, all finite partial histories, and strict source potential increase on actual regime changes now have local Lean proofs. External Python/Rust runtime/compiler and responder/license refinement remain separate.
 
 ## Source status
 
@@ -44,6 +44,40 @@ Rounds / no-return / cumulative element count (Genesis §8-§9)
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignGenesisNoReturn.lean`
+
+- file: [lean4/CampaignGenesisNoReturn.lean](../../../lean4/CampaignGenesisNoReturn.lean)
+- sha256 (`bytes`): `348bd7e00a4f19a9631e67d6ed1e52539517e74b743f7dba91f7b27786870a79`
+- cited in: node.lean, receipt dag/research/campaign_pg-gen-no-return_lean_replay.json (CampaignGenesisNoReturn)
+- replay: `verified`
+  - receipt [dag/research/campaign_pg-gen-no-return_lean_replay.json](../../../dag/research/campaign_pg-gen-no-return_lean_replay.json) (module `CampaignGenesisNoReturn`): recorded sha256 `348bd7e00a4f19a9631e67d6ed1e52539517e74b743f7dba91f7b27786870a79` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGenesisNoReturn`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignGenesisNoReturn.arrayEvent_sourceEvent` | yes | yes | yes | none | `#print axioms CampaignGenesisNoReturn.arrayEvent_sourceEvent` |
+| `CampaignGenesisNoReturn.array_failure_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.array_failure_exact` |
+| `CampaignGenesisNoReturn.array_replay_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.array_replay_exact` |
+| `CampaignGenesisNoReturn.array_source` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.array_source` |
+| `CampaignGenesisNoReturn.array_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.array_step_commutes` |
+| `CampaignGenesisNoReturn.cumulative_potential` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.cumulative_potential` |
+| `CampaignGenesisNoReturn.cycle_regime_const` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.cycle_regime_const` |
+| `CampaignGenesisNoReturn.decode_encode` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.decode_encode` |
+| `CampaignGenesisNoReturn.encode_decode` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.encode_decode` |
+| `CampaignGenesisNoReturn.engine_replay_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_commutes` |
+| `CampaignGenesisNoReturn.engine_replay_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_exact` |
+| `CampaignGenesisNoReturn.engine_replay_failure_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_failure_exact` |
+| `CampaignGenesisNoReturn.engine_replay_source` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_source` |
+| `CampaignGenesisNoReturn.engine_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_step_commutes` |
+| `CampaignGenesisNoReturn.no_return` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.no_return` |
+| `CampaignGenesisNoReturn.second_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.second_step_commutes` |
+| `CampaignGenesisNoReturn.sourceEvent_arrayEvent` | yes | yes | yes | none | `#print axioms CampaignGenesisNoReturn.sourceEvent_arrayEvent` |
+| `CampaignGenesisNoReturn.sourceState_injective` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.sourceState_injective` |
+| `CampaignGenesisNoReturn.source_array` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.source_array` |
+| `CampaignGenesisNoReturn.strict_potential` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.strict_potential` |
+| `CampaignGenesisNoReturn.two_switches_return` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.two_switches_return` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean`
 
@@ -75,6 +109,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0384
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pg-gen-no-return.md`
+
+- file: [dag/derivations/independent/pg-gen-no-return.md](../../../dag/derivations/independent/pg-gen-no-return.md)
+- sha256 (`lf-normalised`): `2fea065804eb7accdcf1561511e3ed3db8820e0d7a0967e339e3946adcaf1035`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
 

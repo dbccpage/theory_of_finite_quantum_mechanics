@@ -35,3 +35,16 @@ twenty-one terminal audits. No history or arity cutoff occurs in the Lean result
 What the scanner cannot decide: whether an external engine runtime or responder
 faithfully realizes these source semantics. That claim remains outside this
 review and the preserved historical PFP review.
+
+Final gates: 24 campaign tests pass. Scanner HIGH=0, MEDIUM=0, LOW=5.
+Three LOW findings concern inherited tensor numeric/receipt metadata. One
+flags this note's computed census; every flagged number is independently
+recomputed by the standalone checker and bound in its receipt. The remaining
+LOW finding concerns the historical PFP descriptor boilerplate in
+`dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md:69`.
+Exact SymPy recomputation gives 550 - 1100 + 825 + 825 = 1100,
+4*55 + 3*2 + 4 = 230, and 120 - 59 - 2 = 59. These descriptor identities
+are not premises of the source no-return proof and do not derive Genesis.
+The unchanged HilbertLiftOperators JSON error and TFQ-0084 executed prompt
+delta remain additional repository diagnostics. No scanner exception or node
+status increase is introduced.
