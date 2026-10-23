@@ -1,0 +1,496 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "checks/independent/dfm-regge-gravity-fence.py",
+  "contract": {
+    "schema_id": "tfqm.source-contract.v1",
+    "contract_id": "pr237-final-base-review",
+    "subject": "checks/independent/dfm-regge-gravity-fence.py",
+    "source_sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+    "artifact": {
+      "path": "checks/independent/dfm-regge-gravity-fence.py",
+      "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+      "language": "Python"
+    },
+    "authority_effect": "None",
+    "role": "independent checker",
+    "claim_id": "urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses",
+    "purpose": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+    "owned_invariants": [
+      "Only exact int or Fraction inputs reach Fraction arithmetic.",
+      "Quotient entry points reject zero denominators with ValueError.",
+      "No repository imports; explicit numeric and symbolic checks."
+    ],
+    "boundaries": [
+      "The finite sample list is not exhaustive over rational triples.",
+      "The five source mutants do not establish broad mutation coverage.",
+      "SymPy is an external, untyped symbolic dependency; the Lean kernel proof is separate."
+    ],
+    "evidence": [
+      {
+        "path": "dag/research/pr237_review_focused_validation.json",
+        "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+      },
+      {
+        "path": "dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json",
+        "sha256": "e8b9dc27d2c112851db872442c498c2df4c12347f714f3aef5ad6812d01c9b12"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      }
+    ]
+  },
+  "current_contract": "ed8591e9a938723313aaa9ea54c7fbe86f50c52c8c93d7ea0255b2343913464a",
+  "current_scoring": "028231f598a6e3487b37d7fdca6c2cb554ed8bfa8f967d2ab54643f6211cf4f8",
+  "contract_history": [
+    {
+      "sha256": "96d0d395ecdd997858e418f87336e18bb38beb12713d1f5ef6a68e676bbf2bee",
+      "bytes": 1512,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr237-original-checker-review",
+        "subject": "checks/independent/dfm-regge-gravity-fence.py",
+        "source_sha256": "036432fe25fa61ccb9c4bf95529b2171f8eae8ba000fc09991700bfa92be45e3",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "036432fe25fa61ccb9c4bf95529b2171f8eae8ba000fc09991700bfa92be45e3",
+          "language": "Python"
+        },
+        "authority_effect": "None",
+        "role": "independent checker",
+        "claim_id": "urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses",
+        "purpose": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "owned_invariants": [
+          "Only exact int or Fraction inputs reach Fraction arithmetic.",
+          "Quotient entry points reject zero denominators with ValueError.",
+          "No repository imports; explicit numeric and symbolic checks."
+        ],
+        "boundaries": [
+          "Known pre-repair failure: integer beta uses float division and floats are accepted."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json",
+            "sha256": "61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr237-original-checker-review\",\n  \"subject\": \"checks/independent/dfm-regge-gravity-fence.py\",\n  \"source_sha256\": \"036432fe25fa61ccb9c4bf95529b2171f8eae8ba000fc09991700bfa92be45e3\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"036432fe25fa61ccb9c4bf95529b2171f8eae8ba000fc09991700bfa92be45e3\",\n    \"language\": \"Python\"\n  },\n  \"authority_effect\": \"None\",\n  \"role\": \"independent checker\",\n  \"claim_id\": \"urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses\",\n  \"purpose\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"owned_invariants\": [\n    \"Only exact int or Fraction inputs reach Fraction arithmetic.\",\n    \"Quotient entry points reject zero denominators with ValueError.\",\n    \"No repository imports; explicit numeric and symbolic checks.\"\n  ],\n  \"boundaries\": [\n    \"Known pre-repair failure: integer beta uses float division and floats are accepted.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json\",\n      \"sha256\": \"61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#original-contract"
+      ]
+    },
+    {
+      "sha256": "7639cd16c3ca9b6a9ccf95f2b1c27293416d56a4b33ac3b5dabe67e23c52978a",
+      "bytes": 1653,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr237-independent-review",
+        "subject": "checks/independent/dfm-regge-gravity-fence.py",
+        "source_sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+          "language": "Python"
+        },
+        "authority_effect": "None",
+        "role": "independent checker",
+        "claim_id": "urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses",
+        "purpose": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "owned_invariants": [
+          "Only exact int or Fraction inputs reach Fraction arithmetic.",
+          "Quotient entry points reject zero denominators with ValueError.",
+          "No repository imports; explicit numeric and symbolic checks."
+        ],
+        "boundaries": [
+          "The finite sample list is not exhaustive over rational triples.",
+          "The five source mutants do not establish broad mutation coverage.",
+          "SymPy is an external, untyped symbolic dependency; the Lean kernel proof is separate."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json",
+            "sha256": "61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr237-independent-review\",\n  \"subject\": \"checks/independent/dfm-regge-gravity-fence.py\",\n  \"source_sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n    \"language\": \"Python\"\n  },\n  \"authority_effect\": \"None\",\n  \"role\": \"independent checker\",\n  \"claim_id\": \"urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses\",\n  \"purpose\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"owned_invariants\": [\n    \"Only exact int or Fraction inputs reach Fraction arithmetic.\",\n    \"Quotient entry points reject zero denominators with ValueError.\",\n    \"No repository imports; explicit numeric and symbolic checks.\"\n  ],\n  \"boundaries\": [\n    \"The finite sample list is not exhaustive over rational triples.\",\n    \"The five source mutants do not establish broad mutation coverage.\",\n    \"SymPy is an external, untyped symbolic dependency; the Lean kernel proof is separate.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json\",\n      \"sha256\": \"61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#review-contract"
+      ]
+    },
+    {
+      "sha256": "fbd73a4cd4583c1a9f42ebab6d9eafb5e358683fbdee249a78066c97ec19dd78",
+      "bytes": 1662,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr237-final-integrated-review",
+        "subject": "checks/independent/dfm-regge-gravity-fence.py",
+        "source_sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+          "language": "Python"
+        },
+        "authority_effect": "None",
+        "role": "independent checker",
+        "claim_id": "urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses",
+        "purpose": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "owned_invariants": [
+          "Only exact int or Fraction inputs reach Fraction arithmetic.",
+          "Quotient entry points reject zero denominators with ValueError.",
+          "No repository imports; explicit numeric and symbolic checks."
+        ],
+        "boundaries": [
+          "The finite sample list is not exhaustive over rational triples.",
+          "The five source mutants do not establish broad mutation coverage.",
+          "SymPy is an external, untyped symbolic dependency; the Lean kernel proof is separate."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json",
+            "sha256": "e5d5aa557e2737b79732e0fa2648b18c513f018d20bc1fd90aff9cf7920fb49f"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr237-final-integrated-review\",\n  \"subject\": \"checks/independent/dfm-regge-gravity-fence.py\",\n  \"source_sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n    \"language\": \"Python\"\n  },\n  \"authority_effect\": \"None\",\n  \"role\": \"independent checker\",\n  \"claim_id\": \"urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses\",\n  \"purpose\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"owned_invariants\": [\n    \"Only exact int or Fraction inputs reach Fraction arithmetic.\",\n    \"Quotient entry points reject zero denominators with ValueError.\",\n    \"No repository imports; explicit numeric and symbolic checks.\"\n  ],\n  \"boundaries\": [\n    \"The finite sample list is not exhaustive over rational triples.\",\n    \"The five source mutants do not establish broad mutation coverage.\",\n    \"SymPy is an external, untyped symbolic dependency; the Lean kernel proof is separate.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json\",\n      \"sha256\": \"e5d5aa557e2737b79732e0fa2648b18c513f018d20bc1fd90aff9cf7920fb49f\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-contract"
+      ]
+    },
+    {
+      "sha256": "ed8591e9a938723313aaa9ea54c7fbe86f50c52c8c93d7ea0255b2343913464a",
+      "bytes": 1651,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr237-final-base-review",
+        "subject": "checks/independent/dfm-regge-gravity-fence.py",
+        "source_sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+          "language": "Python"
+        },
+        "authority_effect": "None",
+        "role": "independent checker",
+        "claim_id": "urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses",
+        "purpose": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "owned_invariants": [
+          "Only exact int or Fraction inputs reach Fraction arithmetic.",
+          "Quotient entry points reject zero denominators with ValueError.",
+          "No repository imports; explicit numeric and symbolic checks."
+        ],
+        "boundaries": [
+          "The finite sample list is not exhaustive over rational triples.",
+          "The five source mutants do not establish broad mutation coverage.",
+          "SymPy is an external, untyped symbolic dependency; the Lean kernel proof is separate."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json",
+            "sha256": "e8b9dc27d2c112851db872442c498c2df4c12347f714f3aef5ad6812d01c9b12"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr237-final-base-review\",\n  \"subject\": \"checks/independent/dfm-regge-gravity-fence.py\",\n  \"source_sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n    \"language\": \"Python\"\n  },\n  \"authority_effect\": \"None\",\n  \"role\": \"independent checker\",\n  \"claim_id\": \"urn:tfqm:DFM-REGGE-GRAVITY-FENCE:arithmetic-witnesses\",\n  \"purpose\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"owned_invariants\": [\n    \"Only exact int or Fraction inputs reach Fraction arithmetic.\",\n    \"Quotient entry points reject zero denominators with ValueError.\",\n    \"No repository imports; explicit numeric and symbolic checks.\"\n  ],\n  \"boundaries\": [\n    \"The finite sample list is not exhaustive over rational triples.\",\n    \"The five source mutants do not establish broad mutation coverage.\",\n    \"SymPy is an external, untyped symbolic dependency; the Lean kernel proof is separate.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json\",\n      \"sha256\": \"e8b9dc27d2c112851db872442c498c2df4c12347f714f3aef5ad6812d01c9b12\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-base-contract"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "92a2af579be05fab3ff5d8da4e2727e13eb6bdfd3f0f40af1d071d320ce1f73c",
+      "bytes": 2222,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr237-original-checker-review",
+        "assessment_status": "complete_scoped_independent_review",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "036432fe25fa61ccb9c4bf95529b2171f8eae8ba000fc09991700bfa92be45e3",
+          "language": "Python"
+        },
+        "profile": "Exact",
+        "profile_status": "Reviewed declared profile",
+        "level": "L2",
+        "level_assessment": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "gates": {
+          "G1": "C",
+          "G2": "E",
+          "G3": "D",
+          "G4": "D",
+          "G5": "C"
+        },
+        "composite_grade": "E",
+        "score_token": "L2E",
+        "is_complete": true,
+        "grade_ceiling": "E",
+        "limiting_reason": "Concrete exactness violations reproduced: gamma(0) and block_trace(0) return floats; cos_num accepts binary floats and cos_law can return a float.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evaluation_timestamp": "2026-10-23T19:19:30.594811+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json",
+            "sha256": "61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.",
+          "G2": "Original-source counterexamples in focused receipt; current source repair is assessed separately.",
+          "G3": "Zero denominators raise raw ZeroDivisionError; exact input restrictions absent.",
+          "G4": "Original four-triple and supplied-witness checks miss the demonstrated invalid paths.",
+          "G5": "Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr237-original-checker-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"036432fe25fa61ccb9c4bf95529b2171f8eae8ba000fc09991700bfa92be45e3\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"level\": \"L2\",\n  \"level_assessment\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"E\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"composite_grade\": \"E\",\n  \"score_token\": \"L2E\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"E\",\n  \"limiting_reason\": \"Concrete exactness violations reproduced: gamma(0) and block_trace(0) return floats; cos_num accepts binary floats and cos_law can return a float.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T19:19:30.594811+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json\",\n      \"sha256\": \"61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.\",\n    \"G2\": \"Original-source counterexamples in focused receipt; current source repair is assessed separately.\",\n    \"G3\": \"Zero denominators raise raw ZeroDivisionError; exact input restrictions absent.\",\n    \"G4\": \"Original four-triple and supplied-witness checks miss the demonstrated invalid paths.\",\n    \"G5\": \"Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score.\"\n  }\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#original-score"
+      ]
+    },
+    {
+      "sha256": "637fdaef57c4c87ab4032882d90a1c7c178440556e6e263158614aabc2d6f03b",
+      "bytes": 2325,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr237-independent-review",
+        "assessment_status": "complete_scoped_independent_review",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+          "language": "Python"
+        },
+        "profile": "Exact",
+        "profile_status": "Reviewed declared profile",
+        "level": "L2",
+        "level_assessment": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "gates": {
+          "G1": "C",
+          "G2": "B",
+          "G3": "C",
+          "G4": "B",
+          "G5": "C"
+        },
+        "composite_grade": "C",
+        "score_token": "L2C",
+        "is_complete": true,
+        "grade_ceiling": "C",
+        "limiting_reason": "Manual claim mapping and bounded structural review; no formal specification-to-prose transport or resource-cost theorem. Capability is L2, below the normal L4 floor; maintainer waiver is explicit and source-bound.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evaluation_timestamp": "2026-10-23T19:19:30.594811+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json",
+            "sha256": "61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.",
+          "G2": "Fraction exact-input boundary and independent SymPy values; typed rational Lean statements.",
+          "G3": "Four standard-axiom audits; checker TypeError and ValueError boundary controls.",
+          "G4": "Targeted build, direct Lean, sixty rejection controls per mode and five distinct source mutants. These are explicit challenges only.",
+          "G5": "Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr237-independent-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"level\": \"L2\",\n  \"level_assessment\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"B\",\n    \"G3\": \"C\",\n    \"G4\": \"B\",\n    \"G5\": \"C\"\n  },\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L2C\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"C\",\n  \"limiting_reason\": \"Manual claim mapping and bounded structural review; no formal specification-to-prose transport or resource-cost theorem. Capability is L2, below the normal L4 floor; maintainer waiver is explicit and source-bound.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T19:19:30.594811+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json\",\n      \"sha256\": \"61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.\",\n    \"G2\": \"Fraction exact-input boundary and independent SymPy values; typed rational Lean statements.\",\n    \"G3\": \"Four standard-axiom audits; checker TypeError and ValueError boundary controls.\",\n    \"G4\": \"Targeted build, direct Lean, sixty rejection controls per mode and five distinct source mutants. These are explicit challenges only.\",\n    \"G5\": \"Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score.\"\n  }\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#review-score"
+      ]
+    },
+    {
+      "sha256": "03b33280b177c94b2a99ab3fe8928bfa81e97496a6c7309276a589759ed6842b",
+      "bytes": 2334,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr237-final-integrated-review",
+        "assessment_status": "complete_scoped_independent_review",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+          "language": "Python"
+        },
+        "profile": "Exact",
+        "profile_status": "Reviewed declared profile",
+        "level": "L2",
+        "level_assessment": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "gates": {
+          "G1": "C",
+          "G2": "B",
+          "G3": "C",
+          "G4": "B",
+          "G5": "C"
+        },
+        "composite_grade": "C",
+        "score_token": "L2C",
+        "is_complete": true,
+        "grade_ceiling": "C",
+        "limiting_reason": "Manual claim mapping and bounded structural review; no formal specification-to-prose transport or resource-cost theorem. Capability is L2, below the normal L4 floor; maintainer waiver is explicit and source-bound.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evaluation_timestamp": "2026-10-23T19:19:30.594811+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json",
+            "sha256": "e5d5aa557e2737b79732e0fa2648b18c513f018d20bc1fd90aff9cf7920fb49f"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.",
+          "G2": "Fraction exact-input boundary and independent SymPy values; typed rational Lean statements.",
+          "G3": "Four standard-axiom audits; checker TypeError and ValueError boundary controls.",
+          "G4": "Targeted build, direct Lean, sixty rejection controls per mode and five distinct source mutants. These are explicit challenges only.",
+          "G5": "Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr237-final-integrated-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"level\": \"L2\",\n  \"level_assessment\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"B\",\n    \"G3\": \"C\",\n    \"G4\": \"B\",\n    \"G5\": \"C\"\n  },\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L2C\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"C\",\n  \"limiting_reason\": \"Manual claim mapping and bounded structural review; no formal specification-to-prose transport or resource-cost theorem. Capability is L2, below the normal L4 floor; maintainer waiver is explicit and source-bound.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T19:19:30.594811+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json\",\n      \"sha256\": \"e5d5aa557e2737b79732e0fa2648b18c513f018d20bc1fd90aff9cf7920fb49f\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.\",\n    \"G2\": \"Fraction exact-input boundary and independent SymPy values; typed rational Lean statements.\",\n    \"G3\": \"Four standard-axiom audits; checker TypeError and ValueError boundary controls.\",\n    \"G4\": \"Targeted build, direct Lean, sixty rejection controls per mode and five distinct source mutants. These are explicit challenges only.\",\n    \"G5\": \"Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score.\"\n  }\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-scoring"
+      ]
+    },
+    {
+      "sha256": "028231f598a6e3487b37d7fdca6c2cb554ed8bfa8f967d2ab54643f6211cf4f8",
+      "bytes": 2323,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr237-final-base-review",
+        "assessment_status": "complete_scoped_independent_review",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "checks/independent/dfm-regge-gravity-fence.py",
+          "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+          "language": "Python"
+        },
+        "profile": "Exact",
+        "profile_status": "Reviewed declared profile",
+        "level": "L2",
+        "level_assessment": "Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.",
+        "gates": {
+          "G1": "C",
+          "G2": "B",
+          "G3": "C",
+          "G4": "B",
+          "G5": "C"
+        },
+        "composite_grade": "C",
+        "score_token": "L2C",
+        "is_complete": true,
+        "grade_ceiling": "C",
+        "limiting_reason": "Manual claim mapping and bounded structural review; no formal specification-to-prose transport or resource-cost theorem. Capability is L2, below the normal L4 floor; maintainer waiver is explicit and source-bound.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evaluation_timestamp": "2026-10-23T19:19:30.594811+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr237_review_focused_validation.json",
+            "sha256": "c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1"
+          },
+          {
+            "path": "dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json",
+            "sha256": "e8b9dc27d2c112851db872442c498c2df4c12347f714f3aef5ad6812d01c9b12"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.",
+          "G2": "Fraction exact-input boundary and independent SymPy values; typed rational Lean statements.",
+          "G3": "Four standard-axiom audits; checker TypeError and ValueError boundary controls.",
+          "G4": "Targeted build, direct Lean, sixty rejection controls per mode and five distinct source mutants. These are explicit challenges only.",
+          "G5": "Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr237-final-base-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/dfm-regge-gravity-fence.py\",\n    \"sha256\": \"5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Exact\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"level\": \"L2\",\n  \"level_assessment\": \"Independent textbook rational formulas, guarded quotients and a symbolic polynomial check.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"B\",\n    \"G3\": \"C\",\n    \"G4\": \"B\",\n    \"G5\": \"C\"\n  },\n  \"composite_grade\": \"C\",\n  \"score_token\": \"L2C\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"C\",\n  \"limiting_reason\": \"Manual claim mapping and bounded structural review; no formal specification-to-prose transport or resource-cost theorem. Capability is L2, below the normal L4 floor; maintainer waiver is explicit and source-bound.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T19:19:30.594811+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr237_review_focused_validation.json\",\n      \"sha256\": \"c438c954464012a83d2db9a4f4adbff32216edcb6c1d59464f1e7ed784a7b5b1\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json\",\n      \"sha256\": \"e8b9dc27d2c112851db872442c498c2df4c12347f714f3aef5ad6812d01c9b12\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Source-bound statement/declaration map; manual review, no automated informal-to-formal equivalence.\",\n    \"G2\": \"Fraction exact-input boundary and independent SymPy values; typed rational Lean statements.\",\n    \"G3\": \"Four standard-axiom audits; checker TypeError and ValueError boundary controls.\",\n    \"G4\": \"Targeted build, direct Lean, sixty rejection controls per mode and five distinct source mutants. These are explicit challenges only.\",\n    \"G5\": \"Short direct formulas and proof scripts; no recursion or structural-cost theorem. No fabricated formal-language complexity score.\"\n  }\n}\n",
+      "original_paths": [
+        "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-base-scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#original-contract": "96d0d395ecdd997858e418f87336e18bb38beb12713d1f5ef6a68e676bbf2bee",
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#original-score": "92a2af579be05fab3ff5d8da4e2727e13eb6bdfd3f0f40af1d071d320ce1f73c",
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#review-contract": "7639cd16c3ca9b6a9ccf95f2b1c27293416d56a4b33ac3b5dabe67e23c52978a",
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#review-score": "637fdaef57c4c87ab4032882d90a1c7c178440556e6e263158614aabc2d6f03b",
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-contract": "fbd73a4cd4583c1a9f42ebab6d9eafb5e358683fbdee249a78066c97ec19dd78",
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-scoring": "03b33280b177c94b2a99ab3fe8928bfa81e97496a6c7309276a589759ed6842b",
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-base-contract": "ed8591e9a938723313aaa9ea54c7fbe86f50c52c8c93d7ea0255b2343913464a",
+    "checks/independent/dfm-regge-gravity-fence.contract.score.yaml#pr237-final-base-scoring": "028231f598a6e3487b37d7fdca6c2cb554ed8bfa8f967d2ab54643f6211cf4f8"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Current assessment is limited to cited source-bound independent review; known original failures and all historical records remain visible."
+}

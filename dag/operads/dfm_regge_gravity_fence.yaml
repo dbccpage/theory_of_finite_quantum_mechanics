@@ -3,17 +3,24 @@ node_id: DFM-REGGE-GRAVITY-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: A 4D Regge complex with dressed hinge holonomies from edge lengths, a Spin+(1,3; Q(i))
-    spin-frame dressing of simplex spinors preserving a discrete Dirac action (the dossier's next test),
-    and any continuum gravity reading are not constructed.
+  source_statement: For every rational a, b, c, the cosine-law numerators b^2+c^2-a^2, a^2+c^2-b^2 and
+    a^2+b^2-c^2 sum to a^2+b^2+c^2. At lengths 3, 4 and 5 the numerators opposite sides 5, 3 and 4 respectively
+    are 0, 32 and 18, the cosine-law values are 0, 4/5 and 3/5, and those values sum to 7/5. At beta =
+    1/2 the denominator 1-beta^2 is nonzero, (1+beta^2)/(1-beta^2) = 5/3, 2 beta/(1-beta^2) = 4/3, and
+    the block trace 2(1+beta^2)/(1-beta^2)+2 equals 16/3, which differs from 4 and from 7/5. A 4D Regge
+    complex, a deficit angle, a Spin+ spin-frame dressing, and a continuum gravity reading stay unproved.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Regge calculus to general relativity limit
-  source_bottleneck: Build the complex, compute deficits from declared lengths, and state the spinor dressing
-    before linking to the finite gravity shadow; the Einstein equation stays outside.
+  source_bottleneck: The lengths 3, 4, 5 and beta = 1/2 are supplied data. The block trace is not computed
+    from those lengths. A 4D complex, a deficit angle, a spin-frame dressing, and a continuum reading
+    stay open.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md
   - papers/ravera_dfm_dossier.md
+  - lean4/CampaignDfmReggeGravityFence.lean
+  - dag/derivations/independent/dfm-regge-gravity-fence.md
+  - checks/independent/dfm-regge-gravity-fence.py
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md
   source_claim_label: OPEN
@@ -22,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md
-    sha256: c51282cb16283851c42314373f315def94c6936c9e634ad8a1cf3a13e1776cdf
+    sha256: b68a08417546ad04bf9d172c1c7a7ea88353b911eadf99baf555f06bac36a785
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +37,137 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_regge_gravity_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: cosNum
+  line: 14
+  signature_excerpt: 'def cosNum (a b c : Rat) : Rat'
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cosLaw
+  line: 16
+  signature_excerpt: 'def cosLaw (a b c : Rat) : Rat'
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gamma
+  line: 18
+  signature_excerpt: 'def gamma (beta : Rat) : Rat'
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: blockTrace
+  line: 20
+  signature_excerpt: 'def blockTrace (beta : Rat) : Rat'
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: numerator_sum
+  line: 22
+  signature_excerpt: |-
+    theorem numerator_sum (a b c : Rat) :
+        cosNum a b c + cosNum b a c + cosNum c a b = a ^ 2 + b ^ 2 + c ^ 2
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: lengths_345
+  line: 27
+  signature_excerpt: |-
+    theorem lengths_345 :
+        cosNum 5 3 4 = 0 ∧
+        cosNum 3 4 5 = 32 ∧
+        cosNum 4 3 5 = 18 ∧
+        cosNum 5 3 4 + cosNum 3 4 5 + cosNum 4 3 5 = 3 ^ 2 + 4 ^ 2 + 5 ^ 2 ∧
+        cosLaw 5 3 4 = 0 ∧
+        cosLaw 3 4 5 = 4 / 5 ∧
+        cosLaw 4 3 5 = 3 / 5 ∧
+        cosLaw 5 3 4 + cosLaw 3 4 5 + cosLaw 4 3 5 = 7 / 5
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: block_trace_half
+  line: 40
+  signature_excerpt: |-
+    theorem block_trace_half :
+        (1 : Rat) - (1 / 2) ^ 2 ≠ 0 ∧
+        gamma (1 / 2) = 5 / 3 ∧
+        (2 * (1 / 2)) / ((1 : Rat) - (1 / 2) ^ 2) = 4 / 3 ∧
+        blockTrace (1 / 2) = 16 / 3 ∧
+        blockTrace (1 / 2) ≠ 4 ∧
+        blockTrace (1 / 2) ≠ 7 / 5
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cosine_sum_ne_block_trace
+  line: 55
+  signature_excerpt: |-
+    theorem cosine_sum_ne_block_trace :
+        cosLaw 5 3 4 + cosLaw 3 4 5 + cosLaw 4 3 5 ≠ blockTrace (1 / 2)
+  source: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  source_sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmReggeGravityFence.lean::numerator_sum
+  availability: local
+  symbol: numerator_sum
+  path: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmReggeGravityFence.lean::lengths_345
+  availability: local
+  symbol: lengths_345
+  path: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  declaration_status: declaration_found_not_proof_checked
+  line: 27
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmReggeGravityFence.lean::block_trace_half
+  availability: local
+  symbol: block_trace_half
+  path: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmReggeGravityFence.lean::cosine_sum_ne_block_trace
+  availability: local
+  symbol: cosine_sum_ne_block_trace
+  path: lean4/CampaignDfmReggeGravityFence.lean
+  repository: this_repository
+  sha256: dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6
+  declaration_status: declaration_found_not_proof_checked
+  line: 55
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +207,6 @@ operad_slots:
     - Regge calculus to general relativity limit
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

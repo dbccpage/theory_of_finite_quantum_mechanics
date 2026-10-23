@@ -1028,3 +1028,7 @@ lean_lib CampaignDfmGribovContinuumFence where
 -- Campaign: DFM-SYMANZIK-QED-AE-FENCE. Not a default target.
 lean_lib CampaignDfmSymanzikQedAeFence where
   roots := #[`CampaignDfmSymanzikQedAeFence]
+
+-- Campaign: DFM-REGGE-GRAVITY-FENCE. Not a default target.
+lean_lib CampaignDfmReggeGravityFence where
+  roots := #[`CampaignDfmReggeGravityFence]

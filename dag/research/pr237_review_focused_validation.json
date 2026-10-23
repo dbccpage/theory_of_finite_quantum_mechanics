@@ -1,0 +1,270 @@
+{
+  "schema_version": "pr237_review_focused.v1",
+  "authority_effect": "None",
+  "reviewed_head": "0043b7af515380e37b7cd7f237675277e313a160",
+  "integration_base": "ac4bcf53ce37a19760766df1a9f26918f61dc012",
+  "source_commit": "4630c05c8bc72403b680699916bab2b2700dbbdc",
+  "checked_at": "2026-10-23T19:17:51.973584+00:00",
+  "sources": [
+    {
+      "path": "lean4/CampaignDfmReggeGravityFence.lean",
+      "sha256": "dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6",
+      "committed_lf": true
+    },
+    {
+      "path": "checks/independent/dfm-regge-gravity-fence.py",
+      "sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+      "committed_lf": true
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "700069b77ed712a8bda019030b28846609cd52170ef72657d910329846de8e9f",
+      "committed_lf": true
+    }
+  ],
+  "old_counterexamples": {
+    "scope": "Invalid-input and old-boundary counterexamples only; floating fixtures are exempt under SCORING G2 negative-test rule.",
+    "rows": [
+      {
+        "function": "gamma",
+        "inputs": [
+          0
+        ],
+        "value": "1.0",
+        "type": "float"
+      },
+      {
+        "function": "block_trace",
+        "inputs": [
+          0
+        ],
+        "value": "4.0",
+        "type": "float"
+      },
+      {
+        "function": "cos_num",
+        "inputs": [
+          0.1,
+          2,
+          3
+        ],
+        "value": "16861984048091852722211634948383703/1298074214633706907132624082305024",
+        "type": "Fraction"
+      },
+      {
+        "function": "cos_law",
+        "inputs": [
+          1,
+          2,
+          3
+        ],
+        "value": "1.0",
+        "type": "float"
+      },
+      {
+        "function": "gamma",
+        "inputs": [
+          1
+        ],
+        "exception": "ZeroDivisionError",
+        "message": "division by zero"
+      },
+      {
+        "function": "cos_law",
+        "inputs": [
+          1,
+          0,
+          3
+        ],
+        "exception": "ZeroDivisionError",
+        "message": "Fraction(1, 0)"
+      }
+    ]
+  },
+  "checker": {
+    "source_sha256": "5e7a24f60d75815123cef5888460f87c8ec93584c34584d39d0e5d8dcdb0ffa7",
+    "controls_program": "import contextlib,io,json,pathlib,sys\nfrom fractions import Fraction as Q\nsource=pathlib.Path(sys.argv[1]).read_text(encoding='utf-8');ns={'__name__':'checked_source'}\nexec(compile(source,sys.argv[1],'exec'),ns)\nvalid=[('exact',(0,),Q(0)),('cos_num',(0,0,0),Q(0)),('cos_num',(5,3,4),Q(0)),('cos_law',(3,4,5),Q(4,5)),('gamma',(0,),Q(1)),('gamma',(-2,),Q(-5,3)),('block_trace',(0,),Q(4)),('block_trace',(Q(-1,2),),Q(16,3))]\nfor name,args,expected in valid:\n actual=ns[name](*args)\n if type(actual) is not Q or actual!=expected:raise AssertionError(('wrong exact value',name,str(actual),type(actual).__name__,str(expected)))\ninvalid=[True,0.1,'1/2',1j,None,object()];rejected=0\ndef refuses(name,args,expected_exception):\n try:ns[name](*args)\n except Exception as exc:\n  if not isinstance(exc,expected_exception):raise AssertionError(('wrong exception',name,type(exc).__name__,expected_exception.__name__)) from exc\n else:raise AssertionError(('invalid input accepted',name,[repr(v) for v in args]))\nfor name,arity in [('exact',1),('cos_num',3),('cos_law',3),('gamma',1),('block_trace',1)]:\n for position in range(arity):\n  for value in invalid:\n   args=[Q(2)]*arity;args[position]=value;refuses(name,args,TypeError);rejected+=1\nfor name,args in [('cos_law',(1,0,3)),('cos_law',(1,2,0)),('gamma',(1,)),('gamma',(-1,)),('block_trace',(1,)),('block_trace',(-1,))]:\n refuses(name,args,ValueError);rejected+=1\noutput=io.StringIO()\nwith contextlib.redirect_stdout(output):ns['main']()\nprint(json.dumps(dict(optimize=sys.flags.optimize,valid_cases=len(valid),rejection_controls=rejected,main_output=output.getvalue())))\n",
+    "runs": [
+      {
+        "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\checks\\independent\\dfm-regge-gravity-fence.py",
+        "exit_code": 0,
+        "stdout": "{\"optimize\": 0, \"valid_cases\": 8, \"rejection_controls\": 60, \"main_output\": \"numerators 0, 32, 18; sum 50; cosines 0, 4/5, 3/5; cosine sum 7/5\\ngamma(1/2) = 5/3; off-diagonal 4/3; block trace 16/3\\n16/3 differs from 4 and from 7/5\\nchecked: numerator sum on four triples, cosine law, block trace\\nchecked: independent SymPy polynomial residual is zero\\n\"}\n",
+        "stderr": ""
+      },
+      {
+        "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 -O C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\checks\\independent\\dfm-regge-gravity-fence.py",
+        "exit_code": 0,
+        "stdout": "{\"optimize\": 1, \"valid_cases\": 8, \"rejection_controls\": 60, \"main_output\": \"numerators 0, 32, 18; sum 50; cosines 0, 4/5, 3/5; cosine sum 7/5\\ngamma(1/2) = 5/3; off-diagonal 4/3; block trace 16/3\\n16/3 differs from 4 and from 7/5\\nchecked: numerator sum on four triples, cosine law, block trace\\nchecked: independent SymPy polynomial residual is zero\\n\"}\n",
+        "stderr": ""
+      }
+    ],
+    "mutants": [
+      {
+        "name": "numerator-sign",
+        "replacement": {
+          "old": "return b * b + c * c - a * a",
+          "new": "return b * b + c * c + a * a"
+        },
+        "sha256": "4cf45ad17b6fc047ce796b9223984d38d810be465f5c20807ebd1772cfd33543",
+        "outcome": "killed",
+        "runs": [
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-numerator-sign.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 8, in <module>\n    if type(actual) is not Q or actual!=expected:raise AssertionError(('wrong exact value',name,str(actual),type(actual).__name__,str(expected)))\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exact value', 'cos_num', '50', 'Fraction', '0')\n"
+          },
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 -O C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-numerator-sign.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 8, in <module>\n    if type(actual) is not Q or actual!=expected:raise AssertionError(('wrong exact value',name,str(actual),type(actual).__name__,str(expected)))\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exact value', 'cos_num', '50', 'Fraction', '0')\n"
+          }
+        ]
+      },
+      {
+        "name": "gamma-reciprocal",
+        "replacement": {
+          "old": "return (1 + beta * beta) / (1 - beta * beta)",
+          "new": "return (1 - beta * beta) / (1 + beta * beta)"
+        },
+        "sha256": "795f2b1f3df3fc9c3739723cee342128462302138dff4a2d6f92d1eda6a86787",
+        "outcome": "killed",
+        "runs": [
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-gamma-reciprocal.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 8, in <module>\n    if type(actual) is not Q or actual!=expected:raise AssertionError(('wrong exact value',name,str(actual),type(actual).__name__,str(expected)))\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exact value', 'gamma', '-3/5', 'Fraction', '-5/3')\n"
+          },
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 -O C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-gamma-reciprocal.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 8, in <module>\n    if type(actual) is not Q or actual!=expected:raise AssertionError(('wrong exact value',name,str(actual),type(actual).__name__,str(expected)))\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exact value', 'gamma', '-3/5', 'Fraction', '-5/3')\n"
+          }
+        ]
+      },
+      {
+        "name": "trace-constant",
+        "replacement": {
+          "old": "return gamma(beta) + gamma(beta) + 1 + 1",
+          "new": "return gamma(beta) + gamma(beta) + 1 + 2"
+        },
+        "sha256": "3c53ffc363e0ab23e3b046ff7bbebb54ef47ab46fd41545d08556cc6ec753cca",
+        "outcome": "killed",
+        "runs": [
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-trace-constant.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 8, in <module>\n    if type(actual) is not Q or actual!=expected:raise AssertionError(('wrong exact value',name,str(actual),type(actual).__name__,str(expected)))\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exact value', 'block_trace', '5', 'Fraction', '4')\n"
+          },
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 -O C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-trace-constant.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 8, in <module>\n    if type(actual) is not Q or actual!=expected:raise AssertionError(('wrong exact value',name,str(actual),type(actual).__name__,str(expected)))\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exact value', 'block_trace', '5', 'Fraction', '4')\n"
+          }
+        ]
+      },
+      {
+        "name": "exact-input-guard",
+        "replacement": {
+          "old": "if type(value) not in (int, Fraction):",
+          "new": "if False:"
+        },
+        "sha256": "d6df27a315cb0cbfe19d9d8de84d30b81f77f6c3e5656399bfb2b5292cae69b5",
+        "outcome": "killed",
+        "runs": [
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-exact-input-guard.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 18, in <module>\n    args=[Q(2)]*arity;args[position]=value;refuses(name,args,TypeError);rejected+=1\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 14, in refuses\n    else:raise AssertionError(('invalid input accepted',name,[repr(v) for v in args]))\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('invalid input accepted', 'exact', ['True'])\n"
+          },
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 -O C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-exact-input-guard.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 18, in <module>\n    args=[Q(2)]*arity;args[position]=value;refuses(name,args,TypeError);rejected+=1\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 14, in refuses\n    else:raise AssertionError(('invalid input accepted',name,[repr(v) for v in args]))\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('invalid input accepted', 'exact', ['True'])\n"
+          }
+        ]
+      },
+      {
+        "name": "singular-gamma-guard",
+        "replacement": {
+          "old": "beta = exact(beta)\n    if 1 - beta * beta == 0:",
+          "new": "beta = exact(beta)\n    if False:"
+        },
+        "sha256": "dc763cf5fde9aae85d0e5a2ac06824b2c5a650a0b87abb65edf8d892605ec70d",
+        "outcome": "killed",
+        "runs": [
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-singular-gamma-guard.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 11, in refuses\n    try:ns[name](*args)\n        ^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-singular-gamma-guard.py\", line 34, in gamma\n    return (1 + beta * beta) / (1 - beta * beta)\n           ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~\n  File \"C:\\Users\\a343o\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\fractions.py\", line 615, in forward\n    return monomorphic_operator(a, b)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\fractions.py\", line 763, in _div\n    raise ZeroDivisionError('Fraction(%s, 0)' % db)\nZeroDivisionError: Fraction(1, 0)\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 20, in <module>\n    refuses(name,args,ValueError);rejected+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 13, in refuses\n    if not isinstance(exc,expected_exception):raise AssertionError(('wrong exception',name,type(exc).__name__,expected_exception.__name__)) from exc\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exception', 'gamma', 'ZeroDivisionError', 'ValueError')\n"
+          },
+          {
+            "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 -O C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-singular-gamma-guard.py",
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 11, in refuses\n    try:ns[name](*args)\n        ^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\mutant-singular-gamma-guard.py\", line 34, in gamma\n    return (1 + beta * beta) / (1 - beta * beta)\n           ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~\n  File \"C:\\Users\\a343o\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\fractions.py\", line 615, in forward\n    return monomorphic_operator(a, b)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\fractions.py\", line 763, in _div\n    raise ZeroDivisionError('Fraction(%s, 0)' % db)\nZeroDivisionError: Fraction(1, 0)\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 20, in <module>\n    refuses(name,args,ValueError);rejected+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\checker_controls.py\", line 13, in refuses\n    if not isinstance(exc,expected_exception):raise AssertionError(('wrong exception',name,type(exc).__name__,expected_exception.__name__)) from exc\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('wrong exception', 'gamma', 'ZeroDivisionError', 'ValueError')\n"
+          }
+        ]
+      }
+    ],
+    "mypy": {
+      "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\.venv-review\\Scripts\\python.exe -I -X utf8 -m mypy --strict C:\\Users\\a343o\\.codex\\worktrees\\pr237-review\\theory_of_finite_quantum_mechanics\\checks\\independent\\dfm-regge-gravity-fence.py",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file\n",
+      "stderr": ""
+    },
+    "mutation_accounting": {
+      "killed": 5,
+      "survived": 0,
+      "demonstrably_equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0,
+      "distinct_mutants": 5,
+      "mode_executions": 18,
+      "final_mode_executions": 10,
+      "preliminary_duplicate_executions": 8,
+      "setup_attempt": "Initial harness stopped at an ambiguous singular-guard anchor after eight executions of the first four identical mutants. The anchor was narrowed and the full five-mutant campaign rerun. Duplicate executions do not increase the distinct killed count.",
+      "conservative_detection_fraction": "5/5",
+      "scope": "These five explicit source changes only; no broad mutation coverage claim."
+    }
+  },
+  "sympy": {
+    "program": "import json\nfrom sympy import Rational as Q, expand, symbols\na,b,c=symbols('a b c')\nnum=lambda a,b,c:b*b+c*c-a*a\nassert expand(num(a,b,c)+num(b,a,c)+num(c,a,b)-(a*a+b*b+c*c))==0\nmapping=[]\nfor opposite,b,c in [(5,3,4),(3,4,5),(4,3,5)]:\n n=num(Q(opposite),Q(b),Q(c));co=n/(2*b*c);mapping.append(dict(opposite=opposite,numerator=str(n),cosine=str(co)))\nassert [x['numerator'] for x in mapping]==['0','32','18']\nassert [x['cosine'] for x in mapping]==['0','4/5','3/5']\nbeta=Q(1,2);den=1-beta*beta;gamma=(1+beta*beta)/den;off=2*beta/den;trace=2*gamma+2\nassert den==Q(3,4) and gamma==Q(5,3) and off==Q(4,3) and trace==Q(16,3)\nassert trace!=4 and trace!=Q(7,5)\nassert sum(num(Q(x),Q(y),Q(z)) for x,y,z in [(5,3,4),(3,4,5),(4,3,5)])==50\nprint(json.dumps(dict(polynomial_residual='0',opposite_side_mapping=mapping,numerator_total='50',cosine_sum='7/5',beta=str(beta),denominator=str(den),gamma=str(gamma),off_diagonal=str(off),block_trace=str(trace),trace_minus_four=str(trace-4),trace_minus_cosine_sum=str(trace-Q(7,5)))))\n",
+    "command": "python -I -X utf8 <standalone SymPy program>",
+    "exit_code": 0,
+    "stdout": "{\"polynomial_residual\": \"0\", \"opposite_side_mapping\": [{\"opposite\": 5, \"numerator\": \"0\", \"cosine\": \"0\"}, {\"opposite\": 3, \"numerator\": \"32\", \"cosine\": \"4/5\"}, {\"opposite\": 4, \"numerator\": \"18\", \"cosine\": \"3/5\"}], \"numerator_total\": \"50\", \"cosine_sum\": \"7/5\", \"beta\": \"1/2\", \"denominator\": \"3/4\", \"gamma\": \"5/3\", \"off_diagonal\": \"4/3\", \"block_trace\": \"16/3\", \"trace_minus_four\": \"4/3\", \"trace_minus_cosine_sum\": \"59/15\"}\n",
+    "stderr": "",
+    "imports_repository_code": false
+  },
+  "lean_receipt": {
+    "path": "dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json",
+    "sha256": "61f7cb72a6e599ba9ef1d056c8b46c66585f5ba487eaedf61ecaad4b302cfe21"
+  },
+  "setup_attempts": [
+    {
+      "stage": "initial strict mypy",
+      "exit_code": 1,
+      "diagnosis": "Two tuple comparison-overlap errors; rational expectations made explicitly Fraction-valued; final strict run passes."
+    },
+    {
+      "stage": "initial source mutation harness",
+      "exit_code": 1,
+      "diagnosis": "Singular-guard anchor matched twice; anchor narrowed to the gamma function. Eight preliminary duplicate executions and ten final executions are recorded separately."
+    }
+  ],
+  "scope_fences": [
+    "Node remains OPEN.",
+    "Only a rational polynomial identity and supplied scalar witnesses are proved.",
+    "Python quotient functions are partial with explicit ValueError at zero denominators; Lean division is total.",
+    "No Regge complex, hinge holonomy, deficit angle, spin-frame dressing, discrete Dirac action or continuum theorem is constructed."
+  ]
+}
