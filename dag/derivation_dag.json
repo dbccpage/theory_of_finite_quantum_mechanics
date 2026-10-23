@@ -20840,19 +20840,28 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-035 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
+      "statement": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. A fixed-basis Wilson-slab construction and a lifted cup-product CS candidate now have exact obstruction witnesses; the full anomalous cancellation remains open.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "rust": [],
       "imported_structure": [
         "Callan-Harvey continuum anomaly inflow (literature)"
       ],
-      "bottleneck": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "bottleneck": "Construct a regulated chiral determinant and a compatible induced bulk inflow term. Fixed site-matched chiral bases have invariant determinants, while the tested lifted CS candidate has nonzero variation and integer-lift dependence. This failed candidate does not exclude other regulators; continuum Callan-Harvey inflow remains a literature import.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -35675,7 +35684,7 @@
       ],
       "output": "FSP-LATTICE-ANOMALY-INFLOW",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "mechanism": "Construct a regulated chiral determinant and a compatible induced bulk inflow term. Fixed site-matched chiral bases have invariant determinants, while the tested lifted CS candidate has nonzero variation and integer-lift dependence. This failed candidate does not exclude other regulators; continuum Callan-Harvey inflow remains a literature import.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -63257,17 +63266,28 @@
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:25-25"
       ],
       "id": "TFQ-1199",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "local_id": "FSP-LATTICE-ANOMALY-INFLOW",
       "name": "Callan-Harvey anomaly inflow on a finite slab lattice",
-      "obligation": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "obligation": "Construct a regulated chiral determinant and a compatible induced bulk inflow term. Fixed site-matched chiral bases have invariant determinants, while the tested lifted CS candidate has nonzero variation and integer-lift dependence. This failed candidate does not exclude other regulators; continuum Callan-Harvey inflow remains a literature import.",
       "parent_id": "TFQ-1197",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-lattice-anomaly-inflow.py::main"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
+      "summary": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. A fixed-basis Wilson-slab construction and a lifted cup-product CS candidate now have exact obstruction witnesses; the full anomalous cancellation remains open.",
       "uuid": "2cdcb333-b712-5422-b362-c252224f2839"
     },
     {

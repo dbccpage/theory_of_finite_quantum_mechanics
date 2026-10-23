@@ -1,22 +1,22 @@
 # FSP-LATTICE-ANOMALY-INFLOW
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `OPEN`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.
+> Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. A fixed-basis Wilson-slab construction and a lifted cup-product CS candidate now have exact obstruction witnesses; the full anomalous cancellation remains open.
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 19
+- cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.
+Construct a regulated chiral determinant and a compatible induced bulk inflow term. Fixed site-matched chiral bases have invariant determinants, while the tested lifted CS candidate has nonzero variation and integer-lift dependence. This failed candidate does not exclude other regulators; continuum Callan-Harvey inflow remains a literature import.
 
 ## Source status
 
@@ -42,10 +42,52 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignFspLatticeAnomalyInflow.lean`
+
+- file: [lean4/CampaignFspLatticeAnomalyInflow.lean](../../../lean4/CampaignFspLatticeAnomalyInflow.lean)
+- sha256 (`bytes`): `608565f816ae84218d3f193f21e7f98e45c0479092d42c1dbe079908c625cc9c`
+- cited in: node.lean, receipt dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json (CampaignFspLatticeAnomalyInflow), record TFQ-1199
+- replay: `verified`
+  - receipt [dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json](../../../dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json) (module `CampaignFspLatticeAnomalyInflow`): recorded sha256 `608565f816ae84218d3f193f21e7f98e45c0479092d42c1dbe079908c625cc9c` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFspLatticeAnomalyInflow`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignFspLatticeAnomalyInflow.bianchi` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.bianchi` |
+| `CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det` |
+| `CampaignFspLatticeAnomalyInflow.cs_cell_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.cs_cell_variation` |
+| `CampaignFspLatticeAnomalyInflow.cs_chain_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.cs_chain_variation` |
+| `CampaignFspLatticeAnomalyInflow.curvature_gauge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.curvature_gauge` |
+| `CampaignFspLatticeAnomalyInflow.det_transport` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.det_transport` |
+| `CampaignFspLatticeAnomalyInflow.finite_variation_nonzero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.finite_variation_nonzero` |
+| `CampaignFspLatticeAnomalyInflow.hopping_covariant` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.hopping_covariant` |
+| `CampaignFspLatticeAnomalyInflow.phase_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.phase_obstruction` |
+| `CampaignFspLatticeAnomalyInflow.phase_times_det_ne` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.phase_times_det_ne` |
+| `CampaignFspLatticeAnomalyInflow.schur_covariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.schur_covariant` |
+| `CampaignFspLatticeAnomalyInflow.slab_four_cs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.slab_four_cs` |
+| `CampaignFspLatticeAnomalyInflow.slab_three_cs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.slab_three_cs` |
+| `CampaignFspLatticeAnomalyInflow.transport_eq_conjugate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_eq_conjugate` |
+| `CampaignFspLatticeAnomalyInflow.transport_inverse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_inverse` |
+| `CampaignFspLatticeAnomalyInflow.transport_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_mul` |
+| `CampaignFspLatticeAnomalyInflow.transport_one` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_one` |
+| `CampaignFspLatticeAnomalyInflow.transport_sub` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_sub` |
+- counts toward the grade: yes
+
+### Python: `checks/independent/fsp-lattice-anomaly-inflow.py`
+
+- file: [checks/independent/fsp-lattice-anomaly-inflow.py](../../../checks/independent/fsp-lattice-anomaly-inflow.py)
+- sha256 (`bytes`): `2a2ad3b9fde58a676054711f0c64c387fab7018ae75754be59cadc668e28aecc`
+- cited in: record TFQ-1199
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `main` (python_symbol) | yes | yes | yes | - | - |
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md`
 
 - file: [dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md](../../../dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
-- sha256 (`lf-normalised`): `b426284f9ad271afc4d256dc4db82c217b1fffbdd941e6af9a001a8d596b5f8a`
+- sha256 (`lf-normalised`): `3125dd8eae03d469c4244450cb19ea252b823f8d38c41f34e03bfbeeed6ac61e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1199
 - counts toward the grade: no

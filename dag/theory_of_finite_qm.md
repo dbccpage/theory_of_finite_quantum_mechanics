@@ -10062,9 +10062,9 @@ Obligation: Severity of the resulting sign problem is phenomenology from the lit
 - DAG node: `FSP-LATTICE-ANOMALY-INFLOW`
 - Paper: [derivation](derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
 
-Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.
+Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. A fixed-basis Wilson-slab construction and a lifted cup-product CS candidate now have exact obstruction witnesses; the full anomalous cancellation remains open.
 
-Obligation: Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.
+Obligation: Construct a regulated chiral determinant and a compatible induced bulk inflow term. Fixed site-matched chiral bases have invariant determinants, while the tested lifted CS candidate has nonzero variation and integer-lift dependence. This failed candidate does not exclude other regulators; continuum Callan-Harvey inflow remains a literature import.
 
 ### TFQ-1200 SU(2) adjoint fermions have a real determinant
 

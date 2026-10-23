@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.
+Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. A fixed-basis Wilson-slab construction and a lifted cup-product CS candidate now have exact obstruction witnesses; the full anomalous cancellation remains open.
 
 ### Governing Obligation
-Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.
+Construct a regulated chiral determinant and a compatible induced bulk inflow term. Fixed site-matched chiral bases have invariant determinants, while the tested lifted CS candidate has nonzero variation and integer-lift dependence. This failed candidate does not exclude other regulators; continuum Callan-Harvey inflow remains a literature import.
 
 ### Witness Audit
-Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exist; callan_harvey_cancellation states q + (-q) = 0 for the packet <q, -q>, and the other lemmas are Nat inequalities. Ledger GIN-C15 marks the module a historical illustrative fixture with its physical reading withdrawn.
+Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exist; callan_harvey_cancellation states q + (-q) = 0 for the packet <q, -q>, and the other lemmas are Nat inequalities. Ledger GIN-C15 marks the module a historical illustrative fixture with its physical reading withdrawn. Current campaign supplies scoped transport/cochain proofs and exact failed-candidate computations; it does not validate the historical physical reading.
 
 ---
 
@@ -31,13 +31,20 @@ Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exis
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs`
+- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-lattice-anomaly-inflow.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::spin_structure_obstruction::chiral_anomaly_inflow (cited by the source, not in this checkout)`
