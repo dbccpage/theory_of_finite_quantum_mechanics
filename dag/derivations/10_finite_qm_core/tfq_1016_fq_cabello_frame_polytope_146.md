@@ -50,4 +50,4 @@ paper s11.5: exact enumeration and exact characteristic-polynomial certificates 
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:659`
+  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:659`

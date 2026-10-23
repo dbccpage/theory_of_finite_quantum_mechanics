@@ -1,0 +1,14 @@
+changed since origin/main (4a1e551210459ca8b410fada1e8eddb75e7b052c): 5461 paths
+note: no governance/baseline.json at 4a1e551210459ca8b410fada1e8eddb75e7b052c; this change introduces the baseline
+checked 8191: 18 pass, 8148 grandfathered, 20 boilerplate, 5 failed
+FAIL code/python/tests/test_three_role_gate.py (new or not grandfathered)
+  code/python/tests/test_three_role_gate.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L2C
+FAIL code/rust/src/governance/src/repo.rs (new or not grandfathered)
+  code/rust/src/governance/src/repo.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2, found 1c0b7bc298330a2042603285c8c7555805fafd809cccd6e271490e9bbf46d2e6
+FAIL code/rust/src/governance/src/score.rs (new or not grandfathered)
+  code/rust/src/governance/src/score.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382, found 227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba
+  code/rust/src/governance/src/score.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L3D
+FAIL code/rust/src/governance/src/verify.rs (new or not grandfathered)
+  code/rust/src/governance/src/verify.contract.score.yaml: [BINDING] contract.artifact.sha256: expected e5679ee7c0f7a6f0e2b207838fe2cb5e0d4074c69e27d59a124bdf4e13642178, found d565eab3a4949834bbf4e3d134093aaaf2f8f02c9b37d1521a31e9fdb6cd850b
+FAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)
+  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D

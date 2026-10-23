@@ -57,7 +57,14 @@ if 2 not in OVERLAP["L"] & OVERLAP["R"] & OVERLAP["G"]:
 Q = Fraction
 
 
+def exact(value: object) -> Fraction:
+    if type(value) is int or type(value) is Fraction:
+        return Fraction(value)
+    raise ValueError("exact int or Fraction required")
+
+
 def N(x: Fraction | int, y: Fraction | int) -> Fraction:
+    x, y = exact(x), exact(y)
     return Fraction(2) + 3 * x + 5 * y + 7 * x * y
 
 
@@ -105,6 +112,9 @@ if (N(x, y) - N(0, y) - N(x, 0)) / (x * y) != -5:
 
 
 def sector_k(z: Fraction | int, lam: Fraction) -> Fraction:
+    z, lam = exact(z), exact(lam)
+    if lam in (0, -1):
+        raise ValueError("sector denominator vanishes")
     return (1 + z * lam) / (lam * (1 + lam))
 
 
@@ -191,3 +201,23 @@ def check_projector_api() -> None:
 
 
 check_projector_api()
+
+
+def check_invalid_scalars() -> None:
+    bad: tuple[object, ...] = (True, 0.5, "1")
+    for value in bad:
+        try:
+            exact(value)
+        except ValueError:
+            continue
+        raise SystemExit("inexact scalar admitted")
+    for pole in (Q(0), Q(-1)):
+        try:
+            sector_k(1, pole)
+        except ValueError:
+            continue
+        raise SystemExit("sector pole admitted")
+    print("three inexact scalar inputs and two sector poles refused")
+
+
+check_invalid_scalars()

@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.
+Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.
 
 ## Source status
 
@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md](../../../dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md)
-- sha256 (`lf-normalised`): `38967f7a96fe48fd09829bd0aa42adda2eb1c99a98fc2654d61cbf75d8c9f004`
+- sha256 (`lf-normalised`): `a85608891ddffe71ae9aa61ae898f8f5de39bd85b966391ae7f3f98f89500c16`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1105
 - counts toward the grade: no
@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-DFM-BOREL-LEVI-FACTORIZATION` `DERIVED_PROSE`: [DFM-GENERAL-GRAPH-DRESSING](DFM-GENERAL-GRAPH-DRESSING.md) (PROVED_LEAN), [DFM-HIERARCHICAL-BOREL](DFM-HIERARCHICAL-BOREL.md) (OPEN)
+- `APP-R-DFM-BOREL-LEVI-FACTORIZATION` `DERIVED_PROSE`: [DFM-GENERAL-GRAPH-DRESSING](DFM-GENERAL-GRAPH-DRESSING.md) (PROVED_LEAN), [DFM-HIERARCHICAL-BOREL](DFM-HIERARCHICAL-BOREL.md) (PROVED_LEAN)
 
 Outgoing (1):
 

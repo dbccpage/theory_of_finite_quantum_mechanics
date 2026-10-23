@@ -1,0 +1,46 @@
+
+running 10 tests
+....... 7/10
+tests::open_needs_a_baseline_only_when_asked --- FAILED
+tests::a_policy_or_baseline_change_selects_the_whole_population --- FAILED
+tests::end_to_end_with_git --- FAILED
+
+failures:
+
+---- tests::open_needs_a_baseline_only_when_asked stdout ----
+
+thread 'tests::open_needs_a_baseline_only_when_asked' (45820) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:550:9:
+assertion `left == right` failed: list needs no baseline
+  left: Ok(false)
+ right: Ok(true)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::a_policy_or_baseline_change_selects_the_whole_population stdout ----
+code/a.rs
+code/b.py
+
+thread 'tests::a_policy_or_baseline_change_selects_the_whole_population' (45052) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:588:9:
+assertion `left == right` failed
+  left: Ok(false)
+ right: Ok(true)
+
+---- tests::end_to_end_with_git stdout ----
+checked 1: 1 pass, 0 grandfathered, 0 boilerplate, 0 failed
+changed since main (c95eb6b54f233cdf9eb5cb0e1739129ae45176d0): 0 paths
+checked 0: 0 pass, 0 grandfathered, 0 boilerplate, 0 failed
+code/a.rs
+
+thread 'tests::end_to_end_with_git' (25028) panicked at ..\code\rust\src\governance\src\bin\governance-check.rs:524:9:
+assertion `left == right` failed
+  left: Ok(false)
+ right: Ok(true)
+
+
+failures:
+    tests::a_policy_or_baseline_change_selects_the_whole_population
+    tests::end_to_end_with_git
+    tests::open_needs_a_baseline_only_when_asked
+
+test result: FAILED. 7 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.67s
+
+error: test failed, to rerun pass `--bin governance-check`

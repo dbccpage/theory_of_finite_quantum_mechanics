@@ -1,0 +1,74 @@
+{
+  "authority_effect": "None",
+  "reason": "Negative P0 runs were missing the index latest_run pointer consumed by generator execution protection. Restore exact reviewed collections and register actual existing runs without accepting P1 or raising node statuses. Import and Interpret had already regressed on main; Reflect regressed during this branch regeneration.",
+  "bindings": {
+    "GTH-LANG-REFLECT": {
+      "collection": "dag/operads/gth_lang_reflect.yaml",
+      "restored_from_reviewed_head": "de5e040bb0035f13bd4f10265cdeafa5ca6e314b",
+      "before_sha256": "50c4e9fe881abdca6fee57cd301411434e3c21c113f7a47255d12a88291931df",
+      "run": "dag/results/GTH-LANG-REFLECT/runs/20261023T084354Z_p0_negative",
+      "stage_status": "incomplete",
+      "after_sha256": "50c4e9fe881abdca6fee57cd301411434e3c21c113f7a47255d12a88291931df"
+    },
+    "GTH-LANG-INTERPRET": {
+      "collection": "dag/operads/gth_lang_interpret.yaml",
+      "restored_from_reviewed_head": "6e64aaf81e1fd51a9fdabcfa5d821dd82b95bcee",
+      "before_sha256": "9bb73d935483d32ef626c6c2b355ed99ff86b9763653f0031f8c214faedaf508",
+      "run": "dag/results/GTH-LANG-INTERPRET/runs/20261023T074638Z_p0_negative",
+      "stage_status": "incomplete",
+      "after_sha256": "9bb73d935483d32ef626c6c2b355ed99ff86b9763653f0031f8c214faedaf508"
+    },
+    "GTH-LANG-IMPORT": {
+      "collection": "dag/operads/gth_lang_import.yaml",
+      "restored_from_reviewed_head": "7ddd30597ec8124f1b68a35e9527428625ba1db2",
+      "before_sha256": "21c6e0db32947e391e2d56774fe8e5622a9c1cfb1750130263177a728bde6f1d",
+      "run": "dag/results/GTH-LANG-IMPORT/runs/20261023T064912Z_p0_negative",
+      "stage_status": "incomplete",
+      "after_sha256": "21c6e0db32947e391e2d56774fe8e5622a9c1cfb1750130263177a728bde6f1d"
+    }
+  },
+  "generator": {
+    "command": [
+      "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/pfp/generate_prompts.py",
+      "--write",
+      "--nodes",
+      "GTH-LANG-IMPORT",
+      "GTH-LANG-INTERPRET",
+      "GTH-LANG-REFLECT"
+    ],
+    "exit_code": 0,
+    "stdout": "refusing to rewrite executed prompts: GTH-LANG-REFLECT, GTH-LANG-INTERPRET, GTH-LANG-IMPORT\n{\"created\": 0, \"rewritten\": 0, \"unchanged\": 0}\n",
+    "stderr": ""
+  },
+  "validator": {
+    "command": [
+      "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+      "-X",
+      "utf8",
+      "dag/pfp/validate_prompts.py"
+    ],
+    "exit_code": 1,
+    "stdout": "{\n  \"prompts\": 892,\n  \"collections\": 892,\n  \"errors\": [\n    \"LQG-PR-ALLOWED-REGION-TARGET: legacy fabricated contract\"\n  ],\n  \"claim\": \"Structural and local-source custody checks only; no operad or target theorem acceptance.\"\n}\n",
+    "stderr": ""
+  },
+  "limit": "Generator correctly reports manually reviewed collections as executed_stale; it must preserve them instead of regenerating empty slots.",
+  "full_writer_replay": {
+    "command": [
+      "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+      "-I",
+      "-X",
+      "utf8",
+      "dag/pfp/generate_prompts.py",
+      "--write",
+      "--all-missing"
+    ],
+    "exit_code": 0,
+    "stdout": "refusing to rewrite executed prompts: TFQ-0084, GTH-LANG-REFLECT, GTH-LANG-INTERPRET, GTH-LANG-IMPORT\n{\"created\": 0, \"rewritten\": 0, \"unchanged\": 711}\n",
+    "stderr": "",
+    "tracked_files_changed": []
+  }
+}

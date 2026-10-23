@@ -216,14 +216,13 @@ def rightProjection : Subtraction.Projector (ℚ → ℚ → ℚ) where
 
 theorem evaluations_compatible : Subtraction.Compatible [leftProjection, rightProjection] := by
   intro p hp q hq I
-  simp only [List.mem_cons, List.mem_singleton] at hp hq
+  simp only [List.mem_cons, List.not_mem_nil, or_false] at hp hq
   rcases hp with rfl | rfl <;> rcases hq with rfl | rfl <;> rfl
 
 theorem sixSum_is_reduction (I : ℚ → ℚ → ℚ) (x y : ℚ) :
     sixSum I x y = Subtraction.reduce [leftProjection, rightProjection] I x y := by
   rw [sixSum_eq_inclusion]
-  simp [Subtraction.reduce, Subtraction.Projector.remainder, leftProjection,
-    rightProjection, evalL, evalR]
+  change I x y - I 0 y - I x 0 + I 0 0 = (I x y - I x 0) - (I 0 y - I 0 0)
   ring
 
 /-- Declared numerator, not a Feynman integrand. -/

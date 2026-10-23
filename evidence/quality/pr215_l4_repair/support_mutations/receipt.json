@@ -1,0 +1,131 @@
+{
+  "AuthorityEffect": "None",
+  "sources": {
+    "src/bin/governance-check.rs": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+    "src/buildtime.rs": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+    "src/descriptor.rs": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+    "src/lib.rs": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+    "src/policy.rs": "8e092b4b2b2b47443e3024dd059d47f2bc6a62bd2e071e0356244d517cafa2d4",
+    "src/repo.rs": "3cd394747f97ae637f5d53ed2f05d0bf1ca386f0c743261d298631628913bfc2",
+    "src/score.rs": "840c01413306730286cf7c219fe548bd388760a0e1deadb86479275190c75382",
+    "src/verify.rs": "e5cb7c5f5944958f06f3dbf159afcb36919e4e350ac9a443314e2b4cffc82dcc",
+    "Cargo.toml": "0afa2403cac478f58b250e957250b4f4ad6a8d7d37c49fa43f385f8e950f1879",
+    "clippy.toml": "8cf18dfac057bae996306b178e2a7136c23b4028979e16f5b68c67e0e9519a51"
+  },
+  "baseline": {
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--manifest-path",
+      "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml"
+    ],
+    "state": "COMPLETED",
+    "exit_status": 0,
+    "log": "evidence\\quality\\pr215_l4_repair\\support_mutations\\baseline.log",
+    "log_sha256": "89d3284e43c632c3c81c5fad882d01518ee135e74e2135d2cb0fb38497f2663d",
+    "output_bytes": 4778,
+    "seconds": 9.811999999976251,
+    "error": ""
+  },
+  "selected_faults": "Digest mismatch admitted, grade E support admitted, floor bypassed; no full current-source mutation ratio inferred.",
+  "mutants": [
+    {
+      "file": "src/policy.rs",
+      "line": 217,
+      "operator": "reverse-digest-match",
+      "original": "            Some(pin) if pin.sha256 == digest => Floor { min_level: Level::L1, min_grade: self.floor.min_grade.max(Grade::D) },\n",
+      "mutated": "            Some(pin) if pin.sha256 != digest => Floor { min_level: Level::L1, min_grade: self.floor.min_grade.max(Grade::D) },\n",
+      "source_sha256": "8e092b4b2b2b47443e3024dd059d47f2bc6a62bd2e071e0356244d517cafa2d4",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "evidence\\quality\\pr215_l4_repair\\support_mutations\\mutant-0000.log",
+        "log_sha256": "e325f88ef825b5b4336215a481bc86a0f40fc2791979b640782eb3917cbd6006",
+        "output_bytes": 1766,
+        "seconds": 7.2810000000172295,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/policy.rs",
+      "line": 217,
+      "operator": "allow-grade-e",
+      "original": "            Some(pin) if pin.sha256 == digest => Floor { min_level: Level::L1, min_grade: self.floor.min_grade.max(Grade::D) },\n",
+      "mutated": "            Some(pin) if pin.sha256 == digest => Floor { min_level: Level::L1, min_grade: Grade::E },\n",
+      "source_sha256": "8e092b4b2b2b47443e3024dd059d47f2bc6a62bd2e071e0356244d517cafa2d4",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "evidence\\quality\\pr215_l4_repair\\support_mutations\\mutant-0001.log",
+        "log_sha256": "97860e3b674303d2b229703c64530f6093706f70ea263ad3f5ff1cfd445ccd9d",
+        "output_bytes": 775,
+        "seconds": 5.969000000040978,
+        "error": ""
+      }
+    },
+    {
+      "file": "src/verify.rs",
+      "line": 292,
+      "operator": "bypass-floor",
+      "original": "        let completed = completed_score(d)?;\n",
+      "mutated": "        let completed = completed_score(d)?;\n        return Ok(());\n",
+      "source_sha256": "e5cb7c5f5944958f06f3dbf159afcb36919e4e350ac9a443314e2b4cffc82dcc",
+      "outcome": "KILLED",
+      "execution": {
+        "command": [
+          "cargo",
+          "test",
+          "--offline",
+          "--locked",
+          "-q",
+          "--manifest-path",
+          "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\\governance\\Cargo.toml",
+          "--lib"
+        ],
+        "state": "COMPLETED",
+        "exit_status": 101,
+        "log": "evidence\\quality\\pr215_l4_repair\\support_mutations\\mutant-0002.log",
+        "log_sha256": "409161e2ce28e65fd7e87a524f7a52d70e4821db87f160efe66d0095f81ee724",
+        "output_bytes": 3479,
+        "seconds": 5.672000000020489,
+        "error": ""
+      }
+    }
+  ],
+  "summary": {
+    "KILLED": 3,
+    "SURVIVED": 0,
+    "INVALID": 0,
+    "INCONCLUSIVE": 0,
+    "UNRUN": 0,
+    "EQUIVALENT": 0,
+    "eligible_denominator": 3,
+    "killed_numerator": 3,
+    "conservative_ratio": "3/3"
+  },
+  "sources_unchanged": true
+}

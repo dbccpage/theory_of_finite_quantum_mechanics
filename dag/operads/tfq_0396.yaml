@@ -11,10 +11,12 @@ target:
     finite statement still required is that term map, or an explicit decision to leave the row proposed.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Leave S000-GAP-GENESIS-TO-PD open until a certified term map from tag 3100c4e into
-    the book PrimitiveDifference carrier is supplied or the row is explicitly left proposed.
+  source_bottleneck: A certified contextual-collapse term map into the existing Core PrimitiveDifference
+    candidate mirror and its finite quotient is now supplied with a sealed-source byte pin. Node remains
+    OPEN pending human review and acceptance of the intended crossing; no cochain or host map is established.
   source_refs:
   - dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md
+  - dag/derivations/independent/tfq-0396.md
   paper_refs:
   - dag/derivations/02_genesis/tfq_0396_sealed_tag_to_carrier_gap.md
   source_claim_label: OPEN
@@ -31,9 +33,246 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_tfq_0396_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: abbrev
+  name: Datum
+  line: 13
+  signature_excerpt: 'abbrev Datum (r : Derivation.Regime)'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: certifiedDifference
+  line: 29
+  signature_excerpt: |-
+    def certifiedDifference (r : Derivation.Regime) :
+        GrokPdNight20260814.Core.PrimitiveDifference (Datum r) Prop
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sourceRelation
+  line: 15
+  signature_excerpt: 'def sourceRelation (r : Derivation.Regime) (i j : Datum r) : Prop'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: termMap
+  line: 43
+  signature_excerpt: 'def termMap (r : Derivation.Regime) (d : Datum r) : CertifiedCarrier r'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: CertifiedCarrier
+  line: 41
+  signature_excerpt: 'abbrev CertifiedCarrier (r : Derivation.Regime)'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: certifiedSetoid
+  line: 37
+  signature_excerpt: 'def certifiedSetoid (r : Derivation.Regime) : Setoid (Datum r)'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: separated
+  line: 80
+  signature_excerpt: 'def separated : Derivation.Regime'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: empty
+  line: 82
+  signature_excerpt: 'def empty : Derivation.Regime'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: certified_zero_iff
+  line: 46
+  signature_excerpt: |-
+    theorem certified_zero_iff (r : Derivation.Regime) (i j : Datum r) :
+        GrokPdNight20260814.Core.ZeroRel (certifiedDifference r) i j ↔
+          Derivation.collapsed r i.val j.val
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: termMap_eq_iff
+  line: 50
+  signature_excerpt: |-
+    theorem termMap_eq_iff (r : Derivation.Regime) (i j : Datum r) :
+        termMap r i = termMap r j ↔ Derivation.collapsed r i.val j.val
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: termMap_surjective
+  line: 54
+  signature_excerpt: 'theorem termMap_surjective (r : Derivation.Regime) : Function.Surjective (termMap
+    r)'
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: factorization_iff
+  line: 65
+  signature_excerpt: |-
+    theorem factorization_iff (r s : Derivation.Regime) (f : Datum r → Datum s) :
+        (∃ F : CertifiedCarrier r → CertifiedCarrier s,
+          ∀ d, F (termMap r d) = termMap s (f d)) ↔
+        (∀ i j, Derivation.collapsed r i.val j.val →
+          Derivation.collapsed s (f i).val (f j).val)
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sealed_response_reaches_separated
+  line: 84
+  signature_excerpt: |-
+    theorem sealed_response_reaches_separated :
+        Derivation.applyDelta Derivation.R2L [.newForm 1, .newInst 0 [0]] = some separated
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sealed_image_has_raw_distinction
+  line: 93
+  signature_excerpt: |-
+    theorem sealed_image_has_raw_distinction :
+        ∃ x y : CertifiedCarrier separated, x ≠ y
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: undeclared_marks_collapse
+  line: 98
+  signature_excerpt: |-
+    theorem undeclared_marks_collapse (i j : Datum Derivation.R2L) :
+        termMap Derivation.R2L i = termMap Derivation.R2L j
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: inert_inscription_has_no_distinction
+  line: 119
+  signature_excerpt: |-
+    theorem inert_inscription_has_no_distinction :
+        ¬ ∃ x y : CertifiedCarrier empty, x ≠ y
+  source: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.certified_zero_iff
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.certified_zero_iff
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_eq_iff
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.termMap_eq_iff
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 50
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_surjective
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.termMap_surjective
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.factorization_iff
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.factorization_iff
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_response_reaches_separated
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.sealed_response_reaches_separated
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.undeclared_marks_collapse
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.undeclared_marks_collapse
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 98
+  role: source_lead_only
+- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction
+  availability: local
+  symbol: CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction
+  path: lean4/CampaignGenesisCarrierBridge.lean
+  repository: this_repository
+  sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +310,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

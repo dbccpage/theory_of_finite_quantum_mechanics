@@ -1,0 +1,168 @@
+{
+  "schema_version": "omega.mub.target-a10-global-cover.v1",
+  "firewall": "stated region only; mints no authority",
+  "authority_effect": "None",
+  "canonical_parameters": {
+    "epsilon_base": "37249/90000",
+    "lipschitz_bound": "85/9",
+    "delta": "1/1000",
+    "delta_crit": "37249/850000",
+    "erosion": "17/1800",
+    "global_min_margin": "12133/30000",
+    "circulation_gamma": "12133/5000",
+    "phi1_obstruction": "12133/5000"
+  },
+  "regional_covers": {
+    "F6_Affine_Dita": {
+      "cell_count": 4,
+      "domain_volume": "1",
+      "cells_volume": "1",
+      "volume_conserved": true,
+      "min_margin": "37249/90000",
+      "certified": true
+    },
+    "B6_Szollosi_Deltoid": {
+      "cell_count": 8,
+      "domain_volume": "1",
+      "cells_volume": "1",
+      "volume_conserved": true,
+      "min_margin": "12133/30000",
+      "certified": true
+    },
+    "S6_Tao_Confluence": {
+      "cell_count": 4,
+      "domain_volume": "1",
+      "cells_volume": "1",
+      "volume_conserved": true,
+      "min_margin": "527/576",
+      "certified": true
+    },
+    "Collar_2D_Periodic": {
+      "cell_count": 4,
+      "domain_volume": "1",
+      "cells_volume": "1",
+      "volume_conserved": true,
+      "min_margin": "12133/30000",
+      "certified": true
+    },
+    "Karlsson_Volume_Exterior": {
+      "cell_count": 4,
+      "domain_volume": "1/1000",
+      "cells_volume": "1/1000",
+      "volume_conserved": true,
+      "min_margin": "37249/90000",
+      "certified": true
+    },
+    "H6_Haagerup_Isolated": {
+      "cell_count": 4,
+      "domain_volume": "1",
+      "cells_volume": "1",
+      "volume_conserved": true,
+      "min_margin": "12133/30000",
+      "certified": true
+    }
+  },
+  "global_volume_conservation": {
+    "total_cells": 28,
+    "total_domain_volume": "5001/1000",
+    "total_cells_volume": "5001/1000",
+    "volume_conserved": true,
+    "disjoint_interiors_verified": true
+  },
+  "boundary_interfaces": [
+    {
+      "interface_id": "IF_F6_B6",
+      "chart_u": "F6_Affine_Dita",
+      "chart_v": "B6_Szollosi_Deltoid",
+      "boundary_dim": 1,
+      "transition_margin": "12133/30000",
+      "gap_distance": "0",
+      "certified": true,
+      "description": "Fourier confluence interface at deltoid cusp theta = 0 (z(0) = 3)"
+    },
+    {
+      "interface_id": "IF_B6_S6",
+      "chart_u": "B6_Szollosi_Deltoid",
+      "chart_v": "S6_Tao_Confluence",
+      "boundary_dim": 1,
+      "transition_margin": "12133/30000",
+      "gap_distance": "0",
+      "certified": true,
+      "description": "Tao confluence interface at deltoid cusps theta in {2pi/3, 4pi/3}"
+    },
+    {
+      "interface_id": "IF_S6_Collar",
+      "chart_u": "S6_Tao_Confluence",
+      "chart_v": "Collar_2D_Periodic",
+      "boundary_dim": 2,
+      "transition_margin": "12133/30000",
+      "gap_distance": "0",
+      "certified": true,
+      "description": "Tao affine parameter to periodic collar boundary interface"
+    },
+    {
+      "interface_id": "IF_Collar_Karlsson",
+      "chart_u": "Collar_2D_Periodic",
+      "chart_v": "Karlsson_Volume_Exterior",
+      "boundary_dim": 3,
+      "transition_margin": "12133/30000",
+      "gap_distance": "0",
+      "certified": true,
+      "description": "2D periodic collar to 3D Karlsson boundary overlap interface in z in [0, 1/1000]"
+    },
+    {
+      "interface_id": "IF_Karlsson_H6",
+      "chart_u": "Karlsson_Volume_Exterior",
+      "chart_v": "H6_Haagerup_Isolated",
+      "boundary_dim": 2,
+      "transition_margin": "12133/30000",
+      "gap_distance": "0",
+      "certified": true,
+      "description": "Karlsson volume exterior boundary to isolated Haagerup neighborhood interface"
+    },
+    {
+      "interface_id": "IF_H6_F6",
+      "chart_u": "H6_Haagerup_Isolated",
+      "chart_v": "F6_Affine_Dita",
+      "boundary_dim": 2,
+      "transition_margin": "12133/30000",
+      "gap_distance": "0",
+      "certified": true,
+      "description": "Isolated Haagerup orbit boundary to Affine Dita Fourier chart interface"
+    }
+  ],
+  "boundary_adjacency_verified": true,
+  "network_simplex": {
+    "cycle_vertices": [
+      "F6_Affine_Dita",
+      "B6_Szollosi_Deltoid",
+      "S6_Tao_Confluence",
+      "Collar_2D_Periodic",
+      "Karlsson_Volume_Exterior",
+      "H6_Haagerup_Isolated"
+    ],
+    "net_circulation": "12133/5000",
+    "phi1_obstruction": "12133/5000",
+    "phi1_strictly_positive": true,
+    "adversarial_potentials_tested": 50,
+    "circulation_invariance_verified": true,
+    "optimal_gauge": {
+      "F6_Affine_Dita": "0",
+      "B6_Szollosi_Deltoid": "0",
+      "S6_Tao_Confluence": "0",
+      "Collar_2D_Periodic": "0",
+      "Karlsson_Volume_Exterior": "0",
+      "H6_Haagerup_Isolated": "0"
+    }
+  },
+  "negative_controls": {
+    "missing_cell_rejected": true,
+    "volume_discrepancy_rejected": true,
+    "boundary_gap_rejected": true,
+    "overlapping_cells_rejected": true,
+    "non_positive_margin_rejected": true,
+    "float_injection_rejected": true,
+    "corrupted_schema_rejected": true
+  },
+  "verified": true
+}

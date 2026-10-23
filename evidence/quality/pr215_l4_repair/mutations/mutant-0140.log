@@ -1,0 +1,65 @@
+
+running 52 tests
+..................... 21/52
+score::tests::floor_cases --- FAILED
+....... 29/52
+score::tests::completion_boundary_exhausts_every_gate_assignment --- FAILED
+. 31/52
+verify::tests::baseline_waives_floor_only_for_unchanged_bytes --- FAILED
+... 35/52
+verify::tests::floor_pass_and_fail_cases --- FAILED
+..... 41/52
+tests::binding_failure_still_reports_the_floor --- FAILED
+....... 49/52
+tests::outcomes_cover_pass_fail_grandfather_and_boilerplate --- FAILED
+..
+failures:
+
+---- score::tests::floor_cases stdout ----
+
+thread 'score::tests::floor_cases' (4432) panicked at ..\code\rust\src\governance\src\score.rs:535:9:
+assertion failed: !floor.admits(t("L4E"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- score::tests::completion_boundary_exhausts_every_gate_assignment stdout ----
+
+thread 'score::tests::completion_boundary_exhausts_every_gate_assignment' (41568) panicked at ..\code\rust\src\governance\src\score.rs:568:13:
+assertion `left == right` failed
+  left: true
+ right: false
+
+---- verify::tests::baseline_waives_floor_only_for_unchanged_bytes stdout ----
+
+thread 'verify::tests::baseline_waives_floor_only_for_unchanged_bytes' (10540) panicked at ..\code\rust\src\governance\src\verify.rs:408:49:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- verify::tests::floor_pass_and_fail_cases stdout ----
+
+thread 'verify::tests::floor_pass_and_fail_cases' (46332) panicked at ..\code\rust\src\governance\src\verify.rs:345:46:
+called `Result::unwrap_err()` on an `Ok` value: ()
+
+---- tests::binding_failure_still_reports_the_floor stdout ----
+
+thread 'tests::binding_failure_still_reports_the_floor' (7904) panicked at ..\code\rust\src\governance\src\lib.rs:365:9:
+assertion `left == right` failed
+  left: [Binding]
+ right: [Binding, Floor]
+
+---- tests::outcomes_cover_pass_fail_grandfather_and_boilerplate stdout ----
+
+thread 'tests::outcomes_cover_pass_fail_grandfather_and_boilerplate' (17480) panicked at ..\code\rust\src\governance\src\lib.rs:301:9:
+assertion failed: matches!(outcome("code/low.rs"), Outcome::Fail(v) if v.len() == 1 &&
+    v[0].rule() == Rule::Floor)
+
+
+failures:
+    score::tests::completion_boundary_exhausts_every_gate_assignment
+    score::tests::floor_cases
+    tests::binding_failure_still_reports_the_floor
+    tests::outcomes_cover_pass_fail_grandfather_and_boilerplate
+    verify::tests::baseline_waives_floor_only_for_unchanged_bytes
+    verify::tests::floor_pass_and_fail_cases
+
+test result: FAILED. 46 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.00s
+
+error: test failed, to rerun pass `--lib`

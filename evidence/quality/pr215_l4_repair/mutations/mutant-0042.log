@@ -1,0 +1,46 @@
+
+running 52 tests
+............... 15/52
+buildtime::tests::decide_respects_mode --- FAILED
+.............. 30/52
+buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced --- FAILED
+buildtime::tests::new_mode_aborts_when_any_failure_is_new --- FAILED
+............ 44/52
+buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files --- FAILED
+.......
+failures:
+
+---- buildtime::tests::decide_respects_mode stdout ----
+
+thread 'buildtime::tests::decide_respects_mode' (23580) panicked at ..\code\rust\src\governance\src\buildtime.rs:333:9:
+assertion failed: matches!(decide(Mode::New, &report), Decision::Abort(text) if
+    text.contains("TFQM_GOVERNANCE=new"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced stdout ----
+
+thread 'buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced' (31432) panicked at ..\code\rust\src\governance\src\buildtime.rs:265:9:
+assertion failed: result.is_err()
+
+---- buildtime::tests::new_mode_aborts_when_any_failure_is_new stdout ----
+
+thread 'buildtime::tests::new_mode_aborts_when_any_failure_is_new' (10768) panicked at ..\code\rust\src\governance\src\buildtime.rs:322:9:
+assertion failed: matches!(decide(Mode::New, &only_changed), Decision::Warn(_))
+
+---- buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files stdout ----
+
+thread 'buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files' (7080) panicked at ..\code\rust\src\governance\src\buildtime.rs:281:9:
+assertion `left == right` failed
+  left: Err("contract governance (TFQM_GOVERNANCE=new):\nchecked 1: 0 pass, 0 grandfathered, 0 boilerplate, 1 failed\nFAIL code/rust/p/src/lib.rs (grandfathering lost: bytes changed since the baseline)\n  code/rust/p/src/lib.rs: [MISSING_COMPANION] expected companion code/rust/p/src/lib.contract.score.yaml, found none\n")
+ right: Ok(())
+
+
+failures:
+    buildtime::tests::decide_respects_mode
+    buildtime::tests::new_mode_aborts_when_any_failure_is_new
+    buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files
+    buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced
+
+test result: FAILED. 48 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.57s
+
+error: test failed, to rerun pass `--lib`
