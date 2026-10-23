@@ -1,0 +1,141 @@
+{
+ "schema": "overclaim_report.v1",
+ "authority_effect": "None",
+ "rules": {
+  "R1": {
+   "severity": "HIGH",
+   "title": "PROVED_LEAN node without a Lean reference that resolves in this checkout"
+  },
+  "R2": {
+   "severity": "MEDIUM",
+   "title": "PROVED_LEAN node whose cited theorem has type True, or whose statement says every/all/unique/iff while every cited theorem is one closed instance"
+  },
+  "R3": {
+   "severity": "HIGH",
+   "title": "sorry, admit, axiom, native_decide or unsafe in a Lean module cited by a PROVED_LEAN or CONDITIONAL node"
+  },
+  "R4": {
+   "severity": "HIGH",
+   "title": "replay receipt whose sha256 differs from the file, or whose axioms exceed the allowed three"
+  },
+  "R5": {
+   "severity": "LOW",
+   "title": "number in a node statement, derivation note or README found in none of the node's cited files"
+  },
+  "R6": {
+   "severity": "HIGH",
+   "title": "public prose calls a node proved or derived when its DAG status is not a proved status"
+  },
+  "R7": {
+   "severity": "MEDIUM",
+   "title": "absolute or promotional wording in public prose"
+  },
+  "R8": {
+   "severity": "MEDIUM",
+   "title": "independent derivation note without the required Status line"
+  },
+  "R9": {
+   "severity": "HIGH",
+   "title": "status rose versus the git ref with no new resolving Lean reference and replay receipt in the diff"
+  },
+  "R10": {
+   "severity": "LOW",
+   "title": "PROVED_LEAN node whose cited Lean modules appear in no replay receipt"
+  }
+ },
+ "counts": {
+  "R1": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R2": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R3": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R4": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R5": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 3
+  },
+  "R6": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R7": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R8": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R9": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 0
+  },
+  "R10": {
+   "HIGH": 0,
+   "MEDIUM": 0,
+   "LOW": 1
+  }
+ },
+ "totals": {
+  "HIGH": 0,
+  "MEDIUM": 0,
+  "LOW": 4
+ },
+ "findings": [
+  {
+   "severity": "LOW",
+   "rule": "R10",
+   "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+   "line": 0,
+   "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+   "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+   "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt"
+  },
+  {
+   "severity": "LOW",
+   "rule": "R5",
+   "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+   "line": 0,
+   "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+   "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+   "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d"
+  },
+  {
+   "severity": "LOW",
+   "rule": "R5",
+   "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+   "line": 0,
+   "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+   "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+   "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f"
+  },
+  {
+   "severity": "LOW",
+   "rule": "R5",
+   "subject": "dag/derivations/independent/fsp-u1-wilson-action.md",
+   "line": 0,
+   "evidence": "note for FSP-U1-WILSON-ACTION: 4 of 5 numbers in no cited file: 4.35, 7/2, 6159, 21",
+   "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+   "key": "R5|dag/derivations/independent/fsp-u1-wilson-action.md|note|6819ca2296"
+  }
+ ]
+}

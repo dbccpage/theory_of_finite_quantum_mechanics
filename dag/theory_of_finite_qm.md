@@ -778,7 +778,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1193` | `FERMION_SIGN` | `PROVED_LEAN` | `FSP-INVOLUTION-PAIR-CANCELLATION` (PROVED_LEAN) | - |
 | `TFQ-1194` | `FERMION_SIGN` | `COMPUTATIONAL_CONTROL` | `FSP-GIN-EQUAL-WEIGHT-PAIRING` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-1195` | `FERMION_SIGN` | `PROVED_PROSE` | `FSP-RATIONAL-QUOTIENT-NORMAL-FORM` (PROVED_PROSE) | - |
-| `TFQ-1196` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-U1-WILSON-ACTION` (IMPORTED_ASSUMPTION) | - |
+| `TFQ-1196` | `FERMION_SIGN` | `PROVED_LEAN` | `FSP-U1-WILSON-ACTION` (PROVED_LEAN) | - |
 | `TFQ-1197` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-WILSON-DIRAC-GAMMA5` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1198` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-THETA-TERM-COMPLEX-WEIGHT` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1199` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-LATTICE-ANOMALY-INFLOW` (OPEN) | - |
@@ -10056,13 +10056,13 @@ Obligation: N_W is not an l1 minimizer (span(1,2), x = (1,0) gives norm 2 versus
 
 - UUID: `b1bcc73c-d463-5262-98a8-7badf4a7a06c`
 - Parent: `TFQ-0091`
-- Status: `IMPORTED_ASSUMPTION`
+- Status: `PROVED_LEAN`
 - DAG node: `FSP-U1-WILSON-ACTION`
 - Paper: [derivation](derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md)
 
-With link phases U_ij = exp(i A_ij) and oriented plaquette products U_p, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and nonnegative.
+With link phases U_ij = exp(i A_ij) on ordered vertex pairs and oriented closed-path products U_p over a finite plaquette family, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and is nonnegative for beta_g >= 0.
 
-Obligation: Standard lattice-gauge fact imported, not established in this checkout; the source supplies no fermion-sign consequence for it.
+Obligation: Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for every g: V -> U(1) and for every angle shift A_ij -> A_ij + theta_i - theta_j) and nonnegativity for beta_g >= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice (ZMod L)^d is one instance. beta_g >= 0 is required: one self-link plaquette with phase -1 and beta_g = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L <= 2 the two parallel links between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity, transfer matrix or non-abelian action is claimed. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.
 
 ### TFQ-1197 Wilson-Dirac gamma5-hermiticity and real determinant
 
