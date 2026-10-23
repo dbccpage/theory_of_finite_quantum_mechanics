@@ -1,6 +1,6 @@
 # FQ-GAP-U1-CIRCLE
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,18 +8,34 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 9
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
+- `receipt_not_current`: lean4/U1CauchyCircleCompletion.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1CauchyCircleCompletion.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1CayleyProjectiveCircle.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1CayleyProjectiveCircle.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1ChebyshevCauchyBridge.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1CyclotomicTorsionTower.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1PythagoreanObstruction.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
 - `broken_reference`: symbol U1Fable.CauchyCircleCompletion.RegPhaseSeq.add_assoc_equiv not found in lean4/U1CauchyCircleCompletion.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.CauchyCircleCompletion.quad_half_angle_squares_to_u345 not found in lean4/U1CauchyCircleCompletion.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.pureProjector_born_pairing not found in lean4/U1ChebyshevCauchyBridge.lean. A cited in-repo path or symbol cannot be found in this checkout.
@@ -60,14 +76,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0253 (shared)
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction` |
-| `QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` |
+| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1CauchyCircleCompletion.lean`
@@ -75,7 +92,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1CauchyCircleCompletion.lean](../../../lean4/U1CauchyCircleCompletion.lean)
 - sha256 (`bytes`): `455a4ea001d022fc5538ed9be16f9473f30ba43c019bbec2bb01dc32baaff299`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1CauchyCircleCompletion`): recorded sha256 `455a4ea001d022fc5538ed9be16f9473f30ba43c019bbec2bb01dc32baaff299` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
 - check: `cd lean4 && lake build U1CauchyCircleCompletion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -89,7 +107,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1CayleyProjectiveCircle.lean](../../../lean4/U1CayleyProjectiveCircle.lean)
 - sha256 (`bytes`): `07fd439e150502d9b8603a0097fcf5dc11d039f9b92f83948494c2a25dae8e94`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1CayleyProjectiveCircle`): recorded sha256 `07fd439e150502d9b8603a0097fcf5dc11d039f9b92f83948494c2a25dae8e94` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
 - check: `cd lean4 && lake build U1CayleyProjectiveCircle`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -103,7 +122,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1ChebyshevCauchyBridge.lean](../../../lean4/U1ChebyshevCauchyBridge.lean)
 - sha256 (`bytes`): `c630dab388010bf38230a1bba1e1e621d76686831097bb915141bd8901f1e114`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1ChebyshevCauchyBridge`): recorded sha256 `c630dab388010bf38230a1bba1e1e621d76686831097bb915141bd8901f1e114` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
 - check: `cd lean4 && lake build U1ChebyshevCauchyBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -118,7 +138,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1CyclotomicTorsionTower.lean](../../../lean4/U1CyclotomicTorsionTower.lean)
 - sha256 (`bytes`): `cb8619f0f06352e79cc546363d75cecf21c07724abef520a516ef245d4e4e720`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1CyclotomicTorsionTower`): recorded sha256 `cb8619f0f06352e79cc546363d75cecf21c07724abef520a516ef245d4e4e720` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
 - check: `cd lean4 && lake build U1CyclotomicTorsionTower`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -131,7 +152,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1PhaseSynthesis.lean](../../../lean4/U1PhaseSynthesis.lean)
 - sha256 (`bytes`): `6b9c6fae68d1695cb84ce8ae4622f357af51d8c5fa1a8747f11aaaf45a4afd2c`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `6b9c6fae68d1695cb84ce8ae4622f357af51d8c5fa1a8747f11aaaf45a4afd2c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1PhaseSynthesis`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -146,12 +168,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1PowerMapInjectivity.lean](../../../lean4/U1PowerMapInjectivity.lean)
 - sha256 (`bytes`): `6c4960e3ea9a15b3543991eaf10802a74665d2716731ff88875ebe7b641159c3`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PowerMapInjectivity`): recorded sha256 `6c4960e3ea9a15b3543991eaf10802a74665d2716731ff88875ebe7b641159c3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1PowerMapInjectivity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `U1Fable.PowerMapInjectivity.u345_infinite_order` | yes | yes | yes | - | `#print axioms U1Fable.PowerMapInjectivity.u345_infinite_order` |
+| `U1Fable.PowerMapInjectivity.u345_infinite_order` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms U1Fable.PowerMapInjectivity.u345_infinite_order` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1PythagoreanObstruction.lean`
@@ -159,7 +182,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1PythagoreanObstruction.lean](../../../lean4/U1PythagoreanObstruction.lean)
 - sha256 (`bytes`): `13baa7587d8920d330fff37e45ca7876f6caab126ea3e9ffdc1f652833e6c2b0`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PythagoreanObstruction`): recorded sha256 `13baa7587d8920d330fff37e45ca7876f6caab126ea3e9ffdc1f652833e6c2b0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: none (not itemised); only standard axioms: yes
 - check: `cd lean4 && lake build U1PythagoreanObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -172,7 +196,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1QuadraticTowerAndCayleyStone.lean](../../../lean4/U1QuadraticTowerAndCayleyStone.lean)
 - sha256 (`bytes`): `660009a462e0569e2e02c8e8c61826b502394dc86b88faa566864052bdcf5c35`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `660009a462e0569e2e02c8e8c61826b502394dc86b88faa566864052bdcf5c35` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1QuadraticTowerAndCayleyStone`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

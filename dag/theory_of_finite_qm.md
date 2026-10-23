@@ -10040,7 +10040,7 @@ Obligation: Standard lattice-gauge fact imported, not established in this checko
 
 The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.
 
-Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.
+Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.
 
 ### TFQ-1198 Topological theta term makes lattice weights complex
 
@@ -10062,9 +10062,9 @@ Obligation: Severity of the resulting sign problem is phenomenology from the lit
 - DAG node: `FSP-LATTICE-ANOMALY-INFLOW`
 - Paper: [derivation](derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
 
-Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.
+Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.
 
-Obligation: Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.
+Obligation: Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.
 
 ### TFQ-1200 SU(2) adjoint fermions have a real determinant
 

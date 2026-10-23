@@ -10,9 +10,9 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-The five-field array/copy/source representation, all finite partial histories, both readings and state-dependent token erasure now have local Lean evidence. Runtime/compiler refinement of Python and Rust and the Alpha responder license protocol remain separate.
+Not covered by the PFP review: Prove the exact source Regime representation bridge and retain both Reading L and Reading F. An external presentation cannot license an unrecorded admission.
 
 ## Source status
 
@@ -45,29 +45,20 @@ supply_no_op (Genesis inertia); Reading L vs Reading F
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisReplayRefinement.lean`
+### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean`
 
-- file: [lean4/CampaignGenesisReplayRefinement.lean](../../../lean4/CampaignGenesisReplayRefinement.lean)
-- sha256 (`bytes`): `d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e`
+- file: [lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
+- sha256 (`bytes`): `9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-supply-erasure_lean_replay.json](../../../dag/research/campaign_pg-gen-supply-erasure_lean_replay.json) (module `CampaignGenesisReplayRefinement`): recorded sha256 `d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisReplayRefinement`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Inertia`): recorded sha256 `9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisReplayRefinement.array_supply_no_op` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_supply_no_op` |
-| `CampaignGenesisReplayRefinement.copy_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.copy_step_commutes` |
-| `CampaignGenesisReplayRefinement.reading_arrays` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.reading_arrays` |
-| `CampaignGenesisReplayRefinement.source_supply_no_op` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.source_supply_no_op` |
+| `collapsed_of_no_insts` | yes | yes | yes | propext | `#print axioms collapsed_of_no_insts` |
+| `supply_no_op` | yes | yes | yes | propext | `#print axioms supply_no_op` |
 - counts toward the grade: yes
-
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
@@ -91,13 +82,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0380
 - counts toward the grade: no
-
-### Documents and data: `dag/derivations/independent/pg-gen-supply-erasure.md`
-
-- file: [dag/derivations/independent/pg-gen-supply-erasure.md](../../../dag/derivations/independent/pg-gen-supply-erasure.md)
-- sha256 (`lf-normalised`): `125f661fc6acf060ee4939ef9ac1c759a7d4ddd0f71920dcc3e8bf0a173b741f`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
 

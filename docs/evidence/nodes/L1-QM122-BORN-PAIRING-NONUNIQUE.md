@@ -1,6 +1,6 @@
 # L1-QM122-BORN-PAIRING-NONUNIQUE
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade:
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 6 Lean reference(s) cited, 6 in this checkout (replay: none 6). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -50,12 +50,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` |
+| `QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQM.lean`
@@ -63,7 +64,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: record TFQ-0306
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: yes
 
@@ -72,15 +74,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H013BornPairingBoundary.lean](../../../lean4/H013BornPairingBoundary.lean)
 - sha256 (`bytes`): `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013BornPairingBoundary`): recorded sha256 `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build H013BornPairingBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `born_nonuniqueness_open` | yes | yes | yes | - | `#print axioms born_nonuniqueness_open` |
-| `pairing_exists` | yes | yes | yes | - | `#print axioms pairing_exists` |
-| `quartic_rival` | yes | yes | yes | - | `#print axioms quartic_rival` |
-| `uniqueness_not_discharged` | yes | yes | yes | - | `#print axioms uniqueness_not_discharged` |
+| `born_nonuniqueness_open` | yes | yes | yes | none | `#print axioms born_nonuniqueness_open` |
+| `pairing_exists` | yes | yes | yes | propext | `#print axioms pairing_exists` |
+| `quartic_rival` | yes | yes | yes | propext | `#print axioms quartic_rival` |
+| `uniqueness_not_discharged` | yes | yes | yes | none | `#print axioms uniqueness_not_discharged` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H017Gleason.lean`
@@ -88,12 +91,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H017Gleason.lean](../../../lean4/H017Gleason.lean)
 - sha256 (`bytes`): `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Gleason`): recorded sha256 `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build H017Gleason`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `two_label_host_not_gleason_dimension` | yes | yes | yes | - | `#print axioms two_label_host_not_gleason_dimension` |
+| `two_label_host_not_gleason_dimension` | yes | yes | yes | none | `#print axioms two_label_host_not_gleason_dimension` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`

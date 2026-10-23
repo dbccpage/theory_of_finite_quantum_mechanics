@@ -3267,14 +3267,15 @@
       "statement": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
       "source": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [
         "Wilson-Dirac lattice fermion operator with r = 1 (standard lattice QCD)"
       ],
-      "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -3311,19 +3312,28 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-035 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
+      "statement": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ],
       "rust": [],
       "imported_structure": [
         "Callan-Harvey continuum anomaly inflow (literature)"
       ],
-      "bottleneck": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "bottleneck": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -9575,10 +9585,11 @@
       ],
       "output": "FSP-WILSON-DIRAC-GAMMA5",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "mechanism": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "source": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ]
     },
     {
@@ -9602,7 +9613,7 @@
       ],
       "output": "FSP-LATTICE-ANOMALY-INFLOW",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "mechanism": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "source": [
         "dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -15363,7 +15374,7 @@
       "parent_id": "TFQ-1196",
       "record_status": "IMPORTED_ASSUMPTION",
       "summary": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
-      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-WILSON-DIRAC-GAMMA5"
@@ -15372,7 +15383,8 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:461-473"
+        "papers/core/fsp/theory_of_finite_fsp.md:461-473",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ],
       "python": [],
       "rust": [],
@@ -15411,8 +15423,8 @@
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-1197",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Claimed: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation; no lattice construction or cancellation computation exists in this checkout.",
-      "obligation": "Construct a finite slab Dirac operator, compute both variations and show cancellation; the continuum Callan-Harvey mechanism is literature, its finite-lattice form is not established here.",
+      "summary": "Target: on a finite slab lattice the chiral variation of the boundary fermion determinant cancels the bulk Chern-Simons variation. Not established in this checkout. One tested candidate does not realize it, as expected: on open Wilson slabs with U(1) links, the gauge change acts on the Wilson matrix by a diagonal similarity, so the full, interior, boundary Schur and fixed site-matched chiral-block determinants are gauge invariant by construction, while a lifted cup-product CS term whose coefficient is not derived from the fermions changes by 1/32. This is a fixed-basis truncation of a vector-like regulator, not an obstruction to lattice inflow.",
+      "obligation": "Construct a regulated chiral boundary determinant whose projector, basis or measure depends on the gauge field (domain-wall or overlap/Ginsparg-Wilson type), derive from the same fermions the bulk Chern-Simons term they induce, and show that the two gauge variations cancel. The fixed-basis Wilson-slab test cannot register an anomaly, because site-matched fixed bases give similarity-invariant determinants; its bare lifted CS candidate is neither induced by the fermions nor well defined on U(1) links (an integer lift of the same links changes it by 1/8). The continuum Callan-Harvey mechanism remains a literature import.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-LATTICE-ANOMALY-INFLOW"
@@ -15425,9 +15437,20 @@
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:583-620",
         "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:25-25"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-lattice-anomaly-inflow.py::main"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs",
+        "lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne"
+      ]
     },
     {
       "id": "TFQ-1200",

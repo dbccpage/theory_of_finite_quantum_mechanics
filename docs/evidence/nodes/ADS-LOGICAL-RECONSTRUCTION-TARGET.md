@@ -65,7 +65,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H036ThreeQubitCodeSyndromeRecovery.lean](../../../lean4/H036ThreeQubitCodeSyndromeRecovery.lean)
 - sha256 (`bytes`): `b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7`
 - cited in: node.source
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `H036ThreeQubitCodeSyndromeRecovery`): recorded sha256 `b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build H036ThreeQubitCodeSyndromeRecovery`
 - counts toward the grade: yes
 

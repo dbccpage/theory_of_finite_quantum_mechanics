@@ -1,6 +1,6 @@
 # AUTHF-TRANSITION-INVARIANTS
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,15 +47,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/AuthIncompleteness/TapeTransition.lean](../../../lean4/AuthIncompleteness/TapeTransition.lean)
 - sha256 (`bytes`): `107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd`
 - cited in: node.lean, node.source, record TFQ-1354
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `AuthIncompleteness.TapeTransition`): recorded sha256 `107069b58a46297b84b5eb2bd7366a5bdc16ce6a4564a444b80f1b69feb87ebd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/AuthIncompleteness/TapeTransition.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` |
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_auth_incompleteness_finite_models.py`

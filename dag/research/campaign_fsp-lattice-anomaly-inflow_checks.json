@@ -1,0 +1,240 @@
+{
+  "schema_version": "campaign_checks.v1",
+  "authority_effect": "None",
+  "node": "FSP-LATTICE-ANOMALY-INFLOW",
+  "node_status": "OPEN",
+  "base_sha": "3924d378ff1de685948bf2b419dc63a5a9560881",
+  "compiled_source_commit": "1f89c54283ae0c6b5ee7acd0dc3aebe01a1ec11c",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "generators": [
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 0,
+      "stdout": "Written: C:\\Users\\a343o\\.codex\\worktrees\\8ae8\\theory_of_finite_quantum_mechanics\\papers\\core\\master_derivation_ledger.md\nWritten: C:\\Users\\a343o\\.codex\\worktrees\\8ae8\\theory_of_finite_quantum_mechanics\\dag\\derivations\\MASTER_DERIVATION_LEDGER.md\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --write --all-missing",
+      "exit_code": 0,
+      "stdout": "refusing to rewrite executed prompts: TFQ-0084\n{\"created\": 0, \"rewritten\": 2, \"unchanged\": 712}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --write",
+      "exit_code": 0,
+      "stdout": "README facts written\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --write",
+      "exit_code": 0,
+      "stdout": "finite_quantum_mechanics.md: already current\nfinite_quantum_mechanics_claim_ledger.md: already current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
+      "exit_code": 0,
+      "stdout": "evidence map written: 892 nodes, grades {'E0': 282, 'E1': 229, 'E2': 322, 'E3': 59, 'E4': 0}, 492 flags\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/fsp-lattice-anomaly-inflow --reason Record scoped Wilson-slab obstruction evidence and syntax-only YAML repair; retain OPEN.",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    }
+  ],
+  "checks": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing",
+      "exit_code": 1,
+      "stdout": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 714,\n  \"executed_stale_needs_manual_delta\": {\n    \"TFQ-0084\": [\n      \"generator_output_or_file_changed\"\n    ]\n  },\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 -m pytest dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py -q --basetemp=.lake/pytest-temp",
+      "exit_code": 0,
+      "stdout": "........................                                                 [100%]\n24 passed in 44.16s\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 3924d378ff1d); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check",
+      "exit_code": 1,
+      "stdout": "{\n  \"originals\": 0,\n  \"combined_files\": 8659,\n  \"all_passed\": false,\n  \"errors\": [\n    {\n      \"path\": \"lean4/HilbertLiftOperators.contract.score.yaml\",\n      \"error\": \"Expecting ',' delimiter: line 202 column 7 (char 10999)\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/fsp-lattice-anomaly-inflow.py",
+      "exit_code": 0,
+      "stdout_receipt": "dag/research/campaign_fsp-lattice-anomaly-inflow_independent.json"
+    },
+    {
+      "command": "python -I -O -X utf8 checks/independent/fsp-lattice-anomaly-inflow.py",
+      "exit_code": 0,
+      "output_identical_to_normal": true
+    },
+    {
+      "command": "python -I -X utf8 -m mypy --strict checks/independent/fsp-lattice-anomaly-inflow.py",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 1 source file"
+    },
+    {
+      "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --check",
+      "exit_code": 0,
+      "note": "Generated JSONL and master ledgers intentionally use CRLF. Plain git diff --check flags their CR characters as trailing whitespace; source bytes are preserved per the documented renderer."
+    }
+  ],
+  "remaining_failures": [
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --all-missing",
+      "exit_code": 1
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check",
+      "exit_code": 1
+    }
+  ],
+  "failure_context": {
+    "prompt_check": "Only executed_stale_needs_manual_delta TFQ-0084; stale empty and would_create zero. TFQ-0084 node unchanged from base.",
+    "contract_inventory": "Only lean4/HilbertLiftOperators.contract.score.yaml parse error at line 202 column 7; unchanged from base; LF sha256 fea2896c10e15f1f7a9df6fcef37732552419378ed1af751e7a0911ec0f16530.",
+    "typing": "Standard strict mypy passes; optional --follow-untyped-imports fails on SymPy untyped APIs and is not claimed to pass.",
+    "invocation_repairs": "Initial generator attempts lacked numpy/scipy, and an existing TFQ-0016 YAML scalar needed quoting. Dependencies installed in isolated venv, scalar content preserved, then all generators rerun in order successfully. An unsupported combination of scan --write and --changed-since was corrected before the successful strict scan."
+  },
+  "scoring_exception": "New Lean L4C; new Python L4D; declarative Lake registration L1C, explicit user-accepted exception. Author assessments await human review.",
+  "inputs": [
+    {
+      "path": "lean4/CampaignFspLatticeAnomalyInflow.lean",
+      "sha256": "608565f816ae84218d3f193f21e7f98e45c0479092d42c1dbe079908c625cc9c"
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "9a32bc61472a63df817c46789272298f7459b051d1bea0a2fc174fd1cb898025"
+    },
+    {
+      "path": "checks/independent/fsp-lattice-anomaly-inflow.py",
+      "sha256": "2a2ad3b9fde58a676054711f0c64c387fab7018ae75754be59cadc668e28aecc"
+    },
+    {
+      "path": "dag/derivation_dag.json",
+      "sha256": "7b1ddf017434d423fc9a867238f98f43251051fe6b663b884d5d965fa7e27558"
+    },
+    {
+      "path": "dag/fragments/application_branches.json",
+      "sha256": "d53d909798af9896a85c19d7dc69240d45be53f30cc711c9b66a5824c1ffbf09"
+    },
+    {
+      "path": "dag/fragments/unified_dag.json",
+      "sha256": "ff1e156e50ec6386b19a0a743de1cea5213b5ce848fff677c794ae7517bdf182"
+    },
+    {
+      "path": "dag/derivations/independent/fsp-lattice-anomaly-inflow.md",
+      "sha256": "723d1b4706d32084c600a0d8526050679905601160af4484dd32cc68ef0af660"
+    },
+    {
+      "path": "dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json",
+      "sha256": "fb4a072c26234964772bd4fe2c046dfa7bae001ea61f3ffc78ac97f0101647fd"
+    },
+    {
+      "path": "dag/research/campaign_fsp-lattice-anomaly-inflow_independent.json",
+      "sha256": "1fc02ba8c5545019388337097f21703b302ad9353a2b96dfb1dcdb42846dcca6"
+    },
+    {
+      "path": "docs/overclaim/reviews/2026-10-23_campaign-fsp-lattice-anomaly-inflow.md",
+      "sha256": "868dea33a4642e3c40b9d57f252b27b943a15eb70867f04f48ce3ceb4b8d215a"
+    }
+  ],
+  "compiled": [
+    "CampaignFspLatticeAnomalyInflow (18 theorem axiom audits)",
+    "Lake configuration"
+  ],
+  "not_rebuilt": [
+    "default FiniteQuantum library",
+    "historical ChiralAnomalyInflow module",
+    "CampaignTfq0016B2Dressing module",
+    "Mathlib/dependency source modules"
+  ]
+}

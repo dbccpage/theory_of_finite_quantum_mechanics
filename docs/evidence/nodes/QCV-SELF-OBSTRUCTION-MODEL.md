@@ -1,6 +1,6 @@
 # QCV-SELF-OBSTRUCTION-MODEL
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `DEFINITION`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `DEFINITION`. Evidence g
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -50,12 +50,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/QcConcatenation.lean](../../../lean4/QcConcatenation.lean)
 - sha256 (`bytes`): `5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63`
 - cited in: node.lean, record TFQ-1315
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `QcConcatenation`): recorded sha256 `5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build QcConcatenation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `pairCount` | yes | yes | yes | - | `#print axioms pairCount` |
+| `pairCount` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pairCount` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/QcRepairQueue.lean`
@@ -63,13 +64,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/QcRepairQueue.lean](../../../lean4/QcRepairQueue.lean)
 - sha256 (`bytes`): `8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267`
 - cited in: node.lean, record TFQ-1315
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `QcRepairQueue`): recorded sha256 `8dfb92005317d793979869da1eb38b11ac86a4bb1cdd0b44cef0c435cacd1267` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build QcRepairQueue`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `backlog` | yes | yes | yes | - | `#print axioms backlog` |
-| `drift` | yes | yes | yes | - | `#print axioms drift` |
+| `backlog` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms backlog` |
+| `drift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms drift` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`
@@ -99,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivation_dag.json`
 
 - file: [dag/derivation_dag.json](../../../dag/derivation_dag.json)
-- sha256 (`lf-normalised`): `bb4ec3668829ef68ef007dbca42a3fe8e882af30e07826113849e0c80bfee3e1`
+- sha256 (`lf-normalised`): `fcb0c1bc01857aebabce7237ac7eccb1e38b64c68cd9d58fd3cf5efe585859ca`
 - generated view: listed, not counted
 - cited in: node.source
 - counts toward the grade: no

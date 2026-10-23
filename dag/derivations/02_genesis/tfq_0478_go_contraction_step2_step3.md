@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean::Reach3.carries`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean::Step3.carries`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Third/Step.lean::Reach2.toReach3`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Third/Step.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Third/Step.lean::Step2.toStep3`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Third/Step.lean)
+- [`lean4/Imported/GenesisOngoing/Second/Carry.lean::Reach3.carries`](../../../lean4/Imported/GenesisOngoing/Second/Carry.lean)
+- [`lean4/Imported/GenesisOngoing/Second/Carry.lean::Step3.carries`](../../../lean4/Imported/GenesisOngoing/Second/Carry.lean)
+- [`lean4/Imported/GenesisOngoing/Third/Step.lean::Reach2.toReach3`](../../../lean4/Imported/GenesisOngoing/Third/Step.lean)
+- [`lean4/Imported/GenesisOngoing/Third/Step.lean::Step2.toStep3`](../../../lean4/Imported/GenesisOngoing/Third/Step.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: the H3V7N5QF package holds no Rust`

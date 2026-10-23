@@ -1,6 +1,6 @@
 # PGW-REPLAY-NECESSITY
 
-Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,20 +8,19 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `PROVED_LEAN`. Evidence gr
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E0; 2 Lean reference(s) cited, 0 in this checkout. PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
-- `proved_lean_external_only`: all 2 cited Lean reference(s) lie outside this checkout. PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -43,12 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean`
+### Lean: `lean4/Imported/Genesis19l57g1/Paper000.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+- file: [lean4/Imported/Genesis19l57g1/Paper000.lean](../../../lean4/Imported/Genesis19l57g1/Paper000.lean)
+- sha256 (`bytes`): `1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46`
+- cited in: node.lean, record TFQ-0426
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.Genesis19l57g1.Paper000`): recorded sha256 `1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Paper000.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `insufficient_history_view` | yes | yes | yes | none | `#print axioms insufficient_history_view` |
+| `no_factor_through_common_view` | yes | yes | yes | none | `#print axioms no_factor_through_common_view` |
+- counts toward the grade: yes
 
 ### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs`
 
@@ -60,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md](../../../dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md)
-- sha256 (`lf-normalised`): `b1e57d06a655d472d7c6764d7ec2aa65bb9e1ed517d1132e8b73dd1068eb8847`
+- sha256 (`lf-normalised`): `1cd54de9a136459e4957fda0e6b41448d05f07996af651fae5689296c9ce971b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0426
 - counts toward the grade: no
@@ -92,8 +99,6 @@ Named by the node; not in this repository and not checked here.
 
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::history_auditor`
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::insufficient_history_view`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Paper000.lean::no_factor_through_common_view`
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor`
 
 ## Routes

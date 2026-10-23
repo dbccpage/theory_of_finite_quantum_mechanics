@@ -1,6 +1,6 @@
 # DS-QM120-MERMIN-PERES-F2-OBSTRUCTION
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+- `receipt_not_current`: lean4/DualWitness.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
 
 ## Imported structure
 
@@ -50,12 +50,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/ContextualityObstruction.lean](../../../lean4/ContextualityObstruction.lean)
 - sha256 (`bytes`): `712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `ContextualityObstruction`): recorded sha256 `712a6a817e5b6991910e8e6ed1a394997262e62b71fc89908426866e60773627` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ContextualityObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `d0_of_global_section` | yes | yes | yes | - | `#print axioms d0_of_global_section` |
+| `d0_of_global_section` | yes | yes | yes | propext | `#print axioms d0_of_global_section` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -63,12 +64,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0250 (shared)
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.ds_qm120_mermin_peres_f2_no_global_section` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm120_mermin_peres_f2_no_global_section` |
+| `QuantumMechanics.DerivationDagQMClosure.ds_qm120_mermin_peres_f2_no_global_section` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm120_mermin_peres_f2_no_global_section` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DualWitness.lean`
@@ -76,7 +78,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DualWitness.lean](../../../lean4/DualWitness.lean)
 - sha256 (`bytes`): `b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DualWitness`): recorded sha256 `b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build DualWitness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -1,6 +1,6 @@
 # L1-IMP-COMPLEX-FIELD
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -54,17 +54,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/ComplexFieldSelection.lean](../../../lean4/ComplexFieldSelection.lean)
 - sha256 (`bytes`): `134ba342a742720a19d59d6ebfc9bf197a85d99a4c9fc08b0be7e4f77b3654f1`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `ComplexFieldSelection`): recorded sha256 `134ba342a742720a19d59d6ebfc9bf197a85d99a4c9fc08b0be7e4f77b3654f1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ComplexFieldSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `ComplexFieldSelection.conditional_discharge` | yes | yes | yes | - | `#print axioms ComplexFieldSelection.conditional_discharge` |
-| `ComplexFieldSelection.dimension_selection` | yes | yes | yes | - | `#print axioms ComplexFieldSelection.dimension_selection` |
-| `ComplexFieldSelection.gaussian_product_span` | yes | yes | yes | - | `#print axioms ComplexFieldSelection.gaussian_product_span` |
-| `ComplexFieldSelection.quaternion_refuted` | yes | yes | yes | - | `#print axioms ComplexFieldSelection.quaternion_refuted` |
-| `ComplexFieldSelection.rho_same_product_statistics` | yes | yes | yes | - | `#print axioms ComplexFieldSelection.rho_same_product_statistics` |
-| `ComplexFieldSelection.rho_states` | yes | yes | yes | - | `#print axioms ComplexFieldSelection.rho_states` |
+| `ComplexFieldSelection.conditional_discharge` | yes | yes | yes | Quot.sound, propext | `#print axioms ComplexFieldSelection.conditional_discharge` |
+| `ComplexFieldSelection.dimension_selection` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.dimension_selection` |
+| `ComplexFieldSelection.gaussian_product_span` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.gaussian_product_span` |
+| `ComplexFieldSelection.quaternion_refuted` | yes | yes | yes | Quot.sound, propext | `#print axioms ComplexFieldSelection.quaternion_refuted` |
+| `ComplexFieldSelection.rho_same_product_statistics` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.rho_same_product_statistics` |
+| `ComplexFieldSelection.rho_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.rho_states` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -72,13 +73,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+| `QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` |
+| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H007Complexification.lean`
@@ -86,12 +88,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H007Complexification.lean](../../../lean4/H007Complexification.lean)
 - sha256 (`bytes`): `5a26837c8e57820953fe5e97f790b4ba6d04a8b0b6edc4ac5fcb84b0ba2e5242`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H007Complexification`): recorded sha256 `5a26837c8e57820953fe5e97f790b4ba6d04a8b0b6edc4ac5fcb84b0ba2e5242` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build H007Complexification`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `gi_not_embedded` | yes | yes | yes | - | `#print axioms gi_not_embedded` |
+| `gi_not_embedded` | yes | yes | yes | propext | `#print axioms gi_not_embedded` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/OperationalFieldSelection.lean`
@@ -99,12 +102,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/OperationalFieldSelection.lean](../../../lean4/OperationalFieldSelection.lean)
 - sha256 (`bytes`): `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `OperationalFieldSelection`): recorded sha256 `c754b4ebbd10a6be222a822a885c76d31247739bd3a133c787df6d9775ad5631` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build OperationalFieldSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `OperationalFieldSelection.selected_parameter` | yes | yes | yes | - | `#print axioms OperationalFieldSelection.selected_parameter` |
+| `OperationalFieldSelection.selected_parameter` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms OperationalFieldSelection.selected_parameter` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/finite_probability/complex_selection.rs`

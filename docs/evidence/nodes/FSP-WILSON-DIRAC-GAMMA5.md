@@ -1,6 +1,6 @@
 # FSP-WILSON-DIRAC-GAMMA5
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
+- cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `receipt_names_uncited_module`: a replay receipt names this node for lean4/CampaignFspWilsonDiracGamma5.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.
+A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.
 
 ## Source status
 
@@ -42,13 +42,38 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignFspWilsonDiracGamma5.lean`
+
+- file: [lean4/CampaignFspWilsonDiracGamma5.lean](../../../lean4/CampaignFspWilsonDiracGamma5.lean)
+- sha256 (`bytes`): `1731bf59cd9e9c71586d911c13468c52b817549715edf0cea12ecdefb8246d09`
+- cited in: receipt dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json (CampaignFspWilsonDiracGamma5)
+- replay: `verified`
+  - receipt [dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json](../../../dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json) (module `CampaignFspWilsonDiracGamma5`): recorded sha256 `1731bf59cd9e9c71586d911c13468c52b817549715edf0cea12ecdefb8246d09` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFspWilsonDiracGamma5`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignFspWilsonDiracGamma5.charpoly_rootMultiplicity_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.charpoly_rootMultiplicity_conj` |
+| `CampaignFspWilsonDiracGamma5.euclideanClifford2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.euclideanClifford2` |
+| `CampaignFspWilsonDiracGamma5.euclideanClifford4` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.euclideanClifford4` |
+| `CampaignFspWilsonDiracGamma5.two_flavor_det_eq_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.two_flavor_det_eq_sq` |
+| `CampaignFspWilsonDiracGamma5.two_flavor_det_real_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.two_flavor_det_real_nonneg` |
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md`
 
 - file: [dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md](../../../dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md)
-- sha256 (`lf-normalised`): `2224f9e8b406bc700e1be6fca93f4fad1eba3c2cdc8425a0206f616432c8ce56`
+- sha256 (`lf-normalised`): `2e031a71c1f5b38b75e949e8655e3b09ec2ed452e8c8401cb64a7e38beb0c77d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1197
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/fsp-wilson-dirac-gamma5.md`
+
+- file: [dag/derivations/independent/fsp-wilson-dirac-gamma5.md](../../../dag/derivations/independent/fsp-wilson-dirac-gamma5.md)
+- sha256 (`lf-normalised`): `9201405d6d55ddd1ffeb4679791dbe9df4c05fe7be3dcb22e2db9ed09640aa96`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 

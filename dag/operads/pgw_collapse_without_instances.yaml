@@ -29,15 +29,28 @@ source_provenance:
   path: dag/prompts/genesis_pgw_collapse_without_instances_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: collapsed_of_no_insts
+  line: 49
+  signature_excerpt: |-
+    theorem collapsed_of_no_insts (r : Regime) (hi : r.insts = [])
+        (d d' : Nat) : collapsed r d d'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  repository: this_repository
+  source_sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean::collapsed_of_no_insts
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts
+  availability: local
   symbol: collapsed_of_no_insts
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  repository: this_repository
+  sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::coverage_is_constant_across_data_at_a_fixed_context
   availability: external
@@ -84,8 +97,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

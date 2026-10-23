@@ -1,6 +1,6 @@
 # PGW-GO-H2-STATE-RAISING-GAUGE
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,20 +8,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
+- cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E0; 5 Lean reference(s) cited, 0 in this checkout. PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
-- `proved_lean_external_only`: all 5 cited Lean reference(s) lie outside this checkout. PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -44,31 +43,54 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean`
+### Lean: `lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+- file: [lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean)
+- sha256 (`bytes`): `9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b`
+- cited in: node.lean, record TFQ-0484
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Nothing`): recorded sha256 `9eaaeb48210e9b215923c7bc6bd6198dbf8c20c94ea4d4434c0c77605866201b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean`
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `Same3.around` | yes | yes | yes | Quot.sound, propext | `#print axioms Same3.around` |
+| `same3_nothing_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms same3_nothing_iff` |
+| `step_of_same3_fails` | yes | yes | yes | Quot.sound, propext | `#print axioms step_of_same3_fails` |
+- counts toward the grade: yes
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+### Lean: `lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean`
+- file: [lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean)
+- sha256 (`bytes`): `3f0af3e27cd1c265d446c9fcf69cfdd98d03455c954be612b92e6000309abf2b`
+- cited in: node.lean, record TFQ-0484
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Raise`): recorded sha256 `3f0af3e27cd1c265d446c9fcf69cfdd98d03455c954be612b92e6000309abf2b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `excess_raise` | yes | yes | yes | Quot.sound, propext | `#print axioms excess_raise` |
+- counts toward the grade: yes
+
+### Lean: `lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean`
+
+- file: [lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean)
+- sha256 (`bytes`): `2be852a5cf25b9965f45f78f6200920c08a18984aa741ca11693c493c4d15f5e`
+- cited in: node.lean, record TFQ-0484
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoingCore.Twentythird.Same`): recorded sha256 `2be852a5cf25b9965f45f78f6200920c08a18984aa741ca11693c493c4d15f5e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `gen3_iff_same3` | yes | yes | yes | Quot.sound, propext | `#print axioms gen3_iff_same3` |
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md`
 
 - file: [dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md](../../../dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md)
-- sha256 (`lf-normalised`): `9889f0da56d06aa30906594ddf2c5a291c20b82d26db0ba561932339d25abd0e`
+- sha256 (`lf-normalised`): `bc41539e0e5bc8f32012d0e9b153afe08c4554726a0f741f8da1f6348aed2c8a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0484
 - counts toward the grade: no
@@ -86,11 +108,6 @@ Named by the node; not in this repository and not checked here.
 
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::around`
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::raise_term`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::Same3.around`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::same3_nothing_iff`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::step_of_same3_fails`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean::excess_raise`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean::gen3_iff_same3`
 
 ## Absences recorded by the TFQ records
 
