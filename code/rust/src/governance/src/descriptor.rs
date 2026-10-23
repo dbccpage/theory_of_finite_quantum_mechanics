@@ -191,7 +191,8 @@ fn digest_ok(entry: &Map<String, Value>) -> bool {
     let raw = entry.get("raw_utf8").and_then(Value::as_str).unwrap_or_default().as_bytes();
     let digest = entry.get("sha256").and_then(Value::as_str);
     let length = entry.get("bytes").and_then(Value::as_u64);
-    digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()
+    let record_ok = serde_json::from_slice::<Value>(raw).ok().is_some_and(|record| entry.get("record") == Some(&record));
+    record_ok && digest == Some(hex(&Sha256::digest(raw)).as_str()) && length == u64::try_from(raw.len()).ok()
 }
 
 /// Lower-case hexadecimal of bytes.
@@ -330,5 +331,27 @@ pub(crate) mod tests {
         assert!(matches!(d.gate_grades(), Err(Violation::Schema { field, .. }) if field == "gates"));
         assert!(matches!(d.token(), Err(Violation::Schema { field, .. }) if field == "score_token"));
         assert!(matches!(d.composite(), Err(Violation::Schema { field, .. }) if field == "composite_grade"));
+    }
+}
+
+#[cfg(test)]
+#[allow(clippy::expect_used, clippy::indexing_slicing)]
+mod independent_history_tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn current_records_must_equal_their_hashed_bytes() {
+        let raw = tests::companion("code/a.rs", &"a".repeat(64), json!({"level":"L3"}));
+        let mut score_forgery: Value = serde_json::from_str(&raw).expect("fixture");
+        score_forgery["scoring_history"][0]["record"]["level"] = json!("L4");
+        let parsed = ContractDescriptor::parse("score.yaml", &score_forgery.to_string()).expect("JSON");
+        assert!(!parsed.current_score.expect("score").digest_ok, "a changed score cannot reuse another record's digest");
+
+        let mut contract_forgery: Value = serde_json::from_str(&raw).expect("fixture");
+        contract_forgery["contract"]["artifact"]["sha256"] = json!("b".repeat(64));
+        contract_forgery["contract_history"][0]["record"] = contract_forgery["contract"].clone();
+        let parsed = ContractDescriptor::parse("score.yaml", &contract_forgery.to_string()).expect("JSON");
+        assert!(!parsed.contract_view_ok, "a changed binding cannot reuse old hashed bytes");
     }
 }

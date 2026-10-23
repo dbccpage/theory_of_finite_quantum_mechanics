@@ -7,7 +7,7 @@
     "artifact": {
       "language": "Rust",
       "path": "code/rust/src/governance/src/descriptor.rs",
-      "sha256": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b"
+      "sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055"
     },
     "boundaries": [
       "No YAML: companions are JSON (all 8,657 on main parse as JSON). Duplicate JSON keys are not detected (serde_json keeps the last); a scan found none on main."
@@ -20,39 +20,16 @@
     "contract_urn": "urn:tfqm:governance:descriptor:v1",
     "evidence": [
       {
-        "path": "evidence/governance/20261023T043243Z/mutation.json",
-        "sha256": "7bb3ff9e387a1ecbee3b3b1c8615334e194346f2de5d7797aff976880094715a"
-      },
-      {
-        "path": "evidence/governance/20261023T043243Z/receipt.json",
-        "sha256": "b63b0466feb0141bd6425c4f1796d050b55be1108abc2d6e5e6317f1b133586b"
-      },
-      {
-        "path": "evidence/governance/20261023T043243Z/cargo-test.log",
-        "sha256": "16d0fb70d7fdec31908de12211548f7f43e7c2f44a99e86df912d8e157997a68"
-      },
-      {
-        "path": "evidence/governance/20261023T043243Z/clippy.log",
-        "sha256": "3bb7a9413909f79ffd70fb2b7636a0e56ea51610f0886b830ddfeb375e1da7a8"
-      },
-      {
-        "path": "evidence/governance/20261023T043243Z/lizard.csv",
-        "sha256": "f9bb83555dc2543508c959b28f6e99098317d851d1c009f0b9550d5ab6a72bf5"
-      },
-      {
-        "path": "SCORING.md",
-        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
-      },
-      {
-        "path": "governance/policy.json",
-        "sha256": "2e3f68aefd419a78c8f9c33d630d5f2df2bbde95543c3fe883edb99a05bfc235"
+        "path": "evidence/quality/pr215_independent_review.json",
+        "sha256": "7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b"
       }
     ],
     "owned_invariants": [
       "ContractDescriptor::parse fails only on text that is not a JSON object (Violation::MalformedJson); every other defect is kept for the verifiers.",
       "Both binding layouts are read: artifact {path, sha256, language} and subject + source_sha256.",
       "digest_ok holds only when raw_utf8 hashes to the entry's sha256 and has its byte length; contract_view_ok only when contract equals the intact current_contract record.",
-      "Typed accessors (level, gate_grades, composite, token) return Violation::Schema naming the field for any invalid value."
+      "Typed accessors (level, gate_grades, composite, token) return Violation::Schema naming the field for any invalid value.",
+      "Each selected record equals JSON parsed from its hashed raw_utf8 bytes; score and contract views cannot diverge from those bytes."
     ],
     "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
     "requirements": {
@@ -160,10 +137,70 @@
         ]
       },
       "sha256": "80f23d5fdeef8f1059e04aef03d7fcb27adbffedc8a85230fa222cb973f93f18"
+    },
+    {
+      "sha256": "0cb9b1d8a5c1a6e36e8f4398fd939fcf93c634ad832a6d685a8e564ef8640b8b",
+      "bytes": 2628,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Rust",
+          "path": "code/rust/src/governance/src/descriptor.rs",
+          "sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055"
+        },
+        "boundaries": [
+          "No YAML: companions are JSON (all 8,657 on main parse as JSON). Duplicate JSON keys are not detected (serde_json keeps the last); a scan found none on main."
+        ],
+        "consumers": [
+          "20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped",
+          ".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)",
+          "scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement"
+        ],
+        "contract_urn": "urn:tfqm:governance:descriptor:v1",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_independent_review.json",
+            "sha256": "7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b"
+          }
+        ],
+        "owned_invariants": [
+          "ContractDescriptor::parse fails only on text that is not a JSON object (Violation::MalformedJson); every other defect is kept for the verifiers.",
+          "Both binding layouts are read: artifact {path, sha256, language} and subject + source_sha256.",
+          "digest_ok holds only when raw_utf8 hashes to the entry's sha256 and has its byte length; contract_view_ok only when contract equals the intact current_contract record.",
+          "Typed accessors (level, gate_grades, composite, token) return Violation::Schema naming the field for any invalid value.",
+          "Each selected record equals JSON parsed from its hashed raw_utf8 bytes; score and contract views cannot diverge from those bytes."
+        ],
+        "purpose": "Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).",
+        "requirements": {
+          "R3-descriptor": {
+            "symbols": [
+              "REQUIRED_KEYS",
+              "ScoreRecord",
+              "ContractDescriptor",
+              "hex"
+            ],
+            "text": "ContractDescriptor: typed view of a companion (path, sha256, language, URN, symbols, invariants, score)"
+          }
+        },
+        "role": "governance crate source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b",
+        "subject": "code/rust/src/governance/src/descriptor.rs",
+        "symbols": [
+          "REQUIRED_KEYS",
+          "ScoreRecord",
+          "ContractDescriptor",
+          "hex"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/descriptor.rs\",\n    \"sha256\": \"259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055\"\n  },\n  \"boundaries\": [\n    \"No YAML: companions are JSON (all 8,657 on main parse as JSON). Duplicate JSON keys are not detected (serde_json keeps the last); a scan found none on main.\"\n  ],\n  \"consumers\": [\n    \"20 workspace build scripts (code/rust/build.rs and code/rust/src/*/build.rs), byte-identical copies of governance/hook/build.rs; all 20 ran under cargo check in a scratch copy of the workspace with the external optional crates stripped\",\n    \".github/workflows/governance.yml (enforce mode on pull requests and pushes to main)\",\n    \"scripts/score_scope_contracts.py and scripts/contract_scores.py read the same governance/policy.json; scripts/test_governance_policy.py and the CI population diff check the agreement\"\n  ],\n  \"contract_urn\": \"urn:tfqm:governance:descriptor:v1\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_independent_review.json\",\n      \"sha256\": \"7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"ContractDescriptor::parse fails only on text that is not a JSON object (Violation::MalformedJson); every other defect is kept for the verifiers.\",\n    \"Both binding layouts are read: artifact {path, sha256, language} and subject + source_sha256.\",\n    \"digest_ok holds only when raw_utf8 hashes to the entry's sha256 and has its byte length; contract_view_ok only when contract equals the intact current_contract record.\",\n    \"Typed accessors (level, gate_grades, composite, token) return Violation::Schema naming the field for any invalid value.\",\n    \"Each selected record equals JSON parsed from its hashed raw_utf8 bytes; score and contract views cannot diverge from those bytes.\"\n  ],\n  \"purpose\": \"Build-time and CI enforcement of the contract acceptance rule (SCORING.md section 1.5).\",\n  \"requirements\": {\n    \"R3-descriptor\": {\n      \"symbols\": [\n        \"REQUIRED_KEYS\",\n        \"ScoreRecord\",\n        \"ContractDescriptor\",\n        \"hex\"\n      ],\n      \"text\": \"ContractDescriptor: typed view of a companion (path, sha256, language, URN, symbols, invariants, score)\"\n    }\n  },\n  \"role\": \"governance crate source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"0662be34ce1ef95aeaf849061e4c1cce038f1cf5acc2d3c9ed52ea156630a71b\",\n  \"subject\": \"code/rust/src/governance/src/descriptor.rs\",\n  \"symbols\": [\n    \"REQUIRED_KEYS\",\n    \"ScoreRecord\",\n    \"ContractDescriptor\",\n    \"hex\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/descriptor.contract.score.yaml#independent-review"
+      ]
     }
   ],
-  "current_contract": "80f23d5fdeef8f1059e04aef03d7fcb27adbffedc8a85230fa222cb973f93f18",
-  "current_scoring": "5f11d83bc1d015fbfc96840bfc2b999b13ee3ccca6d097f192b0ee11e14f33d0",
+  "current_contract": "0cb9b1d8a5c1a6e36e8f4398fd939fcf93c634ad832a6d685a8e564ef8640b8b",
+  "current_scoring": "a8827d16f03d04d873c505680ac011955dc48d5dd365b1c21885dc6c469d422d",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -265,6 +302,71 @@
         "score_token": "L4C"
       },
       "sha256": "5f11d83bc1d015fbfc96840bfc2b999b13ee3ccca6d097f192b0ee11e14f33d0"
+    },
+    {
+      "sha256": "a8827d16f03d04d873c505680ac011955dc48d5dd365b1c21885dc6c469d422d",
+      "bytes": 2911,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/governance/src/descriptor.rs",
+          "language": "Rust",
+          "sha256": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055"
+        },
+        "assessment_id": "governance-crate-self-assessment-v1",
+        "assessment_status": "completed_for_declared_repaired_scope",
+        "assessor": "Codex independent review",
+        "basis": {
+          "G1": "The current source hash and independent receipt bind this assessment; old claims remain historical and are not reused as current mutation evidence.",
+          "G2": "The forged-record regression fails before repair and passes after it; focused snapshot and classification boundary tests pass. No mathematical status changes.",
+          "G3": "Explicit refusal replaces destructive directory reuse and ambiguous outcome handling. Process-tree cleanup and broader resource lifecycle coverage remain absent in the Python utilities.",
+          "G4": "Fresh Rust tests and clippy plus 13 focused Python regressions pass. Strict typing of the three repaired Python files passes. The complete mutation campaign was not rerun and is not claimed.",
+          "G5": "Recorded lizard, radon and cognitive-complexity measurements support the scoped structural review; full workspace performance and resource bounds are not established."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T07:30:07.974405+00:00",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr215_independent_review.json",
+            "sha256": "7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Intentional descriptor API with explicit invalid-record refusal and preserved byte custody.",
+        "metrics": {
+          "clippy_cognitive_threshold": 15,
+          "clippy_nesting_threshold": 3,
+          "lizard_max_ccn_production": 8,
+          "lizard_max_ccn_tests": 10,
+          "lizard_production_functions": 15
+        },
+        "open_higher_grade_findings": [
+          "The original mutation campaign is historical; its classifications were not independently established from raw per-mutant test logs.",
+          "The evidence harnesses remain bounded L3 utilities, with incomplete process-tree timeout cleanup, retained scratch copies and no resource benchmark.",
+          "The score vocabulary module remains L3: closed enum parsing and floor comparison are not a substantive L4 operational architecture.",
+          "Whole-PR acceptance is withheld: support exceptions do not cover these substantive L3 modules, and additional changed original artifacts still need complete reviewed contracts."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Rust\",\n    \"path\": \"code/rust/src/governance/src/descriptor.rs\",\n    \"sha256\": \"259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055\"\n  },\n  \"assessment_id\": \"governance-crate-self-assessment-v1\",\n  \"assessment_status\": \"completed_for_declared_repaired_scope\",\n  \"assessor\": \"Codex independent review\",\n  \"basis\": {\n    \"G1\": \"The current source hash and independent receipt bind this assessment; old claims remain historical and are not reused as current mutation evidence.\",\n    \"G2\": \"The forged-record regression fails before repair and passes after it; focused snapshot and classification boundary tests pass. No mathematical status changes.\",\n    \"G3\": \"Explicit refusal replaces destructive directory reuse and ambiguous outcome handling. Process-tree cleanup and broader resource lifecycle coverage remain absent in the Python utilities.\",\n    \"G4\": \"Fresh Rust tests and clippy plus 13 focused Python regressions pass. Strict typing of the three repaired Python files passes. The complete mutation campaign was not rerun and is not claimed.\",\n    \"G5\": \"Recorded lizard, radon and cognitive-complexity measurements support the scoped structural review; full workspace performance and resource bounds are not established.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T07:30:07.974405+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr215_independent_review.json\",\n      \"sha256\": \"7333d430c6677285a47fea09411dffce093762f180baa3ccebd40d117265917b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Intentional descriptor API with explicit invalid-record refusal and preserved byte custody.\",\n  \"metrics\": {\n    \"clippy_cognitive_threshold\": 15,\n    \"clippy_nesting_threshold\": 3,\n    \"lizard_max_ccn_production\": 8,\n    \"lizard_max_ccn_tests\": 10,\n    \"lizard_production_functions\": 15\n  },\n  \"open_higher_grade_findings\": [\n    \"The original mutation campaign is historical; its classifications were not independently established from raw per-mutant test logs.\",\n    \"The evidence harnesses remain bounded L3 utilities, with incomplete process-tree timeout cleanup, retained scratch copies and no resource benchmark.\",\n    \"The score vocabulary module remains L3: closed enum parsing and floor comparison are not a substantive L4 operational architecture.\",\n    \"Whole-PR acceptance is withheld: support exceptions do not cover these substantive L3 modules, and additional changed original artifacts still need complete reviewed contracts.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/rust/src/governance/src/descriptor.contract.score.yaml#independent-review"
+      ]
     }
   ]
 }

@@ -7,7 +7,7 @@ crate and the crate's own tests are run:
 
 * lib modules: `cargo test --lib`; the binary: `cargo test --bin governance-check`.
 * outcome KILLED (tests fail), SURVIVED (tests pass), INVALID (does not compile),
-  INCONCLUSIVE (timeout). No mutant is classed as equivalent, so the ratio is the
+  INCONCLUSIVE (timeout, infrastructure failure, or missing test evidence). No mutant is classed as equivalent, so the ratio is the
   conservative R = killed / (killed + survived + inconclusive + unrun).
 
 Usage: python -I -X utf8 governance/tools/mutation_campaign.py CRATE_DIR OUT_JSON [--workers N] [--scratch DIR]
@@ -25,7 +25,9 @@ import shutil
 import subprocess
 import sys
 import time
+import tempfile
 from pathlib import Path
+from typing import Any, Iterator
 
 OPERATORS = [
     ("eq->ne", re.compile(r"(?<![=!<>])==(?!=)"), "!="),
@@ -50,7 +52,7 @@ OPERATORS = [
 SKIP = re.compile(r"^\s*(//|#\[|#!|use |pub use |mod |pub mod )")
 
 
-def mutants(crate: Path):
+def mutants(crate: Path) -> Iterator[dict[str, Any]]:
     for path in sorted((crate / "src").rglob("*.rs")):
         rel = path.relative_to(crate).as_posix()
         lines = path.read_text(encoding="utf-8").split("\n")
@@ -67,11 +69,24 @@ def mutants(crate: Path):
                            "_full": (path, number, mutated)}
 
 
-def run_one(item, crate: Path, scratch: Path, timeout: int):
-    worker = scratch / ("w%d" % os.getpid())
-    copy = worker / "gov"
-    if not copy.exists():
-        shutil.copytree(crate, copy, ignore=shutil.ignore_patterns("target"))
+def classify_outcome(returncode: int, output: str) -> str:
+    """Only a completed libtest failure kills a mutant; environment errors do not."""
+    if returncode == 0 and re.search(r"test result: ok\..* [1-9][0-9]* passed;", output):
+        return "SURVIVED"
+    if returncode != 0 and re.search(r"test result: FAILED\..* [1-9][0-9]* failed;", output):
+        return "KILLED"
+    if re.search(r"error\[E[0-9]+\]", output):
+        return "INVALID"
+    return "INCONCLUSIVE"
+
+
+def run_one(item: dict[str, Any], crate: Path, scratch: Path, timeout: int) -> dict[str, Any]:
+    # Never reuse a worker directory from an earlier candidate or interrupted run.
+    scratch.mkdir(parents=True, exist_ok=True)
+    worker = scratch / ("worker-%d" % os.getpid())
+    worker.mkdir(exist_ok=True)
+    copy = Path(tempfile.mkdtemp(prefix="candidate-", dir=worker)) / "gov"
+    shutil.copytree(crate, copy, ignore=shutil.ignore_patterns("target"))
     path, number, mutated = item["_full"]
     rel = path.relative_to(crate)
     target_file = copy / rel
@@ -86,30 +101,34 @@ def run_one(item, crate: Path, scratch: Path, timeout: int):
         proc = subprocess.run(["cargo", "test", "--offline", "--locked", "-q", "--manifest-path", str(copy / "Cargo.toml"), *selector],
                               capture_output=True, text=True, env=env, timeout=timeout)
         out = proc.stdout + proc.stderr
-        if proc.returncode == 0:
-            outcome = "SURVIVED"
-        elif "could not compile" in out or re.search(r"error\[E\d+\]", out):
-            outcome = "INVALID"
-        else:
-            outcome = "KILLED"
-    except subprocess.TimeoutExpired:
+        outcome = classify_outcome(proc.returncode, out)
+    except subprocess.TimeoutExpired as error:
         outcome = "INCONCLUSIVE"
+        out = "timeout: " + str(error)
+    except OSError as error:
+        outcome = "INCONCLUSIVE"
+        out = "execution error: " + str(error)
     finally:
         target_file.write_text(original, encoding="utf-8", newline="")
     result = {k: v for k, v in item.items() if not k.startswith("_")}
-    result.update({"outcome": outcome, "seconds": round(time.time() - started, 1)})
+    result.update({"outcome": outcome, "seconds": round(time.time() - started, 1),
+                   "output": out, "snapshot": str(copy), "snapshot_source_sha256": hashlib.sha256(original.encode()).hexdigest()})
     return result
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("crate", type=Path)
     parser.add_argument("out", type=Path)
     parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--scratch", type=Path, default=Path("C:/gt/mut"))
+    parser.add_argument("--scratch", type=Path, default=Path(tempfile.gettempdir()) / "tfqm-governance-mutants")
     parser.add_argument("--timeout", type=int, default=240)
     args = parser.parse_args()
     crate = args.crate.resolve()
+    if args.workers < 1 or args.timeout < 1:
+        parser.error("workers and timeout must be positive")
+    captured_sources = {p.relative_to(crate).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                        for p in sorted((crate / "src").rglob("*.rs"))}
     items = list(mutants(crate))
     print("mutants:", len(items), flush=True)
     results = []
@@ -121,7 +140,11 @@ def main():
                 print("done", done, flush=True)
     results.sort(key=lambda r: (r["file"], r["line"], r["operator"], r["mutated"]))
     sources = {p.relative_to(crate).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((crate / "src").rglob("*.rs"))}
-    summary = {}
+    if sources != captured_sources:
+        for result in results:
+            result["outcome"] = "INCONCLUSIVE"
+            result["source_changed_during_campaign"] = True
+    summary: dict[str, dict[str, Any]] = {}
     for r in results:
         per = summary.setdefault(r["file"], {"KILLED": 0, "SURVIVED": 0, "INVALID": 0, "INCONCLUSIVE": 0, "UNRUN": 0, "EQUIVALENT": 0})
         per[r["outcome"]] += 1
@@ -135,6 +158,7 @@ def main():
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(summary, indent=1))
+    return 0
 
 
 if __name__ == "__main__":

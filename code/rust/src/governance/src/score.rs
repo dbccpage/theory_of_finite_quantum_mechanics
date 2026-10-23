@@ -325,13 +325,11 @@ mod tests {
     #[test]
     fn every_token_round_trips() {
         let mut count = 0;
-        for level in Level::ALL {
-            for grade in Grade::ALL {
+        for (level, grade) in Level::ALL.into_iter().flat_map(|level| Grade::ALL.into_iter().map(move |grade| (level, grade))) {
                 let token = ScoreToken::new(level, grade);
                 let text = token.to_string();
                 assert_eq!(text.parse::<ScoreToken>().unwrap(), token);
                 count += 1;
-            }
         }
         assert_eq!(count, 30);
         assert_eq!("L5A+".parse::<ScoreToken>().unwrap(), ScoreToken::new(Level::L5, Grade::APlus));
@@ -370,14 +368,12 @@ mod tests {
         assert_eq!(g.composite(), Some(Grade::C));
         assert!(g.is_complete());
         // Exhaustive check of min over a two-grade sweep at each gate position.
-        for gate in Gate::ALL {
-            for low in Grade::ALL {
+        for (gate, low) in Gate::ALL.into_iter().flat_map(|gate| Grade::ALL.into_iter().map(move |low| (gate, low))) {
                 let mut grades = [Some(Grade::APlus); 5];
                 grades[gate as usize] = Some(low);
                 let g = GateGrades::new(grades);
                 assert_eq!(g.composite(), Some(low));
                 assert_eq!(g.get(gate), Some(low));
-            }
         }
     }
 

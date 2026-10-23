@@ -23,7 +23,9 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
+from typing import Any, Sequence, Mapping
 
 ROOT = Path(__file__).resolve().parents[2]
 CRATE = ROOT / "code" / "rust" / "src" / "governance"
@@ -33,21 +35,43 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def version(command):
+def source_hashes(crate: Path) -> dict[str, str]:
+    return {p.relative_to(crate).as_posix(): sha(p) for p in sorted(crate.rglob("*"))
+            if p.is_file() and "target" not in p.parts and not p.name.endswith(".contract.score.yaml")}
+
+
+def prepare_copy(crate: Path, destination: Path | None) -> Path:
+    """Create a new retained snapshot. Existing directories are never removed."""
+    source = crate.resolve()
+    if destination is None:
+        destination = Path(tempfile.mkdtemp(prefix="tfqm-governance-")) / "crate"
+    destination = destination.resolve()
+    if destination == source or source in destination.parents:
+        raise ValueError("the evidence copy must be outside the source crate")
+    if destination.exists():
+        raise FileExistsError("evidence copy already exists: " + str(destination))
+    before = source_hashes(source)
+    shutil.copytree(source, destination, ignore=shutil.ignore_patterns("target"))
+    if source_hashes(destination) != before or source_hashes(source) != before:
+        raise ValueError("source changed while capturing the evidence snapshot")
+    return destination
+
+
+def version(command: Sequence[str]) -> str:
     try:
         return subprocess.run(command, capture_output=True, text=True).stdout.strip()
     except OSError as error:
         return "unavailable: " + str(error)
 
 
-def run(command, cwd: Path, env, log: Path):
+def run(command: Sequence[str], cwd: Path, env: Mapping[str, str], log: Path) -> dict[str, Any]:
     proc = subprocess.run(command, cwd=cwd, env=env, capture_output=True, text=True)
     log.write_text("$ " + " ".join(command) + "\n" + proc.stdout + proc.stderr + "\nexit status: %d\n" % proc.returncode,
                    encoding="utf-8", newline="\n")
     return {"command": command, "cwd": str(cwd), "exit_status": proc.returncode, "log": log.name, "log_sha256": sha(log)}
 
 
-def first_test_line(path: Path):
+def first_test_line(path: Path) -> int:
     """First line of the `#[cfg(test)]` module, so test functions can be told apart."""
     for number, line in enumerate(path.read_text(encoding="utf-8").split("\n"), start=1):
         if line.strip() == "#[cfg(test)]":
@@ -55,17 +79,20 @@ def first_test_line(path: Path):
     return 10 ** 9
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("out", type=Path)
-    parser.add_argument("--copy", type=Path, default=Path("C:/gt/gov-evidence"))
-    parser.add_argument("--target", type=Path, default=Path("C:/gt/target"))
+    parser.add_argument("--copy", type=Path, help="new retained snapshot directory; an existing path is refused")
+    parser.add_argument("--target", type=Path, help="Cargo build cache; defaults to the new snapshot parent")
     args = parser.parse_args()
     out = args.out if args.out.is_absolute() else ROOT / args.out
+    try:
+        args.copy = prepare_copy(CRATE, args.copy)
+    except (OSError, ValueError) as error:
+        parser.error(str(error))
+    captured = source_hashes(args.copy)
     out.mkdir(parents=True, exist_ok=True)
-    if args.copy.exists():
-        shutil.rmtree(args.copy)
-    shutil.copytree(CRATE, args.copy, ignore=shutil.ignore_patterns("target"))
+    args.target = args.target or args.copy.parent / "target"
     env = dict(os.environ, CARGO_TARGET_DIR=str(args.target), CARGO_PROFILE_DEV_DEBUG="0", CARGO_TERM_COLOR="never")
     env.pop("TFQM_GOVERNANCE", None)
     manifest = str(args.copy / "Cargo.toml")
@@ -80,7 +107,7 @@ def main():
     (out / "lizard.csv").write_text(lizard.stdout, encoding="utf-8", newline="\n")
     steps["lizard"] = {"command": ["python", "-m", "lizard", "-l", "rust", "--csv", "src"], "cwd": str(args.copy),
                        "exit_status": lizard.returncode, "log": "lizard.csv", "log_sha256": sha(out / "lizard.csv")}
-    metrics = {}
+    metrics: dict[str, dict[str, dict[str, Any]]] = {}
     for row in csv.reader(io.StringIO(lizard.stdout)):
         nloc, ccn, file_name, function, start = int(row[0]), int(row[1]), row[6], row[7], int(row[9])
         rel = Path(file_name).resolve().relative_to(args.copy.resolve()).as_posix()
@@ -100,11 +127,13 @@ def main():
         "clippy_thresholds": {"cognitive_complexity": 15, "excessive_nesting": 3, "config": "code/rust/src/governance/clippy.toml"},
         "steps": steps,
         "complexity": metrics,
-        "sources": {p.relative_to(CRATE).as_posix(): sha(p) for p in sorted(CRATE.rglob("*")) if p.is_file() and "target" not in p.parts},
+        "sources": captured,
+        "snapshot": str(args.copy),
+        "snapshot_unchanged_after_checks": source_hashes(args.copy) == captured,
     }
     (out / "receipt.json").write_text(json.dumps(receipt, indent=1) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({k: v["exit_status"] for k, v in steps.items()}))
-    return 0 if all(v["exit_status"] == 0 for v in steps.values()) else 1
+    return 0 if receipt["snapshot_unchanged_after_checks"] and all(v["exit_status"] == 0 for v in steps.values()) else 1
 
 
 if __name__ == "__main__":
