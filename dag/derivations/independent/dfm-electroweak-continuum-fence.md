@@ -94,3 +94,18 @@ field, or phase outside `Q(i)` is used.
 Phases `e^{iα/2}` outside `Q(i)`, the dressed gauge field and its derivative
 term, and any continuum electroweak reading, including an Elitzur or
 symmetry-breaking reading, stay open. The node status stays OPEN.
+
+## Independent review boundary
+
+The Lean equality uses total rational division, including s = 0; its hypotheses
+do not assert a positive or nonzero normalizer. At the zero doublet this is an
+algebraic identity, not a normalized unitary dressing. The checker only divides
+by nonzero exact rationals and now rejects floats, booleans and zero denominators.
+No field-instance laws, determinant/unitarity theorem, positive-root selection
+or arbitrary rational-square-root existence is exported by this module.
+
+Independent focused replay passed, including all twelve permitted-axiom audits
+and an actual conjugation-sign mutation rejected by both Python modes. The proof
+is assessed L3D as a bounded component-formula development under SCORING.md §2,
+below the required L4D minimum for substantive proofs. The checker is L2D and
+Lake is L1D under the approved support exceptions. The PR remains unmerged.
