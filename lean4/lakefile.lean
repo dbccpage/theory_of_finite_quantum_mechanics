@@ -982,3 +982,7 @@ lean_lib CampaignGenesisDemandPolicy where
 -- Supplied rooted-tree Borel dressing. Non-default.
 lean_lib CampaignDfmHierarchicalBorel where
   roots := #[`CampaignDfmHierarchicalBorel]
+
+-- Campaign: DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmElectroweakContinuumFence where
+  roots := #[`CampaignDfmElectroweakContinuumFence]

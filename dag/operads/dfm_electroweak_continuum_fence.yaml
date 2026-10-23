@@ -3,18 +3,27 @@ node_id: DFM-ELECTROWEAK-CONTINUUM-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: The residual U(1)_Y covariance u(e^{i alpha/2} Phi) = u(Phi) diag(e^{-i alpha/2},
-    e^{i alpha/2}), the dressed gauge field with derivative term, and the reading as an electroweak model
-    without spontaneous symmetry breaking are not established by the finite artifacts.
+  source_statement: For every z in Q(i) and every doublet Phi in Q(i)^2, the un-normalized dressing U(Phi)
+    = [[conj phi2, phi1], [-conj phi1, phi2]] satisfies U(z Phi) = U(Phi) diag(conj z, z). When the squared
+    modulus of z is 1 and a rational s with s*s equal to the squared norm of Phi is supplied, dividing
+    every entry by that same s preserves the identity and s*s equals the squared norm of z Phi. On Phi
+    = (1, 0), the unit z = 3/5 + (4/5)i with s = 1 has normalized (1, 2) entry 3/5 + (4/5)i. On the same
+    Phi, z = 2 has squared norms 1 and 4; dividing by the respective rational roots 1 and 2 makes the
+    normalized (1, 2) entries 1 and 2, so they differ. Continuum phases, the dressed derivative term,
+    and an electroweak reading without a declared rational square root stay unproved.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - continuum gauge fields W_mu and derivatives
   - U(1)_Y phases outside Q(i)
-  source_bottleneck: Generic phases e^{i alpha/2} are not in Q(i); keep the residual covariance on declared
-    rational phases and keep the continuum Standard Model and Elitzur reading as interfaces.
+  source_bottleneck: The normalized residual law is recorded when z lies in Q(i), the squared modulus
+    of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge
+    fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md
   - papers/ravera_dfm_dossier.md
+  - lean4/CampaignDfmElectroweakContinuumFence.lean
+  - dag/derivations/independent/dfm-electroweak-continuum-fence.md
+  - checks/independent/dfm-electroweak-continuum-fence.py
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md
   source_claim_label: OPEN
@@ -23,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md
-    sha256: 27e43b224abb4af5cf579dfa83a30c4f1dacf5044cd9eacf5936040c68061e07
+    sha256: 6e04e208eabd9c2f37162b54c11ea6f8d45e4f0ac950138785793e216f1c1fbf
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +40,211 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_electroweak_continuum_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: structure
+  name: GR
+  line: 15
+  signature_excerpt: structure GR
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Dub
+  line: 74
+  signature_excerpt: structure Dub
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: U
+  line: 105
+  signature_excerpt: 'def U (Φ : Dub) : Mat2'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rightDiag
+  line: 108
+  signature_excerpt: 'def rightDiag (M : Mat2) (c0 c1 : GR) : Mat2'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2
+  line: 98
+  signature_excerpt: structure Mat2
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u00
+  line: 92
+  signature_excerpt: 'def u00 (Φ : Dub) : GR'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u01
+  line: 93
+  signature_excerpt: 'def u01 (Φ : Dub) : GR'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u10
+  line: 94
+  signature_excerpt: 'def u10 (Φ : Dub) : GR'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: u11
+  line: 95
+  signature_excerpt: 'def u11 (Φ : Dub) : GR'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: scaleMat
+  line: 111
+  signature_excerpt: 'def scaleMat (M : Mat2) (s : ℚ) : Mat2'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zUnit
+  line: 151
+  signature_excerpt: 'def zUnit : GR'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: phiAxis
+  line: 152
+  signature_excerpt: 'def phiAxis : Dub'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zTwo
+  line: 153
+  signature_excerpt: 'def zTwo : GR'
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: unnormalized_covariance
+  line: 114
+  signature_excerpt: |-
+    theorem unnormalized_covariance (z : GR) (Φ : Dub) :
+        U (Dub.scale z Φ) = rightDiag (U Φ) (GR.conj z) z
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unit_normalized_covariance
+  line: 142
+  signature_excerpt: |-
+    theorem unit_normalized_covariance (z : GR) (Φ : Dub) (s : ℚ)
+        (hz : GR.norm2 z = 1) (hs : s * s = Dub.v2 Φ) :
+        scaleMat (U (Dub.scale z Φ)) s =
+          rightDiag (scaleMat (U Φ) s) (GR.conj z) z ∧
+          s * s = Dub.v2 (Dub.scale z Φ)
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_three_fifths
+  line: 155
+  signature_excerpt: |-
+    theorem witness_three_fifths :
+        GR.norm2 zUnit = 1 ∧
+        Dub.v2 phiAxis = 1 ∧
+        (1 : ℚ) * 1 = Dub.v2 phiAxis ∧
+        (scaleMat (U (Dub.scale zUnit phiAxis)) 1).e01 = zUnit
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nonunit_normalized_entries_differ
+  line: 170
+  signature_excerpt: |-
+    theorem nonunit_normalized_entries_differ :
+        GR.norm2 zTwo = 4 ∧
+        Dub.v2 phiAxis = 1 ∧
+        Dub.v2 (Dub.scale zTwo phiAxis) = 4 ∧
+        (1 : ℚ) * 1 = Dub.v2 phiAxis ∧
+        (2 : ℚ) * 2 = Dub.v2 (Dub.scale zTwo phiAxis) ∧
+        (scaleMat (U (Dub.scale zTwo phiAxis)) 2).e01 = ⟨1, 0⟩ ∧
+        (rightDiag (scaleMat (U phiAxis) 1) (GR.conj zTwo) zTwo).e01 = ⟨2, 0⟩ ∧
+        (scaleMat (U (Dub.scale zTwo phiAxis)) 2).e01 ≠
+          (rightDiag (scaleMat (U phiAxis) 1) (GR.conj zTwo) zTwo).e01
+  source: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  source_sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmElectroweakContinuumFence.lean::unnormalized_covariance
+  availability: local
+  symbol: unnormalized_covariance
+  path: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  declaration_status: declaration_found_not_proof_checked
+  line: 114
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmElectroweakContinuumFence.lean::unit_normalized_covariance
+  availability: local
+  symbol: unit_normalized_covariance
+  path: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  declaration_status: declaration_found_not_proof_checked
+  line: 142
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmElectroweakContinuumFence.lean::witness_three_fifths
+  availability: local
+  symbol: witness_three_fifths
+  path: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  declaration_status: declaration_found_not_proof_checked
+  line: 155
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ
+  availability: local
+  symbol: nonunit_normalized_entries_differ
+  path: lean4/CampaignDfmElectroweakContinuumFence.lean
+  repository: this_repository
+  sha256: d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034
+  declaration_status: declaration_found_not_proof_checked
+  line: 170
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -75,8 +286,6 @@ operad_slots:
     - U(1)_Y phases outside Q(i)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

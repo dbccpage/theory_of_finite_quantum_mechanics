@@ -1,0 +1,208 @@
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
+
+/-!
+Residual covariance of the algebraic electroweak dressing over `Q(i)`.
+
+`U` is un-normalized. Dividing by one supplied rational `s` preserves
+`U(z Φ) = U(Φ) diag(conj z, z)` for every `z`. The doublet's own norm root
+is that same `s` when `norm2 z = 1` and `s * s` equals the squared norm.
+-/
+
+namespace CampaignDfmElectroweakContinuumFence
+
+@[ext]
+structure GR where
+  re : ℚ
+  im : ℚ
+  deriving DecidableEq, Repr
+
+namespace GR
+
+def conj (z : GR) : GR := ⟨z.re, -z.im⟩
+
+def mul (z w : GR) : GR :=
+  ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
+
+def norm2 (z : GR) : ℚ := z.re * z.re + z.im * z.im
+
+def negConj (z : GR) : GR := ⟨-z.re, z.im⟩
+
+def div (z : GR) (s : ℚ) : GR := ⟨z.re / s, z.im / s⟩
+
+theorem mul_comm (z w : GR) : mul z w = mul w z := by
+  rcases z with ⟨zr, zi⟩
+  rcases w with ⟨wr, wi⟩
+  apply GR.ext
+  · simp only [mul]; ring
+  · simp only [mul]; ring
+
+theorem conj_mul (z w : GR) : conj (mul z w) = mul (conj z) (conj w) := by
+  rcases z with ⟨zr, zi⟩
+  rcases w with ⟨wr, wi⟩
+  apply GR.ext
+  · simp only [conj, mul]; ring
+  · simp only [conj, mul]; ring
+
+theorem norm2_mul (z w : GR) : norm2 (mul z w) = norm2 z * norm2 w := by
+  rcases z with ⟨zr, zi⟩
+  rcases w with ⟨wr, wi⟩
+  simp only [norm2, mul]
+  ring
+
+theorem negConj_mul_conj (z p : GR) : negConj (mul z p) = mul (negConj p) (conj z) := by
+  rcases z with ⟨zr, zi⟩
+  rcases p with ⟨pr, pi⟩
+  apply GR.ext
+  · simp only [negConj, mul, conj]; ring
+  · simp only [negConj, mul, conj]; ring
+
+theorem div_mul (a b : GR) (s : ℚ) : div (mul a b) s = mul (div a s) b := by
+  rcases a with ⟨ar, ai⟩
+  rcases b with ⟨br, bi⟩
+  apply GR.ext
+  · simp only [div, mul]
+    rw [div_eq_mul_inv, div_eq_mul_inv, div_eq_mul_inv]
+    ring
+  · simp only [div, mul]
+    rw [div_eq_mul_inv, div_eq_mul_inv, div_eq_mul_inv]
+    ring
+
+end GR
+
+@[ext]
+structure Dub where
+  p : GR
+  q : GR
+  deriving DecidableEq, Repr
+
+namespace Dub
+
+def v2 (Φ : Dub) : ℚ := GR.norm2 Φ.p + GR.norm2 Φ.q
+
+def scale (z : GR) (Φ : Dub) : Dub := ⟨GR.mul z Φ.p, GR.mul z Φ.q⟩
+
+theorem v2_scale (z : GR) (Φ : Dub) : v2 (scale z Φ) = GR.norm2 z * v2 Φ := by
+  rcases Φ with ⟨p, q⟩
+  simp only [v2, scale, GR.norm2_mul]
+  ring
+
+end Dub
+
+def u00 (Φ : Dub) : GR := GR.conj Φ.q
+def u01 (Φ : Dub) : GR := Φ.p
+def u10 (Φ : Dub) : GR := GR.negConj Φ.p
+def u11 (Φ : Dub) : GR := Φ.q
+
+@[ext]
+structure Mat2 where
+  e00 : GR
+  e01 : GR
+  e10 : GR
+  e11 : GR
+  deriving DecidableEq, Repr
+
+def U (Φ : Dub) : Mat2 := ⟨u00 Φ, u01 Φ, u10 Φ, u11 Φ⟩
+
+/-- Column 0 times `c0`, column 1 times `c1`. -/
+def rightDiag (M : Mat2) (c0 c1 : GR) : Mat2 :=
+  ⟨GR.mul M.e00 c0, GR.mul M.e01 c1, GR.mul M.e10 c0, GR.mul M.e11 c1⟩
+
+def scaleMat (M : Mat2) (s : ℚ) : Mat2 :=
+  ⟨GR.div M.e00 s, GR.div M.e01 s, GR.div M.e10 s, GR.div M.e11 s⟩
+
+theorem unnormalized_covariance (z : GR) (Φ : Dub) :
+    U (Dub.scale z Φ) = rightDiag (U Φ) (GR.conj z) z := by
+  rcases Φ with ⟨p, q⟩
+  apply Mat2.ext
+  · simp only [U, u00, Dub.scale, rightDiag]
+    rw [GR.conj_mul]
+    exact GR.mul_comm (GR.conj z) (GR.conj q)
+  · simp only [U, u01, Dub.scale, rightDiag]
+    exact GR.mul_comm z p
+  · simp only [U, u10, Dub.scale, rightDiag]
+    exact GR.negConj_mul_conj z p
+  · simp only [U, u11, Dub.scale, rightDiag]
+    exact GR.mul_comm z q
+
+theorem div_rightDiag (M : Mat2) (c0 c1 : GR) (s : ℚ) :
+    scaleMat (rightDiag M c0 c1) s = rightDiag (scaleMat M s) c0 c1 := by
+  apply Mat2.ext
+  · simpa [scaleMat, rightDiag] using GR.div_mul M.e00 c0 s
+  · simpa [scaleMat, rightDiag] using GR.div_mul M.e01 c1 s
+  · simpa [scaleMat, rightDiag] using GR.div_mul M.e10 c0 s
+  · simpa [scaleMat, rightDiag] using GR.div_mul M.e11 c1 s
+
+theorem unit_shares_norm (z : GR) (Φ : Dub) (s : ℚ)
+    (hz : GR.norm2 z = 1) (hs : s * s = Dub.v2 Φ) :
+    s * s = Dub.v2 (Dub.scale z Φ) := by
+  rw [Dub.v2_scale, hz, one_mul]
+  exact hs
+
+theorem unit_normalized_covariance (z : GR) (Φ : Dub) (s : ℚ)
+    (hz : GR.norm2 z = 1) (hs : s * s = Dub.v2 Φ) :
+    scaleMat (U (Dub.scale z Φ)) s =
+      rightDiag (scaleMat (U Φ) s) (GR.conj z) z ∧
+      s * s = Dub.v2 (Dub.scale z Φ) := by
+  constructor
+  · rw [unnormalized_covariance, div_rightDiag]
+  · exact unit_shares_norm z Φ s hz hs
+
+def zUnit : GR := ⟨3 / 5, 4 / 5⟩
+def phiAxis : Dub := ⟨⟨1, 0⟩, ⟨0, 0⟩⟩
+def zTwo : GR := ⟨2, 0⟩
+
+theorem witness_three_fifths :
+    GR.norm2 zUnit = 1 ∧
+    Dub.v2 phiAxis = 1 ∧
+    (1 : ℚ) * 1 = Dub.v2 phiAxis ∧
+    (scaleMat (U (Dub.scale zUnit phiAxis)) 1).e01 = zUnit := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · simp only [zUnit, GR.norm2]
+    norm_num
+  · simp only [phiAxis, Dub.v2, GR.norm2]
+    norm_num
+  · simp only [phiAxis, Dub.v2, GR.norm2]
+    norm_num
+  · simp only [scaleMat, U, u01, Dub.scale, phiAxis, zUnit, GR.mul, GR.div]
+    apply GR.ext <;> norm_num
+
+theorem nonunit_normalized_entries_differ :
+    GR.norm2 zTwo = 4 ∧
+    Dub.v2 phiAxis = 1 ∧
+    Dub.v2 (Dub.scale zTwo phiAxis) = 4 ∧
+    (1 : ℚ) * 1 = Dub.v2 phiAxis ∧
+    (2 : ℚ) * 2 = Dub.v2 (Dub.scale zTwo phiAxis) ∧
+    (scaleMat (U (Dub.scale zTwo phiAxis)) 2).e01 = ⟨1, 0⟩ ∧
+    (rightDiag (scaleMat (U phiAxis) 1) (GR.conj zTwo) zTwo).e01 = ⟨2, 0⟩ ∧
+    (scaleMat (U (Dub.scale zTwo phiAxis)) 2).e01 ≠
+      (rightDiag (scaleMat (U phiAxis) 1) (GR.conj zTwo) zTwo).e01 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simp only [zTwo, GR.norm2]; norm_num
+  · simp only [phiAxis, Dub.v2, GR.norm2]; norm_num
+  · simp only [zTwo, phiAxis, Dub.v2, Dub.scale, GR.norm2, GR.mul]; norm_num
+  · simp only [phiAxis, Dub.v2, GR.norm2]; norm_num
+  · simp only [zTwo, phiAxis, Dub.v2, Dub.scale, GR.norm2, GR.mul]; norm_num
+  · simp only [scaleMat, U, u01, Dub.scale, phiAxis, zTwo, GR.mul, GR.div]
+    apply GR.ext <;> norm_num
+  · simp only [rightDiag, scaleMat, U, u01, phiAxis, zTwo, GR.conj, GR.mul, GR.div]
+    apply GR.ext <;> norm_num
+  · intro h
+    have hr := congrArg GR.re h
+    simp only [scaleMat, rightDiag, U, u01, Dub.scale, phiAxis, zTwo, GR.conj, GR.mul, GR.div] at hr
+    norm_num at hr
+
+#print axioms CampaignDfmElectroweakContinuumFence.GR.mul_comm
+#print axioms CampaignDfmElectroweakContinuumFence.GR.conj_mul
+#print axioms CampaignDfmElectroweakContinuumFence.GR.norm2_mul
+#print axioms CampaignDfmElectroweakContinuumFence.GR.negConj_mul_conj
+#print axioms CampaignDfmElectroweakContinuumFence.GR.div_mul
+#print axioms CampaignDfmElectroweakContinuumFence.Dub.v2_scale
+#print axioms CampaignDfmElectroweakContinuumFence.unnormalized_covariance
+#print axioms CampaignDfmElectroweakContinuumFence.div_rightDiag
+#print axioms CampaignDfmElectroweakContinuumFence.unit_shares_norm
+#print axioms CampaignDfmElectroweakContinuumFence.unit_normalized_covariance
+#print axioms CampaignDfmElectroweakContinuumFence.witness_three_fifths
+#print axioms CampaignDfmElectroweakContinuumFence.nonunit_normalized_entries_differ
+
+end CampaignDfmElectroweakContinuumFence
