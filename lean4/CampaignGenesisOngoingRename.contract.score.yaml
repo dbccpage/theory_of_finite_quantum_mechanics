@@ -4,35 +4,36 @@
   "artifact": "lean4/CampaignGenesisOngoingRename.lean",
   "contract": {
     "schema_id": "tfqm.source-contract.v1",
-    "contract_id": "pg-gen-ongoing-fewest-changes-v1",
-    "authority_effect": "None",
+    "contract_id": "pr226-independent-review",
     "subject": "lean4/CampaignGenesisOngoingRename.lean",
+    "source_sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
     "artifact": {
       "path": "lean4/CampaignGenesisOngoingRename.lean",
-      "language": "Lean 4",
-      "sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2"
+      "sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
+      "language": "Lean 4"
     },
-    "source_sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
-    "purpose": "Source-compatible arbitrary-writing and tracked-obstruction proof API; definitions and propositions retained with kernel-checked Lean 4.35 proof repairs.",
+    "authority_effect": "None",
+    "role": "Lean 4 formal source module",
+    "purpose": "Reusable source rewriting, exact-cost and tracked-history proof interface with explicit compatibility boundary.",
     "owned_invariants": [
-      "All source fields including both merged names retained",
-      "Every source guard retained; illegal images not performed",
-      "Both refinement directions and exact step lengths",
-      "All-writing upper/lower quantifiers explicit",
-      "Original source failure distinct from compiled proof port",
-      "Committed bytes and allowed axioms; no status promotion"
+      "All source fields and guards retained; exact history length.",
+      "Quantifiers and supplied premises remain explicit.",
+      "No custom axiom or admitted proof; failed original source is not called compiled."
     ],
     "boundaries": [
-      "Actual finite-game mathematical state/Legal/WF/Step/Reach and all-writing cost refinement with explicit compatibility proof port. Set normalization, classical encode and original source proof failures disclosed. No runtime/compiler or whole-engine theorem."
+      "No external runtime/compiler or deterministic serialization refinement.",
+      "Upper bound uses some writing; lower bound covers all writings.",
+      "One executed source mutant and four fixed controls do not establish broad mutation coverage.",
+      "Historical synthetic descriptor metadata is not certified as source-game evidence."
     ],
     "evidence": [
       {
-        "path": "dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json",
-        "sha256": "a5870dff67284e2a86ee85e8919ec8c031b9c5d6a061c8f55af8cf5b8509c9f9"
+        "path": "dag/research/campaign_pg-gen-ongoing-fewest-changes_review_validation.json",
+        "sha256": "81f789ee72dbb905dc84692b2cc7f92a646b725103cdaea8268f222d6ade829b"
       },
       {
-        "path": "dag/research/campaign_pg-gen-ongoing-fewest-changes_independent.json",
-        "sha256": "8e6c6fbaa5741f67ead19794641b91392727906a6dbefe977012dea24c1980c9"
+        "path": "docs/overclaim/reviews/2026-10-23_pr-226-batch-review.md",
+        "sha256": "7535c68d84bfa93fc5be5cfa52067bf0bcc63e88de52e19eb35fa7ca8c09a68b"
       },
       {
         "path": "SCORING.md",
@@ -40,8 +41,8 @@
       }
     ]
   },
-  "current_contract": "0834425fe9ed7680878f2c8f49dfb8582e68a9fcd3114b35bf58cbb17436f723",
-  "current_scoring": "b26696ef0d1f0478fb6e1457bc2dbb127cfa6c370b3f915c3f75864f95b8b3ba",
+  "current_contract": "6fa8e4570318ef55dada2c26699eda9bdae66271bebb050a7fb29ca440151ab8",
+  "current_scoring": "109fbc9f902759345e26ec8f6374c10775b29717461d3ed22353296223af87ea",
   "contract_history": [
     {
       "sha256": "22778fe1a2398c462655cb8ea3a8e93bb873326b39de455d80b7bc9022f75c6d",
@@ -179,6 +180,53 @@
       },
       "original_paths": [
         "lean4/CampaignGenesisOngoingRename.contract.score.yaml#campaign-pg-gen-ongoing-fewest-changes-contract"
+      ]
+    },
+    {
+      "sha256": "6fa8e4570318ef55dada2c26699eda9bdae66271bebb050a7fb29ca440151ab8",
+      "bytes": 1722,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "pr226-independent-review",
+        "subject": "lean4/CampaignGenesisOngoingRename.lean",
+        "source_sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
+        "artifact": {
+          "path": "lean4/CampaignGenesisOngoingRename.lean",
+          "sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
+          "language": "Lean 4"
+        },
+        "authority_effect": "None",
+        "role": "Lean 4 formal source module",
+        "purpose": "Reusable source rewriting, exact-cost and tracked-history proof interface with explicit compatibility boundary.",
+        "owned_invariants": [
+          "All source fields and guards retained; exact history length.",
+          "Quantifiers and supplied premises remain explicit.",
+          "No custom axiom or admitted proof; failed original source is not called compiled."
+        ],
+        "boundaries": [
+          "No external runtime/compiler or deterministic serialization refinement.",
+          "Upper bound uses some writing; lower bound covers all writings.",
+          "One executed source mutant and four fixed controls do not establish broad mutation coverage.",
+          "Historical synthetic descriptor metadata is not certified as source-game evidence."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pg-gen-ongoing-fewest-changes_review_validation.json",
+            "sha256": "81f789ee72dbb905dc84692b2cc7f92a646b725103cdaea8268f222d6ade829b"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_pr-226-batch-review.md",
+            "sha256": "7535c68d84bfa93fc5be5cfa52067bf0bcc63e88de52e19eb35fa7ca8c09a68b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGenesisOngoingRename.lean\",\n    \"sha256\": \"971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No external runtime/compiler or deterministic serialization refinement.\",\n    \"Upper bound uses some writing; lower bound covers all writings.\",\n    \"One executed source mutant and four fixed controls do not establish broad mutation coverage.\",\n    \"Historical synthetic descriptor metadata is not certified as source-game evidence.\"\n  ],\n  \"contract_id\": \"pr226-independent-review\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pg-gen-ongoing-fewest-changes_review_validation.json\",\n      \"sha256\": \"81f789ee72dbb905dc84692b2cc7f92a646b725103cdaea8268f222d6ade829b\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-226-batch-review.md\",\n      \"sha256\": \"7535c68d84bfa93fc5be5cfa52067bf0bcc63e88de52e19eb35fa7ca8c09a68b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All source fields and guards retained; exact history length.\",\n    \"Quantifiers and supplied premises remain explicit.\",\n    \"No custom axiom or admitted proof; failed original source is not called compiled.\"\n  ],\n  \"purpose\": \"Reusable source rewriting, exact-cost and tracked-history proof interface with explicit compatibility boundary.\",\n  \"role\": \"Lean 4 formal source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2\",\n  \"subject\": \"lean4/CampaignGenesisOngoingRename.lean\"\n}\n",
+      "original_paths": [
+        "lean4/CampaignGenesisOngoingRename.contract.score.yaml#independent-review"
       ]
     }
   ],
@@ -386,10 +434,74 @@
       "original_paths": [
         "lean4/CampaignGenesisOngoingRename.contract.score.yaml#campaign-pg-gen-ongoing-fewest-changes-scoring"
       ]
+    },
+    {
+      "sha256": "109fbc9f902759345e26ec8f6374c10775b29717461d3ed22353296223af87ea",
+      "bytes": 2441,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "pr226-independent-review",
+        "assessment_status": "complete_scoped_independent_review",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "lean4/CampaignGenesisOngoingRename.lean",
+          "sha256": "971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2",
+          "language": "Lean 4"
+        },
+        "profile": "Symbolic/Formal",
+        "profile_status": "Reviewed declared profile",
+        "level": "L4",
+        "level_assessment": "Reusable source rewriting, exact-cost and tracked-history proof interface with explicit compatibility boundary.",
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "limiting_reason": "No external runtime/compiler or deterministic serialization refinement.; Upper bound uses some writing; lower bound covers all writings.; One executed source mutant and four fixed controls do not establish broad mutation coverage.; Historical synthetic descriptor metadata is not certified as source-game evidence.",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "evaluation_timestamp": "2026-10-23T08:57:42.170047+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pg-gen-ongoing-fewest-changes_review_validation.json",
+            "sha256": "81f789ee72dbb905dc84692b2cc7f92a646b725103cdaea8268f222d6ade829b"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_pr-226-batch-review.md",
+            "sha256": "7535c68d84bfa93fc5be5cfa52067bf0bcc63e88de52e19eb35fa7ca8c09a68b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Full statement map, archived-port diff and nine dependency digests reviewed.",
+          "G2": "Exact source definitions and independent array/shortest-path census agree.",
+          "G3": "Guard/refusal boundaries and permitted axioms checked; unknown moves fail closed.",
+          "G4": "Fresh focused build, both direct Lean replays, original archive failure, two Python modes, strict typing and actual source mutation.",
+          "G5": "Proof API granularity reviewed; checker split into audit phases, reducing cognitive maximum 52 to 22 and CCN to 25."
+        },
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGenesisOngoingRename.lean\",\n    \"sha256\": \"971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2\"\n  },\n  \"assessment_id\": \"pr226-independent-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T08:57:42.170047+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pg-gen-ongoing-fewest-changes_review_validation.json\",\n      \"sha256\": \"81f789ee72dbb905dc84692b2cc7f92a646b725103cdaea8268f222d6ade829b\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-226-batch-review.md\",\n      \"sha256\": \"7535c68d84bfa93fc5be5cfa52067bf0bcc63e88de52e19eb35fa7ca8c09a68b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Full statement map, archived-port diff and nine dependency digests reviewed.\",\n    \"G2\": \"Exact source definitions and independent array/shortest-path census agree.\",\n    \"G3\": \"Guard/refusal boundaries and permitted axioms checked; unknown moves fail closed.\",\n    \"G4\": \"Fresh focused build, both direct Lean replays, original archive failure, two Python modes, strict typing and actual source mutation.\",\n    \"G5\": \"Proof API granularity reviewed; checker split into audit phases, reducing cognitive maximum 52 to 22 and CCN to 25.\"\n  },\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_assessment\": \"Reusable source rewriting, exact-cost and tracked-history proof interface with explicit compatibility boundary.\",\n  \"limiting_reason\": \"No external runtime/compiler or deterministic serialization refinement.; Upper bound uses some writing; lower bound covers all writings.; One executed source mutant and four fixed controls do not establish broad mutation coverage.; Historical synthetic descriptor metadata is not certified as source-game evidence.\",\n  \"profile\": \"Symbolic/Formal\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "lean4/CampaignGenesisOngoingRename.contract.score.yaml#independent-review"
+      ]
     }
   ],
   "legacy_paths": {
     "lean4/CampaignGenesisOngoingRename.contract.score.yaml#campaign-pg-gen-ongoing-fewest-changes-contract": "0834425fe9ed7680878f2c8f49dfb8582e68a9fcd3114b35bf58cbb17436f723",
     "lean4/CampaignGenesisOngoingRename.contract.score.yaml#campaign-pg-gen-ongoing-fewest-changes-scoring": "b26696ef0d1f0478fb6e1457bc2dbb127cfa6c370b3f915c3f75864f95b8b3ba"
-  }
+  },
+  "assurance": "Current assessment is limited to cited source-bound independent review; historical assessments are preserved without promotion."
 }

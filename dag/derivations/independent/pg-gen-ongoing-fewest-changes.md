@@ -85,8 +85,9 @@ The maximum distances are 10 and 11; distance sums are 3,006 and 3,225. A separa
 nonconsecutive writing checks all 18,810 transition squares. The 1,827 build
 controls check a legal two-step construction, its illegal diagnostic image,
 refusal of the final identification, and absence of a zero/one-step path to
-that target in the declared one-step universe. Four exact semantic mutants
-are contradicted. Normal/optimized output agrees and strict mypy passes.
+that target in the declared one-step universe. Four fixed negative controls check those failure patterns; they do not execute
+four mutated source programs. Independent review additionally executes a stale-name
+source mutant, which both Python modes reject. Normal/optimized output agrees and strict mypy passes.
 These finite checks are separate from the unbounded Lean theorems.
 
 What is proved
@@ -101,9 +102,9 @@ What is assumed
 The actual finite-game source definitions and the declared set interpretation
 of wire arrays. The compatibility port's unchanged source definitions and
 statement shapes, plus its repaired proof terms, are reviewed explicitly.
-All successful audits use only propext, Classical.choice and Quot.sound. Both
-new Lean files and the checker are author-assessed L4D; Lake configuration is
-L1C under the explicit configuration exception. Human review is pending.
+All successful audits use only propext, Classical.choice and Quot.sound. The two
+Lean modules are independently assessed L4D. The bounded regression checker is
+L3D and Lake configuration L1D under the approved support exceptions. Human review is pending.
 
 What is open
 

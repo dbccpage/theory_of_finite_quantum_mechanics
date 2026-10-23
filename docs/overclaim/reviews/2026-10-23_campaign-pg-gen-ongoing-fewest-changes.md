@@ -37,7 +37,7 @@ about the actual imported source St/Step/Reach, not a new surrogate game.
 Numbers recomputed: the checker enumerates 627 states; 18,810 attempts = 4,494
 performed + 14,316 refused; 627 duplicate-wire controls; both 627-target shortest
 path tables (maxima 10/11, sums 3,006/3,225); 18,810 nonconsecutive rewriting
-squares and 1,827 build controls. Four exact mutant controls are checked.
+squares and 1,827 build controls. Four fixed negative controls are checked; independent batch review corrects the original executed-mutation claim.
 The source offsets three and four and the build minimum two are general Lean
 bounds, also confirmed independently. General proofs have no state/label bound.
 
