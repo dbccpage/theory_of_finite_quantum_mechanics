@@ -86,7 +86,7 @@ All public entry points enforce fail-fast preconditions:
 
 ### Requirements
 
-- Python $\ge 3.10$
+- Python $\ge 3.11$
 - `numpy >= 1.24.0`
 - `scipy >= 1.10.0`
 - `pytest >= 7.3.0`

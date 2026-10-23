@@ -5,7 +5,7 @@
 
 ## Prerequisites
 
-- Python 3.10 or newer
+- Python 3.11 or newer
 - Lean 4.33.1 through Elan/Lake
 - a TeX/Pandoc toolchain only when rebuilding the PDF
 

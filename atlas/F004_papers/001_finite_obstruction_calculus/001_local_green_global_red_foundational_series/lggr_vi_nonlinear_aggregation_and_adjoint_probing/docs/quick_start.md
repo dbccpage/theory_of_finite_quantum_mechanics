@@ -1,6 +1,6 @@
 # Quick start
 
-From the paper directory, use Python 3.10 or newer with
+From the paper directory, use Python 3.11 or newer with
 [uv](https://docs.astral.sh/uv/):
 
 ```text
