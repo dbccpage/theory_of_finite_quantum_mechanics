@@ -4,50 +4,62 @@ Rational counting expressions and two Gaussian-rational quartets are
 recomputed with fractions.Fraction. This file imports no repository code.
 """
 
+from __future__ import annotations
+
 from fractions import Fraction
 
 
-def cycle_count(n):
-    n = Fraction(n)
+def exact_rational(value: object) -> Fraction:
+    if isinstance(value, Fraction):
+        return value
+    if type(value) is int:
+        return Fraction(value)
+    raise TypeError("expected an int or Fraction (not bool, float, or text)")
+
+
+def cycle_count(n: int | Fraction) -> Fraction:
+    n = exact_rational(n)
     return (n - 1) * (n - 1)
 
 
-def constraint_count(n):
-    n = Fraction(n)
+def constraint_count(n: int | Fraction) -> Fraction:
+    n = exact_rational(n)
     return n * (n - 1) / 2
 
 
-def cp_count(n):
-    n = Fraction(n)
+def cp_count(n: int | Fraction) -> Fraction:
+    n = exact_rational(n)
     return (n - 1) * (n - 2) / 2
 
 
 class GR:
-    def __init__(self, re, im=0):
-        self.re = Fraction(re)
-        self.im = Fraction(im)
+    def __init__(self, re: int | Fraction, im: int | Fraction = 0) -> None:
+        self.re = exact_rational(re)
+        self.im = exact_rational(im)
 
-    def conj(self):
+    def conj(self) -> GR:
         return GR(self.re, -self.im)
 
-    def mul(self, other):
+    def mul(self, other: GR) -> GR:
         return GR(
             self.re * other.re - self.im * other.im,
             self.re * other.im + self.im * other.re,
         )
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, GR):
+            return NotImplemented
         return self.re == other.re and self.im == other.im
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.re}+{self.im}i"
 
 
-def quartet(a, b, c, d):
+def quartet(a: GR, b: GR, c: GR, d: GR) -> GR:
     return a.mul(b).mul(c.conj().mul(d.conj()))
 
 
-def main():
+def main() -> None:
     samples = (
         Fraction(0),
         Fraction(1),
@@ -59,11 +71,11 @@ def main():
         Fraction(3, 2),
         Fraction(7, 5),
     )
-    for n in samples:
-        if cycle_count(n) - constraint_count(n) != cp_count(n):
-            raise SystemExit(f"difference failed at {n}")
-        if cp_count(n) + (n - 1) != constraint_count(n):
-            raise SystemExit(f"constraint sum failed at {n}")
+    for sample in samples:
+        if cycle_count(sample) - constraint_count(sample) != cp_count(sample):
+            raise SystemExit(f"difference failed at {sample}")
+        if cp_count(sample) + (sample - 1) != constraint_count(sample):
+            raise SystemExit(f"constraint sum failed at {sample}")
     table = {
         1: (0, 0),
         2: (1, 0),
@@ -95,7 +107,7 @@ def main():
     print("difference identity on 9 rational samples")
     print("table cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3")
     print("n=3 split: cycle 4, constraint 3, cp 1")
-    print("quartet imag parts 0 and 1; cp 3 matches only the second")
+    print("quartet imag parts 0 and 1; cpCount(3) matches only the second")
     print("checked: counting identities, four-point table, quartet split")
 
 
