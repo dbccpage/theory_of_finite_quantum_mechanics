@@ -21,7 +21,7 @@ TEXT_EXT = {".py", ".rs", ".toml", ".md", ".json", ".jsonl", ".yaml", ".yml", ".
             ".tex", ".cfg", ".ini", ".csv", ".html", ".bib", ".rst", ".ebnf", ".lock"}
 SKIP_DIRS = {".git", "__pycache__", "target", ".lake", "node_modules", ".pytest_cache", ".mypy_cache"}
 # provenance headers and the campaign's own tools name the atlas on purpose
-SKIP_PREFIX = ("lean4/b/", "lean4/.lake/", "lean4/Imported/", "docs/maintenance/atlas_dependency_inventory",
+SKIP_PREFIX = ("sources/atlas/PROVENANCE.json", "lean4/b/", "lean4/.lake/", "lean4/Imported/", "docs/maintenance/atlas_dependency_inventory",
                "dag/research/lean_replay_campaign/")
 PATH_SIMPLE = re.compile(
     r"(?<![\w/.\\-])(?:the_symbol_game[/\\]+)?((?:omega_engine[a-z_]*|omega_simplex[a-z_]*)(?:[/\\][A-Za-z0-9_.@+~-]+)+)")
