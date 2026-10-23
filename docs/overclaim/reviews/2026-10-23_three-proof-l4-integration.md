@@ -129,3 +129,14 @@ synchronization, generators, evidence and inventory checks, 32 regression
 tests, both contract validators, strict scanner and normal/optimized/strictly
 typed runs of each independent checker. The preceding stale-view attempt
 remains separately recorded; it is superseded only for the corrected prose.
+
+## Latest-main acceptance
+
+Base 5dd17d703e172b107218330a35fcdb43354ce204 is integrated at
+0dcb84c5462ca6373a5c4e8cbf2fd3ca0eb2fc4f. Its tree
+5984f66f77d1639943bd056bcce823ea6bc737e5 is identical to the fully validated
+37de8b342 tree. No proof, checker, policy or generated output changed during
+this integration. Both contract validators and the strict scanner pass against
+that new base. Governance again reports 8195 checked, 26 pass, 8149 unchanged
+grandfathered, 20 boilerplate and zero failures. The review and acceptance
+receipts are the only subsequent additions; hosted checks must pass before merge.
