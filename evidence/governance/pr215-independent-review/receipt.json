@@ -1,0 +1,184 @@
+{
+ "schema": "tfqm.governance-evidence.v1",
+ "AuthorityEffect": "None",
+ "tool": "governance/tools/capture_evidence.py",
+ "versions": {
+  "cargo": "cargo 1.99.0 (5f94df478 2026-08-27)",
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)",
+  "clippy": "clippy 0.1.99 (b940084d7e 2026-09-28)",
+  "python": "3.12.10",
+  "lizard": "1.18.0"
+ },
+ "clippy_thresholds": {
+  "cognitive_complexity": 15,
+  "excessive_nesting": 3,
+  "config": "code/rust/src/governance/clippy.toml"
+ },
+ "steps": {
+  "test": {
+   "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--manifest-path",
+    "C:\\gw\\tp205\\lean4\\b\\pr215-reviewed-crate\\Cargo.toml"
+   ],
+   "cwd": "C:\\gw\\tp205\\lean4\\b\\pr215-reviewed-crate",
+   "exit_status": 0,
+   "log": "cargo-test.log",
+   "log_sha256": "f36846a6ae8bfdf67c0be4b864f8441b25712089ca1e0e777979c645ef9e3841"
+  },
+  "clippy": {
+   "command": [
+    "cargo",
+    "clippy",
+    "--offline",
+    "--locked",
+    "--manifest-path",
+    "C:\\gw\\tp205\\lean4\\b\\pr215-reviewed-crate\\Cargo.toml",
+    "--lib",
+    "--bins",
+    "--",
+    "-D",
+    "warnings",
+    "-D",
+    "clippy::cognitive_complexity",
+    "-D",
+    "clippy::excessive_nesting"
+   ],
+   "cwd": "C:\\gw\\tp205\\lean4\\b\\pr215-reviewed-crate",
+   "exit_status": 0,
+   "log": "clippy.log",
+   "log_sha256": "3fa74ca25019decc0e6ebaab6ba136385792a5c9a64f39ce79de924d483b856e"
+  },
+  "lizard": {
+   "command": [
+    "python",
+    "-m",
+    "lizard",
+    "-l",
+    "rust",
+    "--csv",
+    "src"
+   ],
+   "cwd": "C:\\gw\\tp205\\lean4\\b\\pr215-reviewed-crate",
+   "exit_status": 0,
+   "log": "lizard.csv",
+   "log_sha256": "c8d36f36343258f0859c814e707ae707b96668f9e8793678cb27942100b57fa3"
+  }
+ },
+ "complexity": {
+  "src/bin/governance-check.rs": {
+   "production": {
+    "functions": 20,
+    "max_ccn": 10,
+    "max_ccn_function": "cmd_check"
+   },
+   "test": {
+    "functions": 17,
+    "max_ccn": 2,
+    "max_ccn_function": "rejects_bad_command_lines"
+   }
+  },
+  "src/buildtime.rs": {
+   "production": {
+    "functions": 9,
+    "max_ccn": 9,
+    "max_ccn_function": "check_package"
+   },
+   "test": {
+    "functions": 8,
+    "max_ccn": 4,
+    "max_ccn_function": "decide_respects_mode"
+   }
+  },
+  "src/descriptor.rs": {
+   "production": {
+    "functions": 15,
+    "max_ccn": 8,
+    "max_ccn_function": "gate_grades"
+   },
+   "test": {
+    "functions": 8,
+    "max_ccn": 10,
+    "max_ccn_function": "invalid_vocabulary_is_reported_by_field"
+   }
+  },
+  "src/lib.rs": {
+   "production": {
+    "functions": 10,
+    "max_ccn": 8,
+    "max_ccn_function": "verify_file"
+   },
+   "test": {
+    "functions": 10,
+    "max_ccn": 5,
+    "max_ccn_function": "outcomes_cover_pass_fail_grandfather_and_boilerplate"
+   }
+  },
+  "src/policy.rs": {
+   "production": {
+    "functions": 41,
+    "max_ccn": 10,
+    "max_ccn_function": "from_json"
+   },
+   "test": {
+    "functions": 9,
+    "max_ccn": 11,
+    "max_ccn_function": "policy_rejects_wrong_orders_and_shapes"
+   }
+  },
+  "src/repo.rs": {
+   "production": {
+    "functions": 18,
+    "max_ccn": 7,
+    "max_ccn_function": "run_git"
+   },
+   "test": {
+    "functions": 8,
+    "max_ccn": 3,
+    "max_ccn_function": "git_population_changes_and_history"
+   }
+  },
+  "src/score.rs": {
+   "production": {
+    "functions": 21,
+    "max_ccn": 6,
+    "max_ccn_function": "from_str"
+   },
+   "test": {
+    "functions": 8,
+    "max_ccn": 3,
+    "max_ccn_function": "grade_order_matches_scoring_md"
+   }
+  },
+  "src/verify.rs": {
+   "production": {
+    "functions": 17,
+    "max_ccn": 9,
+    "max_ccn_function": "verify"
+   },
+   "test": {
+    "functions": 10,
+    "max_ccn": 14,
+    "max_ccn_function": "inconsistent_composite_flag_or_token_is_incomplete"
+   }
+  }
+ },
+ "sources": {
+  "Cargo.lock": "d9d249cd2ad61fe0374b89a108472220e62aec14b51c7aca56419601c9ff45c3",
+  "Cargo.toml": "0afa2403cac478f58b250e957250b4f4ad6a8d7d37c49fa43f385f8e950f1879",
+  "clippy.toml": "8cf18dfac057bae996306b178e2a7136c23b4028979e16f5b68c67e0e9519a51",
+  "src/bin/governance-check.rs": "0d3e61604da22ef5af2602107d09f37cc6063ff32686175610604e55c70295d9",
+  "src/buildtime.rs": "dadf86ee7dd440fa412ebfb97e8424ca7a589bcfb16133a9fb8e4ce5a62fdb54",
+  "src/descriptor.rs": "259c44a1ead93a358d416fd6901377b0dea93c93c8a178711795e14ebadf8055",
+  "src/lib.rs": "711c4706ce6b52a0c88b5592c42b9e1ac5431e0d995d8b1398329fc50f9b4081",
+  "src/policy.rs": "0ae36285ce6c356cd54b8bee6a8910bdcd58f3c02db60ef3541648d88a1bd89c",
+  "src/repo.rs": "1c0b7bc298330a2042603285c8c7555805fafd809cccd6e271490e9bbf46d2e6",
+  "src/score.rs": "227a77b4eeb8a528b4dff2ccf0cf7b7c75f968c67a9390f69a802683a1f587ba",
+  "src/verify.rs": "d565eab3a4949834bbf4e3d134093aaaf2f8f02c9b37d1521a31e9fdb6cd850b"
+ },
+ "snapshot": "C:\\gw\\tp205\\lean4\\b\\pr215-reviewed-crate",
+ "snapshot_unchanged_after_checks": true
+}

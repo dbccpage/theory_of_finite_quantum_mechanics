@@ -23,14 +23,21 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = "evidence/contract_score_migration/index.json"
-SCHEMA = "tfqm.contract-score.v1"
+# Shared with the Rust governance crate and scripts/score_scope_contracts.py.
+POLICY = json.loads((ROOT / "governance" / "policy.json").read_text(encoding="utf-8"))
+SCHEMA = POLICY["companion"]["document_schema"]
 LEGACY = re.compile(r"(?<!\.contract)\.(contract|scoring|score)\.(?:yaml|yml|yam)$")
-SUFFIX = ".contract.score.yaml"
+SUFFIX = POLICY["companion"]["suffix"]
+GRADE_RANK = {grade: rank for rank, grade in enumerate(POLICY["grade_order"])}
 _cached_index: dict[str, dict[str, Any]] | None = None
+_scope_module: ModuleType | None = None
 
 
 def load_scope_module() -> ModuleType:
-    """Load our sibling by its file path, including under Python isolated mode."""
+    """Load scripts/score_scope_contracts.py by path. `python -I` keeps scripts/ off sys.path."""
+    global _scope_module
+    if _scope_module is not None:
+        return _scope_module
     spec = importlib.util.spec_from_file_location(
         "_tfqm_score_scope_contracts", Path(__file__).with_name("score_scope_contracts.py")
     )
@@ -38,6 +45,7 @@ def load_scope_module() -> ModuleType:
         raise RuntimeError("Cannot load the source-scope checker")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    _scope_module = module
     return module
 
 
@@ -344,7 +352,7 @@ def check(changed: set[str] | None = None) -> None:
                 continue
             if (ROOT / companion).is_file():
                 wanted.add(companion)
-            else:
+            elif not scope.exempt_without_companion(source_name, sha(source.read_bytes())):
                 errors.append({"path": source_name, "error": "missing companion"})
         targets = {name for name in targets if name in wanted}
         targets.update(name for name in wanted if (ROOT / name).is_file())
@@ -459,8 +467,7 @@ def export_v2(path_or_document: str | Path | dict[str, Any]) -> dict[str, Any]:
     if not grade_ceiling:
         assessed = [g for g in gates.values() if g is not None]
         if assessed:
-            ranks = {"E": 0, "D": 1, "C": 2, "B": 3, "A": 4, "A+": 5}
-            grade_ceiling = min(assessed, key=lambda g: ranks.get(g, -1))
+            grade_ceiling = min(assessed, key=lambda g: GRADE_RANK.get(g, -1))
         else:
             grade_ceiling = "E"
     
