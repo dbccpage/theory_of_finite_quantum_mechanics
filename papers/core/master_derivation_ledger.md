@@ -24,7 +24,7 @@ In strict adherence to the **Claim Hygiene Rule** and `AuthorityEffect: None`:
 
 ## 2. Derivation Stage Census & Status Taxonomy
 
-The derivation tree comprises **944 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
+The derivation tree comprises **977 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
 
 | Stage Index | Stage Name | Derivation Step Count | Core Physical & Mathematical Focus | Primary DAG Range |
 | :--- | :--- | :---: | :--- | :--- |
@@ -64,7 +64,7 @@ The derivation tree comprises **944 primary derivation steps** structured across
 
 ---
 
-## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2411`)
+## 3. The Master Derivation Ledger Table (`TFQ-0000` through `TFQ-2532`)
 
 Each derivation row below documents: (1) Derivation ID, (2) Canonical Name, (3) Stage, (4) Direct DAG Parent, (5) Epistemic Status, (6) Governing Obligation / Invariant Summary, (7) Multi-Tier Code & Proof Witnesses, and (8) Link to the Standalone Markdown Paper in `dag/derivations/`.
 
@@ -1016,12 +1016,45 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-2409`** | Interpretation targets, not theorems | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2408` | `GTH-LANG-INTERPRET` (OPEN) | - | [`TFQ-2409.md`](../../dag/derivations/34_genesis_to_higher/tfq_2409_gth_lang_interpret.md) | Declarative / Formal Spec |
 | **`TFQ-2410`** | Import records are not derivations | `GENESIS_TO_HIGHER` | `OPEN_OBLIGATION` | `TFQ-2409` | `GTH-LANG-IMPORT` (OPEN) | - | [`TFQ-2410.md`](../../dag/derivations/34_genesis_to_higher/tfq_2410_gth_lang_import.md) | Declarative / Formal Spec |
 | **`TFQ-2411`** | Goedel-Rosser and Tarski limit | `GENESIS_TO_HIGHER` | `PROVED_PROSE` | `TFQ-2410` | `GTH-LANG-LIMITS` (PROVED_PROSE) | - | [`TFQ-2411.md`](../../dag/derivations/34_genesis_to_higher/tfq_2411_gth_lang_limits.md) | Declarative / Formal Spec |
+| **`TFQ-2500`** | Observer tuple for empirical claims | `OBSERVER_PRESHEAF` | `DEFINITION` | `TFQ-0553` | `OPS-OBSERVER-TUPLE` (DEFINITION) | - | [`TFQ-2500.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md) | Declarative / Formal Spec |
+| **`TFQ-2501`** | Pushforward of natural-number measures is functorial (Lean) | `OBSERVER_PRESHEAF` | `PROVED_LEAN` | `TFQ-1046` | `OPS-PUSHFORWARD-FUNCTOR-LEAN` (PROVED_LEAN) | - | [`TFQ-2501.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md) | Lean: `4` |
+| **`TFQ-2502`** | Parity cycles: holonomy and global sections (Lean) | `OBSERVER_PRESHEAF` | `PROVED_LEAN` | `TFQ-1046` | `OPS-PARITY-HOLONOMY-LEAN` (PROVED_LEAN) | - | [`TFQ-2502.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md) | Lean: `2` |
+| **`TFQ-2503`** | Global section, convex hull and noncontextual fraction 1 | `OBSERVER_PRESHEAF` | `PROVED_PROSE` | `TFQ-2500` | `OPS-NCF-LHV-EQUIVALENCE` (PROVED_PROSE) | - | [`TFQ-2503.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md) | Declarative / Formal Spec |
+| **`TFQ-2504`** | Strong contextuality is noncontextual fraction 0 | `OBSERVER_PRESHEAF` | `PROVED_PROSE` | `TFQ-2503` | `OPS-STRONG-CONTEXTUALITY-NCF-ZERO` (PROVED_PROSE) | - | [`TFQ-2504.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md) | Declarative / Formal Spec |
+| **`TFQ-2505`** | Noncontextual fraction of the noisy PR box | `OBSERVER_PRESHEAF` | `COMPUTATIONAL_CONTROL` | `TFQ-2503` | `OPS-NOISY-PR-NCF` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-2505.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md) | Rust: `1` |
+| **`TFQ-2506`** | Descent over the maximal cover never fails to glue | `OBSERVER_PRESHEAF` | `PROVED_PROSE` | `TFQ-2504` | `OPS-MAXIMAL-COVER-DESCENT` (PROVED_PROSE) | - | [`TFQ-2506.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md) | Declarative / Formal Spec |
+| **`TFQ-2507`** | A noncontextual model that fails descent on an arc cover | `OBSERVER_PRESHEAF` | `COMPUTATIONAL_CONTROL` | `TFQ-2506` | `OPS-ARC-COVER-NGE-WITNESS` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-2507.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md) | Rust: `1` |
+| **`TFQ-2508`** | NoGlobalExtension alone is not evidence of contextuality | `OBSERVER_PRESHEAF` | `PROVED_PROSE` | `TFQ-2506` | `OPS-NGE-NOT-CONTEXTUALITY` (PROVED_PROSE) | - | [`TFQ-2508.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md) | Declarative / Formal Spec |
+| **`TFQ-2509`** | Cech coboundaries, no-signalling and the quotient defect | `OBSERVER_PRESHEAF` | `PROVED_PROSE` | `TFQ-2501` | `OPS-CECH-COBOUNDARY` (PROVED_PROSE) | - | [`TFQ-2509.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md) | Declarative / Formal Spec |
+| **`TFQ-2510`** | The 0-cocycle test does not separate contextual models | `OBSERVER_PRESHEAF` | `PROVED_PROSE` | `TFQ-2509` | `OPS-ZERO-COCYCLE-BLIND` (PROVED_PROSE) | - | [`TFQ-2510.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md) | Declarative / Formal Spec |
+| **`TFQ-2511`** | Parity cycles: arc-cover descent and noncontextual fraction | `OBSERVER_PRESHEAF` | `COMPUTATIONAL_CONTROL` | `TFQ-2502` | `OPS-PARITY-CYCLE-DESCENT-NCF` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-2511.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md) | Rust: `1` |
+| **`TFQ-2512`** | No-signalling and signed global sections | `OBSERVER_PRESHEAF` | `IMPORTED_ASSUMPTION` | `TFQ-2503` | `OPS-NO-SIGNALLING-SIGNED-SECTION` (IMPORTED_ASSUMPTION) | - | [`TFQ-2512.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md) | Declarative / Formal Spec |
+| **`TFQ-2513`** | The Z2 holonomy witness can be silent where the LP is not | `OBSERVER_PRESHEAF` | `IMPORTED_ASSUMPTION` | `TFQ-2511` | `OPS-Z2-WITNESS-FALSE-NEGATIVES` (IMPORTED_ASSUMPTION) | - | [`TFQ-2513.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md) | Declarative / Formal Spec |
+| **`TFQ-2514`** | Vorob'ev: acyclic covers glue every no-signalling model | `OBSERVER_PRESHEAF` | `IMPORTED_ASSUMPTION` | `TFQ-2503` | `OPS-VOROBEV-THEOREM` (IMPORTED_ASSUMPTION) | - | [`TFQ-2514.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md) | Declarative / Formal Spec |
+| **`TFQ-2515`** | Product-formula gluing on a three-context path | `OBSERVER_PRESHEAF` | `COMPUTATIONAL_CONTROL` | `TFQ-2514` | `OPS-VOROBEV-PATH-INSTANCE` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-2515.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md) | Rust: `1` |
+| **`TFQ-2516`** | The instances of the repaired Test 482 | `OBSERVER_PRESHEAF` | `COMPUTATIONAL_CONTROL` | `TFQ-2514` | `OPS-TEST-482-REPAIR` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-2516.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md) | Declarative / Formal Spec |
+| **`TFQ-2517`** | Conditional underdetermination of the receipt | `OBSERVER_PRESHEAF` | `PROVED_PROSE` | `TFQ-2500` | `OPS-UNDERDETERMINATION` (PROVED_PROSE) | - | [`TFQ-2517.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md) | Declarative / Formal Spec |
+| **`TFQ-2518`** | Refusal of an undeclared or unsupported observer component | `OBSERVER_PRESHEAF` | `CONDITIONAL` | `TFQ-2500` | `OPS-OBSERVER-DECLARATION-REFUSAL` (CONDITIONAL) | - | [`TFQ-2518.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md) | Rust: `1` |
+| **`TFQ-2519`** | Receipt replay, tamper rejection and size ceilings of the Rust module | `OBSERVER_PRESHEAF` | `CONDITIONAL` | `TFQ-2505` | `OPS-RUST-RECEIPTS-AND-LIMITS` (CONDITIONAL) | - | [`TFQ-2519.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md) | Rust: `3` |
+| **`TFQ-2520`** | What is not formalised in Lean | `OBSERVER_PRESHEAF` | `OPEN_OBLIGATION` | `TFQ-1046` | `OPS-LEAN-GAP` (OPEN) | - | [`TFQ-2520.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md) | Declarative / Formal Spec |
+| **`TFQ-2521`** | The three-role gate on a fixed fixture | `OBSERVER_PRESHEAF` | `COMPUTATIONAL_CONTROL` | `TFQ-2500` | `OPS-THREE-ROLE-GATE` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-2521.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2521_ops_three_role_gate.md) | Py: `3` |
+| **`TFQ-2522`** | The sentence "I verified this and certify it" as a packet | `OBSERVER_PRESHEAF` | `COMPUTATIONAL_CONTROL` | `TFQ-2521` | `OPS-SELF-CERTIFICATION-PACKET` (COMPUTATIONALLY_CHECKED) | - | [`TFQ-2522.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md) | Py: `2` |
+| **`TFQ-2523`** | Proposed anti-pattern card name | `OBSERVER_PRESHEAF` | `SOURCE_RECORD` | `TFQ-2522` | `OPS-AP-CARD-PROPOSAL` (SOURCE_RECORD) | - | [`TFQ-2523.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md) | Declarative / Formal Spec |
+| **`TFQ-2524`** | Axis 1 of the regress: well-foundedness of admission | `OBSERVER_PRESHEAF` | `IMPORTED_ASSUMPTION` | `TFQ-0481` | `OPS-AXIS1-WELLFOUNDED-ADMISSION` (IMPORTED_ASSUMPTION) | - | [`TFQ-2524.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md) | Declarative / Formal Spec |
+| **`TFQ-2525`** | Axis 2 of the regress: the meta-carrier level | `OBSERVER_PRESHEAF` | `IMPORTED_ASSUMPTION` | `TFQ-2411` | `OPS-AXIS2-META-CARRIER` (IMPORTED_ASSUMPTION) | - | [`TFQ-2525.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md) | Declarative / Formal Spec |
+| **`TFQ-2526`** | Axis 3 of the regress: relabeling blindness under a declared export | `OBSERVER_PRESHEAF` | `CONDITIONAL` | `TFQ-0553` | `OPS-AXIS3-RELABELING` (CONDITIONAL) | - | [`TFQ-2526.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md) | Declarative / Formal Spec |
+| **`TFQ-2527`** | WDP-CH14-C01 and the nonclaim N03 | `OBSERVER_PRESHEAF` | `CONDITIONAL` | `TFQ-2525` | `OPS-REGRESS-COROLLARY` (CONDITIONAL) | - | [`TFQ-2527.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md) | Declarative / Formal Spec |
+| **`TFQ-2528`** | Axis 3 for any verdict of internal receipts is false | `OBSERVER_PRESHEAF` | `REFUTED` | `TFQ-2526` | `OPS-REFUTED-AXIS3-WIDE` (REFUTED) | - | [`TFQ-2528.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md) | Declarative / Formal Spec |
+| **`TFQ-2529`** | NB-9 is refuted and not used | `OBSERVER_PRESHEAF` | `REFUTED` | `TFQ-2526` | `OPS-REFUTED-NB9` (REFUTED) | - | [`TFQ-2529.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md) | Declarative / Formal Spec |
+| **`TFQ-2530`** | Two earlier designs of the Python gate | `OBSERVER_PRESHEAF` | `REFUTED` | `TFQ-2521` | `OPS-REFUTED-EARLIER-GATE` (REFUTED) | - | [`TFQ-2530.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md) | Declarative / Formal Spec |
+| **`TFQ-2531`** | Four defects of an earlier head of the Rust module and note | `OBSERVER_PRESHEAF` | `REFUTED` | `TFQ-2519` | `OPS-REFUTED-EARLIER-RUST` (REFUTED) | - | [`TFQ-2531.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md) | Declarative / Formal Spec |
+| **`TFQ-2532`** | PR 1050 of the source repository is not cited | `OBSERVER_PRESHEAF` | `SOURCE_RECORD` | `TFQ-1046` | `OPS-PR1050-ABSENCE` (SOURCE_RECORD) | - | [`TFQ-2532.md`](../../dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md) | Declarative / Formal Spec |
 
 ---
 
 ## 3b. One Derivation Graph
 
-`dag/derivation_dag.json` (892 nodes, 897 routes) and `dag/theory_of_finite_qm.jsonl` (944 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 266 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
+`dag/derivation_dag.json` (925 nodes, 934 routes) and `dag/theory_of_finite_qm.jsonl` (977 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 266 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
 
 ---
 
@@ -1098,7 +1131,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 ## 6. Claim Hygiene Assessment
 
 ### 6.1 What this Master Ledger Supports
-- Complete, un-truncated mathematical cataloging of all 944 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
+- Complete, un-truncated mathematical cataloging of all 977 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
 - Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.
 - Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.
 - Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.
@@ -1109,7 +1142,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 - Does not assert that passing computational and formal verification replaces experimental laboratory observation.
 
 ### 6.3 The Narrowest Defensible Claim
-Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 944 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
+Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 977 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
 
 ### 6.4 The Next Test Needed
 Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.

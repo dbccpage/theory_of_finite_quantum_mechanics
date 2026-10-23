@@ -1,0 +1,84 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: OPS-STRONG-CONTEXTUALITY-NCF-ZERO
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Proposition B3(3). Write G(e) for the set of g in E(M) with e_C(g restricted to C)
+    > 0 for every context C. Then e is strongly contextual (G(e) is empty) if and only if NCF(e) = 0:
+    if lambda_g > 0 is feasible then e_C(g|C) >= lambda_g > 0 for every C, so g is in G(e); conversely
+    g in G(e) makes lambda = (min over C of e_C(g|C)) delta_g feasible with positive weight. Instance
+    recomputed exactly: the PR box on the Bell scenario (contexts ab, ab'', a''b, a''b'', each uniform
+    on the two outcome pairs with parity 0, 0, 0, 1) has |G| = 0 and NCF 0. The four parity constraints
+    x_a + x_b = 0, x_a + x_b'' = 0, x_a'' + x_b = 0 and x_a'' + x_b'' = 1 sum to 0 = 1 modulo 2, so none
+    of the 16 assignments satisfies all.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Not formalised in Lean (ledger row L035-L1, node OPS-LEAN-GAP).
+  source_refs:
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B4
+  - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2
+  - checks/independent/foc035_observer_presheaf.py
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md
+  paper_refs:
+  - dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md
+  source_claim_label: PROVED_PROSE
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md
+    sha256: 9745ed1f20b4629a6f7549f23e26ef686c10da9ca7ded580fe1a02f6bdffd648
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/observer_presheaf_ops_strong_contextuality_ncf_zero_proved_prose.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates: []
+source_bindings: []
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: []
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

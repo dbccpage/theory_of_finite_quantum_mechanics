@@ -54,15 +54,21 @@ def generated_files(root: Path):
     # Frontier-branch nodes, routes and records (sync_frontier_branches.py) stay after the application block.
     # The genesis-to-higher block (sync_genesis_to_higher.py) stays after the frontier block.
     frontier_nodes = [n for n in dag['nodes'] if FRONTIER_TAG in n.get('tags', [])]
+    # The FOC-035 observer-presheaf block (sync_foc035_observer_presheaf.py) stays last.
     gth_nodes = [n for n in dag['nodes'] if views.GTH_TAG in n.get('tags', [])]
+    ops_nodes = [n for n in dag['nodes'] if views.OPS_TAG in n.get('tags', [])]
     dag['nodes'] = [n for n in dag['nodes'] if n['id'] not in ids and FRONTIER_TAG not in n.get('tags', [])
-                    and views.GTH_TAG not in n.get('tags', [])] + nodes + frontier_nodes + gth_nodes
+                    and views.GTH_TAG not in n.get('tags', [])
+                    and views.OPS_TAG not in n.get('tags', [])] + nodes + frontier_nodes + gth_nodes + ops_nodes
     route_ids = {r['id'] for r in routes}
     frontier_routes = [r for r in dag['routes'] if r['id'].startswith(FRONTIER_ROUTE_PREFIX)]
     gth_routes = [r for r in dag['routes'] if r['id'].startswith(views.GTH_ROUTE_PREFIX)]
+    ops_routes = [r for r in dag['routes'] if r['id'].startswith(views.OPS_ROUTE_PREFIX)]
     dag['routes'] = [r for r in dag['routes'] if r['id'] not in route_ids
                      and not r['id'].startswith(FRONTIER_ROUTE_PREFIX)
-                     and not r['id'].startswith(views.GTH_ROUTE_PREFIX)] + routes + frontier_routes + gth_routes
+                     and not r['id'].startswith(views.GTH_ROUTE_PREFIX)
+                     and not r['id'].startswith(views.OPS_ROUTE_PREFIX)] \
+        + routes + frontier_routes + gth_routes + ops_routes
     for stage in fragment['stages']:
         if stage not in dag['stages']:
             dag['stages'].append(stage)
@@ -94,9 +100,10 @@ def generated_files(root: Path):
             raise ValueError('application record collides with existing record: ' + r['id'])
     frontier_records = [r for r in old_records if r.get('source_slice') == views.FRONTIER_SLICE]
     gth_records = [r for r in old_records if r.get('source_slice') == views.GTH_SLICE]
+    ops_records = [r for r in old_records if r.get('source_slice') == views.OPS_SLICE]
     all_records = [r for r in old_records if r['id'] not in record_ids
-                   and r.get('source_slice') not in (views.FRONTIER_SLICE, views.GTH_SLICE)] \
-        + records + frontier_records + gth_records
+                   and r.get('source_slice') not in (views.FRONTIER_SLICE, views.GTH_SLICE, views.OPS_SLICE)] \
+        + records + frontier_records + gth_records + ops_records
     if len({r['id'] for r in all_records}) != len(all_records):
         raise ValueError('duplicate master record identifiers')
     paper_paths = {}
