@@ -9,9 +9,14 @@
   "nodes": 880,
   "path": "dag/derivation_dag.json",
   "routes": 885,
-  "sha256_lf": "ccd435192da28e79dd249a8d101d7727b33543cf0da131c9524c51ce022e846f"
+  "sha256_lf": "49618f15c7c3befccc7eda94f26ef09200b7595a0c1009d279e40e7e6e87534a"
  },
  "files": {
+  "checks/independent/l1-imp-sector-symmetry-law.py": {
+   "sha256": "e5255dab4f44288ed9befbb213e2ce11129ffe522da582450073aa2808fc3c2f",
+   "sha256_basis": "bytes",
+   "size": 7479
+  },
   "checks/independent/pgw-presentation-not-expressive-lift.py": {
    "sha256": "11490a7350cd3707be4844f886a505a9d2f3577aa26d1821e761cb1d849d9ee8",
    "sha256_basis": "bytes",
@@ -718,9 +723,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "ccd435192da28e79dd249a8d101d7727b33543cf0da131c9524c51ce022e846f",
+   "sha256": "49618f15c7c3befccc7eda94f26ef09200b7595a0c1009d279e40e7e6e87534a",
    "sha256_basis": "lf-normalised",
-   "size": 4359433
+   "size": 4363025
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -1988,9 +1993,9 @@
    "size": 2394
   },
   "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md": {
-   "sha256": "0d3cdcd6acfc10d68f457153b473376e056fafe22b208761d40d666b464b312b",
+   "sha256": "d27ea4cfd22bceac023919f64dc503a978a53e1d5e437caf2ed45303e561fde0",
    "sha256_basis": "lf-normalised",
-   "size": 3159
+   "size": 4856
   },
   "dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md": {
    "sha256": "211c7110913b4dc9a180ab3ab6cd050f5406095f5cec23b71514ea03d0190218",
@@ -5387,6 +5392,16 @@
    "sha256_basis": "lf-normalised",
    "size": 6472
   },
+  "dag/derivations/independent/l1-imp-sector-symmetry-law.md": {
+   "sha256": "c11c2bec3294400bd8f69240fa918e49596f8f906d1727868745560d1c36c3a1",
+   "sha256_basis": "lf-normalised",
+   "size": 11802
+  },
+  "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json": {
+   "sha256": "715c90a6fc1e2e4c19418d2ee2f91e041f545fcb04d28da3b514eeb214e1400f",
+   "sha256_basis": "lf-normalised",
+   "size": 32254
+  },
   "dag/research/electroweak_dfm_weinberg_finite_map.md": {
    "sha256": "9085e0b276afee079a11b980fc73e2c76a57d7d9b9d70fe29f97a0bd6f0b7fee",
    "sha256_basis": "lf-normalised",
@@ -5433,9 +5448,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "sha256_basis": "lf-normalised",
-   "size": 77807
+   "size": 79364
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -5671,6 +5686,11 @@
    "sha256": "e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79",
    "sha256_basis": "bytes",
    "size": 10301
+  },
+  "lean4/CampaignL1SectorSymmetry.lean": {
+   "sha256": "da60dc53b31b15c067760c1fdbb9b771cb15d18bd350536c1cdbcd0047e9c86e",
+   "sha256_basis": "bytes",
+   "size": 26120
   },
   "lean4/CampaignPgwPresentationLift.lean": {
    "sha256": "034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074",
@@ -11412,6 +11432,15 @@
    "node": "PG-ROOT-DIFF-STRUCTURE",
    "stage": "PREGENESIS",
    "status": "ADMITTED_PRIMITIVE"
+  },
+  {
+   "dependents": 142,
+   "detail": "a replay receipt names this node for lean4/CampaignL1SectorSymmetry.lean, but the node's lean, rust and source fields do not cite it",
+   "grade": "E3",
+   "kind": "receipt_names_uncited_module",
+   "node": "L1-IMP-SECTOR-SYMMETRY-LAW",
+   "stage": "L1_TO_L2",
+   "status": "IMPORTED_ASSUMPTION"
   },
   {
    "dependents": 117,
@@ -45036,17 +45065,2889 @@
    "absent_notes": [],
    "dependents": 142,
    "facts": {
-    "cited_code_files_not_tests": 1,
-    "counted_files": 6,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 2,
+    "counted_files": 10,
+    "lean_receipt_backed": 81,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 10
+    "symbols_found": 91
    },
-   "flags": [],
-   "grade": "E2",
+   "flags": [
+    {
+     "detail": "a replay receipt names this node for lean4/CampaignL1SectorSymmetry.lean, but the node's lean, rust and source fields do not cite it",
+     "kind": "receipt_names_uncited_module"
+    }
+   ],
+   "grade": "E3",
    "id": "L1-IMP-SECTOR-SYMMETRY-LAW",
    "items": [
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.DisjointSupport",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.DisjointSupport",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_diag_01",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_diag_01",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_diag_02_ne",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_diag_02_ne",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_invariant_S",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_invariant_S",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_invariant_swap01",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_invariant_swap01",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_not_scalar",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_not_scalar",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_orbit_01",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_orbit_01",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_qf",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_qf",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_sectorAdditive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_sectorAdditive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.G_dist3_transpose",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.G_dist3_transpose",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.Generated",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.Generated",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.InSameOrbit",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.InSameOrbit",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.Invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.Invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.S_dist3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.S_dist3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.S_empty_2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.S_empty_2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.SectorAdditive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.SectorAdditive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.S₂",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.S₂",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.S₂_transitive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.S₂_transitive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.TransitiveOn",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.TransitiveOn",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag12",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag12",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag12_const_on_orbits",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag12_const_on_orbits",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag12_not_scalar",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag12_not_scalar",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag12_sectorAdditive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag12_sectorAdditive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag12_transpose",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag12_transpose",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag_const_of_transitive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag_const_of_transitive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag_const_of_transitive_generated",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag_const_of_transitive_generated",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag_const_on_orbit",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag_const_on_orbit",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diag_eq_of_invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diag_eq_of_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.diagonal_sectorAdditive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.diagonal_sectorAdditive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.disjoint_single_single",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.disjoint_single_single",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.distinguished_labels_break_uniqueness_2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.distinguished_labels_break_uniqueness_2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.distinguished_labels_break_uniqueness_3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.distinguished_labels_break_uniqueness_3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.eq_smul_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.eq_smul_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.eq_smul_one_generated",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.eq_smul_one_generated",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.generated_empty",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.generated_empty",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.inSameOrbit_of_transitive_generated",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.inSameOrbit_of_transitive_generated",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.invariant_inv",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.invariant_inv",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.invariant_mul",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.invariant_mul",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.invariant_of_generated",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.invariant_of_generated",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.invariant_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.invariant_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.mulVec_single_one'",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.mulVec_single_one'",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.offdiag_eq_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.offdiag_eq_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.offdiag_pair_sum_eq_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.offdiag_pair_sum_eq_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.orbit_empty_2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.orbit_empty_2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.pair",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.pair",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.pair_diagonal_eq_zero_of_disjoint",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.pair_diagonal_eq_zero_of_disjoint",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.pair_eq_scale_dot",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.pair_eq_scale_dot",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.pair_self",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.pair_self",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.pair_single_single",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.pair_single_single",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.pair_smul_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.pair_smul_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_inv_left",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_inv_left",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_inv_right",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_inv_right",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_mul",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_mul",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_single",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_single",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_swap01_3_0",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_swap01_3_0",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_swap01_3_1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_swap01_3_1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_swap01_3_2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_swap01_3_2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_swap_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_swap_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.permute_swap_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.permute_swap_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf_add_vec",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf_add_vec",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf_diagonal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf_diagonal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf_eq_scale_dot",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf_eq_scale_dot",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf_eq_sum_sum",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf_eq_sum_sum",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf_single",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf_single",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.qf_smul",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.qf_smul",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.swap01_3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.swap01_3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.transitive_generated_of_transitive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.transitive_generated_of_transitive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.transpose_entry",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.transpose_entry",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unif12",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unif12",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unif12_apply",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unif12_apply",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unif12_invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unif12_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unif12_not_scalar",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unif12_not_scalar",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)",
+      "record TFQ-1001"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unif12_not_sectorAdditive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unif12_not_sectorAdditive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unif12_qf",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unif12_qf",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unif12_transpose",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unif12_transpose",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json (CampaignL1SectorSymmetry)"
+     ],
+     "command": "cd lean4 && lake build CampaignL1SectorSymmetry",
+     "command_note": "then, in a scratch file that imports CampaignL1SectorSymmetry: #print axioms CampaignL1SectorSymmetry.unique_up_to_scale",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignL1SectorSymmetry.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignL1SectorSymmetry.unique_up_to_scale",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source"
@@ -45312,6 +48213,29 @@
     },
     {
      "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/l1-imp-sector-symmetry-law.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
       "record TFQ-1001"
      ],
      "command": null,
@@ -45325,6 +48249,52 @@
      "generated": true,
      "kind": "paper",
      "path": "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json",
      "receipts": [],
      "replay": "n/a",
      "resolution": "present",
@@ -45380,7 +48350,7 @@
      "where": null
     }
    ],
-   "next_step": "replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)",
+   "next_step": "add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1001"
    ],
@@ -210704,6 +213674,32 @@
     "Quot.sound",
     "propext"
    ],
+   "built_successfully": null,
+   "checked_at": "2026-10-22",
+   "dag_node": "L1-IMP-SECTOR-SYMMETRY-LAW",
+   "decl_count": 81,
+   "exit_code": 0,
+   "id": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json#0:CampaignL1SectorSymmetry",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignL1SectorSymmetry",
+   "path": "lean4/CampaignL1SectorSymmetry.lean",
+   "receipt_file": "dag/research/campaign_l1-imp-sector-symmetry-law_lean_replay.json",
+   "receipt_file_sha256": "715c90a6fc1e2e4c19418d2ee2f91e041f545fcb04d28da3b514eeb214e1400f",
+   "recorded_sha256": "da60dc53b31b15c067760c1fdbb9b771cb15d18bd350536c1cdbcd0047e9c86e",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
    "built_successfully": true,
    "checked_at": "2026-10-22",
    "dag_node": "CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS",
@@ -211747,7 +214743,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211773,7 +214769,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211799,7 +214795,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211825,7 +214821,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211851,7 +214847,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211877,7 +214873,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211903,7 +214899,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211929,7 +214925,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211955,7 +214951,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -211981,7 +214977,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212007,7 +215003,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212033,7 +215029,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212059,7 +215055,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212085,7 +215081,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212111,7 +215107,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "3ebdf4b8de24f81d00b3d69e8da4dd85971e90d4c6bc6f039553d47b3bf0954a",
+   "receipt_file_sha256": "1ead8030d5b49c4a6bd61f4bed4ed9999ee523b3e3b1f206c140857727ac8d71",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212684,8 +215680,8 @@
   "by_grade": {
    "E0": 283,
    "E1": 219,
-   "E2": 325,
-   "E3": 53,
+   "E2": 324,
+   "E3": 54,
    "E4": 0
   },
   "by_status": {
@@ -212705,30 +215701,30 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 8,
   "e3_nodes_with_test_but_no_review": 4,
   "lean_declarations_in_repo": {
-   "distinct": 1000,
+   "distinct": 1012,
    "no_receipt": 839,
    "replay_failed": 0,
    "replay_stale": 0,
-   "replay_verified": 161,
-   "replay_verified_and_declaration_itemised": 153,
+   "replay_verified": 173,
+   "replay_verified_and_declaration_itemised": 165,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
    "external_unresolved": 313,
    "missing": 1,
-   "present": 1273
+   "present": 1285
   },
-  "mismatch_nodes": 400,
+  "mismatch_nodes": 401,
   "mismatches_by_kind": {
    "broken_reference": 55,
    "computational_no_runnable_test": 126,
    "proved_lean_below_e3": 219,
    "proved_lean_external_only": 53,
    "proved_prose_no_in_repo_document": 13,
-   "receipt_names_uncited_module": 27,
+   "receipt_names_uncited_module": 28,
    "receipt_not_current": 0
   },
-  "mismatches_total": 493,
+  "mismatches_total": 494,
   "nodes": 880,
   "proved_lean_lean_references": {
    "external_unresolved": 231,
@@ -212740,7 +215736,7 @@
    "with_in_repo_lean": 208,
    "with_some_outside_lean": 83
   },
-  "receipts_indexed": 76,
+  "receipts_indexed": 77,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -212913,8 +215909,8 @@
    "L1_TO_L2": {
     "E0": 11,
     "E1": 0,
-    "E2": 33,
-    "E3": 4,
+    "E2": 32,
+    "E3": 5,
     "E4": 0
    },
    "LOOP_QUANTUM_GRAVITY": {
@@ -212999,8 +215995,8 @@
    "IMPORTED_ASSUMPTION": {
     "E0": 11,
     "E1": 22,
-    "E2": 29,
-    "E3": 1,
+    "E2": 28,
+    "E3": 2,
     "E4": 0
    },
    "OPEN": {

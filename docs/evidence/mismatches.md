@@ -10,7 +10,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 13 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 55 |
-| `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 27 |
+| `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 28 |
 
 ## `proved_lean_below_e3` (219)
 
@@ -519,7 +519,7 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0289](nodes/TFQ-0289.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 
-## `receipt_names_uncited_module` (27)
+## `receipt_names_uncited_module` (28)
 
 A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence). Ordered by downstream nodes, most first.
 
