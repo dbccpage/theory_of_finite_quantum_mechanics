@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pg-gen-no-return.md`
 
 - file: [dag/derivations/independent/pg-gen-no-return.md](../../../dag/derivations/independent/pg-gen-no-return.md)
-- sha256 (`lf-normalised`): `2fea065804eb7accdcf1561511e3ed3db8820e0d7a0967e339e3946adcaf1035`
+- sha256 (`lf-normalised`): `05df9c79673528ca235e6777b70ff7f571a3be2e52d02f281ef5b04592593f60`
 - cited in: node.source
 - counts toward the grade: yes
 
