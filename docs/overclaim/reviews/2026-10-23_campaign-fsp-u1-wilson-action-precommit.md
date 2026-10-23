@@ -23,11 +23,11 @@ The prior statement did not say `beta_g >= 0`. Without it the nonnegativity clai
 | Lattice reading | `plaquette`, `hypercubicWilson_gauge_invariant`, `hypercubicWilson_nonneg` on `(ZMod L)^d` | FULL for the vertex-pair model; for `L ≤ 2` parallel links are identified |
 | Fermion-sign consequence | none | NOT CLAIMED (the source supplies none) |
 
-Axioms: the twelve `#print axioms` lines report only `propext`, `Classical.choice`, `Quot.sound` (`dag/research/campaign_fsp-u1-wilson-action_lean_replay.json`). No `sorry`, `admit`, `axiom`, `native_decide` or `unsafe` in the module.
+Axioms: the twelve `#print axioms` lines report only `propext`, `Classical.choice`, `Quot.sound` (`dag/research/campaign_fsp-u1-wilson-action_lean_replay.json`). `linkOfAngle_gaugeAngle` has no individual axiom report and is excluded from the counted replay evidence. No `sorry`, `admit`, `axiom`, `native_decide` or `unsafe` in the module.
 
 ## Claim hygiene
 
-1. **Supports.** For any vertex type, any finite family of closed oriented paths and any real coupling, the `U(1)` Wilson action is gauge invariant, and it is nonnegative when the coupling is nonnegative; for positive coupling it vanishes exactly on flat fields.
+1. **Supports.** For any vertex type, any finite family of closed oriented paths and any real coupling, the `U(1)` Wilson action is gauge invariant, and it is nonnegative when the coupling is nonnegative; for positive coupling it vanishes exactly when the field is flat on the supplied plaquette family.
 2. **Does not support.** Any fermion-sign statement; a non-abelian Wilson action; reflection positivity, a transfer matrix or a continuum limit; the multigraph lattice with distinct parallel links at `L ≤ 2`.
 3. **Narrowest defensible claim.** `CampaignFspU1WilsonAction.fsp_u1_wilson_action` as stated, with `β ≥ 0` explicit.
 4. **Next test.** A maintainer reads the table against the Lean statement of `fsp_u1_wilson_action`; downstream, `FSP-WILSON-DIRAC-GAMMA5` still needs `γ5 D_W γ5 = D_W†` stated for a link field of this type.
