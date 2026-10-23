@@ -13,7 +13,7 @@ tracked or ordinary-untracked).  Build/cache directories and sealed run
 snapshots are excluded by the same policy; the rule is recorded in the audit
 receipt.  Acceptance (completed score at L4 and grade D or better, with the
 grandfather list ``governance/baseline.json``) is decided by ``governance-check``
-in ``code/rust/src/governance``, not here.
+in ``code/rust/src/governance``, not here.  A source listed in the baseline with unchanged bytes is still audited, but its defects are reported under ``grandfathered_errors`` and do not fail the check.
 
 Commands: ``check`` (audit, read-only unless ``--write-audit``), ``prepare``
 (write coverage baselines; never demotes a completed byte-bound score),
@@ -83,6 +83,29 @@ def glob_match(pattern: str, path: str) -> bool:
     return _wildcard(pattern.split("/"), path.split("/"), lambda p: p == "**", component)
 
 
+BASELINE_PATH = ROOT / "governance" / "baseline.json"
+_BASELINE: Optional[Dict[str, Any]] = None
+
+
+def baseline_entries() -> Dict[str, Any]:
+    """The grandfather list governance/baseline.json, shared with governance-check."""
+    global _BASELINE
+    if _BASELINE is None:
+        _BASELINE = json.loads(BASELINE_PATH.read_text(encoding="utf-8")).get("entries", {}) if BASELINE_PATH.is_file() else {}
+    return _BASELINE
+
+
+def grandfathered(normalized: str, digest: str) -> bool:
+    """Listed in the baseline with exactly these bytes (the rule of governance-check)."""
+    entry = baseline_entries().get(normalized)
+    return isinstance(entry, dict) and entry.get("sha256") == digest
+
+
+def exempt_without_companion(normalized: str, digest: str) -> bool:
+    """Pinned boilerplate, or a grandfathered source, needs no companion of its own."""
+    return pinned_boilerplate(normalized, digest) is not None or grandfathered(normalized, digest)
+
+
 def pinned_boilerplate(normalized: str, digest: str) -> Optional[Dict[str, Any]]:
     """The policy pin admitting this exact file (for example the build.rs hook), if any."""
     for pin in POLICY["pinned_boilerplate"]:
@@ -125,22 +148,82 @@ def atomic_write(path: Path, text: str) -> None:
     os.replace(temporary, path)
 
 
-def source_paths() -> List[Path]:
-    """Return the complete source population without depending on glob quirks."""
+def changed_paths(ref: str) -> Tuple[str, set]:
+    """Files changed since ``ref``, plus ordinary untracked files.
+
+    The comparison base is the merge base of ``ref`` and ``HEAD``. A missing
+    merge base falls through to ``ref`` itself; a ref git cannot resolve then
+    fails the diff rather than reporting an empty change.
+    """
+    try:
+        base = subprocess.check_output(
+            ["git", "merge-base", ref, "HEAD"],
+            cwd=ROOT,
+            stderr=subprocess.DEVNULL,
+        ).decode("utf-8").strip()
+    except subprocess.CalledProcessError:
+        base = ref.strip()
+    if not base:
+        base = ref.strip()
+    diff = subprocess.check_output(
+        ["git", "diff", "--name-only", "--no-renames", "-z", base],
+        cwd=ROOT,
+    ).decode("utf-8")
+    others = subprocess.check_output(
+        ["git", "ls-files", "--others", "--exclude-standard", "-z"],
+        cwd=ROOT,
+    ).decode("utf-8")
+    names: set = set()
+    for blob in (diff, others):
+        for name in blob.split("\0"):
+            if name:
+                names.add(name.replace("\\", "/"))
+    return base, names
+
+
+def listed_source_names() -> List[str]:
+    """In-scope source names from git, without stating each path."""
     raw = subprocess.check_output(
         ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
         cwd=ROOT,
     ).decode("utf-8")
-    result: List[Path] = []
+    result: List[str] = []
     for name in raw.split("\0"):
         if not name:
             continue
         normalized = name.replace("\\", "/")
         if population_language(normalized) is not None:
-            absolute = ROOT / normalized
-            if absolute.is_file():
-                result.append(absolute)
+            result.append(normalized)
+    return result
+
+
+def source_paths() -> List[Path]:
+    """Return the complete source population without depending on glob quirks."""
+    result: List[Path] = []
+    for name in listed_source_names():
+        absolute = ROOT / name
+        if absolute.is_file():
+            result.append(absolute)
     return sorted(set(result), key=rel)
+
+
+def sources_in_change(changed: set) -> List[Path]:
+    """Sources whose own path, or either companion spelling, is in ``changed``."""
+    selected: List[Path] = []
+    for name in listed_source_names():
+        path = Path(name)
+        companion_spellings = {
+            path.with_name(path.stem + COMPANION_SUFFIX).as_posix(),
+            name + COMPANION_SUFFIX,
+        }
+        if name not in changed and changed.isdisjoint(companion_spellings):
+            continue
+        absolute = ROOT / name
+        if not absolute.is_file():
+            continue
+        if name in changed or rel(companion_for(absolute)) in changed:
+            selected.append(absolute)
+    return sorted(selected, key=rel)
 
 
 def companion_for(source: Path) -> Path:
@@ -438,10 +521,12 @@ def validate_document(document: Dict[str, Any], source_name: str, source_digest:
     return score
 
 
-def audit_population() -> Tuple[Dict[str, Any], bool]:
-    sources = source_paths()
+def audit_population(sources: Optional[List[Path]] = None) -> Tuple[Dict[str, Any], bool]:
+    if sources is None:
+        sources = source_paths()
     records: List[Dict[str, Any]] = []
     errors: List[Dict[str, str]] = []
+    grandfathered_errors: List[Dict[str, str]] = []
     language_counts: Counter[str] = Counter()
     profile_counts: Counter[str] = Counter()
     twin_count = 0
@@ -483,8 +568,13 @@ def audit_population() -> Tuple[Dict[str, Any], bool]:
             )
         except (OSError, ValueError, TypeError, yaml.YAMLError) as error:
             detail = str(error)
-            errors.append({"path": source_name, "error": detail})
             record.update({"valid": False, "error": detail})
+            if grandfathered(source_name, source_digest):
+                # Unchanged since governance/baseline.json: reported, not blocking.
+                record["grandfathered"] = True
+                grandfathered_errors.append({"path": source_name, "error": detail})
+            else:
+                errors.append({"path": source_name, "error": detail})
         records.append(record)
     completed = sum(1 for item in records if item.get("is_complete") is True)
     pinned = sum(1 for item in records if item.get("assessment_status") == "pinned_boilerplate")
@@ -501,8 +591,10 @@ def audit_population() -> Tuple[Dict[str, Any], bool]:
         },
         "summary": {
             "sources": len(records),
-            "valid_contracts_and_scores": len(records) - len(errors),
-            "invalid_or_missing": len(errors),
+            "valid_contracts_and_scores": len(records) - len(errors) - len(grandfathered_errors),
+            "invalid_or_missing": len(errors) + len(grandfathered_errors),
+            "invalid_but_grandfathered": len(grandfathered_errors),
+            "blocking_errors": len(errors),
             "by_language": dict(sorted(language_counts.items())),
             "by_preliminary_profile": dict(sorted(profile_counts.items())),
             "completed_scores": completed,
@@ -512,6 +604,7 @@ def audit_population() -> Tuple[Dict[str, Any], bool]:
             "non_twin_sources": len(records) - twin_count,
         },
         "errors": errors,
+        "grandfathered_errors": grandfathered_errors,
         "artifacts": records,
         "scope_boundary": "This audit proves source-to-companion coverage and current-byte custody. It does not promote incomplete static assessments to engineering-grade certification.",
     }
@@ -536,11 +629,20 @@ def command_prepare(audit_path: Path) -> int:
     return 0 if passed else 1
 
 
-def command_check(audit_path: Path, write: bool) -> int:
-    audit, passed = audit_population()
+def command_check(audit_path: Path, write: bool, sources: Optional[List[Path]] = None, scope_note: Optional[str] = None) -> int:
+    audit, passed = audit_population(sources)
+    write = write and scope_note is None
+    payload: Dict[str, Any] = {
+        "audit": rel(audit_path) if write else None,
+        "passed": passed,
+        "summary": audit["summary"],
+        "errors": audit["errors"],
+    }
     if write:
         write_audit(audit, audit_path)
-    print(json.dumps({"audit": rel(audit_path) if write else None, "passed": passed, "summary": audit["summary"], "errors": audit["errors"]}, indent=2))
+    if scope_note is not None:
+        payload["scope"] = scope_note
+    print(json.dumps(payload, indent=2))
     return 0 if passed else 1
 
 
@@ -598,7 +700,14 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     parser.add_argument("--write-audit", action="store_true", help="check: also rewrite the audit JSON (prepare always writes it)")
     parser.add_argument("--contract", type=Path, help="record: JSON contract record")
     parser.add_argument("--score", type=Path, help="record: JSON score record (SCORING.md v2.0.0)")
+    parser.add_argument(
+        "--changed-since",
+        metavar="REF",
+        help="with check: only in-scope sources added or edited since REF (merge base), plus ordinary untracked files. Does not write the audit file.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
+    if args.changed_since and args.command != "check":
+        parser.error("--changed-since is only valid with check")
     audit_path = args.audit if args.audit.is_absolute() else ROOT / args.audit
     try:
         audit_path.resolve().relative_to(ROOT.resolve())
@@ -612,7 +721,15 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         if args.source is None or args.contract is None or args.score is None:
             parser.error("record needs SOURCE --contract FILE --score FILE")
         return command_record(args.source, args.contract, args.score)
-    return command_check(audit_path, args.write_audit)
+    if not args.changed_since:
+        return command_check(audit_path, args.write_audit)
+    base, changed = changed_paths(args.changed_since)
+    selected = sources_in_change(changed)
+    note = (
+        "in-scope sources changed since {} (merge base {}), including ordinary untracked files. "
+        "The tracked audit file is not written. Grades are not read."
+    ).format(args.changed_since, base[:12])
+    return command_check(audit_path, False, selected, note)
 
 
 if __name__ == "__main__":

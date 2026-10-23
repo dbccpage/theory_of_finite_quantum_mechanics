@@ -740,7 +740,7 @@ mod tests {
     #[test]
     fn every_executable_replay_passes_and_every_python_claim_is_dispositioned() {
         let run = run().unwrap();
-        assert!(run.executable_checks_passed, "{}", run.to_text());
+        assert!(run.executable_checks_passed, "executable checks failed");
         assert!(run.refusals_present);
         let covered = run.covered_claim_ids();
         for id in PYTHON_CLAIM_IDS {
