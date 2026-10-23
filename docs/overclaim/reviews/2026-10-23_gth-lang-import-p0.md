@@ -21,3 +21,9 @@ Corrections to the stage text:
 
 ## Scanner output
 `python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict` exited 0. Scope: changes since origin/main, merge base 4a1e55121045. HIGH=0 MEDIUM=0 LOW=0. Lean was not rebuilt. No baseline entry is added.
+
+## Independent batch review, 2026-10-23
+
+Reviewed head 9c50aa7cbdf295542fc7d440cf2be7a0f20b880f against main. The eight recorded source/input hashes match (the prior operad hash is checked against the stated pre-change base); the embedded operad delta equals its YAML file. AdmitImport.lean:19-35 stores a String cost label and leaves coreHolds unchanged. genesis_language.py:57-59 discards imports. Those declarations do not discharge the priced-language target. The node remains OPEN and its route GAP_NO_DERIVATION, with no generator or relation admitted. No source-code artifact changes, so the substantive L4D floor is not invoked.
+
+The independent overclaim scan exits 0 with 0 HIGH, 0 MEDIUM, 0 LOW. Prompt validation retains one pre-existing unrelated error: LQG-PR-ALLOWED-REGION-TARGET: legacy fabricated contract. The same error is reproduced on the reviewed main integration without this PR. Thus the whole prompt validator is not claimed green. Its legacy sibling import requires the normal Python script invocation; isolated -I invocation fails to import custody. No Lean rebuild is needed or claimed for this documentation-only negative result. No actionable issue was found in this diff.
