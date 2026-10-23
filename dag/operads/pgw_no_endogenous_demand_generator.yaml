@@ -34,24 +34,85 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_no_endogenous_demand_generator_proved_prose.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: allPairs
+  line: 70
+  signature_excerpt: |-
+    def allPairs : Nat → List (Nat × Nat)
+      | 0 => []
+      | n + 1 => allPairs n ++ (List.range n).map (fun i => (i, n))
+
+    /-- The requirement language is finite with exactly `n * (n - 1) / 2`
+    elements (stated multiplicatively to stay division-free): the endogenous
+    generator can issue at most this many distinct requirements before its
+    fixpoint. -/
+    theorem allPairs_length (n : Nat) :
+        2 * (allPairs n).length = n * (n - 1)
+  source: lean4/Imported/Genesis19l57g1/Derivation/Counting.lean
+  repository: this_repository
+  source_sha256: bd44a2b1eeec1da668413e098c2f11c65fb1062bd8c47b09ea031227cde66f8e
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Round
+  line: 292
+  signature_excerpt: structure Round
+  source: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  source_sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ClosedRun
+  line: 300
+  signature_excerpt: 'inductive ClosedRun : Regime → List Round → Regime → Prop'
+  source: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  source_sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: allPairs_length
+  line: 78
+  signature_excerpt: |-
+    theorem allPairs_length (n : Nat) :
+        2 * (allPairs n).length = n * (n - 1)
+  source: lean4/Imported/Genesis19l57g1/Derivation/Counting.lean
+  repository: this_repository
+  source_sha256: bd44a2b1eeec1da668413e098c2f11c65fb1062bd8c47b09ea031227cde66f8e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: closedRun_round_bound_from_empty
+  line: 481
+  signature_excerpt: |-
+    theorem closedRun_round_bound_from_empty {r t : Regime}
+        {rds : List Round} (h : ClosedRun r rds t) (he : r.reqs = []) :
+        2 * rds.length ≤ r.data * (r.data - 1)
+  source: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  source_sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean::allPairs_length
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Counting.lean::allPairs_length
+  availability: local
   symbol: allPairs_length
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Counting.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Counting.lean
+  repository: this_repository
+  sha256: bd44a2b1eeec1da668413e098c2f11c65fb1062bd8c47b09ea031227cde66f8e
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean::closedRun_round_bound_from_empty
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty
+  availability: local
   symbol: closedRun_round_bound_from_empty
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean
+  repository: this_repository
+  sha256: 516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655
+  declaration_status: declaration_found_not_proof_checked
+  line: 481
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound
   availability: external
@@ -100,8 +161,6 @@ operad_slots:
     - Declared pair-separation closure policy, genesis_source.txt section 3.9 (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -1,6 +1,6 @@
 # QCV-CONDITIONAL-VIABILITY-CERTIFICATE
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `CONDITIONAL`. Evidence 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 9
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -50,16 +50,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/QcSelfObstruction.lean](../../../lean4/QcSelfObstruction.lean)
 - sha256 (`bytes`): `be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83`
 - cited in: node.lean, record TFQ-1324
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `QcSelfObstruction`): recorded sha256 `be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build QcSelfObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `conditional_viability` | yes | yes | yes | - | `#print axioms conditional_viability` |
-| `conditional_viability_explicit` | yes | yes | yes | - | `#print axioms conditional_viability_explicit` |
-| `conditional_viability_instance` | yes | yes | yes | - | `#print axioms conditional_viability_instance` |
-| `explicit_level` | yes | yes | yes | - | `#print axioms explicit_level` |
-| `level_error_le` | yes | yes | yes | - | `#print axioms level_error_le` |
+| `conditional_viability` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms conditional_viability` |
+| `conditional_viability_explicit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms conditional_viability_explicit` |
+| `conditional_viability_instance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms conditional_viability_instance` |
+| `explicit_level` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms explicit_level` |
+| `level_error_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms level_error_le` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`

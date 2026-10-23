@@ -1,6 +1,6 @@
 # PGW-GO-ADMISSION-GATE
 
-Stage: [GENESIS](../stages/GENESIS.md). Status: `DEFINITION`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS](../stages/GENESIS.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `DEFINITION`. Evidence grade: **
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -42,17 +42,25 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/Step.lean`
+### Lean: `lean4/Imported/GenesisOngoing/Fifteenth/Step.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/Step.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+- file: [lean4/Imported/GenesisOngoing/Fifteenth/Step.lean](../../../lean4/Imported/GenesisOngoing/Fifteenth/Step.lean)
+- sha256 (`bytes`): `cb6c17517f507ba86e1183e767f70acfd46f3aff14f1b6881324d48b3b1dfa92`
+- cited in: node.lean, record TFQ-0481
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Fifteenth.Step`): recorded sha256 `cb6c17517f507ba86e1183e767f70acfd46f3aff14f1b6881324d48b3b1dfa92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Fifteenth/Step.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `reaching_does_not_admit` | yes | yes | yes | none | `#print axioms reaching_does_not_admit` |
+| `reaching_ne_admitted` | yes | yes | yes | none | `#print axioms reaching_ne_admitted` |
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0481_go_admission_gate.md`
 
 - file: [dag/derivations/02_genesis/tfq_0481_go_admission_gate.md](../../../dag/derivations/02_genesis/tfq_0481_go_admission_gate.md)
-- sha256 (`lf-normalised`): `5682b7a5e497bbf78b312fc029ab9158d4591fe4c77f581fc3cee8d57e0d9048`
+- sha256 (`lf-normalised`): `6aef556cae96d6da0ba1cc28590b3024540a4fbce7dcacae96890ad4ed679c20`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0481
 - counts toward the grade: no
@@ -76,8 +84,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fifteenth/admission.py::admission_of_reaching`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/Step.lean::reaching_does_not_admit`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/Step.lean::reaching_ne_admitted`
 
 ## Absences recorded by the TFQ records
 

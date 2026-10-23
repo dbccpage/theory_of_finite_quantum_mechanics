@@ -34,11 +34,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::Same3.around`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::same3_nothing_iff`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean::step_of_same3_fails`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Nothing.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean::excess_raise`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Raise.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean::gen3_iff_same3`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Same.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::Same3.around`](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::same3_nothing_iff`](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean::step_of_same3_fails`](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Nothing.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean::excess_raise`](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean)
+- [`lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean::gen3_iff_same3`](../../../lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: the H3V7N5QF package holds no Rust`

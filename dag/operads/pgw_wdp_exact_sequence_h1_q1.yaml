@@ -19,7 +19,7 @@ target:
     window as declared and is not a Genesis derivation of it (TFQ-0344).'
   source_refs:
   - dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean:89-108
+  - lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:98-117
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1518-1535
   - omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md:319-328
   paper_refs: []
@@ -35,32 +35,136 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_exact_sequence_h1_q1_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: abbrev
+  name: H1
+  line: 91
+  signature_excerpt: |-
+    abbrev H1
+        (d0 : C0 → C1) (d1 : C1 → C2)
+        (d1_add : ∀ x y : C1, d1 (x + y) = d1 x + d1 y)
+        (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)
+        (add_zero_right : ∀ z : C2, z + 0 = z) : Type
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Q1
+  line: 51
+  signature_excerpt: 'abbrev Q1 (d0 : C0 → C1) : Type'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: kappa
+  line: 70
+  signature_excerpt: |-
+    def kappa
+        (d0 : C0 → C1) (d1 : C1 → C2)
+        (d1_add : ∀ x y : C1, d1 (x + y) = d1 x + d1 y)
+        (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)
+        (add_zero_right : ∀ z : C2, z + 0 = z) :
+        Q1 d0 → C2
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Repair
+  line: 46
+  signature_excerpt: 'def Repair (d0 : C0 → C1) : C1 → C1 → Prop'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: kappa_exact_sequence
+  line: 102
+  signature_excerpt: |-
+    theorem kappa_exact_sequence
+        (d0 : C0 → C1) (d1 : C1 → C2)
+        (d1_add : ∀ x y : C1, d1 (x + y) = d1 x + d1 y)
+        (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)
+        (add_zero_right : ∀ z : C2, z + 0 = z) :
+        _root_.Function.Injective
+            (Subtype.val : H1 d0 d1 d1_add d1_d0 add_zero_right → Q1 d0)
+          ∧ (∀ q : Q1 d0,
+              kappa d0 d1 d1_add d1_d0 add_zero_right q = 0 ↔
+                ∃ k : H1 d0 d1 d1_add d1_d0 add_zero_right, k.val = q)
+          ∧ (∀ q : Q1 d0,
+              kappa d0 d1 d1_add d1_d0 add_zero_right q = 0 ↔
+                ∀ h : C1, Quot.mk (Repair d0) h = q → d1 h = 0)
+          ∧ (∀ z : C
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kappa_well_defined
+  line: 60
+  signature_excerpt: |-
+    theorem kappa_well_defined
+        (d0 : C0 → C1) (d1 : C1 → C2)
+        (d1_add : ∀ x y : C1, d1 (x + y) = d1 x + d1 y)
+        (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)
+        (add_zero_right : ∀ z : C2, z + 0 = z)
+        (h h' : C1) (α : C0) (hrep : h' = h + d0 α) :
+        d1 h' = d1 h
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kappa_mk
+  line: 81
+  signature_excerpt: |-
+    theorem kappa_mk
+        (d0 : C0 → C1) (d1 : C1 → C2)
+        (d1_add : ∀ x y : C1, d1 (x + y) = d1 x + d1 y)
+        (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)
+        (add_zero_right : ∀ z : C2, z + 0 = z)
+        (h : C1) :
+        kappa d0 d1 d1_add d1_d0 add_zero_right (Quot.mk (Repair d0) h) = d1 h
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_exact_sequence
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_exact_sequence
+  availability: local
   symbol: kappa_exact_sequence
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_well_defined
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_well_defined
+  availability: local
   symbol: kappa_well_defined
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 60
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_mk
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_mk
+  availability: local
   symbol: kappa_mk
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 81
   role: source_lead_only
 presentation:
   colours: []
@@ -101,8 +205,6 @@ operad_slots:
     - Declared window with additive d₁ and a d₁d₀ = 0 certificate (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

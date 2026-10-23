@@ -1,6 +1,6 @@
 # FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evi
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 12
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 9 Lean reference(s) cited, 9 in this checkout (replay: none 9). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -48,12 +48,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/HilbertLiftCompletion.lean](../../../lean4/HilbertLiftCompletion.lean)
 - sha256 (`bytes`): `2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106`
 - cited in: node.lean, record TFQ-1021
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftCompletion`): recorded sha256 `2e188609f0a08148273e9ad7e6a0f931d0799b626df9872c7f26bda4c6dde106` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftCompletion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `HilbertLift.controlled_completion` | yes | yes | yes | - | `#print axioms HilbertLift.controlled_completion` |
+| `HilbertLift.controlled_completion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.controlled_completion` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftComplexCarrier.lean`
@@ -61,12 +62,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/HilbertLiftComplexCarrier.lean](../../../lean4/HilbertLiftComplexCarrier.lean)
 - sha256 (`bytes`): `4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309`
 - cited in: node.lean, record TFQ-1021
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftComplexCarrier`): recorded sha256 `4151b5f8a74cdf10988dcf93ca24c2fbcc7562b6e53454cb4b3062d9dcac7309` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftComplexCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `HilbertLift.controlled_completion_complex` | yes | yes | yes | - | `#print axioms HilbertLift.controlled_completion_complex` |
+| `HilbertLift.controlled_completion_complex` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.controlled_completion_complex` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftFiniteTower.lean`
@@ -74,12 +76,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/HilbertLiftFiniteTower.lean](../../../lean4/HilbertLiftFiniteTower.lean)
 - sha256 (`bytes`): `3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341`
 - cited in: node.lean, record TFQ-1021
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftFiniteTower`): recorded sha256 `3b4e86865b4a0e63724cb7ca0b876479f3ac0a9d3364a030d6cc8d2de560e341` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftFiniteTower`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `HilbertLift.exhaustion` | yes | yes | yes | - | `#print axioms HilbertLift.exhaustion` |
+| `HilbertLift.exhaustion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.exhaustion` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftIntrinsicUniformity.lean`
@@ -87,13 +90,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/HilbertLiftIntrinsicUniformity.lean](../../../lean4/HilbertLiftIntrinsicUniformity.lean)
 - sha256 (`bytes`): `25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed`
 - cited in: node.lean, record TFQ-1021
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftIntrinsicUniformity`): recorded sha256 `25339d6949deb4aa4113a686415e8ba9d40c5ce957d7015d1b8f3d05d06af1ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftIntrinsicUniformity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `HilbertLift.intrinsic_completion` | yes | yes | yes | - | `#print axioms HilbertLift.intrinsic_completion` |
-| `HilbertLift.uniformity_eq_iInf_sqdist` | yes | yes | yes | - | `#print axioms HilbertLift.uniformity_eq_iInf_sqdist` |
+| `HilbertLift.intrinsic_completion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.intrinsic_completion` |
+| `HilbertLift.uniformity_eq_iInf_sqdist` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.uniformity_eq_iInf_sqdist` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftL2Model.lean`
@@ -101,12 +105,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/HilbertLiftL2Model.lean](../../../lean4/HilbertLiftL2Model.lean)
 - sha256 (`bytes`): `3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad`
 - cited in: node.lean, record TFQ-1021
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftL2Model`): recorded sha256 `3fade85d7333f166567e8a5927b87219377aaede1e4602655ceb6043d90469ad` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftL2Model`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `HilbertLift.l2_model_summary` | yes | yes | yes | - | `#print axioms HilbertLift.l2_model_summary` |
+| `HilbertLift.l2_model_summary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.l2_model_summary` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftOperators.lean`
@@ -114,13 +119,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/HilbertLiftOperators.lean](../../../lean4/HilbertLiftOperators.lean)
 - sha256 (`bytes`): `d7ffd585fc01353bb69bf7534de6c788ca43525084bdb3654bc3161639b72573`
 - cited in: node.lean, record TFQ-1021
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftOperators`): recorded sha256 `d7ffd585fc01353bb69bf7534de6c788ca43525084bdb3654bc3161639b72573` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftOperators`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `HilbertLift.no_continuous_extension_coordSum` | yes | yes | yes | - | `#print axioms HilbertLift.no_continuous_extension_coordSum` |
-| `HilbertLift.operator_lift_summary` | yes | yes | yes | - | `#print axioms HilbertLift.operator_lift_summary` |
+| `HilbertLift.no_continuous_extension_coordSum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.no_continuous_extension_coordSum` |
+| `HilbertLift.operator_lift_summary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.operator_lift_summary` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftRationalUniformity.lean`
@@ -128,12 +134,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/HilbertLiftRationalUniformity.lean](../../../lean4/HilbertLiftRationalUniformity.lean)
 - sha256 (`bytes`): `554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d`
 - cited in: node.lean, record TFQ-1021
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertLiftRationalUniformity`): recorded sha256 `554a6e9f0b593cbda1346c32126615e8b07c769b2ec800bb486cd21d2e6fd27d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build HilbertLiftRationalUniformity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `HilbertLift.harmonic_separates_uniformities` | yes | yes | yes | - | `#print axioms HilbertLift.harmonic_separates_uniformities` |
+| `HilbertLift.harmonic_separates_uniformities` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.harmonic_separates_uniformities` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/hilbert_lift_completion.rs`
