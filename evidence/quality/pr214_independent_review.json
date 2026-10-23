@@ -1,0 +1,212 @@
+{
+  "AuthorityEffect": "None",
+  "author_head": "673b7beced4eab5ee0959a8f4b08f188653f4fd4",
+  "source_metrics": {
+    "scripts/auto/anti_pattern_lint.py": {
+      "sha256": "9776830b91cb6089dac64a33579f676aeae735d85356ce6fba19c2d6203e21e9",
+      "radon_ccn_max": 16,
+      "lizard_ccn_max": 16,
+      "cognitive_complexity_max": 14,
+      "functions": 19
+    },
+    "scripts/auto/auto_common.py": {
+      "sha256": "6ef1eecee177bb2c97d809c3b99926eb4e359cb54f4f171b4a1be7b0b8795a4b",
+      "radon_ccn_max": 7,
+      "lizard_ccn_max": 7,
+      "cognitive_complexity_max": 10,
+      "functions": 21
+    },
+    "scripts/auto/estate_audit.py": {
+      "sha256": "453ec594734457121bd6b62115dc429ede7124b39158c530630a7e06b54d44d0",
+      "radon_ccn_max": 14,
+      "lizard_ccn_max": 14,
+      "cognitive_complexity_max": 11,
+      "functions": 14
+    },
+    "scripts/auto/obstruction_scan.py": {
+      "sha256": "55d1e1cfcdc1bf0f1feb76554b009c94881a4aedfbd130a11a57c537b8764c2e",
+      "radon_ccn_max": 13,
+      "lizard_ccn_max": 13,
+      "cognitive_complexity_max": 18,
+      "functions": 27
+    },
+    "scripts/auto/symmetry_scan.py": {
+      "sha256": "ddc36b7c3f6150625e2016cc0da017215e856c38e053a602fb0ce441e26aa9a5",
+      "radon_ccn_max": 12,
+      "lizard_ccn_max": 12,
+      "cognitive_complexity_max": 17,
+      "functions": 14
+    },
+    "scripts/auto/test_auto_checks.py": {
+      "sha256": "6faf19436b9f7794dc85957388446e9464a19bbeb325250c7f40ca0cc41091e1",
+      "radon_ccn_max": 10,
+      "lizard_ccn_max": 6,
+      "cognitive_complexity_max": 3,
+      "functions": 84
+    }
+  },
+  "metric_tools": {
+    "radon": "6.0.1",
+    "lizard": "1.18.0",
+    "cognitive_complexity": "1.3.0"
+  },
+  "checks": {
+    "before": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "scripts/auto/test_auto_checks.py",
+        "-k",
+        "tactic_alternatives",
+        "-q",
+        "--basetemp=C:/gw/tp205/lean4/b/pr214-before"
+      ],
+      "exit_code": 1,
+      "stdout": "FFFFFF                                                                   [100%]\n================================== FAILURES ===================================\n_ test_tactic_alternatives_are_not_constructor_names[theorem bad : True := by first | -sorry] _\n\ntactic = 'sorry', prefix = 'theorem bad : True := by first | '\n\n    @pytest.mark.parametrize(\"tactic\", [\"sorry\", \"admit\", \"native_decide\"])\n    @pytest.mark.parametrize(\"prefix\", [\"theorem bad : True := by first | \", \"  | \"])\n    def test_tactic_alternatives_are_not_constructor_names(tactic, prefix):\n        found = apl.lean_findings(\"m.lean\", \"theorem bad : True := by\\n\" + prefix + tactic + \"\\n\", None)\n>       assert [(f.rule, f.severity, f.line) for f in found] == [(\"AP_LN_001\", \"HIGH\", 2)]\nE       AssertionError: assert [] == [('AP_LN_001', 'HIGH', 2)]\nE         \nE         Right contains one more item: ('AP_LN_001', 'HIGH', 2)\nE         Use -v to get more diff\n\nscripts\\auto\\test_auto_checks.py:732: AssertionError\n_ test_tactic_alternatives_are_not_constructor_names[theorem bad : True := by first | -admit] _\n\ntactic = 'admit', prefix = 'theorem bad : True := by first | '\n\n    @pytest.mark.parametrize(\"tactic\", [\"sorry\", \"admit\", \"native_decide\"])\n    @pytest.mark.parametrize(\"prefix\", [\"theorem bad : True := by first | \", \"  | \"])\n    def test_tactic_alternatives_are_not_constructor_names(tactic, prefix):\n        found = apl.lean_findings(\"m.lean\", \"theorem bad : True := by\\n\" + prefix + tactic + \"\\n\", None)\n>       assert [(f.rule, f.severity, f.line) for f in found] == [(\"AP_LN_001\", \"HIGH\", 2)]\nE       AssertionError: assert [] == [('AP_LN_001', 'HIGH', 2)]\nE         \nE         Right contains one more item: ('AP_LN_001', 'HIGH', 2)\nE         Use -v to get more diff\n\nscripts\\auto\\test_auto_checks.py:732: AssertionError\n_ test_tactic_alternatives_are_not_constructor_names[theorem bad : True := by first | -native_decide] _\n\ntactic = 'native_decide', prefix = 'theorem bad : True := by first | '\n\n    @pytest.mark.parametrize(\"tactic\", [\"sorry\", \"admit\", \"native_decide\"])\n    @pytest.mark.parametrize(\"prefix\", [\"theorem bad : True := by first | \", \"  | \"])\n    def test_tactic_alternatives_are_not_constructor_names(tactic, prefix):\n        found = apl.lean_findings(\"m.lean\", \"theorem bad : True := by\\n\" + prefix + tactic + \"\\n\", None)\n>       assert [(f.rule, f.severity, f.line) for f in found] == [(\"AP_LN_001\", \"HIGH\", 2)]\nE       AssertionError: assert [] == [('AP_LN_001', 'HIGH', 2)]\nE         \nE         Right contains one more item: ('AP_LN_001', 'HIGH', 2)\nE         Use -v to get more diff\n\nscripts\\auto\\test_auto_checks.py:732: AssertionError\n_______ test_tactic_alternatives_are_not_constructor_names[  | -sorry] ________\n\ntactic = 'sorry', prefix = '  | '\n\n    @pytest.mark.parametrize(\"tactic\", [\"sorry\", \"admit\", \"native_decide\"])\n    @pytest.mark.parametrize(\"prefix\", [\"theorem bad : True := by first | \", \"  | \"])\n    def test_tactic_alternatives_are_not_constructor_names(tactic, prefix):\n        found = apl.lean_findings(\"m.lean\", \"theorem bad : True := by\\n\" + prefix + tactic + \"\\n\", None)\n>       assert [(f.rule, f.severity, f.line) for f in found] == [(\"AP_LN_001\", \"HIGH\", 2)]\nE       AssertionError: assert [] == [('AP_LN_001', 'HIGH', 2)]\nE         \nE         Right contains one more item: ('AP_LN_001', 'HIGH', 2)\nE         Use -v to get more diff\n\nscripts\\auto\\test_auto_checks.py:732: AssertionError\n_______ test_tactic_alternatives_are_not_constructor_names[  | -admit] ________\n\ntactic = 'admit', prefix = '  | '\n\n    @pytest.mark.parametrize(\"tactic\", [\"sorry\", \"admit\", \"native_decide\"])\n    @pytest.mark.parametrize(\"prefix\", [\"theorem bad : True := by first | \", \"  | \"])\n    def test_tactic_alternatives_are_not_constructor_names(tactic, prefix):\n        found = apl.lean_findings(\"m.lean\", \"theorem bad : True := by\\n\" + prefix + tactic + \"\\n\", None)\n>       assert [(f.rule, f.severity, f.line) for f in found] == [(\"AP_LN_001\", \"HIGH\", 2)]\nE       AssertionError: assert [] == [('AP_LN_001', 'HIGH', 2)]\nE         \nE         Right contains one more item: ('AP_LN_001', 'HIGH', 2)\nE         Use -v to get more diff\n\nscripts\\auto\\test_auto_checks.py:732: AssertionError\n___ test_tactic_alternatives_are_not_constructor_names[  | -native_decide] ____\n\ntactic = 'native_decide', prefix = '  | '\n\n    @pytest.mark.parametrize(\"tactic\", [\"sorry\", \"admit\", \"native_decide\"])\n    @pytest.mark.parametrize(\"prefix\", [\"theorem bad : True := by first | \", \"  | \"])\n    def test_tactic_alternatives_are_not_constructor_names(tactic, prefix):\n        found = apl.lean_findings(\"m.lean\", \"theorem bad : True := by\\n\" + prefix + tactic + \"\\n\", None)\n>       assert [(f.rule, f.severity, f.line) for f in found] == [(\"AP_LN_001\", \"HIGH\", 2)]\nE       AssertionError: assert [] == [('AP_LN_001', 'HIGH', 2)]\nE         \nE         Right contains one more item: ('AP_LN_001', 'HIGH', 2)\nE         Use -v to get more diff\n\nscripts\\auto\\test_auto_checks.py:732: AssertionError\n============================== warnings summary ===============================\n..\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED scripts/auto/test_auto_checks.py::test_tactic_alternatives_are_not_constructor_names[theorem bad : True := by first | -sorry]\nFAILED scripts/auto/test_auto_checks.py::test_tactic_alternatives_are_not_constructor_names[theorem bad : True := by first | -admit]\nFAILED scripts/auto/test_auto_checks.py::test_tactic_alternatives_are_not_constructor_names[theorem bad : True := by first | -native_decide]\nFAILED scripts/auto/test_auto_checks.py::test_tactic_alternatives_are_not_constructor_names[  | -sorry]\nFAILED scripts/auto/test_auto_checks.py::test_tactic_alternatives_are_not_constructor_names[  | -admit]\nFAILED scripts/auto/test_auto_checks.py::test_tactic_alternatives_are_not_constructor_names[  | -native_decide]\n6 failed, 79 deselected, 1 warning in 1.91s\n",
+      "stderr": ""
+    },
+    "pytest-after": {
+      "command": [
+        "-m",
+        "pytest",
+        "scripts/auto/test_auto_checks.py",
+        "scripts/test_overclaim_scan.py",
+        "-q",
+        "--basetemp=C:/gw/tp205/lean4/b/pr214-typed-tests"
+      ],
+      "MYPYPATH": "scripts;scripts/auto",
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 64%]\n.......................................                                  [100%]\n============================== warnings summary ===============================\n..\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n111 passed, 1 warning in 115.90s (0:01:55)\n",
+      "stderr": ""
+    },
+    "mypy": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "scripts/auto"
+      ],
+      "exit_code": 1,
+      "stdout": "scripts\\auto\\auto_common.py:138: error: Missing type parameters for generic type \"dict\"  [type-arg]\nscripts\\auto\\auto_common.py:227: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\nscripts\\auto\\auto_common.py:232: error: Returning Any from function declared to return \"int\"  [no-any-return]\nscripts\\auto\\symmetry_scan.py:46: error: Missing type parameters for generic type \"dict\"  [type-arg]\nscripts\\auto\\symmetry_scan.py:50: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\symmetry_scan.py:61: error: \"stmt\" has no attribute \"value\"  [attr-defined]\nscripts\\auto\\symmetry_scan.py:63: error: \"stmt\" has no attribute \"value\"  [attr-defined]\nscripts\\auto\\obstruction_scan.py:86: error: \"AST\" has no attribute \"lineno\"  [attr-defined]\nscripts\\auto\\obstruction_scan.py:221: error: Missing type parameters for generic type \"dict\"  [type-arg]\nscripts\\auto\\obstruction_scan.py:242: error: Missing type parameters for generic type \"dict\"  [type-arg]\nscripts\\auto\\obstruction_scan.py:248: error: Missing type parameters for generic type \"dict\"  [type-arg]\nscripts\\auto\\obstruction_scan.py:250: error: Missing type parameters for generic type \"dict\"  [type-arg]\nscripts\\auto\\obstruction_scan.py:270: error: Missing type parameters for generic type \"dict\"  [type-arg]\nscripts\\auto\\estate_audit.py:55: error: Missing type parameters for generic type \"Pattern\"  [type-arg]\nscripts\\auto\\estate_audit.py:57: error: Returning Any from function declared to return \"str\"  [no-any-return]\nscripts\\auto\\estate_audit.py:84: error: Item \"None\" of \"Match[str] | None\" has no attribute \"group\"  [union-attr]\nscripts\\auto\\anti_pattern_lint.py:32: error: Cannot find implementation or library stub for module named \"overclaim_lean\"  [import-not-found]\nscripts\\auto\\anti_pattern_lint.py:32: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nscripts\\auto\\anti_pattern_lint.py:58: error: Missing type parameters for generic type \"Match\"  [type-arg]\nscripts\\auto\\anti_pattern_lint.py:214: error: \"AST\" has no attribute \"lineno\"  [attr-defined]\nscripts\\auto\\anti_pattern_lint.py:214: error: \"AST\" has no attribute \"attr\"  [attr-defined]\nscripts\\auto\\test_auto_checks.py:56: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:74: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:74: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:79: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:79: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:84: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:84: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:100: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:108: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:108: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:112: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:112: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:121: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:121: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:126: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:138: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:144: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:145: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:145: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:151: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:178: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:178: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:183: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:183: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:188: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:188: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:195: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:195: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:202: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:202: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:215: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:215: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:216: error: Module \"anti_pattern_lint\" does not explicitly export attribute \"in_scope\"  [attr-defined]\nscripts\\auto\\test_auto_checks.py:217: error: Module \"anti_pattern_lint\" does not explicitly export attribute \"in_scope\"  [attr-defined]\nscripts\\auto\\test_auto_checks.py:233: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:247: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:253: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:268: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:276: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:276: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:287: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:287: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:294: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:314: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:314: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:319: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:319: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:322: error: Argument 2 to \"resolve_targets\" has incompatible type \"stmt\"; expected \"Import | ImportFrom\"  [arg-type]\nscripts\\auto\\test_auto_checks.py:325: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:325: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:335: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:335: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:341: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:341: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:348: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:362: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:371: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:378: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:386: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:395: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:401: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:408: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:415: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:421: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:431: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:431: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:436: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:455: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:455: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:464: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:472: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:472: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:481: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:488: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:511: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:518: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:518: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:525: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:525: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:531: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:537: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:537: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:542: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:542: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:554: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:554: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:565: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:571: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:580: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:592: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:592: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:599: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:599: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:602: error: Argument 2 to \"resolve_targets\" has incompatible type \"stmt\"; expected \"Import | ImportFrom\"  [arg-type]\nscripts\\auto\\test_auto_checks.py:605: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:605: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:614: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:614: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:618: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:618: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:625: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:631: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:640: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:648: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:657: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:657: note: Use \"-> None\" if function does not return a value\nscripts\\auto\\test_auto_checks.py:666: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:672: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:679: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:680: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:682: error: Call to untyped function \"fm\" in typed context  [no-untyped-call]\nscripts\\auto\\test_auto_checks.py:683: error: Call to untyped function \"fm\" in typed context  [no-untyped-call]\nscripts\\auto\\test_auto_checks.py:684: error: Call to untyped function \"fm\" in typed context  [no-untyped-call]\nscripts\\auto\\test_auto_checks.py:691: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:703: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:709: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:717: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:730: error: Function is missing a type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:735: error: Function is missing a return type annotation  [no-untyped-def]\nscripts\\auto\\test_auto_checks.py:735: note: Use \"-> None\" if function does not return a value\nFound 105 errors in 6 files (checked 6 source files)\n",
+      "stderr": ""
+    },
+    "mypy-after": {
+      "command": [
+        "-m",
+        "mypy",
+        "--strict",
+        "--follow-imports=silent",
+        "scripts/auto"
+      ],
+      "MYPYPATH": "scripts;scripts/auto",
+      "exit_code": 1,
+      "stdout": "scripts\\overclaim_lean.py:161: error: Call to untyped function (unknown) in typed context  [no-untyped-call]\nFound 1 error in 1 file (checked 6 source files)\n",
+      "stderr": ""
+    },
+    "mypy-final": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "--no-incremental",
+        "--follow-imports=silent",
+        "scripts/auto"
+      ],
+      "MYPYPATH": "scripts;scripts/auto",
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 6 source files\n",
+      "stderr": ""
+    },
+    "overclaim": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 3924d378ff1d); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    "lint": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/anti_pattern_lint.py",
+        "--changed-since",
+        "origin/main",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"anti_pattern_lint\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"6 changed .lean/.py files since origin/main (Lean rules: added lines)\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 0\n  },\n  \"findings\": []\n}\n",
+      "stderr": ""
+    },
+    "skills": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/estate_audit.py",
+        "skills",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"estate_audit\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"13 skills\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 3\n  },\n  \"findings\": [\n    {\n      \"rule\": \"MISSING_PATH\",\n      \"severity\": \"LOW\",\n      \"path\": \".claude/skills/audit/SKILL.md\",\n      \"line\": 42,\n      \"message\": \"cited path .agents/agents/ does not exist\",\n      \"detail\": \"\"\n    },\n    {\n      \"rule\": \"MISSING_PATH\",\n      \"severity\": \"LOW\",\n      \"path\": \".claude/skills/audit/SKILL.md\",\n      \"line\": 42,\n      \"message\": \"cited path .claude/agents/ does not exist\",\n      \"detail\": \"\"\n    },\n    {\n      \"rule\": \"MISSING_PATH\",\n      \"severity\": \"LOW\",\n      \"path\": \".claude/skills/overclaim-hunter/SKILL.md\",\n      \"line\": 37,\n      \"message\": \"cited path docs/overclaim/report.md does not exist\",\n      \"detail\": \"\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    "symmetry": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/symmetry_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--fail-on",
+        "none",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"symmetry_scan\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"46 prose files changed since origin/main; code constants always compared\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 0\n  },\n  \"findings\": []\n}\n",
+      "stderr": ""
+    },
+    "obstructions": {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/obstruction_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--fail-on",
+        "none",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"tool\": \"obstruction_scan\",\n  \"AuthorityEffect\": \"None\",\n  \"scope\": \"changes since origin/main; rules O1, O2, O3\",\n  \"counts\": {\n    \"HIGH\": 0,\n    \"MEDIUM\": 0,\n    \"LOW\": 0\n  },\n  \"findings\": []\n}\n",
+      "stderr": ""
+    }
+  },
+  "limits": [
+    "The original mutation campaign is historical and was not replayed on these bytes.",
+    "The pre-fix regression run failed six tactic-alternative cases; all 111 selected tests passed after repair.",
+    "Git subprocesses have no deadline; broad malformed-DAG element validation and semantic Lean parsing are absent.",
+    "Three estate LOW findings describe optional agent directories and an ignored local report; none licenses a status change.",
+    "A stale incremental mypy run still reported an unchanged dependency; the no-incremental final run passes all six reviewed files."
+  ]
+}
