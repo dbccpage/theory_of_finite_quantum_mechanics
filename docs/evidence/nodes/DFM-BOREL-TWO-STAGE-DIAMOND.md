@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.
+Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.
 
 ## Source status
 
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md](../../../dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md)
-- sha256 (`lf-normalised`): `c96408655cbb7d7a7a32eb4bb1b9ea38d5c090e67303097de6be8a5c0fa60f1e`
+- sha256 (`lf-normalised`): `bbfb9d3e6f9972c5dcd20dc6136c3f748f18d96dfb31381da102b802b3cd4f07`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1106
 - counts toward the grade: no
@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-DFM-BOREL-TWO-STAGE-DIAMOND` `COMPUTED`: [DFM-BOREL-LEVI-FACTORIZATION](DFM-BOREL-LEVI-FACTORIZATION.md) (DEFINITION), [DFM-HIERARCHICAL-BOREL](DFM-HIERARCHICAL-BOREL.md) (OPEN)
+- `APP-R-DFM-BOREL-TWO-STAGE-DIAMOND` `COMPUTED`: [DFM-BOREL-LEVI-FACTORIZATION](DFM-BOREL-LEVI-FACTORIZATION.md) (DEFINITION), [DFM-HIERARCHICAL-BOREL](DFM-HIERARCHICAL-BOREL.md) (PROVED_LEAN)
 
 Outgoing (0):
 
