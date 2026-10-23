@@ -998,3 +998,7 @@ lean_lib CampaignGenesisOngoingRename where
 
 lean_lib CampaignGenesisOngoingRefinement where
   roots := #[`CampaignGenesisOngoingRefinement]
+
+-- Explicit comparison classes, reusing the sealed source library above.
+lean_lib CampaignGenesisProcessComparison where
+  roots := #[`CampaignGenesisProcessComparison]

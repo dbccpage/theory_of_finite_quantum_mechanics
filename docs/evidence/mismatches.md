@@ -8,7 +8,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 0 |
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 35 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
-| `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 13 |
+| `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 12 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 54 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 27 |
 
@@ -199,7 +199,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0194](nodes/TFQ-0194.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0196](nodes/TFQ-0196.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 5 in-repo Rust or Python symbol(s) cited, none a test |
 
-## `proved_prose_no_in_repo_document` (13)
+## `proved_prose_no_in_repo_document` (12)
 
 PROVED_PROSE with no in-repo source document cited. Ordered by downstream nodes, most first.
 
@@ -207,7 +207,6 @@ PROVED_PROSE with no in-repo source document cited. Ordered by downstream nodes,
 |---|---|---|---|---|---|
 | [PGW-NO-ENDOGENOUS-DEMAND-GENERATOR](nodes/PGW-NO-ENDOGENOUS-DEMAND-GENERATOR.md) | GENESIS | `PROVED_PROSE` | E3 | 134 | no in-repo non-generated document among the counted sources |
 | [PGW-IDENTITY-IS-INDEX-NOT-PROFILE](nodes/PGW-IDENTITY-IS-INDEX-NOT-PROFILE.md) | GENESIS | `PROVED_PROSE` | E3 | 132 | no in-repo non-generated document among the counted sources |
-| [PGW-MINIMAL-OR-INITIAL-REFUSED](nodes/PGW-MINIMAL-OR-INITIAL-REFUSED.md) | GENESIS | `PROVED_PROSE` | E1 | 132 | no in-repo non-generated document among the counted sources |
 | [PGW-SEALED-TERMINAL-STATEMENT](nodes/PGW-SEALED-TERMINAL-STATEMENT.md) | GENESIS | `PROVED_PROSE` | E0 | 131 | no in-repo non-generated document among the counted sources |
 | [PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE](nodes/PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE.md) | MSSN_SN | `PROVED_PROSE` | E3 | 27 | no in-repo non-generated document among the counted sources |
 | [PGW-WDP-FAILED-SAMENESS](nodes/PGW-WDP-FAILED-SAMENESS.md) | WDP | `PROVED_PROSE` | E0 | 10 | no in-repo non-generated document among the counted sources |

@@ -1,0 +1,534 @@
+{
+  "authority_effect": "None",
+  "reviewed_head": "daa4385a45a5819dcce9d7a5349a778224ec46d9",
+  "source_sha256": {
+    "lean4/CampaignGenesisProcessComparison.lean": "3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2",
+    "checks/independent/pgw-minimal-or-initial-refused.py": "67fa864d43432040bd7af3a1e02077c4c8757cae77db55851d2660d449be046c",
+    "lean4/lakefile.lean": "e32aa23d838b337db8207f4dcc664c12c1c3d121bdfbba1f68b01919ce317c83"
+  },
+  "checks": {
+    "build_evidence-check": {
+      "label": "build_evidence-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:42:00.526325+00:00",
+      "completed": "2026-10-23T09:42:04.833538+00:00",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    "build_results_audit_table-check": {
+      "label": "build_results_audit_table-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "papers/core/tools/build_results_audit_table.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:53.798367+00:00",
+      "completed": "2026-10-23T09:41:53.967224+00:00",
+      "exit_code": 0,
+      "stdout": "generated blocks are current\n",
+      "stderr": ""
+    },
+    "build_status-check": {
+      "label": "build_status-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:53.968209+00:00",
+      "completed": "2026-10-23T09:42:00.526325+00:00",
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    },
+    "campaign-pytest": {
+      "label": "campaign-pytest",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "--basetemp=lean4/b/review-pytest-temp"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:42:06.313504+00:00",
+      "completed": "2026-10-23T09:42:16.520519+00:00",
+      "exit_code": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.12.10, pytest-8.3.5, pluggy-1.7.0\nrootdir: C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics\nconfigfile: pyproject.toml\ncollected 24 items\n\ndag\\test_tensor_countermodel_receipt.py ..                               [  8%]\ndag\\test_tensor_measurement_receipt.py ..                                [ 16%]\ndag\\test_application_branches.py ........                                [ 50%]\ndag\\test_frontier_branches.py ........                                   [ 83%]\ndag\\test_genesis_to_higher.py ....                                       [100%]\n\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 24 passed, 1 warning in 9.82s ========================\n",
+      "stderr": ""
+    },
+    "dag-validator": {
+      "label": "dag-validator",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:42:05.093563+00:00",
+      "completed": "2026-10-23T09:42:06.313504+00:00",
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    "invariants": {
+      "label": "invariants",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:42:04.833538+00:00",
+      "completed": "2026-10-23T09:42:05.093563+00:00",
+      "exit_code": 0,
+      "stdout": "unified invariants failures=0\n",
+      "stderr": ""
+    },
+    "overclaim": {
+      "label": "overclaim",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:42:16.521039+00:00",
+      "completed": "2026-10-23T09:42:23.808881+00:00",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 8c63b1deb7d0); HIGH=0 MEDIUM=0 LOW=4\n",
+      "stderr": ""
+    },
+    "readme-check": {
+      "label": "readme-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:34:33.230340+00:00",
+      "completed": "2026-10-23T09:40:34.051312+00:00",
+      "exit_code": 0,
+      "stdout": "README facts current\n",
+      "stderr": ""
+    },
+    "render_dag_views-check": {
+      "label": "render_dag_views-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:53.413665+00:00",
+      "completed": "2026-10-23T09:41:53.603097+00:00",
+      "exit_code": 0,
+      "stdout": "views match derivation_dag.json\n",
+      "stderr": ""
+    },
+    "repin_tensor_receipts-check": {
+      "label": "repin_tensor_receipts-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:53.603097+00:00",
+      "completed": "2026-10-23T09:41:53.798367+00:00",
+      "exit_code": 0,
+      "stdout": "receipts current\n",
+      "stderr": ""
+    },
+    "sync_application_branches-check": {
+      "label": "sync_application_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:51.936208+00:00",
+      "completed": "2026-10-23T09:41:52.220390+00:00",
+      "exit_code": 0,
+      "stdout": "application branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_frontier_branches-check": {
+      "label": "sync_frontier_branches-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:52.722595+00:00",
+      "completed": "2026-10-23T09:41:53.106452+00:00",
+      "exit_code": 0,
+      "stdout": "frontier branches synchronized\n",
+      "stderr": ""
+    },
+    "sync_genesis_to_higher-check": {
+      "label": "sync_genesis_to_higher-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:53.108019+00:00",
+      "completed": "2026-10-23T09:41:53.413665+00:00",
+      "exit_code": 0,
+      "stdout": "genesis-to-higher synchronized\n",
+      "stderr": ""
+    },
+    "sync_pfp_results-check": {
+      "label": "sync_pfp_results-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:51.146216+00:00",
+      "completed": "2026-10-23T09:41:51.415476+00:00",
+      "exit_code": 0,
+      "stdout": "pfp results synchronized\n",
+      "stderr": ""
+    },
+    "sync_pregenesis_to_wdp-check": {
+      "label": "sync_pregenesis_to_wdp-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:52.220390+00:00",
+      "completed": "2026-10-23T09:41:52.722595+00:00",
+      "exit_code": 0,
+      "stdout": "pregenesis-to-wdp fragment synchronized\n",
+      "stderr": ""
+    },
+    "sync_unified_dag-check": {
+      "label": "sync_unified_dag-check",
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr209-review\\theory_of_finite_quantum_mechanics",
+      "started": "2026-10-23T09:41:51.416475+00:00",
+      "completed": "2026-10-23T09:41:51.934947+00:00",
+      "exit_code": 0,
+      "stdout": "unified DAG synchronized\n",
+      "stderr": ""
+    }
+  },
+  "contract_audit": {
+    "schema_version": "tfqm.contract-score-coverage-audit.v1",
+    "authority_effect": "None",
+    "assessment_id": "source-coverage-baseline-v1",
+    "population_rule": {
+      "included": "tracked and ordinary-untracked *.py and *.rs under code/, and *.lean under lean4/",
+      "excluded_parts": [
+        ".lake",
+        "__pycache__",
+        "node_modules",
+        "target"
+      ],
+      "sealed_snapshot_prefixes": [
+        "dag/results/",
+        "dag/sealed_runs/",
+        "sealed_runs/"
+      ],
+      "source_discovery": "git ls-files --cached --others --exclude-standard -z followed by explicit path filtering"
+    },
+    "summary": {
+      "sources": 3,
+      "valid_contracts_and_scores": 3,
+      "invalid_or_missing": 0,
+      "by_language": {
+        "Lean 4": 2,
+        "Python": 1
+      },
+      "by_preliminary_profile": {
+        "Exact": 1,
+        "Non-Numeric": 1,
+        "Symbolic/Formal": 1
+      },
+      "completed_scores": 3,
+      "incomplete_scores": 0,
+      "generated_governance_twins": 0,
+      "non_twin_sources": 3
+    },
+    "errors": [],
+    "artifacts": [
+      {
+        "path": "lean4/CampaignGenesisProcessComparison.lean",
+        "sha256": "3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2",
+        "language": "Lean 4",
+        "companion": "lean4/CampaignGenesisProcessComparison.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "4abd7ca9750771998c836f05f76adb74061cc455cc2c1eb99437aaaa9360977a",
+        "score_digest": "1a6deb34ceaabc15aca44f5e521097084c3c40953746126977b229b7fc1bc027",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "checks/independent/pgw-minimal-or-initial-refused.py",
+        "sha256": "67fa864d43432040bd7af3a1e02077c4c8757cae77db55851d2660d449be046c",
+        "language": "Python",
+        "companion": "checks/independent/pgw-minimal-or-initial-refused.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "e98b7f89e95192b1bbd92cbb64fcdabded6fb13f7ad023fb74dc2d0fb48ac462",
+        "score_digest": "34d1557b1a7fe93c6d58c1922fd68031088af7ebbc45208cf0ec7b0e2168eb5d",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L3D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "lean4/lakefile.lean",
+        "sha256": "e32aa23d838b337db8207f4dcc664c12c1c3d121bdfbba1f68b01919ce317c83",
+        "language": "Lean 4",
+        "companion": "lean4/lakefile.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "4b1df7a68faa19e4cf2d64e015e96dc533b5ab35e5ff6f4fc2ee58620e910b86",
+        "score_digest": "bf5721d4d55dfabe502931608e663f3a85a1aafd6b9a699e6acf881cbf7744d6",
+        "assessment_status": "complete_scoped_independent_review",
+        "score_token": "L1D",
+        "is_complete": true,
+        "valid": true
+      }
+    ],
+    "scope_boundary": "This audit proves source-to-companion coverage and current-byte custody. It does not promote incomplete static assessments to engineering-grade certification."
+  },
+  "limits": [
+    "No whole-repository build/scoring certification.",
+    "Known hosted CodeQL Default/Advanced configuration conflict remains a separate maintainer setting."
+  ],
+  "scoped_overclaim_details": {
+    "schema": "overclaim_report.v1",
+    "authority_effect": "None",
+    "rules": {
+      "R1": {
+        "severity": "HIGH",
+        "title": "PROVED_LEAN node without a Lean reference that resolves in this checkout"
+      },
+      "R2": {
+        "severity": "MEDIUM",
+        "title": "PROVED_LEAN node whose cited theorem has type True, or whose statement says every/all/unique/iff while every cited theorem is one closed instance"
+      },
+      "R3": {
+        "severity": "HIGH",
+        "title": "sorry, admit, axiom, native_decide or unsafe in a Lean module cited by a PROVED_LEAN or CONDITIONAL node"
+      },
+      "R4": {
+        "severity": "HIGH",
+        "title": "replay receipt whose sha256 differs from the file, or whose axioms exceed the allowed three"
+      },
+      "R5": {
+        "severity": "LOW",
+        "title": "number in a node statement, derivation note or README found in none of the node's cited files"
+      },
+      "R6": {
+        "severity": "HIGH",
+        "title": "public prose calls a node proved or derived when its DAG status is not a proved status"
+      },
+      "R7": {
+        "severity": "MEDIUM",
+        "title": "absolute or promotional wording in public prose"
+      },
+      "R8": {
+        "severity": "MEDIUM",
+        "title": "independent derivation note without the required Status line"
+      },
+      "R9": {
+        "severity": "HIGH",
+        "title": "status rose versus the git ref with no new resolving Lean reference and replay receipt in the diff"
+      },
+      "R10": {
+        "severity": "LOW",
+        "title": "PROVED_LEAN node whose cited Lean modules appear in no replay receipt"
+      }
+    },
+    "counts": {
+      "R1": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R2": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R3": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R4": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R5": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 3
+      },
+      "R6": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R7": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R8": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R9": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "R10": {
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 1
+      }
+    },
+    "totals": {
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 4
+    },
+    "findings": [
+      {
+        "severity": "LOW",
+        "rule": "R10",
+        "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+        "line": 0,
+        "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+        "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+        "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+        "line": 0,
+        "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "line": 0,
+        "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f"
+      },
+      {
+        "severity": "LOW",
+        "rule": "R5",
+        "subject": "dag/derivations/independent/pgw-minimal-or-initial-refused.md",
+        "line": 0,
+        "evidence": "note for PGW-MINIMAL-OR-INITIAL-REFUSED: 4 of 4 numbers in no cited file: 682, 41764, 98346, 1230",
+        "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+        "key": "R5|dag/derivations/independent/pgw-minimal-or-initial-refused.md|note|fc6ae20301"
+      }
+    ]
+  },
+  "overclaim_triage": {
+    "strict_scan": {
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 4
+    },
+    "current_census": {
+      "processes": 682,
+      "clock_component_candidates": 41764,
+      "behavior_equal_pairs": 98346,
+      "minimality_comparisons": 1230,
+      "evidence": "Independent normal and optimized exact finite pair-orbit census; values computed rather than hard-coded."
+    },
+    "legacy_tensor_limits": [
+      "Date 20261019 is an identifier.",
+      "Unchanged tensor 1/2 and 1/4 claims are not recertified by this process review.",
+      "Five historical tensor modules lack a replay receipt; this review does not supply one."
+    ]
+  }
+}
