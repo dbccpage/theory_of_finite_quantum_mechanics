@@ -10110,7 +10110,7 @@ Obligation: Construct a regulated chiral boundary determinant whose projector, b
 
 For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary symmetry of the Dirac operator makes det D_adj real for every gauge configuration.
 
-Obligation: For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.
+Obligation: For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.
 
 ### TFQ-1201 Complex quark determinant at real chemical potential
 

@@ -3484,14 +3484,32 @@
       "source": [
         "dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-su2-adjoint-real-det.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.reality_not_positivity_witness",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip"
+      ],
       "rust": [],
       "imported_structure": [
         "lattice SU(2) gauge theory with adjoint Dirac fermions (standard)"
       ],
-      "bottleneck": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.",
+      "bottleneck": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -9770,7 +9788,7 @@
       ],
       "output": "FSP-SU2-ADJOINT-REAL-DET",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.",
+      "mechanism": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.",
       "source": [
         "dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -15750,7 +15768,7 @@
       "parent_id": "TFQ-1196",
       "record_status": "IMPORTED_ASSUMPTION",
       "summary": "For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary symmetry of the Dirac operator makes det D_adj real for every gauge configuration.",
-      "obligation": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.",
+      "obligation": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-SU2-ADJOINT-REAL-DET"
@@ -15760,11 +15778,31 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md:503-515",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:522-541"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:522-541",
+        "dag/derivations/independent/fsp-su2-adjoint-real-det.md"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-su2-adjoint-real-det.py::main"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.reality_not_positivity_witness",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip"
+      ]
     },
     {
       "id": "TFQ-1201",

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py`
 
 - file: [code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py](../../../code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py)
-- sha256 (`bytes`): `83c7a6bc2b6e24b75bbcd469a3d1c0fcd9ce88ea8fa6ee820a9bc2a554603eeb`
+- sha256 (`bytes`): `481b0a5e356f8fb4632f50280bd862377014e3b8bfba0aef7afe481a4d3ca21d`
 - cited in: record TFQ-1207
 - counts toward the grade: yes
 
