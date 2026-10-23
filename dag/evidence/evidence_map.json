@@ -9,9 +9,19 @@
   "nodes": 880,
   "path": "dag/derivation_dag.json",
   "routes": 885,
-  "sha256_lf": "46f1b54763f06761c4d3ccdad82da6d8525fe80534c606b901ce20bfce2f9867"
+  "sha256_lf": "5facf2d7e65c51e5d9f7e1e890750eadbcd527b32b89aab1040d805eb943036b"
  },
  "files": {
+  "checks/independent/pgw-presentation-not-expressive-lift.py": {
+   "sha256": "11490a7350cd3707be4844f886a505a9d2f3577aa26d1821e761cb1d849d9ee8",
+   "sha256_basis": "bytes",
+   "size": 8852
+  },
+  "checks/independent/tfq-0016.py": {
+   "sha256": "5b1dce6ccad7d370609d4a8a41993a0c703dabf5afcceb58177d34b82e483215",
+   "sha256_basis": "bytes",
+   "size": 12147
+  },
   "code/python/src/fsp/bqnf_sign_evaluator.py": {
    "sha256": "6bbc7a71841797e537bf4f62308124325c6f39848c08ee914dfb96187f892f92",
    "sha256_basis": "bytes",
@@ -713,9 +723,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "46f1b54763f06761c4d3ccdad82da6d8525fe80534c606b901ce20bfce2f9867",
+   "sha256": "5facf2d7e65c51e5d9f7e1e890750eadbcd527b32b89aab1040d805eb943036b",
    "sha256_basis": "lf-normalised",
-   "size": 4360272
+   "size": 4362187
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -853,9 +863,9 @@
    "size": 3471
   },
   "dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md": {
-   "sha256": "a742d4d0d12165bc6bdc301b520a8c9b05680050a39de51a0ba299ba5e77bc7b",
+   "sha256": "04b778517449cda76271bb0713ec7866fefba41f621c82c03692e34fbb835abb",
    "sha256_basis": "lf-normalised",
-   "size": 3208
+   "size": 4208
   },
   "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md": {
    "sha256": "2400d95576a16f2deb78da2aa917ae5bbf0049d2822e54c608f76578e1bb356b",
@@ -2698,9 +2708,9 @@
    "size": 2480
   },
   "dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md": {
-   "sha256": "eb1c0eeed8568ab09638d059b9e203a7f55267a7274b7b8a1da6944b5fcbe270",
+   "sha256": "eb4f6c77ac436cbb7c0d6d1baa71e363eb3c70c7dcb4a0dc6f3d43850ea60633",
    "sha256_basis": "lf-normalised",
-   "size": 2429
+   "size": 2812
   },
   "dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md": {
    "sha256": "1f93acccbf9f98d7e28e3b641a6758cbed507d3ffcfbc1a2562084548f530d66",
@@ -5428,9 +5438,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "sha256_basis": "lf-normalised",
-   "size": 77831
+   "size": 88994
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -5676,6 +5686,16 @@
    "sha256": "e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79",
    "sha256_basis": "bytes",
    "size": 10301
+  },
+  "lean4/CampaignPgwPresentationLift.lean": {
+   "sha256": "034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074",
+   "sha256_basis": "bytes",
+   "size": 13926
+  },
+  "lean4/CampaignTfq0016B2Dressing.lean": {
+   "sha256": "d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97",
+   "sha256_basis": "bytes",
+   "size": 22522
   },
   "lean4/CausalOrder.lean": {
    "sha256": "f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0",
@@ -89064,7 +89084,7 @@
       "nodes": [
        "TFQ-0016"
       ],
-      "status": "GAP_NO_DERIVATION"
+      "status": "DERIVED_LEAN"
      }
     ]
    },
@@ -89073,23 +89093,495 @@
   },
   {
    "absent_notes": [
-    "TFQ-0016 lean4: two-stage Borel dressing is not in FiniteQM.lean",
-    "TFQ-0016 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/nonabelian_dfm_control.py",
     "TFQ-0016 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs"
    ],
    "dependents": 26,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 2,
+    "lean_receipt_backed": 12,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 12
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "TFQ-0016",
    "items": [
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.UpperTri2.b2_factorization_unique",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.UpperTri2.b2_factorization_unique",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)",
+      "record TFQ-0016"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.UpperTri2.b2_semidirect_factorization",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.UpperTri2.unipotent_subgroup_normal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.b2_color_dimension_mismatch",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.b2_color_dimension_mismatch",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.b_squared_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.b_squared_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.curvature_gauge_covariance",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.curvature_gauge_covariance",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)",
+      "record TFQ-0016"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.discrete_bianchi_identity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.discrete_bianchi_identity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.stage1_preserves_quotient_projection",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.stage1_preserves_quotient_projection",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.stage1_residual_first_kind_torus",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.stage1_residual_first_kind_torus",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.stage1_tree_edges_diagonal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.stage1_tree_edges_diagonal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)",
+      "record TFQ-0016"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.stage2_reproduces_residual",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.stage2_reproduces_residual",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_tfq-0016_lean_replay.json (CampaignTfq0016B2Dressing)",
+      "record TFQ-0016"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0016B2Dressing",
+     "command_note": "then, in a scratch file that imports CampaignTfq0016B2Dressing: #print axioms CampaignTfq0016.two_stage_factorization",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0016B2Dressing.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0016.two_stage_factorization",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0016"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0016.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -89115,7 +89607,7 @@
      "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0016"
    ],
@@ -89127,7 +89619,7 @@
       "nodes": [
        "TFQ-0015"
       ],
-      "status": "GAP_NO_DERIVATION"
+      "status": "DERIVED_LEAN"
      }
     ],
     "out": [
@@ -89141,7 +89633,7 @@
     ]
    },
    "stage": "FINITE_QCD",
-   "status": "OPEN"
+   "status": "PROVED_LEAN"
   },
   {
    "absent_notes": [
@@ -110571,22 +111063,45 @@
   },
   {
    "absent_notes": [
-    "TFQ-0422 python: no Python record separating presentation state from internal class",
     "TFQ-0422 rust: no Rust record separating presentation state from internal class"
    ],
    "dependents": 13,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 2,
     "lean_receipt_backed": 0,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 2
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E2",
    "id": "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT",
    "items": [
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0422"
+     ],
+     "command": "cd lean4 && lake build CampaignPgwPresentationLift",
+     "command_note": "then, in a scratch file that imports CampaignPgwPresentationLift: #print axioms CampaignPgwPresentationLift.statement_holds_under_opaque_only",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignPgwPresentationLift.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignPgwPresentationLift.statement_holds_under_opaque_only",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.lean"
@@ -110608,6 +111123,29 @@
      "symbol": "empty_profiles_equal",
      "symbol_declared": null,
      "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0422"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/pgw-presentation-not-expressive-lift.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "main",
+     "symbol_declared": true,
+     "symbol_exists": true,
      "where": null
     },
     {
@@ -110704,7 +111242,7 @@
      "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)",
    "records": [
     "TFQ-0422"
    ],
@@ -211163,6 +211701,32 @@
     "propext"
    ],
    "built_successfully": null,
+   "checked_at": "2026-10-22",
+   "dag_node": "TFQ-0016",
+   "decl_count": 12,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0016_lean_replay.json#0:CampaignTfq0016B2Dressing",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignTfq0016B2Dressing",
+   "path": "lean4/CampaignTfq0016B2Dressing.lean",
+   "receipt_file": "dag/research/campaign_tfq-0016_lean_replay.json",
+   "receipt_file_sha256": "e7e00ee672bd655c83d16b932852e210969829ab9777acf6c39d2f8240373712",
+   "recorded_sha256": "d4e19fdc920c6c136ce61236e5ce2e8aa28ccc04fd0546a9e52bc2f14214aa97",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
    "checked_at": "2026-10-22T23:30:00Z",
    "dag_node": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
    "decl_count": 9,
@@ -212257,7 +212821,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212283,7 +212847,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212309,7 +212873,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212335,7 +212899,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212361,7 +212925,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212387,7 +212951,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212413,7 +212977,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212439,7 +213003,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212465,7 +213029,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212491,7 +213055,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212517,7 +213081,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212543,7 +213107,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212569,7 +213133,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212595,7 +213159,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -212621,7 +213185,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fc3975287cafc11cd77dad32753e4475dde3d2f77e58451d71af92b5dd4f9440",
+   "receipt_file_sha256": "2dc31aad2b5bc0227dac74ba544262d99bf22754c87f350870ec7ccdd6b37f8e",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -213192,10 +213756,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 284,
+   "E0": 282,
    "E1": 219,
-   "E2": 323,
-   "E3": 54,
+   "E2": 324,
+   "E3": 55,
    "E4": 0
   },
   "by_status": {
@@ -213204,8 +213768,8 @@
    "CONDITIONAL": 34,
    "DEFINITION": 91,
    "IMPORTED_ASSUMPTION": 63,
-   "OPEN": 168,
-   "PROVED_LEAN": 261,
+   "OPEN": 167,
+   "PROVED_LEAN": 262,
    "PROVED_PROSE": 27,
    "REFUTED": 2,
    "SOURCE_RECORD": 79
@@ -213215,18 +213779,18 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 8,
   "e3_nodes_with_test_but_no_review": 4,
   "lean_declarations_in_repo": {
-   "distinct": 1001,
-   "no_receipt": 838,
+   "distinct": 1006,
+   "no_receipt": 839,
    "replay_failed": 0,
    "replay_stale": 0,
-   "replay_verified": 163,
-   "replay_verified_and_declaration_itemised": 155,
+   "replay_verified": 167,
+   "replay_verified_and_declaration_itemised": 159,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
    "external_unresolved": 313,
    "missing": 1,
-   "present": 1274
+   "present": 1279
   },
   "mismatch_nodes": 399,
   "mismatches_by_kind": {
@@ -213242,15 +213806,15 @@
   "nodes": 880,
   "proved_lean_lean_references": {
    "external_unresolved": 231,
-   "present": 761
+   "present": 765
   },
   "proved_lean_nodes": {
    "outside_lean_only": 53,
-   "total": 261,
-   "with_in_repo_lean": 208,
+   "total": 262,
+   "with_in_repo_lean": 209,
    "with_some_outside_lean": 83
   },
-  "receipts_indexed": 78,
+  "receipts_indexed": 79,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -213337,10 +213901,10 @@
     "E4": 0
    },
    "FINITE_QCD": {
-    "E0": 7,
+    "E0": 6,
     "E1": 25,
     "E2": 0,
-    "E3": 0,
+    "E3": 1,
     "E4": 0
    },
    "FINITE_QED": {
@@ -213456,9 +214020,9 @@
     "E4": 0
    },
    "PREGENESIS": {
-    "E0": 17,
+    "E0": 16,
     "E1": 0,
-    "E2": 0,
+    "E2": 1,
     "E3": 14,
     "E4": 0
    },
@@ -213493,9 +214057,9 @@
     "E4": 0
    },
    "CONDITIONAL": {
-    "E0": 15,
+    "E0": 14,
     "E1": 1,
-    "E2": 16,
+    "E2": 17,
     "E3": 2,
     "E4": 0
    },
@@ -213514,7 +214078,7 @@
     "E4": 0
    },
    "OPEN": {
-    "E0": 58,
+    "E0": 57,
     "E1": 93,
     "E2": 15,
     "E3": 2,
@@ -213524,7 +214088,7 @@
     "E0": 51,
     "E1": 0,
     "E2": 168,
-    "E3": 42,
+    "E3": 43,
     "E4": 0
    },
    "PROVED_PROSE": {
