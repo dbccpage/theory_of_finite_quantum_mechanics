@@ -614,3 +614,7 @@ lean_lib CampaignCtMediatorEntanglement where
 lean_lib CampaignTfq0016B2Dressing where
   roots := #[`CampaignTfq0016B2Dressing]
 
+-- Finite combinatorial shadow of Genesis admission. Not a default target.
+lean_lib GenesisHottShadow where
+  roots := #[`GenesisHottShadow]
+
