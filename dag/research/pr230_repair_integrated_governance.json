@@ -1,0 +1,50 @@
+{
+  "command": "C:\\Users\\a343o\\.codex\\worktrees\\pr230-review\\theory_of_finite_quantum_mechanics\\.venv-review\\governance-target\\release\\governance-check.exe --root . check --changed-since origin/main",
+  "exit_code": 0,
+  "stdout": "changed since origin/main (5dd17d703e172b107218330a35fcdb43354ce204): 41 paths\nnote: baseline entry added with reason: lean4/CampaignDfmElectroweakContinuumFence.lean: PR #230: maintainer explicitly waived L4/D acceptance (Ignore L4D requirements so we can merge our PRs). Retain honest L3D proof and L1D Lake registry scores. This exception binds only the reviewed bytes; changing them removes it.\nchecked 8194: 23 pass, 8151 grandfathered, 20 boilerplate, 0 failed\n",
+  "stderr": "",
+  "checked_at": "2026-10-23T18:28:07.064708+00:00",
+  "source_commit": "f5414d8c5ab220861e9fc9569d47695a267abba1",
+  "integration_base": "5dd17d703e172b107218330a35fcdb43354ce204",
+  "authority_effect": "None",
+  "final_metadata_checks": [
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 5dd17d703e17); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "stdout": "evidence map current\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 5dd17d703e17), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main",
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 3,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "companion_bindings": [
+    {
+      "path": "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml",
+      "sha256": "643139ac3ea3bc2624b5b6147b1868c4e8e7073e4c75cbc7e2d6f71065cf16c0"
+    },
+    {
+      "path": "checks/independent/dfm-electroweak-continuum-fence.contract.score.yaml",
+      "sha256": "770d9b1e605d9dbb08543e647f03cf01b4a6ab6bc20a1aabe9f1520933ba4370"
+    },
+    {
+      "path": "lean4/lakefile.contract.score.yaml",
+      "sha256": "7620591bedbbb726b7938479306da15f189f9da979c2d64df1f2462d6ed34d96"
+    }
+  ]
+}
