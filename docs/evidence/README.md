@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 880 nodes in 34 stages. Evidence grades: E0 284, E1 219, E2 324, E3 53.
+The DAG has 880 nodes in 34 stages. Evidence grades: E0 283, E1 219, E2 325, E3 53.
 
 ### What is proved here, what is imported, what is open
 
@@ -28,7 +28,7 @@ Grade E4 needs an in-repo runnable test and a recorded review as well as a repla
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 999 distinct Lean declarations that lie in files of this checkout. 161 of them are in a file whose current sha256 matches a passing replay receipt; 838 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 992 Lean references; 231 (23 percent) lie in sibling-atlas paths or do not exist in this checkout. 53 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 1000 distinct Lean declarations that lie in files of this checkout. 161 of them are in a file whose current sha256 matches a passing replay receipt; 839 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 992 Lean references; 231 (23 percent) lie in sibling-atlas paths or do not exist in this checkout. 53 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -37,20 +37,20 @@ The `lean` fields of nodes cite 999 distinct Lean declarations that lie in files
 | `PROVED_LEAN` | 51 | 0 | 168 | 42 | 0 | 261 |
 | `PROVED_PROSE` | 13 | 5 | 9 | 0 | 0 | 27 |
 | `COMPUTATIONALLY_CHECKED` | 41 | 56 | 55 | 0 | 0 | 152 |
-| `CONDITIONAL` | 15 | 1 | 17 | 1 | 0 | 34 |
+| `CONDITIONAL` | 14 | 1 | 18 | 1 | 0 | 34 |
 | `DEFINITION` | 42 | 16 | 27 | 6 | 0 | 91 |
 | `IMPORTED_ASSUMPTION` | 11 | 22 | 29 | 1 | 0 | 63 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 2 | 1 | 0 | 3 |
 | `SOURCE_RECORD` | 53 | 26 | 0 | 0 | 0 | 79 |
 | `OPEN` | 58 | 93 | 15 | 2 | 0 | 168 |
 | `REFUTED` | 0 | 0 | 2 | 0 | 0 | 2 |
-| Total | 284 | 219 | 324 | 53 | 0 | 880 |
+| Total | 283 | 219 | 325 | 53 | 0 | 880 |
 
 ### Stage by evidence grade
 
 | Stage | E0 | E1 | E2 | E3 | E4 | Total | `PROVED_LEAN` | Flags |
 |---|---|---|---|---|---|---|---|---|
-| [PREGENESIS](stages/PREGENESIS.md) | 17 | 0 | 0 | 14 | 0 | 31 | 12 | 21 |
+| [PREGENESIS](stages/PREGENESIS.md) | 16 | 0 | 1 | 14 | 0 | 31 | 12 | 21 |
 | [GENESIS](stages/GENESIS.md) | 85 | 1 | 3 | 0 | 0 | 89 | 36 | 84 |
 | [MSSN_SN](stages/MSSN_SN.md) | 26 | 0 | 0 | 2 | 0 | 28 | 11 | 26 |
 | [WDP](stages/WDP.md) | 23 | 0 | 0 | 6 | 0 | 29 | 6 | 15 |
