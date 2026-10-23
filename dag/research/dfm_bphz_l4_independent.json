@@ -1,7 +1,74 @@
 {
   "AuthorityEffect": "None",
   "source": "checks/independent/dfm-bphz-continuum-fence.py",
-  "sha256": "12d649fe404c8f99ad913303836c7a365a6e61fdd5fbbeb6bab1d748d91923be",
+  "sha256": "0cad33ad25b1937de952b38c978ac1ef1058f91a938dc39efb5ad18f5be27752",
+  "prior_replay": {
+    "AuthorityEffect": "None",
+    "source": "checks/independent/dfm-bphz-continuum-fence.py",
+    "sha256": "12d649fe404c8f99ad913303836c7a365a6e61fdd5fbbeb6bab1d748d91923be",
+    "checks": [
+      {
+        "argv": [
+          "-I",
+          "-X",
+          "utf8",
+          "checks\\independent\\dfm-bphz-continuum-fence.py"
+        ],
+        "exit_code": 0,
+        "stdout": "overlap forests: 6; excluded pair L with R\nnested forests: 4\nnumerator identity: 7*x*y\nwitness (1/2, 1/3): six-forest quotient 7; omitted-G quotient -5\nsector kernel at z=3/5, lambda=(1/2, 1/3): 9/50, distinct from 7\nformal sector value z*z = 9/25, distinct from 7\nchecked: forests, coefficient identity, sample grid, witness, sector comparison\nprojectors: 12 exact idempotents; 77 compatible lists; two invalid families refused\nthree inexact scalar inputs and two sector poles refused\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "-I",
+          "-X",
+          "utf8",
+          "-O",
+          "checks\\independent\\dfm-bphz-continuum-fence.py"
+        ],
+        "exit_code": 0,
+        "stdout": "overlap forests: 6; excluded pair L with R\nnested forests: 4\nnumerator identity: 7*x*y\nwitness (1/2, 1/3): six-forest quotient 7; omitted-G quotient -5\nsector kernel at z=3/5, lambda=(1/2, 1/3): 9/50, distinct from 7\nformal sector value z*z = 9/25, distinct from 7\nchecked: forests, coefficient identity, sample grid, witness, sector comparison\nprojectors: 12 exact idempotents; 77 compatible lists; two invalid families refused\nthree inexact scalar inputs and two sector poles refused\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "-m",
+          "mypy",
+          "--strict",
+          "checks\\independent\\dfm-bphz-continuum-fence.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Success: no issues found in 1 source file\n",
+        "stderr": ""
+      }
+    ],
+    "mutants": [
+      {
+        "name": "residual",
+        "outcome": "KILLED",
+        "reason": "reduction is not idempotent"
+      },
+      {
+        "name": "idempotence refusal",
+        "outcome": "KILLED",
+        "reason": "invalid projector family admitted"
+      },
+      {
+        "name": "commutation refusal",
+        "outcome": "KILLED",
+        "reason": "invalid projector family admitted"
+      },
+      {
+        "name": "empty family",
+        "outcome": "KILLED",
+        "reason": "empty subtraction is not identity"
+      }
+    ],
+    "metrics": {
+      "max_ccn": 11,
+      "max_cognitive": 11
+    }
+  },
   "checks": [
     {
       "argv": [
