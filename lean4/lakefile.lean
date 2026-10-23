@@ -591,3 +591,6 @@ lean_lib CampaignCtMediatorEntanglement where
     `CampaignCtMediatorEntanglement
   ]
 
+lean_lib GenesisHottHorns where
+  roots := #[`GenesisHottHorns, `GenesisHottModel]
+
