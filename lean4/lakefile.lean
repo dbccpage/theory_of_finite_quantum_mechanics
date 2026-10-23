@@ -591,6 +591,9 @@ lean_lib CampaignL1SectorSymmetry where
     `CampaignL1SectorSymmetry
   ]
 
+lean_lib FableGleasonRun2 where
+  roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
+
 -- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 lean_lib CampaignPgwPresentationLift where
   roots := #[`CampaignPgwPresentationLift]
@@ -601,4 +604,8 @@ lean_lib CampaignCtMediatorEntanglement where
   roots := #[
     `CampaignCtMediatorEntanglement
   ]
+
+-- Derivation Campaign Target 5 (TFQ-0016): B2(Q) Semidirect Factorization, Two-Stage Dressing, Discrete Poset Curvature
+lean_lib CampaignTfq0016B2Dressing where
+  roots := #[`CampaignTfq0016B2Dressing]
 
