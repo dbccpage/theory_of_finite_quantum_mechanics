@@ -1,0 +1,94 @@
+(* MSS-N primitive glyph family, version 1.
+   AuthorityEffect: None. GenesisEffect: None.
+   Each conformance case names its public start (code/check_mssn.py); there is
+   no guessed union/default start. No implicit layout, normalization, semantic binding,
+   bytecode execution, or required outer enclosure.
+   EBNF convention: grammar/README.md. All productions are defined here.
+   Numbers below are lexical annotations until a separate decoder is bound.
+   Existing boundary/historical/DDC languages retain their canonical owners. *)
+
+(* 01: Raw finite inscriptions over Gamma38, INCLUDING the empty word.
+   Here < and > are ordinary marks. Balanced pairing is not an axiom. *)
+raw_glyphs = { glyph | "<" | ">" } ;
+
+(* 02: Nonempty words over Sigma36. No inferred token or entity boundaries. *)
+word = glyph, { glyph } ;
+
+(* 03-05: Three distinct tokenization contracts for unwrapped paths.
+   glyph_path: a0 is two adjacent vertices with a missing direction: reject.
+   label_path: a0 is one identifier.
+   suffix_path: a0 is label a and annotation token 0.
+   Repeated labels identify vertices ONLY under a declared identity policy. *)
+glyph_path = glyph, { direction, glyph } ;
+label_path = word, { direction, word } ;
+suffix_path = suffix_vertex, { direction, suffix_vertex } ;
+suffix_vertex = lower_latin, digits ;
+direction = ">" | "<" ;
+
+(* 06-07: Multiple paths; semicolon is an explicitly added separator.
+   Order, repeated edges and isolated vertices are retained in the syntax. *)
+path_list = glyph_path, { ";", glyph_path } ;
+suffix_list = suffix_path, { ";", suffix_path } ;
+
+(* 08-09: Explicit scalar/vector annotations. Literal spelling is retained.
+   a:1/0 parses; division-by-zero is a later numeric-domain refusal.
+   a[1,2] does not imply a metric space or a physical quantity. *)
+scalar_path = scalar_vertex, { direction, scalar_vertex } ;
+scalar_vertex = lower_latin, ":", scalar ;
+vector_path = vector_vertex, { direction, vector_vertex } ;
+vector_vertex = lower_latin, "[", scalar, { ",", scalar }, "]" ;
+scalar = [ "+" | "-" ], digits, [ ".", digits | "/", digits ] ;
+
+(* 10: Edge-position annotations: a>2>b has one annotated directed step.
+   Both marks on each step must agree; a>2<b is outside this profile. *)
+edge_weight_path = lower_latin, { weighted_link, lower_latin } ;
+weighted_link = ">", scalar, ">" | "<", scalar, "<" ;
+
+(* 11: Named relation marks; r is a label, not a built-in relation. *)
+labelled_path = lower_latin, { "-", word, ">", lower_latin } ;
+
+(* 12-13: Binary prefix/postfix trees over the same glyph/operator inventory.
+   Postfix uses a consuming right-recursive form, not left recursion.
+   These encode binary trees; they do not silently flatten into graph walks. *)
+prefix_tree = glyph | direction, prefix_tree, prefix_tree ;
+postfix_tree = glyph, { postfix_tree, direction } ;
+
+(* 14-16: Delimited sequence, nested grouping, and named application shape.
+   Parentheses/grouping do not assert sethood or function evaluation. *)
+sequence = glyph, { ",", glyph } ;
+nested_tree = glyph | "(", [ nested_tree, { ",", nested_tree } ], ")" ;
+head_term = word, [ "(", [ head_term, { ",", head_term } ], ")" ] ;
+
+(* 17: Ordered source/target incidence lists, including multiplicities.
+   Hypergraph/set semantics need a declared decoder and equality policy. *)
+incidence = incidence_item, { ";", incidence_item } ;
+incidence_item = glyph_group, ">", glyph_group ;
+glyph_group = "[", glyph, { ",", glyph }, "]" ;
+
+(* 18-19: Concrete finite Unicode presentations; these are examples, not a
+   universal Unicode alphabet. Exact literal sequences, including the ZWJ in
+   the technologist token, are significant. No normalization is implicit. *)
+unicode_path = unicode_glyph, { unicode_direction, unicode_glyph } ;
+arrow_path = glyph, { unicode_direction, glyph } ;
+unicode_direction = "→" | "←" ;
+unicode_glyph = "α" | "β" | "γ" | "□" | "●" | "𓀀" | "𓂀" | "👩‍💻" ;
+
+(* 20-21: Downstream serialization surfaces. Bit strings have no implicit
+   word size; octets is a LOWERCASE HEX TEXT view of one or more bytes.
+   Neither is executable bytecode without a separate codebook/machine. *)
+bitstream = bit, { bit } ;
+bit = "0" | "1" ;
+octets = hex_digit, hex_digit, { hex_digit, hex_digit } ;
+hex_digit = digit | "a" | "b" | "c" | "d" | "e" | "f" ;
+
+(* 22: Directed string-rewrite rule shape over Sigma36, with optional empty
+   sides. =>a denotes an insertion rule only after its action is declared.
+   A rule inscription does not apply itself. *)
+rewrite_rule = { glyph }, "=>", { glyph } ;
+
+digits = digit, { digit } ;
+glyph = lower_latin | digit ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+lower_latin = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+            | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+            | "u" | "v" | "w" | "x" | "y" | "z" ;

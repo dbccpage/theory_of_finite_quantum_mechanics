@@ -30,7 +30,7 @@ QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary ho
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm206_207_211_non_full_non_faithful_descent_and_five_import_independence`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm206_four_tier_cochain_exactness_holonomy_invariance_and_nonfull_nonfaithful_descent`
-- `sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm206_four_tier_cochain_exactness_holonomy_invariance_and_nonfull_nonfaithful_descent`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm206_four_tier_cochain_exactness_holonomy_invariance_and_nonfull_nonfaithful_descent`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`

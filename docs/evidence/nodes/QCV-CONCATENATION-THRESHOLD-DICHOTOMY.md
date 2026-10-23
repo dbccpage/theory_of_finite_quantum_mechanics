@@ -1,6 +1,6 @@
 # QCV-CONCATENATION-THRESHOLD-DICHOTOMY
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 21
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 9 Lean reference(s) cited, 9 in this checkout (replay: none 9). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,20 +47,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/QcConcatenation.lean](../../../lean4/QcConcatenation.lean)
 - sha256 (`bytes`): `5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63`
 - cited in: node.lean, record TFQ-1319
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `QcConcatenation`): recorded sha256 `5fea043a891ddf38414c7d169710a95f54e3f28b7b94fc11bd96ecef69541c63` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build QcConcatenation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `conc_closed` | yes | yes | yes | - | `#print axioms conc_closed` |
-| `conc_eq_div` | yes | yes | yes | - | `#print axioms conc_eq_div` |
-| `fixed_point` | yes | yes | yes | - | `#print axioms fixed_point` |
-| `goesToZero_iff_below_threshold` | yes | yes | yes | - | `#print axioms goesToZero_iff_below_threshold` |
-| `sub_bound` | yes | yes | yes | - | `#print axioms sub_bound` |
-| `sub_half_bound` | yes | yes | yes | - | `#print axioms sub_half_bound` |
-| `super_bound` | yes | yes | yes | - | `#print axioms super_bound` |
-| `super_diverges` | yes | yes | yes | - | `#print axioms super_diverges` |
-| `threshold_trichotomy` | yes | yes | yes | - | `#print axioms threshold_trichotomy` |
+| `conc_closed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms conc_closed` |
+| `conc_eq_div` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms conc_eq_div` |
+| `fixed_point` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms fixed_point` |
+| `goesToZero_iff_below_threshold` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms goesToZero_iff_below_threshold` |
+| `sub_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sub_bound` |
+| `sub_half_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sub_half_bound` |
+| `super_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms super_bound` |
+| `super_diverges` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms super_diverges` |
+| `threshold_trichotomy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms threshold_trichotomy` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`

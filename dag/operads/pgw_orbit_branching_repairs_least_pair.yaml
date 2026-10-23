@@ -19,7 +19,7 @@ target:
   - dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:371-379
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:385-391
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean:1058-1063
+  - lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:1067-1072
   paper_refs: []
   source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -33,40 +33,186 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_orbit_branching_repairs_least_pair_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: regRegime
+  line: 981
+  signature_excerpt: 'def regRegime : Regime'
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: renameRegimeR
+  line: 126
+  signature_excerpt: 'def renameRegimeR (f : Nat → Nat) (r : Regime) : Regime'
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mapReq
+  line: 118
+  signature_excerpt: 'def mapReq (f : Nat → Nat) (q : Nat × Nat) : Nat × Nat'
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: TransStep
+  line: 829
+  signature_excerpt: |-
+    def TransStep (r : Regime) (i j : Nat) (δ : List Item) (s : Regime) :
+        Prop
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mapItem
+  line: 281
+  signature_excerpt: |-
+    def mapItem (f : Nat → Nat) : Item → Item
+      | .newDatum => .newDatum
+      | .newForm a => .newForm a
+      | .newInst fm args => .newInst fm (args.map f)
+      | .newRuleAll fm => .newRuleAll fm
+
+    theorem mapItem_pad_f_g {n : Nat} (σ : DRen n) (it : Item) :
+        mapItem (padF n σ.f) (mapItem (padF n σ.g) it) = it
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: padF
+  line: 62
+  signature_excerpt: 'def padF (n : Nat) (f : Nat → Nat) : Nat → Nat'
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: respond
+  line: 686
+  signature_excerpt: 'def respond (r : Regime) (i j : Nat) (δ : List Item) : Option Regime'
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: least_pair_selection_not_congruent
+  line: 1073
+  signature_excerpt: |-
+    theorem least_pair_selection_not_congruent :
+        collapsed regRegime 0 1 ∧
+        collapsed (renameRegimeR regSwap.f regRegime) 0 1 ∧
+        mapReq regSwap.f (0, 1) ≠ (0, 1)
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: transStep_rename_fwd
+  line: 837
+  signature_excerpt: |-
+    theorem transStep_rename_fwd {n : Nat} (σ : DRen n) (r : Regime)
+        (hn : r.data = n)
+        (hinst : ∀ p ∈ r.insts, ∀ a ∈ p.2, a < r.data)
+        (hreq : ∀ q ∈ r.reqs, q.1 < q.2 ∧ q.2 < r.data)
+        {i j : Nat} {δ : List Item} {s : Regime}
+        (h : TransStep r i j δ s) :
+        TransStep (renameRegimeR σ.f r)
+          (mapReq σ.f (i, j)).1 (mapReq σ.f (i, j)).2
+          (δ.map (mapItem (padF n σ.f)))
+          (renameRegimeR (padF n σ.f) s)
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: transStep_image_total
+  line: 875
+  signature_excerpt: |-
+    theorem transStep_image_total {n : Nat} (σ : DRen n) (r : Regime)
+        (hn : r.data = n)
+        (hinst : ∀ p ∈ r.insts, ∀ a ∈ p.2, a < r.data)
+        (hreq : ∀ q ∈ r.reqs, q.1 < q.2 ∧ q.2 < r.data)
+        {i' j' : Nat} {δ' : List Item} {s' : Regime}
+        (h : TransStep (renameRegimeR σ.f r) i' j' δ' s') :
+        ∃ i j δ s, TransStep r i j δ s ∧
+          (i', j') = mapReq σ.f (i, j) ∧
+          δ' = δ.map (mapItem (padF n σ.f)) ∧
+          s' = renameRegimeR (padF n σ.f) s
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: validCount_rename
+  line: 946
+  signature_excerpt: |-
+    theorem validCount_rename {n : Nat} (σ : DRen n) (r : Regime)
+        (hn : r.data = n)
+        (hinst : ∀ p ∈ r.insts, ∀ a ∈ p.2, a < r.data)
+        (hreq : ∀ q ∈ r.reqs, q.1 < q.2 ∧ q.2 < r.data)
+        {i j : Nat} (hi : i < r.data) (hj : j < r.data)
+        (p q : List Item → Bool)
+        (hp : ∀ δ, p δ = true ↔ validResponse r i j δ)
+        (hq : ∀ δ, q δ = true ↔
+          validResponse (renameRegimeR σ.f r) (σ.f i) (σ.f j) δ)
+        (L : List (List Item)) :
+        (L.map (fun δ => δ.map (mapItem (padF n σ.f)))).countP q
+          = L.countP p
+  source: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  source_sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent
+  availability: local
   symbol: least_pair_selection_not_congruent
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  declaration_status: declaration_found_not_proof_checked
+  line: 1073
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_rename_fwd
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_rename_fwd
+  availability: local
   symbol: transStep_rename_fwd
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  declaration_status: declaration_found_not_proof_checked
+  line: 837
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::transStep_image_total
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_image_total
+  availability: local
   symbol: transStep_image_total
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  declaration_status: declaration_found_not_proof_checked
+  line: 875
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean::validCount_rename
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::validCount_rename
+  availability: local
   symbol: validCount_rename
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/TransitionTransport.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean
+  repository: this_repository
+  sha256: ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327
+  declaration_status: declaration_found_not_proof_checked
+  line: 946
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::pair_orbits
   availability: external
@@ -121,8 +267,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -33,8 +33,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::chain_constitutive_order_separates_immediate_succession`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::constitutiveOrder_trans`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean)
+- [`lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::chain_constitutive_order_separates_immediate_succession`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
+- [`lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::constitutiveOrder_trans`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/relational_retention.rs)

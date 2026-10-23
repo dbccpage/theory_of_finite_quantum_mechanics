@@ -10,9 +10,9 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 25
-- cited Lean declarations covered by a current replay receipt: 18
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 24
+- cited Lean declarations covered by a current replay receipt: 23
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 0
@@ -50,16 +50,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` |
-| `QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` |
-| `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` |
-| `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` |
+| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
+| `QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` |
+| `QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` |
+| `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` |
+| `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/WdpBridgeObligations.lean`
@@ -91,19 +92,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WdpBridgeObligations.raise_completes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpBridgeObligations.raise_completes` |
 | `WdpBridgeObligations.raise_preserves_endToEnd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpBridgeObligations.raise_preserves_endToEnd` |
 | `WdpBridgeObligations.update_sharp` | yes | yes | yes | propext | `#print axioms WdpBridgeObligations.update_sharp` |
-- counts toward the grade: yes
-
-### Lean: `sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`
-
-- file: [sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean](../../../sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `a2ec0a203277c5c7b4bd71067351c574509c655c18bf0e08fe3c05a8005fc497`
-- cited in: node.lean
-- replay: `none`
-- check: `cd lean4 && lake build   # the library that contains sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/examples/genesis_construction.rs`

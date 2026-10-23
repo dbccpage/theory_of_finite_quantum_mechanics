@@ -1,6 +1,6 @@
 # FQ-ENTROPY-DICHOTOMY-BAKER
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evi
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 8
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
+- cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 7 Lean reference(s) cited, 7 in this checkout (replay: none 7). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -50,14 +50,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0268
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness` |
-| `QuantumMechanics.DerivationDagQMClosure.fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_entropy_purity_and_ds_qm034_051_cayley_clifford_witness` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/EntropyDichotomy.lean`
@@ -65,13 +66,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/EntropyDichotomy.lean](../../../lean4/EntropyDichotomy.lean)
 - sha256 (`bytes`): `6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `EntropyDichotomy`): recorded sha256 `6bc9bc70f4328a35208832f5754cbffb2ac646cd8323d16d5dc0647b75f7f96c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build EntropyDichotomy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `entropy_zero_iff_pure` | yes | yes | yes | - | `#print axioms entropy_zero_iff_pure` |
-| `mixed_entropy_positive` | yes | yes | yes | - | `#print axioms mixed_entropy_positive` |
+| `entropy_zero_iff_pure` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms entropy_zero_iff_pure` |
+| `mixed_entropy_positive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms mixed_entropy_positive` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/EntropyPurity.lean`
@@ -79,25 +81,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/EntropyPurity.lean](../../../lean4/EntropyPurity.lean)
 - sha256 (`bytes`): `3b79f31d0247f34d89832dffa1f1ab75503e49fe3b78514dcf008214e3f8230e`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `EntropyPurity`): recorded sha256 `3b79f31d0247f34d89832dffa1f1ab75503e49fe3b78514dcf008214e3f8230e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build EntropyPurity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `mixed_entropy_is_transcendental` | yes | yes | yes | - | `#print axioms mixed_entropy_is_transcendental` |
-- counts toward the grade: yes
-
-### Lean: `sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`
-
-- file: [sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean](../../../sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `a2ec0a203277c5c7b4bd71067351c574509c655c18bf0e08fe3c05a8005fc497`
-- cited in: node.lean
-- replay: `none`
-- check: `cd lean4 && lake build   # the library that contains sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure` |
+| `mixed_entropy_is_transcendental` | yes | yes | yes | Quot.sound, propext | `#print axioms mixed_entropy_is_transcendental` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`

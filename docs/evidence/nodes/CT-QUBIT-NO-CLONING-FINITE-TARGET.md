@@ -49,7 +49,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/Entanglement.lean](../../../lean4/Entanglement.lean)
 - sha256 (`bytes`): `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d`
 - cited in: node.source
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_constructor_theory.json](../../../dag/research/lean_replay_campaign_constructor_theory.json) (module `Entanglement`): recorded sha256 `bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build Entanglement`
 - counts toward the grade: yes
 

@@ -1,0 +1,82 @@
+## 2026-09-28 — Zenodo deposit publication (v0.1.1 Preprint)
+
+Recorded canonical Zenodo record <https://zenodo.org/records/23025011> (DOI: `10.5281/zenodo.23025011`) across deposit metadata, `CITATION.cff`, `README.md`, and atlas `zenodo_records.md`.
+
+---
+
+## 2026-09-28 — release candidate 0.1.1
+
+Aligned manuscript, code, citation metadata, and rebuilt release artifacts after the review corrections. Historical versions and unresolved claim obligations remain recorded below.
+
+---
+
+## 2026-09-28 — peer review remediation (P1 & P2 fixes)
+
+- **ExactnessCertificate Float Firewall & Immutability**: Hardened `ExactnessCertificate.verify()` with strict scalar domain validation (`_is_exact_rational_scalar`), structural shape checking, and defensive `ImmutableMatrix` attribute conversion, rejecting float and SymPy Float witnesses (reproduced at N=2^60 where floating approximation certifies false exactness).
+- **Compatibility Authorization Gate Hardening**: Enforced certificate validation (`verify()`) and distance consistency reconciliation (`(cert.distance == 0) == guards.zero_residual_mass`) inside `evaluate_authority()`. Added `__post_init__` strict boolean validation across all seven fields of `HaltGuards`, strictly rejecting non-boolean truthy values (e.g. `deterministic="False"`).
+- **Strict Candidate Identity Binding for Guard $g_5$**: Disallowed falling back to bare counts when candidate IDs are omitted for a declared candidate packet. Enforced count consistency between `candidates_checked` and `len(checked_candidate_ids)` in `GuardEvidence`, preventing unverified count authorization and candidate set mismatch.
+- **Import Order Independence**: Replaced circular top-level pipeline re-exports in `coda_fda_core` with PEP 562 lazy `__getattr__` module exports, eliminating process import order dependence between `coda_fda_pipeline` and `coda_fda_core`.
+- **Test Suite**: Added 5 dedicated peer review regression tests (`code/tests/test_review_regressions.py`). Total tests: 106 passed.
+
+## 2026-09-27 — republication corrections
+
+Bound every candidate certificate to its cochain and repair map; aggregate maximum residual; measure stage-boundary skeletons and declared lifts; make skipped replay fail; store canonical immutable traces. Replace absent-input mapping with Option/SuppliedAuthority. Withdraw FDA-T9 categorical no-map claim with singleton-functor countermodel. Clarified relationship between operational standing (FDA-D2) and regime standing (Standing_R), restricted soundness claims to the regime model, and defined canonical regime embedding R_Pi. Synchronized PDF date (2026-09-27) and modernized Lean 4 file paths (GtfdaAuthorityCore.lean, FDA.lean, Algebra.lean, Core.lean). Documented both MANIFEST.sha256 and SHA256SUMS in README. Regenerate TeX/PDF from the corrected Markdown before release.
+
+Verification results are recorded separately after execution; source edits alone do not close findings.
+title: "CODA-FDA: Finite Descent Authority Change Log"
+file_name: "coda_fda_change_log.md"
+file_location: "coda_atlas/F005_coda/fda/"
+status: "Preprint"
+authority_effect: "None"
+paper_id: "CODA-FDA"
+canonical_version: "v0.1.0"
+date: "2026-09-27"
+---
+
+# Change Log — CODA-FDA: Finite Descent Authority
+
+## 2026-09-23 — FDA-T9 to FDA-T12 retyped (external review)
+
+* The ledger cited four Lean declarations that do not exist in `lean4/gtfda_authority_core.lean`: `GTFDA.coproduct_separation`, `GTFDA.role_non_impersonation`, `GTFDA.authority_gap_fence` and `GTFDA.authority_typing_boundary`. These pointers are withdrawn in place. FDA-T9 is now a PROPOSITION whose refusal summand is FDA-C1; FDA-T10 is a POLICY; FDA-T11 and FDA-T12 are SCOPE FENCES. The paper's §7.5 headings say the same.
+* `docs/lean_claim_map.md` records that FDA-T9 to FDA-T12 have no Lean declarations.
+* README names `derive_guards` as the reference guard derivation, and says that the `apps/coda` guard list is a different one.
+* `SHA256SUMS` and `MANIFEST.sha256` regenerated from the committed (LF) blobs. They were already stale for `coda_fda.md` and `coda_fda_claim_ledger.md` before this entry.
+
+## v0.1.0 — 2026-09-18 (Republication Remediation Pass)
+
+- **Release Identity Unification**: Unified title as *Finite Descent Authority: Packets, Pipelines, and Seven Halt Guards (CODA-FDA)*, subtitle *A proposal is not a decision*, version `v0.1.0`, status `Preprint`, and date `2026-09-18` across Markdown, LaTeX, PDF, claim ledger, change log, `pyproject.toml`, `lakefile.lean`, `CITATION.cff`, and `zenodo_metadata.json`.
+- **Computational Self-Containment**: Vendored standalone `cochain_presentation.py` in `code/`, eliminating monorepo `omega_engine` dependencies. Removed all `repo_root` directory escapes from `pyproject.toml`, `tests/`, and `generate_figures.py`.
+- **Honest Attestation Framework**: Explicitly reframed Python companion as a policy evaluator over caller-supplied attestations rather than an operational pipeline runner. Added explicit non-authority scope fence in abstract and limitations.
+- **Strict Boolean Type Invariant**: Enforced `type(val) is bool` across all boolean evidence fields in `GuardEvidence` / `GuardAttestations`, strictly rejecting strings (e.g. `"False"`), integers, and containers.
+- **Guard $g_3$ Repair**: Defined $g_3$ (`zero_residual_mass`) as exact rational vanishing (`residual_mass == 0`). Integrated strict validation of supplied `residual_certificate` with distance match checking and refusal on contradictory evidence.
+- **Guard $g_5$ Candidate Identifier Binding**: Bound $g_5$ to the declared packet's candidate identifier set (`evaluator_class_e`), preventing arbitrary counts from certifying exhaustiveness.
+- **Formal Refusal Taxonomy**: Implemented `RefusalCode` enum (`R_nopacket`, `R_candidate`, `R_unreplayable`, `R_contradictory_evidence`, `R_obstruction`).
+- **Lean 4 Self-Containment**: Vendored `CodaReconstruction.Foundations` and `CodaReconstruction.FDA` directly in `lean4/CodaReconstruction/`, allowing `lake build` to elaborate with zero external dependencies, 0 sorry stubs, and axioms strictly within `{propext}`. Emitted axiom audit receipt to `lean4/axiom_report.txt`.
+- **Claim Ledger Rewrite**: Rewrote `coda_fda_claim_ledger.md` to map paper claims 1-to-1 (FDA-D1–D3, FDA-T1–T8, FDA-C1, FDA-P1). Excised ungrounded authority-origin cochain foundation claims, properly framing the $L_1$ quotient solver as an external scalar calculator.
+- **Manuscript Scholarly Revisions**: Added explicit in-text citations to Martin-Löf [1], Necula [2], CODA-FOC [3], Schrijver [4], and Boyd–Vandenberghe [5]. Corrected layer architecture wording to "eight operational layers, FOC through A, under the GTLA meta-architecture". Replaced "a genuine terminal" with "a terminal-branch value".
+- **End-to-End Pipeline Integration Harness**: Added `coda_fda_pipeline.py` implementing the operational 4-stage pipeline (`route` -> `descend` -> `verify` -> `terminalize`) matching Lean 4 `FDA.lean`, serialized `PipelineTrace`, and automated `GuardEvidence` extraction directly from execution records. Added 7 integration tests in `test_fda_pipeline_integration.py`.
+- **Test Suite Verification**: Clean-environment test run: `python -m pytest code/tests -v` passed with 30 passed, 0 skipped, 0 deselected across all 4 test suites.
+- **Notebook Replay**: Replayed all 3 Jupyter companion notebooks with verified stored outputs.
+- **PDF Rebuild**: Recompiled `coda_fda.pdf` (7 pages) with updated title, author, subject, keywords, and reference URLs.
+- **Documentation Consolidation & Checksum Simplification**:
+  - Consolidated supporting documentation into three maintained core documents: `README.md`, `coda_fda_claim_ledger.md`, and `coda_fda_change_log.md`.
+  - Merged `docs/000_quick_start.md` (prerequisites, one-command test commands, notebook routes) and `docs/descriptions.md` (component table with explicit module boundaries) into `README.md`, retiring the standalone files.
+  - Merged `docs/coda_fda_nonclaims.md` (vocabulary fences, scope boundaries, open obligations) and `docs/coda_fda_mutation_audit.md` (reconciled fault injection mutation matrix, candidate identifier binding for $g_5$) into `coda_fda_claim_ledger.md`, retiring the standalone files.
+  - Retired stale `docs/claim_code_map.yaml` (v3.0.0 registry with conflicting claim IDs and ungrounded 'authority origin' claim) in favor of the unified claim ledger.
+  - Removed empty placeholder files `code/.gitkeep`, `code/tests/.gitkeep`, and `lean4/.gitkeep`.
+  - The v0.0.4 envelope used a single `SHA256SUMS`; the current release restored `MANIFEST.sha256` and verifies both manifests against the archive.
+
+## v0.0.3 (2026-09-12) — CODA Modernization & Discrete Cochain Reframing
+
+- Excised legacy naming in YAML capsules and references.
+- Pinned citations to the Genesis derivation repository (`dbccpage/19L57G1`) strictly to frozen tag `sealed-derivation-v1` (commit `3100c4e`).
+- Added initial `zenodo_metadata.json`.
+
+## v0.0.2 (2026-07-31) — MUB Package Scaffolding
+
+- Scaffolded dedicated MUB paper directory structure for `001_coda_fda`.
+- Created initial docs, quick start, and test suite.
+
+## v0.0.1 (2026-07-25) — Initial Tower Normalization
+
+- Initial specification of Finite Descent Authority Gate.

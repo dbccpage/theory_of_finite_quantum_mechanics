@@ -11,8 +11,8 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evi
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 12
+- cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -65,6 +65,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `SwitchingNormalForm.mem_normalForms_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.mem_normalForms_iff` |
+| `SwitchingNormalForm.normalForms_length` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.normalForms_length` |
+| `SwitchingNormalForm.normalForms_nodup` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.normalForms_nodup` |
+| `SwitchingNormalForm.normal_sound` | yes | yes | yes | none | `#print axioms SwitchingNormalForm.normal_sound` |
+| `SwitchingNormalForm.numChord_identity` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.numChord_identity` |
+| `SwitchingNormalForm.same_class_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms SwitchingNormalForm.same_class_iff` |
 | `mem_normalForms_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms mem_normalForms_iff` |
 | `normalForms_length` | yes | yes | yes | Quot.sound, propext | `#print axioms normalForms_length` |
 | `normalForms_nodup` | yes | yes | yes | Quot.sound, propext | `#print axioms normalForms_nodup` |
@@ -72,13 +78,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `numChord_identity` | yes | yes | yes | Quot.sound, propext | `#print axioms numChord_identity` |
 | `same_class_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms same_class_iff` |
 - counts toward the grade: yes
-
-### Lean: `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
-
-- file: `omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean, node.source, record TFQ-1044
-- counts toward the grade: no
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
@@ -90,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md](../../../dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md)
-- sha256 (`lf-normalised`): `21576a9b4148fce6ba7e548dd38de8b937ca91ef8526d583af6a3bd9af0c5048`
+- sha256 (`lf-normalised`): `9e51b7b5094df982466715cefae6ea90325a9694971da3f07de90854afec603d`
 - generated view: listed, not counted
 - cited in: record TFQ-1044
 - counts toward the grade: no

@@ -1,6 +1,6 @@
 # FQ-COMMUTATOR-TRACE-OBSTRUCTION
 
-Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `PROVED_LE
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -50,12 +50,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `weyl_heisenberg_finite_trace_obstruction` | yes | yes | yes | - | `#print axioms weyl_heisenberg_finite_trace_obstruction` |
+| `weyl_heisenberg_finite_trace_obstruction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms weyl_heisenberg_finite_trace_obstruction` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H056ContinuumLiftBoundary.lean`
@@ -63,12 +64,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H056ContinuumLiftBoundary.lean](../../../lean4/H056ContinuumLiftBoundary.lean)
 - sha256 (`bytes`): `a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H056ContinuumLiftBoundary`): recorded sha256 `a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build H056ContinuumLiftBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `wintner_wielandt_dim2_obstruction` | yes | yes | yes | - | `#print axioms wintner_wielandt_dim2_obstruction` |
+| `wintner_wielandt_dim2_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms wintner_wielandt_dim2_obstruction` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H068WeylCcrResidual.lean`
@@ -76,12 +78,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H068WeylCcrResidual.lean](../../../lean4/H068WeylCcrResidual.lean)
 - sha256 (`bytes`): `1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H068WeylCcrResidual`): recorded sha256 `1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build H068WeylCcrResidual`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `tr_comm2_vanishes` | yes | yes | yes | - | `#print axioms tr_comm2_vanishes` |
+| `tr_comm2_vanishes` | yes | yes | yes | Quot.sound, propext | `#print axioms tr_comm2_vanishes` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs`

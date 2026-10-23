@@ -4,6 +4,8 @@ Can quantum mechanics be built from a finite, exact substrate, starting from a s
 
 The project does not claim to derive quantum mechanics. It records how far finite constructions reach and names every structure that has to be supplied from outside.
 
+> **On the use of AI.** Much of the code, proofs, prose and review in this repository is drafted by AI models and LLM coding agents, directed and reviewed by the maintainer. The disclosure and the [acceptance rule](CONTRIBUTING.md#acceptance-rule) are in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## What makes this checkable
 
 | Layer | What it does | Where |
@@ -32,8 +34,8 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG stages (declared / with nodes) | 35 / 33 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | DAG validator | `nodes=892 routes=897 records=944 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 944 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
-| Derivation papers | 965 in 35 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 1384 resolve to a file in this checkout, 293 do not (sibling or historical paths), 45 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Derivation papers | 976 in 35 stage folders | [`dag/derivations`](dag/derivations) |
+| Lean references in DAG nodes | 1806 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 312 resolve to a file in this checkout, 628 do not, 2 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | PFP prompts / indexed operad collections | 892 / 892 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
 | PFP stage per prompt | P0_MINE_OPERAD 715, P5_RECORD 177 | [`dag/operads/index.json`](dag/operads/index.json) |
@@ -43,21 +45,21 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 69, caveat_added 18, statement_narrowed 65, status_lowered 25 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 266 records from 8 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 86, refuted 2, recorded lower 85 (OPEN 38, IMPORTED_ASSUMPTION 18, COMPUTATIONALLY_CHECKED 14, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
-| Tracked `.lean` files | lean4 611, papers 59, code 66, dag 2428, other 10 (the `dag` files are run snapshots) | `git ls-files` |
-| Lake libraries / module roots in `lean4/lakefile.lean` | 17 / 556 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
+| Tracked `.lean` files | lean4 938, papers 59, code 66, dag 2428, other 10 (the `dag` files are run snapshots) | `git ls-files` |
+| Lake libraries / module roots in `lean4/lakefile.lean` | 32 / 884 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
 | Lean toolchain | `leanprover/lean4:v4.35.0` | [`lean4/lean-toolchain`](lean4/lean-toolchain) |
 | Mathlib | `v4.35.0` (manifest rev `56a005855ea1`) | [`lean4/lakefile.lean`](lean4/lakefile.lean), [`lean4/lake-manifest.json`](lean4/lake-manifest.json) |
 | Axiom receipts / declaration lines audited | 8 files / 396 lines (literal `#print axioms` lines: 1) | `dag/research/*axioms*.txt`, `papers/**/axiom_report*.txt`, `**/evidence/axiom_reports/*.txt` |
 | Axioms named in those receipts | propext 218, Quot.sound 165, Classical.choice 119; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 6573 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Python test functions (`def test_`) | 6708 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 6949 (plus 7995 in `dag/results` snapshots) | `git ls-files '*.rs'` |
-| Contract/score companions | combined_files = 8657, all_passed = false | `python -I -X utf8 scripts/contract_scores.py check` |
+| Contract/score companions | combined_files = 8772, all_passed = false | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
-Nodes by status: PROVED_LEAN 262, OPEN 175, COMPUTATIONALLY_CHECKED 152, DEFINITION 91, SOURCE_RECORD 79, IMPORTED_ASSUMPTION 66, CONDITIONAL 34, PROVED_PROSE 28, ADMITTED_PRIMITIVE 3, REFUTED 2.
+Nodes by status: PROVED_LEAN 263, OPEN 174, COMPUTATIONALLY_CHECKED 152, DEFINITION 91, SOURCE_RECORD 79, IMPORTED_ASSUMPTION 66, CONDITIONAL 34, PROVED_PROSE 28, ADMITTED_PRIMITIVE 3, REFUTED 2.
 
 Nodes by stage: PREGENESIS 31, GENESIS 89, MSSN_SN 28, WDP 29, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 33, FINITE_QM_DYNAMICS 22, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 67, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_GAUGE 1, FINITE_QED 1, FINITE_QCD 32, FINITE_TOPOLOGICAL 9, FINITE_QG 15, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 82, CONSTRUCTOR_THEORY 15, CAUSAL_QFT 14, ADS_CFT 13, LOOP_QUANTUM_GRAVITY 16, GENESIS_TO_HIGHER 12.
 

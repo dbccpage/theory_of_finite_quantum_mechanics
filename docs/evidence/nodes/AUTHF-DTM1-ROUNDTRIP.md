@@ -1,6 +1,6 @@
 # AUTHF-DTM1-ROUNDTRIP
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,15 +47,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/AuthIncompleteness/TokenCode.lean](../../../lean4/AuthIncompleteness/TokenCode.lean)
 - sha256 (`bytes`): `462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a`
 - cited in: node.lean, node.source, record TFQ-1344
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `AuthIncompleteness.TokenCode`): recorded sha256 `462875c362c83b192c5e491df86655258c973a13ea740d4e1cee06360f88240a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/AuthIncompleteness/TokenCode.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine` |
-| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove` |
-| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules` |
-| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol` |
+| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMachine_encodeMachine` |
+| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeMove_encodeMove` |
+| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeRules_encodeRules` |
+| `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.decodeTapeSymbol_encodeTapeSymbol` |
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_auth_incompleteness_finite_models.py`

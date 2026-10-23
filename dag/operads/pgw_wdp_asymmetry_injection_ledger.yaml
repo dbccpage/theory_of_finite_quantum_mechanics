@@ -37,15 +37,30 @@ source_provenance:
   path: dag/prompts/wdp_pgw_wdp_asymmetry_injection_ledger_definition.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: no_invariant_oriented_edge
+  line: 67
+  signature_excerpt: |-
+    theorem no_invariant_oriented_edge
+        {α : Type _} [Fintype α] [DecidableEq α]
+        {a b : α} (hab : a ≠ b) :
+        ¬ ∀ σ : Equiv.Perm α, (σ a, σ b) = (a, b)
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean
+  repository: this_repository
+  source_sha256: fe83013b661dd6d44ba76b39fd10d1c53cca158fb53136e60832a3cb7fb02e7c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean::no_invariant_oriented_edge
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean::no_invariant_oriented_edge
+  availability: local
   symbol: no_invariant_oriented_edge
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean
+  repository: this_repository
+  sha256: fe83013b661dd6d44ba76b39fd10d1c53cca158fb53136e60832a3cb7fb02e7c
+  declaration_status: declaration_found_not_proof_checked
+  line: 67
   role: source_lead_only
 presentation:
   colours: []
@@ -86,8 +101,6 @@ operad_slots:
     - Declared implementation class and dependency preorder for the frontier (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

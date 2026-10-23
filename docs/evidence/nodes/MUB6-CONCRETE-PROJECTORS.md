@@ -1,6 +1,6 @@
 # MUB6-CONCRETE-PROJECTORS
 
-Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 5 Lean reference(s) cited, 5 in this checkout (replay: none 5). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -47,16 +47,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/ConcreteMubProjectors.lean](../../../lean4/ConcreteMubProjectors.lean)
 - sha256 (`bytes`): `f592f57d1ca98cd39a4450be121b582e62f38f2dec9cb1782d67776a60ec6601`
 - cited in: node.lean, record TFQ-1276
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `ConcreteMubProjectors`): recorded sha256 `f592f57d1ca98cd39a4450be121b582e62f38f2dec9cb1782d67776a60ec6601` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ConcreteMubProjectors`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `concreteProjector_complete` | yes | yes | yes | - | `#print axioms concreteProjector_complete` |
-| `concreteProjector_cross_basis_trace` | yes | yes | yes | - | `#print axioms concreteProjector_cross_basis_trace` |
-| `concreteProjector_rank_one` | yes | yes | yes | - | `#print axioms concreteProjector_rank_one` |
-| `concreteProjector_self_adjoint` | yes | yes | yes | - | `#print axioms concreteProjector_self_adjoint` |
-| `concreteProjector_trace_one` | yes | yes | yes | - | `#print axioms concreteProjector_trace_one` |
+| `concreteProjector_complete` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_complete` |
+| `concreteProjector_cross_basis_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_cross_basis_trace` |
+| `concreteProjector_rank_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_rank_one` |
+| `concreteProjector_self_adjoint` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_self_adjoint` |
+| `concreteProjector_trace_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_trace_one` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md`

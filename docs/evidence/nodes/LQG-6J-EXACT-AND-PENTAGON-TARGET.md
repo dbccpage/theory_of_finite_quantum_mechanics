@@ -65,7 +65,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H023DiscreteSpinfoamAmplitudes.lean](../../../lean4/H023DiscreteSpinfoamAmplitudes.lean)
 - sha256 (`bytes`): `926c526a9087b9648e1fc3107ae89d4d16f0525234d8901e916a29a516d70457`
 - cited in: node.source
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_loop_quantum_gravity.json](../../../dag/research/lean_replay_campaign_loop_quantum_gravity.json) (module `H023DiscreteSpinfoamAmplitudes`): recorded sha256 `926c526a9087b9648e1fc3107ae89d4d16f0525234d8901e916a29a516d70457` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build H023DiscreteSpinfoamAmplitudes`
 - counts toward the grade: yes
 

@@ -1,6 +1,6 @@
 # FQ-CABELLO-NO-INTEGER-FRAME
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evi
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: none 3). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -50,12 +50,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H053EverettForkingTree.lean](../../../lean4/H053EverettForkingTree.lean)
 - sha256 (`bytes`): `8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59`
 - cited in: node.lean, record TFQ-1015
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H053EverettForkingTree`): recorded sha256 `8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build H053EverettForkingTree`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `cabello_parity_obstruction` | yes | yes | yes | - | `#print axioms cabello_parity_obstruction` |
+| `cabello_parity_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms cabello_parity_obstruction` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H054GleasonCyclotomicObstruction.lean`
@@ -63,13 +64,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/H054GleasonCyclotomicObstruction.lean](../../../lean4/H054GleasonCyclotomicObstruction.lean)
 - sha256 (`bytes`): `9a4cb7494e8a8af61e7d060e556c6da868d917b05b4fd7e4c56dda12b2f63d11`
 - cited in: node.lean, record TFQ-1015
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H054GleasonCyclotomicObstruction`): recorded sha256 `9a4cb7494e8a8af61e7d060e556c6da868d917b05b4fd7e4c56dda12b2f63d11` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build H054GleasonCyclotomicObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `cabello_no_integer_frame_assignment` | yes | yes | yes | - | `#print axioms cabello_no_integer_frame_assignment` |
-| `frame_additivity_not_force_psd` | yes | yes | yes | - | `#print axioms frame_additivity_not_force_psd` |
+| `cabello_no_integer_frame_assignment` | yes | yes | yes | Quot.sound, propext | `#print axioms cabello_no_integer_frame_assignment` |
+| `frame_additivity_not_force_psd` | yes | yes | yes | none | `#print axioms frame_additivity_not_force_psd` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs`

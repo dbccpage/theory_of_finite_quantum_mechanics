@@ -1,0 +1,513 @@
+{
+  "schema_version": "campaign_validation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23T03:36:54.424349+00:00",
+  "base_commit": "3924d378ff1de685948bf2b419dc63a5a9560881",
+  "branch": "campaign/l1-imp-transition-probability-law",
+  "outcome": "Narrowed",
+  "target_status": "IMPORTED_ASSUMPTION",
+  "all_required_campaign_checks_passed": true,
+  "scope_checks": {
+    "only_changed_node": [
+      "L1-IMP-TRANSITION-PROBABILITY-LAW"
+    ],
+    "raised_statuses": 0,
+    "saved_runs_unchanged": true,
+    "executed_tfq0084_unchanged": true,
+    "staged_bytes_match_working_artifacts": true
+  },
+  "changed_contract_validation": {
+    "changed_artifacts": [
+      {
+        "source": "lean4/CampaignTransitionProbability.lean",
+        "sha256": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
+        "score_token": "L4B",
+        "current_source_history_schema_evidence_minimum_pass": true
+      },
+      {
+        "source": "lean4/lakefile.lean",
+        "sha256": "03869b7cf5406aad29832d2c83cdd14ca0c01990d13be6607be060999cc08b85",
+        "score_token": "L4D",
+        "current_source_history_schema_evidence_minimum_pass": true
+      },
+      {
+        "source": "checks/independent/l1-imp-transition-probability-law.py",
+        "sha256": "67537675ef4a328ecf875de7447ddc07f850f0da732afc6cb7a2d1e7ed83e8de",
+        "score_token": "L4C",
+        "current_source_history_schema_evidence_minimum_pass": true
+      }
+    ],
+    "original_lakefile_history_preserved": true,
+    "status": "PASS"
+  },
+  "generator_attempts": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py",
+      "exit_code": 0,
+      "output": "pfp results synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py",
+      "exit_code": 0,
+      "output": "stale=dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py",
+      "exit_code": 0,
+      "output": "application branches synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py",
+      "exit_code": 0,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py",
+      "exit_code": 0,
+      "output": "frontier branches synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py",
+      "exit_code": 0,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 1,
+      "output": "Traceback (most recent call last):\n  File \"C:\\gw\\tp-law\\scripts\\build_master_derivation_ledger.py\", line 21, in <module>\n    from src.qm.textbook_problems import build_qm_question_atlas\n  File \"C:\\gw\\tp-law\\code\\python\\src\\__init__.py\", line 24, in <module>\n    from .qm import DensityOperator\n  File \"C:\\gw\\tp-law\\code\\python\\src\\qm\\__init__.py\", line 71, in <module>\n    from . import domain\n  File \"C:\\gw\\tp-law\\code\\python\\src\\qm\\domain.py\", line 18, in <module>\n    from . import primitives\n  File \"C:\\gw\\tp-law\\code\\python\\src\\qm\\primitives.py\", line 14, in <module>\n    import numpy as np\nModuleNotFoundError: No module named 'numpy'\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 1,
+      "output": "Traceback (most recent call last):\n  File \"C:\\gw\\tp-law\\scripts\\build_master_derivation_ledger.py\", line 21, in <module>\n    from src.qm.textbook_problems import build_qm_question_atlas\n  File \"C:\\gw\\tp-law\\code\\python\\src\\__init__.py\", line 24, in <module>\n    from .qm import DensityOperator\n  File \"C:\\gw\\tp-law\\code\\python\\src\\qm\\__init__.py\", line 72, in <module>\n    from . import campaigns\n  File \"C:\\gw\\tp-law\\code\\python\\src\\qm\\campaigns.py\", line 34, in <module>\n    from . import cochain\n  File \"C:\\gw\\tp-law\\code\\python\\src\\qm\\cochain.py\", line 38, in <module>\n    from scipy.optimize import linprog\nModuleNotFoundError: No module named 'scipy'\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_master_derivation_ledger.py",
+      "exit_code": 0,
+      "output": "Written: C:\\gw\\tp-law\\papers\\core\\master_derivation_ledger.md\nWritten: C:\\gw\\tp-law\\dag\\derivations\\MASTER_DERIVATION_LEDGER.md\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --write --all-missing",
+      "exit_code": 1,
+      "output": "refusing to rewrite executed prompts: TFQ-0084\nTraceback (most recent call last):\n  File \"C:\\gw\\tp-law\\dag\\pfp\\generate_prompts.py\", line 648, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"C:\\gw\\tp-law\\dag\\pfp\\generate_prompts.py\", line 644, in main\n    return run(args.root, args.check, args.write, args.nodes, args.all_missing, args.require_complete)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\gw\\tp-law\\dag\\pfp\\generate_prompts.py\", line 624, in run\n    written, extension, index = write_changes(corpus, report)\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\gw\\tp-law\\dag\\pfp\\generate_prompts.py\", line 541, in write_changes\n    collision_check(corpus, [built for _, built, _ in todo])\n  File \"C:\\gw\\tp-law\\dag\\pfp\\generate_prompts.py\", line 519, in collision_check\n    if existing.is_file() and load_yaml(existing.read_bytes()).get('node_id') != built['node_id']:\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\gw\\tp-law\\dag\\pfp\\generate_prompts.py\", line 104, in load_yaml\n    return yaml.load(data, Loader=LOADER)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\gw\\tp-law\\lean4\\b\\check-python\\Lib\\site-packages\\yaml\\__init__.py\", line 81, in load\n    return loader.get_single_data()\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\gw\\tp-law\\lean4\\b\\check-python\\Lib\\site-packages\\yaml\\constructor.py\", line 49, in get_single_data\n    node = self.get_single_node()\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"yaml/_yaml.pyx\", line 674, in yaml._yaml.CParser.get_single_node\n  File \"yaml/_yaml.pyx\", line 688, in yaml._yaml.CParser._compose_document\n  File \"yaml/_yaml.pyx\", line 732, in yaml._yaml.CParser._compose_node\n  File \"yaml/_yaml.pyx\", line 846, in yaml._yaml.CParser._compose_mapping_node\n  File \"yaml/_yaml.pyx\", line 732, in yaml._yaml.CParser._compose_node\n  File \"yaml/_yaml.pyx\", line 848, in yaml._yaml.CParser._compose_mapping_node\n  File \"yaml/_yaml.pyx\", line 861, in yaml._yaml.CParser._parse_next_event\nyaml.scanner.ScannerError: mapping values are not allowed in this context\n  in \"<byte string>\", line 10, column 100\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --write --all-missing",
+      "exit_code": 0,
+      "output": "refusing to rewrite executed prompts: TFQ-0084\n{\"created\": 0, \"rewritten\": 2, \"unchanged\": 712}\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --write",
+      "exit_code": 0,
+      "output": "README facts written\n",
+      "retry_note": "The first bounded invocation timed out after 300 seconds; a full unbounded run completed."
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --write",
+      "exit_code": 0,
+      "output": "finite_quantum_mechanics.md: already current\nfinite_quantum_mechanics_claim_ledger.md: already current\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
+      "exit_code": 0,
+      "output": "evidence map written: 892 nodes, grades {'E0': 282, 'E1': 230, 'E2': 321, 'E3': 59, 'E4': 0}, 492 flags\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/l1-imp-transition-probability-law --reason Narrowed transition-probability hypothesis map with exact sufficient routes and global two-sector countermodels; synchronized generated views.",
+      "exit_code": 0,
+      "output": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\nrebound: tensor_countermodel_validation.json sha lean4/lakefile.lean\n4 stale pin(s)\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
+      "exit_code": 0,
+      "output": "evidence map written: 892 nodes, grades {'E0': 282, 'E1': 230, 'E2': 321, 'E3': 59, 'E4': 0}, 492 flags\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/l1-imp-transition-probability-law --reason Refresh evidence views after the tensor receipt re-pin, then verify receipt pins remain current.",
+      "exit_code": 0,
+      "output": "receipts current\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --write",
+      "exit_code": 0,
+      "output": "evidence map written: 892 nodes, grades {'E0': 282, 'E1': 230, 'E2': 321, 'E3': 59, 'E4': 0}, 492 flags\n",
+      "elapsed_seconds": 49.719
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --run branch campaign/l1-imp-transition-probability-law --reason Bind final prose-only axiom-report clarification and refreshed evidence pages; receipt pins remain current.",
+      "exit_code": 0,
+      "output": "receipts current\n",
+      "elapsed_seconds": 0.797
+    }
+  ],
+  "check_attempts": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "output": "pfp results synchronized\n",
+      "elapsed_seconds": 1.079
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "output": "unified DAG synchronized\n",
+      "elapsed_seconds": 1.968
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "output": "application branches synchronized\n",
+      "elapsed_seconds": 1.407
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "output": "pregenesis-to-wdp fragment synchronized\n",
+      "elapsed_seconds": 22.046
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "output": "frontier branches synchronized\n",
+      "elapsed_seconds": 1.407
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "output": "genesis-to-higher synchronized\n",
+      "elapsed_seconds": 1.125
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "output": "unified invariants failures=0\n",
+      "elapsed_seconds": 0.953
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "output": "views match derivation_dag.json\n",
+      "elapsed_seconds": 0.547
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "output": "nodes=892 routes=897 records=944 failures=0\n",
+      "elapsed_seconds": 2.375
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "output": "receipts current\n",
+      "elapsed_seconds": 0.563
+    },
+    {
+      "command": "python -I -X utf8 -m pytest dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py --basetemp lean4/b/campaign-pytest-temp -q",
+      "exit_code": 0,
+      "output": "........................                                                 [100%]\n============================== warnings summary ===============================\nlean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp-law\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n24 passed, 1 warning in 36.40s\n",
+      "elapsed_seconds": 40.219
+    },
+    {
+      "command": "python -I -X utf8 checks/independent/l1-imp-transition-probability-law.py",
+      "exit_code": 0,
+      "output": "{\n  \"boundary_rejections\": [\n    \"boolean scalar\",\n    \"floating scalar\",\n    \"unchecked component\",\n    \"zero inverse\",\n    \"zero ray\",\n    \"zero effect\",\n    \"zero state\"\n  ],\n  \"countermodel_probabilities\": [\n    \"9/10\",\n    \"1/10\"\n  ],\n  \"grid\": {\n    \"ordered_pairs\": 6400,\n    \"orthogonal_pairs\": 512,\n    \"vectors\": 80\n  },\n  \"imaginary_probe_probabilities\": [\n    \"1\",\n    \"0\"\n  ],\n  \"mutations\": [\n    {\n      \"mutation\": \"drop probability denominator\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"drop conjugation in inner product\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"remove conditional branch: conjugate every vector\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"replace dynamics by identity\",\n      \"outcome\": \"killed\"\n    },\n    {\n      \"mutation\": \"stretch inverse without reciprocal\",\n      \"outcome\": \"killed\"\n    }\n  ],\n  \"scope\": \"symbolic identities, exact witnesses, finite grid; no general claim from sampling\",\n  \"status\": \"PASS\",\n  \"stretch_probabilities\": [\n    \"1/2\",\n    \"1/5\"\n  ],\n  \"symbolic_identities\": [\n    \"norm_multiplicative\",\n    \"orthogonal_partner\",\n    \"real_probe\",\n    \"imaginary_probe\",\n    \"gram_calibration\"\n  ],\n  \"witness_inner_products\": [\n    \"3\",\n    \"-1\"\n  ],\n  \"witness_norms\": [\n    \"2\",\n    \"5\"\n  ]\n}\n",
+      "elapsed_seconds": 16.031
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 1,
+      "output": "differs: dag/evidence/evidence_map.json\ndiffers: docs/evidence/nodes/FQ-GAP-TENSOR-UNIQUENESS.md\ndiffers: docs/evidence/nodes/TENSOR-ASSUMPTION-COUNTERMODELS.md\nevidence map is stale: run python -I -X utf8 dag/evidence/build_evidence.py --write\n",
+      "elapsed_seconds": 22.515
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "output": "receipts current\n",
+      "elapsed_seconds": 0.812
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "output": "evidence map current\n",
+      "elapsed_seconds": 10.297
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "output": "generated blocks are current\n",
+      "elapsed_seconds": 0.922
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "output": "generated status files are current (16 files checked)\n",
+      "elapsed_seconds": 22.547
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict --summary campaign-overclaim-final-complete.md",
+      "exit_code": 0,
+      "output": "overclaim_scan: scope=changes since origin/main (merge base 3924d378ff1d); HIGH=0 MEDIUM=0 LOW=3\n",
+      "elapsed_seconds": 34.781
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "output": "README facts current\n",
+      "elapsed_seconds": 588.812
+    }
+  ],
+  "earlier_pytest_before_repin": {
+    "exit_code": 1,
+    "interpretation": "Initial stale tensor DAG digest before the mandated re-pin; final same required test set passes after re-pin.",
+    "output": ".F......................                                                 [100%]\n================================== FAILURES ===================================\n________ test_countermodel_manifest_and_promotion_match_verified_scope ________\n\n    def test_countermodel_manifest_and_promotion_match_verified_scope():\n        r = receipt()\n        assert r['authority_effect'] == 'None'\n        for path, digest in r['sha256'].items():\n>           assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path\nE           AssertionError: dag/derivation_dag.json\nE           assert '44fb9f2a297e...020174a39a6cc' == '033c48c7cd7e...d79b0ff1c63c0'\nE             \nE             - 033c48c7cd7ea223cca52204a96ee37dc5640e2735ed8eacf68d79b0ff1c63c0\nE             + 44fb9f2a297ef13c3b19eca36cd33738c66276ee3a82091b4b9020174a39a6cc\n\ndag\\test_tensor_countermodel_receipt.py:59: AssertionError\n============================== warnings summary ===============================\nlean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp-law\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED dag/test_tensor_countermodel_receipt.py::test_countermodel_manifest_and_promotion_match_verified_scope\n1 failed, 23 passed, 1 warning in 37.83s\n"
+  },
+  "scanner_findings": [
+    {
+      "severity": "LOW",
+      "rule": "R10",
+      "subject": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "line": 0,
+      "evidence": "5 cited Lean module(s) in no replay receipt, e.g. lean4/TensorCountermodelCones.lean",
+      "action": "Replay the module and add a receipt, or accept that the compile evidence lives outside this repository.",
+      "key": "R10|TENSOR-ASSUMPTION-COUNTERMODELS|no-receipt",
+      "nodes": [
+        "TENSOR-ASSUMPTION-COUNTERMODELS"
+      ],
+      "files": []
+    },
+    {
+      "severity": "LOW",
+      "rule": "R5",
+      "subject": "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md",
+      "line": 0,
+      "evidence": "note for FQ-GAP-TENSOR-UNIQUENESS: 1 of 1 numbers in no cited file: 20261019",
+      "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+      "key": "R5|dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md|note|a1a5b81d7d",
+      "nodes": [
+        "FQ-GAP-TENSOR-UNIQUENESS"
+      ],
+      "files": [
+        "dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md"
+      ]
+    },
+    {
+      "severity": "LOW",
+      "rule": "R5",
+      "subject": "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+      "line": 0,
+      "evidence": "note for TENSOR-ASSUMPTION-COUNTERMODELS: 2 of 5 numbers in no cited file: 1/2, 1/4",
+      "action": "Recompute the number (exact arithmetic) from the cited file or an independent check; correct or delete it.",
+      "key": "R5|dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md|note|553d05d77f",
+      "nodes": [
+        "TENSOR-ASSUMPTION-COUNTERMODELS"
+      ],
+      "files": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md"
+      ]
+    }
+  ],
+  "legacy_numeric_triage": {
+    "authority_effect": "None",
+    "scope": "Inherited R5 numeric flags only; not a replay of the tensor modules or their general claims.",
+    "expressions": [
+      "B=b b^T/2 with b=(1,0,0,1)",
+      "Gamma(B) transposes the first 2-dimensional factor",
+      "P=[[1,-i],[i,1]]/2",
+      "F=ones(4)/4",
+      "dephase(B)=diag(diag(B))"
+    ],
+    "trace_values": {
+      "Tr((P tensor P) B)": "0",
+      "Tr((P tensor P) Gamma(B))": "1/2",
+      "Tr(F B)": "1/2",
+      "Tr(F dephase(B))": "1/4"
+    },
+    "date_token": "20261019 is an unchanged scope-audit date, not a numerical theorem",
+    "unresolved": "R10 reports five existing tensor modules outside the scanner-recognized replay inventory; no new build or coverage claim for them."
+  },
+  "repository_wide_contract_history": {
+    "exit_code": 1,
+    "result": {
+      "originals": 0,
+      "combined_files": 8659,
+      "all_passed": false,
+      "errors": [
+        {
+          "path": "lean4/HilbertLiftOperators.contract.score.yaml",
+          "error": "Expecting ',' delimiter: line 202 column 7 (char 10999)"
+        }
+      ]
+    },
+    "unchanged_baseline_path": "lean4/HilbertLiftOperators.contract.score.yaml",
+    "sha256": "fea2896c10e15f1f7a9df6fcef37732552419378ed1af751e7a0911ec0f16530",
+    "base_bytes_match": true,
+    "boundary": "The full repository contract-history audit is not green; the changed companions pass and README reports all_passed=false."
+  },
+  "environment": {
+    "python": "3.12.10",
+    "sympy": "1.13.1",
+    "PyYAML": "6.0.3",
+    "mypy": "1.19.1",
+    "pytest": "8.3.5",
+    "generator_import_dependencies": {
+      "numpy": "2.4.2",
+      "scipy": "1.17.0",
+      "pandas": "2.3.3"
+    },
+    "pytest_warning": "Unknown config option asyncio_mode; the selected synchronous tests pass."
+  },
+  "artifact_manifest": [
+    {
+      "path": "README.md",
+      "sha256": "940ed92827031ceb4fe5cc97dc55eb78951e4f1df1141b04b08f44417b183361",
+      "bytes": 26617
+    },
+    {
+      "path": "checks/independent/l1-imp-transition-probability-law.contract.score.yaml",
+      "sha256": "476eeff16f23aa6a622c6c146ef965bb7dc39ed420c43b98fdf31d88ce3103fd",
+      "bytes": 16219
+    },
+    {
+      "path": "checks/independent/l1-imp-transition-probability-law.py",
+      "sha256": "67537675ef4a328ecf875de7447ddc07f850f0da732afc6cb7a2d1e7ed83e8de",
+      "bytes": 9425
+    },
+    {
+      "path": "dag/derivation_dag.json",
+      "sha256": "44fb9f2a297ef13c3b19eca36cd33738c66276ee3a82091b4b9020174a39a6cc",
+      "bytes": 4416265
+    },
+    {
+      "path": "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+      "sha256": "eb6121daf844f6943e16f480096ea1e11aacf6ab71b54d86bc1c9411b51dd9ff",
+      "bytes": 5585
+    },
+    {
+      "path": "dag/derivations/MASTER_DERIVATION_LEDGER.md",
+      "sha256": "bc198873773df93a03a05c4237a4e09e56e65d6d7dc236343ba37847a1303773",
+      "bytes": 338510
+    },
+    {
+      "path": "dag/derivations/independent/l1-imp-transition-probability-law.md",
+      "sha256": "07adaa05d04414426066568f7501c8a979d3a8793cec440f0d16260398aa18cd",
+      "bytes": 10040
+    },
+    {
+      "path": "dag/evidence/evidence_map.json",
+      "sha256": "e414519655ec37039cf3942cc29b6c02fe9c025f66fec16756cbf06e5506017a",
+      "bytes": 6355621
+    },
+    {
+      "path": "dag/operads/index.json",
+      "sha256": "5793ba8c64ae8444ae69b16c6cc8e6731c5edf97b726a3231cf9685906b3cd2c",
+      "bytes": 371712
+    },
+    {
+      "path": "dag/operads/l1_imp_transition_probability_law.yaml",
+      "sha256": "4ffe6ab5f9ab4685efc9f5958f20ec7e18083a618e189c447cc36e2f1fea4dfa",
+      "bytes": 24495
+    },
+    {
+      "path": "dag/operads/tfq_0016.yaml",
+      "sha256": "f6a96ef320d69743dc46029602ae4da46fae6a278d70c9707580d8e595b2f7ee",
+      "bytes": 13368
+    },
+    {
+      "path": "dag/pfp/prompt_audit_extension.json",
+      "sha256": "6c58649009f6cb683c5f34f1335b497aeda04b5bca9dfe57700d2777896c9fce",
+      "bytes": 1083760
+    },
+    {
+      "path": "dag/prompts/l1_to_l2_l1_imp_transition_probability_law_imported_assumption.yaml",
+      "sha256": "dcac791b28ea675a38ffd699aa5dadeb1dfcb1fcf67752d1784514ac2d79105b",
+      "bytes": 6566
+    },
+    {
+      "path": "dag/research/campaign_l1-imp-transition-probability-law_independent_replay.json",
+      "sha256": "f2e2be70628fe87b5c98b8e6a9b3fb471239f4edf8da0f2cf78518ce052c8c2a",
+      "bytes": 6839
+    },
+    {
+      "path": "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
+      "sha256": "c7268cc307715a72b0f9b84a55a35c0914a1b1bee3f42ba5b00700e67a103565",
+      "bytes": 116977
+    },
+    {
+      "path": "dag/research/tensor_countermodel_validation.json",
+      "sha256": "e2ebb6089b7ace5dd8e3f1b0360dca49c0fcbfa65775a413291d0768d287ff9f",
+      "bytes": 113476
+    },
+    {
+      "path": "dag/theory_of_finite_qm.jsonl",
+      "sha256": "8c045e494596b4321e7f57433e958211b52bf0bc2af726264f90d769f41deb99",
+      "bytes": 1707114
+    },
+    {
+      "path": "dag/theory_of_finite_qm.md",
+      "sha256": "9fd0676c820c558a143a66114a157b0ffd31ea7cdb06eeddb6075e5d54df1754",
+      "bytes": 1066007
+    },
+    {
+      "path": "docs/evidence/README.md",
+      "sha256": "ee73774e322e3c3038dac804bea5cdaaa4c632c9429bd85dd9d79a364cd31fef",
+      "bytes": 15745
+    },
+    {
+      "path": "docs/evidence/nodes/FQ-GAP-TENSOR-UNIQUENESS.md",
+      "sha256": "1154e7a74d29d96906bfa6fe59cc5a34b9f5e2071d54735ed2f26b18f80baa5f",
+      "bytes": 11935
+    },
+    {
+      "path": "docs/evidence/nodes/L1-IMP-TRANSITION-PROBABILITY-LAW.md",
+      "sha256": "cbcc5ef772d3bf7be39c9fdddfca122e7ff939f24918f8fb4560bd718831f80d",
+      "bytes": 24991
+    },
+    {
+      "path": "docs/evidence/nodes/QCV-SELF-OBSTRUCTION-MODEL.md",
+      "sha256": "b5c3b8519141c8101beece5090d9b424f0e2db59c8b1030a1ab14ac91eab1242",
+      "bytes": 6903
+    },
+    {
+      "path": "docs/evidence/nodes/TENSOR-ASSUMPTION-COUNTERMODELS.md",
+      "sha256": "356b3e31995958b4371f5dd2fc8d23c99c3771921a6520f06f3b42d2188fda71",
+      "bytes": 13316
+    },
+    {
+      "path": "docs/evidence/stages/L1_TO_L2.md",
+      "sha256": "f472409aa7d6e2c455b6216c0cd7134da6cf4132228fa49ac815cab075440629",
+      "bytes": 24642
+    },
+    {
+      "path": "docs/overclaim/reviews/2026-10-23_campaign-transition-probability-law.md",
+      "sha256": "fc53aa22e5a941e8e3e99dc18787249d7b74aa787e1468a592bb73f5ed49a99c",
+      "bytes": 9545
+    },
+    {
+      "path": "lean4/CampaignTransitionProbability.contract.score.yaml",
+      "sha256": "63c556ccbdb7add4e30103c3063e47ac9cc8a4682f10574551aeb02e558fa39d",
+      "bytes": 15758
+    },
+    {
+      "path": "lean4/CampaignTransitionProbability.lean",
+      "sha256": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
+      "bytes": 26502
+    },
+    {
+      "path": "lean4/lakefile.contract.score.yaml",
+      "sha256": "7b6bbeecd511bf1a3f4bd57c1edfae5c949849ed8f94a85e3929990280aba414",
+      "bytes": 25508
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "03869b7cf5406aad29832d2c83cdd14ca0c01990d13be6607be060999cc08b85",
+      "bytes": 18577
+    },
+    {
+      "path": "papers/core/master_derivation_ledger.md",
+      "sha256": "bc198873773df93a03a05c4237a4e09e56e65d6d7dc236343ba37847a1303773",
+      "bytes": 338510
+    }
+  ],
+  "manifest_boundary": "Exact bytes staged after all mathematical and generated-view checks; excludes this self-describing receipt and the later PR-URL progress-log append. This is local verification, not hosted CI or named human approval.",
+  "repin_dependency_note": "The evidence renderer records tensor receipt hashes. After the first re-pin those evidence pages were regenerated and the re-pin repeated last with no further changes."
+}

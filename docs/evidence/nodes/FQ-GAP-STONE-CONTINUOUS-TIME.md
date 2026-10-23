@@ -1,6 +1,6 @@
 # FQ-GAP-STONE-CONTINUOUS-TIME
 
-Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `CONDITIONAL`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,24 @@ Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `CONDITION
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `receipt_not_current`: lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
+- `receipt_not_current`: lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
 
 ## Imported structure
 
@@ -52,14 +57,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, record TFQ-0246 (shared)
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` |
-| `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` |
+| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DiscreteTimeStoneSpec.lean`
@@ -67,18 +73,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DiscreteTimeStoneSpec.lean](../../../lean4/DiscreteTimeStoneSpec.lean)
 - sha256 (`bytes`): `78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `DiscreteTimeStoneSpec`): recorded sha256 `78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DiscreteTimeStoneSpec`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.DiscreteTime.QParamGroup` | yes | yes | yes | - | `#print axioms BornFable.DiscreteTime.QParamGroup` |
-| `BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution` | yes | yes | yes | - | `#print axioms BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution` |
-| `BornFable.DiscreteTime.QParamGroup.roots_of_all_orders` | yes | yes | yes | - | `#print axioms BornFable.DiscreteTime.QParamGroup.roots_of_all_orders` |
-| `BornFable.DiscreteTime.R345_pow_orthogonal` | yes | yes | yes | - | `#print axioms BornFable.DiscreteTime.R345_pow_orthogonal` |
-| `BornFable.DiscreteTime.matrix_half_step_not_unique` | yes | yes | yes | - | `#print axioms BornFable.DiscreteTime.matrix_half_step_not_unique` |
-| `BornFable.DiscreteTime.no_qparam_group_through_R345` | yes | yes | yes | - | `#print axioms BornFable.DiscreteTime.no_qparam_group_through_R345` |
-| `BornFable.DiscreteTime.no_rational_half_step` | yes | yes | yes | - | `#print axioms BornFable.DiscreteTime.no_rational_half_step` |
+| `BornFable.DiscreteTime.QParamGroup` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.QParamGroup` |
+| `BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution` |
+| `BornFable.DiscreteTime.QParamGroup.roots_of_all_orders` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.QParamGroup.roots_of_all_orders` |
+| `BornFable.DiscreteTime.R345_pow_orthogonal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.R345_pow_orthogonal` |
+| `BornFable.DiscreteTime.matrix_half_step_not_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.matrix_half_step_not_unique` |
+| `BornFable.DiscreteTime.no_qparam_group_through_R345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.no_qparam_group_through_R345` |
+| `BornFable.DiscreteTime.no_rational_half_step` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.no_rational_half_step` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1PhaseSynthesis.lean`
@@ -86,7 +93,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1PhaseSynthesis.lean](../../../lean4/U1PhaseSynthesis.lean)
 - sha256 (`bytes`): `6b9c6fae68d1695cb84ce8ae4622f357af51d8c5fa1a8747f11aaaf45a4afd2c`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `6b9c6fae68d1695cb84ce8ae4622f357af51d8c5fa1a8747f11aaaf45a4afd2c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1PhaseSynthesis`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -99,7 +107,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/U1QuadraticTowerAndCayleyStone.lean](../../../lean4/U1QuadraticTowerAndCayleyStone.lean)
 - sha256 (`bytes`): `660009a462e0569e2e02c8e8c61826b502394dc86b88faa566864052bdcf5c35`
 - cited in: node.lean
-- replay: `none`
+- replay: `failed`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `660009a462e0569e2e02c8e8c61826b502394dc86b88faa566864052bdcf5c35` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1QuadraticTowerAndCayleyStone`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

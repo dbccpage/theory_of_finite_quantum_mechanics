@@ -32,7 +32,7 @@ H060 2D pure-state Gram total positivity under every real embedding vs conductor
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_real_embedding_conductor5_mixed_witness_sign_flip`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
-- `sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs::positivity_under_embeddings`

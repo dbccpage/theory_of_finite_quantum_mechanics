@@ -148,7 +148,7 @@ Receipt module sha256 values are the `sha256` fields of `pfp_batch01_lean_replay
 - **stated in prose only.** `theory_of_finite_quantum_mechanics:docs/evidence/nodes/PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT.md::Statement`. Supplying `<a>` changes the presented inscriptions and leaves the internal observations fixed. Node status `CONDITIONAL`.
 - **imported.** Five `SOURCE_RECORD` nodes, none with an in-repo evidence file: `theory_of_finite_quantum_mechanics:docs/evidence/nodes/TFQ-0364.md::Statement`, `theory_of_finite_quantum_mechanics:docs/evidence/nodes/TFQ-0368.md::Statement`, `theory_of_finite_quantum_mechanics:docs/evidence/nodes/TFQ-0419.md::Statement`, `theory_of_finite_quantum_mechanics:docs/evidence/nodes/TFQ-0420.md::Statement`, `theory_of_finite_quantum_mechanics:docs/evidence/nodes/TFQ-0429.md::Statement`.
 
-Theorem count in this section, from the receipt anchors named above: RootDiffStructure 17, AdmissionFloor 11, InertDiamond 16, SixOperations 13, PrimdiffAxioms 21, CollapseBarrier 12, HistoryReport 9, PregenConstructive 11, DemandAccounting 14, RefineSeparates 14, OldImageInjective 12, FreeMonoidNoniso 14, ChainRetraction 12. Total 176. Definitions listed above: 19.
+Theorem count in this section, from the `#print axioms` lines of the thirteen modules (the batch receipt lists 173 anchors: it omits one theorem each in PrimdiffAxioms, PregenConstructive and RefineSeparates): RootDiffStructure 17, AdmissionFloor 11, InertDiamond 16, SixOperations 13, PrimdiffAxioms 21, CollapseBarrier 12, HistoryReport 9, PregenConstructive 11, DemandAccounting 14, RefineSeparates 14, OldImageInjective 12, FreeMonoidNoniso 14, ChainRetraction 12. Total 176. Definitions listed above: 19.
 
 ## Genesis stage
 
@@ -303,7 +303,7 @@ Marks on claims this checkout carries, counted from the lists above:
 
 | Mark | Count | What is included |
 |---|---|---|
-| proved in Lean | 277 theorems | Pre-Genesis receipt anchors 176, GenesisComputation anchors 43, S(n) receipt anchors 58 |
+| proved in Lean | 277 theorems | Pre-Genesis `#print axioms` lines 176 (the batch receipt lists 173 anchors), GenesisComputation anchors 43, S(n) receipt anchors 58 |
 | proved in Lean | 29 definitions | 19 Pre-Genesis carriers, 0 extra Genesis theorem-definitions in that 43, 10 S(n) carriers. The 8 Genesis copy types are listed and are not in this 29, because their module has an axioms file rather than a sha256 batch receipt. They are definitions in `lean4/GenesisComputation.lean`, not theorem marks. |
 | computed (exact) | 1 | the Rust context-count rectangle |
 | stated in prose only | 51 | Pre-Genesis 6 (grammar, quiescence, observational equivalence, admission-before-distinction, absence-of-rule, presentation-not-expressive-lift), Genesis 29 (15 definitions, 4 prose proofs, 10 conditionals), MSS-N 16 |

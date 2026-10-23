@@ -10,9 +10,9 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `PROVED_LEAN`. Evidence gr
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 12
+- counted in-repo evidence files: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 18
+- cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -75,12 +75,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteCochain.lean`
@@ -88,30 +89,54 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteCochain.lean](../../../lean4/FiniteCochain.lean)
 - sha256 (`bytes`): `344749ef8c272d08ff04702031ce24e3cc5b41709f6c47d5f95afb2c3bf6d9f8`
 - cited in: record TFQ-0195
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_implementation_sibling.json](../../../dag/research/lean_replay_campaign_implementation_sibling.json) (module `FiniteCochain`): recorded sha256 `344749ef8c272d08ff04702031ce24e3cc5b41709f6c47d5f95afb2c3bf6d9f8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteCochain`
 - counts toward the grade: yes
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean`
+### Lean: `lean4/Imported/PreGenesisToMssn/Homology.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [lean4/Imported/PreGenesisToMssn/Homology.lean](../../../lean4/Imported/PreGenesisToMssn/Homology.lean)
+- sha256 (`bytes`): `c2d4c354ae83deec3317716ed1324cc2560e190f9c9c39f8b1000c97e01b315c`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Homology`): recorded sha256 `c2d4c354ae83deec3317716ed1324cc2560e190f9c9c39f8b1000c97e01b315c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Homology.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean`
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `induced_homology_injective` | yes | yes | yes | Quot.sound, propext | `#print axioms induced_homology_injective` |
+- counts toward the grade: yes
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+### Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean`
+
+- file: [lean4/Imported/PreGenesisToMssn/Paper.lean](../../../lean4/Imported/PreGenesisToMssn/Paper.lean)
+- sha256 (`bytes`): `5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Paper`): recorded sha256 `5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean`
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean`
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `chain_retraction_cannot_kill` | yes | yes | yes | none | `#print axioms chain_retraction_cannot_kill` |
+- counts toward the grade: yes
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/lean4/Paper001.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+### Lean: `lean4/Imported/SnMssn/Paper001.lean`
+
+- file: [lean4/Imported/SnMssn/Paper001.lean](../../../lean4/Imported/SnMssn/Paper001.lean)
+- sha256 (`bytes`): `1a79ddc7a70157834ee80ed3890124aadd149093336ac49776eab3c167b4fb07`
 - cited in: node.lean
-- counts toward the grade: no
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.SnMssn.Paper001`): recorded sha256 `1a79ddc7a70157834ee80ed3890124aadd149093336ac49776eab3c167b4fb07` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/SnMssn/Paper001.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `homology_injective_of_chain_retraction` | yes | yes | yes | none | `#print axioms homology_injective_of_chain_retraction` |
+| `triangle_retraction_impossible` | yes | yes | yes | none | `#print axioms triangle_retraction_impossible` |
+| `two_point_retraction_impossible` | yes | yes | yes | Quot.sound, propext | `#print axioms two_point_retraction_impossible` |
+- counts toward the grade: yes
 
 ### Rust: `code/rust/src/homology/simplicial.rs`
 

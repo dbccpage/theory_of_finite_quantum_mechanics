@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean::nilpotency_composition`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean)
-- [`omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean::no_difference_without_distinguishability`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean)
+- [`lean4/Imported/OePfp/CarrierOrigin.lean::nilpotency_composition`](../../../lean4/Imported/OePfp/CarrierOrigin.lean)
+- [`lean4/Imported/OePfp/CarrierOrigin.lean::no_difference_without_distinguishability`](../../../lean4/Imported/OePfp/CarrierOrigin.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust counterpart of CarrierOrigin.lean`
@@ -50,5 +50,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean:61-70`
-  - `omega_engine_education/documentation/004_oepfp/lean4/CarrierOrigin.lean:72-79`
+  - `lean4/Imported/OePfp/CarrierOrigin.lean:70-79`
+  - `lean4/Imported/OePfp/CarrierOrigin.lean:81-88`

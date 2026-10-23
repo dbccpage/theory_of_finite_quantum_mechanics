@@ -1,0 +1,155 @@
+# Claim Ledger — CODA-FDA: Finite Descent Authority
+
+**Paper Key:** `000_coda/fda`  
+**Paper Identity:** `CODA-FDA` (`coda_fda.md`, version: `v0.1.1`)  
+**Date:** 2026-09-28  
+
+This ledger catalogs all mathematical definitions, theorems, corollaries, and propositions in `coda_fda.md`. All claims are framed strictly under finite operational authorization, type-theoretic dependent pairs, and exact rational arithmetic. The linear programming quotient solver is an external scalar calculator for guard $g_3$; it is not an authority-origin theorem.
+
+Current finite checks include `test_coda_fda.py::test_valid_packet_and_guards_inhabits_authority`, `test_coda_fda.py::test_g5_candidate_identifier_binding`, and `test_review_regressions.py::test_g5_requires_matching_candidate_ids_for_declared_packet`. These test the declared packet model and candidate-ID binding; they do not establish external semantic verifier soundness.
+
+---
+
+## 1. Operational Standing & Attestation Framework
+
+Standing in CODA-FDA is defined as an internal dependent pair:
+$$\mathsf{Standing}(p) := \Sigma(t:\mathbb{T}) \bigl( \Pi^\sharp(\text{packet}, p) = \mathsf{inl}(t) \wedge \mathsf{IsAuth}(t) \bigr).$$
+
+Standing requires both an exact terminal-branch pipeline execution path and seven derived halt guards. This operational record is definitionally distinct from the regime model predicate $\mathsf{Standing}_R(g, p)$ of Section 7. Soundness (FDA-T7) is proved strictly within the regime model under explicit verifier-soundness and grant-soundness hypotheses; operational standing (FDA-D2) is not connected to regime soundness without a declared regime embedding $R_\Pi$. The policy core consumes caller attestations. The separate execution harness records and checks all finite candidate certificates, stage-boundary skeleton snapshots, declared lift IDs and two-run replay. Neither proves external semantic soundness.
+
+An external linear cochain repair operator $d_0: V_0 \to V_1$ with defect $x \in V_1$ and exact rational $L_1$ quotient distance $\Phi_1([x]) = \min_f \|x + d_0 f\|_{1, w}$ optionally provides a rational scalar to guard $g_3$ (`zero_residual_mass`). That solver measures leftover mass; it does not construct an authority cochain or prove an origin of standing.
+
+---
+
+## 2. Claim-by-Claim Mathematical Matrix
+
+| ID | Paper Title & Statement | Type | Formal Symbol / Mechanism | Explicit Hypotheses | Status | Verification Evidence |
+|---|---|---|---|---|---|---|
+| **FDA-D1** | Five-field descent packet structure $(K, E, V, \tau, \Lambda)$ | DEFINITION | `GTFDA.DescentPacket`, `coda_fda_core.DescentPacket` | Declared carrier $K$, candidate family $E$, local verifier $V$, terminalizer $\tau$, continuation discipline $\Lambda$ | DEFINITION | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_incomplete_packet_fields_refuse` |
+| **FDA-D2** | Dependent operational standing pair $\mathsf{Standing}(p)$ | DEFINITION | `GTFDA.Authority`, `coda_fda_core.AuthorizationResult` | Proposal $p$, declared packet, pipeline returning $\mathsf{inl}(t)$, and $\mathsf{IsAuth}(t)$ | DEFINITION | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_valid_packet_and_guards_inhabits_authority` |
+| **FDA-D3** | Seven halt guards derived from evidence/attestations | DEFINITION | `GTFDA.HaltGuards`, `GTFDA.IsAuth`, `coda_fda_core.derive_guards` | Conjunction $g_1 \wedge \cdots \wedge g_7$ over pipeline acceptance, replay, zero residual mass, skeleton preservation, exhaustive candidate check, zero pending lifts, zero active refusal | DEFINITION | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_mutation_single_guard_failure_kills_authority` |
+| **FDA-T1** | One failed guard kills standing ($\neg\mathsf{IsAuth} \implies \text{no standing}$) | THEOREM | `GTFDA.failed_guard_non_creation` | Terminal $t$ with $\neg\mathsf{IsAuth}(\text{guards}(t))$ | PROVED in Lean 4 (0 axioms) | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_mutation_single_guard_failure_kills_authority` |
+| **FDA-T2** | No supplied packet implies no supplied standing | THEOREM | `GTFDA.missing_supplied_packet_non_creation` | `input = none` in `Option (DescentPacket Terminal)` | PROVED in Lean 4 (0 axioms) | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_missing_packet_refuses_even_with_high_confidence` |
+| **FDA-T3** | No terminal path, no standing ($\forall t, \Pi^\sharp \ne \mathsf{inl}(t) \implies \text{empty}$) | THEOREM | `GTFDA.authority_non_construction` | Proposal $p$ where $\Pi^\sharp(\text{packet}, p) \ne \mathsf{inl}(t)$ for all $t$ | PROVED in Lean 4 (0 axioms) | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_incomplete_packet_fields_refuse` |
+| **FDA-C1** | A refusal is not standing ($\Pi^\sharp = \mathsf{inr}(r) \implies \text{empty}$) | COROLLARY | `GTFDA.refusal_non_creation` | Refusal outcome $\Pi^\sharp(\text{packet}, p) = \mathsf{inr}(r)$ | PROVED in Lean 4 (0 axioms) | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_refusal_codes_and_residual_mass_branches` |
+| **FDA-T4** | A generated candidate is not standing | THEOREM | `GTFDA.authority_non_generation` | Generated candidate $c$ lacking terminalizer path | PROVED in Lean 4 (0 axioms) | Lean 4 `GtfdaAuthorityCore.lean`; Python `test_compat_evaluate_authority_with_prederived_guards` |
+| **FDA-P1** | Leftover solver is not an origin theorem | PROPOSITION / SCOPE FENCE | `compute_cochain_residual_quotient` feeds $g_3$ scalar only | Defect $x$, repair matrix $d_0$, weights $w > 0$ | SCOPE FENCE (no authority cochain proved) | Python `test_cochain_quotient_bridge_zero_residual`, `test_cochain_quotient_bridge_nonzero_residual` |
+| **FDA-T5** | A terminal has an execution history | THEOREM | `Coda.FDA.terminal_has_history` | Staged pipeline $\mathrm{run}(p) = \mathsf{ok}(t)$ | PROVED in Lean 4 (`{propext}`) | `FDA.lean`, `Algebra.lean` |
+| **FDA-T6** | Routing refusal persists through later stages | THEOREM | `Coda.FDA.routing_refusal_persists` | Stage pipeline with $\mathrm{route}(p) = \mathsf{error}(f)$ | PROVED in Lean 4 (`{propext}`) | `FDA.lean`, `Algebra.lean` |
+| **FDA-T7** | Standing is sound under two extra hypotheses in regime model | THEOREM | `Coda.FDA.standing_sound` | Verifier soundness $\forall p, e. R.V(p, e) \implies R.\mathrm{truth}(p)$ and grant soundness $\forall g, p. R.G(g, p) \implies R.\mathrm{entitled}(g, p)$ within regime $R$; applies to operational FDA-D2 only under declared embedding $R_\Pi$ | PROVED in Lean 4 (0 axioms) | `FDA.lean`, `Algebra.lean` |
+| **FDA-T8** | Untrusted verifier countermodel | THEOREM | `Coda.FDA.untrusted_verifier_countermodel` | Trivial unit regime with unsound verifier | PROVED in Lean 4 (0 axioms) | `FDA.lean`, `Algebra.lean` |
+| **FDA-T9** | Residual outcomes require an explicit promotion rule | POLICY | FDA-C1 proves refusal-branch exclusion only | Declared standing constructor and interface | The categorical no-map clause is WITHDRAWN 2026-09-27 as false; constant singleton functors are a countermodel | FDA-C1; manuscript FDA-T9 countermodel. No categorical mechanization claimed |
+| **FDA-T10** | Role separation | POLICY / SCOPE FENCE | No dedicated Lean declaration | Declared interface and model scope | No semantic or institutional authority theorem claimed | FDA-T4 for missing paths; FDA-T7 and FDA-T8 for conditional soundness. External application tests are not package evidence |
+| **FDA-T11** | Zero quotient distance does not establish semantic truth | POLICY / SCOPE FENCE | No dedicated Lean declaration | Declared interface and model scope | No semantic or institutional authority theorem claimed | FDA-T4 for missing paths; FDA-T7 and FDA-T8 for conditional soundness. External application tests are not package evidence |
+| **FDA-T12** | Conditional verifier scope | POLICY / SCOPE FENCE | No dedicated Lean declaration | Declared interface and model scope | No semantic or institutional authority theorem claimed | FDA-T4 for missing paths; FDA-T7 and FDA-T8 for conditional soundness. External application tests are not package evidence |
+
+---
+
+## 3. Seven Derived Halt Guard Specifications
+
+### 3.1 Derived Halt Guard Definitions & Exact Boundaries
+
+Guards are evaluated from `GuardEvidence` (aliased as `GuardAttestations`) using exact rational comparisons:
+
+| Guard | Identifier | Derivation Rule | Exact Boundary Bound | Python Test Coverage |
+|---|---|---|---|---|
+| $g_1$ | `accepted` | `pipeline_accepted == True` | Strict boolean `type(val) is bool` | `test_valid_packet_and_guards_inhabits_authority`, `test_strict_bool_type_enforcement` |
+| $g_2$ | `deterministic` | `replay_deterministic == True` | Strict boolean `type(val) is bool` | `test_mutation_single_guard_failure_kills_authority`, `test_strict_bool_type_enforcement` |
+| $g_3$ | `zero_residual_mass` | `residual_mass == 0` | Exact rational vanishing ($0$ tolerance) | `test_cochain_quotient_bridge_zero_residual`, `test_cochain_quotient_bridge_nonzero_residual` |
+| $g_4$ | `skeleton_preserving` | `skeleton_preserved == True` | Strict boolean `type(val) is bool` | `test_mutation_single_guard_failure_kills_authority`, `test_strict_bool_type_enforcement` |
+| $g_5$ | `exhaustive` | Candidate IDs in $E$ verified | Exact candidate identifier set match | `test_g5_candidate_identifier_binding`, `test_zero_declared_candidates_not_exhaustive` |
+| $g_6$ | `no_pending_lift` | `pending_lifts == 0` | Non-negative integer count $\equiv 0$ | `test_unauth_guard_branches_coverage`, `test_derive_guards_negative_validation_errors` |
+| $g_7$ | `no_refusal` | `not active_refusal` | Strict boolean `type(val) is bool` | `test_unauth_guard_branches_coverage`, `test_strict_bool_type_enforcement` |
+
+### 3.2 Adversarial Fault Injection & Mutation Verification Matrix
+
+Each test enforces a specific invariant via intentional fault injection, verifying that any invalidation strictly flips the outcome into refusal or raises an explicit exception:
+
+| Target Invariant | Injected Fault / Mutation | Expected Outcome & Refusal Code | Verifying Test Name |
+|---|---|---|---|
+| Inhabited Standing | None (all nominal) | `inhabited = True`, `refusal_code = None` | `test_valid_packet_and_guards_inhabits_authority` |
+| Packet Completeness | `carrier_k = ""` | `inhabited = False`, `refusal_code = "R_nopacket"` | `test_incomplete_packet_fields_refuse` |
+| Fluency Independence | `packet = None`, `confidence = 0.999` | `inhabited = False`, `refusal_code = "R_nopacket"` | `test_missing_packet_refuses_even_with_high_confidence` |
+| Guard Conjunction ($g_1$) | `pipeline_accepted = False` | `inhabited = False`, `refusal_code = "R_candidate"` | `test_mutation_single_guard_failure_kills_authority` |
+| Guard Conjunction ($g_2$) | `replay_deterministic = False` | `inhabited = False`, `refusal_code = "R_unreplayable"` | `test_mutation_single_guard_failure_kills_authority` |
+| Guard Conjunction ($g_3$) | `residual_mass = 1` | `inhabited = False`, `refusal_code = "R_candidate"` | `test_mutation_single_guard_failure_kills_authority` |
+| Guard Conjunction ($g_4$) | `skeleton_preserved = False` | `inhabited = False`, `refusal_code = "R_candidate"` | `test_mutation_single_guard_failure_kills_authority` |
+| Guard Conjunction ($g_5$) | Candidate IDs not matching $E$ / incomplete coverage | `inhabited = False`, `refusal_code = "R_candidate"` | `test_g5_candidate_identifier_binding`, `test_derive_guards_exhaustive_requires_full_coverage` |
+| Guard Conjunction ($g_6$) | `pending_lifts = 1` | `inhabited = False`, `refusal_code = "R_candidate"` | `test_mutation_single_guard_failure_kills_authority` |
+| Guard Conjunction ($g_7$) | `active_refusal = True` | `inhabited = False`, `refusal_code = "R_candidate"` | `test_mutation_single_guard_failure_kills_authority` |
+| Zero Floats Invariant | `residual_mass = 0.0` (IEEE 754 float) | Strictly raises `TypeError: floats strictly forbidden` | `test_strict_float_rejection` |
+| Zero Floats Invariant | `residual_mass = np.float64(0.0)` | Strictly raises `TypeError: floats strictly forbidden` | `test_strict_float_rejection` |
+| Strict Boolean Type | `pipeline_accepted = "False"` (string) | Strictly raises `TypeError` | `test_strict_bool_type_enforcement`, `test_evaluate_authority_validates_certificate_and_distance` |
+| Certificate Consistency | Certificate distance $\ne$ evidence residual | `inhabited = False`, `refusal_code = "R_contradictory_evidence"` | `test_residual_certificate_validation_and_mismatch_refusal`, `test_evaluate_authority_validates_certificate_and_distance` |
+| Exactness Float Firewall | `Matrix([Float(2**60, 15)])` for $N=2^{60}$ | `cert.verify() is False` | `test_exactness_certificate_rejects_float_and_sympy_float` |
+| Candidate ID Binding ($g_5$) | Omitted or mismatched IDs for declared packet | `exhaustive = False`, `refusal_code = "R_candidate"` | `test_g5_requires_matching_candidate_ids_for_declared_packet` |
+| Import Order Independence | `import pipeline; from core import SealedPipeline` | Returns 0, `SealedPipeline is not None` | `test_import_order_independence` |
+| Exact Homology Bridge | $\omega \in \operatorname{im}(d_0)$ (exact cycle) | `cert.distance = 0`, `inhabited = True` | `test_cochain_quotient_bridge_zero_residual` |
+| Exact Homology Bridge | $\omega \notin \operatorname{im}(d_0)$ (obstruction) | `cert.distance = 2`, `refusal_code = "R_candidate"` | `test_cochain_quotient_bridge_nonzero_residual` |
+
+---
+
+## 4. Refusal Taxonomy
+
+The Python companion implements the formal `RefusalCode` enum:
+
+- `RefusalCode.R_nopacket`: Missing or invalid five-field packet (evaluated before guard inspection).
+- `RefusalCode.R_candidate`: Terminal failed one or more deterministic halt guards (e.g. $g_1$, $g_3$, $g_4$, $g_5$, $g_6$, $g_7$).
+- `RefusalCode.R_unreplayable`: Replay determinism guard $g_2$ failed.
+- `RefusalCode.R_contradictory_evidence`: Supplied residual certificate failed verification or distance mismatched evidence residual.
+- `RefusalCode.R_obstruction`: Nonzero quotient obstruction.
+
+---
+
+## 5. Vocabulary Fence & Scope Boundaries
+
+### 5.1 Terminology & Posture Fences
+
+| Term / Posture | Preferred Framing | Prohibited Overclaim |
+|---|---|---|
+| Standing | Operational witness pair under declared packet and pipeline | Legal, institutional, or cosmic authority |
+| Authorization | Stepwise policy evaluation over caller attestations | Autonomous real-world proof of pipeline run |
+| Quotient Solver | External scalar calculator measuring leftover mass | Origin-of-standing theorem |
+| Verifier | Local check producing evidence or failing into refusal | Inherently sound oracle for real-world truth |
+
+### 5.2 What CODA-FDA Does Not Support
+
+1. **Does Not Prove Universal Operational Authority:** CODA-FDA defines a finite standing constructor under a declared context $S$. It does not establish authority outside this declared finite setting.
+2. **Does Not Promote Fluency to Proof:** High logit confidence, benchmark scores, or LLM output fluency cannot satisfy the 5-field packet requirement or the 7 halt guards.
+3. **Does Not Mint Global Authority:** No authority tokens, release gates, or external credentials are minted by this package.
+4. **Does Not Claim Continuum Verifier Soundness:** Lean 4 formalization models the discrete definitional firewall; it does not claim infinite-dimensional or empirical verifier soundness.
+
+### 5.3 Narrowest Defensible Claim
+
+In any finite evaluation setting $S$ with a declared 5-field descent packet $(K, E, V, \tau, \Lambda)$ and sealed pipeline $\Pi_S^\sharp$, operational standing (`AuthStanding`) is an inhabited dependent pair type if and only if all 7 derived halt guards hold simultaneously and the pipeline yields a terminal outcome in $\operatorname{inl}(\mathbb{T}_S)$.
+
+---
+
+## 6. Open Obligations and Verification State
+
+1. **Lean 4 Mechanization Status:**
+   - Core firewalls (FDA-T1–T4, FDA-C1) and reconstruction theorems (FDA-T5–T8, observation firewall, replay standing) elaborate under `lake build` with zero `sorry` stubs and zero non-kernel axioms (only standard `{propext}` for `Except` matching).
+   - Carrier and candidate types in Lean are unrestricted `Type u`; finite carrier enumeration in Lean remains open.
+2. **Computational verification scope:**
+   - `code/tests/test_coda_fda.py` and `test_fda_injected_mutations.py` test the attestation policy.
+   - `test_fda_pipeline_integration.py` tests mixed candidates, per-candidate binding, all-stage refusals, observed skeleton/lifts, replay, trace integrity and immutability.
+   - `test_exact_solver_contract.py` tests exact domain boundaries, primal-dual certificates and corruption refusals.
+   - Counts, pass/fail status, coverage and interpreter versions belong to the release verification receipt; this ledger does not substitute old counts for a fresh run.
+3. **Open Research Obligations:**
+   - Integration of the full GTOC discrete differential apparatus with higher cocycle condition $d_1 d_0 = 0$ across multi-simplex graphs (retained as proposed research, not a current release requirement).
+4. **Authority Effect:**
+   - Strictly `None`. No row grants authority, admission, or publication standing.
+
+## 7. Statement-level correspondence and operational limits
+
+- FDA-T2 now concerns absence of a supplied optional input. The historical
+  `uniform_non_creation` premise is impossible because an `Empty`-carrier packet
+  exists. Neither theorem encodes Python's nonblank-field and unique-ID validation.
+- Lean FDA-T5/T6 model one descent and verification. The Python harness enumerates
+  a declared candidate tuple and requires every bound certificate to have zero
+  distance; this finite extension is tested, not proved by those Lean theorems.
+- The execution trace stores canonical immutable values. Skeleton equality is
+  measured at stage boundaries under a declared projection; registry completeness
+  and callback semantic adequacy remain model assumptions.
+- The solver implementation is unweighted exact L1. General positive weights
+  in the mathematical notation are not a supported API argument.

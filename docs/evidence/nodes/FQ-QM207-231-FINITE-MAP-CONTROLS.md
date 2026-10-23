@@ -1,6 +1,6 @@
 # FQ-QM207-231-FINITE-MAP-CONTROLS
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 4 Lean reference(s) cited, 4 in this checkout (replay: none 4). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -51,12 +51,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate` |
+| `QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQFTAndGravity.lean`
@@ -64,12 +65,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteQFTAndGravity.lean](../../../lean4/FiniteQFTAndGravity.lean)
 - sha256 (`bytes`): `74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQFTAndGravity`): recorded sha256 `74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQFTAndGravity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `kn_forward` | yes | yes | yes | - | `#print axioms kn_forward` |
+| `kn_forward` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms kn_forward` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQM.lean`
@@ -77,13 +79,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
 - sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteQM`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `graph_conf2_exchange_betti_and_character_collapse` | yes | yes | yes | - | `#print axioms graph_conf2_exchange_betti_and_character_collapse` |
-| `helium_kellner_variational_bound_and_virial_identity` | yes | yes | yes | - | `#print axioms helium_kellner_variational_bound_and_virial_identity` |
+| `graph_conf2_exchange_betti_and_character_collapse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms graph_conf2_exchange_betti_and_character_collapse` |
+| `helium_kellner_variational_bound_and_virial_identity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms helium_kellner_variational_bound_and_virial_identity` |
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs`

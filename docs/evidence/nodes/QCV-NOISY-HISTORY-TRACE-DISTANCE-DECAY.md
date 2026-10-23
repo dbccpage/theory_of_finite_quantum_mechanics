@@ -1,6 +1,6 @@
 # QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E2; 10 Lean reference(s) cited, 10 in this checkout (replay: none 10). PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -48,21 +48,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/QcEntropySink.lean](../../../lean4/QcEntropySink.lean)
 - sha256 (`bytes`): `361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2`
 - cited in: node.lean, record TFQ-1322
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `QcEntropySink`): recorded sha256 `361f4c3df7c3ef3ffa91793a3d1756a51a2c051ed83d2a3f86be65db06923bf2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build QcEntropySink`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `decay_below` | yes | yes | yes | - | `#print axioms decay_below` |
-| `decay_le_inv` | yes | yes | yes | - | `#print axioms decay_le_inv` |
-| `depol_dist` | yes | yes | yes | - | `#print axioms depol_dist` |
-| `noisyStep_dist` | yes | yes | yes | - | `#print axioms noisyStep_dist` |
-| `pairingSet_bddAbove` | yes | yes | yes | - | `#print axioms pairingSet_bddAbove` |
-| `run_dist` | yes | yes | yes | - | `#print axioms run_dist` |
-| `run_dist_le` | yes | yes | yes | - | `#print axioms run_dist_le` |
-| `tn` | yes | yes | yes | - | `#print axioms tn` |
-| `tn_conj` | yes | yes | yes | - | `#print axioms tn_conj` |
-| `tn_smul` | yes | yes | yes | - | `#print axioms tn_smul` |
+| `decay_below` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms decay_below` |
+| `decay_le_inv` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms decay_le_inv` |
+| `depol_dist` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms depol_dist` |
+| `noisyStep_dist` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms noisyStep_dist` |
+| `pairingSet_bddAbove` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pairingSet_bddAbove` |
+| `run_dist` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms run_dist` |
+| `run_dist_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms run_dist_le` |
+| `tn` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tn` |
+| `tn_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tn_conj` |
+| `tn_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tn_smul` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`

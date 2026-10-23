@@ -10,9 +10,9 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 24
-- cited Lean declarations covered by a current replay receipt: 14
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 22
+- cited Lean declarations covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -50,12 +50,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/BornRedundancy.lean](../../../lean4/BornRedundancy.lean)
 - sha256 (`bytes`): `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b`
 - cited in: node.lean
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornRedundancy`): recorded sha256 `8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornRedundancy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `normalize` | yes | yes | yes | - | `#print axioms normalize` |
+| `normalize` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms normalize` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -63,16 +64,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
 - cited in: node.lean, node.source
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.even_cycle_sector_weights_require_selector` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.even_cycle_sector_weights_require_selector` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_even_cycle_symmetry_orbit_canonical_sector_weights` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_even_cycle_symmetry_orbit_canonical_sector_weights` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` |
-| `QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1` |
+| `QuantumMechanics.DerivationDagQMClosure.even_cycle_sector_weights_require_selector` | yes | yes | yes | propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.even_cycle_sector_weights_require_selector` |
+| `QuantumMechanics.DerivationDagQMClosure.l1_even_cycle_symmetry_orbit_canonical_sector_weights` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_even_cycle_symmetry_orbit_canonical_sector_weights` |
+| `QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` |
+| `QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` |
+| `QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1` | yes | yes | yes | propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/H001ProbabilitySimplex.lean`
@@ -109,20 +111,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ResidualSectorWeights.sector_weights_sum_to_phi1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ResidualSectorWeights.sector_weights_sum_to_phi1` |
 | `ResidualSectorWeights.symmetric_integral_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ResidualSectorWeights.symmetric_integral_iff` |
 | `ResidualSectorWeights.symmetric_selector` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ResidualSectorWeights.symmetric_selector` |
-- counts toward the grade: yes
-
-### Lean: `sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`
-
-- file: [sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean](../../../sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `a2ec0a203277c5c7b4bd71067351c574509c655c18bf0e08fe3c05a8005fc497`
-- cited in: node.lean
-- replay: `none`
-- check: `cd lean4 && lake build   # the library that contains sources/atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` | yes | yes | yes | - | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` |
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/category_theory/foundations/finite_set.rs`

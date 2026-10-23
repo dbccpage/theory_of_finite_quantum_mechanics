@@ -1,0 +1,131 @@
+## 2026-09-28 — release candidate 3.2.1
+
+Aligned manuscript, code, citation metadata, and rebuilt release artifacts after the review corrections. Historical versions and unresolved claim obligations remain recorded below.
+
+## 3.2.0 — 2026-09-27 — mathematical and runtime review repairs
+
+Corrected the E2 target to a cycle quotient, rejected invalid flux/cycle representatives, and withdrew the positive canonical-triangle and dimension-complexity claims. Added a genuine finite nonzero example. Repaired profile lengths and complete gluing; bound full input/stage digests; normalized immutable input records; computed the first distance on nonclosed inputs; rechecked stage evidence; restricted token language to the declared unauthenticated model. Replaced arbitrary cyclic arrow images with the regular groupoid action and complete law checks. The two-rule routine now reports unevaluated extension/tie obligations. Corrected false companion summaries, removed unrelated Lean evidence, and reconciled release identity. New regression targets are recorded in code/tests; passing results require fresh execution. The earlier claims that all blockers were resolved are historical and superseded by this record.
+
+---
+
+# Change Log: CODA-GTLA (six jobs, not one machine)
+
+## 2026-09-28 — Republication peer review remediation
+- **Categorical no-map claim withdrawn**: Withdrew the general categorical no-map claim in monograph §4.3 item 3 and claim ledger GTLA-08, citing the constant singleton functor countermodel. Retained constructor disjointness (Theorems GTLA-T8 locally and FDA-C1 externally) and described promotion restrictions from residual data to standing as an interface policy of the declared system.
+- **Lean instructions corrected & PDF rebuilt**: Updated `README.md` and `docs/000_quick_start.md` to instruct running `Core.lean` (and `Algebra.lean` for residual-algebra audit) instead of absent `coda_gtla_000.lean`. Recompiled `coda_gtla_monograph.pdf` from current TeX sources, ensuring page 8 reflects current PascalCase Lean module names.
+- **Deposit manifest & archive assembly parity**: Included `SHA256SUMS` in the release archive and updated verification handling so post-extraction `verify_deposit.py` succeeds without assembly omission.
+
+## 2026-09-27 — Integrated remaining September 23 suggestions
+
+Separated prose proofs, Lean declarations, and finite checks in the ledger. Pinned historical app test sources to complete commit/blob identities and retained a regression gate for future citations. Named FDA g₁–g₇ in the manuscript and TeX, distinguishing the app firewall checklist.
+
+The former top-level update-suggestions document is retired after its remaining
+actions were incorporated into the maintained package sources. Prior applied
+A-T8/A-T9, FDA-T9–T12, and OR-T9/T10 revisions remain in their existing logs.
+This integration is not a publication-readiness verdict.
+
+This document records the version history for CODA-GTLA
+(`coda_atlas/F005_coda/coda_gtla/`).
+
+## 2026-09-23 — GTLA-06..11 retyped and re-cited (external review)
+- **CHECKED-FINITE** added to the status legend: a passing test on declared finite instances is not a proof. `apps/coda` citations are to the tree at the commit that last changed the citing row.
+- **GTLA-08** no longer implies the FDA Lean core is in this package. It cites `GTFDA.refusal_non_creation` (FDA-C1) in `F005_coda/fda/lean4/gtfda_authority_core.lean`, pinned by commit and blob. That file contains no declaration for the $\operatorname{Nat}$ clause, so GTLA-08 is retyped PROPOSITION.
+- **GTLA-09** now cites `test_budget_exhaustion_inside_layer_one_refuses`, which exhausts a budget and asserts REFUSED. The former test asserted CLOSED_RESIDUAL. The "> 3.0s" figure is withdrawn.
+- **GTLA-10** now cites `test_surviving_residual_is_read_back_from_the_register`, which reads the persistent register back. The statement adopts the restated CODA-A A-T9 ($\operatorname{im} C = \operatorname{im} d_0$). The old clause is withdrawn in place.
+- **GTLA-06, 07, 11** retyped (POLICY / SCOPE FENCE + CHECKED-FINITE); GTLA-11 now cites a single test node instead of a whole module.
+- Monograph items 3–5 of the Paper 004–030 synthesis updated to match.
+- `SHA256SUMS` and `MANIFEST.sha256` regenerated from the committed (LF) blobs. They were already stale for `README.md`, the ledger, the monograph and three notebooks before this entry.
+
+## [v3.1.0] — 2026-09-18 (Republication Review Remediation: Blockers B1–B8 & M1–M8 Resolved)
+- **B1 (Standalone Solver Decoupling)**: Vendored `code/cochain_presentation.py` directly into the package, eliminating the unfulfilled monorepo `omega_engine` dependency. Updated `pyproject.toml` with pinned dependencies and self-contained test paths.
+- **B2 (Faithful Groupoid Embedding)**: Replaced the collapsed singleton representation with genuine faithful permutation spans on carriers of size $\ge 2$ for $\mathbb{Z}_2$ and $\mathbb{Z}_3$. Verified $E(e) \neq E(g)$, $E(g)^2 = E(e)$, and hom-set injectivity in `check_faithfulness()`.
+- **B3 (Dual Witness Mechanical Certification)**: Deleted the heuristic nullspace fallback in `functor_foc_sharp`. Introduced `validate_dual_witness` enforcing $d_0^T y = 0$, $\|y\|_\infty \le 1$, and $\langle y, \delta \rangle = \Phi_1$. Replaced invalid witness tests with explicit rejection regressions for counterexamples $(0, 1)$ and $(1, 1)$.
+- **B4 (Strict Cochain Shape & Complex Validation)**: Implemented strict `ProblemInstance.__post_init__` enforcing 1-column defect matrices, exact dimension matching, and the cochain complex condition $d_1 d_0 = 0$. Added regression tests rejecting 2-column defects and non-zero $d_1 d_0$.
+- **B5 (Zero Floats Decision Boundary)**: Enforced recursive exact rational validation across matrices, local sections, profiles, and certificates, strictly rejecting IEEE 754 floats, SymPy Floats, and booleans.
+- **B6 (Presheaf Section Descent Computation)**: Replaced caller boolean trust with computed section restrictions and overlap consistency across covers. Empty local sections fail gluing.
+- **B7 (Typed Authority & Semantic Firewall)**: Introduced `AuthorityToken` dataclass; derived terminal booleans directly from `TerminalKind`; verified semantic invariants ($T_{\text{auth}} \iff \Phi_1 = \Gamma_2 = 0$).
+- **B8 (PipelineResult with SHA-256 Digest)**: Renamed receipt to `PipelineResult` with deterministic `sha256_digest()`. Added executable `execute_two_rule_repair_loop` for GTLA-03.
+- **M1–M3 (Spans, Groupoid Laws, No Fabricated Evidence)**: Enforced `ComparisonSpan` bounds and surjectivity, `FiniteGroupoid` algebraic laws, and set uncomputed distances to `None`.
+- **M4–M6 (Fault Catalog, Property Tests, Non-Overlapping Figure)**: Renamed mutation tests to `test_gtla_fault_examples.py`, added quotient representative invariance property tests, and restructured `generate_figures.py` layout to eliminate bounding box overlaps.
+- **M7 (Archival Notebook Execution)**: Cleaned path bootstraps to avoid monorepo escapes, pinned kernelspec, and executed all three companion notebooks capturing cell outputs.
+
+---
+
+## [v2.1.0] — 2026-09-07 (Repository of Record Republication)
+- **Unified Republication**: Deployed canonical GTLA monograph (`coda_gtla_monograph.md`, 13 sections, ~40 KB) integrating the full 9-layer authority architecture into `coda_atlas/F005_coda/coda_gtla/`.
+- **Master Normal Form Standardization**: Fixed canonical factorization $\Pi^\sharp = \tau^\sharp \circ_k \mathrm{FOC}^\sharp \circ_k D^\sharp \circ_k \rho^\sharp \circ_k R^\sharp$ in the category of finite carrier presentations and span pullback compositions.
+- **33-Claim Ledger Formalization**: Established the 33-claim ledger (`coda_gtla_claim_ledger.md`) encompassing 5 master structural claims (GTLA-01..05) and 28 layer claims across FDN (3), FOC (5), FDA (4), MUR (2), OR (1), CS (3), CSQ (3), Q (4), and A (3).
+- **Claim Hygiene Compliance**: Audited all text against `RULE[user_global]`: zero un-scoped hype verbs.
+- **14 Architectural SVG Diagrams**: Generated and verified 14 high-precision, 100% valid XML/SVG diagrams in `coda_atlas/F005_coda/images/`.
+- **Zenodo Metadata Schema**: Formulated complete deposit metadata schema (`zenodo_metadata.json`) cross-referencing historical Zenodo records 20195157, 20472345, 20472337, 20482296, 20492636, 20684936, and 20472003.
+- **Discipline Preservation**: Verified that `discipline/` and test suite `test_coda_discipline.py` achieve 7/7 test passes and 100% code coverage.
+
+---
+
+## [v2.0.0] — 2026-08-31 (Discipline Founding & GT Prefix Elimination)
+- **Founding Statement**: Incorporated CODA founding charter ("Calculus of Obstruction, Descent, and Authority").
+- **Alias Retirement**: Formally retired all prior names (including RCOC, "Relational Carrier Obstruction Calculus") as withdrawn aliases.
+- **GT Prefix Elimination**: Systematic renaming of legacy GT-prefixed modules to canonical CODA designations across documentation and code.
+- **HoTT Subsumption Refusal**: Formally withdrew the verb "subsume" regarding Homotopy Type Theory and Higher Category Theory; adopted rigorous positioning under CD-06..CD-11.
+- **CD-12 Faithful Functor Target**: Constructed presentation category $\mathrm{CODA}_{\mathrm{pres}}$, intensional trace category $\mathrm{CODA}_{\mathrm{trace}}$, erasure map $q$, and faithful groupoid embedding $E : \mathcal{G} \to \mathrm{CODA}_{\mathrm{pres}}$ with two-level cost accounting.
+
+---
+
+## [v1.1.0] — 2026-08-17 (Sealed Genesis Demarcation)
+- **Cryptographic Root Pinning**: Established immutable citation boundary to `dbccpage/19L57G1` at frozen tag `sealed-derivation-v1` (commit `3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a`).
+- **Root W vs Root P Demarcation**: Separated Genesis Root W (witnessed irreflexive relation $K = (X, R, \mathrm{Irr}(R))$) from Evaluation Root P (primer $(\delta, \mathrm{Zero}, \mathrm{ZeroRel})$).
+- **102-Identifier Firewall**: Enforced contact firewall between blind derivation kernel and CODA evaluation layers; prohibited raw copying of internal derivation assets into CODA.
+
+---
+
+## [v1.0.0] — 2026-07-30 (Nine-Layer Master Equation & Defensibility Ledger)
+- **Master Equation Synthesis**: Combined exploratory tower notes (`NOTES.md`) and adversarial defensibility ledger (`gtla_master_equation_defensibility_ledger.md`) into a unified draft.
+- **Tower Layering**: Formalized 9-layer progression: Level 0 (Foundations / FOC) through Level 5 (Anomalous Residuals).
+- **Controlling Non-Promotion Firewall**: Proved the non-implication theorem $[\delta_b] \in Q^1_b \not\Rightarrow \mathrm{Auth}_L(x; q)$; verified that obstruction evidence does not create authority.
+- **Disjoint Terminal Outlets**: Defined disjoint outcome spaces $\mathbb{T}_{\mathrm{auth}}$, $\mathbb{T}_{\mathrm{res}} + \mathbb{F}_{\mathrm{res}}$, and $\mathbb{F}_{\mathrm{term}}$.
+
+---
+
+## [v0.1.0] — 2026-06-15 (Initial Discovery Draft)
+- **Exploratory Chain**: Formulated the preliminary 10-step sequence from Difference to Terminalization.
+- **Algebraic Kernel**: Isolated the five-step core: Difference $\to$ Repair $\to$ Quotient $\to$ Closure $\to$ Authority.
+- **Initial Zenodo Deposits**: Registered preliminary component preprints under Zenodo records 20195157 and 20472345 (FDA sequence).
+
+## 2026-09-07 — PR #224 review: image count reconciled to the diagrams that exist
+
+`images/` held 16 files and 14 distinct diagrams. `master_normal_form.svg` was a byte
+copy of `core_loop_two_rules.svg` — its own title reads "The Core Loop and the Two
+Rules", id `LOOP-001` — and `detail_0_foundations.svg` was a byte copy of
+`detail_foundations.svg`. Both copies are removed. 14 files, 14 distinct, all parsing
+as XML, which is the count this log already carried.
+
+**There is no Master Normal Form diagram.** The name held the core-loop diagram; the
+monograph's Master Normal Form section is undiagrammed and the figure is outstanding
+work, not a delivered artifact. The PR description's "16 publication-grade SVGs" is
+withdrawn in favour of 14.
+
+None of the 14 is referenced by any document in the estate, the monograph included.
+They are filed assets, not figures in a paper.
+
+---
+
+## [v2.2.0] — 2026-09-12 (Woland High Arbiter & CS/A/GTLA Comprehensive Audit)
+- **Canonical Monograph Title Alignment**: Standardized primary title as `CODA-GTLA: Layered Authority and the Master Normal Form`.
+- **Systematic De-Hyping & De-Generalization**: Excised the retired house title across monograph, claim ledger, math spine, README, pyproject.toml, CITATION.cff, docs, and reviewer notebook.
+- **Strict Claim Hygiene Compliance**: Re-audited against `RULE[user_global]`: enforced non-promotion authority firewall $[\delta_b] \in Q^1_b \not\Rightarrow \mathrm{Auth}_L(x; q)$ and discrete finite carrier boundaries.
+- **Test Suite Verification**: Verified test suite `coda_atlas/F005_coda/coda_gtla/code/tests` passes cleanly (20/20 passed).
+
+---
+
+## [v3.0.0] — 2026-09-12 (Public spine note)
+
+* Rewrote public `coda_gtla_monograph.md` as a compact spine note: six
+  jobs, not one machine. A leftover class is not standing. Local Lean is
+  span/trace/firewall on declared finite records. FOC/FDA/MUR/OR/CS/A
+  theorems are cited, not re-proved. Estate-wide `Coda.*` identifiers are
+  not in this zip.
+* Companion `docs/coda_gtla_math_spine.md` lists only local records and
+  theorems.
+* Notebooks: `000_six_jobs_not_one_machine`,
+  `001_a_leftover_is_not_a_yes`, `002_when_the_layers_disagree`.
+  Removed `001_reviewer_coda_gtla`.

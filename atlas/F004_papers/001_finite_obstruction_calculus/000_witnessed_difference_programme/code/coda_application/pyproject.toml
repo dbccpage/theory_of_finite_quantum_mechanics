@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coda-app"
+version = "1.0.1"
+description = "CODA: Calculus of Obstruction, Descent, and Authority App"
+authors = [{ name = "CODA Contributors" }]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "sympy>=1.12",
+    "witnessed-difference-programme==2.4.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "setuptools>=61.0",
+    "pytest-xdist>=3.0.0",
+]
+
+[project.scripts]
+coda = "coda_application.presentation.cli:main"
+
+# The sources sit flat in coda_application. Map the package onto that directory.
+# Tests are not shipped.
+[tool.setuptools]
+package-dir = { "coda_application" = "." }
+packages = [
+    "coda_application",
+    "coda_application.domain",
+    "coda_application.domain.layers",
+    "coda_application.infrastructure",
+    "coda_application.presentation",
+    "coda_application.use_cases",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
