@@ -4,18 +4,20 @@ authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: For every rational n, (n - 1)^2 - n(n - 1)/2 = (n - 1)(n - 2)/2 and (n - 1)(n - 2)/2
-    + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the first expression is 0, 1, 4, 9 and the CP expression
-    is 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three values are 4, 3,
-    and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with second factor i
-    has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing matrix from
-    Yukawa couplings, a unitarity identification of these counts, and measured CP values stay unproved.
+    + (n - 1) = n(n - 1)/2. At n = 1, 2, 3, 4 the polynomial (n - 1)^2 has values 0, 1, 4, 9 and (n -
+    1)(n - 2)/2 has values 0, 0, 1, 3; they agree at n = 1 and differ at n = 2, 3, 4. At n = 3 the three
+    values are 4, 3, and 1. The quartet of four ones in Q(i) has imaginary part 0, and the quartet with
+    second factor i has imaginary part 1, so the CP value 1 matches only the second. Derivation of a mixing
+    matrix from Yukawa couplings, a unitarity identification of these counts, and measured CP values stay
+    unproved.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Yukawa couplings and mass-basis diagonalization
   - measured CKM parameters
-  source_bottleneck: The recorded gap is the rational relation among the three counting expressions and
-    the two quartet imaginary parts 0 and 1. Yukawa couplings, mass-basis diagonalization, a unitarity
-    identification, and measured CKM values stay open.
+  source_bottleneck: Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting
+    polynomials, and measured CKM values stay open. The general nonzero-label table classification uses
+    supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not
+    established.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md
   - papers/ravera_dfm_dossier.md
@@ -30,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md
-    sha256: 4442d43bff78dfd330e869e2ea5ee576a25c49cc832150755141dd0247cc480b
+    sha256: a9acef52e5a6a847f61058579441e17bbcf468a717e07952b769e9b3eb2a2919
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -39,6 +41,16 @@ source_provenance:
   path: dag/prompts/dressing_field_dfm_ckm_physics_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
+- kind: def
+  name: coordinatesEquiv
+  line: 221
+  signature_excerpt: |-
+    def coordinatesEquiv : {M : Table (Option R) (Option C) G // Normalized none none M} ≃
+        Table R C G
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
 - kind: def
   name: cycleCount
   line: 17
@@ -59,6 +71,72 @@ operation_candidates:
   name: cpCount
   line: 21
   signature_excerpt: 'def cpCount (n : ℚ) : ℚ'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Table
+  line: 125
+  signature_excerpt: 'abbrev Table (R C G : Type*)'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Related
+  line: 186
+  signature_excerpt: 'def Related (M N : Table R C G) : Prop'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normalize
+  line: 153
+  signature_excerpt: 'def normalize (r : R) (c : C) (M : Table R C G) : Table R C G'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Gauge
+  line: 127
+  signature_excerpt: '@[ext] structure Gauge (R C G : Type*)'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: act
+  line: 131
+  signature_excerpt: 'def act (g : Gauge R C G) (M : Table R C G) : Table R C G'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decideRelated
+  line: 229
+  signature_excerpt: |-
+    def decideRelated [Fintype R] [Fintype C] [DecidableEq G]
+        (M N : Table (Option R) (Option C) G) : Bool
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: restrict
+  line: 203
+  signature_excerpt: 'def restrict (M : Table (Option R) (Option C) G) : Table R C G'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: checkedLabel
+  line: 252
+  signature_excerpt: 'def checkedLabel (z : BornFable.GaussRat) : Option BornFable.GaussRatˣ'
   source: lean4/CampaignDfmCkmPhysicsFence.lean
   repository: this_repository
   source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
@@ -138,6 +216,64 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: related_iff_normalize
+  line: 189
+  signature_excerpt: |-
+    theorem related_iff_normalize (r : R) (c : C) (M N : Table R C G) :
+        Related M N ↔ normalize r c M = normalize r c N
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decideRelated_correct
+  line: 233
+  signature_excerpt: |-
+    theorem decideRelated_correct [Fintype R] [Fintype C] [DecidableEq G]
+        (M N : Table (Option R) (Option C) G) : decideRelated M N = true ↔ Related M N
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: checkedLabel_none_iff
+  line: 255
+  signature_excerpt: |-
+    theorem checkedLabel_none_iff (z : BornFable.GaussRat) :
+        checkedLabel z = none ↔ z = 0
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: checkedLabel_value
+  line: 259
+  signature_excerpt: |-
+    theorem checkedLabel_value (z : BornFable.GaussRat) (u : BornFable.GaussRatˣ)
+        (h : checkedLabel z = some u) : (u : BornFable.GaussRat) = z
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: free_coordinate_count
+  line: 245
+  signature_excerpt: 'theorem free_coordinate_count (n : ℕ) : Fintype.card (Fin n × Fin n) = n * n'
+  source: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  source_sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::cpCount_from_difference
   availability: local
@@ -183,6 +319,60 @@ source_bindings:
   sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
   declaration_status: declaration_found_not_proof_checked
   line: 94
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize
+  availability: local
+  symbol: CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  declaration_status: declaration_found_not_proof_checked
+  line: 189
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv
+  availability: local
+  symbol: CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  declaration_status: declaration_found_not_proof_checked
+  line: 221
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct
+  availability: local
+  symbol: CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  declaration_status: declaration_found_not_proof_checked
+  line: 233
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff
+  availability: local
+  symbol: CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  declaration_status: declaration_found_not_proof_checked
+  line: 255
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value
+  availability: local
+  symbol: CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  declaration_status: declaration_found_not_proof_checked
+  line: 259
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count
+  availability: local
+  symbol: CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count
+  path: lean4/CampaignDfmCkmPhysicsFence.lean
+  repository: this_repository
+  sha256: 48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963
+  declaration_status: declaration_found_not_proof_checked
+  line: 245
   role: source_lead_only
 presentation:
   colours: []
