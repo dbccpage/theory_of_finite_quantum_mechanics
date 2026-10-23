@@ -6,22 +6,23 @@ from __future__ import annotations
 
 from fractions import Fraction
 from itertools import chain, combinations
+from collections.abc import Callable, Iterator
 
 
-def powerset(items):
+def powerset(items: tuple[str, ...]) -> Iterator[tuple[str, ...]]:
     pool = tuple(items)
     return chain.from_iterable(combinations(pool, r) for r in range(len(pool) + 1))
 
 
-def compatible(edges):
-    def ok(a, b):
+def compatible(edges: dict[str, frozenset[int]]) -> Callable[[str, str], bool]:
+    def ok(a: str, b: str) -> bool:
         ea, eb = edges[a], edges[b]
         return ea <= eb or eb <= ea or ea.isdisjoint(eb)
 
     return ok
 
 
-def forests(names, edges):
+def forests(names: tuple[str, ...], edges: dict[str, frozenset[int]]) -> list[tuple[str, ...]]:
     ok = compatible(edges)
     found = []
     for subset in powerset(names):
@@ -56,15 +57,15 @@ if 2 not in OVERLAP["L"] & OVERLAP["R"] & OVERLAP["G"]:
 Q = Fraction
 
 
-def N(x, y):
-    return 2 + 3 * x + 5 * y + 7 * x * y
+def N(x: Fraction | int, y: Fraction | int) -> Fraction:
+    return Fraction(2) + 3 * x + 5 * y + 7 * x * y
 
 
-def six(x, y):
+def six(x: Fraction | int, y: Fraction | int) -> Fraction:
     return N(x, y) - N(0, y) - N(x, 0) - N(0, 0) + N(0, 0) + N(0, 0)
 
 
-def inclusion(x, y):
+def inclusion(x: Fraction | int, y: Fraction | int) -> Fraction:
     return N(x, y) - N(0, y) - N(x, 0) + N(0, 0)
 
 
@@ -103,7 +104,7 @@ if (N(x, y) - N(0, y) - N(x, 0)) / (x * y) != -5:
     raise SystemExit("witness remainder")
 
 
-def sector_k(z, lam):
+def sector_k(z: Fraction | int, lam: Fraction) -> Fraction:
     return (1 + z * lam) / (lam * (1 + lam))
 
 
