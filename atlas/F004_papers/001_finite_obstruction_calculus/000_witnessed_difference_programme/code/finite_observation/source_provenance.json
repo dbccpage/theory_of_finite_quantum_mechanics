@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-04",
+  "authority_effect": "None",
+  "submitted_derivation": {
+    "attachment_id": "06b64eb8-854f-41f0-a53e-89d9e1ebf5c3",
+    "original_filename": "Pasted text.txt",
+    "retained_path": "submitted_derivation.md",
+    "sha256": "44edb483ee410ffcddfec28a2188d17cd573f21b13c58368686ff38cfc27983b",
+    "retention": "Exact original bytes, including incorrect statements and examples; not an accepted theorem source."
+  },
+  "source_context": {
+    "attachment_id": "d25035ba-74a3-4b40-bf3e-b3af8f2b7b2a",
+    "sha256": "e9982f9b4d884a6c7d41307f018ae21265feda69007a18ad7f5d5919242ec332"
+  },
+  "additional_user_review": {
+    "attachment_id": "bfc32c66-3d9e-44e4-a865-19ccfe2322fd",
+    "sha256": "bb322648e246195b8d579b1fc0c28374b2f19dec525974ee10ff541095fafc0b"
+  },
+  "accepted_supplement": "../../docs/minimum_cost_sufficient_observation.md",
+  "local_ids": [
+    "COST-D01",
+    "COST-E01",
+    "COST-P01",
+    "COST-P02",
+    "COST-P03",
+    "COST-P04",
+    "COST-P05"
+  ],
+  "corrections": [
+    "Use pair-indexed hyperedges E_u on instruments; D_i are subsets of unresolved pairs.",
+    "q is constant on augmented-report fibers. Coarsening adds unresolved pairs and cannot lower the optimum.",
+    "Only feasible instances have a finite attained optimum; infeasibility requires an indistinguishable conflicting pair.",
+    "Cover witnesses give upper bounds. Complete subset exhaustion and Bellman tables replace incomplete branch-and-bound certificates.",
+    "The disjoint-support packing bound is LP-dual feasible and dominated by the LP bound. Withdraw false star examples and incorrect falsifier quantifiers.",
+    "Adaptive overall price is the maximum over initial p-fibers. On a nonconstant-q fiber J*=J. Optimal-child replacement exists, but every optimal tree need not have optimal slack branches.",
+    "Retain printed A=(0,1,0,1,0,0,1,1) as infeasible. Corrected A=(0,0,0,0,1,1,1,1) has independently checked fixed/adaptive prices 7/4.",
+    "The miniature has unresolved pairs {1,2} and {2,3}; instruments cover the latter. The former witnesses infeasibility.",
+    "Approximate decoding requires a supplied decoder and error guarantee; pair diameter is only a necessary condition."
+  ],
+  "verification_scope": {
+    "implementation": "Standalone paper reference with at most 10 states, 12 instruments and 256-bit positive exact rational input prices.",
+    "certificate_scope": "Every fixed subset and every adaptive candidate subset is replayed from submitted tables against bound task data; no failed witness is replaced by a fresh solve.",
+    "new_focused_tests": 26,
+    "native_rust": "NOT_RUN; no implementation claim",
+    "lean": "NOT_RUN; no formalization claim",
+    "efficiency": "Exponential finite exhaustion; no polynomial-time or paid-model-efficiency claim."
+  },
+  "retained_replay": {
+    "certificates": "observation_certificates.json",
+    "receipt": "replay_receipt.json",
+    "status": "VERIFIED_FROM_SAVED_BYTES"
+  }
+}

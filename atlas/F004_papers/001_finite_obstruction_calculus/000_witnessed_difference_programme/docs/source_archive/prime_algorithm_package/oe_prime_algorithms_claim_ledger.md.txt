@@ -1,0 +1,56 @@
+# Claim ledger
+
+**Paper:** Algorithm Prime Triad: Candidate Intake, Adapter Descent, and Continuation Control
+
+**Paper key:** `008_engine_runtime/000_oe_prime_algorithms`
+
+**Version:** 1.0.0 · **Date:** 2026-09-26
+
+This ledger records the strongest supported reading of each claim. The
+manuscript is `oe_prime_algorithms.md` with `docs/residual_aware_can_continue.md`.
+Every claim ID in the manuscript has exactly one row here, and every row's ID
+appears in the manuscript; `verify_deposit.py` checks both directions. Legacy IDs
+(`OE001-*`, `OE002-*`, `OE003-*`, `OE004-*`) are kept and never renumbered.
+
+## Status vocabulary
+
+- **Definition:** notation or a declared model.
+- **Finite theorem:** proved for the stated finite setting, in Lean (`lean4/`)
+  or in the text, and checked by a test.
+- **Conditional theorem:** proved only under the listed hypotheses.
+- **Computed fixture:** exact output for explicitly supplied data.
+- **Model consequence:** follows inside a declared engineering model or assumption.
+- **Positioning:** comparison with prior work; not a result.
+- **Scope:** a boundary on interpretation.
+- **Open problem:** stated, not proved; no evidence is claimed.
+
+Lean declarations prove only their typed statements over abstract state models.
+Every Lean result uses no axiom outside {`propext`, `Quot.sound`} (`lean4/axiom_report.txt`).
+Tests live in `code/test_oe_prime_algorithms.py`.
+
+## Claims
+
+| ID | Status | Statement | Evidence |
+|---|---|---|---|
+| OE001-01 | Definition | Prime -1 schema: CandidatePacket ingests raw artifacts and emits candidate structures without entering operational DdaTrace until admitted. | `Prime.admission_precedes_measurement`; `test_oe_prime_algorithms.py::test_candidate_packet_and_intake_trace_schema`. |
+| OE001-02 | Definition | Prime 000 7-step local packet declaration order: grounding -> carrier -> observer -> primitive difference -> ZeroRel -> witness -> quotient. | Text definition §1.2; `test_oe_prime_algorithms.py::test_prime_000_local_packet_declaration_order`. |
+| OE001-03 | Scope | Layered multi-carrier lenses and LensSpan model: complex artifacts are bundles of carriers extracted via layered partial spans in LensSpan category. | Text specification §1.3; `test_oe_prime_algorithms.py::test_multi_carrier_lens_span_pullback`. |
+| OE001-04 | Model consequence | Scoped terminalization: terminalization routes T_res and F_term to emit LOCAL_GREEN_FOR_SCOPE only under exact zero residual and adequate detector. | Text proof §1.4; `test_oe_prime_algorithms.py::test_scoped_terminalization_routing`. |
+| OE002-01 | Scope | Dual Prime 001 placement protocol: adapter descent soundness is enforced at intake and transport boundaries. | Text specification §2.1; `test_oe_prime_algorithms.py::test_dual_prime_001_boundary_placement`. |
+| OE002-02 | Definition | Adapter descent soundness contract definition: adapter alpha is sound iff operations, equations, witnesses, and authority fences are preserved while lost data is recorded in loss ledger. | Text definition §2.2; `test_oe_prime_algorithms.py::test_adapter_descent_soundness`. |
+| OE002-03 | Definition | Refusal and debt taxonomy: structural unfaithfulness emits typed refusals (REFUSED_UNTYPED, ADAPTER_INADEQUATE) rather than operational failure. | Text definition §2.3; `test_oe_prime_algorithms.py::test_refusal_and_debt_taxonomy`. |
+| OE003-01 | Finite theorem | Formal continuation predicate CanContinue_n holds iff all nine canonical conjuncts hold, which is equivalently regrouped into the 3-condition summary form. | `Prime.cc9_implies_cc3`; `test_oe_prime_algorithms.py::test_formal_continuation_predicate_can_continue`. |
+| OE003-02 | Model consequence | Six anti-cheat halting laws specify and enforce: (1) positive cost floor, (2) budget exhaustion termination, (3) grounded carrier validation, (4) adequate observer resolution, (5) witness availability, and (6) verified non-increasing quotient potential. | Text specification §3.2; `test_oe_prime_algorithms.py::test_six_anti_cheat_halting_laws`. |
+| OE003-03 | Conditional theorem | Bounded operational termination: under total budget B_tot < infty and cost floor delta_control > 0, execution halts in at most floor(B_tot / delta_control) steps. | `Prime.ops_le_floor_div`; `test_oe_prime_algorithms.py::test_bounded_operational_termination`. |
+| OE003-04 | Model consequence | Local residual queue scheduler enforces candidate repair ordering and strict progress metric descent on (Gamma_2, Phi_1, defect_count). | Text specification §3.4; `test_oe_prime_algorithms.py::test_local_residual_queue_scheduler`. |
+| OE003-05 | Definition | CODA taxonomy in pipeline order (grounding -> carrier -> observer -> difference -> ZeroRel -> witness -> quotient) with Q as The Continuum. | Text definition §3.4; `test_oe_prime_algorithms.py::test_coda_taxonomy_pipeline_order`. |
+| OE003-06 | Finite theorem | Residual-aware CanContinue_n enforces quantitative non-increasing quotient potential Delta Phi_1 <= 0 or licensed witness lift. | Text proof `docs/residual_aware_can_continue.md`; `test_oe_prime_algorithms.py::test_residual_aware_can_continue`. |
+| OE004-01 | Scope | CODA recursive re-entry protocol Omega_000(L) requires proposing and declaring candidate carrier C_L for locus L (L != C_L) before running Prime 000. | Text specification §4.1; `test_oe_prime_algorithms.py::test_coda_recursive_reentry_protocol`. |
+| OE004-02 | Finite theorem | Phase embedding property: under an assumed monotone map, admission order embeds into execution phase, with nilpotency verified separately on cochain complexes. | `Prime.embedding_order_preserving`; `test_oe_prime_algorithms.py::test_lawful_degree_ascent_and_embedding`. |
+| OE004-03 | Definition | Stop conditions partition terminal states into GTLA_STOP (local completion) vs GTTA_GLOBAL_RESIDUAL (global obstruction detected). | Text definition §4.3; `test_oe_prime_algorithms.py::test_stop_conditions_partition`. |
+| OE004-04 | Scope | Observer resolution adequacy: scalar resolution gauge detects minimum defect thresholds under shared grounding. | Text specification §4.4; `test_oe_prime_algorithms.py::test_observer_envelope_comparability`. |
+| OE004-05 | Finite theorem | Evaluator defect linearity: under a joint probability law and linear expectations, global minus local pass rates equal expected defect GPR - LPR = E[Delta_E]. | Text proof §4.4; `test_oe_prime_algorithms.py::test_evaluator_defect_linearity`. |
+| OE004-06 | Scope | Overlay diagnostic scope fence: residual functional and evaluator separate active closure failures from exact or closed classes. | Text specification §4.4; `test_oe_prime_algorithms.py::test_epk_overlay_diagnostic_scope_fence`. |
+| OE004-07 | Model consequence | Self-examination re-entry path Omega_000(L_self) evaluates engine state by lifting engine execution traces to locus L_self with carrier admission. | Text specification `docs/residual_aware_can_continue.md`; `test_oe_prime_algorithms.py::test_self_examination_reentry_path`. |
+| OE004-08 | Model consequence | Self-examination refusal and queue intake: proposals missing witness certificates are refused prior to operational queue entry. | Text specification `docs/residual_aware_can_continue.md`; `test_oe_prime_algorithms.py::test_anti_cheat_self_proposal_and_queue_upgrade`. |
+

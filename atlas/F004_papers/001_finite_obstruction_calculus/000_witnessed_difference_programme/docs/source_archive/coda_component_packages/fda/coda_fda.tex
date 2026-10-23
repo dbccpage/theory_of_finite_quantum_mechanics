@@ -1,0 +1,596 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% House preamble for the primitive-axiomatics paper line.
+%
+%  Typesetting is not evidence for any claim.
+%
+% Built 2026-09-08.
+%
+% xelatex, not pdflatex: the manuscript uses unicode characters that pdflatex
+% cannot set without per-character declarations.
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=0.85]
+\setmathfont{Latin Modern Math}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newunicodechar}
+\newcommand{\um}[1]{\ensuremath{#1}}
+\newunicodechar{ℝ}{\um{\mathbb{R}}}
+\newunicodechar{⁰}{\um{^0}}
+\newunicodechar{₀}{\um{_0}}
+\newunicodechar{₁}{\um{_1}}
+\newunicodechar{₂}{\um{_2}}
+\newunicodechar{¹}{\um{^1}}
+\newunicodechar{²}{\um{^2}}
+\newunicodechar{∘}{\um{\circ}}
+\newunicodechar{δ}{\um{\delta}}
+\newunicodechar{⟨}{\um{\langle}}
+\newunicodechar{⟩}{\um{\rangle}}
+\newunicodechar{φ}{\um{\varphi}}
+\newunicodechar{ᵀ}{\um{^\top}}
+\newunicodechar{𝛷}{\um{\Phi}}
+\newunicodechar{Φ}{\um{\Phi}}
+\newunicodechar{Γ}{\um{\Gamma}}
+\newunicodechar{α}{\um{\alpha}}
+\newunicodechar{β}{\um{\beta}}
+\newunicodechar{κ}{\um{\kappa}}
+\newunicodechar{∂}{\um{\partial}}
+\newunicodechar{∈}{\um{\in}}
+\newunicodechar{−}{\um{-}}
+\newunicodechar{∞}{\um{\infty}}
+\newunicodechar{≠}{\um{\neq}}
+\newunicodechar{≤}{\um{\le}}
+\newunicodechar{≥}{\um{\ge}}
+\newunicodechar{⟺}{\um{\iff}}
+\newunicodechar{→}{\um{\to}}
+\newunicodechar{─}{-}
+\newunicodechar{│}{|}
+\newunicodechar{┌}{+}
+\newunicodechar{┐}{+}
+\newunicodechar{└}{+}
+\newunicodechar{┘}{+}
+\newunicodechar{┬}{+}
+\newunicodechar{┴}{+}
+\newunicodechar{▼}{v}
+\newunicodechar{ℓ}{\um{\ell}}
+\newunicodechar{Ω}{\um{\Omega}}
+\newunicodechar{Σ}{\um{\Sigma}}
+\newunicodechar{·}{\um{\cdot}}
+\newunicodechar{×}{\um{\times}}
+\newunicodechar{⊂}{\um{\subset}}
+\newunicodechar{ₙ}{\um{_n}}
+\newunicodechar{∎}{\um{\blacksquare}}
+\newunicodechar{∼}{\um{\sim}}
+
+
+\usepackage[margin=0.85in]{geometry}
+\usepackage{pdflscape}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{bookmark}
+\urlstyle{tt}
+\hypersetup{colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue}
+\providecommand{\st}[1]{\emph{#1}}
+\newunicodechar{□}{\ensuremath{\square}}
+\newunicodechar{ℚ}{\ensuremath{\mathbb{Q}}}
+\newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{ψ}{\ensuremath{\psi}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{∧}{\ensuremath{\wedge}}
+\newunicodechar{∨}{\ensuremath{\vee}}
+\newunicodechar{¬}{\ensuremath{\neg}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+\newunicodechar{⊥}{\ensuremath{\perp}}
+\newunicodechar{₃}{\ensuremath{_3}}
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\emergencystretch}{4em}
+\newunicodechar{₄}{\ensuremath{_4}}
+\newunicodechar{₅}{\ensuremath{_5}}
+\newunicodechar{₆}{\ensuremath{_6}}
+\newunicodechar{₇}{\ensuremath{_7}}
+\newunicodechar{₈}{\ensuremath{_8}}
+\newunicodechar{₉}{\ensuremath{_9}}
+
+\hypersetup{pdftitle={Finite Descent Authority: Packets, Pipelines, and Seven Halt Guards (CODA-FDA)},pdfauthor={Jeremy H. Carroll}}
+\begin{document}
+\begin{center}
+{\Large\bfseries Finite Descent Authority: Packets, Pipelines, and Seven Halt Guards (CODA-FDA)}\par
+\textbf{Subtitle:} A proposal is not a decision
+
+\textbf{Author:} Jeremy H. Carroll
+
+\textbf{Date:} 2026-09-28
+
+\textbf{Version:} v0.1.1 Preprint
+
+\textbf{License:} Creative Commons Attribution 4.0 International
+
+\end{center}
+
+\subsection{CODA Architecture \& Layers}\label{coda-architecture-layers}
+
+CODA stands for the Calculus of Obstruction, Descent, and Authorization. It is an exact, finite mathematical apparatus that enforces strict claim discipline by separating linear repairs, transport certificates, and finite descent from ungrounded authority claims. The system comprises eight operational layers, FOC through A, under the GTLA meta-architecture.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Abbreviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Layer / Component Name \& Scope
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \textbf{FOC} & Finite Obstruction Calculus \\
+2 & \textbf{MUR} & Meta \& Universal Re-Presentation (what presentations exist) \\
+3 & \textbf{CS} & Continuum Shadow (what continuum presentation may descend to a finite calculus system) \\
+4 & \textbf{CS\_Q} & Continuum Shadow to Continuum Bridge (how continuum presentations descend) \\
+5 & \textbf{Q} & The Continuum (continuum presentations via completion and enclosure) \\
+6 & \textbf{A} & Anomalon (global residuals not removed and typed instead) \\
+7 & \textbf{OR} & Omniversal Re-Presentation (what presentations can transport) \\
+8 & \textbf{FDA} & Finite Descent Authority (what presentation may descend to evaluation and authorization) \\
+9 & \textbf{GTLA} & Layered Authority Architecture for CODA \\
+\end{longtable}
+
+\subsection{Abstract}\label{abstract}
+
+A proposal is not a decision. Standing, in this paper, is a recorded pair: the pipeline actually produced a terminal \(t\), and seven halt guards derived from evidence all hold. The data that can support that pair is a five-field packet \((K,E,V,\tau,\Lambda)\). Without a packet there is no standing. A confidence score, a fluent paragraph, or a successful route does not inhabit the pair. One of the seven guards may read leftover mass from an exact rational cochain solver; that solver measures leftover, and is not a theorem about where standing comes from. If the pipeline returns a terminal, it has a history. If routing already refused, later stages cannot overwrite that refusal. In the regime model, soundness of standing (\(\mathsf{Standing}_R\)) for truth is an extra pair of hypotheses, and there is a countermodel when those hypotheses fail. The operational pipeline record of Definition FDA-D2 is not connected to truth without a declared sound regime embedding. The Python companion includes a policy evaluator over caller attestations and a separate finite execution harness. The harness records every candidate, checks certificates against a declared repair map, compares serialized skeleton snapshots, reads a declared lift registry, and compares two execution traces. These checks do not establish semantic verifier soundness. ``Standing'' is an internal witness type in the declared formal setting. This work confers no legal, institutional, safety, publication, or real-world authority;
+
+\subsection{Introduction}\label{introduction}
+
+It is easy to treat a fluent answer as a decision. A model writes a function, attaches a confidence of \(0.99\), and a downstream system ships it. Nothing in that number says that a verifier ran, that the same evidence replays, that every declared candidate was checked, or that leftover mass is zero. The number is a score. Standing, as defined here, is not a score.
+
+A picture. There is a proposal \(p\): an answer, a patch, a classification, analogous to proof-carrying code {[}2{]}. A \emph{packet} is five pieces of finite data that say what world you are in, which candidates are allowed, how they are checked, how a check becomes a terminal, and what happens on failure. A \emph{pipeline} is four maps in order --- route, descend, verify, terminalize --- each of which may refuse. Standing is inhabited only when the pipeline returns a left injection \(\mathsf{inl}(t)\) \emph{and} seven derived halt guards hold of \(t\). A supplied packet is represented by an optional input. If that input is \texttt{none}, the corresponding supplied-standing type is empty (FDA-T2).
+
+The theory is refuted by any of: an inhabitant of standing when no packet exists; an inhabitant on a refusal branch; an inhabitant whose seven-guard conjunction fails; a successful terminal with no intermediate history; a routing error overwritten by a later success; a claim that operational standing implies truth without a sound regime embedding and the two extra hypotheses of Theorem FDA-T7; or a claim that the cochain leftover solver is an origin-of-standing theorem.
+
+\subsection{Notation}\label{notation}
+
+\begin{itemize}
+\tightlist
+\item
+  \(p\) is a proposal. It is an input, not a decision.
+\item
+  \(K\) is a finite carrier: the context in which candidates live.
+\item
+  \(E\) is a family of admissible candidates over \(K\).
+\item
+  \(V\) is a local verifier: given a carrier point and a candidate, it produces an evidence term, or fails.
+\item
+  \(\tau\) is a terminalizer: it turns evidence into a terminal outcome.
+\item
+  \(\Lambda\) is the failure discipline: continuation rules (refusal, lift, or rollback on the same carrier) specifying how non-promotion is handled, not a silent promotion. Verification failure itself is eliminated into a refusal branch by the pipeline error monad.
+\item
+  \(\mathbb{T}\) is the type of terminals; \(\operatorname{Ref}\) is the type of refusals. The pipeline returns a sum \(\mathbb{T}+\operatorname{Ref}\).
+\item
+  \(\mathsf{inl}(t)\) is the left injection: a terminal-branch value. \(\mathsf{inr}(r)\) is a refusal.
+\item
+  \(g_1,\ldots,g_7\) are seven halt guards, derived from a finite evidence record, not supplied as unbound booleans.
+\item
+  \(\mathsf{IsAuth}(t)\) is their conjunction.
+\item
+  \(\Phi_1([x])\) is the cheapest leftover of a defect \(x\) after licensed linear repairs, as in the companion finite obstruction calculus {[}3{]}.
+\end{itemize}
+
+A \textbf{five-field packet} is the tuple \((K,E,V,\tau,\Lambda)\).
+
+\subsection{1. Five-field packets}\label{five-field-packets}
+
+\subsubsection{Definition FDA-D1 --- packet}\label{definition-fda-d1-packet}
+
+A packet consists of
+
+\[
+K,\qquad
+E\colon K\to\mathrm{Type},\qquad
+V\colon (k:K)\to E(k)\to\mathrm{Type},
+\]
+
+\[
+\tau\colon \{k:K\}\to\{e:E(k)\}\to V(k,e)\to\mathbb{T},\qquad
+\Lambda\colon \{k:K\}\to (e:E(k))\to V(k,e)\to\mathrm{Type}.
+\]
+
+In words: \(K\) says where you are; \(E\) says which candidates may be tried there; \(V\) is the check; \(\tau\) is the exit into a terminal; \(\Lambda\) is what continuation rules are indexed by successful verifier witnesses. The Lean record is \texttt{DescentPacket}. The Python record is \texttt{DescentPacket} with string and immutable candidate-ID tuple fields. Runtime validity requires nonblank carrier/verifier/terminalizer/discipline names and a nonempty tuple of distinct, nonblank candidate IDs. The Lean record itself allows empty types and does not encode these runtime validity or finiteness conditions.
+
+The Python companion refuses invalid fields or a missing packet before building a successful result. This runtime validation is separate from the Lean packet type, which has an inhabitant with carrier \texttt{Empty} for every terminal type.
+
+The five fields are the standing-facing data. They are not the eight-field trace packet of the obstruction calculus. A projection from a richer trace record to this five-field packet is a separate witness, not an identification of field names.
+
+\subsection{2. Standing is a dependent pair}\label{standing-is-a-dependent-pair}
+
+A sealed pipeline, given a packet and a proposal, returns either a terminal or a refusal:
+
+\[
+\Pi^\sharp
+\colon
+\mathrm{Packet}\to\mathrm{Proposal}\to\mathbb{T}+\operatorname{Ref}.
+\]
+
+The reconstruction companion writes the same idea as four staged maps, each valued in an error monad:
+
+\[
+\mathrm{route}\colon P\to S+F,\quad
+\mathrm{descend}\colon S\to P\to X+F,
+\]
+
+\[
+\mathrm{verify}\colon S\to X\to E+F,\quad
+\mathrm{terminalize}\colon S\to X\to E\to\mathbb{T}+F.
+\]
+
+The composite \texttt{run} tries them in that order and stops at the first refusal.
+
+\subsubsection{Definition FDA-D2 --- standing}\label{definition-fda-d2-standing}
+
+Standing of a proposal \(p\) against a packet and a pipeline is the dependent pair (in the sense of Martin-Löf {[}1{]}):
+
+\[
+\mathsf{Standing}(p)
+:=
+\Sigma(t:\mathbb{T})
+\bigl(
+\Pi^\sharp(\mathrm{packet},p)=\mathsf{inl}(t)
+\ \wedge\
+\mathsf{IsAuth}(t)
+\bigr).
+\]
+
+In words: there is a terminal \(t\), the pipeline actually produced that \(t\) (not a refusal, not a guessed label), and the seven halt guards hold of \(t\). The Lean record is named \texttt{Authority}. It has three fields: \texttt{terminal}, a path equality \texttt{terminalizerPath}, and \texttt{isAuth}. The packet and the proposal are indices of the record, not optional attachments.
+
+A generated candidate may carry a claimed terminal and even a valid guard witness. It is a different type. It has no pipeline path, so it is not standing.
+
+\subsection{3. Seven guards derived from evidence}\label{seven-guards-derived-from-evidence}
+
+\subsubsection{Definition FDA-D3 --- derived guards}\label{definition-fda-d3-derived-guards}
+
+Let \(H\) be a finite evidence record with the following fields: whether the pipeline accepted the run; whether replay was deterministic; a non-negative rational residual mass; whether the declared skeleton projection has the same canonical value at each stage boundary; which candidate identifiers were verified against declared candidates; how many lifts are pending; whether a refusal is active. The seven guards are \emph{derived}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(g_1\) \texttt{accepted} --- the pipeline accepted the run.
+\item
+  \(g_2\) \texttt{deterministic} --- replay of the same evidence is identical.
+\item
+  \(g_3\) \texttt{zero\_residual\_mass} --- residual mass is exactly \(0\).
+\item
+  \(g_4\) \nolinkurl{skeleton_preserving} --- canonical snapshots of the declared skeleton projection agree at all measured stage boundaries. The default projection is the whole routed state. This does not observe transient changes between checks.
+\item
+  \(g_5\) \texttt{exhaustive} --- all declared candidate identifiers in \(E\) are verified, and at least one candidate was declared. Checking zero of zero is not exhaustive.
+\item
+  \(g_6\) \texttt{no\_pending\_lift} --- the pending-lift count is \(0\).
+\item
+  \(g_7\) \texttt{no\_refusal} --- no active refusal sits on the result.
+\end{enumerate}
+
+Then
+
+\[
+\mathsf{IsAuth}(t)
+:\iff
+g_1(t)\wedge g_2(t)\wedge g_3(t)\wedge g_4(t)\wedge g_5(t)\wedge g_6(t)\wedge g_7(t).
+\]
+
+The preferred companion entry \nolinkurl{evaluate_authorization} takes evidence and calls \texttt{derive\_guards}. It does not accept \(\mathsf{IsAuth}\) as a single boolean. A compatibility helper accepts a pre-built seven-tuple for tests; that helper is not a licence to skip derivation.
+
+\subsubsection{Theorem FDA-T1 --- one failed guard kills standing}\label{theorem-fda-t1-one-failed-guard-kills-standing}
+
+If \(\neg\mathsf{IsAuth}(\mathrm{guards}(t))\), then there is no standing record whose terminal equals \(t\).
+
+\textbf{Proof.} A standing record supplies \texttt{isAuth\ :\ IsAuth\ (guards\ terminal)}. Transport along the assumed equality of terminals. Contradiction. This is Lean \nolinkurl{failed_guard_non_creation}. □
+
+In the companion, flipping any one evidence field so that its derived guard fails makes \texttt{inhabited} false. The tests do this for each of the seven.
+
+\subsection{4. No packet, no standing}\label{no-packet-no-standing}
+
+\subsubsection{Theorem FDA-T2 --- no supplied packet, no standing}\label{theorem-fda-t2-no-supplied-packet-no-standing}
+
+Let the supplied input have type \texttt{Option\ (DescentPacket\ Terminal)}. \texttt{SuppliedAuthority\ input\ p} contains a packet, an equality \texttt{input\ =\ some\ packet}, and \texttt{Authority} for that packet and proposal. Then \texttt{SuppliedAuthority\ none\ p} is empty.
+
+\textbf{Proof.} An inhabitant supplies \texttt{none\ =\ some\ packet}, contradicting the disjoint constructors of \texttt{Option}. This is Lean \nolinkurl{missing_supplied_packet_non_creation}. □
+
+The retained historical theorem \nolinkurl{uniform_non_creation} assumes that the entire packet type is empty. That hypothesis is impossible here: choose carrier \texttt{Empty} and define every dependent field by empty elimination. It is not the formal model of an absent supplied input. Runtime nonblank names and candidate validation are additional Python conditions, not consequences of FDA-T2.
+
+\subsubsection{Theorem FDA-T3 --- no terminal path, no standing}\label{theorem-fda-t3-no-terminal-path-no-standing}
+
+If every terminal \(t\) satisfies \(\Pi^\sharp(\mathrm{packet},p)\neq\mathsf{inl}(t)\), then standing is empty for that packet and proposal.
+
+\textbf{Proof.} An inhabitant supplies a path equality to \(\mathsf{inl}(t)\). This is Lean \nolinkurl{authority_non_construction}. □
+
+\subsubsection{Corollary FDA-C1 --- a refusal is not standing}\label{corollary-fda-c1-a-refusal-is-not-standing}
+
+If \(\Pi^\sharp(\mathrm{packet},p)=\mathsf{inr}(r)\), then standing is empty.
+
+\textbf{Proof.} The sums \(\mathsf{inl}\) and \(\mathsf{inr}\) are disjoint. Apply FDA-T3. This is Lean \nolinkurl{refusal_non_creation}. □
+
+\subsubsection{Theorem FDA-T4 --- a generated candidate is not standing}\label{theorem-fda-t4-a-generated-candidate-is-not-standing}
+
+Let \(c\) be a generated candidate with terminal \(t_c\) and a valid guard witness. If the pipeline does not return \(\mathsf{inl}(t_c)\), then no standing record has terminal \(t_c\).
+
+\textbf{Proof.} A standing record with that terminal would give a path equality, contradicting the missing path. This is Lean \nolinkurl{authority_non_generation}. □
+
+\subsection{5. Fluency and confidence are not standing}\label{fluency-and-confidence-are-not-standing}
+
+The standing type of Definition FDA-D2 has three ingredients: a terminal, a pipeline path, and \(\mathsf{IsAuth}\). It has no field for a logit, a benchmark score, a majority vote, a routing success flag, or the fluency of a paragraph. A number in \([0,1]\) cannot inhabit a dependent pair that does not mention it.
+
+In the companion, \nolinkurl{evaluate_authorization} accepts an optional \texttt{logit\_confidence} and discards it. With \texttt{packet\ =\ None} and confidence \(999/1000\), the result is \texttt{inhabited\ =\ False} and refusal code \texttt{R\_nopacket}. The same refusal occurs if the packet is present but invalid (empty carrier). Green guards do not help: the missing-packet branch is taken first.
+
+That is the whole claim. Fluency can be useful as a search heuristic. It is not a path equality, and it is not seven derived guards.
+
+\subsection{6. Residual mass from a leftover calculator}\label{residual-mass-from-a-leftover-calculator}
+
+Guard \(g_3\) needs a non-negative rational residual mass. One lawful source of that number is the leftover of a finite linear cochain problem solved via exact linear programming duality (Schrijver {[}4{]}, Boyd and Vandenberghe {[}5{]}), as constructed in the companion finite obstruction calculus (CODA-FOC {[}3{]}). Let \(d_0\) be a repair matrix with rational entries, \(x\) a defect vector, and \(w\) a strictly positive rational weight vector. Set
+
+\[
+\Phi_1([x])
+=
+\min_f\,\|x+d_0 f\|_{1,w}.
+\]
+
+When \(x\) lies in the image of \(d_0\), the leftover is \(0\) and \(g_3\) can hold. When it does not, the leftover is positive and \(g_3\) fails. The companion function \nolinkurl{compute_cochain_residual_quotient} calls \nolinkurl{LinearRepairProblem} and returns an exact rational primal--dual certificate for the unweighted norm (\(w_i=1\)); the implementation has no general weight-vector argument. A two-row example:
+
+\begin{itemize}
+\tightlist
+\item
+  \(d_0=(1,-1)^T\), \(x=(2,-2)^T=2\cdot d_0\): leftover \(0\).
+\item
+  \(d_0=(1,-1)^T\), \(x=(1,1)^T\): leftover \(2\) in unweighted \(\ell^1\).
+\end{itemize}
+
+\subsubsection{Proposition FDA-P1 --- the solver is not an origin theorem}\label{proposition-fda-p1-the-solver-is-not-an-origin-theorem}
+
+Attaching \(\Phi_1([x])\) to the residual-mass field of the evidence record feeds guard \(g_3\). It does not construct a cochain of standing, does not prove that standing originates in homology, and does not replace the path equality of Definition FDA-D2. The leftover calculator may be correct as a leftover calculator and still not be a theorem about the origin of standing.
+
+The companion also stamps small diagnostic rationals on refusal branches (\(1\) for no packet, \(1/2\) for a failed \(g_3\), \(1/5\) for other guard failures, \(0\) for inhabited standing). Those stamps are labels in the Python result object. They are not \(\Phi_1\).
+
+\subsection{7. Reconstruction: history, refusal, soundness, countermodel}\label{reconstruction-history-refusal-soundness-countermodel}
+
+The reconstruction file supplies a four-stage pipeline and a small regime record. A regime \(R\) has four predicates: \texttt{verifies}, \texttt{recordedGrant}, \texttt{truth}, and \texttt{entitled}. Standing in that language is
+
+\[
+\mathsf{Standing}_R(g,p)
+:\iff
+\bigl(\exists e.\ R.\mathrm{verifies}(p,e)\bigr)
+\ \wedge\
+R.\mathrm{recordedGrant}(g,p).
+\]
+
+Observation (a factor through a collapsing map) is a different type. It is not this conjunction.
+
+\subsubsection{Theorem FDA-T5 --- a terminal has a history}\label{theorem-fda-t5-a-terminal-has-a-history}
+
+If \(\mathrm{run}(p)=\mathsf{ok}(t)\), then there exist a sector \(s\), descended data \(x\), and evidence \(e\) such that
+
+\[
+\mathrm{route}(p)=\mathsf{ok}(s),\quad
+\mathrm{descend}(s,p)=\mathsf{ok}(x),
+\]
+
+\[
+\mathrm{verify}(s,x)=\mathsf{ok}(e),\quad
+\mathrm{terminalize}(s,x,e)=\mathsf{ok}(t).
+\]
+
+\textbf{Proof.} Unfold \texttt{run}. Each of the first three stages is a match on \texttt{ok} / \texttt{error}. An \texttt{error} branch makes \texttt{run} return \texttt{error}, contradicting \texttt{ok(t)}. The remaining branch is the witness. This is Lean \nolinkurl{terminal_has_history}. □
+
+\subsubsection{Theorem FDA-T6 --- routing refusal persists}\label{theorem-fda-t6-routing-refusal-persists}
+
+If \(\mathrm{route}(p)=\mathsf{error}(f)\), then \(\mathrm{run}(p)=\mathsf{error}(f)\).
+
+\textbf{Proof.} Unfold \texttt{run}. The first match returns \texttt{error(f)}. Later stages are not called. This is Lean \nolinkurl{routing_refusal_persists}. □
+
+\subsubsection{Theorem FDA-T7 --- standing is sound under two extra hypotheses}\label{theorem-fda-t7-standing-is-sound-under-two-extra-hypotheses}
+
+Assume
+
+\[
+\forall p,e.\ R.\mathrm{verifies}(p,e)\Rightarrow R.\mathrm{truth}(p),
+\]
+
+\[
+\forall g,p.\ R.\mathrm{recordedGrant}(g,p)\Rightarrow R.\mathrm{entitled}(g,p).
+\]
+
+If \(\mathsf{Standing}_R(g,p)\), then \(R.\mathrm{truth}(p)\) and \(R.\mathrm{entitled}(g,p)\).
+
+\textbf{Proof.} Standing supplies some \(e\) with \texttt{verifies} and a recorded grant. Apply the two hypotheses. This is Lean \texttt{standing\_sound}. □
+
+The two hypotheses are not supplied by inhabiting the pair. They are extra. The theorem is an implication, not a verifier-soundness proof.
+
+\subsubsection{Connection between Operational Standing (FDA-D2) and Regime Standing (\texorpdfstring{\(\mathsf{Standing}_R\)}{Standing\_R})}\label{connection-between-operational-standing-fda-d2-and-regime-standing-standing-r}
+
+Definition FDA-D2 defines standing \(\mathsf{Standing}(p)\) as an internal operational pipeline record: a dependent pair of a terminal \(t\in\mathbb{T}\), a pipeline path equality \(\Pi^\sharp(\mathrm{packet},p)=\mathsf{inl}(t)\), and the conjunction \(\mathsf{IsAuth}(t)\) of seven derived halt guards. In contrast, \(\mathsf{Standing}_R(g,p)\) in this section models an epistemic and entitlement regime over abstract verification, grant, truth, and entitlement predicates.
+
+Theorem FDA-T7 proves soundness strictly for the regime predicate \(\mathsf{Standing}_R(g,p)\) under explicit verifier-soundness and grant-soundness hypotheses within \(R\). The supplied Lean formalization does not connect the operational FDA-D2 record to \(\mathsf{Standing}_R\). This distinction is mathematically essential: a constant-success operational pipeline with all seven halt guards trivially true can inhabit FDA-D2 while an unrelated regime \(R\) has everywhere-false verification, grant, and truth predicates. In that disjoint scenario, both soundness hypotheses of Theorem FDA-T7 hold vacuously for \(R\), yet this vacuous regime soundness confers no truth or entitlement on the operational FDA-D2 inhabitant.
+
+To connect operational standing to regime soundness, a system must declare an explicit regime embedding \(R_\Pi\). The canonical embedding sets:
+\[
+R_\Pi.\mathrm{verifies}(p,e) :\iff \exists s,x.\ \mathrm{route}(p)=\mathsf{ok}(s)\ \wedge\ \mathrm{descend}(s,p)=\mathsf{ok}(x)\ \wedge\ \mathrm{verify}(s,x)=\mathsf{ok}(e),
+\]
+\[
+R_\Pi.\mathrm{recordedGrant}(t,p) :\iff \Pi^\sharp(\mathrm{packet},p)=\mathsf{inl}(t)\ \wedge\ \mathsf{IsAuth}(t).
+\]
+By Theorem FDA-T5 (\nolinkurl{terminal_has_history}), an operational execution that reaches \(\mathsf{inl}(t)\) with all guards satisfied supplies the intermediate evidence \(e\) that inhabits \(\mathsf{Standing}_{R_\Pi}(t,p)\). Under this canonical embedding, soundness of the resulting terminal \(t\) for \(p\) holds if and only if the stage verifier is semantically sound (\(\mathrm{verify}(s,x)=\mathsf{ok}(e)\implies R_\Pi.\mathrm{truth}(p)\)) and the terminal authorization grant is sound (\(\Pi^\sharp=\mathsf{inl}(t)\wedge\mathsf{IsAuth}(t)\implies R_\Pi.\mathrm{entitled}(t,p)\)). Absent such a declared and validated regime embedding, FDA-D2 operational standing certifies deterministic host completion and guard satisfaction only; it does not establish semantic truth, verifier soundness, or institutional authority.
+
+\subsubsection{Theorem FDA-T8 --- untrusted verifier countermodel}\label{theorem-fda-t8-untrusted-verifier-countermodel}
+
+There exists a regime \(R\) on the unit type such that \(\mathsf{Standing}_R\) holds and \(R.\mathrm{truth}\) fails.
+
+\textbf{Proof.} Take \texttt{verifies} constantly true, \texttt{recordedGrant} constantly true, \texttt{truth} constantly false, and \texttt{entitled} constantly true. Standing holds by the unit evidence and the unit grant. Truth is false. This is Lean \nolinkurl{untrusted_verifier_countermodel}. □
+
+So: standing without a sound verifier is not truth. The countermodel is deliberately trivial. That is the point. Nothing in the pair requires the verifier to track truth.
+
+A bicategorical packaging of the same stages --- a displayed bicategory of finite authorization systems, Kleisli pasting of refusals --- has been sketched in companion notes. No bicategory axioms, pasting theorem, or Kleisli soundness result is proved here.
+
+\subsection{7.5 Authority Firewall Synthesis \& Verification Limits}\label{authority-firewall-synthesis-verification-limits}
+
+This section synthesizes the foundational results established across the 007\_AUTHORITY\_FIREWALL monograph series (Papers 004, 005, 027, 030):
+
+\begin{quote}
+\textbf{Status of FDA-T9 to FDA-T12 (retyped 2026-09-23).} The ledger cited four Lean declarations for these items: \nolinkurl{GTFDA.coproduct_separation}, \nolinkurl{GTFDA.role_non_impersonation}, \nolinkurl{GTFDA.authority_gap_fence} and \nolinkurl{GTFDA.authority_typing_boundary}. None of them exists in \nolinkurl{lean4/GtfdaAuthorityCore.lean}, and the Lean claim map covers FDA-D1 to FDA-T8 only. Those pointers are \textbf{WITHDRAWN 2026-09-23}. Each item below states what does back it. The headings keep their numbers, so citations to them still resolve.
+\end{quote}
+
+\subsubsection{Policy FDA-T9 --- residual outcomes require an explicit promotion rule}\label{policy-fda-t9-residual-outcomes-require-an-explicit-promotion-rule}
+
+\emph{Status.} The refusal-branch result FDA-C1 is proved. The earlier categorical claim that constructor disjointness implies an empty set of natural transformations is withdrawn as false.
+
+The terminal convention separates an authority constructor from a residual constructor. The package declares no rule that converts a residual outcome into standing; constructing standing still requires the path and guards of FDA-D2. This is a restriction of the declared interface.
+
+Constructor disjointness does not prohibit maps between summands. For a concrete countermodel, take the category with one object and only its identity and two constant singleton functors. There is one natural transformation between those functors, although the two singleton injections into their coproduct remain distinct. FDA-C1 therefore supports refusal-branch exclusion, not a general categorical no-map theorem.
+
+\subsubsection{Policy FDA-T10 --- Role Non-Impersonation \& Rubber-Stamp Prohibition (Paper 004)}\label{policy-fda-t10-role-non-impersonation-rubber-stamp-prohibition-paper-004}
+
+\emph{Status.} A declared role contract, not a theorem. The nearest Lean result is FDA-T4 (\nolinkurl{GTFDA.authority_non_generation}): a generated candidate without a terminalizer path is not standing.
+
+Proposals and evidence evaluations do not constitute authority: \[\boxed{ p \in \mathcal{P} \not\Rightarrow \mathsf{Auth}(p) }\] Under the declared Omega role contracts, the six tower positions (\(\partial, \mathbb{A}, \chi, \mathfrak{O}, \kappa, \Lambda\Omega\)) form non-identifiable roles. An internal proposer generating candidates \(p \in \mathcal{P}\), an evaluator computing \(\Phi_1\), or a transport functor computing \(\tau^\sharp\) cannot impersonate an authority terminal. Any pipeline configuration where a proposal process serves as terminal authority for its own output is strictly prohibited (rubber-stamp prohibition).
+
+\subsubsection{Scope fence FDA-T11 --- The Authority Gap \& Exactness Fraud Criterion (Paper 005)}\label{scope-fence-fda-t11-the-authority-gap-exactness-fraud-criterion-paper-005}
+
+\emph{Status.} A non-implication plus a routing policy. This paper defines no semantic-correctness predicate, so the non-implication is a scope fence, not a theorem. The routing sentence is a policy.
+
+A vanishing quotient defect does not imply semantic correctness: \[\Phi_1(\Omega) = 0 \not\Rightarrow \text{Semantic Correctness}\] A degenerate observation can conceal distinctions that the selected quotient does not measure. No observer-erasure theorem is proved in this package. External institutional licensing is a separate application policy; the FDA runtime does not model or confer such a license.
+
+\subsubsection{Scope fence FDA-T12 --- Verification Limits \& Authority Typing Boundary (Paper 030)}\label{scope-fence-fda-t12-verification-limits-authority-typing-boundary-paper-030}
+
+\emph{Status.} A scope fence. The formal content nearest to it is FDA-T7 (standing is sound only under explicit verifier-soundness and grant-soundness hypotheses) and FDA-T8 (a countermodel without them).
+
+The package does not formalize verifier adequacy, an external authority root, or a general impossibility theorem for self-auditing. Its precise result is FDA-T7's conditional implication and FDA-T8's countermodel without soundness hypotheses. The labels \texttt{ContractAuthority}, \nolinkurl{VerifierScopedAuthority}, and \texttt{SemanticAuthority} are policy vocabulary, not additional Lean witness types.
+
+\subsection{8. Computational companion}\label{computational-companion}
+
+The production module \nolinkurl{code/coda_fda_core.py} validates five-field packets, derives the seven guards from evidence, refuses a missing packet even at high confidence, and optionally attaches an exact rational leftover certificate to guard \(g_3\). Arithmetic on residual mass is exact rational; floats and booleans in scalar position raise \texttt{TypeError}.
+
+The separate \nolinkurl{code/coda_fda_pipeline.py} executes the four stages. Its constructor requires an exact repair matrix and a callback exposing the finite pending-lift registry. A skeleton projection defaults to the whole routed state. Each candidate's descent, witness, and independently checked certificate are recorded; the residual policy is the maximum distance over every declared candidate. A positive distance blocks terminalization. The terminal uses the first candidate and its own certificate. Missing measurements, malformed certificates, state changes at measured boundaries, active lifts, and skipped replay block operational authorization.
+
+The canonical trace serializes the packet, proposal, repair map, all stage events, all candidates, certificates, measured skeletons and lift IDs. Its SHA-256 digest is recomputable from that payload using sorted, compact, UTF-8 JSON. Container types are tagged, so user dictionaries cannot impersonate numeric encodings. The selected evidence is rechecked against its stored snapshot after later candidates run. A hash checks integrity of recorded data, not authenticity or truth. Replay compares two complete execution payloads under the same declared callbacks. Callback definitions, skeleton projection, lift-registry completeness, and external state are explicit model assumptions.
+
+Lean files in \texttt{lean4/}:
+
+\begin{itemize}
+\tightlist
+\item
+  \nolinkurl{GtfdaAuthorityCore.lean} --- bounded standing core: packet, guards, standing record, and definitional emptiness theorems FDA-T1--T4;
+\item
+  \nolinkurl{FDA.lean} and \nolinkurl{Algebra.lean} --- wraps reconstruction for FDA-T5--T8;
+\item
+  \texttt{Core.lean} --- re-exports the files above.
+\end{itemize}
+
+There are no \texttt{sorry} stubs in those files. The reconstruction theorems use the ordinary Lean kernel. They do not prove that any particular verifier is sound, and they do not prove an origin-of-standing cochain.
+
+Adversarial tests include: empty carrier; missing packet with confidence \(999/1000\); each single-guard failure; zero declared candidates; float rejection; strict boolean type enforcement; candidate identifier set binding; forged certificate rejection; leftover \(0\) and leftover \(2\) on the two-row cochain example.
+
+\subsection{9. Limitations}\label{limitations}
+
+The packet carrier and candidate types in Lean are unrestricted \texttt{Type\ u} fields; the Lean mechanization establishes definitional structure laws, not finiteness bounds. The leftover solver is linear and finite-dimensional. Lean proves definitional emptiness and the reconstruction implications above. It does not prove verifier soundness, semantic packet soundness, or an origin-of-standing cochain. The leftover calculator of Section 6 is a leftover calculator. The policy evaluator consumes caller attestations. The separate execution harness checks finite records and declared callbacks at stage boundaries. Neither establishes semantic verifier soundness, absence of undeclared external work, or determinism beyond the two compared runs.
+
+\subsection{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  P. Martin-Löf, \emph{Intuitionistic Type Theory}, Bibliopolis, 1984.
+\item
+  G. C. Necula, ``Proof-carrying code,'' in \emph{POPL}, 1997.
+\item
+  J. H. Carroll, \emph{The Finite Obstruction Calculus: Exact quotient diagnostics, dual witnesses, two-stage coherence, and transport (CODA-FOC)}, 2026. \url{https://doi.org/10.5281/zenodo.20195157}
+\item
+  A. Schrijver, \emph{Theory of Linear and Integer Programming}, Wiley, 1986.
+\item
+  S. Boyd and L. Vandenberghe, \emph{Convex Optimization}, Cambridge University Press, 2004. \url{https://web.stanford.edu/~boyd/cvxbook/}
+\end{enumerate}
+
+\end{document}
