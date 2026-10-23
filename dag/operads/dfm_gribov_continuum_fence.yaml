@@ -3,18 +3,25 @@ node_id: DFM-GRIBOV-CONTINUUM-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the
-    Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established
-    by the finite diamond checks.
+  source_statement: For the rational matrices I = diag(1, 1, 1), Omega1 = diag(1, -1, -1), H23 with ones
+    in positions (2, 3) and (3, 2), and H12 with ones in positions (1, 2) and (2, 1), H23^2 = diag(0,
+    1, 1), H12^2 = diag(1, 1, 0), Omega1^2 = I, the product of Omega1's diagonal entries is 1, Tr(I) =
+    3, Tr(Omega1) = -1, Tr(I H23^2) = 2, Tr(Omega1 H23^2) = -2, and Tr(Omega1 H12^2) = 0, so those two
+    Omega1 forms differ. Continuum Gribov-Singer, a Faddeev-Popov operator spectrum, ghost-free quantization,
+    and a Yang-Mills mass gap stay unproved.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - continuum Yang-Mills theory
   - Faddeev-Popov quantization
-  source_bottleneck: A refinement family of lattices, the full Faddeev-Popov operator spectrum and a limit
-    theorem are needed before transporting the finite comparison.
+  source_bottleneck: The recorded comparison is this pair of quadratic forms on two generators of one
+    diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open
+    before any continuum transport.
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md
   - papers/ravera_dfm_dossier.md
+  - lean4/CampaignDfmGribovContinuumFence.lean
+  - dag/derivations/independent/dfm-gribov-continuum-fence.md
+  - checks/independent/dfm-gribov-continuum-fence.py
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md
   source_claim_label: OPEN
@@ -23,7 +30,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md
-    sha256: be61ac2feff2135357c617fd23ac620258171cfc4104e578a7cb993e089d70e3
+    sha256: 0dea892a3f36320cefc16fcd10b1886c568f69ec83e44fc22e890d77c526d952
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +38,179 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/dressing_field_dfm_gribov_continuum_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: mul
+  line: 25
+  signature_excerpt: 'def mul (A B : M3) : M3'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: h23
+  line: 51
+  signature_excerpt: 'def h23 : M3'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: diag
+  line: 38
+  signature_excerpt: 'def diag (x y z : Rat) : M3'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: M3
+  line: 14
+  signature_excerpt: structure M3
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: h12
+  line: 61
+  signature_excerpt: 'def h12 : M3'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: omega1
+  line: 50
+  signature_excerpt: 'def omega1 : M3'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eye
+  line: 49
+  signature_excerpt: 'def eye : M3'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: trace
+  line: 36
+  signature_excerpt: 'def trace (A : M3) : Rat'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: h23_square
+  line: 72
+  signature_excerpt: 'theorem h23_square : mul h23 h23 = diag 0 1 1'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: h12_square
+  line: 77
+  signature_excerpt: 'theorem h12_square : mul h12 h12 = diag 1 1 0'
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: omega1_square_and_det
+  line: 82
+  signature_excerpt: |-
+    theorem omega1_square_and_det :
+        mul omega1 omega1 = eye ∧
+        omega1.a00 * omega1.a11 * omega1.a22 = 1 ∧
+        trace eye = 3 ∧
+        trace omega1 = -1
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: trace_pair
+  line: 95
+  signature_excerpt: |-
+    theorem trace_pair :
+        trace (mul eye (mul h23 h23)) = 2 ∧
+        trace (mul omega1 (mul h23 h23)) = -2 ∧
+        trace (mul omega1 (mul h12 h12)) = 0
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: forms_differ
+  line: 103
+  signature_excerpt: |-
+    theorem forms_differ :
+        trace (mul omega1 (mul h23 h23)) ≠ trace (mul omega1 (mul h12 h12))
+  source: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::h23_square
+  availability: local
+  symbol: h23_square
+  path: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  declaration_status: declaration_found_not_proof_checked
+  line: 72
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::h12_square
+  availability: local
+  symbol: h12_square
+  path: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  declaration_status: declaration_found_not_proof_checked
+  line: 77
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::omega1_square_and_det
+  availability: local
+  symbol: omega1_square_and_det
+  path: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  declaration_status: declaration_found_not_proof_checked
+  line: 82
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::trace_pair
+  availability: local
+  symbol: trace_pair
+  path: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  declaration_status: declaration_found_not_proof_checked
+  line: 95
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::forms_differ
+  availability: local
+  symbol: forms_differ
+  path: lean4/CampaignDfmGribovContinuumFence.lean
+  repository: this_repository
+  sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
+  declaration_status: declaration_found_not_proof_checked
+  line: 103
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -75,8 +252,6 @@ operad_slots:
     - Faddeev-Popov quantization
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

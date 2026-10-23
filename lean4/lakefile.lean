@@ -1020,6 +1020,11 @@ lean_lib CampaignDfmCkmPhysicsFence where
 lean_lib CampaignDfmContinuumInterface where
   roots := #[`CampaignDfmContinuumInterface]
 
+
+-- Campaign: DFM-GRIBOV-CONTINUUM-FENCE. Not a default target.
+lean_lib CampaignDfmGribovContinuumFence where
+  roots := #[`CampaignDfmGribovContinuumFence]
+
 -- Campaign: DFM-REGGE-GRAVITY-FENCE. Not a default target.
 lean_lib CampaignDfmReggeGravityFence where
   roots := #[`CampaignDfmReggeGravityFence]
