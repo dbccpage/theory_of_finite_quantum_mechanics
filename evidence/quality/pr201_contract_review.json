@@ -1,0 +1,95 @@
+{
+  "schema_version": "tfqm.pr-review.v1",
+  "AuthorityEffect": "None",
+  "pr": 201,
+  "author_head": "65fab3b890a2c482a020182e61afb74ece859d12",
+  "source_sha256": {
+    "scripts/contract_scores.py": "93092a3790cfb67e014f57b46e542b298d4fd9d680a4e79e583a9cb849d82322",
+    "scripts/score_scope_contracts.py": "0126fc7651a65fe593884b417b0851d0c99ad94333b24194eb32460005afa954",
+    "scripts/test_changed_since_contracts.py": "e9f223daa0a095e1d26a3f3a24e46e92f563c90deb0ade24b4df91b294420edb"
+  },
+  "checks": [
+    {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "pytest",
+        "scripts/test_changed_since_contracts.py",
+        "-q",
+        "--basetemp=C:/gw/tp205/lean4/b/pr201-ready-tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "exit_code": 0,
+      "seconds": 66.05183815956116,
+      "stdout": "............                                                             [100%]\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n12 passed, 1 warning in 65.17s (0:01:05)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--strict",
+        "scripts/contract_scores.py",
+        "scripts/score_scope_contracts.py",
+        "scripts/test_changed_since_contracts.py"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+      "exit_code": 0,
+      "seconds": 4.4525346755981445,
+      "stdout": "Success: no issues found in 3 source files\n",
+      "stderr": ""
+    }
+  ],
+  "metrics": {
+    "scripts/contract_scores.py": {
+      "max_ast_branch_indicator": [
+        32,
+        "check"
+      ],
+      "cognitive_complexity": "not claimed"
+    },
+    "scripts/score_scope_contracts.py": {
+      "max_ast_branch_indicator": [
+        31,
+        "score_error"
+      ],
+      "cognitive_complexity": "not claimed"
+    },
+    "scripts/test_changed_since_contracts.py": {
+      "max_ast_branch_indicator": [
+        3,
+        "load"
+      ],
+      "cognitive_complexity": "not claimed"
+    }
+  },
+  "python": "3.12.10",
+  "mypy": "1.19.1",
+  "types_PyYAML": "6.0.12.20250915",
+  "pytest": "8.3.5",
+  "prior_failed_fixture": {
+    "command": [
+      "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+      "-I",
+      "-m",
+      "pytest",
+      "scripts/test_changed_since_contracts.py",
+      "-q",
+      "--basetemp=C:/gw/tp205/lean4/b/pr201-typed-tests"
+    ],
+    "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\pr201-review\\theory_of_finite_quantum_mechanics",
+    "exit_code": 1,
+    "seconds": 43.57131910324097,
+    "stdout": "........FF..                                                             [100%]\n================================== FAILURES ===================================\n_____________ test_valid_companion_then_changed_source_is_refused _____________\n\nsubjects = (<module 'review_scores' from 'C:\\\\gw\\\\tp205\\\\lean4\\\\b\\\\pr201-typed-tests\\\\test_valid_companion_then_chan0\\\\scripts\\\\c...from 'C:\\\\gw\\\\tp205\\\\lean4\\\\b\\\\pr201-typed-tests\\\\test_valid_companion_then_chan0\\\\scripts\\\\score_scope_contracts.py'>)\n\n    def test_valid_companion_then_changed_source_is_refused(subjects: Subjects) -> None:\n        scores, scope = subjects\n        source = scope.ROOT / \"code/python/probe.py\"\n        source.write_text(\"value = 1\\n\", encoding=\"utf-8\")\n>       assert scope.prepare_source(source)\n\nscripts\\test_changed_since_contracts.py:152: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\gw\\tp205\\lean4\\b\\pr201-typed-tests\\test_valid_companion_then_chan0\\scripts\\score_scope_contracts.py:331: in prepare_source\n    contract = baseline_contract(source, source_digest, language)\nC:\\gw\\tp205\\lean4\\b\\pr201-typed-tests\\test_valid_companion_then_chan0\\scripts\\score_scope_contracts.py:264: in baseline_contract\n    {\"path\": \"SCORING.md\", \"sha256\": sha256((ROOT / \"SCORING.md\").read_bytes())},\nC:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\pathlib.py:1019: in read_bytes\n    with self.open(mode='rb') as f:\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = WindowsPath('C:/gw/tp205/lean4/b/pr201-typed-tests/test_valid_companion_then_chan0/SCORING.md')\nmode = 'rb', buffering = -1, encoding = None, errors = None, newline = None\n\n    def open(self, mode='r', buffering=-1, encoding=None,\n             errors=None, newline=None):\n        \"\"\"\n        Open the file pointed to by this path and return a file object, as\n        the built-in open() function does.\n        \"\"\"\n        if \"b\" not in mode:\n            encoding = io.text_encoding(encoding)\n>       return io.open(self, mode, buffering, encoding, errors, newline)\nE       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\gw\\\\tp205\\\\lean4\\\\b\\\\pr201-typed-tests\\\\test_valid_companion_then_chan0\\\\SCORING.md'\n\nC:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\pathlib.py:1013: FileNotFoundError\n______________________ test_tampered_history_is_refused _______________________\n\nsubjects = (<module 'review_scores' from 'C:\\\\gw\\\\tp205\\\\lean4\\\\b\\\\pr201-typed-tests\\\\test_tampered_history_is_refus0\\\\scripts\\\\c...from 'C:\\\\gw\\\\tp205\\\\lean4\\\\b\\\\pr201-typed-tests\\\\test_tampered_history_is_refus0\\\\scripts\\\\score_scope_contracts.py'>)\n\n    def test_tampered_history_is_refused(subjects: Subjects) -> None:\n        scores, scope = subjects\n        source = scope.ROOT / \"code/python/probe.py\"\n        source.write_text(\"value = 1\\n\", encoding=\"utf-8\")\n>       scope.prepare_source(source)\n\nscripts\\test_changed_since_contracts.py:165: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nC:\\gw\\tp205\\lean4\\b\\pr201-typed-tests\\test_tampered_history_is_refus0\\scripts\\score_scope_contracts.py:331: in prepare_source\n    contract = baseline_contract(source, source_digest, language)\nC:\\gw\\tp205\\lean4\\b\\pr201-typed-tests\\test_tampered_history_is_refus0\\scripts\\score_scope_contracts.py:264: in baseline_contract\n    {\"path\": \"SCORING.md\", \"sha256\": sha256((ROOT / \"SCORING.md\").read_bytes())},\nC:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\pathlib.py:1019: in read_bytes\n    with self.open(mode='rb') as f:\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = WindowsPath('C:/gw/tp205/lean4/b/pr201-typed-tests/test_tampered_history_is_refus0/SCORING.md')\nmode = 'rb', buffering = -1, encoding = None, errors = None, newline = None\n\n    def open(self, mode='r', buffering=-1, encoding=None,\n             errors=None, newline=None):\n        \"\"\"\n        Open the file pointed to by this path and return a file object, as\n        the built-in open() function does.\n        \"\"\"\n        if \"b\" not in mode:\n            encoding = io.text_encoding(encoding)\n>       return io.open(self, mode, buffering, encoding, errors, newline)\nE       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\gw\\\\tp205\\\\lean4\\\\b\\\\pr201-typed-tests\\\\test_tampered_history_is_refus0\\\\SCORING.md'\n\nC:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\pathlib.py:1013: FileNotFoundError\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED scripts/test_changed_since_contracts.py::test_valid_companion_then_changed_source_is_refused\nFAILED scripts/test_changed_since_contracts.py::test_tampered_history_is_refused\n2 failed, 10 passed, 1 warning in 41.81s\n",
+    "stderr": ""
+  },
+  "limits": [
+    "No whole-tree score certification.",
+    "Mechanical checks do not enforce the capability or grade floor.",
+    "Legacy migration is covered by byte-preserving round trips, not a fresh migration of the entire repository.",
+    "AI-assisted review, not human attestation."
+  ]
+}

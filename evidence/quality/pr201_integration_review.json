@@ -1,0 +1,180 @@
+{
+  "AuthorityEffect": "None",
+  "checks": [
+    {
+      "command": [
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 6,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 611b954f66d5), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 611b954f66d5); HIGH=0 MEDIUM=0 LOW=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "stdout": "nodes=892 routes=897 records=944 failures=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "generated status files are current (16 files checked)\n",
+      "stderr": ""
+    }
+  ],
+  "explicit_source_contracts": {
+    "schema_version": "tfqm.contract-score-coverage-audit.v1",
+    "authority_effect": "None",
+    "assessment_id": "source-coverage-baseline-v1",
+    "population_rule": {
+      "included": "tracked and ordinary-untracked *.py and *.rs under code/, and *.lean under lean4/",
+      "excluded_parts": [
+        ".lake",
+        "__pycache__",
+        "node_modules",
+        "target"
+      ],
+      "sealed_snapshot_prefixes": [
+        "dag/results/",
+        "dag/sealed_runs/",
+        "sealed_runs/"
+      ],
+      "source_discovery": "git ls-files --cached --others --exclude-standard -z followed by explicit path filtering"
+    },
+    "summary": {
+      "sources": 3,
+      "valid_contracts_and_scores": 3,
+      "invalid_or_missing": 0,
+      "by_language": {
+        "Python": 3
+      },
+      "by_preliminary_profile": {
+        "Non-Numeric": 3
+      },
+      "completed_scores": 3,
+      "incomplete_scores": 0,
+      "generated_governance_twins": 0,
+      "non_twin_sources": 3
+    },
+    "errors": [],
+    "artifacts": [
+      {
+        "path": "scripts/contract_scores.py",
+        "sha256": "93092a3790cfb67e014f57b46e542b298d4fd9d680a4e79e583a9cb849d82322",
+        "language": "Python",
+        "companion": "scripts/contract_scores.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "b10f10dcc34d9b2d7d41624ea42cee4786379726aa6fdd79b3a91831b4476777",
+        "score_digest": "8eae7f5e60e9fd4e62f09202bf3f06b4bb28a73839f3eb662373fc9a33cbc468",
+        "assessment_status": "completed_for_declared_changed-source_custody_boundary",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "scripts/score_scope_contracts.py",
+        "sha256": "0126fc7651a65fe593884b417b0851d0c99ad94333b24194eb32460005afa954",
+        "language": "Python",
+        "companion": "scripts/score_scope_contracts.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "5acb07b02286fe7c8db0cc63279e2307dc9066d264a37c60c72cd4eacd41257f",
+        "score_digest": "f406cfaef9f5746733f72aef20af87eac2249f1a429296a1797867c349accef0",
+        "assessment_status": "completed_for_declared_changed-source_custody_boundary",
+        "score_token": "L4D",
+        "is_complete": true,
+        "valid": true
+      },
+      {
+        "path": "scripts/test_changed_since_contracts.py",
+        "sha256": "e9f223daa0a095e1d26a3f3a24e46e92f563c90deb0ade24b4df91b294420edb",
+        "language": "Python",
+        "companion": "scripts/test_changed_since_contracts.contract.score.yaml",
+        "generated_governance_twin": false,
+        "contract_digest": "8df3bf5a2013c5e0b46b1b7b66b0c17f7bda082eaa302e52eeb6926b4c2b5aac",
+        "score_digest": "c989fa07a23fc184f481451e5faf959be40d485be0c7cdef6e8ced24f4260db0",
+        "assessment_status": "completed_for_declared_changed-source_custody_boundary",
+        "score_token": "L2D",
+        "is_complete": true,
+        "valid": true
+      }
+    ],
+    "scope_boundary": "This audit proves source-to-companion coverage and current-byte custody. It does not promote incomplete static assessments to engineering-grade certification."
+  },
+  "final_integration": {
+    "base": "4a1e551210459ca8b410fada1e8eddb75e7b052c",
+    "readme_write": {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --write",
+      "exit_code": 0,
+      "stdout": "README facts written\n"
+    },
+    "readme_check": {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "stdout": "README facts current\n"
+    },
+    "focused_checks": [
+      {
+        "command": [
+          "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+          "-I",
+          "-m",
+          "pytest",
+          "scripts/test_changed_since_contracts.py",
+          "dag/test_docs_liquid_safe.py",
+          "-q",
+          "--basetemp=C:/gw/tp205/lean4/b/pr218-tests"
+        ],
+        "exit_code": 0,
+        "stdout": ".............                                                            [100%]\n============================== warnings summary ===============================\n..\\..\\..\\..\\..\\..\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441\n  C:\\gw\\tp205\\lean4\\b\\check-python\\Lib\\site-packages\\_pytest\\config\\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_mode\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n13 passed, 1 warning in 104.87s (0:01:44)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:/gw/tp205/lean4/b/check-python/Scripts/python.exe",
+          "-I",
+          "-m",
+          "mypy",
+          "--strict",
+          "scripts/contract_scores.py",
+          "scripts/score_scope_contracts.py",
+          "scripts/test_changed_since_contracts.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Success: no issues found in 3 source files\n",
+        "stderr": ""
+      }
+    ],
+    "scope_note": "The pre-commit merge-base audit selected imported baseline files; the focused source audit and the post-commit changed-since check are separate."
+  }
+}
