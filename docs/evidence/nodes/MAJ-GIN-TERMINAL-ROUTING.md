@@ -1,6 +1,6 @@
 # MAJ-GIN-TERMINAL-ROUTING
 
-Stage: [MAJORANA](../stages/MAJORANA.md). Status: `DEFINITION`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MAJORANA](../stages/MAJORANA.md). Status: `DEFINITION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `DEFINITION`. Evidence grade: 
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -47,15 +47,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/core/majorana/lean4/MajoranaGinCore.lean](../../../papers/core/majorana/lean4/MajoranaGinCore.lean)
 - sha256 (`bytes`): `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102`
 - cited in: node.lean, record TFQ-1176
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_majorana.json](../../../dag/research/lean_replay_campaign_majorana.json) (module `papers.core.majorana.lean4.MajoranaGinCore`): recorded sha256 `33ca2d4ec9a96398a74c96207caf0aa46d91b15ff4f10d245f394440a5102102` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/core/majorana/lean4/MajoranaGinCore.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `evaluate_gin_fermion_recovery` | yes | yes | yes | - | `#print axioms evaluate_gin_fermion_recovery` |
-| `exact_gin_cancellation_routes_to_repair` | yes | yes | yes | - | `#print axioms exact_gin_cancellation_routes_to_repair` |
-| `invalid_gin_routes_to_closure_failure` | yes | yes | yes | - | `#print axioms invalid_gin_routes_to_closure_failure` |
-| `residual_sign_routes_to_refusal` | yes | yes | yes | - | `#print axioms residual_sign_routes_to_refusal` |
+| `evaluate_gin_fermion_recovery` | yes | yes | yes | none | `#print axioms evaluate_gin_fermion_recovery` |
+| `exact_gin_cancellation_routes_to_repair` | yes | yes | yes | none | `#print axioms exact_gin_cancellation_routes_to_repair` |
+| `invalid_gin_routes_to_closure_failure` | yes | yes | yes | none | `#print axioms invalid_gin_routes_to_closure_failure` |
+| `residual_sign_routes_to_refusal` | yes | yes | yes | Quot.sound, propext | `#print axioms residual_sign_routes_to_refusal` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1176_maj_gin_terminal_routing.md`

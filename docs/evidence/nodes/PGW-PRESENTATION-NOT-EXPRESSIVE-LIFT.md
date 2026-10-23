@@ -10,9 +10,9 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence gr
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 18
-- cited Lean declarations covered by a current replay receipt: 17
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 19
+- cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -72,12 +72,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignPgwPresentationLift.two_marks_in_unformed_regime_collapsed` | yes | yes | yes | propext | `#print axioms CampaignPgwPresentationLift.two_marks_in_unformed_regime_collapsed` |
 - counts toward the grade: yes
 
-### Lean: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean`
+### Lean: `lean4/Imported/PreGenesisToMssn/Observation.lean`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean
-- counts toward the grade: no
+- file: [lean4/Imported/PreGenesisToMssn/Observation.lean](../../../lean4/Imported/PreGenesisToMssn/Observation.lean)
+- sha256 (`bytes`): `cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79`
+- cited in: node.lean, record TFQ-0422
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PreGenesisToMssn.Observation`): recorded sha256 `cb6ccaec927d5bea865af8ae40f653a01f4b4301a4b022418e2a52e8df431d79` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Observation.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `empty_profiles_equal` | yes | yes | yes | Quot.sound, propext | `#print axioms empty_profiles_equal` |
+- counts toward the grade: yes
 
 ### Python: `checks/independent/pgw-presentation-not-expressive-lift.py`
 
@@ -93,7 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md](../../../dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md)
-- sha256 (`lf-normalised`): `04b778517449cda76271bb0713ec7866fefba41f621c82c03692e34fbb835abb`
+- sha256 (`lf-normalised`): `c7951014428fc9e6b8d117e2046975306f1ea3e21cf35ac163c905ab23e2c0b2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0422
 - counts toward the grade: no
@@ -111,12 +118,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
 - cited in: node.source
 - counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Observation.lean::empty_profiles_equal`
 
 ## Absences recorded by the TFQ records
 

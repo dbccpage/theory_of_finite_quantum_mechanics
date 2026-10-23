@@ -1,0 +1,179 @@
+# Claim ledger — CODA
+
+**Version:** 2.0.1
+
+**Date:** 2026-09-28
+
+
+This is the active ledger for [coda.md](coda.md). The archived design ledger,
+foundational ledger, and discipline ledger remain source records. Their
+claim IDs are reconciled individually below. No historical theorem label or
+build report is silently promoted into current local evidence.
+
+## Status meanings
+
+| Status | Meaning |
+|---|---|
+| `PROVED_LOCAL` | The stated scoped result has a prose proof and named local Lean evidence. |
+| `PROVED_PROSE` | The statement has a proof in the manuscript; the general statement is not mechanized locally. |
+| `FINITE_COMPUTATION` | The supplied finite instance is independently executable; it does not establish unbounded generality. |
+| `DECLARED_POLICY` | An adopted rule or organizational choice; any formal result proves only properties of the declared model. |
+| `HISTORICAL_REPORT` | A dated source assertion, with no present replay or status refresh implied. |
+| `CITED_BOUNDARY` | A fixed external source is identified; the local build does not audit or import it. |
+| `OPEN` | A construction or claim remains unestablished in this package. |
+
+`PROVED_LOCAL` does not mean that every interpretive sentence surrounding a
+lemma is mechanized. The formal coverage and exact axiom dependencies below
+are part of each claim's scope. Current claims are CODA-01 through CODA-26.
+
+## Current claims
+
+| ID | Status | Statement and assumptions | Evidence and practical limit |
+|---|---|---|---|
+| [CODA-01](coda.md) | PROVED_LOCAL | A supplied related pair under an irreflexive relation is distinct. A detector bridge additionally supplies a zero diagonal and an actual nonzero pair. | `witnessed_distinct`, `detector_pair_distinct`. No observer, orientation, algebra, or finiteness is derived. Reconstructs FDN-01. |
+| [CODA-02](coda.md) | PROVED_LOCAL | For maps p:X→P and q:X→Y, an image factor exists exactly when q is constant on p-fibers; it is unique on the image. | Six declarations in the formal map below; `factor_or_collision` checks a declared finite domain. The general construction uses classical choice. No total inverse or unique off-image extension is asserted. |
+| [CODA-03](coda.md) | PROVED_LOCAL | A query-separating observation collision persists under coarsening; any observation supporting the same query must separate that pair. | `coarsening_preserves_collision`, `augmentation_must_separate`, and the collision lemma under CODA-02. Separating one pair does not prove absence of all collisions. |
+| [CODA-04](coda.md) | PROVED_LOCAL | Exhaustion is relative to a declared menu; restriction preserves exhaustion; its converse fails; equal costs transfer an attained minimum. | Four local declarations. `evaluate_menu` retains every tied rational minimizer only after the full finite menu is checked. Empty-menu exhaustion is explicitly vacuous. No extension-existence theorem. |
+| [CODA-05](coda.md) | PROVED_PROSE | For finite-dimensional real linear packets with d1d0=0, full linear repair subspaces, and strictly positive weights, quotient minima are attained and give the stated trichotomy. | Theorem 4.1 and its compactness/closedness proof. Python exercises only d0(t)=(t,0,0), d1(a,b,c)=c, a2=0. General optimization and norm arguments are not in local Lean. |
+| [CODA-06](coda.md) | PROVED_PROSE | A feasible primal repair and an annihilating coordinate-bounded dual covector attaining the same value certify the optimum. | Proposition 4.2; `coordinate_packet` and the independent `verify_coordinate_certificate`, with forged-certificate tests in `test_coda_core.py::test_linear_certificate_and_independent_repair_bounds` and `test_coda_core.py::test_forged_dual_primal_value_and_grade_are_rejected`. No general solver or certificate-existence theorem is supplied. |
+| [CODA-07](coda.md) | PROVED_LOCAL | A commuting observation square and a target query factor induce the displayed source factor. | `transport_factor`. The general FOC compatibility equations are definitions/prose consequences, not a local proof of norm preservation or authority transfer. |
+| [CODA-08](coda.md) | PROVED_LOCAL | The three stated Boolean/parity edge constraints are individually solvable but jointly inconsistent. | `triangle_no_global_section`, `triangle_each_edge_satisfiable`; `parity_sections` enumerates the eight assignments (`test_coda_core.py::test_triangle_local_sections_do_not_glue`). This is not a counterexample with an already compatible sheaf matching family. |
+| [CODA-09](coda.md) | PROVED_PROSE | Finite point samples on a nondegenerate real interval do not determine integrals of arbitrary continuous functions. | Proposition 6.1. Exact polynomial example at nodes 0,5,10 has area difference 1/84, replayed by `sample_collision` (`test_coda_core.py::test_sample_collision_has_exact_positive_area_difference`). Analytic positivity/integration are not mechanized here. |
+| [CODA-10](coda.md) | PROVED_PROSE | For f(x)=x on [0,10] and integer N≥1, left/right sums are 50∓50/N and the trapezoid sum is 50. | Proposition 6.2; `affine_quadrature` computes exact rational sums and tests compare closed forms (`test_coda_core.py::test_quadrature_against_closed_form`). Does not infer a continuum from finite samples. |
+| [CODA-11](coda.md) | DECLARED_POLICY | Standing(E,G) is defined as E∧G. In this model standing requires G and E alone is insufficient. | `standing_requires_grant`, `evidence_does_not_supply_grant`; Boolean `standing`. This is a logical policy example, not an operational or cryptographic authorization system. |
+| [CODA-12](coda.md) | FINITE_COMPUTATION | The preserved point-span construction collapses distinct Z2 arrows, although its key-count checker reports faithfulness. | Proposition 9.1; `audit_legacy_embedding.py` executes the actual preserved Python source, verified by `test_coda_discipline.py::test_cd12_faithful_groupoid_embedding_and_two_level_cost`. `constant_map_not_injective` proves the abstract two-element pattern, not the full source implementation. The candidate is refuted; the broader target is OPEN. |
+| [CODA-13](coda.md) | DECLARED_POLICY | Eight component responsibilities are organized under GTLA's authority architecture. | §8.2, derived editorially from S-DES/S-FDN and the recovery notes. Component names do not prove necessity, uniqueness, or exhaustive coverage of mathematics. |
+| [CODA-14](coda.md) | DECLARED_POLICY | The supply/declaration/evaluation/grant/admission/replay sequence defines the proposed interface and its records. | §8.3. No implemented scheduler, universal solver theorem, verified chronology, or self-hosting witness is claimed. |
+| [CODA-15](coda.md) | HISTORICAL_REPORT | The externally pinned recovery notes report a dated census and scratch builds. | The scanner and scan output have immutable external retrieval pointers in `source_manifest.json`. Six ignored logs and the scratch sources are unavailable; their previously reported outcomes are not present compiler evidence or a fresh replay. |
+| [CODA-16](coda.md) | CITED_BOUNDARY | The sealed source is cited at sealed-derivation-v1, commit 3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a, for its stated boundary. | §10.2 and repository instructions. No sealed derivation, gate implementation, global interpretation verdict, or refreshed post-tag research claim is imported. |
+| [CODA-17](coda.md) | OPEN | Construct the proposed presentation/trace categories and a faithful functor with the required transport and cost properties. | §9; CD-12 source target. The preserved implementation fails; cost identities do not prove injectivity, identity, associativity, or functoriality. |
+| [CODA-18](coda.md) | OPEN | Proof restoration, self-hosting, endogenous inputs, multiple-observer research, limits, and foundational interpretations require further stated evidence. | §10.3; externally pinned S-DES §§7–8 retain all N1–N10/D1–D9 proposals and historical pins. A finite example in this paper does not complete those research rungs. |
+| [CODA-19](coda.md) | DECLARED_POLICY | CODA's expansion is the author-fixed Obstruction, Descent, and Authority; primitive difference, residual, and defect have separate types here. | §1 and §2; S-DIS CD-01/02 and recovery conflict records. No foundation-wide claim that ambient equality has been derived. |
+| [CODA-20](coda.md) | FINITE_COMPUTATION | Seventeen historical files are locally preserved and verified by byte count, SHA-256, and pinned Git blob; twenty-two other tracked inputs are externally pinned. | `source_manifest.json` and `code/verify_package.py` (`test_package_consistency.py::test_source_custody_rejects_tampering`). The three discipline source transcripts are separate from maintained runtime/proof derivatives. Six ignored logs are unavailable. Byte identity does not validate historical mathematics. |
+| [CODA-21](coda.md) | DECLARED_POLICY | Evidence and authority terminals are separated into coproduct T = T_auth + T_res + F_term with branch-specific halt guards. | §8.4; Policy 8.3; Paper 027. For T_auth admission, all seven FDA guards (including g₃ zero_residual_mass and g₇ no_refusal) are required; T_res and F_term record positive residual or refusal without asserting zero residual mass; no implementation enforcement proof is claimed. |
+| [CODA-22](coda.md) | DECLARED_POLICY | Categories P, E, and A have disjoint morphism classes; proposers and evaluators cannot issue authority grants. | §8.4; Policy 8.4; Paper 004. Role non-impersonation is a design requirement; no implementation enforcement proof is claimed here. |
+| [CODA-23](coda.md) | DECLARED_POLICY | Epistemic verification does not entail normative authorization: eval(x) = valid does not imply grant(x) = authorized. | §8.4; Policy 8.5; Paper 005. Authority gap invariant. |
+| [CODA-24](coda.md) | DECLARED_POLICY | Reasoning cycles cannot generate authority tokens under domain preservation; bounded budgets enforce non-terminal computation limits. | §8.4; Policy 8.6; Paper 028. Reasoning authority non-generation invariant. |
+| [CODA-25](coda.md) | DECLARED_POLICY | Primitive ontology is strictly partitioned into Real_0 = Diff union Struct; surviving cokernel defects are typed anomalons, retained in an append-only register (policy; not immutable). | §8.4; Policy 8.7; Paper 029. Anomalon boundary invariant. See change log regarding withdrawal of immutable register claims. |
+| [CODA-26](coda.md) | DECLARED_POLICY | Undecidable or self-referential authorization envelopes without admitted carrier or stratified fixed point halt closed into F_term(refusal). | §8.4; Policy 8.8; Paper 030. Refusal is required when envelope-derived evidence identifies the scope limitation; self-reference alone does not establish undecidability without diagonal obstruction; this is not a general decision procedure. |
+
+## Formal statement map and axiom dependencies
+
+All declarations below are in namespace `Coda`. Axiom names are copied from
+the current [compiler audit](lean4/axiom_report.txt), not inherited from
+the old foundational ledger. The library uses Lean 4.33.0 and `Std`; it
+does not import Mathlib or any sealed source. There are no project axioms,
+`sorry`, `admit`, or `native_decide` in this local proof root.
+
+| Claim | Declarations | Actual dependencies |
+|---|---|---|
+| CODA-01 | `witnessed_distinct`, `detector_pair_distinct` | none |
+| CODA-02 | `observation_equivalence`, `factor_implies_constant`, `collision_obstructs_factor`, `image_factor_spec`, `image_factor_iff`, `image_factor_unique` | none (observation/factor/collision); `Classical.choice` (spec/iff); `Quot.sound` (unique) |
+| CODA-03 | `coarsening_preserves_collision`, `augmentation_must_separate` | none |
+| CODA-04 | `witness_refutes_exhaustion`, `exhausted_submenu`, `truncated_search_countermodel`, `tied_minima` | none |
+| CODA-07 | `transport_factor` | none |
+| CODA-08 | `triangle_no_global_section`, `triangle_each_edge_satisfiable` | none |
+| CODA-11 | `standing_requires_grant`, `evidence_does_not_supply_grant` | none; properties of the declared policy |
+| CODA-12 | `constant_map_not_injective` | none; abstract constant-map counterexample only |
+
+Sources: [Foundations.lean](lean4/Foundations.lean),
+[Boundaries.lean](lean4/Boundaries.lean), and
+[AxiomAudit.lean](lean4/AxiomAudit.lean).
+
+## Disposition of every source-ledger identifier
+
+This table covers all 48 entries across the three incoming ledgers:
+31 DES identifiers, three FDN identifiers, and fourteen CD identifiers
+(CD-05a and CD-05b are separate). A source entry is retained as history
+even if its present scope is narrowed or its candidate construction fails.
+“Historical” below makes no claim that the old assertion is false or that
+later work has not changed its status.
+
+### Foundational ledger: three entries
+
+Source: Historical foundational claim ledger (FDN-01..03).
+
+| Legacy ID | Current destination | Disposition |
+|---|---|---|
+| FDN-01 | CODA-01 | Reproved locally, including the detector-pair implication. |
+| FDN-02 | CODA-02, CODA-03 | Reproved locally with image-only uniqueness and explicit choice dependency; finite constructor supplied. |
+| FDN-03 | CODA-04 | Reproved locally; the new truncated-search proof reports no axioms, replacing the inherited propext report for that declaration. |
+
+The old references to `claims.json`, legacy record counts, and executable
+test names without local implementations are replaced by the present
+source manifest, full disposition table, and actual local theorem/test map.
+
+### Design ledger: thirty-one entries
+
+Source: Historical design claim ledger (DES-01..31).
+
+| Legacy ID | Current destination | Disposition |
+|---|---|---|
+| DES-01 | CODA-01, CODA-02 | Retain the two-signature distinction; reprove the local detector and image bridges under stated assumptions. |
+| DES-02 | CODA-15 | Historical primer build report; the new image theorem is independently written and does not replay this old module. |
+| DES-03 | CODA-15, CODA-16 | Historical 102-name firewall census; not rerun and not a new isolation certificate. |
+| DES-04 | CODA-19 | Retain the documented terminology conflict; do not assert a new census of later component revisions. |
+| DES-05 | CODA-16 | Preserve exact sealed references as historical citations; no local reproduction of the sealed necessity theorems. |
+| DES-06 | CODA-04, CODA-16 | Keep the sealed theorem's specific hypotheses in history; do not generalize repair failure into extension existence. |
+| DES-07 | CODA-04, CODA-16 | Preserve the sealed tie theorem as citation; the local tied-cost lemma has its own weaker signature. |
+| DES-08 | CODA-11, CODA-14 | Preserve the narrowed symmetric-regime citation; handed authorization remains declared policy, not the uniquely possible bypass. |
+| DES-09 | CODA-14, CODA-16 | Supply/admission behavior is a proposed local interface and a historical sealed-grammar citation. |
+| DES-10 | CODA-11, CODA-15 | Historical non-bypass/flag theorems are not rebuilt; the explicit conjunction countermodel is independently scoped. |
+| DES-11 | CODA-13, CODA-14 | Replace existing-runtime claims with an organizational table and required records. |
+| DES-12 | CODA-14 | Verification-time scheduling remains a design choice; no scheduler implementation is asserted. |
+| DES-13 | CODA-14, CODA-18 | Narrow “no clock at any level” to the event-order interface; chronology and intrinsic-clock questions remain open. |
+| DES-14 | CODA-14 | Re-express the ten design laws as scoped interface obligations; no blanket theorem or enforcement claim. |
+| DES-15 | CODA-15 | Retain the exact census as a dated report only. |
+| DES-16 | CODA-15 | Retain the dated report with an explicit custody limit: six ignored logs and scratch-source copies are unavailable; the scanner and report are externally pinned. |
+| DES-17 | CODA-15, CODA-18 | Preserve the dated missing-content findings; no current “lost everywhere” claim. |
+| DES-18 | CODA-15 | Preserve the placeholder/stub warning as historical source evidence. |
+| DES-19 | CODA-16, CODA-18 | Retain the non-inference to quantum theory; no refreshed ranking or supersession claim about paper 122. |
+| DES-20 | CODA-16 | Historical exact-tag verification of twelve names is not counted as this package's new replay. |
+| DES-21 | CODA-18 | Self-hosting witness remains open. |
+| DES-22 | CODA-13, CODA-18 | Every-solver language remains programme ambition; not a proved quantification. |
+| DES-23 | CODA-11, CODA-19 | Keep residual, defect, observation, terminal, and grant distinct; neither records nor Booleans self-authenticate. |
+| DES-24 | CODA-01..12, CODA-18 | Supersede the old “proves nothing” description: this edition includes elementary proofs, while claiming no new physical derivation or global closure. |
+| DES-25 | CODA-15, CODA-18 | Preserve ten dated limitations in archived §7.1; do not present them as refreshed sibling-repository status. |
+| DES-26 | CODA-18 | Preserve N1–N10 and their prompt-custody gaps; none is declared completed by this paper. |
+| DES-27 | CODA-18 | Preserve D1–D9 as desired targets with historical blockers. |
+| DES-28 | CODA-18 | Retain proposed notation in archived §8.1; it is not imposed on the new exposition or external repositories. |
+| DES-29 | CODA-15, CODA-16, CODA-18 | Preserve the ladder's finite and conditional scope; no new global self-interpretation impossibility. |
+| DES-30 | CODA-17, CODA-18 | Preserve refusal of foundation subsumption; replace analogy-as-proof language with explicit construction obligations. |
+| DES-31 | CODA-16 | Preserve post-tag commit pins inside the original ledger; no refreshed PR or integration status is claimed. |
+
+### Discipline ledger: fourteen entries
+
+Source: Historical discipline claim ledger (CD-01..13).
+
+| Legacy ID | Current destination | Disposition |
+|---|---|---|
+| CD-01 | CODA-19 | Retain the author-fixed name and FOC's separate object-theory role. |
+| CD-02 | CODA-19 | Retain withdrawn aliases in the historical record. |
+| CD-03 | CODA-01, CODA-02, CODA-18 | Research programme, narrowed: the local observational equivalence does not derive all ambient equality. |
+| CD-04 | CODA-15, CODA-16 | External exemplar results remain historical reports with their custody limits; not freshly mechanized here. |
+| CD-05a | CODA-15, CODA-18 | Proposed normal-form correspondence remains pin/verification pending in the source. |
+| CD-05b | CODA-15, CODA-16 | Source-isolation and finite checks remain historical reports; this consolidation does not certify independence. |
+| CD-06 | CODA-17, CODA-18 | Preserve withdrawal of subsumption and limit the relationship to a research target. |
+| CD-07 | CODA-01, CODA-18 | Identity inversion remains programme positioning, not a foundation theorem. |
+| CD-08 | CODA-13, CODA-18 | Finite scope is a model restriction; no claim that the ambient formal system has no universes. |
+| CD-09 | CODA-05, CODA-17 | The explicit cochain law is retained; a general comparison with nonabelian higher structure is not proved here. |
+| CD-10 | CODA-07, CODA-17 | Priced transport is stated with its own laws, with no equivalence to univalence. |
+| CD-11 | CODA-19 | Preserve the source's withdrawal of its false comparison; no cross-foundation axiom-count ranking is asserted. |
+| CD-12 | CODA-12, CODA-17 | Target remains OPEN. The shipped point-span candidate fails faithfulness; key uniqueness and cost lemmas are insufficient. |
+| CD-13 | CODA-11, CODA-18 | Retain the authority and global-completion boundaries while allowing this edition's finite proofs and package completion. |
+
+## Withdrawal and promotion rules
+
+The source text “a count of one is a choice already spent upstream” is not
+adopted as a general theorem: a singleton may follow from a proved constraint.
+The source's identification-cost conjecture is not called a theorem here.
+The historical permission diagram's unqualified “neither can select” is
+replaced by the stated model and policy, without extending a symmetry
+theorem beyond its regime. A post-search norm error is not automatically a
+surviving obstruction, and a faithful-functor label is withdrawn for the
+specific point-span candidate.
+
+A later promotion must name the exact changed statement, assumptions,
+source, proof or experiment, and remaining scope. It must update the paper,
+this ledger, the machine index, and the changelog together. Old claims remain
+recoverable through their original files and manifest hashes.

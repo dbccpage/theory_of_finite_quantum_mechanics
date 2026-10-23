@@ -20,7 +20,7 @@ target:
     Python checks, and the certificate fixes the value Φ₁ = 2, not one repair.
   source_refs:
   - dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md
-  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean:407-414
+  - lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:416-423
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1756-1782
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1848-1853
   paper_refs: []
@@ -36,16 +36,167 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_filled_triangle_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: triD1
+  line: 310
+  signature_excerpt: 'def triD1 (x : TriEdge → ℚ) : ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triD0
+  line: 304
+  signature_excerpt: |-
+    def triD0 : ℚ × ℚ × ℚ → TriEdge → ℚ
+      | (f0, f1, _), .e01 => f1 - f0
+      | (_, f1, f2), .e12 => f2 - f1
+      | (f0, _, f2), .e02 => f2 - f0
+
+    /-- `d1 (x01, x12, x02) = x01 + x12 - x02`. -/
+    def triD1 (x : TriEdge → ℚ) : ℚ
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triResidualMass
+  line: 334
+  signature_excerpt: 'def triResidualMass (f : ℚ × ℚ × ℚ) : ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: qabs
+  line: 212
+  signature_excerpt: 'def qabs (x : ℚ) : ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triDefect
+  line: 320
+  signature_excerpt: |-
+    def triDefect : TriEdge → ℚ
+      | .e01 => 1
+      | .e12 => 1
+      | .e02 => 0
+
+    /-- The dual certificate `y = (1, 1, -1)`. -/
+    def triDual : TriEdge → ℚ
+      | .e01 => 1
+      | .e12 => 1
+      | .e02 => -1
+
+    def triUnitWeight : TriEdge → ℚ
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sumOver
+  line: 215
+  signature_excerpt: 'def sumOver {E : Type} (es : List E) (g : E → ℚ) : ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triEdges
+  line: 301
+  signature_excerpt: 'def triEdges : List TriEdge'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triDual
+  line: 326
+  signature_excerpt: |-
+    def triDual : TriEdge → ℚ
+      | .e01 => 1
+      | .e12 => 1
+      | .e02 => -1
+
+    def triUnitWeight : TriEdge → ℚ
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triD1Row
+  line: 314
+  signature_excerpt: |-
+    def triD1Row : TriEdge → ℚ
+      | .e01 => 1
+      | .e12 => 1
+      | .e02 => -1
+
+    /-- The worked defect `δ = (1, 1, 0)`. -/
+    def triDefect : TriEdge → ℚ
+      | .e01 => 1
+      | .e12 => 1
+      | .e02 => 0
+
+    /-- The dual certificate `y = (1, 1, -1)`. -/
+    def triDual : TriEdge → ℚ
+      | .e01 => 1
+      | .e12 => 1
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TriEdge
+  line: 295
+  signature_excerpt: inductive TriEdge
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triUnitWeight
+  line: 331
+  signature_excerpt: 'def triUnitWeight : TriEdge → ℚ'
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: filled_triangle_signature
+  line: 424
+  signature_excerpt: |-
+    theorem filled_triangle_signature :
+        (∀ f0 f1 f2 : ℚ, triD1 (triD0 (f0, f1, f2)) = 0)
+          ∧ (∀ f0 f1 f2 : ℚ, 2 ≤ triResidualMass (f0, f1, f2))
+          ∧ triResidualMass (0, 1, 0) = 2
+          ∧ qabs (triD1 triDefect) = 2
+          ∧ ((∀ f0 f1 f2 : ℚ,
+                sumOver triEdges (fun e => triDual e * triD0 (f0, f1, f2) e) = 0)
+              ∧ (∀ e, qabs (triDual e) ≤ 1)
+              ∧ sumOver triEdges (fun e => triDual e * triDefect e) = 2)
+          ∧ qabs (triD1 triDefect) / triResidualMass (0, 1, 0) = 1
+          ∧ ((∀ x, triD1 x = sumOver triEdges (fun e => triD1Row e * x e))
+              ∧ (∀ e, qabs (triD1Row
+  source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::filled_triangle_signature
-  availability: external
+- original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::filled_triangle_signature
+  availability: local
   symbol: filled_triangle_signature
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
+  repository: this_repository
+  sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  declaration_status: declaration_found_not_proof_checked
+  line: 424
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_wdp/src/obstruction.rs::DualWitnessCertificate
   availability: external
@@ -94,8 +245,6 @@ operad_slots:
     - Unit weights on the declared filled triangle over Q (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -1,0 +1,45 @@
+{
+  "schema_version": "coda.csq.descriptive.v1",
+  "contract_id": "coda-cs-q-finite-observation",
+  "status": "descriptive_schema",
+  "authority_effect": "None",
+  "manuscript": "coda_cs_q_bridge.md",
+  "claim_ledger": "coda_cs_q_bridge_claim_ledger.md",
+  "finite_runtime": {
+    "module": "code/coda_cs_q_bridge_core.py",
+    "domain": "nonempty finite list D",
+    "profile_requirements": "stable hashable equality; deterministic non-mutating callables",
+    "solver": "ProfileFactorizationSolver.solve_factorization",
+    "result": "factor defined on observed Prof(D) only; KeyError elsewhere",
+    "snapshot": "copy states and observe each profile/query pair once per solve",
+    "image_point": "required profile_fn and explicit supplied factor; revalidate witness before use",
+    "flags": "q_held_paid, completion_witness, route_independent, reflection_descends must be bool",
+    "admission": "all eight declared checks must pass"
+  },
+  "lean": {
+    "algebra": "lean4/Algebra.lean",
+    "records": "lean4/D01D02Records.lean",
+    "image_iff": "Coda.CSQ.exact_on_image",
+    "image_uniqueness": "Coda.CSQ.image_factor_unique",
+    "schema_projection": "CodaCsQ.admissible_implies_all_eight",
+    "terminal_agreement": "CodaCsQ.factorization_implies_named_terminalizers_agree",
+    "scope": "CSQ-T4 is Boolean Point3 analogue; CSQ-T3 is abstract monotone-scale schema; no continuum realization from flags"
+  },
+  "retired_advisory": [
+    "BRIDGE-004: TranslationSemigroup is a predicate definition; Python computes f(x+h)",
+    "BRIDGE-005: ActionCompositionSemigroup is a predicate definition; Python adds s_h+s_k"
+  ],
+  "nonclaims": [
+    "total extension computed by finite solver",
+    "analytic meaning of fourteen slots verified from field count",
+    "scalar-real CSQ-T4 theorem proved in Lean",
+    "authorized gluing",
+    "general authority terminalizers",
+    "exponential or Hamilton-Jacobi generators"
+  ],
+  "acceptance": [
+    "code/tests/test_review_regressions.py",
+    "code/tests/test_coda_cs_q.py",
+    "code/tests/test_cs_q_injected_mutations.py"
+  ]
+}

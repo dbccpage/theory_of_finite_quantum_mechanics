@@ -30,7 +30,7 @@ Banach-space embedding, injectivity and the fibre statements are prose-only.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean::trace_norm_eq_mass`
+- `lean4/Imported/OperatorLifts/Lifts.lean::trace_norm_eq_mass`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed`
 
 ### Rust Certifiers
@@ -49,4 +49,4 @@ Banach-space embedding, injectivity and the fibre statements are prose-only.
 
 - **Cited Sources**:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/operator_lifts_trace_metrics_and_representation_limits_claim_ledger.md#C01`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean:91`
+  - `lean4/Imported/OperatorLifts/Lifts.lean:100`

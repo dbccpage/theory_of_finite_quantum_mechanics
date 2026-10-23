@@ -176,28 +176,31 @@ WHERE c.index_status <> s.contract_status
 ORDER BY c.nf_id;
 ```
 
-6. A join across sections: `PROVED_LEAN` nodes none of whose cited Lean
-   declarations is in this checkout. `node_lean_ref.lean_ref` holds the source
-   string `path::symbol`, so it joins to `lean_declaration` through `||`.
+6. A join across sections: where the Lean files cited by `PROVED_LEAN` nodes
+   are. `node_lean_ref.lean_ref` holds the source string `path::symbol`, so it
+   joins to `lean_declaration` through `||`. A node whose cited declarations
+   all sit in files that are not `present` would be a `PROVED_LEAN` node with
+   no Lean evidence in this checkout.
 
 ```sql
-SELECT n.node_id, COUNT(*) AS cited_declarations
+SELECT f.resolution, COUNT(DISTINCT n.node_id) AS nodes, COUNT(*) AS cited_declarations
 FROM node_status AS n
 JOIN node_lean_ref AS r ON r.node_id = n.node_id
 JOIN lean_declaration AS d ON r.lean_ref = d.lean_path || '::' || d.symbol
 JOIN lean_file AS f ON f.lean_path = d.lean_path
 WHERE n.status_code = 'PROVED_LEAN'
-GROUP BY n.node_id
-HAVING SUM(CASE WHEN f.resolution = 'present' THEN 1 ELSE 0 END) = 0
-ORDER BY n.node_id;
+GROUP BY f.resolution
+ORDER BY f.resolution;
 ```
 
 On the data at the time of writing, query 5 returns `nf.classical.eknf`
 (index says active, the contract says draft) and `nf.cohomology.acnf`
-(index says draft, the contract says deprecated), and query 6 returns the same
-number of nodes (53) as the `proved_lean_external_only` mismatch count in
-`dag/evidence/evidence_map.json`. That agreement is a cross-check between two
-independent derivations, not a result about the mathematics.
+(index says draft, the contract says deprecated), and query 6 shows every
+cited declaration of a `PROVED_LEAN` node in a `present` file, which agrees
+with the `proved_lean_external_only` mismatch count of 0 in
+`dag/evidence/evidence_map.json` (it was 53 before the cited sibling-atlas Lean
+files were imported into `lean4/Imported/`). That agreement is a cross-check
+between two independent derivations, not a result about the mathematics.
 
 ## What is not yet modelled
 

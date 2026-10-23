@@ -1,0 +1,507 @@
+{
+  "schema_version": 1,
+  "encoding": {
+    "schema_version": 1,
+    "problem": {
+      "schema_version": 1,
+      "goal": "exists_global_assignment",
+      "variables": [
+        {
+          "name": "a",
+          "domain": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "name": "b",
+          "domain": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "name": "c",
+          "domain": [
+            "0",
+            "1"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "ab",
+          "scope": [
+            "a",
+            "b"
+          ],
+          "rows": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ]
+        },
+        {
+          "name": "ac",
+          "scope": [
+            "a",
+            "c"
+          ],
+          "rows": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ]
+        }
+      ],
+      "assumptions": [],
+      "authorization": []
+    },
+    "problem_hash": "9135999dea6afb5b1d4ae132117b400b9363bfb73428f1e0e3035e9e51c4d66e",
+    "current": {
+      "schema_version": 1,
+      "goal": "exists_global_assignment",
+      "variables": [
+        {
+          "name": "A",
+          "domain": [
+            "false",
+            "true"
+          ]
+        },
+        {
+          "name": "B",
+          "domain": [
+            "false",
+            "true"
+          ]
+        },
+        {
+          "name": "C",
+          "domain": [
+            "false",
+            "true"
+          ]
+        },
+        {
+          "name": "D",
+          "domain": [
+            "false",
+            "true"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "ab",
+          "scope": [
+            "A",
+            "B"
+          ],
+          "rows": [
+            [
+              "false",
+              "false"
+            ],
+            [
+              "true",
+              "true"
+            ]
+          ]
+        },
+        {
+          "name": "ac",
+          "scope": [
+            "A",
+            "C"
+          ],
+          "rows": [
+            [
+              "false",
+              "false"
+            ],
+            [
+              "true",
+              "true"
+            ]
+          ]
+        },
+        {
+          "name": "ad",
+          "scope": [
+            "A",
+            "D"
+          ],
+          "rows": [
+            [
+              "false",
+              "true"
+            ],
+            [
+              "true",
+              "false"
+            ]
+          ]
+        }
+      ],
+      "assumptions": [],
+      "authorization": []
+    },
+    "changes": [
+      {
+        "source": "9135999dea6afb5b1d4ae132117b400b9363bfb73428f1e0e3035e9e51c4d66e",
+        "target": "262000245f09c9b126ba437c14961bce0324a5a0bff385332d95733ed815bf0f",
+        "parent": "9135999dea6afb5b1d4ae132117b400b9363bfb73428f1e0e3035e9e51c4d66e",
+        "spec": {
+          "kind": "join",
+          "left": "ab",
+          "right": "ac",
+          "name": "abc"
+        },
+        "hash": "edc19cfe874a280f729e70c0533c4ef67484ce09c0f1d6e6d750a093eeec988c"
+      },
+      {
+        "source": "262000245f09c9b126ba437c14961bce0324a5a0bff385332d95733ed815bf0f",
+        "target": "9135999dea6afb5b1d4ae132117b400b9363bfb73428f1e0e3035e9e51c4d66e",
+        "parent": "edc19cfe874a280f729e70c0533c4ef67484ce09c0f1d6e6d750a093eeec988c",
+        "spec": {
+          "kind": "split",
+          "relation": "abc",
+          "components": [
+            [
+              "a",
+              "b"
+            ],
+            [
+              "a",
+              "c"
+            ]
+          ],
+          "names": [
+            "ab",
+            "ac"
+          ]
+        },
+        "hash": "813dc9faae860f64be7062728ad158bff362a3463779cfaf315732b8d439bc9b"
+      },
+      {
+        "source": "9135999dea6afb5b1d4ae132117b400b9363bfb73428f1e0e3035e9e51c4d66e",
+        "target": "e637c83caa45e564d39bbf67a34f4ac55a2a8d5c0a8441629ecd6555753763f2",
+        "parent": "813dc9faae860f64be7062728ad158bff362a3463779cfaf315732b8d439bc9b",
+        "spec": {
+          "kind": "auxiliary",
+          "name": "d",
+          "domain": [
+            "0",
+            "1"
+          ],
+          "scope": [
+            "a"
+          ],
+          "rows": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "0"
+            ]
+          ],
+          "relation": "ad"
+        },
+        "hash": "ba536e092665c415cfda56c951aec0869cfe4507bf5730b4022f8beb9ebc03b4"
+      },
+      {
+        "source": "e637c83caa45e564d39bbf67a34f4ac55a2a8d5c0a8441629ecd6555753763f2",
+        "target": "f5fd2b6e3b1c810b9bb76b5478f24d1075243cf5244263584b0eb019d8acb796",
+        "parent": "ba536e092665c415cfda56c951aec0869cfe4507bf5730b4022f8beb9ebc03b4",
+        "spec": {
+          "kind": "rename",
+          "variables": {
+            "a": "A",
+            "b": "B",
+            "c": "C",
+            "d": "D"
+          },
+          "values": {
+            "a": {
+              "0": "false",
+              "1": "true"
+            },
+            "b": {
+              "0": "false",
+              "1": "true"
+            },
+            "c": {
+              "0": "false",
+              "1": "true"
+            },
+            "d": {
+              "0": "false",
+              "1": "true"
+            }
+          }
+        },
+        "hash": "0c13bab10044229a96aca8ee972e251f666f962313e0f7269718510681762252"
+      }
+    ],
+    "local_relations": [
+      {
+        "name": "ab",
+        "scope": [
+          "A",
+          "B"
+        ],
+        "rows": [
+          [
+            "false",
+            "false"
+          ],
+          [
+            "true",
+            "true"
+          ]
+        ]
+      },
+      {
+        "name": "ac",
+        "scope": [
+          "A",
+          "C"
+        ],
+        "rows": [
+          [
+            "false",
+            "false"
+          ],
+          [
+            "true",
+            "true"
+          ]
+        ]
+      },
+      {
+        "name": "ad",
+        "scope": [
+          "A",
+          "D"
+        ],
+        "rows": [
+          [
+            "false",
+            "true"
+          ],
+          [
+            "true",
+            "false"
+          ]
+        ]
+      }
+    ],
+    "hash": "d92e1840f01fce2b78281cb3a19fb2793387e798d48f41b1b1db1d0ff99bafcd"
+  },
+  "proposals": [
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ],
+    [
+      999
+    ]
+  ],
+  "grants": [
+    {
+      "at": 0,
+      "total": 20
+    }
+  ],
+  "events": [
+    {
+      "kind": "transport",
+      "index": 0,
+      "candidate": null,
+      "result": {
+        "transport_hash": "edc19cfe874a280f729e70c0533c4ef67484ce09c0f1d6e6d750a093eeec988c"
+      },
+      "cost": 1,
+      "spent_after": 1,
+      "budget": 20,
+      "parent": "d9c02f2de08c694db7415954a26ecdf6592f6087ef9228897235a021432007db",
+      "hash": "23ac2e182d10f3575785edb840b84c06b2f1608fb821664da6cb2da40c1a547f"
+    },
+    {
+      "kind": "transport",
+      "index": 1,
+      "candidate": null,
+      "result": {
+        "transport_hash": "813dc9faae860f64be7062728ad158bff362a3463779cfaf315732b8d439bc9b"
+      },
+      "cost": 1,
+      "spent_after": 2,
+      "budget": 20,
+      "parent": "23ac2e182d10f3575785edb840b84c06b2f1608fb821664da6cb2da40c1a547f",
+      "hash": "8b3c7acf3337dbd08327d27e46aa555275c103ffacfe2c86e0a7bc6605f2d8ee"
+    },
+    {
+      "kind": "transport",
+      "index": 2,
+      "candidate": null,
+      "result": {
+        "transport_hash": "ba536e092665c415cfda56c951aec0869cfe4507bf5730b4022f8beb9ebc03b4"
+      },
+      "cost": 1,
+      "spent_after": 3,
+      "budget": 20,
+      "parent": "8b3c7acf3337dbd08327d27e46aa555275c103ffacfe2c86e0a7bc6605f2d8ee",
+      "hash": "c875117edb21f7ae27419fe6e7313f05e86c4444ed2aef46a4af13b675fbf2ea"
+    },
+    {
+      "kind": "transport",
+      "index": 3,
+      "candidate": null,
+      "result": {
+        "transport_hash": "0c13bab10044229a96aca8ee972e251f666f962313e0f7269718510681762252"
+      },
+      "cost": 1,
+      "spent_after": 4,
+      "budget": 20,
+      "parent": "c875117edb21f7ae27419fe6e7313f05e86c4444ed2aef46a4af13b675fbf2ea",
+      "hash": "050d4d48a1b151a3f0fe2e5153045cca31dd8bf9b12c586aab3f630ff5f8fde8"
+    },
+    {
+      "kind": "proposal",
+      "index": 0,
+      "candidate": [
+        999
+      ],
+      "result": {
+        "outcome": "INVALID_CANDIDATE",
+        "predicate": "candidate arity",
+        "answer": null
+      },
+      "cost": 1,
+      "spent_after": 5,
+      "budget": 20,
+      "parent": "050d4d48a1b151a3f0fe2e5153045cca31dd8bf9b12c586aab3f630ff5f8fde8",
+      "hash": "58646f1bc17d06ca3860bc7d1c7d076268dfeb422ec1936b6c809b2540fcddca"
+    },
+    {
+      "kind": "canonical",
+      "index": 0,
+      "candidate": [
+        0,
+        0,
+        0
+      ],
+      "result": {
+        "outcome": "SOLUTION",
+        "defect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "answer": {
+          "a": "0",
+          "b": "0",
+          "c": "0"
+        }
+      },
+      "cost": 1,
+      "spent_after": 6,
+      "budget": 20,
+      "parent": "58646f1bc17d06ca3860bc7d1c7d076268dfeb422ec1936b6c809b2540fcddca",
+      "hash": "ed1086e806b8ebbaed8338b63293ad828115b03297d5b66923bc3d9a8a057534"
+    }
+  ],
+  "checkpoint": {
+    "encoding": "d92e1840f01fce2b78281cb3a19fb2793387e798d48f41b1b1db1d0ff99bafcd",
+    "proposals_hash": "908e2df6ff68cdb584f1113cb1808e837e6f362e8f1708cdd0e54e9af0b2e0f7",
+    "state": {
+      "transport": 4,
+      "canonical": 1,
+      "proposal": 1,
+      "phase": "proposal",
+      "answer": {
+        "a": "0",
+        "b": "0",
+        "c": "0"
+      }
+    },
+    "spent": 6,
+    "budget": 20,
+    "parent": "ed1086e806b8ebbaed8338b63293ad828115b03297d5b66923bc3d9a8a057534"
+  },
+  "status": "Proved",
+  "reason": "CERTIFIED_SOLUTION",
+  "answer": {
+    "a": "0",
+    "b": "0",
+    "c": "0"
+  },
+  "authority_effect": "None"
+}

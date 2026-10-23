@@ -1,0 +1,37 @@
+(* Pre-Genesis Inscription Grammar, Version 1.
+   AuthorityEffect: None. GenesisEffect: None.
+   Conforms to check_grammars.py EBNF subset. All productions defined here.
+
+   Scope. A later host notation for selected inscriptions discussed in the
+   source transcripts. This grammar was not tested by those model trials.
+   The inscription alphabet is
+   Sigma_pre = { "<", ">", "a", "b" }: two boundary delimiters and two opaque
+   payload glyphs. The regime notation additionally uses braces and commas.
+   The Sigma36 glyphs, the
+   directed cut "<a->b>" and the admission events of genesis.ebnf and sn.ebnf
+   arrive only with Genesis.
+
+   Four states this grammar keeps apart (010 paper, CLAIM-MSSN-001):
+     absent input    no document at all; not a word, matched by no start
+     empty word      the empty string; refused by every public start
+     "<>"            the literal token parsed by this declared host grammar
+     ground carrier  the stage object S(0) adopts; not a string at all
+
+   Public starts, in order of growth:
+     ground_token        exactly "<>"
+     inscription         one balanced, non-nested bracketed inscription
+     pre_genesis_regime  zero or more inscriptions between braces; "{}" is the
+                         empty host list notation and is not the empty word
+
+   There are no event productions. The first event, supply("<>"), is the
+   Genesis boundary and lives in ../../001_genesis/grammar/genesis.ebnf.
+   Parsing a word admits no carrier, transition, or observational operation. *)
+
+pre_genesis_regime = "{", [ inscription, { ",", inscription } ], "}" ;
+
+inscription = ground_token | occupied_token ;
+ground_token = "<>" ;
+occupied_token = "<", payload, ">" ;
+
+payload = payload_glyph, { payload_glyph } ;
+payload_glyph = "a" | "b" ;

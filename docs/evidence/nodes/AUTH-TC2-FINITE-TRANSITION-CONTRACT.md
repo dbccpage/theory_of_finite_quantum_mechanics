@@ -1,6 +1,6 @@
 # AUTH-TC2-FINITE-TRANSITION-CONTRACT
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `COMPUTATIONALLY_CHECKED
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -48,17 +48,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean](../../../papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean)
 - sha256 (`bytes`): `5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0`
 - cited in: node.lean, record TFQ-1329
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `papers.foundations.authorization_incompleteness.evidence.original.formal.tape_transition_invariant_models`): recorded sha256 `5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains papers/foundations/authorization_incompleteness/evidence/original/formal/tape_transition_invariant_models.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` |
-| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.full_configuration_report_adequate_for_marked_cell_contract` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract` |
+| `AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1329_auth_tc2_finite_transition_contract.md`

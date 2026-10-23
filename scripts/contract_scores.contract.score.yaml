@@ -1,0 +1,131 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "scripts/contract_scores.py",
+  "contract": {
+    "schema_version": "2.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "scripts/contract_scores.py",
+      "sha256": "93092a3790cfb67e014f57b46e542b298d4fd9d680a4e79e583a9cb849d82322",
+      "language": "Python"
+    },
+    "profile": "Non-Numeric",
+    "claim": "Read-only changed-source selection and exact companion/history custody, with explicit CLI and failure-boundary regressions.",
+    "invariants": [
+      "The merge-base comparison includes staged, unstaged and ordinary-untracked files.",
+      "A missing or invalid changed-source companion fails closed.",
+      "Scoped checks preserve audit bytes and timestamps.",
+      "A clean/empty selection avoids unrelated malformed records.",
+      "Legacy receipt bytes survive the logical-path adapter without recreating sidecars."
+    ],
+    "nonclaims": [
+      "No automatic L4/D certification; the evidence and grades require review.",
+      "No whole-tree baseline repair or full estate migration in this change."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/pr201_contract_review.json",
+        "sha256": "db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882"
+      }
+    ]
+  },
+  "current_contract": "b10f10dcc34d9b2d7d41624ea42cee4786379726aa6fdd79b3a91831b4476777",
+  "current_scoring": "8eae7f5e60e9fd4e62f09202bf3f06b4bb28a73839f3eb662373fc9a33cbc468",
+  "contract_history": [
+    {
+      "sha256": "b10f10dcc34d9b2d7d41624ea42cee4786379726aa6fdd79b3a91831b4476777",
+      "bytes": 1146,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "scripts/contract_scores.py",
+          "sha256": "93092a3790cfb67e014f57b46e542b298d4fd9d680a4e79e583a9cb849d82322",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "claim": "Read-only changed-source selection and exact companion/history custody, with explicit CLI and failure-boundary regressions.",
+        "invariants": [
+          "The merge-base comparison includes staged, unstaged and ordinary-untracked files.",
+          "A missing or invalid changed-source companion fails closed.",
+          "Scoped checks preserve audit bytes and timestamps.",
+          "A clean/empty selection avoids unrelated malformed records.",
+          "Legacy receipt bytes survive the logical-path adapter without recreating sidecars."
+        ],
+        "nonclaims": [
+          "No automatic L4/D certification; the evidence and grades require review.",
+          "No whole-tree baseline repair or full estate migration in this change."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/pr201_contract_review.json",
+            "sha256": "db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"scripts/contract_scores.py\",\n    \"sha256\": \"93092a3790cfb67e014f57b46e542b298d4fd9d680a4e79e583a9cb849d82322\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"claim\": \"Read-only changed-source selection and exact companion/history custody, with explicit CLI and failure-boundary regressions.\",\n  \"invariants\": [\n    \"The merge-base comparison includes staged, unstaged and ordinary-untracked files.\",\n    \"A missing or invalid changed-source companion fails closed.\",\n    \"Scoped checks preserve audit bytes and timestamps.\",\n    \"A clean/empty selection avoids unrelated malformed records.\",\n    \"Legacy receipt bytes survive the logical-path adapter without recreating sidecars.\"\n  ],\n  \"nonclaims\": [\n    \"No automatic L4/D certification; the evidence and grades require review.\",\n    \"No whole-tree baseline repair or full estate migration in this change.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr201_contract_review.json\",\n      \"sha256\": \"db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882\"\n    }\n  ]\n}\n",
+      "original_paths": []
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8eae7f5e60e9fd4e62f09202bf3f06b4bb28a73839f3eb662373fc9a33cbc468",
+      "bytes": 1956,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "scripts/contract_scores.py",
+          "sha256": "93092a3790cfb67e014f57b46e542b298d4fd9d680a4e79e583a9cb849d82322",
+          "language": "Python"
+        },
+        "profile": "Non-Numeric",
+        "level": "L4",
+        "level_assessment": "Production custody utility: explicit source population, cryptographic history, scoped CLI failure boundaries and isolated composition tests.",
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "gate_rationale": {
+          "G1": "Exact source hashes, tested invariants and explicit authority ceiling in this companion and review receipt.",
+          "G2": "Hash/string/path bookkeeping; pinned strict mypy passes.",
+          "G3": "Missing/bad/stale/tampered inputs are refused; Git subprocess timeout and cancellation remain absent.",
+          "G4": "Twelve API/real-CLI/private-Git regressions cover positive and adversarial boundaries; no full-estate migration or mutation campaign.",
+          "G5": "AST branch indicators and existing monolithic functions are disclosed; no cognitive-complexity or whole-module simplification claim."
+        },
+        "composite_grade": "D",
+        "score_token": "L4D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "assessment_status": "completed_for_declared_changed-source_custody_boundary",
+        "evaluation_timestamp": "2026-10-23T05:06:22.088720+00:00",
+        "rubric": "SCORING.md v2.0.0",
+        "evidence": [
+          {
+            "path": "evidence/quality/pr201_contract_review.json",
+            "sha256": "db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882"
+          }
+        ],
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "required_for_completion": [],
+        "limiting_reason": "Missing Git cancellation/timeouts and a full-estate mutation/migration campaign cap the grade at D."
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"scripts/contract_scores.py\",\n    \"sha256\": \"93092a3790cfb67e014f57b46e542b298d4fd9d680a4e79e583a9cb849d82322\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L4\",\n  \"level_assessment\": \"Production custody utility: explicit source population, cryptographic history, scoped CLI failure boundaries and isolated composition tests.\",\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"gate_rationale\": {\n    \"G1\": \"Exact source hashes, tested invariants and explicit authority ceiling in this companion and review receipt.\",\n    \"G2\": \"Hash/string/path bookkeeping; pinned strict mypy passes.\",\n    \"G3\": \"Missing/bad/stale/tampered inputs are refused; Git subprocess timeout and cancellation remain absent.\",\n    \"G4\": \"Twelve API/real-CLI/private-Git regressions cover positive and adversarial boundaries; no full-estate migration or mutation campaign.\",\n    \"G5\": \"AST branch indicators and existing monolithic functions are disclosed; no cognitive-complexity or whole-module simplification claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"assessment_status\": \"completed_for_declared_changed-source_custody_boundary\",\n  \"evaluation_timestamp\": \"2026-10-23T05:06:22.088720+00:00\",\n  \"rubric\": \"SCORING.md v2.0.0\",\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/pr201_contract_review.json\",\n      \"sha256\": \"db7a0e651efbb3ef518f9f29c637c54eb87dfeb994ae0f8120ea26c86a6b5882\"\n    }\n  ],\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"required_for_completion\": [],\n  \"limiting_reason\": \"Missing Git cancellation/timeouts and a full-estate mutation/migration campaign cap the grade at D.\"\n}\n",
+      "original_paths": []
+    }
+  ],
+  "legacy_paths": {},
+  "history_order": "Append order; no prior score is invented."
+}

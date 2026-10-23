@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 9
-- cited Lean declarations covered by a current replay receipt: 7
+- cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -49,13 +49,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - file: [lean4/CausalOrder.lean](../../../lean4/CausalOrder.lean)
 - sha256 (`bytes`): `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0`
 - cited in: node.lean, node.source, record TFQ-2104
-- replay: `none`
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_causal_qft.json](../../../dag/research/lean_replay_campaign_causal_qft.json) (module `CausalOrder`): recorded sha256 `f8f04b749262b26eeae39f3fc0d96b55e3fd02283f7df29a1c2042faf017edf0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CausalOrder`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `spacelike_irrefl` | yes | yes | yes | - | `#print axioms spacelike_irrefl` |
-| `spacelike_symm` | yes | yes | yes | - | `#print axioms spacelike_symm` |
+| `spacelike_irrefl` | yes | yes | yes | none | `#print axioms spacelike_irrefl` |
+| `spacelike_symm` | yes | yes | yes | none | `#print axioms spacelike_symm` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/FrontierPosetNet.lean`

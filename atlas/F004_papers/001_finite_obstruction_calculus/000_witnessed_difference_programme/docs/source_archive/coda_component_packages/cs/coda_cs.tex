@@ -1,0 +1,502 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% House preamble for the primitive-axiomatics paper line.
+%
+%  Typesetting is not evidence for any claim.
+%
+% Built 2026-09-08.
+%
+% xelatex, not pdflatex: the manuscript uses unicode characters that pdflatex
+% cannot set without per-character declarations.
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=0.85]
+\setmathfont{Latin Modern Math}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{newunicodechar}
+\newcommand{\um}[1]{\ensuremath{#1}}
+\newunicodechar{ℝ}{\um{\mathbb{R}}}
+\newunicodechar{⁰}{\um{^0}}
+\newunicodechar{₀}{\um{_0}}
+\newunicodechar{₁}{\um{_1}}
+\newunicodechar{₂}{\um{_2}}
+\newunicodechar{¹}{\um{^1}}
+\newunicodechar{²}{\um{^2}}
+\newunicodechar{∘}{\um{\circ}}
+\newunicodechar{δ}{\um{\delta}}
+\newunicodechar{⟨}{\um{\langle}}
+\newunicodechar{⟩}{\um{\rangle}}
+\newunicodechar{φ}{\um{\varphi}}
+\newunicodechar{ᵀ}{\um{^\top}}
+\newunicodechar{𝛷}{\um{\Phi}}
+\newunicodechar{Φ}{\um{\Phi}}
+\newunicodechar{Γ}{\um{\Gamma}}
+\newunicodechar{α}{\um{\alpha}}
+\newunicodechar{β}{\um{\beta}}
+\newunicodechar{κ}{\um{\kappa}}
+\newunicodechar{∂}{\um{\partial}}
+\newunicodechar{∈}{\um{\in}}
+\newunicodechar{−}{\um{-}}
+\newunicodechar{∞}{\um{\infty}}
+\newunicodechar{≠}{\um{\neq}}
+\newunicodechar{≤}{\um{\le}}
+\newunicodechar{≥}{\um{\ge}}
+\newunicodechar{⟺}{\um{\iff}}
+\newunicodechar{→}{\um{\to}}
+\newunicodechar{─}{-}
+\newunicodechar{│}{|}
+\newunicodechar{┌}{+}
+\newunicodechar{┐}{+}
+\newunicodechar{└}{+}
+\newunicodechar{┘}{+}
+\newunicodechar{┬}{+}
+\newunicodechar{┴}{+}
+\newunicodechar{▼}{v}
+\newunicodechar{ℓ}{\um{\ell}}
+\newunicodechar{Ω}{\um{\Omega}}
+\newunicodechar{Σ}{\um{\Sigma}}
+\newunicodechar{·}{\um{\cdot}}
+\newunicodechar{×}{\um{\times}}
+\newunicodechar{⊂}{\um{\subset}}
+\newunicodechar{ₙ}{\um{_n}}
+\newunicodechar{∎}{\um{\blacksquare}}
+\newunicodechar{∼}{\um{\sim}}
+
+
+\usepackage[margin=0.85in]{geometry}
+\usepackage{pdflscape}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{bookmark}
+\urlstyle{tt}
+\hypersetup{colorlinks=true,linkcolor=RoyalBlue,urlcolor=RoyalBlue}
+\providecommand{\st}[1]{\emph{#1}}
+\newunicodechar{□}{\ensuremath{\square}}
+\newunicodechar{ℚ}{\ensuremath{\mathbb{Q}}}
+\newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{ψ}{\ensuremath{\psi}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{∧}{\ensuremath{\wedge}}
+\newunicodechar{∨}{\ensuremath{\vee}}
+\newunicodechar{¬}{\ensuremath{\neg}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+\newunicodechar{⊥}{\ensuremath{\perp}}
+\newunicodechar{₃}{\ensuremath{_3}}
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\emergencystretch}{4em}
+\newunicodechar{₄}{\ensuremath{_4}}
+\newunicodechar{₅}{\ensuremath{_5}}
+\newunicodechar{₆}{\ensuremath{_6}}
+\newunicodechar{₇}{\ensuremath{_7}}
+\newunicodechar{₈}{\ensuremath{_8}}
+\newunicodechar{₉}{\ensuremath{_9}}
+
+\hypersetup{pdftitle={The Continuum Shadow (CODA-CS)},pdfauthor={Jeremy H. Carroll}}
+\begin{document}
+\begin{center}
+{\Large\bfseries The Continuum Shadow (CODA-CS)}\par
+\textbf{Subtitle:} Continuum Re-Presentations that Descend to the Finite Calculus
+
+\textbf{Author:} Jeremy H. Carroll
+
+\textbf{Date:} 2026-09-27
+
+\textbf{Version:} v1.1 Pre-Print
+
+\textbf{License:} Creative Commons Attribution 4.0 International
+
+\end{center}
+
+\subsection{CODA Architecture \& Layers}\label{coda-architecture-layers}
+
+CODA stands for the Calculus of Obstruction, Descent, and Authorization. It is an exact, finite mathematical apparatus that enforces strict claim discipline by separating linear repairs, transport certificates, and finite descent from ungrounded authority claims. The system comprises eight operational layers governed by a single overarching authority architecture (GTLA).
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Layer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Abbreviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Layer / Component Name \& Scope
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & \textbf{FOC} & Finite Obstruction Calculus \\
+2 & \textbf{MUR} & Meta \& Universal Re-Presentation (what presentations exist) \\
+3 & \textbf{CS} & Continuum Shadow (what continuum presentation may descend to a finite calculus system) \\
+4 & \textbf{CS\_Q} & Continuum Shadow to Continuum Bridge (how continuum presentations descend) \\
+5 & \textbf{Q} & The Continuum (continuum presentations via completion and enclosure) \\
+6 & \textbf{A} & Anomalon (global residuals not removed and typed instead) \\
+7 & \textbf{OR} & Omniversal Re-Presentation (what presentations can transport) \\
+8 & \textbf{FDA} & Finite Descent Authority (what presentation may descend to evaluation and authorization) \\
+9 & \textbf{GTLA} & Layered Authority Architecture for CODA \\
+\end{longtable}
+
+\subsection{Abstract}\label{abstract}
+
+A fine observation can be forgotten to a coarse one: compose a forgetful map after the fine look. If a query is already constant on the coarse fibres, it is constant on the fine fibres. Two family observations agree if and only if they agree at every index. Four Boolean pairs share two first coordinates; the first coordinate does not determine the second. Finite observations may fail to determine a query, and a missing terminalizer blocks query authority. Writing a continuum name, or writing a limit, does not by itself confer authority. Authorized glue of overlapping shadows is not proved here.
+
+\subsection{Introduction}\label{introduction}
+
+It is easy to treat a blurry photo as the original. You sample a signal on a grid; you keep the first coordinate of a pair; you write \(\lim_{n\to\infty}\) and talk as if that notation had answered the question you actually asked. The coarse picture may be honest, and still forget something.
+
+A picture. States are Boolean pairs \(X=\mathbf{2}\times\mathbf{2}\). The fine look is the identity: you see both coordinates. The coarse look is the first coordinate. Four dots collapse onto two. The query ``what is the second coordinate?'' is constant on the identity fibres --- each fibre is a singleton --- and is not constant on the first-coordinate fibres: \((\mathsf{false},\mathsf{false})\) and \((\mathsf{false},\mathsf{true})\) share a first coordinate and disagree on the second.
+
+A second picture. You have a fine look \(\mathrm{fine}:X\to B\) and a forgetful map \(\mathrm{forget}:B\to A\). The composite \(\mathrm{forget}\circ\mathrm{fine}\) is the coarse look. If a query \(q:X\to Y\) cannot tell apart states that already look the same after forgetting, then it also cannot tell apart states that look the same before forgetting. Refinement preserves descent.
+
+The theory is refuted by any of: a query constant on coarse fibres that splits a fine fibre; two family observations that agree as functions but disagree at some index; a factor of the first-coordinate look that recovers the second coordinate; a query-authority witness extracted from limit notation alone.
+
+\subsection{Notation}\label{notation}
+
+Throughout, the types are ordinary (they need not be finite).
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) is a type of states.
+\item
+  \(A\) and \(B\) are types of observations. \(B\) is finer; \(A\) is coarser.
+\item
+  \(\mathrm{fine}:X\to B\) is a fine look. \(\mathrm{forget}:B\to A\) forgets.
+\item
+  The coarse look is the composite \(\mathrm{forget}\circ\mathrm{fine}:X\to A\).
+\item
+  \(q:X\to Y\) is a query: a function of the state whose value you want.
+\item
+  \(q\) is \emph{fibre-constant} for a look \(p:X\to P\) when \(p(x)=p(y)\) implies \(q(x)=q(y)\).
+\item
+  \(q\) \emph{factors through} \(p\) when there is \(g:P\to Y\) with \(g(p(x))=q(x)\) for every \(x\).
+\item
+  A family of observations indexed by \(I\) is a map \((i:I)\to (X\to P_i)\).
+\end{itemize}
+
+A \textbf{refinement} of a coarse look \(p:X\to A\) is a pair \((\mathrm{fine},\mathrm{forget})\) with \(p=\mathrm{forget}\circ\mathrm{fine}\).
+
+\subsection{1. Forgetting a fine look}\label{forgetting-a-fine-look}
+
+\subsubsection{Definition CS-D1 --- fibre constancy}\label{definition-cs-d1-fibre-constancy}
+
+\[
+\mathsf{FiberConstant}(p,q)
+:\iff
+\forall x,y.\ p(x)=p(y)\ \Rightarrow\ q(x)=q(y).
+\]
+
+The Lean predicate is \texttt{Coda.FiberConstant}.
+
+\subsubsection{Definition CS-D2 --- factorization}\label{definition-cs-d2-factorization}
+
+\[
+\mathsf{Factors}(p,q)
+:\iff
+\exists g:P\to Y.\ \forall x.\ g(p(x))=q(x).
+\]
+
+The Lean predicate is \texttt{Coda.Factors}. Factorization is a function of the observation. Fibre constancy is the consequence that equal observations give equal answers.
+
+\subsubsection{Definition CS-D3 --- refinement}\label{definition-cs-d3-refinement}
+
+A refinement of \(p:X\to A\) is a fine look \(\mathrm{fine}:X\to B\) and a forgetful map \(\mathrm{forget}:B\to A\) such that
+
+\[
+p=\mathrm{forget}\circ\mathrm{fine}.
+\]
+
+In pictures: take the fine photo, then blur it. The composite is the coarse photo.
+
+\[
+\begin{array}{ccc}
+X & \xrightarrow{\mathrm{fine}} & B \\
+ & \searrow_{\mathrm{forget}\circ\mathrm{fine}} & \downarrow\mathrm{forget} \\
+ & & A
+\end{array}
+\]
+
+No extra data is created by writing the composite.
+
+\subsubsection{Lemma CS-L1 --- factorization implies fibre constancy}\label{lemma-cs-l1-factorization-implies-fibre-constancy}
+
+If \(\mathsf{Factors}(p,q)\), then \(\mathsf{FiberConstant}(p,q)\).
+
+\textbf{Proof.} Take a factor \(g\). If \(p(x)=p(y)\), then \(q(x)=g(p(x))=g(p(y))=q(y)\). This is Lean \nolinkurl{Coda.factor_implies_constant}. □
+
+The converse, through \(P\) itself, can fail if \(p\) is not surjective: a function defined on the image \(p(X)\subseteq P\) need not extend to a total map on \(P\) without additional choices. (When the target \(Y\) is nonempty and a classical default value can be chosen outside the image, a total extension exists, but the distinction between image factorization and a canonical total decoder remains relevant.) Through the image of \(p\), fibre constancy is sufficient to define a factor; that image lemma is not needed below.
+
+\subsection{2. If it already agrees coarsely, it agrees finely}\label{if-it-already-agrees-coarsely-it-agrees-finely}
+
+\subsubsection{Theorem CS-T1 --- refinement preserves descent}\label{theorem-cs-t1-refinement-preserves-descent}
+
+If \(q\) is fibre-constant for \(\mathrm{forget}\circ\mathrm{fine}\), then \(q\) is fibre-constant for \(\mathrm{fine}\).
+
+\textbf{Proof.} Let \(\mathrm{fine}(x)=\mathrm{fine}(y)\). Apply \(\mathrm{forget}\):
+
+\[
+\mathrm{forget}(\mathrm{fine}(x))=\mathrm{forget}(\mathrm{fine}(y)).
+\]
+
+The hypothesis says \(q(x)=q(y)\). This is Lean \nolinkurl{Coda.CS.refinement_preserves_descent}. □
+
+In words: if the query already cannot see a distinction after blurring, it cannot see that distinction in the sharp photo either. The sharp photo has smaller fibres. Constancy on the larger fibres is the stronger hypothesis.
+
+A positive instance. Let \(X=\mathbf{2}\times\mathbf{2}\), let \(\mathrm{fine}\) be the identity, let \(\mathrm{forget}\) be first-coordinate projection, and let \(q\) itself be first-coordinate projection. Then \(q\) equals the coarse look, so it is fibre-constant there, and Theorem CS-T1 gives fibre constancy on the identity.
+
+A non-instance, not a counterexample. The second-coordinate query is \emph{not} fibre-constant on the coarse look, so the hypothesis of Theorem CS-T1 fails. Section 4 records that failure as a collision.
+
+\subsection{3. Family observations agree pointwise}\label{family-observations-agree-pointwise}
+
+A family of looks, one per index \(i\in I\), is a function of two arguments: the index and the state. Two states can be compared by comparing the whole family at once, or by comparing each look separately.
+
+\subsubsection{Theorem CS-T2 --- family observation equality is pointwise}\label{theorem-cs-t2-family-observation-equality-is-pointwise}
+
+Let \(\mathrm{observe}:(i:I)\to (X\to P_i)\) and let \(x,y\in X\). Then
+
+\[
+\bigl(i\mapsto \mathrm{observe}_i(x)\bigr)
+=
+\bigl(i\mapsto \mathrm{observe}_i(y)\bigr)
+\quad\text{if and only if}\quad
+\forall i.\ \mathrm{observe}_i(x)=\mathrm{observe}_i(y).
+\]
+
+\textbf{Proof.} Left to right: apply the two functions at \(i\). Right to left: pointwise equality of functions is function extensionality. This is Lean \nolinkurl{Coda.CS.family_observation}. □
+
+Sampling a signal at a list of times is a family of observations. Two signals give the same sample list if and only if they agree at each sample time. There is no extra agreement, sitting in the list as a whole, that the pointwise comparisons missed. Writing the list as a single vector does not create a new observation.
+
+\subsection{4. Four dots that look the same}\label{four-dots-that-look-the-same}
+
+Let \(X=\mathbf{2}\times\mathbf{2}\). The four states, with the two projections, are:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+pair
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+first
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+second
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\((\mathsf{false},\mathsf{false})\) & \(\mathsf{false}\) & \(\mathsf{false}\) \\
+\((\mathsf{false},\mathsf{true})\) & \(\mathsf{false}\) & \(\mathsf{true}\) \\
+\((\mathsf{true},\mathsf{false})\) & \(\mathsf{true}\) & \(\mathsf{false}\) \\
+\((\mathsf{true},\mathsf{true})\) & \(\mathsf{true}\) & \(\mathsf{true}\) \\
+\end{longtable}
+
+The first-coordinate look has two fibres, each of size two:
+
+\[
+\mathrm{forget}^{-1}(\mathsf{false})
+=
+\{(\mathsf{false},\mathsf{false}),(\mathsf{false},\mathsf{true})\},
+\]
+
+\[
+\mathrm{forget}^{-1}(\mathsf{true})
+=
+\{(\mathsf{true},\mathsf{false}),(\mathsf{true},\mathsf{true})\}.
+\]
+
+The identity look has four fibres, each a singleton. On the \(\mathsf{false}\) fibre the second coordinate takes both values. That is the collision.
+
+\subsubsection{Theorem CS-T3 --- the first coordinate does not determine the second}\label{theorem-cs-t3-the-first-coordinate-does-not-determine-the-second}
+
+The second-coordinate query does not factor through first-coordinate projection:
+
+\[
+\neg\mathsf{Factors}\bigl(x\mapsto x.1,\ x\mapsto x.2\bigr).
+\]
+
+\textbf{Proof.} The pair \((\mathsf{false},\mathsf{false})\) and the pair \((\mathsf{false},\mathsf{true})\) have the same first coordinate and different second coordinates. Lemma CS-L1 would make the seconds agree. This is Lean \nolinkurl{Coda.CS.finite_shadow_collision}, by \nolinkurl{Coda.collision_obstructs_factor}. □
+
+Four dots, two shadows. The shadow does not recover the forgotten bit.
+
+\subsubsection{Theorem CS-T4 --- the fine look can factor when the coarse look cannot}\label{theorem-cs-t4-the-fine-look-can-factor-when-the-coarse-look-cannot}
+
+The second-coordinate query factors through the identity look, and does not factor through first-coordinate projection:
+
+\[
+\mathsf{Factors}\bigl(x\mapsto x,\ x\mapsto x.2\bigr)
+\quad\text{and}\quad
+\neg\mathsf{Factors}\bigl(x\mapsto x.1,\ x\mapsto x.2\bigr).
+\]
+
+\textbf{Proof.} The factor through the identity is second-coordinate projection itself. The negative conjunct is Theorem CS-T3. This is Lean \nolinkurl{Coda.CS.refinement_strict_countermodel}. □
+
+Refinement can split a fibre that the coarse look collapsed. That is the whole gap between the blurry photo and the original. It is not a licence to treat the original as having been recovered from the blur.
+
+\subsection{5. Limit notation is not an answer}\label{limit-notation-is-not-an-answer}
+
+A named continuum object --- a signal \(X\), a sequence, a written limit \(\lim_{n\to\infty}x_n\) --- is a name. A query \(q\) is a function you would like to evaluate. Finite observations may fail to determine a query (Theorems CS-T3 and CS-T4); a missing terminalizer blocks query authority within the calculus (Theorem CS-T5).
+
+\subsubsection{Theorem CS-T5 --- missing terminalizer blocks query authority}\label{theorem-cs-t5-missing-terminalizer-blocks-query-authority}
+
+For every signal \(X\), query \(q\), and bridge record \(b\), if \(b.\mathrm{has\_local\_terminalizer} = \mathsf{false}\), then \(\neg\mathsf{HasQueryAuthority}(X, q, b)\), where \(\mathsf{HasQueryAuthority}\) is the conjunction of the eight declared admissibility flags. In particular, writing a continuum object and a query does not manufacture authority when the terminalizer flag is missing.
+
+\textbf{Proof.} The authority predicate \(\mathsf{HasQueryAuthority}(X, q, b)\) evaluates \(b.\mathrm{isAllAdmissible} = \mathsf{true}\), requiring all eight flags to hold simultaneously. When \(b.\mathrm{has\_local\_terminalizer} = \mathsf{false}\), the conjunction evaluates to false. This is the pointwise Lean theorem \nolinkurl{terminalizer_absence_blocks_query_authority} in \texttt{CodaCs}. The existential form \nolinkurl{continuum_limit_does_not_create_authority} witnesses this with \nolinkurl{unadmitted_bridge_packet}. □
+
+The witness is small on purpose. The constant-zero query has a uniquely determined mathematical value that factors through every profile, yet query authority is refused because the authorization flag is missing: lack of authority is an administrative refusal, not mathematical nondetermination of values (which is governed by the fibre collision in Theorem CS-T3). Limit notation is the same kind of naming. It does not fill the missing flag, and it does not pick the forgotten second coordinate of Section 4. A family of ever-finer sample grids is a family of observations in the sense of Theorem CS-T2: agreement is still pointwise at each grid. The written limit is not an extra sample.
+
+\subsection{6. Computational companion}\label{computational-companion}
+
+The production module \nolinkurl{code/coda_cs_core.py} records finite sample profiles of named signals, checks fibre constancy on a finite list of test signals, and refuses a query when a declared local terminalizer is missing. Arithmetic is exact rational; floats and booleans in scalar position raise \texttt{TypeError}.
+
+The shipped quadrature on the grid \(\{0,1/4,1/2,3/4,1\}\) with \(X(t)=2t\) at those nodes is
+
+\[
+0^2\cdot\frac14
++
+\bigl(\tfrac12\bigr)^2\cdot\frac14
++
+1^2\cdot\frac14
++
+\bigl(\tfrac32\bigr)^2\cdot\frac14
+=
+\frac{7}{8}.
+\]
+
+Two signals that match on the grid match on that query. Dropping the nodes \(1/4\) and \(3/4\) is \(\mathrm{forget}\) after the five-point look: a second signal may then differ at the dropped nodes and still match the coarse energy, while a query that reads \(X(1/4)\) does not. That is a finite replay of fibre constancy and of Theorem CS-T3, not a theorem about every function \([0,1]\to\mathbb{R}\).
+
+Lean files in \texttt{lean4/}:
+
+\begin{itemize}
+\tightlist
+\item
+  records for signals, profiles, and shadow packets;
+\item
+  fibre constancy from factorization;
+\item
+  \nolinkurl{Algebra.lean} --- self-contained definitions and proofs of Definitions CS-D1--D3, Lemma CS-L1, and Theorems CS-T1--T4;
+\item
+  \nolinkurl{L01ContinuumNonCreation.lean} --- Theorem CS-T5;
+\item
+  \texttt{Core.lean} --- re-exports the files above.
+\end{itemize}
+
+There are no \texttt{sorry} stubs in those files. The reconstruction theorems use the ordinary Lean kernel.
+
+Adversarial tests include: two signals with the same profile and different query values; a factored evaluator that disagrees with the query; a missing local terminalizer; leftover \(0\) and a positive leftover on a two-row cochain example; float rejection.
+
+Software package version \texttt{1.1.0} corresponds to Manuscript \texttt{v1.1} Pre-Print (previously indexed under internal engine tag \texttt{3.0.0}; synchronized to \texttt{1.1.0} across \texttt{pyproject.toml}, \texttt{CITATION.cff}, and Lake for release distribution consistency).
+
+\subsection{7. Limitations}\label{limitations}
+
+CS-T1--CS-T4 concern refinement, pointwise observation equality, and explicit profile collisions. CS-T5 states that a missing terminalizer makes the declared eight-flag query-authority predicate false. It does not imply that the query lacks a uniquely determined mathematical value. They hold for ordinary functions of types.
+
+Authorized glue of overlapping shadows --- the H3'\,' lemma --- is not proved here.
+
+A written limit is a name. Theorem CS-T5 is a refusal to treat that name as a query-authority witness, not a construction of a topological limit, and not a uniqueness theorem for actual analysis.
+
+\subsection{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  S. Mac Lane, \emph{Categories for the Working Mathematician}, 2nd ed., Springer, 1998. \url{https://doi.org/10.1007/978-1-4757-4721-8}
+\item
+  A. Grothendieck, ``Technique de descente et théorèmes d'existence en géométrie algébrique,'' Séminaire Bourbaki, 1959.
+\item
+  J. H. Carroll, \emph{Meta \& Universal Re-Presentation: Commuting Squares, Composition, and Irreversible Forgetting: A commuting square is not target standing (CODA-MUR)}, 2026.
+\item
+  J. H. Carroll, \emph{Omniversal Re-Presentation: Re-Presentations Transport Rules (CODA-OR)}, 2026.
+\item
+  P. Cousot and R. Cousot, ``Abstract interpretation: a unified lattice model for static analysis of programs,'' in \emph{POPL}, 1977.
+\end{enumerate}
+
+\end{document}

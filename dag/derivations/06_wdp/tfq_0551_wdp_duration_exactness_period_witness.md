@@ -36,8 +36,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::duration_append`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean::exact_duration_path_independent`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean)
+- [`lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::duration_append`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
+- [`lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::exact_duration_path_independent`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no omega_wdp Rust binding of the duration gauge or the four exactness statuses`

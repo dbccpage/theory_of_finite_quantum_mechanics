@@ -1,6 +1,6 @@
 # PGW-MSSN-CIRCULATION-OBSTRUCTION
 
-Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,20 +8,19 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
+- cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-- `proved_lean_below_e3`: grade E0; 5 Lean reference(s) cited, 0 in this checkout. PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt.
-- `proved_lean_external_only`: all 5 cited Lean reference(s) lie outside this checkout. PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -43,12 +42,23 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean`
+### Lean: `lean4/Imported/OeMssn/MssnObstructionDetector.lean`
 
-- file: `omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.lean, node.source
-- counts toward the grade: no
+- file: [lean4/Imported/OeMssn/MssnObstructionDetector.lean](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
+- sha256 (`bytes`): `8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299`
+- cited in: node.lean, node.source, record TFQ-0534
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.OeMssn.MssnObstructionDetector`): recorded sha256 `8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OeMssn/MssnObstructionDetector.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `circulation_flux_obstruction` | yes | yes | yes | none | `#print axioms circulation_flux_obstruction` |
+| `cycle_circulation_coboundary_vanishes` | yes | yes | yes | Quot.sound, propext | `#print axioms cycle_circulation_coboundary_vanishes` |
+| `no_scalar_potential_for_unit_flux` | yes | yes | yes | Quot.sound, propext | `#print axioms no_scalar_potential_for_unit_flux` |
+| `obstP_factors` | yes | yes | yes | Quot.sound, propext | `#print axioms obstP_factors` |
+| `obst_of_gates` | yes | yes | yes | Quot.sound, propext | `#print axioms obst_of_gates` |
+- counts toward the grade: yes
 
 ### Rust: `omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs`
 
@@ -60,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md](../../../dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md)
-- sha256 (`lf-normalised`): `7d1082904fb2b81a29f5cca64daf1a049ceee20199e8f71c6c200d918503973e`
+- sha256 (`lf-normalised`): `a744cb7dbca27471eb99950268d83ef7f62abfb6935a7c84cd099a9a6661de08`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0534
 - counts toward the grade: no
@@ -78,11 +88,6 @@ Named by the node; not in this repository and not checked here.
 
 - `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux`
 - `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization`
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::circulation_flux_obstruction`
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes`
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux`
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obstP_factors`
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/lean4/MssnObstructionDetector.lean::obst_of_gates`
 
 ## Absences recorded by the TFQ records
 

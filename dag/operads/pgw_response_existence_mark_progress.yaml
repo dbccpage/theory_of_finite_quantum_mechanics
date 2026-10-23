@@ -33,23 +33,54 @@ source_provenance:
   path: dag/prompts/genesis_pgw_response_existence_mark_progress_proved_lean.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: mark_progress
+  line: 84
+  signature_excerpt: |-
+    theorem mark_progress (r : Regime) (hwf : r.wf) (i j : Nat)
+        (hi : i < r.data) (hj : j < r.data) (hij : i ≠ j)
+        (hreqs : ∀ q ∈ r.reqs, separable r q.1 q.2) :
+        validResponse r i j [.newForm 1, .newInst r.forms.length [j]]
+  source: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean
+  repository: this_repository
+  source_sha256: 1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: derivable_extend
+  line: 54
+  signature_excerpt: |-
+    theorem derivable_extend {r : Regime} (hwf : r.wf) (j : Nat) (x : Inst)
+        (hx : x.1 ≠ r.forms.length) :
+        derivable
+          ⟨r.data, r.forms ++ [1], r.insts ++ [(r.forms.length, [j])],
+           r.rules, r.reqs⟩ x ↔ derivable r x
+  source: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean
+  repository: this_repository
+  source_sha256: 1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::mark_progress
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress
+  availability: local
   symbol: mark_progress
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean
+  repository: this_repository
+  sha256: 1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
   role: source_lead_only
-- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean::derivable_extend
-  availability: external
+- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::derivable_extend
+  availability: local
   symbol: derivable_extend
-  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Progress.lean
-  repository: the_symbol_game
-  sha256: null
-  declaration_status: external_source_not_scanned
+  path: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean
+  repository: this_repository
+  sha256: 1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
   role: source_lead_only
 presentation:
   colours: []
@@ -88,8 +119,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

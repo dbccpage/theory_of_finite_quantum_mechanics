@@ -1,0 +1,1217 @@
+# Observer Completion, Local Distinction Dynamics, and Certified Error Boundaries: A Unified Treatment across FSP, Majorana, MUB6, and WDP
+
+> “There is a precise connection, and Lieb–Robinson gives it a promising quantitative extension: which distinctions can a local system detect, preserve, or repair within a specified time? That can support conditional statements about quantum computing’s viability and how to establish it. The papers do not yet justify a general verdict.”
+
+## 0. Scope, assumptions, and claim boundaries
+
+The four projects are connected by a common distinction-completion problem. Each project starts from a set of physically relevant distinctions and then asks which of those distinctions remain available after:
+
+1. the choice of physical or mathematical representation;
+2. partial observation or local projection;
+3. identification by gauge transformations, stabilizers, or topology; and
+4. finite-time propagation, measurement precision, and recovery.
+
+The connection established here is structural and quantitative under the assumptions stated in each section. It does **not** by itself yield:
+
+- a general resolution of the fermion sign problem;
+- a topological phase classification of the Microsoft Majorana platform;
+- a construction of a complete mutually unbiased basis set in dimension \(6\);
+- a device-independent certification of quantum-computing viability; or
+- a fault-tolerance threshold for a specified noise model.
+
+Those conclusions require additional input: a physical realization, a noise model, a code family, resource estimates, and appropriate mathematical tests.
+
+---
+
+# 1. The Common Carrier Question and Mechanism Inventory
+
+## 1.1 Common foundational question
+
+Let \(X\) denote a carrier space containing distinctions relevant to a conclusion, and let
+
+\[
+\pi:X\longrightarrow Y
+\]
+
+be a representation, projection, measurement, or equivalence map. A conclusion based on differences \(x-x'\in X\) remains supported only if
+
+\[
+\pi(x)\neq \pi(x')
+\]
+
+for all differences relevant to that conclusion. Equivalently, if a quotient identifies \(x\) and \(x'+b\), then the conclusion must be invariant under the equivalence class \([x]\).
+
+The common question is therefore:
+
+\[
+\boxed{\text{Which distinctions needed for a conclusion survive representation, observation, and equivalence?}}
+\]
+
+In quantum information language, this becomes a simultaneous question about:
+
+- detectability from local measurements;
+- preservation under bounded-time dynamics;
+- correction modulo stabilizers; and
+- reconstruction from incomplete observations.
+
+The four projects instantiate different failure or control mechanisms.
+
+---
+
+## 1.2 Mechanism inventory
+
+### A. FSP: representation-space obstruction
+
+In the fermionic problem, a physically local graph can acquire a nonlocal sign obstruction after passage to antisymmetric or occupation-state representations. The obstruction arises from cycles in the relevant configuration space, not necessarily from cycles in the original site graph.
+
+Relevant mechanisms:
+
+- sign parity around configuration-space cycles;
+- failure of a globally positive edge representation;
+- failure of a cancellation needed by a determinant or transfer matrix;
+- need to compare physical locality with representation-space locality.
+
+### B. Majorana: syndrome-invisible logical distinctions
+
+In a stabilizer or binary parity model, a syndrome measurement records a map \(Q\), while a subgroup \(B\) consists of changes that have trivial syndrome. Differences in
+
+\[
+H^1=\ker Q/B
+\]
+
+are invisible to the syndrome observer but need not be physically trivial.
+
+Relevant mechanisms:
+
+- syndrome incompleteness;
+- stabilizer-trivial changes;
+- logical degrees of freedom;
+- correction modulo \(B\);
+- finite-distance protection.
+
+### C. MUB6: gauge obstruction and scoped coverage
+
+A local defect in a cocycle or complex overlap structure is not itself gauge-invariant. The relevant quantities are quotients or cycle invariants. A construction may exclude a certified region of parameter space while still leaving a global coverage obligation.
+
+Relevant mechanisms:
+
+- overlap constraints;
+- gauge transformations;
+- cycle circulation;
+- quotient minimization;
+- regional certification versus complete existence.
+
+### D. Paper 000 and WDP: projection and observer blindness
+
+A product projection can retain local populations or local reduced states while discarding correlations needed for the desired conclusion. The retained residual may be positive during a valid entangling operation, so positivity of the product residual alone is not an obstruction.
+
+Relevant mechanisms:
+
+- product-projection residual;
+- discarded correlations;
+- observer blindness;
+- raw residual versus error class modulo stabilizers;
+- witnessed difference and repair.
+
+---
+
+## 1.3 Unified algebraic schema
+
+Let
+
+\[
+X \xrightarrow{\quad P\quad} Y
+\]
+
+be a local or partial observation, and let
+
+\[
+q:X\longrightarrow Z
+\]
+
+be an equivalence or syndrome map. Define the observer-invisible carrier as
+
+\[
+X_{\mathrm{blind}}=\ker q.
+\]
+
+Physical repair transformations may identify only a subgroup \(B\subseteq\ker q\). The operational logical carrier is then
+
+\[
+X_{\mathrm{logical}}=\ker q/B.
+\]
+
+For a conclusion depending on \(x-x'\), one needs at least one of the following:
+
+1. \(P(x)\neq P(x')\) after accounting for measurement uncertainty;
+2. \(x-x'\notin\ker q\), so the difference is detectable;
+3. \(x-x'\in B\), so the difference is repairable;
+4. a recovery dynamics maps the affected state back into an accepted equivalence class.
+
+Thus:
+
+\[
+\boxed{
+\text{detection, preservation, and repair are different requirements.}
+}
+\]
+
+Lieb–Robinson bounds enter by limiting how rapidly a local observer can acquire information about a spatially separated distinction.
+
+---
+
+# 2. Fermion Sign Problem: Physical Site Geometry versus Configuration-Space Geometry
+
+## 2.1 The three-leaf star
+
+Let the physical site graph be the star
+
+\[
+G= \{\,\text{central site }0,\ \text{leaves }1,2,3\,\},
+\]
+
+with edges
+
+\[
+\{0,1\},\quad \{0,2\},\quad \{0,3\}.
+\]
+
+As a graph, \(G\) is connected, acyclic, and bipartite. Its cycle rank is
+
+\[
+|E|-|V|+1=3-4+1=0.
+\]
+
+In particular, \(G\) has no graph-theoretic cycle.
+
+---
+
+## 2.2 The two-particle exchange cycle
+
+In the occupation basis, the allowed two-particle configurations are
+
+\[
+\{1,2\},\quad \{0,2\},\quad \{2,3\},\quad
+\{0,3\},\quad \{1,3\},\quad \{0,1\}.
+\]
+
+A nearest-neighbor move transfers one particle between a leaf and the center. The sequence
+
+\[
+\{1,2\}
+\to \{0,2\}
+\to \{2,3\}
+\to \{0,3\}
+\to \{1,3\}
+\to \{0,1\}
+\to \{1,2\}
+\]
+
+uses the six directed moves
+
+\[
+\begin{aligned}
+&1\to0, \qquad 0\to2,\\
+&2\to0, \qquad 0\to3,\\
+&3\to0, \qquad 0\to1.
+\end{aligned}
+\]
+
+Each move is an elementary transposition in the particle labels. Hence each contributes sign \(-1\) to a fermionic hopping amplitude. The product is
+
+\[
+\prod_{k=1}^{6}(-1)=(-1)^6=-1.
+\]
+
+Therefore the holonomy around this configuration-space cycle is
+
+\[
+\boxed{\operatorname{Hol}_{\mathrm{FS}}(C)=-1.}
+\]
+
+After one traversal, the occupation configuration returns to its starting point, but the antisymmetric representation acquires a minus sign.
+
+---
+
+## 2.3 Why this is not a cycle in the physical site graph
+
+The six-step sequence is not a graph cycle among the four physical sites. It is a cycle in the graph of antisymmetric occupation states, or more abstractly in the configuration space of particle assignments.
+
+Let \(X_{\mathrm{site}}\) be the physical site carrier and let \(X_{\mathrm{conf}}\) be the antisymmetric configuration carrier. The inclusion or identification map is
+
+\[
+\iota:X_{\mathrm{site}}\longrightarrow X_{\mathrm{conf}}
+\]
+
+may be non-injective with respect to the relevant tensor-factor structure. A locality statement on \(X_{\mathrm{site}}\) does not automatically imply a locality statement on \(X_{\mathrm{conf}}\).
+
+This is the required bridge:
+
+\[
+\boxed{
+\text{Physical Lieb–Robinson locality}
+\ \not\Rightarrow\
+\text{locality or positive holonomy in the fermionic configuration carrier.}
+}
+\]
+
+A valid use of a Lieb–Robinson bound must specify:
+
+1. the Hilbert-space carrier;
+2. the interaction graph in that carrier;
+3. the observable support;
+4. the initial-state support;
+5. the embedding from the original representation into the antisymmetric representation.
+
+If the embedding is operator-valued, nonlocal, or changes support, the standard physical light-cone estimate cannot be transferred without an additional estimate.
+
+---
+
+## 2.4 Relation to cancellation and positivity
+
+Suppose one attempts to assign nonnegative local weights to configuration-space transitions. The closed cycle above forces a sign mismatch if the representation is odd under the exchange. A positive transition assignment can therefore fail to be globally compatible with the fermionic representation.
+
+This has the algebraic form
+
+\[
+\prod_{k=1}^{6} s_k=-1,
+\qquad
+s_k\in\{+1,-1\}.
+\]
+
+A positive local parametrization would require all transition factors to be nonnegative, or would require an additional sign field. The sign field is precisely an obstruction detector.
+
+The FSP connection is thus:
+
+\[
+\boxed{
+\text{physical acyclicity does not eliminate configuration-space sign holonomy.}
+}
+\]
+
+Lieb–Robinson bounds can control propagation on the physical graph, but they do not remove this topological or representation-level obstruction. They would need to be supplemented by a bound on the embedding into the antisymmetric carrier.
+
+---
+
+# 3. Majorana and Quantum Error Correction: the Exact Syndrome-Completion Theorem
+
+## 3.1 Binary additive model
+
+Let the carrier be an \(\mathbb F_2\)-vector space \(V\). Let
+
+\[
+d_0:V\longrightarrow V,
+\qquad
+d_1:V\longrightarrow V
+\]
+
+be linear maps, with \(d_1d_0=0\). Define
+
+\[
+B=\operatorname{im}d_0
+\]
+
+as the stabilizer-trivial changes, and
+
+\[
+Q=d_1
+\]
+
+as the syndrome map. The observer-invisible carrier is
+
+\[
+H^1=\ker Q/B.
+\]
+
+An admitted error set is
+
+\[
+\mathcal E\subseteq V.
+\]
+
+For a syndrome-based recovery \(R\) satisfying
+
+\[
+RQ=\operatorname{id},
+\]
+
+the corrected error is
+
+\[
+Re=e+Re-e.
+\]
+
+Because \(RQ=\operatorname{id}\),
+
+\[
+R(e-e')\in B
+\]
+
+whenever \(Q(e)=Q(e-e')\). Thus two admitted errors with the same syndrome are corrected to the same stabilizer class precisely when their difference belongs to \(B\).
+
+---
+
+## 3.2 Exact Necessary-and-Sufficient Theorem
+
+### Theorem
+
+For an admitted error set \(\mathcal E\),
+
+\[
+\boxed{
+\text{A syndrome-based correction succeeds for every }e\in\mathcal E
+\iff
+(\mathcal E-\mathcal E)\cap\ker Q\subseteq B.
+}
+\]
+
+Here subtraction is over \(\mathbb F_2\), so
+
+\[
+\mathcal E-\mathcal E=\mathcal E+\mathcal E.
+\]
+
+### Necessity
+
+Assume a syndrome-based correction succeeds. For any \(e,f\in\mathcal E\) with \(Qe=Qf\), both errors produce the same syndrome. Therefore
+
+\[
+Q(e-f)=0,
+\]
+
+so
+
+\[
+e-f\in\ker Q.
+\]
+
+Successful correction to the same stabilizer class gives
+
+\[
+e-f\in B.
+\]
+
+Thus
+
+\[
+(\mathcal E-\mathcal E)\cap\ker Q\subseteq B.
+\]
+
+### Sufficiency
+
+Assume
+
+\[
+(\mathcal E-\mathcal E)\cap\ker Q\subseteq B.
+\]
+
+If two admitted errors \(e,f\in\mathcal E\) have the same syndrome, then
+
+\[
+e-f\in\ker Q.
+\]
+
+The assumption gives
+
+\[
+e-f\in B.
+\]
+
+Hence \(e\) and \(f\) differ by a stabilizer-trivial change, and a syndrome-based recovery can map them to the same logical class. Therefore correction succeeds for every admitted error.
+
+This establishes the exact criterion under the binary additive model.
+
+---
+
+## 3.3 Why complete distinction of the whole carrier is the wrong requirement
+
+Suppose the syndrome observer were required to distinguish every vector in \(V\) up to ordinary equality. Then
+
+\[
+\ker Q
+\]
+
+would have to be zero, because a nonzero \(z\in\ker Q\) is invisible to \(Q\).
+
+But in a nontrivial error-correcting code,
+
+\[
+\ker Q\supsetneq B,
+\]
+
+and the quotient
+
+\[
+H^1=\ker Q/B
+\]
+
+contains the protected logical distinctions. Requiring the syndrome observer to distinguish all of \(H^1\) would eliminate precisely the logical sector that the code is intended to protect.
+
+The correct requirement is not
+
+\[
+Q(x)\neq Q(x')\quad\text{for all distinct logical classes},
+\]
+
+but rather
+
+\[
+(\mathcal E-\mathcal E)\cap\ker Q\subseteq B.
+\]
+
+The syndrome need not distinguish logical errors from stabilizer changes; it needs to distinguish admitted errors that are not repair-related.
+
+---
+
+## 3.4 Distance and the \(2t\) condition
+
+Define the code distance by
+
+\[
+d=\min\left\{\operatorname{wt}(z):z\in\ker Q\setminus B\right\},
+\]
+
+with the convention \(d=\infty\) if \(\ker Q=B\).
+
+Assume the admitted-error model contains all binary errors of weight at most \(t\):
+
+\[
+\mathcal E_t=\{e\in V:\operatorname{wt}(e)\le t\}.
+\]
+
+For \(e,f\in\mathcal E_t\),
+
+\[
+\operatorname{wt}(e-f)\le
+\operatorname{wt}(e)+\operatorname{wt}(f)\le 2t.
+\]
+
+If \(2t<d\), then \(e-f\notin\ker Q\setminus B\), so
+
+\[
+(\mathcal E_t-\mathcal E_t)\cap\ker Q\subseteq B.
+\]
+
+Hence every error of weight at most \(t\) satisfies the syndrome criterion.
+
+Conversely, suppose \(2t\ge d\). Let
+
+\[
+z\in\ker Q\setminus B
+\]
+
+with \(\operatorname{wt}(z)=d\). Split a support \(S=\operatorname{supp}(z)\) into disjoint subsets \(S_1,S_2\) whose cardinalities differ by at most one. Define
+
+\[
+e=\mathbf 1_{S_1},
+\qquad
+f=\mathbf 1_{S_2}.
+\]
+
+Then
+
+\[
+e+f=z
+\]
+
+over \(\mathbb F_2\), and
+
+\[
+\operatorname{wt}(e),\operatorname{wt}(f)\le
+\left\lceil\frac d2\right\rceil\le t.
+\]
+
+Thus \(e,f\in\mathcal E_t\), while
+
+\[
+e-f=z\notin B.
+\]
+
+Therefore
+
+\[
+(\mathcal E_t-\mathcal E_t)\cap\ker Q\not\subseteq B.
+\]
+
+Under the all-errors-of-weight-at-most-\(t\) model, this yields
+
+\[
+\boxed{
+\text{every error of weight at most }t\text{ satisfies the criterion}
+\iff
+2t<d.
+}
+\]
+
+For a restricted physical error set \(\mathcal E\), the correct condition remains the exact criterion
+
+\[
+(\mathcal E-\mathcal E)\cap\ker Q\subseteq B.
+\]
+
+The numerical condition \(2t<d\) is sufficient for the full weight-\(\le t\) model, but it need not be necessary for a sparse restricted set.
+
+---
+
+## 3.5 Relation to Knill–Laflamme conditions
+
+The syndrome criterion is a binary, additive, representation-level criterion. Knill–Laflamme is the corresponding operator-level condition for a code space \(\mathcal C\):
+
+\[
+P E_a^\dagger E_b P=c_{ab}P
+\qquad
+\text{for all error operators }E_a,E_b,
+\]
+
+where \(P\) is the projector onto \(\mathcal C\).
+
+If the errors are decomposed into syndrome classes and a recovery acts as a stabilizer on each class, then the syndrome condition can imply the relevant Knill–Laflamme relations under additional assumptions:
+
+- the binary model faithfully represents the Pauli errors;
+- stabilizer operations are physical;
+- the recovery is an allowed quantum channel;
+- the error amplitudes satisfy the required operator identities.
+
+Thus the syndrome theorem does not, by itself, establish that a proposed Majorana device realizes the assumed binary error model.
+
+---
+
+## 3.6 Correction to Majorana §§8.1–8.3: invalid lower-bound inference
+
+Suppose one has only an upper bound
+
+\[
+\Delta(T)\le f(T)
+\]
+
+and also
+
+\[
+\inf_T f(T)>0.
+\]
+
+These statements imply only
+
+\[
+\Delta(T)\le f(T)
+\]
+
+for each \(T\). They do not imply
+
+\[
+\inf_T\Delta(T)>0.
+\]
+
+The invalid inference has the form
+
+\[
+\Delta\le f,\qquad \inf f>0
+\quad\Longrightarrow\quad
+\inf\Delta>0,
+\]
+
+but the conclusion does not follow. For example,
+
+\[
+\Delta(T)=e^{-T}
+\]
+
+satisfies
+
+\[
+\Delta(T)\le 1
+\]
+
+and
+
+\[
+\inf_T 1=1,
+\]
+
+while
+
+\[
+\inf_{T>0}\Delta(T)=0.
+\]
+
+A lower bound on the error, such as
+
+\[
+\Delta(T)\ge g(T)
+\]
+
+with \(g(T)>0\), would be needed for that conclusion. Without one, only the declared upper bound is supported.
+
+---
+
+## 3.7 Correction of the small-time divergence
+
+If a perturbative estimate has the schematic form
+
+\[
+\Delta(T)\le C\frac{a}{T^2},
+\qquad
+T\ll \frac{\hbar}{\Delta E},
+\]
+
+then it diverges as \(T\to0\). It therefore cannot be used as a physically valid global bound over the whole time domain.
+
+For trace distance,
+
+\[
+\Delta(\rho_0,\rho_1)
+=\frac12\|\rho_0-\rho_1\|_1
+\in[0,1].
+\]
+
+A physically meaningful bound should be intersected with this intrinsic range:
+
+\[
+\boxed{
+\Delta(T)\le
+\min\left\{1,\; C\frac{a}{T^2}\right\}.
+}
+\]
+
+If \(T\) denotes evolution time, the adiabatic regime is typically
+
+\[
+T\gg \frac{\hbar}{\Delta E},
+\]
+
+with additional hypotheses on the Hamiltonian gap, initial state, and observables. In that regime a perturbative estimate may be used, but the condition \(T\gg\hbar/\Delta E\) alone does not establish a positive lower bound on the trace distance.
+
+---
+
+# 4. MUB6: Gauge Invariance of the Quotient Norm versus the Unminimized Defect
+
+## 4.1 Cohomological setup
+
+Let \(K\) be a connected graph, and let \(\omega\) be a complex edge assignment. Let
+
+\[
+\alpha:K\longrightarrow \mathbb C
+\]
+
+be a gauge transformation, and let \(d\alpha\) denote the oriented edge difference,
+
+\[
+(d\alpha)_{uv}=\alpha(u)-\alpha(v)
+\]
+
+for the orientation \(u\to v\).
+
+A gauge transformation acts by
+
+\[
+\omega\longmapsto \omega+d\alpha.
+\]
+
+The unminimized defect
+
+\[
+S_{\mathrm{raw}}(\omega)
+=
+\sum_{e\in E(K)}
+\left|\omega_e-(d\alpha)_e\right|
+\]
+
+depends on the chosen \(\alpha\). The gauge-invariant object is the quotient defect
+
+\[
+\|\omega\|_{\mathrm{quot}}
+=
+\inf_\alpha
+\sum_{e\in E(K)}
+\left|\omega_e-(d\alpha)_e\right|.
+\]
+
+---
+
+## 4.2 Explicit failure of raw-defect gauge invariance
+
+Let \(K\) be a triangle with vertices \(a,b,c\), and choose the orientation
+
+\[
+a\to b\to c\to a.
+\]
+
+Take
+
+\[
+\omega=0,
+\qquad
+\alpha=(0,1,0)
+\]
+
+on the vertices \((a,b,c)\). Then
+
+\[
+d\alpha=(-1,1,1)
+\]
+
+under the chosen orientation, up to the corresponding endpoint ordering. Therefore
+
+\[
+S_{\mathrm{raw}}(\omega=0)
+=
+|0-(-1)|+|0-1|+|0-1|
+=2.
+\]
+
+Before the gauge change, the sum is
+
+\[
+S_{\mathrm{raw}}(0)=0.
+\]
+
+Hence
+
+\[
+S_{\mathrm{raw}}(\omega)
+\]
+
+is not gauge-invariant.
+
+This is an exact triangle counterexample.
+
+---
+
+## 4.3 Gauge invariance of the minimized quotient norm
+
+For any gauge transformation \(\beta\),
+
+\[
+\begin{aligned}
+\|\omega+d\beta\|_{\mathrm{quot}}
+&=
+\inf_\alpha
+\sum_e
+\left|
+\omega_e+(d\beta)_e-(d\alpha)_e
+\right|\\
+&=
+\inf_\alpha
+\sum_e
+\left|
+\omega_e-(d(\alpha-\beta))_e
+\right|.
+\end{aligned}
+\]
+
+Since \(\alpha-\beta\) ranges over all vertex functions whenever \(\alpha\) does,
+
+\[
+\boxed{
+\|\omega+d\beta\|_{\mathrm{quot}}
+=
+\|\omega\|_{\mathrm{quot}}.
+}
+\]
+
+The minimization removes the arbitrary vertex gauge.
+
+---
+
+## 4.4 Gauge invariance of cycle circulation
+
+For an oriented cycle \(C\), define
+
+\[
+\operatorname{circ}_C(\omega)
+=
+\sum_{e\in C}\omega_e,
+\]
+
+where the direction of each edge is taken according to the cycle orientation.
+
+Under \(\omega\mapsto\omega+d\alpha\),
+
+\[
+\operatorname{circ}_C(\omega+d\alpha)
+=
+\operatorname{circ}_C(\omega)
++
+\sum_{e\in C}(d\alpha)_e.
+\]
+
+Every vertex potential appears once with positive sign and once with negative sign around a closed cycle, so
+
+\[
+\sum_{e\in C}(d\alpha)_e=0.
+\]
+
+Therefore
+
+\[
+\boxed{
+\operatorname{circ}_C(\omega+d\alpha)
+=
+\operatorname{circ}_C(\omega).
+}
+\]
+
+The cycle circulation detects a component that cannot be removed by a vertex gauge.
+
+---
+
+## 4.5 MUB6 interpretation
+
+A local defect function should not be treated as gauge-invariant before quotienting. The MUB6 existence problem involves incompatible overlap constraints, and any obstruction must be formulated in terms of quantities that remain meaningful under the relevant gauge freedom.
+
+The distinction is:
+
+\[
+\begin{array}{c|c}
+\text{Quantity} & \text{Gauge behavior}\\
+\hline
+\sum_e|\omega_e-(d\alpha)_e| & \text{not gauge-invariant in general}\\
+\inf_\alpha\sum_e|\omega_e-(d\alpha)_e| & \text{gauge-invariant}\\
+\operatorname{circ}_C(\omega) & \text{gauge-invariant for closed oriented }C
+\end{array}
+\]
+
+Accordingly, a certified parameter region means only that no admissible defect occurs in that region under the stated equations and constraints. It does not establish complete MUB coverage in dimension \(6\). The remaining global obligation is a separate existence problem.
+
+---
+
+# 5. Quantitative Extension via Lieb–Robinson Bounds
+
+## 5.1 Local observation model
+
+Let \(O_j(T)\) be a detector observable at site \(j\) after evolution for time \(T\). Let
+
+\[
+Q_T(\rho)_j=\operatorname{Tr}(\rho O_j(T)).
+\]
+
+For an observer receiving a vector of readouts, the relevant discrepancy can be measured by
+
+\[
+\|Q_T(\rho_0)-Q_T(\rho_1)\|_\infty
+=
+\sup_j
+\left|
+\operatorname{Tr}\bigl((\rho_0-\rho_1)O_j(T)\bigr)
+\right|.
+\]
+
+Assume the standard finite-range or exponential form
+
+\[
+\|O_j(T)-O_j^{(r)}(T)\|
+\le
+C e^{-\mu(r-v_{LR}T)}
+\]
+
+for \(r\ge v_{LR}T\), with constants \(C,\mu,v_{LR}>0\).
+
+---
+
+## 5.2 What “identical on detector neighborhoods” must mean
+
+A caution is necessary. If two states only have identical reduced states on detector neighborhoods, a standard Lieb–Robinson estimate for local observables does **not** directly imply the requested state-dependent bound. Distinct states can have identical local reduced states while differing in long-range correlations.
+
+A valid quantitative statement requires one of the following:
+
+1. the state difference \(\rho_0-\rho_1\) is supported in the relevant interaction region;
+2. a separate correlation-decay estimate controls  
+   \(\|[\rho_0-\rho_1,O_j(T)]\|\);
+3. the local-state assumption is formulated in a way that directly bounds the commutator appearing in the readout difference.
+
+Under such a hypothesis, write
+
+\[
+\eta:=\|\rho_0-\rho_1\|_\infty.
+\]
+
+A suitable local-state or correlation-decay estimate gives
+
+\[
+\left|
+\operatorname{Tr}\bigl((\rho_0-\rho_1)O_j(T)\bigr)
+\right|
+=
+\left|
+\operatorname{Tr}\bigl([O_j(T),\rho_0-\rho_1]\bigr)
+\right|
+\le
+2C e^{-\mu(r-v_{LR}T)}\eta
+\]
+
+when \(\eta\le1\).
+
+This yields the normalized Indistinguishability Bound
+
+\[
+\boxed{
+\|Q_T(\rho_0)-Q_T(\rho_1)\|_\infty
+\le
+2C e^{-\mu(r-v_{LR}T)}
+}
+\]
+
+for states whose difference is normalized and satisfies the required locality or commutator hypothesis.
+
+The exponential factor is the quantitative expression of the light-cone obstruction: information about a distinction initially outside the relevant radius decays exponentially with distance beyond \(v_{LR}T\).
+
+---
+
+## 5.3 Lipschitz reconstruction lower bound
+
+Let
+
+\[
+D(\rho_0,\rho_1)=\|\rho_0-\rho_1\|_\infty
+\]
+
+and let \(F\) be a reconstruction map with Lipschitz constant \(L\). Suppose the adapter maps the initial state difference to an observable difference
+
+\[
+F(\rho_0-\rho_1)
+\]
+
+with separation
+
+\[
+\delta
+=
+\left\|F(\rho_0-\rho_1)\right\|>0.
+\]
+
+If the readout discrepancy is bounded by
+
+\[
+\|Q_T(\rho_0)-Q_T(\rho_1)\|_\infty
+\le
+2CLD(\rho_0,\rho_1)
+e^{-\mu(r-v_{LR}T)},
+\]
+
+then the reconstructed separation satisfies
+
+\[
+\delta
+\le
+\|F(\rho_0-\rho_1)\|
+\le
+2CLD(\rho_0,\rho_1)
+e^{-\mu(r-v_{LR}T)}.
+\]
+
+Using the normalized distinction bound \(D(\rho_0,\rho_1)\le1\), one obtains
+
+\[
+\delta
+\le
+2CL e^{-\mu(r-v_{LR}T)}.
+\]
+
+Therefore
+
+\[
+\boxed{
+\kappa_T:=L
+\ge
+\frac{\delta}{2C}
+e^{\mu(r-v_{LR}T)}.
+}
+\]
+
+The bound has the expected behavior:
+
+- as \(r-v_{LR}T\) increases, the required Lipschitz constant grows exponentially;
+- a fixed positive separation \(\delta\) cannot be reconstructed through an exponentially weak observation channel without correspondingly greater amplification;
+- finite readout precision can erase a separation below the admissible noise floor.
+
+---
+
+## 5.4 Bounded-precision implication
+
+Suppose the readout has additive error at most \(\varepsilon_{\mathrm{read}}\). Reconstruction with separation \(\delta\) requires at least
+
+\[
+2C\kappa_T e^{-\mu(r-v_{LR}T)}
+\gtrsim \varepsilon_{\mathrm{read}},
+\]
+
+in the normalized model. Hence
+
+\[
+\delta
+\lesssim
+2C\kappa_T e^{-\mu(r-v_{LR}T)}
++\varepsilon_{\mathrm{read}}.
+\]
+
+This is an operational noise-amplification statement. It does not assert that every code fails outside a light cone; rather, it shows that a particular distinction encoded in a particular state requires increased reconstruction sensitivity as the relevant observation becomes exponentially weak.
+
+---
+
+## 5.5 Relation to Bravyi–Hastings–Verstraete and König–Pastawski
+
+Bravyi–Hastings–Verstraete-type and König–Pastawski-type arguments use locality, information-disturbance, or generalized-Lightcone bounds to analyze how correlations, code properties, and logical information propagate.
+
+The present framework is compatible with those approaches, but it does not reproduce their device-specific threshold theorems. The missing inputs include:
+
+- the exact local interaction terms;
+- the code and check structure;
+- noise strength and correlations;
+- measurement and feed-forward rules;
+- the definition of a logical operation;
+- geometric growth of subsystem size;
+- resource and ancilla costs.
+
+A Lieb–Robinson bound supplies a propagation estimate. A threshold theorem additionally requires an error-correction strategy, a code-distance analysis, and a controlled resource accounting.
+
+---
+
+# 6. Paper 000, WDP, and Quantum-Computing Viability
+
+## 6.1 Product projection and correlations
+
+Let \(\rho_{AB}\) be a bipartite or multipartite state, and let
+
+\[
+P=\operatorname{Tr}_B(\rho_{AB})
+\]
+
+be a product projection retaining only subsystem \(A\). The discarded information includes
+
+\[
+\rho_{AB}-\rho_A\otimes \rho_B
+\]
+
+and, for multipartite systems, all correlations not contained in the retained marginals.
+
+The product residual
+
+\[
+P=\operatorname{Tr}_B(\rho_{AB})
+\]
+
+may be positive during a valid entangling gate. Positivity of \(P\) does not imply that the entangling operation is invalid, and it does not imply that the gate is free of logical error.
+
+The relevant distinction is between:
+
+1. the validity of a physical channel;
+2. positivity of a reduced state;
+3. preservation of a logical state;
+4. preservation or repair modulo a stabilizer.
+
+A product-projection residual can be nonzero while the full state is entangled and the gate remains physically admissible.
+
+---
+
+## 6.2 Raw residual versus repair quotient
+
+Let \(R\) be a raw residual after local projection or coarse-graining. Let \(B\) represent repairable or logically irrelevant changes. The operational error class is
+
+\[
+[R]\in X/B,
+\]
+
+not necessarily \(R\) itself.
+
+Thus:
+
+\[
+R\neq 0
+\]
+
+does not imply
+
+\[
+[R]\neq 0.
+\]
+
+A witnessed-difference program should therefore ask:
+
+\[
+\boxed{
+\text{Is the observed distinction outside the repair equivalence class?}
+}
+\]
+
+A repair quotient can be constructed only after specifying:
+
+- the logical carrier;
+- the stabilizer group;
+- the allowed recovery;
+- the relevant code distance or obstruction quotient;
+- the measurement precision;
+- the finite available time.
+
+---
+
+## 6.3 Physical realization error versus fault-tolerance threshold
+
+Physical realization error includes, among other sources:
+
+- manufacturing variability;
+- quasiparticle poisoning;
+- unwanted parity occupations;
+- calibration drift;
+- leakage;
+- measurement error;
+- imperfect control;
+- finite-temperature or nonadiabatic effects.
+
+A fault-tolerance threshold theorem concerns a specified stochastic or adversarial noise model and a specified code and recovery procedure. It does not replace device characterization.
+
+The bridge from physical realization to fault tolerance requires at least:
+
+1. an experimentally or mathematically justified noise model;
+2. a mapping from device events to the error operators used in the code analysis;
+3. syndrome extraction with controlled error;
+4. a recovery channel satisfying the relevant code conditions;
+5. resource estimates for ancillas, measurement, classical control, and logical operations;
+6. a comparison with the code threshold.
+
+Without these ingredients, positivity, localization, or finite correlation length is not enough to support a general quantum-computing verdict.
+
+---
+
+## 6.4 The sharp open research program
+
+The unified open question is:
+
+> **Can the available observations and recovery dynamics resolve the error classes produced by the noise, within the available time and resources, while preserving the logical quantum state?**
+
+This question joins the four projects:
+
+- **FSP:** Does the chosen fermionic representation preserve the distinctions needed for a controlled calculation?
+- **Majorana:** Are device errors represented by syndrome classes with a protected distance, and are the syndrome and stabilizer structures physically realized?
+- **MUB6:** Are the overlap constraints gauge-invariant and globally completable, rather than only locally non-obstructed?
+- **Paper 000/WDP:** After product projection and coarse observation, do the remaining differences lie in a repairable class or in a protected logical sector?
+
+The observer-completion formulation is therefore:
+
+\[
+\boxed{
+\begin{aligned}
+&\text{Carrier: }X,\\
+&\text{Observer map: }Q,\\
+&\text{Repair equivalence: }B,\\
+&\text{Logical carrier: }\ker Q/B,\\
+&\text{Dynamics: bounded-time local propagation},\\
+&\text{Resource condition: finite precision, finite time, finite ancillas}.
+\end{aligned}
+}
+\]
+
+The next tests needed are concrete:
+
+1. identify the exact carrier \(X\) for the physical problem;
+2. specify the projection, measurement map \(Q\), and repair subgroup \(B\);
+3. compute the relevant distance or quotient obstruction;
+4. derive a valid embedding into the representation on which the locality bound is stated;
+5. test whether the error set satisfies  
+   \[
+   (\mathcal E-\mathcal E)\cap\ker Q\subseteq B;
+   \]
+6. quantify readout overlap, bounded precision, and recovery resources;
+7. compare those quantities with a specified code threshold;
+8. retain any global MUB6 coverage obligation separately from local certificate tests.
+
+Under those premises, the four projects support a common conditional conclusion: quantum-computing viability is governed not by raw distinctions alone, but by whether the distinctions relevant to logical failure remain detectable or repairable under the chosen representation, observation map, and finite-time dynamics.

@@ -1,0 +1,23 @@
+% DDC v1.0.3 — pandoc header for pdfLaTeX. AuthorityEffect: None.
+\usepackage{newunicodechar}
+\newunicodechar{Λ}{\ensuremath{\Lambda}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{Φ}{\ensuremath{\Phi}}
+\newunicodechar{Γ}{\ensuremath{\Gamma}}
+\newunicodechar{ℓ}{\ensuremath{\ell}}
+\newunicodechar{₁}{\ensuremath{_1}}
+\newunicodechar{₂}{\ensuremath{_2}}
+\usepackage{pdflscape}
+\emergencystretch=3em
+\usepackage{microtype}
+% Let long identifiers in code spans break after underscores.
+\let\ddcunderscore\_
+\renewcommand{\_}{\ddcunderscore\allowbreak}
+\ifx\pdftrailerid\undefined\else\pdftrailerid{ddc-1.0.3}\fi
+\AtBeginDocument{\hypersetup{
+  pdftitle={Discrete Deformation Calculus: A Finite Trace Calculus for Obstruction Handling},
+  pdfauthor={Jeremy H. Carroll},
+  pdfsubject={Version 1.0.3; 2026-10-03; preprint; DOI pending},
+  pdfkeywords={discrete deformation calculus, finite obstruction calculus, trace calculus, Lean 4}
+}}

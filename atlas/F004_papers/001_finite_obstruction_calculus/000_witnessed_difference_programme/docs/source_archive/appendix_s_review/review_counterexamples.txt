@@ -1,0 +1,151 @@
+**The revision fixes several previous errors, but it is still NO-GO as “proved here, fully” with an independently sound checker.** The largest remaining gap is between the checks specified in §S.4 and those actually performed in §S.9.2.
+
+I extracted and executed both Python blocks with minimal wrappers and exact rational test models.
+
+The revised code correctly:
+
+* Rejects the original avoidable-trap `LOSS` certificate.
+* Rejects the original unclassified-\(\infty\) optimality certificate.
+* Produces and accepts the cost-\(2\) strategy.
+
+The belief update, triangle obstruction values \(1,2,2\), and separation of attractor rank from strategy rank are also corrected.
+
+However, the following failures remain.
+
+| Test                                                                                                          | Actual result from the supplied code          | Required result                        |
+| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | -------------------------------------- |
+| Hide the cheaper route by falsely marking its intermediate state `stalled`                                    | Accepts cost \(5\), although optimum is \(2\) | Reject                                 |
+| Set terminal value to \(100\) in a one-step cost-\(1\) problem                                                | Accepts starting value \(101\)                | Reject                                 |
+| Supply an empty strategy certificate that omits a losing initial state                                        | Accepts `WIN-OPTIMAL`                         | Reject                                 |
+| Label an already successful terminal with no enabled actions `stalled`                                        | Accepts `LOSS`                                | Reject                                 |
+| Supply a trap consisting of an additional admitted successful terminal                                        | Accepts `LOSS`                                | Reject                                 |
+| Run the producer on a losing state whose only successor is a dead end                                         | Its checker rejects the produced certificate  | Produce a valid loss certificate       |
+| Run the producer on a winning problem with an alternative branch leading through a losing state to a dead end | Raises `StopIteration`                        | Produce a valid optimality certificate |
+
+**1. The fabricated-infinity problem survives through `stall_L`.**
+
+For
+
+$$
+s\xrightarrow{5}t,\qquad s\xrightarrow{1}u\xrightarrow{1}t,
+$$
+
+the revised checker accepts
+
+$$
+W=\{s,t\},\qquad \mathrm{stall}_L=\{u\},
+$$
+
+with \(V(s)=5\), \(V(t)=0\), and the direct strategy.
+
+It never checks that members of `stall_L` actually lack admissible actions. Consequently, it treats the winning state \(u\) as losing and again evaluates the cheap alternative using \(+\infty\).
+
+The repair must verify **every** claimed stalled state:
+
+$$
+b\in\mathrm{stall}_L
+\implies b\notin T\ \land\ \mathrm{Adm}(b)=\varnothing.
+$$
+
+Moving an unchecked claim into a newly named certificate field has not discharged the obligation.
+
+**2. The checker omits several essential base conditions.**
+
+The comment “Verify complete partition” is followed only by the disjointness check. It does not establish coverage or membership of the initial position.
+
+The checker needs to enforce:
+
+* \(b_0\in W\) for a winning certificate.
+* Complete coverage of the relevant reachable arena.
+* \(L\cap T=\varnothing\), including its stalled members.
+* \(V(t)=0\) and \(\rho(t)=0\) at every successful terminal.
+* Finite, nonnegative rational values and natural-number ranks on \(W\).
+* The declared model binding and resolution checks from §S.4.
+
+The missing terminal-value check explains the accepted \(101\): the local equations are unchanged when every value is shifted by the same constant. **The terminal boundary condition fixes that constant.**
+
+Also, the target set must come entirely from the model. Currently it depends on `certificate.V.keys()`. A `LOSS` certificate ordinarily has no `V`, so the checker silently drops additional admitted terminals.
+
+**3. Keep stalled states inside the mathematical losing region.**
+
+The producer constructs
+
+```python
+U = L - stall
+```
+
+and then requires closure inside `U`.
+
+That breaks the simple losing game
+
+$$
+s\xrightarrow{1}d,\qquad \mathrm{Adm}(d)=\varnothing.
+$$
+
+The only successor of \(s\) is losing, but has been removed from its trap. The `WIN` branch encounters the same defect when certifying its losing complement, causing `StopIteration`.
+
+Use the entire losing region:
+
+$$
+U=L.
+$$
+
+For each non-stalled \(b\in L\), certify
+
+$$
+\forall a\in\mathrm{Adm}(b),\qquad
+\phi(b,a)\in\mathrm{Succ}(b,a)\cap L.
+$$
+
+At dead ends, this condition is vacuous. You can still report `Stalled` with higher priority. **Reporting precedence should not change the set used in the proof.**
+
+**4. The quotient “iff” is still false.**
+
+`CHS-P08` says preserving winning status and value for one task is equivalent to E1+E2. But `CHS-P10` supplies its own counterexample: the common action \(d\) preserves value \(1\), despite different enabled-action sets at \(p\) and \(q\).
+
+Therefore E2 is not necessary for accidental preservation of one task.
+
+Change the claim to:
+
+> A correctly defined task-compatible observation congruence is sufficient for preserving winning status and optimal value.
+
+Keep accidental preservation as a separate, weaker property.
+
+There is also a type mismatch: targets are sets of **beliefs**, while E1 tests \(s\in T\) for concrete states. Specify either a quotient of the belief arena or the induced map from concrete-state partitions to beliefs, then state target and cost compatibility through that map.
+
+Finally, §S.5.3 currently contains a proposition under “Simulation proof,” but no proof. Defining \(\mathsf R\) as “the coarsest partition” also does not establish that the required partition exists or provide its construction.
+
+**5. Goal-resolvable does not imply that immediate emission is optimal.**
+
+§S.1 concludes
+
+$$
+V(b)=c(b,\operatorname{emit}(r)).
+$$
+
+Generally, successful immediate emission only proves
+
+$$
+V(b)\le
+\min_{r\text{ valid at }b}c(b,\operatorname{emit}(r)).
+$$
+
+Another valid emission might be cheaper. A preliminary action might also lead to a cheaper successful emission.
+
+Equality needs additional assumptions about available actions and costs. Your examples can declare those assumptions, but the general definition cannot infer them.
+
+**6. An unsound restrictive guard need not make the position losing.**
+
+The distinction between optional actions and intercepting guards is now correct. However, the provenance paragraph, `CHS-P05`, and `CHS-P19(2)` still overstate the consequence.
+
+Suppressing a valid emission can leave another successful route available—for example, a repair action followed by an unblocked emission. The value can increase while remaining finite.
+
+The correct general statement is:
+
+> A restrictive guard can destroy winning status. A loss claim requires a closed losing region containing the initial position in the modified arena.
+
+The transfer violation alone does not supply that trap.
+
+One test expectation also needs clarification: **R7 must specify which triangle task it uses.** For exactness classification, the revised example has a valid emission. Adding an optional self-loop preserves that win. For defect identification, the initial position may already be losing.
+
+The immediate repair target is therefore concrete: **make §S.9 enforce §S.4, retain dead ends inside losing traps, and narrow the three mathematical overclaims above.** Keep the successful regression cases, add these adversarial cases, and replace the blanket “Repaired” statuses with verified results only after the checker rejects the forged certificates and accepts the valid dead-end cases.

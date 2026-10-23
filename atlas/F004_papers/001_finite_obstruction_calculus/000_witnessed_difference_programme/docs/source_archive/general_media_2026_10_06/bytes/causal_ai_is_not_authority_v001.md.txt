@@ -1,0 +1,567 @@
+Causal AI Is Not Authority
+==========================
+
+**Subtitle:** Why SCMs, Interventions, and Counterfactuals Still Require Observer Descent
+
+**Author:** Jeremy H. Carroll
+**Date:** May 2026
+**Version:** v0.2 Working Draft
+
+---
+
+Abstract
+---
+
+Causal AI is a serious research program. Structural causal models, intervention calculus, counterfactual queries, transportability, and identification theory give a richer language than association alone. The error attacked here is not causal inference. The error is the slogan-level upgrade from causal representation to authority.
+
+The target chain is:
+
+```text
+causal model
+-> intervention
+-> counterfactual
+-> reasoning
+-> trustworthiness
+-> robust decision
+```
+
+Omega rejects that upgrade. A causal model can represent intervention-indexed and counterfactual proposals. It does not, by itself, terminalize those proposals into authority.
+
+The replacement chain is:
+
+```text
+causal model
+-> observer packet
+-> admissible intervention
+-> identification/support/defect checks
+-> quotient residual
+-> Phi/Gamma
+-> terminal status
+-> authority or refusal
+```
+
+The central claim is:
+
+```text
+Causal representation is not causal authority.
+```
+
+Equivalently:
+
+```text
+SCMs can represent causal claims.
+They do not authorize causal action.
+```
+
+---
+
+1. The Slogan Layer
+
+---
+
+The phrase "Causal AI" often binds formal causal representation to broader terms such as reasoning, trustworthiness, robustness, explainability, and intelligent decision-making. This is understandable: causal models are more structured than purely associational predictors, and interventional/counterfactual questions are essential in high-stakes domains.
+
+But the authority jump is not automatic.
+
+The public CausalAI framing is serious, not empty branding. Elias Bareinboim's site identifies him as director of Columbia's Causal Artificial Intelligence Lab and describes causal information as crucial for more general AI and high-stakes settings; it also links a draft of the forthcoming book *Causal Artificial Intelligence: A Roadmap for Building Causally Intelligent Systems*.[^bareinboim] This establishes the vocabulary being audited, not a charge that the formal research program itself makes every downstream authority overclaim.
+
+This paper does not dispute that research program. It disputes only the overclaim:
+
+```text
+can represent intervention/counterfactual structure
+-> is trustworthy / reasons / is robust / is intelligent
+```
+
+The Omega correction is:
+
+```text
+Causality gives better proposals.
+Descent gives authority.
+```
+
+[^bareinboim]: Elias Bareinboim, personal/research site, `https://causalai.net/`, accessed May 2026.
+
+---
+
+2. Causal Proposal
+
+---
+
+**Definition 1 -- Causal Proposal.** A causal proposal is a represented claim of the form:
+
+```text
+if do(A), then outcome Y changes by Delta
+```
+
+or:
+
+```text
+had A not occurred, Y would have differed.
+```
+
+More generally, a causal proposal is any represented interventional or counterfactual claim expressible in a declared causal representation.
+
+A causal proposal is not authority. It is a structured proposal.
+
+Examples:
+
+```text
+do(drug=Y) increases recovery probability by Delta.
+```
+
+```text
+If the policy had not been enacted, unemployment would have been lower.
+```
+
+```text
+The model's output was caused by feature A rather than feature B.
+```
+
+Each may be expressible in some SCM or causal query language. That expressibility does not settle whether action is authorized.
+
+---
+
+3. Causal Authority
+
+---
+
+**Definition 2 -- Causal Authority.** A causal proposal becomes authority only when it descends through:
+
+```text
+observer
+carrier
+admissible variables
+intervention semantics
+identification assumptions
+data support
+defect maps
+repair/quotient
+terminalizer
+```
+
+In Omega normal form:
+
+```text
+claim
+-> observer
+-> carrier
+-> defect
+-> repair
+-> quotient
+-> Phi/Gamma
+-> terminal
+```
+
+The quotient object is:
+
+```math
+Q^1=C^1/\operatorname{im}(d_0).
+```
+
+The obstruction mass is:
+
+```math
+\Phi_J([\delta])
+=
+\inf_{\alpha\in C^0}J(\delta-d_0\alpha).
+```
+
+If a closure operator is declared, the closure mass is:
+
+```math
+\Gamma_J([\delta])=J_2(d_1\delta).
+```
+
+The terminalizer decides:
+
+```text
+Exact / Authorized
+Survivor / Qualified
+Open / NotAuthorized / Refused
+Budget / RepresentationInvalid
+```
+
+The exact terminal vocabulary depends on the declared regime. The invariant requirement is descent.
+
+---
+
+4. Causal AI Overclaim
+
+---
+
+**Definition 3 -- Causal AI Overclaim.** A causal AI overclaim occurs when a system moves from:
+
+```text
+can represent intervention/counterfactual structure
+```
+
+to:
+
+```text
+is trustworthy / reasons / is robust / is intelligent
+```
+
+without a terminal descent packet.
+
+This is the same structural error attacked in the CAN critique. CAN global sections are not authority. Likewise, SCM queries are not authority.
+
+Paper 001:
+
+```text
+CAN global sections are not authority.
+```
+
+Paper 002:
+
+```text
+SCM / Causal AI queries are not authority.
+```
+
+Together:
+
+```text
+001 kills unearned local-to-global authority.
+002 kills unearned causal-reasoning authority.
+```
+
+---
+
+5. Theorem: SCM Non-Authority
+
+---
+
+**Theorem.** Let `M` be an SCM and let `q` be an interventional or counterfactual query expressible in `M`. The expressibility of `q` in `M` does not imply authority for acting on `q`.
+
+Symbolically:
+
+```math
+q\in\mathrm{Query}(M)
+\centernot\Rightarrow
+\mathsf{Authority}(q).
+```
+
+The correct form is:
+
+```math
+q\in\mathrm{Query}(M)
+\wedge
+\tau_O(\Phi_O,\Gamma_O)=\mathsf{Authorized}
+\Rightarrow
+\mathsf{Authority}_O(q).
+```
+
+**Proof.** The statement `q in Query(M)` means only that `q` is syntactically and semantically expressible inside the causal representation `M`. Authority for action requires additional finite data: observer, carrier, admissible variables, intervention semantics, identification assumptions, data support, defect maps, quotient repair class, residual gauge, and terminal rule.
+
+Two causal representations may share the same query syntax while differing in variable admissibility, support conditions, confounding assumptions, transportability assumptions, or action threshold. Therefore the query alone cannot determine terminal status.
+
+Authority is introduced only by the declared terminalizer after obstruction accounting:
+
+```text
+q -> O -> delta_O(q) -> [delta_O(q)] -> Phi/Gamma -> tau_O.
+```
+
+Hence expressibility does not imply authority. QED.
+
+### Witness: Same SCM Query, Different Observer Terminals
+
+Let `M` be the binary SCM:
+
+```text
+X in {0,1}
+Y := X
+```
+
+and let the query be:
+
+```text
+q := "E[Y | do(X=1)] - E[Y | do(X=0)] = 1".
+```
+
+The query is expressible in `M`, and inside `M` it has the same causal value for both observers below.
+
+Define two observer packets over the same `M` and `q`.
+
+Observer `O_in` declares that the target carrier is the population represented by `M`, that `do(X=1)` is admissible, and that the support/transport defect is zero:
+
+```text
+delta_in(q)=0,\qquad Q^1_{O_in}=C^1/\operatorname{im}(d_0),\qquad \Phi_{O_in}=0.
+```
+
+Observer `O_out` declares a target carrier outside the represented support of `M` and supplies no admissible transport repair. Encode the support/transport defect as one unrepaired defect coordinate:
+
+```text
+delta_out(q)=1,\qquad \operatorname{im}(d_0)=0,\qquad \Phi_{O_out}=1.
+```
+
+Use the same action terminalizer:
+
+```math
+\tau_\theta(\Phi)=
+\begin{cases}
+\mathsf{Authorized}, & \Phi\leq\theta,\\
+\mathsf{NotAuthorized}, & \Phi>\theta.
+\end{cases}
+```
+
+Pick:
+
+```text
+theta = 0.5.
+```
+
+Then:
+
+```text
+tau_0.5(Phi_O_in)=Authorized
+```
+
+but:
+
+```text
+tau_0.5(Phi_O_out)=NotAuthorized.
+```
+
+The SCM `M` and query `q` are unchanged. The terminal authority status changes because the observer carrier/support/transport packet changes. Therefore SCM query expressibility does not determine authority.
+
+---
+
+6. Intervention Descent
+
+---
+
+An intervention is not merely a `do` operator. It must be admissible inside an observer regime.
+
+For an intervention claim:
+
+```text
+do(A=a) changes Y by Delta
+```
+
+Omega asks:
+
+```text
+What is the observer?
+What carrier state represents the unit or population?
+What variables are admissible?
+What does intervention mean operationally?
+What comparison is being made?
+What identification assumptions are used?
+What data support exists for the intervention region?
+What confounding, selection, or transport defect remains?
+What quotient residual survives admissible repair?
+What terminal rule authorizes action?
+```
+
+The intervention proposal may be meaningful, identifiable, partially identified, unsupported, open, or refused. These are terminal distinctions. The causal notation alone does not decide them.
+
+---
+
+7. Counterfactual Descent
+
+---
+
+A counterfactual claim has even stronger descent requirements:
+
+```text
+had A not occurred, Y would have differed.
+```
+
+It requires:
+
+```text
+factual carrier state,
+structural equations or lawful update rule,
+abduction/evidence regime,
+intervention semantics,
+prediction/update semantics,
+support or extrapolation ledger,
+residual gauge,
+terminalizer.
+```
+
+Without these, counterfactual language is a richer proposal syntax, not authority. A counterfactual can be internally coherent under a model and still fail observer authority because the model, support, variables, or terminal rule are not licensed for the action at hand.
+
+---
+
+8. Example: Healthcare Recommendation
+
+---
+
+Suppose the causal AI question is:
+
+```text
+If we administer drug Y to this patient, what is the expected causal effect on recovery?
+```
+
+Omega does not reject the question. It refuses the authority shortcut.
+
+Before action, Omega asks:
+
+```text
+Who is the observer?
+What is "this patient" as carrier state?
+Which variables are admissible?
+What is the intervention semantics of administering drug Y?
+What dose, timing, adherence, and co-treatment regime is encoded?
+What is the outcome horizon?
+What confounding or selection defect exists?
+What support defect exists for this patient's covariate region?
+What transport defect exists from study data to this case?
+What residual remains after admissible repair?
+What terminal rule authorizes action?
+```
+
+Without these, the model output is not medical authority. It is a causal proposal.
+
+The same pattern applies to LLM causal explanations and policy interventions: an SCM-like representation can make the proposal sharper, but the claim exits as authority only after the observer packet terminalizes.
+
+---
+
+9. Higher-Categorical Compression
+
+---
+
+Let `CausalRep` be the category of causal representations and representation-preserving maps. Let `Obs` be the category of finite observer packets. A causal representation `M` may support a query:
+
+```text
+q : Query(M).
+```
+
+But authority is not a property internal to `Query(M)`. Authority lives in a dependent fiber over an observer:
+
+```text
+Authority_O(q)
+```
+
+after `q` has been represented as an observer packet:
+
+```text
+q -> Packet_O(q) -> Q^1_O -> Phi/Gamma -> tau_O.
+```
+
+Thus:
+
+```text
+Query(M) is proposal syntax.
+Authority_O(q) is terminalized descent.
+```
+
+No observer-independent functor:
+
+```text
+Query : CausalRep -> Authority
+```
+
+exists without observer data.
+
+**Proof by witness.** The binary SCM witness above gives the same `(M,q)` but different terminal authority states under `O_in` and `O_out`. Any observer-independent functor from causal representations and queries to authority would have to assign a single authority value to `(M,q)`. The witness requires two different values. Therefore such a functor is not well-defined.
+
+The lawful map has the form:
+
+```text
+(M,q,O) -> Terminal_O(q).
+```
+
+This is the categorical compression of the paper.
+
+---
+
+10. HoTT Typing Discipline
+
+---
+
+In dependent type form:
+
+```text
+SCM : Type
+Query : SCM -> Type
+Observer : Type
+Packet : (O : Observer) -> (M : SCM) -> Query M -> Type
+terminal : (O : Observer) -> Packet O M q -> Terminal
+Authority : (O : Observer) -> Packet O M q -> Type
+```
+
+with:
+
+```text
+Authority O p := terminal O p = Authorized.
+```
+
+From:
+
+```text
+M : SCM
+q : Query M
+```
+
+one cannot derive:
+
+```text
+Authority O p
+```
+
+because no packet `p` has been supplied and no terminal proof exists. The type system blocks the slogan:
+
+```text
+expressible causal query -> authority.
+```
+
+The correct term requires:
+
+```text
+O : Observer
+p : Packet O M q
+pi : terminal O p = Authorized
+```
+
+Only then is authority inhabited.
+
+---
+
+11. Conclusion
+
+---
+
+Causal AI improves the proposal language. It does not abolish descent.
+
+The central refusal is:
+
+```text
+Causal representation is not causal authority.
+```
+
+And:
+
+```text
+SCMs can represent causal claims.
+They do not authorize causal action.
+```
+
+The governing doctrine is:
+
+```text
+Anything may enter as proposal.
+Nothing exits as authority without descent.
+```
+
+For Causal AI:
+
+```text
+Causality gives better proposals.
+Descent gives authority.
+```
+
+Final normal form:
+
+```text
+causal model
+-> observer packet
+-> admissible intervention/counterfactual semantics
+-> identification/support/defect checks
+-> quotient residual
+-> Phi/Gamma
+-> terminal status
+-> authority or refusal
+```
+
+No causal authority exists without terminal descent.
