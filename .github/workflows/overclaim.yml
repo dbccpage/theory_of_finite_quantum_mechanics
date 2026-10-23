@@ -1,6 +1,8 @@
 # Overclaim hunter: mechanical scan for claims that exceed what is proved.
 # Offline and deterministic: no secrets, no network calls beyond checkout, no Lean build, no model.
-# Fails only on a NEW HIGH finding (one not in docs/overclaim/baseline.json).
+# Fails on a NEW HIGH overclaim finding (one not in docs/overclaim/baseline.json), and on a pull request also on a
+# HIGH from the two precise auto-* checks (added Lean admission tokens; unloadable skills). The other auto-* steps
+# report without failing.
 # A pass is not a review: nodes whose status or statement changed still need the
 # statement-vs-theorem review in .claude/skills/overclaim-hunter/SKILL.md.
 name: overclaim
@@ -47,3 +49,50 @@ jobs:
       - name: Scan the whole checkout (weekly or manual)
         if: github.event_name != 'pull_request'
         run: python -I -X utf8 scripts/overclaim_scan.py --strict --summary "$GITHUB_STEP_SUMMARY"
+
+      # The auto-* checks of the audit umbrella (.claude/skills/audit/SKILL.md). Offline, standard library plus PyYAML.
+      - name: Test the auto-* scanners
+        run: |
+          python -m pip install --disable-pip-version-check pyyaml
+          python -m pytest scripts/auto/test_auto_checks.py -q -p no:cacheprovider
+
+      # Blocking: its only HIGH rules are exact token matches on ADDED Lean lines (comments and strings stripped,
+      # constructor names skipped), i.e. the campaign rule "no sorry, admit, axiom, native_decide or unsafe in added Lean".
+      - name: Anti-pattern lint (blocking on HIGH)
+        if: github.event_name == 'pull_request'
+        run: python -I -X utf8 scripts/auto/anti_pattern_lint.py --changed-since origin/main --summary "$GITHUB_STEP_SUMMARY"
+
+      # Blocking: HIGH here means a skill Claude Code cannot load (front matter, name/directory mismatch) or a skill
+      # that points at the_symbol_game paths. Exact checks on a small file set.
+      - name: Skill estate audit (blocking on HIGH)
+        if: github.event_name == 'pull_request'
+        run: python -I -X utf8 scripts/auto/estate_audit.py skills --summary "$GITHUB_STEP_SUMMARY"
+
+      # Non-blocking for now: these read prose or DAG structure with heuristics, or need a human to say which side of a
+      # non-fit is wrong. Findings appear in the job summary.
+      - name: Obstruction scan (non-blocking)
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: python -I -X utf8 scripts/auto/obstruction_scan.py --changed-since origin/main --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Symmetry scan (non-blocking)
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: python -I -X utf8 scripts/auto/symmetry_scan.py --changed-since origin/main --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Docs and agents audit (non-blocking)
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: |
+          python -I -X utf8 scripts/auto/estate_audit.py docs --changed-since origin/main --summary "$GITHUB_STEP_SUMMARY"
+          python -I -X utf8 scripts/auto/estate_audit.py agents --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Auto-* whole-checkout report (weekly or manual, non-blocking)
+        if: github.event_name != 'pull_request'
+        run: |
+          for tool in anti_pattern_lint obstruction_scan symmetry_scan; do
+            python -I -X utf8 "scripts/auto/$tool.py" --fail-on none --summary "$GITHUB_STEP_SUMMARY"
+          done
+          for target in skills agents; do
+            python -I -X utf8 scripts/auto/estate_audit.py "$target" --fail-on none --summary "$GITHUB_STEP_SUMMARY"
+          done

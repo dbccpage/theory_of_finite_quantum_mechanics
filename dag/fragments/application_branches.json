@@ -96,20 +96,45 @@
     {
       "id": "DFM-HIERARCHICAL-BOREL",
       "stage": "DRESSING_FIELD",
-      "status": "OPEN",
-      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
+      "status": "PROVED_LEAN",
+      "source_status": "Lean 4.35.0 module CampaignDfmHierarchicalBorel; the printed axioms are propext, Classical.choice and Quot.sound.",
+      "statement": "Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N. torusProj preserves multiplication. On any vertex type with a root, a parent function fixing the root, and a natural depth function that is zero at the root and strictly decreases along parents off the root, and for invertible labels off the root, root-to-vertex transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]]. Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1}, and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} * g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1} off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative ring R, for A : R -> R -> R, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) with (bK)(u,v,w,z) = -K(u,w,z) + K(u,v,z) satisfy b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance K(A^g) = g(u) * K(A) * g(w)^{-1} for supplied g and g_inv with g(x) * g_inv(x) = 1 at every x, writing g_inv as g^{-1}, when A^g(x, y) = g(x) * A(x, y) * g_inv(y). For A(0,1)=1, A(1,2)=1, A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2)) is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).",
       "source": [
         "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/derivations/independent/dfm-hierarchical-borel.md",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json",
+        "checks/independent/dfm-hierarchical-borel.py",
         "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal",
+        "lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul",
+        "lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_residual_torus",
+        "lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces",
+        "lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff",
+        "lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular",
+        "lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero",
+        "lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity",
+        "lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance",
+        "lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::carrier_dimension_two_ne_three",
+        "lean4/CampaignDfmHierarchicalBorel.lean::diamond_transport_three"
+      ],
       "rust": [],
       "imported_structure": [
-        "normal subgroup N and quotient action",
-        "specified incidence DGA"
+        "supplied root fixed by parent, natural depth zero at root and strictly decreasing off root, and invertible off-root labels",
+        "specified scalar commutative cochain operators b1, b2 and cup products; no bundled incidence DGA construction"
       ],
-      "bottleneck": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "bottleneck": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This statement does not construct a spanning tree from an arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this statement. No bundled incidence DGA or noncommutative matrix-valued curvature is constructed.",
       "tags": [
         "application-branch",
         "TFQ-0400",
@@ -755,7 +780,7 @@
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "bottleneck": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -784,7 +809,7 @@
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "bottleneck": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -3267,14 +3292,15 @@
       "statement": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
       "source": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [
         "Wilson-Dirac lattice fermion operator with r = 1 (standard lattice QCD)"
       ],
-      "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "bottleneck": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -5767,7 +5793,7 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C3c claims OPEN; audited status OPEN",
-      "statement": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
+      "statement": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -5776,14 +5802,15 @@
       "lean": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ],
       "rust": [
         "code/rust/src/wdp/genesis_tm.rs::unary_sep",
         "code/rust/src/wdp/genesis_tm.rs::collapsed"
       ],
       "imported_structure": [],
-      "bottleneck": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "bottleneck": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -8013,9 +8040,13 @@
         "DFM-TREE-CHANGE"
       ],
       "output": "DFM-HIERARCHICAL-BOREL",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
-      "source": []
+      "status": "DERIVED_LEAN",
+      "mechanism": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This route does not construct a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism.",
+      "source": [
+        "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "lean4/CampaignDfmHierarchicalBorel.lean",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json"
+      ]
     },
     {
       "id": "APP-R-DFM-CONTINUUM-INTERFACE",
@@ -8295,7 +8326,7 @@
       ],
       "output": "DFM-BOREL-LEVI-FACTORIZATION",
       "status": "DERIVED_PROSE",
-      "mechanism": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "mechanism": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1105_dfm_borel_levi_factorization.md",
         "papers/ravera_dfm_dossier.md"
@@ -8309,7 +8340,7 @@
       ],
       "output": "DFM-BOREL-TWO-STAGE-DIAMOND",
       "status": "COMPUTED",
-      "mechanism": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "mechanism": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1106_dfm_borel_two_stage_diamond.md",
         "papers/ravera_dfm_dossier.md",
@@ -9584,10 +9615,11 @@
       ],
       "output": "FSP-WILSON-DIRAC-GAMMA5",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "mechanism": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "source": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ]
     },
     {
@@ -10970,7 +11002,7 @@
       ],
       "output": "COMP-C3-CONTEXT-DECISION-PARTIAL",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "mechanism": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "source": [
         "dag/derivations/29_computation/tfq_1293_comp_c3_context_decision_partial.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -12081,9 +12113,9 @@
       "name": "Hierarchical Borel dressing beyond the diamond control",
       "stage": "DRESSING_FIELD",
       "parent_id": "TFQ-0399",
-      "record_status": "OPEN_OBLIGATION",
-      "summary": "Extend the existing B_2(Q)=T semidirect N diamond control to a stated finite-graph theorem for two-stage dressing, quotient preservation and curvature covariance.",
-      "obligation": "Supply the general factorization, quotient-action and incidence-DGA proof before replacing the existing finite control by a general theorem.",
+      "record_status": "PROVED_LEAN",
+      "summary": "Let B_2(Q) be the invertible upper-triangular 2x2 matrices over Q, T the diagonal matrices and N the unit upper-triangular matrices. Every invertible element factors uniquely as D * n with D in T and n in N, and conjugation of an element of N by an invertible element stays in N. torusProj preserves multiplication. On any vertex type with a root, a parent function and a depth function that strictly decreases along parents, and for invertible labels off the root, root-to-vertex transport multiplies labels on the left: T(root) = I and T(v) = U(v) * T(parent(v)). The stage-one field u_N(v) equals D(v) * n(v)^{-1} * D(v)^{-1}, lies in N, and equals [[1, -b(v)/d2(v)], [0, 1]]. Dressing a tree edge by u_N yields D(child) * D(parent)^{-1}. For every label g and every pair of vertices, torusProj(u_N(target) * g * u_N(source)^{-1}) equals torusProj(g). A further diagonal vertex field, multiplied on the left at the child and on the right by its inverse at the parent, leaves that dressed tree edge diagonal. The stage-two field u_T(v) = D(v)^{-1} satisfies u_T(v) * u_N(v) = T(v)^{-1}, and u_T(target) * (u_N(target) * g * u_N(source)^{-1}) * u_T(source)^{-1} equals T(target)^{-1} * g * T(source). That dressed label equals I if and only if g = T(target) * T(source)^{-1}. A vertex field that is invertible at every vertex, equals I at the root, and satisfies U(v) = g(v) * g(parent(v))^{-1} off the root, equals the rooted transport. The factorization identity fails on [[0, 1], [0, 1]]. Replacing the (2, 2) entry by 1 does not preserve the product of [[2, 1], [0, 3]] with itself. On any commutative ring, the operators (bA)(u, v, w) = -A(u, w) and (A smile A)(u, v, w) = A(u, v) * A(v, w) satisfy b composed with b equal to 0, the Bianchi identity for K = bA + A smile A, and endpoint gauge covariance K(A^g) = g(u) * K(A) * g(w)^{-1} when A^g(x, y) = g(x) * A(x, y) * g(y)^{-1}. For A(0,1)=1, A(1,2)=1, A(0,2)=0, g(0)=1 and g(1)=2, the source-only expression (g(0)*A(0,1))*(g(1)*A(1,2)) - (g(0)*A(0,2)) is not equal to g(0)*(A(0,1)*A(1,2) - A(0,2)). The same values with g(2)=1 and g(1)^{-1}=1/2 satisfy the endpoint identity. The arithmetic comparison of 2 with 3 records that these integers differ. On the four-vertex tree with parents 0, 0, 0, 2, transport at vertex 3 equals U(3) * U(2).",
+      "obligation": "The rooted tree, given by a parent function and a strictly decreasing depth, and the incidence cochain are supplied data. This statement does not construct a spanning tree from an arbitrary graph, does not identify an obstruction with a computed cohomology group, and does not build a 2-plaquette prism. Continuum gauge theory, color transport and smooth patching stay outside this statement.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-HIERARCHICAL-BOREL"
@@ -12092,11 +12124,38 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+        "dag/derivations/independent/dfm-hierarchical-borel.md",
+        "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json",
+        "checks/independent/dfm-hierarchical-borel.py",
         "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/dfm-hierarchical-borel.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal",
+        "lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul",
+        "lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage1_residual_torus",
+        "lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization",
+        "lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces",
+        "lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff",
+        "lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique",
+        "lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular",
+        "lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism",
+        "lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero",
+        "lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity",
+        "lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance",
+        "lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature",
+        "lean4/CampaignDfmHierarchicalBorel.lean::carrier_dimension_two_ne_three",
+        "lean4/CampaignDfmHierarchicalBorel.lean::diamond_transport_three"
+      ]
     },
     {
       "id": "TFQ-0401",
@@ -12731,7 +12790,7 @@
       "parent_id": "TFQ-0398",
       "record_status": "DEFINITION",
       "summary": "B_2(Q) is the group of invertible upper-triangular rational 2x2 matrices, N its unipotent normal subgroup and T_2(Q) the diagonal torus; a tree holonomy [[a,b],[0,d]] factors as [[1,b/d],[0,1]] diag(a,d), giving the stage-1 dressing u_N and stage-2 dressing t.",
-      "obligation": "Uniqueness of the factorization and quotient preservation for arbitrary graphs belong to TFQ-0400.",
+      "obligation": "Uniqueness of the factorization and quotient preservation for a supplied rooted tree are recorded at TFQ-0400. Extracting a spanning tree from an arbitrary graph is outside that record.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-BOREL-LEVI-FACTORIZATION"
@@ -12755,7 +12814,7 @@
       "parent_id": "TFQ-1105",
       "record_status": "COMPUTATIONAL_CONTROL",
       "summary": "On the diamond graph with one fixed tree, a pure-gauge B_2(Q) connection built from one rational vertex map is dressed to the identity on all 5 edges, and a connection with one chord multiplied by [[2,1],[0,3]] is dressed to the identity on tree edges and to a non-identity chord; stage-1 fields lie in N, stage-1 tree links are diagonal, and stage 2 reproduces the one-shot dressing.",
-      "obligation": "The general two-stage theorem, the iff criterion for every graph, and preservation of the incidence-DGA Bianchi identity on the 2-plaquette prism are not checked; they remain TFQ-0400 and TFQ-0016.",
+      "obligation": "Rooted-tree two-stage identities and the specified incidence operators are recorded at TFQ-0400. A 2-plaquette prism, and a criterion for a graph that does not supply a parent and a depth, stay outside TFQ-0400 and outside TFQ-0016.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "DFM-BOREL-TWO-STAGE-DIAMOND"
@@ -15372,7 +15431,7 @@
       "parent_id": "TFQ-1196",
       "record_status": "IMPORTED_ASSUMPTION",
       "summary": "The Wilson-Dirac operator satisfies gamma5 D_W gamma5 = D_W^dagger, so its nonreal eigenvalues come in conjugate pairs and det D_W is real; for two degenerate flavors det(D_W)^2 >= 0.",
-      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. Not established in this checkout.",
+      "obligation": "A single-flavor det D_W can be negative; the JSONL claim that det D_W is nonnegative is only the two-flavor square. The gamma5 adjoint, reality of det D_W, and the two-flavor square for this operator are not Lean theorems in this checkout. Euclidean Clifford data in dimensions 2 and 4 are checked in Lean. An exact check on one periodic 2x2 lattice, mass -1, U(1), finds det = -3.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-WILSON-DIRAC-GAMMA5"
@@ -15381,7 +15440,8 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:461-473"
+        "papers/core/fsp/theory_of_finite_fsp.md:461-473",
+        "dag/derivations/independent/fsp-wilson-dirac-gamma5.md"
       ],
       "python": [],
       "rust": [],
@@ -18113,8 +18173,8 @@
       "stage": "COMPUTATION",
       "parent_id": "TFQ-1291",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Decidable instances for the unary hole-only mirror of separability, collapse and pairwise separation on a finite regime are proved by bounded search; the decision procedure over all well-formed Genesis contexts of a finite regime, with uniform rules and higher arity, that TFQ-0497 asks for is not built.",
-      "obligation": "Build and prove a decision procedure for collapse and separability over all well-formed contexts of a finite regime and use it for Y-2, T-1, holding two and exhaustion.",
+      "summary": "The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.",
+      "obligation": "Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "COMP-C3-CONTEXT-DECISION-PARTIAL"
@@ -18137,7 +18197,8 @@
       "lean4": [
         "lean4/GenesisComputation.lean::unarySep_iff",
         "lean4/GenesisComputation.lean::pairwiseSeparated_iff",
-        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed"
+        "lean4/GenesisComputation.lean::two_marks_without_forms_collapsed",
+        "lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct"
       ]
     },
     {
