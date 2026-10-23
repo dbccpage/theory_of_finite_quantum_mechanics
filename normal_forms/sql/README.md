@@ -10,7 +10,7 @@ entitled to.
 
 | File | Role |
 |---|---|
-| `universe.sql` | ANSI SQL:2016 core DDL: 75 tables, 3 views. Each table has a comment block naming its normal form and candidate keys. |
+| `universe.sql` | ANSI SQL:2016 core DDL: 76 tables, 3 views. Each table has a comment block naming its normal form and candidate keys. |
 | `load_universe.py` | Builds an SQLite database from `universe.sql` and the source files. Fails on the first key, check or foreign-key violation. |
 | `test_universe.py` | pytest suite: lossless join, keys and counts, normal-form sanity, DDL portability, README queries. |
 | `universe.sqlite` | Generated, git-ignored. |
@@ -42,18 +42,21 @@ against SQL:2016 core, not a run on a second engine.
   `NOT NULL`.
 * **Normal forms.** Each table says in its comment whether it is "6NF-style"
   (a key plus at most one independently varying attribute, or key only) or
-  plain BCNF (several attributes that belong together, such as the five audit
+  plain BCNF (several attributes that belong together, such as the four audit
   flags of one replayed module). The label is a design claim. The tests check
   that the declared keys exist, that no attribute depends on a proper subset of
   a composite key, and that no pair of short attributes of a single-key table
-  determines one another in the loaded data. The data checks can refute a
-  design; they cannot prove one.
+  determines one another in the loaded data, apart from coincidences the test
+  names. One such coincidence: receipts that share a `checked_at` date in this
+  checkout also share one Lean version string. The version stays a fact of the
+  receipt file. The data checks can refute a design; they cannot prove one.
 * **Changes the first draft needed.** Two checks found real faults while this
   was written: a citation table in which the cited work determined its authors
   and year (now split into `nf_work` and `nf_citation`), and a
   `built_successfully` flag that the draft treated as a function of `exit_code`
   but that the source records for only one receipt file (now an optional-row
-  table).
+  table). One later receipt omits `source_unchanged_during_build`, so that
+  flag is its own optional-row table too.
 
 ## Tables
 
@@ -77,7 +80,7 @@ Records: `record`, `record_name`, `record_summary`, `record_obligation`,
 Lean evidence: `evidence_grade`, `evidence_fact`, `evidence_file`, `lean_file`,
 `lean_file_replay`, `lean_declaration`, `lean_declaration_scan`,
 `lean_declaration_listing`, `replay_receipt`, `lean_module`, `lean_module_node`,
-`receipt_module`, `receipt_module_build`, `receipt_module_audit`,
+`receipt_module`, `receipt_module_build`, `receipt_module_source_unchanged`, `receipt_module_audit`,
 `receipt_declaration`, `receipt_axiom` (one row per declaration and axiom).
 
 Reviews: `pfp_review_file`, `pfp_review`, `pfp_review_claim`, `pfp_review_prior`,
@@ -208,11 +211,13 @@ independent derivations, not a result about the mathematics.
   `absent_notes`, `mismatches`, `routes` in/out, `next_step`, `dependents`,
   `receipts_not_indexed` and the derived `summary` are not. `toolchain` is
   not stored because it is the numeric part of `lean_version`.
-* **Replay files.** `receipt_declaration` and `receipt_axiom` come from the two
-  `dag/research/*lean_replay*.json` files (40 of the 75 receipts). The 35
-  tensor-validation receipts are in `receipt_module` from the evidence map but
-  their declarations are not itemised here. The `anchors`, `output`, `seconds`
-  and `admission_scan` counts are not stored.
+* **Replay files.** `receipt_declaration` and `receipt_axiom` come from every
+  `dag/research/*lean_replay*.json` module result. Most files nest that list
+  at `lean_replay.results`. The PGW campaign receipt puts the same list at
+  the top level, and the loader reads that list. Evidence-map receipts whose
+  file is not one of those replay files stay in `receipt_module` without
+  itemised declarations. The `anchors`, `output`, `seconds` and
+  `admission_scan` counts are not stored.
 * **Declaration identity.** `receipt_declaration.declaration` is a Lean name
   and `lean_declaration` is a (path, symbol) pair. They are not linked by a
   foreign key because the name forms differ (module-qualified versus

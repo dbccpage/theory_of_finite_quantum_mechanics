@@ -192,6 +192,22 @@ def load_dag(conn: sqlite3.Connection, dag: dict) -> None:
 RECEIPT_ID = re.compile(r"^(?P<file>.+)#(?P<index>\d+):(?P<module>.+)$")
 
 
+def replay_module_results(data: dict, rel: str) -> list:
+    """Module results that itemise axioms.
+
+    Older receipts nest that list at lean_replay.results.
+    campaign_pgw-presentation-not-expressive-lift_lean_replay.json puts the
+    same list at the top level. A file with neither shape is an error: its
+    declarations are not dropped.
+    """
+    envelope = data.get("lean_replay")
+    if isinstance(envelope, dict) and isinstance(envelope.get("results"), list):
+        return envelope["results"]
+    if isinstance(data.get("results"), list):
+        return data["results"]
+    raise LoadError(rel + ": no lean_replay.results and no top-level results list")
+
+
 def _consistent(store: dict, key, value, what: str) -> None:
     previous = store.setdefault(key, value)
     if previous != value:
@@ -278,27 +294,33 @@ def load_evidence(conn: sqlite3.Connection, em: dict, replay_files: dict[str, di
             raise LoadError(f"receipt id {rec['id']!r} does not match its file and module")
         module_rows.append((rec["receipt_file"], rec["module"], int(match["index"]),
                             rec["recorded_sha256"], rec["exit_code"], rec["decl_count"]))
-        audit_rows.append((rec["receipt_file"], rec["module"], rec["source_unchanged_during_build"],
-                           rec["admission_scan_passed"], rec["axiom_audit_passed"],
-                           rec["axioms_itemised"], rec["axioms_standard"]))
+        audit_rows.append((rec["receipt_file"], rec["module"], rec["admission_scan_passed"],
+                           rec["axiom_audit_passed"], rec["axioms_itemised"], rec["axioms_standard"]))
     insert(conn, "receipt_module",
            ("receipt_file", "lean_module_name", "file_index", "recorded_sha256", "exit_code", "decl_count"),
            module_rows)
     insert(conn, "receipt_module_build", ("receipt_file", "lean_module_name", "built_successfully"),
            ((r["receipt_file"], r["module"], r["built_successfully"])
             for r in em["receipts"] if r["built_successfully"] is not None))
+    insert(conn, "receipt_module_source_unchanged",
+           ("receipt_file", "lean_module_name", "source_unchanged_during_build"),
+           ((r["receipt_file"], r["module"], r["source_unchanged_during_build"])
+            for r in em["receipts"] if r["source_unchanged_during_build"] is not None))
     insert(conn, "receipt_module_audit",
-           ("receipt_file", "lean_module_name", "source_unchanged_during_build", "admission_scan_passed",
-            "axiom_audit_passed", "axioms_itemised", "axioms_standard"), audit_rows)
+           ("receipt_file", "lean_module_name", "admission_scan_passed", "axiom_audit_passed",
+            "axioms_itemised", "axioms_standard"), audit_rows)
 
     # axioms: the allowed set plus anything a replay file actually reports
     allowed = list(em["allowed_axioms"])
     seen = set(allowed)
     declaration_rows, axiom_rows = [], []
     for rel in sorted(replay_files):
-        for result in replay_files[rel]["lean_replay"]["results"]:
-            module = result["module"]
-            for declaration, axioms in result["axioms"].items():
+        for result in replay_module_results(replay_files[rel], rel):
+            module = result.get("module")
+            axioms_map = result.get("axioms")
+            if not isinstance(module, str) or not isinstance(axioms_map, dict):
+                raise LoadError(rel + ": a module result lacks module or axioms")
+            for declaration, axioms in axioms_map.items():
                 declaration_rows.append((rel, module, declaration))
                 for axiom in axioms:
                     seen.add(axiom)

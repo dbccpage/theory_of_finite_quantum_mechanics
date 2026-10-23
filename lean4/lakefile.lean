@@ -584,10 +584,33 @@ lean_lib FrontierTargets where
     `FrontierPrAllowedRegion
   ]
 
+-- Campaign target: FSP-HUBBARD-PROTECTED-REPRESENTATIONS.
+-- Not a default target: build with `lake build CampaignFspHubbardProtected`.
+lean_lib CampaignFspHubbardProtected where
+  roots := #[`CampaignFspHubbardProtected]
+
+-- Campaign target 1: L1-IMP-SECTOR-SYMMETRY-LAW
+-- Not a default target: build with `lake build CampaignL1SectorSymmetry`
+lean_lib CampaignL1SectorSymmetry where
+  roots := #[
+    `CampaignL1SectorSymmetry
+  ]
+
+lean_lib FableGleasonRun2 where
+  roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
+
+-- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
+lean_lib CampaignPgwPresentationLift where
+  roots := #[`CampaignPgwPresentationLift]
+
 -- Campaign Target 3: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
 -- Not a default target: build with `lake build CampaignCtMediatorEntanglement`.
 lean_lib CampaignCtMediatorEntanglement where
   roots := #[
     `CampaignCtMediatorEntanglement
   ]
+
+-- Derivation Campaign Target 5 (TFQ-0016): B2(Q) Semidirect Factorization, Two-Stage Dressing, Discrete Poset Curvature
+lean_lib CampaignTfq0016B2Dressing where
+  roots := #[`CampaignTfq0016B2Dressing]
 

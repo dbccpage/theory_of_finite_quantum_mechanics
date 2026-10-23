@@ -234,14 +234,26 @@ def load_receipts(files: Files) -> tuple[list[dict], list[dict]]:
         meta = data.get("lean_replay") if isinstance(data.get("lean_replay"), dict) else None
         results = meta.get("results") if meta else None
         if not isinstance(results, list):
-            attempt = data.get("results")
-            if isinstance(attempt, list) and data.get("lean_version"):
-                bad = any(isinstance(r, dict) and r.get("exit_code") not in (0, None) for r in attempt)
-                skipped.append({"file": rel, "reason": "an attempt record, not a lean_replay receipt"
-                                + ("; at least one module exited with a nonzero code" if bad else "")})
-            elif "Lean" in json.dumps(data.get("checks", "")):
-                skipped.append({"file": rel, "reason": "records Lean checks without per-module sha256"})
-            continue
+            top = data.get("results")
+            # A campaign receipt can store the same module results at the top
+            # level. An attempt record has no per-declaration axioms object.
+            campaign = (
+                isinstance(top, list) and bool(top)
+                and all(isinstance(r, dict) and isinstance(r.get("axioms"), dict)
+                        and "module" in r and "sha256" in r and r.get("exit_code") == 0
+                        for r in top)
+            )
+            if campaign:
+                meta = data
+                results = top
+            else:
+                if isinstance(top, list) and data.get("lean_version"):
+                    bad = any(isinstance(r, dict) and r.get("exit_code") not in (0, None) for r in top)
+                    skipped.append({"file": rel, "reason": "an attempt record, not a lean_replay receipt"
+                                    + ("; at least one module exited with a nonzero code" if bad else "")})
+                elif "Lean" in json.dumps(data.get("checks", "")):
+                    skipped.append({"file": rel, "reason": "records Lean checks without per-module sha256"})
+                continue
         file_info = files.info(rel) or {}
         for number, entry in enumerate(results):
             if not isinstance(entry, dict) or "module" not in entry or "sha256" not in entry:
@@ -263,8 +275,8 @@ def load_receipts(files: Files) -> tuple[list[dict], list[dict]]:
                 "path": entry.get("source") or f"lean4/{module}.lean",
                 "recorded_sha256": entry["sha256"],
                 "exit_code": entry.get("exit_code"),
-                "lean_version": meta.get("lean_version"),
-                "toolchain": toolchain_of(meta.get("lean_version")),
+                "lean_version": meta.get("lean_version") or data.get("toolchain"),
+                "toolchain": toolchain_of(meta.get("lean_version") or data.get("toolchain")),
                 "mathlib_source_sha": meta.get("mathlib_source_sha"),
                 "axiom_audit_passed": entry.get("axiom_audit_passed"),
                 "admission_scan_passed": entry.get("admission_scan_passed"),
@@ -648,9 +660,10 @@ def node_flags(node: dict, items: list[dict], grade: str, facts: dict) -> list[d
         if item["kind"] == "lean_decl" and item["replay"] in ("stale", "failed") and item["counted"]:
             flag("receipt_not_current",
                  f"{item['path']}: replay {item['replay']} against {len(item['receipts'])} receipt(s)")
-    uncited = sorted({i["path"] for i in items
-                      if any(c.startswith("receipt ") for c in i["cited_in"])
-                      and not any(c.startswith("node.") for c in i["cited_in"])})
+    # A module is uncited when the receipt names it for this node but no node field cites ANY declaration in that file;
+    # receipt anchors the node does not name individually are not a citation gap.
+    node_paths = {i["path"] for i in items if any(c.startswith("node.") for c in i["cited_in"])}
+    uncited = sorted({i["path"] for i in items if any(c.startswith("receipt ") for c in i["cited_in"])} - node_paths)
     for path in uncited:
         flag("receipt_names_uncited_module",
              f"a replay receipt names this node for {path}, but the node's lean, rust and source fields do not cite it")

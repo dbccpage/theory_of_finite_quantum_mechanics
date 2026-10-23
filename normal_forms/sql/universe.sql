@@ -802,22 +802,37 @@ CREATE TABLE receipt_module_build (
   CONSTRAINT ck_receipt_module_build CHECK (built_successfully IN (TRUE, FALSE))
 );
 
--- TABLE receipt_module_audit
---   Normal form : BCNF (five independent audit flags of one module result)
+-- TABLE receipt_module_source_unchanged
+--   Normal form : 6NF-style
 --   Candidate keys: (receipt_file, lean_module_name)
---   Source      : receipts[] flags of the same names
-CREATE TABLE receipt_module_audit (
+--   Source      : receipts[].source_unchanged_during_build.  One replay
+--                 receipt omits the flag; that module has no row.
+CREATE TABLE receipt_module_source_unchanged (
   receipt_file                  CHARACTER VARYING(512) NOT NULL,
   lean_module_name              CHARACTER VARYING(128) NOT NULL,
   source_unchanged_during_build BOOLEAN NOT NULL,
-  admission_scan_passed         BOOLEAN NOT NULL,
-  axiom_audit_passed            BOOLEAN NOT NULL,
-  axioms_itemised               BOOLEAN NOT NULL,
-  axioms_standard               BOOLEAN NOT NULL,
+  CONSTRAINT pk_receipt_module_source_unchanged PRIMARY KEY (receipt_file, lean_module_name),
+  CONSTRAINT fk_receipt_module_source_unchanged_module FOREIGN KEY (receipt_file, lean_module_name)
+    REFERENCES receipt_module (receipt_file, lean_module_name),
+  CONSTRAINT ck_receipt_module_source_unchanged CHECK (source_unchanged_during_build IN (TRUE, FALSE))
+);
+
+-- TABLE receipt_module_audit
+--   Normal form : BCNF (four audit flags of one module result)
+--   Candidate keys: (receipt_file, lean_module_name)
+--   Source      : receipts[] flags of the same names.  These four are
+--                 present on every receipt.  source_unchanged_during_build
+--                 is the optional-row table above.
+CREATE TABLE receipt_module_audit (
+  receipt_file          CHARACTER VARYING(512) NOT NULL,
+  lean_module_name      CHARACTER VARYING(128) NOT NULL,
+  admission_scan_passed BOOLEAN NOT NULL,
+  axiom_audit_passed    BOOLEAN NOT NULL,
+  axioms_itemised       BOOLEAN NOT NULL,
+  axioms_standard       BOOLEAN NOT NULL,
   CONSTRAINT pk_receipt_module_audit PRIMARY KEY (receipt_file, lean_module_name),
   CONSTRAINT fk_receipt_module_audit_module FOREIGN KEY (receipt_file, lean_module_name)
     REFERENCES receipt_module (receipt_file, lean_module_name),
-  CONSTRAINT ck_receipt_module_audit_a CHECK (source_unchanged_during_build IN (TRUE, FALSE)),
   CONSTRAINT ck_receipt_module_audit_b CHECK (admission_scan_passed IN (TRUE, FALSE)),
   CONSTRAINT ck_receipt_module_audit_c CHECK (axiom_audit_passed IN (TRUE, FALSE)),
   CONSTRAINT ck_receipt_module_audit_d CHECK (axioms_itemised IN (TRUE, FALSE)),
@@ -830,6 +845,8 @@ CREATE TABLE receipt_module_audit (
 --   Source      : the "axioms" object of each module result in
 --                 dag/research/*lean_replay*.json, one row per declaration
 --                 name, including declarations that use no axiom.
+--                 Results sit at lean_replay.results, or at the top level
+--                 when a campaign receipt has no lean_replay object.
 CREATE TABLE receipt_declaration (
   receipt_file     CHARACTER VARYING(512) NOT NULL,
   lean_module_name CHARACTER VARYING(128) NOT NULL,

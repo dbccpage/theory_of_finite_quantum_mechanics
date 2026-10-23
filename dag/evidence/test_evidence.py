@@ -269,6 +269,26 @@ def test_five_qubit_perfect_tensor_is_e3_or_higher():
     assert row["facts"]["qualifying_reviews"] == 1
 
 
+def test_pgw_campaign_receipt_without_a_lean_replay_object_is_indexed():
+    """The PGW campaign file itemises axioms at the top level. Indexing it does not change the node status."""
+    rel = "dag/research/campaign_pgw-presentation-not-expressive-lift_lean_replay.json"
+    data = json.loads((ROOT / rel).read_text(encoding="utf-8"))
+    assert "lean_replay" not in data
+    receipts = [r for r in document()["receipts"] if r["receipt_file"] == rel]
+    assert len(receipts) == 1
+    assert receipts[0]["module"] == "CampaignPgwPresentationLift"
+    assert receipts[0]["dag_node"] == "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"
+    assert receipts[0]["exit_code"] == 0
+    assert receipts[0]["lean_version"]
+    row = rows()["PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"]
+    assert row["status"] == "CONDITIONAL"
+    current = hashlib.sha256((ROOT / "lean4/CampaignPgwPresentationLift.lean").read_bytes()).hexdigest()
+    assert current == data["sha256"]
+    assert at_least(row["grade"], "E3")
+    skipped = {item["file"] for item in document()["receipts_not_indexed"]}
+    assert "dag/research/tensor_countermodel_failed_replay.json" in skipped
+
+
 def test_pfp_batch_nodes_are_credited_through_their_receipt():
     for entry in receipt_entries("pfp_batch01_lean_replay.json"):
         current = hashlib.sha256((ROOT / entry["source"]).read_bytes()).hexdigest()
@@ -320,6 +340,27 @@ def test_computationally_checked_without_a_test_is_flagged():
             assert flagged(row["id"], "computational_no_runnable_test"), row["id"]
         if row["status"] == "COMPUTATIONALLY_CHECKED" and row["facts"]["runnable_tests"]:
             assert not flagged(row["id"], "computational_no_runnable_test"), row["id"]
+
+
+def test_uncited_module_flag_compares_files_not_declarations():
+    node = {"status": "CONDITIONAL"}
+    facts = {"runnable_tests": 0}
+
+    def uncited(items: list[dict]) -> list[str]:
+        return [f["detail"] for f in be.node_flags(node, items, "E3", facts)
+                if f["kind"] == "receipt_names_uncited_module"]
+
+    cited = item(path="lean4/A.lean", symbol="A.cited", cited_in=["node.lean", "receipt r.json (A)"])
+    anchor_only = item(path="lean4/A.lean", symbol="A.anchor", cited_in=["receipt r.json (A)"])
+    other_file = item(path="lean4/B.lean", symbol="B.anchor", cited_in=["receipt r.json (B)"])
+    # a receipt anchor in a file where the node cites another declaration is not a citation gap
+    assert uncited([cited, anchor_only]) == []
+    # a file the receipt names and no node field cites at all is a gap, reported once per file
+    gaps = uncited([cited, anchor_only, other_file, item(path="lean4/B.lean", symbol="B.two",
+                                                       cited_in=["receipt r.json (B)"])])
+    assert len(gaps) == 1 and "lean4/B.lean" in gaps[0]
+    # a node-only citation is never a gap
+    assert uncited([item(path="lean4/C.lean", cited_in=["node.lean"])]) == []
 
 
 def test_no_mismatch_without_a_node_and_page():

@@ -301,8 +301,8 @@ def test_lossless_receipts_and_axioms(db, em, sources):
         assert match["file"] == rec["receipt_file"] and match["module"] == rec["module"]
     query = """
       SELECT receipt_file, lean_module_name, file_index, recorded_sha256, exit_code, decl_count, lean_path,
-             source_unchanged_during_build, admission_scan_passed, axiom_audit_passed, axioms_itemised,
-             axioms_standard, receipt_file_sha256, checked_at, lean_version, mathlib_source_sha
+             admission_scan_passed, axiom_audit_passed, axioms_itemised, axioms_standard,
+             receipt_file_sha256, checked_at, lean_version, mathlib_source_sha
       FROM receipt_module
       NATURAL JOIN receipt_module_audit
       NATURAL JOIN lean_module
@@ -310,15 +310,18 @@ def test_lossless_receipts_and_axioms(db, em, sources):
     seen = set()
     build = {(f, m): bool(b) for f, m, b in db.execute(
         "SELECT receipt_file, lean_module_name, built_successfully FROM receipt_module_build")}
-    for (rfile, module, index, rsha, exit_code, decl_count, path, a, b, c, d, e,
+    unchanged = {(f, m): bool(v) for f, m, v in db.execute(
+        "SELECT receipt_file, lean_module_name, source_unchanged_during_build FROM receipt_module_source_unchanged")}
+    for (rfile, module, index, rsha, exit_code, decl_count, path, b, c, d, e,
          file_sha, checked_at, lean_version, mathlib) in db.execute(query):
         rec = expected[(rfile, module)]
         seen.add((rfile, module))
         assert rec["id"] == f"{rfile}#{index}:{module}"
         assert (rec["recorded_sha256"], rec["exit_code"], rec["decl_count"], rec["path"]) == \
             (rsha, exit_code, decl_count, path)
-        assert (rec["source_unchanged_during_build"], rec["admission_scan_passed"], rec["axiom_audit_passed"],
-                rec["axioms_itemised"], rec["axioms_standard"]) == (bool(a), bool(b), bool(c), bool(d), bool(e))
+        assert unchanged.get((rfile, module)) == rec["source_unchanged_during_build"]
+        assert (rec["admission_scan_passed"], rec["axiom_audit_passed"],
+                rec["axioms_itemised"], rec["axioms_standard"]) == (bool(b), bool(c), bool(d), bool(e))
         assert (rec["receipt_file_sha256"], rec["checked_at"], rec["lean_version"], rec["mathlib_source_sha"]) == \
             (file_sha, checked_at, lean_version, mathlib)
         # toolchain is the numeric part of lean_version and is not stored; built_successfully is
@@ -341,7 +344,7 @@ def test_lossless_receipts_and_axioms(db, em, sources):
             "SELECT receipt_file, lean_module_name, declaration, axiom_name FROM receipt_axiom"):
         axioms[(rfile, module)][decl].add(axiom)
     for rel, data in sources["replay_files"].items():
-        for result in data["lean_replay"]["results"]:
+        for result in lu.replay_module_results(data, rel):
             key = (rel, result["module"])
             assert declared[key] == set(result["axioms"])
             assert {d: set(a) for d, a in axioms[key].items()} == \
@@ -467,15 +470,19 @@ def test_row_counts_equal_source_counts(db, dag, em):
     assert count(db, "receipt_module") == len(em["receipts"])
     assert count(db, "receipt_module_audit") == len(em["receipts"])
     assert count(db, "receipt_module_build") == sum(r["built_successfully"] is not None for r in em["receipts"])
+    assert count(db, "receipt_module_source_unchanged") == sum(
+        r["source_unchanged_during_build"] is not None for r in em["receipts"])
     assert count(db, "replay_receipt") == len({r["receipt_file"] for r in em["receipts"]})
     assert count(db, "lean_module") == len({r["module"] for r in em["receipts"]})
 
 
 def test_receipt_axiom_rows_equal_declaration_axiom_pairs(db, sources):
-    pairs_in_files = sum(len(a) for data in sources["replay_files"].values()
-                         for res in data["lean_replay"]["results"] for a in res["axioms"].values())
-    declarations = sum(len(res["axioms"]) for data in sources["replay_files"].values()
-                       for res in data["lean_replay"]["results"])
+    pairs_in_files = 0
+    declarations = 0
+    for rel, data in sources["replay_files"].items():
+        for res in lu.replay_module_results(data, rel):
+            declarations += len(res["axioms"])
+            pairs_in_files += sum(len(a) for a in res["axioms"].values())
     assert count(db, "receipt_axiom") == pairs_in_files
     assert count(db, "receipt_declaration") == declarations
     # one row per declaration x axiom: no declaration lists an axiom twice
@@ -690,7 +697,11 @@ def test_no_undeclared_functional_dependency_among_low_cardinality_attributes(db
 
 # A determinant that repeats and always agrees on the dependent in the current data.  Each is a coincidence
 # of a small table, and the reason is recorded; none is a design dependency.
-ACKNOWLEDGED_NONKEY_DEPENDENCIES: dict[tuple[str, str, str], str] = {}
+ACKNOWLEDGED_NONKEY_DEPENDENCIES: dict[tuple[str, str, str], str] = {
+    ("replay_receipt", "checked_at", "lean_version"):
+        "receipts that share a checked_at date in this checkout also share one Lean version string; "
+        "the version is a fact of the receipt file, and a second toolchain on that date would be a different value",
+}
 
 
 # --------------------------------------------------------------------------
