@@ -6,4 +6,174 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 189, E1 251, E2 42, E3 443.
+
+### What is proved here, what is imported, what is open
+
+| Group | Statuses | Nodes | Meaning |
+|---|---|---|---|
+| Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 265 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
+| Proved in prose | `PROVED_PROSE` | 35 | A written proof exists; no machine check is claimed. |
+| Checked by computation | `COMPUTATIONALLY_CHECKED` | 159 | An exact finite computation is recorded. |
+| Conditional on named hypotheses | `CONDITIONAL` | 38 | Holds given hypotheses that the node names; the hypotheses are not derived. |
+| Definitions | `DEFINITION` | 92 | A definition or construction, not a claim of truth. |
+| Imported or admitted, not derived here | `IMPORTED_ASSUMPTION`, `ADMITTED_PRIMITIVE` | 74 | Taken in from outside the finite construction. Admitted as a starting object. |
+| External results recorded, not audited here | `SOURCE_RECORD` | 81 | An external result is recorded; nothing here audits it. |
+| Open | `OPEN` | 175 | No derivation is recorded. |
+| Refuted | `REFUTED` | 6 | A counterexample is recorded. |
+
+Of the 265 `PROVED_LEAN` nodes, 265 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
+
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 443 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
+
+### Where the Lean evidence stands
+
+The `lean` fields of nodes cite 1424 distinct Lean declarations that lie in files of this checkout. 1377 of them are in a file whose current sha256 matches a passing replay receipt; 24 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1061 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+
+### Status by evidence grade
+
+| Status | E0 | E1 | E2 | E3 | E4 | Total |
+|---|---|---|---|---|---|---|
+| `PROVED_LEAN` | 0 | 0 | 0 | 265 | 0 | 265 |
+| `PROVED_PROSE` | 8 | 13 | 7 | 7 | 0 | 35 |
+| `COMPUTATIONALLY_CHECKED` | 36 | 60 | 20 | 43 | 0 | 159 |
+| `CONDITIONAL` | 12 | 2 | 2 | 22 | 0 | 38 |
+| `DEFINITION` | 21 | 17 | 1 | 53 | 0 | 92 |
+| `IMPORTED_ASSUMPTION` | 11 | 29 | 1 | 30 | 0 | 71 |
+| `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
+| `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
+| `OPEN` | 49 | 98 | 10 | 18 | 0 | 175 |
+| `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
+| Total | 189 | 251 | 42 | 443 | 0 | 925 |
+
+### Stage by evidence grade
+
+| Stage | E0 | E1 | E2 | E3 | E4 | Total | `PROVED_LEAN` | Flags |
+|---|---|---|---|---|---|---|---|---|
+| [PREGENESIS](stages/PREGENESIS.md) | 11 | 0 | 0 | 20 | 0 | 31 | 12 | 15 |
+| [GENESIS](stages/GENESIS.md) | 27 | 2 | 1 | 59 | 0 | 89 | 36 | 12 |
+| [MSSN_SN](stages/MSSN_SN.md) | 16 | 0 | 0 | 12 | 0 | 28 | 11 | 8 |
+| [WDP](stages/WDP.md) | 5 | 0 | 1 | 23 | 0 | 29 | 6 | 9 |
+| [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 5 | 0 |
+| [L1_TO_L2](stages/L1_TO_L2.md) | 11 | 0 | 0 | 37 | 0 | 48 | 16 | 5 |
+| [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 0 | 32 | 0 | 33 | 18 | 32 |
+| [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 3 | 0 | 0 | 19 | 0 | 22 | 5 | 15 |
+| [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 0 | 44 | 0 | 44 | 30 | 12 |
+| [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 2 | 0 | 0 | 8 | 0 | 10 | 6 | 3 |
+| [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 16 | 9 | 18 | 0 | 43 | 11 | 2 |
+| [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 30 | 3 | 34 | 0 | 67 | 32 | 3 |
+| [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 25 | 7 | 9 | 0 | 41 | 3 | 1 |
+| [TENSOR_COMPOSITION](stages/TENSOR_COMPOSITION.md) | 0 | 0 | 0 | 7 | 0 | 7 | 7 | 0 |
+| [FINITE_OBSTRUCTION](stages/FINITE_OBSTRUCTION.md) | 4 | 5 | 0 | 0 | 0 | 9 | 0 | 1 |
+| [AUTHORIZATION](stages/AUTHORIZATION.md) | 8 | 0 | 0 | 0 | 0 | 8 | 0 | 0 |
+| [FINITE_HILBERT](stages/FINITE_HILBERT.md) | 3 | 5 | 0 | 0 | 0 | 8 | 0 | 4 |
+| [FINITE_GAUGE](stages/FINITE_GAUGE.md) | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+| [FINITE_QED](stages/FINITE_QED.md) | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+| [FINITE_QCD](stages/FINITE_QCD.md) | 6 | 25 | 0 | 1 | 0 | 32 | 1 | 18 |
+| [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 7 | 0 | 0 | 0 | 9 | 0 | 7 |
+| [FINITE_QG](stages/FINITE_QG.md) | 8 | 7 | 0 | 0 | 0 | 15 | 0 | 0 |
+| [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 9 | 0 | 0 | 0 | 0 | 9 | 0 | 0 |
+| [IMPLEMENTATION_CORE](stages/IMPLEMENTATION_CORE.md) | 25 | 16 | 0 | 0 | 0 | 41 | 0 | 68 |
+| [IMPLEMENTATION_SIBLING](stages/IMPLEMENTATION_SIBLING.md) | 2 | 24 | 0 | 0 | 0 | 26 | 0 | 24 |
+| [ENGINE_CUSTODY](stages/ENGINE_CUSTODY.md) | 8 | 26 | 0 | 0 | 0 | 34 | 0 | 9 |
+| [MAJORANA](stages/MAJORANA.md) | 0 | 8 | 11 | 27 | 0 | 46 | 5 | 0 |
+| [COMPUTATION](stages/COMPUTATION.md) | 0 | 14 | 4 | 64 | 0 | 82 | 43 | 4 |
+| [CONSTRUCTOR_THEORY](stages/CONSTRUCTOR_THEORY.md) | 10 | 1 | 0 | 4 | 0 | 15 | 3 | 2 |
+| [CAUSAL_QFT](stages/CAUSAL_QFT.md) | 7 | 0 | 0 | 7 | 0 | 14 | 6 | 0 |
+| [ADS_CFT](stages/ADS_CFT.md) | 9 | 1 | 0 | 3 | 0 | 13 | 3 | 0 |
+| [LOOP_QUANTUM_GRAVITY](stages/LOOP_QUANTUM_GRAVITY.md) | 10 | 2 | 0 | 4 | 0 | 16 | 4 | 0 |
+| [GENESIS_TO_HIGHER](stages/GENESIS_TO_HIGHER.md) | 0 | 12 | 0 | 0 | 0 | 12 | 0 | 0 |
+| [OBSERVER_PRESHEAF](stages/OBSERVER_PRESHEAF.md) | 0 | 25 | 6 | 2 | 0 | 33 | 2 | 0 |
+
+## Evidence grades
+
+The grade is computed from the files in this checkout. It rates the evidence, not the truth of the claim. A node reaches a grade only if it meets every lower condition.
+
+- **E0**: no counted in-repo evidence file.
+- **E1**: at least one counted in-repo evidence file exists.
+- **E2**: E1, and a cited Lean, Rust or Python symbol is found in its in-repo file (leaf rule).
+- **E3**: E2, and a cited Lean declaration lies in a file whose current sha256 equals a replay receipt sha256 with exit code 0, a passed axiom audit and only standard axioms.
+- **E4**: E3, plus an in-repo runnable Rust or Python test, plus a recorded statement-match review.
+
+Counting rules:
+
+- Evidence is counted when the node cites it, or when a TFQ record cites it and names only this node. Evidence a record shares with other nodes is listed on the node page and not counted.
+- A replay receipt that names a node (`dag_node`) contributes its Lean module and its anchor declarations as evidence for that node. When the node's own fields do not cite that module, the node is flagged `receipt_names_uncited_module`.
+- Grades are independent of status. A node whose status is `OPEN`, `CONDITIONAL` or `DEFINITION` can reach E3 because a Lean module attached to it compiles; the grade then says only that the attached module was replayed, not that it establishes the statement. The node page and the review record say what the module supports.
+- Derivation papers written by the syncs, and the generated JSONL and Markdown views, are listed and not counted: they restate the DAG and do not bear on a claim.
+- A symbol "exists" under the validator's leaf rule: the last name component occurs in the cited file. Counted symbols whose leaf occurs but for which no declaration form (`theorem`, `def`, `fn`, `struct`, ...) matched: 2. E3 additionally requires a declaration form or a listing in the receipt.
+- Paths that begin with `omega_engine` or `.claude` name sibling trees that are not in this repository. They are recorded as `external_unresolved`: neither confirmed nor refuted here.
 - Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 1332 of the 1377 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
+- File sha256 values are over the file bytes for `.lean`, `.rs`, `.py` and `.toml` files (their line endings are pinned in `.gitattributes`) and over the LF-normalised text for other files.
+
+## Verify it yourself
+
+### (a) Static check, a few seconds, no Lean or Rust needed
+
+From the repository root, with Python 3.11 or later:
+
+```
+python -I -X utf8 dag/evidence/build_evidence.py --check
+python -I -X utf8 dag/validate_derivation_dag.py --no-files
+```
+
+The first command regenerates the map in memory and fails if any file under `docs/evidence/` or `dag/evidence/evidence_map.json` differs. The second checks the DAG schema, vocabulary, acyclicity and forbidden words and ends with `failures=0`. Neither runs Lean, Rust or any test. `python -m pytest dag/evidence/test_evidence.py` checks the grading rules on chosen nodes.
+
+### (b) Check one node
+
+Open a node page, for example [ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET](nodes/ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET.md). Each evidence item gives the file, its sha256 and the command to check it. To compare a hash:
+
+```
+python -c "import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())" lean4/FrontierFiveQubitPerfectTensor.lean
+```
+
+The result should equal the recorded sha256 in [`dag/research/frontier_targets_lean_replay.json`](../../dag/research/frontier_targets_lean_replay.json).
+
+### (c) Replay the Lean receipts
+
+The receipts record builds with Lean 4.35.0 and Mathlib at `56a005855ea17e0b0958f73ec801ae140b0a1679`, on x86_64-w64-windows-gnu. Another platform with the same toolchain should reproduce the exit codes and the axiom lines; the receipts do not claim that it was tried.
+
+```
+git clone https://github.com/dbccpage/theory_of_finite_quantum_mechanics.git
+cd theory_of_finite_quantum_mechanics/lean4
+cat lean-toolchain            # leanprover/lean4:v4.35.0
+lake exe cache get            # fetch the Mathlib cache for the pinned revision
+lake build FrontierFiveQubitPerfectTensor
+```
+
+Then list the axioms of a cited declaration. Save as `Check.lean` inside `lean4/`:
+
+```
+import FrontierFiveQubitPerfectTensor
+#print axioms FrontierFiveQubitPerfectTensor.choi_generators_commute_and_group_order_64
+```
+
+and run `lake env lean Check.lean`. The expected output lists only `propext`, `Classical.choice` and `Quot.sound`, or no axioms. Anything else, or a build error, contradicts the receipt. Receipts for the other modules are in [`pfp_batch01_lean_replay.json`](../../dag/research/pfp_batch01_lean_replay.json) and the `tensor_*_validation.json` files in [`dag/research/`](../../dag/research). The receipts record 25 to 225 seconds per module on one machine; replaying all of them takes hours.
+
+## Where status and evidence disagree
+
+254 flags on 191 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
+
+| Flag | Count | Meaning |
+|---|---|---|
+| `proved_lean_below_e3` | 0 | PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt |
+| `proved_lean_external_only` | 0 | PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout |
+| `receipt_not_current` | 35 | A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit |
+| `computational_no_runnable_test` | 126 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
+| `proved_prose_no_in_repo_document` | 12 | PROVED_PROSE with no in-repo source document cited |
+| `broken_reference` | 54 | A cited in-repo path or symbol cannot be found in this checkout |
+| `receipt_names_uncited_module` | 27 | A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) |
+
+The ten flags on `PROVED_LEAN` nodes with the most downstream nodes:
+
+| Node | Stage | Grade | Downstream nodes | Flag |
+|---|---|---|---|---|
+
+## What this map does not do
+
+- It does not check that a Lean statement says what the node says. Only a recorded review does that, and the grade E4 asks for one.
+- It does not rebuild Lean, run Rust or Python tests, or fetch anything. A receipt is a recorded result, checked here only for a matching file hash.
+- It does not resolve the sibling atlas trees. Their references stay `external_unresolved`.
+- It indexes the receipts in `dag/research/*.json` that carry per-module sha256 values. Other receipts are not indexed: `dag/research/campaign_pg-gen-no-return_review_integration.json` (records Lean checks without per-module sha256); `dag/research/campaign_pgw-context-decision-procedure_review_validation.json` (records Lean checks without per-module sha256); `dag/research/campaign_tfq-0396_review_validation.json` (records Lean checks without per-module sha256); `dag/research/pr231_pillow_release_validation.json` (records Lean checks without per-module sha256); `dag/research/tensor_composition_validation.json` (records Lean checks without per-module sha256); `dag/research/tensor_countermodel_failed_replay.json` (an attempt record, not a lean_replay receipt; at least one module exited with a nonzero code). The `*.axioms.txt` files, the per-run Lean receipts under `dag/results/`, and the Rust and Python test outcomes are not used for grading in this version.
+- A grade is a floor for the evidence found by following the node's own citations. A node with a low grade may have better evidence that it does not cite.
+

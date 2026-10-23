@@ -102,3 +102,41 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivation_dag.json](../../../dag/derivation_dag.json)
 - sha256 (`lf-normalised`): `5207321f491c893d06a10e5097c4e6ebd15486a03ccad5fbe83ae405dc71ddf4`
+- generated view: listed, not counted
+- cited in: node.source
+- counts toward the grade: no
+
+### Documents and data: `dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md`
+
+- file: [dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md](../../../dag/derivations/29_computation/tfq_1315_qcv_self_obstruction_model.md)
+- sha256 (`lf-normalised`): `041e6e718533e0a7a8b64c12abc77e0c6582379dbec1c1b29c56a6129e88b845`
+- generated view: listed, not counted
+- cited in: node.source, record TFQ-1315
+- counts toward the grade: no
+
+### Documents and data: `dag/research/quantum_computation_self_obstruction.md`
+
+- file: [dag/research/quantum_computation_self_obstruction.md](../../../dag/research/quantum_computation_self_obstruction.md)
+- sha256 (`lf-normalised`): `8ae1b2ae291ee74f773da07740ebd0c1f98842bc01d7ec6a4d3c267e0077d178`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/quantum_computation_self_obstruction_axioms.txt`
+
+- file: [dag/research/quantum_computation_self_obstruction_axioms.txt](../../../dag/research/quantum_computation_self_obstruction_axioms.txt)
+- sha256 (`lf-normalised`): `b4c803ee2b1a4fe8af1d9d92a351fb11c61d2791bea01a5b7cd3dd7c1623af81`
+- cited in: node.source
+- counts toward the grade: yes
+
+## Routes
+
+Incoming (1):
+
+- `APP-R-QCV-SELF-OBSTRUCTION-MODEL` `DERIVED_PROSE`: [QCV-QUESTION-SELF-LIMITING-REPAIR](QCV-QUESTION-SELF-LIMITING-REPAIR.md) (OPEN), [DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE](DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE.md) (PROVED_LEAN), [L1-WDP-WINDOW-PHI1-GAMMA2](L1-WDP-WINDOW-PHI1-GAMMA2.md) (DEFINITION), [DS-QM061-BUILDABILITY-SET-S](DS-QM061-BUILDABILITY-SET-S.md) (COMPUTATIONALLY_CHECKED)
+
+Outgoing (4):
+
+- `APP-R-QCV-CONCATENATION-THRESHOLD-DICHOTOMY` `DERIVED_LEAN`: [QCV-CONCATENATION-THRESHOLD-DICHOTOMY](QCV-CONCATENATION-THRESHOLD-DICHOTOMY.md) (PROVED_LEAN)
+- `APP-R-QCV-NET-RATE-BACKLOG-DICHOTOMY` `DERIVED_LEAN`: [QCV-NET-RATE-BACKLOG-DICHOTOMY](QCV-NET-RATE-BACKLOG-DICHOTOMY.md) (PROVED_LEAN)
+- `APP-R-QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY` `DERIVED_LEAN`: [QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY](QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY.md) (PROVED_LEAN)
+- `APP-R-QCV-REPAIR-NEEDED-BUT-COSTLY` `DERIVED_LEAN`: [QCV-REPAIR-NEEDED-BUT-COSTLY](QCV-REPAIR-NEEDED-BUT-COSTLY.md) (PROVED_LEAN)
