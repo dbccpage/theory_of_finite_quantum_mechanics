@@ -11,7 +11,7 @@
 
 ## Statement
 
-Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.
+Imported principle (Deutsch-Marletto Principle III): the composite of two information media is an information medium whose information variable is the Cartesian product of the component information variables, and information can be copied from one medium to another. This gives Cartesian product of attribute sets at the level of information variables, not yet the complex Hilbert tensor product of quantum state spaces. Narrowed in Lean 4 and an independent Python verifier to exact finite/algebraic components and non-selection fences: (1) on ZMod n, cnotClone n (x, y) = (x, x + y) and cnotUnclone n (x, y) = (x, y - x) are two-sided inverses so cnotClone n is a bijection that clones every x from blank 0 and is an involution for n = 2; (2) Fin 1 has 1 permutation and no distinct attributes whereas Fin (n + 2) has distinct attributes 0 != 1 swapped by Equiv.swap 0 1, and any injective encoding separates distinct attributes after cloning; (3) for composite media ZMod n1 x ZMod n2, componentwise cloning compositeClone n1 n2 is bijective with blank (0, 0), |Fin d1 x Fin d2| = d1 * d2, and cross-medium copy composed with any target permutation pi realizes (x1, pi x1); and (4) Principle III does not discharge FQ-GAP-TENSOR-UNIQUENESS because 2-qubit CNOT maps the superposition (1, 0, 1, 0) to the entangled Bell state (1, 0, 0, 1) with Schmidt determinant 1 != 0, the 4-element attribute set Fin 2 x Fin 2 is shared by four distinct composite state-space dimensions (classical simplex 3 < real local product 9 < real quantum symmetric 10 < complex Hermitian 16), and the quantum PSD cone and Partially-Transposed (PT) cone agree on all classical diagonal matrices over {0, 1}^2 and all product vectors while differing on the Bell witness evaluated on the singlet vector.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ The interoperability principle (Principle III, Section 6 p. 12) constrains compo
 
 ## Source status
 
-Audited and corrected against the full text of arXiv:1405.5563 (Sections 3-6, eqs. (3)-(4), Principle III, pp. 9-12) on 2026-10-22; taken as an imported assumption of this branch.
+Taken from the cited source as an assumption of this branch; narrowed to reversible modular-addition cloning on ZMod n, computation variable cardinality threshold and injective distinguishability, Principle III composite Cartesian cloning and cross-medium copy/recoding, and four explicit non-selection fences (2-qubit CNOT off-diagonal entanglement, composite state-space dimension trichotomy 3 < 9 < 10 < 16, real vs complex local tomography holism excess, and PSD vs Partially-Transposed cone separation) in Lean 4 and an independent Python verifier on 2026-10-24.
 
 ## What is imported
 
@@ -48,6 +48,25 @@ See also: `FQ-GAP-TENSOR-UNIQUENESS`, `GP-IMPORT-TENSOR-PRODUCT`.
 ## Sources
 
 - `external:arXiv:1405.5563`: D. Deutsch and C. Marletto, "Constructor Theory of Information", arXiv:1405.5563 (2014); Proc. R. Soc. A (2015), doi:10.1098/rspa.2014.0540.
+- Repository: `dag/derivations/independent/ct-information-media-interoperability.md`
+- Repository: `checks/independent/ct-information-media-interoperability.py`
+- Repository: `lean4/CampaignCtInformationMediaInteroperability.lean`
+- Repository: `dag/research/campaign_ct-information-media-interoperability_lean_replay.json`
+- Repository: `dag/research/campaign_ct-information-media-interoperability_lean_mutation.json`
+- Repository: `dag/research/campaign_ct-information-media-interoperability_independent.json`
+
+## Lean 4 declarations read
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.cnotClone_bijective_and_clones_zero`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.cnotClone_zmod2_involutive`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.singleton_not_computation_variable_fence`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.clonable_computation_implies_distinguishable`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.principle_III_composite_cloning_and_cardinality`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.cross_medium_copy_transfer`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.unitary_cnot_clones_computational_basis_not_superposition_fence`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.composite_state_space_dimension_trichotomy_fence`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.real_vs_complex_bilinear_tomography_fence`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_classical_interoperability_agreement_fence`
+- `lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_bell_witness_separation_fence`
 
 ## Downstream derivations
 
