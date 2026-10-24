@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 6, E1 22, E3 4. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 5, E1 22, E3 5. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -21,7 +21,7 @@ Nodes: 32. Grades: E0 6, E1 22, E3 4. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_C
 | [TFQ-0023](../nodes/TFQ-0023.md) | `COMPUTATIONALLY_CHECKED` | E1 | Part C of the QCD map fixes a 3 by 3 planar square graph with 9 vertices and 12 edges. A spanning tree has 8 edges, and the cyclomatic co... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0024](../nodes/TFQ-0024.md) | `COMPUTATIONALLY_CHECKED` | E1 | creutz_ratio_area_law and creutz_ratio_perimeter_law in the Rust QCD control, and wilson_area_law, wilson_perimeter_law, and creutz_ratio... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0025](../nodes/TFQ-0025.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta0 and qcd_beta1 return BigRational values, and the Creutz ratios above are exact powers of a rational beta_tilde. Part D is diffe... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
-| [TFQ-0026](../nodes/TFQ-0026.md) | `OPEN` | E0 | lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive ope... | none in this checkout | - |
+| [TFQ-0026](../nodes/TFQ-0026.md) | `OPEN` | E3 | lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive ope... | [CampaignTfq0026FiniteQcd.lean](../../../lean4/CampaignTfq0026FiniteQcd.lean): `carrier_dimension_admission_guard_128`, `euclidean_clifford_anticommutator_relations`, `even_vs_odd_period_pi_mode_periodicity` +7<br>[tfq-0026.py](../../../checks/independent/tfq-0026.py) | - |
 | [TFQ-0027](../nodes/TFQ-0027.md) | `OPEN` | E1 | wilson_species_count in the same file counts corners where the rational expression mass + 2*r*(number of pi components) is zero, with no... | [IntegralRefinementC3C6.lean](../../../lean4/IntegralRefinementC3C6.lean) | - |
 | [TFQ-0028](../nodes/TFQ-0028.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta0(3, n_f) is the rational 11 - (2/3)*n_f. The Rust report and Lean qcd_beta0_asymptotic_freedom_window record the split 4*C_A + (... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0029](../nodes/TFQ-0029.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta1(3, n_f) is recorded as 102 - (38/3)*n_f. At n_f=16 the Rust control and Lean qcd_beta1_and_banks_zaks_fixed_point record beta0=... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |

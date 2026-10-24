@@ -9910,7 +9910,9 @@
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0026FiniteQcd.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Add Python and Lean replays of the declared doubling count, or leave the obstruction as Rust-only.",
@@ -41781,26 +41783,30 @@
         "TFQ-0026"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md",
+        "dag/derivations/independent/tfq-0026.md",
+        "checks/independent/tfq-0026.py",
+        "lean4/CampaignTfq0026FiniteQcd.lean",
+        "dag/research/campaign_tfq-0026_lean_replay.json",
+        "dag/research/campaign_tfq-0026_lean_mutation.json",
+        "dag/research/campaign_tfq-0026_independent.json"
       ],
       "id": "TFQ-0026",
       "lean4": [
-        "absent: FiniteQM.lean has no lattice Dirac doubling theorem"
+        "lean4/CampaignTfq0026FiniteQcd.lean"
       ],
       "local_id": "A08-017",
       "name": "Add Python and Lean replays of the declared doubling count, or leave",
       "obligation": "Add Python and Lean replays of the declared doubling count, or leave the obstruction as Rust-only.",
       "parent_id": "TFQ-0025",
       "python": [
-        "absent: no lattice Dirac use case under 006_finite_qm/python"
+        "checks/independent/tfq-0026.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under 006_finite_qm/python, and FiniteQM.lean has no lattice Dirac theorem.",
+      "summary": "lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under 006_finite_qm/python, and FiniteQM.lean has no lattice Dirac theorem. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) Euclidean Clifford algebra generators gamma1, gamma2, gamma5 over Z[i] satisfying gamma_a^2 = I_2 and {gamma_a, gamma_b} = 0 (euclidean_clifford_anticommutator_relations); (2) 1D symmetric difference zero-velocity modes at k in {0, pi}, even-vs-odd period periodicity on an N-cycle, and 2^d naive species count (2, 4, 8, 16 for d = 1..4) on even-N periodic lattices (naive_symmetric_difference_vanishes_at_zero_and_pi_modes, even_vs_odd_period_pi_mode_periodicity, naive_species_count_values_1d_to_4d); (3) rational Wilson corner mass shift m + 2*r*c lifting all c >= 1 doubler corners for r > 0 and the MAX_CARRIER_DIMENSION = 128 admission guard (wilson_term_lifts_nonzero_pi_corners, wilson_critical_mass_selects_corner_shell, carrier_dimension_admission_guard_128); and (4) explicit chiral symmetry breaking {w I_2, gamma5} != 0 for w != 0 and no-continuum-limit scope fences (wilson_scalar_mass_breaks_gamma5_anticommutativity_fence, finite_brillouin_grid_cardinality_fence, tfq0026_tri_language_replay_scope_ledger_fence).",
       "uuid": "03e30d86-3d2e-5196-9cae-e241acf96041"
     },
     {
