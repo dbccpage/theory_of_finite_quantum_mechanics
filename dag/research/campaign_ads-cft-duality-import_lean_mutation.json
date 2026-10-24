@@ -1,0 +1,66 @@
+{
+  "campaign_node": "ADS-CFT-DUALITY-IMPORT",
+  "record_id": "TFQ-2202",
+  "source_id": "ADS-01",
+  "file": "lean4/CampaignAdsCftDualityImport.lean",
+  "file_sha256": "08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "mutations": [
+    {
+      "id": "mut_1_flip_shadow_involution_sign",
+      "description": "Flipping shadowDimension from d - Delta to d + Delta breaks shadow involution and GKPW mass-squared invariance.",
+      "target": "def shadowDimension (d \u0394 : \u211a) : \u211a :=\n  d - \u0394",
+      "replacement": "def shadowDimension (d \u0394 : \u211a) : \u211a :=\n  d + \u0394",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\n<stdin>:79:51: error: unsolved goals\nd \u0394 : \u211a\n\u22a2 d * 2 + \u0394 = \u0394\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, "
+    },
+    {
+      "id": "mut_2_perturb_bf_bound_denominator",
+      "description": "Changing bfBound from -(d^2)/4 to -(d^2)/2 breaks BF discriminant equivalence and double-root saturation.",
+      "target": "def bfBound (d : \u211a) : \u211a :=\n  -(d ^ 2) / 4",
+      "replacement": "def bfBound (d : \u211a) : \u211a :=\n  -(d ^ 2) / 2",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:132:30: error: linarith failed to find a contradiction\ncase mp\nd mSq : \u211a\nh : -d ^ 2 / 2 \u2264 mSq\na\u271d : d ^ 2 + 4 * mSq < 0\n\u22a2 False\nfailed\n<stdin>:132:30: error: linarith failed to find a contradiction\ncase mpr\nd mSq : \u211a\nh : 0 \u2264 d ^ 2 + 4 * mSq\na\u271d : mSq < -d ^ 2 / 2\n\u22a2 False\nfailed\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\n<stdin>:142:10: "
+    },
+    {
+      "id": "mut_3_perturb_gkpw_discriminant_factor",
+      "description": "Changing gkpwDiscriminant from d^2 + 4 * mSq to d^2 + 2 * mSq breaks completed-square and root recovery.",
+      "target": "def gkpwDiscriminant (d mSq : \u211a) : \u211a :=\n  d ^ 2 + 4 * mSq",
+      "replacement": "def gkpwDiscriminant (d mSq : \u211a) : \u211a :=\n  d ^ 2 + 2 * mSq",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\n<stdin>:104:61: error: unsolved goals\nd \u0394 : \u211a\n\u22a2 -(\u0394 * d * 4) + \u0394 ^ 2 * 4 + d ^ 2 = -(\u0394 * d * 2) + \u0394 ^ 2 * 2 + d ^ 2\n<stdin>:120:43: error: unsolved goals\nd mSq s : \u211a\nhs : s ^ 2 = d ^ 2 + 2 * mSq\n\u22a2 (d ^ 2 + 2 * mSq - d ^ 2) / 4 = (d ^ 2 + 4 * mSq - d ^ 2) / 4\n<stdin>:124:43: error: unsolved goals\nd mS"
+    },
+    {
+      "id": "mut_4_wrong_thooft_torus_suppression_power",
+      "description": "Replacing N^2 suppression between planar and genus-1 torus ribbon graphs by N^1 fails ring normalization.",
+      "target": "ribbonDoubleLineWeight gYM_sq N 2 3 1 * N ^ 2 =\n        ribbonDoubleLineWeight gYM_sq N 2 3 3 := by",
+      "replacement": "ribbonDoubleLineWeight gYM_sq N 2 3 1 * N ^ 1 =\n        ribbonDoubleLineWeight gYM_sq N 2 3 3 := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\n<stdin>:224:45: error: unsolved goals\ngYM_sq N : \u211a\n\u22a2 gYM_sq * N ^ 2 = gYM_sq * N ^ 3\n'CampaignAdsCftDualityImport.shadowDimension_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignAdsCftDualityImport.shadowDimension_sum' depends on axioms: [propext, Classical.choice, Quo"
+    },
+    {
+      "id": "mut_5_drop_isometry_hypothesis_in_pullback",
+      "description": "Dropping the isometry hypothesis V^T * V = 1 in pullback_pushforward_id fails to reduce V^T * V * O_bulk * V^T * V.",
+      "target": "    (V : Matrix B b \u211a) (hV : V.transpose * V = 1) (O_bulk : Matrix b b \u211a) :\n    boundaryPullback V (bulkPushforward V O_bulk) = O_bulk := by",
+      "replacement": "    (V : Matrix B b \u211a) (O_bulk : Matrix b b \u211a) :\n    boundaryPullback V (bulkPushforward V O_bulk) = O_bulk := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:263:33: error(lean.unknownIdentifier): Unknown identifier `hV`\n<stdin>:263:26: error: unsolved goals\nb : Type u_1\nB : Type u_2\ninst\u271d\u00b2 : Fintype b\ninst\u271d\u00b9 : Fintype B\ninst\u271d : DecidableEq b\nV : Matrix B b \u211a\nO_bulk : Matrix b b \u211a\n\u22a2 V\u1d40 * V * O_bulk * (V\u1d40 * V) = 1 * O_bulk * 1\n<stdin>:303:64: error: Application type mismatch: The argument\n  hV\nhas type\n  V\u1d40 * V = 1\nof sort `Prop` but is expected to have type\n  Matrix b b \u211a\nof sort `Type u_1` in the application\n  pullback_pushforward_id V hV\n<stdin>:302:34: error: unsolved goals\nb : Type u_1\nB : Type u_2\ninst\u271d\u00b2 : Fintype b\ninst\u271d\u00b9 : Fintype B\n"
+    },
+    {
+      "id": "mut_6_assert_code_projector_is_identity",
+      "description": "Asserting V * V^T = 1 for the 1-to-2 isometric code embedding fails at matrix entry (1,1).",
+      "target": "theorem codeIsometry12_projector_ne_one :\n    codeIsometry12 * codeIsometry12.transpose \u2260 1 := by",
+      "replacement": "theorem codeIsometry12_projector_ne_one :\n    codeIsometry12 * codeIsometry12.transpose = 1 := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:325:8: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce\n\n\u22a2 codeIsometry12 * codeIsometry12\u1d40 = 1\n'CampaignAdsCftDualityImport.shadowDimension_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignAdsCftDualityImport.shadowDimension_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignAdsCftDualityImport.gkpw_vieta_product' depends on axioms: [propext, Classical.choice, Quot.sou"
+    }
+  ]
+}

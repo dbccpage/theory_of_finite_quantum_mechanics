@@ -8,11 +8,17 @@ target:
     exists in this checkout, and lattice discretizations generally keep at most a subalgebra exact.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Specify the lattice model and which supercharge is exact; prove H = Q^2 or {Q, Q^dagger}
-    on the finite Hilbert space before using pairing.
+  source_bottleneck: Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/CampaignFspLatticeWessZuminoSusy.lean
+    establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A,
+    A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace
+    vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site
+    lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 !=
+    0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino
+    models.
   source_refs:
   - dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md
   - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/independent/fsp-lattice-wess-zumino-susy.md
   paper_refs:
   - dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md
   source_claim_label: OPEN
@@ -21,7 +27,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md
-    sha256: 26128185073ec74dd7ba16e105409150f4fd36fcafc71fa42894e92413f2adbd
+    sha256: 48bde3ecd3c7dfe1a191920a7164c42fb07a792a1ee09a7c5d99d0eb99e07194
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -29,9 +35,656 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_lattice_wess_zumino_susy_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: fermionParity
+  line: 63
+  signature_excerpt: |-
+    def fermionParity (nB nF R : Type*) [DecidableEq nB] [DecidableEq nF] [CommRing R] :
+        Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: supercharge
+  line: 73
+  signature_excerpt: |-
+    def supercharge {nB nF R : Type*} [Zero R] (A : Matrix nF nB R) :
+        Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: superchargeAdj
+  line: 78
+  signature_excerpt: |-
+    def superchargeAdj {nB nF R : Type*} [Zero R] (B : Matrix nB nF R) :
+        Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: susyHamiltonian
+  line: 109
+  signature_excerpt: |-
+    def susyHamiltonian {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) : Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hermSupercharge1
+  line: 148
+  signature_excerpt: 'def hermSupercharge1 {nB nF : Type*} (A : Matrix nF nB ℂ) : Matrix (nB ⊕ nF) (nB
+    ⊕ nF) ℂ'
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hermSupercharge2
+  line: 152
+  signature_excerpt: 'def hermSupercharge2 {nB nF : Type*} (A : Matrix nF nB ℂ) : Matrix (nB ⊕ nF) (nB
+    ⊕ nF) ℂ'
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wz2SiteBlock
+  line: 293
+  signature_excerpt: 'def wz2SiteBlock (m w : ℝ) : Matrix (Fin 2) (Fin 2) ℝ'
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: brokenSupercharge2
+  line: 335
+  signature_excerpt: 'def brokenSupercharge2 : Matrix (Fin 2 ⊕ Fin 2) (Fin 2 ⊕ Fin 2) ℝ'
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: fermionParity_sq
+  line: 67
+  signature_excerpt: |-
+    theorem fermionParity_sq {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R] :
+        fermionParity nB nF R * fermionParity nB nF R = 1
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: supercharge_sq_zero
+  line: 83
+  signature_excerpt: |-
+    theorem supercharge_sq_zero {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R] (A : Matrix nF nB R) :
+        supercharge A * supercharge A = 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: superchargeAdj_sq_zero
+  line: 89
+  signature_excerpt: |-
+    theorem superchargeAdj_sq_zero {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R] (B : Matrix nB nF R) :
+        superchargeAdj B * superchargeAdj B = 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: supercharge_anticommutes_parity
+  line: 95
+  signature_excerpt: |-
+    theorem supercharge_anticommutes_parity {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) :
+        fermionParity nB nF R * supercharge A + supercharge A * fermionParity nB nF R = 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: superchargeAdj_anticommutes_parity
+  line: 102
+  signature_excerpt: |-
+    theorem superchargeAdj_anticommutes_parity {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (B : Matrix nB nF R) :
+        fermionParity nB nF R * superchargeAdj B + superchargeAdj B * fermionParity nB nF R = 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: susyHamiltonian_eq_fromBlocks
+  line: 115
+  signature_excerpt: |-
+    theorem susyHamiltonian_eq_fromBlocks {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) :
+        susyHamiltonian A B = fromBlocks (B * A) 0 0 (A * B)
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: susyHamiltonian_commutes_parity
+  line: 122
+  signature_excerpt: |-
+    theorem susyHamiltonian_commutes_parity {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) :
+        fermionParity nB nF R * susyHamiltonian A B = susyHamiltonian A B * fermionParity nB nF R
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: supercharge_commutes_susyHamiltonian
+  line: 129
+  signature_excerpt: |-
+    theorem supercharge_commutes_susyHamiltonian {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) :
+        supercharge A * susyHamiltonian A B = susyHamiltonian A B * supercharge A
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: superchargeAdj_commutes_susyHamiltonian
+  line: 136
+  signature_excerpt: |-
+    theorem superchargeAdj_commutes_susyHamiltonian {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) :
+        superchargeAdj B * susyHamiltonian A B = susyHamiltonian A B * superchargeAdj B
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hermSupercharge1_hermitian
+  line: 155
+  signature_excerpt: |-
+    theorem hermSupercharge1_hermitian {nB nF : Type*} (A : Matrix nF nB ℂ) :
+        (hermSupercharge1 A)ᴴ = hermSupercharge1 A
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hermSupercharge2_hermitian
+  line: 159
+  signature_excerpt: |-
+    theorem hermSupercharge2_hermitian {nB nF : Type*} (A : Matrix nF nB ℂ) :
+        (hermSupercharge2 A)ᴴ = hermSupercharge2 A
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hermSupercharge1_sq
+  line: 164
+  signature_excerpt: |-
+    theorem hermSupercharge1_sq {nB nF : Type*} [Fintype nB] [Fintype nF]
+        (A : Matrix nF nB ℂ) :
+        hermSupercharge1 A * hermSupercharge1 A = susyHamiltonian A Aᴴ
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hermSupercharge2_sq
+  line: 171
+  signature_excerpt: |-
+    theorem hermSupercharge2_sq {nB nF : Type*} [Fintype nB] [Fintype nF]
+        (A : Matrix nF nB ℂ) :
+        hermSupercharge2 A * hermSupercharge2 A = susyHamiltonian A Aᴴ
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hermSupercharge_anticomm
+  line: 179
+  signature_excerpt: |-
+    theorem hermSupercharge_anticomm {nB nF : Type*} [Fintype nB] [Fintype nF]
+        (A : Matrix nF nB ℂ) :
+        hermSupercharge1 A * hermSupercharge2 A + hermSupercharge2 A * hermSupercharge1 A = 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bosonBlock_quadForm_eq_sum_sq
+  line: 191
+  signature_excerpt: |-
+    theorem bosonBlock_quadForm_eq_sum_sq {nB nF : Type*} [Fintype nB] [Fintype nF]
+        (A : Matrix nF nB ℝ) (v : nB → ℝ) :
+        (∑ i : nB, v i * ((Aᵀ * A).mulVec v) i) = ∑ x : nF, ((A.mulVec v) x) ^ 2
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bosonBlock_quadForm_nonneg
+  line: 210
+  signature_excerpt: |-
+    theorem bosonBlock_quadForm_nonneg {nB nF : Type*} [Fintype nB] [Fintype nF]
+        (A : Matrix nF nB ℝ) (v : nB → ℝ) :
+        0 ≤ ∑ i : nB, v i * ((Aᵀ * A).mulVec v) i
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fermionBlock_quadForm_nonneg
+  line: 217
+  signature_excerpt: |-
+    theorem fermionBlock_quadForm_nonneg {nB nF : Type*} [Fintype nB] [Fintype nF]
+        (A : Matrix nF nB ℝ) (w : nF → ℝ) :
+        0 ≤ ∑ x : nF, w x * ((A * Aᵀ).mulVec w) x
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: boson_eq_fermion_trace
+  line: 224
+  signature_excerpt: |-
+    theorem boson_eq_fermion_trace {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) :
+        (B * A).trace = (A * B).trace
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: supertrace_susyHamiltonian_eq_zero
+  line: 232
+  signature_excerpt: |-
+    theorem supertrace_susyHamiltonian_eq_zero {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) :
+        (fermionParity nB nF R * susyHamiltonian A B).trace = 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: boson_to_fermion_eigenstate
+  line: 247
+  signature_excerpt: |-
+    theorem boson_to_fermion_eigenstate {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) (E : R) (vB : nB → R)
+        (h_eig : (B * A).mulVec vB = E • vB) :
+        (A * B).mulVec (A.mulVec vB) = E • (A.mulVec vB)
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fermion_to_boson_eigenstate
+  line: 261
+  signature_excerpt: |-
+    theorem fermion_to_boson_eigenstate {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) (E : R) (vF : nF → R)
+        (h_eig : (A * B).mulVec vF = E • vF) :
+        (B * A).mulVec (B.mulVec vF) = E • (B.mulVec vF)
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: boson_partner_ne_zero
+  line: 275
+  signature_excerpt: |-
+    theorem boson_partner_ne_zero {nB nF K : Type*}
+        [Fintype nB] [Fintype nF] [Field K]
+        (A : Matrix nF nB K) (B : Matrix nB nF K) (E : K) (vB : nB → K)
+        (h_eig : (B * A).mulVec vB = E • vB) (hE : E ≠ 0) (hvB : vB ≠ 0) :
+        A.mulVec vB ≠ 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wz2SiteBlock_boson_eq_fermion
+  line: 299
+  signature_excerpt: |-
+    theorem wz2SiteBlock_boson_eq_fermion (m w : ℝ) :
+        (wz2SiteBlock m w)ᵀ * wz2SiteBlock m w = (m ^ 2 + w ^ 2) • (1 : Matrix (Fin 2) (Fin 2) ℝ) ∧
+        wz2SiteBlock m w * (wz2SiteBlock m w)ᵀ = (m ^ 2 + w ^ 2) • (1 : Matrix (Fin 2) (Fin 2) ℝ)
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: wz2SiteBlock_det
+  line: 311
+  signature_excerpt: |-
+    theorem wz2SiteBlock_det (m w : ℝ) :
+        (wz2SiteBlock m w).det = m ^ 2 + w ^ 2 ∧ 0 ≤ (wz2SiteBlock m w).det
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: brokenSupercharge_sq_ne_zero
+  line: 342
+  signature_excerpt: |-
+    theorem brokenSupercharge_sq_ne_zero :
+        brokenSupercharge2 * brokenSupercharge2 = 1 ∧
+        brokenSupercharge2 * brokenSupercharge2 ≠ 0
+  source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  source_sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionParity_sq
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.fermionParity_sq
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 67
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 89
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 95
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 115
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 122
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 129
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 136
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 155
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 159
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 164
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 171
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 179
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 191
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 210
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 217
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 224
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 232
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 247
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 261
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 275
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 299
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 311
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 326
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero
+  availability: local
+  symbol: CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero
+  path: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  repository: this_repository
+  sha256: 66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090
+  declaration_status: declaration_found_not_proof_checked
+  line: 342
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -69,10 +722,11 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
-excluded_relation_leads: []
+excluded_relation_leads:
+- source: lean4/CampaignFspLatticeWessZuminoSusy.lean
+  name: leibnizCubicDefect3_witness
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

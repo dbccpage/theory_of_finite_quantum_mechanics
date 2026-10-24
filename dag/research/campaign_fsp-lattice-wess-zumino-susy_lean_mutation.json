@@ -1,0 +1,66 @@
+{
+  "campaign_node": "FSP-LATTICE-WESS-ZUMINO-SUSY",
+  "record_id": "TFQ-1204",
+  "source_id": "FSP-DERIV-040",
+  "file": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+  "file_sha256": "66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "mutations": [
+    {
+      "id": "mut_1_drop_supercharge_nilpotent",
+      "description": "Asserting supercharge(A)^2 = 1 instead of 0 fails block multiplication.",
+      "target": "supercharge A * supercharge A = 0 := by",
+      "replacement": "supercharge A * supercharge A = 1 := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:85:36: error(lean.synthInstanceFailed): failed to synthesize instance of type class\n  OfNat (Matrix (nB \u2295 nF) (nB \u2295 nF) R) 1\nnumerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is\n  Matrix (nB \u2295 nF) (nB \u2295 nF) R\ndue to the absence of the instance above\n\nHint: Type class instance resolution failures can be inspected with the `set_option t"
+    },
+    {
+      "id": "mut_2_flip_susy_hamiltonian_blocks",
+      "description": "Flipping the sign of the fermionic block A * B in susyHamiltonian fails anticommutator expansion.",
+      "target": "susyHamiltonian A B = fromBlocks (B * A) 0 0 (A * B) := by",
+      "replacement": "susyHamiltonian A B = fromBlocks (B * A) 0 0 (-(A * B)) := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:118:63: error: unsolved goals\nnB : Type u_1\nnF : Type u_2\nR : Type u_3\ninst\u271d\u00b2 : Fintype nB\ninst\u271d\u00b9 : Fintype nF\ninst\u271d : CommRing R\nA : Matrix nF nB R\nB : Matrix nB nF R\n\u22a2 A * B = -(A * B)\n<stdin>:132:81: error: unsolved goals\nnB : Type u_1\nnF : Type u_2\nR : Type u_3\ninst\u271d\u00b2 : Fintype nB\ninst\u271d\u00b9 : Fintype nF\ninst\u271d : CommRing R\nA : Matrix nF nB R\nB : Matrix nB nF R\n\u22a2 A * (B * A) = -(A * (B * A)"
+    },
+    {
+      "id": "mut_3_drop_herm_supercharge_anticomm",
+      "description": "Replacing anticommutator {Q1, Q2} = 0 with commutator [Q1, Q2] = 0 fails over C.",
+      "target": "hermSupercharge1 A * hermSupercharge2 A + hermSupercharge2 A * hermSupercharge1 A = 0 := by",
+      "replacement": "hermSupercharge1 A * hermSupercharge2 A - hermSupercharge2 A * hermSupercharge1 A = 0 := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:181:93: error: unsolved goals\nnB : Type u_1\nnF : Type u_2\ninst\u271d\u00b9 : Fintype nB\ninst\u271d : Fintype nF\nA : Matrix nF nB \u2102\n\u22a2 fromBlocks (-(I \u2022 (A\u1d34 * A)) + -(I \u2022 (A\u1d34 * A))) 0 0 (I \u2022 (A * A\u1d34) + I \u2022 (A * A\u1d34)) = 0\n<stdin>:184:42: warning: This simp argument is unused:\n  fromBlocks_zero\n\nHint: Omit it from the simp argument list.\n  [apply] simp [supercharge, superchargeAdj, sub_eq_add_neg, fromBlocks_"
+    },
+    {
+      "id": "mut_4_flip_quadform_sign",
+      "description": "Flipping nonnegativity of the bosonic quadratic form fails sum-of-squares positivity.",
+      "target": "0 \u2264 \u2211 i : nB, v i * ((A\u1d40 * A).mulVec v) i := by",
+      "replacement": "(\u2211 i : nB, v i * ((A\u1d40 * A).mulVec v) i) \u2264 -1 := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:214:2: error: Type mismatch\n  Finset.sum_nonneg fun x x_1 => sq_nonneg ((A *\u1d65 v) x)\nhas type\n  0 \u2264 \u2211 i \u2208 ?m.42, (A *\u1d65 v) i ^ 2\nbut is expected to have type\n  \u2211 x, (A *\u1d65 v) x ^ 2 \u2264 -1\n<stdin>:221:2: error: Type mismatch: After simplification, term\n  h\n has type\n  \u2211 x, w x * ((A * A\u1d40) *\u1d65 w) x \u2264 -1\nbut is expected to have type\n  0 \u2264 \u2211 x, w x * ((A * A\u1d40) *\u1d65 w) x\n'CampaignFspLatticeWessZuminoSu"
+    },
+    {
+      "id": "mut_5_drop_nonzero_eigenvalue_guard",
+      "description": "Dropping the nonzero-eigenvalue guard E != 0 in boson_partner_ne_zero fails because zero modes can be annihilated by A.",
+      "target": "(h_eig : (B * A).mulVec vB = E \u2022 vB) (hE : E \u2260 0) (hvB : vB \u2260 0) :",
+      "replacement": "(h_eig : (B * A).mulVec vB = E \u2022 vB) (hvB : vB \u2260 0) :",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:287:21: error(lean.unknownIdentifier): Unknown identifier `hE`\n'CampaignFspLatticeWessZuminoSusy.fermionParity_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero' depends on axioms: [propext, Classical.choice,"
+    },
+    {
+      "id": "mut_6_assert_zero_leibniz_defect",
+      "description": "Asserting zero discrete cubic Leibniz defect on Fin 3 fails norm_num evaluation (-2 != 0).",
+      "target": "leibnizCubicDefect3 ![0, 1, 2] = -2 \u2227 leibnizCubicDefect3 ![0, 1, 2] \u2260 0 := by",
+      "replacement": "leibnizCubicDefect3 ![0, 1, 2] = 0 \u2227 leibnizCubicDefect3 ![0, 1, 2] \u2260 0 := by",
+      "exit_code": 1,
+      "killed": true,
+      "Diagnostic": "<stdin>:329:2: error: unsolved goals\ncase left\n\u22a2 False\n'CampaignFspLatticeWessZuminoSusy.fermionParity_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Ca"
+    }
+  ]
+}

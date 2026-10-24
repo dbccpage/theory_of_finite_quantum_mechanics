@@ -1,0 +1,58 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23",
+  "dag_node": "FSP-SU2-ADJOINT-REAL-DET",
+  "record_id": "TFQ-1200",
+  "lean_file": "lean4/CampaignFspSu2AdjointRealDet.lean",
+  "lean_file_sha256": "fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "mutants": [
+    {
+      "id": "mutant_1_break_center_blind_sign",
+      "description": "Flip only scalar component a instead of full Z_2 center (-a,-b,-c,-d)",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:64:62: error: unsolved goals\ncase \u00ab0\u00bb.\u00ab1\u00bb\na b c d : \u211d\n\u22a2 b * c + a * d = b * c - a * d\n"
+    },
+    {
+      "id": "mutant_2_drop_unit_norm_orthogonality",
+      "description": "Drop unit quaternion norm hypothesis a^2+b^2+c^2+d^2=1 in orthogonality theorem",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:81:23: warning: this constant has no effect on the linear combination; it can be dropped from the term\n<stdin>:81:4: error: ring failed, ring expressions not equal\na b c d : \u211d\nh : True\n\u22a2 -1 + a ^ 2 * b ^ 2 * 2 + a ^ 2 * c ^ 2 * 2 + a ^ 2 * d ^ 2 * 2 + a ^ 4 + b ^ 2 * c ^ 2 * 2 + b ^ 2 * d ^ 2 * 2 +"
+    },
+    {
+      "id": "mutant_3_drop_intertwiner_det_nonzero",
+      "description": "Drop invertibility hypothesis C.det != 0 in antiunitary_intertwiner_det_conj",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:165:26: error: Application type mismatch: The argument\n  hC\nhas type\n  True\nbut is expected to have type"
+    },
+    {
+      "id": "mutant_4_flip_chargeConj4_kramers_sign",
+      "description": "Replace Kramers square C_4^2 = -1 with +1",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:231:58: error: unsolved goals\ncase calc.step\n\u22a2 -1 = 1\n<stdin>:361:51: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  tensorSpinReal (-?S) ?K"
+    },
+    {
+      "id": "mutant_5_claim_positivity_on_neg_witness",
+      "description": "Flip strict negativity (D.det).re < 0 to > 0 on the D = -I_3 witness",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:492:2: error: unsolved goals\ncase refine_4\n\u22a2 1 < 0\n'CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self' depends on axioms: [propext,"
+    },
+    {
+      "id": "mutant_6_break_pfaffian4_middle_sign",
+      "description": "Flip alternating middle sign in 4x4 Pfaffian definition pfaffian4",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    "
+    }
+  ],
+  "source": "lean4/CampaignFspSu2AdjointRealDet.lean",
+  "source_sha256": "fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15"
+}

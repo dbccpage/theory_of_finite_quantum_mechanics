@@ -1,0 +1,46 @@
+{
+  "AuthorityEffect": "None",
+  "node_id": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
+  "record_id": "TFQ-0522",
+  "source": "lean4/CampaignSnE08WeightedL1Duality.lean",
+  "sha256": "2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff",
+  "mutants": [
+    {
+      "name": "drop_annihilation_weak_duality",
+      "outcome": "KILLED",
+      "reason": "Drop D^T y = 0 in weak_duality",
+      "exit_code": 1
+    },
+    {
+      "name": "drop_box_bound_weak_duality",
+      "outcome": "KILLED",
+      "reason": "Drop |y_e| <= w_e in weak_duality",
+      "exit_code": 1
+    },
+    {
+      "name": "flip_farkas_strict_sign",
+      "outcome": "KILLED",
+      "reason": "Flip u^T b < 0 to 0 < u^T b in Farkas base case",
+      "exit_code": 1
+    },
+    {
+      "name": "drop_nonneg_weights_primal_feas",
+      "outcome": "KILLED",
+      "reason": "Drop 0 <= w_e when proving y = 0 feasible",
+      "exit_code": 1
+    },
+    {
+      "name": "wrong_3cycle_optimum_value",
+      "outcome": "KILLED",
+      "reason": "Change 3-cycle optimum from 1 to 2",
+      "exit_code": 1
+    },
+    {
+      "name": "equate_l1_and_harmonic_residuals",
+      "outcome": "KILLED",
+      "reason": "Claim harmonic residual equals l1 residual",
+      "exit_code": 1
+    }
+  ],
+  "scope": "Six one-ingredient Lean 4 mutations checked via lake env lean --stdin; all 6 killed."
+}

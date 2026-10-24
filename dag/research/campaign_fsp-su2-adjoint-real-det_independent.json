@@ -1,0 +1,23 @@
+{
+  "schema_version": "campaign_independent_check.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23",
+  "dag_node": "FSP-SU2-ADJOINT-REAL-DET",
+  "record_id": "TFQ-1200",
+  "script": "checks/independent/fsp-su2-adjoint-real-det.py",
+  "script_sha256": "79ffe77aa0ee9357257c7ec27e7cbaef34646961e2c2f9f41848088a20927837",
+  "runs": [
+    {
+      "mode": "normal",
+      "command": "python -B -X utf8 checks/independent/fsp-su2-adjoint-real-det.py",
+      "exit_code": 0,
+      "stdout": "PASS fsp-su2-adjoint-real-det: checks=546 neg_det_witnesses=2 pfaffian_sign_flips=3 failures=0"
+    },
+    {
+      "mode": "optimized",
+      "command": "python -O -B -X utf8 checks/independent/fsp-su2-adjoint-real-det.py",
+      "exit_code": 0,
+      "stdout": "PASS fsp-su2-adjoint-real-det: checks=546 neg_det_witnesses=2 pfaffian_sign_flips=3 failures=0"
+    }
+  ]
+}
