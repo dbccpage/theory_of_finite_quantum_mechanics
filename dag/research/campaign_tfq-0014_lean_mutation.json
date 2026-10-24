@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0014",
+  "lean_file": "lean4/CampaignTfq0014FiniteQcd.lean",
+  "sha256": "1bdeaa3f30f57c4c9c3bde5bd4c179c7056ec29fe690e860a6c945dd675fceba",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_groupoid_id_drop_second_idempotent",
+        "description": "Mutate groupoidId from \u27e8giOne, giZero, giZero, giOne\u27e9 to \u27e8giOne, giZero, giZero, giZero\u27e9, falsifying pair_groupoid_unit_and_orthogonal_object_idempotents.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain "
+      },
+      {
+        "id": "M2_obj_idem0_include_off_diagonal",
+        "description": "Mutate objIdem0 from \u27e8giOne, giZero, giZero, giZero\u27e9 to \u27e8giOne, giOne, giZero, giZero\u27e9, falsifying pair_groupoid_unit_and_orthogonal_object_idempotents.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp90ojhzpy.lean:119:43: error: Tactic `decide` proved that the proposition\n  groupoidConv objIdem0 objIdem1 = groupoidZero\nis false\n'CampaignTfq0014FiniteQcd.pair_groupoid_convolution_associative' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0014FiniteQcd.pair_groupoid_unit_and_orthogonal_object_idempotents' depends on axioms: [propext, sorryAx]\n'CampaignTfq0014FiniteQcd.groupoid_cstar_no"
+      },
+      {
+        "id": "M3_packet_d0_anticommutator_instead_of_commutator",
+        "description": "Mutate packetD0 from groupoidSub (groupoidConv Omega X) (groupoidConv X Omega) to groupoidAdd ..., falsifying packet_d0_commutator_trace_zero and packet_d0_scalar_kernel_and_leibniz_derivation.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain "
+      },
+      {
+        "id": "M4_mat2gi_trace_subtract_diagonal",
+        "description": "Mutate mat2GITrace from giAdd A.e00 A.e11 to giSub A.e00 A.e11, falsifying packet_d0_commutator_trace_zero.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain "
+      },
+      {
+        "id": "M5_su_fund_casimir_drop_minus_one",
+        "description": "Mutate suFundCasimir from (N ^ 2 - 1) / (2 * N) to (N ^ 2) / (2 * N), falsifying m2_packet_vs_su3_color_dimension_and_casimir_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpdd8js4ug.lean:216:65: error: unsolved goals\n\u22a2 False\ntmpdd8js4ug.lean:216:78: error: unsolved goals\n\u22a2 False\n'CampaignTfq0014FiniteQcd.pair_groupoid_convolution_associative' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0014FiniteQcd.pair_groupoid_unit_and_orthogonal_object_idempotents' depends on axioms: [propext]\n'CampaignTfq0014FiniteQcd.groupoid_cstar_norm_requires_sqrt_extension_fence"
+      },
+      {
+        "id": "M6_repo_ledger_claim_su3_color_links_present",
+        "description": "Mutate tfq0014RepoLedger hasSu3ColorLinks from false to true, falsifying neither_module_is_hopf_or_su3_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpbrmk7s_r.lean:241:2: error: Tactic `decide` proved that the proposition\n  tfq0014RepoLedger.hasGroupoidConvolution = true \u2227\n    tfq0014RepoLedger.hasM2PacketComplex = true \u2227\n      tfq0014RepoLedger.isCStarCompletionNative = false \u2227\n        tfq0014RepoLedger.hasHopfGaugeTheory = false \u2227 tfq0014RepoLedger.hasSu3ColorLinks = false\nis false\n'CampaignTfq0014FiniteQcd.pair_groupoid_convolution_associ"
+      }
+    ]
+  }
+}

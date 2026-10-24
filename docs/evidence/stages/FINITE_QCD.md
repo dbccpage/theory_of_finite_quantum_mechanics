@@ -2,14 +2,14 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 6, E1 24, E3 2. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 6, E1 23, E3 3. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
 | [TFQ-0011](../nodes/TFQ-0011.md) | `OPEN` | E0 | Finite QCD here means a finite non-abelian gauge datum, a Wilson loop on a finite complex, a beta0-style finite control, and an explicit... | none in this checkout | - |
 | [TFQ-0012](../nodes/TFQ-0012.md) | `OPEN` | E3 | quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subg... | [CampaignTfq0012FiniteQcd.lean](../../../lean4/CampaignTfq0012FiniteQcd.lean): `f001_s000_carrier_coordination_not_color_connection_fence`, `group_like_coproduct_vs_hopf_linearity_fence`, `q8_group_associativity_unit_and_inverses` +7<br>[finite_group.rs](../../../code/rust/src/lie_theory/finite_group.rs)<br>[tfq-0012.py](../../../checks/independent/tfq-0012.py) | receipt_names_uncited_module |
 | [TFQ-0013](../nodes/TFQ-0013.md) | `COMPUTATIONALLY_CHECKED` | E1 | finite_group.rs builds a FiniteGroup from a full multiplication table or from an associative operation, then checks closure, a two-sided... | [finite_group.rs](../../../code/rust/src/lie_theory/finite_group.rs) | computational_no_runnable_test |
-| [TFQ-0014](../nodes/TFQ-0014.md) | `OPEN` | E1 | finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C... | [finite_groupoid_algebra.rs](../../../code/rust/src/lie_theory/finite_groupoid_algebra.rs) | - |
+| [TFQ-0014](../nodes/TFQ-0014.md) | `OPEN` | E3 | finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C... | [CampaignTfq0014FiniteQcd.lean](../../../lean4/CampaignTfq0014FiniteQcd.lean): `commutator_derivation_breaks_grouplike_multiplicativity_fence`, `groupoid_convolution_vs_packet_d0_distinct_objects_fence`, `groupoid_cstar_norm_requires_sqrt_extension_fence` +7<br>[finite_groupoid_algebra.rs](../../../code/rust/src/lie_theory/finite_groupoid_algebra.rs)<br>[tfq-0014.py](../../../checks/independent/tfq-0014.py) | - |
 | [TFQ-0015](../nodes/TFQ-0015.md) | `COMPUTATIONALLY_CHECKED` | E0 | hierarchical_nonabelian_dfm_finite_map.md, QM-213, separates an artificial Borel connection from a substantial one on a 4-vertex puncture... | none in this checkout | computational_no_runnable_test |
 | [TFQ-0016](../nodes/TFQ-0016.md) | `PROVED_LEAN` | E3 | Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1... | [CampaignTfq0016B2Dressing.lean](../../../lean4/CampaignTfq0016B2Dressing.lean): `b2_factorization_unique`, `b2_semidirect_factorization`, `unipotent_subgroup_normal` +9<br>[tfq-0016.py](../../../checks/independent/tfq-0016.py) | - |
 | [TFQ-0017](../nodes/TFQ-0017.md) | `OPEN` | E1 | quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a fi... | [su2.rs](../../../code/rust/src/lie_theory/su2.rs) | - |
