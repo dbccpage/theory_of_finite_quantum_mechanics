@@ -1,0 +1,40 @@
+schema_version: lean_contract_score.v1
+lean_file: lean4/CampaignTfq0123ContinuumInterface.lean
+module: CampaignTfq0123ContinuumInterface
+dag_node: TFQ-0123
+claim_class: L4D
+theorems:
+  - name: CampaignTfq0123ContinuumInterface.nat_transport_cell_assoc
+    role: Proves horizontal composition of NatTransportCell (adding natural-number loss ledgers) is strictly associative.
+  - name: CampaignTfq0123ContinuumInterface.nat_transport_cell_unit_laws
+    role: Proves left and right identity laws for idNatCell under composeNatCell.
+  - name: CampaignTfq0123ContinuumInterface.nat_transport_loss_monotonicity_and_zero_iff
+    role: Proves loss monotonicity and zero-loss characterization for composed NatTransportCell instances.
+  - name: CampaignTfq0123ContinuumInterface.dyadic_triple_exact_coincidence
+    role: Proves that on the sub-unit dyadic triple (1/2, 1/4, 1/8) with eps = 1/16, ulpAbsorbedAdd associates to 7/8 in both parenthesizations, replaying why testing one representable triple does not establish floating associativity.
+  - name: CampaignTfq0123ContinuumInterface.gap_f002_s000_002_float_absorption_breaks_associativity
+    role: Proves that at eps = 1/8, the triple (1, 1/16, 1/16) associates to 1 on the left and 9/8 on the right under ulpAbsorbedAdd (1 != 9/8), whereas scaled integer addition associates to 18 (GAP-F002-S000-002).
+  - name: CampaignTfq0123ContinuumInterface.gap_f002_s000_002_nat_not_divisible_carrier_mismatch
+    role: Proves that 1 : Nat has no half in Nat (n + n != 1) whereas 1/2 + 1/2 = 1 in Q, so no additive map f : Q -> Nat can satisfy f 1 = 1 (GAP-F002-S000-002).
+  - name: CampaignTfq0123ContinuumInterface.simplex_11d_combinatorial_skeleton_counts
+    role: Proves the exact k-face counts C(12, k + 1) and total non-empty face count 4095 of an 11-dimensional simplex Delta^11 (GAP-F002-S000-001).
+  - name: CampaignTfq0123ContinuumInterface.simplex_11d_hinge_codimension_and_euler_characteristic
+    role: Proves that 11D Regge curvature hinges have dimension 9 != 2 and that the alternating face sum of the boundary S^10 equals 2 (GAP-F002-S000-001).
+  - name: CampaignTfq0123ContinuumInterface.transport_loss_ledger_discards_frame_rotation_fence
+    role: Proves that the identity 2D frame and the 90-degree rotated frame both have det = 1 in SO(2) but distinct traces 2 != 0, witnessing that a scalar Nat loss ledger carries zero frame-rotation information.
+  - name: CampaignTfq0123ContinuumInterface.scalar_loss_ledger_underdetermines_11d_ricci_fence
+    role: Proves that a symmetric metric/Ricci tensor in d = 11 has 66 independent components per point and that traceless curvature mode pairs (r, -r) have zero trace yet positive Frobenius norm 2 * r^2 > 0.
+premises:
+  - name: NatTransportCell
+    role: Finite transport cell with endpoints source, target : Nat and natural-number loss ledger loss : Nat.
+  - name: composeNatCell
+    role: Horizontal composition of NatTransportCell instances adding their loss ledgers.
+  - name: ulpAbsorbedAdd
+    role: Rational model of finite-precision floating-point addition with sub-ulp absorption threshold eps.
+  - name: simplexFaceCount
+    role: Binomial face count C(d + 1, k + 1) of a d-dimensional simplex.
+fences:
+  - id: GAP-F002-S000-002
+    description: Natural-number loss addition and floating-point addition are distinct carriers with incompatible divisibility and associativity properties; neither witnesses the other.
+  - id: GAP-F002-S000-001
+    description: An 11-dimensional supergravity triangulation, smooth-frame bundle transport, continuum limit, and the Einstein field equations are not constructed by a scalar Nat transport loss ledger.

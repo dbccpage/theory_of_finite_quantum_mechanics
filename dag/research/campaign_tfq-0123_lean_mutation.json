@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0123",
+  "lean_file": "lean4/CampaignTfq0123ContinuumInterface.lean",
+  "sha256": "c6b03659b446e539d32ed096ab2e390cb3479146c84faff0ccdd4105a4004959",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_compose_nat_cell_drop_second_loss",
+        "description": "Mutate composeNatCell loss from c1.loss + c2.loss to c1.loss, falsifying nat_transport_cell_unit_laws and nat_transport_loss_monotonicity_and_zero_iff.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp3is36mk2.lean:81:2: error: No goals to be solved\ntmp3is36mk2.lean:87:69: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 1\nwhere\n a := \u2191c.loss\ntmp3is36mk2.lean:95:23: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 0\n  a \u2265 0\n  a - b \u2265 1\nwhere\n a := \u2191c2.loss\n b := \u2191c1.loss\ntmp3is36mk2.lean:96:2:"
+      },
+      {
+        "id": "M2_id_nat_cell_nonzero_unit_loss",
+        "description": "Mutate idNatCell loss from 0 to 1, falsifying nat_transport_cell_unit_laws.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpvhrgvuoz.lean:87:69: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191c.loss\ntmpvhrgvuoz.lean:87:69: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2265 0\nwhere\n a := \u2191c.loss\n'CampaignTfq0123ContinuumInterface.nat_transport_cell_assoc' depends on axioms: [propext, Quot.sound]\n'Campaig"
+      },
+      {
+        "id": "M3_ulp_absorbed_add_drop_absorption",
+        "description": "Mutate ulpAbsorbedAdd to always return a + b without sub-ulp absorption, falsifying gap_f002_s000_002_float_absorption_breaks_associativity.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmppjam6r7d.lean:87:65: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\ntmppjam6r7d.lean:104:20: warning: Variable name `eps` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence t"
+      },
+      {
+        "id": "M4_simplex_face_count_drop_plus_one",
+        "description": "Mutate simplexFaceCount from Nat.choose (d + 1) (k + 1) to Nat.choose d (k + 1), falsifying simplex_11d_combinatorial_skeleton_counts.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpd5ow34j3.lean:87:65: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\ntmpd5ow34j3.lean:180:2: error: Tactic `decide` proved that the proposition\n  simplexFaceCount 11 0 = 12 \u2227\n    simplexFaceCount 11 1 = 66 \u2227\n      simplexFaceCount 11 2 = 220 \u2227\n        simplexFaceCount 11 3 = 495 \u2227\n    "
+      },
+      {
+        "id": "M5_regge_hinge_dim_codimension_three",
+        "description": "Mutate reggeHingeDim from d - 2 to d - 3, falsifying simplex_11d_hinge_codimension_and_euler_characteristic.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpzskx6m60.lean:87:65: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\ntmpzskx6m60.lean:192:2: error: Tactic `decide` proved that the proposition\n  reggeHingeDim 11 = 9 \u2227\n    reggeHingeDim 11 \u2260 2 \u2227\n      \u2191(simplexFaceCount 11 0) - \u2191(simplexFaceCount 11 1) + \u2191(simplexFaceCount 11 2) - \u2191(s"
+      },
+      {
+        "id": "M6_frame_trace_subtract_instead_of_add",
+        "description": "Mutate frameTrace from F.a11 + F.a22 to F.a11 - F.a22, falsifying transport_loss_ledger_discards_frame_rotation_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpc89qfo4k.lean:87:65: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\ntmpc89qfo4k.lean:222:2: error: Tactic `decide` proved that the proposition\n  let F_id := { a11 := 1, a12 := 0, a21 := 0, a22 := 1 };\n  let F_rot := { a11 := 0, a12 := -1, a21 := 1, a22 := 0 };\n  frameDet F_id = 1 \u2227 fr"
+      }
+    ]
+  }
+}
