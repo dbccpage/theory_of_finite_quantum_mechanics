@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -4345,7 +4345,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Troyer-Wiese (2005): the NP-complete decision whether a 3D +-J Ising spin glass has ground energy below a threshold reduces in polynomial time to estimating the thermal energy of the frustrated quantum model -sum J_ij sigma^x_i sigma^x_j at beta J >= N ln 2 + ln(12N); a deterministic polynomial estimator for that family would give P = NP, a randomized one NP subset of BPP.",
-      "obligation": "This is a worst-case statement about a model family under a precision promise; it is not formalized here, is not a reduction to the Hubbard model, and does not make any fixed finite system or every fermionic Hamiltonian intractable.",
+      "obligation": "This is a worst-case statement about a model family under a precision promise; it is not formalized here, is not a reduction to the Hubbard model, and does not make any fixed finite system or every fermionic Hamiltonian intractable. Narrowed in lean4/CampaignFspTroyerWieseReduction.lean and checks/independent/fsp-troyer-wiese-reduction.py while keeping status IMPORTED_ASSUMPTION to: (1) integer +/-J Ising spin-flip bond parity (-s)*s' - s*s' = -2*(s*s') and frustrated antiferromagnetic triangle ground energy -J vs excited +3J (gap 4J > 0); (2) Troyer-Wiese (2005) Eqs. (10)-(11) Boltzmann excited-state tail bound (3*N*J*2^N)/(1 + W) < J/4 when W >= 12*N*2^N (corresponding to beta*J >= N ln 2 + ln(12 N)) and disjoint YES/NO threshold decision windows separated at E_th + J/2 under estimator precision |E_hat - E_therm| <= J/4; (3) 2x2 Hadamard conjugation U_H sigma_z U_H = 2 sigma_x mapping the diagonal Ising spin glass to the off-diagonal -sum J_ij sigma_i^x sigma_j^x model with negative length-3 closed-walk weight (-J)^3 = -J^3 < 0 on frustrated triangles; (4) sign-estimator relative variance 1/s^2 - 1 strict growth as average sign s decreases; and (5) explicit scope fences for basis dependence (purely diagonal in the sigma_x eigenbasis), non-applicability to fixed N or bipartite half-filled Hubbard models, and withdrawn HaltingQuotient / GenesisFspBridge fixtures.",
       "imported_structure": [
         "Troyer and Wiese, PRL 94, 170201 (2005), cond-mat/0408370, equations (10)-(11) and footnote 9",
         "NP-completeness of the 3D Ising spin-glass ground-state decision problem (Barahona)"
@@ -4355,18 +4355,36 @@
         "FSP-FREE-TRIANGLE-REPRESENTATION"
       ],
       "parent_record": "TFQ-1190",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.ising_energy_integer_gap_ge_two",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.frustrated_triangle_minimum_energy_and_degeneracy",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.thermal_excited_state_boltzmann_tail_bound",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.ground_energy_threshold_decision_window_separation",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.hadamard_basis_rotation_maps_sigma_z_glass_to_off_diagonal_sigma_x",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.frustrated_triangle_sigma_x_closed_walk_negative_weight",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.sign_estimator_variance_amplification_identity",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.troyer_wiese_is_basis_dependent_not_intrinsic_fence",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.troyer_wiese_does_not_reduce_to_hubbard_or_fixed_N_fence",
+        "lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.withdrawn_halting_and_cochain_arity_fixtures_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/bqnf_sign_evaluator.py::normalize_sign_cochain",
+        "checks/independent/fsp-troyer-wiese-reduction.py::main"
+      ],
       "external_witnesses": [
         "external:omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/bqnf_sign_evaluator.py::verify_troyer_wiese_reduction (cited by the source; the local code/python/src/fsp/bqnf_sign_evaluator.py has no such symbol)",
         "external:omega_majorana::hard_invariants::troyer_wiese_hardness_reduction (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:306-362",
-        "papers/core/fsp/theory_of_finite_fsp.md:364-377"
+        "papers/core/fsp/theory_of_finite_fsp.md:364-377",
+        "dag/derivations/independent/fsp-troyer-wiese-reduction.md",
+        "dag/research/campaign_fsp-troyer-wiese-reduction_lean_replay.json",
+        "dag/research/campaign_fsp-troyer-wiese-reduction_lean_mutation.json",
+        "dag/research/campaign_fsp-troyer-wiese-reduction_independent.json"
       ],
-      "audit": "Cited HaltingQuotient.lean::troyer_wiese_np_hardness does not exist; HaltingQuotient states pigeonhole facts about Bool-valued maps on a 3-element type (binary_projection_has_collision, binary_projection_not_injective). GenesisFspBridge.troyer_wiese_obstruction_sound states beta * V_4 * delta_f > 0 for positive naturals; neither encodes a reduction. The cochain-arity hardness claim is withdrawn (Section 6.2, INV-ARITY-BLOWUP).",
+      "audit": "Replaced missing HaltingQuotient.lean::troyer_wiese_np_hardness and GenesisFspBridge product fixtures with lean4/CampaignFspTroyerWieseReduction.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/bqnf_sign_evaluator.py::normalize_sign_cochain, and checks/independent/fsp-troyer-wiese-reduction.py (603 exact Ising/thermal-tail/Hadamard checks, 0 failures).",
       "see_also": [
         "FSP-EFFICIENT-SAMPLING-OBLIGATIONS"
       ],
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

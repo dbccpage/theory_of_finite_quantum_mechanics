@@ -14,10 +14,10 @@
 Troyer-Wiese (2005): the NP-complete decision whether a 3D +-J Ising spin glass has ground energy below a threshold reduces in polynomial time to estimating the thermal energy of the frustrated quantum model -sum J_ij sigma^x_i sigma^x_j at beta J >= N ln 2 + ln(12N); a deterministic polynomial estimator for that family would give P = NP, a randomized one NP subset of BPP.
 
 ### Governing Obligation
-This is a worst-case statement about a model family under a precision promise; it is not formalized here, is not a reduction to the Hubbard model, and does not make any fixed finite system or every fermionic Hamiltonian intractable.
+This is a worst-case statement about a model family under a precision promise; it is not formalized here, is not a reduction to the Hubbard model, and does not make any fixed finite system or every fermionic Hamiltonian intractable. Narrowed in lean4/CampaignFspTroyerWieseReduction.lean and checks/independent/fsp-troyer-wiese-reduction.py while keeping status IMPORTED_ASSUMPTION to: (1) integer +/-J Ising spin-flip bond parity (-s)*s' - s*s' = -2*(s*s') and frustrated antiferromagnetic triangle ground energy -J vs excited +3J (gap 4J > 0); (2) Troyer-Wiese (2005) Eqs. (10)-(11) Boltzmann excited-state tail bound (3*N*J*2^N)/(1 + W) < J/4 when W >= 12*N*2^N (corresponding to beta*J >= N ln 2 + ln(12 N)) and disjoint YES/NO threshold decision windows separated at E_th + J/2 under estimator precision |E_hat - E_therm| <= J/4; (3) 2x2 Hadamard conjugation U_H sigma_z U_H = 2 sigma_x mapping the diagonal Ising spin glass to the off-diagonal -sum J_ij sigma_i^x sigma_j^x model with negative length-3 closed-walk weight (-J)^3 = -J^3 < 0 on frustrated triangles; (4) sign-estimator relative variance 1/s^2 - 1 strict growth as average sign s decreases; and (5) explicit scope fences for basis dependence (purely diagonal in the sigma_x eigenbasis), non-applicability to fixed N or bipartite half-filled Hubbard models, and withdrawn HaltingQuotient / GenesisFspBridge fixtures.
 
 ### Witness Audit
-Cited HaltingQuotient.lean::troyer_wiese_np_hardness does not exist; HaltingQuotient states pigeonhole facts about Bool-valued maps on a 3-element type (binary_projection_has_collision, binary_projection_not_injective). GenesisFspBridge.troyer_wiese_obstruction_sound states beta * V_4 * delta_f > 0 for positive naturals; neither encodes a reduction. The cochain-arity hardness claim is withdrawn (Section 6.2, INV-ARITY-BLOWUP).
+Replaced missing HaltingQuotient.lean::troyer_wiese_np_hardness and GenesisFspBridge product fixtures with lean4/CampaignFspTroyerWieseReduction.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/bqnf_sign_evaluator.py::normalize_sign_cochain, and checks/independent/fsp-troyer-wiese-reduction.py (603 exact Ising/thermal-tail/Hadamard checks, 0 failures).
 
 ---
 
@@ -38,13 +38,23 @@ Cited HaltingQuotient.lean::troyer_wiese_np_hardness does not exist; HaltingQuot
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.ising_energy_integer_gap_ge_two`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.frustrated_triangle_minimum_energy_and_degeneracy`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.thermal_excited_state_boltzmann_tail_bound`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.ground_energy_threshold_decision_window_separation`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.hadamard_basis_rotation_maps_sigma_z_glass_to_off_diagonal_sigma_x`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.frustrated_triangle_sigma_x_closed_walk_negative_weight`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.sign_estimator_variance_amplification_identity`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.troyer_wiese_is_basis_dependent_not_intrinsic_fence`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.troyer_wiese_does_not_reduce_to_hubbard_or_fixed_N_fence`
+- `lean4/CampaignFspTroyerWieseReduction.lean::CampaignFspTroyerWieseReduction.withdrawn_halting_and_cochain_arity_fixtures_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/bqnf_sign_evaluator.py::normalize_sign_cochain`
+- `checks/independent/fsp-troyer-wiese-reduction.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/bqnf_sign_evaluator.py::verify_troyer_wiese_reduction (cited by the source; the local code/python/src/fsp/bqnf_sign_evaluator.py has no such symbol)`
@@ -63,3 +73,7 @@ Cited HaltingQuotient.lean::troyer_wiese_np_hardness does not exist; HaltingQuot
 - **Cited Sources**:
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:306-362`
   - `papers/core/fsp/theory_of_finite_fsp.md:364-377`
+  - `dag/derivations/independent/fsp-troyer-wiese-reduction.md`
+  - `dag/research/campaign_fsp-troyer-wiese-reduction_lean_replay.json`
+  - `dag/research/campaign_fsp-troyer-wiese-reduction_lean_mutation.json`
+  - `dag/research/campaign_fsp-troyer-wiese-reduction_independent.json`
