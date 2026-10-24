@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "4d533c4f9bd8aefc4aba9f43b13432b0b9eeacca744279acd7cf5ee19cc57702"
+  "sha256_lf": "228b29e243d2032e981d71246fe911de8c5a8102af1cd62a709a3a58fe71bf9a"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -191,6 +191,11 @@
    "sha256": "04ff8e9fc7b6a02a72a8556519d0ee549debd06f00699b1627d3d741b82082a7",
    "sha256_basis": "bytes",
    "size": 9658
+  },
+  "checks/independent/tfq-0027.py": {
+   "sha256": "fec78fe2c6df5a156b429253d82a38659eaffbb22e9e043b1cf2c5a4ef22f645",
+   "sha256_basis": "bytes",
+   "size": 11234
   },
   "checks/independent/tfq-0090.py": {
    "sha256": "229f01d0c8417d3d831b02eecd40b82bd392132b936dc6b579e750039aced92c",
@@ -973,9 +978,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "4d533c4f9bd8aefc4aba9f43b13432b0b9eeacca744279acd7cf5ee19cc57702",
+   "sha256": "228b29e243d2032e981d71246fe911de8c5a8102af1cd62a709a3a58fe71bf9a",
    "sha256_basis": "lf-normalised",
-   "size": 4740273
+   "size": 4741940
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3013,9 +3018,9 @@
    "size": 4020
   },
   "dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md": {
-   "sha256": "d30d4aa14ce2a94b27d05b9c5fd41e810be9eefc063639d8d5df2213834b4e57",
+   "sha256": "b028a75a1af6dee8a783443b3e65ddf5cf71406bf194e6ccba2c201d25d8e9b1",
    "sha256_basis": "lf-normalised",
-   "size": 2415
+   "size": 4047
   },
   "dag/derivations/17_finite_qcd/tfq_0028_state_the_beta0_window_as_rational_arithmetic_and_repeat_the_map_s_withheld.md": {
    "sha256": "e9e43bbc9bd5fb1ed0449ea277062345ae69fd1ffbf4d24fb30f3c20226be753",
@@ -6901,6 +6906,11 @@
    "sha256": "6b52f421e3f14c6ced4577a8d5b63c47d51ad57b9cdcfda426933a295039a6eb",
    "sha256_basis": "bytes",
    "size": 12808
+  },
+  "lean4/CampaignTfq0027FiniteQcd.lean": {
+   "sha256": "16baec33cbf87d9e99aa539c6a85169f86522e2f399de24f4bc88142e96cbe4d",
+   "sha256_basis": "bytes",
+   "size": 14727
   },
   "lean4/CampaignTfq0090FiniteQg.lean": {
    "sha256": "d4d8c2878dbd4382043b97032c2024a5577e03fc0a115351b7cc175d8f935719",
@@ -111166,23 +111176,390 @@
    "status": "OPEN"
   },
   {
-   "absent_notes": [
-    "TFQ-0027 python: wilson_species_count has no Python twin in finite_qm",
-    "TFQ-0027 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs"
-   ],
+   "absent_notes": [],
    "dependents": 13,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 10,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 10
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "TFQ-0027",
    "items": [
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)",
+      "record TFQ-0027"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.antiperiodic_twist_excludes_zero_and_pi_corners",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.antiperiodic_twist_excludes_zero_and_pi_corners",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.c3_to_c6_naive_duplication_vs_block_last_refinement",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.c3_to_c6_naive_duplication_vs_block_last_refinement",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.even_n_periodic_vs_antiperiodic_species_contrast",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.even_n_periodic_vs_antiperiodic_species_contrast",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.max_carrier_dimension_128_dense_operator_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.max_carrier_dimension_128_dense_operator_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.tfq0027_scope_and_citation_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.tfq0027_scope_and_citation_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.wilson_scalar_term_anticommutes_with_no_gamma_generator",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.wilson_scalar_term_anticommutes_with_no_gamma_generator",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.wilson_species_count_shell_selection",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.wilson_species_count_shell_selection",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.wilson_term_vanishes_only_at_origin_corner",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.wilson_term_vanishes_only_at_origin_corner",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0027_lean_replay.json (CampaignTfq0027FiniteQcd)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0027FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0027FiniteQcd: #print axioms CampaignTfq0027FiniteQcd.zero_mode_count_rank_nullity_formula",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0027FiniteQcd.zero_mode_count_rank_nullity_formula",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.lean",
@@ -111201,6 +111578,29 @@
      "path": "lean4/IntegralRefinementC3C6.lean",
      "receipts": [],
      "replay": "none",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0027"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0027.py",
+     "receipts": [],
+     "replay": "n/a",
      "resolution": "present",
      "symbol": null,
      "symbol_declared": null,
@@ -111232,7 +111632,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0027"
    ],
@@ -268467,6 +268867,32 @@
    ],
    "built_successfully": null,
    "checked_at": null,
+   "dag_node": "TFQ-0027",
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0027_lean_replay.json#0:CampaignTfq0027FiniteQcd",
+   "lean_version": null,
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0027FiniteQcd",
+   "path": "lean4/CampaignTfq0027FiniteQcd.lean",
+   "receipt_file": "dag/research/campaign_tfq-0027_lean_replay.json",
+   "receipt_file_sha256": "211c6dca9eb123006a7d329fa7b61d968a9cea966a835544eccaf49031a1d25e",
+   "recorded_sha256": "16baec33cbf87d9e99aa539c6a85169f86522e2f399de24f4bc88142e96cbe4d",
+   "source_unchanged_during_build": true,
+   "toolchain": null
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": null,
    "dag_node": "TFQ-0090",
    "decl_count": 12,
    "exit_code": 0,
@@ -279696,9 +280122,9 @@
  "summary": {
   "by_grade": {
    "E0": 172,
-   "E1": 236,
+   "E1": 235,
    "E2": 42,
-   "E3": 475,
+   "E3": 476,
    "E4": 0
   },
   "by_status": {
@@ -279748,7 +280174,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 498,
+  "receipts_indexed": 499,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -279836,9 +280262,9 @@
    },
    "FINITE_QCD": {
     "E0": 5,
-    "E1": 22,
+    "E1": 21,
     "E2": 0,
-    "E3": 5,
+    "E3": 6,
     "E4": 0
    },
    "FINITE_QED": {
@@ -280027,9 +280453,9 @@
    },
    "OPEN": {
     "E0": 37,
-    "E1": 86,
+    "E1": 85,
     "E2": 10,
-    "E3": 42,
+    "E3": 43,
     "E4": 0
    },
    "PROVED_LEAN": {

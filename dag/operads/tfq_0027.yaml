@@ -1,53 +1,108 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0027
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
-  source_statement: wilson_species_count in the same file counts corners where the rational expression
+  source_statement: 'wilson_species_count in the same file counts corners where the rational expression
     mass + 2*r*(number of pi components) is zero, with no trigonometric approximation. The header states
     that the Wilson term vanishes only at k=0 and anticommutes with no chirality matrix gamma_*. zero_mode_count
     is the kernel dimension s*N^d minus exact rank over Q(i) for a dense operator that must fit under
     MAX_CARRIER_DIMENSION. Even-N antiperiodic twists return zero species. IntegralRefinementC3C6.lean
     covers charge doubling on a three-cycle refined to six vertices. That file is not a stand-in for this
-    lattice Dirac obstruction.
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
+    lattice Dirac obstruction. Narrowed in Lean 4 and an independent Python verifier to four exact
+    finite/algebraic components and non-equivalence fences: (1) exact rational wilsonSpeciesCount4D
+    selecting binomial shells 1, 4, 6, 4, 1 at m = -2*r*c with zero trigonometric approximation, and
+    Wilson shift 2*r*c vanishing at r > 0 iff c = 0 (wilson_species_count_shell_selection,
+    wilson_term_vanishes_only_at_origin_corner); (2) non-anticommutation of any non-zero scalar Wilson
+    term w * I_2 with gamma1, gamma2, and gamma5 over Z[i]
+    (wilson_scalar_term_anticommutes_with_no_gamma_generator); (3) dense operator kernel dimension
+    zero_mode_count = s*N^d - rank under MAX_CARRIER_DIMENSION = 128 and zero corner species for even-N
+    antiperiodic twists (zero_mode_count_rank_nullity_formula,
+    antiperiodic_twist_excludes_zero_and_pi_corners, even_n_periodic_vs_antiperiodic_species_contrast,
+    max_carrier_dimension_128_dense_operator_fence); and (4) non-equivalence fence separating
+    IntegralRefinementC3C6.lean (1D C3 -> C6 scalar Z-cochain charge refinement) from the 2^d lattice
+    Dirac doubling obstruction (c3_to_c6_naive_duplication_vs_block_last_refinement,
+    c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence, tfq0027_scope_and_citation_fence).'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - continuum chiral index theorems (excluded)
   source_bottleneck: Do not cite the three-cycle charge-doubling file as the lattice Dirac obstruction.
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md
+  - dag/derivations/independent/tfq-0027.md
+  - checks/independent/tfq-0027.py
+  - lean4/CampaignTfq0027FiniteQcd.lean
+  - lean4/IntegralRefinementC3C6.lean
+  - dag/research/campaign_tfq-0027_lean_replay.json
+  - dag/research/campaign_tfq-0027_lean_mutation.json
+  - dag/research/campaign_tfq-0027_independent.json
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md
-  source_claim_label: OPEN
+  source_claim_label: OPEN_OBLIGATION
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md
-    sha256: e310e8094182d1a0d39f36f1d64bbb9c3036eaf718c2b68dd282366d32cee0e8
+    sha256: b028a75a1af6dee8a783443b3e65ddf5cf71406bf194e6ccba2c201d25d8e9b1
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  dag_source_commit: 6fb951667
   path: dag/prompts/finite_qcd_tfq_0027_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+  external_repository_commit: 6fb951667
+operation_candidates:
+- binom4
+- wilsonCornerMass
+- wilsonSpeciesCount4D
+- wilsonShift
+- mat2GIAnticomm
+- zeroModeCount
+- boundaryTwistEvenNSpeciesCount
+- admitDenseOperator
+relation_candidates:
+- wilson_species_count_shell_selection
+- wilson_term_vanishes_only_at_origin_corner
+- wilson_scalar_term_anticommutes_with_no_gamma_generator
+- zero_mode_count_rank_nullity_formula
+- antiperiodic_twist_excludes_zero_and_pi_corners
+- even_n_periodic_vs_antiperiodic_species_contrast
+- c3_to_c6_naive_duplication_vs_block_last_refinement
+- c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence
+- max_carrier_dimension_128_dense_operator_fence
+- tfq0027_scope_and_citation_fence
 source_bindings:
-- original_ref: lean4/IntegralRefinementC3C6.lean
-  availability: local
-  symbol: null
-  path: lean4/IntegralRefinementC3C6.lean
-  repository: this_repository
-  sha256: 4623f141c934ad2d27a8ad9d1917983c50161793785d1100fe31d6e55a045ecc
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.wilson_species_count_shell_selection
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.wilson_term_vanishes_only_at_origin_corner
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.wilson_scalar_term_anticommutes_with_no_gamma_generator
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.zero_mode_count_rank_nullity_formula
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.antiperiodic_twist_excludes_zero_and_pi_corners
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.even_n_periodic_vs_antiperiodic_species_contrast
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.c3_to_c6_naive_duplication_vs_block_last_refinement
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.max_carrier_dimension_128_dense_operator_fence
+- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.tfq0027_scope_and_citation_fence
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - Mat2GI
+  - Rat
+  - Z3
+  - Z6
+  generators:
+  - wilsonSpeciesCount4D
+  - wilsonShift
+  - zeroModeCount
+  - boundaryTwistEvenNSpeciesCount
+  - admitDenseOperator
+  relations:
+  - wilson_species_count_shell_selection
+  - wilson_term_vanishes_only_at_origin_corner
+  - zero_mode_count_rank_nullity_formula
+  compositions:
+  - wilson_species_count_shell_selection
+  identities:
+  - wilson_term_vanishes_only_at_origin_corner
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -57,32 +112,58 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: Mat2GI x Rat x Z3 x Z6
+    coefficient_ring: Z[i] x Q
+    assumptions:
+    - IntegralRefinementC3C6 is a 1D C3->C6 scalar charge refinement and not a stand-in for lattice Dirac doubling
+    source_pins:
+    - lean4/CampaignTfq0027FiniteQcd.lean
+    - lean4/IntegralRefinementC3C6.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - wilsonSpeciesCount4D
+    - wilsonShift
+    - zeroModeCount
+    - boundaryTwistEvenNSpeciesCount
+    - admitDenseOperator
+    composition_plan:
+    - wilson_species_count_shell_selection
+    - zero_mode_count_rank_nullity_formula
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - wilson_species_count_shell_selection
+    - wilson_term_vanishes_only_at_origin_corner
+    - zero_mode_count_rank_nullity_formula
+    - antiperiodic_twist_excludes_zero_and_pi_corners
+    - even_n_periodic_vs_antiperiodic_species_contrast
+    - c3_to_c6_naive_duplication_vs_block_last_refinement
+    rejection_predicates:
+    - wilson_scalar_term_anticommutes_with_no_gamma_generator
+    - c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence
+    - max_carrier_dimension_128_dense_operator_fence
+    - tfq0027_scope_and_citation_fence
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0027_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - wilson_species_count_shell_selection
+    - c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence
+    - tfq0027_scope_and_citation_fence
+    anchors:
+    - lean4/CampaignTfq0027FiniteQcd.lean
+    - checks/independent/tfq-0027.py
+    - dag/derivations/independent/tfq-0027.md
+    unpaid_imports:
+    - continuum chiral index theorems (excluded)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T15:30:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- IntegralRefinementC3C6.lean remains fenced off from lattice Dirac doubling claims.
 excluded_relation_leads: []

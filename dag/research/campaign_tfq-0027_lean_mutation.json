@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0027",
+  "lean_file": "lean4/CampaignTfq0027FiniteQcd.lean",
+  "sha256": "16baec33cbf87d9e99aa539c6a85169f86522e2f399de24f4bc88142e96cbe4d",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_binom4_shell_2_wrong_count",
+        "description": "Mutate binom4 2 from 6 to 4, falsifying wilson_species_count_shell_selection.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpycooj07j.lean:88:42: error: unsolved goals\n\u22a2 False\n'CampaignTfq0027FiniteQcd.wilson_species_count_shell_selection' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0027FiniteQcd.wilson_term_vanishes_only_at_origin_corner' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0027FiniteQcd.wilson_scalar_term_anticommutes_with_no_gamma_generato"
+      },
+      {
+        "id": "M2_wilson_shift_constant_zero",
+        "description": "Mutate wilsonShift from 2 * r * (c : \u211a) to 0, falsifying wilson_term_vanishes_only_at_origin_corner.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmprqg6404e.lean:93:17: warning: Variable name `r` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _r\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\ntmprqg6404e.lean:93:25: warning: Variable name `c` is not explicitly reference"
+      },
+      {
+        "id": "M3_zero_mode_count_add_instead_of_sub",
+        "description": "Mutate zeroModeCount from s * (N ^ d) - rank to s * (N ^ d) + rank, falsifying zero_mode_count_rank_nullity_formula.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp8fkkc9zf.lean:205:13: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  b \u2265 1\n  a \u2265 0\n  a - b \u2265 0\nwhere\n a := \u2191s * \u2191(N ^ d)\n b := \u2191rank\ntmp8fkkc9zf.lean:205:23: error: Tactic `decide` proved that the proposition\n  12 = 4\nis false\ntmp8fkkc9zf.lean:205:34: error: Tactic `decide` proved that the proposition\n  14 = 2\nis false\ntmp8fkkc9zf.lean:205:45: err"
+      },
+      {
+        "id": "M4_boundary_twist_antiperiodic_return_two_pow_d",
+        "description": "Mutate boundaryTwistEvenNSpeciesCount false branch from 0 to 2 ^ d, falsifying even_n_periodic_vs_antiperiodic_species_contrast.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpuolss1g8.lean:217:36: warning: Variable name `periodic` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _periodic\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\ntmpuolss1g8.lean:228:2: error: Tactic `decide` proved that the "
+      },
+      {
+        "id": "M5_admit_dense_operator_raise_cap_to_256",
+        "description": "Mutate admitDenseOperator cap from 128 to 256, falsifying max_carrier_dimension_128_dense_operator_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpiovvy7cg.lean:271:2: error: Tactic `decide` proved that the proposition\n  decide (3 \u2264 4 \u2227 128 \u2264 256) = true \u2227 decide (3 \u2264 4 \u2227 256 \u2264 256) = false \u2227 decide (3 \u2264 2 \u2227 16 \u2264 256) = false\nis false\n'CampaignTfq0027FiniteQcd.wilson_species_count_shell_selection' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0027FiniteQcd.wilson_term_vanishes_only_at_origin_corner' depends on a"
+      },
+      {
+        "id": "M6_repo_ledger_cite_c3_c6_as_standin",
+        "description": "Mutate tfq0027RepoLedger citesC3C6AsDiracStandIn from false to true, falsifying tfq0027_scope_and_citation_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpiijqkpx4.lean:295:2: error: Tactic `decide` proved that the proposition\n  tfq0027RepoLedger.usesTrigApproximation = false \u2227\n    tfq0027RepoLedger.wilsonAnticommutesWithChirality = false \u2227\n      tfq0027RepoLedger.antiperiodicEvenNZeroSpecies = true \u2227\n        tfq0027RepoLedger.enforcesMaxCarrier128 = true \u2227 tfq0027RepoLedger.citesC3C6AsDiracStandIn = false\nis false\n'CampaignTfq0027FiniteQcd.wilso"
+      }
+    ]
+  }
+}

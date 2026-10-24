@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 5, E1 22, E3 5. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 5, E1 21, E3 6. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -22,7 +22,7 @@ Nodes: 32. Grades: E0 5, E1 22, E3 5. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_C
 | [TFQ-0024](../nodes/TFQ-0024.md) | `COMPUTATIONALLY_CHECKED` | E1 | creutz_ratio_area_law and creutz_ratio_perimeter_law in the Rust QCD control, and wilson_area_law, wilson_perimeter_law, and creutz_ratio... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0025](../nodes/TFQ-0025.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta0 and qcd_beta1 return BigRational values, and the Creutz ratios above are exact powers of a rational beta_tilde. Part D is diffe... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0026](../nodes/TFQ-0026.md) | `OPEN` | E3 | lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive ope... | [CampaignTfq0026FiniteQcd.lean](../../../lean4/CampaignTfq0026FiniteQcd.lean): `carrier_dimension_admission_guard_128`, `euclidean_clifford_anticommutator_relations`, `even_vs_odd_period_pi_mode_periodicity` +7<br>[tfq-0026.py](../../../checks/independent/tfq-0026.py) | - |
-| [TFQ-0027](../nodes/TFQ-0027.md) | `OPEN` | E1 | wilson_species_count in the same file counts corners where the rational expression mass + 2*r*(number of pi components) is zero, with no... | [IntegralRefinementC3C6.lean](../../../lean4/IntegralRefinementC3C6.lean) | - |
+| [TFQ-0027](../nodes/TFQ-0027.md) | `OPEN` | E3 | wilson_species_count in the same file counts corners where the rational expression mass + 2*r*(number of pi components) is zero, with no... | [CampaignTfq0027FiniteQcd.lean](../../../lean4/CampaignTfq0027FiniteQcd.lean): `antiperiodic_twist_excludes_zero_and_pi_corners`, `c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence`, `c3_to_c6_naive_duplication_vs_block_last_refinement` +7<br>[IntegralRefinementC3C6.lean](../../../lean4/IntegralRefinementC3C6.lean)<br>[tfq-0027.py](../../../checks/independent/tfq-0027.py) | - |
 | [TFQ-0028](../nodes/TFQ-0028.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta0(3, n_f) is the rational 11 - (2/3)*n_f. The Rust report and Lean qcd_beta0_asymptotic_freedom_window record the split 4*C_A + (... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0029](../nodes/TFQ-0029.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta1(3, n_f) is recorded as 102 - (38/3)*n_f. At n_f=16 the Rust control and Lean qcd_beta1_and_banks_zaks_fixed_point record beta0=... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0030](../nodes/TFQ-0030.md) | `COMPUTATIONALLY_CHECKED` | E1 | The confinement wording in QM-221 is tied to the strong-coupling Creutz comparison: chi_area equals 1/9 and chi_perim equals 1 on the dec... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
