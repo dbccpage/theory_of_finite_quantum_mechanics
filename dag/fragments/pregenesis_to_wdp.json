@@ -6289,14 +6289,56 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-checked against a brute-force minimum over bijections, and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force limit of the key cross-check (H-4), and attempt one's check of the Python orbit against the Lean orbit (G-9) is not done.",
-      "obligation": "State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes.",
+      "summary": "Narrowed boundary, status left OPEN. U0 and U1 are well-formed duplicate-free regimes with data count 2, one form of arity 1, and requirement (0, 1). BL is well-formed and duplicate-free with form arity 2 and instance arguments 0 and 1. Each exhaustive candidate list has length 2. The datum swap is an isomorphism from U0 to U1, and the exhaustive keys of U0 and U1 are equal. No isomorphism from U0 to BL exists, and those exhaustive keys differ.",
+      "obligation": "Keep this finite check separate from the implemented Python key. A Python key procedure, a budget-truncated search, and a comparison of Python orbits with Lean orbits on exported runs stay open.",
       "imports": [],
-      "fence": "Open; the run trees are quotiented by the implemented isomorphism, whose soundness is computational at the regimes cross-checked.",
+      "fence": "These facts are the exhaustive Lean search on U0, U1, and BL. They are not a Python key cross-check and not an orbit comparison on exported runs. Status stays OPEN.",
       "witnesses": {
         "lean": [
           {
-            "absent": "CL-ISO-SOUND has no Lean evidence (D3)"
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_U0_U1"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_U0_wf"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_U1_wf"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_BL_wf"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_set_collections"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_candidate_counts"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_keys_eq"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_keys_ne"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIso_U0_not_BL"
           }
         ],
         "rust": [
@@ -6311,6 +6353,11 @@
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
             "symbol": "canonical_bruteforce"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-isomorphism-soundness-in-lean.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6332,6 +6379,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
           "lines": "1045-1059",
           "quote": "the 482 regimes above the brute-force limit of the key cross-check (H-4)"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records the two-datum regimes U0, U1, and BL."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-24 lake build of CampaignPgwIsomorphismSoundnessInLean exited 0."
         }
       ],
       "coda_atlas_ids": [],

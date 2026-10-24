@@ -2503,9 +2503,9 @@ Obligation: Prove a refinement from each cited Python computation to its Lean st
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-checked against a brute-force minimum over bijections, and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force limit of the key cross-check (H-4), and attempt one's check of the Python orbit against the Lean orbit (G-9) is not done.
+Narrowed boundary, status left OPEN. U0 and U1 are well-formed duplicate-free regimes with data count 2, one form of arity 1, and requirement (0, 1). BL is well-formed and duplicate-free with form arity 2 and instance arguments 0 and 1. Each exhaustive candidate list has length 2. The datum swap is an isomorphism from U0 to U1, and the exhaustive keys of U0 and U1 are equal. No isomorphism from U0 to BL exists, and those exhaustive keys differ.
 
-Obligation: State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes.
+Obligation: Keep this finite check separate from the implemented Python key. A Python key procedure, a budget-truncated search, and a comparison of Python orbits with Lean orbits on exported runs stay open.
 
 ### TFQ-0501 runs-past-declared-bounds
 
