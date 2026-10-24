@@ -1,0 +1,157 @@
+{
+  "number": 318,
+  "original_head": "3f3fdc5f5c5f238a7fac4ef10f6172a8db5dabcf",
+  "level": "L1",
+  "meaning": "Seven declared constants and a filtered candidate list. The values do not prove a necessary input floor or execute any engine.",
+  "baseline": {
+    "number": 318,
+    "head": "3f3fdc5f5c5f238a7fac4ef10f6172a8db5dabcf",
+    "source": "lean4/CampaignPgwDeclaredInputFloor.lean",
+    "sha256": "4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/pgw-declared-input-floor.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.1,
+        "output": "checked 39 claims, failures 0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 3.86,
+        "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 19 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignPgwDeclaredInputFloor.lean (new or not grandfathered)\n  lean4/CampaignPgwDeclaredInputFloor.lean: [MISSING_COMPANION] expected companion lean4/CampaignPgwDeclaredInputFloor.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected f589bd03d69b5e93d69bf238b541dc0d4e004621283ee0a937dd042476283ad4, found 81a117a157f31abd26a003ae13a338d05d2d1e09661778867aab7e5d733cb9fd\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.16,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwDeclaredInputFloor.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 1fa451fe1eac), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.6,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwDeclaredInputFloor.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 10.85,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 1.31,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nFAIL view theory_of_finite_qm.jsonl differs from derivation_dag.json; run dag/render_dag_views.py --write\r\nnodes=925 routes=934 records=977 failures=4\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignPgwDeclaredInputFloor"
+        ],
+        "exit_code": 0,
+        "seconds": 13.58,
+        "output": "ℹ [2/3] Built CampaignPgwDeclaredInputFloor (2.1s)\ninfo: CampaignPgwDeclaredInputFloor.lean:55:0: 'pgwBounds_values' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:56:0: 'pgwInput_eq_items' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:57:0: 'pgwOne_below_input' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:58:0: 'pgwGuard_above_rounds' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:59:0: 'pgwEngines_ne_readings' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:60:0: 'pgwStrictlyBelow_list' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:61:0: 'pgwStrictlyBelow_length' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:62:0: 'pgwCeiling_not_below' does not depend on any axioms\nBuild completed successfully (3 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-declared-input-floor.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.25,
+      "output": "checked 39 claims, failures 0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-declared-input-floor.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7,
+      "output": "checked 39 claims, failures 0\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignPgwDeclaredInputFloor"
+      ],
+      "exit_code": 0,
+      "seconds": 13.58,
+      "output": "ℹ [2/3] Built CampaignPgwDeclaredInputFloor (2.1s)\ninfo: CampaignPgwDeclaredInputFloor.lean:55:0: 'pgwBounds_values' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:56:0: 'pgwInput_eq_items' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:57:0: 'pgwOne_below_input' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:58:0: 'pgwGuard_above_rounds' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:59:0: 'pgwEngines_ne_readings' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:60:0: 'pgwStrictlyBelow_list' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:61:0: 'pgwStrictlyBelow_length' does not depend on any axioms\ninfo: CampaignPgwDeclaredInputFloor.lean:62:0: 'pgwCeiling_not_below' does not depend on any axioms\nBuild completed successfully (3 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "404098572605311efcc9e701ee0c0ad1f86002306ec17701a4acc803d37821e6",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb",
+  "structure_observation": {
+    "source_lines": 62,
+    "theorem_count": 8,
+    "axiom_print_count": 8,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
