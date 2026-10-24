@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/src/fsp/hamiltonian_gin_bridge.py`
 
 - file: [code/python/src/fsp/hamiltonian_gin_bridge.py](../../../code/python/src/fsp/hamiltonian_gin_bridge.py)
-- sha256 (`bytes`): `6214e56bc9376913419874596814133e609b2e36327c2c72241444136c495a2a`
+- sha256 (`bytes`): `e98362f08174e77b61e2ec4e160ba89f98958e0b0f4c88f7604f7d2415cd5661`
 - cited in: record TFQ-1194
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

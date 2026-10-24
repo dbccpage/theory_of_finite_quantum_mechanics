@@ -1,23 +1,178 @@
-schema_version: lean_contract_score.v1
-lean_file: lean4/CampaignTfq0117ContinuumInterface.lean
-module: CampaignTfq0117ContinuumInterface
-dag_node: TFQ-0117
-grade: L4D
-sorry_count: 0
-axiom_count: 0
-admitted_count: 0
-theorems:
-  - CampaignTfq0117ContinuumInterface.finite_cyclic_dual_cardinality
-  - CampaignTfq0117ContinuumInterface.finite_cyclic_periodicity
-  - CampaignTfq0117ContinuumInterface.z3_not_exponent_two_yet_torsion_three_fence
-  - CampaignTfq0117ContinuumInterface.mu4_add_mod4_homomorphism
-  - CampaignTfq0117ContinuumInterface.chi4_unit_gaussian_norm
-  - CampaignTfq0117ContinuumInterface.z4_character_orthogonality_exact
-  - CampaignTfq0117ContinuumInterface.z4_nontrivial_character_sum_zero
-  - CampaignTfq0117ContinuumInterface.c4_cochain_syndrome_and_sign_fiber_gap_replay
-  - CampaignTfq0117ContinuumInterface.haar_normalization_period_independence_fence
-  - CampaignTfq0117ContinuumInterface.haar_period_calibration_injective
-notes: >-
-  Formalizes finite cyclic self-duality, the Z/3Z non-exponent-2 torsion fence, exact Z/4Z
-  character orthogonality over Q[i], C_4 holonomy and sign-fiber replay, and the Haar
-  period-independence fence for TFQ-0117.
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignTfq0117ContinuumInterface.lean",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignTfq0117ContinuumInterface.lean",
+      "sha256": "7b26e62f429ca05e95b4dc76f330e04ce90d7b64ecb609344db4f32b51dea37b"
+    },
+    "boundaries": [
+      "A continuum circle and a selected Haar period stay open. The recorded bound is the Z/3Z non-exponent-2 witness, the Z/4Z character census, and the recorded C4 holonomy and sign-fiber gap."
+    ],
+    "contract_id": "merge-tfq-0117-registration",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_tfq-0117_lean_replay.json",
+        "sha256": "2a92e8da8efc4d99400d0d09d63fbbea7662fe17556e4c6f790391c35079f45e"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0117_lean_mutation.json",
+        "sha256": "aee7095b56a000fcedc0112ef432475f66b46042132bb384c314edc828cbdbd5"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0117_independent.json",
+        "sha256": "aa10e66010645950d167517045cd13d5de7c48ecd6fc6b69031fc5a5a7c741ed"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0117-precommit.md",
+        "sha256": "5ff6d572eafca42f9a00f3348b645a548cf4d0ab5ed7eb0a6fee589cf6d4555e"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      }
+    ],
+    "owned_invariants": [
+      "(1 + 1) mod 3 equals 2.",
+      "The 16 pairs of fourth roots of unity multiply as addition mod 4. Every chi4 value has Gaussian norm 1. The 16 inner products equal 4 on the diagonal and 0 off it.",
+      "Tree potentials 200, -400, and 300 with chord potential -300 give holonomy 400. The sign-fiber gap (1 + 1) squared minus (1 - 1) squared equals 4."
+    ],
+    "purpose": "Z/3Z exponent fence, Z/4Z character census, and recorded C4 witnesses for TFQ-0117.",
+    "schema_id": "tfqm.source-contract.v1"
+  },
+  "current_contract": "c9b9f38b0092d931d9d7c6787eb4f5068607306008ab8fd73ff1c0f13ebe5103",
+  "current_scoring": "805326807c1b718f87ea29ac13d91222bb25b0baef9f6b4a21ccdf0d55fcf836",
+  "contract_history": [
+    {
+      "sha256": "c9b9f38b0092d931d9d7c6787eb4f5068607306008ab8fd73ff1c0f13ebe5103",
+      "bytes": 1818,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0117ContinuumInterface.lean",
+          "sha256": "7b26e62f429ca05e95b4dc76f330e04ce90d7b64ecb609344db4f32b51dea37b"
+        },
+        "boundaries": [
+          "A continuum circle and a selected Haar period stay open. The recorded bound is the Z/3Z non-exponent-2 witness, the Z/4Z character census, and the recorded C4 holonomy and sign-fiber gap."
+        ],
+        "contract_id": "merge-tfq-0117-registration",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0117_lean_replay.json",
+            "sha256": "2a92e8da8efc4d99400d0d09d63fbbea7662fe17556e4c6f790391c35079f45e"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0117_lean_mutation.json",
+            "sha256": "aee7095b56a000fcedc0112ef432475f66b46042132bb384c314edc828cbdbd5"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0117_independent.json",
+            "sha256": "aa10e66010645950d167517045cd13d5de7c48ecd6fc6b69031fc5a5a7c741ed"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0117-precommit.md",
+            "sha256": "5ff6d572eafca42f9a00f3348b645a548cf4d0ab5ed7eb0a6fee589cf6d4555e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "(1 + 1) mod 3 equals 2.",
+          "The 16 pairs of fourth roots of unity multiply as addition mod 4. Every chi4 value has Gaussian norm 1. The 16 inner products equal 4 on the diagonal and 0 off it.",
+          "Tree potentials 200, -400, and 300 with chord potential -300 give holonomy 400. The sign-fiber gap (1 + 1) squared minus (1 - 1) squared equals 4."
+        ],
+        "purpose": "Z/3Z exponent fence, Z/4Z character census, and recorded C4 witnesses for TFQ-0117.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0117ContinuumInterface.lean\",\n    \"sha256\": \"7b26e62f429ca05e95b4dc76f330e04ce90d7b64ecb609344db4f32b51dea37b\"\n  },\n  \"boundaries\": [\n    \"A continuum circle and a selected Haar period stay open. The recorded bound is the Z/3Z non-exponent-2 witness, the Z/4Z character census, and the recorded C4 holonomy and sign-fiber gap.\"\n  ],\n  \"contract_id\": \"merge-tfq-0117-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0117_lean_replay.json\",\n      \"sha256\": \"2a92e8da8efc4d99400d0d09d63fbbea7662fe17556e4c6f790391c35079f45e\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0117_lean_mutation.json\",\n      \"sha256\": \"aee7095b56a000fcedc0112ef432475f66b46042132bb384c314edc828cbdbd5\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0117_independent.json\",\n      \"sha256\": \"aa10e66010645950d167517045cd13d5de7c48ecd6fc6b69031fc5a5a7c741ed\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0117-precommit.md\",\n      \"sha256\": \"5ff6d572eafca42f9a00f3348b645a548cf4d0ab5ed7eb0a6fee589cf6d4555e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"(1 + 1) mod 3 equals 2.\",\n    \"The 16 pairs of fourth roots of unity multiply as addition mod 4. Every chi4 value has Gaussian norm 1. The 16 inner products equal 4 on the diagonal and 0 off it.\",\n    \"Tree potentials 200, -400, and 300 with chord potential -300 give holonomy 400. The sign-fiber gap (1 + 1) squared minus (1 - 1) squared equals 4.\"\n  ],\n  \"purpose\": \"Z/3Z exponent fence, Z/4Z character census, and recorded C4 witnesses for TFQ-0117.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "#merge-tfq-0117-registration"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "805326807c1b718f87ea29ac13d91222bb25b0baef9f6b4a21ccdf0d55fcf836",
+      "bytes": 2574,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0117ContinuumInterface.lean",
+          "sha256": "7b26e62f429ca05e95b4dc76f330e04ce90d7b64ecb609344db4f32b51dea37b"
+        },
+        "assessment_id": "merge-tfq-0117-registration",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "The Z/3Z witness, the Z/4Z character census, and the recorded C4 holonomy and sign-fiber gap are the stated bounds. A continuum circle stays open.",
+          "G2": "The existing replay receipt records a passing build of CampaignTfq0117ContinuumInterface. This merge did not run a new Lake build.",
+          "G3": "The finite fences stay separate from a continuum circle and from a selected Haar period.",
+          "G4": "The recorded mutation receipt is 6 of 6. The modular N-torsion loops and the Haar division loops were removed from the independent checker, and that checker was rerun at this merge.",
+          "G5": "Uses the existing Lean module. The lakefile registration bytes are unchanged from main."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T14:24:22.442578+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0117_lean_replay.json",
+            "sha256": "2a92e8da8efc4d99400d0d09d63fbbea7662fe17556e4c6f790391c35079f45e"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0117_lean_mutation.json",
+            "sha256": "aee7095b56a000fcedc0112ef432475f66b46042132bb384c314edc828cbdbd5"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0117_independent.json",
+            "sha256": "aa10e66010645950d167517045cd13d5de7c48ecd6fc6b69031fc5a5a7c741ed"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0117-precommit.md",
+            "sha256": "5ff6d572eafca42f9a00f3348b645a548cf4d0ab5ed7eb0a6fee589cf6d4555e"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact Z/4Z character census and the recorded Z/3Z and C4 witnesses, with a continuum circle and a selected Haar period left open.",
+        "open_higher_grade_findings": [
+          "A continuum circle and a selected Haar period are not derived."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0117ContinuumInterface.lean\",\n    \"sha256\": \"7b26e62f429ca05e95b4dc76f330e04ce90d7b64ecb609344db4f32b51dea37b\"\n  },\n  \"assessment_id\": \"merge-tfq-0117-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The Z/3Z witness, the Z/4Z character census, and the recorded C4 holonomy and sign-fiber gap are the stated bounds. A continuum circle stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignTfq0117ContinuumInterface. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from a continuum circle and from a selected Haar period.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The modular N-torsion loops and the Haar division loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Uses the existing Lean module. The lakefile registration bytes are unchanged from main.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T14:24:22.442578+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0117_lean_replay.json\",\n      \"sha256\": \"2a92e8da8efc4d99400d0d09d63fbbea7662fe17556e4c6f790391c35079f45e\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0117_lean_mutation.json\",\n      \"sha256\": \"aee7095b56a000fcedc0112ef432475f66b46042132bb384c314edc828cbdbd5\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0117_independent.json\",\n      \"sha256\": \"aa10e66010645950d167517045cd13d5de7c48ecd6fc6b69031fc5a5a7c741ed\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0117-precommit.md\",\n      \"sha256\": \"5ff6d572eafca42f9a00f3348b645a548cf4d0ab5ed7eb0a6fee589cf6d4555e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact Z/4Z character census and the recorded Z/3Z and C4 witnesses, with a continuum circle and a selected Haar period left open.\",\n  \"open_higher_grade_findings\": [\n    \"A continuum circle and a selected Haar period are not derived.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "#merge-tfq-0117-scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "#merge-tfq-0117-registration": "c9b9f38b0092d931d9d7c6787eb4f5068607306008ab8fd73ff1c0f13ebe5103",
+    "#merge-tfq-0117-scoring": "805326807c1b718f87ea29ac13d91222bb25b0baef9f6b4a21ccdf0d55fcf836"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Format repair of the recorded L4D assessment into the binding contract-score document. No grade was raised."
+}
