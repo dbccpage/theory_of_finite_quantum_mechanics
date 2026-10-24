@@ -1207,3 +1207,7 @@ lean_lib CampaignTfq0199ImplementationSibling where
 
 lean_lib CampaignTfq0376Pregenesis where
   roots := #[`CampaignTfq0376Pregenesis]
+
+-- Campaign: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW. Not a default target.
+lean_lib CampaignPgwWdpBridgeOngoingToWindow where
+  roots := #[`CampaignPgwWdpBridgeOngoingToWindow]

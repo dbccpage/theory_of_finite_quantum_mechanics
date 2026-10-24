@@ -3475,9 +3475,9 @@ Obligation: Cite each Genesis-to-WDP bridge at its register scope (P, N, C or L)
 - Parent: `TFQ-0554`
 - Status: `OPEN_OBLIGATION`
 
-GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.
+For three positions labeled 0, 1, and 2, every integer triple (g0, g1, g2) has coboundary round sum (g0 - g1) + (g1 - g2) + (g2 - g0) = 0, and adding those differences leaves e01 + e12 + e20 unchanged, including the unbalanced mark 1 + 1 + 1 = 3, which stays 3 after the differences from (2, 5, 11). For every integer g the diagonal g - g is 0, so the loop value 4 is not a diagonal coboundary, while the oriented arcs 0, 0, 0 have diagnostic 0. The forward arc 3 with the other oriented arcs 0 has diagnostic 3, and the two-way values 3 and 5 sum to 8.
 
-Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification.
+Obligation: The finite check on positions 0, 1, 2 records round-sum cancellation, invariance of e01 + e12 + e20, the unbalanced mark 3 after the shift from (2, 5, 11), the loop 4 with diagnostic 0, and the two-way sum 8. A repair quotient for a general marked family, and a transport into the degree-1 window, stay open.
 
 ### TFQ-0556 wdp-bridge-report-fiber-observer
 
