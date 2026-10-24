@@ -14,10 +14,10 @@
 Claimed: Dirac-Kaehler fermions on simplicial lattices give 2^(D/2) flavors and EPRL-FK boundary contractions yield nonnegative spin-network weights; the only local content is the count 1+4+6+4+1 = 16 = 4 x 4 in D = 4, and no spinfoam amplitude is evaluated.
 
 ### Governing Obligation
-Evaluate EPRL-FK boundary contractions on a declared finite complex and determine their signs; the taste count is standard and carries no positivity.
+Evaluate EPRL-FK boundary contractions on a declared finite complex and determine their signs; the taste count is standard and carries no positivity. Narrowed in lean4/CampaignFspDiracKahlerSpinfoamClaim.lean and checks/independent/fsp-dirac-kahler-spinfoam-claim.py while keeping status OPEN to: (1) 4D exterior-algebra binomial taste decomposition sum_{p=0}^4 C(4, p) = 1+4+6+4+1 = 16 = 4 * 2^(4/2), orientifold involution omega(p)^2 = 1, Hodge 2-form chirality split 3(1) + 3(-1) = 0, and single-taste spinor projector idempotence P^2 = P with Tr(P) = 4 and Tr(I - P) = 12; (2) simplicial coboundary nilpotence d_1 d_0 = 0, flat vs curved Dirac-projector commutator [D_curved(c), P_0] != 0 for c != 0 (Frobenius norm squared 2 c^2 > 0), and S^4 Euler-vs-Ahat index mismatch chi(S^4) - 4 A_hat(S^4) = 2 != 0; (3) finite spin-network boundary contraction sign dichotomy showing that mirror-glued two-vertex contractions <psi | V^T V | psi> = sum_k (V psi)_k^2 >= 0 are nonnegative whereas the single-vertex spin-1 tetrahedral Racah 6j recoupling kernel W_6j = [[1/6, -1/3], [-1/3, 1/6]] takes both negative (-1/3 < 0 on psi_+ = (1, 1)) and positive (+1 > 0 on psi_- = (1, -1)) values; and (4) explicit scope fences for 16-component negative determinants, Euclidean EPRL simplicity sublattice integrality, and odd-simplex Berezin orientation-reversal signs.
 
 ### Witness Audit
-Cited ReggePachnerWdw.lean::dirac_kahler_fermion_positivity does not exist. regge_wdw_core.lean::kahler_dirac_bundle_dim_eq_16 is rfl on 1+4+6+4+1 = 16 and fermion_doubling_species_ratio is 16/4 = 4, in an unbuilt file. CdtKdDoublingEvaluator is absent from cdt_kd_doubling_evaluator.py.
+Replaced missing ReggePachnerWdw.lean::dirac_kahler_fermion_positivity and misspelled CdtKdDoublingEvaluator with lean4/CampaignFspDiracKahlerSpinfoamClaim.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/cdt_kd_doubling_evaluator.py::CdtKahlerDiracEvaluator, and checks/independent/fsp-dirac-kahler-spinfoam-claim.py (16242 checks, 0 failures).
 
 ---
 
@@ -28,13 +28,23 @@ Cited ReggePachnerWdw.lean::dirac_kahler_fermion_positivity does not exist. regg
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.dirac_kahler_4d_exterior_taste_decomposition`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.orientifold_involution_and_hodge_chirality_grading`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.minimal_spinor_projector_idempotent_and_trace_four`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.simplicial_coboundary_nilpotence_on_4simplex`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.dirac_kahler_projector_commutator_flat_vs_curved`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.kahler_dirac_euler_vs_spinor_ahat_mismatch_on_s4`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.finite_spin_network_boundary_contraction_sign_dichotomy`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.taste_count_carries_no_positivity_fence`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.eprl_simplicity_spin_embedding_sublattice_fence`
+- `lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.fermionic_cochain_orientation_reversal_sign_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/cdt_kd_doubling_evaluator.py::CdtKahlerDiracEvaluator`
+- `code/python/src/fsp/cdt_kd_doubling_evaluator.py::KahlerDiracAlgebra`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::lattice_dirac_doubling::dirac_kahler_spinfoam_coupling (cited by the source, not in this checkout)`
@@ -51,4 +61,7 @@ Cited ReggePachnerWdw.lean::dirac_kahler_fermion_positivity does not exist. regg
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:720-733`
-  - `papers/core/fsp/lean4/regge_wdw_core.lean:548-562`
+  - `dag/derivations/independent/fsp-dirac-kahler-spinfoam-claim.md`
+  - `dag/research/campaign_fsp-dirac-kahler-spinfoam-claim_lean_replay.json`
+  - `dag/research/campaign_fsp-dirac-kahler-spinfoam-claim_lean_mutation.json`
+  - `dag/research/campaign_fsp-dirac-kahler-spinfoam-claim_independent.json`

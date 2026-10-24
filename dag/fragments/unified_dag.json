@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5286,23 +5286,40 @@
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Claimed: Dirac-Kaehler fermions on simplicial lattices give 2^(D/2) flavors and EPRL-FK boundary contractions yield nonnegative spin-network weights; the only local content is the count 1+4+6+4+1 = 16 = 4 x 4 in D = 4, and no spinfoam amplitude is evaluated.",
-      "obligation": "Evaluate EPRL-FK boundary contractions on a declared finite complex and determine their signs; the taste count is standard and carries no positivity.",
+      "obligation": "Evaluate EPRL-FK boundary contractions on a declared finite complex and determine their signs; the taste count is standard and carries no positivity. Narrowed in lean4/CampaignFspDiracKahlerSpinfoamClaim.lean and checks/independent/fsp-dirac-kahler-spinfoam-claim.py while keeping status OPEN to: (1) 4D exterior-algebra binomial taste decomposition sum_{p=0}^4 C(4, p) = 1+4+6+4+1 = 16 = 4 * 2^(4/2), orientifold involution omega(p)^2 = 1, Hodge 2-form chirality split 3(1) + 3(-1) = 0, and single-taste spinor projector idempotence P^2 = P with Tr(P) = 4 and Tr(I - P) = 12; (2) simplicial coboundary nilpotence d_1 d_0 = 0, flat vs curved Dirac-projector commutator [D_curved(c), P_0] != 0 for c != 0 (Frobenius norm squared 2 c^2 > 0), and S^4 Euler-vs-Ahat index mismatch chi(S^4) - 4 A_hat(S^4) = 2 != 0; (3) finite spin-network boundary contraction sign dichotomy showing that mirror-glued two-vertex contractions <psi | V^T V | psi> = sum_k (V psi)_k^2 >= 0 are nonnegative whereas the single-vertex spin-1 tetrahedral Racah 6j recoupling kernel W_6j = [[1/6, -1/3], [-1/3, 1/6]] takes both negative (-1/3 < 0 on psi_+ = (1, 1)) and positive (+1 > 0 on psi_- = (1, -1)) values; and (4) explicit scope fences for 16-component negative determinants, Euclidean EPRL simplicity sublattice integrality, and odd-simplex Berezin orientation-reversal signs.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-CDT-FOLIATION-POSITIVITY"
       ],
       "parent_record": "TFQ-1215",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.dirac_kahler_4d_exterior_taste_decomposition",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.orientifold_involution_and_hodge_chirality_grading",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.minimal_spinor_projector_idempotent_and_trace_four",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.simplicial_coboundary_nilpotence_on_4simplex",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.dirac_kahler_projector_commutator_flat_vs_curved",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.kahler_dirac_euler_vs_spinor_ahat_mismatch_on_s4",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.finite_spin_network_boundary_contraction_sign_dichotomy",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.taste_count_carries_no_positivity_fence",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.eprl_simplicity_spin_embedding_sublattice_fence",
+        "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean::CampaignFspDiracKahlerSpinfoamClaim.fermionic_cochain_orientation_reversal_sign_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/cdt_kd_doubling_evaluator.py::CdtKahlerDiracEvaluator",
+        "code/python/src/fsp/cdt_kd_doubling_evaluator.py::KahlerDiracAlgebra"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::lattice_dirac_doubling::dirac_kahler_spinfoam_coupling (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:720-733",
-        "papers/core/fsp/lean4/regge_wdw_core.lean:548-562"
+        "dag/derivations/independent/fsp-dirac-kahler-spinfoam-claim.md",
+        "dag/research/campaign_fsp-dirac-kahler-spinfoam-claim_lean_replay.json",
+        "dag/research/campaign_fsp-dirac-kahler-spinfoam-claim_lean_mutation.json",
+        "dag/research/campaign_fsp-dirac-kahler-spinfoam-claim_independent.json"
       ],
-      "audit": "Cited ReggePachnerWdw.lean::dirac_kahler_fermion_positivity does not exist. regge_wdw_core.lean::kahler_dirac_bundle_dim_eq_16 is rfl on 1+4+6+4+1 = 16 and fermion_doubling_species_ratio is 16/4 = 4, in an unbuilt file. CdtKdDoublingEvaluator is absent from cdt_kd_doubling_evaluator.py.",
+      "audit": "Replaced missing ReggePachnerWdw.lean::dirac_kahler_fermion_positivity and misspelled CdtKdDoublingEvaluator with lean4/CampaignFspDiracKahlerSpinfoamClaim.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/cdt_kd_doubling_evaluator.py::CdtKahlerDiracEvaluator, and checks/independent/fsp-dirac-kahler-spinfoam-claim.py (16242 checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9961,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9974,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9982,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +9999,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

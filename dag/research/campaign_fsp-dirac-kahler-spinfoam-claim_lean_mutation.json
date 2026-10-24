@@ -1,0 +1,64 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-24",
+  "module": "CampaignFspDiracKahlerSpinfoamClaim",
+  "dag_node": "FSP-DIRAC-KAHLER-SPINFOAM-CLAIM",
+  "claim_id": "TFQ-1216",
+  "source": "lean4/CampaignFspDiracKahlerSpinfoamClaim.lean",
+  "sha256": "eac20fb43c492827945a9a062592bb5d4b0386b8d46de6cf9387a1f185bc7842",
+  "total_mutations": 6,
+  "killed_mutations": 6,
+  "survived_mutations": 0,
+  "all_killed": true,
+  "mutations": [
+    {
+      "id": "m1_wrong_exterior_total_dim",
+      "anchor": "CampaignFspDiracKahlerSpinfoamClaim.dirac_kahler_4d_exterior_taste_decomposition",
+      "mutation": "Replace `(\u2211 p : Fin 5, Nat.choose 4 p.val) = 16 \u2227` with `(\u2211 p : Fin 5, Nat.choose 4 p.val) = 15 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m2_wrong_orientifold_degree2_sign",
+      "anchor": "CampaignFspDiracKahlerSpinfoamClaim.orientifold_involution_and_hodge_chirality_grading",
+      "mutation": "Replace `orientifoldSign 2 = -1 \u2227` with `orientifoldSign 2 = 1 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m3_wrong_spinor_projector_trace",
+      "anchor": "CampaignFspDiracKahlerSpinfoamClaim.minimal_spinor_projector_idempotent_and_trace_four",
+      "mutation": "Replace `(\u2211 t : Fin 4, \u2211 s : Fin 4, spinorTasteMask t * spinorCompMask s) = 4 \u2227` with `(\u2211 t : Fin 4, \u2211 s : Fin 4, spinorTasteMask t * spinorCompMask s) = 8 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m4_flip_curved_commutator_norm_ineq",
+      "anchor": "CampaignFspDiracKahlerSpinfoamClaim.dirac_kahler_projector_commutator_flat_vs_curved",
+      "mutation": "Replace `0 < (\u2211 i : Fin 2, \u2211 j : Fin 2,\n      ((diracCurvedBlock c * tasteProjector0 - tasteProjector0 * diracCurvedBlock c) i j) ^ 2)` with `(\u2211 i : Fin 2, \u2211 j : Fin 2,\n      ((diracCurvedBlock c * tasteProjector0 - tasteProjector0 * diracCurvedBlock c) i j) ^ 2) < 0`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m5_flip_racah6j_negative_contraction_sign",
+      "anchor": "CampaignFspDiracKahlerSpinfoamClaim.finite_spin_network_boundary_contraction_sign_dichotomy",
+      "mutation": "Replace `boundaryContraction spin1Racah6jKernel ![1, 1] < 0 \u2227` with `0 < boundaryContraction spin1Racah6jKernel ![1, 1] \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m6_flip_orientation_reversal_fence",
+      "anchor": "CampaignFspDiracKahlerSpinfoamClaim.fermionic_cochain_orientation_reversal_sign_fence",
+      "mutation": "Replace `((-1 : \u211a) ^ (2 * m + 1)) * w < 0 := by` with `0 < ((-1 : \u211a) ^ (2 * m + 1)) * w := by`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    }
+  ]
+}
