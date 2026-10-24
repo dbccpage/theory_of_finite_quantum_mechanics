@@ -1,0 +1,157 @@
+{
+  "number": 307,
+  "original_head": "7cb872a2a5ae2cebd5ae2092479d10ac47f9d555",
+  "level": "L2",
+  "meaning": "Natural exponent identities and integer evaluations of declared lattice/beta formulas. No lattice construction, Wilson expectation, strong-coupling expansion, or continuum limit is proved.",
+  "baseline": {
+    "number": 307,
+    "head": "7cb872a2a5ae2cebd5ae2092479d10ac47f9d555",
+    "source": "lean4/CampaignTfq0031StrongCouplingBoundary.lean",
+    "sha256": "6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/tfq-0031.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.4,
+        "output": "checked 203 claims, failures 0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 1.39,
+        "output": "changed since origin/main (ec9009d99235d2b494eb95a70fe324a75cf854d4): 16 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignTfq0031StrongCouplingBoundary.lean (new or not grandfathered)\n  lean4/CampaignTfq0031StrongCouplingBoundary.lean: [MISSING_COMPANION] expected companion lean4/CampaignTfq0031StrongCouplingBoundary.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 008042675630279f4749d28de3fd1634b76f27a4c89c5778d668a22233e7a6a3, found ce088027f69da6ea65b4a96e8ef0bf0140d84c4bd226329303b7a4376fd21125\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.49,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignTfq0031StrongCouplingBoundary.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base ec9009d99235), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 10.09,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignTfq0031StrongCouplingBoundary.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 10.81,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base ec9009d99235); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 1.38,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nnodes=925 routes=934 records=977 failures=3\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignTfq0031StrongCouplingBoundary"
+        ],
+        "exit_code": 0,
+        "seconds": 9.34,
+        "output": "ℹ [2/3] Built CampaignTfq0031StrongCouplingBoundary (1.5s)\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:104:0: 'tfq0031_vertex_count' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:105:0: 'tfq0031_edge_count' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:106:0: 'tfq0031_tree_edges' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:107:0: 'tfq0031_betti' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:108:0: 'tfq0031_beta_tilde' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:109:0: 'tfq0031_beta_tilde_reduced' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:110:0: 'tfq0031_area_exponent' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:111:0: 'tfq0031_side_shift' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:112:0: 'tfq0031_perim_exponent' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:113:0: 'tfq0031_area_pair_22' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:114:0: 'tfq0031_area_pair_23' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:115:0: 'tfq0031_area_pair_32' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:116:0: 'tfq0031_area_pair_33' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:117:0: 'tfq0031_perim_pair_22' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:118:0: 'tfq0031_perim_pair_23' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:119:0: 'tfq0031_perim_pair_32' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:120:0: 'tfq0031_perim_pair_33' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:121:0: 'tfq0031_beta0_samples' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:122:0: 'tfq0031_beta0_window' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:123:0: 'tfq0031_beta1_16' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:124:0: 'tfq0031_banks_zaks' does not depend on any axioms\nBuild completed successfully (3 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/tfq-0031.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.08,
+      "output": "checked 203 claims, failures 0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/tfq-0031.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.58,
+      "output": "checked 203 claims, failures 0\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignTfq0031StrongCouplingBoundary"
+      ],
+      "exit_code": 0,
+      "seconds": 9.34,
+      "output": "ℹ [2/3] Built CampaignTfq0031StrongCouplingBoundary (1.5s)\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:104:0: 'tfq0031_vertex_count' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:105:0: 'tfq0031_edge_count' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:106:0: 'tfq0031_tree_edges' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:107:0: 'tfq0031_betti' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:108:0: 'tfq0031_beta_tilde' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:109:0: 'tfq0031_beta_tilde_reduced' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:110:0: 'tfq0031_area_exponent' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:111:0: 'tfq0031_side_shift' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:112:0: 'tfq0031_perim_exponent' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:113:0: 'tfq0031_area_pair_22' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:114:0: 'tfq0031_area_pair_23' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:115:0: 'tfq0031_area_pair_32' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:116:0: 'tfq0031_area_pair_33' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:117:0: 'tfq0031_perim_pair_22' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:118:0: 'tfq0031_perim_pair_23' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:119:0: 'tfq0031_perim_pair_32' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:120:0: 'tfq0031_perim_pair_33' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:121:0: 'tfq0031_beta0_samples' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:122:0: 'tfq0031_beta0_window' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:123:0: 'tfq0031_beta1_16' does not depend on any axioms\ninfo: CampaignTfq0031StrongCouplingBoundary.lean:124:0: 'tfq0031_banks_zaks' does not depend on any axioms\nBuild completed successfully (3 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "bb31d60c7a0a6e464aabe15ef0a54407c83d044eae147405ba280d7f0c7cd091",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9",
+  "structure_observation": {
+    "source_lines": 124,
+    "theorem_count": 17,
+    "axiom_print_count": 21,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
