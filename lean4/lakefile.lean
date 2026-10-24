@@ -1048,6 +1048,10 @@ lean_lib CampaignSnE08WeightedL1Duality where
 lean_lib CampaignSnProtectedAnswerTransport where
   roots := #[`CampaignSnProtectedAnswerTransport]
 
+-- Campaign: FSP-SU2-ADJOINT-REAL-DET. Not a default target.
+lean_lib CampaignFspSu2AdjointRealDet where
+  roots := #[`CampaignFspSu2AdjointRealDet]
+
 -- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
 lean_lib CampaignFspImaginaryMuRealDet where
   roots := #[`CampaignFspImaginaryMuRealDet]
