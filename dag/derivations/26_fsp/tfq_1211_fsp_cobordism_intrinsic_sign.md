@@ -14,10 +14,10 @@
 Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.
 
 ### Governing Obligation
-Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.
+State and prove the no-go theorem that maps a nonzero cobordism invariant to the impossibility of positive path-integral weights across a specified class of representation transformations; ledger GIN-C22 and GIN-C23 withdraw the fixture readings. Narrowed in lean4/CampaignFspCobordismIntrinsicSign.lean and checks/independent/fsp-cobordism-intrinsic-sign.py to: (1) discrete spectral sign oddness, particle-hole doublet cancellation, and single-eigenvalue zero-crossing jump Delta(eta) = +2 (Delta(eta/2) = 1, parity factor (-1)^(k+1) = -((-1)^k)); (2) mapping-torus 2x2 Dirac block det(diracMappingBlock m s) = m^2 - s showing massless sign reversal det(m=0, s=-1) = +1 vs det(m=0, s=+1) = -1; (3) Z_2 quadratic refinement Arf Gaussian sign sum dichotomy (+2 for Arf=0 vs -2 for Arf=1); (4) finite AHSS 5D spin-cobordism pairing nu5 = n_1 + arf*c_2 + n_2*w_2 in Z_2 across fundamental (1,0), spin-1/2 (1,1), and K3 gauge-gravitational (0,1) sectors (GIN-C22); (5) within-class Ward-identity no-go theorem over anomaly-involuted configurations (if sum_x w(T x) = -sum_x w(x) and w(x) >= 0 for all x, then w = 0) and 5D bulk inflow product cancellation (-1)^nu5 * (-1)^nu5 = +1 (GIN-C23); and (6) explicit scope fences for Pin^- Z_16 order-16 torsion (8*1 != 0 in Z_16), outside-class similarity transforms P^(-1)*diracMappingBlock(0,1)*P = diag(1,-1) (eigenvalue signs preserved), and non-zero thermal orientation weight asymmetry.
 
 ### Witness Audit
-Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not exist; the module evaluates a defined function mappingTorusHolonomy of a Nat field (1 at 0, -1 at 1) and a defect mass on it (GIN-C22 historical fixture). Cobordism5dEvaluator is absent from cobordism_5d_higher_anomaly.py.
+Replaced missing WittenGlobalAnomaly.lean::cobordism_anomaly_intrinsic_sign and trivial Z_2 addition assertions with lean4/CampaignFspCobordismIntrinsicSign.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-cobordism-intrinsic-sign.py (1203 checks, 0 failures).
 
 ---
 
@@ -28,7 +28,16 @@ Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.spectralSign_odd_and_symmetric_pair_zero`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.single_eigenvalue_crossing_eta_jump_by_two`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.mapping_torus_fermion_det_sign_reversal`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.arf_gaussian_sign_sum_dichotomy`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.ahss_5d_spin_cobordism_pairing_sectors`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.anomaly_odd_ward_identity_rules_out_positive_weights_in_class`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.five_d_bulk_inflow_cancels_boundary_anomaly_sign`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.pin_minus_z16_order_sixteen_fence`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.basis_change_removes_sign_outside_constrained_class_fence`
+- `lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.thermal_orientation_weight_asymmetry_fence`
 
 ### Rust Certifiers
 - *none*
@@ -50,6 +59,10 @@ Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `papers/core/fsp/theory_of_finite_fsp.md:652-665`
-  - `papers/core/fsp/the_problem_of_the_fermion_sign.md:829-853`
-  - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32`
+  - `papers/core/fsp/theory_of_finite_fsp.md:653-664`
+  - `papers/core/fsp/the_problem_of_the_fermion_sign.md:830-915`
+  - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-33`
+  - `dag/derivations/independent/fsp-cobordism-intrinsic-sign.md`
+  - `dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json`
+  - `dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_mutation.json`
+  - `dag/research/campaign_fsp-cobordism-intrinsic-sign_independent.json`
