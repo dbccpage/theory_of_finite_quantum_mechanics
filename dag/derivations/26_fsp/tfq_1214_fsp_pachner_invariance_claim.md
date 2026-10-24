@@ -14,10 +14,10 @@
 Claimed: a discrete topological partition function on 4D triangulations is invariant under the 1-5, 2-4 and 3-3 Pachner moves; the source names no state-sum model, and the Regge action itself is not Pachner invariant.
 
 ### Governing Obligation
-Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs.
+Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs. Narrowed in lean4/CampaignFspPachnerInvarianceClaim.lean and checks/independent/fsp-pachner-invariance-claim.py while keeping status OPEN to: (1) Euler-Poincare characteristic chi = N_0 - N_1 + N_2 - N_3 + N_4 invariance, move invertibility, and codimension-1 Dehn-Sommerville invariance 2 N_3 - 5 N_4 = 0 across all 4D bistellar Pachner moves (1<->5, 2<->4, 3<->3); (2) exact surgical face-vector trajectory (6, 15, 20, 15, 6) -> (7, 20, 30, 25, 10) -> (7, 21, 34, 30, 12) -> (7, 21, 34, 30, 12) on partial Delta^5 = S^4 matching Simplicial4DManifold in code/python/src/fsp/regge_pachner_wdw.py; (3) exact counterterm characterization w_0 = 10 w_2 + 15 w_3 + 6 w_4 and w_1 = -4 w_2 - 5 w_3 - 2 w_4 for linear state-sum invariance and vertex normalization invariance G^{-N_0} |Flat| for finite-group flat gauge bundles; and (4) non-invariance of the curved Regge action and curved WDW defect mass 3 N_1 (45 < 60 < 63), plus scope fences for signed rational hinge deficit cancellation, unnormalized 4-simplex weight failure, and fermion-sign independence.
 
 ### Witness Audit
-Cited ReggePachnerWdw.lean::pachner_move_topological_invariance does not exist; curved_pachner_induces_positive_defect states that a Nat list sum is positive when one entry is positive. execute_pachner_moves is absent from regge_pachner_wdw.py.
+Replaced missing ReggePachnerWdw.lean::pachner_move_topological_invariance and Nat-only curved_pachner_induces_positive_defect with lean4/CampaignFspPachnerInvarianceClaim.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-pachner-invariance-claim.py (25602 checks, 0 failures).
 
 ---
 
@@ -28,7 +28,16 @@ Cited ReggePachnerWdw.lean::pachner_move_topological_invariance does not exist; 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence`
+- `lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence`
 
 ### Rust Certifiers
 - *none*
@@ -51,3 +60,7 @@ Cited ReggePachnerWdw.lean::pachner_move_topological_invariance does not exist; 
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:694-706`
+  - `dag/derivations/independent/fsp-pachner-invariance-claim.md`
+  - `dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json`
+  - `dag/research/campaign_fsp-pachner-invariance-claim_lean_mutation.json`
+  - `dag/research/campaign_fsp-pachner-invariance-claim_independent.json`

@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5223,22 +5223,37 @@
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Claimed: a discrete topological partition function on 4D triangulations is invariant under the 1-5, 2-4 and 3-3 Pachner moves; the source names no state-sum model, and the Regge action itself is not Pachner invariant.",
-      "obligation": "Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs.",
+      "obligation": "Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs. Narrowed in lean4/CampaignFspPachnerInvarianceClaim.lean and checks/independent/fsp-pachner-invariance-claim.py while keeping status OPEN to: (1) Euler-Poincare characteristic chi = N_0 - N_1 + N_2 - N_3 + N_4 invariance, move invertibility, and codimension-1 Dehn-Sommerville invariance 2 N_3 - 5 N_4 = 0 across all 4D bistellar Pachner moves (1<->5, 2<->4, 3<->3); (2) exact surgical face-vector trajectory (6, 15, 20, 15, 6) -> (7, 20, 30, 25, 10) -> (7, 21, 34, 30, 12) -> (7, 21, 34, 30, 12) on partial Delta^5 = S^4 matching Simplicial4DManifold in code/python/src/fsp/regge_pachner_wdw.py; (3) exact counterterm characterization w_0 = 10 w_2 + 15 w_3 + 6 w_4 and w_1 = -4 w_2 - 5 w_3 - 2 w_4 for linear state-sum invariance and vertex normalization invariance G^{-N_0} |Flat| for finite-group flat gauge bundles; and (4) non-invariance of the curved Regge action and curved WDW defect mass 3 N_1 (45 < 60 < 63), plus scope fences for signed rational hinge deficit cancellation, unnormalized 4-simplex weight failure, and fermion-sign independence.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-REGGE-DEFICIT-ACTION"
       ],
       "parent_record": "TFQ-1212",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence",
+        "lean4/CampaignFspPachnerInvarianceClaim.lean::CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [
         "external:omega_quantum_physics::finite_spinfoam::pachner_move_invariance (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:694-706"
+        "papers/core/fsp/theory_of_finite_fsp.md:694-706",
+        "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+        "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json",
+        "dag/research/campaign_fsp-pachner-invariance-claim_lean_mutation.json",
+        "dag/research/campaign_fsp-pachner-invariance-claim_independent.json"
       ],
-      "audit": "Cited ReggePachnerWdw.lean::pachner_move_topological_invariance does not exist; curved_pachner_induces_positive_defect states that a Nat list sum is positive when one entry is positive. execute_pachner_moves is absent from regge_pachner_wdw.py.",
+      "audit": "Replaced missing ReggePachnerWdw.lean::pachner_move_topological_invariance and Nat-only curved_pachner_induces_positive_defect with lean4/CampaignFspPachnerInvarianceClaim.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-pachner-invariance-claim.py (25602 checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9959,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9972,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9980,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +9997,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

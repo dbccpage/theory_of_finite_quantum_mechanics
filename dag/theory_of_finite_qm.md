@@ -10278,7 +10278,7 @@ Obligation: Construct H_perp on a declared finite state space and determine its 
 
 Claimed: a discrete topological partition function on 4D triangulations is invariant under the 1-5, 2-4 and 3-3 Pachner moves; the source names no state-sum model, and the Regge action itself is not Pachner invariant.
 
-Obligation: Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs.
+Obligation: Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs. Narrowed in lean4/CampaignFspPachnerInvarianceClaim.lean and checks/independent/fsp-pachner-invariance-claim.py while keeping status OPEN to: (1) Euler-Poincare characteristic chi = N_0 - N_1 + N_2 - N_3 + N_4 invariance, move invertibility, and codimension-1 Dehn-Sommerville invariance 2 N_3 - 5 N_4 = 0 across all 4D bistellar Pachner moves (1<->5, 2<->4, 3<->3); (2) exact surgical face-vector trajectory (6, 15, 20, 15, 6) -> (7, 20, 30, 25, 10) -> (7, 21, 34, 30, 12) -> (7, 21, 34, 30, 12) on partial Delta^5 = S^4 matching Simplicial4DManifold in code/python/src/fsp/regge_pachner_wdw.py; (3) exact counterterm characterization w_0 = 10 w_2 + 15 w_3 + 6 w_4 and w_1 = -4 w_2 - 5 w_3 - 2 w_4 for linear state-sum invariance and vertex normalization invariance G^{-N_0} |Flat| for finite-group flat gauge bundles; and (4) non-invariance of the curved Regge action and curved WDW defect mass 3 N_1 (45 < 60 < 63), plus scope fences for signed rational hinge deficit cancellation, unnormalized 4-simplex weight failure, and fermion-sign independence.
 
 ### TFQ-1215 CDT causal foliation and positive transfer matrix (unsupported)
 
