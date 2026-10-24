@@ -1044,6 +1044,10 @@ lean_lib CampaignDfmRelationalTimeFence where
 lean_lib CampaignSnE08WeightedL1Duality where
   roots := #[`CampaignSnE08WeightedL1Duality]
 
+-- Campaign: PGW-SN-PROTECTED-ANSWER-TRANSPORT. Not a default target.
+lean_lib CampaignSnProtectedAnswerTransport where
+  roots := #[`CampaignSnProtectedAnswerTransport]
+
 -- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
 lean_lib CampaignFspImaginaryMuRealDet where
   roots := #[`CampaignFspImaginaryMuRealDet]

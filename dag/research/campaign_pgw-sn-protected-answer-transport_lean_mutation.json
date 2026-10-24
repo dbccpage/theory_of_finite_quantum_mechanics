@@ -1,0 +1,49 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23",
+  "dag_node": "PGW-SN-PROTECTED-ANSWER-TRANSPORT",
+  "source": "lean4/CampaignSnProtectedAnswerTransport.lean",
+  "source_sha256": "dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "mutants": [
+    {
+      "id": "M1_drop_old_image_hypothesis_in_retraction_transport_law",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:106:6: error(lean.unknownIdentifier): Unknown identifier `hr`\n<stdin>:103:55: error: unsolved goals\nA B E Q : Type\nu : A \u2192 B\nr : B \u2192 A \u2295 E\nF : A \u2192 Q\nd : E \u2192 Q\na : A\n\u22a2 Sum.elim F d (r (u a)) = F a\n<stdin>:146:20: error: Application type mismatch: The argument\n  retraction_transport_law u r ?m.66 ?m.68 ?m.69\nhas type\n  retractionTransport r ?m.66 ?m.68 (u ?m.69) = ?m.66 ?m.69\nbut is expected"
+    },
+    {
+      "id": "M2_drop_distinct_values_in_transport_off_image_underdetermined",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:158:10: error(lean.unknownIdentifier): Unknown identifier `hq`\n'CampaignSnProtectedAnswerTransport.retraction_transport_law' does not depend on any axioms\n'CampaignSnProtectedAnswerTransport.typed_retraction_transport_law' does not depend on any axioms\n'CampaignSnProtectedAnswerTransport.typed_retraction_transport_refuses' does not depend on any axioms\n'CampaignSnProtectedAnswerTransport.t"
+    },
+    {
+      "id": "M3_drop_transition_square_in_commuting_square_iterated",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:218:74: error(lean.unknownIdentifier): Unknown identifier `hT`\n<stdin>:227:39: error: Application type mismatch: The argument\n  hT\nhas type\n  TransitionSquare u T T'\nof sort `Prop` but is expected to have type\n  \u2115\nof sort `Type` in the application\n  commuting_square_iterated u T T' hT\n<stdin>:226:43: error: unsolved goals\nA B Q : Type\nu : A \u2192 B\nF : A \u2192 Q\nF' : B \u2192 Q\nT : A \u2192 A\nT' : B \u2192 B\nhF "
+    },
+    {
+      "id": "M4_wrong_stage_in_snCarrier_answer_transport",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:345:63: error: Application type mismatch: The argument\n  snRetract_old_image_law n\nhas type\n  OldImageLaw (sectionLift n) (snRetract n)\nbut is expected to have type\n  OldImageLaw (sectionLift n) (snRetract (n + 1))\nin the application\n  retraction_transport_law (sectionLift n) (snRetract (n + 1)) (snRetract_old_image_law n)\n'CampaignSnProtectedAnswerTransport.retraction_transport_law' does "
+    },
+    {
+      "id": "M5_flip_s6Retract_branch_in_s6Descent_old_image_law",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:433:2: error: Tactic `rfl` failed: The left-hand side\n  s6Retract (s6Lift x)\nis not definitionally equal to the right-hand side\n  Sum.inl x\n\nx : \u2124\n\u22a2 s6Retract (s6Lift x) = Sum.inl x\n<stdin>:440:2: error: unsolved goals\ncase pos\nx y : \u2124\nhy : y = 0\n\u22a2 True \u2194 False\n<stdin>:441:2: error: unsolved goals\ncase neg\nx y : \u2124\nhy : \u00acy = 0\n\u22a2 Sum.inl x = Sum.inr () \u2194 True\n<stdin>:440:57: warning: This si"
+    },
+    {
+      "id": "M6_drop_off_image_hypothesis_in_old_image_not_right_inverse",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:493:2: error(lean.unknownIdentifier): Unknown identifier `hb\u2080`\n'CampaignSnProtectedAnswerTransport.retraction_transport_law' does not depend on any axioms\n'CampaignSnProtectedAnswerTransport.typed_retraction_transport_law' does not depend on any axioms\n'CampaignSnProtectedAnswerTransport.typed_retraction_transport_refuses' does not depend on any axioms\n'CampaignSnProtectedAnswerTransport.t"
+    }
+  ]
+}

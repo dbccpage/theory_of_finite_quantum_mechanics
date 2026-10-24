@@ -1,18 +1,20 @@
 {
   "AuthorityEffect": "None",
   "artifact": "lean4/lakefile.lean",
-  "assurance": "Merge integration only; inherited L1D grade retained for declarative registrations. Existing replay evidence is historical; no build or project checks executed during conflict resolution.",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
   "contract": {
     "AuthorityEffect": "None",
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/lakefile.lean",
-      "sha256": "4f70cb5615320df088431fa5772ecaf6b0c313bdef397c86c683b0f329b85e8e"
+      "sha256": "c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05"
     },
     "boundaries": [
-      "Registry only; no mathematical theorem or runtime implementation."
+      "Registry only; no mathematical theorem or runtime implementation.",
+      "Registry only; no mathematical claim.",
+      "Replay receipts describe parent revisions; no build of the combined registry was run during merge resolution."
     ],
-    "contract_id": "merge-weighted-l1-and-imaginary-mu-registrations",
+    "contract_id": "merge-campaign-registrations",
     "evidence": [
       {
         "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
@@ -35,16 +37,30 @@
         "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
       },
       {
+        "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+        "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+      },
+      {
+        "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+        "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+      },
+      {
+        "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+        "sha256": "29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+        "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+      },
+      {
         "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
         "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
       }
     ],
     "owned_invariants": [
-      "Existing registrations preserved with unique library names; the CampaignSnE08WeightedL1Duality target is non-default.",
-      "All previous registrations preserved.",
-      "The CampaignFspImaginaryMuRealDet target is non-default; both campaign registrations are preserved verbatim."
+      "Existing registrations preserved with unique library names; CampaignSnE08WeightedL1Duality, CampaignSnProtectedAnswerTransport and CampaignFspImaginaryMuRealDet remain non-default."
     ],
-    "purpose": "Declarative non-default target registrations for CampaignSnE08WeightedL1Duality and CampaignFspImaginaryMuRealDet; authorized build-file support exception.",
+    "purpose": "Declarative non-default target registrations from both merge parents; existing registrations preserved.",
     "schema_id": "tfqm.source-contract.v1"
   },
   "contract_history": [
@@ -3510,6 +3526,53 @@
       "sha256": "b741b402504f16e69e5e19dd6f5179252deb5a79daa3ad123b243802d9c89fa9"
     },
     {
+      "bytes": 1570,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#campaign-pgw-sn-protected-answer-transport-registry"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"d07ff2a2fc595d852e92eb19bcc86008c383c3d05b71849797f73111384a9aa7\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\"\n  ],\n  \"contract_id\": \"campaign-pgw-sn-protected-answer-transport-registry\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Existing registrations preserved with unique library names; the CampaignSnProtectedAnswerTransport target is non-default.\"\n  ],\n  \"purpose\": \"Declarative non-default target registration; authorized build-file support exception.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "d07ff2a2fc595d852e92eb19bcc86008c383c3d05b71849797f73111384a9aa7"
+        },
+        "boundaries": [
+          "Registry only; no mathematical theorem or runtime implementation."
+        ],
+        "contract_id": "campaign-pgw-sn-protected-answer-transport-registry",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "Existing registrations preserved with unique library names; the CampaignSnProtectedAnswerTransport target is non-default."
+        ],
+        "purpose": "Declarative non-default target registration; authorized build-file support exception.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "f46d92af33a52124a45204494d8dff37d1f4a85b43b4228fa951f017eac684b8"
+    },
+    {
       "bytes": 670,
       "original_paths": [
         "lean4/lakefile.contract.score.yaml#campaign-fsp-imaginary-mu-real-det-registry"
@@ -3541,22 +3604,24 @@
       "sha256": "8af0fb90a17fd95e5144f5afab19bd3969e560bb5f7e3e3e2a436750ee645271"
     },
     {
-      "bytes": 1960,
+      "bytes": 2715,
       "original_paths": [
-        "lean4/lakefile.contract.score.yaml#merge-resolution-contract"
+        "lean4/lakefile.contract.score.yaml#merge-campaign-registrations"
       ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"4f70cb5615320df088431fa5772ecaf6b0c313bdef397c86c683b0f329b85e8e\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\"\n  ],\n  \"contract_id\": \"merge-weighted-l1-and-imaginary-mu-registrations\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Existing registrations preserved with unique library names; the CampaignSnE08WeightedL1Duality target is non-default.\",\n    \"All previous registrations preserved.\",\n    \"The CampaignFspImaginaryMuRealDet target is non-default; both campaign registrations are preserved verbatim.\"\n  ],\n  \"purpose\": \"Declarative non-default target registrations for CampaignSnE08WeightedL1Duality and CampaignFspImaginaryMuRealDet; authorized build-file support exception.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\",\n    \"Registry only; no mathematical claim.\",\n    \"Replay receipts describe parent revisions; no build of the combined registry was run during merge resolution.\"\n  ],\n  \"contract_id\": \"merge-campaign-registrations\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Existing registrations preserved with unique library names; CampaignSnE08WeightedL1Duality, CampaignSnProtectedAnswerTransport and CampaignFspImaginaryMuRealDet remain non-default.\"\n  ],\n  \"purpose\": \"Declarative non-default target registrations from both merge parents; existing registrations preserved.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "language": "Lean 4",
           "path": "lean4/lakefile.lean",
-          "sha256": "4f70cb5615320df088431fa5772ecaf6b0c313bdef397c86c683b0f329b85e8e"
+          "sha256": "c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05"
         },
         "boundaries": [
-          "Registry only; no mathematical theorem or runtime implementation."
+          "Registry only; no mathematical theorem or runtime implementation.",
+          "Registry only; no mathematical claim.",
+          "Replay receipts describe parent revisions; no build of the combined registry was run during merge resolution."
         ],
-        "contract_id": "merge-weighted-l1-and-imaginary-mu-registrations",
+        "contract_id": "merge-campaign-registrations",
         "evidence": [
           {
             "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
@@ -3579,29 +3644,110 @@
             "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
           },
           {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
             "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
             "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
           }
         ],
         "owned_invariants": [
-          "Existing registrations preserved with unique library names; the CampaignSnE08WeightedL1Duality target is non-default.",
-          "All previous registrations preserved.",
-          "The CampaignFspImaginaryMuRealDet target is non-default; both campaign registrations are preserved verbatim."
+          "Existing registrations preserved with unique library names; CampaignSnE08WeightedL1Duality, CampaignSnProtectedAnswerTransport and CampaignFspImaginaryMuRealDet remain non-default."
         ],
-        "purpose": "Declarative non-default target registrations for CampaignSnE08WeightedL1Duality and CampaignFspImaginaryMuRealDet; authorized build-file support exception.",
+        "purpose": "Declarative non-default target registrations from both merge parents; existing registrations preserved.",
         "schema_id": "tfqm.source-contract.v1"
       },
-      "sha256": "56fda299b713a41abb5c4d9847bd81d60bc6e96dc29fd0678106dfe9c2a593e9"
+      "sha256": "6b775d14485501b26b6cc778d38629439f9dcb578530166b410926ecc154476b"
+    },
+    {
+      "sha256": "dea143764bba54e6b08f5b68f7636a1ff7134e0a3971cb79b2bd7843cf198f11",
+      "bytes": 2715,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05"
+        },
+        "boundaries": [
+          "Registry only; no mathematical theorem or runtime implementation.",
+          "Registry only; no mathematical claim.",
+          "Replay receipts describe parent revisions; no build of the combined registry was run during merge resolution."
+        ],
+        "contract_id": "merge-campaign-registrations",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
+            "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+            "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
+          }
+        ],
+        "owned_invariants": [
+          "Existing registrations preserved with unique library names; CampaignSnE08WeightedL1Duality, CampaignSnProtectedAnswerTransport and CampaignFspImaginaryMuRealDet remain non-default."
+        ],
+        "purpose": "Declarative non-default target registrations from both merge parents; existing registrations preserved.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\",\n    \"Registry only; no mathematical claim.\",\n    \"Replay receipts describe parent revisions; no build of the combined registry was run during merge resolution.\"\n  ],\n  \"contract_id\": \"merge-campaign-registrations\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Existing registrations preserved with unique library names; CampaignSnE08WeightedL1Duality, CampaignSnProtectedAnswerTransport and CampaignFspImaginaryMuRealDet remain non-default.\"\n  ],\n  \"purpose\": \"Declarative non-default target registrations from both merge parents; existing registrations preserved.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#merge-protected-answer-receipt-contract"
+      ]
     }
   ],
-  "current_contract": "56fda299b713a41abb5c4d9847bd81d60bc6e96dc29fd0678106dfe9c2a593e9",
-  "current_scoring": "09dc18843e408dac9c94051e92f9e68228510de9dbe0b697370d152882f46a71",
+  "current_contract": "dea143764bba54e6b08f5b68f7636a1ff7134e0a3971cb79b2bd7843cf198f11",
+  "current_scoring": "98a15c88f763b4bc54a973f5b05d37a1cba0530e06afb34d2f752d97e296c048",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "lean4/lakefile.contract.score.yaml#campaign-pgw-minimal-or-initial-refused-contract": "11ffff4efa0db03d85581c8aa3ea568044c9a63143fe43adbd33e476cbfa0b4e",
     "lean4/lakefile.contract.score.yaml#campaign-pgw-minimal-or-initial-refused-scoring": "3ca805316c962c651fc59f7977f9a3a215569a030de089661177f9a9f7c12a6b",
-    "lean4/lakefile.contract.score.yaml#merge-resolution-contract": "56fda299b713a41abb5c4d9847bd81d60bc6e96dc29fd0678106dfe9c2a593e9",
-    "lean4/lakefile.contract.score.yaml#merge-resolution-scoring": "09dc18843e408dac9c94051e92f9e68228510de9dbe0b697370d152882f46a71",
     "lean4/lakefile.contract.score.yaml#post-main-integration": "c44f5e79207250a9b788f8a509a47546f57e92d97196171e1d9228c84c518e6c",
     "lean4/lakefile.contract.score.yaml#pr237-contract": "5074b2b2a8f02e90ea3921781f158e6577183f8d50841e91fd48f30d8c6472f3",
     "lean4/lakefile.contract.score.yaml#pr237-final-base-contract": "2088844c3c1778881ed4d422308b0e45c32e035a84c25bbf090256325fc44826",
@@ -3614,7 +3760,9 @@
     "lean4/lakefile.contract.score.yaml#pr237-symanzik-contract": "4e6c0f8ce4b31356f2d5c888f89e84eef9b70962d714f3e32da3b5b987962633",
     "lean4/lakefile.contract.score.yaml#pr237-symanzik-scoring": "041fb1fac3f40ee393437b85aa88ada6058432ab83196188b3177584511128df",
     "lean4/lakefile.lean.contract.yaml": "4fc4cae88a7859e634ffa98d3262cdeb996ab97c2f28d937d8316a3c0b1e38b4",
-    "lean4/lakefile.lean.score.yaml": "c1353e438ef2122aead352a844a2521cd9986693086cc6a85be45a59faa5d046"
+    "lean4/lakefile.lean.score.yaml": "c1353e438ef2122aead352a844a2521cd9986693086cc6a85be45a59faa5d046",
+    "lean4/lakefile.contract.score.yaml#merge-protected-answer-receipt-contract": "dea143764bba54e6b08f5b68f7636a1ff7134e0a3971cb79b2bd7843cf198f11",
+    "lean4/lakefile.contract.score.yaml#merge-protected-answer-receipt-scoring": "98a15c88f763b4bc54a973f5b05d37a1cba0530e06afb34d2f752d97e296c048"
   },
   "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
@@ -8841,6 +8989,77 @@
       "sha256": "8bdd7895951a294870c27be224a25c3710a8a9edca78c49042bb1048b3818e81"
     },
     {
+      "bytes": 2230,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#campaign-pgw-sn-protected-answer-transport-registry"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"d07ff2a2fc595d852e92eb19bcc86008c383c3d05b71849797f73111384a9aa7\"\n  },\n  \"assessment_id\": \"campaign-pgw-sn-protected-answer-transport-registry\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Registers CampaignSnProtectedAnswerTransport non-default library.\",\n    \"G2\": \"Verified via lake build CampaignSnProtectedAnswerTransport.\",\n    \"G3\": \"Non-default target; existing targets untouched.\",\n    \"G4\": \"Replay receipt verifies lake build exit code 0.\",\n    \"G5\": \"Follows repository lakefile conventions.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T23:06:30+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative Lake library registration; authorized support_exception in governance/policy.json.\",\n  \"open_higher_grade_findings\": [\n    \"Declarative configuration file only.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "d07ff2a2fc595d852e92eb19bcc86008c383c3d05b71849797f73111384a9aa7"
+        },
+        "assessment_id": "campaign-pgw-sn-protected-answer-transport-registry",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Registers CampaignSnProtectedAnswerTransport non-default library.",
+          "G2": "Verified via lake build CampaignSnProtectedAnswerTransport.",
+          "G3": "Non-default target; existing targets untouched.",
+          "G4": "Replay receipt verifies lake build exit code 0.",
+          "G5": "Follows repository lakefile conventions."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T23:06:30+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Declarative Lake library registration; authorized support_exception in governance/policy.json.",
+        "open_higher_grade_findings": [
+          "Declarative configuration file only."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L1D",
+        "support_exception": true
+      },
+      "sha256": "6d0429d4ef26c242bb6feebe9998496950e659e0dfb7b58c329906968b5152c6"
+    },
+    {
       "bytes": 1469,
       "original_paths": [
         "lean4/lakefile.contract.score.yaml#campaign-fsp-imaginary-mu-real-det-registry"
@@ -8887,29 +9106,29 @@
       "sha256": "79b6b23b70d3f05de29a74acd8667dca73fc9aa117cd6e62b4a6c85609c8bde4"
     },
     {
-      "bytes": 2572,
+      "bytes": 3386,
       "original_paths": [
-        "lean4/lakefile.contract.score.yaml#merge-resolution-scoring"
+        "lean4/lakefile.contract.score.yaml#merge-campaign-registrations"
       ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"4f70cb5615320df088431fa5772ecaf6b0c313bdef397c86c683b0f329b85e8e\"\n  },\n  \"assessment_id\": \"merge-weighted-l1-and-imaginary-mu-registrations\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Combines the two existing non-default target registrations without changing other registrations.\",\n    \"G2\": \"Each target has its existing scoped replay receipt; the merged lakefile has not been built in this conflict-resolution task.\",\n    \"G3\": \"Both target blocks are preserved verbatim and remain non-default.\",\n    \"G4\": \"Existing per-campaign replay receipts are retained; no merged-source replay is claimed.\",\n    \"G5\": \"Uses the existing Lake registration form for both targets.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T03:03:41.474805+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative Lake library registration; authorized support_exception in governance/policy.json.\",\n  \"open_higher_grade_findings\": [\n    \"Declarative configuration file only.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05\"\n  },\n  \"assessment_id\": \"merge-campaign-registrations\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Combines the three non-default registrations from the two parent revisions; existing registrations preserved.\",\n    \"G2\": \"Parent replay receipts record scoped builds of the individual targets; no merged build was run.\",\n    \"G3\": \"All three targets remain non-default; package, dependencies and default targets are unchanged.\",\n    \"G4\": \"Historical replay and mutation evidence is retained from both parents; merge resolution checked the declaration union only.\",\n    \"G5\": \"Preserves each parent registration verbatim and the repository Lakefile conventions.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T03:04:16.312444+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative Lake library registration; authorized support_exception in governance/policy.json.\",\n  \"open_higher_grade_findings\": [\n    \"Declarative configuration file only.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "language": "Lean 4",
           "path": "lean4/lakefile.lean",
-          "sha256": "4f70cb5615320df088431fa5772ecaf6b0c313bdef397c86c683b0f329b85e8e"
+          "sha256": "c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05"
         },
-        "assessment_id": "merge-weighted-l1-and-imaginary-mu-registrations",
+        "assessment_id": "merge-campaign-registrations",
         "assessment_status": "complete",
         "basis": {
-          "G1": "Combines the two existing non-default target registrations without changing other registrations.",
-          "G2": "Each target has its existing scoped replay receipt; the merged lakefile has not been built in this conflict-resolution task.",
-          "G3": "Both target blocks are preserved verbatim and remain non-default.",
-          "G4": "Existing per-campaign replay receipts are retained; no merged-source replay is claimed.",
-          "G5": "Uses the existing Lake registration form for both targets."
+          "G1": "Combines the three non-default registrations from the two parent revisions; existing registrations preserved.",
+          "G2": "Parent replay receipts record scoped builds of the individual targets; no merged build was run.",
+          "G3": "All three targets remain non-default; package, dependencies and default targets are unchanged.",
+          "G4": "Historical replay and mutation evidence is retained from both parents; merge resolution checked the declaration union only.",
+          "G5": "Preserves each parent registration verbatim and the repository Lakefile conventions."
         },
         "composite_grade": "D",
-        "evaluation_timestamp": "2026-10-24T03:03:41.474805+00:00",
+        "evaluation_timestamp": "2026-10-24T03:04:16.312444+00:00",
         "evidence": [
           {
             "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
@@ -8932,6 +9151,22 @@
             "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
           },
           {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
             "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
             "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
           }
@@ -8950,7 +9185,7 @@
         "open_higher_grade_findings": [
           "Declarative configuration file only."
         ],
-        "profile": "Symbolic/Formal",
+        "profile": "Non-Numeric",
         "rubric": {
           "path": "SCORING.md",
           "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
@@ -8959,7 +9194,98 @@
         "score_token": "L1D",
         "support_exception": true
       },
-      "sha256": "09dc18843e408dac9c94051e92f9e68228510de9dbe0b697370d152882f46a71"
+      "sha256": "3bf3dc8c910a22a444e8edb532b338f5d28fbd112db027bc726ea751f50db230"
+    },
+    {
+      "sha256": "98a15c88f763b4bc54a973f5b05d37a1cba0530e06afb34d2f752d97e296c048",
+      "bytes": 3386,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05"
+        },
+        "assessment_id": "merge-campaign-registrations",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Combines the three non-default registrations from the two parent revisions; existing registrations preserved.",
+          "G2": "Parent replay receipts record scoped builds of the individual targets; no merged build was run.",
+          "G3": "All three targets remain non-default; package, dependencies and default targets are unchanged.",
+          "G4": "Historical replay and mutation evidence is retained from both parents; merge resolution checked the declaration union only.",
+          "G5": "Preserves each parent registration verbatim and the repository Lakefile conventions."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T03:04:16.312444+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
+            "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+            "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Declarative Lake library registration; authorized support_exception in governance/policy.json.",
+        "open_higher_grade_findings": [
+          "Declarative configuration file only."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L1D",
+        "support_exception": true
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"c9ab8ef8f57c14fd15f10371268e55af340705ec94be26ce6c9e89cf9fb7aa05\"\n  },\n  \"assessment_id\": \"merge-campaign-registrations\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Combines the three non-default registrations from the two parent revisions; existing registrations preserved.\",\n    \"G2\": \"Parent replay receipts record scoped builds of the individual targets; no merged build was run.\",\n    \"G3\": \"All three targets remain non-default; package, dependencies and default targets are unchanged.\",\n    \"G4\": \"Historical replay and mutation evidence is retained from both parents; merge resolution checked the declaration union only.\",\n    \"G5\": \"Preserves each parent registration verbatim and the repository Lakefile conventions.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T03:04:16.312444+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative Lake library registration; authorized support_exception in governance/policy.json.\",\n  \"open_higher_grade_findings\": [\n    \"Declarative configuration file only.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"support_exception\": true\n}\n",
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#merge-protected-answer-receipt-scoring"
+      ]
     }
   ]
 }
