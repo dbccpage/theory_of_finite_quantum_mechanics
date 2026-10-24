@@ -1043,3 +1043,7 @@ lean_lib CampaignDfmRelationalTimeFence where
 -- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
 lean_lib CampaignFspImaginaryMuRealDet where
   roots := #[`CampaignFspImaginaryMuRealDet]
+
+-- Campaign: TFQ-0008. Not a default target.
+lean_lib CampaignTfq0008FiniteDynamics where
+  roots := #[`CampaignTfq0008FiniteDynamics]
