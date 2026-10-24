@@ -45,3 +45,7 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F002.S001`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge/shelf.yaml`
+
+## 6. Campaign boundary (2026-10-24)
+
+The narrowed census is in `dag/derivations/independent/tfq-0031.md` and `lean4/CampaignTfq0031StrongCouplingBoundary.lean`. It records the 3 by 3 lattice counts, the ratio 1/9, the area and perimeter exponent identities, the cleared beta numerators, and the finite-map withhold sentence. The shelf path above is absent from this tree. The node status stays OPEN.
