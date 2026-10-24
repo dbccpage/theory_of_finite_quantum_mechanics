@@ -36,7 +36,7 @@ Layers 1-3 U(1) selector finite algebra (conjugation involution S^2=I2, Frobeniu
 
 ## Review
 
-- PFP review: [dag/results/DS-QM062-U1-SELECTOR-LAYERS/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM062-U1-SELECTOR-LAYERS/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM062-U1-SELECTOR-LAYERS/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM062-U1-SELECTOR-LAYERS/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual rational matrix products, Gaussian coefficients and norm-multiplicativity/conjugation polynomials are checked.
   - does not support: Prove the full ring homomorphism/embedding and the R/C/H selection hypotheses, continuity and global uniqueness separately; algebraic controls do not exclude H by themselves.
   - next test: Prove the full ring homomorphism/embedding and the R/C/H selection hypotheses, continuity and global uniqueness separately; algebraic controls do not exclude H by themselves.

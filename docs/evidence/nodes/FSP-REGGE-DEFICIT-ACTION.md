@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md](../../../dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md)
-- sha256 (`lf-normalised`): `44de41d0130f6bfbc8f9816bae08859b381dea5a7201a81aa48b2b46b27f070a`
+- sha256 (`lf-normalised`): `ce941d33c5f62e277a4ebfca055c4734a5e6f2ebc8648476bd816cfaee336ddb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1212
 - counts toward the grade: no

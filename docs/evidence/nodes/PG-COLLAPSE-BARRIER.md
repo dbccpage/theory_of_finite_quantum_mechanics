@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Proposition 1 - separation cannot be recovered from a collapsed quotient
 
 ## Review
 
-- PFP review: [dag/results/PG-COLLAPSE-BARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-COLLAPSE-BARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-COLLAPSE-BARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-COLLAPSE-BARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For maps p : X -\> Y and s : X -\> Z, no function of p reproduces s as soon as one fibre of p contains two points with different s values; with Z inhabited this is the only obstruction, and for finite X a nonempty tag alphabet of size k recovers s through (p, t) exactly when every fibre has at most k distinct s values.
   - does not support: Which tag or instance is added (the node does not select one, and the paper only exhibits predicates under a supplied decoder); the barrier for the inscription strings of the Pre-Genesis paper; infinite or non-function observation structures; universes above Type; any claim that an added tag exists in the physical or inscription regime; the source aggregate pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed, which is a bundle of fixed instances proved by rfl and decide.
   - next test: Confirm by exhaustive enumeration over the inscription strings \<a\>, \<ab\>, \<aa\> of the Pre-Genesis paper under the supplied decoder that the least tag alphabet equals the max-fibre value predicted by tag_alphabet_iff, and that the paper predicates "contains b" and "payload length \> 1" achieve it.

@@ -9,12 +9,22 @@ target:
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)
-  source_bottleneck: Regge calculus carries no fermion-sign content in this package; Lorentzian signature,
-    convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
+  source_bottleneck: Narrowed algebraic checks only. The declared rational Heron polynomial is symmetric
+    and has the displayed evaluations; a supplied rational dot product is bilinear and an additive four-step
+    telescoping sum is zero. Schlaefli cancellation is an explicit hypothesis, not derived geometry. The
+    face vector and its interpretation as a sphere are supplied. No edge-length geometry, noncommutative
+    Bianchi identity, continuum refinement theorem or actual Lorentzian exponential is constructed. The
+    -I matrix and w-w identity do not identify a gravitational phase or resolve fermion signs. Status
+    is unchanged. The original physical or operational bridge remains open.
   source_refs:
   - dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - dag/derivations/independent/fsp-regge-deficit-action.md
+  - dag/research/campaign_fsp-regge-deficit-action_lean_replay.json
+  - dag/research/campaign_fsp-regge-deficit-action_lean_mutation.json
+  - dag/research/campaign_fsp-regge-deficit-action_independent.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -23,7 +33,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md
-    sha256: 41e4537320c8a4b8d479affc42288df4e4ac8a87c5f5d8333c9741aa47049554
+    sha256: ce941d33c5f62e277a4ebfca055c4734a5e6f2ebc8648476bd816cfaee336ddb
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +41,316 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_regge_deficit_action_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: heronAreaSq
+  line: 21
+  signature_excerpt: 'def heronAreaSq (s01 s12 s02 : ℚ) : ℚ'
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hingeDeficit
+  line: 41
+  signature_excerpt: 'def hingeDeficit (fullTurn : ℚ) (dihedrals : List ℚ) : ℚ'
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: reggeAction
+  line: 45
+  signature_excerpt: 'def reggeAction {n : ℕ} (areas eps : Fin n → ℚ) : ℚ'
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: s4BoundaryFaceVector
+  line: 82
+  signature_excerpt: 'def s4BoundaryFaceVector : Fin 5 → ℕ'
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: reggeFullVariation
+  line: 104
+  signature_excerpt: 'def reggeFullVariation {n : ℕ} (A dA eps dTheta : Fin n → ℚ) : ℚ'
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: defectBoundHolds
+  line: 116
+  signature_excerpt: 'def defectBoundHolds (sRegge sEh c aSq : ℚ) : Prop'
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: lorentzianHalfTurnMat
+  line: 147
+  signature_excerpt: 'def lorentzianHalfTurnMat : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: heronAreaSq_symmetric_and_orthogonal_pentatope_hinges
+  line: 25
+  signature_excerpt: |-
+    theorem heronAreaSq_symmetric_and_orthogonal_pentatope_hinges (a b c : ℚ) :
+        heronAreaSq a b c = heronAreaSq b a c ∧
+        heronAreaSq a b c = heronAreaSq a c b ∧
+        heronAreaSq 1 1 2 = 1 / 4 ∧
+        heronAreaSq 2 2 2 = 3 / 4 ∧
+        6 * heronAreaSq 1 1 2 + 4 * heronAreaSq 2 2 2 = 9 / 2 ∧
+        heronAreaSq 1 1 4 = 0
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hingeDeficit_flat_sum_zero_and_reggeAction_bilinear
+  line: 49
+  signature_excerpt: |-
+    theorem hingeDeficit_flat_sum_zero_and_reggeAction_bilinear
+        (fullTurn : ℚ) (dihedrals : List ℚ) {n : ℕ} (areas eps1 eps2 : Fin n → ℚ) (c : ℚ) :
+        (hingeDeficit fullTurn dihedrals = 0 ↔ dihedrals.sum = fullTurn) ∧
+        reggeAction areas (fun _ => 0) = 0 ∧
+        reggeAction areas (fun h => eps1 h + eps2 h) =
+          reggeAction areas eps1 + reggeAction areas eps2 ∧
+        reggeAction (fun h => c * areas h) eps1 = c * reggeAction areas eps1
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reggeAction_positive_vs_mixed_deficit_sign
+  line: 64
+  signature_excerpt: |-
+    theorem reggeAction_positive_vs_mixed_deficit_sign
+        {n : ℕ} (areas eps : Fin n → ℚ)
+        (hA : ∀ h, 0 ≤ areas h) (hE : ∀ h, 0 ≤ eps h) :
+        0 ≤ reggeAction areas eps ∧
+        reggeAction ![1, 1] ![1, -2] = -1 ∧
+        reggeAction ![1, 1] ![1, -2] < 0 ∧
+        reggeAction ![1, 1] ![1, -1] = 0 ∧
+        (![(1 : ℚ), -1] : Fin 2 → ℚ) 0 ≠ 0
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: s4_boundary_delta5_face_counts_and_euler_characteristic
+  line: 86
+  signature_excerpt: |-
+    theorem s4_boundary_delta5_face_counts_and_euler_characteristic :
+        Nat.choose 6 1 = s4BoundaryFaceVector 0 ∧
+        Nat.choose 6 2 = s4BoundaryFaceVector 1 ∧
+        Nat.choose 6 3 = s4BoundaryFaceVector 2 ∧
+        Nat.choose 6 4 = s4BoundaryFaceVector 3 ∧
+        Nat.choose 6 5 = s4BoundaryFaceVector 4 ∧
+        (s4BoundaryFaceVector 0 : ℤ) - s4BoundaryFaceVector 1 + s4BoundaryFaceVector 2 -
+          s4BoundaryFaceVector 3 + s4BoundaryFaceVector 4 = 2 ∧
+        6 * Nat.choose 5 3 = 20 * 3
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: discrete_bianchi_cyclic_holonomy_telescoping
+  line: 98
+  signature_excerpt: |-
+    theorem discrete_bianchi_cyclic_holonomy_telescoping (A f0 f1 f2 f3 : ℚ) :
+        (f1 - f0) + (f2 - f1) + (f3 - f2) + (f0 - f3) = 0 ∧
+        A * (f1 - f0) + A * (f2 - f1) + A * (f3 - f2) + A * (f0 - f3) = 0
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: schlaefli_variation_reduces_regge_variation_to_area_term
+  line: 108
+  signature_excerpt: |-
+    theorem schlaefli_variation_reduces_regge_variation_to_area_term
+        {n : ℕ} (A dA eps dTheta : Fin n → ℚ)
+        (hSchlaefli : ∑ h : Fin n, A h * dTheta h = 0) :
+        reggeFullVariation A dA eps dTheta = reggeAction dA eps
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit
+  line: 120
+  signature_excerpt: |-
+    theorem defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit
+        (sRegge sEh c : ℚ) :
+        defectBoundHolds (1 / 3) (1 / 4) 2 (1 / 16) ∧
+        ¬ defectBoundHolds 1 0 1 (1 / 4) ∧
+        ¬ defectBoundHolds 1 0 (-1) 1 ∧
+        (defectBoundHolds sRegge sEh c 0 → sRegge = sEh)
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: regge_action_independent_of_fermion_occupation_fence
+  line: 138
+  signature_excerpt: |-
+    theorem regge_action_independent_of_fermion_occupation_fence
+        {n : ℕ} (areas eps : Fin n → ℚ) (w : ℚ) (hw : 0 < w) :
+        (1 : ℚ) * w > 0 ∧
+        (-1 : ℚ) * w < 0 ∧
+        (1 : ℚ) * w + (-1 : ℚ) * w = 0 ∧
+        reggeAction areas eps = reggeAction areas eps
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: euclidean_vs_lorentzian_regge_phase_fence
+  line: 152
+  signature_excerpt: |-
+    theorem euclidean_vs_lorentzian_regge_phase_fence :
+        Matrix.trace lorentzianHalfTurnMat = -2 ∧
+        lorentzianHalfTurnMat * lorentzianHalfTurnMat = 1 ∧
+        (1 : Matrix (Fin 2) (Fin 2) ℤ) + lorentzianHalfTurnMat = 0
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: flat_vertex_sum_vs_signed_cancellation_fence
+  line: 159
+  signature_excerpt: |-
+    theorem flat_vertex_sum_vs_signed_cancellation_fence (d1 d2 : ℕ) :
+        (sumDeficits [d1, d2] = 0 ↔ d1 = 0 ∧ d2 = 0) ∧
+        ((1 : ℚ) + (-1 : ℚ) = 0 ∧ (1 : ℚ) ≠ 0 ∧ (-1 : ℚ) ≠ 0)
+  source: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  source_sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 86
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 98
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 108
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 120
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 138
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 152
+  role: source_lead_only
+- original_ref: lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence
+  availability: local
+  symbol: CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence
+  path: lean4/CampaignFspReggeDeficitAction.lean
+  repository: this_repository
+  sha256: 37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e
+  declaration_status: declaration_found_not_proof_checked
+  line: 159
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +390,6 @@ operad_slots:
     - Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

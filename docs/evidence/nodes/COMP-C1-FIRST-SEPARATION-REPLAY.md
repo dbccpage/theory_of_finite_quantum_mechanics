@@ -10,7 +10,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `COMPUTATIONALLY_CHECKED
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
 - cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
@@ -21,7 +21,6 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 ## Flags
 
 - `computational_no_runnable_test`: 6 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
-- `broken_reference`: path not found: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean. A cited in-repo path or symbol cannot be found in this checkout.
 
 ## Imported structure
 
@@ -46,10 +45,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Lean: `dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean`
 
-- file: `dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean](../../../dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean)
+- sha256 (`bytes`): `cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682`
 - cited in: node.source
-- counts toward the grade: no
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean`
+- counts toward the grade: yes
 
 ### Lean: `lean4/GenesisComputation.lean`
 

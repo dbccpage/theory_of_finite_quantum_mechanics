@@ -1,27 +1,33 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0171
 authority_effect: None
-collection_status: witness_verified
+collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Unnormalized mass is a different carrier from the probability
-    simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with
-    no normalization requirement, and it admits an empty carrier that FinN refuses.
-    src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and
-    marginal_compatibility.rs; those three bodies were not opened, so only the module
-    declarations are in scope. The obligation is to keep an unnormalized valuation
-    from standing in for a law that sums to one. H001ProbabilitySimplex.lean says
-    its scaled integer grid is not the ordinary rational simplex.
+  source_statement: Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs
+    states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty
+    carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs,
+    and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations
+    are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that
+    sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational
+    simplex.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Do not collapse unnormalized finite valuations into the normalized
-    rational probability simplex.
+  source_bottleneck: Do not collapse unnormalized finite valuations into the normalized rational probability
+    simplex.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
+  - dag/derivations/independent/tfq-0171.md
+  - dag/research/campaign_tfq-0171_lean_replay.json
+  - dag/research/campaign_tfq-0171_lean_mutation.json
+  - dag/research/campaign_tfq-0171_independent.json
+  - docs/overclaim/reviews/2026-10-24_campaign-tfq-0171-precommit.md
+  - checks/independent/tfq-0171.py
+  - lean4/CampaignTfq0171ImplementationSibling.lean
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
@@ -33,48 +39,544 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/implementation_sibling_tfq_0171_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: singletonExtFirst
+  line: 67
+  signature_excerpt: 'def singletonExtFirst (m0 m1 : ℚ) : ℚ × ℚ × ℚ'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: singletonExtLast
+  line: 68
+  signature_excerpt: 'def singletonExtLast (m0 m1 : ℚ) : ℚ × ℚ × ℚ'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: canStandInForProbabilitySimplex
+  line: 133
+  signature_excerpt: "def canStandInForProbabilitySimplex : FiniteMassCarrierKind → Bool\n  | .NormalizedProbabilitySimplex\
+    \ => true\n  | .UnnormalizedBooleanValuation => false\n  | .ScaledIntegerSimplexGrid => false\n  |\
+    \ .UnitSumSignedValuation => false\n\n/-- Theorem 6 (Unnormalized Valuation Cannot Stand In For Probability\
+    \ Simplex Fence):\nOnly `NormalizedProbabilitySimplex` evaluates to `canStandInForProbabilitySimplex\
+    \ = true`;\n`UnnormalizedBooleanValuation`, `ScaledIntegerSimplexGrid`, and `UnitSumSignedValuation`\n\
+    evaluate to `false`. -/\ntheorem unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence\
+    \ :\n  "
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: FiniteMassCarrierKind
+  line: 126
+  signature_excerpt: |-
+    inductive FiniteMassCarrierKind
+      | UnnormalizedBooleanValuation
+      | NormalizedProbabilitySimplex
+      | ScaledIntegerSimplexGrid
+      | UnitSumSignedValuation
+      deriving DecidableEq, Repr
+
+    def canStandInForProbabilitySimplex : FiniteMassCarrierKind → Bool
+      | .NormalizedProbabilitySimplex => true
+      | .UnnormalizedBooleanValuation => false
+      | .ScaledIntegerSimplexGrid => false
+      | .UnitSumSignedValuation => false
+
+    /-- Theorem 6 (Unnormalized Valuation Cannot Stand In For Probability Simplex Fence):
+    Only `NormalizedProbabilitySimplex` evaluates to `canStandInForProbabilitySimplex = true`;
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: admittedByBooleanValuation
+  line: 151
+  signature_excerpt: 'def admittedByBooleanValuation (_size : Nat) : Bool'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: admittedByFinNSimplex
+  line: 152
+  signature_excerpt: 'def admittedByFinNSimplex (size : Nat) : Bool'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isOrdinaryRationalSimplex
+  line: 170
+  signature_excerpt: |-
+    def isOrdinaryRationalSimplex : SimplexCarrierModel → Bool
+      | .OrdinaryRationalSimplex => true
+      | .ScaledIntegerGrid _ => false
+
+    /-- Theorem 8 (Scaled Integer Grid Is Not Ordinary Rational Simplex Fence):
+    For every scale `M`, `ScaledIntegerGrid M` evaluates `isOrdinaryRationalSimplex = false`. -/
+    theorem scaled_integer_grid_not_ordinary_rational_simplex_fence (m : Nat) :
+        isOrdinaryRationalSimplex (SimplexCarrierModel.ScaledIntegerGrid m) = false ∧
+        isOrdinaryRationalSimplex SimplexCarrierModel.OrdinaryRationalSimplex = true
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: SimplexCarrierModel
+  line: 165
+  signature_excerpt: |-
+    inductive SimplexCarrierModel
+      | ScaledIntegerGrid (scale : Nat)
+      | OrdinaryRationalSimplex
+      deriving DecidableEq, Repr
+
+    def isOrdinaryRationalSimplex : SimplexCarrierModel → Bool
+      | .OrdinaryRationalSimplex => true
+      | .ScaledIntegerGrid _ => false
+
+    /-- Theorem 8 (Scaled Integer Grid Is Not Ordinary Rational Simplex Fence):
+    For every scale `M`, `ScaledIntegerGrid M` evaluates `isOrdinaryRationalSimplex = false`. -/
+    theorem scaled_integer_grid_not_ordinary_rational_simplex_fence (m : Nat) :
+        isOrdinaryRationalSimplex (SimplexCarrierModel.ScaledIntegerGrid m) = false ∧
+        isOrdinaryRati
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: finiteValuationContract
+  line: 188
+  signature_excerpt: 'def finiteValuationContract : SiblingModuleContract'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: probabilitySimplexContract
+  line: 190
+  signature_excerpt: 'def probabilitySimplexContract : SiblingModuleContract'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: signedRepresentationContract
+  line: 189
+  signature_excerpt: 'def signedRepresentationContract : SiblingModuleContract'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: marginalCompatibilityContract
+  line: 191
+  signature_excerpt: 'def marginalCompatibilityContract : SiblingModuleContract'
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: SiblingModuleContract
+  line: 182
+  signature_excerpt: structure SiblingModuleContract
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pointW
+  line: 46
+  signature_excerpt: 'def pointW (q : Bool) : Int'
+  source: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  source_sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mass
+  line: 21
+  signature_excerpt: 'def mass {Q : Type} (E : Enum Q) (w : Q → Int) : Int'
+  source: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  source_sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: signedW
+  line: 58
+  signature_excerpt: 'def signedW (q : Bool) : Int'
+  source: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  source_sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: boolean_valuation_empty_carrier_and_unnormalized_mass
+  line: 57
+  signature_excerpt: |-
+    theorem boolean_valuation_empty_carrier_and_unnormalized_mass :
+        (0 : ℚ) = 0 ∧
+        (0 : ℚ) ≠ 1 ∧
+        (3 : ℚ) + 5 = 8 ∧
+        (8 : ℚ) ≠ 1 ∧
+        (0 : ℚ) ≤ 3 ∧
+        (0 : ℚ) ≤ 5
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: boolean_valuation_disjoint_additivity_and_atom_reconstruction
+  line: 74
+  signature_excerpt: |-
+    theorem boolean_valuation_disjoint_additivity_and_atom_reconstruction :
+        (2 / 3 : ℚ) + 4 / 3 = 2 ∧
+        (2 : ℚ) ≠ 1 ∧
+        (4 / 3 : ℚ) ≠ 0 ∧
+        singletonExtFirst (2 / 3) (4 / 3) ≠ singletonExtLast (2 / 3) (4 / 3)
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: scaled_integer_simplex_grid_vs_rational_simplex_separation
+  line: 91
+  signature_excerpt: |-
+    theorem scaled_integer_simplex_grid_vs_rational_simplex_separation :
+        (1 + 1 : Int) = 2 ∧
+        (2 : Int) ≠ 1 ∧
+        (2 + (-1) : Int) = 1 ∧
+        (-1 : Int) < 0 ∧
+        (1 / 3 : ℚ) + 2 / 3 = 1 ∧
+        (3 : ℚ) * (1 / 3) = 1 ∧
+        (3 : ℚ) * (2 / 3) = 2
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: signed_valuation_negativity_and_expectation_bound
+  line: 106
+  signature_excerpt: |-
+    theorem signed_valuation_negativity_and_expectation_bound :
+        (3 / 2 : ℚ) + (-1 / 2) = 1 ∧
+        (3 / 2 : ℚ) - (1 / 2) = 1 ∧
+        (3 / 2 : ℚ) + (1 / 2) = 1 + 2 * (1 / 2) ∧
+        (3 / 2 : ℚ) * 1 + (-1 / 2) * (-1) = 2 ∧
+        ((2 : ℚ) / 1 - 1) / 2 = 1 / 2
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: marginal_compatibility_and_local_deterministic_normalization
+  line: 119
+  signature_excerpt: |-
+    theorem marginal_compatibility_and_local_deterministic_normalization :
+        (1 + 0 + 0 + 0 : ℚ) = 1 ∧
+        (2 ^ 2 : Nat) = 4 ∧
+        (1 / 4 : ℚ) + 1 / 4 + 1 / 4 + 1 / 4 = 1
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence
+  line: 143
+  signature_excerpt: |-
+    theorem unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence :
+        canStandInForProbabilitySimplex FiniteMassCarrierKind.NormalizedProbabilitySimplex = true ∧
+        canStandInForProbabilitySimplex FiniteMassCarrierKind.UnnormalizedBooleanValuation = false ∧
+        canStandInForProbabilitySimplex FiniteMassCarrierKind.ScaledIntegerSimplexGrid = false ∧
+        canStandInForProbabilitySimplex FiniteMassCarrierKind.UnitSumSignedValuation = false
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence
+  line: 157
+  signature_excerpt: |-
+    theorem empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence :
+        admittedByBooleanValuation 0 = true ∧
+        admittedByFinNSimplex 0 = false ∧
+        admittedByFinNSimplex 1 = true ∧
+        admittedByBooleanValuation 0 ≠ admittedByFinNSimplex 0
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: scaled_integer_grid_not_ordinary_rational_simplex_fence
+  line: 176
+  signature_excerpt: |-
+    theorem scaled_integer_grid_not_ordinary_rational_simplex_fence (m : Nat) :
+        isOrdinaryRationalSimplex (SimplexCarrierModel.ScaledIntegerGrid m) = false ∧
+        isOrdinaryRationalSimplex SimplexCarrierModel.OrdinaryRationalSimplex = true
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sibling_modules_distinct_carrier_contracts_fence
+  line: 197
+  signature_excerpt: |-
+    theorem sibling_modules_distinct_carrier_contracts_fence :
+        finiteValuationContract ≠ probabilitySimplexContract ∧
+        signedRepresentationContract ≠ probabilitySimplexContract ∧
+        finiteValuationContract ≠ signedRepresentationContract ∧
+        marginalCompatibilityContract = probabilitySimplexContract
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence
+  line: 220
+  signature_excerpt: |-
+    theorem tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence :
+        tfq0171RepoLedger.separatesUnnormalizedValuationFromSimplex = true ∧
+        tfq0171RepoLedger.recordsEmptyCarrierDifferenceFromFinN = true ∧
+        tfq0171RepoLedger.separatesScaledIntegerGridFromRationalSimplex = true ∧
+        tfq0171RepoLedger.recordsSiblingModuleContracts = true ∧
+        tfq0171RepoLedger.collapsesUnnormalizedIntoSimplex = false ∧
+        tfq0171RepoLedger.collapsesScaledGridIntoRationalSimplex = false
+  source: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: probability_simplex
+  line: 79
+  signature_excerpt: |-
+    theorem probability_simplex :
+        (pointMass.w = pointW) ∧
+          mass enumBool signedW = 1 ∧
+          ¬(∀ q : Bool, 0 ≤ signedW q) ∧
+          (∀ q : Bool, 0 ≤ doubleW q) ∧
+          mass enumBool doubleW ≠ 1
+  source: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  source_sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: double_not_normalized
+  line: 75
+  signature_excerpt: 'theorem double_not_normalized : mass enumBool doubleW ≠ 1'
+  source: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  source_sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: signed_not_nonneg
+  line: 63
+  signature_excerpt: 'theorem signed_not_nonneg : ¬(∀ q : Bool, 0 ≤ signedW q)'
+  source: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  source_sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: qrel_equivalence
+  line: 51
+  signature_excerpt: 'theorem qrel_equivalence : Equivalence qrel'
+  source: lean4/H001Rats.lean
+  repository: this_repository
+  source_sha256: adbbf94e6d8135f93c80b85e48e0bace3e265c082f158daff772b77963d23dee
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- language: lean4
-  path: lean4/CampaignTfq0171ImplementationSibling.lean
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass
+  availability: local
   symbol: CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass
-  role: Empty carrier and unnormalized mass admissibility in BooleanValuation vs ProbabilitySimplex
-- language: lean4
   path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.boolean_valuation_disjoint_additivity_and_atom_reconstruction
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.boolean_valuation_disjoint_additivity_and_atom_reconstruction
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 74
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.scaled_integer_simplex_grid_vs_rational_simplex_separation
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.scaled_integer_simplex_grid_vs_rational_simplex_separation
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.signed_valuation_negativity_and_expectation_bound
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.signed_valuation_negativity_and_expectation_bound
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 106
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.marginal_compatibility_and_local_deterministic_normalization
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.marginal_compatibility_and_local_deterministic_normalization
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence
+  availability: local
   symbol: CampaignTfq0171ImplementationSibling.unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence
-  role: Scope fence separating unnormalized Boolean valuations and scaled integer
-    grids from the probability simplex
-- language: lean4
-  path: lean4/H001ProbabilitySimplex.lean
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 143
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 157
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.scaled_integer_grid_not_ordinary_rational_simplex_fence
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.scaled_integer_grid_not_ordinary_rational_simplex_fence
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 176
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.sibling_modules_distinct_carrier_contracts_fence
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.sibling_modules_distinct_carrier_contracts_fence
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 197
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence
+  availability: local
+  symbol: CampaignTfq0171ImplementationSibling.tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  repository: this_repository
+  sha256: b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36
+  declaration_status: declaration_found_not_proof_checked
+  line: 220
+  role: source_lead_only
+- original_ref: lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex
+  availability: local
   symbol: FableHilbertWalk20260819.H001.probability_simplex
-  role: H001 scaled integer simplex vs signed and unnormalized mass theorem
-- language: lean4
-  path: lean4/H001Rats.lean
+  path: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  declaration_status: declaration_found_not_proof_checked
+  line: 79
+  role: source_lead_only
+- original_ref: lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized
+  availability: local
+  symbol: FableHilbertWalk20260819.H001.double_not_normalized
+  path: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  declaration_status: declaration_found_not_proof_checked
+  line: 75
+  role: source_lead_only
+- original_ref: lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg
+  availability: local
+  symbol: FableHilbertWalk20260819.H001.signed_not_nonneg
+  path: lean4/H001ProbabilitySimplex.lean
+  repository: this_repository
+  sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
+  declaration_status: declaration_found_not_proof_checked
+  line: 63
+  role: source_lead_only
+- original_ref: lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence
+  availability: local
   symbol: FableHilbertWalk20260819.H001Rats.qrel_equivalence
-  role: Exact rational quotient equivalence in H001Rats
-- language: rust
-  path: code/rust/src/finite_probability/finite_valuation.rs
+  path: lean4/H001Rats.lean
+  repository: this_repository
+  sha256: adbbf94e6d8135f93c80b85e48e0bace3e265c082f158daff772b77963d23dee
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: code/rust/src/finite_probability/finite_valuation.rs::BooleanValuation::try_new
+  availability: local
   symbol: BooleanValuation::try_new
-  role: Exact nonnegative Boolean valuation constructor without unit normalization
-    requirement
-- language: rust
-  path: code/rust/src/finite_probability/signed_representation.rs
+  path: code/rust/src/finite_probability/finite_valuation.rs
+  repository: this_repository
+  sha256: 6d81dae4c445d1fe3f3795d0507912a72c5e28c309ae85e6f02054b20bccee31
+  declaration_status: declaration_found_not_executed
+  line: 34
+  role: source_lead_only
+- original_ref: code/rust/src/finite_probability/signed_representation.rs::SignedValuation::from_weights
+  availability: local
   symbol: SignedValuation::from_weights
-  role: Unit-sum signed valuation constructor with Jordan negativity decomposition
-- language: rust
-  path: code/rust/src/finite_probability/local_deterministic.rs
+  path: code/rust/src/finite_probability/signed_representation.rs
+  repository: this_repository
+  sha256: 2243007571114a0ffad3515130d851d2587ec6a7aebac37239a207a3e8284efc
+  declaration_status: declaration_found_not_executed
+  line: 39
+  role: source_lead_only
+- original_ref: code/rust/src/finite_probability/local_deterministic.rs::binary_local_vertices
+  availability: local
   symbol: binary_local_vertices
-  role: Deterministic {0,1} context section vertex enumeration
-- language: rust
-  path: code/rust/src/finite_probability/marginal_compatibility.rs
+  path: code/rust/src/finite_probability/local_deterministic.rs
+  repository: this_repository
+  sha256: cf401a21c09af466e4c5ea387ac9af3aa1ce25b2aba0bf56d3e316cb3be7b816
+  declaration_status: declaration_found_not_executed
+  line: 20
+  role: source_lead_only
+- original_ref: code/rust/src/finite_probability/marginal_compatibility.rs::MarginalScenario::validate_probabilities
+  availability: local
   symbol: MarginalScenario::validate_probabilities
-  role: Context-normalized marginal scenario validation
-- language: python
-  path: checks/independent/tfq-0171.py
-  symbol: run_all_checks
-  role: Independent Python verification of BooleanValuation, ScaledProb, SignedValuation,
-    and ProbabilitySimplex invariants
+  path: code/rust/src/finite_probability/marginal_compatibility.rs
+  repository: this_repository
+  sha256: 04d34a1fc003dfa7daaa450d376fa5290c2c8e47727863009446bb19d5e5784c
+  declaration_status: declaration_found_not_executed
+  line: 109
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -90,63 +592,30 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: VERIFIED
-    carrier: Finite Boolean subalgebras (BooleanValuation), scaled integer grids (ScaledProb),
-      signed quasi-probabilities (SignedValuation), and normalized rational probability
-      simplex (ProbabilitySimplex)
-    coefficient_ring: Z and Q
-    assumptions:
-    - BooleanValuation admits size = 0 and arbitrary non-negative total mass
-    - ProbabilitySimplex requires size >= 1 and total mass 1
-    source_pins:
-    - path: dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
-      sha256: 60c56fc5c778e04299fd6fc0b79e2aebf75dde704e9d323eb0acd4de4d56cb28
-    public_input:
-      node_id: TFQ-0171
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: VERIFIED
-    operations:
-    - singletonExtFirst
-    - singletonExtLast
-    - canStandInForProbabilitySimplex
-    - admittedByBooleanValuation
-    - admittedByFinNSimplex
-    - isOrdinaryRationalSimplex
-    composition_plan:
-    - Verify empty-carrier and unnormalized-mass admissibility in BooleanValuation
-      vs refusal in ProbabilitySimplex
-    - Verify scaled integer grid divisibility and non-normalized / signed counterexamples
-      in H001ProbabilitySimplex.lean
-    - Enforce carrier separation fences across all four finite_probability sibling
-      modules
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: VERIFIED
-    algebraic_relations:
-    - 2/3 + 4/3 = 2 != 1
-    - singletonExtFirst (2/3) (4/3) != singletonExtLast (2/3) (4/3)
-    - (3/2) + (-1/2) = 1 and (3/2) + (1/2) = 1 + 2*(1/2)
-    rejection_predicates:
-    - canStandInForProbabilitySimplex UnnormalizedBooleanValuation = false
-    - admittedByFinNSimplex 0 = false
-    - isOrdinaryRationalSimplex (ScaledIntegerGrid m) = false
-    negative_control_plan:
-    - 6 semantic Lean mutants in dag/research/campaign_tfq-0171_lean_mutation.json
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: VERIFIED
-    certificate_predicates:
-    - boolean_valuation_empty_carrier_and_unnormalized_mass
-    - boolean_valuation_disjoint_additivity_and_atom_reconstruction
-    - scaled_integer_simplex_grid_vs_rational_simplex_separation
-    - unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence
-    - empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence
-    - tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence
-    anchors:
-    - lean4/CampaignTfq0171ImplementationSibling.lean
-    - lean4/H001ProbabilitySimplex.lean
-    - lean4/H001Rats.lean
-    - code/rust/src/finite_probability/finite_valuation.rs
-    - checks/independent/tfq-0171.py
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads: []
