@@ -36,7 +36,7 @@ QM_033-C1..C3 discrete 2-vertex Hermitian graph Schrodinger L1/L2 probability ma
 
 ## Review
 
-- PFP review: [dag/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Full Gaussian Hψ and derivative coordinates reproduce zero instantaneous mass rate and the nonzero exact Euler drift formula.
   - does not support: Derive H and its units/interface; construct an exact propagator and prove the formal matrix-to-rate transport. No differential equation solution or continuum limit is provided.
   - next test: Derive H and its units/interface; construct an exact propagator and prove the formal matrix-to-rate transport. No differential equation solution or continuum limit is provided.

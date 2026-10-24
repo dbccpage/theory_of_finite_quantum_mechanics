@@ -8,12 +8,19 @@ target:
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Laughlin nu = 1/m state and quasihole Berry phase (literature)
-  source_bottleneck: No Berry-phase or torus computation is in this checkout; the local module fixes m
-    = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
+  source_bottleneck: Narrowed algebraic checks only. Jastrow exchange identities hold in commutative rings.
+    A supplied 2x2 integer companion matrix and its square satisfy cyclotomic identities and fail involution
+    tests. The quasihole polynomial is symmetric. The matrix model is not identified with a physical Berry
+    holonomy, and symmetry alone does not derive a Berry phase or its physical origin. Status is unchanged.
+    The original physical or operational bridge remains open.
   source_refs:
   - dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/independent/fsp-laughlin-exchange-phase.md
+  - dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json
+  - dag/research/campaign_fsp-laughlin-exchange-phase_lean_mutation.json
+  - dag/research/campaign_fsp-laughlin-exchange-phase_independent.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -22,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md
-    sha256: 77205f624d406801e014b0306bbbb87add5543f5719395237a33aa258809dbbd
+    sha256: cfb574202017c9e0ed7168720888982e8d9d24cd7977f445012edfd4e5e92b95
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +37,302 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_laughlin_exchange_phase_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: jastrowTwoBody
+  line: 20
+  signature_excerpt: 'def jastrowTwoBody {R : Type*} [CommRing R] (m : ℕ) (z1 z2 : R) : R'
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: jastrowThreeBody
+  line: 45
+  signature_excerpt: 'def jastrowThreeBody {R : Type*} [CommRing R] (m : ℕ) (z1 z2 z3 : R) : R'
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: twoQuasiholePrefactor
+  line: 59
+  signature_excerpt: |-
+    def twoQuasiholePrefactor {ι : Type*} [Fintype ι] {R : Type*} [CommRing R]
+        (z : ι → R) (eta1 eta2 : R) : R
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: exchangeR6
+  line: 73
+  signature_excerpt: 'def exchangeR6 : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: monodromyM3
+  line: 78
+  signature_excerpt: 'def monodromyM3 : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: modularSPhaseExponent
+  line: 128
+  signature_excerpt: 'def modularSPhaseExponent (a b : ℤ) : ℤ'
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: laughlin_two_body_jastrow_exchange_parity
+  line: 24
+  signature_excerpt: |-
+    theorem laughlin_two_body_jastrow_exchange_parity
+        {R : Type*} [CommRing R] (m : ℕ) (z1 z2 : R) :
+        jastrowTwoBody m z2 z1 = (-1 : R) ^ m * jastrowTwoBody m z1 z2
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: laughlin_odd_m_fermionic_and_even_m_bosonic
+  line: 32
+  signature_excerpt: |-
+    theorem laughlin_odd_m_fermionic_and_even_m_bosonic
+        {R : Type*} [CommRing R] (k : ℕ) (z1 z2 : R) :
+        jastrowTwoBody (2 * k + 1) z2 z1 = -jastrowTwoBody (2 * k + 1) z1 z2 ∧
+        jastrowTwoBody (2 * k) z2 z1 = jastrowTwoBody (2 * k) z1 z2
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m
+  line: 49
+  signature_excerpt: |-
+    theorem laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m
+        {R : Type*} [CommRing R] (k : ℕ) (z1 z2 z3 : R) :
+        jastrowThreeBody (2 * k + 1) z2 z1 z3 = -jastrowThreeBody (2 * k + 1) z1 z2 z3
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: laughlin_quasihole_holomorphic_polynomial_symmetric_fence
+  line: 64
+  signature_excerpt: |-
+    theorem laughlin_quasihole_holomorphic_polynomial_symmetric_fence
+        {ι : Type*} [Fintype ι] {R : Type*} [CommRing R]
+        (z : ι → R) (eta1 eta2 : R) :
+        twoQuasiholePrefactor z eta2 eta1 = twoQuasiholePrefactor z eta1 eta2
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: laughlin_m3_exchange_companion_cyclotomic_relations
+  line: 83
+  signature_excerpt: |-
+    theorem laughlin_m3_exchange_companion_cyclotomic_relations :
+        exchangeR6.det = 1 ∧
+        Matrix.trace exchangeR6 = 1 ∧
+        exchangeR6 * exchangeR6 - exchangeR6 + 1 = 0 ∧
+        exchangeR6 ^ 3 = -1 ∧
+        exchangeR6 ^ 6 = 1 ∧
+        exchangeR6 ≠ 1 ∧
+        exchangeR6 ≠ -1
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: laughlin_m3_monodromy_cyclotomic_and_non_involution
+  line: 94
+  signature_excerpt: |-
+    theorem laughlin_m3_monodromy_cyclotomic_and_non_involution :
+        monodromyM3 = exchangeR6 * exchangeR6 ∧
+        monodromyM3.det = 1 ∧
+        Matrix.trace monodromyM3 = -1 ∧
+        1 + monodromyM3 + monodromyM3 * monodromyM3 = 0 ∧
+        monodromyM3 ^ 3 = 1 ∧
+        monodromyM3 * monodromyM3 ≠ 1
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_z2_involution_matches_m3_monodromy_fence
+  line: 104
+  signature_excerpt: |-
+    theorem no_z2_involution_matches_m3_monodromy_fence
+        (J : Matrix (Fin 2) (Fin 2) ℤ) (hJ : J * J = 1) :
+        J ≠ monodromyM3 ∧ J ≠ exchangeR6
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: general_m_monodromy_residue_and_odd_coprime
+  line: 117
+  signature_excerpt: |-
+    theorem general_m_monodromy_residue_and_odd_coprime
+        (m k : ℕ) (hm : 3 ≤ m) :
+        2 % m = 2 ∧ 2 % m ≠ 0 ∧ Nat.gcd 2 (2 * k + 1) = 1
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: abelian_anyon_modular_s_exponent_and_z3_character_sum
+  line: 131
+  signature_excerpt: |-
+    theorem abelian_anyon_modular_s_exponent_and_z3_character_sum
+        (a b : ℤ) :
+        modularSPhaseExponent a b + modularSPhaseExponent 0 0 -
+          modularSPhaseExponent a 0 - modularSPhaseExponent 0 b = a * b ∧
+        (1 : Matrix (Fin 2) (Fin 2) ℤ) + monodromyM3 + monodromyM3 * monodromyM3 = 0
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence
+  line: 141
+  signature_excerpt: |-
+    theorem unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence
+        (w_qh w_qe : ℤ) (hne : w_qh ≠ w_qe) :
+        w_qh • (1 : Matrix (Fin 2) (Fin 2) ℤ) + w_qe • monodromyM3 +
+          w_qe • (monodromyM3 * monodromyM3) =
+          (w_qh - w_qe) • (1 : Matrix (Fin 2) (Fin 2) ℤ) ∧
+        w_qh • (1 : Matrix (Fin 2) (Fin 2) ℤ) + w_qe • monodromyM3 +
+          w_qe • (monodromyM3 * monodromyM3) ≠ 0
+  source: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  source_sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 94
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.no_z2_involution_matches_m3_monodromy_fence
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.no_z2_involution_matches_m3_monodromy_fence
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.general_m_monodromy_residue_and_odd_coprime
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.general_m_monodromy_residue_and_odd_coprime
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 117
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.abelian_anyon_modular_s_exponent_and_z3_character_sum
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.abelian_anyon_modular_s_exponent_and_z3_character_sum
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 131
+  role: source_lead_only
+- original_ref: lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence
+  availability: local
+  symbol: CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence
+  path: lean4/CampaignFspLaughlinExchangePhase.lean
+  repository: this_repository
+  sha256: ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f
+  declaration_status: declaration_found_not_proof_checked
+  line: 141
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +372,6 @@ operad_slots:
     - Laughlin nu = 1/m state and quasihole Berry phase (literature)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

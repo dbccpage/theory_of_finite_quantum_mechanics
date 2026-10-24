@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Proposition 3 - finite demand accounting (WDP-P001-002 proved)
 
 ## Review
 
-- PFP review: [dag/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-DEMAND-ACCOUNTING/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For finite sets, \|(W minus D) union B\| = \|W\| - \|D\| + \|B\| holds when D is inside W and the births avoid W minus D (births may coincide with discharged elements), it fails whenever exactly one of the two hypotheses is violated; when both are violated it holds if and only if \|D minus W\| = \|(W minus D) cap B\| (exact cancellation); and it imposes no constraint on a sequence of counts.
   - does not support: Which demands an engine actually carries; any claim that the displayed survivor sequence (0,1,1,1,0,1,1) is a native or general law (the source itself calls it a chosen ledger example); the preservation.py demand_step frozenset reading and any Python or Rust wrapper over it; multiset or ordered-log registers as a state beyond the filter-based list register of Paper.lean (the erase-based removeAll register of Paper001.lean is not re-proved, and the Nodup conjunct of that List Nat statement is only matched by the filter-based list_register_nodup_iff and the native census); the identification of the active count s_n with the cumulative history \|H_n\|; universes of more than five elements; any physical or thermodynamic interpretation.
   - next test: Supply the missing count wrapper over preservation.demand_step of the opened preservation.py: show that the frozenset next-active set it returns equals the Finset (W minus D) union B of this model, carry the two hypotheses as typed fields of the wrapper, and replay the identity on the wrapper actual outputs.
