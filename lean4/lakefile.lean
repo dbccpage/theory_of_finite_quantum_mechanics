@@ -1060,4 +1060,6 @@ lean_lib CampaignFspQcdChemicalPotentialDet where
 lean_lib CampaignFspLatticeWessZuminoSusy where
   roots := #[`CampaignFspLatticeWessZuminoSusy]
 
-
+-- Campaign: ADS-CFT-DUALITY-IMPORT. Not a default target.
+lean_lib CampaignAdsCftDualityImport where
+  roots := #[`CampaignAdsCftDualityImport]
