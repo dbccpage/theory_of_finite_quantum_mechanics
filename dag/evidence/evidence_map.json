@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b037e30d05f10a96a0b994e82aa42ad33e82e90e5891e923461d5e99f9354313"
+  "sha256_lf": "0c34660848180880bb28a714647d1e0a195d80558ef4288a7192df9cb05c02d0"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -281,6 +281,11 @@
    "sha256": "41747e489c485b59f059d1f9558b25474d7affb987e77e4cccc4b528f039562b",
    "sha256_basis": "bytes",
    "size": 5474
+  },
+  "checks/independent/tfq-0171.py": {
+   "sha256": "99b922bcaa608fdbff2130fefc70f41cbd0b80b716292146eaa8554946566e10",
+   "sha256_basis": "bytes",
+   "size": 10967
   },
   "checks/independent/tfq-0396.py": {
    "sha256": "6d6e92be6e642055941c7828a18305785bda0b7a94f408670a09cf6519633a62",
@@ -1028,9 +1033,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "b037e30d05f10a96a0b994e82aa42ad33e82e90e5891e923461d5e99f9354313",
+   "sha256": "0c34660848180880bb28a714647d1e0a195d80558ef4288a7192df9cb05c02d0",
    "sha256_basis": "lf-normalised",
-   "size": 4688046
+   "size": 4690659
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3658,9 +3663,9 @@
    "size": 2396
   },
   "dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md": {
-   "sha256": "800d967dd779dff6b911d2fb814329d122dc00aa953fd75d3c8f2728c2456df9",
+   "sha256": "60c56fc5c778e04299fd6fc0b79e2aebf75dde704e9d323eb0acd4de4d56cb28",
    "sha256_basis": "lf-normalised",
-   "size": 2543
+   "size": 4965
   },
   "dag/derivations/22_implementation_sibling/tfq_0172_compute_discrete_gauge_holonomy_as_exact_ordered_products_on_a_finite_cell.md": {
    "sha256": "0fac9286573e419081172c0f0512e81859d8c84d8b8b3063d10ccbd34782f008",
@@ -7046,6 +7051,11 @@
    "sha256": "c6b03659b446e539d32ed096ab2e390cb3479146c84faff0ccdd4105a4004959",
    "sha256_basis": "bytes",
    "size": 13487
+  },
+  "lean4/CampaignTfq0171ImplementationSibling.lean": {
+   "sha256": "b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36",
+   "sha256_basis": "bytes",
+   "size": 12882
   },
   "lean4/CampaignTransitionProbability.lean": {
    "sha256": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
@@ -129537,26 +129547,384 @@
    "status": "COMPUTATIONALLY_CHECKED"
   },
   {
-   "absent_notes": [
-    "TFQ-0171 python: not located"
-   ],
+   "absent_notes": [],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 4,
-    "counted_files": 6,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 5,
+    "counted_files": 8,
+    "lean_receipt_backed": 10,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 19
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "TFQ-0171",
    "items": [
     {
      "cited_in": [
-      "node.lean",
+      "node.lean"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
       "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.boolean_valuation_disjoint_additivity_and_atom_reconstruction",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.boolean_valuation_disjoint_additivity_and_atom_reconstruction",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.marginal_compatibility_and_local_deterministic_normalization",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.marginal_compatibility_and_local_deterministic_normalization",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.scaled_integer_grid_not_ordinary_rational_simplex_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.scaled_integer_grid_not_ordinary_rational_simplex_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.scaled_integer_simplex_grid_vs_rational_simplex_separation",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.scaled_integer_simplex_grid_vs_rational_simplex_separation",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.sibling_modules_distinct_carrier_contracts_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.sibling_modules_distinct_carrier_contracts_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.signed_valuation_negativity_and_expectation_bound",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.signed_valuation_negativity_and_expectation_bound",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignTfq0171ImplementationSibling.lean",
+     "command_note": "then, in a scratch file that imports CampaignTfq0171ImplementationSibling: #print axioms CampaignTfq0171ImplementationSibling.unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0171ImplementationSibling.unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean"
      ],
      "command": "cd lean4 && lake build H001ProbabilitySimplex",
      "command_note": null,
@@ -129579,8 +129947,76 @@
     },
     {
      "cited_in": [
-      "node.lean",
       "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build H001ProbabilitySimplex",
+     "command_note": "then, in a scratch file that imports H001ProbabilitySimplex: #print axioms FableHilbertWalk20260819.H001.double_not_normalized",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H001ProbabilitySimplex.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "FableHilbertWalk20260819.H001.double_not_normalized",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build H001ProbabilitySimplex",
+     "command_note": "then, in a scratch file that imports H001ProbabilitySimplex: #print axioms FableHilbertWalk20260819.H001.probability_simplex",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H001ProbabilitySimplex.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "FableHilbertWalk20260819.H001.probability_simplex",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build H001ProbabilitySimplex",
+     "command_note": "then, in a scratch file that imports H001ProbabilitySimplex: #print axioms FableHilbertWalk20260819.H001.signed_not_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H001ProbabilitySimplex.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "FableHilbertWalk20260819.H001.signed_not_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean"
      ],
      "command": "cd lean4 && lake build H001Rats",
      "command_note": null,
@@ -129603,8 +130039,30 @@
     },
     {
      "cited_in": [
-      "node.rust",
       "record TFQ-0171"
+     ],
+     "command": "cd lean4 && lake build H001Rats",
+     "command_note": "then, in a scratch file that imports H001Rats: #print axioms FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H001Rats.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
@@ -129627,8 +130085,30 @@
     },
     {
      "cited_in": [
-      "node.rust",
       "record TFQ-0171"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/finite_probability/finite_valuation.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "BooleanValuation::try_new",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
@@ -129651,8 +130131,30 @@
     },
     {
      "cited_in": [
-      "node.rust",
       "record TFQ-0171"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/finite_probability/local_deterministic.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "binary_local_vertices",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
@@ -129675,8 +130177,30 @@
     },
     {
      "cited_in": [
-      "node.rust",
       "record TFQ-0171"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/finite_probability/marginal_compatibility.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "MarginalScenario::validate_probabilities",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
@@ -129695,6 +130219,52 @@
      "symbol": null,
      "symbol_declared": null,
      "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_finite_probability",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/finite_probability/signed_representation.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "SignedValuation::from_weights",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0171"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0171.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "run_all_checks",
+     "symbol_declared": true,
+     "symbol_exists": true,
      "where": null
     },
     {
@@ -129722,7 +130292,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (5 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0171"
    ],
@@ -274252,6 +274822,32 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": null,
+   "dag_node": null,
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0171_lean_replay.json#0:CampaignTfq0171ImplementationSibling",
+   "lean_version": null,
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0171ImplementationSibling",
+   "path": "lean4/CampaignTfq0171ImplementationSibling.lean",
+   "receipt_file": "dag/research/campaign_tfq-0171_lean_replay.json",
+   "receipt_file_sha256": "981dcb000f91085e3cb88236081198cbe42597681ae6348de506c4a7bff20165",
+   "recorded_sha256": "b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36",
+   "source_unchanged_during_build": null,
+   "toolchain": null
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
     "Quot.sound",
     "propext"
    ],
@@ -285305,9 +285901,9 @@
  "summary": {
   "by_grade": {
    "E0": 169,
-   "E1": 228,
+   "E1": 227,
    "E2": 42,
-   "E3": 486,
+   "E3": 487,
    "E4": 0
   },
   "by_status": {
@@ -285357,7 +285953,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 509,
+  "receipts_indexed": 510,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -285522,9 +286118,9 @@
    },
    "IMPLEMENTATION_SIBLING": {
     "E0": 2,
-    "E1": 24,
+    "E1": 23,
     "E2": 0,
-    "E3": 0,
+    "E3": 1,
     "E4": 0
    },
    "L1_EMERGENCE": {
@@ -285636,9 +286232,9 @@
    },
    "OPEN": {
     "E0": 34,
-    "E1": 78,
+    "E1": 77,
     "E2": 10,
-    "E3": 53,
+    "E3": 54,
     "E4": 0
    },
    "PROVED_LEAN": {
