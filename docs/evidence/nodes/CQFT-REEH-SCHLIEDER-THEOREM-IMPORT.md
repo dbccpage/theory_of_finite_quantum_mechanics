@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/cqft-reeh-schlieder-theorem-import.py`
 
 - file: [checks/independent/cqft-reeh-schlieder-theorem-import.py](../../../checks/independent/cqft-reeh-schlieder-theorem-import.py)
-- sha256 (`bytes`): `0a85f39d9cb5dc5632c2440d1ca9ddaef93d9071d471e8eb0d9b69bc88107a64`
+- sha256 (`bytes`): `eb5a18aa575be09bca67c2f39ef055f8193e27449d520ba9c7ed8d811c1c377d`
 - cited in: node.source, record TFQ-2106
 - counts toward the grade: yes
 
@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json`
 
 - file: [dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json)
-- sha256 (`lf-normalised`): `c5d3037f7a6b51b58bb187507a9363425c0fab31c8809d2c8e0b26378de96b22`
+- sha256 (`lf-normalised`): `afab229e73d3892bb2c875a852ebed18bda42ab4cd48108ad8ba88ef166e9c86`
 - cited in: node.source
 - counts toward the grade: yes
 

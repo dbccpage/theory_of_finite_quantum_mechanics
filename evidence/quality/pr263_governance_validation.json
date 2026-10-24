@@ -1,0 +1,91 @@
+{
+  "schema_version": "tfqm.pr263-governance-evidence.v1",
+  "AuthorityEffect": "None",
+  "checked_at": "2026-10-24T03:03:03.781051+00:00",
+  "source_revision": "6ebc3a1dd4349e2d3c0ed0066afea4d1b6767f20",
+  "artifacts": [
+    {
+      "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+      "sha256": "a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d"
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "e37f768e57455028cb0934997d9f252e4cc2a7cb5a31ed34451a6f44563002e5"
+    },
+    {
+      "path": "checks/independent/lqg-continuum-limit-gap.py",
+      "sha256": "7a81f17c2b4c021a84348b6eaa13951a111920f338fb3ffabcdf962f5433f52a"
+    },
+    {
+      "path": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
+      "sha256": "1b9cfaf12cd195764cd17567b71c47010ae2ba2273cd361c9323c8326eb86239"
+    },
+    {
+      "path": "SCORING.md",
+      "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+    }
+  ],
+  "independent_check": {
+    "command": ".venv/bin/python -I -X utf8 checks/independent/lqg-continuum-limit-gap.py",
+    "python_version": "3.14.4",
+    "sympy_version": "1.14.0",
+    "exit_code": 0,
+    "output": "admissible ordered triples: 10\nroster: [(0, 0, 0), (0, 1, 1), (0, 2, 2), (1, 0, 1), (1, 1, 0), (1, 1, 2), (1, 2, 1), (2, 0, 2), (2, 1, 1), (2, 2, 0)]\nexcluded witness: (0, 0, 1)\nsix-tuples: 729\nnine-tuples: 19683\ndimension identities: d1^2 - d0 = d2 and d1*d2 - d1 = 0\ncounts 3, 729, 19683 pairwise distinct; scale 1 is another positive rational\ncontinuum limit, semiclassical limit, and physical cosmological constant: not checked\n"
+  },
+  "stored_lean_replay_review": {
+    "receipt": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
+    "source_binding_matches": true,
+    "lakefile_binding_matches": true,
+    "reported_exit_code": 0,
+    "reported_axioms": {
+      "CampaignLqgContinuumLimitGap.level2_admissible_count": [],
+      "CampaignLqgContinuumLimitGap.level2_tuple_census": [],
+      "CampaignLqgContinuumLimitGap.level2_dimension_truncation": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "CampaignLqgContinuumLimitGap.level2_free_positive_scale": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "allowed_axioms_only": true,
+    "fresh_replay_performed": false,
+    "limitation": "Lean and Lake are absent in this sandbox. This reviews the byte-bound PR receipt and does not claim a fresh Lean build."
+  },
+  "registry_review": {
+    "base": "637ed588908dd2848ea4c71af8f9c86480a90aeb",
+    "all_existing_bytes_preserved": true,
+    "only_addition": "\n-- Campaign: LQG-CONTINUUM-LIMIT-GAP. Not a default target.\nlean_lib CampaignLqgContinuumLimitGap where\n  roots := #[`CampaignLqgContinuumLimitGap]\n",
+    "capability_level": "L1",
+    "reason": "Declarative non-default target registration; existing approved support category."
+  },
+  "statement_review": {
+    "level2_admissible_count": "On labels 0, 1, 2 exactly the ten explicit ordered triples are accepted; (0,0,1) is rejected.",
+    "level2_tuple_census": "The natural-number equalities 3^6 = 729 and 3^9 = 19683.",
+    "level2_dimension_truncation": "Two concrete identities for the rational-pair encoding rat + coeff*sqrt(2); no general field-law proof.",
+    "level2_counts_do_not_select_a_scale": "The three positive rational count values 3, 729, 19683 are pairwise distinct; positivity is independently computed, not part of this theorem.",
+    "level2_free_positive_scale": "The positive rational witness 1 differs from 3, 729, 19683, alongside the two natural-number power equalities."
+  },
+  "module_assessment": {
+    "capability_level": "L2",
+    "rubric_section": "SCORING.md section 2",
+    "basis": "Straightforward definitions and fixed-instance lemmas; exact rational-pair arithmetic and a census of 27 triples. No general algebraic API or production boundary handling.",
+    "acceptance_floor_met": false,
+    "required_level": "L4",
+    "policy_exception_authorized": false
+  },
+  "boundaries": [
+    "The LQG-CONTINUUM-LIMIT-GAP node remains OPEN.",
+    "No continuum limit, semiclassical limit or physical cosmological constant is derived.",
+    "The exact 6j table, area spectrum and full pentagon identity are outside this census.",
+    "No independent human review or mutation campaign is claimed."
+  ]
+}
