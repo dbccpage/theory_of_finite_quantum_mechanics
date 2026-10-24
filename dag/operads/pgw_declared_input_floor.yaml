@@ -3,22 +3,26 @@ node_id: PGW-DECLARED-INPUT-FLOOR
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: No floor proof exists for the count of declared inputs (D10, H-1); the count stays
-    two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per
-    run, growth below four data, two items) and under its literal reading of carrying forward, four engines
-    that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither
-    a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings
-    of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward
-    past the bounds is OPEN (H-1, which needs the responder in Lean).
+  source_statement: Narrowed boundary, status left OPEN. The declared bound record is rounds 15, node
+    guard 250, data ceiling 4, item bound 2, input count 2, engine count 4, and reading count 2. The input
+    count equals the item bound. One is strictly below the input count. The guard is strictly above the
+    round count. The engine count is not the reading count. The data counts strictly below 4, taken from
+    the candidates 0, 1, 2, 3, and 4, are 0, 1, 2, and 3. There are 4 such counts. The ceiling itself
+    is not strictly below 4.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Open; the bounded one-input carriers are a computation at declared bounds, and the
-    clause's other reading was left to the author, who approved the freeze without a separate ruling.
+  source_bottleneck: The seven numerals are a declared bound record. They are not a floor for the input
+    count. They do not show that four engines carry the grammar forward, and they do not decide the other
+    reading of the completion gate. Whether the four carry forward past the bounds stays open (H-1, SD-R-11).
+    A reduction below two that holds past the bounds of attempt two stays open. The completion-gate clause
+    was frozen as NOT_ESTABLISHED. Status stays OPEN.
   source_refs:
   - dag/derivations/02_genesis/tfq_0498_declared_input_floor.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:386
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1064-1066
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:333-336
+  - dag/derivations/independent/pgw-declared-input-floor.md:5
+  - dag/research/campaign_pgw-declared-input-floor_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -32,9 +36,231 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_declared_input_floor_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: pgwRounds
+  line: 9
+  signature_excerpt: 'def pgwRounds : Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwGuard
+  line: 11
+  signature_excerpt: 'def pgwGuard : Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwDataCeiling
+  line: 13
+  signature_excerpt: 'def pgwDataCeiling : Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwItemBound
+  line: 15
+  signature_excerpt: 'def pgwItemBound : Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwInputCount
+  line: 17
+  signature_excerpt: 'def pgwInputCount : Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwEngines
+  line: 19
+  signature_excerpt: 'def pgwEngines : Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwReadings
+  line: 21
+  signature_excerpt: 'def pgwReadings : Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwStrictlyBelow
+  line: 25
+  signature_excerpt: 'def pgwStrictlyBelow : List Nat'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pgwBounds_values
+  line: 28
+  signature_excerpt: |-
+    theorem pgwBounds_values :
+        pgwRounds = 15 ∧ pgwGuard = 250 ∧ pgwDataCeiling = 4 ∧
+          pgwItemBound = 2 ∧ pgwInputCount = 2 ∧ pgwEngines = 4 ∧
+          pgwReadings = 2
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwInput_eq_items
+  line: 34
+  signature_excerpt: 'theorem pgwInput_eq_items : pgwInputCount = pgwItemBound'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwOne_below_input
+  line: 37
+  signature_excerpt: 'theorem pgwOne_below_input : 1 < pgwInputCount'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwGuard_above_rounds
+  line: 40
+  signature_excerpt: 'theorem pgwGuard_above_rounds : pgwRounds < pgwGuard'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwEngines_ne_readings
+  line: 43
+  signature_excerpt: 'theorem pgwEngines_ne_readings : pgwEngines ≠ pgwReadings'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwStrictlyBelow_list
+  line: 46
+  signature_excerpt: 'theorem pgwStrictlyBelow_list : pgwStrictlyBelow = [0, 1, 2, 3]'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwStrictlyBelow_length
+  line: 49
+  signature_excerpt: 'theorem pgwStrictlyBelow_length : pgwStrictlyBelow.length = 4'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwCeiling_not_below
+  line: 52
+  signature_excerpt: 'theorem pgwCeiling_not_below : decide (pgwDataCeiling < pgwDataCeiling) = false'
+  source: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  source_sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwBounds_values
+  availability: local
+  symbol: pgwBounds_values
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwInput_eq_items
+  availability: local
+  symbol: pgwInput_eq_items
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwOne_below_input
+  availability: local
+  symbol: pgwOne_below_input
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwGuard_above_rounds
+  availability: local
+  symbol: pgwGuard_above_rounds
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwEngines_ne_readings
+  availability: local
+  symbol: pgwEngines_ne_readings
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 43
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwStrictlyBelow_list
+  availability: local
+  symbol: pgwStrictlyBelow_list
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwStrictlyBelow_length
+  availability: local
+  symbol: pgwStrictlyBelow_length
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDeclaredInputFloor.lean::pgwCeiling_not_below
+  availability: local
+  symbol: pgwCeiling_not_below
+  path: lean4/CampaignPgwDeclaredInputFloor.lean
+  repository: this_repository
+  sha256: 4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +298,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
