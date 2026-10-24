@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0106",
+  "lean_file": "lean4/CampaignTfq0106FiniteQg.lean",
+  "sha256": "ae763f9cb951a6dc4599098cda21ccf5407fea38d7e42585d788580af3dfc93b",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_effective_scalar_curvature_drop_factor_2",
+        "description": "Mutate effectiveScalarCurvature from 2 * lambda * kappa to lambda * kappa, falsifying rust_cosmological_action_unit_test_replay and cosmological_action_zero_iff_curvature_balance.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpj10eot7o.lean:72:61: error: unsolved goals\n\u22a2 False\ntmpj10eot7o.lean:87:4: error: linarith failed to find a contradiction\ncase mp.h1\nlambda kappa K V : \u211a\nhkappa : kappa \u2260 0\nh : K - 2 * kappa * lambda * V = 2 * kappa * 0\na\u271d : K < lambda * kappa * V\n\u22a2 False\nfailed\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `r"
+      },
+      {
+        "id": "M2_evaluate_cosmological_action_sign_flip",
+        "description": "Mutate evaluateCosmologicalAction from minus lambda * totalVolume to plus lambda * totalVolume, falsifying rust_cosmological_action_unit_test_replay and cosmological_action_zero_iff_curvature_balance.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp_5tw49ay.lean:72:61: error: unsolved goals\n\u22a2 False\ntmp_5tw49ay.lean:87:4: error: linarith failed to find a contradiction\ncase mp.h1\nlambda kappa K V : \u211a\nhkappa : kappa \u2260 0\nh : K + 2 * kappa * lambda * V = 2 * kappa * 0\na\u271d : K < 2 * lambda * kappa * V\n\u22a2 False\nfailed\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note tha"
+      },
+      {
+        "id": "M3_lambda_residual_multiply_instead_of_divide",
+        "description": "Mutate lambdaResidual from H / Vcell to H * Vcell, falsifying cell_volume_4d_length_rescaling and any_target_lambda_achievable_by_cell_volume_calibration.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmpfyoss172.lean:125:17: error: unsolved goals\nH Vcell s : \u211a\nhs : s \u2260 0\n\u22a2 H * s ^ 4 * Vcell = H * Vce"
+      },
+      {
+        "id": "M4_four_hinge_mean_wrong_divisor",
+        "description": "Mutate fourHingeMean divisor from 4 to 3, falsifying default_valency_scaffold_calibration_spread.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp4karngn4.lean:173:58: error: unsolved goals\n\u22a2 False\n'CampaignTfq0106FiniteQg.rust_cosmological_action_unit_test_replay' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0106FiniteQg.cosmological_action_zero_iff_curvature_balance' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0106FiniteQg.cosmological_action_scaling_and_invariance' depends on ax"
+      },
+      {
+        "id": "M5_sym_tensor_components_antisymmetric_formula",
+        "description": "Mutate symTensorComponents from d * (d + 1) / 2 to d * (d - 1) / 2, falsifying four_dim_symmetric_tensor_component_counts.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpooqd9eoq.lean:196:2: error: Tactic `decide` proved that the proposition\n  symTensorComponents 4 = 10 \u2227 traceFreeSymComponents 4 = 9 \u2227 1 < symTensorComponents 4\nis false\n'CampaignTfq0106FiniteQg.rust_cosmological_action_unit_test_replay' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0106FiniteQg.cosmological_action_zero_iff_curvature_balance' depends on axioms: [propex"
+      },
+      {
+        "id": "M6_anisotropic_sq_residual_claim_zero",
+        "description": "Mutate anisotropic_curvature_vanishing_scalar_mean_fence to claim squared tensorial residual equals 0 instead of 2 * delta ^ 2.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmp2r9m1y_2.lean:217:2: error: unsolved goals\ncase refine_2\nlambda delta : \u211a\n\u22a2 delta ^ 2 * 2 = 0\ntmp2"
+      }
+    ]
+  }
+}

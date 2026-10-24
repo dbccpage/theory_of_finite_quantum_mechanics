@@ -1083,3 +1083,7 @@ lean_lib CampaignCqftCausalFactorizationImport where
 -- Campaign: CQFT-REEH-SCHLIEDER-THEOREM-IMPORT. Not a default target.
 lean_lib CampaignCqftReehSchliederTheoremImport where
   roots := #[`CampaignCqftReehSchliederTheoremImport]
+
+-- Campaign: TFQ-0106. Not a default target.
+lean_lib CampaignTfq0106FiniteQg where
+  roots := #[`CampaignTfq0106FiniteQg]

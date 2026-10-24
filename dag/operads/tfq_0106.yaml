@@ -1,53 +1,108 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0106
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
-  source_statement: derive_cosmological_constant_residual builds a float mean of hinge terms that mix
+  source_statement: 'derive_cosmological_constant_residual builds a float mean of hinge terms that mix
     a deficit angle with a sine and a supplied Immirzi number, then divides by a cell-volume parameter.
-    The function's Track B note says a continuum magnitude near the quoted dark-energy scale still needs
+    The function''s Track B note says a continuum magnitude near the quoted dark-energy scale still needs
     an external lattice-volume calibration. What is finite is that floating residual on a default valency
     list. What is not discharged is the physical cosmological constant, which stays GAP, and the Einstein
-    equation. A few hinges are not a measured Lambda and not quantum gravity.
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
-  source_bottleneck: 'GAP: the physical cosmological constant is not discharged. The Rust carrier is only
-    a degree-and-label scaffold.'
+    equation. A few hinges are not a measured Lambda and not quantum gravity. Narrowed in Lean 4 and an
+    independent Python verifier to three exact rational algebraic components and scope fences over Q:
+    (1) exact rational replay of CosmologicalCoupling::effective_scalar_curvature and evaluate_action in
+    code/rust/src/general_relativity/cosmological_constant.rs; (2) the external cell-volume calibration
+    underdetermination fence showing that H / V_cell scales as s^-4 under 4D length rescaling and can match
+    any nonzero target Lambda_target by choosing V_cell = H / Lambda_target; and (3) the 1-scalar vs.
+    10-component 4D symmetric Einstein tensor fence showing that anisotropic profiles (Lambda + delta,
+    Lambda - delta, Lambda, Lambda) have vanishing scalar mean residual while violating the componentwise
+    Einstein equation with squared residual 2 * delta^2 > 0.'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - external lattice cell-volume calibration V_cell (assumption)
+  - continuum 4D Einstein tensor limit G_munu + Lambda g_munu = 0 (open)
+  source_bottleneck: GAP: the physical cosmological constant is not discharged. The Rust carrier is only
+    a degree-and-label scaffold.
   source_refs:
   - dag/derivations/19_finite_qg/tfq_0106_gap_the_physical_cosmological_constant_is_not_discharged_the_rust_carrier_is.md
+  - dag/derivations/independent/tfq-0106.md
+  - checks/independent/tfq-0106.py
+  - lean4/CampaignTfq0106FiniteQg.lean
+  - code/rust/src/general_relativity/cosmological_constant.rs
+  - dag/research/campaign_tfq-0106_lean_replay.json
+  - dag/research/campaign_tfq-0106_lean_mutation.json
+  - dag/research/campaign_tfq-0106_independent.json
   paper_refs:
   - dag/derivations/19_finite_qg/tfq_0106_gap_the_physical_cosmological_constant_is_not_discharged_the_rust_carrier_is.md
-  source_claim_label: OPEN
+  source_claim_label: GAP
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/19_finite_qg/tfq_0106_gap_the_physical_cosmological_constant_is_not_discharged_the_rust_carrier_is.md
-    sha256: 89a759e261d44877ea901b55f01fc01755b738bc53f428a408a964ad5daa95dd
+    sha256: 884a360bdbeb700e7e821e6ce7f7476fe416bb00c83d61184984e0fe3f08ec54
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
-  path: dag/prompts/finite_qg_tfq_0106_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+  dag_source_commit: 040e3170ddbc27b799b7d72d9739c2b21662987e
+  path: dag/prompts/finite_qg_tfq_0106_gap.yaml
+  external_repository_commit: 040e3170ddbc27b799b7d72d9739c2b21662987e
+operation_candidates:
+- effectiveScalarCurvature
+- evaluateCosmologicalAction
+- lambdaResidual
+- immirziLambdaResidual
+- fourHingeMean
+- symTensorComponents
+- traceFreeSymComponents
+- diagonalEinsteinMeanResidual
+- diagonalEinsteinSqResidual
+relation_candidates:
+- rust_cosmological_action_unit_test_replay
+- cosmological_action_zero_iff_curvature_balance
+- cosmological_action_scaling_and_invariance
+- cell_volume_4d_length_rescaling
+- any_target_lambda_achievable_by_cell_volume_calibration
+- cell_volume_calibration_injective
+- immirzi_and_cell_volume_scale_degeneracy
+- default_valency_scaffold_calibration_spread
+- four_dim_symmetric_tensor_component_counts
+- anisotropic_curvature_vanishing_scalar_mean_fence
+- anisotropic_profile_violates_tensorial_einstein
+- diagonal_einstein_iff_sq_residual_zero
 source_bindings:
-- original_ref: code/rust/src/general_relativity/cosmological_constant.rs
-  availability: local
-  symbol: null
-  path: code/rust/src/general_relativity/cosmological_constant.rs
-  repository: this_repository
-  sha256: aacb294b411a20e9570173c8a1ac940956c087bd014f095f37997d16a2cd0ce7
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.rust_cosmological_action_unit_test_replay
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cosmological_action_zero_iff_curvature_balance
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cosmological_action_scaling_and_invariance
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cell_volume_4d_length_rescaling
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.any_target_lambda_achievable_by_cell_volume_calibration
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cell_volume_calibration_injective
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.immirzi_and_cell_volume_scale_degeneracy
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.default_valency_scaffold_calibration_spread
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.four_dim_symmetric_tensor_component_counts
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.anisotropic_curvature_vanishing_scalar_mean_fence
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.anisotropic_profile_violates_tensorial_einstein
+- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.diagonal_einstein_iff_sq_residual_zero
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - RationalCosmologicalCoupling
+  - CellVolumeCalibration
+  - DiagonalCurvatureProfile
+  generators:
+  - effectiveScalarCurvature
+  - evaluateCosmologicalAction
+  - lambdaResidual
+  - diagonalEinsteinMeanResidual
+  - diagonalEinsteinSqResidual
+  relations:
+  - cosmological_action_zero_iff_curvature_balance
+  - any_target_lambda_achievable_by_cell_volume_calibration
+  - anisotropic_curvature_vanishing_scalar_mean_fence
+  compositions:
+  - cell_volume_4d_length_rescaling
+  identities:
+  - immirzi_and_cell_volume_scale_degeneracy
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -57,32 +112,61 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: Q x Q x Q x Q
+    coefficient_ring: Q
+    assumptions:
+    - external lattice cell-volume calibration V_cell (assumption)
+    - continuum 4D Einstein tensor limit G_munu + Lambda g_munu = 0 (open)
+    source_pins:
+    - lean4/CampaignTfq0106FiniteQg.lean
+    - code/rust/src/general_relativity/cosmological_constant.rs
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - effectiveScalarCurvature
+    - evaluateCosmologicalAction
+    - lambdaResidual
+    - immirziLambdaResidual
+    - fourHingeMean
+    - diagonalEinsteinMeanResidual
+    - diagonalEinsteinSqResidual
+    composition_plan:
+    - cosmological_action_zero_iff_curvature_balance
+    - any_target_lambda_achievable_by_cell_volume_calibration
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - cosmological_action_zero_iff_curvature_balance
+    - cosmological_action_scaling_and_invariance
+    - cell_volume_4d_length_rescaling
+    - immirzi_and_cell_volume_scale_degeneracy
+    rejection_predicates:
+    - any_target_lambda_achievable_by_cell_volume_calibration
+    - cell_volume_calibration_injective
+    - anisotropic_curvature_vanishing_scalar_mean_fence
+    - anisotropic_profile_violates_tensorial_einstein
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0106_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - rust_cosmological_action_unit_test_replay
+    - default_valency_scaffold_calibration_spread
+    - four_dim_symmetric_tensor_component_counts
+    - diagonal_einstein_iff_sq_residual_zero
+    anchors:
+    - lean4/CampaignTfq0106FiniteQg.lean
+    - checks/independent/tfq-0106.py
+    - dag/derivations/independent/tfq-0106.md
+    unpaid_imports:
+    - external lattice cell-volume calibration V_cell (assumption)
+    - continuum 4D Einstein tensor limit G_munu + Lambda g_munu = 0 (open)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T05:15:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- Physical cosmological constant Lambda and continuum 4D Einstein equations remain open (GAP).
 excluded_relation_leads: []
