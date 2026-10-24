@@ -9495,14 +9495,27 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "statement": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
       "source": [
         "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len2_product",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_support",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_keeps_sector",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_idempotent",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_zero_mass",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_norm",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_unit_iff",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Separate finite instruments, path sums, and channels from any continuum generator.",
+      "bottleneck": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
       "tags": [
         "unified-dag",
         "TFQ-0008",
@@ -16644,18 +16657,34 @@
       "id": "PGW-SN-PROTECTED-ANSWER-TRANSPORT",
       "stage": "MSSN_SN",
       "status": "OPEN",
-      "source_status": "000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06 (stated requirement, no theorem)",
-      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. The sources state these as requirements and supply no theorem that produces F′ or the commuting squares. The old-image identity alone establishes neither a logical conservative extension, nor an adjunction, nor resolution of an unrelated demand.",
+      "source_status": "000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean",
+      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:237",
         "omega_engine_education/documentation/002_oesn/levels/level_06_tower_extension_retraction.md:39-42",
-        "omega_engine_education/documentation/002_oesn/sn.md:97-99"
+        "omega_engine_education/documentation/002_oesn/sn.md:97-99",
+        "dag/derivations/independent/pgw-sn-protected-answer-transport.md:13-18"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.retraction_transport_law",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.transport_off_image_underdetermined",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.transport_counterpart_card",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.commuting_square_preserves_transported_answer",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.canonical_transition_lift_commutes",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_answer_transport",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_canonical_transition_square",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_transition_counterexample",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.s6Descent_answer_transport",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.s6Descent_transition_counterexample",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.not_conservative_extension_off_image",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.old_image_not_left_galois_adjunction",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Requirement only: no answer-transport or commuting-square theorem is recorded for SnCarrier or for the Python S6Descent model, and the exercise value s₆ = 1 records an issued descent-checking obligation, not a forced survivor.",
+      "bottleneck": "The canonical retraction-induced transport, counterpart count, k-step commuting-square preservation, SnCarrier and integer S6Descent instances, and non-implication countermodels are checked in Lean 4; the node remains OPEN because arbitrary future target transitions require case-by-case commuting-square verification, the external Python S6Descent class in 002_oesn/code/sn_core.py is outside this checkout, and the exercise value s₆ = 1 records an issued descent-checking obligation, not a forced survivor.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0519",
@@ -16720,20 +16749,29 @@
     {
       "id": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
       "stage": "MSSN_SN",
-      "status": "CONDITIONAL",
-      "source_status": "002_oesn levels/level_08 (declared construction; LP duality cited)",
+      "status": "PROVED_LEAN",
+      "source_status": "002_oesn levels/level_08 (declared construction); Lean CampaignSnE08WeightedL1Duality (Fourier-Motzkin LP strong duality over Q)",
       "statement": "Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weights ω_e, and states that the minimum over g of Σ_e ω_e |c_e − (d₀g)_e| equals the maximum of cᵀy subject to d₀ᵀy = 0 and |y_e| ≤ ω_e, as finite linear-programming duality for the stated feasible bounded problem. Matching primal and dual feasible values certify optimality. An ℓ¹ minimizer need not be unique and is not in general the ℓ² harmonic residual. The page separately defines a categorical adjunction by functors, unit, counit and triangle identities, and says these maps are not the matrix pair d₀, d₀ᵀ.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md",
         "omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:19-29",
         "omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:40-44",
-        "omega_engine_education/documentation/002_oesn/levels/README.md:20"
+        "omega_engine_education/documentation/002_oesn/levels/README.md:20",
+        "dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::farkas",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose"
+      ],
       "rust": [],
-      "imported_structure": [
-        "Strong duality for finite feasible bounded linear programs over ℚ, cited by E08 and not proved there (assumption)"
-      ],
+      "imported_structure": [],
       "bottleneck": "E08 is a declared mathematical construction that grammar cases do not verify; AdjunctionCochain implements only x ↦ (x,0) and first-coordinate projection, and no adjunction is claimed until objects, functors, naturality and triangle laws are supplied.",
       "tags": [
         "pregenesis-to-wdp",
@@ -18707,19 +18745,28 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.4-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
-      "statement": "The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.",
+      "statement": "For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
         "papers/ravera_dfm_dossier.md",
-        "code/python/src/qm/ravera_dfm.py"
+        "code/python/src/qm/ravera_dfm.py",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean",
+        "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::inverse_difference",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::propagator_values",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::sandwich",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction_entries"
+      ],
       "rust": [],
       "imported_structure": [
         "gauge-invariant BPHZ subtraction scheme",
         "continuum loop integration"
       ],
-      "bottleneck": "Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.",
+      "bottleneck": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -20740,13 +20787,21 @@
         "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced"
+      ],
       "rust": [],
       "imported_structure": [
         "Majorana operator decomposition of CAR modes (standard literature result)",
         "fermion parity superselection (physical postulate)"
       ],
-      "bottleneck": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "bottleneck": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -21146,14 +21201,32 @@
       "source": [
         "dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-su2-adjoint-real-det.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.reality_not_positivity_witness",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip"
+      ],
       "rust": [],
       "imported_structure": [
         "lattice SU(2) gauge theory with adjoint Dirac fermions (standard)"
       ],
-      "bottleneck": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.",
+      "bottleneck": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -21169,14 +21242,33 @@
       "statement": "For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.",
       "source": [
         "dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-qcd-chemical-potential-det.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.det_conj_by_involution",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_det",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+      ],
       "rust": [],
       "imported_structure": [
         "lattice QCD with staggered quarks at chemical potential (standard)"
       ],
-      "bottleneck": "Standard identity imported; the checkout has no SU(3) staggered operator and no computation of det D(mu).",
+      "bottleneck": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -21245,12 +21337,40 @@
       "statement": "Claimed: a finite-lattice 2D N=1 Wess-Zumino model with supercharges obeying {Q_a, Q_b} = 2 delta_ab H, H >= 0 and exact boson-fermion pairing of nonzero levels; no such lattice construction exists in this checkout, and lattice discretizations generally keep at most a subalgebra exact.",
       "source": [
         "dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-lattice-wess-zumino-susy.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionParity_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Specify the lattice model and which supercharge is exact; prove H = Q^2 or {Q, Q^dagger} on the finite Hilbert space before using pairing.",
+      "bottleneck": "Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/CampaignFspLatticeWessZuminoSusy.lean establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A, A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 != 0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino models.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -26278,19 +26398,26 @@
       "id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "stage": "CAUSAL_QFT",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.",
-      "statement": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "source_status": "Finite pair counts and the stated integer-matrix products were checked in Lean 4 on 2026-10-23. The continuum net and the light cone remain an imported assumption; the 1964 source wording is not audited here.",
+      "statement": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md",
-        "external:doi:10.1063/1.1704187"
+        "external:doi:10.1063/1.1704187",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean",
+        "dag/derivations/independent/cqft-local-net-axioms-import.md",
+        "checks/independent/cqft-local-net-axioms-import.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "rust": [],
       "imported_structure": [
         "spacetime with causal order (assumption)",
         "net of local algebras with isotony and locality (assumption)"
       ],
-      "bottleneck": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "bottleneck": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -26636,21 +26763,48 @@
       "id": "ADS-CFT-DUALITY-IMPORT",
       "stage": "ADS_CFT",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Audited against arXiv:hep-th/9711200, arXiv:hep-th/9802109 and arXiv:hep-th/9802150 on 2026-10-22; taken as an imported assumption of this branch.",
-      "statement": "Imported as an assumption, not as a result of this repository: a quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same observables as a conformal field theory on its boundary. The duality is a conjecture. It presupposes continuum quantum field theory (a Hilbert space, unitary evolution, operator algebras) and a continuum gravity theory; the repository records both as open or held outside the programme.",
+      "source_status": "Audited against arXiv:hep-th/9711200, arXiv:hep-th/9802109 and arXiv:hep-th/9802150 on 2026-10-23; narrowed to finite/rational algebraic shadows in Lean 4 and an independent Python verifier while keeping the continuum duality as an imported assumption.",
+      "statement": "Imported as an assumption, not as a result of this repository: a continuum quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same generating functional and observables as a conformal field theory on its boundary. Narrowed to its exact finite/rational algebraic shadows: (1) over Q, the GKPW scalar mass-dimension quadratic gkpwMassSq(d, Delta) = Delta(Delta - d) = mSq satisfies the shadow involution Delta |-> d - Delta, (2 Delta - d)^2 = d^2 + 4 Delta(Delta - d), and the Breitenlohner-Freedman lower bound -(d^2)/4 <= Delta(Delta - d) with double root Delta = d/2 at saturation and no rational root strictly below -(d^2)/4; (2) in 't Hooft double-line counting with lambda = g_YM^2 N and Euler characteristic chi = V - E + F = 2 - 2g, the ribbon weight satisfies (g_YM^2)^(E - V) N^F * N^(E - V) = lambda^(E - V) N^F, suppressing the genus-1 torus vacuum graph (V=2, E=3, F=1) relative to the planar dipole (V=2, E=3, F=3) by N^2; and (3) for any finite isometric bulk-to-boundary encoding V^T V = I_b, the pushforward iota_V(O_bulk) = V O_bulk V^T and pullback pi_V(O_bdry) = V^T O_bdry V satisfy pi_V(iota_V(O_bulk)) = O_bulk, iota_V(A) iota_V(C) = iota_V(A C), and <V psi, O_bdry(V psi)> = <psi, pi_V(O_bdry) psi>, whereas for b = 1 < B = 2 (V = [[1],[0]]) V V^T != I_2 and the nonzero boundary operator O_perp = [[0,0],[0,1]] pulls back to 0 and has no bulk preimage.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md",
+        "dag/derivations/independent/ads-cft-duality-import.md",
+        "checks/independent/ads-cft-duality-import.py",
+        "dag/research/campaign_ads-cft-duality-import_lean_replay.json",
+        "dag/research/campaign_ads-cft-duality-import_lean_mutation.json",
+        "dag/research/campaign_ads-cft-duality-import_independent.json",
         "external:arXiv:hep-th/9711200",
         "external:arXiv:hep-th/9802109",
         "external:arXiv:hep-th/9802150"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_involutive",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_sum",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_vieta_product",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_completed_square",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_saturation_double_root",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.no_rational_root_below_bf_bound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_factorization",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pullback_pushforward_id",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pushforward_mul_of_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_pullback",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_match",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_is_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.boundary_annihilator_obstruction"
+      ],
       "rust": [],
       "imported_structure": [
         "continuum quantum field theory and gravity (assumption)",
         "large-N limit (assumption)"
       ],
-      "bottleneck": "The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the finite-to-continuum interface TFQ-0085 are open.",
+      "bottleneck": "The continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], the full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and the continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085 remain unconstructed; at b < B a finite isometric encoding V^T V = I_b has non-surjective pushforward iota_V and a nontrivial boundary kernel of pi_V.",
       "tags": [
         "frontier-branch",
         "frontier:ads_cft",
@@ -26910,15 +27064,37 @@
       "id": "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
       "stage": "ADS_CFT",
       "status": "OPEN",
-      "source_status": "Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1 and Section 6 pp. 20-23 on 2026-10-22.",
-      "statement": "No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are toy models of the bulk-to-boundary map on a discrete hyperbolic tiling; they have no Lorentzian time, no dynamics, no gravitational action and no large-N limit. A finite check on them does not support the duality, and the finite targets of this stage are exact statements about specific codes only.",
+      "source_status": "Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1, Section 4 pp. 8-14, and Section 6 pp. 20-23 on 2026-10-23; narrowed to exact Renyi-spectrum, length-8..12 minimal-cut deficit, and Hilbert-codimension fences in Lean 4 and an independent Python verifier.",
+      "statement": "No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1 > 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 < 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).",
       "source": [
-        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md"
+        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md",
+        "dag/derivations/independent/ads-happy-toy-not-duality-gap.md",
+        "checks/independent/ads-happy-toy-not-duality-gap.py",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json",
+        "external:arXiv:1503.06237"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Recorded as an explicit non-claim so that the exact finite results are not read as evidence for the duality.",
+      "bottleneck": "Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open.",
       "tags": [
         "frontier-branch",
         "frontier:ads_cft",
@@ -27305,21 +27481,31 @@
       "id": "LQG-EPRL-VERTEX-IMPORT",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Audited against the full texts of arXiv:0711.0146 (Sections III-IV eqs. (18)-(30) pp. 6-9), arXiv:0708.1595 (Sections II.C, V) and arXiv:1205.2019 (Part III) on 2026-10-22; taken as an imported assumption of this branch.",
-      "statement": "Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.",
+      "source_status": "Rational Euclidean and Lorentzian label identities were checked in Lean 4 on 2026-10-24. The EPRL-FK vertex, the 15j contraction, and any continuum or semiclassical limit remain an imported assumption. The 2008 embedding formulas were audited on 2026-10-22.",
+      "statement": "For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md",
         "external:arXiv:0711.0146",
         "external:arXiv:0708.1595",
-        "external:arXiv:1205.2019"
+        "external:arXiv:1205.2019",
+        "lean4/CampaignLqgEprlVertexImport.lean",
+        "dag/derivations/independent/lqg-eprl-vertex-import.md",
+        "checks/independent/lqg-eprl-vertex-import.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_below",
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_above",
+        "lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two",
+        "lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs"
+      ],
       "rust": [],
       "imported_structure": [
         "SU(2) and Spin(4) representation theory (assumption)",
         "simplicity constraints and Immirzi parameter (assumption)"
       ],
-      "bottleneck": "The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
+      "bottleneck": "The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -34686,7 +34872,7 @@
         "PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE"
       ],
       "output": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
-      "status": "CONDITIONAL_ON_IMPORT",
+      "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md",
         "omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:19-29",
@@ -35643,7 +35829,7 @@
       ],
       "output": "DFM-Z1-Z2-COUNTERTERM-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.",
+      "mechanism": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
         "papers/ravera_dfm_dossier.md",
@@ -36649,7 +36835,7 @@
       ],
       "output": "FSP-MAJORANA-CLIFFORD-PARITY",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "mechanism": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "source": [
         "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
@@ -36850,7 +37036,7 @@
       ],
       "output": "FSP-SU2-ADJOINT-REAL-DET",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.",
+      "mechanism": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.",
       "source": [
         "dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -36864,10 +37050,11 @@
       ],
       "output": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Standard identity imported; the checkout has no SU(3) staggered operator and no computation of det D(mu).",
+      "mechanism": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "source": [
         "dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-qcd-chemical-potential-det.md"
       ]
     },
     {
@@ -36905,10 +37092,11 @@
       ],
       "output": "FSP-LATTICE-WESS-ZUMINO-SUSY",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Specify the lattice model and which supercharge is exact; prove H = Q^2 or {Q, Q^dagger} on the finite Hilbert space before using pairing.",
+      "mechanism": "Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/CampaignFspLatticeWessZuminoSusy.lean establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A, A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 != 0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino models.",
       "source": [
         "dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-lattice-wess-zumino-susy.md"
       ]
     },
     {
@@ -40851,17 +41039,32 @@
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift.md"
       ],
       "id": "TFQ-0008",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len2_product",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_support",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_keeps_sector",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_idempotent",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_zero_mass",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_norm",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_unit_iff",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+      ],
       "local_id": "FINITE_DYNAMICS",
       "name": "Finite dynamics, instruments, and channels",
-      "obligation": "Separate finite instruments, path sums, and channels from any continuum generator.",
+      "obligation": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
       "parent_id": "TFQ-0007",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0008.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_QM_DYNAMICS",
-      "summary": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "summary": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
       "uuid": "9a3ade1d-15a2-5016-a445-2b42ba90c577"
     },
     {
@@ -60159,14 +60362,27 @@
       ],
       "id": "TFQ-0519",
       "lean4": [
-        "absent: no Lean theorem producing F′ with F′∘u = F or a commuting transition square"
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.retraction_transport_law",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.transport_off_image_underdetermined",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.transport_counterpart_card",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.commuting_square_preserves_transported_answer",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.canonical_transition_lift_commutes",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_answer_transport",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_canonical_transition_square",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.snCarrier_transition_counterexample",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.s6Descent_answer_transport",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.s6Descent_transition_counterexample",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.not_conservative_extension_off_image",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.old_image_not_left_galois_adjunction",
+        "lean4/CampaignSnProtectedAnswerTransport.lean::CampaignSnProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift"
       ],
       "local_id": "PGW-SN-PROTECTED-ANSWER-TRANSPORT",
       "name": "sn-protected-answer-transport",
-      "obligation": "For each protected answer F supply F′ with F′∘u = F, and for each future admitted event supply the commuting transition square, before claiming that the lift preserves that answer or operation.",
+      "obligation": "For each protected answer F supply F′ with F′∘u = F (such as retractionTransport r F d under OldImageLaw u r), and for each future admitted event supply and check the commuting transition square before claiming that the lift preserves that answer or operation.",
       "parent_id": "TFQ-0518",
       "python": [
-        "absent: no Python check of answer transport across a lift"
+        "checks/independent/pgw-sn-protected-answer-transport.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -60174,7 +60390,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
-      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. The sources state these as requirements and supply no theorem that produces F′ or the commuting squares. The old-image identity alone establishes neither a logical conservative extension, nor an adjunction, nor resolution of an unrelated demand.",
+      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "uuid": "26db6fbc-6946-5835-975b-48f71515ff5a"
     },
     {
@@ -60251,14 +60467,23 @@
       "f004_refs": [],
       "id": "TFQ-0522",
       "lean4": [
-        "absent: no Lean statement of the weighted l1 duality in the S(n) strand"
+        "lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::farkas",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic",
+        "lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose"
       ],
       "local_id": "PGW-SN-E08-WEIGHTED-L1-DUALITY",
       "name": "sn-e08-weighted-l1-duality",
       "obligation": "For a declared weighted ℓ¹ cochain problem, certify a value by a primal g and a dual y with d₀ᵀy = 0, |y_e| ≤ ω_e and equal objective values, and keep the categorical adjunction a separate construction.",
       "parent_id": "TFQ-0516",
       "python": [
-        "absent: AdjunctionCochain in sn_realizations.py implements a product section and projection, not this linear program"
+        "checks/independent/pgw-sn-e08-weighted-l1-duality.py::solve_primal",
+        "checks/independent/pgw-sn-e08-weighted-l1-duality.py::solve_dual"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62443,22 +62668,31 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
         "papers/ravera_dfm_dossier.md:139-141",
-        "code/python/src/qm/ravera_dfm.py:565-571"
+        "code/python/src/qm/ravera_dfm.py:565-571",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean",
+        "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
       "id": "TFQ-1114",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::inverse_difference",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::propagator_values",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::sandwich",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction_entries"
+      ],
       "local_id": "DFM-Z1-Z2-COUNTERTERM-FENCE",
-      "name": "Z_1 = Z_2 counterterm equality under BPHZ subtraction",
-      "obligation": "Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.",
+      "name": "One rational vertex contraction, not a counterterm ratio",
+      "obligation": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "parent_id": "TFQ-1113",
       "python": [
-        "code/python/src/qm/ravera_dfm.py::verify_pillar4_dressed_dirac_and_ward_takahashi"
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.",
+      "summary": "For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.",
       "uuid": "38f92631-3026-5aba-9ed1-36218a11b18a"
     },
     {
@@ -64608,12 +64842,22 @@
         "papers/core/fsp/theory_of_finite_fsp.md:283-295"
       ],
       "id": "TFQ-1186",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced"
+      ],
       "local_id": "FSP-MAJORANA-CLIFFORD-PARITY",
       "name": "Majorana decomposition, Clifford relations and fermion parity",
-      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "parent_id": "TFQ-1184",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-majorana-clifford-parity.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
@@ -65018,15 +65262,35 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md:503-515",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:522-541"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:522-541",
+        "dag/derivations/independent/fsp-su2-adjoint-real-det.md"
       ],
       "id": "TFQ-1200",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.reality_not_positivity_witness",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip"
+      ],
       "local_id": "FSP-SU2-ADJOINT-REAL-DET",
       "name": "SU(2) adjoint fermions have a real determinant",
-      "obligation": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.",
+      "obligation": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.",
       "parent_id": "TFQ-1196",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-su2-adjoint-real-det.py::main"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
@@ -65042,15 +65306,36 @@
       ],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:516-528"
+        "papers/core/fsp/theory_of_finite_fsp.md:516-528",
+        "dag/derivations/independent/fsp-qcd-chemical-potential-det.md"
       ],
       "id": "TFQ-1201",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.det_conj_by_involution",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_det",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+      ],
       "local_id": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
       "name": "Complex quark determinant at real chemical potential",
-      "obligation": "Standard identity imported; the checkout has no SU(3) staggered operator and no computation of det D(mu).",
+      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "parent_id": "TFQ-1200",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-qcd-chemical-potential-det.py::main"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
@@ -65125,15 +65410,45 @@
       ],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:558-570"
+        "papers/core/fsp/theory_of_finite_fsp.md:558-570",
+        "dag/derivations/independent/fsp-lattice-wess-zumino-susy.md"
       ],
       "id": "TFQ-1204",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionParity_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero"
+      ],
       "local_id": "FSP-LATTICE-WESS-ZUMINO-SUSY",
       "name": "Lattice Wess-Zumino supercharge algebra",
-      "obligation": "Specify the lattice model and which supercharge is exact; prove H = Q^2 or {Q, Q^dagger} on the finite Hilbert space before using pairing.",
+      "obligation": "Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/CampaignFspLatticeWessZuminoSusy.lean establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A, A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 != 0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino models.",
       "parent_id": "TFQ-1184",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-lattice-wess-zumino-susy.py::main"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
@@ -70455,17 +70770,23 @@
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md"
       ],
       "id": "TFQ-2103",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "local_id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "name": "Imported: a causal spacetime with a net of local algebras",
-      "obligation": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "obligation": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "parent_id": "TFQ-2102",
-      "python": [],
+      "python": [
+        "checks/independent/cqft-local-net-axioms-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "CAUSAL_QFT",
-      "summary": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "summary": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "uuid": "ead8c2b9-1331-590e-bfcb-5bf3cf5440f7"
     },
     {
@@ -70762,20 +71083,48 @@
         "ADS-CFT-DUALITY-IMPORT"
       ],
       "f004_refs": [
-        "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md"
+        "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md",
+        "dag/derivations/independent/ads-cft-duality-import.md",
+        "dag/research/campaign_ads-cft-duality-import_lean_replay.json",
+        "dag/research/campaign_ads-cft-duality-import_lean_mutation.json",
+        "dag/research/campaign_ads-cft-duality-import_independent.json"
       ],
       "id": "TFQ-2202",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_involutive",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_sum",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_vieta_product",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_completed_square",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_saturation_double_root",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.no_rational_root_below_bf_bound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_factorization",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pullback_pushforward_id",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pushforward_mul_of_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_pullback",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_match",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_is_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.boundary_annihilator_obstruction"
+      ],
       "local_id": "ADS-CFT-DUALITY-IMPORT",
       "name": "Imported: bulk gravity and boundary conformal field theory are equivalent",
-      "obligation": "The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the finite-to-continuum interface TFQ-0085 are open.",
+      "obligation": "The continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], the full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and the continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085 remain unconstructed; at b < B a finite isometric encoding V^T V = I_b has non-surjective pushforward iota_V and a nontrivial boundary kernel of pi_V.",
       "parent_id": "TFQ-2201",
-      "python": [],
+      "python": [
+        "checks/independent/ads-cft-duality-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "ADS_CFT",
-      "summary": "Imported as an assumption, not as a result of this repository: a quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same observables as a conformal field theory on its boundary. The duality is a conjecture. It presupposes continuum quantum field theory (a Hilbert space, unitary evolution, operator algebras) and a continuum gravity theory; the repository records both as open or held outside the programme.",
+      "summary": "Imported as an assumption, not as a result of this repository: a continuum quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same generating functional and observables as a conformal field theory on its boundary. Narrowed to its exact finite/rational algebraic shadows: (1) over Q, the GKPW scalar mass-dimension quadratic gkpwMassSq(d, Delta) = Delta(Delta - d) = mSq satisfies the shadow involution Delta |-> d - Delta, (2 Delta - d)^2 = d^2 + 4 Delta(Delta - d), and the Breitenlohner-Freedman lower bound -(d^2)/4 <= Delta(Delta - d) with double root Delta = d/2 at saturation and no rational root strictly below -(d^2)/4; (2) in 't Hooft double-line counting with lambda = g_YM^2 N and Euler characteristic chi = V - E + F = 2 - 2g, the ribbon weight satisfies (g_YM^2)^(E - V) N^F * N^(E - V) = lambda^(E - V) N^F, suppressing the genus-1 torus vacuum graph (V=2, E=3, F=1) relative to the planar dipole (V=2, E=3, F=3) by N^2; and (3) for any finite isometric bulk-to-boundary encoding V^T V = I_b, the pushforward iota_V(O_bulk) = V O_bulk V^T and pullback pi_V(O_bdry) = V^T O_bdry V satisfy pi_V(iota_V(O_bulk)) = O_bulk, iota_V(A) iota_V(C) = iota_V(A C), and <V psi, O_bdry(V psi)> = <psi, pi_V(O_bdry) psi>, whereas for b = 1 < B = 2 (V = [[1],[0]]) V V^T != I_2 and the nonzero boundary operator O_perp = [[0,0],[0,1]] pulls back to 0 and has no bulk preimage.",
       "uuid": "e2db5178-9e7d-5676-aeb8-ecd800c179f1"
     },
     {
@@ -71000,20 +71349,42 @@
         "ADS-HAPPY-TOY-NOT-DUALITY-GAP"
       ],
       "f004_refs": [
-        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md"
+        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md",
+        "dag/derivations/independent/ads-happy-toy-not-duality-gap.md",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json"
       ],
       "id": "TFQ-2212",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions"
+      ],
       "local_id": "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
       "name": "Gap: finite code checks are not a derivation of AdS/CFT",
-      "obligation": "Recorded as an explicit non-claim so that the exact finite results are not read as evidence for the duality.",
+      "obligation": "Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open.",
       "parent_id": "TFQ-2207",
-      "python": [],
+      "python": [
+        "checks/independent/ads-happy-toy-not-duality-gap.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "ADS_CFT",
-      "summary": "No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are toy models of the bulk-to-boundary map on a discrete hyperbolic tiling; they have no Lorentzian time, no dynamics, no gravitational action and no large-N limit. A finite check on them does not support the duality, and the finite targets of this stage are exact statements about specific codes only.",
+      "summary": "No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1 > 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 < 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).",
       "uuid": "a6188d7a-9c6f-5049-9106-5b47e953fae7"
     },
     {
@@ -71357,17 +71728,26 @@
         "dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md"
       ],
       "id": "TFQ-2314",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_below",
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_above",
+        "lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two",
+        "lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs"
+      ],
       "local_id": "LQG-EPRL-VERTEX-IMPORT",
       "name": "Imported: EPRL-FK vertex amplitude for four-dimensional gravity",
-      "obligation": "The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
+      "obligation": "The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
       "parent_id": "TFQ-2312",
-      "python": [],
+      "python": [
+        "checks/independent/lqg-eprl-vertex-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "summary": "Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.",
+      "summary": "For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.",
       "uuid": "6bb920ad-676d-55e3-8b2f-06375d0d50ee"
     },
     {

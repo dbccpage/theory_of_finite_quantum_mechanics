@@ -1,4 +1,4 @@
-# [TFQ-1114] Z_1 = Z_2 counterterm equality under BPHZ subtraction
+# [TFQ-1114] One rational vertex contraction, not a counterterm ratio
 
 > **Stage**: `DRESSING_FIELD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `DFM-Z1-Z2-COUNTERTERM-FENCE`  
 > **UUID**: `38f92631-3026-5aba-9ed1-36218a11b18a`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.
+For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.
 
 ### Governing Obligation
-Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.
+The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.
 
 ### Witness Audit
-verify_pillar4 returns z1_over_z2_ratio as the constant Q(1, 1) without computation, and no Dirac trace contraction is evaluated.
+inverse_difference is the inverse-propagator identity for every integer momentum and mass. propagator_values, sandwich, contraction, and contraction_entries are the stated momentum: denominators 3 and 7, the sandwiched product, the lowered contraction, and the witness entries 2/7, 2/7, 26/21, 26/21 with the four off-diagonal values. No loop integral and no Z_1/Z_2 ratio is derived. Status stays OPEN.
 
 ---
 
@@ -44,13 +44,17 @@ verify_pillar4 returns z1_over_z2_ratio as the constant Q(1, 1) without computat
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignDfmZ1Z2CountertermFence.lean::inverse_difference`
+- `lean4/CampaignDfmZ1Z2CountertermFence.lean::propagator_values`
+- `lean4/CampaignDfmZ1Z2CountertermFence.lean::sandwich`
+- `lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction`
+- `lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction_entries`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- `code/python/src/qm/ravera_dfm.py::verify_pillar4_dressed_dirac_and_ward_takahashi`
+- `checks/independent/dfm-z1-z2-counterterm-fence.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -68,3 +72,6 @@ verify_pillar4 returns z1_over_z2_ratio as the constant Q(1, 1) without computat
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:139-141`
   - `code/python/src/qm/ravera_dfm.py:565-571`
+  - `lean4/CampaignDfmZ1Z2CountertermFence.lean`
+  - `dag/derivations/independent/dfm-z1-z2-counterterm-fence.md`
+  - `checks/independent/dfm-z1-z2-counterterm-fence.py`

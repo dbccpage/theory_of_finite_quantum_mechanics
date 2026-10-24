@@ -1,0 +1,58 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-23",
+  "dag_node": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
+  "record_id": "TFQ-1201",
+  "lean_file": "lean4/CampaignFspQcdChemicalPotentialDet.lean",
+  "lean_file_sha256": "cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "mutants": [
+    {
+      "id": "mutant_1_drop_gamma5_involution",
+      "description": "Drop involution hypothesis \u03935 * \u03935 = 1 in det_conj_by_involution",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:82:24: error: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `h\u0393` is a proof of\n<stdin>:93:38: error: Application type mismatch: The argument\n<stdin>:91:42: error: unsolved goals\n\u22a2 star (D \u03bc).det = (D (-star \u03bc)).det"
+    },
+    {
+      "id": "mutant_2_flip_real_mu_sign",
+      "description": "Claim star (det D(mu)) = det D(+mu) instead of det D(-mu) for general real mu",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:105:2: error: Type mismatch: After simplification, term"
+    },
+    {
+      "id": "mutant_3_drop_hop_swap_hypothesis",
+      "description": "Replace forward-to-backward hopping swap \u03935 * Kpos * \u03935 = Kneg\u1d34 with Kpos\u1d34 in diracMu_gamma5_adjoint",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:161:50: error: unsolved goals\n\u22a2 M0\u1d34 + (expMap \u03bc \u2022 Kpos\u1d34 + expMap (-1 \u2022 \u03bc) \u2022 Kpos\u1d34) = M0\u1d34 + (expMap (-1 \u2022 \u03bc) \u2022 Kpos\u1d34 + expMap \u03bc \u2022 Kneg\u1d34)\n<stdin>:184:60: error: Application type mismatch: The argument\n<stdin>:207:17: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n\u22a2 -Tpos = Tpos\u1d34"
+    },
+    {
+      "id": "mutant_4_break_su3ClockLink_det",
+      "description": "Change -1 entry to +1 in su3ClockLink so det U = -1 != 1",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:243:51: error: unsolved goals\n\u22a2 -1 = 1\n<stdin>:277:56: error: unsolved goals\n\u22a2 False\n<stdin>:285:66: error: unsolved goals\n\u22a2 False"
+    },
+    {
+      "id": "mutant_5_claim_real_det_at_two",
+      "description": "Claim imaginary part is zero in su3FugacityDirac_det_at_two",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:277:47: error: unsolved goals\n\u22a2 False\n<stdin>:301:2: error: unsolved goals\n\u22a2 False\n<stdin>:302:2: error: unsolved goals\n\u22a2 False"
+    },
+    {
+      "id": "mutant_6_drop_su2_unit_norm",
+      "description": "Drop unit-modulus hypothesis u * star u = 1 in su2DiagLink_block_det_im_zero",
+      "killed": true,
+      "exit_code": 1,
+      "diagnostic_excerpt": "<stdin>:316:45: error: Type mismatch: After simplification, term"
+    }
+  ],
+  "source": "lean4/CampaignFspQcdChemicalPotentialDet.lean",
+  "source_sha256": "cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb"
+}

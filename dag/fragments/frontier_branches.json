@@ -644,19 +644,26 @@
       "id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "stage": "CAUSAL_QFT",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.",
-      "statement": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "source_status": "Finite pair counts and the stated integer-matrix products were checked in Lean 4 on 2026-10-23. The continuum net and the light cone remain an imported assumption; the 1964 source wording is not audited here.",
+      "statement": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md",
-        "external:doi:10.1063/1.1704187"
+        "external:doi:10.1063/1.1704187",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean",
+        "dag/derivations/independent/cqft-local-net-axioms-import.md",
+        "checks/independent/cqft-local-net-axioms-import.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "rust": [],
       "imported_structure": [
         "spacetime with causal order (assumption)",
         "net of local algebras with isotony and locality (assumption)"
       ],
-      "bottleneck": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "bottleneck": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -1002,21 +1009,48 @@
       "id": "ADS-CFT-DUALITY-IMPORT",
       "stage": "ADS_CFT",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Audited against arXiv:hep-th/9711200, arXiv:hep-th/9802109 and arXiv:hep-th/9802150 on 2026-10-22; taken as an imported assumption of this branch.",
-      "statement": "Imported as an assumption, not as a result of this repository: a quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same observables as a conformal field theory on its boundary. The duality is a conjecture. It presupposes continuum quantum field theory (a Hilbert space, unitary evolution, operator algebras) and a continuum gravity theory; the repository records both as open or held outside the programme.",
+      "source_status": "Audited against arXiv:hep-th/9711200, arXiv:hep-th/9802109 and arXiv:hep-th/9802150 on 2026-10-23; narrowed to finite/rational algebraic shadows in Lean 4 and an independent Python verifier while keeping the continuum duality as an imported assumption.",
+      "statement": "Imported as an assumption, not as a result of this repository: a continuum quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same generating functional and observables as a conformal field theory on its boundary. Narrowed to its exact finite/rational algebraic shadows: (1) over Q, the GKPW scalar mass-dimension quadratic gkpwMassSq(d, Delta) = Delta(Delta - d) = mSq satisfies the shadow involution Delta |-> d - Delta, (2 Delta - d)^2 = d^2 + 4 Delta(Delta - d), and the Breitenlohner-Freedman lower bound -(d^2)/4 <= Delta(Delta - d) with double root Delta = d/2 at saturation and no rational root strictly below -(d^2)/4; (2) in 't Hooft double-line counting with lambda = g_YM^2 N and Euler characteristic chi = V - E + F = 2 - 2g, the ribbon weight satisfies (g_YM^2)^(E - V) N^F * N^(E - V) = lambda^(E - V) N^F, suppressing the genus-1 torus vacuum graph (V=2, E=3, F=1) relative to the planar dipole (V=2, E=3, F=3) by N^2; and (3) for any finite isometric bulk-to-boundary encoding V^T V = I_b, the pushforward iota_V(O_bulk) = V O_bulk V^T and pullback pi_V(O_bdry) = V^T O_bdry V satisfy pi_V(iota_V(O_bulk)) = O_bulk, iota_V(A) iota_V(C) = iota_V(A C), and <V psi, O_bdry(V psi)> = <psi, pi_V(O_bdry) psi>, whereas for b = 1 < B = 2 (V = [[1],[0]]) V V^T != I_2 and the nonzero boundary operator O_perp = [[0,0],[0,1]] pulls back to 0 and has no bulk preimage.",
       "source": [
         "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md",
+        "dag/derivations/independent/ads-cft-duality-import.md",
+        "checks/independent/ads-cft-duality-import.py",
+        "dag/research/campaign_ads-cft-duality-import_lean_replay.json",
+        "dag/research/campaign_ads-cft-duality-import_lean_mutation.json",
+        "dag/research/campaign_ads-cft-duality-import_independent.json",
         "external:arXiv:hep-th/9711200",
         "external:arXiv:hep-th/9802109",
         "external:arXiv:hep-th/9802150"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_involutive",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_sum",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_vieta_product",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_completed_square",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_saturation_double_root",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.no_rational_root_below_bf_bound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_factorization",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pullback_pushforward_id",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pushforward_mul_of_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_pullback",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_match",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_is_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.boundary_annihilator_obstruction"
+      ],
       "rust": [],
       "imported_structure": [
         "continuum quantum field theory and gravity (assumption)",
         "large-N limit (assumption)"
       ],
-      "bottleneck": "The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the finite-to-continuum interface TFQ-0085 are open.",
+      "bottleneck": "The continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], the full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and the continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085 remain unconstructed; at b < B a finite isometric encoding V^T V = I_b has non-surjective pushforward iota_V and a nontrivial boundary kernel of pi_V.",
       "tags": [
         "frontier-branch",
         "frontier:ads_cft",
@@ -1276,15 +1310,37 @@
       "id": "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
       "stage": "ADS_CFT",
       "status": "OPEN",
-      "source_status": "Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1 and Section 6 pp. 20-23 on 2026-10-22.",
-      "statement": "No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are toy models of the bulk-to-boundary map on a discrete hyperbolic tiling; they have no Lorentzian time, no dynamics, no gravitational action and no large-N limit. A finite check on them does not support the duality, and the finite targets of this stage are exact statements about specific codes only.",
+      "source_status": "Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1, Section 4 pp. 8-14, and Section 6 pp. 20-23 on 2026-10-23; narrowed to exact Renyi-spectrum, length-8..12 minimal-cut deficit, and Hilbert-codimension fences in Lean 4 and an independent Python verifier.",
+      "statement": "No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1 > 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 < 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).",
       "source": [
-        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md"
+        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md",
+        "dag/derivations/independent/ads-happy-toy-not-duality-gap.md",
+        "checks/independent/ads-happy-toy-not-duality-gap.py",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json",
+        "external:arXiv:1503.06237"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Recorded as an explicit non-claim so that the exact finite results are not read as evidence for the duality.",
+      "bottleneck": "Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open.",
       "tags": [
         "frontier-branch",
         "frontier:ads_cft",
@@ -1671,21 +1727,31 @@
       "id": "LQG-EPRL-VERTEX-IMPORT",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Audited against the full texts of arXiv:0711.0146 (Sections III-IV eqs. (18)-(30) pp. 6-9), arXiv:0708.1595 (Sections II.C, V) and arXiv:1205.2019 (Part III) on 2026-10-22; taken as an imported assumption of this branch.",
-      "statement": "Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.",
+      "source_status": "Rational Euclidean and Lorentzian label identities were checked in Lean 4 on 2026-10-24. The EPRL-FK vertex, the 15j contraction, and any continuum or semiclassical limit remain an imported assumption. The 2008 embedding formulas were audited on 2026-10-22.",
+      "statement": "For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md",
         "external:arXiv:0711.0146",
         "external:arXiv:0708.1595",
-        "external:arXiv:1205.2019"
+        "external:arXiv:1205.2019",
+        "lean4/CampaignLqgEprlVertexImport.lean",
+        "dag/derivations/independent/lqg-eprl-vertex-import.md",
+        "checks/independent/lqg-eprl-vertex-import.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_below",
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_above",
+        "lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two",
+        "lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs"
+      ],
       "rust": [],
       "imported_structure": [
         "SU(2) and Spin(4) representation theory (assumption)",
         "simplicity constraints and Immirzi parameter (assumption)"
       ],
-      "bottleneck": "The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
+      "bottleneck": "The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -3041,17 +3107,23 @@
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md"
       ],
       "id": "TFQ-2103",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "local_id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "name": "Imported: a causal spacetime with a net of local algebras",
-      "obligation": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "obligation": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "parent_id": "TFQ-2102",
-      "python": [],
+      "python": [
+        "checks/independent/cqft-local-net-axioms-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "CAUSAL_QFT",
-      "summary": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "summary": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "uuid": "ead8c2b9-1331-590e-bfcb-5bf3cf5440f7"
     },
     {
@@ -3348,20 +3420,48 @@
         "ADS-CFT-DUALITY-IMPORT"
       ],
       "f004_refs": [
-        "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md"
+        "dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md",
+        "dag/derivations/independent/ads-cft-duality-import.md",
+        "dag/research/campaign_ads-cft-duality-import_lean_replay.json",
+        "dag/research/campaign_ads-cft-duality-import_lean_mutation.json",
+        "dag/research/campaign_ads-cft-duality-import_independent.json"
       ],
       "id": "TFQ-2202",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_involutive",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_sum",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_vieta_product",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_completed_square",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_saturation_double_root",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.no_rational_root_below_bf_bound",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_factorization",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pullback_pushforward_id",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pushforward_mul_of_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_pullback",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_match",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_is_isometry",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one",
+        "lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.boundary_annihilator_obstruction"
+      ],
       "local_id": "ADS-CFT-DUALITY-IMPORT",
       "name": "Imported: bulk gravity and boundary conformal field theory are equivalent",
-      "obligation": "The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the finite-to-continuum interface TFQ-0085 are open.",
+      "obligation": "The continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], the full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and the continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085 remain unconstructed; at b < B a finite isometric encoding V^T V = I_b has non-surjective pushforward iota_V and a nontrivial boundary kernel of pi_V.",
       "parent_id": "TFQ-2201",
-      "python": [],
+      "python": [
+        "checks/independent/ads-cft-duality-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "ADS_CFT",
-      "summary": "Imported as an assumption, not as a result of this repository: a quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same observables as a conformal field theory on its boundary. The duality is a conjecture. It presupposes continuum quantum field theory (a Hilbert space, unitary evolution, operator algebras) and a continuum gravity theory; the repository records both as open or held outside the programme.",
+      "summary": "Imported as an assumption, not as a result of this repository: a continuum quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same generating functional and observables as a conformal field theory on its boundary. Narrowed to its exact finite/rational algebraic shadows: (1) over Q, the GKPW scalar mass-dimension quadratic gkpwMassSq(d, Delta) = Delta(Delta - d) = mSq satisfies the shadow involution Delta |-> d - Delta, (2 Delta - d)^2 = d^2 + 4 Delta(Delta - d), and the Breitenlohner-Freedman lower bound -(d^2)/4 <= Delta(Delta - d) with double root Delta = d/2 at saturation and no rational root strictly below -(d^2)/4; (2) in 't Hooft double-line counting with lambda = g_YM^2 N and Euler characteristic chi = V - E + F = 2 - 2g, the ribbon weight satisfies (g_YM^2)^(E - V) N^F * N^(E - V) = lambda^(E - V) N^F, suppressing the genus-1 torus vacuum graph (V=2, E=3, F=1) relative to the planar dipole (V=2, E=3, F=3) by N^2; and (3) for any finite isometric bulk-to-boundary encoding V^T V = I_b, the pushforward iota_V(O_bulk) = V O_bulk V^T and pullback pi_V(O_bdry) = V^T O_bdry V satisfy pi_V(iota_V(O_bulk)) = O_bulk, iota_V(A) iota_V(C) = iota_V(A C), and <V psi, O_bdry(V psi)> = <psi, pi_V(O_bdry) psi>, whereas for b = 1 < B = 2 (V = [[1],[0]]) V V^T != I_2 and the nonzero boundary operator O_perp = [[0,0],[0,1]] pulls back to 0 and has no bulk preimage.",
       "uuid": "e2db5178-9e7d-5676-aeb8-ecd800c179f1"
     },
     {
@@ -3586,20 +3686,42 @@
         "ADS-HAPPY-TOY-NOT-DUALITY-GAP"
       ],
       "f004_refs": [
-        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md"
+        "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md",
+        "dag/derivations/independent/ads-happy-toy-not-duality-gap.md",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json",
+        "dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json"
       ],
       "id": "TFQ-2212",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension",
+        "lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions"
+      ],
       "local_id": "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
       "name": "Gap: finite code checks are not a derivation of AdS/CFT",
-      "obligation": "Recorded as an explicit non-claim so that the exact finite results are not read as evidence for the duality.",
+      "obligation": "Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open.",
       "parent_id": "TFQ-2207",
-      "python": [],
+      "python": [
+        "checks/independent/ads-happy-toy-not-duality-gap.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "ADS_CFT",
-      "summary": "No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are toy models of the bulk-to-boundary map on a discrete hyperbolic tiling; they have no Lorentzian time, no dynamics, no gravitational action and no large-N limit. A finite check on them does not support the duality, and the finite targets of this stage are exact statements about specific codes only.",
+      "summary": "No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1 > 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 < 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).",
       "uuid": "a6188d7a-9c6f-5049-9106-5b47e953fae7"
     },
     {
@@ -3943,17 +4065,26 @@
         "dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md"
       ],
       "id": "TFQ-2314",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_below",
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_above",
+        "lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two",
+        "lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs"
+      ],
       "local_id": "LQG-EPRL-VERTEX-IMPORT",
       "name": "Imported: EPRL-FK vertex amplitude for four-dimensional gravity",
-      "obligation": "The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
+      "obligation": "The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
       "parent_id": "TFQ-2312",
-      "python": [],
+      "python": [
+        "checks/independent/lqg-eprl-vertex-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "summary": "Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.",
+      "summary": "For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.",
       "uuid": "6bb920ad-676d-55e3-8b2f-06375d0d50ee"
     },
     {
@@ -4268,14 +4399,18 @@
         "Isotony and locality of a net of algebras."
       ],
       "open": [
-        "Relation between the observer axiom H1 (edge locality, a locality axiom on a finite edge-indexed projection) and Einstein causality is not established."
+        "Relation between the observer axiom H1 (edge locality, a locality axiom on a finite edge-indexed projection) and Einstein causality is not established.",
+        "A net of unital star-algebras indexed by continuum regions remains imported.",
+        "A Minkowski light cone remains imported, as recorded by DS-QM033-064-074-083-QHELD-CONTINUUM."
       ],
       "target": "",
       "connections": [
         "L1-OBSERVER-AXIOMS-H1-H5 declares edge locality on a finite edge-indexed projection. No source read here identifies it with commutation at spacelike separation."
       ],
       "non_claims": [
-        "The locality axiom H1 is not claimed to be Einstein causality."
+        "The locality axiom H1 is not claimed to be Einstein causality.",
+        "The finite pair counts and matrix products in the statement are not a net on continuum regions and not a Minkowski light cone.",
+        "CausalOrder.lean is not a premise of a continuum net in this record."
       ],
       "cites": [
         "haagkastler1964"
@@ -4452,15 +4587,19 @@
     },
     "ADS-CFT-DUALITY-IMPORT": {
       "imports": [
-        "Duality of a bulk gravity theory and a boundary conformal field theory."
+        "Duality of a bulk gravity theory and a boundary conformal field theory (Maldacena 1997, Gubser-Klebanov-Polyakov 1998, Witten 1998)."
       ],
       "open": [
-        "Every continuum input."
+        "Continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085."
       ],
-      "target": "",
-      "connections": [],
+      "target": "lean4/CampaignAdsCftDualityImport.lean + checks/independent/ads-cft-duality-import.py (GKPW rational mass-dimension quadratic and Breitenlohner-Freedman bound, t Hooft ribbon-graph genus scaling, and finite isometric bulk-to-boundary dictionary + non-surjectivity witness).",
+      "connections": [
+        "ADS-MALDACENA-1997-SOURCE",
+        "ADS-GKPW-DICTIONARY-SOURCE",
+        "ADS-RT-2006-SOURCE"
+      ],
       "non_claims": [
-        "No consequence of the duality is derived or used."
+        "Does not derive continuum quantum gravity, continuum conformal field theory, or the large-N limit from finite substrate rules; finite isometric encodings at b < B are not surjective onto boundary operators."
       ],
       "cites": [
         "maldacena1997",
@@ -4598,14 +4737,24 @@
       "cites": []
     },
     "ADS-HAPPY-TOY-NOT-DUALITY-GAP": {
-      "imports": [],
-      "open": [],
-      "target": "",
-      "connections": [],
-      "non_claims": [
-        "The finite targets prove nothing about gravity."
+      "imports": [
+        "Nothing is imported by this node as a premise of a continuum result; the 2D CFT single-interval Renyi factor (1 + 1/n)/2 is compared as a rational expression."
       ],
-      "cites": []
+      "open": [
+        "Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics."
+      ],
+      "target": "lean4/CampaignAdsHappyToyNotDualityGap.lean + checks/independent/ads-happy-toy-not-duality-gap.py (flat stabilizer vs CFT Renyi defect, length-8..12 minimal-cut deficit census (5,10,10,10,5) and witnesses (2,8)/(2,12) on the 6-pentagon HaPPY patch, disconnected mutual information jumps, and bulk-to-boundary Hilbert codimension).",
+      "connections": [
+        "ADS-HAPPY-2015-SOURCE",
+        "ADS-CFT-DUALITY-IMPORT",
+        "ADS-HAPPY-ENTROPY-MINCUT-TARGET"
+      ],
+      "non_claims": [
+        "The finite stabilizer-code checks do not derive continuum AdS/CFT, continuum Ryu-Takayanagi minimal-surface area formulas, or gravitational dynamics."
+      ],
+      "cites": [
+        "happy2015"
+      ]
     },
     "LQG-PENROSE-1971-SPIN-NETWORK-SOURCE": {
       "imports": [],
@@ -4806,12 +4955,17 @@
         "EPRL-FK vertex amplitude."
       ],
       "open": [
-        "Every continuum input."
+        "A Spin(4) 15j contraction and the booster factors remain imported.",
+        "A continuum Lie-group representation, a spin-network boundary space, and a sum over spins remain imported.",
+        "A continuum limit, a semiclassical limit, and a cosmological constant are not constructed from these rational labels.",
+        "The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex."
       ],
       "target": "",
       "connections": [],
       "non_claims": [
-        "The finite amplitudes of the repository are not claimed to be EPRL amplitudes."
+        "The rational label arithmetic is not an EPRL-FK vertex amplitude.",
+        "The finite amplitudes of the repository are not claimed to be EPRL amplitudes.",
+        "No continuum limit, semiclassical limit, or cosmological constant is read off these labels."
       ],
       "cites": [
         "eprl2008",

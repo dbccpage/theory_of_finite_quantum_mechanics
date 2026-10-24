@@ -625,7 +625,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0519` | `MSSN_SN` | `OPEN_OBLIGATION` | `PGW-SN-PROTECTED-ANSWER-TRANSPORT` (OPEN) | - |
 | `TFQ-0520` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-POSTNIKOV-REFUSAL` (PROVED_PROSE) | - |
 | `TFQ-0521` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-REPRESENTATION-QUOTIENT` (PROVED_LEAN) | - |
-| `TFQ-0522` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E08-WEIGHTED-L1-DUALITY` (CONDITIONAL) | - |
+| `TFQ-0522` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E08-WEIGHTED-L1-DUALITY` (PROVED_LEAN) | - |
 | `TFQ-0523` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E12-CIRCULATION-FUNCTIONAL` (PROVED_LEAN) | - |
 | `TFQ-0524` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E18-L1-TIES-L2-CENTER` (PROVED_PROSE) | - |
 | `TFQ-0525` | `MSSN_SN` | `SOURCE_RECORD` | `PGW-SN-E19-TORSION-ERASED-OVER-Q` (PROVED_PROSE) | - |
@@ -2999,9 +2999,9 @@ Obligation: Show that retractionDownMap n accepts exactly the images of sectionL
 - Parent: `TFQ-0518`
 - Status: `OPEN_OBLIGATION`
 
-S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. The sources state these as requirements and supply no theorem that produces F′ or the commuting squares. The old-image identity alone establishes neither a logical conservative extension, nor an adjunction, nor resolution of an unrelated demand.
+S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).
 
-Obligation: For each protected answer F supply F′ with F′∘u = F, and for each future admitted event supply the commuting transition square, before claiming that the lift preserves that answer or operation.
+Obligation: For each protected answer F supply F′ with F′∘u = F (such as retractionTransport r F d under OldImageLaw u r), and for each future admitted event supply and check the commuting transition square before claiming that the lift preserves that answer or operation.
 
 ### TFQ-0520 sn-postnikov-refusal
 
@@ -4666,9 +4666,9 @@ Obligation: Under calibration, a nonzero observation and descent of an admitted 
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/floor.yaml`
 
-After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.
+Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.
 
-Obligation: Separate finite instruments, path sums, and channels from any continuum generator.
+Obligation: The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.
 
 ### TFQ-0235 Selective measurement update as idempotent conditioning
 
@@ -8764,7 +8764,7 @@ In M_4(Q(i)), S_F^{-1}(p+q) - S_F^{-1}(p) = qslash, hence S_F(p+q) qslash S_F(p)
 
 Obligation: The identity is checked by exact arithmetic only at p = (5,1,2,-1), q = (2,-1,1,3), m = 2 together with the Clifford relations of the Dirac basis; no Lean witness.
 
-### TFQ-1114 Z_1 = Z_2 counterterm equality under BPHZ subtraction
+### TFQ-1114 One rational vertex contraction, not a counterterm ratio
 
 - UUID: `38f92631-3026-5aba-9ed1-36218a11b18a`
 - Parent: `TFQ-1113`
@@ -8772,9 +8772,9 @@ Obligation: The identity is checked by exact arithmetic only at p = (5,1,2,-1), 
 - DAG node: `DFM-Z1-Z2-COUNTERTERM-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md)
 
-The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.
+For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.
 
-Obligation: Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.
+Obligation: The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.
 
 ### TFQ-1115 Page-Wootters history shift and clock-dressing unitary
 
@@ -9942,7 +9942,7 @@ Obligation: The general Jordan-Wigner bijection c_j = (prod_{k<j} -sigma^z_k) si
 
 For N CAR modes, gamma_{2j-1} = c_j + c_j^dagger and gamma_{2j} = -i(c_j - c_j^dagger) are self-adjoint with {gamma_a, gamma_b} = 2 delta_ab, generate the Clifford algebra on 2N generators, and P = prod_j (-i gamma_{2j-1} gamma_{2j}) is the fermion parity (-1)^N_op.
 
-Obligation: Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.
+Obligation: Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.
 
 ### TFQ-1187 CAR kinematics do not select a fermionic Hamiltonian
 
@@ -10110,7 +10110,7 @@ Obligation: Construct a regulated chiral boundary determinant whose projector, b
 
 For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary symmetry of the Dirac operator makes det D_adj real for every gauge configuration.
 
-Obligation: For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.
+Obligation: For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.
 
 ### TFQ-1201 Complex quark determinant at real chemical potential
 
@@ -10122,7 +10122,7 @@ Obligation: For a single Majorana adjoint flavor the measure is a Pfaffian whose
 
 For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.
 
-Obligation: Standard identity imported; the checkout has no SU(3) staggered operator and no computation of det D(mu).
+Obligation: Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.
 
 ### TFQ-1202 Z3 center projection and baryon triality
 
@@ -10158,7 +10158,7 @@ Obligation: Analytic continuation from imaginary to real mu is an extrapolation,
 
 Claimed: a finite-lattice 2D N=1 Wess-Zumino model with supercharges obeying {Q_a, Q_b} = 2 delta_ab H, H >= 0 and exact boson-fermion pairing of nonzero levels; no such lattice construction exists in this checkout, and lattice discretizations generally keep at most a subalgebra exact.
 
-Obligation: Specify the lattice model and which supercharge is exact; prove H = Q^2 or {Q, Q^dagger} on the finite Hilbert space before using pairing.
+Obligation: Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/CampaignFspLatticeWessZuminoSusy.lean establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A, A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 != 0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino models.
 
 ### TFQ-1205 Nicolai map sign elimination (unsupported)
 
@@ -12206,9 +12206,9 @@ Obligation: Record only. The checkout holds no copy of the 1964 print article; t
 - DAG node: `CQFT-LOCAL-NET-AXIOMS-IMPORT`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md)
 
-Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.
+On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.
 
-Obligation: Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.
+Obligation: The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.
 
 ### TFQ-2104 Finite target: isotony and locality for a net on a finite poset
 
@@ -12364,9 +12364,9 @@ Obligation: Record only. The dictionary is not reproduced.
 - DAG node: `ADS-CFT-DUALITY-IMPORT`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md)
 
-Imported as an assumption, not as a result of this repository: a quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same observables as a conformal field theory on its boundary. The duality is a conjecture. It presupposes continuum quantum field theory (a Hilbert space, unitary evolution, operator algebras) and a continuum gravity theory; the repository records both as open or held outside the programme.
+Imported as an assumption, not as a result of this repository: a continuum quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same generating functional and observables as a conformal field theory on its boundary. Narrowed to its exact finite/rational algebraic shadows: (1) over Q, the GKPW scalar mass-dimension quadratic gkpwMassSq(d, Delta) = Delta(Delta - d) = mSq satisfies the shadow involution Delta |-> d - Delta, (2 Delta - d)^2 = d^2 + 4 Delta(Delta - d), and the Breitenlohner-Freedman lower bound -(d^2)/4 <= Delta(Delta - d) with double root Delta = d/2 at saturation and no rational root strictly below -(d^2)/4; (2) in 't Hooft double-line counting with lambda = g_YM^2 N and Euler characteristic chi = V - E + F = 2 - 2g, the ribbon weight satisfies (g_YM^2)^(E - V) N^F * N^(E - V) = lambda^(E - V) N^F, suppressing the genus-1 torus vacuum graph (V=2, E=3, F=1) relative to the planar dipole (V=2, E=3, F=3) by N^2; and (3) for any finite isometric bulk-to-boundary encoding V^T V = I_b, the pushforward iota_V(O_bulk) = V O_bulk V^T and pullback pi_V(O_bdry) = V^T O_bdry V satisfy pi_V(iota_V(O_bulk)) = O_bulk, iota_V(A) iota_V(C) = iota_V(A C), and <V psi, O_bdry(V psi)> = <psi, pi_V(O_bdry) psi>, whereas for b = 1 < B = 2 (V = [[1],[0]]) V V^T != I_2 and the nonzero boundary operator O_perp = [[0,0],[0,1]] pulls back to 0 and has no bulk preimage.
 
-Obligation: The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the finite-to-continuum interface TFQ-0085 are open.
+Obligation: The continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], the full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and the continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085 remain unconstructed; at b < B a finite isometric encoding V^T V = I_b has non-surjective pushforward iota_V and a nontrivial boundary kernel of pi_V.
 
 ### TFQ-2203 Ryu and Takayanagi 2006: holographic entanglement entropy
 
@@ -12484,9 +12484,9 @@ Obligation: No source relates the Regge hinge areas of the repository to bond co
 - DAG node: `ADS-HAPPY-TOY-NOT-DUALITY-GAP`
 - Paper: [derivation](derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md)
 
-No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are toy models of the bulk-to-boundary map on a discrete hyperbolic tiling; they have no Lorentzian time, no dynamics, no gravitational action and no large-N limit. A finite check on them does not support the duality, and the finite targets of this stage are exact statements about specific codes only.
+No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1 > 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 < 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).
 
-Obligation: Recorded as an explicit non-claim so that the exact finite results are not read as evidence for the duality.
+Obligation: Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open.
 
 ## LOOP_QUANTUM_GRAVITY
 
@@ -12666,9 +12666,9 @@ Obligation: Record only.
 - DAG node: `LQG-EPRL-VERTEX-IMPORT`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md)
 
-Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
+For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.
 
-Obligation: The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.
+Obligation: The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.
 
 ### TFQ-2315 Gap: no route from finite recoupling to a continuum or semiclassical limit
 
