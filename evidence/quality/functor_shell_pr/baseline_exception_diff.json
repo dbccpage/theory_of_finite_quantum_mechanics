@@ -1,0 +1,48 @@
+{
+  "AuthorityEffect": "None",
+  "method": "Documented governance-check baseline --write --allow-add --reason generated the two re-pins. Its unrelated stale-entry removals were restored from the pre-command bytes to limit this change to the explicit approval.",
+  "baseline_before_sha256": "1f0d09a544ef5cd8604e8e03319478adcf8413659c03a35623cdfb187ee72e3a",
+  "baseline_after_sha256": "2a103e1a4d9e3331a4d194d5c935e0d1be9ef5f3ea0954ef58122ee8b29648f7",
+  "cli_generated_sha256": "ad452bb50b1dc3941fb84bd0d6161f3f5085b7bda0933a898f2fb2e6f2b05916",
+  "cli_result": "baseline: 8151 entries (8149 kept, 2 added, 3 removed); 0 failing files not added",
+  "unchanged_stale_entries_retained": [
+    "code/python/tests/test_three_role_gate.py",
+    "code/rust/src/governance/src/score.rs",
+    "lean4/lakefile.lean"
+  ],
+  "entries": {
+    "code/rust/src/category_theory/functor/functor.rs": {
+      "before": {
+        "deficit": "COMPLETENESS",
+        "sha256": "f0910eb6749ba84a342d93b11dbc130e9fe288091d88663c7d7b5d7f59f428fc"
+      },
+      "after": {
+        "deficit": "FLOOR",
+        "reason": "2026-10-23 explicit maintainer approval: exact-source L4/D-floor exceptions only for Functor and FullFunctor; both remain honestly L2D. Source-byte changes lose this exception. No sealed source bytes, derivation statuses or scope fences are changed.",
+        "sha256": "c9649c73f18389af7188f0ca413e65dfe8a5a78de8737ebac3a731ac065ca137"
+      }
+    },
+    "code/rust/src/category_theory/functor/full_functor.rs": {
+      "before": {
+        "deficit": "COMPLETENESS",
+        "sha256": "896cb9c6caa77db592e38348353a6c179e047b93dd291b8575250e606db60427"
+      },
+      "after": {
+        "deficit": "FLOOR",
+        "reason": "2026-10-23 explicit maintainer approval: exact-source L4/D-floor exceptions only for Functor and FullFunctor; both remain honestly L2D. Source-byte changes lose this exception. No sealed source bytes, derivation statuses or scope fences are changed.",
+        "sha256": "bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0"
+      }
+    }
+  },
+  "unchanged_other_entries": 8152,
+  "summary": {
+    "entries": 8154,
+    "by_deficit": {
+      "BINDING": 9,
+      "COMPLETENESS": 7599,
+      "FLOOR": 6,
+      "MISSING_COMPANION": 357,
+      "SCHEMA": 183
+    }
+  }
+}

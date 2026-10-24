@@ -1063,3 +1063,7 @@ lean_lib CampaignFspLatticeWessZuminoSusy where
 -- Campaign: ADS-CFT-DUALITY-IMPORT. Not a default target.
 lean_lib CampaignAdsCftDualityImport where
   roots := #[`CampaignAdsCftDualityImport]
+
+-- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
+lean_lib CampaignFspImaginaryMuRealDet where
+  roots := #[`CampaignFspImaginaryMuRealDet]
