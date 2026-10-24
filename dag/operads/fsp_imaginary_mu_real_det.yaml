@@ -41,7 +41,7 @@ operation_candidates:
   signature_excerpt: 'def parity : Matrix (P ⊕ N) (P ⊕ N) ℂ'
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
 - kind: def
   name: staggered
@@ -51,80 +51,80 @@ operation_candidates:
         Matrix (P ⊕ N) (P ⊕ N) ℂ
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
 - kind: def
   name: negativeExample
-  line: 130
+  line: 131
   signature_excerpt: 'def negativeExample : Matrix (Fin 2) (Fin 2) ℂ'
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
 - kind: def
   name: centerSum
-  line: 143
+  line: 144
   signature_excerpt: 'def centerSum (f : ℂ → ℂ) (w z : ℂ) : ℂ'
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: staggered_adjoint
-  line: 68
+  line: 69
   signature_excerpt: |-
     theorem staggered_adjoint (m : ℝ) (z : ℂ) (hz : star z * z = 1)
         (A : Matrix P N ℂ) (B : Matrix N P ℂ) :
         parity * staggered m z A B * parity = (staggered m z A B)ᴴ
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: det_real_of_involution
-  line: 75
+  line: 76
   signature_excerpt: |-
     theorem det_real_of_involution {S : Type*} [Fintype S] [DecidableEq S]
         (G D : Matrix S S ℂ) (hG : G * G = 1) (hD : G * D * G = Dᴴ) :
         star D.det = D.det
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: two_flavor_nonneg
-  line: 90
+  line: 91
   signature_excerpt: |-
     theorem two_flavor_nonneg {S : Type*} [Fintype S] [DecidableEq S]
         (D : Matrix S S ℂ) (hD : star D.det = D.det) :
         0 ≤ (fromBlocks D 0 0 D).det.re
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: staggered_det_pos
-  line: 123
+  line: 124
   signature_excerpt: |-
     theorem staggered_det_pos (m : ℝ) (hm : 0 < m) (z : ℂ)
         (hz : star z * z = 1) (A : Matrix P N ℂ) (B : Matrix N P ℂ) :
         0 < (staggered m z A B).det
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: gamma_hermitian_negative
-  line: 132
+  line: 133
   signature_excerpt: |-
     theorem gamma_hermitian_negative :
         (!![1, 0; 0, -1] : Matrix (Fin 2) (Fin 2) ℂ) * negativeExample *
@@ -132,7 +132,7 @@ relation_candidates:
         negativeExample.det = -1
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -140,13 +140,13 @@ relation_candidates:
     follows automatically.
 - kind: theorem
   name: centerSum_periodic
-  line: 145
+  line: 146
   signature_excerpt: |-
     theorem centerSum_periodic (f : ℂ → ℂ) (w z : ℂ) (hw : w ^ 3 = 1) :
         centerSum f w (w * z) = centerSum f w z
   source: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  source_sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -156,54 +156,54 @@ source_bindings:
   symbol: staggered_adjoint
   path: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   declaration_status: declaration_found_not_proof_checked
-  line: 68
+  line: 69
   role: source_lead_only
 - original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::det_real_of_involution
   availability: local
   symbol: det_real_of_involution
   path: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   declaration_status: declaration_found_not_proof_checked
-  line: 75
+  line: 76
   role: source_lead_only
 - original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::two_flavor_nonneg
   availability: local
   symbol: two_flavor_nonneg
   path: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   declaration_status: declaration_found_not_proof_checked
-  line: 90
+  line: 91
   role: source_lead_only
 - original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::staggered_det_pos
   availability: local
   symbol: staggered_det_pos
   path: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   declaration_status: declaration_found_not_proof_checked
-  line: 123
+  line: 124
   role: source_lead_only
 - original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::gamma_hermitian_negative
   availability: local
   symbol: gamma_hermitian_negative
   path: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   declaration_status: declaration_found_not_proof_checked
-  line: 132
+  line: 133
   role: source_lead_only
 - original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::centerSum_periodic
   availability: local
   symbol: centerSum_periodic
   path: lean4/CampaignFspImaginaryMuRealDet.lean
   repository: this_repository
-  sha256: e42b06f739ebe76a19a814d663557a2aa638380ff9081573ee22364ab336bdcd
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
   declaration_status: declaration_found_not_proof_checked
-  line: 145
+  line: 146
   role: source_lead_only
 presentation:
   colours: []

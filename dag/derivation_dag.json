@@ -20740,13 +20740,21 @@
         "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajoranaCliffordParity.lean::gamma_star",
+        "lean4/CampaignMajoranaCliffordParity.lean::gamma_ac",
+        "lean4/CampaignMajoranaCliffordParity.lean::generated_algebra",
+        "lean4/CampaignMajoranaCliffordParity.lean::occupation_sq",
+        "lean4/CampaignMajoranaCliffordParity.lean::localParity_pair",
+        "lean4/CampaignMajoranaCliffordParity.lean::parity_action",
+        "lean4/CampaignMajoranaCliffordParity.lean::parity_superselection_not_forced"
+      ],
       "rust": [],
       "imported_structure": [
         "Majorana operator decomposition of CAR modes (standard literature result)",
         "fermion parity superselection (physical postulate)"
       ],
-      "bottleneck": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "bottleneck": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -36638,7 +36646,7 @@
       ],
       "output": "FSP-MAJORANA-CLIFFORD-PARITY",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "mechanism": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "source": [
         "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
@@ -64597,12 +64605,22 @@
         "papers/core/fsp/theory_of_finite_fsp.md:283-295"
       ],
       "id": "TFQ-1186",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMajoranaCliffordParity.lean::gamma_star",
+        "lean4/CampaignMajoranaCliffordParity.lean::gamma_ac",
+        "lean4/CampaignMajoranaCliffordParity.lean::generated_algebra",
+        "lean4/CampaignMajoranaCliffordParity.lean::occupation_sq",
+        "lean4/CampaignMajoranaCliffordParity.lean::localParity_pair",
+        "lean4/CampaignMajoranaCliffordParity.lean::parity_action",
+        "lean4/CampaignMajoranaCliffordParity.lean::parity_superselection_not_forced"
+      ],
       "local_id": "FSP-MAJORANA-CLIFFORD-PARITY",
       "name": "Majorana decomposition, Clifford relations and fermion parity",
-      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "parent_id": "TFQ-1184",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-majorana-clifford-parity.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
