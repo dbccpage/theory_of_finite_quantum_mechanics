@@ -4077,9 +4077,9 @@ Obligation: Selection of J not derived (see L1-U1-SELECTOR-OTHER-SEGMENT). Lean 
 - Status: `OPEN_OBLIGATION`
 - DAG node: `L1-U1-SELECTOR-OTHER-SEGMENT` (`OPEN`)
 
-Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
+Narrowed finite-field table, status left OPEN: in Z/5Z the pairs (x, y) with x * x + y * y = 1 are exactly (0, 1), (0, 4), (1, 0) and (4, 0); there are 4 such pairs; 4 = 5 - 1; 5 + 1 = 6 and 4 ≠ 6; in Z/5Z the coefficient 4 satisfies 4 + 1 = 0, and the product (a, b) * (c, d) = (a * c + 4 * b * d, a * d + b * c) sends (0, 1) * (0, 1) to (4, 0), (4, 0) * (0, 1) to (0, 4) and (0, 4) * (0, 1) to (1, 0), while (4, 0) ≠ (1, 0); the pair (1, 1) has norm 2, and 2 ≠ 1; the pair (2, 1) ≠ (0, 0) and 2 * 2 + 1 * 1 = 0.
 
-Obligation: Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
+Obligation: Selection of C and U(1) from finite carriers is not derived. The recorded Gaussian-rational unit-circle torsion (U1SelectorSegment.circle_torsion_iff, mu_4) is not re-discharged in this module. Other finite fields and rings, a general circle-order formula, cyclotomic extensions, completion, continuity, and the QM_028 / QM_062 pointer stay unresolved. The Z/5Z table is one finite field and supplies no selection map.
 
 ### TFQ-1004 l1-qm020-c10-branch-localization
 
