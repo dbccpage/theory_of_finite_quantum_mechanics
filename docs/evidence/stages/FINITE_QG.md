@@ -2,11 +2,11 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 15. Grades: E0 7, E1 5, E3 3. Statuses: SOURCE_RECORD 11, OPEN 4.
+Nodes: 15. Grades: E0 6, E1 5, E3 4. Statuses: SOURCE_RECORD 11, OPEN 4.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
-| [TFQ-0084](../nodes/TFQ-0084.md) | `OPEN` | E0 | A finite gravity shadow is relational point coincidence, a Regge deficit on a finite simplicial complex, a spin-foam or area-spectrum con... | none in this checkout | - |
+| [TFQ-0084](../nodes/TFQ-0084.md) | `OPEN` | E3 | Narrowed boundary, status left OPEN: on the declared integer pairs (area-square, defect) = (1, 2) and (4, 5), the squared-area sum 1*2+4*... | [CampaignTfq0084ReggeProxyBoundary.lean](../../../lean4/CampaignTfq0084ReggeProxyBoundary.lean): `tfq0084_allowance_reduced`, `tfq0084_allowance_square`, `tfq0084_bound_strict` +8<br>[action.rs](../../../code/rust/src/general_relativity/exact_regge/action.rs)<br>[tfq-0084.py](../../../checks/independent/tfq-0084.py)<br>[l1_regge.py](../../../papers/core/constraint_closure/code/l1_regge.py)<br>+2 more file(s) | - |
 | [TFQ-0088](../nodes/TFQ-0088.md) | `SOURCE_RECORD` | E0 | Paper 003 collides dressing-field language with witnessed difference by storing spacetime events as relational tuples. The frozen 2026-10... | none in this checkout | - |
 | [TFQ-0089](../nodes/TFQ-0089.md) | `SOURCE_RECORD` | E0 | relational_spacetime.py implements finite event tuples, attribute projection, a dressing retraction, and exact rational dual-witness chec... | none in this checkout | - |
 | [TFQ-0090](../nodes/TFQ-0090.md) | `OPEN` | E3 | PO-035 starts from a zero-container complex of comparisons and refuses an ambient continuum as a primitive. Its README marks master rows... | [CampaignTfq0090FiniteQg.lean](../../../lean4/CampaignTfq0090FiniteQg.lean): `cochain_curvature_gauge_invariant`, `cochain_curvature_linear_scaling`, `cochain_curvature_of_coboundary_zero` +9<br>[tfq-0090.py](../../../checks/independent/tfq-0090.py)<br>[tfq-0090.md](../../../dag/derivations/independent/tfq-0090.md)<br>[campaign_tfq-0090_independent.json](../../../dag/research/campaign_tfq-0090_independent.json)<br>+2 more file(s) | - |
