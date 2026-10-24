@@ -1,0 +1,36 @@
+schema_version: lean_contract_score.v1
+lean_file: lean4/CampaignTfq0119ContinuumInterface.lean
+module: CampaignTfq0119ContinuumInterface
+dag_node: TFQ-0119
+claim_class: L4D
+theorems:
+  - name: CampaignTfq0119ContinuumInterface.dyadic_direct_limit_step_invariant
+    role: Proves single-step dyadic direct-system transition (k, m) -> (k + 1, 2 * m) preserves the rational valuation dyadicRatVal k m = m / 2^k.
+  - name: CampaignTfq0119ContinuumInterface.dyadic_direct_limit_multi_step_invariant
+    role: Proves multi-step dyadic direct-system transition (k, m) -> (k + d, 2^d * m) preserves dyadicRatVal k m.
+  - name: CampaignTfq0119ContinuumInterface.dyadic_haar_uniform_sum_one
+    role: Proves that at every finite dyadic level k, summing 2^k uniform point masses of weight 1 / 2^k yields total mass 1.
+  - name: CampaignTfq0119ContinuumInterface.two_pow_mod_three_nonzero
+    role: Proves by induction on k that (2 ^ k) % 3 is either 1 or 2 and is never 0.
+  - name: CampaignTfq0119ContinuumInterface.three_mul_ne_two_pow
+    role: Proves that no power of 2 is a multiple of 3 (3 * m != 2 ^ k for all k, m : Nat).
+  - name: CampaignTfq0119ContinuumInterface.one_third_not_dyadic_fraction
+    role: Proves that the rational 3-torsion circle point 1 / 3 is never equal to any dyadic fraction m / 2^k, witnessing that the uncompleted dyadic direct limit is a proper subset of the completed circle.
+  - name: CampaignTfq0119ContinuumInterface.four_pow_sub_one_mod_three_zero
+    role: Proves that (4 ^ n) % 3 = 1 and (4 ^ n - 1) % 3 = 0 for all n : Nat, so (4^n - 1) / 3 is an exact integer numerator over the dyadic denominator 4^n = 2^(2n).
+  - name: CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_one_third_residual
+    role: Proves that the residual 1/3 - dyadicOneThirdApprox n equals 1 / (3 * 4^n) and contracts by 1 / 4 at every step n -> n + 1.
+  - name: CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_strictly_below_one_third
+    role: Proves that at every finite dyadic stage n, the residual is strictly positive, so dyadicOneThirdApprox n < 1/3 and never reaches 1/3 inside the uncompleted direct limit.
+  - name: CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_table
+    role: Proves the explicit dyadic approximations for n in {1, 2, 3, 4} (1/4, 5/16, 21/64, 85/256) and their residuals (1/12, 1/48, 1/192, 1/768).
+premises:
+  - name: dyadicRatVal
+    role: Exact rational valuation m / 2^k of a level-k dyadic representative m.
+  - name: dyadicOneThirdApprox
+    role: Stage-n dyadic rational approximation (4^n - 1) / (3 * 4^n) to 1 / 3.
+  - name: dyadicOneThirdResidual
+    role: Exact rational residual 1 / 3 - dyadicOneThirdApprox n between 1 / 3 and its stage-n dyadic approximation.
+fences:
+  - id: cdx2.pontryagin_completion_classification
+    description: The uncompleted dyadic direct limit Z[1/2]/Z is a countable torsion group that omits non-dyadic rational circle points such as 1/3 and requires uniform/topological completion to yield the compact circle U(1).

@@ -1098,3 +1098,6 @@ lean_lib CampaignTfq0107FiniteQg where
 
 lean_lib CampaignTfq0118ContinuumInterface where
   roots := #[`CampaignTfq0118ContinuumInterface]
+
+lean_lib CampaignTfq0119ContinuumInterface where
+  roots := #[`CampaignTfq0119ContinuumInterface]

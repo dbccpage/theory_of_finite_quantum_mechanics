@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "3d2ae5091316fb189ce06806ef9777b9db6111e118ba594dba414be98c538701"
+  "sha256_lf": "06c84f48fe99ec1ff7aad9471a2f0634677cd27d377d389ac96dee68e20e242c"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -181,6 +181,11 @@
    "sha256": "13db5759dc0145a60cbc05ad43885ba6e154aa2033979456f35ad511381751b3",
    "sha256_basis": "bytes",
    "size": 4976
+  },
+  "checks/independent/tfq-0119.py": {
+   "sha256": "ef5b767a33086eeb9710fd054a0a8d5bb65f5e7ddcb471c58a22ce1783c453b7",
+   "sha256_basis": "bytes",
+   "size": 4028
   },
   "checks/independent/tfq-0396.py": {
    "sha256": "6d6e92be6e642055941c7828a18305785bda0b7a94f408670a09cf6519633a62",
@@ -928,9 +933,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "3d2ae5091316fb189ce06806ef9777b9db6111e118ba594dba414be98c538701",
+   "sha256": "06c84f48fe99ec1ff7aad9471a2f0634677cd27d377d389ac96dee68e20e242c",
    "sha256_basis": "lf-normalised",
-   "size": 4638971
+   "size": 4641515
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3268,9 +3273,9 @@
    "size": 4629
   },
   "dag/derivations/20_continuum_interface/tfq_0119_cdx2_pontryagin_completion_classification_stays_open_dyadic_direct_limit_is_not_the_completed.md": {
-   "sha256": "f86f0c9ff0ea79641bec8b501d2322369eb98cc376baa3e9b0d92f456dc9957f",
+   "sha256": "055774d2cf941843c7db8e5b95afb8d38d263f2b5958d305e472c1f4a683cd21",
    "sha256_basis": "lf-normalised",
-   "size": 2517
+   "size": 4219
   },
   "dag/derivations/20_continuum_interface/tfq_0120_uncertified_extraction_proxy_does_not_discharge_the_continuum_limit_or_a_physical_cosmological.md": {
    "sha256": "55401652df89dc747eec9cc965a82267f75e68b240cacb55b9f9d3065bcd0970",
@@ -6057,6 +6062,11 @@
    "sha256_basis": "lf-normalised",
    "size": 3606
   },
+  "dag/derivations/independent/tfq-0119.md": {
+   "sha256": "e8e71963404c1f7fd4648c88a1d6889139ef6d25e680bbdc1a750d4f6c66bbbd",
+   "sha256_basis": "lf-normalised",
+   "size": 3330
+  },
   "dag/derivations/independent/tfq-0396.md": {
    "sha256": "17809ed53743058516427c55016d31bfb723bfa111aacde8b074aa6ed0be4e38",
    "sha256_basis": "lf-normalised",
@@ -6241,6 +6251,21 @@
    "sha256": "4afbc8568c353c6c6acfc0a4b6ece7a735f385bb429f385f5f6f1c3c68627037",
    "sha256_basis": "lf-normalised",
    "size": 3227
+  },
+  "dag/research/campaign_tfq-0119_independent.json": {
+   "sha256": "85a2de2401376c7c7a7f361bad5ee833c0e6dbb1b9b2b3c0dd4cf17a5882cf2c",
+   "sha256_basis": "lf-normalised",
+   "size": 533
+  },
+  "dag/research/campaign_tfq-0119_lean_mutation.json": {
+   "sha256": "afd233db05500e315a5e2e5265cb368c4111f0fc402d6d80c3c423a8b01e1879",
+   "sha256_basis": "lf-normalised",
+   "size": 5001
+  },
+  "dag/research/campaign_tfq-0119_lean_replay.json": {
+   "sha256": "d5616c4a1de1ed746e025c7c530f19b31820ab56578db1ec6ebb5238887be201",
+   "sha256_basis": "lf-normalised",
+   "size": 3265
   },
   "dag/research/electroweak_dfm_weinberg_finite_map.md": {
    "sha256": "9085e0b276afee079a11b980fc73e2c76a57d7d9b9d70fe29f97a0bd6f0b7fee",
@@ -6746,6 +6771,11 @@
    "sha256": "8622ebd711c25f7a2c7f27f2c7031bcd9e59455036728d01588e778738f372de",
    "sha256_basis": "bytes",
    "size": 11278
+  },
+  "lean4/CampaignTfq0119ContinuumInterface.lean": {
+   "sha256": "c8dd45972bc309e0fd3cef42c32ebe9395b707c0ab0e8cedd95e071e9269e252",
+   "sha256_basis": "bytes",
+   "size": 9822
   },
   "lean4/CampaignTransitionProbability.lean": {
    "sha256": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
@@ -114770,23 +114800,425 @@
    "status": "OPEN"
   },
   {
-   "absent_notes": [
-    "TFQ-0119 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/circle_haar.lean",
-    "TFQ-0119 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/continuous_haar_limit.py"
-   ],
+   "absent_notes": [],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 6,
+    "lean_receipt_backed": 10,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 10
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "TFQ-0119",
    "items": [
+    {
+     "cited_in": [
+      "node.lean",
+      "node.source",
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)",
+      "record TFQ-0119"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_one_third_residual",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_one_third_residual",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_strictly_below_one_third",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_strictly_below_one_third",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_table",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.dyadic_cauchy_approx_table",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.dyadic_direct_limit_multi_step_invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.dyadic_direct_limit_multi_step_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.dyadic_direct_limit_step_invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.dyadic_direct_limit_step_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.dyadic_haar_uniform_sum_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.dyadic_haar_uniform_sum_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.four_pow_sub_one_mod_three_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.four_pow_sub_one_mod_three_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.one_third_not_dyadic_fraction",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.one_third_not_dyadic_fraction",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.three_mul_ne_two_pow",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.three_mul_ne_two_pow",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0119_lean_replay.json (CampaignTfq0119ContinuumInterface)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0119ContinuumInterface",
+     "command_note": "then, in a scratch file that imports CampaignTfq0119ContinuumInterface: #print axioms CampaignTfq0119ContinuumInterface.two_pow_mod_three_nonzero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0119ContinuumInterface.two_pow_mod_three_nonzero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source",
+      "record TFQ-0119"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0119.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -114810,9 +115242,101 @@
      "symbol_declared": null,
      "symbol_exists": null,
      "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/tfq-0119.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_tfq-0119_independent.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_tfq-0119_lean_mutation.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_tfq-0119_lean_replay.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0119"
    ],
@@ -264239,6 +264763,32 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": null,
+   "dag_node": "TFQ-0119",
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0119_lean_replay.json#0:CampaignTfq0119ContinuumInterface",
+   "lean_version": null,
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0119ContinuumInterface",
+   "path": "lean4/CampaignTfq0119ContinuumInterface.lean",
+   "receipt_file": "dag/research/campaign_tfq-0119_lean_replay.json",
+   "receipt_file_sha256": "d5616c4a1de1ed746e025c7c530f19b31820ab56578db1ec6ebb5238887be201",
+   "recorded_sha256": "c8dd45972bc309e0fd3cef42c32ebe9395b707c0ab0e8cedd95e071e9269e252",
+   "source_unchanged_during_build": true,
+   "toolchain": null
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
     "Quot.sound",
     "propext"
    ],
@@ -275291,10 +275841,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 178,
+   "E0": 177,
    "E1": 239,
    "E2": 42,
-   "E3": 466,
+   "E3": 467,
    "E4": 0
   },
   "by_status": {
@@ -275344,7 +275894,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 489,
+  "receipts_indexed": 490,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -275382,10 +275932,10 @@
     "E4": 0
    },
    "CONTINUUM_INTERFACE": {
-    "E0": 7,
+    "E0": 6,
     "E1": 0,
     "E2": 0,
-    "E3": 2,
+    "E3": 3,
     "E4": 0
    },
    "DRESSING_FIELD": {
@@ -275622,10 +276172,10 @@
     "E4": 0
    },
    "OPEN": {
-    "E0": 43,
+    "E0": 42,
     "E1": 89,
     "E2": 10,
-    "E3": 33,
+    "E3": 34,
     "E4": 0
    },
    "PROVED_LEAN": {

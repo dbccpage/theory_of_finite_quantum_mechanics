@@ -10860,11 +10860,19 @@
       "stage": "CONTINUUM_INTERFACE",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_COMPLETION (source slice 09)",
-      "statement": "circle_haar.lean imports a normalized Haar measure and states an injective cyclic inclusion. Its header says the dyadic direct limit is not asserted to equal the completed circle. The package README treats those as different objects. What is finite is the cyclic inclusion and the character identity the ledger can mark mechanized. What is not discharged is metric completion for every continuous observable, Pontryagin completion classification, and the continuum limit. A circle integral is not the Einstein equation and not quantum gravity.",
+      "statement": "circle_haar.lean imports a normalized Haar measure and states an injective cyclic inclusion. Its header says the dyadic direct limit is not asserted to equal the completed circle. The package README treats those as different objects. What is finite is the cyclic inclusion and the character identity the ledger can mark mechanized. What is not discharged is metric completion for every continuous observable, Pontryagin completion classification, and the continuum limit. A circle integral is not the Einstein equation and not quantum gravity. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-equivalence fences over Q: (1) dyadic direct-system single-step and multi-step transition invariance for dyadicRatVal k m = m / 2^k, and unit total mass (2^k) * (1 / 2^k) = 1 of the level-k uniform Haar partition (dyadic_direct_limit_step_invariant, dyadic_direct_limit_multi_step_invariant, dyadic_haar_uniform_sum_one); (2) constructive proof that (2^k) % 3 != 0 and 3 * m != 2^k for all k, m : Nat, so the rational 3-torsion circle point 1/3 is never equal to any dyadic fraction m / 2^k and is omitted from the uncompleted dyadic direct limit (two_pow_mod_three_nonzero, three_mul_ne_two_pow, one_third_not_dyadic_fraction); and (3) the uncompleted dyadic Cauchy sequence dyadicOneThirdApprox n = (4^n - 1) / (3 * 4^n) whose residual 1 / (3 * 4^n) contracts by 1/4 per step yet remains strictly positive at every finite stage n (four_pow_sub_one_mod_three_zero, dyadic_cauchy_approx_one_third_residual, dyadic_cauchy_approx_strictly_below_one_third, dyadic_cauchy_approx_table).",
       "source": [
-        "dag/derivations/20_continuum_interface/tfq_0119_cdx2_pontryagin_completion_classification_stays_open_dyadic_direct_limit_is_not_the_completed.md"
+        "dag/derivations/20_continuum_interface/tfq_0119_cdx2_pontryagin_completion_classification_stays_open_dyadic_direct_limit_is_not_the_completed.md",
+        "dag/derivations/independent/tfq-0119.md",
+        "checks/independent/tfq-0119.py",
+        "lean4/CampaignTfq0119ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0119_lean_replay.json",
+        "dag/research/campaign_tfq-0119_lean_mutation.json",
+        "dag/research/campaign_tfq-0119_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0119ContinuumInterface.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "cdx2.pontryagin_completion_classification stays open. Dyadic direct limit is not the completed circle.",
@@ -45069,26 +45077,30 @@
         "TFQ-0119"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/circle_haar.lean",
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/README.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/_docs/track2_claim/claim_ledger.json"
+        "dag/derivations/20_continuum_interface/tfq_0119_cdx2_pontryagin_completion_classification_stays_open_dyadic_direct_limit_is_not_the_completed.md",
+        "dag/derivations/independent/tfq-0119.md",
+        "checks/independent/tfq-0119.py",
+        "lean4/CampaignTfq0119ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0119_lean_replay.json",
+        "dag/research/campaign_tfq-0119_lean_mutation.json",
+        "dag/research/campaign_tfq-0119_independent.json"
       ],
       "id": "TFQ-0119",
       "lean4": [
-        "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/circle_haar.lean"
+        "lean4/CampaignTfq0119ContinuumInterface.lean"
       ],
       "local_id": "A09-034",
       "name": "cdx2.pontryagin_completion_classification stays open. Dyadic direct limit is not the completed",
       "obligation": "cdx2.pontryagin_completion_classification stays open. Dyadic direct limit is not the completed circle.",
       "parent_id": "TFQ-0111",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/continuous_haar_limit.py"
+        "checks/independent/tfq-0119.py"
       ],
       "record_status": "OPEN_COMPLETION",
       "rust": [],
       "source_slice": "09",
       "stage": "CONTINUUM_INTERFACE",
-      "summary": "circle_haar.lean imports a normalized Haar measure and states an injective cyclic inclusion. Its header says the dyadic direct limit is not asserted to equal the completed circle. The package README treats those as different objects. What is finite is the cyclic inclusion and the character identity the ledger can mark mechanized. What is not discharged is metric completion for every continuous observable, Pontryagin completion classification, and the continuum limit. A circle integral is not the Einstein equation and not quantum gravity.",
+      "summary": "circle_haar.lean imports a normalized Haar measure and states an injective cyclic inclusion. Its header says the dyadic direct limit is not asserted to equal the completed circle. The package README treats those as different objects. What is finite is the cyclic inclusion and the character identity the ledger can mark mechanized. What is not discharged is metric completion for every continuous observable, Pontryagin completion classification, and the continuum limit. A circle integral is not the Einstein equation and not quantum gravity. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-equivalence fences over Q: (1) dyadic direct-system single-step and multi-step transition invariance for dyadicRatVal k m = m / 2^k, and unit total mass (2^k) * (1 / 2^k) = 1 of the level-k uniform Haar partition (dyadic_direct_limit_step_invariant, dyadic_direct_limit_multi_step_invariant, dyadic_haar_uniform_sum_one); (2) constructive proof that (2^k) % 3 != 0 and 3 * m != 2^k for all k, m : Nat, so the rational 3-torsion circle point 1/3 is never equal to any dyadic fraction m / 2^k and is omitted from the uncompleted dyadic direct limit (two_pow_mod_three_nonzero, three_mul_ne_two_pow, one_third_not_dyadic_fraction); and (3) the uncompleted dyadic Cauchy sequence dyadicOneThirdApprox n = (4^n - 1) / (3 * 4^n) whose residual 1 / (3 * 4^n) contracts by 1/4 per step yet remains strictly positive at every finite stage n (four_pow_sub_one_mod_three_zero, dyadic_cauchy_approx_one_third_residual, dyadic_cauchy_approx_strictly_below_one_third, dyadic_cauchy_approx_table).",
       "uuid": "442594ce-12fc-595f-96ea-16e3aba8a3ce"
     },
     {
