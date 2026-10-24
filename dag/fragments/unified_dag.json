@@ -1352,12 +1352,12 @@
       "record_id": "TFQ-1114",
       "node_id": "DFM-Z1-Z2-COUNTERTERM-FENCE",
       "slug": "dfm-z1-z2-counterterm-fence",
-      "name": "Z_1 = Z_2 counterterm equality under BPHZ subtraction",
+      "name": "One rational vertex contraction, not a counterterm ratio",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.",
-      "obligation": "Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.",
+      "statement": "For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.",
+      "obligation": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "imported_structure": [
         "gauge-invariant BPHZ subtraction scheme",
         "continuum loop integration"
@@ -1368,17 +1368,26 @@
         "DFM-CONTINUUM-INTERFACE"
       ],
       "parent_record": "TFQ-1113",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::inverse_difference",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::propagator_values",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::sandwich",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction_entries"
+      ],
       "rust": [],
       "python": [
-        "code/python/src/qm/ravera_dfm.py::verify_pillar4_dressed_dirac_and_ward_takahashi"
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
       "external_witnesses": [],
       "sources": [
         "papers/ravera_dfm_dossier.md:139-141",
-        "code/python/src/qm/ravera_dfm.py:565-571"
+        "code/python/src/qm/ravera_dfm.py:565-571",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean",
+        "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
-      "audit": "verify_pillar4 returns z1_over_z2_ratio as the constant Q(1, 1) without computation, and no Dirac trace contraction is evaluated.",
+      "audit": "inverse_difference is the inverse-propagator identity for every integer momentum and mass. propagator_values, sandwich, contraction, and contraction_entries are the stated momentum: denominators 3 and 7, the sandwiched product, the lowered contraction, and the witness entries 2/7, 2/7, 26/21, 26/21 with the four off-diagonal values. No loop integral and no Z_1/Z_2 ratio is derived. Status stays OPEN.",
       "see_also": [
         "FQ-QM207-231-FINITE-MAP-CONTROLS",
         "DFM-CONTINUUM-INTERFACE"
@@ -4095,7 +4104,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "For N CAR modes, gamma_{2j-1} = c_j + c_j^dagger and gamma_{2j} = -i(c_j - c_j^dagger) are self-adjoint with {gamma_a, gamma_b} = 2 delta_ab, generate the Clifford algebra on 2N generators, and P = prod_j (-i gamma_{2j-1} gamma_{2j}) is the fermion parity (-1)^N_op.",
-      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "imported_structure": [
         "Majorana operator decomposition of CAR modes (standard literature result)",
         "fermion parity superselection (physical postulate)"
@@ -4104,9 +4113,19 @@
         "FSP-CAR-EXTERIOR-FOCK"
       ],
       "parent_record": "TFQ-1184",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-majorana-clifford-parity.py"
+      ],
       "external_witnesses": [
         "external:omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/ising_majorana_braiding.py::MajoranaOperatorSet (cited by the source; the local file code/python/src/fsp/ising_majorana_braiding.py has no such symbol)",
         "external:omega_majorana::majorana_fock_algebra::MajoranaCliffordGrading (cited by the source, not in this checkout)"
@@ -4116,7 +4135,8 @@
       ],
       "audit": "Cited MajoranaGinCore.lean::majorana_clifford_anticommutation does not exist; MajoranaGinCore (a copy of FermionGinCore) holds an integer pair-cancellation lemma, Kitaev-chain bond-list membership lemmas and routing rfl facts, none about Clifford relations. The JSONL sign convention (i gamma gamma) differs from the standard -i gamma_{2j-1} gamma_{2j} = 1 - 2n_j.",
       "see_also": [
-        "DS-QM212-MAJORANA-PROBLEM"
+        "DS-QM212-MAJORANA-PROBLEM",
+        "dag/derivations/independent/fsp-majorana-clifford-parity.md"
       ],
       "uses": []
     },
@@ -4655,7 +4675,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary symmetry of the Dirac operator makes det D_adj real for every gauge configuration.",
-      "obligation": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.",
+      "obligation": "For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.",
       "imported_structure": [
         "lattice SU(2) gauge theory with adjoint Dirac fermions (standard)"
       ],
@@ -4665,17 +4685,37 @@
         "FSP-LATTICE-ANOMALY-INFLOW"
       ],
       "parent_record": "TFQ-1196",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.reality_not_positivity_witness",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq",
+        "lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-su2-adjoint-real-det.py::main"
+      ],
       "external_witnesses": [
         "external:omega_lie_theory::cayley_unitary::su2_link_holonomy (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:503-515",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:522-541"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:522-541",
+        "dag/derivations/independent/fsp-su2-adjoint-real-det.md"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::su2_adjoint_fermion_real_determinant does not exist; adjoint_matter_zero_n_ality and adjoint_flux_tube_curvature_vanishes are rfl on a defined n_ality table (GIN-C12 historical fixture). The local Su2LatticeGauge symbol is absent from su2_lattice_gauge.py.",
+      "audit": "Cited NonAbelianGaugeSigns.lean::su2_adjoint_fermion_real_determinant does not exist; adjoint_matter_zero_n_ality and adjoint_flux_tube_curvature_vanishes are rfl on a defined n_ality table (GIN-C12 historical fixture). The local Su2LatticeGauge symbol is absent from su2_lattice_gauge.py. CampaignFspSu2AdjointRealDet.lean formalizes the 3x3 SO(3) adjoint representation, Z_2 center blindness, the antiunitary intertwiner determinant reality theorem, 4D lattice adjoint Wilson-Dirac determinant reality, negative-determinant witnesses, and 2x2/4x4 Majorana Pfaffian square and sign-flip identities; checks/independent/fsp-su2-adjoint-real-det.py supplies 546 exact symbolic and rational checks.",
       "see_also": [],
       "uses": []
     },
@@ -4690,7 +4730,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.",
-      "obligation": "Standard identity imported; the checkout has no SU(3) staggered operator and no computation of det D(mu).",
+      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "imported_structure": [
         "lattice QCD with staggered quarks at chemical potential (standard)"
       ],
@@ -4698,16 +4738,37 @@
         "FSP-SU2-ADJOINT-REAL-DET"
       ],
       "parent_record": "TFQ-1200",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.det_conj_by_involution",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_det",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
+        "lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-qcd-chemical-potential-det.py::main"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::quantum_channel::su3_staggered_dirac_determinant (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:516-528"
+        "papers/core/fsp/theory_of_finite_fsp.md:516-528",
+        "dag/derivations/independent/fsp-qcd-chemical-potential-det.md"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant does not exist; the local evaluate_su3_chemical_potential symbol is absent from su3_polyakov_loop.py.",
+      "audit": "Replaced missing NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant reference with lean4/CampaignFspQcdChemicalPotentialDet.lean and checks/independent/fsp-qcd-chemical-potential-det.py.",
       "see_also": [],
       "uses": []
     },
@@ -4797,23 +4858,53 @@
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Claimed: a finite-lattice 2D N=1 Wess-Zumino model with supercharges obeying {Q_a, Q_b} = 2 delta_ab H, H >= 0 and exact boson-fermion pairing of nonzero levels; no such lattice construction exists in this checkout, and lattice discretizations generally keep at most a subalgebra exact.",
-      "obligation": "Specify the lattice model and which supercharge is exact; prove H = Q^2 or {Q, Q^dagger} on the finite Hilbert space before using pairing.",
+      "obligation": "Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/CampaignFspLatticeWessZuminoSusy.lean establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A, A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 != 0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino models.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-CAR-EXTERIOR-FOCK",
         "FSP-IMAGINARY-MU-REAL-DET"
       ],
       "parent_record": "TFQ-1184",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionParity_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness",
+        "lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-lattice-wess-zumino-susy.py::main"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::quantum_hamiltonian::wess_zumino_supercharge_closure (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:558-570"
+        "papers/core/fsp/theory_of_finite_fsp.md:558-570",
+        "dag/derivations/independent/fsp-lattice-wess-zumino-susy.md"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::susy_supercharge_positive_hamiltonian does not exist. Nearest local: regge_wdw_core.lean::supercharge_is_nilpotent is rfl on 0 = 0 and susy_hamiltonian_nonnegative is E >= 0 for E : Nat; the file is not built. WessZuminoLatticeEvaluator is absent from cdt_susy_witten_evaluator.py.",
+      "audit": "Replaced missing NonAbelianGaugeSigns.lean::susy_supercharge_positive_hamiltonian and trivial regge_wdw_core.lean placeholders with lean4/CampaignFspLatticeWessZuminoSusy.lean and checks/independent/fsp-lattice-wess-zumino-susy.py.",
       "see_also": [],
       "uses": []
     },

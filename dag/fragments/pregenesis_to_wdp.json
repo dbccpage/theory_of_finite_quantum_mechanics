@@ -7628,14 +7628,81 @@
       "prerequisites": [
         "TFQ-0335"
       ],
-      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. The sources state these as requirements and supply no theorem that produces F′ or the commuting squares. The old-image identity alone establishes neither a logical conservative extension, nor an adjunction, nor resolution of an unrelated demand.",
-      "obligation": "For each protected answer F supply F′ with F′∘u = F, and for each future admitted event supply the commuting transition square, before claiming that the lift preserves that answer or operation.",
+      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
+      "obligation": "For each protected answer F supply F′ with F′∘u = F (such as retractionTransport r F d under OldImageLaw u r), and for each future admitted event supply and check the commuting transition square before claiming that the lift preserves that answer or operation.",
       "imports": [],
-      "fence": "Requirement only: no answer-transport or commuting-square theorem is recorded for SnCarrier or for the Python S6Descent model, and the exercise value s₆ = 1 records an issued descent-checking obligation, not a forced survivor.",
+      "fence": "The canonical retraction-induced transport, counterpart count, k-step commuting-square preservation, SnCarrier and integer S6Descent instances, and non-implication countermodels are checked in Lean 4; the node remains OPEN because arbitrary future target transitions require case-by-case commuting-square verification, the external Python S6Descent class in 002_oesn/code/sn_core.py is outside this checkout, and the exercise value s₆ = 1 records an issued descent-checking obligation, not a forced survivor.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean theorem producing F′ with F′∘u = F or a commuting transition square"
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.retraction_transport_law"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.transport_off_image_underdetermined"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.transport_counterpart_card"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.commuting_square_preserves_transported_answer"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.canonical_transition_lift_commutes"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.snCarrier_answer_transport"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.snCarrier_canonical_transition_square"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.snCarrier_transition_counterexample"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.s6Descent_answer_transport"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.s6Descent_transition_counterexample"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.not_conservative_extension_off_image"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.old_image_not_left_galois_adjunction"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+            "symbol": "CampaignSnProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift"
           }
         ],
         "rust": [
@@ -7645,7 +7712,9 @@
         ],
         "python": [
           {
-            "absent": "no Python check of answer transport across a lift"
+            "root": "local",
+            "path": "checks/independent/pgw-sn-protected-answer-transport.py",
+            "symbol": "main"
           }
         ]
       },
@@ -7667,13 +7736,19 @@
           "path": "omega_engine_education/documentation/002_oesn/sn.md",
           "lines": "97-99",
           "quote": "Preserving future admitted events additionally requires the relevant transition squares to commute."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-sn-protected-answer-transport.md",
+          "lines": "13-18",
+          "quote": "Every protected answer $F : A \\to Q$ and off-image fallback $d : E \\to Q$ define a canonical target counterpart"
         }
       ],
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
         "status": "OPEN",
-        "source_status": "000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06 (stated requirement, no theorem)"
+        "source_status": "000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean"
       },
       "terminal": false
     },
@@ -7827,14 +7902,54 @@
       "prerequisites": [],
       "summary": "Example E08 takes finite rational cochain spaces, d₀: C⁰ → C¹ and positive rational weights ω_e, and states that the minimum over g of Σ_e ω_e |c_e − (d₀g)_e| equals the maximum of cᵀy subject to d₀ᵀy = 0 and |y_e| ≤ ω_e, as finite linear-programming duality for the stated feasible bounded problem. Matching primal and dual feasible values certify optimality. An ℓ¹ minimizer need not be unique and is not in general the ℓ² harmonic residual. The page separately defines a categorical adjunction by functors, unit, counit and triangle identities, and says these maps are not the matrix pair d₀, d₀ᵀ.",
       "obligation": "For a declared weighted ℓ¹ cochain problem, certify a value by a primal g and a dual y with d₀ᵀy = 0, |y_e| ≤ ω_e and equal objective values, and keep the categorical adjunction a separate construction.",
-      "imports": [
-        "Strong duality for finite feasible bounded linear programs over ℚ, cited by E08 and not proved there (assumption)"
-      ],
+      "imports": [],
       "fence": "E08 is a declared mathematical construction that grammar cases do not verify; AdjunctionCochain implements only x ↦ (x,0) and first-coordinate projection, and no adjunction is claimed until objects, functors, naturality and triangle laws are supplied.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement of the weighted l1 duality in the S(n) strand"
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "e08_rational"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "weighted_l1_strong_duality"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "lp_strong_duality"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "farkas"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "certificate_optimal"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "cyc_optimum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "cyc_residuals_differ"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "cyc_harmonic"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+            "symbol": "adjunctionCochain_not_cycD_transpose"
           }
         ],
         "rust": [
@@ -7844,7 +7959,14 @@
         ],
         "python": [
           {
-            "absent": "AdjunctionCochain in sn_realizations.py implements a product section and projection, not this linear program"
+            "root": "local",
+            "path": "checks/independent/pgw-sn-e08-weighted-l1-duality.py",
+            "symbol": "solve_primal"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-sn-e08-weighted-l1-duality.py",
+            "symbol": "solve_dual"
           }
         ]
       },
@@ -7866,13 +7988,19 @@
           "path": "omega_engine_education/documentation/002_oesn/levels/README.md",
           "lines": "20",
           "quote": "Declared mathematical construction"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md",
+          "lines": "1-3",
+          "quote": "Status: AI-drafted, awaiting human review."
         }
       ],
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
-        "status": "CONDITIONAL",
-        "source_status": "002_oesn levels/level_08 (declared construction; LP duality cited)"
+        "status": "PROVED_LEAN",
+        "source_status": "002_oesn levels/level_08 (declared construction); Lean CampaignSnE08WeightedL1Duality (Fourier-Motzkin LP strong duality over Q)"
       },
       "terminal": false
     },

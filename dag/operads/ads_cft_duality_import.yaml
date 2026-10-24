@@ -1,33 +1,54 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: ADS-CFT-DUALITY-IMPORT
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: narrowed_finite_rational_algebraic_shadows_bound
 target:
-  source_statement: 'Imported as an assumption, not as a result of this repository: a quantum gravity
-    theory on an asymptotically anti-de Sitter spacetime has the same observables as a conformal field
-    theory on its boundary. The duality is a conjecture. It presupposes continuum quantum field theory
-    (a Hilbert space, unitary evolution, operator algebras) and a continuum gravity theory; the repository
-    records both as open or held outside the programme.'
+  source_statement: 'Imported as an assumption, not as a result of this repository:
+    a continuum quantum gravity theory on an asymptotically anti-de Sitter spacetime
+    has the same generating functional and observables as a conformal field theory
+    on its boundary. Narrowed to its exact finite/rational algebraic shadows: (1)
+    over Q, the GKPW scalar mass-dimension quadratic gkpwMassSq(d, Delta) = Delta(Delta
+    - d) = mSq satisfies the shadow involution Delta |-> d - Delta, (2 Delta - d)^2
+    = d^2 + 4 Delta(Delta - d), and the Breitenlohner-Freedman lower bound -(d^2)/4
+    <= Delta(Delta - d) with double root Delta = d/2 at saturation and no rational
+    root strictly below -(d^2)/4; (2) in ''t Hooft double-line counting with lambda
+    = g_YM^2 N and Euler characteristic chi = V - E + F = 2 - 2g, the ribbon weight
+    satisfies (g_YM^2)^(E - V) N^F * N^(E - V) = lambda^(E - V) N^F, suppressing the
+    genus-1 torus vacuum graph (V=2, E=3, F=1) relative to the planar dipole (V=2,
+    E=3, F=3) by N^2; and (3) for any finite isometric bulk-to-boundary encoding V^T
+    V = I_b, the pushforward iota_V(O_bulk) = V O_bulk V^T and pullback pi_V(O_bdry)
+    = V^T O_bdry V satisfy pi_V(iota_V(O_bulk)) = O_bulk, iota_V(A) iota_V(C) = iota_V(A
+    C), and <V psi, O_bdry(V psi)> = <psi, pi_V(O_bdry) psi>, whereas for b = 1 <
+    B = 2 (V = [[1],[0]]) V V^T != I_2 and the nonzero boundary operator O_perp =
+    [[0,0],[0,1]] pulls back to 0 and has no bulk preimage.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - continuum quantum field theory and gravity (assumption)
   - large-N limit (assumption)
-  source_bottleneck: 'The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the
-    finite-to-continuum interface TFQ-0085 are open.'
+  source_bottleneck: The continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0],
+    the full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and the continuum inputs
+    FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085 remain unconstructed; at b < B a finite
+    isometric encoding V^T V = I_b has non-surjective pushforward iota_V and a nontrivial
+    boundary kernel of pi_V.
   source_refs:
   - dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md
+  - dag/derivations/independent/ads-cft-duality-import.md
+  - checks/independent/ads-cft-duality-import.py
+  - dag/research/campaign_ads-cft-duality-import_lean_replay.json
+  - dag/research/campaign_ads-cft-duality-import_lean_mutation.json
+  - dag/research/campaign_ads-cft-duality-import_independent.json
   - external:arXiv:hep-th/9711200
   - external:arXiv:hep-th/9802109
   - external:arXiv:hep-th/9802150
   paper_refs:
   - dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md
   source_claim_label: IMPORTED_ASSUMPTION
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
-    before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope
+    and remaining imports before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md
-    sha256: 4b7c0d1645c7ed98cbdd3026f028e7583a413f707f9c54af58003f62fbd0f285
+    sha256: 87e9d1d909426f1cd12466d75e80b72cd3d8346fbb7be0f8af8eed81024bea0d
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -35,9 +56,400 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/ads_cft_ads_cft_duality_import_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: shadowDimension
+  line: 58
+  signature_excerpt: 'def shadowDimension (d Δ : ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gkpwMassSq
+  line: 54
+  signature_excerpt: 'def gkpwMassSq (d Δ : ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gkpwDiscriminant
+  line: 62
+  signature_excerpt: 'def gkpwDiscriminant (d mSq : ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gkpwRootPlus
+  line: 70
+  signature_excerpt: 'def gkpwRootPlus (d s : ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gkpwRootMinus
+  line: 74
+  signature_excerpt: 'def gkpwRootMinus (d s : ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bfBound
+  line: 66
+  signature_excerpt: 'def bfBound (d : ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ribbonDoubleLineWeight
+  line: 202
+  signature_excerpt: 'def ribbonDoubleLineWeight (gYM_sq N : ℚ) (V E F : ℕ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tHooftCoupling
+  line: 189
+  signature_excerpt: 'def tHooftCoupling (gYM_sq N : ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ribbonEulerChar
+  line: 194
+  signature_excerpt: 'def ribbonEulerChar (V E F : ℤ) : ℤ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: closedSurfaceEulerChar
+  line: 198
+  signature_excerpt: 'def closedSurfaceEulerChar (g : ℤ) : ℤ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: boundaryPullback
+  line: 245
+  signature_excerpt: "def boundaryPullback {b B : Type*} [Fintype b] [Fintype B] (V\
+    \ : Matrix B b ℚ)\n    (O_bdry : Matrix B B ℚ) : Matrix b b ℚ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bulkPushforward
+  line: 240
+  signature_excerpt: "def bulkPushforward {b B : Type*} [Fintype b] [Fintype B] (V\
+    \ : Matrix B b ℚ)\n    (O_bulk : Matrix b b ℚ) : Matrix B B ℚ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: quadExpectation
+  line: 250
+  signature_excerpt: 'def quadExpectation {n : Type*} [Fintype n] (O : Matrix n n
+    ℚ) (ψ : n → ℚ) : ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: codeIsometry12
+  line: 306
+  signature_excerpt: 'def codeIsometry12 : Matrix (Fin 2) (Fin 1) ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: boundaryAnnihilator12
+  line: 311
+  signature_excerpt: 'def boundaryAnnihilator12 : Matrix (Fin 2) (Fin 2) ℚ'
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: shadowDimension_involutive
+  line: 78
+  signature_excerpt: "theorem shadowDimension_involutive (d Δ : ℚ) :\n    shadowDimension\
+    \ d (shadowDimension d Δ) = Δ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: shadowDimension_sum
+  line: 84
+  signature_excerpt: "theorem shadowDimension_sum (d Δ : ℚ) :\n    Δ + shadowDimension\
+    \ d Δ = d"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: gkpwMassSq_shadow_eq
+  line: 90
+  signature_excerpt: "theorem gkpwMassSq_shadow_eq (d Δ : ℚ) :\n    gkpwMassSq d (shadowDimension\
+    \ d Δ) = gkpwMassSq d Δ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: gkpw_vieta_product
+  line: 96
+  signature_excerpt: "theorem gkpw_vieta_product (d Δ : ℚ) :\n    Δ * shadowDimension\
+    \ d Δ = -gkpwMassSq d Δ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: gkpw_completed_square
+  line: 103
+  signature_excerpt: "theorem gkpw_completed_square (d Δ : ℚ) :\n    (2 * Δ - d) ^\
+    \ 2 = gkpwDiscriminant d (gkpwMassSq d Δ)"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: gkpw_roots_from_square_discriminant
+  line: 110
+  signature_excerpt: "theorem gkpw_roots_from_square_discriminant (d mSq s : ℚ)\n\
+    \    (hs : s ^ 2 = gkpwDiscriminant d mSq) :\n    gkpwMassSq d (gkpwRootPlus d\
+    \ s) = mSq ∧\n      gkpwMassSq d (gkpwRootMinus d s) = mSq ∧\n      gkpwRootPlus\
+    \ d s + gkpwRootMinus d s = d ∧\n      gkpwRootPlus d s - gkpwRootMinus d s =\
+    \ s"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: bf_bound_iff_discriminant_nonneg
+  line: 129
+  signature_excerpt: "theorem bf_bound_iff_discriminant_nonneg (d mSq : ℚ) :\n   \
+    \ bfBound d ≤ mSq ↔ 0 ≤ gkpwDiscriminant d mSq"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: bf_saturation_double_root
+  line: 136
+  signature_excerpt: "theorem bf_saturation_double_root (d : ℚ) :\n    gkpwDiscriminant\
+    \ d (bfBound d) = 0 ∧\n      gkpwRootPlus d 0 = d / 2 ∧\n      gkpwRootMinus d\
+    \ 0 = d / 2 ∧\n      gkpwMassSq d (d / 2) = bfBound d"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: gkpwMassSq_ge_bfBound
+  line: 146
+  signature_excerpt: "theorem gkpwMassSq_ge_bfBound (d Δ : ℚ) :\n    bfBound d ≤ gkpwMassSq\
+    \ d Δ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: no_rational_root_below_bf_bound
+  line: 156
+  signature_excerpt: "theorem no_rational_root_below_bf_bound (d mSq Δ : ℚ) (h : mSq\
+    \ < bfBound d) :\n    gkpwMassSq d Δ ≠ mSq"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: thooft_factorization
+  line: 207
+  signature_excerpt: "theorem thooft_factorization (gYM_sq N : ℚ) (V E F : ℕ) :\n\
+    \    ribbonDoubleLineWeight gYM_sq N V E F * N ^ (E - V) =\n      (tHooftCoupling\
+    \ gYM_sq N) ^ (E - V) * N ^ F"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: thooft_planar_vs_torus_suppression
+  line: 217
+  signature_excerpt: "theorem thooft_planar_vs_torus_suppression (gYM_sq N : ℚ) :\n\
+    \    ribbonEulerChar 2 3 3 = closedSurfaceEulerChar 0 ∧\n      ribbonEulerChar\
+    \ 2 3 1 = closedSurfaceEulerChar 1 ∧\n      ribbonDoubleLineWeight gYM_sq N 2\
+    \ 3 3 = (tHooftCoupling gYM_sq N) * N ^ 2 ∧\n      ribbonDoubleLineWeight gYM_sq\
+    \ N 2 3 1 * N ^ 2 =\n        ribbonDoubleLineWeight gYM_sq N 2 3 3"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: recorded_thooft_and_gauge_counts
+  line: 228
+  signature_excerpt: "theorem recorded_thooft_and_gauge_counts (N : ℚ) :\n    N ^\
+    \ 2 = (N ^ 2 - 1) + 1 ∧\n      tHooftCoupling (1 / 3) 3 = 1 ∧\n      ribbonDoubleLineWeight\
+    \ (1 / 3) 3 2 3 3 = 9 ∧\n      ribbonDoubleLineWeight (1 / 3) 3 2 3 1 = 1 ∧\n\
+    \      ((3 : ℚ) ^ 2 - 1 = 8) ∧ ((4 : ℚ) ^ 2 - 1 = 15)"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: pullback_pushforward_id
+  line: 255
+  signature_excerpt: "theorem pullback_pushforward_id {b B : Type*} [Fintype b] [Fintype\
+    \ B] [DecidableEq b]\n    (V : Matrix B b ℚ) (hV : V.transpose * V = 1) (O_bulk\
+    \ : Matrix b b ℚ) :\n    boundaryPullback V (bulkPushforward V O_bulk) = O_bulk"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: pushforward_mul_of_isometry
+  line: 268
+  signature_excerpt: "theorem pushforward_mul_of_isometry {b B : Type*} [Fintype b]\
+    \ [Fintype B] [DecidableEq b]\n    (V : Matrix B b ℚ) (hV : V.transpose * V =\
+    \ 1) (A C : Matrix b b ℚ) :\n    bulkPushforward V A * bulkPushforward V C = bulkPushforward\
+    \ V (A * C)"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: correlator_dictionary_pullback
+  line: 282
+  signature_excerpt: "theorem correlator_dictionary_pullback {b B : Type*} [Fintype\
+    \ b] [Fintype B]\n    (V : Matrix B b ℚ) (O_bdry : Matrix B B ℚ) (ψ : b → ℚ) :\n\
+    \    quadExpectation O_bdry (V.mulVec ψ) =\n      quadExpectation (boundaryPullback\
+    \ V O_bdry) ψ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: correlator_dictionary_match
+  line: 299
+  signature_excerpt: "theorem correlator_dictionary_match {b B : Type*} [Fintype b]\
+    \ [Fintype B] [DecidableEq b]\n    (V : Matrix B b ℚ) (hV : V.transpose * V =\
+    \ 1) (O_bulk : Matrix b b ℚ) (ψ : b → ℚ) :\n    quadExpectation (bulkPushforward\
+    \ V O_bulk) (V.mulVec ψ) =\n      quadExpectation O_bulk ψ"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: codeIsometry12_is_isometry
+  line: 315
+  signature_excerpt: "theorem codeIsometry12_is_isometry :\n    codeIsometry12.transpose\
+    \ * codeIsometry12 = 1"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: codeIsometry12_projector_ne_one
+  line: 323
+  signature_excerpt: "theorem codeIsometry12_projector_ne_one :\n    codeIsometry12\
+    \ * codeIsometry12.transpose ≠ 1"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+- kind: theorem
+  name: boundary_annihilator_obstruction
+  line: 334
+  signature_excerpt: "theorem boundary_annihilator_obstruction :\n    boundaryAnnihilator12\
+    \ ≠ 0 ∧\n      boundaryPullback codeIsometry12 boundaryAnnihilator12 = 0 ∧\n \
+    \     ¬ Function.Surjective (bulkPushforward codeIsometry12)"
+  source: lean4/CampaignAdsCftDualityImport.lean
+  repository: this_repository
+  source_sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a
+    file is not a discharged proof.
+source_bindings:
+- language: lean4
+  path: lean4/CampaignAdsCftDualityImport.lean
+  symbol: CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant
+  role: gkpw_mass_dimension_quadratic_roots
+  sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+- language: lean4
+  path: lean4/CampaignAdsCftDualityImport.lean
+  symbol: CampaignAdsCftDualityImport.no_rational_root_below_bf_bound
+  role: breitenlohner_freedman_rational_fence
+  sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+- language: lean4
+  path: lean4/CampaignAdsCftDualityImport.lean
+  symbol: CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression
+  role: thooft_ribbon_genus_scaling
+  sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+- language: lean4
+  path: lean4/CampaignAdsCftDualityImport.lean
+  symbol: CampaignAdsCftDualityImport.correlator_dictionary_match
+  role: isometric_bulk_to_boundary_correlator_dictionary
+  sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+- language: lean4
+  path: lean4/CampaignAdsCftDualityImport.lean
+  symbol: CampaignAdsCftDualityImport.boundary_annihilator_obstruction
+  role: isometric_pushforward_non_surjectivity_fence
+  sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+- language: python
+  path: checks/independent/ads-cft-duality-import.py
+  symbol: main
+  role: independent_rational_and_matrix_checker
+  sha256: 68c5c189ee9f2dbeb1b203e3a97cbb6c177ca84c7036ba3dae80369a08b81eda
 presentation:
   colours: []
   generators: []
@@ -53,36 +465,70 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
+    mining_status: BOUND
+    carrier: Q x Q (GKPW dimensions and masses), Q[gYM_sq, N] (ribbon weights), and
+      Matrix B b Q (finite bulk-to-boundary code embeddings)
+    coefficient_ring: Q
     assumptions:
     - continuum quantum field theory and gravity (assumption)
     - large-N limit (assumption)
-    source_pins: []
+    source_pins:
+    - path: lean4/CampaignAdsCftDualityImport.lean
+      sha256: 08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf
+    - path: checks/independent/ads-cft-duality-import.py
+      sha256: 68c5c189ee9f2dbeb1b203e3a97cbb6c177ca84c7036ba3dae80369a08b81eda
+    - path: dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md
+      sha256: 87e9d1d909426f1cd12466d75e80b72cd3d8346fbb7be0f8af8eed81024bea0d
+    - path: dag/derivations/independent/ads-cft-duality-import.md
+      sha256: 56f7340138ff5098ba69c7437866ec263d5cda70833bc5bb7f10b7773c4d2021
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
+    mining_status: BOUND
+    operations:
+    - CampaignAdsCftDualityImport.gkpwMassSq
+    - CampaignAdsCftDualityImport.shadowDimension
+    - CampaignAdsCftDualityImport.gkpwDiscriminant
+    - CampaignAdsCftDualityImport.bfBound
+    - CampaignAdsCftDualityImport.ribbonDoubleLineWeight
+    - CampaignAdsCftDualityImport.bulkPushforward
+    - CampaignAdsCftDualityImport.boundaryPullback
     composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
+    mining_status: BOUND
+    algebraic_relations:
+    - shadowDimension d (shadowDimension d Delta) = Delta
+    - gkpwMassSq d (shadowDimension d Delta) = gkpwMassSq d Delta
+    - (2 * Delta - d)^2 = gkpwDiscriminant d (gkpwMassSq d Delta)
+    - ribbonDoubleLineWeight gYM_sq N V E F * N^(E - V) = (tHooftCoupling gYM_sq N)^(E
+      - V) * N^F
+    - boundaryPullback V (bulkPushforward V O_bulk) = O_bulk (when V^T V = 1)
+    rejection_predicates:
+    - mSq < bfBound d -> gkpwMassSq d Delta != mSq for all rational Delta
+    - boundaryPullback codeIsometry12 boundaryAnnihilator12 = 0 with boundaryAnnihilator12
+      != 0
     negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
+    mining_status: BOUND
     certificate_predicates: []
-    anchors: []
+    anchors:
+    - lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant
+    - lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.no_rational_root_below_bf_bound
+    - lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression
+    - lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_match
+    - lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.boundary_annihilator_obstruction
+    - checks/independent/ads-cft-duality-import.py
     unpaid_imports:
     - continuum quantum field theory and gravity (assumption)
     - large-N limit (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Match the exact source theorem to this target, including quantifiers and imported
+  hypotheses.
 - Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified
+  relations.
 - Bind independent certificate predicates and real checker anchors before P1.
-excluded_relation_leads: []
+excluded_relation_leads:
+- source: lean4/CampaignAdsCftDualityImport.lean
+  name: recorded_ads5_and_ads3_gkpw_points
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

@@ -11,19 +11,19 @@
 
 ## Statement
 
-Imported as an assumption, not as a result of this repository: a quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same observables as a conformal field theory on its boundary. The duality is a conjecture. It presupposes continuum quantum field theory (a Hilbert space, unitary evolution, operator algebras) and a continuum gravity theory; the repository records both as open or held outside the programme.
+Imported as an assumption, not as a result of this repository: a continuum quantum gravity theory on an asymptotically anti-de Sitter spacetime has the same generating functional and observables as a conformal field theory on its boundary. Narrowed to its exact finite/rational algebraic shadows: (1) over Q, the GKPW scalar mass-dimension quadratic gkpwMassSq(d, Delta) = Delta(Delta - d) = mSq satisfies the shadow involution Delta |-> d - Delta, (2 Delta - d)^2 = d^2 + 4 Delta(Delta - d), and the Breitenlohner-Freedman lower bound -(d^2)/4 <= Delta(Delta - d) with double root Delta = d/2 at saturation and no rational root strictly below -(d^2)/4; (2) in 't Hooft double-line counting with lambda = g_YM^2 N and Euler characteristic chi = V - E + F = 2 - 2g, the ribbon weight satisfies (g_YM^2)^(E - V) N^F * N^(E - V) = lambda^(E - V) N^F, suppressing the genus-1 torus vacuum graph (V=2, E=3, F=1) relative to the planar dipole (V=2, E=3, F=3) by N^2; and (3) for any finite isometric bulk-to-boundary encoding V^T V = I_b, the pushforward iota_V(O_bulk) = V O_bulk V^T and pullback pi_V(O_bdry) = V^T O_bdry V satisfy pi_V(iota_V(O_bulk)) = O_bulk, iota_V(A) iota_V(C) = iota_V(A C), and <V psi, O_bdry(V psi)> = <psi, pi_V(O_bdry) psi>, whereas for b = 1 < B = 2 (V = [[1],[0]]) V V^T != I_2 and the nonzero boundary operator O_perp = [[0,0],[0,1]] pulls back to 0 and has no bulk preimage.
 
 ## Governing obligation
 
-The continuum inputs are not constructed: FQ-GAP-CONTINUUM-HILBERT-LIFT and the finite-to-continuum interface TFQ-0085 are open.
+The continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], the full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and the continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085 remain unconstructed; at b < B a finite isometric encoding V^T V = I_b has non-surjective pushforward iota_V and a nontrivial boundary kernel of pi_V.
 
 ## Source status
 
-Audited against arXiv:hep-th/9711200, arXiv:hep-th/9802109 and arXiv:hep-th/9802150 on 2026-10-22; taken as an imported assumption of this branch.
+Audited against arXiv:hep-th/9711200, arXiv:hep-th/9802109 and arXiv:hep-th/9802150 on 2026-10-23; narrowed to finite/rational algebraic shadows in Lean 4 and an independent Python verifier while keeping the continuum duality as an imported assumption.
 
 ## What is imported
 
-- Duality of a bulk gravity theory and a boundary conformal field theory.
+- Duality of a bulk gravity theory and a boundary conformal field theory (Maldacena 1997, Gubser-Klebanov-Polyakov 1998, Witten 1998).
 
 Declared imported structure:
 - `continuum quantum field theory and gravity (assumption)`
@@ -31,24 +31,61 @@ Declared imported structure:
 
 ## What is open
 
-- Every continuum input.
+- Continuum partition-function equality Z_grav[phi_0] = Z_CFT[phi_0], full AdS_5 x S^5 / N=4 SYM Hilbert space isomorphism, and continuum inputs FQ-GAP-CONTINUUM-HILBERT-LIFT and TFQ-0085.
+
+## Finite target (precise statement)
+
+lean4/CampaignAdsCftDualityImport.lean + checks/independent/ads-cft-duality-import.py (GKPW rational mass-dimension quadratic and Breitenlohner-Freedman bound, t Hooft ribbon-graph genus scaling, and finite isometric bulk-to-boundary dictionary + non-surjectivity witness).
+
+No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
 
 ## Connections to this repository
 
 - Route `FRO-R-ADS-CFT-DUALITY-IMPORT` (`CONDITIONAL_ON_IMPORT`) from `ADS-GKPW-DICTIONARY-SOURCE`: The duality is the import; the link to the source records is reading order.
 - Route `FRO-R-BACK-ADS-DUALITY-TO-CONTINUUM-INTERFACE` (`GAP_NO_DERIVATION`) from this node into `TFQ-0085`: The finite-to-continuum interface TFQ-0085 keeps topology, limits, smoothness and physical interpretation open. No source relates the imported duality to a finite shadow; no continuum claim is admitted.
+- ADS-MALDACENA-1997-SOURCE
+- ADS-GKPW-DICTIONARY-SOURCE
+- ADS-RT-2006-SOURCE
 
 See also: `FQ-GAP-CONTINUUM-HILBERT-LIFT`, `TFQ-0085`.
 
 ## Non-claims
 
-- No consequence of the duality is derived or used.
+- Does not derive continuum quantum gravity, continuum conformal field theory, or the large-N limit from finite substrate rules; finite isometric encodings at b < B are not surjective onto boundary operators.
 
 ## Sources
 
 - `external:arXiv:hep-th/9711200`: J. M. Maldacena, "The Large N Limit of Superconformal Field Theories and Supergravity", arXiv:hep-th/9711200 (submitted 27 Nov 1997); Adv. Theor. Math. Phys. 2 (1998) 231-252.
 - `external:arXiv:hep-th/9802109`: S. S. Gubser, I. R. Klebanov and A. M. Polyakov, "Gauge Theory Correlators from Non-Critical String Theory", arXiv:hep-th/9802109 (1998); Phys. Lett. B 428 (1998) 105-114.
 - `external:arXiv:hep-th/9802150`: E. Witten, "Anti De Sitter Space And Holography", arXiv:hep-th/9802150 (1998); Adv. Theor. Math. Phys. 2 (1998) 253-291.
+- Repository: `dag/derivations/independent/ads-cft-duality-import.md`
+- Repository: `checks/independent/ads-cft-duality-import.py`
+- Repository: `dag/research/campaign_ads-cft-duality-import_lean_replay.json`
+- Repository: `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`
+- Repository: `dag/research/campaign_ads-cft-duality-import_independent.json`
+
+## Lean 4 declarations read
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_involutive`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_sum`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_vieta_product`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_completed_square`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_saturation_double_root`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.no_rational_root_below_bf_bound`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_factorization`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pullback_pushforward_id`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pushforward_mul_of_isometry`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_pullback`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_match`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_is_isometry`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one`
+- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.boundary_annihilator_obstruction`
 
 ## Downstream derivations
 
