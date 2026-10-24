@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 172, E1 233, E2 42, E3 478.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 172, E1 232, E2 43, E3 478.
 
 ### What is proved here, what is imported, what is open
 
@@ -28,7 +28,7 @@ Grade E4 needs an in-repo runnable test and a recorded review as well as a repla
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in files of this checkout. 1615 of them are in a file whose current sha256 matches a passing replay receipt; 24 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1081 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 1672 distinct Lean declarations that lie in files of this checkout. 1615 of them are in a file whose current sha256 matches a passing replay receipt; 24 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1081 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -42,9 +42,9 @@ The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in file
 | `IMPORTED_ASSUMPTION` | 7 | 26 | 1 | 36 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 37 | 83 | 10 | 45 | 0 | 175 |
+| `OPEN` | 37 | 82 | 11 | 45 | 0 | 175 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 172 | 233 | 42 | 478 | 0 | 925 |
+| Total | 172 | 232 | 43 | 478 | 0 | 925 |
 
 ### Stage by evidence grade
 
@@ -70,7 +70,7 @@ The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in file
 | [FINITE_GAUGE](stages/FINITE_GAUGE.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
 | [FINITE_QED](stages/FINITE_QED.md) | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
 | [FINITE_QCD](stages/FINITE_QCD.md) | 5 | 19 | 0 | 8 | 0 | 32 | 1 | 19 |
-| [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 7 | 0 | 0 | 0 | 9 | 0 | 7 |
+| [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 6 | 1 | 0 | 0 | 9 | 0 | 17 |
 | [FINITE_QG](stages/FINITE_QG.md) | 7 | 5 | 0 | 3 | 0 | 15 | 0 | 0 |
 | [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 5 | 0 | 0 | 4 | 0 | 9 | 0 | 0 |
 | [IMPLEMENTATION_CORE](stages/IMPLEMENTATION_CORE.md) | 25 | 16 | 0 | 0 | 0 | 41 | 0 | 68 |
@@ -152,13 +152,13 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 
 ## Where status and evidence disagree
 
-255 flags on 192 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
+265 flags on 193 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
 
 | Flag | Count | Meaning |
 |---|---|---|
 | `proved_lean_below_e3` | 0 | PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt |
 | `proved_lean_external_only` | 0 | PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout |
-| `receipt_not_current` | 35 | A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit |
+| `receipt_not_current` | 45 | A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit |
 | `computational_no_runnable_test` | 126 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
 | `proved_prose_no_in_repo_document` | 12 | PROVED_PROSE with no in-repo source document cited |
 | `broken_reference` | 54 | A cited in-repo path or symbol cannot be found in this checkout |

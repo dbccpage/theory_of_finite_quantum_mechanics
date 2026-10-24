@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0044",
+  "lean_file": "lean4/CampaignTfq0044FiniteTopological.lean",
+  "sha256": "bc3bb2ea561cc285238ee8e9887f109336d7f0d8db817967fee726fd232dd35d",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_su2_root_order_factor_4_instead_of_8",
+        "description": "Mutate su2RootOrder from 8 * (k + 2) to 4 * (k + 2), falsifying su2_level_rank_and_root_order_bounds.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpmdjjfov5.lean:84:2: error: Tactic `decide` proved that the proposition\n  su2MaxLevel = 6 \u2227\n    (su2LevelRank 1, su2RootOrder 1) = (2, 24) \u2227\n      (su2LevelRank 2, su2RootOrder 2) = (3, 32) \u2227\n        (su2LevelRank 3, su2RootOrder 3) = (4, 40) \u2227\n          (su2LevelRank 4, su2RootOrder 4) = (5, 48) \u2227\n            (su2LevelRank 5, su2RootOrder 5) = (6, 56) \u2227 (su2LevelRank 6, su2RootOrder 6) = (7, 64"
+      },
+      {
+        "id": "M2_su2_central_charge_drop_factor_3",
+        "description": "Mutate su2CentralCharge from (3 * k) / (k + 2) to k / (k + 2), falsifying su2_level_central_charge_and_level3_fibonacci_subring.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp4q1m1jjc.lean:101:10: error: unsolved goals\n\u22a2 False\ntmp4q1m1jjc.lean:101:23: error: unsolved goals\n\u22a2 False\ntmp4q1m1jjc.lean:101:36: error: unsolved goals\n\u22a2 False\ntmp4q1m1jjc.lean:101:49: error: unsolved goals\n\u22a2 False\ntmp4q1m1jjc.lean:101:62: error: unsolved goals\n\u22a2 False\ntmp4q1m1jjc.lean:101:75: error: unsolved goals\n\u22a2 False\n'CampaignTfq0044FiniteTopological.su2_level_rank_and_root_order_bounds"
+      },
+      {
+        "id": "M3_racah_f02_plus_one_instead_of_minus_one",
+        "description": "Mutate racahF02 from <-1, 0> to <1, 0>, falsifying racah_level3_fibonacci_f_matrix_weighted_metric_unitarity.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmps8cow8b1.lean:184:89: error: unsolved goals\ncase refine_2.a\n\u22a2 False\n\ncase refine_4.a\n\u22a2 False\n\ncase refine_4.b\n\u22a2 False\n'CampaignTfq0044FiniteTopological.su2_level_rank_and_root_order_bounds' does not depend on any axioms\n'CampaignTfq0044FiniteTopological.su2_level_central_charge_and_level3_fibonacci_subring' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0044FiniteTopol"
+      },
+      {
+        "id": "M4_su3_cf_one_instead_of_four_thirds",
+        "description": "Mutate su3ColorCasimirCF from 4 / 3 to 1, falsifying su2_level_quantum_dimensions_not_su3_casimirs_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpbgkkk7x3.lean:208:35: error: unsolved goals\n\u22a2 False\n'CampaignTfq0044FiniteTopological.su2_level_rank_and_root_order_bounds' does not depend on any axioms\n'CampaignTfq0044FiniteTopological.su2_level_central_charge_and_level3_fibonacci_subring' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0044FiniteTopological.qphi_golden_ratio_identities' depends on axioms: [propext,\n"
+      },
+      {
+        "id": "M5_su3_level_rank_linear_instead_of_triangular",
+        "description": "Mutate su3LevelRank from (k + 1) * (k + 2) / 2 to k + 1, falsifying su2_vs_su3_level_simple_object_count_separation.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpu5a9aa0m.lean:241:2: error: Tactic `decide` proved that the proposition\n  (su2LevelRank 1, su3LevelRank 1) = (2, 3) \u2227\n    (su2LevelRank 2, su3LevelRank 2) = (3, 6) \u2227\n      (su2LevelRank 3, su3LevelRank 3) = (4, 10) \u2227\n        (su2LevelRank 4, su3LevelRank 4) = (5, 15) \u2227\n          (su2LevelRank 5, su3LevelRank 5) = (6, 21) \u2227\n            (su2LevelRank 6, su3LevelRank 6) = (7, 28) \u2227 \u2200 k \u2208 [1, 2, 3,"
+      },
+      {
+        "id": "M6_repo_ledger_claim_su3_level_exists",
+        "description": "Mutate tfq0044RepoLedger hasSu3LevelInRepo from false to true, falsifying tfq0044_su2_level_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpdljdy1cr.lean:285:2: error: Tactic `decide` proved that the proposition\n  tfq0044RepoLedger.hasSu2LevelRacahInRepo = true \u2227\n    tfq0044RepoLedger.hasWeightedMetricUnitarityCheck = true \u2227\n      tfq0044RepoLedger.isRacahGaugeEuclideanOrthonormal = false \u2227\n        tfq0044RepoLedger.hasSu3LevelInRepo = false \u2227\n          tfq0044RepoLedger.su2QuantumDimsEqualSu3Casimirs = false \u2227\n            tfq0044R"
+      }
+    ]
+  }
+}
