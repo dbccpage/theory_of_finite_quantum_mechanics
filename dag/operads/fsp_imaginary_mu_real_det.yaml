@@ -9,8 +9,12 @@ target:
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - imaginary chemical potential and Roberge-Weiss periodicity (literature)
-  source_bottleneck: Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free
-    route to real mu; not established in this checkout.
+  source_bottleneck: 'Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free
+    route to real mu; not established in this checkout. CampaignFspImaginaryMuRealDet covers arbitrary
+    finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality,
+    two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a
+    declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase
+    transition or analytic-continuation theorem. The full node remains imported.'
   source_refs:
   - dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md
   - papers/core/fsp/theory_of_finite_fsp.md
@@ -22,7 +26,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md
-    sha256: ac2647c3b3b9ad8360fff38c46c8a361167df805ce0ca1de6df0ae176c927fd3
+    sha256: 5a8903f86de0e771db4da99d212016b3b8d780605f2a93ff3542d3966177eaac
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +34,177 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_imaginary_mu_real_det_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: parity
+  line: 31
+  signature_excerpt: 'def parity : Matrix (P ⊕ N) (P ⊕ N) ℂ'
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: staggered
+  line: 35
+  signature_excerpt: |-
+    def staggered (m : ℝ) (z : ℂ) (A : Matrix P N ℂ) (B : Matrix N P ℂ) :
+        Matrix (P ⊕ N) (P ⊕ N) ℂ
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: negativeExample
+  line: 131
+  signature_excerpt: 'def negativeExample : Matrix (Fin 2) (Fin 2) ℂ'
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: centerSum
+  line: 144
+  signature_excerpt: 'def centerSum (f : ℂ → ℂ) (w z : ℂ) : ℂ'
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: staggered_adjoint
+  line: 69
+  signature_excerpt: |-
+    theorem staggered_adjoint (m : ℝ) (z : ℂ) (hz : star z * z = 1)
+        (A : Matrix P N ℂ) (B : Matrix N P ℂ) :
+        parity * staggered m z A B * parity = (staggered m z A B)ᴴ
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: det_real_of_involution
+  line: 76
+  signature_excerpt: |-
+    theorem det_real_of_involution {S : Type*} [Fintype S] [DecidableEq S]
+        (G D : Matrix S S ℂ) (hG : G * G = 1) (hD : G * D * G = Dᴴ) :
+        star D.det = D.det
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: two_flavor_nonneg
+  line: 91
+  signature_excerpt: |-
+    theorem two_flavor_nonneg {S : Type*} [Fintype S] [DecidableEq S]
+        (D : Matrix S S ℂ) (hD : star D.det = D.det) :
+        0 ≤ (fromBlocks D 0 0 D).det.re
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: staggered_det_pos
+  line: 124
+  signature_excerpt: |-
+    theorem staggered_det_pos (m : ℝ) (hm : 0 < m) (z : ℂ)
+        (hz : star z * z = 1) (A : Matrix P N ℂ) (B : Matrix N P ℂ) :
+        0 < (staggered m z A B).det
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gamma_hermitian_negative
+  line: 133
+  signature_excerpt: |-
+    theorem gamma_hermitian_negative :
+        (!![1, 0; 0, -1] : Matrix (Fin 2) (Fin 2) ℂ) * negativeExample *
+          !![1, 0; 0, -1] = negativeExampleᴴ ∧
+        negativeExample.det = -1
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: centerSum_periodic
+  line: 146
+  signature_excerpt: |-
+    theorem centerSum_periodic (f : ℂ → ℂ) (w z : ℂ) (hw : w ^ 3 = 1) :
+        centerSum f w (w * z) = centerSum f w z
+  source: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  source_sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::staggered_adjoint
+  availability: local
+  symbol: staggered_adjoint
+  path: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
+  role: source_lead_only
+- original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::det_real_of_involution
+  availability: local
+  symbol: det_real_of_involution
+  path: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  declaration_status: declaration_found_not_proof_checked
+  line: 76
+  role: source_lead_only
+- original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::two_flavor_nonneg
+  availability: local
+  symbol: two_flavor_nonneg
+  path: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::staggered_det_pos
+  availability: local
+  symbol: staggered_det_pos
+  path: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  declaration_status: declaration_found_not_proof_checked
+  line: 124
+  role: source_lead_only
+- original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::gamma_hermitian_negative
+  availability: local
+  symbol: gamma_hermitian_negative
+  path: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  declaration_status: declaration_found_not_proof_checked
+  line: 133
+  role: source_lead_only
+- original_ref: lean4/CampaignFspImaginaryMuRealDet.lean::centerSum_periodic
+  availability: local
+  symbol: centerSum_periodic
+  path: lean4/CampaignFspImaginaryMuRealDet.lean
+  repository: this_repository
+  sha256: 6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2
+  declaration_status: declaration_found_not_proof_checked
+  line: 146
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +244,6 @@ operad_slots:
     - imaginary chemical potential and Roberge-Weiss periodicity (literature)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

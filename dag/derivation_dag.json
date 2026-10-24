@@ -9495,14 +9495,27 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "statement": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
       "source": [
         "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len2_product",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_support",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_keeps_sector",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_idempotent",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_zero_mass",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_norm",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_unit_iff",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Separate finite instruments, path sums, and channels from any continuum generator.",
+      "bottleneck": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
       "tags": [
         "unified-dag",
         "TFQ-0008",
@@ -16696,7 +16709,7 @@
       "stage": "MSSN_SN",
       "status": "OPEN",
       "source_status": "000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean",
-      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
+      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:237",
@@ -18783,19 +18796,28 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_status": "papers/ravera_dfm_dossier.md record DFM-P3.4-FENCE claims COMPUTATIONALLY_CHECKED; audited status OPEN",
-      "statement": "The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.",
+      "statement": "For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
         "papers/ravera_dfm_dossier.md",
-        "code/python/src/qm/ravera_dfm.py"
+        "code/python/src/qm/ravera_dfm.py",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean",
+        "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::inverse_difference",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::propagator_values",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::sandwich",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction_entries"
+      ],
       "rust": [],
       "imported_structure": [
         "gauge-invariant BPHZ subtraction scheme",
         "continuum loop integration"
       ],
-      "bottleneck": "Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.",
+      "bottleneck": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -20816,13 +20838,21 @@
         "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced"
+      ],
       "rust": [],
       "imported_structure": [
         "Majorana operator decomposition of CAR modes (standard literature result)",
         "fermion parity superselection (physical postulate)"
       ],
-      "bottleneck": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "bottleneck": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -21330,12 +21360,19 @@
         "dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspImaginaryMuRealDet.lean::staggered_adjoint",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::det_real_of_involution",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::two_flavor_nonneg",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::staggered_det_pos",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::gamma_hermitian_negative",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::centerSum_periodic"
+      ],
       "rust": [],
       "imported_structure": [
         "imaginary chemical potential and Roberge-Weiss periodicity (literature)"
       ],
-      "bottleneck": "Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout.",
+      "bottleneck": "Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. CampaignFspImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -26412,19 +26449,26 @@
       "id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "stage": "CAUSAL_QFT",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.",
-      "statement": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "source_status": "Finite pair counts and the stated integer-matrix products were checked in Lean 4 on 2026-10-23. The continuum net and the light cone remain an imported assumption; the 1964 source wording is not audited here.",
+      "statement": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md",
-        "external:doi:10.1063/1.1704187"
+        "external:doi:10.1063/1.1704187",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean",
+        "dag/derivations/independent/cqft-local-net-axioms-import.md",
+        "checks/independent/cqft-local-net-axioms-import.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "rust": [],
       "imported_structure": [
         "spacetime with causal order (assumption)",
         "net of local algebras with isotony and locality (assumption)"
       ],
-      "bottleneck": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "bottleneck": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -27576,21 +27620,31 @@
       "id": "LQG-EPRL-VERTEX-IMPORT",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Audited against the full texts of arXiv:0711.0146 (Sections III-IV eqs. (18)-(30) pp. 6-9), arXiv:0708.1595 (Sections II.C, V) and arXiv:1205.2019 (Part III) on 2026-10-22; taken as an imported assumption of this branch.",
-      "statement": "Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.",
+      "source_status": "Rational Euclidean and Lorentzian label identities were checked in Lean 4 on 2026-10-24. The EPRL-FK vertex, the 15j contraction, and any continuum or semiclassical limit remain an imported assumption. The 2008 embedding formulas were audited on 2026-10-22.",
+      "statement": "For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md",
         "external:arXiv:0711.0146",
         "external:arXiv:0708.1595",
-        "external:arXiv:1205.2019"
+        "external:arXiv:1205.2019",
+        "lean4/CampaignLqgEprlVertexImport.lean",
+        "dag/derivations/independent/lqg-eprl-vertex-import.md",
+        "checks/independent/lqg-eprl-vertex-import.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_below",
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_above",
+        "lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two",
+        "lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs"
+      ],
       "rust": [],
       "imported_structure": [
         "SU(2) and Spin(4) representation theory (assumption)",
         "simplicity constraints and Immirzi parameter (assumption)"
       ],
-      "bottleneck": "The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
+      "bottleneck": "The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -27606,15 +27660,26 @@
       "id": "LQG-CONTINUUM-LIMIT-GAP",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "OPEN",
-      "source_status": "Explicit non-claim node; audited against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 on 2026-10-22.",
-      "statement": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.",
+      "source_status": "Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22.",
+      "statement": "On labels {0, 1, 2} the level-2 admissibility predicate (each label at most 2, the three triangle inequalities, even sum, and sum at most 4) accepts exactly 10 ordered triples: (0,0,0), (0,1,1), (0,2,2), (1,0,1), (1,1,0), (1,1,2), (1,2,1), (2,0,2), (2,1,1), (2,2,0). The witness (0,0,1) is excluded. The same label set has 3^6 = 729 six-tuples and 3^9 = 19683 nine-tuples. In Q(sqrt 2) the quantum dimensions d_0 = 1, d_1 = sqrt(2), d_2 = 1 satisfy d_1^2 - d_0 = d_2 and d_1 d_2 - d_1 = 0. The positive rationals 3, 729 and 19683 are pairwise distinct, and 1 is a positive rational distinct from all three, so these finite counts do not select a unique positive rational scale. A continuum limit, a semiclassical limit and a physical cosmological constant stay undischarged. The exact 6j table, the area spectrum and the pentagon identity on all 19683 nine-tuples are not re-checked here.",
       "source": [
-        "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md"
+        "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md",
+        "lean4/CampaignLqgContinuumLimitGap.lean",
+        "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
+        "dag/derivations/independent/lqg-continuum-limit-gap.md",
+        "checks/independent/lqg-continuum-limit-gap.py",
+        "code/rust/src/general_relativity/spin_foam.rs"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count",
+        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_tuple_census",
+        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_dimension_truncation",
+        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale",
+        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Recorded as an explicit non-claim.",
+      "bottleneck": "The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -35903,7 +35968,7 @@
       ],
       "output": "DFM-Z1-Z2-COUNTERTERM-FENCE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.",
+      "mechanism": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
         "papers/ravera_dfm_dossier.md",
@@ -36909,7 +36974,7 @@
       ],
       "output": "FSP-MAJORANA-CLIFFORD-PARITY",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "mechanism": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "source": [
         "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
@@ -37152,7 +37217,7 @@
       ],
       "output": "FSP-IMAGINARY-MU-REAL-DET",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout.",
+      "mechanism": "Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. CampaignFspImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.",
       "source": [
         "dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md"
@@ -41113,17 +41178,32 @@
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift.md"
       ],
       "id": "TFQ-0008",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len2_product",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_support",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_keeps_sector",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_idempotent",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_zero_mass",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_norm",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_unit_iff",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+      ],
       "local_id": "FINITE_DYNAMICS",
       "name": "Finite dynamics, instruments, and channels",
-      "obligation": "Separate finite instruments, path sums, and channels from any continuum generator.",
+      "obligation": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
       "parent_id": "TFQ-0007",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0008.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_QM_DYNAMICS",
-      "summary": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "summary": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
       "uuid": "9a3ade1d-15a2-5016-a445-2b42ba90c577"
     },
     {
@@ -60486,7 +60566,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
-      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
+      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "uuid": "26db6fbc-6946-5835-975b-48f71515ff5a"
     },
     {
@@ -62764,22 +62844,31 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md",
         "papers/ravera_dfm_dossier.md:139-141",
-        "code/python/src/qm/ravera_dfm.py:565-571"
+        "code/python/src/qm/ravera_dfm.py:565-571",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean",
+        "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
       "id": "TFQ-1114",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::inverse_difference",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::propagator_values",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::sandwich",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction",
+        "lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction_entries"
+      ],
       "local_id": "DFM-Z1-Z2-COUNTERTERM-FENCE",
-      "name": "Z_1 = Z_2 counterterm equality under BPHZ subtraction",
-      "obligation": "Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.",
+      "name": "One rational vertex contraction, not a counterterm ratio",
+      "obligation": "The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.",
       "parent_id": "TFQ-1113",
       "python": [
-        "code/python/src/qm/ravera_dfm.py::verify_pillar4_dressed_dirac_and_ward_takahashi"
+        "checks/independent/dfm-z1-z2-counterterm-fence.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.",
+      "summary": "For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.",
       "uuid": "38f92631-3026-5aba-9ed1-36218a11b18a"
     },
     {
@@ -64929,12 +65018,22 @@
         "papers/core/fsp/theory_of_finite_fsp.md:283-295"
       ],
       "id": "TFQ-1186",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action",
+        "lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced"
+      ],
       "local_id": "FSP-MAJORANA-CLIFFORD-PARITY",
       "name": "Majorana decomposition, Clifford relations and fermion parity",
-      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.",
+      "obligation": "Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.",
       "parent_id": "TFQ-1184",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-majorana-clifford-parity.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
@@ -65457,12 +65556,21 @@
         "papers/core/fsp/theory_of_finite_fsp.md:542-555"
       ],
       "id": "TFQ-1203",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspImaginaryMuRealDet.lean::staggered_adjoint",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::det_real_of_involution",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::two_flavor_nonneg",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::staggered_det_pos",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::gamma_hermitian_negative",
+        "lean4/CampaignFspImaginaryMuRealDet.lean::centerSum_periodic"
+      ],
       "local_id": "FSP-IMAGINARY-MU-REAL-DET",
       "name": "Real determinant at imaginary chemical potential",
-      "obligation": "Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout.",
+      "obligation": "Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. CampaignFspImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.",
       "parent_id": "TFQ-1201",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-imaginary-mu-real-det.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
@@ -70838,17 +70946,23 @@
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md"
       ],
       "id": "TFQ-2103",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "local_id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "name": "Imported: a causal spacetime with a net of local algebras",
-      "obligation": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "obligation": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "parent_id": "TFQ-2102",
-      "python": [],
+      "python": [
+        "checks/independent/cqft-local-net-axioms-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "CAUSAL_QFT",
-      "summary": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "summary": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "uuid": "ead8c2b9-1331-590e-bfcb-5bf3cf5440f7"
     },
     {
@@ -71876,17 +71990,26 @@
         "dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md"
       ],
       "id": "TFQ-2314",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_below",
+        "lean4/CampaignLqgEprlVertexImport.lean::euclidean_above",
+        "lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding",
+        "lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two",
+        "lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs"
+      ],
       "local_id": "LQG-EPRL-VERTEX-IMPORT",
       "name": "Imported: EPRL-FK vertex amplitude for four-dimensional gravity",
-      "obligation": "The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
+      "obligation": "The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.",
       "parent_id": "TFQ-2312",
-      "python": [],
+      "python": [
+        "checks/independent/lqg-eprl-vertex-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "summary": "Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.",
+      "summary": "For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.",
       "uuid": "6bb920ad-676d-55e3-8b2f-06375d0d50ee"
     },
     {

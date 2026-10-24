@@ -26,7 +26,7 @@
       },
       {
         "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
-        "sha256": "2edbc5b527b159c0254ee2512d9ec3cf59b89198d91e28f0ab64115fcc3eef82"
+        "sha256": "29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6"
       },
       {
         "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
@@ -96,12 +96,66 @@
         "schema_id": "tfqm.source-contract.v1"
       },
       "sha256": "cdbccb61414c03652e5bf2655bce4d4ebe871aa704b1829825185df15d082e77"
+    },
+    {
+      "sha256": "e95ab469da8550e97c79ccc164485e2a77086ecf337779b372613ec89ed48ab0",
+      "bytes": 2453,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+          "sha256": "dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd"
+        },
+        "boundaries": [
+          "Arbitrary user-supplied target transitions require case-by-case commuting-square verification.",
+          "External Python S6Descent in 002_oesn/code/sn_core.py is outside this checkout.",
+          "Exercise value s_6 = 1 records an issued descent-checking obligation, not a forced survivor."
+        ],
+        "contract_id": "campaign-pgw-sn-protected-answer-transport",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "Canonical retraction-induced answer transport (retraction_transport_law, typed_retraction_transport_law) and off-image counterpart count |Q|^(|B|-|A|) (transport_counterpart_card).",
+          "k-step commuting transition square preservation (commuting_square_preserves_transported_answer), canonical transition lifts (canonical_transition_lift_commutes), and Boolean answer characterization (commuting_square_iff_boolean_answers_preserved_on_image).",
+          "Concrete SnCarrier and S6Descent transport theorems and off-image transition counterexamples, plus non-implication fences for conservative extension, Galois adjunction, and demand resolution."
+        ],
+        "purpose": "Retraction-induced protected answer transport, off-image counterpart cardinality, k-step commuting transition square preservation, SnCarrier and S6Descent instances, and non-implication countermodels for TFQ-0519.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignSnProtectedAnswerTransport.lean\",\n    \"sha256\": \"dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd\"\n  },\n  \"boundaries\": [\n    \"Arbitrary user-supplied target transitions require case-by-case commuting-square verification.\",\n    \"External Python S6Descent in 002_oesn/code/sn_core.py is outside this checkout.\",\n    \"Exercise value s_6 = 1 records an issued descent-checking obligation, not a forced survivor.\"\n  ],\n  \"contract_id\": \"campaign-pgw-sn-protected-answer-transport\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Canonical retraction-induced answer transport (retraction_transport_law, typed_retraction_transport_law) and off-image counterpart count |Q|^(|B|-|A|) (transport_counterpart_card).\",\n    \"k-step commuting transition square preservation (commuting_square_preserves_transported_answer), canonical transition lifts (canonical_transition_lift_commutes), and Boolean answer characterization (commuting_square_iff_boolean_answers_preserved_on_image).\",\n    \"Concrete SnCarrier and S6Descent transport theorems and off-image transition counterexamples, plus non-implication fences for conservative extension, Galois adjunction, and demand resolution.\"\n  ],\n  \"purpose\": \"Retraction-induced protected answer transport, off-image counterpart cardinality, k-step commuting transition square preservation, SnCarrier and S6Descent instances, and non-implication countermodels for TFQ-0519.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "lean4/CampaignSnProtectedAnswerTransport.contract.score.yaml#protected-answer-receipt-repair-contract"
+      ]
     }
   ],
-  "current_contract": "cdbccb61414c03652e5bf2655bce4d4ebe871aa704b1829825185df15d082e77",
-  "current_scoring": "2696fbd56cee6bb5eb7ad04f375f1318cdd42df028010cbc6a7d3d628e7573d4",
+  "current_contract": "e95ab469da8550e97c79ccc164485e2a77086ecf337779b372613ec89ed48ab0",
+  "current_scoring": "56026b0bc096e413723f631fb8e57116908736146ff6948e499cc36615a26a4e",
   "history_order": "Import/append order; no missing assessment dates are invented.",
-  "legacy_paths": {},
+  "legacy_paths": {
+    "lean4/CampaignSnProtectedAnswerTransport.contract.score.yaml#protected-answer-receipt-repair-contract": "e95ab469da8550e97c79ccc164485e2a77086ecf337779b372613ec89ed48ab0",
+    "lean4/CampaignSnProtectedAnswerTransport.contract.score.yaml#protected-answer-receipt-repair-scoring": "56026b0bc096e413723f631fb8e57116908736146ff6948e499cc36615a26a4e"
+  },
   "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
@@ -175,6 +229,78 @@
         "support_exception": false
       },
       "sha256": "2696fbd56cee6bb5eb7ad04f375f1318cdd42df028010cbc6a7d3d628e7573d4"
+    },
+    {
+      "sha256": "56026b0bc096e413723f631fb8e57116908736146ff6948e499cc36615a26a4e",
+      "bytes": 2835,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnProtectedAnswerTransport.lean",
+          "sha256": "dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd"
+        },
+        "assessment_id": "campaign-pgw-sn-protected-answer-transport",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Explicit clause-by-clause mapping in pre-commit review covering every clause of TFQ-0519.",
+          "G2": "Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound (14 theorems axiom-free).",
+          "G3": "Typed hypotheses (OldImageLaw, AnswerTransport, TransitionSquare); open scope boundaries explicitly documented.",
+          "G4": "6 of 6 one-ingredient Lean mutations killed; independent Python check passes 3,697 checks across finite counterparts, transition squares, SnCarrier, S6Descent, and non-implication fences.",
+          "G5": "Five modular sections with zero warnings."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T23:06:30+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json",
+            "sha256": "6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json",
+            "sha256": "7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-protected-answer-transport_independent.json",
+            "sha256": "29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md",
+            "sha256": "d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Complete Lean 4 proof of canonical retraction-induced answer transport, off-image counterpart cardinality, k-step commuting transition square preservation, SnCarrier and integer S6Descent instances/counterexamples, and non-implication fences.",
+        "open_higher_grade_findings": [
+          "External Python S6Descent in 002_oesn/code/sn_core.py remains outside this repository.",
+          "Future user-supplied target transitions require case-by-case commuting-square verification."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignSnProtectedAnswerTransport.lean\",\n    \"sha256\": \"dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd\"\n  },\n  \"assessment_id\": \"campaign-pgw-sn-protected-answer-transport\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Explicit clause-by-clause mapping in pre-commit review covering every clause of TFQ-0519.\",\n    \"G2\": \"Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound (14 theorems axiom-free).\",\n    \"G3\": \"Typed hypotheses (OldImageLaw, AnswerTransport, TransitionSquare); open scope boundaries explicitly documented.\",\n    \"G4\": \"6 of 6 one-ingredient Lean mutations killed; independent Python check passes 3,697 checks across finite counterparts, transition squares, SnCarrier, S6Descent, and non-implication fences.\",\n    \"G5\": \"Five modular sections with zero warnings.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T23:06:30+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json\",\n      \"sha256\": \"6950804692bde56a82acbeea6ac2544a2a60be73a4954df9e7f42cdd676faf87\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_lean_mutation.json\",\n      \"sha256\": \"7f7af17f09b091b87976d48a11dcc908e7c704bcc82c53dafaf7fe3e17faa40b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-protected-answer-transport_independent.json\",\n      \"sha256\": \"29f74f2bca81d05d8b0dc7c89239ecde20c362017e8652ae6302debe1a373da6\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-protected-answer-transport-precommit.md\",\n      \"sha256\": \"d9bb8b0e122096ea92e317b4276bf91a8149a8d4f9f2e04634af613e3f9b028a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Complete Lean 4 proof of canonical retraction-induced answer transport, off-image counterpart cardinality, k-step commuting transition square preservation, SnCarrier and integer S6Descent instances/counterexamples, and non-implication fences.\",\n  \"open_higher_grade_findings\": [\n    \"External Python S6Descent in 002_oesn/code/sn_core.py remains outside this repository.\",\n    \"Future user-supplied target transitions require case-by-case commuting-square verification.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "lean4/CampaignSnProtectedAnswerTransport.contract.score.yaml#protected-answer-receipt-repair-scoring"
+      ]
     }
   ]
 }
