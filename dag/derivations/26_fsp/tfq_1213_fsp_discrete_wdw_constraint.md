@@ -14,10 +14,10 @@
 Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.
 
 ### Governing Obligation
-Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
+Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5). Narrowed in lean4/CampaignFspDiscreteWdwConstraint.lean and checks/independent/fsp-discrete-wdw-constraint.py while keeping status OPEN to: (1) Q-linearity and constant-cochain kernel of the direct-sum Regge-WDW operator D_joint = [d_0, 0]^T from code/python/src/fsp/regge_pachner_wdw.py; (2) signed rational L1 unscreenability ||h_perp||_1 <= ||p - d_0 alpha||_1 + ||h_perp||_1 and exact strong duality on exact-momentum states via W^* = (0, sgn(h_perp)), plus the exact S^4 seed (N0 = 6, N1 = 15) flat (0, ExactRepair) vs curved (45, SplitBrainRefusal) receipts; (3) finite quadratic constraint operator H_perp = L^T L positive semidefiniteness, idempotent 2-state diffeomorphism projector P_inv and complement H_perp = I - P_inv, and 2-tick Page-Wootters clock conditioning; and (4) explicit scope fences for continuum DeWitt supermetric indefiniteness (-v_conf^2 + v_trans^2), Section 2.5 WDW zero-mode kernel vs thermal Gibbs trace distinctness, and fermionic sign-sector independence.
 
 ### Witness Audit
-Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist; wdw_defect_unscreenable states (p - alpha) + h > 0 in Nat for h > 0. evaluate_wdw_constraint is absent from regge_pachner_wdw.py.
+Replaced missing ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel and Nat-only wdw_defect_unscreenable with lean4/CampaignFspDiscreteWdwConstraint.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-discrete-wdw-constraint.py (45517 checks, 0 failures).
 
 ---
 
@@ -28,7 +28,16 @@ Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence`
+- `lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence`
 
 ### Rust Certifiers
 - *none*
@@ -52,3 +61,7 @@ Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:681-693`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173`
+  - `dag/derivations/independent/fsp-discrete-wdw-constraint.md`
+  - `dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json`
+  - `dag/research/campaign_fsp-discrete-wdw-constraint_lean_mutation.json`
+  - `dag/research/campaign_fsp-discrete-wdw-constraint_independent.json`

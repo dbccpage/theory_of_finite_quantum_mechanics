@@ -3887,12 +3887,27 @@
       "source": [
         "dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-discrete-wdw-constraint.md",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_lean_mutation.json",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
+      "bottleneck": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5). Narrowed in lean4/CampaignFspDiscreteWdwConstraint.lean and checks/independent/fsp-discrete-wdw-constraint.py while keeping status OPEN to: (1) Q-linearity and constant-cochain kernel of the direct-sum Regge-WDW operator D_joint = [d_0, 0]^T from code/python/src/fsp/regge_pachner_wdw.py; (2) signed rational L1 unscreenability ||h_perp||_1 <= ||p - d_0 alpha||_1 + ||h_perp||_1 and exact strong duality on exact-momentum states via W^* = (0, sgn(h_perp)), plus the exact S^4 seed (N0 = 6, N1 = 15) flat (0, ExactRepair) vs curved (45, SplitBrainRefusal) receipts; (3) finite quadratic constraint operator H_perp = L^T L positive semidefiniteness, idempotent 2-state diffeomorphism projector P_inv and complement H_perp = I - P_inv, and 2-tick Page-Wootters clock conditioning; and (4) explicit scope fences for continuum DeWitt supermetric indefiniteness (-v_conf^2 + v_trans^2), Section 2.5 WDW zero-mode kernel vs thermal Gibbs trace distinctness, and fermionic sign-sector independence.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -10042,7 +10057,7 @@
       ],
       "output": "FSP-DISCRETE-WDW-CONSTRAINT",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
+      "mechanism": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5). Narrowed in lean4/CampaignFspDiscreteWdwConstraint.lean and checks/independent/fsp-discrete-wdw-constraint.py while keeping status OPEN to: (1) Q-linearity and constant-cochain kernel of the direct-sum Regge-WDW operator D_joint = [d_0, 0]^T from code/python/src/fsp/regge_pachner_wdw.py; (2) signed rational L1 unscreenability ||h_perp||_1 <= ||p - d_0 alpha||_1 + ||h_perp||_1 and exact strong duality on exact-momentum states via W^* = (0, sgn(h_perp)), plus the exact S^4 seed (N0 = 6, N1 = 15) flat (0, ExactRepair) vs curved (45, SplitBrainRefusal) receipts; (3) finite quadratic constraint operator H_perp = L^T L positive semidefiniteness, idempotent 2-state diffeomorphism projector P_inv and complement H_perp = I - P_inv, and 2-tick Page-Wootters clock conditioning; and (4) explicit scope fences for continuum DeWitt supermetric indefiniteness (-v_conf^2 + v_trans^2), Section 2.5 WDW zero-mode kernel vs thermal Gibbs trace distinctness, and fermionic sign-sector independence.",
       "source": [
         "dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -16267,7 +16282,7 @@
       "parent_id": "TFQ-1212",
       "record_status": "OPEN_OBLIGATION",
       "summary": "Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.",
-      "obligation": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
+      "obligation": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5). Narrowed in lean4/CampaignFspDiscreteWdwConstraint.lean and checks/independent/fsp-discrete-wdw-constraint.py while keeping status OPEN to: (1) Q-linearity and constant-cochain kernel of the direct-sum Regge-WDW operator D_joint = [d_0, 0]^T from code/python/src/fsp/regge_pachner_wdw.py; (2) signed rational L1 unscreenability ||h_perp||_1 <= ||p - d_0 alpha||_1 + ||h_perp||_1 and exact strong duality on exact-momentum states via W^* = (0, sgn(h_perp)), plus the exact S^4 seed (N0 = 6, N1 = 15) flat (0, ExactRepair) vs curved (45, SplitBrainRefusal) receipts; (3) finite quadratic constraint operator H_perp = L^T L positive semidefiniteness, idempotent 2-state diffeomorphism projector P_inv and complement H_perp = I - P_inv, and 2-tick Page-Wootters clock conditioning; and (4) explicit scope fences for continuum DeWitt supermetric indefiniteness (-v_conf^2 + v_trans^2), Section 2.5 WDW zero-mode kernel vs thermal Gibbs trace distinctness, and fermionic sign-sector independence.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-DISCRETE-WDW-CONSTRAINT"
@@ -16277,11 +16292,26 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md",
         "papers/core/fsp/theory_of_finite_fsp.md:681-693",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173",
+        "dag/derivations/independent/fsp-discrete-wdw-constraint.md",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_lean_mutation.json",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_independent.json"
       ],
       "python": [],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence",
+        "lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence"
+      ]
     },
     {
       "id": "TFQ-1214",
