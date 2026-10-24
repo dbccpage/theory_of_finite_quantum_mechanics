@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 48. Grades: E0 11, E3 37. Statuses: PROVED_LEAN 16, CONDITIONAL 5, DEFINITION 1, IMPORTED_ASSUMPTION 14, SOURCE_RECORD 8, OPEN 4.
+Nodes: 48. Grades: E0 10, E3 38. Statuses: PROVED_LEAN 16, CONDITIONAL 5, DEFINITION 1, IMPORTED_ASSUMPTION 14, SOURCE_RECORD 8, OPEN 4.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -43,7 +43,7 @@ Nodes: 48. Grades: E0 11, E3 37. Statuses: PROVED_LEAN 16, CONDITIONAL 5, DEFINI
 | [GP-IMPORT-CPTP-CLASS](../nodes/GP-IMPORT-CPTP-CLASS.md) | `IMPORTED_ASSUMPTION` | E3 | The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obst... | [DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean): `gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`<br>[H015CollapseDilations.lean](../../../lean4/H015CollapseDilations.lean): `four_reversible_dilations_of_collapse` | - |
 | [GP-IMPORT-CONTINUOUS-TIME](../nodes/GP-IMPORT-CONTINUOUS-TIME.md) | `IMPORTED_ASSUMPTION` | E3 | Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after... | [DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean): `gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`<br>[H016ContinuousDynamicsFork.lean](../../../lean4/H016ContinuousDynamicsFork.lean): `toggle` | - |
 | [GP-IMPORT-CONTINUUM-HILBERT](../nodes/GP-IMPORT-CONTINUUM-HILBERT.md) | `IMPORTED_ASSUMPTION` | E3 | Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space.... | [DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean): `ds_qm072_073_090_and_fq_import_boundary_certificates`, `l1_and_ds_imported_assumption_separation_certificates` | - |
-| [TFQ-0006](../nodes/TFQ-0006.md) | `OPEN` | E0 | The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex fi... | none in this checkout | - |
+| [TFQ-0006](../nodes/TFQ-0006.md) | `OPEN` | E3 | The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex fi... | [CampaignTfq0006L1ToL2.lean](../../../lean4/CampaignTfq0006L1ToL2.lean): `gauss_int_norm_multiplicative`, `import_fence_gaussian_integers_not_a_field_hadamard_unnormalized`, `import_fence_gaussian_units_vs_u1_phases` +7<br>[tfq-0006.py](../../../checks/independent/tfq-0006.py)<br>[tfq-0006.md](../../../dag/derivations/independent/tfq-0006.md)<br>[campaign_tfq-0006_independent.json](../../../dag/research/campaign_tfq-0006_independent.json)<br>+2 more file(s) | - |
 | [TFQ-0279](../nodes/TFQ-0279.md) | `SOURCE_RECORD` | E0 | The finite obligation is to keep a finite sector index and nonnegative weights whose total is positive, with no amplitude attached yet. q... | none in this checkout | - |
 | [TFQ-0280](../nodes/TFQ-0280.md) | `SOURCE_RECORD` | E0 | qm_002_cofiber_to_banach_quotient_bridge.md, whose claim ledger is retired into the consolidated finite-QM ledger, keeps a finite repair... | none in this checkout | - |
 | [TFQ-0281](../nodes/TFQ-0281.md) | `SOURCE_RECORD` | E0 | qm_003_residual_density_calculus_l1_l2_boundary.md normalizes finite nonnegative residual masses with positive total into sector weights... | none in this checkout | - |

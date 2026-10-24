@@ -9456,11 +9456,19 @@
       "stage": "L1_TO_L2",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 00)",
-      "statement": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list.",
+      "statement": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-discharge fences: (1) Gaussian-integer 2x2 matrix algebra recovery (QM_122 Pauli involutions and commutator sigmaX * sigmaY = i * sigmaZ, norm multiplicativity) and QM_122 / QM_020 C_4 cochain syndromes (gauss_int_norm_multiplicative, qm122_pauli_gaussian_integer_commutators_and_squares, qm122_and_qm020_cochain_syndrome_and_shadow_replay); (2) non-recovery of the square-root field ((2p + 1)^2 != 2q^2), complex division (unnormalized Hadamard squares to 2 * sigmaI != sigmaI with 2 * sigmaI non-invertible in M_2(Z[i])), and continuous U(1) phases (only 4 units in Z[i] vs. Pythagorean (3/5, 4/5) in Q[i]) (import_fence_sqrt_two_parity_obstruction, import_fence_gaussian_integers_not_a_field_hadamard_unnormalized, import_fence_gaussian_units_vs_u1_phases); and (3) L1 norm violation of the Jordan-von Neumann parallelogram law (8 != 4), orthogonal-additivity cross-term and sign-phase averaging, L1 stochastic vs. L2 isometric norm contraction, and the 7-field HilbertLiftImportLedger truth-table fence (import_fence_l1_norm_fails_parallelogram_law, import_fence_orthogonal_additivity_and_phase_averaging, import_fence_l1_stochastic_not_l2_isometry, seven_hilbert_lift_imports_audit_fence).",
       "source": [
-        "dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md"
+        "dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md",
+        "dag/derivations/independent/tfq-0006.md",
+        "checks/independent/tfq-0006.py",
+        "lean4/CampaignTfq0006L1ToL2.lean",
+        "dag/research/campaign_tfq-0006_lean_replay.json",
+        "dag/research/campaign_tfq-0006_lean_mutation.json",
+        "dag/research/campaign_tfq-0006_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0006L1ToL2.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "List each imported structure the finite Hilbert lift still requires, and do not discharge them by naming quantum mechanics.",
@@ -41063,21 +41071,30 @@
         "TFQ-0006"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_020_born_normalization_and_conditional_hilbert_lift.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
+        "dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md",
+        "dag/derivations/independent/tfq-0006.md",
+        "checks/independent/tfq-0006.py",
+        "lean4/CampaignTfq0006L1ToL2.lean",
+        "dag/research/campaign_tfq-0006_lean_replay.json",
+        "dag/research/campaign_tfq-0006_lean_mutation.json",
+        "dag/research/campaign_tfq-0006_independent.json"
       ],
       "id": "TFQ-0006",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0006L1ToL2.lean"
+      ],
       "local_id": "HILBERT_LIFT",
       "name": "Conditional finite Hilbert lift",
       "obligation": "List each imported structure the finite Hilbert lift still requires, and do not discharge them by naming quantum mechanics.",
       "parent_id": "TFQ-0005",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0006.py"
+      ],
       "record_status": "GAP",
       "rust": [],
       "source_slice": "00",
       "stage": "L1_TO_L2",
-      "summary": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list.",
+      "summary": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-discharge fences: (1) Gaussian-integer 2x2 matrix algebra recovery (QM_122 Pauli involutions and commutator sigmaX * sigmaY = i * sigmaZ, norm multiplicativity) and QM_122 / QM_020 C_4 cochain syndromes (gauss_int_norm_multiplicative, qm122_pauli_gaussian_integer_commutators_and_squares, qm122_and_qm020_cochain_syndrome_and_shadow_replay); (2) non-recovery of the square-root field ((2p + 1)^2 != 2q^2), complex division (unnormalized Hadamard squares to 2 * sigmaI != sigmaI with 2 * sigmaI non-invertible in M_2(Z[i])), and continuous U(1) phases (only 4 units in Z[i] vs. Pythagorean (3/5, 4/5) in Q[i]) (import_fence_sqrt_two_parity_obstruction, import_fence_gaussian_integers_not_a_field_hadamard_unnormalized, import_fence_gaussian_units_vs_u1_phases); and (3) L1 norm violation of the Jordan-von Neumann parallelogram law (8 != 4), orthogonal-additivity cross-term and sign-phase averaging, L1 stochastic vs. L2 isometric norm contraction, and the 7-field HilbertLiftImportLedger truth-table fence (import_fence_l1_norm_fails_parallelogram_law, import_fence_orthogonal_additivity_and_phase_averaging, import_fence_l1_stochastic_not_l2_isometry, seven_hilbert_lift_imports_audit_fence).",
       "uuid": "c5fc9265-5e57-5684-b28d-3870cf71e931"
     },
     {

@@ -1,0 +1,36 @@
+schema_version: lean_contract_score.v1
+lean_file: lean4/CampaignTfq0006L1ToL2.lean
+module: CampaignTfq0006L1ToL2
+dag_node: TFQ-0006
+claim_class: L4D
+theorems:
+  - name: CampaignTfq0006L1ToL2.gauss_int_norm_multiplicative
+    role: Proves multiplicativity of the Gaussian integer norm-squared giNormSq (giMul z w) = giNormSq z * giNormSq w.
+  - name: CampaignTfq0006L1ToL2.qm122_pauli_gaussian_integer_commutators_and_squares
+    role: Proves the Pauli matrix involutions and commutator relation sigmaX * sigmaY = i * sigmaZ over Gaussian integers Z[i] (replaying QM_122).
+  - name: CampaignTfq0006L1ToL2.qm122_and_qm020_cochain_syndrome_and_shadow_replay
+    role: Replays the exact C_4 cochain holonomy, stage-route shadow invariant, and quotient-reduced countermodel defect for L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE and L1-QM020-C10-BRANCH-LOCALIZATION.
+  - name: CampaignTfq0006L1ToL2.import_fence_sqrt_two_parity_obstruction
+    role: Proves the parity obstruction (2p + 1)^2 != 2q^2 in Z and that (1 / s)^2 = 1 / 2 over Q iff s^2 = 2, fencing the square-root field import.
+  - name: CampaignTfq0006L1ToL2.import_fence_gaussian_integers_not_a_field_hadamard_unnormalized
+    role: Proves that the unnormalized Hadamard matrix over Z[i] squares to 2 * sigmaI != sigmaI and that 2 * sigmaI has no multiplicative inverse in M_2(Z[i]), fencing the complex field division import.
+  - name: CampaignTfq0006L1ToL2.import_fence_gaussian_units_vs_u1_phases
+    role: Proves that Z[i] has only the 4 discrete unit phases {+-1, +-i} on the unit box while (3/5, 4/5) in Q[i] has unit norm outside Z[i], fencing U(1) phases as an explicit import.
+  - name: CampaignTfq0006L1ToL2.import_fence_l1_norm_fails_parallelogram_law
+    role: Proves that the 2-sector L1 norm violates the Jordan-von Neumann parallelogram law (8 != 4), fencing the L2 inner product as an explicit import not derived from L1 weights.
+  - name: CampaignTfq0006L1ToL2.import_fence_orthogonal_additivity_and_phase_averaging
+    role: Proves the interference cross-term identity |z + w|^2 = |z|^2 + |w|^2 + 2<z, w> and sign-phase averaging identity |z + w|^2 + |z - w|^2 = 2(|z|^2 + |w|^2), fencing orthogonal additivity and Haar-independent phases.
+  - name: CampaignTfq0006L1ToL2.import_fence_l1_stochastic_not_l2_isometry
+    role: Proves that the uniform 2-state L1 stochastic kernel preserves L1 weight (1/2 + 1/2 = 1) while contracting L2 norm squared from 1 to 1/2 != 1, fencing linear isometric dynamics.
+  - name: CampaignTfq0006L1ToL2.seven_hilbert_lift_imports_audit_fence
+    role: Proves that the finite Z[i] carrier ledger has unpaidImportCount = 7 and that unpaidImportCount L = 0 holds iff all 7 imported structures named in TFQ-0006 are supplied.
+premises:
+  - name: GaussInt
+    role: Gaussian integer ring Z[i] with exact integer real and imaginary parts.
+  - name: Mat2GI
+    role: 2x2 matrix algebra over Z[i] modeling the QM_122 finite recovery surface.
+  - name: HilbertLiftImportLedger
+    role: 7-field boolean audit record naming the 7 imported structures required by the finite Hilbert lift.
+fences:
+  - id: TFQ-0006-IMPORT-LIST
+    description: A square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics remain explicit imports not discharged by finite Z[i] matrix calculations.
