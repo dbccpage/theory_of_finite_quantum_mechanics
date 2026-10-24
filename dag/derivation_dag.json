@@ -9495,14 +9495,27 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "statement": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
       "source": [
         "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len2_product",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_support",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_keeps_sector",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_idempotent",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_zero_mass",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_norm",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_unit_iff",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Separate finite instruments, path sums, and channels from any continuum generator.",
+      "bottleneck": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
       "tags": [
         "unified-dag",
         "TFQ-0008",
@@ -40998,17 +41011,32 @@
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift.md"
       ],
       "id": "TFQ-0008",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len2_product",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_support",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_keeps_sector",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_idempotent",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_zero_mass",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_norm",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_unit_iff",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+      ],
       "local_id": "FINITE_DYNAMICS",
       "name": "Finite dynamics, instruments, and channels",
-      "obligation": "Separate finite instruments, path sums, and channels from any continuum generator.",
+      "obligation": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
       "parent_id": "TFQ-0007",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0008.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_QM_DYNAMICS",
-      "summary": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "summary": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
       "uuid": "9a3ade1d-15a2-5016-a445-2b42ba90c577"
     },
     {
