@@ -3,30 +3,36 @@ node_id: LQG-EPRL-VERTEX-IMPORT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008,
-    arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8)
-    and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section
-    V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral
-    SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into
-    Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k
-    = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j
-    symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series
-    at (n, rho) = (2k, 2 gamma k) in EPRL''s integer-n convention (eq. (24) p. 8, often written (j, gamma
-    j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations,
-    the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit
-    are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses
-    to identify with a continuum spin foam.'
+  source_statement: For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma|
+    k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma)
+    k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k /
+    2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2
+    the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and
+    k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1
+    and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian
+    pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k =
+    2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather
+    than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster
+    factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a
+    continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed.
+    The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - SU(2) and Spin(4) representation theory (assumption)
   - simplicity constraints and Immirzi parameter (assumption)
-  source_bottleneck: The repository's fences refuse the identification; no source maps the finite cyclotomic
+  source_bottleneck: The checked identities are rational arithmetic for the imported labels j+ = |1 +
+    gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10
+    unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction,
+    and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic
     amplitudes to the EPRL-FK amplitude.
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md
   - external:arXiv:0711.0146
   - external:arXiv:0708.1595
   - external:arXiv:1205.2019
+  - lean4/CampaignLqgEprlVertexImport.lean
+  - dag/derivations/independent/lqg-eprl-vertex-import.md
+  - checks/independent/lqg-eprl-vertex-import.py
   paper_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -35,7 +41,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md
-    sha256: 634b33ea5e4c5858149ccde93407f41af4727a3457591c63c6daaf6adb1ff2c9
+    sha256: 31869d6d8ab75ce88a5cd90d888816c5f094dbb116741cedab3fb9dfdbf49051
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -43,9 +49,183 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/loop_quantum_gravity_lqg_eprl_vertex_import_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: jPlus
+  line: 17
+  signature_excerpt: 'def jPlus (gamma k : Rat) : Rat'
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: jMinus
+  line: 19
+  signature_excerpt: 'def jMinus (gamma k : Rat) : Rat'
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nLorentz
+  line: 21
+  signature_excerpt: 'def nLorentz (k : Rat) : Rat'
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rhoLorentz
+  line: 23
+  signature_excerpt: 'def rhoLorentz (gamma k : Rat) : Rat'
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: euclidean_below
+  line: 25
+  signature_excerpt: |-
+    theorem euclidean_below (gamma k : Rat) (h0 : 0 < gamma) (h1 : gamma < 1) :
+        jPlus gamma k = (1 + gamma) * k / 2 ∧
+          jMinus gamma k = (1 - gamma) * k / 2 ∧
+            jPlus gamma k + jMinus gamma k = k ∧
+              jPlus gamma k - jMinus gamma k = gamma * k
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: euclidean_above
+  line: 39
+  signature_excerpt: |-
+    theorem euclidean_above (gamma k : Rat) (h1 : 1 < gamma) :
+        jPlus gamma k = (1 + gamma) * k / 2 ∧
+          jMinus gamma k = (gamma - 1) * k / 2 ∧
+            jPlus gamma k - jMinus gamma k = k ∧
+              jPlus gamma k + jMinus gamma k = gamma * k
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: recorded_euclidean_points
+  line: 55
+  signature_excerpt: "theorem recorded_euclidean_points :\n    jPlus (1 / 2) 2 = 3 / 2 ∧\n      jMinus\
+    \ (1 / 2) 2 = 1 / 2 ∧\n        jPlus (1 / 2) 2 + jMinus (1 / 2) 2 = 2 ∧\n          jPlus (1 / 2) 2\
+    \ - jMinus (1 / 2) 2 = 1 ∧\n            jPlus (1 / 2) 2 - jMinus (1 / 2) 2 ≠ (2 : Rat) ∧\n       \
+    \       jPlus (3 : Rat) 2 = 4 ∧\n                jMinus (3 : Rat) 2 = 2 ∧\n                  jPlus\
+    \ (3 : Rat) 2 - jMinus (3 : Rat) 2 = 2 ∧\n                    jPlus (3 : Rat) 2 + jMinus (3 : Rat)\
+    \ 2 = 6 ∧\n                      jPlus (3 : Rat) 2 + jMinus (3 : Rat) 2 ≠ (2 : Rat) ∧\n          \
+    \              jPlus 1 2 = 2 ∧\n                  "
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: lorentzian_embedding
+  line: 118
+  signature_excerpt: |-
+    theorem lorentzian_embedding (gamma k : Rat) :
+        nLorentz k = 2 * k ∧
+          rhoLorentz gamma k = 2 * gamma * k ∧
+            nLorentz k / 2 = k ∧
+              rhoLorentz gamma k = gamma * nLorentz k ∧
+                rhoLorentz gamma k = 2 * gamma * (nLorentz k / 2)
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: lorentzian_half_two
+  line: 130
+  signature_excerpt: |-
+    theorem lorentzian_half_two :
+        nLorentz 2 = 4 ∧
+          rhoLorentz (1 / 2) 2 = 2 ∧
+            nLorentz 2 / 2 = 2 ∧
+              (1 / 2 : Rat) * (nLorentz 2 / 2) = 1 ∧
+                rhoLorentz (1 / 2) 2 = 2 * ((1 / 2 : Rat) * (nLorentz 2 / 2))
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: five_tetrahedron_pairs
+  line: 139
+  signature_excerpt: 'theorem five_tetrahedron_pairs : 5 * (5 - 1) / 2 = 10'
+  source: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignLqgEprlVertexImport.lean::euclidean_below
+  availability: local
+  symbol: euclidean_below
+  path: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgEprlVertexImport.lean::euclidean_above
+  availability: local
+  symbol: euclidean_above
+  path: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points
+  availability: local
+  symbol: recorded_euclidean_points
+  path: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  declaration_status: declaration_found_not_proof_checked
+  line: 55
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding
+  availability: local
+  symbol: lorentzian_embedding
+  path: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  declaration_status: declaration_found_not_proof_checked
+  line: 118
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two
+  availability: local
+  symbol: lorentzian_half_two
+  path: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  declaration_status: declaration_found_not_proof_checked
+  line: 130
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs
+  availability: local
+  symbol: five_tetrahedron_pairs
+  path: lean4/CampaignLqgEprlVertexImport.lean
+  repository: this_repository
+  sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
+  declaration_status: declaration_found_not_proof_checked
+  line: 139
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -87,8 +267,6 @@ operad_slots:
     - simplicity constraints and Immirzi parameter (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

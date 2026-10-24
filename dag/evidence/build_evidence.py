@@ -189,8 +189,8 @@ def lean_module(path: str) -> str | None:
     return None
 
 
-def lake_roots(files: Files) -> set[str]:
-    code = "\n".join(line.split("--")[0] for line in files.text("lean4/lakefile.lean").splitlines())
+def lake_roots(files: Files, config: str = "lean4/lakefile.lean") -> set[str]:
+    code = "\n".join(line.split("--")[0] for line in files.text(config).splitlines())
     roots: set[str] = set()
     for block in re.findall(r"roots\s*:=\s*#\[(.*?)\]", code, flags=re.S):
         roots.update(re.findall(r"`([\w.«»]+)", block))
@@ -219,6 +219,30 @@ def toolchain_of(lean_version: str | None) -> str | None:
     return match.group(1) if match else lean_version
 
 
+def receipt_results(data: dict) -> tuple[dict, list | None, str | None]:
+    """Select the two supported result envelopes; never credit attempt records."""
+    meta = data.get("lean_replay") if isinstance(data.get("lean_replay"), dict) else None
+    results = meta.get("results") if meta else None
+    if isinstance(results, list):
+        return meta or {}, results, None
+    top = data.get("results")
+    campaign = (
+        isinstance(top, list) and bool(top)
+        and all(isinstance(r, dict) and isinstance(r.get("axioms"), dict)
+                and "module" in r and "sha256" in r and r.get("exit_code") == 0
+                for r in top)
+    )
+    if campaign:
+        return data, top, None
+    if isinstance(top, list) and data.get("lean_version"):
+        bad = any(isinstance(r, dict) and r.get("exit_code") not in (0, None) for r in top)
+        return {}, None, ("an attempt record, not a lean_replay receipt"
+                          + ("; at least one module exited with a nonzero code" if bad else ""))
+    if "Lean" in json.dumps(data.get("checks", "")):
+        return {}, None, "records Lean checks without per-module sha256"
+    return {}, None, None
+
+
 def load_receipts(files: Files) -> tuple[list[dict], list[dict]]:
     """Index every dag/research/*.json that records Lean module results with a sha256."""
     receipts: list[dict] = []
@@ -231,29 +255,11 @@ def load_receipts(files: Files) -> tuple[list[dict], list[dict]]:
             continue
         if not isinstance(data, dict):
             continue
-        meta = data.get("lean_replay") if isinstance(data.get("lean_replay"), dict) else None
-        results = meta.get("results") if meta else None
-        if not isinstance(results, list):
-            top = data.get("results")
-            # A campaign receipt can store the same module results at the top
-            # level. An attempt record has no per-declaration axioms object.
-            campaign = (
-                isinstance(top, list) and bool(top)
-                and all(isinstance(r, dict) and isinstance(r.get("axioms"), dict)
-                        and "module" in r and "sha256" in r and r.get("exit_code") == 0
-                        for r in top)
-            )
-            if campaign:
-                meta = data
-                results = top
-            else:
-                if isinstance(top, list) and data.get("lean_version"):
-                    bad = any(isinstance(r, dict) and r.get("exit_code") not in (0, None) for r in top)
-                    skipped.append({"file": rel, "reason": "an attempt record, not a lean_replay receipt"
-                                    + ("; at least one module exited with a nonzero code" if bad else "")})
-                elif "Lean" in json.dumps(data.get("checks", "")):
-                    skipped.append({"file": rel, "reason": "records Lean checks without per-module sha256"})
-                continue
+        meta, results, reason = receipt_results(data)
+        if results is None:
+            if reason:
+                skipped.append({"file": rel, "reason": reason})
+            continue
         file_info = files.info(rel) or {}
         for number, entry in enumerate(results):
             if not isinstance(entry, dict) or "module" not in entry or "sha256" not in entry:
@@ -372,6 +378,13 @@ class Builder:
         self.nodes = {n["id"]: n for n in self.dag["nodes"]}
         self.crates = Crates(self.files)
         self.roots = lake_roots(self.files)
+        self.scoped_configs: dict[str, list[str]] = collections.defaultdict(list)
+        for config in sorted((ROOT / "lean4").glob("lakefile.*.lean")):
+            # Render commands from local configuration names, never arbitrary
+            # shell text in a receipt. Ambiguous providers retain the fallback.
+            if re.fullmatch(r"lakefile\.[A-Za-z0-9_-]+\.lean", config.name):
+                for module in lake_roots(self.files, config.relative_to(ROOT).as_posix()):
+                    self.scoped_configs[module].append(config.name)
         self.receipts, self.skipped_receipts = load_receipts(self.files)
         self.receipts_by_path: dict[str, list[dict]] = collections.defaultdict(list)
         for receipt in self.receipts:
@@ -483,6 +496,9 @@ class Builder:
             module = lean_module(path)
             if module and module in self.roots:
                 build = f"cd lean4 && lake build {module}"
+            elif module and len(self.scoped_configs.get(module, [])) == 1:
+                config = self.scoped_configs[module][0]
+                build = f"cd lean4 && lake --file={config} build {module}"
             else:
                 build = f"cd lean4 && lake build   # the library that contains {path}"
             if symbol and module:
@@ -755,11 +771,8 @@ def build_map() -> dict:
     return document
 
 
-def summarize(node_rows: list[dict], mismatches: list[dict], receipts_indexed: int) -> dict:
-    grid = collections.Counter((r["status"], r["grade"]) for r in node_rows)
-    by_status = collections.Counter(r["status"] for r in node_rows)
-    by_grade = collections.Counter(r["grade"] for r in node_rows)
-    by_stage_grade = collections.Counter((r["stage"], r["grade"]) for r in node_rows)
+def lean_summary(node_rows: list[dict]) -> dict:
+    """Count unique cited declarations separately from citation and node counts."""
     decls: dict[tuple, dict] = {}
     pl_lean = collections.Counter()
     pl_nodes = collections.Counter()
@@ -787,6 +800,27 @@ def summarize(node_rows: list[dict], mismatches: list[dict], receipts_indexed: i
         for item in row["items"]:
             if item["kind"] == "lean_decl" and "node.lean" in item["cited_in"] and item["symbol"]:
                 all_lean[item["resolution"]] += 1
+    return {
+        "lean_declarations_in_repo": {
+            "distinct": len(decls),
+            "replay_verified": replay.get("verified", 0),
+            "replay_verified_and_declaration_itemised": listed,
+            "replay_verified_with_ambiguous_receipt_name": ambiguous,
+            "replay_stale": replay.get("stale", 0),
+            "replay_failed": replay.get("failed", 0),
+            "no_receipt": replay.get("none", 0),
+        },
+        "lean_references_cited_in_node_lean_fields": dict(sorted(all_lean.items())),
+        "proved_lean_lean_references": dict(sorted(pl_lean.items())),
+        "proved_lean_nodes": dict(sorted(pl_nodes.items())),
+    }
+
+
+def summarize(node_rows: list[dict], mismatches: list[dict], receipts_indexed: int) -> dict:
+    grid = collections.Counter((r["status"], r["grade"]) for r in node_rows)
+    by_status = collections.Counter(r["status"] for r in node_rows)
+    by_grade = collections.Counter(r["grade"] for r in node_rows)
+    by_stage_grade = collections.Counter((r["stage"], r["grade"]) for r in node_rows)
     declared_gap = sum(1 for row in node_rows for i in row["items"]
                        if i["counted"] and i["symbol"] and i["symbol_exists"] and not i["symbol_declared"]
                        and i["kind"] in CODE_KINDS)
@@ -804,18 +838,7 @@ def summarize(node_rows: list[dict], mismatches: list[dict], receipts_indexed: i
         "status_by_grade": {s: {g: grid.get((s, g), 0) for g in GRADES} for s in STATUS_ORDER},
         "stage_by_grade": {s: {g: by_stage_grade.get((s, g), 0) for g in GRADES}
                            for s in sorted({r["stage"] for r in node_rows})},
-        "lean_declarations_in_repo": {
-            "distinct": len(decls),
-            "replay_verified": replay.get("verified", 0),
-            "replay_verified_and_declaration_itemised": listed,
-            "replay_verified_with_ambiguous_receipt_name": ambiguous,
-            "replay_stale": replay.get("stale", 0),
-            "replay_failed": replay.get("failed", 0),
-            "no_receipt": replay.get("none", 0),
-        },
-        "lean_references_cited_in_node_lean_fields": dict(sorted(all_lean.items())),
-        "proved_lean_lean_references": dict(sorted(pl_lean.items())),
-        "proved_lean_nodes": dict(sorted(pl_nodes.items())),
+        **lean_summary(node_rows),
         "cited_symbols_found_but_no_declaration_form": declared_gap,
         "receipts_indexed": receipts_indexed,
         "mismatches_by_kind": {k: mismatch_kinds.get(k, 0) for k in MISMATCH_ORDER},
