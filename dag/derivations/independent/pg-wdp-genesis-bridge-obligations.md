@@ -63,6 +63,10 @@ On every finite window, symmetrised adjacency is false at a pair exactly when bo
 
 Boolean disjunction, the ordering of the natural numbers, and division by 2 with remainder. No continuum, no Hilbert space, and no fact about the Genesis register beyond the names of the open rows.
 
+## Independent checker
+
+The checker enumerates all 16 two-vertex windows. Symmetrised adjacency is false exactly when both directions are off. The identity on the adjacency bit matches every directed step, and the constant-true map misses every window that is not full. `pairDefect` agrees on `edge01` and `edge10` at `(0, 1)` while the directed steps do not. The search `p * p = 2 * q * q` for `q = 1..200` finds no solution. A bit compared with itself, the literal squares `200^2` and `2 * 200^2`, and the identity `(2r)^2 = 4 r^2` are not rechecked.
+
 ## What is open
 
 O01, O03, O04, and O05 are untouched. O02 remains open: no preservation and reflection map is constructed for a source transition or admission system. The identity certificate is the adjacency itself, not a bridge map. End-to-end discharge of the five obligations is not claimed.
