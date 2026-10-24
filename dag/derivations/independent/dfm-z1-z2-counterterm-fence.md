@@ -10,7 +10,7 @@ one rational momentum. It does not derive Z_1/Z_2 = 1.
 
 ## Matrices
 
-Indices start at 0. The Dirac matrices in M_4(Q(i)) are the usual chiral
+Indices start at 0. The Dirac matrices in M_4(Q(i)) are the Dirac
 representation used by the dossier replay: g0 = diag(1, 1, -1, -1), g1 has
 ones at (0,3) and (1,2) and minus ones at (2,1) and (3,0), g2 is the same
 pattern with i and -i, and g3 has ones at (0,2) and (3,1) and minus ones at

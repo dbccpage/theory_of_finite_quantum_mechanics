@@ -55,7 +55,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
 | Python test functions (`def test_`) | 6763 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 7014 (plus 7995 in `dag/results` snapshots) | `git ls-files '*.rs'` |
-| Contract/score companions | combined_files = 8849, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
+| Contract/score companions | combined_files = 8850, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
