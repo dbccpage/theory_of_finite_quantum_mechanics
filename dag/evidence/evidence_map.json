@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "1014a93034c972f80402c9648d249d7af1d38f3ab090e349e2d4537ffe30eba9"
+  "sha256_lf": "b037e30d05f10a96a0b994e82aa42ad33e82e90e5891e923461d5e99f9354313"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -231,6 +231,11 @@
    "sha256": "41de5850a3e40a6215a9e485488a685171c48853d625231f1ba9ddca43b46fa2",
    "sha256_basis": "bytes",
    "size": 9966
+  },
+  "checks/independent/tfq-0042.py": {
+   "sha256": "f02a72f2e2a19018b63467b4861f882282f39bc75503016e8aeff61b646217c6",
+   "sha256_basis": "bytes",
+   "size": 10014
   },
   "checks/independent/tfq-0044.py": {
    "sha256": "1c7c6f205fcffb9a9d9bb767f4c2be9dfa37e3723884cf2f15dbc46e84bb46d6",
@@ -1023,9 +1028,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "1014a93034c972f80402c9648d249d7af1d38f3ab090e349e2d4537ffe30eba9",
+   "sha256": "b037e30d05f10a96a0b994e82aa42ad33e82e90e5891e923461d5e99f9354313",
    "sha256_basis": "lf-normalised",
-   "size": 4686280
+   "size": 4688046
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3138,9 +3143,9 @@
    "size": 2335
   },
   "dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md": {
-   "sha256": "46297cc664c7144f01178484c1e75e96b56617f83ecd30bae8a9481d169635b0",
+   "sha256": "6432c100e005be761f4a626049bd08fb73378aa84d212b40231c0f74153bc842",
    "sha256_basis": "lf-normalised",
-   "size": 2402
+   "size": 3676
   },
   "dag/derivations/18_finite_topological/tfq_0043_keep_ribbon_charges_off_the_color_and_wilson_spine.md": {
    "sha256": "3faff5212b716d1f0a9d9a0ab1a6ef90582376d70924593ed60af15aa50121a7",
@@ -6991,6 +6996,11 @@
    "sha256": "ed3ad301a3dedafdcafd81663da3eba52ca3aa83f49edbefc5cbaa3dfe9f9463",
    "sha256_basis": "bytes",
    "size": 12763
+  },
+  "lean4/CampaignTfq0042FiniteQcd.lean": {
+   "sha256": "17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4",
+   "sha256_basis": "bytes",
+   "size": 12684
   },
   "lean4/CampaignTfq0044FiniteTopological.lean": {
    "sha256": "bc3bb2ea561cc285238ee8e9887f109336d7f0d8db817967fee726fd232dd35d",
@@ -116790,26 +116800,382 @@
   },
   {
    "absent_notes": [
-    "TFQ-0042 python: evaluate_su3_spanning_tree_vs_landau_gribov_control has no Python twin under 006_finite_qm/python",
     "TFQ-0042 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs"
    ],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 12,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 13
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "TFQ-0042",
    "items": [
     {
      "cited_in": [
-      "node.lean",
+      "node.lean"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
       "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.continuum_module_title_is_not_bridge_theorem_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.continuum_module_title_is_not_bridge_theorem_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.gribov_diamond_control_does_not_derive_continuum_qcd_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.gribov_diamond_control_does_not_derive_continuum_qcd_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.matrix_spanning_tree_dressing_neutralizes_tree_links",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.matrix_spanning_tree_dressing_neutralizes_tree_links",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.missing_006_finite_qm_python_twin_and_independent_replay_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.missing_006_finite_qm_python_twin_and_independent_replay_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.pythagorean_qi_block_unitarity_and_det_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.pythagorean_qi_block_unitarity_and_det_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.su3_diagonal_klein_four_landau_gribov_64_copies",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.su3_diagonal_klein_four_landau_gribov_64_copies",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0042FiniteQcd",
+     "command_note": "then, in a scratch file that imports CampaignTfq0042FiniteQcd: #print axioms CampaignTfq0042FiniteQcd.tfq0042_gribov_diamond_and_title_scope_ledger_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0042FiniteQcd.tfq0042_gribov_diamond_and_title_scope_ledger_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean"
      ],
      "command": "cd lean4 && lake build FiniteQM",
      "command_note": null,
@@ -116840,6 +117206,91 @@
     },
     {
      "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build FiniteQM",
+     "command_note": "then, in a scratch file that imports FiniteQM: #print axioms FiniteQM.spanning_tree_dfm_eliminates_gribov_copies",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/FiniteQM.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/lean_replay_campaign_finite_qcd.json#1:FiniteQM",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "FiniteQM.spanning_tree_dfm_eliminates_gribov_copies",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": "cd lean4 && lake build FiniteQM",
+     "command_note": "then, in a scratch file that imports FiniteQM: #print axioms FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/FiniteQM.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/lean_replay_campaign_finite_qcd.json#1:FiniteQM",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0042"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0042.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "run_all_checks",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
       "node.source",
       "record TFQ-0042"
      ],
@@ -116863,7 +117314,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0042"
    ],
@@ -273547,6 +273998,32 @@
    ],
    "built_successfully": null,
    "checked_at": null,
+   "dag_node": null,
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0042_lean_replay.json#0:CampaignTfq0042FiniteQcd",
+   "lean_version": null,
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0042FiniteQcd",
+   "path": "lean4/CampaignTfq0042FiniteQcd.lean",
+   "receipt_file": "dag/research/campaign_tfq-0042_lean_replay.json",
+   "receipt_file_sha256": "152ce94409d724da4cc991f2f499f5fad109bddbddb70fce53579b560359036d",
+   "recorded_sha256": "17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4",
+   "source_unchanged_during_build": null,
+   "toolchain": null
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": null,
    "dag_node": "TFQ-0044",
    "decl_count": 10,
    "exit_code": 0,
@@ -284828,9 +285305,9 @@
  "summary": {
   "by_grade": {
    "E0": 169,
-   "E1": 229,
+   "E1": 228,
    "E2": 42,
-   "E3": 485,
+   "E3": 486,
    "E4": 0
   },
   "by_status": {
@@ -284880,7 +285357,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 508,
+  "receipts_indexed": 509,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -284968,9 +285445,9 @@
    },
    "FINITE_QCD": {
     "E0": 3,
-    "E1": 17,
+    "E1": 16,
     "E2": 0,
-    "E3": 12,
+    "E3": 13,
     "E4": 0
    },
    "FINITE_QED": {
@@ -285159,9 +285636,9 @@
    },
    "OPEN": {
     "E0": 34,
-    "E1": 79,
+    "E1": 78,
     "E2": 10,
-    "E3": 52,
+    "E3": 53,
     "E4": 0
    },
    "PROVED_LEAN": {
