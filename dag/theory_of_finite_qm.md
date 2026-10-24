@@ -3355,9 +3355,9 @@ Obligation: Build C⁰, C¹ and d₀ from the declared oriented graph and coeffi
 - Parent: `TFQ-0542`
 - Status: `OPEN_OBLIGATION`
 
-GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.
+On the one triangle with vertices 0, 1, 2, swapping Genesis edge slots (01, 02, 12) into WDP slots (01, 12, 02) is an involution; the admitted face column (1, -1, 1) becomes (1, 1, -1), matching triD1Row, and negating the 02 component sends that triple to (1, 1, 1). The swapped column has vertex boundary 0 at each vertex, triD1 of triD0 is 0 for every rational vertex triple, and triD1 of the swapped face row is 3.
 
-Obligation: Declare and check the transport from GenesisIncidence's boundary convention on (01, 02, 12) to the WDP coboundary convention on (01, 12, 02): a coordinate permutation after which d₀ and d₁ are the transposes of the boundary maps, with a sign for any edge reoriented as 20, verified by d₁d₀ = 0 and the filled-triangle signature after transport.
+Obligation: The finite check on vertices 0, 1, 2 records the slot swap from (01, 02, 12) to (01, 12, 02), the face column from (1, -1, 1) to (1, 1, -1), the 02 sign change to (1, 1, 1), vertex boundary 0, and triD1 of triD0 equal to 0. A coordinate transport for a general window, with d0 and d1 the transposes of the boundary maps, stays open.
 
 ### TFQ-0544 wdp-phi-well-defined-l1-duality
 

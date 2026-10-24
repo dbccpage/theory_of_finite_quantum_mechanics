@@ -4,19 +4,19 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 ## Statement
 
-> GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.
+> On the one triangle with vertices 0, 1, 2, swapping Genesis edge slots (01, 02, 12) into WDP slots (01, 12, 02) is an involution; the admitted face column (1, -1, 1) becomes (1, 1, -1), matching triD1Row, and negating the 02 component sends that triple to (1, 1, 1). The swapped column has vertex boundary 0 at each vertex, triD1 of triD0 is 0 for every rational vertex triple, and triD1 of the swapped face row is 3.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 15
+- cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Neither file states the transport; boundary_boundary_filled is a chain-level fact in the incidence edge order, the incidence construction (TFQ-0460) does not derive the WDP window from Genesis admission (TFQ-0344), and the orientation test in Python stays inside the WDP convention.
+Neither file states a general transport of window quantities, and monograph invariance under reorientation stays open. boundary_boundary_filled is a chain-level fact in the incidence edge order (01, 02, 12); the incidence construction (TFQ-0460) does not derive the WDP window from Genesis admission (TFQ-0344); the Python orientation test stays inside the WDP convention. The vertex cycle of the swapped face column is separate from triD1 of that row, which equals 3. A declared map for a general cochain, and a theorem that d0 and d1 of the whole WDP window are the transposes of the Genesis boundary maps, stay open.
 
 ## Source status
 
@@ -41,6 +41,31 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignPgwWdpIncidenceOrientationTransport.lean`
+
+- file: [lean4/CampaignPgwWdpIncidenceOrientationTransport.lean](../../../lean4/CampaignPgwWdpIncidenceOrientationTransport.lean)
+- sha256 (`bytes`): `11af3b7cdcea7ff3ab3e9ad6b506163824fe4a4c590b0a0babb03e7725fed794`
+- cited in: node.lean, node.source, receipt dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json (CampaignPgwWdpIncidenceOrientationTransport), record TFQ-0543
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json](../../../dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json) (module `CampaignPgwWdpIncidenceOrientationTransport`): recorded sha256 `11af3b7cdcea7ff3ab3e9ad6b506163824fe4a4c590b0a0babb03e7725fed794` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignPgwWdpIncidenceOrientationTransport`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `pgwInc_d1_d0` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pgwInc_d1_d0` |
+| `pgwInc_dot_matches_order` | yes | yes | yes | Quot.sound, propext | `#print axioms pgwInc_dot_matches_order` |
+| `pgwInc_face_cyclic` | yes | yes | yes | propext | `#print axioms pgwInc_face_cyclic` |
+| `pgwInc_face_is_row` | yes | yes | yes | Quot.sound, propext | `#print axioms pgwInc_face_is_row` |
+| `pgwInc_face_swapped` | yes | yes | yes | propext | `#print axioms pgwInc_face_swapped` |
+| `pgwInc_face_tri` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pgwInc_face_tri` |
+| `pgwInc_int_d1_d0` | yes | yes | yes | Quot.sound, propext | `#print axioms pgwInc_int_d1_d0` |
+| `pgwInc_rat_telescope` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pgwInc_rat_telescope` |
+| `pgwInc_row` | yes | yes | yes | Quot.sound, propext | `#print axioms pgwInc_row` |
+| `pgwInc_swap_involutive` | yes | yes | yes | none | `#print axioms pgwInc_swap_involutive` |
+| `pgwInc_swapped_coord_is_tri` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pgwInc_swapped_coord_is_tri` |
+| `pgwInc_transported_cycle` | yes | yes | yes | propext | `#print axioms pgwInc_transported_cycle` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/OeWdp/GenesisIncidence.lean`
 
@@ -70,13 +95,38 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `triD1` | yes | yes | yes | module-level | `#print axioms triD1` |
 - counts toward the grade: yes
 
+### Python: `checks/independent/pgw-wdp-incidence-orientation-transport.py`
+
+- file: [checks/independent/pgw-wdp-incidence-orientation-transport.py](../../../checks/independent/pgw-wdp-incidence-orientation-transport.py)
+- sha256 (`bytes`): `b0fdf0d2e634bacb58af36135fe6803c2fc8abc13ba67646627b6cc18e366531`
+- cited in: record TFQ-0543
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `main` (python_symbol) | yes | yes | yes | - | - |
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md`
 
 - file: [dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md](../../../dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md)
-- sha256 (`lf-normalised`): `4d894d7f4e153bebbdf1d6ba1e7fd69df21d89bb1ea579a2d8443d5b86af0ccc`
+- sha256 (`lf-normalised`): `b75a2abb113977b04d0cf23ce1e2857eddd19504e5422bc3087828b544e33727`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0543
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md`
+
+- file: [dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md](../../../dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md)
+- sha256 (`lf-normalised`): `80b68e665ec5e8d08cf83a5e374432fb987635321661d30637062d0636e95155`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json`
+
+- file: [dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json](../../../dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json)
+- sha256 (`lf-normalised`): `619976a3f85936100239dbc2c1735cee4d8f1ec4ec109ce7fbe3ef63a30155e7`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
 
