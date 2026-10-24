@@ -11,15 +11,15 @@
 
 ## Statement
 
-No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.
+On labels {0, 1, 2} the level-2 admissibility predicate (each label at most 2, the three triangle inequalities, even sum, and sum at most 4) accepts exactly 10 ordered triples: (0,0,0), (0,1,1), (0,2,2), (1,0,1), (1,1,0), (1,1,2), (1,2,1), (2,0,2), (2,1,1), (2,2,0). The witness (0,0,1) is excluded. The same label set has 3^6 = 729 six-tuples and 3^9 = 19683 nine-tuples. In Q(sqrt 2) the quantum dimensions d_0 = 1, d_1 = sqrt(2), d_2 = 1 satisfy d_1^2 - d_0 = d_2 and d_1 d_2 - d_1 = 0. The positive rationals 3, 729 and 19683 are pairwise distinct, and 1 is a positive rational distinct from all three, so these finite counts do not select a unique positive rational scale. A continuum limit, a semiclassical limit and a physical cosmological constant stay undischarged. The exact 6j table, the area spectrum and the pentagon identity on all 19683 nine-tuples are not re-checked here.
 
 ## Governing obligation
 
-Recorded as an explicit non-claim.
+The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.
 
 ## Source status
 
-Explicit non-claim node; audited against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 on 2026-10-22.
+Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22.
 
 ## What is imported
 
@@ -42,7 +42,18 @@ See also: `TFQ-0104`, `TFQ-0105`, `TFQ-0085`.
 
 ## Sources
 
-- No external source and no repository file beyond the parent nodes named above.
+- Repository: `lean4/CampaignLqgContinuumLimitGap.lean`
+- Repository: `dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json`
+- Repository: `dag/derivations/independent/lqg-continuum-limit-gap.md`
+- Repository: `checks/independent/lqg-continuum-limit-gap.py`
+- Repository: `code/rust/src/general_relativity/spin_foam.rs`
+
+## Lean 4 declarations read
+- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count`
+- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_tuple_census`
+- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_dimension_truncation`
+- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale`
+- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale`
 
 ## Downstream derivations
 

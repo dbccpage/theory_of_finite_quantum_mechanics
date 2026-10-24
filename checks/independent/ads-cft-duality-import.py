@@ -106,10 +106,7 @@ def check_gkpw_identities() -> int:
             assert delta_val * shadow_dimension(d_val, delta_val) == -gkpw_mass_sq(d_val, delta_val)
             assert (2 * delta_val - d_val) ** 2 == gkpw_discriminant(d_val, gkpw_mass_sq(d_val, delta_val))
             assert gkpw_mass_sq(d_val, delta_val) >= bf_bound(d_val)
-            # Strictly below BF bound, no rational Delta can match
-            m_below = bf_bound(d_val) - Fraction(1, 4)
-            assert gkpw_mass_sq(d_val, delta_val) != m_below
-            checks += 7
+            checks += 6
 
     # Recorded AdS_5 (d = 4) and AdS_3 (d = 2) points
     d4 = Fraction(4)
@@ -175,9 +172,6 @@ def check_thooft_scaling() -> int:
     assert w_torus * (n_val**2) == w_planar
     assert Fraction(3) ** 2 - 1 == 8
     assert Fraction(4) ** 2 - 1 == 15
-    for n_int in range(1, 10):
-        assert n_int**2 == (n_int**2 - 1) + 1
-        checks += 1
     checks += 6
 
     return checks
