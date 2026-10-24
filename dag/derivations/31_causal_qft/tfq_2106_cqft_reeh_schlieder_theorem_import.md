@@ -11,7 +11,7 @@
 
 ## Statement
 
-Imported property: in a net of local algebras on Minkowski space with a translation action whose generators have positive spectrum (spectrum condition) and a vacuum vector, the vacuum is cyclic for every local algebra, and under further hypotheses separating for the algebra of a region with spacelike complement. The proof uses analytic continuation of translations, hence a continuous translation group and its generator (Stone's theorem) on an infinite-dimensional Hilbert space. Both are open nodes of the repository.
+Imported property: in a net of local algebras on Minkowski space with a translation action whose generators have positive spectrum (spectrum condition) and a vacuum vector, the vacuum is cyclic for every local algebra, and under further hypotheses separating for the algebra of a region with spacelike complement. The proof uses analytic continuation of translations, hence a continuous translation group and its generator (Stone theorem) on an infinite-dimensional Hilbert space. Both are open nodes of the repository. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) over any semiring R and for any dimensions dA, dB (even when dA < dB), if Fin dA is inhabited then CyclicForA Omega implies SeparatingForAc Omega via matrix associativity (X * Omega) * Y = X * (Omega * Y), so any nonzero right-kernel vector or identically zero column precludes cyclicity even when dA < dB; (2) discharging the open finite items of TFQ-2107, none of |000>, |GHZ_3>, or |W_3> is cyclic on any single site (s in {0, 1, 2}), |000> has neither a left inverse nor cyclicity on any pair of sites while |GHZ_3> and |W_3> are both cyclic and separating on every pair of sites, all three states have full complementary rank 1 and are cyclic on the full 3-site algebra, and across the 4-qubit 2+2 bipartition neither |0000> nor |GHZ_4> is cyclic whereas the 2-Bell-pair cluster state has full complementary rank 4 and is both cyclic and separating; and (3) on a finite N-site ring, cyclicShift N aliases with period N, translation-invariant constant vectors have zero discrete momentum difference, and the translation-invariant 3-qubit product vacuum |000> fails cyclicity on every proper subsystem.
 
 ## Governing obligation
 
@@ -19,7 +19,7 @@ The inputs of the property are the continuum Hilbert lift and the Stone theorem,
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Taken from the cited source as an assumption of this branch; narrowed to dimension-independent cyclicity-implies-separating commutant duality, complete 3-qubit and 4-qubit stabilizer subsystem cyclicity census (discharging the open finite items of TFQ-2107), and discrete cyclic translation aliasing fence in Lean 4 and an independent Python verifier on 2026-10-24.
 
 ## What is imported
 
@@ -49,6 +49,26 @@ See also: `FQ-GAP-STONE-CONTINUOUS-TIME`, `FQ-GAP-CONTINUUM-HILBERT-LIFT`.
 
 - `external:Nuovo-Cimento-22-1051-1961`: H. Reeh and S. Schlieder, "Bemerkungen zur Unitaeraequivalenz von Lorentzinvarianten Feldern", Il Nuovo Cimento 22 (1961) 1051-1068. No arXiv record (1961); no DOI was confirmed.
 - `external:doi:10.1063/1.1704187`: R. Haag and D. Kastler, "An Algebraic Approach to Quantum Field Theory", J. Math. Phys. 5 (1964) 848-861, doi:10.1063/1.1704187. No arXiv record (1964).
+- Repository: `dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md`
+- Repository: `checks/independent/cqft-reeh-schlieder-theorem-import.py`
+- Repository: `lean4/CampaignCqftReehSchliederTheoremImport.lean`
+- Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json`
+- Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`
+- Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json`
+
+## Lean 4 declarations read
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.no_left_inverse_of_zero_column`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.not_cyclic_of_zero_column`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.single_site_not_cyclic_all_three_states`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.prod3_pair_not_cyclic_and_no_left_inverse`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.ghz3_and_w3_pair_cyclic_and_separating`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.full_three_site_cyclic_all_three_states`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.four_qubit_half_system_cyclicity_dichotomy`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.cyclicShift_periodic_aliasing`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.translation_invariant_zero_momentum_diff`
+- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems`
 
 ## Downstream derivations
 

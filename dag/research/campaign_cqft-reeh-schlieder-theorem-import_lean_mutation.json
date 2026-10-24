@@ -1,0 +1,65 @@
+{
+  "schema": "dag.lean_mutation_receipt.v1",
+  "node_id": "CQFT-REEH-SCHLIEDER-THEOREM-IMPORT",
+  "claim_id": "TFQ-2106",
+  "file": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+  "mutants_total": 6,
+  "mutants_killed": 6,
+  "all_killed": true,
+  "results": [
+    {
+      "id": "M1_cyclic_implies_separating_psi_zero",
+      "target": "let \u03a8 : Fin dA \u2192 Fin dB \u2192 R := fun _ j => if j = k then 1 else 0",
+      "replacement": "let \u03a8 : Fin dA \u2192 Fin dB \u2192 R := fun _ _ => 0",
+      "expected_failing_theorem": "cyclic_implies_separating",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpqsd2jy8l.lean:88:2: error: Type mismatch\n  hval\nhas type\n  True\nbut is expected to have type\n  Y k l = 0\n'CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]\n'CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel' depends on axioms"
+    },
+    {
+      "id": "M2_not_cyclic_zero_column_vec_zero",
+      "target": "let v : Fin dB \u2192 R := fun j => if j = k0 then 1 else 0",
+      "replacement": "let v : Fin dB \u2192 R := fun _ => 0",
+      "expected_failing_theorem": "not_cyclic_of_zero_column",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmptautpbuv.lean:121:24: error: unsolved goals\ndA dB : \u2115\nR : Type u_1\ninst\u271d : Semiring R\nh10 : 1 \u2260 0\ni0 : Fin dA\n\u03a9 : Fin dA \u2192 Fin dB \u2192 R\nk0 : Fin dB\nhcol : \u2200 (i : Fin dA), \u03a9 i k0 = 0\nv : Fin dB \u2192 R := fun x => 0\n\u22a2 False\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmptautpbuv.lean:122:21: warning: This sim"
+    },
+    {
+      "id": "M3_fullThreeSiteMatrix_zero",
+      "target": "def fullThreeSiteMatrix (\u03c8 : Fin 8 \u2192 Int) : Fin 8 \u2192 Fin 1 \u2192 Int :=\n  fun x _ => \u03c8 x",
+      "replacement": "def fullThreeSiteMatrix (\u03c8 : Fin 8 \u2192 Int) : Fin 8 \u2192 Fin 1 \u2192 Int :=\n  fun _ _ => 0",
+      "expected_failing_theorem": "full_three_site_cyclic_all_three_states",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpu0us98lp.lean:197:25: warning: Variable name `\u03c8` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _\u03c8\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\nC:\\Users"
+    },
+    {
+      "id": "M4_halfMatrixBellPair4_prod4",
+      "target": "def halfMatrixBellPair4 : Fin 4 \u2192 Fin 4 \u2192 Int :=\n  matId 4",
+      "replacement": "def halfMatrixBellPair4 : Fin 4 \u2192 Fin 4 \u2192 Int :=\n  halfMatrixProd4",
+      "expected_failing_theorem": "four_qubit_half_system_cyclicity_dichotomy",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpoz5nglg6.lean:247:14: error: Application type mismatch: The argument\n  matMul_id_left (matId 4)\nhas type\n  matMul (matId 4) (matId 4) = matId 4\nbut is expected to have type\n  matMul (matId 4) halfMatrixBellPair4 = matId 4\nin the application\n  Exists.intro (matId 4) (matMul_id_left (matId 4))\n'CampaignCqftReehSchliederTheoremIm"
+    },
+    {
+      "id": "M5_cyclicShift_plus_to_mul",
+      "target": "\u27e8(x.val + k) % N, Nat.mod_lt _ (NeZero.pos N)\u27e9",
+      "replacement": "\u27e8(x.val * k) % N, Nat.mod_lt _ (NeZero.pos N)\u27e9",
+      "expected_failing_theorem": "cyclicShift_periodic_aliasing",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp07v2v6gd.lean:280:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  (?x + ?z) % ?z\nin the target expression\n  \u2191x * N % N = \u2191x\n\ncase refine_1\nN : \u2115\ninst\u271d : NeZero N\nk : \u2115\nx : Fin N\n\u22a2 \u2191x * N % N = \u2191x\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp07v2v6gd.lean:283:8: error: T"
+    },
+    {
+      "id": "M6_discreteMomentumDiff_sub_to_add",
+      "target": "\u03c8 (cyclicShift N 1 x) - \u03c8 x",
+      "replacement": "\u03c8 (cyclicShift N 1 x) + \u03c8 x",
+      "expected_failing_theorem": "translation_invariant_zero_momentum_diff",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpcwtcb856.lean:292:2: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a \u2264 -1\nwhere\n a := c\n'CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_ker"
+    }
+  ]
+}
