@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "6df7a0942aa803e05a2dfab303b0d00241b99eab276796793141feee387ab83e"
+  "sha256_lf": "cdd97ca17c548435636eedb312e24ac82a582bcb48bffe77060347b612f5c468"
  },
  "files": {
   "checks/independent/dfm-bphz-continuum-fence.py": {
@@ -61,6 +61,11 @@
    "sha256": "3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d",
    "sha256_basis": "bytes",
    "size": 27238
+  },
+  "checks/independent/fsp-imaginary-mu-real-det.py": {
+   "sha256": "ac19770608212101081358398a29af59f440a541d91f29fe233e5eaf62c2d81d",
+   "sha256_basis": "bytes",
+   "size": 8385
   },
   "checks/independent/fsp-lattice-anomaly-inflow.py": {
    "sha256": "2a2ad3b9fde58a676054711f0c64c387fab7018ae75754be59cadc668e28aecc",
@@ -853,9 +858,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "6df7a0942aa803e05a2dfab303b0d00241b99eab276796793141feee387ab83e",
+   "sha256": "cdd97ca17c548435636eedb312e24ac82a582bcb48bffe77060347b612f5c468",
    "sha256_basis": "lf-normalised",
-   "size": 4554702
+   "size": 4556929
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -4463,9 +4468,9 @@
    "size": 2032
   },
   "dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md": {
-   "sha256": "ac2647c3b3b9ad8360fff38c46c8a361167df805ce0ca1de6df0ae176c927fd3",
+   "sha256": "5a8903f86de0e771db4da99d212016b3b8d780605f2a93ff3542d3966177eaac",
    "sha256_basis": "lf-normalised",
-   "size": 1973
+   "size": 2903
   },
   "dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md": {
    "sha256": "26128185073ec74dd7ba16e105409150f4fd36fcafc71fa42894e92413f2adbd",
@@ -5978,9 +5983,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "sha256_basis": "lf-normalised",
-   "size": 161011
+   "size": 166860
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -6281,6 +6286,11 @@
    "sha256": "69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074",
    "sha256_basis": "bytes",
    "size": 9941
+  },
+  "lean4/CampaignFspImaginaryMuRealDet.lean": {
+   "sha256": "6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2",
+   "sha256_basis": "bytes",
+   "size": 7510
   },
   "lean4/CampaignFspLatticeAnomalyInflow.lean": {
    "sha256": "608565f816ae84218d3f193f21e7f98e45c0479092d42c1dbe079908c625cc9c",
@@ -197377,17 +197387,847 @@
    "absent_notes": [],
    "dependents": 17,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 22,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 22
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "FSP-IMAGINARY-MU-REAL-DET",
    "items": [
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.bipartite_adjoint",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.bipartite_adjoint",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.bipartite_det_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.bipartite_det_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.bipartite_one_det",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.bipartite_one_det",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.bipartite_one_det_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.bipartite_one_det_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.bipartite_scale",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.bipartite_scale",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.centerSum_periodic",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.centerSum_periodic",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.det_real_of_involution",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.det_real_of_involution",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.gamma_hermitian_negative",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.gamma_hermitian_negative",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.inverse_eq_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.inverse_eq_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.parity_hermitian",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.parity_hermitian",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.parity_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.parity_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.staggered_adjoint",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.staggered_adjoint",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.staggered_det_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.staggered_det_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.staggered_det_real",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.staggered_det_real",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.staggered_unit",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.staggered_unit",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms CampaignFspImaginaryMuRealDet.two_flavor_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspImaginaryMuRealDet.two_flavor_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1203"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms centerSum_periodic",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "centerSum_periodic",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1203"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms det_real_of_involution",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "det_real_of_involution",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1203"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms gamma_hermitian_negative",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "gamma_hermitian_negative",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1203"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms staggered_adjoint",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "staggered_adjoint",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1203"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms staggered_det_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "staggered_det_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1203"
+     ],
+     "command": "cd lean4 && lake build CampaignFspImaginaryMuRealDet",
+     "command_note": "then, in a scratch file that imports CampaignFspImaginaryMuRealDet: #print axioms two_flavor_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "two_flavor_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-1203"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/fsp-imaginary-mu-real-det.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -197436,7 +198276,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1203"
    ],
@@ -252994,6 +253834,32 @@
     "propext"
    ],
    "built_successfully": null,
+   "checked_at": "2026-10-24",
+   "dag_node": "FSP-IMAGINARY-MU-REAL-DET",
+   "decl_count": 16,
+   "exit_code": 0,
+   "id": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json#0:CampaignFspImaginaryMuRealDet",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignFspImaginaryMuRealDet",
+   "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+   "receipt_file": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+   "receipt_file_sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9",
+   "recorded_sha256": "6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2",
+   "source_unchanged_during_build": null,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
    "checked_at": "2026-10-23T02:27:17.697997+00:00",
    "dag_node": "FSP-LATTICE-ANOMALY-INFLOW",
    "decl_count": 18,
@@ -263502,7 +264368,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263528,7 +264394,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263554,7 +264420,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263580,7 +264446,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263606,7 +264472,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263632,7 +264498,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263658,7 +264524,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263684,7 +264550,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263710,7 +264576,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263736,7 +264602,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263762,7 +264628,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263788,7 +264654,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263814,7 +264680,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263840,7 +264706,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263866,7 +264732,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "d454b71cf8dbbc61239740e6f904d7ac990b9806477124c99cc3efc0ad0fbc5d",
+   "receipt_file_sha256": "8996876334f6ff53b8638684b0df1a78ec226f30f6a464f9fd7516a2ee1bd6d0",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264456,9 +265322,9 @@
  "summary": {
   "by_grade": {
    "E0": 188,
-   "E1": 244,
+   "E1": 243,
    "E2": 42,
-   "E3": 451,
+   "E3": 452,
    "E4": 0
   },
   "by_status": {
@@ -264478,16 +265344,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1501,
+   "distinct": 1507,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1454,
-   "replay_verified_and_declaration_itemised": 1408,
+   "replay_verified": 1460,
+   "replay_verified_and_declaration_itemised": 1414,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1810
+   "present": 1816
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -264508,7 +265374,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 474,
+  "receipts_indexed": 475,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -264568,9 +265434,9 @@
    },
    "FERMION_SIGN": {
     "E0": 0,
-    "E1": 24,
+    "E1": 23,
     "E2": 7,
-    "E3": 10,
+    "E3": 11,
     "E4": 0
    },
    "FINITE_GAUGE": {
@@ -264780,9 +265646,9 @@
    },
    "IMPORTED_ASSUMPTION": {
     "E0": 11,
-    "E1": 28,
+    "E1": 27,
     "E2": 1,
-    "E3": 30,
+    "E3": 31,
     "E4": 0
    },
    "OPEN": {
