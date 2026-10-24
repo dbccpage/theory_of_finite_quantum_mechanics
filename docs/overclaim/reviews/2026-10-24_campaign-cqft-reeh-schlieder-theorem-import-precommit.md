@@ -26,7 +26,7 @@ Status: AI-drafted, awaiting human review.
 
 1. **What it supports**:
    - In `lean4/CampaignCqftReehSchliederTheoremImport.lean` (`L4D`), the 12 theorems formalize the dimension-independent `CyclicForA → SeparatingForAc` implication, the complete 3-qubit and 4-qubit subsystem cyclicity and non-cyclicity census, and the discrete cyclic translation aliasing fence.
-   - In `checks/independent/cqft-reeh-schlieder-theorem-import.py`, 2496 exact algebraic and combinatorial checks pass with 0 failures, and 6 of 6 semantic Lean mutations are killed in `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`.
+   - In `checks/independent/cqft-reeh-schlieder-theorem-import.py`, 252 algebraic checks pass with 0 failures after removal of repeated modular identities, and 6 of 6 semantic Lean mutations are killed in `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`.
 2. **What it does not support**:
    - The continuum Reeh-Schlieder theorem, the continuous-time Stone theorem (`FQ-GAP-STONE-CONTINUOUS-TIME`), or the continuum Hilbert space lift (`FQ-GAP-CONTINUUM-HILBERT-LIFT`), which remain imported/conditional.
 3. **Narrowest defensible claim**:

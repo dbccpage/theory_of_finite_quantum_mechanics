@@ -1,0 +1,14 @@
+   Compiling tfqm_functor_shell_audit v0.0.0 (C:\Users\a343o\.codex\worktrees\functor-shell-validation\theory_of_finite_quantum_mechanics\.venv-review\full-functor-audit)
+error[E0282]: type annotations needed for `std::collections::BTreeMap<_, _>`
+   --> src\category_theory\functor\full_functor.rs:172:13
+    |
+172 |         let mut endpoints = BTreeMap::new();
+    |             ^^^^^^^^^^^^^   --------------- type must be known at this point
+    |
+help: consider giving `endpoints` an explicit type, where the type for type parameter `K` is specified
+    |
+172 |         let mut endpoints: std::collections::BTreeMap<K, V> = BTreeMap::new();
+    |                          ++++++++++++++++++++++++++++++++++
+
+For more information about this error, try `rustc --explain E0282`.
+error: could not compile `tfqm_functor_shell_audit` (lib test) due to 1 previous error

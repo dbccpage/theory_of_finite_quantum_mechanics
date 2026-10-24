@@ -2,9 +2,9 @@
 """Independent exact rational verifier for TFQ-0118 (CONTINUUM_INTERFACE).
 
 Verifies with Python Fractions and exact integer/Gaussian-rational arithmetic (no Lean dependency):
-1. Injective dyadic cyclic inclusion Fin N -> Fin (2*N) (x -> 2*x) for N = 1..16:
-   - Strict injectivity, modular addition homomorphism 2*((a+b)%N) == (2*a + 2*b)%(2*N),
-     and non-surjectivity (odd residues are never in the image).
+1. Injective dyadic cyclic inclusion Fin N -> Fin (2*N) (x -> 2*x) for N = 1..12:
+   - Strict injectivity of doubling on 0..N-1, and the missed odd residue 1.
+   - Lean keeps the modular-addition homomorphism. This script does not recheck that identity.
 2. Point-separating character sums on Z/4Z over Q[i]:
    - Dual character projector sum_{k=0}^3 chi_k(x) conj(chi_k(y)) == (4, 0) iff x == y else (0, 0).
    - For every pair x != y in Fin 4, there exists k in Fin 4 with chi_k(x) != chi_k(y).
@@ -68,17 +68,11 @@ def main() -> int:
             failures += 1
             print(f"FAIL [{bucket}]: {msg}", file=sys.stderr)
 
-    # 1. Dyadic cyclic inclusion across N = 1..12
+    # Lean keeps dyadicInclude_add_mod_hom. The modular-addition identity is not rechecked here.
     for n in range(1, 13):
         img = [2 * x for x in range(n)]
         check(len(set(img)) == n, "inclusion", f"dyadicInclude injective at N={n}")
         check(1 not in img, "inclusion", f"odd residue 1 missed at N={n}")
-        for a, b in itertools.product(range(n), range(n)):
-            check(
-                2 * ((a + b) % n) == (2 * a + 2 * b) % (2 * n),
-                "inclusion",
-                f"modular addition homomorphism at N={n}, ({a},{b})",
-            )
 
     # 2. Point-separating character sums on Z/4Z
     for x, y in itertools.product(range(4), range(4)):
