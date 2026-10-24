@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -37,7 +37,7 @@ Held outside the programme by declaration.
 
 ## Review
 
-- PFP review: [dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact phase-blind data agree while the declared mixed readouts differ by 4ab, with a zero-amplitude control.
   - does not support: Choose and justify an amplitude lift, admissible mixing operations and any continuum closure. Fixed presentation data do not select these.
   - next test: Choose and justify an amplitude lift, admissible mixing operations and any continuum closure. Fixed presentation data do not select these.

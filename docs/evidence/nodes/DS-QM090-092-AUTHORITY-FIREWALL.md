@@ -36,7 +36,7 @@ Unmet after the PFP review: Define a trusted receipt-validation/packet policy be
 
 ## Review
 
-- PFP review: [dag/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM090-092-AUTHORITY-FIREWALL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Toy zero-defect gate arithmetic and logical nonimplication are kernel checked; every run retains AuthorityEffect None.
   - does not support: Define a trusted receipt-validation/packet policy before any real authorization; no general no-constructor theorem, publication terminal or physical claim is proved.
   - next test: Define a trusted receipt-validation/packet policy before any real authorization; no general no-constructor theorem, publication terminal or physical claim is proved.

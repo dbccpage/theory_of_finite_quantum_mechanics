@@ -36,7 +36,7 @@ Unmet after the PFP review: Grading is one sufficient bookkeeping choice. Do not
 
 ## Review
 
-- PFP review: [dag/results/DS-QM030-UNGRADED-OVERCOUNT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM030-UNGRADED-OVERCOUNT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM030-UNGRADED-OVERCOUNT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM030-UNGRADED-OVERCOUNT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual acyclic arrays give Z20=d+ab and (Z²)20=2d+3ab, with pure and mixed-length controls.
   - does not support: Grading is one sufficient bookkeeping choice. Do not claim that every possible ungraded formulation is not possible or that the old arithmetic identity was a path-count theorem.
   - next test: Grading is one sufficient bookkeeping choice. Do not claim that every possible ungraded formulation is not possible or that the old arithmetic identity was a path-count theorem.

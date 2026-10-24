@@ -85,6 +85,17 @@ def fermion_parity(nb: int, nf: int) -> MatQ:
     return block_diag(mat_id(nb), mat_scale(Fraction(-1), mat_id(nf)))
 
 
+def _main_cases_1(check, weight_sets):
+    for nb0 in range(4):
+        for nf0 in range(4):
+            for ws in weight_sets:
+                w_val = Fraction(nb0 - nf0) + sum((w - w for w in ws), Fraction(0))
+                check(w_val == Fraction(nb0 - nf0), "spectral")
+                if w_val != 0:
+                    check(nb0 + nf0 > 0, "spectral")
+    return None
+
+
 def main() -> int:
     checks = 0
     supertrace_checks = 0
@@ -159,13 +170,7 @@ def main() -> int:
         [Fraction(7, 8), Fraction(2, 5), Fraction(1, 10)],
         [Fraction(9, 10), Fraction(4, 9), Fraction(1, 4), Fraction(1, 25)],
     ]
-    for nb0 in range(4):
-        for nf0 in range(4):
-            for ws in weight_sets:
-                w_val = Fraction(nb0 - nf0) + sum((w - w for w in ws), Fraction(0))
-                check(w_val == Fraction(nb0 - nf0), "spectral")
-                if w_val != 0:
-                    check(nb0 + nf0 > 0, "spectral")
+    _main_cases_1(check, weight_sets)
 
     for a_val, b_val in itertools.product(
         [Fraction(-3), Fraction(-1), Fraction(-1, 2), Fraction(1, 3), Fraction(2), Fraction(5)],

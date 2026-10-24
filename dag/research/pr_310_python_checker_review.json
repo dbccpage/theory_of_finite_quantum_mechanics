@@ -1,0 +1,120 @@
+{
+  "path": "checks/independent/fsp-witten-index-invariance.py",
+  "original_sha256": "0d5f2cf47efa219f9ced88a7017b96a461b633dd66218a70d8fc2284bc1cb96c",
+  "sha256": "cc583dcc76fbf1cb45da1acbea62f995d37920bf8077c747eae54dd8d167c265",
+  "original_metrics": {
+    "ccn": 26,
+    "cognitive": 43,
+    "nesting": 4,
+    "functions": 11,
+    "lines": 226,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "current_metrics": {
+    "ccn": 21,
+    "cognitive": 33,
+    "nesting": 4,
+    "functions": 12,
+    "lines": 231,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "source_changed": true,
+  "comparison_and_iteration_AST_multisets_unchanged": true,
+  "rejected_import_harness_attempt": null,
+  "superseded_typing_calibration": null,
+  "checks": {
+    "normal": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.25,
+      "output": "checks=1171 supertrace=690 spectral=256 fences=225 failures=0\r\n"
+    },
+    "optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.34,
+      "output": "checks=1171 supertrace=690 spectral=256 fences=225 failures=0\r\n"
+    },
+    "quiet_import": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "-c",
+        "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\fsp-witten-index-invariance.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1,
+      "output": ""
+    },
+    "typing_tool": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.27,
+      "output": "mypy 1.18.2 (compiled: yes)\r\n"
+    },
+    "strict_typing": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--config-file",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy.ini",
+        "--no-incremental",
+        "--cache-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy-cache",
+        "--explicit-package-bases",
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
+      "exit_code": 1,
+      "seconds": 1.16,
+      "output": "checks\\independent\\fsp-witten-index-invariance.py:88: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\fsp-witten-index-invariance.py:173: error: Call to untyped function \"_main_cases_1\" in typed context  [no-untyped-call]\r\nFound 2 errors in 1 file (checked 1 source file)\r\n"
+    }
+  },
+  "score_token": "L3D",
+  "typing_diagnostics_classification": "Any missing typing mechanism is retained as a D-level audit deficit under SCORING section 1.4; no runtime E is inferred merely from missing annotations. Actual E-range structural metrics retain E.",
+  "contract_boundary": "Closed exact finite check program; internal helpers accept only the internally generated carriers. No general public input admission or physical theorem is claimed.",
+  "typing_configuration": "[mypy]\nstrict = True\npython_version = 3.14\n",
+  "structural_change": "Separate finite case loops into private helpers while preserving every original check and exact stdout; no new scientific evidence is inferred.",
+  "mutation_accounting": {
+    "generated": 0,
+    "killed": 0,
+    "survived": 0,
+    "equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "detection_fraction": null
+  },
+  "acceptance": "Blocked below L4; failed checks remain failures."
+}

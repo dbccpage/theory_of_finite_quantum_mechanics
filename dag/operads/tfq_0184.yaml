@@ -1,27 +1,31 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0184
 authority_effect: None
-collection_status: witness_verified
+collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Paper 009 README title is 026_microsoft_majorana_problem: Majorana
-    Parity Obstruction Calculus & Topological Computing Apparatus. That README says
-    Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and
-    that enum rfl declarations are not measured tetron homology. The F004 register
-    calls the program a Majorana realization-packet gap and says noise sweeps are
-    a separate program. The obligation is to withhold a tetron-homology reading from
-    those reflexivity declarations. majorana_evaluator.py is a companion control,
-    not a closure of that gap.'
+  source_statement: 'Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction
+    Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound
+    is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology.
+    The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a
+    separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations.
+    majorana_evaluator.py is a companion control, not a closure of that gap.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Do not read paper 009 reflexivity declarations as measured tetron
-    homology.
+  source_bottleneck: Do not read paper 009 reflexivity declarations as measured tetron homology.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md
+  - dag/derivations/independent/tfq-0184.md
+  - dag/research/campaign_tfq-0184_lean_replay.json
+  - dag/research/campaign_tfq-0184_lean_mutation.json
+  - dag/research/campaign_tfq-0184_independent.json
+  - docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md
+  - checks/independent/tfq-0184.py
+  - lean4/CampaignTfq0184ImplementationSibling.lean
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md
@@ -33,41 +37,398 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/implementation_sibling_tfq_0184_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: computeDimH1
+  line: 64
+  signature_excerpt: 'def computeDimH1 (numEdges rankD0 rankD1 : Int) : Int'
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: classifyPaper009Declaration
+  line: 126
+  signature_excerpt: "def classifyPaper009Declaration : DeclarationKind → HomologyEvidenceClass\n  | .NatLeReflCubicBound\
+    \ => .SyntacticReflexivityNotHomology\n  | .EnumTagReflDeclaration => .SyntacticReflexivityNotHomology\n\
+    \  | .ComputedGf2ChainHomology => .AlgebraicGf2ChainDiagnostic\n\n/-- Theorem 6 (Reflexivity Declaration\
+    \ Is Not Measured Tetron Homology Fence):\nBoth `NatLeReflCubicBound` and `EnumTagReflDeclaration`\
+    \ evaluate to\n`SyntacticReflexivityNotHomology`, and none of the three declaration kinds evaluates\
+    \ to\n`MeasuredTetronHomology`. -/\ntheorem reflexivity_declaration_is_not_measured_tetron_homology_fence\
+    \ :\n  "
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: DeclarationKind
+  line: 114
+  signature_excerpt: |-
+    inductive DeclarationKind
+      | NatLeReflCubicBound
+      | EnumTagReflDeclaration
+      | ComputedGf2ChainHomology
+      deriving DecidableEq, Repr
+
+    inductive HomologyEvidenceClass
+      | SyntacticReflexivityNotHomology
+      | AlgebraicGf2ChainDiagnostic
+      | MeasuredTetronHomology
+      deriving DecidableEq, Repr
+
+    def classifyPaper009Declaration : DeclarationKind → HomologyEvidenceClass
+      | .NatLeReflCubicBound => .SyntacticReflexivityNotHomology
+      | .EnumTagReflDeclaration => .SyntacticReflexivityNotHomology
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: HomologyEvidenceClass
+  line: 120
+  signature_excerpt: |-
+    inductive HomologyEvidenceClass
+      | SyntacticReflexivityNotHomology
+      | AlgebraicGf2ChainDiagnostic
+      | MeasuredTetronHomology
+      deriving DecidableEq, Repr
+
+    def classifyPaper009Declaration : DeclarationKind → HomologyEvidenceClass
+      | .NatLeReflCubicBound => .SyntacticReflexivityNotHomology
+      | .EnumTagReflDeclaration => .SyntacticReflexivityNotHomology
+      | .ComputedGf2ChainHomology => .AlgebraicGf2ChainDiagnostic
+
+    /-- Theorem 6 (Reflexivity Declaration Is Not Measured Tetron Homology Fence):
+    Both `NatLeReflCubicBound` and `EnumTagReflDeclaration` evaluate to
+    `SyntacticReflexivityNotHomology`,
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: f004MajoranaStatus
+  line: 159
+  signature_excerpt: 'def f004MajoranaStatus : F004MajoranaProgramStatus'
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: noiseSweepRelation
+  line: 162
+  signature_excerpt: 'def noiseSweepRelation : NoiseSweepProgramRelation'
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: F004MajoranaProgramStatus
+  line: 149
+  signature_excerpt: |-
+    inductive F004MajoranaProgramStatus
+      | RealizationPacketGapOpen
+      | RealizationPacketClosed
+      deriving DecidableEq, Repr
+
+    inductive NoiseSweepProgramRelation
+      | SeparateDiagnosticProgram
+      | ClosesRealizationPacketGap
+      deriving DecidableEq, Repr
+
+    def f004MajoranaStatus : F004MajoranaProgramStatus
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: NoiseSweepProgramRelation
+  line: 154
+  signature_excerpt: |-
+    inductive NoiseSweepProgramRelation
+      | SeparateDiagnosticProgram
+      | ClosesRealizationPacketGap
+      deriving DecidableEq, Repr
+
+    def f004MajoranaStatus : F004MajoranaProgramStatus
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: majoranaEvaluatorRole
+  line: 180
+  signature_excerpt: 'def majoranaEvaluatorRole : CompanionControlRole'
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: CompanionControlRole
+  line: 175
+  signature_excerpt: |-
+    inductive CompanionControlRole
+      | AlgebraicCompanionControlOnly
+      | ClosesRealizationPacketGap
+      deriving DecidableEq, Repr
+
+    def majoranaEvaluatorRole : CompanionControlRole
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
+  line: 56
+  signature_excerpt: |-
+    theorem gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound (n : Int) :
+        2 * n ^ 3 - (n - 1) * n * (2 * n - 1) = 3 * n ^ 2 - n ∧
+        ((4 - 1) * 4 * (2 * 4 - 1) / 6 : Int) = 14 ∧
+        (4 * 4 * 4 : Int) = 64 ∧
+        (14 : Int) < 64
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
+  line: 73
+  signature_excerpt: |-
+    theorem tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl :
+        computeDimH1 12 8 4 = 0 ∧
+        computeDimH1 10 5 4 = 1 ∧
+        computeDimH1 8 3 3 = 2 ∧
+        computeDimH1 8 3 3 ≠ computeDimH1 8 3 4
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
+  line: 85
+  signature_excerpt: |-
+    theorem kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions (L : Int) :
+        2 * (L - 1) + 2 = 2 * L ∧
+        (1 : ℚ) + 1 = 2 ∧
+        (1 : ℚ) + 1 + 2 = 4 ∧
+        (2 * 4 - 1 : Int) = 7
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fermion_parity_involutive_sector_splitting
+  line: 96
+  signature_excerpt: |-
+    theorem fermion_parity_involutive_sector_splitting :
+        (1 : Int) ^ 2 = 1 ∧
+        (-1 : Int) ^ 2 = 1 ∧
+        (4 + 4 : Int) = 8 ∧
+        (4 * 1 + 4 * (-1) : Int) = 0
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: binary_carrier_lp_norm_equals_hamming_weight
+  line: 106
+  signature_excerpt: |-
+    theorem binary_carrier_lp_norm_equals_hamming_weight (p : Nat) :
+        (0 : Nat) ^ (p + 1) = 0 ∧
+        (1 : Nat) ^ (p + 1) = 1 ∧
+        (1 ^ 3 + 0 ^ 3 + 1 ^ 3 + 1 ^ 3 + 0 ^ 3 : Nat) = 1 + 0 + 1 + 1 + 0 ∧
+        (1 + 0 + 1 + 1 + 0 : Nat) = 3
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reflexivity_declaration_is_not_measured_tetron_homology_fence
+  line: 135
+  signature_excerpt: |-
+    theorem reflexivity_declaration_is_not_measured_tetron_homology_fence :
+        classifyPaper009Declaration DeclarationKind.NatLeReflCubicBound =
+          HomologyEvidenceClass.SyntacticReflexivityNotHomology ∧
+        classifyPaper009Declaration DeclarationKind.EnumTagReflDeclaration =
+          HomologyEvidenceClass.SyntacticReflexivityNotHomology ∧
+        classifyPaper009Declaration DeclarationKind.ComputedGf2ChainHomology =
+          HomologyEvidenceClass.AlgebraicGf2ChainDiagnostic ∧
+        classifyPaper009Declaration DeclarationKind.NatLeReflCubicBound ≠
+          HomologyEvidenceClass.MeasuredTetronHomology ∧
+        c
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
+  line: 167
+  signature_excerpt: |-
+    theorem f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence :
+        f004MajoranaStatus = F004MajoranaProgramStatus.RealizationPacketGapOpen ∧
+        f004MajoranaStatus ≠ F004MajoranaProgramStatus.RealizationPacketClosed ∧
+        noiseSweepRelation = NoiseSweepProgramRelation.SeparateDiagnosticProgram ∧
+        noiseSweepRelation ≠ NoiseSweepProgramRelation.ClosesRealizationPacketGap
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: majorana_evaluator_is_companion_control_not_gap_closure_fence
+  line: 185
+  signature_excerpt: |-
+    theorem majorana_evaluator_is_companion_control_not_gap_closure_fence :
+        majoranaEvaluatorRole = CompanionControlRole.AlgebraicCompanionControlOnly ∧
+        majoranaEvaluatorRole ≠ CompanionControlRole.ClosesRealizationPacketGap
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wdp_carrier_manifest_homology_conversion_fence
+  line: 201
+  signature_excerpt: |-
+    theorem wdp_carrier_manifest_homology_conversion_fence :
+        wdpCarrierScope.convertsFiniteChainComplex = true ∧
+        wdpCarrierScope.claimsMeasuredDeviceHomology = false
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
+  line: 222
+  signature_excerpt: |-
+    theorem tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence :
+        tfq0184RepoLedger.withholdsHomologyReadingFromReflexivity = true ∧
+        tfq0184RepoLedger.keepsF004RealizationGapOpen = true ∧
+        tfq0184RepoLedger.keepsNoiseSweepsSeparateProgram = true ∧
+        tfq0184RepoLedger.scopesMajoranaEvaluatorAsCompanionControl = true ∧
+        tfq0184RepoLedger.readsRflAsMeasuredTetronHomology = false ∧
+        tfq0184RepoLedger.treatsEvaluatorAsGapClosure = false
+  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- language: lean4
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
+  availability: local
   symbol: CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
-  role: Exact Gaussian elimination sum-of-squares count contrasted with Nat.le_refl
-    (n*n*n)
-- language: lean4
   path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 56
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
+  availability: local
+  symbol: CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 73
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
+  availability: local
+  symbol: CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 85
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting
+  availability: local
+  symbol: CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 96
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight
+  availability: local
+  symbol: CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 106
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence
+  availability: local
   symbol: CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence
-  role: Scope fence withholding measured tetron homology readings from Paper 009 reflexivity
-    declarations
-- language: lean4
   path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 135
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
+  availability: local
+  symbol: CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 167
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence
+  availability: local
   symbol: CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence
-  role: Scope fence keeping majorana_evaluator.py as an algebraic companion control
-    and F004 gap open
-- language: rust
-  path: code/rust/src/wdp/lib.rs
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 185
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence
+  availability: local
+  symbol: CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 201
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
+  availability: local
+  symbol: CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
+  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  repository: this_repository
+  sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
+  declaration_status: declaration_found_not_proof_checked
+  line: 222
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/lib.rs::to_homology_carrier
+  availability: local
   symbol: to_homology_carrier
-  role: Finite chain-complex homology carrier conversion boundary
-- language: python
-  path: code/python/src/majorana/majorana_evaluator.py
-  symbol: KitaevSweetSpotChain
-  role: 1D Kitaev sweet-spot chain companion control
-- language: python
-  path: code/python/src/majorana/majorana_evaluator.py
-  symbol: IsingFusionAlgebra
-  role: Ising anyon fusion rules and quantum dimensions companion control
-- language: python
-  path: checks/independent/tfq-0184.py
-  symbol: run_all_checks
-  role: Independent Python verification of companion controls and reflexivity scope
-    fences
+  path: code/rust/src/wdp/lib.rs
+  repository: this_repository
+  sha256: aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c
+  declaration_status: symbol_not_found
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -83,56 +444,30 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: VERIFIED
-    carrier: Paper 009 reflexivity declarations (Nat.le_refl (n*n*n), enum rfl) vs
-      GF(2) boundary-rank homology and majorana_evaluator.py companion controls
-    coefficient_ring: Z, Q, and GF(2)
-    assumptions:
-    - Reflexivity declarations do not compute boundary ranks or measure tetron homology
-    - F004 Majorana realization-packet gap remains open and separate from noise sweeps
-    source_pins:
-    - path: dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md
-      sha256: 67c2fbb4f785ca66cb50b34b9f525fe8e4c36844801e5b88f840cf0425a9d742
-    public_input:
-      node_id: TFQ-0184
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: VERIFIED
-    operations:
-    - computeDimH1
-    - classifyPaper009Declaration
-    composition_plan:
-    - Contrast exact elimination sum-of-squares and GF(2) boundary-rank homology with
-      syntactic reflexivity declarations
-    - Verify KitaevSweetSpotChain, IsingFusionAlgebra, ParityAlgebraModel, and binary
-      norm equivalence in majorana_evaluator.py
-    - Enforce F004 realization-packet gap and companion-control scope fences
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: VERIFIED
-    algebraic_relations:
-    - 2*n^3 - (n-1)*n*(2*n-1) = 3*n^2 - n
-    - 2*(L-1) + 2 = 2*L
-    - 1 + 1 + 2 = 4
-    rejection_predicates:
-    - classifyPaper009Declaration NatLeReflCubicBound = SyntacticReflexivityNotHomology
-    - f004MajoranaStatus = RealizationPacketGapOpen
-    - majoranaEvaluatorRole = AlgebraicCompanionControlOnly
-    negative_control_plan:
-    - 6 semantic Lean mutants in dag/research/campaign_tfq-0184_lean_mutation.json
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: VERIFIED
-    certificate_predicates:
-    - gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
-    - tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
-    - kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
-    - reflexivity_declaration_is_not_measured_tetron_homology_fence
-    - f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
-    - tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
-    anchors:
-    - lean4/CampaignTfq0184ImplementationSibling.lean
-    - code/rust/src/wdp/lib.rs
-    - code/python/src/majorana/majorana_evaluator.py
-    - checks/independent/tfq-0184.py
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads: []

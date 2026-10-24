@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fsp-witten-index-invariance.py`
 
 - file: [checks/independent/fsp-witten-index-invariance.py](../../../checks/independent/fsp-witten-index-invariance.py)
-- sha256 (`bytes`): `0d5f2cf47efa219f9ced88a7017b96a461b633dd66218a70d8fc2284bc1cb96c`
+- sha256 (`bytes`): `cc583dcc76fbf1cb45da1acbea62f995d37920bf8077c747eae54dd8d167c265`
 - cited in: record TFQ-1206
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md](../../../dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
-- sha256 (`lf-normalised`): `b035181c9c24963dbff36b8b76153e38793706bca37dc0c0b87023a37eeb1633`
+- sha256 (`lf-normalised`): `e9ec3c1a473956c447707f5651a48b3691d190486986fb22c9aff4b7d8126d0b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1206
 - counts toward the grade: no
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-witten-index-invariance_independent.json`
 
 - file: [dag/research/campaign_fsp-witten-index-invariance_independent.json](../../../dag/research/campaign_fsp-witten-index-invariance_independent.json)
-- sha256 (`lf-normalised`): `129a233a599208923aaa59daa6aadeed6a4905cff092cca93e25447a0c4a38ba`
+- sha256 (`lf-normalised`): `24b41a610981b2d8caed63ec4bfea341ffa3b9bdf305ac45bf23e01ad7f46d99`
 - cited in: node.source
 - counts toward the grade: yes
 

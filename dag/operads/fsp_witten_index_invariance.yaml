@@ -9,12 +9,20 @@ target:
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)
-  source_bottleneck: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040
-    leaves open, and gives no sign-free sampling of Z itself.
+  source_bottleneck: Narrowed algebraic checks only. For arbitrary finite rectangular matrix blocks over
+    a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic
+    polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not
+    derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts
+    are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state
+    existence proof, or sign-free sampler. Status is unchanged. The original physical or operational bridge
+    remains open.
   source_refs:
   - dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md
   - papers/core/fsp/theory_of_finite_fsp.md
-  - papers/core/fsp/lean4/regge_wdw_core.lean
+  - dag/derivations/independent/fsp-witten-index-invariance.md
+  - dag/research/campaign_fsp-witten-index-invariance_lean_replay.json
+  - dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json
+  - dag/research/campaign_fsp-witten-index-invariance_independent.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -23,7 +31,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md
-    sha256: 54273d765a2628858ea35b8fc7b8e06622eb5c378adbd9fca4e2aace933bc243
+    sha256: e9ec3c1a473956c447707f5651a48b3691d190486986fb22c9aff4b7d8126d0b
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +39,337 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_witten_index_invariance_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: susyHamiltonian
+  line: 40
+  signature_excerpt: |-
+    def susyHamiltonian {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) : Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: supercharge
+  line: 30
+  signature_excerpt: |-
+    def supercharge {nB nF R : Type*} [Zero R] (A : Matrix nF nB R) :
+        Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: superchargeAdj
+  line: 35
+  signature_excerpt: |-
+    def superchargeAdj {nB nF R : Type*} [Zero R] (B : Matrix nB nF R) :
+        Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fermionParity
+  line: 25
+  signature_excerpt: |-
+    def fermionParity (nB nF R : Type*) [DecidableEq nB] [DecidableEq nF] [CommRing R] :
+        Matrix (nB ⊕ nF) (nB ⊕ nF) R
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wittenIndexPaired
+  line: 138
+  signature_excerpt: 'def wittenIndexPaired (nB0 nF0 : ℕ) (weights : List ℚ) : ℚ'
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: partitionFunctionPaired
+  line: 142
+  signature_excerpt: 'def partitionFunctionPaired (nB0 nF0 : ℕ) (weights : List ℚ) : ℚ'
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: susyHamiltonian_eq_fromBlocks
+  line: 46
+  signature_excerpt: |-
+    theorem susyHamiltonian_eq_fromBlocks {nB nF R : Type*}
+        [Fintype nB] [Fintype nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) :
+        susyHamiltonian A B = fromBlocks (B * A) 0 0 (A * B)
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: boson_fermion_block_pow_intertwine
+  line: 53
+  signature_excerpt: |-
+    theorem boson_fermion_block_pow_intertwine {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) (k : ℕ) :
+        (B * A) ^ (k + 1) = B * (A * B) ^ k * A
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: susyHamiltonian_pow_eq_fromBlocks
+  line: 68
+  signature_excerpt: |-
+    theorem susyHamiltonian_pow_eq_fromBlocks {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) (k : ℕ) :
+        (susyHamiltonian A B) ^ k = fromBlocks ((B * A) ^ k) 0 0 ((A * B) ^ k)
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: boson_eq_fermion_pow_succ_trace
+  line: 80
+  signature_excerpt: |-
+    theorem boson_eq_fermion_pow_succ_trace {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) (k : ℕ) :
+        trace ((B * A) ^ (k + 1)) = trace ((A * B) ^ (k + 1))
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: supertrace_susyHamiltonian_pow_succ_eq_zero
+  line: 93
+  signature_excerpt: |-
+    theorem supertrace_susyHamiltonian_pow_succ_eq_zero {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) (k : ℕ) :
+        trace (fermionParity nB nF R * (susyHamiltonian A B) ^ (k + 1)) = 0
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: supertrace_fermionParity_fin_eq_sub
+  line: 108
+  signature_excerpt: |-
+    theorem supertrace_fermionParity_fin_eq_sub (nB nF : ℕ) {R : Type*} [CommRing R] :
+        trace (fermionParity (Fin nB) (Fin nF) R) = (nB : R) - (nF : R)
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: supertrace_cubic_boltzmann_poly_independent_of_beta
+  line: 113
+  signature_excerpt: |-
+    theorem supertrace_cubic_boltzmann_poly_independent_of_beta {nB nF : ℕ} {R : Type*} [CommRing R]
+        (A : Matrix (Fin nF) (Fin nB) R) (B : Matrix (Fin nB) (Fin nF) R)
+        (c0 c1 c2 c3 : R) :
+        let H
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wittenIndexPaired_eq_zero_mode_diff_for_all_weights
+  line: 146
+  signature_excerpt: |-
+    theorem wittenIndexPaired_eq_zero_mode_diff_for_all_weights (nB0 nF0 : ℕ) (weights : List ℚ) :
+        wittenIndexPaired nB0 nF0 weights = (nB0 : ℚ) - (nF0 : ℚ)
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nonzero_witten_index_implies_zero_mode_ground_state
+  line: 156
+  signature_excerpt: |-
+    theorem nonzero_witten_index_implies_zero_mode_ground_state (nB0 nF0 : ℕ) (weights : List ℚ)
+        (hW : wittenIndexPaired nB0 nF0 weights ≠ 0) :
+        0 < nB0 + nF0
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rectangular_2x1_supercharge_forced_zero_mode_and_index_one
+  line: 171
+  signature_excerpt: |-
+    theorem rectangular_2x1_supercharge_forced_zero_mode_and_index_one (a b : ℚ) :
+        let A
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witten_index_vs_partition_function_and_average_sign_fence
+  line: 197
+  signature_excerpt: |-
+    theorem witten_index_vs_partition_function_and_average_sign_fence
+        (nB0 nF0 : ℕ) (w1 w2 : ℚ) (hw1 : 0 < w1) (hw2 : 0 < w2) :
+        wittenIndexPaired nB0 nF0 [w1, w2] = (nB0 : ℚ) - (nF0 : ℚ) ∧
+        partitionFunctionPaired nB0 nF0 [w1, w2] = (nB0 : ℚ) + (nF0 : ℚ) + 2 * (w1 + w2) ∧
+        (nB0 : ℚ) + (nF0 : ℚ) < partitionFunctionPaired nB0 nF0 [w1, w2] ∧
+        wittenIndexPaired nB0 nF0 [w1, w2] < partitionFunctionPaired nB0 nF0 [w1, w2]
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: broken_lattice_susy_destroys_supertrace_cancellation_fence
+  line: 211
+  signature_excerpt: |-
+    theorem broken_lattice_susy_destroys_supertrace_cancellation_fence {nB nF R : Type*}
+        [Fintype nB] [DecidableEq nB] [Fintype nF] [DecidableEq nF] [CommRing R]
+        (A : Matrix nF nB R) (B : Matrix nB nF R) (Δ : Matrix nF nF R) :
+        trace (fermionParity nB nF R * fromBlocks (B * A) 0 0 (A * B + Δ)) = -trace Δ
+  source: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  source_sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 53
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 80
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 108
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 113
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 146
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 156
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 171
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 197
+  role: source_lead_only
+- original_ref: lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence
+  availability: local
+  symbol: CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence
+  path: lean4/CampaignFspWittenIndexInvariance.lean
+  repository: this_repository
+  sha256: 6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b
+  declaration_status: declaration_found_not_proof_checked
+  line: 211
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +409,6 @@ operad_slots:
     - exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
