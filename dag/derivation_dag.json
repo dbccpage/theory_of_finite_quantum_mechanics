@@ -14581,19 +14581,28 @@
       "stage": "PREGENESIS",
       "status": "OPEN",
       "source_status": "v1 Derivation 5 (clean theorem target, no proof); 000_oepregen 03_results_and_arguments.md section 7 (statement 7)",
-      "statement": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
+      "statement": "Narrowed boundary, status left OPEN: in the two-code model the stale context is 0 and the replayed context is 1. These codes differ. The empty-claim step holds at 0 and fails at 1. The binding check accepts a pair exactly when the two codes are equal, so it refuses (0, 1) and accepts (1, 1). Of the four ordered pairs drawn from {0, 1}, exactly two are accepted. Trial 2 Result 15, Prompt 12, Prompt 17, and a general ValidTrace semantics stay unresolved. Status stays OPEN.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md",
+        "dag/research/campaign_pgw-context-fidelity_lean_replay.json",
+        "dag/derivations/independent/pgw-context-fidelity.md",
         "omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:1065-1087",
         "omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:127-134",
         "omega_engine_education/documentation/000_oepregen/02_trial_record.md:120-130"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_codes_differ",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_empty_claim_on_stale",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_empty_claim_on_replay",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_binding_refuses_stale",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_binding_accepts_match",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_accept_count"
+      ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies"
       ],
       "imported_structure": [],
-      "bottleneck": "A target statement and verifier requirement with no proof and no declared trace semantics; the replay certifiers listed check a claimed Genesis regime against its event history and do not define ValidTrace.",
+      "bottleneck": "The identities are one two-code witness. They do not define ValidTrace for an arbitrary trace, do not reconstruct a history, and do not read the trial record. The listed replay certifiers still do not define ValidTrace. Status stays OPEN.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0427",
@@ -58117,18 +58126,27 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs",
+        "dag/derivations/independent/pgw-context-fidelity.md",
+        "dag/research/campaign_pgw-context-fidelity_lean_replay.json"
       ],
       "id": "TFQ-0427",
       "lean4": [
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_codes_differ",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_empty_claim_on_stale",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_empty_claim_on_replay",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_binding_refuses_stale",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_binding_accepts_match",
+        "lean4/CampaignPgwContextFidelity.lean::pgwContext_accept_count",
         "absent: no Lean definition of ValidTrace or of the context-fidelity non-implication; Represented.replay_deterministic in 000_genesis_19l57g1/lean4/Derivation/Represented.lean shows only that replay is a function of the history"
       ],
       "local_id": "PGW-CONTEXT-FIDELITY",
       "name": "context-fidelity",
-      "obligation": "Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.",
+      "obligation": "Keep the two-code witness separate from a general trace semantics. A verifier that reconstructs Replay(H) and accepts a declared context only when it equals that replay, before certifying a step, stays open.",
       "parent_id": "TFQ-0426",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify",
+        "checks/independent/pgw-context-fidelity.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -58136,7 +58154,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "PREGENESIS",
-      "summary": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
+      "summary": "Narrowed boundary, status left OPEN: in the two-code model the stale context is 0 and the replayed context is 1. These codes differ. The empty-claim step holds at 0 and fails at 1. The binding check accepts a pair exactly when the two codes are equal, so it refuses (0, 1) and accepts (1, 1). Of the four ordered pairs drawn from {0, 1}, exactly two are accepted. Trial 2 Result 15, Prompt 12, Prompt 17, and a general ValidTrace semantics stay unresolved. Status stays OPEN.",
       "uuid": "a869a901-9113-5d27-94f3-6a82867a61af"
     },
     {

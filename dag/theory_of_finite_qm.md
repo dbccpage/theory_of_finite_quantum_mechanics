@@ -1549,9 +1549,9 @@ Obligation: Reject any auditor that certifies the adopted state from a view π u
 - Parent: `TFQ-0426`
 - Status: `OPEN_OBLIGATION`
 
-A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.
+Narrowed boundary, status left OPEN: in the two-code model the stale context is 0 and the replayed context is 1. These codes differ. The empty-claim step holds at 0 and fails at 1. The binding check accepts a pair exactly when the two codes are equal, so it refuses (0, 1) and accepts (1, 1). Of the four ordered pairs drawn from {0, 1}, exactly two are accepted. Trial 2 Result 15, Prompt 12, Prompt 17, and a general ValidTrace semantics stay unresolved. Status stays OPEN.
 
-Obligation: Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.
+Obligation: Keep the two-code witness separate from a general trace semantics. A verifier that reconstructs Replay(H) and accepts a declared context only when it equals that replay, before certifying a step, stays open.
 
 ### TFQ-0428 admission-before-distinction
 
