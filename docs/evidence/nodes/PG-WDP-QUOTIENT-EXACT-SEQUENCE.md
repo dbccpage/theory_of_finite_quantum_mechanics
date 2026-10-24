@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ WDP-CH04-P03 FINITE_PROVED (P); P04/P05 FINITE_PROVED (P; C)
 
 ## Review
 
-- PFP review: [dag/results/PG-WDP-QUOTIENT-EXACT-SEQUENCE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-QUOTIENT-EXACT-SEQUENCE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/PG-WDP-QUOTIENT-EXACT-SEQUENCE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-QUOTIENT-EXACT-SEQUENCE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: For a window over a field with d1 d0 = 0 the sequence 0 -\> H1 -\> Q1 -\> im d1 -\> 0 is exact; no section is invariant under 1 + incl f pi when dim H1 \> 0 and dim im d1 \> 0 (kernel), and when dim H1 * dim im d1 = 0 there is exactly one section and it is invariant (kernel); every class has exactly one diagnostic class; Phi1 = 0 iff the class is zero for a definite J; and \|\|d1 h\|\|_1 \<= c Phi1 for an attained minimum and c at least the J-to-L1 column bound.
   - does not support: Any derivation of the window; norms other than weighted L1 for the inequality; complex coefficients; a statement that the sequence has or lacks a section natural for automorphisms of the window (graph automorphisms preserving d0, d1 and the weights); the converse "if there is an invariant section then dim H1 * dim im d1 = 0" is native by dimension (section_dim) with the trivial-factor halves in the kernel; existence of minimisers for general norms; Phi1 \>= 0 as a theorem for the weighted-L1 window (gamma2_nonneg is anchored, Phi1 \>= 0 needs the cost bridge of the degree-1 window node); any physical reading of the classes.
   - next test: Decide the splitting claim for the finite group G of automorphisms of the K4 two-face window (graph automorphisms preserving the two faces, d0, d1 and the weights) by solving the linear fixed-point equations of G on the affine section space over Hom(im d1, H1) = Q^2: either a G-fixed section exists or the fixed locus is empty.

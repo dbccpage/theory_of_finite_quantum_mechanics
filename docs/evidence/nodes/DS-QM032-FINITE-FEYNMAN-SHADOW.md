@@ -37,7 +37,7 @@ Unmet after the PFP review: Supply action weights, refinement, measure and conve
 
 ## Review
 
-- PFP review: [dag/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM032-FINITE-FEYNMAN-SHADOW/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Two-path interference has residual 2pq, including cancellation and rational controls.
   - does not support: Supply action weights, refinement, measure and convergence before invoking a Feynman continuum formula.
   - next test: Supply action weights, refinement, measure and convergence before invoking a Feynman continuum formula.

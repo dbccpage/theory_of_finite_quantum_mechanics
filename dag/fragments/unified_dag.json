@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5124,7 +5124,7 @@
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.",
-      "obligation": "State and prove the no-go theorem that maps a nonzero cobordism invariant to the impossibility of positive path-integral weights across a specified class of representation transformations; ledger GIN-C22 and GIN-C23 withdraw the fixture readings. Narrowed in lean4/CampaignFspCobordismIntrinsicSign.lean and checks/independent/fsp-cobordism-intrinsic-sign.py to: (1) discrete spectral sign oddness, particle-hole doublet cancellation, and single-eigenvalue zero-crossing jump Delta(eta) = +2 (Delta(eta/2) = 1, parity factor (-1)^(k+1) = -((-1)^k)); (2) mapping-torus 2x2 Dirac block det(diracMappingBlock m s) = m^2 - s showing massless sign reversal det(m=0, s=-1) = +1 vs det(m=0, s=+1) = -1; (3) Z_2 quadratic refinement Arf Gaussian sign sum dichotomy (+2 for Arf=0 vs -2 for Arf=1); (4) finite AHSS 5D spin-cobordism pairing nu5 = n_1 + arf*c_2 + n_2*w_2 in Z_2 across fundamental (1,0), spin-1/2 (1,1), and K3 gauge-gravitational (0,1) sectors (GIN-C22); (5) within-class Ward-identity no-go theorem over anomaly-involuted configurations (if sum_x w(T x) = -sum_x w(x) and w(x) >= 0 for all x, then w = 0) and 5D bulk inflow product cancellation (-1)^nu5 * (-1)^nu5 = +1 (GIN-C23); and (6) explicit scope fences for Pin^- Z_16 order-16 torsion (8*1 != 0 in Z_16), outside-class similarity transforms P^(-1)*diracMappingBlock(0,1)*P = diag(1,-1) (eigenvalue signs preserved), and non-zero thermal orientation weight asymmetry.",
+      "obligation": "Narrowed algebraic checks only. The integer spectral-sign function is odd; the declared 2x2 block has determinant m^2-s; two four-entry sign sums are 2 and -2. The exact supplied ZMod 2 formula is a3*arf+w1*sigmaDiv16, not n1+arf*c2+n2*w2. The Ward lemma concerns two nonnegative integer weights under the supplied equation w0+w1=-(w0+w1); it does not derive that equation from an anomaly or quantify over a configuration involution. P*H*P=2*D and equality of H/D traces/determinants do not assert trace preservation for P*H*P. Arithmetic in ZMod 16 computes no Pin bordism group. No manifold, AHSS, mapping-torus Dirac construction, anomaly classification, or bulk-boundary no-go theorem is formalized. Status is unchanged. The original physical or operational bridge remains open.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-BF-2GROUP-SIGN-CLAIM"
@@ -9959,10 +9959,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9972,7 +9972,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9980,7 +9980,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9997,7 +9997,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

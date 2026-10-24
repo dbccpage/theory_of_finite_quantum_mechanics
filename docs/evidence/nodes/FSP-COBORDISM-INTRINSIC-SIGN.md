@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-State and prove the no-go theorem that maps a nonzero cobordism invariant to the impossibility of positive path-integral weights across a specified class of representation transformations; ledger GIN-C22 and GIN-C23 withdraw the fixture readings. Narrowed in lean4/CampaignFspCobordismIntrinsicSign.lean and checks/independent/fsp-cobordism-intrinsic-sign.py to: (1) discrete spectral sign oddness, particle-hole doublet cancellation, and single-eigenvalue zero-crossing jump Delta(eta) = +2 (Delta(eta/2) = 1, parity factor (-1)^(k+1) = -((-1)^k)); (2) mapping-torus 2x2 Dirac block det(diracMappingBlock m s) = m^2 - s showing massless sign reversal det(m=0, s=-1) = +1 vs det(m=0, s=+1) = -1; (3) Z_2 quadratic refinement Arf Gaussian sign sum dichotomy (+2 for Arf=0 vs -2 for Arf=1); (4) finite AHSS 5D spin-cobordism pairing nu5 = n_1 + arf*c_2 + n_2*w_2 in Z_2 across fundamental (1,0), spin-1/2 (1,1), and K3 gauge-gravitational (0,1) sectors (GIN-C22); (5) within-class Ward-identity no-go theorem over anomaly-involuted configurations (if sum_x w(T x) = -sum_x w(x) and w(x) \>= 0 for all x, then w = 0) and 5D bulk inflow product cancellation (-1)^nu5 * (-1)^nu5 = +1 (GIN-C23); and (6) explicit scope fences for Pin^- Z_16 order-16 torsion (8*1 != 0 in Z_16), outside-class similarity transforms P^(-1)*diracMappingBlock(0,1)*P = diag(1,-1) (eigenvalue signs preserved), and non-zero thermal orientation weight asymmetry.
+Narrowed algebraic checks only. The integer spectral-sign function is odd; the declared 2x2 block has determinant m^2-s; two four-entry sign sums are 2 and -2. The exact supplied ZMod 2 formula is a3*arf+w1*sigmaDiv16, not n1+arf*c2+n2*w2. The Ward lemma concerns two nonnegative integer weights under the supplied equation w0+w1=-(w0+w1); it does not derive that equation from an anomaly or quantify over a configuration involution. P*H*P=2*D and equality of H/D traces/determinants do not assert trace preservation for P*H*P. Arithmetic in ZMod 16 computes no Pin bordism group. No manifold, AHSS, mapping-torus Dirac construction, anomaly classification, or bulk-boundary no-go theorem is formalized. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,24 +45,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFspCobordismIntrinsicSign.lean`
 
 - file: [lean4/CampaignFspCobordismIntrinsicSign.lean](../../../lean4/CampaignFspCobordismIntrinsicSign.lean)
-- sha256 (`bytes`): `dedac9935d62d9cc360c6224e262e0c9dac6f5bbb0119558b870c27b7793f457`
-- cited in: node.lean, receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignFspCobordismIntrinsicSign), record TFQ-1211
+- sha256 (`bytes`): `be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8`
+- cited in: node.lean, record TFQ-1211
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json) (module `CampaignFspCobordismIntrinsicSign`): recorded sha256 `dedac9935d62d9cc360c6224e262e0c9dac6f5bbb0119558b870c27b7793f457` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json) (module `CampaignFspCobordismIntrinsicSign`): recorded sha256 `be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFspCobordismIntrinsicSign`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `CampaignFspCobordismIntrinsicSign.ahss_5d_spin_cobordism_pairing_sectors` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.ahss_5d_spin_cobordism_pairing_sectors` |
 | `CampaignFspCobordismIntrinsicSign.anomaly_odd_ward_identity_rules_out_positive_weights_in_class` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.anomaly_odd_ward_identity_rules_out_positive_weights_in_class` |
-| `CampaignFspCobordismIntrinsicSign.arf_gaussian_sign_sum_dichotomy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.arf_gaussian_sign_sum_dichotomy` |
+| `CampaignFspCobordismIntrinsicSign.arf_gaussian_sign_sum_dichotomy` | yes | yes | yes | propext | `#print axioms CampaignFspCobordismIntrinsicSign.arf_gaussian_sign_sum_dichotomy` |
 | `CampaignFspCobordismIntrinsicSign.basis_change_removes_sign_outside_constrained_class_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.basis_change_removes_sign_outside_constrained_class_fence` |
 | `CampaignFspCobordismIntrinsicSign.five_d_bulk_inflow_cancels_boundary_anomaly_sign` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.five_d_bulk_inflow_cancels_boundary_anomaly_sign` |
 | `CampaignFspCobordismIntrinsicSign.mapping_torus_fermion_det_sign_reversal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.mapping_torus_fermion_det_sign_reversal` |
-| `CampaignFspCobordismIntrinsicSign.pin_minus_z16_order_sixteen_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.pin_minus_z16_order_sixteen_fence` |
-| `CampaignFspCobordismIntrinsicSign.single_eigenvalue_crossing_eta_jump_by_two` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.single_eigenvalue_crossing_eta_jump_by_two` |
+| `CampaignFspCobordismIntrinsicSign.pin_minus_z16_order_sixteen_fence` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.pin_minus_z16_order_sixteen_fence` |
+| `CampaignFspCobordismIntrinsicSign.single_eigenvalue_crossing_eta_jump_by_two` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.single_eigenvalue_crossing_eta_jump_by_two` |
 | `CampaignFspCobordismIntrinsicSign.spectralSign_odd_and_symmetric_pair_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.spectralSign_odd_and_symmetric_pair_zero` |
-| `CampaignFspCobordismIntrinsicSign.thermal_orientation_weight_asymmetry_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.thermal_orientation_weight_asymmetry_fence` |
+| `CampaignFspCobordismIntrinsicSign.thermal_orientation_weight_asymmetry_fence` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspCobordismIntrinsicSign.thermal_orientation_weight_asymmetry_fence` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md`
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-cobordism-intrinsic-sign.md`
 
 - file: [dag/derivations/independent/fsp-cobordism-intrinsic-sign.md](../../../dag/derivations/independent/fsp-cobordism-intrinsic-sign.md)
-- sha256 (`lf-normalised`): `ce837b20a50d4897b07a841c61e5c5f4e33ee5be49b7078198a8e9f54447dab7`
+- sha256 (`lf-normalised`): `467544e03924762c90c9369d433975493eaa059b38b3240debc62192d98c5e1c`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json)
-- sha256 (`lf-normalised`): `31c7b849650069ff0d34abc0ea3bf98ee4eba44561751f22a909f8470dce5880`
+- sha256 (`lf-normalised`): `88fa85403ae08127c5a6e3dbd8e06ef2ffe26ebcb4051e4d0603fafde46a6c27`
 - cited in: node.source
 - counts toward the grade: yes
 

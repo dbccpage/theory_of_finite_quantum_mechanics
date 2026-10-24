@@ -36,7 +36,7 @@ H060 2D pure-state Gram total positivity under every real embedding vs conductor
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact quadratic-field Gram/conjugate coefficients, a mixed signature control and real-root inequalities are checked; the fake 9/4 root is explicitly rejected.
   - does not support: Formalize the coefficient-to-real embedding homomorphisms, full Gram PSD and cyclotomic fixed-field degree identification. A declared evaluation is not that embedding.
   - next test: Formalize the coefficient-to-real embedding homomorphisms, full Gram PSD and cyclotomic fixed-field degree identification. A declared evaluation is not that embedding.

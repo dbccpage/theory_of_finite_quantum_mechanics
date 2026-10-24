@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -37,7 +37,7 @@ Deterministic CHSH {-2, 2} bound and inductive finite-convex-combination bound m
 
 ## Review
 
-- PFP review: [dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/audit_results.json](../../../dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/audit_results.json); file present and sha256 matches the node's record: yes; verdict `separator_extension_reviewed_guards_repaired`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/audit_results.json](../../../dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/audit_results.json); file present and sha256 matches the node's record: no; verdict `separator_extension_reviewed_guards_repaired`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Integer separator theorem and finite exact native certificates; full formal rational Fine converse remains open.
   - does not support: The full formal rational Fine converse (common positive joint law versus the CHSH family over the rationals) remains open.
   - next test: Formalize the rational Fine converse and rerun the separator extension against it.
