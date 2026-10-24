@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 3, E1 19, E3 10. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 3, E1 18, E3 11. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -33,7 +33,7 @@ Nodes: 32. Grades: E0 3, E1 19, E3 10. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_
 | [TFQ-0035](../nodes/TFQ-0035.md) | `COMPUTATIONALLY_CHECKED` | E1 | abj_colour_factor returns N_c/3, so the values at three colors and one color are 1 and 1/3, and the squared ratio of those factors is 9.... | [FiniteQFTAndGravity.lean](../../../lean4/FiniteQFTAndGravity.lean) | computational_no_runnable_test |
 | [TFQ-0036](../nodes/TFQ-0036.md) | `COMPUTATIONALLY_CHECKED` | E1 | pauli_spin_statistics_graph.rs runs verify_qm223_spin_statistics_graph on Conf_2 of P3, the star K_{1,3}, C4, K4, and K5. The Rust test r... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0037](../nodes/TFQ-0037.md) | `COMPUTATIONALLY_CHECKED` | E1 | The same QM-223 certificate sets the same-orbital Slater combination to 0, the fermion swap ratio to -1, the boson swap ratio to +1, and... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
-| [TFQ-0038](../nodes/TFQ-0038.md) | `OPEN` | E1 | Two readings of the K5 torsion must stay apart. The opening of pauli_spin_statistics_graph_finite_map.md states rank_Q of the square boun... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | - |
+| [TFQ-0038](../nodes/TFQ-0038.md) | `OPEN` | E3 | Two readings of the K5 torsion must stay apart. The opening of pauli_spin_statistics_graph_finite_map.md states rank_Q of the square boun... | [CampaignTfq0038FiniteQcd.lean](../../../lean4/CampaignTfq0038FiniteQcd.lean): `abelian_1d_character_collapse_boson_fermion`, `conf2_c4_and_k4_2complex_rational_betti_numbers`, `conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5` +7<br>[FiniteQM.lean](../../../lean4/FiniteQM.lean): `graph_conf2_exchange_betti_and_character_collapse`<br>[tfq-0038.py](../../../checks/independent/tfq-0038.py): `run_all_checks` | - |
 | [TFQ-0039](../nodes/TFQ-0039.md) | `OPEN` | E3 | The F002 floor states its own ceiling. The S000 book README calls the continuum volume an interface inventory and not a continuum derivat... | [CampaignTfq0039FiniteQcd.lean](../../../lean4/CampaignTfq0039FiniteQcd.lean): `f002_s001_empty_book_list_and_open_bridge_gap`, `finite_cyclic_dual_order_equals_lattice_period`, `finite_qcd_control_exact_rational_summary` +7<br>[tfq-0039.py](../../../checks/independent/tfq-0039.py) | - |
 | [TFQ-0040](../nodes/TFQ-0040.md) | `OPEN` | E1 | The tri-language obligation is uneven. Rust, Python, and Lean agree on the rational QM-221 matrix, beta0, beta1, and Creutz identities, w... | [FiniteQFTAndGravity.lean](../../../lean4/FiniteQFTAndGravity.lean)<br>[FiniteQM.lean](../../../lean4/FiniteQM.lean) | - |
 | [TFQ-0041](../nodes/TFQ-0041.md) | `COMPUTATIONALLY_CHECKED` | E0 | lattice_gauge_manybody_benchmark.rs is a separate finite control. open_tfim builds an exact Rational matrix for an open Ising chain of 1... | none in this checkout | computational_no_runnable_test |
