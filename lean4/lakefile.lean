@@ -1087,3 +1087,7 @@ lean_lib CampaignCqftLocalNetAxiomsImport where
 -- Campaign: LQG-EPRL-VERTEX-IMPORT. Not a default target.
 lean_lib CampaignLqgEprlVertexImport where
   roots := #[`CampaignLqgEprlVertexImport]
+
+-- Campaign: LQG-CONTINUUM-LIMIT-GAP. Not a default target.
+lean_lib CampaignLqgContinuumLimitGap where
+  roots := #[`CampaignLqgContinuumLimitGap]
