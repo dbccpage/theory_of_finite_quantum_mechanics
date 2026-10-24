@@ -1091,3 +1091,7 @@ lean_lib CampaignTfq0106FiniteQg where
 -- Campaign: TFQ-0090. Not a default target.
 lean_lib CampaignTfq0090FiniteQg where
   roots := #[`CampaignTfq0090FiniteQg]
+
+-- Campaign: TFQ-0107. Not a default target.
+lean_lib CampaignTfq0107FiniteQg where
+  roots := #[`CampaignTfq0107FiniteQg]

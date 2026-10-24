@@ -10,6 +10,11 @@
 
 field_equation.rs and hamiltonian_constraint.rs write discrete Einstein-Regge and Wheeler-DeWitt formulae, including a Lambda term, over floating edge lengths and dihedral angles. Those comments describe algebraic scaffolds and a vanishing condition for a discrete operator. They do not discharge the Einstein equation, which remains GAP, and they do not select a physical cosmological constant. What is finite is a triangulation with floating edge data when a caller supplies one. What is not discharged is a continuum field equation and any claim that a deficit equals smooth curvature. AuthorityEffect is None.
 
+Narrowed in Lean 4 (`lean4/CampaignTfq0107FiniteQg.lean`) and an independent Python verifier (`checks/independent/tfq-0107.py`) to three exact rational algebraic components and scope fences over $\mathbb{Q}$:
+1. **Exact Rational Replay of `field_equation.rs`**: replays `cosmoGrad`, `reggeEdgeResidual`, `discreteEinsteinTensor`, and `reggeRelaxationStepSq`, proving the zero-residual equivalence $C = \lambda V_{\text{grad}}$ (`regge_edge_residual_zero_iff`), the flat-interior unit-test replay (`flat_interior_regge_residual_replay`), and the gradient-relaxation fixed-point equivalence (`regge_relaxation_fixed_point_iff`).
+2. **Exact Rational Replay of `hamiltonian_constraint.rs`**: replays `vertexDualVolumeShare`, `vertexKineticTerm`, `vertexCurvaturePotential`, `vertexCosmologicalPotential`, and `vertexHamiltonianResidual`, proving the 4-vertex tetrahedral dual-volume partition and zero-momentum kinetic vanishing (`single_tetrahedron_zero_momentum_replay`) and the null/negative-mode indefinite signature of the discrete DeWitt kinetic quadratic form (`dewitt_kinetic_null_and_negative_modes`).
+3. **Scope Fences ($\Lambda$ Underdetermination, 3D Scaling Mismatch, and Multi-Hinge Cancellation)**: proves that caller-supplied $\lambda$ is underdetermined by both discrete operators (`hamiltonian_lambda_underdetermination`, `regge_edge_lambda_underdetermination`), uniform 3D edge rescaling $\ell \mapsto s\ell$ breaks static Hamiltonian balance with residual $U_v s(s^2 - 1)$ (`static_hamiltonian_scaling_mismatch`), and two hinges with opposite nonzero deficits $(+\delta, -\delta)$ cancel in the edge curvature gradient while retaining positive squared deficit $2\delta^2 > 0$ (`two_hinge_curvature_grad_cancellation_fence`, `two_hinge_deficit_zero_iff_sq_norm_zero`).
+
 ### Governing Obligation
 GAP: Einstein equation and physical cosmological constant stay unpaid; deficit is not smooth curvature.
 
@@ -26,11 +31,25 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Formalization
-*Formalization active. Proof obligations tracked under zero-sorry regime.*
+- [`lean4/CampaignTfq0107FiniteQg.lean`](../../../lean4/CampaignTfq0107FiniteQg.lean):
+  - `CampaignTfq0107FiniteQg.regge_edge_residual_zero_iff`
+  - `CampaignTfq0107FiniteQg.flat_interior_regge_residual_replay`
+  - `CampaignTfq0107FiniteQg.regge_relaxation_fixed_point_iff`
+  - `CampaignTfq0107FiniteQg.single_tetrahedron_zero_momentum_replay`
+  - `CampaignTfq0107FiniteQg.dewitt_kinetic_null_and_negative_modes`
+  - `CampaignTfq0107FiniteQg.hamiltonian_lambda_underdetermination`
+  - `CampaignTfq0107FiniteQg.regge_edge_lambda_underdetermination`
+  - `CampaignTfq0107FiniteQg.static_hamiltonian_scaling_mismatch`
+  - `CampaignTfq0107FiniteQg.two_hinge_curvature_grad_cancellation_fence`
+  - `CampaignTfq0107FiniteQg.two_hinge_deficit_zero_iff_sq_norm_zero`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/general_relativity/field_equation.rs`](../../code/rust/src/)
 - [`code/rust/src/general_relativity/hamiltonian_constraint.rs`](../../code/rust/src/)
+
+### Python Oracles & Numerical Evaluators
+- [`checks/independent/tfq-0107.py`](../../../checks/independent/tfq-0107.py) (`checks=825 regge=225 ham=100 fence=500 failures=0`)
+- [`dag/derivations/independent/tfq-0107.md`](../independent/tfq-0107.md)
 
 ---
 

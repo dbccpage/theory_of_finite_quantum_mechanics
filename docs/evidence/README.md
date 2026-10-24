@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 180, E1 240, E2 42, E3 463.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 180, E1 239, E2 42, E3 464.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,7 +24,7 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 180, E1 240, E2 42, E3 4
 
 Of the 267 `PROVED_LEAN` nodes, 267 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 463 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 464 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
@@ -42,9 +42,9 @@ The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in file
 | `IMPORTED_ASSUMPTION` | 7 | 26 | 1 | 36 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 45 | 90 | 10 | 30 | 0 | 175 |
+| `OPEN` | 45 | 89 | 10 | 31 | 0 | 175 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 180 | 240 | 42 | 463 | 0 | 925 |
+| Total | 180 | 239 | 42 | 464 | 0 | 925 |
 
 ### Stage by evidence grade
 
@@ -71,7 +71,7 @@ The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in file
 | [FINITE_QED](stages/FINITE_QED.md) | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
 | [FINITE_QCD](stages/FINITE_QCD.md) | 6 | 25 | 0 | 1 | 0 | 32 | 1 | 18 |
 | [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 7 | 0 | 0 | 0 | 9 | 0 | 7 |
-| [FINITE_QG](stages/FINITE_QG.md) | 7 | 6 | 0 | 2 | 0 | 15 | 0 | 0 |
+| [FINITE_QG](stages/FINITE_QG.md) | 7 | 5 | 0 | 3 | 0 | 15 | 0 | 0 |
 | [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 9 | 0 | 0 | 0 | 0 | 9 | 0 | 0 |
 | [IMPLEMENTATION_CORE](stages/IMPLEMENTATION_CORE.md) | 25 | 16 | 0 | 0 | 0 | 41 | 0 | 68 |
 | [IMPLEMENTATION_SIBLING](stages/IMPLEMENTATION_SIBLING.md) | 2 | 24 | 0 | 0 | 0 | 26 | 0 | 24 |
