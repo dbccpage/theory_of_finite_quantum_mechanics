@@ -14,10 +14,10 @@
 On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.
 
 ### Governing Obligation
-Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.
+Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself. Narrowed in lean4/CampaignFspWittenIndexInvariance.lean and checks/independent/fsp-witten-index-invariance.py to exact block power intertwining (BA)^(k+1) = B(AB)^k A, vanishing supertrace Tr(Gamma_F H(A,B)^(k+1)) = 0 for all k, beta-independence of truncated Boltzmann polynomials and paired positive-energy doublet sums W(beta) = n_B(0) - n_F(0), forced zero-energy ground states when W != 0, rectangular (2, 1) forced bosonic zero modes, and explicit fences separating W(beta) from the beta-dependent partition function Z(beta) and showing that lattice SUSY breaking Delta shifts Tr(Gamma_F H_broken) by -Tr(Delta).
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py.
+Replaced missing NonAbelianGaugeSigns.lean::witten_index_beta_independence and trivial regge_wdw_core.lean::witten_index_beta_invariant placeholder with lean4/CampaignFspWittenIndexInvariance.lean (12 theorems, 0 sorrys) and checks/independent/fsp-witten-index-invariance.py (1171 checks, 0 failures).
 
 ---
 
@@ -31,13 +31,24 @@ Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence`
+- `lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-witten-index-invariance.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::quantum_state::witten_index_invariance (cited by the source, not in this checkout)`
@@ -54,4 +65,7 @@ Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. 
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:584-597`
-  - `papers/core/fsp/lean4/regge_wdw_core.lean:796-800`
+  - `dag/derivations/independent/fsp-witten-index-invariance.md`
+  - `dag/research/campaign_fsp-witten-index-invariance_lean_replay.json`
+  - `dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json`
+  - `dag/research/campaign_fsp-witten-index-invariance_independent.json`
