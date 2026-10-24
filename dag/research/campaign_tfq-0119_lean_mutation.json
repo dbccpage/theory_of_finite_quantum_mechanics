@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0119",
+  "lean_file": "lean4/CampaignTfq0119ContinuumInterface.lean",
+  "sha256": "c8dd45972bc309e0fd3cef42c32ebe9395b707c0ab0e8cedd95e071e9269e252",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_dyadic_rat_val_multiply_instead_of_divide",
+        "description": "Mutate dyadicRatVal from m / (2 ^ k) to m * (2 ^ k), falsifying dyadic_direct_limit_step_invariant and dyadic_haar_uniform_sum_one.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpm_091bq7.lean:55:55: error: unsolved goals\nk : \u2115\nm : \u211a\nh2k : 2 ^ k \u2260 0\n\u22a2 2 ^ 2 * m = m\ntmpm_091bq7.lean:64:67: error: unsolved goals\nk d : \u2115\nm : \u211a\nh2k : 2 ^ k \u2260 0\nh2d : 2 ^ d \u2260 0\n\u22a2 (2 ^ d) ^ 2 * m = m\ntmpm_091bq7.lean:74:44: error: unsolved goals\nk : \u2115\nh2k : 2 ^ k \u2260 0\n\u22a2 (2 ^ k) ^ 2 = 1\ntmpm_091bq7.lean:115:4: error: linarith failed to find a contradiction\ncase h1\nk m : \u2115\nh2k : 2 ^ k \u2260 0\nh : \u2191m "
+      },
+      {
+        "id": "M2_dyadic_rat_val_shift_exponent",
+        "description": "Mutate dyadicRatVal denominator from (2 : \u211a) ^ k to (2 : \u211a) ^ (k + 1), falsifying dyadic_haar_uniform_sum_one.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp30awknyo.lean:64:67: error: unsolved goals\nk d : \u2115\nm : \u211a\nh2k : 2 ^ k \u2260 0\nh2d : 2 ^ d \u2260 0\n\u22a2 2 ^ d * m * 2 ^ (k + 1) = m * 2 ^ (k + d) * 2\ntmp30awknyo.lean:74:44: error: unsolved goals\nk : \u2115\nh2k : 2 ^ k \u2260 0\n\u22a2 2 ^ k = 2 ^ (k + 1)\ntmp30awknyo.lean:115:4: error: linarith failed to find a contradiction\ncase h1\nk m : \u2115\nh2k : 2 ^ k \u2260 0\nh : \u2191m * 3 = 2 ^ (k + 1)\na\u271d : 3 * \u2191m < 2 ^ k\n\u22a2 False\nfailed\n'Campai"
+      },
+      {
+        "id": "M3_dyadic_one_third_approx_plus_one",
+        "description": "Mutate dyadicOneThirdApprox numerator from 4^n - 1 to 4^n + 1, falsifying dyadic_cauchy_approx_one_third_residual and dyadic_cauchy_approx_table.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmpxx1u0it3.lean:152:2: error: unsolved goals\ncase refine_1\nn : \u2115\nh4n : 4 ^ n \u2260 0\n\u22a2 -1 = 1\ntmpxx1u0it"
+      },
+      {
+        "id": "M4_dyadic_one_third_approx_drop_factor_three",
+        "description": "Mutate dyadicOneThirdApprox denominator from 3 * 4^n to 4^n, falsifying dyadic_cauchy_approx_one_third_residual and dyadic_cauchy_approx_table.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmpuli5i3db.lean:152:2: error: unsolved goals\ncase refine_1\nn : \u2115\nh4n : 4 ^ n \u2260 0\n\u22a2 3 - 4 ^ n * 2 = 1"
+      },
+      {
+        "id": "M5_dyadic_one_third_residual_add_instead_of_sub",
+        "description": "Mutate dyadicOneThirdResidual from 1 / 3 - dyadicOneThirdApprox n to 1 / 3 + dyadicOneThirdApprox n, falsifying dyadic_cauchy_approx_one_third_residual.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmp0md4eczp.lean:152:2: error: unsolved goals\ncase refine_1\nn : \u2115\nh4n : 4 ^ n \u2260 0\n\u22a2 -1 + 4 ^ n * 2 = "
+      },
+      {
+        "id": "M6_dyadic_one_third_residual_negate_sign",
+        "description": "Mutate dyadicOneThirdResidual from 1 / 3 - dyadicOneThirdApprox n to dyadicOneThirdApprox n - 1 / 3, falsifying dyadic_cauchy_approx_strictly_below_one_third.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmpri1eh9dn.lean:152:2: error: unsolved goals\ncase refine_1\nn : \u2115\nh4n : 4 ^ n \u2260 0\n\u22a2 -1 = 1\ntmpri1eh9d"
+      }
+    ]
+  }
+}
