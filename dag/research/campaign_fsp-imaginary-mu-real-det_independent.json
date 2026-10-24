@@ -1,0 +1,64 @@
+{
+  "schema_version": "campaign_independent_replay.v1",
+  "AuthorityEffect": "None",
+  "source": "checks/independent/fsp-imaginary-mu-real-det.py",
+  "sha256": "ac19770608212101081358398a29af59f440a541d91f29fe233e5eaf62c2d81d",
+  "python_version": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "sympy_version": "1.14.0",
+  "results": [
+    {
+      "command": "python -I -X utf8 checks/independent/fsp-imaginary-mu-real-det.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python -I -O -X utf8 checks/independent/fsp-imaginary-mu-real-det.py",
+      "exit_code": 0
+    }
+  ],
+  "output": {
+    "schema_version": "campaign_independent.v1",
+    "AuthorityEffect": "None",
+    "node": "FSP-IMAGINARY-MU-REAL-DET",
+    "field": "Q(i); Q(zeta_12) for center orbit",
+    "lattice_cases": 27,
+    "determinant_examples": [
+      {
+        "sites": 2,
+        "mass": "1",
+        "z": "1",
+        "det": "209/100"
+      },
+      {
+        "sites": 2,
+        "mass": "1",
+        "z": "I",
+        "det": "209/50"
+      },
+      {
+        "sites": 2,
+        "mass": "1",
+        "z": "3/5 + 4*I/5",
+        "det": "149281/62500"
+      }
+    ],
+    "gamma_only_determinant": "-1",
+    "zero_mass_determinant": "0",
+    "real_fugacity_determinant": "2457/4096 + 315*I/256",
+    "boundary_polynomial": "t**3/64 - 3*t**2/32 - 3*I*t**2/16 - 37*t/64 + 9*I*t/8 + 57/16 - 37/(64*t) - 9*I/(8*t) - 3/(32*t**2) + 3*I/(16*t**2) + 1/(64*t**3)",
+    "center_sum_at_one": "345/32",
+    "rejected_inputs": [
+      "odd cycle",
+      "oversize cycle",
+      "mutable links",
+      "nonunitary link",
+      "wrong determinant",
+      "zero fugacity",
+      "nonreal mass",
+      "float entry",
+      "boolean entry"
+    ],
+    "result": "PASS",
+    "scope": "Finite 1D cycles; finite center-orbit sum, not a QCD measure or continuation."
+  },
+  "optimized_output_equal": true
+}
