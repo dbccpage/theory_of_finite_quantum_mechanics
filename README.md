@@ -34,8 +34,8 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG stages (declared / with nodes) | 36 / 34 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | DAG validator | `nodes=925 routes=934 records=977 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 977 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
-| Derivation papers | 1020 in 36 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 1907 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Derivation papers | 1021 in 36 stage folders | [`dag/derivations`](dag/derivations) |
+| Lean references in DAG nodes | 1916 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 320 resolve to a file in this checkout, 628 do not, 2 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | PFP prompts / indexed operad collections | 925 / 925 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
 | PFP stage per prompt | P0_MINE_OPERAD 748, P5_RECORD 177 | [`dag/operads/index.json`](dag/operads/index.json) |
@@ -45,8 +45,8 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 69, caveat_added 18, statement_narrowed 65, status_lowered 25 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 266 records from 8 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 87, refuted 2, recorded lower 84 (OPEN 38, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 14, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
-| Tracked `.lean` files | lean4 950, papers 59, code 66, dag 2428, other 10 (the `dag` files are run snapshots) | `git ls-files` |
-| Lake libraries / module roots in `lean4/lakefile.lean` | 42 / 894 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
+| Tracked `.lean` files | lean4 951, papers 59, code 66, dag 2428, other 10 (the `dag` files are run snapshots) | `git ls-files` |
+| Lake libraries / module roots in `lean4/lakefile.lean` | 43 / 895 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
 | Lean toolchain | `leanprover/lean4:v4.35.0` | [`lean4/lean-toolchain`](lean4/lean-toolchain) |
 | Mathlib | `v4.35.0` (manifest rev `56a005855ea1`) | [`lean4/lakefile.lean`](lean4/lakefile.lean), [`lean4/lake-manifest.json`](lean4/lake-manifest.json) |
 | Axiom receipts / declaration lines audited | 8 files / 396 lines (literal `#print axioms` lines: 1) | `dag/research/*axioms*.txt`, `papers/**/axiom_report*.txt`, `**/evidence/axiom_reports/*.txt` |
@@ -59,7 +59,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
-Nodes by status: PROVED_LEAN 266, OPEN 175, COMPUTATIONALLY_CHECKED 159, DEFINITION 92, SOURCE_RECORD 81, IMPORTED_ASSUMPTION 70, CONDITIONAL 38, PROVED_PROSE 35, REFUTED 6, ADMITTED_PRIMITIVE 3.
+Nodes by status: PROVED_LEAN 267, OPEN 175, COMPUTATIONALLY_CHECKED 159, DEFINITION 92, SOURCE_RECORD 81, IMPORTED_ASSUMPTION 70, CONDITIONAL 37, PROVED_PROSE 35, REFUTED 6, ADMITTED_PRIMITIVE 3.
 
 Nodes by stage: PREGENESIS 31, GENESIS 89, MSSN_SN 28, WDP 29, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 33, FINITE_QM_DYNAMICS 22, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 67, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_GAUGE 1, FINITE_QED 1, FINITE_QCD 32, FINITE_TOPOLOGICAL 9, FINITE_QG 15, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 82, CONSTRUCTOR_THEORY 15, CAUSAL_QFT 14, ADS_CFT 13, LOOP_QUANTUM_GRAVITY 16, GENESIS_TO_HIGHER 12, OBSERVER_PRESHEAF 33.
 
