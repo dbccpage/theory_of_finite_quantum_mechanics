@@ -160,6 +160,11 @@ def test_receipt_acceptance_rules():
     assert not be.receipt_ok({"exit_code": 0, "axioms_standard": True}, True)
     assert be.parse_axiom_output("'A.b' depends on axioms: [propext,\n Quot.sound]\n'A.c' does not depend on any axioms") == {
         "A.b": ["Quot.sound", "propext"], "A.c": []}
+    assert be.receipt_results({"lean_replay": {"results": []}}) == ({"results": []}, [], None)
+    assert be.receipt_results({"results": [], "lean_version": "4.35.0"})[1] is None
+    assert be.receipt_results({"checks": "Lean ran"})[2] == "records Lean checks without per-module sha256"
+    failed = {"lean_version": "4.35.0", "results": [{"exit_code": 1}]}
+    assert "nonzero code" in be.receipt_results(failed)[2]
 
 
 def test_every_indexed_receipt_records_a_passed_axiom_audit_or_is_not_credited():
