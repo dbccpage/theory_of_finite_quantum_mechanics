@@ -4,19 +4,19 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 ## Statement
 
-> Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Scoped control items are done; the end-to-end claims are not. Lean establishes only ledger bookkeeping (end-to-end defined as all five discharged) and three side facts (five-flag Boolean AND, symmetrised adjacency forgets orientation, no p^2 = 2 q^2); no obligation is discharged, dischargeable or refuted.
+> Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Narrowed finite case, status left OPEN: on any finite window, symmetrised adjacency is false at a pair exactly when both directed adjacencies are false; on two vertices that symmetrisation is not a directed-step certificate, since edge01 and edge10 differ as directed steps and both have pair-defect true at (0,1); the identity on adjacency is a directed-step certificate on every finite window; and no positive integers p, q satisfy p * p = 2 * q * q, with the numerical case 1 * 1 = 1 and 2 * 1 * 1 = 2. O01, O03, O04, O05, and the existence of an O02 map from a source admission system stay open.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 24
-- cited Lean declarations covered by a current replay receipt: 23
+- counted in-repo evidence files: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 33
+- cited Lean declarations covered by a current replay receipt: 32
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 3
+- counted in-repo Rust or Python files that are not tests: 4
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (4 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-O01..O05 remain open in the register; the Lean module is definitional bookkeeping and the PROVED_LEAN label does not extend to any obligation.
+O01..O05 remain open in the register. CampaignPgwWdpBridgeObligations records the symmetrised-adjacency candidate only: it is not a directed-step certificate, while the identity on adjacency is one, so O02 is not refuted. The integer relation p * p = 2 * q * q has no positive solution and is not the O04 scalar or Hilbert choice. No source admission system is given a preservation map.
 
 ## Source status
 
@@ -44,6 +44,28 @@ GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 obser
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignPgwWdpBridgeObligations.lean`
+
+- file: [lean4/CampaignPgwWdpBridgeObligations.lean](../../../lean4/CampaignPgwWdpBridgeObligations.lean)
+- sha256 (`bytes`): `8d3358fa30d4b9a910101b4e49d925725239f47ecce5dec3f8de1ab238b6d026`
+- cited in: node.lean, node.source, receipt dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json (CampaignPgwWdpBridgeObligations)
+- replay: `verified`
+  - receipt [dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json](../../../dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json) (module `CampaignPgwWdpBridgeObligations`): recorded sha256 `8d3358fa30d4b9a910101b4e49d925725239f47ecce5dec3f8de1ab238b6d026` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignPgwWdpBridgeObligations`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignPgwWdpBridgeObligations.idAdj_is_certificate` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.idAdj_is_certificate` |
+| `CampaignPgwWdpBridgeObligations.no_sq_at_one` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpBridgeObligations.no_sq_at_one` |
+| `CampaignPgwWdpBridgeObligations.no_sq_eq_two_sq` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpBridgeObligations.no_sq_eq_two_sq` |
+| `CampaignPgwWdpBridgeObligations.one_sq_ne_two` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.one_sq_ne_two` |
+| `CampaignPgwWdpBridgeObligations.one_sq_values` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.one_sq_values` |
+| `CampaignPgwWdpBridgeObligations.pairDefect_false_iff` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.pairDefect_false_iff` |
+| `CampaignPgwWdpBridgeObligations.pairDefect_not_directed_step_certificate` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.pairDefect_not_directed_step_certificate` |
+| `CampaignPgwWdpBridgeObligations.some_certificate_exists` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.some_certificate_exists` |
+| `CampaignPgwWdpBridgeObligations.witness_orientation_swap` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.witness_orientation_swap` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
@@ -135,6 +157,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness` (rust_symbol) | yes | yes | yes | - | - |
 - counts toward the grade: yes
 
+### Python: `checks/independent/pg-wdp-genesis-bridge-obligations.py`
+
+- file: [checks/independent/pg-wdp-genesis-bridge-obligations.py](../../../checks/independent/pg-wdp-genesis-bridge-obligations.py)
+- sha256 (`bytes`): `2f064918320e3bf12e04d3702d29335b693d89183030474ab9365f3dd93c632a`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md`
 
 - file: [dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md](../../../dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md)
@@ -142,6 +171,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0343
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pg-wdp-genesis-bridge-obligations.md`
+
+- file: [dag/derivations/independent/pg-wdp-genesis-bridge-obligations.md](../../../dag/derivations/independent/pg-wdp-genesis-bridge-obligations.md)
+- sha256 (`lf-normalised`): `c73e22aad58838d6fddae46fd9b2789df0daa1c6a051aa0c5c238f8f44c636d4`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
 

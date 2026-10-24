@@ -3,19 +3,31 @@ node_id: TFQ-0031
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'The open gap sits where the finite certificate stops. qcd_beta0_wilson_confinement_finite_map.md
-    withholds a continuum mass-gap claim and withholds non-perturbative behavior at weak coupling as the
-    spacing goes to zero. F002.S001 is an empty shelf: README.md says no book is admitted and GAP-F002-S001-001
-    stays open, and named_adjoining.yaml says the Pontryagin inventory is not a bridge theorem. Citing
-    that shelf here is an open bridge, not a derivation. Nothing in the Creutz rows, the beta0 table,
-    or the plan status done supplies the missing bridge. Confinement beyond the strong-coupling formulae
-    remains a gap.'
+  source_statement: 'Narrowed boundary, status left OPEN: on the 3 by 3 lattice, 3*3 = 9 vertices and
+    3*2+3*2 = 12 edges. The spanning-tree count 9-1 = 8 and the cycle count 12-9+1 = 4. The strong-coupling
+    denominator 2*3*3 = 18, and 2 = 1*2 together with 18 = 9*2, so the reduced ratio is 1/9. For all natural
+    numbers r and t, the area-law exponents satisfy (r+1)*(t+1)+r*t = (r+1)*t+r*(t+1)+1, and the perimeter-law
+    exponents satisfy 2*((r+1)+(t+1))+2*(r+t) = 2*((r+1)+t)+2*(r+(t+1)), using the side shift (r+1)+t
+    = r+(t+1). The four pairs with sides in {2, 3} are instances. The cleared one-loop numerators 33-2*n
+    equal 33, 27, 23, 21, 1, and -1 at n = 0, 3, 5, 6, 16, and 17. For n from 0 through 16 they are 33,
+    31, 29, 27, 25, 23, 21, 19, 17, 15, 13, 11, 9, 7, 5, 3, 1. The cleared two-loop numerator at n = 16
+    equals -302, and -1*302 equals -302. The finite-map note contains a sentence that withholds a continuum
+    mass-gap claim and withholds non-perturbative confinement in the continuum limit at weak coupling.
+    The shelf path omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge/shelf.yaml
+    is absent from this tree, and no file in this tree is named named_adjoining.yaml. Status stays OPEN.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Leave confinement beyond the strong-coupling formulae as a gap, with F002.S001 an
-    open bridge.
+  source_bottleneck: The identities in the statement are the strong-coupling boundary. The finite-map
+    sentence withholds a continuum mass-gap claim and a weak-coupling spacing limit. The shelf README
+    sentence and the Pontryagin adjoining sentence stay unchecked because those files are absent. A Monte
+    Carlo string tension and a vanishing-spacing limit stay open. Status stays OPEN.
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0031_leave_confinement_beyond_the_strong_coupling_formulae_as_a_gap_with_f002_s001_an.md
+  - dag/derivations/independent/tfq-0031.md
+  - checks/independent/tfq-0031.py
+  - lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  - dag/research/campaign_tfq-0031_lean_replay.json
+  - dag/research/qcd_beta0_wilson_confinement_finite_map.md
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0031_leave_confinement_beyond_the_strong_coupling_formulae_as_a_gap_with_f002_s001_an.md
   source_claim_label: OPEN
@@ -24,7 +36,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0031_leave_confinement_beyond_the_strong_coupling_formulae_as_a_gap_with_f002_s001_an.md
-    sha256: 762701cc3d8fc7a97cb4877a7e4eb296e40f171c577098e738d35ed1149bf343
+    sha256: 8f474cfdde7303d80c3cb369234c080f9e5faede483bb21f661095fb052595de
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -32,9 +44,475 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_qcd_tfq_0031_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: latticeV
+  line: 7
+  signature_excerpt: 'def latticeV : Nat'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: latticeE
+  line: 8
+  signature_excerpt: 'def latticeE : Nat'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: beta0Num
+  line: 10
+  signature_excerpt: 'def beta0Num (n : Nat) : Int'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: beta0Window
+  line: 13
+  signature_excerpt: 'def beta0Window : List Int'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: beta1Num
+  line: 11
+  signature_excerpt: 'def beta1Num (n : Nat) : Int'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: tfq0031_vertex_count
+  line: 15
+  signature_excerpt: 'theorem tfq0031_vertex_count : latticeV = 9'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_edge_count
+  line: 17
+  signature_excerpt: 'theorem tfq0031_edge_count : latticeE = 12'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_tree_edges
+  line: 19
+  signature_excerpt: 'theorem tfq0031_tree_edges : latticeV - 1 = 8'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_betti
+  line: 21
+  signature_excerpt: 'theorem tfq0031_betti : latticeE - latticeV + 1 = 4'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_beta_tilde
+  line: 23
+  signature_excerpt: 'theorem tfq0031_beta_tilde : (2 : Int) * (3 * 3) = 18'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_beta_tilde_reduced
+  line: 26
+  signature_excerpt: 'theorem tfq0031_beta_tilde_reduced : (2 : Int) = 1 * 2 ∧ (2 : Int) * (3 * 3) = 9
+    * 2'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_area_exponent
+  line: 29
+  signature_excerpt: |-
+    theorem tfq0031_area_exponent (r t : Nat) :
+        (r + 1) * (t + 1) + r * t = (r + 1) * t + r * (t + 1) + 1
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_side_shift
+  line: 42
+  signature_excerpt: 'theorem tfq0031_side_shift (r t : Nat) : (r + 1) + t = r + (t + 1)'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_perim_exponent
+  line: 45
+  signature_excerpt: |-
+    theorem tfq0031_perim_exponent (r t : Nat) :
+        2 * ((r + 1) + (t + 1)) + 2 * (r + t) =
+          2 * ((r + 1) + t) + 2 * (r + (t + 1))
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_area_pair_22
+  line: 57
+  signature_excerpt: |-
+    theorem tfq0031_area_pair_22 :
+        (2 : Nat) * 2 + 1 * 1 = 2 * 1 + 1 * 2 + 1
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_area_pair_23
+  line: 61
+  signature_excerpt: |-
+    theorem tfq0031_area_pair_23 :
+        (2 : Nat) * 3 + 1 * 2 = 2 * 2 + 1 * 3 + 1
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_area_pair_32
+  line: 65
+  signature_excerpt: |-
+    theorem tfq0031_area_pair_32 :
+        (3 : Nat) * 2 + 2 * 1 = 3 * 1 + 2 * 2 + 1
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_area_pair_33
+  line: 69
+  signature_excerpt: |-
+    theorem tfq0031_area_pair_33 :
+        (3 : Nat) * 3 + 2 * 2 = 3 * 2 + 2 * 3 + 1
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_perim_pair_22
+  line: 73
+  signature_excerpt: |-
+    theorem tfq0031_perim_pair_22 :
+        2 * ((2 : Nat) + 2) + 2 * (1 + 1) = 2 * (2 + 1) + 2 * (1 + 2)
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_perim_pair_23
+  line: 77
+  signature_excerpt: |-
+    theorem tfq0031_perim_pair_23 :
+        2 * ((2 : Nat) + 3) + 2 * (1 + 2) = 2 * (2 + 2) + 2 * (1 + 3)
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_perim_pair_32
+  line: 81
+  signature_excerpt: |-
+    theorem tfq0031_perim_pair_32 :
+        2 * ((3 : Nat) + 2) + 2 * (2 + 1) = 2 * (3 + 1) + 2 * (2 + 2)
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_perim_pair_33
+  line: 85
+  signature_excerpt: |-
+    theorem tfq0031_perim_pair_33 :
+        2 * ((3 : Nat) + 3) + 2 * (2 + 2) = 2 * (3 + 2) + 2 * (2 + 3)
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_beta0_samples
+  line: 89
+  signature_excerpt: |-
+    theorem tfq0031_beta0_samples :
+        beta0Num 0 = 11 * 3 ∧ beta0Num 3 = 9 * 3 ∧ beta0Num 5 = 23 ∧
+          beta0Num 6 = 7 * 3 ∧ beta0Num 16 = 1 ∧ beta0Num 17 = -1
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_beta0_window
+  line: 94
+  signature_excerpt: |-
+    theorem tfq0031_beta0_window :
+        beta0Window = [33, 31, 29, 27, 25, 23, 21, 19, 17, 15, 13, 11, 9, 7, 5, 3, 1]
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_beta1_16
+  line: 98
+  signature_excerpt: 'theorem tfq0031_beta1_16 : beta1Num 16 = -302'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0031_banks_zaks
+  line: 101
+  signature_excerpt: 'theorem tfq0031_banks_zaks : -beta0Num 16 * 302 = beta1Num 16'
+  source: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  source_sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_vertex_count
+  availability: local
+  symbol: tfq0031_vertex_count
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 15
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_edge_count
+  availability: local
+  symbol: tfq0031_edge_count
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 17
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_tree_edges
+  availability: local
+  symbol: tfq0031_tree_edges
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 19
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_betti
+  availability: local
+  symbol: tfq0031_betti
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_beta_tilde
+  availability: local
+  symbol: tfq0031_beta_tilde
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_beta_tilde_reduced
+  availability: local
+  symbol: tfq0031_beta_tilde_reduced
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_area_exponent
+  availability: local
+  symbol: tfq0031_area_exponent
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 29
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_side_shift
+  availability: local
+  symbol: tfq0031_side_shift
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_perim_exponent
+  availability: local
+  symbol: tfq0031_perim_exponent
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 45
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_area_pair_22
+  availability: local
+  symbol: tfq0031_area_pair_22
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_area_pair_23
+  availability: local
+  symbol: tfq0031_area_pair_23
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 61
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_area_pair_32
+  availability: local
+  symbol: tfq0031_area_pair_32
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_area_pair_33
+  availability: local
+  symbol: tfq0031_area_pair_33
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_perim_pair_22
+  availability: local
+  symbol: tfq0031_perim_pair_22
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 73
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_perim_pair_23
+  availability: local
+  symbol: tfq0031_perim_pair_23
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 77
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_perim_pair_32
+  availability: local
+  symbol: tfq0031_perim_pair_32
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 81
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_perim_pair_33
+  availability: local
+  symbol: tfq0031_perim_pair_33
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 85
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_beta0_samples
+  availability: local
+  symbol: tfq0031_beta0_samples
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 89
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_beta0_window
+  availability: local
+  symbol: tfq0031_beta0_window
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 94
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_beta1_16
+  availability: local
+  symbol: tfq0031_beta1_16
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 98
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0031StrongCouplingBoundary.lean::tfq0031_banks_zaks
+  availability: local
+  symbol: tfq0031_banks_zaks
+  path: lean4/CampaignTfq0031StrongCouplingBoundary.lean
+  repository: this_repository
+  sha256: 6e4b0290412ceb954e4e91b063cd61e6fdccb5322826a1e45f6390140e0aabe9
+  declaration_status: declaration_found_not_proof_checked
+  line: 101
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +550,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 6, E1 25, E3 1. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 5, E1 25, E2 1, E3 1. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -26,7 +26,7 @@ Nodes: 32. Grades: E0 6, E1 25, E3 1. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_C
 | [TFQ-0028](../nodes/TFQ-0028.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta0(3, n_f) is the rational 11 - (2/3)*n_f. The Rust report and Lean qcd_beta0_asymptotic_freedom_window record the split 4*C_A + (... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0029](../nodes/TFQ-0029.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta1(3, n_f) is recorded as 102 - (38/3)*n_f. At n_f=16 the Rust control and Lean qcd_beta1_and_banks_zaks_fixed_point record beta0=... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0030](../nodes/TFQ-0030.md) | `COMPUTATIONALLY_CHECKED` | E1 | The confinement wording in QM-221 is tied to the strong-coupling Creutz comparison: chi_area equals 1/9 and chi_perim equals 1 on the dec... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
-| [TFQ-0031](../nodes/TFQ-0031.md) | `OPEN` | E0 | The open gap sits where the finite certificate stops. qcd_beta0_wilson_confinement_finite_map.md withholds a continuum mass-gap claim and... | none in this checkout | - |
+| [TFQ-0031](../nodes/TFQ-0031.md) | `OPEN` | E2 | Narrowed boundary, status left OPEN: on the 3 by 3 lattice, 3*3 = 9 vertices and 3*2+3*2 = 12 edges. The spanning-tree count 9-1 = 8 and... | [CampaignTfq0031StrongCouplingBoundary.lean](../../../lean4/CampaignTfq0031StrongCouplingBoundary.lean): `tfq0031_area_exponent`, `tfq0031_area_pair_22`, `tfq0031_area_pair_23` +18<br>[tfq-0031.py](../../../checks/independent/tfq-0031.py)<br>[tfq-0031.md](../../../dag/derivations/independent/tfq-0031.md)<br>[campaign_tfq-0031_lean_replay.json](../../../dag/research/campaign_tfq-0031_lean_replay.json)<br>+1 more file(s) | - |
 | [TFQ-0032](../nodes/TFQ-0032.md) | `OPEN` | E1 | The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a quark-antiquark color decomposition. The Rust fiel... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | - |
 | [TFQ-0033](../nodes/TFQ-0033.md) | `OPEN` | E1 | The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_casimir. A baryon color singlet would need a th... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | - |
 | [TFQ-0034](../nodes/TFQ-0034.md) | `COMPUTATIONALLY_CHECKED` | E1 | qed_weak_hadronic_finite_maps.rs and the Python twin implement a different su(3), the flavor mass operator M0 + M1*Y + M2*(I(I+1)-Y^2/4).... | [FiniteQFTAndGravity.lean](../../../lean4/FiniteQFTAndGravity.lean) | computational_no_runnable_test |
