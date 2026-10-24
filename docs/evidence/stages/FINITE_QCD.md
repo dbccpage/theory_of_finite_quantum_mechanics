@@ -2,11 +2,11 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 6, E1 25, E3 1. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 5, E1 25, E3 2. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
-| [TFQ-0011](../nodes/TFQ-0011.md) | `OPEN` | E0 | Finite QCD here means a finite non-abelian gauge datum, a Wilson loop on a finite complex, a beta0-style finite control, and an explicit... | none in this checkout | - |
+| [TFQ-0011](../nodes/TFQ-0011.md) | `OPEN` | E3 | In any group, the gauged four-edge product (a inverse, g, b) (b inverse, h, c) (c inverse, k, d) (d inverse, m, a) equals a inverse times... | [CampaignTfq0011FiniteQcd.lean](../../../lean4/CampaignTfq0011FiniteQcd.lean): `area_exponent`, `banks_zaks_ratio_nf16`, `beta0_17_negative` +15<br>[tfq-0011.py](../../../checks/independent/tfq-0011.py)<br>[tfq-0011.md](../../../dag/derivations/independent/tfq-0011.md)<br>[campaign_tfq-0011_lean_replay.json](../../../dag/research/campaign_tfq-0011_lean_replay.json) | - |
 | [TFQ-0012](../nodes/TFQ-0012.md) | `OPEN` | E1 | quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subg... | [finite_group.rs](../../../code/rust/src/lie_theory/finite_group.rs) | - |
 | [TFQ-0013](../nodes/TFQ-0013.md) | `COMPUTATIONALLY_CHECKED` | E1 | finite_group.rs builds a FiniteGroup from a full multiplication table or from an associative operation, then checks closure, a two-sided... | [finite_group.rs](../../../code/rust/src/lie_theory/finite_group.rs) | computational_no_runnable_test |
 | [TFQ-0014](../nodes/TFQ-0014.md) | `OPEN` | E1 | finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C... | [finite_groupoid_algebra.rs](../../../code/rust/src/lie_theory/finite_groupoid_algebra.rs) | - |

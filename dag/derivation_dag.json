@@ -9565,14 +9565,35 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "Finite QCD here means a finite non-abelian gauge datum, a Wilson loop on a finite complex, a beta0-style finite control, and an explicit gap where confinement in a continuum theory is not identified with that control. Lattice Dirac doubling is an obstruction to record, not a nuisance to hide. Python, Rust, and Lean 4 must separate an exact rational certificate from a float benchmark. A float benchmark cannot authorize the finite statement. Continuum QCD remains an open interface on F002.",
+      "statement": "In any group, the gauged four-edge product (a inverse, g, b) (b inverse, h, c) (c inverse, k, d) (d inverse, m, a) equals a inverse times (g h k m) times a. In S3 the transpositions of 0 with 1 and of 1 with 2 do not commute, and the product of the first transposition, the second, and two identity factors is not the identity. At color count 3 the channel formulae are C_F = 4/3, C_A = 3, singlet = -4/3, octet = 1/6, sextet = 1/3 and antitriplet = -2/3, the singlet is negative, and the octet is positive. The gluon split 4 C_A - C_A/3 equals 11, one Dirac flavor contributes -2/3, and the recorded abelian coefficient -4/3 is negative. With beta0(n_c, n_f) = (11/3) n_c - (2/3) n_f, the values beta0(3, n_f) at n_f = 0, 3, 5, 6, 16, 17 are 11, 9, 23/3, 7, 1/3, -1/3. For every rational n_f, beta0(3, n_f) > 0 if and only if n_f < 33/2, and beta0(3, n) > 0 for every natural n ≤ 16, while beta0(3, 17) < 0. With beta1(3, n_f) = 102 - (38/3) n_f, the values at n_f = 0, 5, 16 are 102, 116/3, -302/3, and (-beta0(3, 16)) / beta1(3, 16) = 1/302. For a nonzero rational b and natural numbers r, t at least 1, the Creutz ratio of the area monomials b^(r t) equals b, and the Creutz ratio of the perimeter monomials b^(2 (r + t)) equals 1. At b = 1/9 the area ratios on the pairs (2, 2) and (3, 3) equal 1/9, the perimeter ratios equal 1, and 1/9 is distinct from 1. The declared counts 9 and 12 satisfy 9 - 1 = 8, 12 - 9 + 1 = 4 and 12 - 8 = 4.",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0011_finite_qcd_shadow.md"
+        "dag/derivations/17_finite_qcd/tfq_0011_finite_qcd_shadow.md",
+        "lean4/CampaignTfq0011FiniteQcd.lean",
+        "checks/independent/tfq-0011.py",
+        "dag/derivations/independent/tfq-0011.md",
+        "dag/research/campaign_tfq-0011_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.plaquette_gauge",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.s3_swaps_do_not_commute",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.s3_two_swap_product_ne_one",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.su3_channel_values",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.gluon_split_and_one_flavor",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_values",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_window",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_nat_through_16",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_17_negative",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta1_su3",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta1_values",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.banks_zaks_ratio_nf16",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_area",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_perim",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_one_ninth",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.declared_lattice_counts"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Carry a finite color, Wilson, and beta0 control without calling it continuum confinement.",
+      "bottleneck": "Outside this certificate: continuum confinement, a string tension, the 12-decimal alpha_s and ln(9) strings, lattice Dirac doubling, an SU(3) matrix representation of the plaquette, and a constructed 3x3 complex with these counts. The route from TFQ-0009 stays a gap. Status stays OPEN.",
       "tags": [
         "unified-dag",
         "TFQ-0011",
@@ -16709,7 +16730,7 @@
       "stage": "MSSN_SN",
       "status": "OPEN",
       "source_status": "000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean",
-      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
+      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:237",
@@ -41275,20 +41296,43 @@
         "TFQ-0011"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md",
+        "lean4/CampaignTfq0011FiniteQcd.lean",
+        "checks/independent/tfq-0011.py",
+        "dag/derivations/independent/tfq-0011.md",
+        "dag/research/campaign_tfq-0011_lean_replay.json"
       ],
       "id": "TFQ-0011",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.plaquette_gauge",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.s3_swaps_do_not_commute",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.s3_two_swap_product_ne_one",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.su3_channel_values",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.gluon_split_and_one_flavor",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_values",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_window",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_nat_through_16",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_17_negative",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta1_su3",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta1_values",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.banks_zaks_ratio_nf16",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_area",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_perim",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_one_ninth",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.declared_lattice_counts"
+      ],
       "local_id": "FINITE_QCD",
       "name": "Finite QCD shadow",
-      "obligation": "Carry a finite color, Wilson, and beta0 control without calling it continuum confinement.",
+      "obligation": "Outside this certificate: continuum confinement, a string tension, the 12-decimal alpha_s and ln(9) strings, lattice Dirac doubling, an SU(3) matrix representation of the plaquette, and a constructed 3x3 complex with these counts. The route from TFQ-0009 stays a gap. Status stays OPEN.",
       "parent_id": "TFQ-0009",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0011.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_QCD",
-      "summary": "Finite QCD here means a finite non-abelian gauge datum, a Wilson loop on a finite complex, a beta0-style finite control, and an explicit gap where confinement in a continuum theory is not identified with that control. Lattice Dirac doubling is an obstruction to record, not a nuisance to hide. Python, Rust, and Lean 4 must separate an exact rational certificate from a float benchmark. A float benchmark cannot authorize the finite statement. Continuum QCD remains an open interface on F002.",
+      "summary": "In any group, the gauged four-edge product (a inverse, g, b) (b inverse, h, c) (c inverse, k, d) (d inverse, m, a) equals a inverse times (g h k m) times a. In S3 the transpositions of 0 with 1 and of 1 with 2 do not commute, and the product of the first transposition, the second, and two identity factors is not the identity. At color count 3 the channel formulae are C_F = 4/3, C_A = 3, singlet = -4/3, octet = 1/6, sextet = 1/3 and antitriplet = -2/3, the singlet is negative, and the octet is positive. The gluon split 4 C_A - C_A/3 equals 11, one Dirac flavor contributes -2/3, and the recorded abelian coefficient -4/3 is negative. With beta0(n_c, n_f) = (11/3) n_c - (2/3) n_f, the values beta0(3, n_f) at n_f = 0, 3, 5, 6, 16, 17 are 11, 9, 23/3, 7, 1/3, -1/3. For every rational n_f, beta0(3, n_f) > 0 if and only if n_f < 33/2, and beta0(3, n) > 0 for every natural n ≤ 16, while beta0(3, 17) < 0. With beta1(3, n_f) = 102 - (38/3) n_f, the values at n_f = 0, 5, 16 are 102, 116/3, -302/3, and (-beta0(3, 16)) / beta1(3, 16) = 1/302. For a nonzero rational b and natural numbers r, t at least 1, the Creutz ratio of the area monomials b^(r t) equals b, and the Creutz ratio of the perimeter monomials b^(2 (r + t)) equals 1. At b = 1/9 the area ratios on the pairs (2, 2) and (3, 3) equal 1/9, the perimeter ratios equal 1, and 1/9 is distinct from 1. The declared counts 9 and 12 satisfy 9 - 1 = 8, 12 - 9 + 1 = 4 and 12 - 8 = 4.",
       "uuid": "171bfea4-4046-5794-a9e5-ae2e8572b427"
     },
     {
@@ -60566,7 +60610,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
-      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
+      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "uuid": "26db6fbc-6946-5835-975b-48f71515ff5a"
     },
     {
