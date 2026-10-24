@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-z1-z2-counterterm-fence.md`
 
 - file: [dag/derivations/independent/dfm-z1-z2-counterterm-fence.md](../../../dag/derivations/independent/dfm-z1-z2-counterterm-fence.md)
-- sha256 (`lf-normalised`): `6f320a239eda59b0b6702dde04d14c2da4d3197763f78c1432b06fb6f260a225`
+- sha256 (`lf-normalised`): `3f9d01e056e65b241295502fa2c319333206118d167a240ad03b5a465b2fa8b8`
 - cited in: node.source
 - counts toward the grade: yes
 

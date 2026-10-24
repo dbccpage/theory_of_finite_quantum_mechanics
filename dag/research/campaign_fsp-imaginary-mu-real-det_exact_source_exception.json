@@ -1,0 +1,32 @@
+{
+  "schema_version": "campaign_exact_source_exception.v1",
+  "AuthorityEffect": "None",
+  "authorization": "Direct human reply: Allow these exact-source exceptions.",
+  "authorized_at_utc_date": "2026-10-24",
+  "sources": [
+    {
+      "path": "lean4/CampaignFspImaginaryMuRealDet.lean",
+      "sha256": "6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2",
+      "actual_score": "L3D",
+      "enforcement": "governance/baseline.json exact-byte entry"
+    },
+    {
+      "path": "checks/independent/fsp-imaginary-mu-real-det.py",
+      "sha256": "ac19770608212101081358398a29af59f440a541d91f29fe233e5eaf62c2d81d",
+      "actual_score": "L3D",
+      "enforcement": "Independent checker outside governed population; campaign floor exception explicitly authorized."
+    }
+  ],
+  "build_registration": {
+    "path": "lean4/lakefile.lean",
+    "sha256": "6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274",
+    "actual_score": "L1D",
+    "enforcement": "Existing support exception pin refreshed."
+  },
+  "global_floor_unchanged": {
+    "min_level": "L4",
+    "min_grade": "D",
+    "statement": "A governed source is accepted only with a completed score (every gate graded, score_token = level + composite grade) at capability level L4 or L5 and composite grade D or better. Sources in governance/baseline.json with unchanged bytes are grandfathered."
+  },
+  "scope": "No sealed-source bytes, derivation statuses, node statements or scientific scope fences change."
+}

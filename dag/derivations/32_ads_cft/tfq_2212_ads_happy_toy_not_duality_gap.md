@@ -11,37 +11,68 @@
 
 ## Statement
 
-No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are toy models of the bulk-to-boundary map on a discrete hyperbolic tiling; they have no Lorentzian time, no dynamics, no gravitational action and no large-N limit. A finite check on them does not support the duality, and the finite targets of this stage are exact statements about specific codes only.
+No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1 > 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 < 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).
 
 ## Governing obligation
 
-Recorded as an explicit non-claim so that the exact finite results are not read as evidence for the duality.
+Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open.
 
 ## Source status
 
-Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1 and Section 6 pp. 20-23 on 2026-10-22.
+Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1, Section 4 pp. 8-14, and Section 6 pp. 20-23 on 2026-10-23; narrowed to exact Renyi-spectrum, length-8..12 minimal-cut deficit, and Hilbert-codimension fences in Lean 4 and an independent Python verifier.
 
 ## What is imported
 
-- Nothing is imported by this node as a premise of a repository result.
+- Nothing is imported by this node as a premise of a continuum result; the 2D CFT single-interval Renyi factor (1 + 1/n)/2 is compared as a rational expression.
 
 ## What is open
 
-- No further obligation is recorded beyond the governing obligation.
+- Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics.
+
+## Finite target (precise statement)
+
+lean4/CampaignAdsHappyToyNotDualityGap.lean + checks/independent/ads-happy-toy-not-duality-gap.py (flat stabilizer vs CFT Renyi defect, length-8..12 minimal-cut deficit census (5,10,10,10,5) and witnesses (2,8)/(2,12) on the 6-pentagon HaPPY patch, disconnected mutual information jumps, and bulk-to-boundary Hilbert codimension).
+
+No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
 
 ## Connections to this repository
 
 - Route `FRO-R-ADS-HAPPY-TOY-NOT-DUALITY-GAP` (`GAP_NO_DERIVATION`) from `ADS-HAPPY-2015-SOURCE`, `ADS-CFT-DUALITY-IMPORT`: No source derives the duality from the codes.
+- ADS-HAPPY-2015-SOURCE
+- ADS-CFT-DUALITY-IMPORT
+- ADS-HAPPY-ENTROPY-MINCUT-TARGET
 
 See also: `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`.
 
 ## Non-claims
 
-- The finite targets prove nothing about gravity.
+- The finite stabilizer-code checks do not derive continuum AdS/CFT, continuum Ryu-Takayanagi minimal-surface area formulas, or gravitational dynamics.
 
 ## Sources
 
-- No external source and no repository file beyond the parent nodes named above.
+- `external:arXiv:1503.06237`: F. Pastawski, B. Yoshida, D. Harlow and J. Preskill, "Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence", arXiv:1503.06237 (2015); JHEP 06 (2015) 149.
+- Repository: `dag/derivations/independent/ads-happy-toy-not-duality-gap.md`
+- Repository: `checks/independent/ads-happy-toy-not-duality-gap.py`
+- Repository: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json`
+- Repository: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`
+- Repository: `dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json`
+
+## Lean 4 declarations read
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension`
+- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions`
 
 ## Downstream derivations
 

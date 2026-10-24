@@ -1,0 +1,382 @@
+{
+  "schema_version": "campaign_checks.v1",
+  "AuthorityEffect": "None",
+  "base": "5759edab096c0b7eb3fa2e63694b47f269d33241",
+  "result": "PASS",
+  "required_syncs_and_dag_checks": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1,
+      "output": "pfp results synchronized\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 2,
+      "output": "unified DAG synchronized\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1,
+      "output": "application branches synchronized\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 2,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1,
+      "output": "frontier branches synchronized\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1,
+      "output": "foc035 observer presheaf synchronized\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "seconds": 1,
+      "output": "unified invariants failures=0\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0,
+      "output": "views match derivation_dag.json\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 3,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0,
+      "output": "receipts current\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "papers/core/tools/build_results_audit_table.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0,
+      "output": "generated blocks are current\n"
+    }
+  ],
+  "generated_checks": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 74,
+      "output": "README facts current\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 11,
+      "output": "evidence map current\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 16,
+      "output": "generated status files are current (16 files checked)\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/verify_qm_atlas_loc.py"
+      ],
+      "exit_code": 0,
+      "seconds": 3,
+      "output": "QM_ATLAS_LOC_VERIFIER all_passed=True questions=65 verified_links=403 verified_window_symbols=197 rust_python_parity=True\n"
+    }
+  ],
+  "final_source_integrity_checks": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 62,
+      "output": "README facts current\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "seconds": 10,
+      "output": "{\n  \"originals\": null,\n  \"combined_files\": 3,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "seconds": 7,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 5759edab096c), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n"
+    }
+  ],
+  "governance_check": {
+    "command": [
+      "governance/target/release/governance-check.exe",
+      "--root",
+      ".",
+      "check",
+      "--changed-since",
+      "origin/main"
+    ],
+    "exit_code": 0,
+    "seconds": 172,
+    "output": "changed since origin/main (5759edab096c0b7eb3fa2e63694b47f269d33241): 36 paths\nnote: baseline entry added with reason: lean4/CampaignFspImaginaryMuRealDet.lean: Maintainer explicitly approved this exact-source L3D exception in this conversation on 2026-10-24. Finite bipartite imaginary-fugacity determinant proof; no production L4 claim. The global floor, sealed source bytes, derivation statuses and scientific scope fences stay unchanged.\nchecked 8201: 28 pass, 8153 grandfathered, 20 boilerplate, 0 failed\n"
+  },
+  "full_contract_history": {
+    "command": "python -I -X utf8 scripts/contract_scores.py check",
+    "exit_code": 0,
+    "output": {
+      "originals": 0,
+      "combined_files": 8851,
+      "all_passed": true,
+      "errors": []
+    }
+  },
+  "strict_overclaim_scan": {
+    "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+    "exit_code": 0,
+    "summary": {
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 3
+    }
+  },
+  "campaign_pytest": {
+    "command": "python -I -X utf8 -m pytest dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/test_foc035_observer_presheaf.py --basetemp ../pytest-campaign -q -p no:cacheprovider",
+    "exit_code": 0,
+    "output": "................................                                         [100%]\n32 passed in 44.29s\n"
+  },
+  "support_pytest": {
+    "command": "python -I -X utf8 -m pytest scripts/test_governance_policy.py code/python/tests/test_qm_atlas_loc.py --basetemp ../pytest-support -q -p no:cacheprovider",
+    "exit_code": 0,
+    "output": ".........                                                                [100%]\n9 passed in 4.44s\n"
+  },
+  "governance_build": {
+    "command": "cargo build --offline --locked --release --manifest-path governance/Cargo.toml --bin governance-check",
+    "exit_code": 0
+  },
+  "governance_tests": {
+    "command": "cargo test --offline --locked --manifest-path governance/Cargo.toml",
+    "exit_code": 0,
+    "output": "   Compiling version_check v0.9.5\n   Compiling typenum v1.20.1\n   Compiling zmij v1.0.23\n   Compiling serde_core v1.0.229\n   Compiling serde_json v1.0.154\n   Compiling cpufeatures v0.2.17\n   Compiling cfg-if v1.0.5\n   Compiling memchr v2.8.3\n   Compiling itoa v1.0.18\n   Compiling generic-array v0.14.7\n   Compiling crypto-common v0.1.7\n   Compiling block-buffer v0.10.4\n   Compiling digest v0.10.7\n   Compiling sha2 v0.10.9\n   Compiling governance v0.1.0 (C:\\Users\\a343o\\.codex\\worktrees\\8ae8\\theory_of_finite_quantum_mechanics\\.venv-campaign-chemical\\checkout\\governance)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 27.58s\n     Running unittests ..\\code\\rust\\src\\governance\\src\\lib.rs (governance\\target\\debug\\deps\\governance-9a7aa91c02a3e498.exe)\n\nrunning 55 tests\ntest descriptor::tests::malformed_json_is_a_typed_error ... ok\ntest descriptor::tests::legacy_subject_layout_and_missing_pieces ... ok\ntest descriptor::tests::parses_a_complete_companion ... ok\ntest policy::tests::companion_naming_follows_collision_rule ... ok\ntest buildtime::tests::modes_parse ... ok\ntest policy::tests::baseline_round_trip_and_grandfathering ... ok\ntest descriptor::tests::tampered_history_bytes_are_detected ... ok\ntest policy::tests::exclusions_and_populations_use_any_glob ... ok\ntest policy::tests::kind_keys_round_trip ... ok\ntest descriptor::independent_history_tests::current_records_must_equal_their_hashed_bytes ... ok\ntest policy::tests::policy_parses_floor_and_populations ... ok\ntest policy::tests::globs ... ok\ntest policy::tests::policy_rejects_wrong_orders_and_shapes ... ok\ntest policy::tests::sha_shape ... ok\ntest repo::tests::nul_lists_normalise_separators_and_refuse_non_utf8 ... ok\ntest descriptor::tests::invalid_vocabulary_is_reported_by_field ... ok\ntest policy::tests::support_exception_requires_review_metadata ... ok\ntest score::tests::completion_refuses_false_flag_and_absent_values ... ok\ntest score::tests::completion_refuses_forged_axes ... ok\ntest policy::tests::support_exceptions_are_exact_and_fail_closed ... ok\ntest score::tests::completion_refuses_forged_composites ... ok\ntest score::tests::composite_is_the_minimum_of_complete_gates ... ok\ntest score::tests::every_token_round_trips ... ok\ntest score::tests::floor_cases ... ok\ntest score::tests::grade_order_matches_scoring_md ... ok\ntest score::tests::level_order_is_numeric ... ok\ntest score::tests::malformed_tokens_are_rejected ... ok\ntest score::tests::unassessed_gate_gives_no_composite_unless_a_known_e ... ok\ntest score::tests::vocabulary_parse_errors_are_typed ... ok\ntest repo::tests::hashing_and_relative_paths ... ok\ntest repo::tests::root_is_found_upwards ... ok\ntest repo::tests::package_sources_skip_nested_packages_and_target ... ok\ntest score::tests::completion_boundary_exhausts_every_gate_assignment ... ok\ntest verify::tests::baseline_waives_floor_only_for_unchanged_bytes ... ok\ntest tests::binding_and_completeness_are_both_reported ... ok\ntest buildtime::tests::new_uncontracted_file_warns_by_default_and_aborts_when_enforced ... ok\ntest tests::malformed_companion_and_unreadable_source ... ok\ntest tests::changed_bytes_lose_grandfathering ... ok\ntest buildtime::tests::decide_respects_mode ... ok\ntest verify::tests::binding_mismatch_names_the_field ... ok\ntest verify::tests::floor_pass_and_fail_cases ... ok\ntest verify::tests::null_gate_is_incomplete ... ok\ntest buildtime::tests::new_mode_only_warns_for_changed_grandfathered_files ... ok\ntest buildtime::tests::missing_or_broken_policy ... ok\ntest tests::binding_failure_still_reports_the_floor ... ok\ntest tests::twin_sources_use_qualified_companions ... ok\ntest buildtime::tests::new_mode_aborts_when_any_failure_is_new ... ok\ntest verify::tests::inconsistent_composite_flag_or_token_is_incomplete ... ok\ntest verify::tests::schema_failures_are_specific ... ok\ntest verify::tests::violation_display_is_precise ... ok\ntest verify::tests::support_pin_never_accepts_incomplete_or_grade_e ... ok\ntest buildtime::tests::clean_package_emits_reruns_only ... ok\ntest tests::outcomes_cover_pass_fail_grandfather_and_boilerplate ... ok\ntest repo::tests::git_errors_are_typed ... ok\ntest repo::tests::git_population_changes_and_history ... ok\n\ntest result: ok. 55 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.29s\n\n     Running unittests ..\\code\\rust\\src\\governance\\src\\bin\\governance-check.rs (governance\\target\\debug\\deps\\governance_check-fc04fd228c4aa588.exe)\n\nrunning 10 tests\ntest tests::baseline_growth_needs_a_reason ... ok\ntest tests::rejects_bad_command_lines ... ok\ntest tests::parses_commands ... ok\ntest tests::missing_root_is_fatal ... ok\ntest tests::affected_sources_maps_companions_back_to_sources ... ok\ntest tests::baseline_plan_only_shrinks_without_allow_add ... ok\ntest tests::baseline_deficit_is_the_first_violation_and_stale_entries_are_counted ... ok\ntest tests::open_needs_a_baseline_only_when_asked ... ok\ntest tests::a_policy_or_baseline_change_selects_the_whole_population ... ok\ntest tests::end_to_end_with_git ... ok\n\ntest result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.12s\n\n   Doc-tests governance\n\nrunning 1 test\ntest ..\\code\\rust\\src\\governance\\src\\lib.rs - verify_crate_contracts (line 45) ... ignored\n\ntest result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+  },
+  "lean": "See campaign_fsp-imaginary-mu-real-det_lean_replay.json; only the new non-default module compiled, not the default library.",
+  "independent": "See campaign_fsp-imaginary-mu-real-det_independent.json; normal and -O match.",
+  "mutations": "See campaign_fsp-imaginary-mu-real-det_lean_mutation.json; two semantic proof mutants killed.",
+  "superseded_validation_failures": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 1,
+      "errors_count": 1,
+      "representative_errors": [
+        {
+          "path": "checks/independent/fsp-imaginary-mu-real-det.contract.score.yaml",
+          "error": "'original_paths'"
+        },
+        {
+          "path": "checks/independent/fsp-imaginary-mu-real-det.contract.score.yaml",
+          "error": "'original_paths'"
+        }
+      ],
+      "resolution": "New checker companion provenance fields corrected; archived companion parents materialized from exact Git blobs within the sparse checkout. The full and scoped history checks now pass."
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check"
+      ],
+      "exit_code": 1,
+      "errors_count": 463,
+      "representative_errors": [
+        {
+          "path": "checks/independent/fsp-imaginary-mu-real-det.contract.score.yaml",
+          "error": "'original_paths'"
+        },
+        {
+          "path": "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born/MatrixInstance.contract.score.yaml",
+          "error": "'C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\8ae8\\\\theory_of_finite_quantum_mechanics\\\\dag\\\\results\\\\FQ-GAP-BORN-UNIQUENESS-GLEASON\\\\runs\\\\20261020T004525Z_fable51_born\\\\MatrixInstance.contract.score.yaml' is not in the subpath of 'C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\8ae8\\\\theory_of_finite_quantum_mechanics\\\\.venv-campaign-chemical\\\\checkout'"
+        },
+        {
+          "path": "dag/results/batches/20261021T175809Z_prompts_165_177/specs/wdp_quotient_sequence_spec.contract.score.yaml",
+          "error": "'C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\8ae8\\\\theory_of_finite_quantum_mechanics\\\\dag\\\\results\\\\batches\\\\20261021T175809Z_prompts_165_177\\\\specs\\\\wdp_quotient_sequence_spec.contract.score.yaml' is not in the subpath of 'C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\8ae8\\\\theory_of_finite_quantum_mechanics\\\\.venv-campaign-chemical\\\\checkout'"
+        }
+      ],
+      "resolution": "New checker companion provenance fields corrected; archived companion parents materialized from exact Git blobs within the sparse checkout. The full and scoped history checks now pass."
+    }
+  ],
+  "whitespace_check": {
+    "command": "git -c core.whitespace=cr-at-eol diff --cached --check",
+    "exit_code": 0,
+    "note": "Generated JSONL/ledgers already use CRLF at the base; preserved. New proof/checker bytes are LF."
+  },
+  "remaining_failures": [],
+  "not_run": [
+    "Default Lean library/full Mathlib rebuild",
+    "Full code/rust workspace",
+    "Full repository Python suite",
+    "Hosted CI, before publishing this PR"
+  ]
+}

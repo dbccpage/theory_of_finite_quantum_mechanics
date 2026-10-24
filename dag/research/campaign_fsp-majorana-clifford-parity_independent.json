@@ -1,0 +1,108 @@
+{
+  "schema_version": "campaign_independent_replay.v1",
+  "AuthorityEffect": "None",
+  "source": "checks/independent/fsp-majorana-clifford-parity.py",
+  "sha256": "67027ee66074805b2029dbc9a85eccd0d62d84daaf3ae304a80d4ee739908264",
+  "python_version": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "sympy_version": "1.14.0",
+  "results": [
+    {
+      "command": "python -I -X utf8 checks/independent/fsp-majorana-clifford-parity.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python -I -O -X utf8 checks/independent/fsp-majorana-clifford-parity.py",
+      "exit_code": 0
+    }
+  ],
+  "optimization_outputs_equal": true,
+  "output": {
+    "AuthorityEffect": "None",
+    "cases": [
+      {
+        "clifford_span_rank": 1,
+        "dimension": 1,
+        "majoranas": 0,
+        "modes": 0,
+        "parity_diagonal": [
+          1
+        ]
+      },
+      {
+        "clifford_span_rank": 4,
+        "dimension": 2,
+        "majoranas": 2,
+        "modes": 1,
+        "parity_diagonal": [
+          1,
+          -1
+        ]
+      },
+      {
+        "clifford_span_rank": 16,
+        "dimension": 4,
+        "majoranas": 4,
+        "modes": 2,
+        "parity_diagonal": [
+          1,
+          -1,
+          -1,
+          1
+        ]
+      },
+      {
+        "clifford_span_rank": 64,
+        "dimension": 8,
+        "majoranas": 6,
+        "modes": 3,
+        "parity_diagonal": [
+          1,
+          -1,
+          -1,
+          1,
+          -1,
+          1,
+          1,
+          -1
+        ]
+      },
+      {
+        "clifford_span_rank": null,
+        "dimension": 16,
+        "majoranas": 8,
+        "modes": 4,
+        "parity_diagonal": [
+          1,
+          -1,
+          -1,
+          1,
+          -1,
+          1,
+          1,
+          -1,
+          -1,
+          1,
+          1,
+          -1,
+          1,
+          -1,
+          -1,
+          1
+        ]
+      }
+    ],
+    "counterexamples": {
+      "commutator_01": "1",
+      "invalid_bounds_refused": 5,
+      "mutation_count": 3,
+      "mutations_rejected": [
+        "wrong_parity_sign",
+        "missing_majorana_phase",
+        "missing_jordan_wigner_string"
+      ],
+      "rho_trace": "1"
+    },
+    "field": "Q(i)",
+    "scope": "CAR/parity N=0..4; Clifford span N=0..3; no unbounded rank claim"
+  }
+}
