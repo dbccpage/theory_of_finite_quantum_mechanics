@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5317,7 +5317,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Vijay-Haah-Fu (2016): the X-cube model on an Lx x Ly x Lz periodic cubic lattice has pairwise commuting vertex and cube terms and ground-state degeneracy 2^(2Lx + 2Ly + 2Lz - 3).",
-      "obligation": "Imported literature result; the checkout has no X-cube stabilizer computation, and it has no fermion-sign consequence by itself.",
+      "obligation": "Imported literature result; the checkout has no X-cube stabilizer computation, and it has no fermion-sign consequence by itself. Narrowed in lean4/CampaignFspXcubeFractonModel.lean and checks/independent/fsp-xcube-fracton-model.py while keeping status IMPORTED_ASSUMPTION to: (1) periodic cubic lattice T^3(Lx, Ly, Lz) edge-qubit count 3 Lx Ly Lz and generator count 4 Lx Ly Lz; (2) pairwise commutativity [A_v^(mu nu), B_c] = 0 via even corner-edge overlap 2 % 2 = 0 and local vertex syzygy A_v^(xy) A_v^(yz) A_v^(zx) = I; (3) exact F_2 parity-check rank subtraction rank(H_X) = V - (Lx + Ly + Lz - 2) and rank(H_Z) = 2V - (Lx + Ly + Lz - 1) yielding logical qubit count k = 2 Lx + 2 Ly + 2 Lz - 3 and ground-state degeneracy GSD = 2^(2 Lx + 2 Ly + 2 Lz - 3), verified by exact F_2 Gaussian elimination across all 27 lattices (Lx, Ly, Lz) in {2, 3, 4}^3; and (4) explicit scope fences for 6-edge 3D star anti-commutation, bosonic CSS stoquasticity (no fermion-sign consequence), and non-abelian 2-gauge hinge negative trace.",
       "imported_structure": [
         "X-cube stabilizer model (Vijay, Haah, Fu 2016)"
       ],
@@ -5326,16 +5326,34 @@
         "FSP-DIRAC-KAHLER-SPINFOAM-CLAIM"
       ],
       "parent_record": "TFQ-1210",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_torus_cell_and_qubit_counts",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_vertex_cross_cube_intersection_even",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_local_vertex_triple_syzygy",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_stabilizer_rank_and_logical_qubit_identity",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_explicit_torus_degeneracy_table",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_subextensive_linear_scaling_vs_toric_code",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_planar_subsystem_charge_conservation",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.six_edge_3d_star_anticommutes_with_cube_fence",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_css_bosonic_stoquasticity_fence",
+        "lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.nonabelian_hinge_holonomy_negative_trace_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine",
+        "code/python/src/fsp/foliated_fracton_2gauge_defects.py::SubsystemChargeRegistry"
+      ],
       "external_witnesses": [
         "external:omega_majorana::hard_invariants::xcube_fracton_stabilizer (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:736-748"
+        "papers/core/fsp/theory_of_finite_fsp.md:736-748",
+        "dag/derivations/independent/fsp-xcube-fracton-model.md",
+        "dag/research/campaign_fsp-xcube-fracton-model_lean_replay.json",
+        "dag/research/campaign_fsp-xcube-fracton-model_lean_mutation.json",
+        "dag/research/campaign_fsp-xcube-fracton-model_independent.json"
       ],
-      "audit": "Cited FoliatedFracton2Gauge.lean::xcube_model_exact_solvability does not exist; the module states q + (-q) = 0, products of positive naturals are positive, and rfl evaluations of a defined hinge trace (GIN-C24 historical fixture). XCubeModelEvaluator is absent from foliated_fracton_2gauge_defects.py.",
+      "audit": "Replaced missing FoliatedFracton2Gauge.lean::xcube_model_exact_solvability and absent XCubeModelEvaluator with lean4/CampaignFspXcubeFractonModel.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine, and checks/independent/fsp-xcube-fracton-model.py (74061 exact F_2 CSS checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

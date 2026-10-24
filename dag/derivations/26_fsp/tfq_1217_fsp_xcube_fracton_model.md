@@ -14,10 +14,10 @@
 Vijay-Haah-Fu (2016): the X-cube model on an Lx x Ly x Lz periodic cubic lattice has pairwise commuting vertex and cube terms and ground-state degeneracy 2^(2Lx + 2Ly + 2Lz - 3).
 
 ### Governing Obligation
-Imported literature result; the checkout has no X-cube stabilizer computation, and it has no fermion-sign consequence by itself.
+Imported literature result; the checkout has no X-cube stabilizer computation, and it has no fermion-sign consequence by itself. Narrowed in lean4/CampaignFspXcubeFractonModel.lean and checks/independent/fsp-xcube-fracton-model.py while keeping status IMPORTED_ASSUMPTION to: (1) periodic cubic lattice T^3(Lx, Ly, Lz) edge-qubit count 3 Lx Ly Lz and generator count 4 Lx Ly Lz; (2) pairwise commutativity [A_v^(mu nu), B_c] = 0 via even corner-edge overlap 2 % 2 = 0 and local vertex syzygy A_v^(xy) A_v^(yz) A_v^(zx) = I; (3) exact F_2 parity-check rank subtraction rank(H_X) = V - (Lx + Ly + Lz - 2) and rank(H_Z) = 2V - (Lx + Ly + Lz - 1) yielding logical qubit count k = 2 Lx + 2 Ly + 2 Lz - 3 and ground-state degeneracy GSD = 2^(2 Lx + 2 Ly + 2 Lz - 3), verified by exact F_2 Gaussian elimination across all 27 lattices (Lx, Ly, Lz) in {2, 3, 4}^3; and (4) explicit scope fences for 6-edge 3D star anti-commutation, bosonic CSS stoquasticity (no fermion-sign consequence), and non-abelian 2-gauge hinge negative trace.
 
 ### Witness Audit
-Cited FoliatedFracton2Gauge.lean::xcube_model_exact_solvability does not exist; the module states q + (-q) = 0, products of positive naturals are positive, and rfl evaluations of a defined hinge trace (GIN-C24 historical fixture). XCubeModelEvaluator is absent from foliated_fracton_2gauge_defects.py.
+Replaced missing FoliatedFracton2Gauge.lean::xcube_model_exact_solvability and absent XCubeModelEvaluator with lean4/CampaignFspXcubeFractonModel.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine, and checks/independent/fsp-xcube-fracton-model.py (74061 exact F_2 CSS checks, 0 failures).
 
 ---
 
@@ -34,13 +34,23 @@ Cited FoliatedFracton2Gauge.lean::xcube_model_exact_solvability does not exist; 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_torus_cell_and_qubit_counts`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_vertex_cross_cube_intersection_even`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_local_vertex_triple_syzygy`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_stabilizer_rank_and_logical_qubit_identity`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_explicit_torus_degeneracy_table`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_subextensive_linear_scaling_vs_toric_code`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_planar_subsystem_charge_conservation`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.six_edge_3d_star_anticommutes_with_cube_fence`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.xcube_css_bosonic_stoquasticity_fence`
+- `lean4/CampaignFspXcubeFractonModel.lean::CampaignFspXcubeFractonModel.nonabelian_hinge_holonomy_negative_trace_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine`
+- `code/python/src/fsp/foliated_fracton_2gauge_defects.py::SubsystemChargeRegistry`
 
 ### Cited by the source, not in this checkout
 - `external:omega_majorana::hard_invariants::xcube_fracton_stabilizer (cited by the source, not in this checkout)`
@@ -57,3 +67,7 @@ Cited FoliatedFracton2Gauge.lean::xcube_model_exact_solvability does not exist; 
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:736-748`
+  - `dag/derivations/independent/fsp-xcube-fracton-model.md`
+  - `dag/research/campaign_fsp-xcube-fracton-model_lean_replay.json`
+  - `dag/research/campaign_fsp-xcube-fracton-model_lean_mutation.json`
+  - `dag/research/campaign_fsp-xcube-fracton-model_independent.json`

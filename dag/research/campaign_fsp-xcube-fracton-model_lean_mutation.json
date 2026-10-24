@@ -1,0 +1,64 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-24",
+  "module": "CampaignFspXcubeFractonModel",
+  "dag_node": "FSP-XCUBE-FRACTON-MODEL",
+  "claim_id": "TFQ-1217",
+  "source": "lean4/CampaignFspXcubeFractonModel.lean",
+  "sha256": "7b5956a0c8a7df295e4ec834410351fb6c99e8733efd928596a3c6f802bd79c9",
+  "total_mutations": 6,
+  "killed_mutations": 6,
+  "survived_mutations": 0,
+  "all_killed": true,
+  "mutations": [
+    {
+      "id": "m1_wrong_corner_overlap_count",
+      "anchor": "CampaignFspXcubeFractonModel.xcube_vertex_cross_cube_intersection_even",
+      "mutation": "Replace `(\u2200 p : Fin 3, (\u2211 a : Fin 3, cornerCubeAxes a * planarCrossAxes p a) = 2) \u2227` with `(\u2200 p : Fin 3, (\u2211 a : Fin 3, cornerCubeAxes a * planarCrossAxes p a) = 3) \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m2_wrong_vertex_syzygy_parity",
+      "anchor": "CampaignFspXcubeFractonModel.xcube_local_vertex_triple_syzygy",
+      "mutation": "Replace `(planarCrossAxes 0 a + planarCrossAxes 1 a + planarCrossAxes 2 a) % 2 = 0` with `(planarCrossAxes 0 a + planarCrossAxes 1 a + planarCrossAxes 2 a) % 2 = 1`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m3_wrong_logical_qubit_constant",
+      "anchor": "CampaignFspXcubeFractonModel.xcube_stabilizer_rank_and_logical_qubit_identity",
+      "mutation": "Replace `nQubits - (rankX + rankZ) = 2 * Lx + 2 * Ly + 2 * Lz - 3` with `nQubits - (rankX + rankZ) = 2 * Lx + 2 * Ly + 2 * Lz - 2`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m4_wrong_l2_gsd_value",
+      "anchor": "CampaignFspXcubeFractonModel.xcube_explicit_torus_degeneracy_table",
+      "mutation": "Replace `xcubeGroundStateDegeneracy 2 2 2 = 512 \u2227` with `xcubeGroundStateDegeneracy 2 2 2 = 256 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m5_wrong_scaling_step",
+      "anchor": "CampaignFspXcubeFractonModel.xcube_subextensive_linear_scaling_vs_toric_code",
+      "mutation": "Replace `xcubeLogicalQubits (L + 1) (L + 1) (L + 1) = xcubeLogicalQubits L L L + 6 \u2227` with `xcubeLogicalQubits (L + 1) (L + 1) (L + 1) = xcubeLogicalQubits L L L + 3 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m6_flip_nonabelian_hinge_trace_fence",
+      "anchor": "CampaignFspXcubeFractonModel.nonabelian_hinge_holonomy_negative_trace_fence",
+      "mutation": "Replace `Matrix.trace (!![(-1 : \u211a), 0; 0, -1] : Matrix (Fin 2) (Fin 2) \u211a) < 0 := by` with `0 < Matrix.trace (!![(-1 : \u211a), 0; 0, -1] : Matrix (Fin 2) (Fin 2) \u211a) := by`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    }
+  ]
+}

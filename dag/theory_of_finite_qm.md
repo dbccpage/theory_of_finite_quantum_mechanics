@@ -10314,7 +10314,7 @@ Obligation: Evaluate EPRL-FK boundary contractions on a declared finite complex 
 
 Vijay-Haah-Fu (2016): the X-cube model on an Lx x Ly x Lz periodic cubic lattice has pairwise commuting vertex and cube terms and ground-state degeneracy 2^(2Lx + 2Ly + 2Lz - 3).
 
-Obligation: Imported literature result; the checkout has no X-cube stabilizer computation, and it has no fermion-sign consequence by itself.
+Obligation: Imported literature result; the checkout has no X-cube stabilizer computation, and it has no fermion-sign consequence by itself. Narrowed in lean4/CampaignFspXcubeFractonModel.lean and checks/independent/fsp-xcube-fracton-model.py while keeping status IMPORTED_ASSUMPTION to: (1) periodic cubic lattice T^3(Lx, Ly, Lz) edge-qubit count 3 Lx Ly Lz and generator count 4 Lx Ly Lz; (2) pairwise commutativity [A_v^(mu nu), B_c] = 0 via even corner-edge overlap 2 % 2 = 0 and local vertex syzygy A_v^(xy) A_v^(yz) A_v^(zx) = I; (3) exact F_2 parity-check rank subtraction rank(H_X) = V - (Lx + Ly + Lz - 2) and rank(H_Z) = 2V - (Lx + Ly + Lz - 1) yielding logical qubit count k = 2 Lx + 2 Ly + 2 Lz - 3 and ground-state degeneracy GSD = 2^(2 Lx + 2 Ly + 2 Lz - 3), verified by exact F_2 Gaussian elimination across all 27 lattices (Lx, Ly, Lz) in {2, 3, 4}^3; and (4) explicit scope fences for 6-edge 3D star anti-commutation, bosonic CSS stoquasticity (no fermion-sign consequence), and non-abelian 2-gauge hinge negative trace.
 
 ### TFQ-1218 X-cube excitation mobility classes
 
