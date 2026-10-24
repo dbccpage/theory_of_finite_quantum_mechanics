@@ -1,0 +1,189 @@
+{
+  "AuthorityEffect": "None",
+  "source_base": "637ed588908dd2848ea4c71af8f9c86480a90aeb",
+  "checks": [
+    {
+      "command": "python -I -X utf8 dag/sync_pfp_results.py --check",
+      "exit_code": 0,
+      "output": "pfp results synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --check",
+      "exit_code": 0,
+      "output": "unified DAG synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_application_branches.py --check",
+      "exit_code": 0,
+      "output": "application branches synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+      "exit_code": 0,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_frontier_branches.py --check",
+      "exit_code": 0,
+      "output": "frontier branches synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+      "exit_code": 0,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_foc035_observer_presheaf.py --check",
+      "exit_code": 0,
+      "output": "foc035 observer presheaf synchronized\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "output": "unified invariants failures=0\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "output": "views match derivation_dag.json\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 1,
+      "output": "README facts are stale: run scripts/build_readme_facts.py --write\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/research/repin_tensor_receipts.py --check",
+      "exit_code": 0,
+      "output": "receipts current\n"
+    },
+    {
+      "command": "python -I -X utf8 papers/core/tools/build_results_audit_table.py --check",
+      "exit_code": 0,
+      "output": "generated blocks are current\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check",
+      "exit_code": 0,
+      "output": "{\n  \"by_stage\": {},\n  \"by_stage_and_tier\": {},\n  \"by_tier\": {},\n  \"current\": 0,\n  \"executed_stale_needs_manual_delta\": {},\n  \"operation_candidates\": 0,\n  \"prompts_not_owned_by_this_generator_or_the_sealed_audit\": [],\n  \"relation_candidates\": 0,\n  \"sealed_prompts_whose_dag_statement_drifted\": [\n    \"PG-ROOT-DIFF-STRUCTURE\",\n    \"PG-HISTORY-REPORT-CRITERION\",\n    \"PG-DEMAND-ACCOUNTING\",\n    \"PG-REFINE-SEPARATES\",\n    \"PG-OLD-IMAGE-INJECTIVE\",\n    \"PG-FREE-MONOID-NONISO\",\n    \"PG-GEN-COLLAPSE-AND-FIRST-SEPARATION\",\n    \"PG-GEN-SAMENESS-REFINEMENTS\",\n    \"PG-SN-CARRIER\",\n    \"PG-OBLIGATION-MONOID\",\n    \"PG-WDP-PROTECTED-QUESTIONS\",\n    \"PG-WDP-DEGREE1-WINDOW\",\n    \"PG-WDP-QUOTIENT-EXACT-SEQUENCE\",\n    \"PG-WDP-GROWTH-NO-REPAIR\",\n    \"PG-WDP-GENESIS-BRIDGE-OBLIGATIONS\",\n    \"L1-GS000-EDGEWISE-L1\",\n    \"L1-GS001-GAUGE-L1\",\n    \"L1-WDP-CH08-C01-REPLICA-L1\",\n    \"L1-QM002-O022A-PHI1-QUOTIENT\",\n    \"L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED\",\n    \"L1-DENSITY-LIFT-SIGNED-SQRT-PUB009\",\n    \"L1-QM020-THM1-DIRECT-NORMALIZATION\",\n    \"L1-QM020-THM2A-L1-ADDITIVITY-DEFECT\",\n    \"L1-QM020-THM3-ROW-SPARSITY\",\n    \"L1-QM020-THM5-PHASE-AVERAGED-SHADOW\",\n    \"L1-QM020-THM6-P1-SCOPE-FENCE\",\n    \"L1-IMP-COMPLEX-FIELD\",\n    \"L1-IMP-HILBERT-INNER-PRODUCT\",\n    \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n    \"L1-IMP-LINEAR-ISOMETRIC-DYNAMICS\",\n    \"L1-QM121-LADDER-RUNGS-2-6\",\n    \"L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE\",\n    \"L1-QM122-CIRCLE-SELECTOR-BOUNDARY\",\n    \"L1-QM122-BORN-PAIRING-NONUNIQUE\",\n    \"L1-QM122-LEFTOVER-MNC-NOT-RECOVERED\",\n    \"L1-U1-SELECTOR-OTHER-SEGMENT\",\n    \"L1-QM020-C10-BRANCH-LOCALIZATION\",\n    \"L1-QM003-C17-COMPOSABLE-FACTORIZATION\",\n    \"FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED\",\n    \"FQ-SORKIN-READOUT-CLASS-QM208\",\n    \"FQ-POWER-RULE-P2-SELECTION\",\n    \"FQ-CABELLO-FRAME-POLYTOPE-146\",\n    \"FQ-BUSCH-EFFECT-FRAME\",\n    \"FQ-TENSOR-LU-RIVAL-EXCLUSION\",\n    \"FQ-GAP-TENSOR-UNIQUENESS\",\n    \"FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY\",\n    \"FQ-TRACE-ZERO-DUALITY-K23\",\n    \"FQ-BELL-CLASSICAL-JOINT-EXTENSION\",\n    \"FQ-BELL-RATIONAL-VIOLATION-14-5\",\n    \"FQ-TSIRELSON-SOS-Q-SQRT2\",\n    \"FQ-CONTEXTUALITY-CECH-F2\",\n    \"FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY\",\n    \"FQ-U1-TRANSPORT-N-TORSION\",\n    \"FQ-DISCRETE-DYNAMICS-DICHOTOMY\",\n    \"FQ-DISCRETE-TIME-STONE-AMBIGUITY\",\n    \"FQ-GAP-CONTINUUM-HILBERT-LIFT\",\n    \"FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY\",\n    \"FQ-GAP-REAL-EMBEDDING-CHOICE\",\n    \"FQ-IMPL-WDP-AMPLITUDE-BRIDGE\",\n    \"FQ-IMPL-REALIFICATION-ADAPTER\",\n    \"FQ-IMPL-PAIRING-AUDIT\",\n    \"FQ-QM207-231-FINITE-MAP-CONTROLS\",\n    \"GP-GAP-EXACT-DUALITY\",\n    \"DS-QM030-GRADED-PATHSUM\",\n    \"DS-QM030-UNGRADED-OVERCOUNT\",\n    \"DS-QM030-TRANSFER-OPERATOR-SHADOW\",\n    \"DS-QM032-FINITE-FEYNMAN-SHADOW\",\n    \"DS-QM032-CONTINUUM-LIMIT-CONDITIONAL\",\n    \"DS-QM033-SCHRODINGER-DISCRETE-COCHAIN\",\n    \"DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS\",\n    \"DS-QM041-HEISENBERG-PICTURE-FINITE\",\n    \"DS-QM021-IDEMPOTENT-CONDITIONING\",\n    \"DS-QM061-BUILDABILITY-SET-S\",\n    \"DS-QM062-U1-SELECTOR-LAYERS\",\n    \"DS-QM063-HOLONOMY-COHERENT-INTENSITY\",\n    \"DS-QM064-074-083-ANNEX-REDIRECT-ROWS\",\n    \"DS-QM070-PRODUCT-NONFACTORIZATION\",\n    \"DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED\",\n    \"DS-QM073-FINITE-CHSH-AND-PR-BOX\",\n    \"DS-QM073-BELL-THEOREM-OBSTRUCTED\",\n    \"DS-QM074-NO-SIGNALING-MARGINAL\",\n    \"DS-QM080-IMPORT-FREE-TRACE-NORM-CORE\",\n    \"DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION\",\n    \"DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL\",\n    \"DS-QM090-092-AUTHORITY-FIREWALL\",\n    \"DS-QM090-093-QM-UNIQUENESS-TIER3\",\n    \"DS-QM093-SURVIVAL-THEOREM\",\n    \"DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO\",\n    \"DS-QM094-EVERETT-RELATIVE-STATE-CONTACT\",\n    \"DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE\",\n    \"DS-QM102-SYNDROME-CAPACITY-BOUND\",\n    \"DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS\",\n    \"DS-QM120-MERMIN-PERES-F2-OBSTRUCTION\",\n    \"DS-QM206-BOUNDARY-SYNTHESIS\",\n    \"DS-QM207-211-FIVE-IMPORT-CASCADE\",\n    \"IMPL-FSP-SWITCHING-NORMAL-FORM-NF002\",\n    \"IMPL-THYMUS-SCREENING-SOUNDNESS\"\n  ],\n  \"stale\": {},\n  \"with_no_operation_or_relation_candidate\": 0,\n  \"with_paper_pins\": 0,\n  \"would_create\": 0\n}\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "output": "generated status files are current (16 files checked)\n"
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "output": "evidence map current\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "output": "overclaim_scan: scope=changes since origin/main (merge base 637ed588908d); HIGH=0 MEDIUM=0 LOW=3\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check",
+      "exit_code": 0,
+      "output": "{\n  \"originals\": 0,\n  \"combined_files\": 8854,\n  \"all_passed\": true,\n  \"errors\": []\n}\n"
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_readme_facts.py --check",
+      "exit_code": 0,
+      "output": "README facts current\n",
+      "phase": "after-receipt-schema-and-contract-count-refresh"
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "output": "evidence map current\n",
+      "phase": "after-receipt-schema-and-contract-count-refresh"
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "output": "overclaim_scan: scope=changes since origin/main (merge base 637ed588908d); HIGH=0 MEDIUM=0 LOW=3\n",
+      "phase": "after-receipt-schema-and-contract-count-refresh"
+    },
+    {
+      "command": "python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main",
+      "exit_code": 0,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 637ed588908d), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "phase": "after-receipt-schema-and-contract-count-refresh"
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main",
+      "exit_code": 0,
+      "output": "{\n  \"originals\": null,\n  \"combined_files\": 3,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "phase": "after-receipt-schema-and-contract-count-refresh"
+    },
+    {
+      "command": "python -I -X utf8 scripts/contract_scores.py check",
+      "exit_code": 0,
+      "output": "{\n  \"originals\": 0,\n  \"combined_files\": 8854,\n  \"all_passed\": true,\n  \"errors\": []\n}\n",
+      "phase": "after-receipt-schema-and-contract-count-refresh"
+    },
+    {
+      "command": "python -I -X utf8 dag/evidence/build_evidence.py --check",
+      "exit_code": 0,
+      "output": "evidence map current\n",
+      "phase": "final-receipt-discovery-and-review"
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "output": "overclaim_scan: scope=changes since origin/main (merge base 637ed588908d); HIGH=0 MEDIUM=0 LOW=3\n",
+      "phase": "final-receipt-discovery-and-review"
+    }
+  ],
+  "test_results": [
+    {
+      "command": "python -I -X utf8 -m pytest scripts/test_governance_policy.py and the six campaign test files -q -p no:cacheprovider",
+      "exit_code": 0,
+      "passed": 36,
+      "evidence": "Observed native session 28480: 36 passed in 34.56s."
+    },
+    {
+      "command": "cargo test --offline --locked --manifest-path governance/Cargo.toml",
+      "exit_code": 0,
+      "passed": 65,
+      "ignored_doctests": 1,
+      "evidence": "Observed native session 79379: library 55, binary 10; no failed tests."
+    }
+  ],
+  "governance_acceptance": {
+    "command": "governance/target/release/governance-check.exe --root . check --changed-since origin/main",
+    "exit_code": 1,
+    "failures": [
+      {
+        "source": "lean4/CampaignMajoranaCliffordParity.lean",
+        "rule": "FLOOR",
+        "score": "L3D"
+      },
+      {
+        "source": "lean4/lakefile.campaignMajorana.lean",
+        "rule": "FLOOR",
+        "score": "L1D"
+      }
+    ],
+    "note": "Existing exact-source exceptions are unchanged. New exact-source authorization requested; no exception added without the human reply."
+  },
+  "campaign_checks_currently_passed": true,
+  "precommit": {
+    "qm_atlas_loc_verifier": {
+      "all_passed": true,
+      "questions": 65,
+      "verified_links": 403,
+      "verified_window_symbols": 197,
+      "rust_python_parity": true
+    },
+    "pytest_passed": 5,
+    "source_commit": "0569a0097c95841eb8a3ed127c6055bbe3145b00"
+  },
+  "scanner_low_findings_scope": "Historical tensor replay absence and old date/rational tokens; explicitly left outside the new Majorana mathematical claim."
+}

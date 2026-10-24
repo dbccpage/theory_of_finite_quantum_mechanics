@@ -81,6 +81,12 @@ The mechanical scan and the evidence map are recorded with the campaign
 checks. The scan reported HIGH=0, MEDIUM=0, LOW=3. Findings require semantic
 reading; a quiet scan does not establish
 the full node statement. The existing baseline is not widened by this review.
+The LOW findings are historical: R10 for five tensor modules without replay
+receipts, R5 for the date-like token `20261019` in the tensor-uniqueness note,
+and R5 for `1/2` and `1/4` in the older tensor-countermodel note. Those modules
+were not rebuilt and those older matrix values were not independently
+recomputed in this review. Required tensor receipt repinning exposes these
+records to the diff scan; this proposal does not certify their full claims.
 Exact-source acceptance exceptions, if separately approved, concern only
 code governance and confer no mathematical status.
 
