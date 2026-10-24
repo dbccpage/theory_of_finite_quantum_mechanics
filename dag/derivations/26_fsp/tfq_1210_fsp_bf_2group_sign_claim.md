@@ -14,10 +14,10 @@
 Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.
 
 ### Governing Obligation
-Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
+Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings. Narrowed in lean4/CampaignFspBf2GroupSignClaim.lean and checks/independent/fsp-bf-2group-sign-claim.py to: (1) simplicial coboundary nilpotence d1 o d0 = 0, d2 o d1 = 0, d3 o d2 = 0 and BF 1-form/2-form gauge invariance on Delta^4; (2) abelian Z_k BF braiding trichotomy (GIN-C19) with Z_2 Hopf-link sign -1, symmetric-weight cancellation vs orientation-asymmetry residual, and SL(2, Z) cyclotomic companion matrix omega3Mat at k = 3 having omega3Mat^2 != I_2 and omega3Mat + omega3Mat^2 = -I_2 (trace -2); (3) non-abelian Wang-Levin 3-loop Borromean commutator M_WL = -I_2 (trace -2) in the 2D SU(2)_2 Ising fusion channel vs commuting diagonal monodromies (GIN-C20); (4) conjugation crossed-module Peiffer laws and non-exactness of the cup-product Postnikov 3-cocycle a(g1, g2, g3) = g1*g2*g3 in H^3(B Z_2, Z_2) (for all b : (Z_2)^2 -> Z_2, delta_2 b != a) together with simplicial Bianchi consistency d3(C3) = 0 (GIN-C21); and (5) explicit model-change scope fence showing that norm-squaring Z -> Z^2 or squaring configuration weights w_i -> w_i^2 alters the target model (manuscript line 448).
 
 ### Witness Audit
-Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exist. Local lemmas return fields of a supplied StrictCrossedModule (peiffer_identity_holds) or evaluate defined sign tables (nontrivial_postnikov_has_negative_sign, higher_2double_restores_sign_positivity by dsimp); the doubled trace replaces a sign by its square, which changes the target (manuscript line 448).
+Replaced missing Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation and trivial sign-table evaluations with lean4/CampaignFspBf2GroupSignClaim.lean (11 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-bf-2group-sign-claim.py (4444 checks, 0 failures).
 
 ---
 
@@ -28,7 +28,17 @@ Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exi
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.bf_cochain_gauge_invariance`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.bf_z2_level_hopf_link_sign_and_weight_trichotomy`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.bf_z3_level_non_involution_and_cos_sum_fence`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.wang_levin_ising_commutator_negative_trace_and_abelian_commutation`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.crossed_module_conjugation_peiffer_and_identity`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.postnikov_cup3_is_3cocycle_on_zmod2`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.postnikov_cup3_not_coboundary_in_H3_zmod2`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.two_connection_postnikov_3curvature_bianchi`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.one_form_double_vs_conjugate_two_group_postnikov_cancellation`
+- `lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.doubled_partition_function_changes_target_model_fence`
 
 ### Rust Certifiers
 - *none*
@@ -54,3 +64,7 @@ Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exi
   - `papers/core/fsp/theory_of_finite_fsp.md:639-651`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:733-828`
   - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31`
+  - `dag/derivations/independent/fsp-bf-2group-sign-claim.md`
+  - `dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
+  - `dag/research/campaign_fsp-bf-2group-sign-claim_lean_mutation.json`
+  - `dag/research/campaign_fsp-bf-2group-sign-claim_independent.json`
