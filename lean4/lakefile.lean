@@ -1135,3 +1135,7 @@ lean_lib CampaignTfq0123ContinuumInterface where
 -- Campaign: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS. Not a default target.
 lean_lib CampaignPgwWdpBridgeObligations where
   roots := #[`CampaignPgwWdpBridgeObligations]
+
+-- Campaign: TFQ-0031. Not a default target.
+lean_lib CampaignTfq0031StrongCouplingBoundary where
+  roots := #[`CampaignTfq0031StrongCouplingBoundary]
