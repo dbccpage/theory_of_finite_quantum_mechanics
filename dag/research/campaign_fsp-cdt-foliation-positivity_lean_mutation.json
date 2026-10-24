@@ -1,0 +1,64 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-24",
+  "module": "CampaignFspCdtFoliationPositivity",
+  "dag_node": "FSP-CDT-FOLIATION-POSITIVITY",
+  "claim_id": "TFQ-1215",
+  "source": "lean4/CampaignFspCdtFoliationPositivity.lean",
+  "sha256": "5ed25f7689fb24bba7bc99521183c8f1c41cea9bc4ed074175014a286ea66cdf",
+  "total_mutations": 6,
+  "killed_mutations": 6,
+  "survived_mutations": 0,
+  "all_killed": true,
+  "mutations": [
+    {
+      "id": "m1_allow_spatial_5_0_simplex",
+      "anchor": "CampaignFspCdtFoliationPositivity.cdt_4simplex_slice_partition_classification",
+      "mutation": "Replace `\u00ac isCausal4Simplex 5 0 \u2227` with `isCausal4Simplex 5 0 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m2_wrong_boundary_tetrahedra_count",
+      "anchor": "CampaignFspCdtFoliationPositivity.cdt_boundary_tetrahedra_and_no_spatial_branching",
+      "mutation": "Replace `1 * n41 + 0 * n32 + 0 * n23 + 0 * n14 = n41 \u2227` with `1 * n41 + 0 * n32 + 0 * n23 + 0 * n14 = n41 + 1 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m3_flip_wick_weight_inequality",
+      "anchor": "CampaignFspCdtFoliationPositivity.wick_rotated_cdt_boltzmann_weight_positivity",
+      "mutation": "Replace `0 < cdtWickWeight w0 w41 w32 n0 n41 n32` with `cdtWickWeight w0 w41 w32 n0 n41 n32 < 0`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m4_wrong_transfer_witness_trace",
+      "anchor": "CampaignFspCdtFoliationPositivity.two_state_cdt_transfer_matrix_trace_and_det_pos",
+      "mutation": "Replace `Matrix.trace cdtTransferWitness = 7 \u2227` with `Matrix.trace cdtTransferWitness = 8 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m5_nonzero_involution_pair_sum",
+      "anchor": "CampaignFspCdtFoliationPositivity.bqnf_involution_cancels_pairs_vs_chiral_obstruction",
+      "mutation": "Replace `s c * w c + s (Xi c) * w (Xi c) = 0 \u2227` with `s c * w c + s (Xi c) * w (Xi c) = 1 \u2227`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "m6_flip_fermion_determinant_fence",
+      "anchor": "CampaignFspCdtFoliationPositivity.bosonic_cdt_positivity_independent_of_fermion_determinant_sign_fence",
+      "mutation": "Replace `w_geom * det_D < 0 := by` with `0 < w_geom * det_D := by`",
+      "expected": "build failure",
+      "exit_code": 1,
+      "killed": true
+    }
+  ]
+}

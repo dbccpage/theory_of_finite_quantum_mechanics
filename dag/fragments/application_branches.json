@@ -3929,12 +3929,27 @@
       "statement": "Claimed: a global proper-time foliation in CDT forbids spatial branching, removes Lorentzian cancellations, yields a sign-free positive transfer matrix and a 4D de Sitter universe; the de Sitter phase is numerical literature and the checkout has no transfer-matrix or positivity computation.",
       "source": [
         "dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-cdt-foliation-positivity.md",
+        "dag/research/campaign_fsp-cdt-foliation-positivity_lean_replay.json",
+        "dag/research/campaign_fsp-cdt-foliation-positivity_lean_mutation.json",
+        "dag/research/campaign_fsp-cdt-foliation-positivity_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.proper_time_foliation_strict_order_and_no_cycles",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.cdt_4simplex_slice_partition_classification",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.cdt_boundary_tetrahedra_and_no_spatial_branching",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.wick_rotated_cdt_boltzmann_weight_positivity",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.reflection_positive_transfer_matrix_symm_and_psd",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.two_state_cdt_transfer_matrix_trace_and_det_pos",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.bqnf_involution_cancels_pairs_vs_chiral_obstruction",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.lorentzian_vs_euclidean_wick_rotation_fence",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.finite_complex_stationary_return_probability_saturates_fence",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.bosonic_cdt_positivity_independent_of_fermion_determinant_sign_fence"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Positivity in CDT uses a Wick rotation of a declared action; derive it for a declared finite model and keep numerical phase results as external evidence.",
+      "bottleneck": "Positivity in CDT uses a Wick rotation of a declared action; derive it for a declared finite model and keep numerical phase results as external evidence. Narrowed in lean4/CampaignFspCdtFoliationPositivity.lean and checks/independent/fsp-cdt-foliation-positivity.py while keeping status OPEN to: (1) proper-time foliation tau : V -> Nat strict causal ordering and absence of causal 2-cycles and 3-cycles; (2) 4D CDT causal 4-simplex slice-partition classification (4,1), (3,2), (2,3), (1,4), exclusion of purely spatial (5,0) and (0,5) simplices, boundary tetrahedra matching, and rejection of disconnected spatial branching; (3) exact rational Wick-rotated Boltzmann weight positivity and reflection positivity <psi, T psi> = sum_k d_k (B psi)_k^2 >= 0 of the symmetric slice transfer matrix T = B^T D B, with explicit 2-state witness T_cdt = [[5, 3], [3, 2]] traces Z_1 = 7, Z_2 = 47, Z_3 = 322; and (4) BQNF sign-reversing involution pair cancellation vs the frustrated chiral 3-configuration ensemble ([2, 3, 5], [+1, +1, -1]) obstruction, plus explicit scope fences for Lorentzian phase cancellation prior to Wick rotation, finite-complex stationary return probability saturation (asymptotic spectral dimension 0 != 4 vs external 4D de Sitter Monte Carlo literature), and fermionic Grassmann determinant signs.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -10070,10 +10085,11 @@
       ],
       "output": "FSP-CDT-FOLIATION-POSITIVITY",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Positivity in CDT uses a Wick rotation of a declared action; derive it for a declared finite model and keep numerical phase results as external evidence.",
+      "mechanism": "Positivity in CDT uses a Wick rotation of a declared action; derive it for a declared finite model and keep numerical phase results as external evidence. Narrowed in lean4/CampaignFspCdtFoliationPositivity.lean and checks/independent/fsp-cdt-foliation-positivity.py while keeping status OPEN to: (1) proper-time foliation tau : V -> Nat strict causal ordering and absence of causal 2-cycles and 3-cycles; (2) 4D CDT causal 4-simplex slice-partition classification (4,1), (3,2), (2,3), (1,4), exclusion of purely spatial (5,0) and (0,5) simplices, boundary tetrahedra matching, and rejection of disconnected spatial branching; (3) exact rational Wick-rotated Boltzmann weight positivity and reflection positivity <psi, T psi> = sum_k d_k (B psi)_k^2 >= 0 of the symmetric slice transfer matrix T = B^T D B, with explicit 2-state witness T_cdt = [[5, 3], [3, 2]] traces Z_1 = 7, Z_2 = 47, Z_3 = 322; and (4) BQNF sign-reversing involution pair cancellation vs the frustrated chiral 3-configuration ensemble ([2, 3, 5], [+1, +1, -1]) obstruction, plus explicit scope fences for Lorentzian phase cancellation prior to Wick rotation, finite-complex stationary return probability saturation (asymptotic spectral dimension 0 != 4 vs external 4D de Sitter Monte Carlo literature), and fermionic Grassmann determinant signs.",
       "source": [
         "dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-cdt-foliation-positivity.md"
       ]
     },
     {
@@ -16316,7 +16332,7 @@
       "parent_id": "TFQ-1213",
       "record_status": "OPEN_OBLIGATION",
       "summary": "Claimed: a global proper-time foliation in CDT forbids spatial branching, removes Lorentzian cancellations, yields a sign-free positive transfer matrix and a 4D de Sitter universe; the de Sitter phase is numerical literature and the checkout has no transfer-matrix or positivity computation.",
-      "obligation": "Positivity in CDT uses a Wick rotation of a declared action; derive it for a declared finite model and keep numerical phase results as external evidence.",
+      "obligation": "Positivity in CDT uses a Wick rotation of a declared action; derive it for a declared finite model and keep numerical phase results as external evidence. Narrowed in lean4/CampaignFspCdtFoliationPositivity.lean and checks/independent/fsp-cdt-foliation-positivity.py while keeping status OPEN to: (1) proper-time foliation tau : V -> Nat strict causal ordering and absence of causal 2-cycles and 3-cycles; (2) 4D CDT causal 4-simplex slice-partition classification (4,1), (3,2), (2,3), (1,4), exclusion of purely spatial (5,0) and (0,5) simplices, boundary tetrahedra matching, and rejection of disconnected spatial branching; (3) exact rational Wick-rotated Boltzmann weight positivity and reflection positivity <psi, T psi> = sum_k d_k (B psi)_k^2 >= 0 of the symmetric slice transfer matrix T = B^T D B, with explicit 2-state witness T_cdt = [[5, 3], [3, 2]] traces Z_1 = 7, Z_2 = 47, Z_3 = 322; and (4) BQNF sign-reversing involution pair cancellation vs the frustrated chiral 3-configuration ensemble ([2, 3, 5], [+1, +1, -1]) obstruction, plus explicit scope fences for Lorentzian phase cancellation prior to Wick rotation, finite-complex stationary return probability saturation (asymptotic spectral dimension 0 != 4 vs external 4D de Sitter Monte Carlo literature), and fermionic Grassmann determinant signs.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-CDT-FOLIATION-POSITIVITY"
@@ -16325,13 +16341,28 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:707-719"
+        "papers/core/fsp/theory_of_finite_fsp.md:707-719",
+        "dag/derivations/independent/fsp-cdt-foliation-positivity.md",
+        "dag/research/campaign_fsp-cdt-foliation-positivity_lean_replay.json",
+        "dag/research/campaign_fsp-cdt-foliation-positivity_lean_mutation.json",
+        "dag/research/campaign_fsp-cdt-foliation-positivity_independent.json"
       ],
       "python": [
         "code/python/src/fsp/cdt_fermion_sign_evaluator.py::CdtFermionSignEvaluator"
       ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.proper_time_foliation_strict_order_and_no_cycles",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.cdt_4simplex_slice_partition_classification",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.cdt_boundary_tetrahedra_and_no_spatial_branching",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.wick_rotated_cdt_boltzmann_weight_positivity",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.reflection_positive_transfer_matrix_symm_and_psd",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.two_state_cdt_transfer_matrix_trace_and_det_pos",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.bqnf_involution_cancels_pairs_vs_chiral_obstruction",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.lorentzian_vs_euclidean_wick_rotation_fence",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.finite_complex_stationary_return_probability_saturates_fence",
+        "lean4/CampaignFspCdtFoliationPositivity.lean::CampaignFspCdtFoliationPositivity.bosonic_cdt_positivity_independent_of_fermion_determinant_sign_fence"
+      ]
     },
     {
       "id": "TFQ-1216",
