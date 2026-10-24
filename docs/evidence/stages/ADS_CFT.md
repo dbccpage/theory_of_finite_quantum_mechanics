@@ -2,13 +2,13 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 13. Grades: E0 9, E1 1, E3 3. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTION 2, SOURCE_RECORD 6, OPEN 2.
+Nodes: 13. Grades: E0 8, E1 1, E3 4. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTION 2, SOURCE_RECORD 6, OPEN 2.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
 | [ADS-MALDACENA-1997-SOURCE](../nodes/ADS-MALDACENA-1997-SOURCE.md) | `SOURCE_RECORD` | E0 | Maldacena (1997, arXiv:hep-th/9711200, Section 2 eqs. (2.1)-(2.5) pp. 3-5, conjecture p. 9) takes the low-energy decoupling limit of N pa... | none in this checkout | - |
 | [ADS-GKPW-DICTIONARY-SOURCE](../nodes/ADS-GKPW-DICTIONARY-SOURCE.md) | `SOURCE_RECORD` | E0 | Gubser, Klebanov and Polyakov (1998, arXiv:hep-th/9802109, Section 2 eq. (2.5) p. 4 and Section 3 eq. (3.14) p. 8) and Witten (1998, arXi... | none in this checkout | - |
-| [ADS-CFT-DUALITY-IMPORT](../nodes/ADS-CFT-DUALITY-IMPORT.md) | `IMPORTED_ASSUMPTION` | E0 | Imported as an assumption, not as a result of this repository: a quantum gravity theory on an asymptotically anti-de Sitter spacetime has... | none in this checkout | - |
+| [ADS-CFT-DUALITY-IMPORT](../nodes/ADS-CFT-DUALITY-IMPORT.md) | `IMPORTED_ASSUMPTION` | E3 | Imported as an assumption, not as a result of this repository: a continuum quantum gravity theory on an asymptotically anti-de Sitter spa... | [CampaignAdsCftDualityImport.lean](../../../lean4/CampaignAdsCftDualityImport.lean): `bf_bound_iff_discriminant_nonneg`, `bf_saturation_double_root`, `boundary_annihilator_obstruction` +18<br>[ads-cft-duality-import.py](../../../checks/independent/ads-cft-duality-import.py)<br>[ads-cft-duality-import.md](../../../dag/derivations/independent/ads-cft-duality-import.md)<br>[campaign_ads-cft-duality-import_independent.json](../../../dag/research/campaign_ads-cft-duality-import_independent.json)<br>+2 more file(s) | - |
 | [ADS-RT-2006-SOURCE](../nodes/ADS-RT-2006-SOURCE.md) | `SOURCE_RECORD` | E0 | Ryu and Takayanagi (2006, arXiv:hep-th/0603001, Section 1 eq. (1.5) p. 2) propose that the entanglement entropy S_A of a spatial subregio... | none in this checkout | - |
 | [ADS-RT-FORMULA-IMPORT](../nodes/ADS-RT-FORMULA-IMPORT.md) | `IMPORTED_ASSUMPTION` | E0 | Imported formula, as the source states it at leading order in Newton's constant: S(A) = Area(minimal surface anchored on the boundary of... | none in this checkout | - |
 | [ADS-ADH-2015-SOURCE](../nodes/ADS-ADH-2015-SOURCE.md) | `SOURCE_RECORD` | E0 | Almheiri, Dong and Harlow (2015, arXiv:1411.7041) resolve the radial-commutativity puzzle of bulk local operators by formulating the low-... | none in this checkout | - |

@@ -14,9 +14,18 @@ Every governed source file needs a companion `<name>.contract.score.yaml` next t
 
 **Governed sources** are the populations in [`policy.json`](policy.json): `code/**/*.rs`, `code/**/*.py` and `lean4/**/*.lean`, minus build and cache directories (`target`, `__pycache__`, `.lake`, `node_modules`) and sealed snapshots (`dag/results/**`, `dag/sealed_runs/**`, `sealed_runs/**`, `atlas/**`, `papers/**/archive/**`). Discovery is `git ls-files --cached --others --exclude-standard`, the same rule as `scripts/score_scope_contracts.py`.
 
-**Reviewed support exceptions.** The maintainer authorized lower capability levels for declarative build registrations, regression tests and byte-identical source archives, while keeping grade D and all integrity checks. `support_exceptions` pins each reviewed path and source digest, category and reason. Current entries cover only `lean4/lakefile.lean` and `code/python/tests/test_three_role_gate.py`. A changed hash or different path loses the exception; incomplete scores and grade E still fail. Substantive runtime and proof modules retain L4D. These are not baseline additions.
+**Reviewed support exceptions.** The maintainer authorized lower capability levels for declarative build registrations, regression tests and byte-identical source archives, while keeping grade D and all integrity checks. `support_exceptions` pins each reviewed path and source digest, category and reason. The current reviewed paths, categories and exact digests are listed in `policy.json`. A changed hash or different path loses the exception; incomplete scores and grade E still fail. Substantive runtime and proof modules retain L4D. These are not baseline additions.
 
 **Grandfathering.** No existing source had a completed score when this was introduced, so the floor applies to new and changed files. [`baseline.json`](baseline.json) lists every source that lacked a completed in-floor score on 2026-10-22, with the SHA-256 of its bytes then and its first deficit. A listed file with unchanged bytes is exempt. Changing it removes the exemption: the changed file must then meet the floor. The baseline only shrinks (see below).
+
+On 2026-10-23 the maintainer also authorized `compatibility_support` for the
+unchanged-purpose `code/python/src/qm/qm122_dual.py` re-export. The parser rejects
+that category for every other path. Its exact source hash is pinned, its score
+remains L1D, and grade E or incomplete assessments still fail. The five-test
+`replica_hierarchy_validation.py` harness uses the existing regression-test
+exception at L2D. Substantive runtime and proof modules retain the L4D floor;
+neither exception adds a baseline entry. See the
+[repair assessment](../docs/evidence/governance-blocker-assessment.md).
 
 **Pinned boilerplate.** The build hook [`hook/build.rs`](hook/build.rs) (two comment lines and a `main` that calls the macro) is copied byte for byte into every workspace package. Its SHA-256 is pinned in `policy.json`, and only identical copies are exempt from needing a companion. The code it calls is scored with the governance crate.
 
