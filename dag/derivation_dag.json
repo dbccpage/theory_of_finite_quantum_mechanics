@@ -12462,16 +12462,19 @@
       "source_status": "TFQ record_status GAP (source slice 06)",
       "statement": "Other gravity files are scaffolds or a different 2D calculus and must not be folded into the rational 4D proxy. src/holonomy.rs is a best-effort scaffold whose Holonomy struct stores only a degree and a string label. src/regge_calculus.rs is finite 2D Regge, with action a sum of vertex deficits, and it says it is not continuum GR and not 3+1 dihedral Regge. src/discrete_spacetime.rs is the combinatorial carrier via omega_homology::simplicial. The obligation is to withhold those labels and the 2D deficit sum from the exact_regge proxy. FiniteQFTAndGravity.lean keeps pi and square roots out of its identities.",
       "source": [
-        "dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md"
+        "dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md",
+        "dag/derivations/independent/tfq-0199.md"
       ],
       "lean": [
+        "lean4/CampaignTfq0199ImplementationSibling.lean",
         "lean4/FiniteQFTAndGravity.lean"
       ],
       "rust": [
-        "code/rust/src/majorana/holonomy.rs",
+        "code/rust/src/general_relativity/exact_regge/action.rs",
         "code/rust/src/general_relativity/regge_calculus.rs",
         "code/rust/src/general_relativity/discrete_spacetime.rs",
-        "code/rust/src/general_relativity/einstein_hilbert_action.rs"
+        "code/rust/src/general_relativity/einstein_hilbert_action.rs",
+        "code/rust/src/majorana/holonomy.rs"
       ],
       "imported_structure": [],
       "bottleneck": "Do not treat the GR holonomy scaffold or the 2D Regge sum as the exact rational 4D gravity shadow.",
@@ -12479,6 +12482,14 @@
         "unified-dag",
         "TFQ-0199",
         "implementation_sibling"
+      ],
+      "python": [
+        "checks/independent/tfq-0199.py::run_all_checks"
+      ],
+      "evidence_receipts": [
+        "dag/research/campaign_tfq-0199_lean_replay.json",
+        "dag/research/campaign_tfq-0199_lean_mutation.json",
+        "dag/research/campaign_tfq-0199_independent.json"
       ]
     },
     {
@@ -48315,24 +48326,42 @@
       "existing_derivation_dag_ids": [
         "TFQ-0199"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md",
+        "dag/derivations/independent/tfq-0199.md",
+        "dag/research/campaign_tfq-0199_lean_replay.json",
+        "dag/research/campaign_tfq-0199_lean_mutation.json",
+        "dag/research/campaign_tfq-0199_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0199-precommit.md"
+      ],
       "id": "TFQ-0199",
       "lean4": [
-        "lean4/FiniteQFTAndGravity.lean"
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.simplex_carrier_dimension_separation",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.euler_characteristic_contractible_invariance",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.orthogonal_pentatope_hinge_areas_squared",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.exact_flat_fence_rejects_sub_cutoff_curvature",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.defect_bound_exact_rational_witnesses",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.regge_2d_vertex_sum_vs_4d_area_sq_scaling",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.gf2_plaquette_holonomy_vs_rational_quaternion",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.finite_qft_and_gravity_pi_sqrt_free_identities",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.canonical_gravity_shadow_fence_valid",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.tfq0199_gr_holonomy_regge_not_4d_gravity_shadow_scope_certificate",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.gr_deflection_twice_newton"
       ],
       "local_id": "A06-034",
       "name": "Do not treat the GR holonomy scaffold or the 2D Regge sum",
       "obligation": "Do not treat the GR holonomy scaffold or the 2D Regge sum as the exact rational 4D gravity shadow.",
       "parent_id": "TFQ-0197",
       "python": [
-        "absent: not located"
+        "checks/independent/tfq-0199.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "code/rust/src/majorana/holonomy.rs",
-        "code/rust/src/general_relativity/regge_calculus.rs",
-        "code/rust/src/general_relativity/discrete_spacetime.rs",
-        "code/rust/src/general_relativity/einstein_hilbert_action.rs"
+        "code/rust/src/general_relativity/exact_regge/action.rs::rational_regge_proxy",
+        "code/rust/src/general_relativity/regge_calculus.rs::ReggeCalculus::regge_action_2d",
+        "code/rust/src/general_relativity/discrete_spacetime.rs::DiscreteSpacetime::euler_characteristic",
+        "code/rust/src/general_relativity/einstein_hilbert_action.rs::EinsteinHilbertAction::try_from_regge",
+        "code/rust/src/majorana/holonomy.rs::holonomy_receipt_gf2"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",

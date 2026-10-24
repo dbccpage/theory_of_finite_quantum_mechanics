@@ -118,3 +118,8 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Lean 4 (`lean4/CampaignTfq0191ImplementationSibling.lean`)**: 10 zero-sorry theorems (`L4D`) formalizing interval straddling indeterminacy (`interval_order_straddling_indeterminacy_vs_strict_comparison`), fixed-scale decimal non-representability of `1/3` (`decimal_fixed_scale_cannot_represent_one_third_exactly`), the exact discrepancy between IEEE-754 `f64(0.1)` and `1/10` (`ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth`), affine calibration and clock interval width propagation, and the `IntervalRequiresPolicy` / `from_f64_unchecked` fences.
 - **Mutation Gate (`dag/research/campaign_tfq-0191_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0191.py`)**: 280 checks passed, 0 failed (`dag/research/campaign_tfq-0191_independent.json`).
+
+### 2026-10-24 — `TFQ-0199` (`IMPLEMENTATION_SIBLING`, Rank 157): `E1 -> E3`
+- **Lean 4 (`lean4/CampaignTfq0199ImplementationSibling.lean`)**: 10 zero-sorry theorems (`L4D`) formalizing the separation between the 4D rational Regge proxy (`exact_regge::action::rational_regge_proxy`) and the 2D `f64` Regge / combinatorial / $\mathbb{F}_2$ holonomy modules (`regge_calculus.rs`, `einstein_hilbert_action.rs`, `discrete_spacetime.rs`, `majorana/holonomy.rs`).
+- **Mutation Gate (`dag/research/campaign_tfq-0199_lean_mutation.json`)**: 6/6 semantic mutations killed.
+- **Independent Checker (`checks/independent/tfq-0199.py`)**: 224 checks passed, 0 failed (`dag/research/campaign_tfq-0199_independent.json`).
