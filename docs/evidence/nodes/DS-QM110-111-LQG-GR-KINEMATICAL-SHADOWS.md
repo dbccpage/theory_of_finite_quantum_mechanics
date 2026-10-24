@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -38,7 +38,7 @@ Unmet after the PFP review: Supply continuum manifold/metric/connection, SU(2) r
 
 ## Review
 
-- PFP review: [dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Q8 group operations, pure-gauge loops and noncommuting plaquette controls are native/kernel checked on the declared eight-element group.
   - does not support: Supply continuum manifold/metric/connection, SU(2) representations, measure, physical scales and Hamiltonian/Einstein dynamics before any quantum-gravity interpretation.
   - next test: Supply continuum manifold/metric/connection, SU(2) representations, measure, physical scales and Hamiltonian/Einstein dynamics before any quantum-gravity interpretation.

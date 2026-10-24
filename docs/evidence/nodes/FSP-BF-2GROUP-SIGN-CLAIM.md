@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings. Narrowed in lean4/CampaignFspBf2GroupSignClaim.lean and checks/independent/fsp-bf-2group-sign-claim.py to: (1) simplicial coboundary nilpotence d1 o d0 = 0, d2 o d1 = 0, d3 o d2 = 0 and BF 1-form/2-form gauge invariance on Delta^4; (2) abelian Z_k BF braiding trichotomy (GIN-C19) with Z_2 Hopf-link sign -1, symmetric-weight cancellation vs orientation-asymmetry residual, and SL(2, Z) cyclotomic companion matrix omega3Mat at k = 3 having omega3Mat^2 != I_2 and omega3Mat + omega3Mat^2 = -I_2 (trace -2); (3) non-abelian Wang-Levin 3-loop Borromean commutator M_WL = -I_2 (trace -2) in the 2D SU(2)_2 Ising fusion channel vs commuting diagonal monodromies (GIN-C20); (4) conjugation crossed-module Peiffer laws and non-exactness of the cup-product Postnikov 3-cocycle a(g1, g2, g3) = g1*g2*g3 in H^3(B Z_2, Z_2) (for all b : (Z_2)^2 -\> Z_2, delta_2 b != a) together with simplicial Bianchi consistency d3(C3) = 0 (GIN-C21); and (5) explicit model-change scope fence showing that norm-squaring Z -\> Z^2 or squaring configuration weights w_i -\> w_i^2 alters the target model (manuscript line 448).
+Narrowed algebraic checks only. Explicit low-degree simplicial coboundaries on Fin 5 compose to zero and preserve the displayed curvatures under exact shifts. The ZMod 2 product cocycle is not any displayed 2-coboundary, as detected by the explicit three-term functional. Two supplied integer involutions have commutator -I. Crossed-module identity formulas reduce to reflexivity and do not construct an arbitrary crossed module. There is no identification with Wang-Levin braiding, a path integral, or a unique physical cancellation mechanism. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,23 +45,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFspBf2GroupSignClaim.lean`
 
 - file: [lean4/CampaignFspBf2GroupSignClaim.lean](../../../lean4/CampaignFspBf2GroupSignClaim.lean)
-- sha256 (`bytes`): `4f4536caeeddaa6395ad2c618bd738ace4e57710f584768ed85825e3849873d9`
-- cited in: node.lean, receipt dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json (CampaignFspBf2GroupSignClaim), record TFQ-1210
+- sha256 (`bytes`): `2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843`
+- cited in: node.lean, record TFQ-1210
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json) (module `CampaignFspBf2GroupSignClaim`): recorded sha256 `4f4536caeeddaa6395ad2c618bd738ace4e57710f584768ed85825e3849873d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json) (module `CampaignFspBf2GroupSignClaim`): recorded sha256 `2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFspBf2GroupSignClaim`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspBf2GroupSignClaim.bf_cochain_gauge_invariance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.bf_cochain_gauge_invariance` |
-| `CampaignFspBf2GroupSignClaim.bf_z2_level_hopf_link_sign_and_weight_trichotomy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.bf_z2_level_hopf_link_sign_and_weight_trichotomy` |
+| `CampaignFspBf2GroupSignClaim.bf_cochain_gauge_invariance` | yes | yes | yes | propext | `#print axioms CampaignFspBf2GroupSignClaim.bf_cochain_gauge_invariance` |
+| `CampaignFspBf2GroupSignClaim.bf_z2_level_hopf_link_sign_and_weight_trichotomy` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.bf_z2_level_hopf_link_sign_and_weight_trichotomy` |
 | `CampaignFspBf2GroupSignClaim.bf_z3_level_non_involution_and_cos_sum_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.bf_z3_level_non_involution_and_cos_sum_fence` |
-| `CampaignFspBf2GroupSignClaim.crossed_module_conjugation_peiffer_and_identity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.crossed_module_conjugation_peiffer_and_identity` |
-| `CampaignFspBf2GroupSignClaim.doubled_partition_function_changes_target_model_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.doubled_partition_function_changes_target_model_fence` |
+| `CampaignFspBf2GroupSignClaim.crossed_module_conjugation_peiffer_and_identity` | yes | yes | yes | propext | `#print axioms CampaignFspBf2GroupSignClaim.crossed_module_conjugation_peiffer_and_identity` |
+| `CampaignFspBf2GroupSignClaim.doubled_partition_function_changes_target_model_fence` | yes | yes | yes | propext | `#print axioms CampaignFspBf2GroupSignClaim.doubled_partition_function_changes_target_model_fence` |
 | `CampaignFspBf2GroupSignClaim.one_form_double_vs_conjugate_two_group_postnikov_cancellation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.one_form_double_vs_conjugate_two_group_postnikov_cancellation` |
 | `CampaignFspBf2GroupSignClaim.postnikov_cup3_is_3cocycle_on_zmod2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.postnikov_cup3_is_3cocycle_on_zmod2` |
 | `CampaignFspBf2GroupSignClaim.postnikov_cup3_not_coboundary_in_H3_zmod2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.postnikov_cup3_not_coboundary_in_H3_zmod2` |
-| `CampaignFspBf2GroupSignClaim.simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2` |
+| `CampaignFspBf2GroupSignClaim.simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2` | yes | yes | yes | propext | `#print axioms CampaignFspBf2GroupSignClaim.simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2` |
 | `CampaignFspBf2GroupSignClaim.two_connection_postnikov_3curvature_bianchi` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.two_connection_postnikov_3curvature_bianchi` |
 | `CampaignFspBf2GroupSignClaim.wang_levin_ising_commutator_negative_trace_and_abelian_commutation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspBf2GroupSignClaim.wang_levin_ising_commutator_negative_trace_and_abelian_commutation` |
 - counts toward the grade: yes
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-bf-2group-sign-claim.md`
 
 - file: [dag/derivations/independent/fsp-bf-2group-sign-claim.md](../../../dag/derivations/independent/fsp-bf-2group-sign-claim.md)
-- sha256 (`lf-normalised`): `617b27173ec2c58d3fa9de35b146439cf2192fbac7e25a3df8938ad42015c1f3`
+- sha256 (`lf-normalised`): `68f306da33ac4d99ab0c3e272f52cf67edbb99d8eb4833f57edae127ebd5df82`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json)
-- sha256 (`lf-normalised`): `4f27a2e92e0d53fa0f4098b6f2989e2bf41446007834a59679eba4d97a8218fd`
+- sha256 (`lf-normalised`): `73d02deedd5d0276d19ba3c4781dbf89be68c3c6282ec606ffd0d7e323213654`
 - cited in: node.source
 - counts toward the grade: yes
 

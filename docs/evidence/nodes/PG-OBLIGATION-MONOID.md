@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ WDP-CH03-P02, P03 MECHANIZED in DerivationDagQMClosure.lean and Rust witness
 
 ## Review
 
-- PFP review: [dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-OBLIGATION-MONOID/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Obligation counters under pointwise sum are the free commutative monoid on the ids (cancellative, not a group); the re-declared copy of the source four-event three-counter trace is a homomorphism from event lists with total cost equal to length; in the abstract unbounded k-id model every successful generate/discharge run from the empty ledger keeps discharged within generated and a discharge succeeds exactly when it fits the outstanding count; Genesis events and S(n) maps being morphisms remains unproved.
   - does not support: That Genesis events or S(n) maps are monoid morphisms into the obligation monoid (TFQ-0342, PG-GAP-EVENT-OBLIGATION): the event-to-vector table evOb is copied from the source, not derived, and only lists of the four declared events are covered; any theorem tying Ev/evOb/trace to PrimGenEvent/eventObligation/traceObligation of DerivationDagQMClosure.lean (they are a re-declaration); any theorem connecting the Lean abstract-k unbounded ledger to the three-id u64 Python/Rust ledger; the Rust crate itself (nothing in omega_kernel is executed); unbounded or string-keyed ids; any claim that the 3-counter vector equals the free monoid on the real obligation ids.
   - next test: Derive from the actual Genesis event and S(n)-map definitions (not the four-event table) that each step adds a fixed generated and discharged vector independent of context, i.e. that sequential composition maps to combine, or exhibit an event whose vector depends on the preceding trace.

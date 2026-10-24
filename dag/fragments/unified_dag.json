@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5092,7 +5092,7 @@
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.",
-      "obligation": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings. Narrowed in lean4/CampaignFspBf2GroupSignClaim.lean and checks/independent/fsp-bf-2group-sign-claim.py to: (1) simplicial coboundary nilpotence d1 o d0 = 0, d2 o d1 = 0, d3 o d2 = 0 and BF 1-form/2-form gauge invariance on Delta^4; (2) abelian Z_k BF braiding trichotomy (GIN-C19) with Z_2 Hopf-link sign -1, symmetric-weight cancellation vs orientation-asymmetry residual, and SL(2, Z) cyclotomic companion matrix omega3Mat at k = 3 having omega3Mat^2 != I_2 and omega3Mat + omega3Mat^2 = -I_2 (trace -2); (3) non-abelian Wang-Levin 3-loop Borromean commutator M_WL = -I_2 (trace -2) in the 2D SU(2)_2 Ising fusion channel vs commuting diagonal monodromies (GIN-C20); (4) conjugation crossed-module Peiffer laws and non-exactness of the cup-product Postnikov 3-cocycle a(g1, g2, g3) = g1*g2*g3 in H^3(B Z_2, Z_2) (for all b : (Z_2)^2 -> Z_2, delta_2 b != a) together with simplicial Bianchi consistency d3(C3) = 0 (GIN-C21); and (5) explicit model-change scope fence showing that norm-squaring Z -> Z^2 or squaring configuration weights w_i -> w_i^2 alters the target model (manuscript line 448).",
+      "obligation": "Narrowed algebraic checks only. Explicit low-degree simplicial coboundaries on Fin 5 compose to zero and preserve the displayed curvatures under exact shifts. The ZMod 2 product cocycle is not any displayed 2-coboundary, as detected by the explicit three-term functional. Two supplied integer involutions have commutator -I. Crossed-module identity formulas reduce to reflexivity and do not construct an arbitrary crossed module. There is no identification with Wang-Levin braiding, a path integral, or a unique physical cancellation mechanism. Status is unchanged. The original physical or operational bridge remains open.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-LAUGHLIN-EXCHANGE-PHASE"
@@ -9960,10 +9960,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9973,7 +9973,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9981,7 +9981,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9998,7 +9998,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

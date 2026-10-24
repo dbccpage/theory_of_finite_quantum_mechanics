@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ Thm 1 coordinatewise weighted L1 decomposition, Thm 2 symmetry orbit-constancy, 
 
 ## Review
 
-- PFP review: [dag/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Weighted two-edge l1 decomposition, exact transposition defect and l-infinity disjoint-additivity countercontrols; general transposition algebra under positive coordinates.
   - does not support: Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.
   - next test: Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness.

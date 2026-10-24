@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -41,7 +41,7 @@ paper s7 / s13.1: complex structure, Hilbert space, tensor factorization, Born r
 
 ## Review
 
-- PFP review: [dag/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-DECLARED-QUANTUM-INTERFACE/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
   - narrowest claim: Three exact rational-real examples on an admitted finite quantum carrier with explicit source and import boundaries.
   - does not support: Derivation, necessity or independence of the quantum interface from primitive difference, or a derived time/dynamics.
   - next test: Audit declarations and actual matrices; do not promote API refusal or component counts to theorems.

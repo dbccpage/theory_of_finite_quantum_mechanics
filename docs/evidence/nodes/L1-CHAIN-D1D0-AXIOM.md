@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ C18 d1 o d0 = 0: \[DECLARED AXIOM\] assumed via presheaf functoriality; not prov
 
 ## Review
 
-- PFP review: [dag/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-CHAIN-D1D0-AXIOM/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: no.
   - narrowest claim: Actual triangle d1*d0 arrays, potential images and flat/nonflat controls, with general telescoping and a defective-row witness in Lean.
   - does not support: Derive functorial restrictions from admitted presheaf data and transport arbitrary finite cochain windows; zero on one potential is insufficient.
   - next test: Derive functorial restrictions from admitted presheaf data and transport arbitrary finite cochain windows; zero on one potential is insufficient.

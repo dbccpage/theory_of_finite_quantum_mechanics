@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ gap_register GAP-FQM-002/003/004/006..010/012/014/017/019/020/022 (statuses abse
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `OPEN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `OPEN`; qualifies for E4: no.
   - narrowest claim: Every retained available source is bound to actual bytes; unavailable or changed historical pins remain explicit. Fresh named Lean reports cover only the declarations listed in this run, not an H000-H053 campaign.
   - does not support: Resolve the original claim-row discrepancies, missing-library maps, publication/provenance corrections and full original axiom/build receipts individually. This scoped inventory does not discharge the historical custody register.
   - next test: Resolve the original claim-row discrepancies, missing-library maps, publication/provenance corrections and full original axiom/build receipts individually. This scoped inventory does not discharge the historical custody register.
