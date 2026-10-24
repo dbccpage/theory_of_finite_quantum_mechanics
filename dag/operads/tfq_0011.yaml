@@ -3,28 +3,33 @@ node_id: TFQ-0011
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: In any group, the gauged four-edge product (a inverse, g, b) (b inverse, h, c)
-    (c inverse, k, d) (d inverse, m, a) equals a inverse times (g h k m) times a. In S3 the
-    transpositions of 0 with 1 and of 1 with 2 do not commute, and the product of the first
-    transposition, the second, and two identity factors is not the identity. At color count 3 the
-    channel formulae are C_F = 4/3, C_A = 3, singlet = -4/3, octet = 1/6, sextet = 1/3 and
-    antitriplet = -2/3, the singlet is negative, and the octet is positive. The gluon split
-    4 C_A - C_A/3 equals 11, one Dirac flavor contributes -2/3, and the recorded abelian
-    coefficient -4/3 is negative. With beta0(n_c, n_f) = (11/3) n_c - (2/3) n_f, the values
-    beta0(3, n_f) at n_f = 0, 3, 5, 6, 16, 17 are 11, 9, 23/3, 7, 1/3, -1/3. For every rational
-    n_f, beta0(3, n_f) > 0 if and only if n_f < 33/2, and beta0(3, n) > 0 for every natural
-    n ≤ 16, while beta0(3, 17) < 0. With beta1(3, n_f) = 102 - (38/3) n_f, the values at
-    n_f = 0, 5, 16 are 102, 116/3, -302/3, and (-beta0(3, 16)) / beta1(3, 16) = 1/302. For a
-    nonzero rational b and natural numbers r, t at least 1, the Creutz ratio of the area monomials
-    b^(r t) equals b, and the Creutz ratio of the perimeter monomials b^(2 (r + t)) equals 1. At
-    b = 1/9 the area ratios on the pairs (2, 2) and (3, 3) equal 1/9, the perimeter ratios equal 1,
-    and 1/9 is distinct from 1. The declared counts 9 and 12 satisfy 9 - 1 = 8, 12 - 9 + 1 = 4
-    and 12 - 8 = 4.
+  source_statement: In any group, the gauged four-edge product (a inverse, g, b) (b inverse, h, c) (c
+    inverse, k, d) (d inverse, m, a) equals a inverse times (g h k m) times a. In S3 the transpositions
+    of 0 with 1 and of 1 with 2 do not commute, and the product of the first transposition, the second,
+    and two identity factors is not the identity. At color count 3 the channel formulae are C_F = 4/3,
+    C_A = 3, singlet = -4/3, octet = 1/6, sextet = 1/3 and antitriplet = -2/3, the singlet is negative,
+    and the octet is positive. The gluon split 4 C_A - C_A/3 equals 11, one Dirac flavor contributes -2/3,
+    and the recorded abelian coefficient -4/3 is negative. With beta0(n_c, n_f) = (11/3) n_c - (2/3) n_f,
+    the values beta0(3, n_f) at n_f = 0, 3, 5, 6, 16, 17 are 11, 9, 23/3, 7, 1/3, -1/3. For every rational
+    n_f, beta0(3, n_f) > 0 if and only if n_f < 33/2, and beta0(3, n) > 0 for every natural n ≤ 16, while
+    beta0(3, 17) < 0. With beta1(3, n_f) = 102 - (38/3) n_f, the values at n_f = 0, 5, 16 are 102, 116/3,
+    -302/3, and (-beta0(3, 16)) / beta1(3, 16) = 1/302. For a nonzero rational b and natural numbers r,
+    t at least 1, the Creutz ratio of the area monomials b^(r t) equals b, and the Creutz ratio of the
+    perimeter monomials b^(2 (r + t)) equals 1. At b = 1/9 the area ratios on the pairs (2, 2) and (3,
+    3) equal 1/9, the perimeter ratios equal 1, and 1/9 is distinct from 1. The declared counts 9 and
+    12 satisfy 9 - 1 = 8, 12 - 9 + 1 = 4 and 12 - 8 = 4.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: "Outside this certificate: continuum confinement, a string tension, the 12-decimal alpha_s and ln(9) strings, lattice Dirac doubling, an SU(3) matrix representation of the plaquette, and a constructed 3x3 complex with these counts. The route from TFQ-0009 stays a gap. Status stays OPEN."
+  source_bottleneck: 'Outside this certificate: continuum confinement, a string tension, the 12-decimal
+    alpha_s and ln(9) strings, lattice Dirac doubling, an SU(3) matrix representation of the plaquette,
+    and a constructed 3x3 complex with these counts. The route from TFQ-0009 stays a gap. Status stays
+    OPEN.'
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0011_finite_qcd_shadow.md
+  - lean4/CampaignTfq0011FiniteQcd.lean
+  - checks/independent/tfq-0011.py
+  - dag/derivations/independent/tfq-0011.md
+  - dag/research/campaign_tfq-0011_lean_replay.json
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0011_finite_qcd_shadow.md
   source_claim_label: OPEN
@@ -41,9 +46,468 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_qcd_tfq_0011_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: s01
+  line: 27
+  signature_excerpt: 'def s01 : Equiv.Perm (Fin 3)'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: s12
+  line: 28
+  signature_excerpt: 'def s12 : Equiv.Perm (Fin 3)'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cF
+  line: 37
+  signature_excerpt: 'def cF (nc : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cA
+  line: 38
+  signature_excerpt: 'def cA (nc : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: singlet
+  line: 39
+  signature_excerpt: 'def singlet (nc : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: octet
+  line: 40
+  signature_excerpt: 'def octet (nc : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sextet
+  line: 41
+  signature_excerpt: 'def sextet (nc : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: antitriplet
+  line: 42
+  signature_excerpt: 'def antitriplet (nc : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: beta0
+  line: 56
+  signature_excerpt: 'def beta0 (nc nf : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: beta1
+  line: 58
+  signature_excerpt: 'def beta1 (nc nf : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: creutz
+  line: 107
+  signature_excerpt: 'def creutz (wRt wPrev wRt1 wR1t : Rat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: areaMonomial
+  line: 104
+  signature_excerpt: 'def areaMonomial (b : Rat) (r t : Nat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: perimMonomial
+  line: 105
+  signature_excerpt: 'def perimMonomial (b : Rat) (r t : Nat) : Rat'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: plaquette_gauge
+  line: 22
+  signature_excerpt: |-
+    theorem plaquette_gauge {G : Type*} [Group G] (g h k m a b c d : G) :
+        (a⁻¹ * g * b) * (b⁻¹ * h * c) * (c⁻¹ * k * d) * (d⁻¹ * m * a)
+          = a⁻¹ * (g * h * k * m) * a
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s3_swaps_do_not_commute
+  line: 30
+  signature_excerpt: 'theorem s3_swaps_do_not_commute : s01 * s12 ≠ s12 * s01'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s3_two_swap_product_ne_one
+  line: 33
+  signature_excerpt: |-
+    theorem s3_two_swap_product_ne_one :
+        s01 * s12 * (1 : Equiv.Perm (Fin 3)) * 1 ≠ 1
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: su3_channel_values
+  line: 44
+  signature_excerpt: |-
+    theorem su3_channel_values :
+        cF 3 = 4 / 3 ∧
+        cA 3 = 3 ∧
+        singlet 3 = -4 / 3 ∧
+        octet 3 = 1 / 6 ∧
+        sextet 3 = 1 / 3 ∧
+        antitriplet 3 = -2 / 3 ∧
+        singlet 3 < 0 ∧
+        octet 3 > 0
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gluon_split_and_one_flavor
+  line: 61
+  signature_excerpt: |-
+    theorem gluon_split_and_one_flavor :
+        (4 : Rat) * cA 3 + (-1 / 3) * cA 3 = 11 ∧
+        (-4 / 3 : Rat) * (1 / 2) = -2 / 3 ∧
+        (-4 / 3 : Rat) < 0
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: beta0_values
+  line: 68
+  signature_excerpt: |-
+    theorem beta0_values :
+        beta0 3 0 = 11 ∧
+        beta0 3 3 = 9 ∧
+        beta0 3 5 = 23 / 3 ∧
+        beta0 3 6 = 7 ∧
+        beta0 3 16 = 1 / 3 ∧
+        beta0 3 17 = -1 / 3
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: beta0_window
+  line: 78
+  signature_excerpt: 'theorem beta0_window (nf : Rat) : beta0 3 nf > 0 ↔ nf < 33 / 2'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: beta0_nat_through_16
+  line: 82
+  signature_excerpt: 'theorem beta0_nat_through_16 (n : Nat) (hn : n ≤ 16) : beta0 3 (n : Rat) > 0'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: beta0_17_negative
+  line: 85
+  signature_excerpt: 'theorem beta0_17_negative : beta0 3 17 < 0'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: beta1_su3
+  line: 89
+  signature_excerpt: 'theorem beta1_su3 (nf : Rat) : beta1 3 nf = 102 - (38 / 3) * nf'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: beta1_values
+  line: 93
+  signature_excerpt: |-
+    theorem beta1_values :
+        beta1 3 0 = 102 ∧
+        beta1 3 5 = 116 / 3 ∧
+        beta1 3 16 = -302 / 3
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: banks_zaks_ratio_nf16
+  line: 100
+  signature_excerpt: 'theorem banks_zaks_ratio_nf16 : (-beta0 3 16) / beta1 3 16 = 1 / 302'
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: creutz_area
+  line: 119
+  signature_excerpt: |-
+    theorem creutz_area (b : Rat) (hb : b ≠ 0) (r t : Nat) (hr : 1 ≤ r) (ht : 1 ≤ t) :
+        creutz (areaMonomial b r t) (areaMonomial b (r - 1) (t - 1))
+          (areaMonomial b r (t - 1)) (areaMonomial b (r - 1) t) = b
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: creutz_perim
+  line: 129
+  signature_excerpt: |-
+    theorem creutz_perim (b : Rat) (hb : b ≠ 0) (r t : Nat) (hr : 1 ≤ r) (ht : 1 ≤ t) :
+        creutz (perimMonomial b r t) (perimMonomial b (r - 1) (t - 1))
+          (perimMonomial b r (t - 1)) (perimMonomial b (r - 1) t) = 1
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: creutz_one_ninth
+  line: 142
+  signature_excerpt: |-
+    theorem creutz_one_ninth :
+        creutz (areaMonomial (1 / 9) 2 2) (areaMonomial (1 / 9) 1 1)
+          (areaMonomial (1 / 9) 2 1) (areaMonomial (1 / 9) 1 2) = 1 / 9 ∧
+        creutz (areaMonomial (1 / 9) 3 3) (areaMonomial (1 / 9) 2 2)
+          (areaMonomial (1 / 9) 3 2) (areaMonomial (1 / 9) 2 3) = 1 / 9 ∧
+        creutz (perimMonomial (1 / 9) 2 2) (perimMonomial (1 / 9) 1 1)
+          (perimMonomial (1 / 9) 2 1) (perimMonomial (1 / 9) 1 2) = 1 ∧
+        creutz (perimMonomial (1 / 9) 3 3) (perimMonomial (1 / 9) 2 2)
+          (perimMonomial (1 / 9) 3 2) (perimMonomial (1 / 9) 2 3) = 1 ∧
+        (1 / 9 : Rat) ≠ 1
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: declared_lattice_counts
+  line: 159
+  signature_excerpt: |-
+    theorem declared_lattice_counts :
+        ((9 : Int) - 1 = 8) ∧
+        ((12 : Int) - 9 + 1 = 4) ∧
+        ((12 : Int) - 8 = 4)
+  source: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.plaquette_gauge
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.plaquette_gauge
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.s3_swaps_do_not_commute
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.s3_swaps_do_not_commute
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.s3_two_swap_product_ne_one
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.s3_two_swap_product_ne_one
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.su3_channel_values
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.su3_channel_values
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.gluon_split_and_one_flavor
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.gluon_split_and_one_flavor
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 61
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_values
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.beta0_values
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_window
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.beta0_window
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_nat_through_16
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.beta0_nat_through_16
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 82
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta0_17_negative
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.beta0_17_negative
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 85
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta1_su3
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.beta1_su3
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 89
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.beta1_values
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.beta1_values
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.banks_zaks_ratio_nf16
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.banks_zaks_ratio_nf16
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 100
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_area
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.creutz_area
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 119
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_perim
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.creutz_perim
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 129
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.creutz_one_ninth
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.creutz_one_ninth
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 142
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.declared_lattice_counts
+  availability: local
+  symbol: CampaignTfq0011FiniteQcd.declared_lattice_counts
+  path: lean4/CampaignTfq0011FiniteQcd.lean
+  repository: this_repository
+  sha256: 6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f
+  declaration_status: declaration_found_not_proof_checked
+  line: 159
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -81,8 +545,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md](../../../dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md)
-- sha256 (`lf-normalised`): `b1de6ce655bfb88ddb4ffbe21e31cd9ee65667d91bde3d9b23bd6e100de2fe00`
+- sha256 (`lf-normalised`): `1003e5183618f5d990aa29345d1e3d39a3ed3581e367aac57ba4809fb535755e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0519
 - counts toward the grade: no
