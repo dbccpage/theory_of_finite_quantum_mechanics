@@ -1,0 +1,51 @@
+{
+  "schema_version": "campaign_exact_source_exception.v1",
+  "AuthorityEffect": "None",
+  "authorization": "Direct human reply: Allow these new exact-source exceptions",
+  "authorized_at_utc_date": "2026-10-24",
+  "sources": [
+    {
+      "path": "lean4/CampaignMajoranaCliffordParity.lean",
+      "sha256": "8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e",
+      "actual_score": "L3D",
+      "enforcement": "governance/baseline.json exact-byte FLOOR entry"
+    },
+    {
+      "path": "checks/independent/fsp-majorana-clifford-parity.py",
+      "sha256": "67027ee66074805b2029dbc9a85eccd0d62d84daaf3ae304a80d4ee739908264",
+      "actual_score": "L3D",
+      "enforcement": "Independent checker outside governed population; campaign floor exception explicitly authorized."
+    },
+    {
+      "path": "lean4/lakefile.campaignMajorana.lean",
+      "sha256": "e7da30cfc6ba92de6da963209bdc78559deb0a93c52ea5abf0ad4058d5cecaf7",
+      "actual_score": "L1D",
+      "enforcement": "governance/baseline.json exact-byte FLOOR entry"
+    }
+  ],
+  "existing_exception_entries_and_pins_unchanged": true,
+  "global_floor_unchanged": {
+    "min_level": "L4",
+    "min_grade": "D",
+    "statement": "A governed source is accepted only with a completed score (every gate graded, score_token = level + composite grade) at capability level L4 or L5 and composite grade D or better. Sources in governance/baseline.json with unchanged bytes are grandfathered."
+  },
+  "scope": "Only these three new sources are exempted at the approved hashes. No existing exact-source exception, sealed byte, derivation status, original statement or scientific scope fence changes. No approval of mathematical correctness or authority promotion is inferred.",
+  "prior_baseline_sha256": "5e542eef47b0619a14f923ec29e18c02f9b9f2c988a6c1969616ef0b155e3177",
+  "prior_baseline_entry_count": 8155,
+  "approved_governed_additions": [
+    "lean4/CampaignMajoranaCliffordParity.lean",
+    "lean4/lakefile.campaignMajorana.lean"
+  ],
+  "policy_changes": [],
+  "baseline_generation": {
+    "command": "governance-check --root <isolated two-source mirror> baseline --write --allow-add --reason <direct human approval>",
+    "exit_code": 0,
+    "output": "baseline: 2 entries (0 kept, 2 added, 8155 removed); 0 failing files not added\nwrote governance/baseline.json\n",
+    "method": "The unchanged policy and only the two approved governed source/companion pairs were copied into an isolated Git mirror. Only the CLI-generated new entries were inserted into the real baseline; every pre-existing entry was retained literally. The real repository full governance gate is run afterwards.",
+    "old_entries_preserved": 8155,
+    "new_entries": 2,
+    "final_entries": 8157,
+    "new_baseline_sha256": "2bf3ac1e247742e1af5dae1501b74a7bb8f149313217bace56e6f8d3089b9e55",
+    "full_preview": "The complete read-only full-repository preview reported 8152 kept, 2 added, 3 removed. It was not written, because existing entries must be preserved."
+  }
+}
