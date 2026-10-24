@@ -10846,11 +10846,19 @@
       "stage": "CONTINUUM_INTERFACE",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATIONS (source slice 09)",
-      "statement": "Package 007 separates finite evidence from open continuum obligations. Its README says a pillar counts as a checked row only when the claim ledger marks it finite_checked or mechanized and axiom-audited. Five obligations stay open: polynomial density, metric completion, semantic normal forms, general chain maps, and a specific interacting theory. What is finite is cyclic inclusion and separating character sums inside a declared budget. What is not discharged is that interacting theory and the continuum limit, which remains GAP. A fixed-size enclosure is not smooth spacetime.",
+      "statement": "Package 007 separates finite evidence from open continuum obligations. Its README says a pillar counts as a checked row only when the claim ledger marks it finite_checked or mechanized and axiom-audited. Five obligations stay open: polynomial density, metric completion, semantic normal forms, general chain maps, and a specific interacting theory. What is finite is cyclic inclusion and separating character sums inside a declared budget. What is not discharged is that interacting theory and the continuum limit, which remains GAP. A fixed-size enclosure is not smooth spacetime. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and scope fences: (1) injective dyadic cyclic inclusion dyadicInclude : Fin N -> Fin (2 * N) (x -> 2 * x), modular-addition homomorphism, and non-surjectivity onto Fin (2 * N) (dyadicInclude_injective, dyadicInclude_add_mod_hom, dyadicInclude_misses_odd_residue); (2) point-separating dual character sums on Z/4Z over Q[i] (z4_character_point_projector_exact, z4_characters_separate_distinct_points); and (3) the discretization-defect fence for f(t) = t^2 showing that the left Riemann defect 1/3 - S_N(t^2) = (3 * N - 1) / (6 * N^2) > 0 is strictly positive for all finite budgets N >= 1, together with the quartic interacting EOM superposition defect 3 * g * a * b * (a + b) showing that linear superposition at a = b = 1 holds iff g = 0 (discretization_defect_closed_form, discretization_defect_strictly_positive_for_all_finite_N, discretization_defect_dyadic_budget_table, quartic_superposition_defect_identity, quartic_superposition_at_unit_iff_free).",
       "source": [
-        "dag/derivations/20_continuum_interface/tfq_0118_open_rows_include_cdx2_interacting_qft_and_cdx2_haar_continuous_density_continuum_limit_stays.md"
+        "dag/derivations/20_continuum_interface/tfq_0118_open_rows_include_cdx2_interacting_qft_and_cdx2_haar_continuous_density_continuum_limit_stays.md",
+        "dag/derivations/independent/tfq-0118.md",
+        "checks/independent/tfq-0118.py",
+        "lean4/CampaignTfq0118ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0118_lean_replay.json",
+        "dag/research/campaign_tfq-0118_lean_mutation.json",
+        "dag/research/campaign_tfq-0118_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0118ContinuumInterface.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Open rows include cdx2.interacting_qft and cdx2.haar_continuous_density. Continuum limit stays GAP.",
@@ -45100,28 +45108,30 @@
         "TFQ-0118"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/README.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/_docs/track2_claim/claim_ledger.json",
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/_docs/track2.md"
+        "dag/derivations/20_continuum_interface/tfq_0118_open_rows_include_cdx2_interacting_qft_and_cdx2_haar_continuous_density_continuum_limit_stays.md",
+        "dag/derivations/independent/tfq-0118.md",
+        "checks/independent/tfq-0118.py",
+        "lean4/CampaignTfq0118ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0118_lean_replay.json",
+        "dag/research/campaign_tfq-0118_lean_mutation.json",
+        "dag/research/campaign_tfq-0118_independent.json"
       ],
       "id": "TFQ-0118",
       "lean4": [
-        "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/circle_haar.lean",
-        "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/finite_presentation.lean"
+        "lean4/CampaignTfq0118ContinuumInterface.lean"
       ],
       "local_id": "A09-033",
       "name": "Open rows include cdx2.interacting_qft and cdx2.haar_continuous_density. Continuum limit stays",
       "obligation": "Open rows include cdx2.interacting_qft and cdx2.haar_continuous_density. Continuum limit stays GAP.",
       "parent_id": "TFQ-0111",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/interval_calculus.py",
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/discretization_defect.py"
+        "checks/independent/tfq-0118.py"
       ],
       "record_status": "OPEN_OBLIGATIONS",
       "rust": [],
       "source_slice": "09",
       "stage": "CONTINUUM_INTERFACE",
-      "summary": "Package 007 separates finite evidence from open continuum obligations. Its README says a pillar counts as a checked row only when the claim ledger marks it finite_checked or mechanized and axiom-audited. Five obligations stay open: polynomial density, metric completion, semantic normal forms, general chain maps, and a specific interacting theory. What is finite is cyclic inclusion and separating character sums inside a declared budget. What is not discharged is that interacting theory and the continuum limit, which remains GAP. A fixed-size enclosure is not smooth spacetime.",
+      "summary": "Package 007 separates finite evidence from open continuum obligations. Its README says a pillar counts as a checked row only when the claim ledger marks it finite_checked or mechanized and axiom-audited. Five obligations stay open: polynomial density, metric completion, semantic normal forms, general chain maps, and a specific interacting theory. What is finite is cyclic inclusion and separating character sums inside a declared budget. What is not discharged is that interacting theory and the continuum limit, which remains GAP. A fixed-size enclosure is not smooth spacetime. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and scope fences: (1) injective dyadic cyclic inclusion dyadicInclude : Fin N -> Fin (2 * N) (x -> 2 * x), modular-addition homomorphism, and non-surjectivity onto Fin (2 * N) (dyadicInclude_injective, dyadicInclude_add_mod_hom, dyadicInclude_misses_odd_residue); (2) point-separating dual character sums on Z/4Z over Q[i] (z4_character_point_projector_exact, z4_characters_separate_distinct_points); and (3) the discretization-defect fence for f(t) = t^2 showing that the left Riemann defect 1/3 - S_N(t^2) = (3 * N - 1) / (6 * N^2) > 0 is strictly positive for all finite budgets N >= 1, together with the quartic interacting EOM superposition defect 3 * g * a * b * (a + b) showing that linear superposition at a = b = 1 holds iff g = 0 (discretization_defect_closed_form, discretization_defect_strictly_positive_for_all_finite_N, discretization_defect_dyadic_budget_table, quartic_superposition_defect_identity, quartic_superposition_at_unit_iff_free).",
       "uuid": "218733cd-63ff-5d1e-874e-ad74e72079c6"
     },
     {
