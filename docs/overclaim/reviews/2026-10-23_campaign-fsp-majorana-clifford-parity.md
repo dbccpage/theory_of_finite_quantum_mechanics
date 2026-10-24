@@ -90,6 +90,14 @@ records to the diff scan; this proposal does not certify their full claims.
 Exact-source acceptance exceptions, if separately approved, concern only
 code governance and confer no mathematical status.
 
+Acceptance update: the human explicitly approved the three new exact-source
+exceptions. The two governed sources received CLI-generated FLOOR entries;
+all 8155 original entries and every existing support pin were retained.
+The independent checker's exception is bound in the separate authorization
+receipt. The proof/checker remain L3D and the build configuration L1D; the
+global L4/D floor and all mathematical scope fences remain unchanged. This
+permission is not a human mathematical review.
+
 The scanner cannot decide whether the imported CAR representation is the
 intended finite source model, whether a real rather than complex Clifford
 algebra was intended, or whether a physical superselection postulate is
