@@ -36,7 +36,7 @@ Unmet after the PFP review: Formalize the masked support/restriction bridge and 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM021-IDEMPOTENT-CONDITIONING/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact sector normalization, support collapse and repeated-conditioning idempotence are reproduced on retained finite tables.
   - does not support: Formalize the masked support/restriction bridge and justify any physical sector rule. Classical normalization is not a derived projection postulate or solution to measurement.
   - next test: Formalize the masked support/restriction bridge and justify any physical sector rule. Classical normalization is not a derived projection postulate or solution to measurement.

@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Six operations that must remain distinct (Pre-Genesis §3)
 
 ## Review
 
-- PFP review: [dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: no.
+- PFP review: [dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-SIX-OPERATIONS/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: By construction of its six state components, only Admit writes the admitted component of the six-operation state machine, and it changes it iff the item is new; the Reading L / Reading F pair has different admitted states in this machine and the same admitted state in the machine in which Supply also admits (a two-machine comparison for every token).
   - does not support: That these six operations or state fields match any host, the Genesis Python model or the Genesis event semantics (forms, instances, requirements); that the six operations are distinct beyond writing distinct fields of this machine (Retain and Operate are gated on admission by definition); that conflating operations is the source of the Reading L / Reading F split of Genesis (a causal reading; only the model-level two-machine comparison is checked); more than two items or traces longer than 4 natively (the Lean statements are general, the Lean instances are Nat items); the inert-inscription model of PG-INERT-DIAMOND (cross-referenced, not imported); any physical or interpretive reading.
   - next test: Bridge this machine to the Genesis event model: define a simulation from the six operations to Derivation/Basic.lean stepE (supply a no-op, admitDatum an admission) and prove it preserves the admitted regime on the histories of the theorems historyL_replays and historyF_replays of Inertia.lean (external Genesis files, read but not bound and without a pinned sha256).

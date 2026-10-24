@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -37,7 +37,7 @@ Thm 5 hypotheses: independent Haar phases
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-HAAR-INDEPENDENT-PHASES/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-IMP-HAAR-INDEPENDENT-PHASES/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
+- PFP review: [dag/results/L1-IMP-HAAR-INDEPENDENT-PHASES/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-IMP-HAAR-INDEPENDENT-PHASES/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Complete exact independent/correlated C4 intensity tables and averages, with general four-phase cancellation and correlated-gap identities in Lean.
   - does not support: Admit/construct Haar probability on U(1)^n and justify independence and continuum integration. C4 cancellation of this polynomial moment is not Haar construction.
   - next test: Admit/construct Haar probability on U(1)^n and justify independence and continuum integration. C4 cancellation of this polynomial moment is not Haar construction.

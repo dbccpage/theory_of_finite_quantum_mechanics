@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ O022 7-row capability registry unique selection of Row 6 (complex-Hilbert CPTP),
 
 ## Review
 
-- PFP review: [dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: The frozen row conjunction and failure of rank minimality to transfer to an expanded registry are exact; the limited list/rank and Boolean statements are kernel checked.
   - does not support: Establish semantic capability evidence and a justified interface ordering before any physical minimality theorem. No all-registry or unique-QM minimality is proved.
   - next test: Establish semantic capability evidence and a justified interface ordering before any physical minimality theorem. No all-registry or unique-QM minimality is proved.

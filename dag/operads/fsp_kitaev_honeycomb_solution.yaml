@@ -9,11 +9,21 @@ target:
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)
-  source_bottleneck: A sign-free sampling claim for this representation is not made or checked here; the
-    gauge projection and flux-sector sum must be kept explicit.
+  source_bottleneck: Narrowed algebraic checks only. Explicit integer matrices obey Clifford identities;
+    one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge
+    invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant
+    equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so
+    the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal
+    parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space
+    projection or thermal partition function is constructed. Status is unchanged. The original physical
+    or operational bridge remains open.
   source_refs:
   - dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md
   - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/independent/fsp-kitaev-honeycomb-solution.md
+  - dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json
+  - dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json
+  - dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -22,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md
-    sha256: 0ebd0dfc15b2b70e488dcdd6d206bc1ad34155458ba75abdfb68022cc9ea9fc4
+    sha256: fc6df2b3c1410215dec7b219da0de9e5fb0e976e13eaa64fc86abc3fa4a90c9a
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +40,415 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_kitaev_honeycomb_solution_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: bX
+  line: 20
+  signature_excerpt: 'def bX : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bY
+  line: 27
+  signature_excerpt: 'def bY : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bZ
+  line: 34
+  signature_excerpt: 'def bZ : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ic
+  line: 41
+  signature_excerpt: 'def ic : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tildeSigmaX
+  line: 48
+  signature_excerpt: 'def tildeSigmaX : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tildeSigmaY
+  line: 51
+  signature_excerpt: 'def tildeSigmaY : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tildeSigmaZ
+  line: 54
+  signature_excerpt: 'def tildeSigmaZ : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: siteGaugeJD
+  line: 57
+  signature_excerpt: 'def siteGaugeJD : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hexPlaquetteFlux
+  line: 104
+  signature_excerpt: |-
+    def hexPlaquetteFlux {R : Type*} [CommRing R]
+        (u01 u12 u23 u34 u45 u50 : R) : R
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: matterSkewMatrix4
+  line: 163
+  signature_excerpt: |-
+    def matterSkewMatrix4 {R : Type*} [CommRing R]
+        (a01 a02 a03 a12 a13 a23 : R) : Matrix (Fin 4) (Fin 4) R
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pfaffian4
+  line: 171
+  signature_excerpt: |-
+    def pfaffian4 {R : Type*} [CommRing R]
+        (a01 a02 a03 a12 a13 a23 : R) : R
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: siteGaugeParityDiag
+  line: 192
+  signature_excerpt: 'def siteGaugeParityDiag : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: unnormalizedPhysProjector
+  line: 196
+  signature_excerpt: 'def unnormalizedPhysProjector : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: parityProjectionWeight
+  line: 224
+  signature_excerpt: 'def parityProjectionWeight (pMatter pGauge : ℤ) : ℤ'
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: majorana_site_clifford_relations
+  line: 60
+  signature_excerpt: |-
+    theorem majorana_site_clifford_relations :
+        bX * bX = 1 ∧
+        bY * bY = 1 ∧
+        bZ * bZ = 1 ∧
+        ic * ic = -1 ∧
+        bX * bY + bY * bX = 0 ∧
+        bX * bZ + bZ * bX = 0 ∧
+        bY * bZ + bZ * bY = 0 ∧
+        bX * ic + ic * bX = 0 ∧
+        bY * ic + ic * bY = 0 ∧
+        bZ * ic + ic * bZ = 0
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kitaev_spin_operators_pauli_algebra_and_gauge_commutation
+  line: 74
+  signature_excerpt: |-
+    theorem kitaev_spin_operators_pauli_algebra_and_gauge_commutation :
+        tildeSigmaX * tildeSigmaX = 1 ∧
+        tildeSigmaY * tildeSigmaY = 1 ∧
+        tildeSigmaZ * tildeSigmaZ = 1 ∧
+        tildeSigmaX * tildeSigmaY + tildeSigmaY * tildeSigmaX = 0 ∧
+        tildeSigmaX * tildeSigmaZ + tildeSigmaZ * tildeSigmaX = 0 ∧
+        tildeSigmaY * tildeSigmaZ + tildeSigmaZ * tildeSigmaY = 0 ∧
+        siteGaugeJD * siteGaugeJD = -1 ∧
+        siteGaugeJD * tildeSigmaX = tildeSigmaX * siteGaugeJD ∧
+        siteGaugeJD * tildeSigmaY = tildeSigmaY * siteGaugeJD ∧
+        siteGaugeJD * tildeSigmaZ = tildeSigmaZ * siteGaugeJD ∧
+        siteGaugeJD
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: abstract_bond_spin_product_factorization
+  line: 91
+  signature_excerpt: |-
+    theorem abstract_bond_spin_product_factorization
+        {R : Type*} [Ring R] (bj cj bk ck : R)
+        (h_anticomm : cj * bk = -(bk * cj)) :
+        (bj * cj) * (bk * ck) = -((bj * bk) * (cj * ck))
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: plaquette_flux_local_z2_gauge_invariance
+  line: 109
+  signature_excerpt: |-
+    theorem plaquette_flux_local_z2_gauge_invariance
+        {R : Type*} [CommRing R]
+        (u01 u12 u23 u34 u45 u50 : R)
+        (e0 e1 e2 e3 e4 e5 : R)
+        (he0 : e0 * e0 = 1) (he1 : e1 * e1 = 1) (he2 : e2 * e2 = 1)
+        (he3 : e3 * e3 = 1) (he4 : e4 * e4 = 1) (he5 : e5 * e5 = 1) :
+        hexPlaquetteFlux
+          (e0 * u01 * e1) (e1 * u12 * e2) (e2 * u23 * e3)
+          (e3 * u34 * e4) (e4 * u45 * e5) (e5 * u50 * e0) =
+        hexPlaquetteFlux u01 u12 u23 u34 u45 u50
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hexPlaquetteFlux_sq_eq_one
+  line: 130
+  signature_excerpt: |-
+    theorem hexPlaquetteFlux_sq_eq_one
+        {R : Type*} [CommRing R]
+        (u01 u12 u23 u34 u45 u50 : R)
+        (h01 : u01 * u01 = 1) (h12 : u12 * u12 = 1) (h23 : u23 * u23 = 1)
+        (h34 : u34 * u34 = 1) (h45 : u45 * u45 = 1) (h50 : u50 * u50 = 1) :
+        hexPlaquetteFlux u01 u12 u23 u34 u45 u50 *
+          hexPlaquetteFlux u01 u12 u23 u34 u45 u50 = 1
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: single_link_flip_inverts_two_incident_plaquettes
+  line: 145
+  signature_excerpt: |-
+    theorem single_link_flip_inverts_two_incident_plaquettes
+        {R : Type*} [CommRing R]
+        (u_shared p_rest q_rest : R) :
+        ((-u_shared) * p_rest = -(u_shared * p_rest)) ∧
+        ((-u_shared) * q_rest = -(u_shared * q_rest)) ∧
+        (((-u_shared) * p_rest) * ((-u_shared) * q_rest) =
+          (u_shared * p_rest) * (u_shared * q_rest))
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: closed_surface_total_plaquette_flux_eq_one
+  line: 155
+  signature_excerpt: |-
+    theorem closed_surface_total_plaquette_flux_eq_one
+        {ι : Type*} [Fintype ι] {R : Type*} [CommRing R]
+        (u : ι → R) (hu : ∀ e, u e * u e = 1) :
+        (∏ e : ι, u e) * (∏ e : ι, u e) = 1
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det
+  line: 176
+  signature_excerpt: |-
+    theorem quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det
+        {R : Type*} [CommRing R]
+        (a01 a02 a03 a12 a13 a23 : R) :
+        (matterSkewMatrix4 a01 a02 a03 a12 a13 a23)ᵀ =
+          -matterSkewMatrix4 a01 a02 a03 a12 a13 a23 ∧
+        (matterSkewMatrix4 a01 a02 a03 a12 a13 a23).det =
+          (pfaffian4 a01 a02 a03 a12 a13 a23) ^ 2
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unprojected_majorana_fock_overcounts_physical_spin_space_fence
+  line: 200
+  signature_excerpt: |-
+    theorem unprojected_majorana_fock_overcounts_physical_spin_space_fence
+        (N : ℕ) :
+        4 ^ N = 2 ^ N * 2 ^ N ∧
+        siteGaugeParityDiag * siteGaugeParityDiag = 1 ∧
+        Matrix.trace siteGaugeParityDiag = 0 ∧
+        unnormalizedPhysProjector * unnormalizedPhysProjector = 2 • unnormalizedPhysProjector ∧
+        Matrix.trace unnormalizedPhysProjector = 4
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence
+  line: 213
+  signature_excerpt: |-
+    theorem link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence :
+        pfaffian4 (1 : ℤ) 0 0 0 0 1 = 1 ∧
+        pfaffian4 (-1 : ℤ) 0 0 0 0 1 = -1 ∧
+        (matterSkewMatrix4 (1 : ℤ) 0 0 0 0 1).det = 1 ∧
+        (matterSkewMatrix4 (-1 : ℤ) 0 0 0 0 1).det = 1 ∧
+        pfaffian4 (1 : ℤ) 0 0 0 0 1 + pfaffian4 (-1 : ℤ) 0 0 0 0 1 = 0
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: physical_parity_projection_excludes_mismatched_sector_states_fence
+  line: 228
+  signature_excerpt: |-
+    theorem physical_parity_projection_excludes_mismatched_sector_states_fence
+        (pGauge : ℤ) (hp : pGauge * pGauge = 1) :
+        parityProjectionWeight pGauge pGauge = 2 ∧
+        parityProjectionWeight (-pGauge) pGauge = 0
+  source: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  source_sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 60
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 74
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 109
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 130
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 145
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 155
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 176
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 200
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 213
+  role: source_lead_only
+- original_ref: lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence
+  availability: local
+  symbol: CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence
+  path: lean4/CampaignFspKitaevHoneycombSolution.lean
+  repository: this_repository
+  sha256: b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52
+  declaration_status: declaration_found_not_proof_checked
+  line: 228
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +488,6 @@ operad_slots:
     - Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -1,28 +1,32 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0376
 authority_effect: None
-collection_status: verified_e3_derivational_formal_and_independent_campaign
+collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Pre-Genesis paper.md section 15, opened at the checklist, says
-    a claim that an extension is necessary or minimal must name the failed predicate,
-    the admissible repairs, the extension class, the cost order, and tied minima.
-    A finite census is exhaustive only on its declared domain, and a budget stop is
-    not an obstruction result. Ledger row WDP-P001-015 matches that boundary. The
-    finite statement still required is those six checks as separate evidence states
-    for a successor, a proposed lift, and a licensed transition. This node does not
-    close those checks.
+  source_statement: Pre-Genesis paper.md section 15, opened at the checklist, says a claim that an extension
+    is necessary or minimal must name the failed predicate, the admissible repairs, the extension class,
+    the cost order, and tied minima. A finite census is exhaustive only on its declared domain, and a
+    budget stop is not an obstruction result. Ledger row WDP-P001-015 matches that boundary. The finite
+    statement still required is those six checks as separate evidence states for a successor, a proposed
+    lift, and a licensed transition. This node does not close those checks.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: A necessary or minimal extension still needs the six section-15
-    checks, and a budget stop remains incomplete search rather than an obstruction
-    result.
+  source_bottleneck: A necessary or minimal extension still needs the six section-15 checks, and a budget
+    stop remains incomplete search rather than an obstruction result.
   source_refs:
   - dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md
+  - dag/derivations/independent/tfq-0376.md
+  - dag/research/campaign_tfq-0376_lean_replay.json
+  - dag/research/campaign_tfq-0376_lean_mutation.json
+  - dag/research/campaign_tfq-0376_independent.json
+  - docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md
+  - checks/independent/tfq-0376.py
+  - lean4/CampaignTfq0376Pregenesis.lean
   paper_refs:
   - dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md
@@ -34,73 +38,524 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/pregenesis_tfq_0376_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: structure
+  name: JustifiedLiftChecklistRecord
+  line: 68
+  signature_excerpt: structure JustifiedLiftChecklistRecord
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: SearchCensusState
+  line: 62
+  signature_excerpt: |-
+    inductive SearchCensusState
+      | ExhaustiveOnDeclaredDomain (domainSize : Nat)
+      | BudgetStoppedIncomplete (domainSize : Nat) (checkedCount : Nat)
+      deriving DecidableEq, Repr
+
+    /-- Explicit six-check evidence record for a candidate lift / extension. -/
+    structure JustifiedLiftChecklistRecord
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: candidateRepairsFailure
+  line: 161
+  signature_excerpt: |-
+    def candidateRepairsFailure : Fin 4 → Bool
+      | ⟨0, _⟩ => false
+      | ⟨1, _⟩ => false
+      | ⟨2, _⟩ => false
+      | ⟨3, _⟩ => true
+
+    /-- Theorem 3: Explicit countermodel showing why a budget stop at $B = 3$ on a domain of size $4$
+        is neither an obstruction proof nor a minimality proof:
+        (a) candidates $0, 1, 2$ all fail to repair (`candidateRepairsFailure = false`), yet uninspected
+            candidate $3$ succeeds (`candidateRepairsFailure 3 = true`);
+        (b) the prefix minimum cost $\min(c_0, c_1, c_2) = 3$ is strictly larger than the true domain
+            minimum cost $c_3 = 1$. -/
+    theorem uninspec
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: candidateCost
+  line: 155
+  signature_excerpt: |-
+    def candidateCost : Fin 4 → Nat
+      | ⟨0, _⟩ => 4
+      | ⟨1, _⟩ => 3
+      | ⟨2, _⟩ => 5
+      | ⟨3, _⟩ => 1
+
+    def candidateRepairsFailure : Fin 4 → Bool
+      | ⟨0, _⟩ => false
+      | ⟨1, _⟩ => false
+      | ⟨2, _⟩ => false
+      | ⟨3, _⟩ => true
+
+    /-- Theorem 3: Explicit countermodel showing why a budget stop at $B = 3$ on a domain of size $4$
+        is neither an obstruction proof nor a minimality proof:
+        (a) candidates $0, 1, 2$ all fail to repair (`candidateRepairsFailure = false`), yet uninspected
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: qualifiesAsSuccessor
+  line: 85
+  signature_excerpt: 'def qualifiesAsSuccessor (r : JustifiedLiftChecklistRecord) : Bool'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tiedFourMinimaRecord
+  line: 186
+  signature_excerpt: 'def tiedFourMinimaRecord : JustifiedLiftChecklistRecord'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: qualifiesAsProposedLift
+  line: 90
+  signature_excerpt: 'def qualifiesAsProposedLift (r : JustifiedLiftChecklistRecord) : Bool'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: allSixChecksClosed
+  line: 96
+  signature_excerpt: 'def allSixChecksClosed (r : JustifiedLiftChecklistRecord) : Bool'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: uniqueMinimalExtensionLicensed
+  line: 107
+  signature_excerpt: 'def uniqueMinimalExtensionLicensed (r : JustifiedLiftChecklistRecord) : Bool'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isExhaustiveCensus
+  line: 79
+  signature_excerpt: 'def isExhaustiveCensus (s : SearchCensusState) : Bool'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: completeUniqueLiftRecord
+  line: 206
+  signature_excerpt: 'def completeUniqueLiftRecord : JustifiedLiftChecklistRecord'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: successorOnlyRecord
+  line: 232
+  signature_excerpt: 'def successorOnlyRecord : JustifiedLiftChecklistRecord'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: proposedLiftOnlyRecord
+  line: 241
+  signature_excerpt: 'def proposedLiftOnlyRecord : JustifiedLiftChecklistRecord'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: obstructionCertifiedOnDeclaredDomain
+  line: 112
+  signature_excerpt: 'def obstructionCertifiedOnDeclaredDomain (r : JustifiedLiftChecklistRecord) : Bool'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleTwoColorObstructionRecord
+  line: 300
+  signature_excerpt: 'def triangleTwoColorObstructionRecord : JustifiedLiftChecklistRecord'
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: refineReport
+  line: 68
+  signature_excerpt: 'def refineReport {A O T : Type} (q : A → O) (t : A → T) (a : A)'
+  source: lean4/Imported/PreGenesisToMssn/Paper.lean
+  repository: this_repository
+  source_sha256: 5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: section15_six_check_slots_and_stages_distinct
+  line: 120
+  signature_excerpt: |-
+    theorem section15_six_check_slots_and_stages_distinct :
+        Section15CheckSlot.FailedPredicate ≠ Section15CheckSlot.AdmissibleRepairs ∧
+        Section15CheckSlot.AdmissibleRepairs ≠ Section15CheckSlot.ExtensionClass ∧
+        Section15CheckSlot.ExtensionClass ≠ Section15CheckSlot.CostOrder ∧
+        Section15CheckSlot.CostOrder ≠ Section15CheckSlot.TiedMinima ∧
+        Section15CheckSlot.TiedMinima ≠ Section15CheckSlot.SearchCompleteness ∧
+        Section15CheckSlot.FailedPredicate ≠ Section15CheckSlot.SearchCompleteness ∧
+        TransitionStage.Successor ≠ TransitionStage.ProposedLift ∧
+        TransitionStage.Propose
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: budget_stop_never_licenses_obstruction_or_minimal_lift
+  line: 135
+  signature_excerpt: |-
+    theorem budget_stop_never_licenses_obstruction_or_minimal_lift
+        (fp ar ec co : Bool) (repCount tiedCount domSize chkCount : Nat) :
+        let r : JustifiedLiftChecklistRecord
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: uninspected_tail_witness_refutes_budget_stop_claims
+  line: 173
+  signature_excerpt: |-
+    theorem uninspected_tail_witness_refutes_budget_stop_claims :
+        candidateRepairsFailure ⟨0, by decide⟩ = false ∧
+        candidateRepairsFailure ⟨1, by decide⟩ = false ∧
+        candidateRepairsFailure ⟨2, by decide⟩ = false ∧
+        candidateRepairsFailure ⟨3, by decide⟩ = true ∧
+        min (candidateCost ⟨0, by decide⟩) (min (candidateCost ⟨1, by decide⟩) (candidateCost ⟨2, by decide⟩)) = 3 ∧
+        candidateCost ⟨3, by decide⟩ = 1 ∧
+        candidateCost ⟨3, by decide⟩ <
+          min (candidateCost ⟨0, by decide⟩) (min (candidateCost ⟨1, by decide⟩) (candidateCost ⟨2, by decide⟩))
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: tied_minima_plurality_blocks_unique_minimal_extension
+  line: 198
+  signature_excerpt: |-
+    theorem tied_minima_plurality_blocks_unique_minimal_extension :
+        qualifiesAsSuccessor tiedFourMinimaRecord = true ∧
+        qualifiesAsProposedLift tiedFourMinimaRecord = true ∧
+        allSixChecksClosed tiedFourMinimaRecord = true ∧
+        uniqueMinimalExtensionLicensed tiedFourMinimaRecord = false
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: omitting_any_single_section15_check_blocks_licensing
+  line: 217
+  signature_excerpt: |-
+    theorem omitting_any_single_section15_check_blocks_licensing :
+        uniqueMinimalExtensionLicensed completeUniqueLiftRecord = true ∧
+        allSixChecksClosed { completeUniqueLiftRecord with failedPredicateNamed
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: stage_progression_fence_successor_proposed_licensed
+  line: 253
+  signature_excerpt: |-
+    theorem stage_progression_fence_successor_proposed_licensed :
+        (qualifiesAsSuccessor successorOnlyRecord = true ∧
+         qualifiesAsProposedLift successorOnlyRecord = false ∧
+         allSixChecksClosed successorOnlyRecord = false) ∧
+        (qualifiesAsSuccessor proposedLiftOnlyRecord = true ∧
+         qualifiesAsProposedLift proposedLiftOnlyRecord = true ∧
+         allSixChecksClosed proposedLiftOnlyRecord = false) ∧
+        (qualifiesAsSuccessor completeUniqueLiftRecord = true ∧
+         qualifiesAsProposedLift completeUniqueLiftRecord = true ∧
+         allSixChecksClosed completeUniqueLiftRecord = true)
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exhaustive_vs_budget_stopped_triangle_obstruction
+  line: 313
+  signature_excerpt: |-
+    theorem exhaustive_vs_budget_stopped_triangle_obstruction :
+        obstructionCertifiedOnDeclaredDomain triangleTwoColorObstructionRecord = true ∧
+        obstructionCertifiedOnDeclaredDomain
+          { triangleTwoColorObstructionRecord with
+            censusState
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0376_justified_lift_six_check_scope_certificate
+  line: 321
+  signature_excerpt: |-
+    theorem tfq0376_justified_lift_six_check_scope_certificate :
+        (Section15CheckSlot.FailedPredicate ≠ Section15CheckSlot.SearchCompleteness ∧
+         TransitionStage.Successor ≠ TransitionStage.LicensedTransition) ∧
+        (allSixChecksClosed proposedLiftOnlyRecord = false ∧
+         qualifiesAsProposedLift proposedLiftOnlyRecord = true) ∧
+        (allSixChecksClosed tiedFourMinimaRecord = true ∧
+         uniqueMinimalExtensionLicensed tiedFourMinimaRecord = false) ∧
+        (uniqueMinimalExtensionLicensed completeUniqueLiftRecord = true ∧
+         allSixChecksClosed { completeUniqueLiftRecord with
+           censusState
+  source: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  source_sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: collapsed_observation_barrier
+  line: 45
+  signature_excerpt: |-
+    theorem collapsed_observation_barrier {A V S : Type}
+        (report : A → V) (task : A → S) (x y : A)
+        (same : report x = report y) (different : task x ≠ task y) :
+        ¬ ∃ factor : V → S, ∀ a, factor (report a) = task a
+  source: lean4/Imported/PreGenesisToMssn/Paper.lean
+  repository: this_repository
+  source_sha256: 5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: refine_separates
+  line: 73
+  signature_excerpt: |-
+    theorem refine_separates {A O T : Type} (q : A → O) (t : A → T)
+        (a b : A) (different : t a ≠ t b) : refineReport q t a ≠ refineReport q t b
+  source: lean4/Imported/PreGenesisToMssn/Paper.lean
+  repository: this_repository
+  source_sha256: 5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: demand_accounting
+  line: 91
+  signature_excerpt: |-
+    theorem demand_accounting {A : Type} (active births : List A) (discharged : A → Bool) :
+        ((active.filter (fun a => !(discharged a))) ++ births).length =
+          active.length - (active.filter discharged).length + births.length
+  source: lean4/Imported/PreGenesisToMssn/Paper.lean
+  repository: this_repository
+  source_sha256: 5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_chain_retraction
+  line: 166
+  signature_excerpt: |-
+    theorem no_chain_retraction [Nontrivial R] :
+        ¬ ∃ (rU : R →ₗ[R] Unit) (rM : (Fin 2 → R) →ₗ[R] (Fin 2 → R)) (rL : Unit →ₗ[R] Unit),
+          (∀ u', rM (bdD R u') = bdC R (rU u')) ∧ (∀ z', rL (dC R z') = dC R (rM z')) ∧ (∀ z, rM (iM R z) = z)
+  source: lean4/ChainRetraction.lean
+  repository: this_repository
+  source_sha256: 94f50b9df3ae5fa4f31c1461289535ce947ac7d769e9aece38acd2556451ed26
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
 source_bindings:
-- original_ref: lean4/CampaignTfq0376Pregenesis.lean
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 120
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 135
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 173
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 198
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 217
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 253
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 268
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 283
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction
+  availability: local
+  symbol: CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction
+  path: lean4/CampaignTfq0376Pregenesis.lean
+  repository: this_repository
+  sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
+  declaration_status: declaration_found_not_proof_checked
+  line: 313
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate
   availability: local
   symbol: CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate
   path: lean4/CampaignTfq0376Pregenesis.lean
   repository: this_repository
   sha256: 7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3
-  declaration_status: verified_symbol
-  role: formal_proof_witness
-- original_ref: lean4/Imported/PreGenesisToMssn/Paper.lean
+  declaration_status: declaration_found_not_proof_checked
+  line: 321
+  role: source_lead_only
+- original_ref: lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.collapsed_observation_barrier
   availability: local
   symbol: PreMssn.collapsed_observation_barrier
   path: lean4/Imported/PreGenesisToMssn/Paper.lean
   repository: this_repository
   sha256: 5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12
-  declaration_status: verified_symbol
-  role: formal_proof_witness
-- original_ref: lean4/ChainRetraction.lean
+  declaration_status: declaration_found_not_proof_checked
+  line: 45
+  role: source_lead_only
+- original_ref: lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.refine_separates
+  availability: local
+  symbol: PreMssn.refine_separates
+  path: lean4/Imported/PreGenesisToMssn/Paper.lean
+  repository: this_repository
+  sha256: 5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12
+  declaration_status: declaration_found_not_proof_checked
+  line: 73
+  role: source_lead_only
+- original_ref: lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.demand_accounting
+  availability: local
+  symbol: PreMssn.demand_accounting
+  path: lean4/Imported/PreGenesisToMssn/Paper.lean
+  repository: this_repository
+  sha256: 5f0ebfc1710b91ce84d4570d7653a3cb8396824adecfaba16fa59a96354b9e12
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/ChainRetraction.lean::ChainRetraction.TwoPoints.no_chain_retraction
   availability: local
   symbol: ChainRetraction.TwoPoints.no_chain_retraction
   path: lean4/ChainRetraction.lean
   repository: this_repository
   sha256: 94f50b9df3ae5fa4f31c1461289535ce947ac7d769e9aece38acd2556451ed26
-  declaration_status: verified_symbol
-  role: formal_proof_witness
-- original_ref: code/rust/src/combinatorics/enumeration.rs
+  declaration_status: declaration_found_not_proof_checked
+  line: 166
+  role: source_lead_only
+- original_ref: code/rust/src/combinatorics/enumeration.rs::CombinatoricsError::violated_invariant
   availability: local
   symbol: CombinatoricsError::violated_invariant
   path: code/rust/src/combinatorics/enumeration.rs
   repository: this_repository
   sha256: 7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c
-  declaration_status: verified_symbol
-  role: sovereign_rust_certifier
-- original_ref: code/rust/src/combinatorics/color_constraints.rs
+  declaration_status: declaration_found_not_executed
+  line: 34
+  role: source_lead_only
+- original_ref: code/rust/src/combinatorics/color_constraints.rs::minimum_color_violations
   availability: local
   symbol: minimum_color_violations
   path: code/rust/src/combinatorics/color_constraints.rs
   repository: this_repository
   sha256: 33c358ffcbd912bf336a460ead8fb1dd06e6d06d6386dcf443a2c50a2767abe8
-  declaration_status: verified_symbol
-  role: sovereign_rust_certifier
-- original_ref: code/rust/src/wdp/wdp_lggr_chromatic.rs
+  declaration_status: declaration_found_not_executed
+  line: 57
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/wdp_lggr_chromatic.rs::triangle_two_color
   availability: local
   symbol: triangle_two_color
   path: code/rust/src/wdp/wdp_lggr_chromatic.rs
   repository: this_repository
   sha256: 16ab8103ac1f8afa35aa8ca3fa310074356770a7394b9062b72f01e650887b80
-  declaration_status: verified_symbol
-  role: sovereign_rust_certifier
-- original_ref: code/rust/src/wdp/finite_cost_report.rs
+  declaration_status: declaration_found_not_executed
+  line: 160
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/finite_cost_report.rs::FiniteCostReport::new
   availability: local
   symbol: FiniteCostReport::new
   path: code/rust/src/wdp/finite_cost_report.rs
   repository: this_repository
   sha256: 0261b67ab671671ba79af5cd9cd2d5854663099dc17c4e5f2509be13e1fbaf4a
-  declaration_status: verified_symbol
-  role: sovereign_rust_certifier
-- original_ref: checks/independent/tfq-0376.py
-  availability: local
-  symbol: run_all_checks
-  path: checks/independent/tfq-0376.py
-  repository: this_repository
-  sha256: a19770bdefd5b54943fa9d422fe2c0b04d5b46e4ddab21cece5e16cd7365e21f
-  declaration_status: verified_symbol
-  role: independent_python_checker
+  declaration_status: declaration_found_not_executed
+  line: 23
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -137,5 +592,15 @@ operad_slots:
     anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations: []
-excluded_relation_leads: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads:
+- source: lean4/CampaignTfq0376Pregenesis.lean
+  name: pregenesis_collapsed_barrier_and_refine_separates_witness
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
+- source: lean4/CampaignTfq0376Pregenesis.lean
+  name: pregenesis_chain_retraction_and_demand_accounting_witness
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
