@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0032",
+  "lean_file": "lean4/CampaignTfq0032FiniteQcd.lean",
+  "sha256": "457aa4fc844f1b86aa314ea17a5e302af7c26db21e1b7ca93bf9ed9ad77188d2",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_sun_fund_casimir_drop_minus_one",
+        "description": "Mutate suNFundCasimir from (N ^ 2 - 1) / (2 * N) to (N ^ 2) / (2 * N), falsifying suN_qqbar_casimir_channel_formulas.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp13i5f907.lean:75:38: error: unsolved goals\n\u22a2 False\ntmp13i5f907.lean:85:21: error: unsolved goals\n\u22a2 False\ntmp13i5f907.lean:92:60: error: unsolved goals\n\u22a2 False\ntmp13i5f907.lean:103:55: error: unsolved goals\n\u22a2 False\ntmp13i5f907.lean:197:32: error: unsolved goals\n\u22a2 False\ntmp13i5f907.lean:197:45: error: unsolved goals\n\u22a2 False\n'CampaignTfq0032FiniteQcd.suN_qqbar_casimir_channel_formulas' depends on "
+      },
+      {
+        "id": "M2_singlet_channel_factor_plus_instead_of_minus",
+        "description": "Mutate singletChannelFactor from -suNFundCasimir N to suNFundCasimir N, falsifying singlet_attractive_vs_octet_repulsive_sign_dichotomy.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp26h0zqmx.lean:75:38: error: unsolved goals\n\u22a2 False\ntmp26h0zqmx.lean:85:21: error: unsolved goals\n\u22a2 False\ntmp26h0zqmx.lean:92:60: error: unsolved goals\n\u22a2 False\ntmp26h0zqmx.lean:103:55: error: unsolved goals\n\u22a2 False\ntmp26h0zqmx.lean:197:32: error: unsolved goals\n\u22a2 False\n'CampaignTfq0032FiniteQcd.suN_qqbar_casimir_channel_formulas' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.so"
+      },
+      {
+        "id": "M3_singlet_proj_divide_by_two_instead_of_three",
+        "description": "Mutate singletProj from qqbarColorTrace M / 3 to qqbarColorTrace M / 2, falsifying color_contraction_projector_idempotence_and_orthogonality.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmpjj1mtujc.lean:134:69: error: unsolved goals\nM : Fin 3 \u2192 Fin 3 \u2192 \u211a\ni j : Fin 3\n\u22a2 M 0 0 * (3 / 2) + "
+      },
+      {
+        "id": "M4_meson_carrier_dim_drop_spin_factor",
+        "description": "Mutate mesonCarrierDim from (N_c * N_c) * (N_s * N_s) * (L ^ d) to (N_c * N_c) * (L ^ d), falsifying finite_meson_composite_carrier_dimension.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp7obe71x0.lean:155:25: warning: Variable name `N_s` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _N_s\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the go"
+      },
+      {
+        "id": "M5_meson_radial_ham_det_drop_hopping",
+        "description": "Mutate mesonRadialHamDet to drop - t ^ 2, falsifying meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpvecid75x.lean:173:32: warning: Variable name `t` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _t\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\ntmpvecid75x.lean:185:29: error: linarith failed to find a contradiction\ncase "
+      },
+      {
+        "id": "M6_repo_ledger_claim_spatial_wavefunction_in_control",
+        "description": "Mutate tfq0032RepoLedger hasSpatialOrbitalWavefunctionInControl from false to true, falsifying tfq0032_meson_channel_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmphjz30svo.lean:234:2: error: Tactic `decide` proved that the proposition\n  tfq0032RepoLedger.hasChannelCasimirRationals = true \u2227\n    tfq0032RepoLedger.hasExplicitColorProjector = true \u2227\n      tfq0032RepoLedger.hasSpatialOrbitalWavefunctionInControl = false \u2227\n        tfq0032RepoLedger.hasMassOperatorInControl = false\nis false\n'CampaignTfq0032FiniteQcd.suN_qqbar_casimir_channel_formulas' depends o"
+      }
+    ]
+  }
+}

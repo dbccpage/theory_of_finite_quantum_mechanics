@@ -10036,6 +10036,7 @@
         "dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md"
       ],
       "lean": [
+        "lean4/CampaignTfq0032FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "rust": [],
@@ -42001,10 +42002,18 @@
         "TFQ-0032"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md",
+        "dag/derivations/independent/tfq-0032.md",
+        "checks/independent/tfq-0032.py",
+        "lean4/CampaignTfq0032FiniteQcd.lean",
+        "lean4/FiniteQM.lean",
+        "dag/research/campaign_tfq-0032_lean_replay.json",
+        "dag/research/campaign_tfq-0032_lean_mutation.json",
+        "dag/research/campaign_tfq-0032_independent.json"
       ],
       "id": "TFQ-0032",
       "lean4": [
+        "lean4/CampaignTfq0032FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "local_id": "A08-023",
@@ -42012,15 +42021,13 @@
       "obligation": "Build a finite meson carrier or keep meson language at the channel-name layer.",
       "parent_id": "TFQ-0031",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py"
+        "checks/independent/tfq-0032.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/qcd_beta0_wilson_confinement_control.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a quark-antiquark color decomposition. The Rust fields singlet_channel_casimir and octet_channel_potential_factor store those rationals. There is no finite Hilbert space of spatial meson orbitals, no relative wavefunction, and no mass operator in qcd_beta0_wilson_confinement_control.rs. Calling the attractive sign a meson composite would add structure the control does not build. The obligation is a separate finite composite, with a declared carrier and a color contraction, before a meson label is used as more than a channel name.",
+      "summary": "The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a quark-antiquark color decomposition. The Rust fields singlet_channel_casimir and octet_channel_potential_factor store those rationals. There is no finite Hilbert space of spatial meson orbitals, no relative wavefunction, and no mass operator in qcd_beta0_wilson_confinement_control.rs. Calling the attractive sign a meson composite would add structure the control does not build. The obligation is a separate finite composite, with a declared carrier and a color contraction, before a meson label is used as more than a channel name. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) exact rational SU(N)/SU(3) quark-antiquark channel Casimir factors (-4/3 singlet and +1/6 octet), 3 x 3 = 1 + 8 dimension decomposition, weighted trace cancellation 1*(-4/3) + 8*(1/6) = 0, and SU(2) vs. SU(3) channel contrast (suN_qqbar_casimir_channel_formulas, su3_qqbar_dimension_and_weighted_trace_sum_zero, singlet_attractive_vs_octet_repulsive_sign_dichotomy, su2_vs_su3_qqbar_casimir_channel_contrast); (2) explicit 3x3 color-trace contraction qqbarColorTrace and singlet/octet projectors singletProj, octetProj with idempotence, tracelessness, and orthogonality (color_contraction_projector_idempotence_and_orthogonality); and (3) declared finite 36 * L^d meson composite carrier accounting and fences showing that channel Casimir rationals do not supply a spatial orbital wavefunction, radial mass operator, or spin-hyperfine splitting (finite_meson_composite_carrier_dimension, meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence, channel_casimir_ratio_not_spatial_wavefunction_fence, pseudoscalar_vs_vector_hyperfine_splitting_requires_spin_operator_fence, tfq0032_meson_channel_scope_ledger_fence).",
       "uuid": "dd735c2e-a167-589b-8a15-8e705cc21d6f"
     },
     {
