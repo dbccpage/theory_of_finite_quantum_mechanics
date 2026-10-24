@@ -1,0 +1,63 @@
+{
+  "schema": "tfqm.lean-mutation-audit.v1",
+  "authority_effect": "None",
+  "node_id": "FSP-LAUGHLIN-EXCHANGE-PHASE",
+  "record_id": "TFQ-1208",
+  "module": "CampaignFspLaughlinExchangePhase",
+  "source_path": "lean4/CampaignFspLaughlinExchangePhase.lean",
+  "source_sha256": "79a064642d7c0e9484c97c6c5d5625a0668124c6abb508b75bb74993f5889d31",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "all_killed": true,
+  "mutants": [
+    {
+      "id": "M1_drop_sign_power_in_jastrow_exchange",
+      "theorem": "CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity",
+      "description": "Drop `(-1)^m` parity factor in `laughlin_two_body_jastrow_exchange_parity`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M2_claim_odd_m_is_symmetric",
+      "theorem": "CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic",
+      "description": "Claim odd `m = 2k + 1` Laughlin Jastrow factor is symmetric instead of antisymmetric.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M3_claim_holomorphic_quasihole_negates_under_swap",
+      "theorem": "CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence",
+      "description": "Mutate bare holomorphic quasihole polynomial fence to claim antisymmetry under `eta1 <-> eta2`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M4_claim_r6_cubed_equals_plus_one",
+      "theorem": "CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations",
+      "description": "Mutate `exchangeR6 ^ 3 = -1` (three `pi/3` exchanges = `-1`) to `+1`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M5_claim_m3_is_an_involution",
+      "theorem": "CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution",
+      "description": "Mutate `monodromyM3 * monodromyM3 \u2260 1` to claim `M3` is a `Z2` involution.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M6_claim_unequal_weights_cancel_z3_sum",
+      "theorem": "CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence",
+      "description": "Mutate unequal quasihole/quasielectron `Z3` sector sum to `0`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    }
+  ]
+}
