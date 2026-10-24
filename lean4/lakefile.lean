@@ -1063,3 +1063,7 @@ lean_lib CampaignFspLatticeWessZuminoSusy where
 -- Campaign: ADS-CFT-DUALITY-IMPORT. Not a default target.
 lean_lib CampaignAdsCftDualityImport where
   roots := #[`CampaignAdsCftDualityImport]
+
+-- Campaign: ADS-HAPPY-TOY-NOT-DUALITY-GAP. Not a default target.
+lean_lib CampaignAdsHappyToyNotDualityGap where
+  roots := #[`CampaignAdsHappyToyNotDualityGap]
