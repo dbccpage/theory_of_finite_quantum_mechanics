@@ -496,7 +496,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1022` | `FINITE_QM_DYNAMICS` | `COMPUTATIONAL_CONTROL` | `FQ-GAP-REAL-EMBEDDING-CHOICE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1023` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CUSTODY-AND-RECEIPTS` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1024` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CORPUS-REWRITE` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1027` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-REALIFICATION-ADAPTER` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
@@ -4617,9 +4617,9 @@ Obligation: Complete or retire the rewrite; no derivation content.
 - Status: `OPEN_OBLIGATION`
 - DAG node: `FQ-GAP-C500-ORIGINAL-TARGETS` (`OPEN`)
 
-For each of ten C500 blocks the original target contract remains open; closure is recorded only for a scoped statement backed by evidence files (open or invalid bet clauses listed per block, e.g. M2, M5, M7, J1, J2 in Block 10).
+Narrowed census, status left OPEN: the gap register sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml has ten entries GAP-C500-B01 through GAP-C500-B10 in that order. Each title is C500 Block NN original target contract remains open, with NN the two-digit index from 01 through 10. Each status field is RESOLVED_WITH_SCOPED_EVIDENCE and each resolution field is RESOLVED. Each entry lists 25 targets, and those targets run from C500-T301 through C500-T550, 250 targets in all. The open_or_invalid_bet_clauses lists are B01 empty, B02 M2 M5, B03 M1 M3 M5 J2, B04 M3 M5, B05 M2 M5 M6 J2, B06 M5, B07 M6, B08 M6, B09 M6, and B10 M2 M5 M7 J1 J2. Those lists have lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, and 5, and the lengths sum to 21. The Block 09 description contains the text x^4-6*x^2+5. For the integer polynomial n^4 - 6*n^2 + 5, the value at 1 is 0, the value at -1 is 0, and 5*5 - 6*5 + 5 = 0.
 
-Obligation: Scoped resolution is narrower than the original targets; map per-block clauses before citing any C500 target as discharged.
+Obligation: This census records the ten block titles, the status field RESOLVED_WITH_SCOPED_EVIDENCE, the resolution field RESOLVED, the 250 target ids, and the clause lists. It leaves the original target contracts, the named evidence files, and any real-number reading of the spectrum text untouched. A clause list is not a derivation that a bet is invalid, and a receipt is not a derivation. The title sentence is a different sentence from the status field. Status stays OPEN.
 
 ### TFQ-1037 gp-fin-gauss-matrix-algebra
 
