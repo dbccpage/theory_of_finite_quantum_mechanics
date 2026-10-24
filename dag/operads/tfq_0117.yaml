@@ -1,22 +1,39 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0117
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
-  source_statement: named_adjoining.yaml refuses several promotions. Pi is not minted from an exact rational
-    residual. A circle group is not obtained from l1 mass. The dual of a finite cyclic group is that same
-    finite cyclic group, not a circle. Free integers are not forced by an N equals 3 leftover. Pontryagin
-    duality is not derived in the file, and Haar uniqueness does not select the factor two pi. What is
-    finite is the described rational leftover and the refusal list. What is not discharged is a derived
-    circle gauge group and the continuum limit. The gap stays open, and the Einstein equation is not discharged.
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
-  source_bottleneck: GAP-F002-S001-001 remains open. Finite cyclic dual is not sold as a circle group.
+  source_statement: 'named_adjoining.yaml refuses several promotions. Pi is not minted from an exact
+    rational residual. A circle group is not obtained from l1 mass. The dual of a finite cyclic group is
+    that same finite cyclic group, not a circle. Free integers are not forced by an N equals 3 leftover.
+    Pontryagin duality is not derived in the file, and Haar uniqueness does not select the factor two pi.
+    What is finite is the described rational leftover and the refusal list. What is not discharged is a
+    derived circle gauge group and the continuum limit. The gap stays open, and the Einstein equation is
+    not discharged. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic
+    components and refusal fences: (1) finite cyclic self-duality on Fin N (card = N, N-fold periodicity
+    (N * k * x) % N = 0) and the N = 3 countermodel (|Fin 3| = 3, (1 + 1) % 3 = 2 != 0 yet (3 * x) % 3 = 0
+    for all x in Fin 3), showing that a non-exponent-2 N = 3 witness does not force free integers Z or U(1);
+    (2) exact character orthogonality over Gaussian rationals Q[i] on Z/4Z (mu4 group homomorphism, unit
+    Gaussian norm, and chi4Inner k m = (4, 0) iff k = m else (0, 0)); and (3) replay of the C_4 cochain
+    holonomy syndrome (400) and sign-fiber destructive cancellation gap (4), together with the Haar
+    period-independence fence showing that unit-mass normalization (1 / P) * P = 1 holds for every nonzero
+    period P != 0 and does not select 2 * pi.'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - continuum circle gauge group U(1) and Pontryagin duality on locally compact abelian groups (open)
+  - angular period 2*pi normalization convention (external)
+  source_bottleneck: 'GAP-F002-S001-001 remains open. Finite cyclic dual is not sold as a circle group.'
   source_refs:
   - dag/derivations/20_continuum_interface/tfq_0117_gap_f002_s001_001_remains_open_finite_cyclic_dual_is_not_sold_as_a_circle.md
+  - dag/derivations/independent/tfq-0117.md
+  - checks/independent/tfq-0117.py
+  - lean4/CampaignTfq0117ContinuumInterface.lean
+  - dag/research/campaign_tfq-0117_lean_replay.json
+  - dag/research/campaign_tfq-0117_lean_mutation.json
+  - dag/research/campaign_tfq-0117_independent.json
   paper_refs:
   - dag/derivations/20_continuum_interface/tfq_0117_gap_f002_s001_001_remains_open_finite_cyclic_dual_is_not_sold_as_a_circle.md
-  source_claim_label: OPEN
+  source_claim_label: OPEN_ADJOINING
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
@@ -27,18 +44,63 @@ source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
-  path: dag/prompts/continuum_interface_tfq_0117_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+  dag_source_commit: 999334fc7
+  path: dag/prompts/continuum_interface_tfq_0117_open_adjoining.yaml
+  external_repository_commit: 999334fc7
+operation_candidates:
+- cyclicPairing
+- cyclicAdd
+- gaussAdd
+- gaussMul
+- gaussConj
+- gaussNormSq
+- mu4
+- chi4
+- chi4Inner
+- c4LoopHolonomy
+- signFiberIntensity
+- normalizedHaarIntervalMass
+relation_candidates:
+- finite_cyclic_dual_cardinality
+- finite_cyclic_periodicity
+- z3_not_exponent_two_yet_torsion_three_fence
+- mu4_add_mod4_homomorphism
+- chi4_unit_gaussian_norm
+- z4_character_orthogonality_exact
+- z4_nontrivial_character_sum_zero
+- c4_cochain_syndrome_and_sign_fiber_gap_replay
+- haar_normalization_period_independence_fence
+- haar_period_calibration_injective
+source_bindings:
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.finite_cyclic_dual_cardinality
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.finite_cyclic_periodicity
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.z3_not_exponent_two_yet_torsion_three_fence
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.mu4_add_mod4_homomorphism
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.chi4_unit_gaussian_norm
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.z4_character_orthogonality_exact
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.z4_nontrivial_character_sum_zero
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.c4_cochain_syndrome_and_sign_fiber_gap_replay
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.haar_normalization_period_independence_fence
+- lean4/CampaignTfq0117ContinuumInterface.lean::CampaignTfq0117ContinuumInterface.haar_period_calibration_injective
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - FiniteCyclicDual
+  - GaussianRationalCharacter
+  - HaarPeriodCalibration
+  generators:
+  - cyclicPairing
+  - mu4
+  - chi4Inner
+  - c4LoopHolonomy
+  - normalizedHaarIntervalMass
+  relations:
+  - z3_not_exponent_two_yet_torsion_three_fence
+  - z4_character_orthogonality_exact
+  - haar_normalization_period_independence_fence
+  compositions:
+  - mu4_add_mod4_homomorphism
+  identities:
+  - chi4_unit_gaussian_norm
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -48,32 +110,60 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: Fin N x GaussRat
+    coefficient_ring: Q[i]
+    assumptions:
+    - continuum circle gauge group U(1) and Pontryagin duality on locally compact abelian groups (open)
+    - angular period 2*pi normalization convention (external)
+    source_pins:
+    - lean4/CampaignTfq0117ContinuumInterface.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - cyclicPairing
+    - cyclicAdd
+    - mu4
+    - chi4
+    - chi4Inner
+    - c4LoopHolonomy
+    - normalizedHaarIntervalMass
+    composition_plan:
+    - mu4_add_mod4_homomorphism
+    - z4_character_orthogonality_exact
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - finite_cyclic_periodicity
+    - mu4_add_mod4_homomorphism
+    - z4_character_orthogonality_exact
+    - z4_nontrivial_character_sum_zero
+    rejection_predicates:
+    - finite_cyclic_dual_cardinality
+    - z3_not_exponent_two_yet_torsion_three_fence
+    - haar_normalization_period_independence_fence
+    - haar_period_calibration_injective
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0117_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - z3_not_exponent_two_yet_torsion_three_fence
+    - z4_character_orthogonality_exact
+    - c4_cochain_syndrome_and_sign_fiber_gap_replay
+    - haar_normalization_period_independence_fence
+    anchors:
+    - lean4/CampaignTfq0117ContinuumInterface.lean
+    - checks/independent/tfq-0117.py
+    - dag/derivations/independent/tfq-0117.md
+    unpaid_imports:
+    - continuum circle gauge group U(1) and Pontryagin duality on locally compact abelian groups (open)
+    - angular period 2*pi normalization convention (external)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T05:38:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- GAP-F002-S001-001 (continuum circle group U(1) and Pontryagin duality) remains open.
 excluded_relation_leads: []
