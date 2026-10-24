@@ -14,10 +14,10 @@
 On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.
 
 ### Governing Obligation
-Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
+Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13). Narrowed in lean4/CampaignFspReggeDeficitAction.lean and checks/independent/fsp-regge-deficit-action.py to: (1) Heron / Cayley-Menger squared triangle area heronAreaSq from squared edge lengths and the exact hinge classes of orthogonal_pentatope (6 right-triangle hinges with A_h^2 = 1/4 and 4 equilateral hinges with A_h^2 = 3/4, summing to 9/2); (2) hinge deficit flatness criterion, reggeAction bilinearity, and non-negativity on positive deficits vs sign indefiniteness under mixed-sign saddle deficits; (3) boundary of 5-simplex (partial Delta^5) face counts (6, 15, 20, 15, 6), Euler characteristic chi = 2, and incidence 6*10 = 20*3 = 60; (4) cyclic holonomy telescoping (f1-f0)+(f2-f1)+(f3-f2)+(f0-f3) = 0 for the discrete first Bianchi identity (derived by ring identity rather than assumed) and Schlaefli variational reduction; (5) exact rational refinement bound predicate defectBoundHolds matching code/rust/src/general_relativity/exact_regge/action.rs; and (6) explicit GIN-C13 scope fences for fermion-sign independence, Lorentzian half-turn phase sign reversal, and Nat vs signed Q deficit cancellation.
 
 ### Witness Audit
-Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; flat_vertex_wdw_closure states that a Nat sum of zero deficits is zero. regge_wdw_core.lean::discrete_first_bianchi_identity assumes the cyclic sum vanishes and factors it out, in an unbuilt file. ReggeTriangulationEvaluator is absent from regge_pachner_wdw.py.
+Replaced missing ReggePachnerWdw.lean::regge_deficit_angle_action_identity and unbuilt cyclic-assumption file with lean4/CampaignFspReggeDeficitAction.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-regge-deficit-action.py (21152 checks, 0 failures).
 
 ---
 
@@ -37,7 +37,16 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence`
+- `lean4/CampaignFspReggeDeficitAction.lean::CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence`
 
 ### Rust Certifiers
 - *none*
@@ -62,3 +71,8 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:668-680`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582`
+  - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:23`
+  - `dag/derivations/independent/fsp-regge-deficit-action.md`
+  - `dag/research/campaign_fsp-regge-deficit-action_lean_replay.json`
+  - `dag/research/campaign_fsp-regge-deficit-action_lean_mutation.json`
+  - `dag/research/campaign_fsp-regge-deficit-action_independent.json`
