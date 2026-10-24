@@ -2463,9 +2463,9 @@ Obligation: Keep each S(n) row with its qualification, and refuse any identifica
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-The sealed responder, a minimum of the sealed candidate space of at most two items and arity at most two under mu1 or mu2, has no Lean counterpart in the second derivation's packages: no Lean statement about a minimum, cost or tie (S-3); the responder's domain excludes ruled regimes, since it refuses to run on a regime holding a uniform rule (S-1); the other demand kind, a same pair that is separable, is not read (S-2); and the distance bound of two is not known to be the grammar's (S-4). Attempt one's G-4 asks for the same responder in Lean, and attempt two's H-1 (the four streamless carriers past the bounds) needs it.
+Narrowed boundary, status left OPEN: in one declared shadow, a demand is read only for the collapsed kind with the uniform-rule flag false. Of the four flag pairs, the read count is 1. The copied mark, a form of arity 1 followed by argument list [0], and the copied link, a form of arity 2 followed by [0, 1], each have length 2. Item-count cost mu1 is 2 for both, so the two lists tie at cost 2. The pair cost mu2 is (2, 1) for the mark and (2, 2) for the link, and (2, 1) precedes (2, 2) because the item counts are equal and 1 < 2. Both lists lie inside the shadow bound of length at most 2 and new-form arity sum at most 2 with no rule item. A two-item list that contains a rule item lies outside that bound. One three-item list has length 3 and lies outside the length bound 2. This shadow does not state the sealed responder, and the node status stays OPEN.
 
-Obligation: State in Lean the responder's minimum, cost and tie relation over the sealed candidate space, extend its domain to ruled regimes or record why not, and read both demand kinds.
+Obligation: Keep this shadow separate from the sealed responder. Stating that responder's minimum, cost and tie over the sealed candidate space, its domain on ruled regimes, and both demand kinds stays open.
 
 ### TFQ-0497 context-decision-procedure
 
