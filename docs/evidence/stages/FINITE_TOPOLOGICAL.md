@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 9. Grades: E0 2, E1 6, E3 1. Statuses: COMPUTATIONALLY_CHECKED 7, OPEN 2.
+Nodes: 9. Grades: E0 2, E1 5, E3 2. Statuses: COMPUTATIONALLY_CHECKED 7, OPEN 2.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -13,6 +13,6 @@ Nodes: 9. Grades: E0 2, E1 6, E3 1. Statuses: COMPUTATIONALLY_CHECKED 7, OPEN 2.
 | [TFQ-0047](../nodes/TFQ-0047.md) | `COMPUTATIONALLY_CHECKED` | E1 | modular_tensor_category.rs builds ModularData::verified from an AnyonModel and exposes ground_state_degeneracy at a declared genus. The m... | [modular.rs](../../../code/rust/src/fusion_categories/modular.rs) | computational_no_runnable_test |
 | [TFQ-0048](../nodes/TFQ-0048.md) | `COMPUTATIONALLY_CHECKED` | E0 | toric_code.rs builds a rectangular CSS code on periodic_square_complex, with a budget of 256 plaquettes. It computes star and plaquette s... | none in this checkout | computational_no_runnable_test |
 | [TFQ-0049](../nodes/TFQ-0049.md) | `COMPUTATIONALLY_CHECKED` | E1 | frobenius_algebra.rs asks both Frobenius identities, units, and counits to replay on matrices over Q(i), with dimension from 1 to 16, and... | [fusion_category.rs](../../../code/rust/src/fusion_categories/fusion_category.rs) | computational_no_runnable_test |
-| [TFQ-0050](../nodes/TFQ-0050.md) | `OPEN` | E1 | catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion mod... | [catalog.rs](../../../code/rust/src/fusion_categories/catalog.rs)<br>[su2_level.rs](../../../code/rust/src/fusion_categories/su2_level.rs) | - |
+| [TFQ-0050](../nodes/TFQ-0050.md) | `OPEN` | E3 | catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion mod... | [CampaignTfq0050FiniteTopological.lean](../../../lean4/CampaignTfq0050FiniteTopological.lean): `absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence`, `catalog_cyclotomic_field_admission_and_refusal`, `catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence` +7<br>[catalog.rs](../../../code/rust/src/fusion_categories/catalog.rs)<br>[su2_level.rs](../../../code/rust/src/fusion_categories/su2_level.rs)<br>[tfq-0050.py](../../../checks/independent/tfq-0050.py) | - |
 | [TFQ-0051](../nodes/TFQ-0051.md) | `COMPUTATIONALLY_CHECKED` | E1 | spin_structure_obstruction.rs lifts a flat rational rotation transport on a declared finite 2-complex to SU(2) matrices, using omega_lie_... | [su2.rs](../../../code/rust/src/lie_theory/su2.rs) | computational_no_runnable_test |
 

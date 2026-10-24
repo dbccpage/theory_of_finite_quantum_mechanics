@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "f294b2ac8cf15154789f72fa35e68a934a23d385b7d08e968e3bc19e097ab52b"
+  "sha256_lf": "480a7fbe806e92c81175c56c2c1d0d7affb43fef9005193599d55433ab6c0e7f"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -216,6 +216,11 @@
    "sha256": "1c7c6f205fcffb9a9d9bb767f4c2be9dfa37e3723884cf2f15dbc46e84bb46d6",
    "sha256_basis": "bytes",
    "size": 11900
+  },
+  "checks/independent/tfq-0050.py": {
+   "sha256": "76d6adf250d2dd42568fd0b043e3ecd3da2ada42071549ac3981d25198858432",
+   "sha256_basis": "bytes",
+   "size": 9744
   },
   "checks/independent/tfq-0090.py": {
    "sha256": "229f01d0c8417d3d831b02eecd40b82bd392132b936dc6b579e750039aced92c",
@@ -998,9 +1003,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "f294b2ac8cf15154789f72fa35e68a934a23d385b7d08e968e3bc19e097ab52b",
+   "sha256": "480a7fbe806e92c81175c56c2c1d0d7affb43fef9005193599d55433ab6c0e7f",
    "sha256_basis": "lf-normalised",
-   "size": 4749093
+   "size": 4751100
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3153,9 +3158,9 @@
    "size": 2499
   },
   "dag/derivations/18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md": {
-   "sha256": "e44415e08b4090c48ef38c3e8bc2016cb230b8b3d8a19a76742ededa214f5027",
+   "sha256": "22d297bbfd20f1cc7c575c90fabf7beb6f86d018c47729e5796ebece89b4f73e",
    "sha256_basis": "lf-normalised",
-   "size": 2474
+   "size": 4635
   },
   "dag/derivations/18_finite_topological/tfq_0051_keep_the_spin_lift_on_declared_flat_complexes_and_off_the_dirac.md": {
    "sha256": "3848cc4e7412e07440e6e9c504945dffc2037cf8eeb718b74847ac6b366d631a",
@@ -6951,6 +6956,11 @@
    "sha256": "bc3bb2ea561cc285238ee8e9887f109336d7f0d8db817967fee726fd232dd35d",
    "sha256_basis": "bytes",
    "size": 14951
+  },
+  "lean4/CampaignTfq0050FiniteTopological.lean": {
+   "sha256": "a7616bdb66967acb7219b10842af7924a2b7b270181ccb5949a650c42adc2eac",
+   "sha256_basis": "bytes",
+   "size": 14563
   },
   "lean4/CampaignTfq0090FiniteQg.lean": {
    "sha256": "d4d8c2878dbd4382043b97032c2024a5577e03fc0a115351b7cc175d8f935719",
@@ -115454,24 +115464,371 @@
    "status": "COMPUTATIONALLY_CHECKED"
   },
   {
-   "absent_notes": [
-    "TFQ-0050 lean4: no Lean SU(3)_k fusion file was located",
-    "TFQ-0050 python: catalog models have no QCD use case",
-    "TFQ-0050 rust: omega_engine/crates_rs/omega_fusion_categories/src/su3_level.rs"
-   ],
+   "absent_notes": [],
    "dependents": 1,
    "facts": {
-    "cited_code_files_not_tests": 2,
-    "counted_files": 2,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 3,
+    "counted_files": 4,
+    "lean_receipt_backed": 10,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 10
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "TFQ-0050",
    "items": [
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)",
+      "record TFQ-0050"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.catalog_cyclotomic_field_admission_and_refusal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.catalog_cyclotomic_field_admission_and_refusal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.catalog_ribbon_ranks_and_total_squared_dimensions",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.catalog_ribbon_ranks_and_total_squared_dimensions",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.catalog_self_dual_models_not_su3_conjugate_pair_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.catalog_self_dual_models_not_su3_conjugate_pair_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.quantum_double_z3_rank9_not_su3_level_k_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.quantum_double_z3_rank9_not_su3_level_k_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.su3_level2_fundamental_quantum_dimension_golden_ratio",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.su3_level2_fundamental_quantum_dimension_golden_ratio",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.tfq0050_catalog_and_su3_level_scope_ledger_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.tfq0050_catalog_and_su3_level_scope_ledger_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0050_lean_replay.json (CampaignTfq0050FiniteTopological)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0050FiniteTopological",
+     "command_note": "then, in a scratch file that imports CampaignTfq0050FiniteTopological: #print axioms CampaignTfq0050FiniteTopological.toric_code_vs_three_fermion_topological_spin_twists",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0050FiniteTopological.toric_code_vs_three_fermion_topological_spin_twists",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.rust",
@@ -115522,6 +115879,29 @@
     },
     {
      "cited_in": [
+      "record TFQ-0050"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0050.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
       "node.source",
       "record TFQ-0050"
      ],
@@ -115545,7 +115925,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0050"
    ],
@@ -270589,6 +270969,32 @@
    ],
    "built_successfully": null,
    "checked_at": null,
+   "dag_node": "TFQ-0050",
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0050_lean_replay.json#0:CampaignTfq0050FiniteTopological",
+   "lean_version": null,
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0050FiniteTopological",
+   "path": "lean4/CampaignTfq0050FiniteTopological.lean",
+   "receipt_file": "dag/research/campaign_tfq-0050_lean_replay.json",
+   "receipt_file_sha256": "dbd296cb008a2a5c4440f322e443e0cee74b5e976faf16d8952c11cdd4fcf944",
+   "recorded_sha256": "a7616bdb66967acb7219b10842af7924a2b7b270181ccb5949a650c42adc2eac",
+   "source_unchanged_during_build": true,
+   "toolchain": null
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": null,
    "dag_node": "TFQ-0090",
    "decl_count": 12,
    "exit_code": 0,
@@ -281818,9 +282224,9 @@
  "summary": {
   "by_grade": {
    "E0": 171,
-   "E1": 232,
+   "E1": 231,
    "E2": 42,
-   "E3": 480,
+   "E3": 481,
    "E4": 0
   },
   "by_status": {
@@ -281870,7 +282276,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 503,
+  "receipts_indexed": 504,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -282000,9 +282406,9 @@
    },
    "FINITE_TOPOLOGICAL": {
     "E0": 2,
-    "E1": 6,
+    "E1": 5,
     "E2": 0,
-    "E3": 1,
+    "E3": 2,
     "E4": 0
    },
    "GENESIS": {
@@ -282149,9 +282555,9 @@
    },
    "OPEN": {
     "E0": 36,
-    "E1": 82,
+    "E1": 81,
     "E2": 10,
-    "E3": 47,
+    "E3": 48,
     "E4": 0
    },
    "PROVED_LEAN": {

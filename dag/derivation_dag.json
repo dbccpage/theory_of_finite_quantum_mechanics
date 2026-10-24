@@ -10421,7 +10421,9 @@
       "source": [
         "dag/derivations/18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0050FiniteTopological.lean"
+      ],
       "rust": [
         "code/rust/src/fusion_categories/catalog.rs",
         "code/rust/src/fusion_categories/su2_level.rs"
@@ -10432,6 +10434,9 @@
         "unified-dag",
         "TFQ-0050",
         "finite_topological"
+      ],
+      "python": [
+        "checks/independent/tfq-0050.py"
       ]
     },
     {
@@ -42662,27 +42667,36 @@
       "existing_derivation_dag_ids": [
         "TFQ-0050"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md",
+        "dag/derivations/independent/tfq-0050.md",
+        "checks/independent/tfq-0050.py",
+        "lean4/CampaignTfq0050FiniteTopological.lean",
+        "code/rust/src/fusion_categories/catalog.rs",
+        "code/rust/src/fusion_categories/su2_level.rs",
+        "dag/research/campaign_tfq-0050_lean_replay.json",
+        "dag/research/campaign_tfq-0050_lean_mutation.json",
+        "dag/research/campaign_tfq-0050_independent.json"
+      ],
       "id": "TFQ-0050",
       "lean4": [
-        "absent: no Lean SU(3)_k fusion file was located"
+        "lean4/CampaignTfq0050FiniteTopological.lean"
       ],
       "local_id": "A08-037",
       "name": "Either add an exact SU(3) fusion file or leave that obligation open",
       "obligation": "Either add an exact SU(3) fusion file or leave that obligation open.",
       "parent_id": "TFQ-0049",
       "python": [
-        "absent: catalog models have no QCD use case"
+        "checks/independent/tfq-0050.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
         "code/rust/src/fusion_categories/catalog.rs",
-        "code/rust/src/fusion_categories/su2_level.rs",
-        "absent: omega_engine/crates_rs/omega_fusion_categories/src/su3_level.rs"
+        "code/rust/src/fusion_categories/su2_level.rs"
       ],
       "source_slice": "08",
       "stage": "FINITE_TOPOLOGICAL",
-      "summary": "catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories.",
+      "summary": "catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories. Narrowed in Lean 4, Rust (catalog.rs, su2_level.rs), and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) catalog.rs ribbon ranks, squared quantum dimensions D^2 (Ising 4, semion 2, D(Z_2) 4, D(Z_n) n^2), and Z_2 x Z_2 spin parities ([0,0,0,1] for toric_code vs [0,1,1,1] for three_fermion) (catalog_ribbon_ranks_and_total_squared_dimensions, toric_code_vs_three_fermion_topological_spin_twists); (2) exact cyclotomic root-of-unity divisibility admission and FusionError::FieldTooSmall refusal (catalog_cyclotomic_field_admission_and_refusal); and (3) SU(3)_k Weyl alcove combinatorics ((k+1)(k+2)/2 simple objects, non-self-dual fundamental pair (1,0)* = (0,1), and SU(3)_2 Q(phi) quantum dimension identity d_(1,0)^2 = d_(0,1) + d_(2,0) = 1 + 2*phi) together with scope fences classifying the absence of su3_level.rs as an open obligation rather than a negative theorem and confirming no material-host assertion (su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed, quantum_double_z3_rank9_not_su3_level_k_fence, catalog_self_dual_models_not_su3_conjugate_pair_fence, su3_level2_fundamental_quantum_dimension_golden_ratio, absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence, catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence, tfq0050_catalog_and_su3_level_scope_ledger_fence).",
       "uuid": "63c6efed-2e38-5a2c-a9d0-91e003055f72"
     },
     {
