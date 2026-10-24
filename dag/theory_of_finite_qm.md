@@ -494,7 +494,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1020` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1021` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` (PROVED_LEAN) | - |
 | `TFQ-1022` | `FINITE_QM_DYNAMICS` | `COMPUTATIONAL_CONTROL` | `FQ-GAP-REAL-EMBEDDING-CHOICE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1023` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CUSTODY-AND-RECEIPTS` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1023` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CUSTODY-AND-RECEIPTS` (OPEN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1024` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CORPUS-REWRITE` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
@@ -4595,9 +4595,9 @@ Obligation: Both hypotheses are supplied; their selection from finite-theory pri
 - Status: `OPEN_OBLIGATION`
 - DAG node: `FQ-GAP-CUSTODY-AND-RECEIPTS` (`OPEN`)
 
-Receipt and custody items: 48 (ledger) vs 24 (GAP-FQM-002 text) untyped claim rows; GAP-FQM-017 QM_208-211 claim maps point at nonexistent *_lib libraries (tautology tests); GAP-FQM-019 eight claims need a Mathlib build to promote; GAP-FQM-020 QM_122 axiom report covers 22 of 53 files and hides a Classical.choice dependency (H019.basisGen8_eval_pos); GAP-FQM-022 QM_122 provenance cites nonexistent sources; QM_020 and QM_080 are published (Zenodo) and not free to rewrite; README states the code-companion --check fails on the current tree.
+Narrowed census, status left OPEN: the claims list in sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml, stopping before application_claims, has 834 records of 14 type labels. In descending count the pairs are FINITE COMPUTATION 160, SCOPE FENCE 156, OPEN 115, DEFINITION 104, EXACT FINITE ALGEBRA 80, CONDITIONAL 57, UNTYPED 48, ASSERTED 36, REFUTED BY AUDIT 31, DECLARED 17, FINITE FIXTURE 12, REFUTED BY COMPUTATION 10, REFUSAL 7, and PARTIAL 1. Those counts sum to 834. Index 6 of that order is UNTYPED with count 48. 48 ≠ 24 and 834 ≠ 189. The gap register entry GAP-FQM-002 has the title 24 claim rows carry no parseable type, and its description contains 24 of 189.
 
-Obligation: Receipts are not proofs: a stale receipt over H000..H018 coexists with Lean headers that say "Candidate only"; replay against a clean Lean build is not claimed.
+Obligation: This census is a type-label count of one claims list. It leaves GAP-FQM-017, GAP-FQM-019, GAP-FQM-020, GAP-FQM-022, Zenodo publication, and the README code-companion check untouched. A type-label count is not a derivation that a row is unsupported, and a receipt is not a derivation. The gap sentence 24 of 189 is a different sentence from the current 48 of 834. Status stays OPEN.
 
 ### TFQ-1024 fq-gap-corpus-rewrite
 
