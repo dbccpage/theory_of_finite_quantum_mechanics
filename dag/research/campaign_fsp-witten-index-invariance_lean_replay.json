@@ -1,113 +1,208 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-10-24",
-  "source_base": "1fa451fe1eac",
-  "result": "Lean module CampaignFspWittenIndexInvariance compiles under Lean 4.35.0 with pinned Mathlib, built through lake from the CampaignFspWittenIndexInvariance library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
-  "proof_boundary": "This receipt records that lean4/CampaignFspWittenIndexInvariance.lean type-checks and which axioms its #print axioms lines report.",
-  "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "a9d31fc16e263d1f4701fcb07edd2f369cee964284e63dfb0ea19291c9724e67",
-    "library": "CampaignFspWittenIndexInvariance (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b",
-    "dependency_packages": "lean4/.lake/packages Mathlib v4.35.0 cache",
-    "command": "cd lean4 && lake build CampaignFspWittenIndexInvariance",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
-    ],
-    "results": [
-      {
-        "module": "CampaignFspWittenIndexInvariance",
-        "dag_node": "FSP-WITTEN-INDEX-INVARIANCE",
-        "source": "lean4/CampaignFspWittenIndexInvariance.lean",
-        "sha256": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84",
-        "sha256_after_build": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84",
-        "source_unchanged_during_build": true,
-        "exit_code": 0,
-        "admission_scan_passed": true,
-        "axiom_audit_passed": true,
-        "anchors": [
-          "CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks",
-          "CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine",
-          "CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks",
-          "CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace",
-          "CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero",
-          "CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub",
-          "CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta",
-          "CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights",
-          "CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state",
-          "CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one",
-          "CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence",
-          "CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence"
+  "checked_at": "2026-10-24T21:50:26.017044+00:00",
+  "lean_toolchain": "leanprover/lean4:v4.35.0",
+  "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "proof_boundary": "For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler.",
+  "results": [
+    {
+      "module": "CampaignFspWittenIndexInvariance",
+      "source": "lean4/CampaignFspWittenIndexInvariance.lean",
+      "sha256": "6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b",
+      "exit_code": 0,
+      "axioms": {
+        "susyHamiltonian_eq_fromBlocks": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
         ],
-        "anchors_reported": true,
-        "axioms": {
-          "CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
+        "boson_fermion_block_pow_intertwine": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "susyHamiltonian_pow_eq_fromBlocks": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "boson_eq_fermion_pow_succ_trace": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "supertrace_susyHamiltonian_pow_succ_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "supertrace_fermionParity_fin_eq_sub": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "supertrace_cubic_boltzmann_poly_independent_of_beta": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "wittenIndexPaired_eq_zero_mode_diff_for_all_weights": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "nonzero_witten_index_implies_zero_mode_ground_state": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "rectangular_2x1_supercharge_forced_zero_mode_and_index_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "witten_index_vs_partition_function_and_average_sign_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "broken_lattice_susy_destroys_supertrace_cancellation_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "anchors": [
+        "susyHamiltonian_eq_fromBlocks",
+        "boson_fermion_block_pow_intertwine",
+        "susyHamiltonian_pow_eq_fromBlocks",
+        "boson_eq_fermion_pow_succ_trace",
+        "supertrace_susyHamiltonian_pow_succ_eq_zero",
+        "supertrace_fermionParity_fin_eq_sub",
+        "supertrace_cubic_boltzmann_poly_independent_of_beta",
+        "wittenIndexPaired_eq_zero_mode_diff_for_all_weights",
+        "nonzero_witten_index_implies_zero_mode_ground_state",
+        "rectangular_2x1_supercharge_forced_zero_mode_and_index_one",
+        "witten_index_vs_partition_function_and_average_sign_fence",
+        "broken_lattice_susy_destroys_supertrace_cancellation_fence"
+      ],
+      "axiom_audit_passed": true,
+      "output": "⚠ [1799/1800] Built CampaignFspWittenIndexInvariance (37s)\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Algebra.BigOperators.Group.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Notation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Block` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.LinearCombination` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspWittenIndexInvariance.lean:224:0: 'CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:225:0: 'CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:226:0: 'CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:227:0: 'CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:228:0: 'CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:229:0: 'CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:230:0: 'CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:231:0: 'CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:232:0: 'CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:233:0: 'CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:234:0: 'CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:235:0: 'CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (1800 jobs).\n"
+    }
+  ],
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-24",
+    "source_base": "1fa451fe1eac",
+    "result": "Lean module CampaignFspWittenIndexInvariance compiles under Lean 4.35.0 with pinned Mathlib, built through lake from the CampaignFspWittenIndexInvariance library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
+    "proof_boundary": "This receipt records that lean4/CampaignFspWittenIndexInvariance.lean type-checks and which axioms its #print axioms lines report.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "a9d31fc16e263d1f4701fcb07edd2f369cee964284e63dfb0ea19291c9724e67",
+      "library": "CampaignFspWittenIndexInvariance (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b",
+      "dependency_packages": "lean4/.lake/packages Mathlib v4.35.0 cache",
+      "command": "cd lean4 && lake build CampaignFspWittenIndexInvariance",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignFspWittenIndexInvariance",
+          "dag_node": "FSP-WITTEN-INDEX-INVARIANCE",
+          "source": "lean4/CampaignFspWittenIndexInvariance.lean",
+          "sha256": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84",
+          "sha256_after_build": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks",
+            "CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine",
+            "CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks",
+            "CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace",
+            "CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero",
+            "CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub",
+            "CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta",
+            "CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights",
+            "CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state",
+            "CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one",
+            "CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence",
+            "CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence"
           ],
-          "CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ]
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ]
+          }
         }
-      }
-    ]
-  }
+      ]
+    }
+  },
+  "superseded_reason": "Interpretation overclaims and missing source axiom lines corrected; former source hash and receipt retained for history only."
 }

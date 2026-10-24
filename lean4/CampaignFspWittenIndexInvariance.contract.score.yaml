@@ -1,53 +1,44 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "lean4/CampaignFspWittenIndexInvariance.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
   "contract": {
     "AuthorityEffect": "None",
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/CampaignFspWittenIndexInvariance.lean",
-      "sha256": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84"
+      "sha256": "6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b"
     },
     "boundaries": [
-      "Presupposes an exact finite graded supercharge (leaving full lattice Wess-Zumino SUSY open) and does not provide sign-free sampling of the thermal partition function Z(beta)."
+      "AuthorityEffect: None. Original campaign target remains open or imported.",
+      "Capability is assessed from delivered code. This artifact is below the substantive L4 floor."
     ],
-    "contract_id": "campaign-fsp-witten-index-invariance-registration",
-    "evidence": [
-      {
-        "path": "dag/research/campaign_fsp-witten-index-invariance_lean_replay.json",
-        "sha256": "fc66155f9af9f435ed039e2dd37057fd4d2c2d8c372bd882ada983c353542473"
-      },
-      {
-        "path": "dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json",
-        "sha256": "58339bbc9da6416c679575ee6ec15793c801110faf2184da823f607bcca2ef9d"
-      },
-      {
-        "path": "dag/research/campaign_fsp-witten-index-invariance_independent.json",
-        "sha256": "129a233a599208923aaa59daa6aadeed6a4905cff092cca93e25447a0c4a38ba"
-      },
-      {
-        "path": "docs/overclaim/reviews/2026-10-24_campaign-fsp-witten-index-invariance-precommit.md",
-        "sha256": "7d8ac67928be444a587563c368bbbbdca27b2125a689132a65699d610b566c2d"
-      },
-      {
-        "path": "SCORING.md",
-        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
-      }
-    ],
+    "contract_urn": "urn:tfqm:independent-pr-review:CampaignFspWittenIndexInvariance",
     "owned_invariants": [
-      "All 12 exported theorems in CampaignFspWittenIndexInvariance compile under Lean 4 without sorry or custom axioms.",
-      "6/6 semantic mutations in CampaignFspWittenIndexInvariance are killed by Lake and paired with 1171 independent Python checks."
+      "For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler."
     ],
-    "purpose": "Formalizes Z2-graded block supercharge power intertwining, vanishing positive-power supertraces, beta-independence of paired Witten index sums, forced zero modes, and partition-function/broken-SUSY scope fences for FSP-WITTEN-INDEX-INVARIANCE (TFQ-1206).",
-    "schema_id": "tfqm.source-contract.v1"
+    "symbols": [
+      "susyHamiltonian_eq_fromBlocks",
+      "boson_fermion_block_pow_intertwine",
+      "susyHamiltonian_pow_eq_fromBlocks",
+      "boson_eq_fermion_pow_succ_trace",
+      "supertrace_susyHamiltonian_pow_succ_eq_zero",
+      "supertrace_fermionParity_fin_eq_sub",
+      "supertrace_cubic_boltzmann_poly_independent_of_beta",
+      "wittenIndexPaired_eq_zero_mode_diff_for_all_weights",
+      "nonzero_witten_index_implies_zero_mode_ground_state",
+      "rectangular_2x1_supercharge_forced_zero_mode_and_index_one",
+      "witten_index_vs_partition_function_and_average_sign_fence",
+      "broken_lattice_susy_destroys_supertrace_cancellation_fence"
+    ]
   },
-  "current_contract": "b41e9ec15ca93522366af0f3e1b1eb7095589e148f47bc6c2387034c2a7ce6be",
-  "current_scoring": "ff016b86cd9e506e39d4a6a7dfe0886cc5f8a8a7fd7c188f868c50ef567c2822",
   "contract_history": [
     {
-      "sha256": "b41e9ec15ca93522366af0f3e1b1eb7095589e148f47bc6c2387034c2a7ce6be",
       "bytes": 1971,
+      "original_paths": [
+        "#campaign-fsp-witten-index-invariance-registration"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspWittenIndexInvariance.lean\",\n    \"sha256\": \"d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84\"\n  },\n  \"boundaries\": [\n    \"Presupposes an exact finite graded supercharge (leaving full lattice Wess-Zumino SUSY open) and does not provide sign-free sampling of the thermal partition function Z(beta).\"\n  ],\n  \"contract_id\": \"campaign-fsp-witten-index-invariance-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_replay.json\",\n      \"sha256\": \"fc66155f9af9f435ed039e2dd37057fd4d2c2d8c372bd882ada983c353542473\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json\",\n      \"sha256\": \"58339bbc9da6416c679575ee6ec15793c801110faf2184da823f607bcca2ef9d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_independent.json\",\n      \"sha256\": \"129a233a599208923aaa59daa6aadeed6a4905cff092cca93e25447a0c4a38ba\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-witten-index-invariance-precommit.md\",\n      \"sha256\": \"7d8ac67928be444a587563c368bbbbdca27b2125a689132a65699d610b566c2d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All 12 exported theorems in CampaignFspWittenIndexInvariance compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignFspWittenIndexInvariance are killed by Lake and paired with 1171 independent Python checks.\"\n  ],\n  \"purpose\": \"Formalizes Z2-graded block supercharge power intertwining, vanishing positive-power supertraces, beta-independence of paired Witten index sums, forced zero modes, and partition-function/broken-SUSY scope fences for FSP-WITTEN-INDEX-INVARIANCE (TFQ-1206).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
@@ -88,16 +79,62 @@
         "purpose": "Formalizes Z2-graded block supercharge power intertwining, vanishing positive-power supertraces, beta-independence of paired Witten index sums, forced zero modes, and partition-function/broken-SUSY scope fences for FSP-WITTEN-INDEX-INVARIANCE (TFQ-1206).",
         "schema_id": "tfqm.source-contract.v1"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspWittenIndexInvariance.lean\",\n    \"sha256\": \"d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84\"\n  },\n  \"boundaries\": [\n    \"Presupposes an exact finite graded supercharge (leaving full lattice Wess-Zumino SUSY open) and does not provide sign-free sampling of the thermal partition function Z(beta).\"\n  ],\n  \"contract_id\": \"campaign-fsp-witten-index-invariance-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_replay.json\",\n      \"sha256\": \"fc66155f9af9f435ed039e2dd37057fd4d2c2d8c372bd882ada983c353542473\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json\",\n      \"sha256\": \"58339bbc9da6416c679575ee6ec15793c801110faf2184da823f607bcca2ef9d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_independent.json\",\n      \"sha256\": \"129a233a599208923aaa59daa6aadeed6a4905cff092cca93e25447a0c4a38ba\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-witten-index-invariance-precommit.md\",\n      \"sha256\": \"7d8ac67928be444a587563c368bbbbdca27b2125a689132a65699d610b566c2d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All 12 exported theorems in CampaignFspWittenIndexInvariance compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignFspWittenIndexInvariance are killed by Lake and paired with 1171 independent Python checks.\"\n  ],\n  \"purpose\": \"Formalizes Z2-graded block supercharge power intertwining, vanishing positive-power supertraces, beta-independence of paired Witten index sums, forced zero modes, and partition-function/broken-SUSY scope fences for FSP-WITTEN-INDEX-INVARIANCE (TFQ-1206).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "sha256": "b41e9ec15ca93522366af0f3e1b1eb7095589e148f47bc6c2387034c2a7ce6be"
+    },
+    {
+      "bytes": 1686,
       "original_paths": [
-        "#campaign-fsp-witten-index-invariance-registration"
-      ]
+        "lean4/CampaignFspWittenIndexInvariance.contract.score.yaml#independent-pr-review-2026-10-24"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspWittenIndexInvariance.lean\",\n    \"sha256\": \"6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b\"\n  },\n  \"boundaries\": [\n    \"AuthorityEffect: None. Original campaign target remains open or imported.\",\n    \"Capability is assessed from delivered code. This artifact is below the substantive L4 floor.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:independent-pr-review:CampaignFspWittenIndexInvariance\",\n  \"owned_invariants\": [\n    \"For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler.\"\n  ],\n  \"symbols\": [\n    \"susyHamiltonian_eq_fromBlocks\",\n    \"boson_fermion_block_pow_intertwine\",\n    \"susyHamiltonian_pow_eq_fromBlocks\",\n    \"boson_eq_fermion_pow_succ_trace\",\n    \"supertrace_susyHamiltonian_pow_succ_eq_zero\",\n    \"supertrace_fermionParity_fin_eq_sub\",\n    \"supertrace_cubic_boltzmann_poly_independent_of_beta\",\n    \"wittenIndexPaired_eq_zero_mode_diff_for_all_weights\",\n    \"nonzero_witten_index_implies_zero_mode_ground_state\",\n    \"rectangular_2x1_supercharge_forced_zero_mode_and_index_one\",\n    \"witten_index_vs_partition_function_and_average_sign_fence\",\n    \"broken_lattice_susy_destroys_supertrace_cancellation_fence\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspWittenIndexInvariance.lean",
+          "sha256": "6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b"
+        },
+        "boundaries": [
+          "AuthorityEffect: None. Original campaign target remains open or imported.",
+          "Capability is assessed from delivered code. This artifact is below the substantive L4 floor."
+        ],
+        "contract_urn": "urn:tfqm:independent-pr-review:CampaignFspWittenIndexInvariance",
+        "owned_invariants": [
+          "For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler."
+        ],
+        "symbols": [
+          "susyHamiltonian_eq_fromBlocks",
+          "boson_fermion_block_pow_intertwine",
+          "susyHamiltonian_pow_eq_fromBlocks",
+          "boson_eq_fermion_pow_succ_trace",
+          "supertrace_susyHamiltonian_pow_succ_eq_zero",
+          "supertrace_fermionParity_fin_eq_sub",
+          "supertrace_cubic_boltzmann_poly_independent_of_beta",
+          "wittenIndexPaired_eq_zero_mode_diff_for_all_weights",
+          "nonzero_witten_index_implies_zero_mode_ground_state",
+          "rectangular_2x1_supercharge_forced_zero_mode_and_index_one",
+          "witten_index_vs_partition_function_and_average_sign_fence",
+          "broken_lattice_susy_destroys_supertrace_cancellation_fence"
+        ]
+      },
+      "sha256": "91beacd3d55aec6d15be27e4ca8924f31dbc79e02c57596de608975b07eb3d5e"
     }
   ],
+  "current_contract": "91beacd3d55aec6d15be27e4ca8924f31dbc79e02c57596de608975b07eb3d5e",
+  "current_scoring": "8fb9b822bdf48c9c3befa09294b6e1138044d817fc493eb0296d544a426acf2d",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "#campaign-fsp-witten-index-invariance-registration": "b41e9ec15ca93522366af0f3e1b1eb7095589e148f47bc6c2387034c2a7ce6be",
+    "#campaign-fsp-witten-index-invariance-scoring": "ff016b86cd9e506e39d4a6a7dfe0886cc5f8a8a7fd7c188f868c50ef567c2822"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "ff016b86cd9e506e39d4a6a7dfe0886cc5f8a8a7fd7c188f868c50ef567c2822",
       "bytes": 2920,
+      "original_paths": [
+        "#campaign-fsp-witten-index-invariance-scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspWittenIndexInvariance.lean\",\n    \"sha256\": \"d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84\"\n  },\n  \"assessment_id\": \"campaign-fsp-witten-index-invariance-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignFspWittenIndexInvariance. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Adds the non-default CampaignFspWittenIndexInvariance registration. This merge did not run a new Lake build.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T15:03:26.714841+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_replay.json\",\n      \"sha256\": \"fc66155f9af9f435ed039e2dd37057fd4d2c2d8c372bd882ada983c353542473\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json\",\n      \"sha256\": \"58339bbc9da6416c679575ee6ec15793c801110faf2184da823f607bcca2ef9d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_independent.json\",\n      \"sha256\": \"129a233a599208923aaa59daa6aadeed6a4905cff092cca93e25447a0c4a38ba\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-witten-index-invariance-precommit.md\",\n      \"sha256\": \"7d8ac67928be444a587563c368bbbbdca27b2125a689132a65699d610b566c2d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Formalizes finite Z2-graded supertrace vanishing for all positive powers H^(k+1), beta-independence of paired Witten index sums, forced zero modes, and Z(beta)/broken-SUSY fences for FSP-WITTEN-INDEX-INVARIANCE.\",\n  \"open_higher_grade_findings\": [\n    \"Full interacting lattice supercharge construction and sign-free sampling of Z(beta) remain fenced.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
@@ -161,16 +198,86 @@
         "score_token": "L4D",
         "support_exception": false
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspWittenIndexInvariance.lean\",\n    \"sha256\": \"d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84\"\n  },\n  \"assessment_id\": \"campaign-fsp-witten-index-invariance-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignFspWittenIndexInvariance. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Adds the non-default CampaignFspWittenIndexInvariance registration. This merge did not run a new Lake build.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T15:03:26.714841+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_replay.json\",\n      \"sha256\": \"fc66155f9af9f435ed039e2dd37057fd4d2c2d8c372bd882ada983c353542473\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json\",\n      \"sha256\": \"58339bbc9da6416c679575ee6ec15793c801110faf2184da823f607bcca2ef9d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-witten-index-invariance_independent.json\",\n      \"sha256\": \"129a233a599208923aaa59daa6aadeed6a4905cff092cca93e25447a0c4a38ba\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-witten-index-invariance-precommit.md\",\n      \"sha256\": \"7d8ac67928be444a587563c368bbbbdca27b2125a689132a65699d610b566c2d\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Formalizes finite Z2-graded supertrace vanishing for all positive powers H^(k+1), beta-independence of paired Witten index sums, forced zero modes, and Z(beta)/broken-SUSY fences for FSP-WITTEN-INDEX-INVARIANCE.\",\n  \"open_higher_grade_findings\": [\n    \"Full interacting lattice supercharge construction and sign-free sampling of Z(beta) remain fenced.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "sha256": "ff016b86cd9e506e39d4a6a7dfe0886cc5f8a8a7fd7c188f868c50ef567c2822"
+    },
+    {
+      "bytes": 4462,
       "original_paths": [
-        "#campaign-fsp-witten-index-invariance-scoring"
-      ]
+        "lean4/CampaignFspWittenIndexInvariance.contract.score.yaml#independent-pr-review-2026-10-24"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspWittenIndexInvariance.lean\",\n    \"sha256\": \"6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b\"\n  },\n  \"assessment_id\": \"independent-pr-review-2026-10-24\",\n  \"basis\": {\n    \"G1\": \"Declaration types were read against the narrowed review; physical identifications and larger target claims are explicitly excluded.\",\n    \"G2\": \"Exact formal arithmetic over the stated carriers; supplied tables/formulas remain supplied. See per-declaration types and independent replay.\",\n    \"G3\": \"Kernel elaboration and axiom output, with only the three admitted standard axioms. No added sorry/admit/axiom/native_decide/unsafe is permitted.\",\n    \"G4\": \"Fresh module and independent-check outputs are bound in the cited receipt. No new mutation campaign was run; zero new mutants, detection ratio null. Legacy six-kill summaries lack full diagnostic attribution and are not a current independent mutation certificate. The rejected import-order annotation and its failing compiler trace are retained with grade E for that earlier source; the corrected source was rebuilt before this assessment.\",\n    \"G5\": \"Manual structural review: this is a table, elementary model, or bounded-domain algebra library, not a checked production certificate/admission lifecycle. No claim to A/B maintainability metrics is made.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T21:50:31.492214+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_310_independent_review_validation.json\",\n      \"sha256\": \"486157e97b0cb86dde3df22f37ca8b592390d4cf955eeb8bbc4ba96ae3dcedf8\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_pr-310-independent.md\",\n      \"sha256\": \"de0eecf3e74177ea43f896cf9d434847740367598a5747c358b467c53aac68d8\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler. SCORING section 2: literal tables/elementary examples and bounded domain theorem developments do not acquire production architecture from their subject or theorem count.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": null,\n    \"equivalent\": 0,\n    \"generated\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 0,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"prior_claim_mapping_failure\": {\n    \"disposition\": \"Former advertised physical/operational identifications exceeded the submitted declaration types; current prose has been narrowed. Earlier L4 records are retained as rejected historical assessments.\",\n    \"gate\": \"G1\",\n    \"grade\": \"E\",\n    \"source_sha256\": \"d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84\",\n    \"witness\": \"For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler.\"\n  },\n  \"profile\": \"Symbolic/Formal\",\n  \"rejected_review_attempt\": {\n    \"accepted\": false,\n    \"gate\": \"G4\",\n    \"grade\": \"E\",\n    \"path\": \"dag/research/pr_310_rejected_review_attempt.json\",\n    \"sha256\": \"7e29d4bf445cd921f30d026184ff11ffe038423d74955d579f5d80f207e25286\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"supersedes_assessment_reason\": \"Prior L4 claims and any copied supergravity assessment text are withdrawn. Prior records remain in history; the current level follows the concrete delivered abstraction.\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspWittenIndexInvariance.lean",
+          "sha256": "6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b"
+        },
+        "assessment_id": "independent-pr-review-2026-10-24",
+        "basis": {
+          "G1": "Declaration types were read against the narrowed review; physical identifications and larger target claims are explicitly excluded.",
+          "G2": "Exact formal arithmetic over the stated carriers; supplied tables/formulas remain supplied. See per-declaration types and independent replay.",
+          "G3": "Kernel elaboration and axiom output, with only the three admitted standard axioms. No added sorry/admit/axiom/native_decide/unsafe is permitted.",
+          "G4": "Fresh module and independent-check outputs are bound in the cited receipt. No new mutation campaign was run; zero new mutants, detection ratio null. Legacy six-kill summaries lack full diagnostic attribution and are not a current independent mutation certificate. The rejected import-order annotation and its failing compiler trace are retained with grade E for that earlier source; the corrected source was rebuilt before this assessment.",
+          "G5": "Manual structural review: this is a table, elementary model, or bounded-domain algebra library, not a checked production certificate/admission lifecycle. No claim to A/B maintainability metrics is made."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T21:50:31.492214+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr_310_independent_review_validation.json",
+            "sha256": "486157e97b0cb86dde3df22f37ca8b592390d4cf955eeb8bbc4ba96ae3dcedf8"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_pr-310-independent.md",
+            "sha256": "de0eecf3e74177ea43f896cf9d434847740367598a5747c358b467c53aac68d8"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler. SCORING section 2: literal tables/elementary examples and bounded domain theorem developments do not acquire production architecture from their subject or theorem count.",
+        "mutation_accounting": {
+          "detection_fraction": null,
+          "equivalent": 0,
+          "generated": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 0,
+          "survived": 0,
+          "unrun": 0
+        },
+        "prior_claim_mapping_failure": {
+          "disposition": "Former advertised physical/operational identifications exceeded the submitted declaration types; current prose has been narrowed. Earlier L4 records are retained as rejected historical assessments.",
+          "gate": "G1",
+          "grade": "E",
+          "source_sha256": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84",
+          "witness": "For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler."
+        },
+        "profile": "Symbolic/Formal",
+        "rejected_review_attempt": {
+          "accepted": false,
+          "gate": "G4",
+          "grade": "E",
+          "path": "dag/research/pr_310_rejected_review_attempt.json",
+          "sha256": "7e29d4bf445cd921f30d026184ff11ffe038423d74955d579f5d80f207e25286"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "supersedes_assessment_reason": "Prior L4 claims and any copied supergravity assessment text are withdrawn. Prior records remain in history; the current level follows the concrete delivered abstraction."
+      },
+      "sha256": "8fb9b822bdf48c9c3befa09294b6e1138044d817fc493eb0296d544a426acf2d"
     }
-  ],
-  "legacy_paths": {
-    "#campaign-fsp-witten-index-invariance-registration": "b41e9ec15ca93522366af0f3e1b1eb7095589e148f47bc6c2387034c2a7ce6be",
-    "#campaign-fsp-witten-index-invariance-scoring": "ff016b86cd9e506e39d4a6a7dfe0886cc5f8a8a7fd7c188f868c50ef567c2822"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Recorded L4D assessment in binding contract-score document."
+  ]
 }

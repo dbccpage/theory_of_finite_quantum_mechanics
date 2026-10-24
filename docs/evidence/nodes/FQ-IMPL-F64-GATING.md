@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ omega_engine_operations/use_cases/cicd/f64_contract.json schema omega.f64_contra
 
 ## Review
 
-- PFP review: [dag/results/FQ-IMPL-F64-GATING/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/FQ-IMPL-F64-GATING/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-IMPL-F64-GATING/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/FQ-IMPL-F64-GATING/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: no.
   - narrowest claim: Exact integer differences and bounded binary64 diagnostic rounding collisions are retained; distinctness and the literal rounding-model collision are kernel checked.
   - does not support: Audit the full tracked Rust policy/ledger and prove an IEEE754-model transport before making repository-wide gating claims. A diagnostic collision or declared zero authority tag is not an implemented global enforcement theorem.
   - next test: Audit the full tracked Rust policy/ledger and prove an IEEE754-model transport before making repository-wide gating claims. A diagnostic collision or declared zero authority tag is not an implemented global enforcement theorem.

@@ -36,7 +36,7 @@ Unmet after the PFP review: Formalize every Gaussian matrix entry and projector 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All cyclic identities \[Li,Lj\]=2ir Lk hold entrywise at retained scales, and declared coordinate projectors are idempotent.
   - does not support: Formalize every Gaussian matrix entry and projector relation in Lean, then transport to the proposed Lambda mechanism. No dynamics is selected by these witnesses.
   - next test: Formalize every Gaussian matrix entry and projector relation in Lean, then transport to the proposed Lambda mechanism. No dynamics is selected by these witnesses.

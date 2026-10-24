@@ -1,0 +1,249 @@
+{
+  "number": 310,
+  "original_head": "c33626590fe0bdd3977f82d0251890267f83020f",
+  "level": "L3",
+  "meaning": "For arbitrary finite rectangular matrix blocks over a commutative ring, positive-power block traces agree and the graded supertrace vanishes. The cubic polynomial follows. The paired-list model explicitly subtracts each weight from itself; it does not derive spectral pairing. B is independent of A and is not proved to be its adjoint. Zero-mode counts are supplied; the rectangular vector may be zero at a=b=0. There is no analytic exponential, ground-state existence proof, or sign-free sampler.",
+  "baseline": {
+    "number": 310,
+    "head": "c33626590fe0bdd3977f82d0251890267f83020f",
+    "source": "lean4/CampaignFspWittenIndexInvariance.lean",
+    "sha256": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/fsp-witten-index-invariance.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.3,
+        "output": "checks=1171 supertrace=690 spectral=256 fences=225 failures=0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 121.5,
+        "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 26 paths\nchecked 8252: 71 pass, 8160 grandfathered, 20 boilerplate, 1 failed\nFAIL lean4/CampaignSnE08WeightedL1Duality.lean (new or not grandfathered)\n  lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml: [BINDING] contract.artifact.sha256: expected f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687, found 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 0,
+        "seconds": 5.05,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": true,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 2,\r\n    \"invalid_or_missing\": 0,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 0,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {\r\n      \"Non-Numeric\": 1,\r\n      \"Symbolic/Formal\": 1\r\n    },\r\n    \"completed_scores\": 2,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 0,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 1fa451fe1eac), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 0,
+        "seconds": 4.38,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 2,\r\n  \"all_passed\": true,\r\n  \"errors\": [],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 10.16,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=1 LOW=0\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 0,
+        "seconds": 1.4,
+        "output": "nodes=925 routes=934 records=977 failures=0\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignFspWittenIndexInvariance"
+        ],
+        "exit_code": 0,
+        "seconds": 26.42,
+        "output": "⚠ [1799/1800] Built CampaignFspWittenIndexInvariance (17s)\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Algebra.BigOperators.Group.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Notation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Block` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.LinearCombination` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspWittenIndexInvariance.lean:284:0: 'CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:285:0: 'CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:286:0: 'CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:287:0: 'CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:288:0: 'CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:289:0: 'CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:290:0: 'CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:291:0: 'CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:292:0: 'CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:293:0: 'CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:294:0: 'CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:295:0: 'CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (1800 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignFspWittenIndexInvariance"
+      ],
+      "exit_code": 0,
+      "seconds": 53.37,
+      "output": "⚠ [1799/1800] Built CampaignFspWittenIndexInvariance (37s)\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Algebra.BigOperators.Group.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Notation` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Block` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.LinearCombination` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspWittenIndexInvariance.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspWittenIndexInvariance.lean:224:0: 'CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:225:0: 'CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:226:0: 'CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:227:0: 'CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:228:0: 'CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:229:0: 'CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:230:0: 'CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:231:0: 'CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:232:0: 'CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:233:0: 'CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:234:0: 'CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspWittenIndexInvariance.lean:235:0: 'CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (1800 jobs).\n"
+    },
+    "sync_pfp_results": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.77,
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 247, in <module>\r\n    raise SystemExit(main())\r\n                     ~~~~^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 237, in main\r\n    for path, expected in generated_files(ROOT).items():\r\n                          ~~~~~~~~~~~~~~~^^^^^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 194, in generated_files\r\n    errors = apply_decisions(root, dag, decisions)\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 154, in apply_decisions\r\n    obj = review_digest(root, entry, boilerplate)\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 101, in review_digest\r\n    data = path.read_bytes()\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\r\n    with self.open(mode='rb', buffering=0) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\dag\\\\results\\\\DS-CONTINUOUS-TIME-EXP-GENERATOR\\\\reviews\\\\20261019_structure_audit\\\\review_result.json'\r\n"
+    },
+    "sync_unified_dag": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.68,
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 648, in <module>\r\n    raise SystemExit(main())\r\n                     ~~~~^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 449, in main\r\n    for path, expected in generated_files(ROOT).items():\r\n                          ~~~~~~~~~~~~~~~^^^^^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 378, in generated_files\r\n    raise ValueError('unified DAG fragment invalid:\\n  ' + '\\n  '.join(errors))\r\nValueError: unified DAG fragment invalid:\r\n  COMP-C1a: reference does not resolve: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean:24-70\r\n  COMP-C2e: reference does not resolve: dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:24-100\r\n"
+    },
+    "sync_application_branches": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.37,
+      "output": "stale=derivation_dag.json,theory_of_finite_qm.jsonl,theory_of_finite_qm.md\r\n"
+    },
+    "sync_pregenesis_to_wdp": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.54,
+      "output": "stale=dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\r\n"
+    },
+    "sync_frontier_branches": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.56,
+      "output": "stale=dag/derivation_dag.json\r\n"
+    },
+    "sync_genesis_to_higher": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.41,
+      "output": "genesis-to-higher synchronized\r\n"
+    },
+    "sync_foc035_observer_presheaf": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.45,
+      "output": "foc035 observer presheaf synchronized\r\n"
+    },
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.31,
+      "output": "checks=1171 supertrace=690 spectral=256 fences=225 failures=0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4,
+      "output": "checks=1171 supertrace=690 spectral=256 fences=225 failures=0\r\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "45269dc7df38281b8b8e3b655546cc954e918dbb7b8b52ca0e767ccd0d5cae12",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "rejected_review_attempt": {
+    "path": "dag/research/pr_310_rejected_review_attempt.json",
+    "sha256": "7e29d4bf445cd921f30d026184ff11ffe038423d74955d579f5d80f207e25286",
+    "gate": "G4",
+    "grade": "E",
+    "accepted": false
+  },
+  "source_sha256": "6935af1b664bfdfcaebc654abe377c8b99414758b128c692e40c4902db40183b",
+  "axiom_audit_passed": true,
+  "structure_observation": {
+    "source_lines": 237,
+    "theorem_count": 12,
+    "axiom_print_count": 12,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}

@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ D1 a ≠ b from irreflexive witness; given_distinct
 
 ## Review
 
-- PFP review: [dag/results/PG-GEN-IRREFLEXIVE-DISTINCT/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-IRREFLEXIVE-DISTINCT/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/PG-GEN-IRREFLEXIVE-DISTINCT/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-IRREFLEXIVE-DISTINCT/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All two-term relation tables are checked, and irreflexive related endpoints are generally distinct in Lean.
   - does not support: Relate the bounded tables to the intended Genesis semantics and retain the irreflexivity premise. No assertion of seed-free distinctness, transitivity or orientation selection is made.
   - next test: Relate the bounded tables to the intended Genesis semantics and retain the irreflexivity premise. No assertion of seed-free distinctness, transitivity or orientation selection is made.
