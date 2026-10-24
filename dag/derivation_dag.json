@@ -10938,11 +10938,19 @@
       "stage": "CONTINUUM_INTERFACE",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_BRIDGE (source slice 09)",
-      "statement": "TransportCell.lean adds loss ledgers valued in the natural numbers and checks associativity of that addition. The atlas Python twin uses floating values and tests one exactly representable triple. GAP-F002-S000-002 says the two arms are different carriers and that neither witnesses the other. GAP-F002-S000-001 leaves an 11-dimensional supergravity triangulation unbuilt. What is finite is either the natural-number sum or the float instance, not both as one object. What is not discharged is transport into a smooth frame and the continuum limit. The ledger is not the Einstein equation.",
+      "statement": "TransportCell.lean adds loss ledgers valued in the natural numbers and checks associativity of that addition. The atlas Python twin uses floating values and tests one exactly representable triple. GAP-F002-S000-002 says the two arms are different carriers and that neither witnesses the other. GAP-F002-S000-001 leaves an 11-dimensional supergravity triangulation unbuilt. What is finite is either the natural-number sum or the float instance, not both as one object. What is not discharged is transport into a smooth frame and the continuum limit. The ledger is not the Einstein equation. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) Natural-number transport cell monoid associativity, unit laws, loss monotonicity, and zero-loss characterization (nat_transport_cell_assoc, nat_transport_cell_unit_laws, nat_transport_loss_monotonicity_and_zero_iff); (2) the GAP-F002-S000-002 carrier mismatch showing that sub-ulp floating/dyadic absorption associates on the sub-unit triple (1/2, 1/4, 1/8) but breaks associativity on (1, 1/16, 1/16) (1 != 9/8), and that 1 in Nat has no half so no additive homomorphism Q -> Nat preserves 1 (dyadic_triple_exact_coincidence, gap_f002_s000_002_float_absorption_breaks_associativity, gap_f002_s000_002_nat_not_divisible_carrier_mismatch); and (3) the GAP-F002-S000-001 11D supergravity simplex face-count skeleton (C(12, k+1) with 4095 total faces and hinge dimension 9 != 2), SO(2) frame rotation blindness of scalar loss ledgers, and 66-component 11D Ricci trace underdetermination (simplex_11d_combinatorial_skeleton_counts, simplex_11d_hinge_codimension_and_euler_characteristic, transport_loss_ledger_discards_frame_rotation_fence, scalar_loss_ledger_underdetermines_11d_ricci_fence).",
       "source": [
-        "dag/derivations/20_continuum_interface/tfq_0123_gap_f002_s000_002_carrier_mismatch_and_gap_f002_s000_001_supergravity_triangulation_stay_open.md"
+        "dag/derivations/20_continuum_interface/tfq_0123_gap_f002_s000_002_carrier_mismatch_and_gap_f002_s000_001_supergravity_triangulation_stay_open.md",
+        "dag/derivations/independent/tfq-0123.md",
+        "checks/independent/tfq-0123.py",
+        "lean4/CampaignTfq0123ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0123_lean_replay.json",
+        "dag/research/campaign_tfq-0123_lean_mutation.json",
+        "dag/research/campaign_tfq-0123_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0123ContinuumInterface.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "GAP-F002-S000-002 carrier mismatch and GAP-F002-S000-001 supergravity triangulation stay open.",
@@ -45295,23 +45303,31 @@
         "WDP-JOINT-CONTINUUM",
         "TFQ-0123"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/20_continuum_interface/tfq_0123_gap_f002_s000_002_carrier_mismatch_and_gap_f002_s000_001_supergravity_triangulation_stay_open.md",
+        "dag/derivations/independent/tfq-0123.md",
+        "checks/independent/tfq-0123.py",
+        "lean4/CampaignTfq0123ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0123_lean_replay.json",
+        "dag/research/campaign_tfq-0123_lean_mutation.json",
+        "dag/research/campaign_tfq-0123_independent.json"
+      ],
       "id": "TFQ-0123",
       "lean4": [
-        "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/TransportCell.lean"
+        "lean4/CampaignTfq0123ContinuumInterface.lean"
       ],
       "local_id": "A09-038",
       "name": "GAP-F002-S000-002 carrier mismatch and GAP-F002-S000-001 supergravity triangulation stay open",
       "obligation": "GAP-F002-S000-002 carrier mismatch and GAP-F002-S000-001 supergravity triangulation stay open.",
       "parent_id": "TFQ-0111",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/python/src/mtheory_interfaces/transport_2cell.py"
+        "checks/independent/tfq-0123.py"
       ],
       "record_status": "OPEN_BRIDGE",
       "rust": [],
       "source_slice": "09",
       "stage": "CONTINUUM_INTERFACE",
-      "summary": "TransportCell.lean adds loss ledgers valued in the natural numbers and checks associativity of that addition. The atlas Python twin uses floating values and tests one exactly representable triple. GAP-F002-S000-002 says the two arms are different carriers and that neither witnesses the other. GAP-F002-S000-001 leaves an 11-dimensional supergravity triangulation unbuilt. What is finite is either the natural-number sum or the float instance, not both as one object. What is not discharged is transport into a smooth frame and the continuum limit. The ledger is not the Einstein equation.",
+      "summary": "TransportCell.lean adds loss ledgers valued in the natural numbers and checks associativity of that addition. The atlas Python twin uses floating values and tests one exactly representable triple. GAP-F002-S000-002 says the two arms are different carriers and that neither witnesses the other. GAP-F002-S000-001 leaves an 11-dimensional supergravity triangulation unbuilt. What is finite is either the natural-number sum or the float instance, not both as one object. What is not discharged is transport into a smooth frame and the continuum limit. The ledger is not the Einstein equation. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) Natural-number transport cell monoid associativity, unit laws, loss monotonicity, and zero-loss characterization (nat_transport_cell_assoc, nat_transport_cell_unit_laws, nat_transport_loss_monotonicity_and_zero_iff); (2) the GAP-F002-S000-002 carrier mismatch showing that sub-ulp floating/dyadic absorption associates on the sub-unit triple (1/2, 1/4, 1/8) but breaks associativity on (1, 1/16, 1/16) (1 != 9/8), and that 1 in Nat has no half so no additive homomorphism Q -> Nat preserves 1 (dyadic_triple_exact_coincidence, gap_f002_s000_002_float_absorption_breaks_associativity, gap_f002_s000_002_nat_not_divisible_carrier_mismatch); and (3) the GAP-F002-S000-001 11D supergravity simplex face-count skeleton (C(12, k+1) with 4095 total faces and hinge dimension 9 != 2), SO(2) frame rotation blindness of scalar loss ledgers, and 66-component 11D Ricci trace underdetermination (simplex_11d_combinatorial_skeleton_counts, simplex_11d_hinge_codimension_and_euler_characteristic, transport_loss_ledger_discards_frame_rotation_fence, scalar_loss_ledger_underdetermines_11d_ricci_fence).",
       "uuid": "b9155530-9f64-5f75-bd6c-74373e0166fa"
     },
     {

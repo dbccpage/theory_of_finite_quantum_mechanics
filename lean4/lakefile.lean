@@ -1127,3 +1127,7 @@ lean_lib CampaignTfq0118ContinuumInterface where
 -- Campaign: TFQ-0119. Not a default target.
 lean_lib CampaignTfq0119ContinuumInterface where
   roots := #[`CampaignTfq0119ContinuumInterface]
+
+-- Campaign: TFQ-0123. Not a default target.
+lean_lib CampaignTfq0123ContinuumInterface where
+  roots := #[`CampaignTfq0123ContinuumInterface]
