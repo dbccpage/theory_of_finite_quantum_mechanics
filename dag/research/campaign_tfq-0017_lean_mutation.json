@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0017",
+  "lean_file": "lean4/CampaignTfq0017FiniteQcd.lean",
+  "sha256": "c4d4d5bd2045a1d81a7e15a533b76c987bbb0341abce247a017fc9ed13df8ea9",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_quat_norm_sq_sub_instead_of_add",
+        "description": "Mutate quatNormSq from q.w ^ 2 + q.x ^ 2 + q.y ^ 2 + q.z ^ 2 to q.w ^ 2 - q.x ^ 2 + q.y ^ 2 + q.z ^ 2, falsifying quat_norm_multiplicative_four_square_identity and q8_proper_subgroup_of_su2_pythagorean_witness.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmp4ct5tbb2.lean:85:62: error: unsolved goals\np q : QuatQ\n\u22a2 -(p.w * q.w * p.x * q.x * 4) - p.w * q.x "
+      },
+      {
+        "id": "M2_quat_neg_keep_w_positive",
+        "description": "Mutate quatNeg from \u27e8-q.w, -q.x, -q.y, -q.z\u27e9 to \u27e8q.w, -q.x, -q.y, -q.z\u27e9, falsifying su2_adjoint_cover_two_to_one_kernel.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain "
+      },
+      {
+        "id": "M3_su2_finite_subgroup_order_2T_wrong",
+        "description": "Mutate su2FiniteSubgroupOrder 1 from 24 to 20, falsifying binary_polyhedral_orders_and_2d_carrier.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpx74s0edv.lean:142:2: error: Tactic `decide` proved that the proposition\n  (match 0 with\n      | 0 => 8\n      | 1 => 20\n      | 2 => 48\n      | x => 120) =\n      8 \u2227\n    (match 1 with\n        | 0 => 8\n        | 1 => 20\n        | 2 => 48\n        | x => 120) =\n        24 \u2227\n      (match 2 with\n          | 0 => 8\n          | 1 => 20\n          | 2 => 48\n          | x => 120) =\n          48 \u2227\n        "
+      },
+      {
+        "id": "M4_gell_mann_lambda8_scaled_non_traceless",
+        "description": "Mutate gellMannLambda8Scaled from \u27e81, 1, -2\u27e9 to \u27e81, 1, -1\u27e9, falsifying su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpk455upji.lean:170:69: error: unsolved goals\nd1 d2 : \u211a\n\u22a2 False\ntmpk455upji.lean:184:36: error: unsolved goals\n\u22a2 False\ntmpk455upji.lean:211:27: error: unsolved goals\n\u22a2 False\ntmpk455upji.lean:209:79: error: unsolved goals\ncase c3\n\u22a2 False\n'CampaignTfq0017FiniteQcd.quat_norm_multiplicative_four_square_identity' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0017FiniteQcd.q8"
+      },
+      {
+        "id": "M5_diag3_inner_drop_third_slot",
+        "description": "Mutate diag3Inner to drop A.c3 * B.c3, falsifying gell_mann_diagonal_orthogonality_and_three_color_separation.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpc6bokaqj.lean:184:36: error: unsolved goals\n\u22a2 False\n'CampaignTfq0017FiniteQcd.quat_norm_multiplicative_four_square_identity' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0017FiniteQcd.q8_proper_subgroup_of_su2_pythagorean_witness' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0017FiniteQcd.su2_adjoint_cover_two_to_one_kernel' depends on axi"
+      },
+      {
+        "id": "M6_repo_ledger_claim_promotes_q8_to_su3c",
+        "description": "Mutate tfq0017RepoLedger promotesQ8ToSu3c from false to true, falsifying tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp3dee7a3k.lean:251:2: error: Tactic `decide` proved that the proposition\n  tfq0017RepoLedger.hasQ8SpecialUnitaryCheck = true \u2227\n    tfq0017RepoLedger.hasSu2QuaternionsAndPolyhedral = true \u2227\n      tfq0017RepoLedger.hasTwoDimCarrierOnly = true \u2227\n        tfq0017RepoLedger.providesThreeColorLabels = false \u2227 tfq0017RepoLedger.promotesQ8ToSu3c = false\nis false\n'CampaignTfq0017FiniteQcd.quat_norm_multip"
+      }
+    ]
+  }
+}

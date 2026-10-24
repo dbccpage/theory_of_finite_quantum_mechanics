@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 6, E1 23, E3 3. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 6, E1 22, E3 4. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -12,7 +12,7 @@ Nodes: 32. Grades: E0 6, E1 23, E3 3. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_C
 | [TFQ-0014](../nodes/TFQ-0014.md) | `OPEN` | E3 | finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C... | [CampaignTfq0014FiniteQcd.lean](../../../lean4/CampaignTfq0014FiniteQcd.lean): `commutator_derivation_breaks_grouplike_multiplicativity_fence`, `groupoid_convolution_vs_packet_d0_distinct_objects_fence`, `groupoid_cstar_norm_requires_sqrt_extension_fence` +7<br>[finite_groupoid_algebra.rs](../../../code/rust/src/lie_theory/finite_groupoid_algebra.rs)<br>[tfq-0014.py](../../../checks/independent/tfq-0014.py) | - |
 | [TFQ-0015](../nodes/TFQ-0015.md) | `COMPUTATIONALLY_CHECKED` | E0 | hierarchical_nonabelian_dfm_finite_map.md, QM-213, separates an artificial Borel connection from a substantial one on a 4-vertex puncture... | none in this checkout | computational_no_runnable_test |
 | [TFQ-0016](../nodes/TFQ-0016.md) | `PROVED_LEAN` | E3 | Narrowed to the Lean model in CampaignTfq0016B2Dressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1... | [CampaignTfq0016B2Dressing.lean](../../../lean4/CampaignTfq0016B2Dressing.lean): `b2_factorization_unique`, `b2_semidirect_factorization`, `unipotent_subgroup_normal` +9<br>[tfq-0016.py](../../../checks/independent/tfq-0016.py) | - |
-| [TFQ-0017](../nodes/TFQ-0017.md) | `OPEN` | E1 | quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a fi... | [su2.rs](../../../code/rust/src/lie_theory/su2.rs) | - |
+| [TFQ-0017](../nodes/TFQ-0017.md) | `OPEN` | E3 | quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a fi... | [CampaignTfq0017FiniteQcd.lean](../../../lean4/CampaignTfq0017FiniteQcd.lean): `binary_polyhedral_orders_and_2d_carrier`, `gell_mann_diagonal_orthogonality_and_three_color_separation`, `q8_finite_order_four_vs_continuous_lie_generator_fence` +7<br>[su2.rs](../../../code/rust/src/lie_theory/su2.rs)<br>[tfq-0017.py](../../../checks/independent/tfq-0017.py) | - |
 | [TFQ-0018](../nodes/TFQ-0018.md) | `COMPUTATIONALLY_CHECKED` | E1 | su_n.rs stores a generalized Gell-Mann family on a declared label space C^N for N from 2 through 8. Diagonal scales are irrational, so ea... | [su_n.rs](../../../code/rust/src/lie_theory/su_n.rs) | computational_no_runnable_test |
 | [TFQ-0019](../nodes/TFQ-0019.md) | `COMPUTATIONALLY_CHECKED` | E1 | qcd_beta0_wilson_confinement_control.rs, QM-221, builds eight weighted generators in M_3(Q(i)). The first seven are half the usual off-di... | [FiniteQM.lean](../../../lean4/FiniteQM.lean) | computational_no_runnable_test |
 | [TFQ-0020](../nodes/TFQ-0020.md) | `COMPUTATIONALLY_CHECKED` | E1 | On those weighted generators the same Rust report records the fundamental Casimir sum as (4/3) times the 3 by 3 identity and the adjoint... | [FiniteQM.lean](../../../lean4/FiniteQM.lean)<br>[su_n.rs](../../../code/rust/src/lie_theory/su_n.rs) | computational_no_runnable_test |

@@ -9715,7 +9715,9 @@
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0017FiniteQcd.lean"
+      ],
       "rust": [
         "code/rust/src/lie_theory/su2.rs"
       ],
@@ -41462,26 +41464,31 @@
       "existing_derivation_dag_ids": [
         "TFQ-0017"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md",
+        "dag/derivations/independent/tfq-0017.md",
+        "checks/independent/tfq-0017.py",
+        "lean4/CampaignTfq0017FiniteQcd.lean",
+        "dag/research/campaign_tfq-0017_lean_replay.json",
+        "dag/research/campaign_tfq-0017_lean_mutation.json",
+        "dag/research/campaign_tfq-0017_independent.json"
+      ],
       "id": "TFQ-0017",
       "lean4": [
-        "absent: Q8-versus-SU(3) separation is not a FiniteQM theorem"
+        "lean4/CampaignTfq0017FiniteQcd.lean"
       ],
       "local_id": "A08-006",
       "name": "Do not promote the SU(2) quaternion shadow to su(3)_c",
       "obligation": "Do not promote the SU(2) quaternion shadow to su(3)_c.",
       "parent_id": "TFQ-0016",
       "python": [
-        "absent: no use case promotes Q8 to color"
+        "checks/independent/tfq-0017.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs",
-        "code/rust/src/lie_theory/su2.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on the gauge side of the cut.",
+      "summary": "quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on the gauge side of the cut. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-promotion fences: (1) Euler four-square quaternion spinor norm multiplicativity, Q8 proper subgroup of SU(2) witnessed by Pythagorean unit quaternion (3/5, 4/5, 0, 0), and the 2-to-1 adjoint double cover SU(2) -> SO(3) (quat_norm_multiplicative_four_square_identity, q8_proper_subgroup_of_su2_pythagorean_witness, su2_adjoint_cover_two_to_one_kernel); (2) binary polyhedral subgroup orders (|Q8|=8, |2T|=24, |2O|=48, |2I|=120) on a 2D carrier vs. 3-color Gell-Mann diagonal generators lambda3 = (1, -1, 0) and tilde_lambda8 = (1, 1, -2) (binary_polyhedral_orders_and_2d_carrier, su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence, gell_mann_diagonal_orthogonality_and_three_color_separation); and (3) non-promotion fences showing that no 2D su(2) Cartan scalar multiple matches (1, 1) in tilde_lambda8, that su(2) has vanishing symmetric d_abc symbol whereas tilde_lambda8^2 = 2*I3 - tilde_lambda8 has non-zero d_888, that Q8 elements have finite order 4, and that tfq0017RepoLedger keeps the SU(2) shadow on the gauge side (su2_cartan_cannot_span_gell_mann_lambda8_fence, su2_zero_d_symbol_vs_su3_lambda8_square_fence, q8_finite_order_four_vs_continuous_lie_generator_fence, tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence).",
       "uuid": "6163e5c0-1c6d-5b8e-a35a-e9b6502da302"
     },
     {
