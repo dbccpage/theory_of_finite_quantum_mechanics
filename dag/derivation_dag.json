@@ -27018,12 +27018,31 @@
       "id": "ADS-REGGE-AREA-RT-GAP",
       "stage": "ADS_CFT",
       "status": "OPEN",
-      "source_status": "Explicit gap node; audited against TFQ-0100 and arXiv:hep-th/0603001 eq. (1.5) on 2026-10-22.",
-      "statement": "Open question: whether the exact rational Regge proxy of TFQ-0100 (squared hinge areas weighted by a holonomy defect, which is not the Einstein-Hilbert action) can supply the area term of a finite minimal-surface statement. The imported formula uses the area of a minimal surface in a bulk geometry; the HaPPY patch measures a bond count (one bit per bond). Matching the two needs a dictionary from geometry to network that no source supplies.",
+      "source_status": "Explicit gap node; audited against TFQ-0100 and arXiv:hep-th/0603001 eq. (1.5) on 2026-10-22; narrowed to exact carrier/mincut census, squared-area subdivision collapse, and holonomy-defect decoupling fences in Lean 4 and an independent Python verifier on 2026-10-24.",
+      "statement": "Open question: whether the exact rational Regge proxy of TFQ-0100 (squared hinge areas weighted by a holonomy defect, which is not the Einstein-Hilbert action) can supply the area term of a finite minimal-surface statement. The imported formula uses the area of a minimal surface in a bulk geometry; the HaPPY patch measures a bond count (one bit per bond). Matching the two needs a dictionary from geometry to network that no source supplies. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) on the 20-qubit 6-pentagon HaPPY {5,4} patch (6 tensors, 5 internal bonds, 20 boundary legs), across all 380 proper nonempty contiguous boundary intervals the minimal bond cut intervalMincut takes values {1, 2, 3, 4, 5} with exact multiplicities (50, 90, 110, 100, 30), whereas the 4D orthogonal_pentatope simplex of TFQ-0100 has 6 right-triangle hinges of squared area 1/4 and 4 equilateral-triangle hinges of squared area 3/4 (240 Kuhn pentatopes on closed_s4_cube_boundary) and no single rational constant alpha maps both hinge classes to unit bond weight 1; (2) subdividing a planar surface of linear area A into m equal sub-hinges preserves the linear area sum m * (A / m) = A for all m != 0 but reduces the squared-area sum to m * (A / m)^2 = A^2 / m with strictly positive defect ((m - 1) / m) * A^2 > 0 for all m > 1 and A != 0; and (3) the TFQ-0100 rational Regge proxy scales linearly with bulk holonomy defect kappa ((9/2) * kappa on orthogonal_pentatope, vanishing at kappa = 0 as in ReggePachnerWdw flat_vertex_wdw_closure), whereas intervalMincut 2 len varies across (1, 2, 3, 4, 5) at len in {1, 2, 3, 4, 8} (with intervalMincut 0 4 = 1) as a function of the boundary subregion on a fixed background.",
       "source": [
-        "dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md"
+        "dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md",
+        "dag/derivations/independent/ads-regge-area-rt-gap.md",
+        "checks/independent/ads-regge-area-rt-gap.py",
+        "lean4/CampaignAdsReggeAreaRtGap.lean",
+        "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json",
+        "dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json",
+        "dag/research/campaign_ads-regge-area-rt-gap_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.happy_mincut_value_distribution_380",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.linear_area_subdivision_invariant",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "No source relates the Regge hinge areas of the repository to bond counts of a tensor network.",
@@ -27036,6 +27055,9 @@
       "see_also": [
         "TFQ-0084",
         "TFQ-0100"
+      ],
+      "python": [
+        "checks/independent/ads-regge-area-rt-gap.py"
       ]
     },
     {
@@ -71257,20 +71279,41 @@
         "ADS-REGGE-AREA-RT-GAP"
       ],
       "f004_refs": [
-        "dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md"
+        "dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md",
+        "dag/derivations/independent/ads-regge-area-rt-gap.md",
+        "checks/independent/ads-regge-area-rt-gap.py",
+        "lean4/CampaignAdsReggeAreaRtGap.lean",
+        "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json",
+        "dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json",
+        "dag/research/campaign_ads-regge-area-rt-gap_independent.json"
       ],
       "id": "TFQ-2211",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.happy_mincut_value_distribution_380",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.linear_area_subdivision_invariant",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation",
+        "lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts"
+      ],
       "local_id": "ADS-REGGE-AREA-RT-GAP",
       "name": "Gap: repository Regge areas versus the area term of the minimal-surface formula",
       "obligation": "No source relates the Regge hinge areas of the repository to bond counts of a tensor network.",
       "parent_id": "TFQ-2204",
-      "python": [],
+      "python": [
+        "checks/independent/ads-regge-area-rt-gap.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "ADS_CFT",
-      "summary": "Open question: whether the exact rational Regge proxy of TFQ-0100 (squared hinge areas weighted by a holonomy defect, which is not the Einstein-Hilbert action) can supply the area term of a finite minimal-surface statement. The imported formula uses the area of a minimal surface in a bulk geometry; the HaPPY patch measures a bond count (one bit per bond). Matching the two needs a dictionary from geometry to network that no source supplies.",
+      "summary": "Open question: whether the exact rational Regge proxy of TFQ-0100 (squared hinge areas weighted by a holonomy defect, which is not the Einstein-Hilbert action) can supply the area term of a finite minimal-surface statement. The imported formula uses the area of a minimal surface in a bulk geometry; the HaPPY patch measures a bond count (one bit per bond). Matching the two needs a dictionary from geometry to network that no source supplies. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) on the 20-qubit 6-pentagon HaPPY {5,4} patch (6 tensors, 5 internal bonds, 20 boundary legs), across all 380 proper nonempty contiguous boundary intervals the minimal bond cut intervalMincut takes values {1, 2, 3, 4, 5} with exact multiplicities (50, 90, 110, 100, 30), whereas the 4D orthogonal_pentatope simplex of TFQ-0100 has 6 right-triangle hinges of squared area 1/4 and 4 equilateral-triangle hinges of squared area 3/4 (240 Kuhn pentatopes on closed_s4_cube_boundary) and no single rational constant alpha maps both hinge classes to unit bond weight 1; (2) subdividing a planar surface of linear area A into m equal sub-hinges preserves the linear area sum m * (A / m) = A for all m != 0 but reduces the squared-area sum to m * (A / m)^2 = A^2 / m with strictly positive defect ((m - 1) / m) * A^2 > 0 for all m > 1 and A != 0; and (3) the TFQ-0100 rational Regge proxy scales linearly with bulk holonomy defect kappa ((9/2) * kappa on orthogonal_pentatope, vanishing at kappa = 0 as in ReggePachnerWdw flat_vertex_wdw_closure), whereas intervalMincut 2 len varies across (1, 2, 3, 4, 5) at len in {1, 2, 3, 4, 8} (with intervalMincut 0 4 = 1) as a function of the boundary subregion on a fixed background.",
       "uuid": "c531d90c-4736-52ae-a0f1-148b614c72ac"
     },
     {

@@ -1071,3 +1071,7 @@ lean_lib CampaignAdsHappyToyNotDualityGap where
 -- Campaign: ADS-RT-FORMULA-IMPORT. Not a default target.
 lean_lib CampaignAdsRtFormulaImport where
   roots := #[`CampaignAdsRtFormulaImport]
+
+-- Campaign: ADS-REGGE-AREA-RT-GAP. Not a default target.
+lean_lib CampaignAdsReggeAreaRtGap where
+  roots := #[`CampaignAdsReggeAreaRtGap]

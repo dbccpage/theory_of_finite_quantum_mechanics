@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "baa80b55f8991f7660ed6bda9ecec8aee2e580b17d495eca41771808dd02b6c5"
+  "sha256_lf": "95ba316724c4bbfe7aabc5d361a80b6f998652fd944a48f3b42bbb852e7a51e2"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -21,6 +21,11 @@
    "sha256": "d123071557f5014d5e2fb57f88969974a8c68ff84a8595dffa0981c2c8f76e2a",
    "sha256_basis": "bytes",
    "size": 10602
+  },
+  "checks/independent/ads-regge-area-rt-gap.py": {
+   "sha256": "bc37f3b8b2c19f13eabd786630d6875b4a5c12aa515269c11e22696b7e973d53",
+   "sha256_basis": "bytes",
+   "size": 5624
   },
   "checks/independent/ads-rt-formula-import.py": {
    "sha256": "cb22ab062bdb54c3ee0d7a217fda9bdf6663e815837346524d98e569826da256",
@@ -888,9 +893,9 @@
    "size": 7760
   },
   "dag/derivation_dag.json": {
-   "sha256": "baa80b55f8991f7660ed6bda9ecec8aee2e580b17d495eca41771808dd02b6c5",
+   "sha256": "95ba316724c4bbfe7aabc5d361a80b6f998652fd944a48f3b42bbb852e7a51e2",
    "sha256_basis": "lf-normalised",
-   "size": 4602625
+   "size": 4609143
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5463,9 +5468,9 @@
    "size": 4456
   },
   "dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md": {
-   "sha256": "44cea5c97d89c86ef54c5101f6591bc4dfec5619d697c996649d5ecc68a765a6",
+   "sha256": "4760b1c12cc6e606c0c850339d2696f2daa446f4cf27b68dcfadee2a35a96088",
    "sha256_basis": "lf-normalised",
-   "size": 1849
+   "size": 5012
   },
   "dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md": {
    "sha256": "f2e4e8b8e39901816ec80749f95fd159f8afdafe015662d54936c8b6bbfb9b77",
@@ -5787,6 +5792,11 @@
    "sha256_basis": "lf-normalised",
    "size": 7448
   },
+  "dag/derivations/independent/ads-regge-area-rt-gap.md": {
+   "sha256": "31660c9b0025af8516900b6e8256d948909cf16ff1dde7da7c22e4353497769d",
+   "sha256_basis": "lf-normalised",
+   "size": 5858
+  },
   "dag/derivations/independent/ads-rt-formula-import.md": {
    "sha256": "e1ea19f89a8343c680617cdeafb54c0bc23c48b478173d15f5d0fa52348d6e88",
    "sha256_basis": "lf-normalised",
@@ -6011,6 +6021,21 @@
    "sha256": "4f58c41eaa3f0a007e55530168bbf29b61cb42158ebd25ccf49b07f3bfe43424",
    "sha256_basis": "lf-normalised",
    "size": 5858
+  },
+  "dag/research/campaign_ads-regge-area-rt-gap_independent.json": {
+   "sha256": "2ffced2b6c8e425d0ec37f9e8a7a349b76dcc6363ba1d191e308e90946c05d32",
+   "sha256_basis": "lf-normalised",
+   "size": 739
+  },
+  "dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json": {
+   "sha256": "f4e0eb0fd26e8d3b8b4a5055a345e247eeb00cd7d3df327ad144c238e2af43c8",
+   "sha256_basis": "lf-normalised",
+   "size": 5017
+  },
+  "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json": {
+   "sha256": "1659d320e537302d71b8b38f3c8a36d46777f0d8d130d8d7c110a7a2a16dd5ca",
+   "sha256_basis": "lf-normalised",
+   "size": 5036
   },
   "dag/research/campaign_ads-rt-formula-import_independent.json": {
    "sha256": "94586670fbaba3f6b4cc221b35ef34d686d32c9db6f8d9519788383c0749c093",
@@ -6351,6 +6376,11 @@
    "sha256": "366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff",
    "sha256_basis": "bytes",
    "size": 14542
+  },
+  "lean4/CampaignAdsReggeAreaRtGap.lean": {
+   "sha256": "a5343383ce44ed90c546ccb73781e709cfd8e74086b6cdc699d63238d048876f",
+   "sha256_basis": "bytes",
+   "size": 17001
   },
   "lean4/CampaignAdsRtFormulaImport.lean": {
    "sha256": "748e566374c61a2d8204736a7b4623e2e47431ade57911e783c3081448fb90ec",
@@ -248573,17 +248603,510 @@
    "absent_notes": [],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 6,
+    "lean_receipt_backed": 12,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 12
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "ADS-REGGE-AREA-RT-GAP",
    "items": [
+    {
+     "cited_in": [
+      "node.source",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.happy_mincut_value_distribution_380",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.happy_mincut_value_distribution_380",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.linear_area_subdivision_invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.linear_area_subdivision_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap)",
+      "record TFQ-2211"
+     ],
+     "command": "cd lean4 && lake build CampaignAdsReggeAreaRtGap",
+     "command_note": "then, in a scratch file that imports CampaignAdsReggeAreaRtGap: #print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source",
+      "record TFQ-2211"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/ads-regge-area-rt-gap.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -248607,9 +249130,101 @@
      "symbol_declared": null,
      "symbol_exists": null,
      "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/ads-regge-area-rt-gap.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_ads-regge-area-rt-gap_independent.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-2211"
    ],
@@ -258546,6 +259161,32 @@
    "receipt_file": "dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json",
    "receipt_file_sha256": "4f58c41eaa3f0a007e55530168bbf29b61cb42158ebd25ccf49b07f3bfe43424",
    "recorded_sha256": "366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": "2026-10-24",
+   "dag_node": "ADS-REGGE-AREA-RT-GAP",
+   "decl_count": 12,
+   "exit_code": 0,
+   "id": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json#0:CampaignAdsReggeAreaRtGap",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignAdsReggeAreaRtGap",
+   "path": "lean4/CampaignAdsReggeAreaRtGap.lean",
+   "receipt_file": "dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json",
+   "receipt_file_sha256": "1659d320e537302d71b8b38f3c8a36d46777f0d8d130d8d7c110a7a2a16dd5ca",
+   "recorded_sha256": "a5343383ce44ed90c546ccb73781e709cfd8e74086b6cdc699d63238d048876f",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
   },
@@ -270513,10 +271154,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 184,
+   "E0": 183,
    "E1": 241,
    "E2": 42,
-   "E3": 458,
+   "E3": 459,
    "E4": 0
   },
   "by_status": {
@@ -270536,16 +271177,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1626,
+   "distinct": 1638,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1579,
-   "replay_verified_and_declaration_itemised": 1533,
+   "replay_verified": 1591,
+   "replay_verified_and_declaration_itemised": 1545,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1935
+   "present": 1947
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -270566,13 +271207,13 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 481,
+  "receipts_indexed": 482,
   "stage_by_grade": {
    "ADS_CFT": {
-    "E0": 6,
+    "E0": 5,
     "E1": 1,
     "E2": 0,
-    "E3": 6,
+    "E3": 7,
     "E4": 0
    },
    "AUTHORIZATION": {
@@ -270844,10 +271485,10 @@
     "E4": 0
    },
    "OPEN": {
-    "E0": 47,
+    "E0": 46,
     "E1": 91,
     "E2": 10,
-    "E3": 27,
+    "E3": 28,
     "E4": 0
    },
    "PROVED_LEAN": {
