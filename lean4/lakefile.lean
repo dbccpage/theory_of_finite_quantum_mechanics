@@ -1099,3 +1099,7 @@ lean_lib CampaignAdsRtFormulaImport where
 -- Campaign: ADS-REGGE-AREA-RT-GAP. Not a default target.
 lean_lib CampaignAdsReggeAreaRtGap where
   roots := #[`CampaignAdsReggeAreaRtGap]
+
+-- Campaign: CQFT-CAUSAL-FACTORIZATION-IMPORT. Not a default target.
+lean_lib CampaignCqftCausalFactorizationImport where
+  roots := #[`CampaignCqftCausalFactorizationImport]
