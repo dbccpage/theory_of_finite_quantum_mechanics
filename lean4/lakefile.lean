@@ -1166,3 +1166,6 @@ lean_lib CampaignTfq0183ImplementationSibling where
 
 lean_lib CampaignTfq0184ImplementationSibling where
   roots := #[`CampaignTfq0184ImplementationSibling]
+
+lean_lib CampaignTfq0191ImplementationSibling where
+  roots := #[`CampaignTfq0191ImplementationSibling]

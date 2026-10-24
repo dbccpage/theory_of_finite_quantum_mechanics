@@ -113,3 +113,8 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Lean 4 (`lean4/CampaignTfq0184ImplementationSibling.lean`)**: 10 zero-sorry theorems (`L4D`) contrasting `Nat.le_refl (n*n*n)` and enum `rfl` declarations with exact Gaussian elimination step counts (`gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound`) and `GF(2)` boundary-rank homology (`tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl`), formalizing the companion-control invariants of `majorana_evaluator.py`, and enforcing the `F004` realization-packet gap fences.
 - **Mutation Gate (`dag/research/campaign_tfq-0184_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0184.py`)**: 480 checks passed, 0 failed (`dag/research/campaign_tfq-0184_independent.json`).
+
+### 2026-10-24 — `TFQ-0191` (`IMPLEMENTATION_SIBLING`, Rank 156): `E0 -> E3`
+- **Lean 4 (`lean4/CampaignTfq0191ImplementationSibling.lean`)**: 10 zero-sorry theorems (`L4D`) formalizing interval straddling indeterminacy (`interval_order_straddling_indeterminacy_vs_strict_comparison`), fixed-scale decimal non-representability of `1/3` (`decimal_fixed_scale_cannot_represent_one_third_exactly`), the exact discrepancy between IEEE-754 `f64(0.1)` and `1/10` (`ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth`), affine calibration and clock interval width propagation, and the `IntervalRequiresPolicy` / `from_f64_unchecked` fences.
+- **Mutation Gate (`dag/research/campaign_tfq-0191_lean_mutation.json`)**: 6/6 semantic mutations killed.
+- **Independent Checker (`checks/independent/tfq-0191.py`)**: 280 checks passed, 0 failed (`dag/research/campaign_tfq-0191_independent.json`).

@@ -1,0 +1,37 @@
+schema_version: lean_contract_score_v1
+lean_file: lean4/CampaignTfq0191ImplementationSibling.lean
+module: CampaignTfq0191ImplementationSibling
+sha256: c979a31c19848ccb2024c071ce75bdf49955e2708fad75382ae16b41965e9199
+level_target: L4D
+honesty_level: L4D
+admission_gate:
+  sorry_count: 0
+  admit_count: 0
+  axiom_count: 0
+  unsafe_count: 0
+  implemented_by_count: 0
+  extern_count: 0
+  passed: true
+score:
+  total: 96
+  breakdown:
+    admission: 25
+    nontriviality: 24
+    hypothesis_inhabitation: 24
+    scope_honesty: 23
+anchors:
+  - CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison
+  - CampaignTfq0191ImplementationSibling.decimal_fixed_scale_cannot_represent_one_third_exactly
+  - CampaignTfq0191ImplementationSibling.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth
+  - CampaignTfq0191ImplementationSibling.affine_interval_calibration_and_finite_chain_clock_propagation
+  - CampaignTfq0191ImplementationSibling.measurement_value_arms_vs_governance_scalar_admission_fence
+  - CampaignTfq0191ImplementationSibling.interval_requires_policy_refusal_fence
+  - CampaignTfq0191ImplementationSibling.f64_unchecked_decimal_cannot_authorize_exact_bound_fence
+  - CampaignTfq0191ImplementationSibling.missing_local_omega_measurement_crate_recorded_fence
+  - CampaignTfq0191ImplementationSibling.interval_clock_and_calibration_remain_pending_policy_fence
+  - CampaignTfq0191ImplementationSibling.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence
+scope_fence: >-
+  Formalizes interval measurement evidence separation (MeasurementValue::Interval vs
+  GovernanceScalar), the IntervalRequiresPolicy refusal, affine calibration and finite chain
+  clock interval propagation, and the prohibition on BigDecimal::from_f64_unchecked
+  authorizing an exact rational bound.

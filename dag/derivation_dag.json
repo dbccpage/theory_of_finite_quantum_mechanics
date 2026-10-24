@@ -12311,14 +12311,22 @@
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/CampaignTfq0191ImplementationSibling.lean",
+        "lean4/H058EffectFrameBusch.lean"
+      ],
+      "rust": [
+        "code/rust/src/wdp/lib.rs"
+      ],
       "imported_structure": [],
       "bottleneck": "Keep interval measurement evidence distinct, and do not let an f64-built decimal authorize a bound.",
       "tags": [
         "unified-dag",
         "TFQ-0191",
         "implementation_sibling"
+      ],
+      "python": [
+        "checks/independent/tfq-0191.py::run_all_checks"
       ]
     },
     {
@@ -48017,24 +48025,38 @@
       "existing_derivation_dag_ids": [
         "TFQ-0191"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md",
+        "dag/derivations/independent/tfq-0191.md",
+        "dag/research/campaign_tfq-0191_lean_replay.json",
+        "dag/research/campaign_tfq-0191_lean_mutation.json",
+        "dag/research/campaign_tfq-0191_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0191-precommit.md"
+      ],
       "id": "TFQ-0191",
       "lean4": [
-        "absent: not located"
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.decimal_fixed_scale_cannot_represent_one_third_exactly",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.affine_interval_calibration_and_finite_chain_clock_propagation",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.measurement_value_arms_vs_governance_scalar_admission_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_requires_policy_refusal_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.f64_unchecked_decimal_cannot_authorize_exact_bound_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.missing_local_omega_measurement_crate_recorded_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_clock_and_calibration_remain_pending_policy_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence",
+        "lean4/H058EffectFrameBusch.lean::FableHilbertWalk20260819.H058.rat_add_le_add"
       ],
       "local_id": "A06-026",
       "name": "Keep interval measurement evidence distinct, and do not let an f64-built decimal",
       "obligation": "Keep interval measurement evidence distinct, and do not let an f64-built decimal authorize a bound.",
       "parent_id": "TFQ-0189",
       "python": [
-        "absent: not located"
+        "checks/independent/tfq-0191.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/measurement_kernel.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/affine_calibration.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/finite_response.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/finite_chain_clock.rs"
+        "code/rust/src/wdp/lib.rs::evaluate_exactness_fraud_criterion"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
