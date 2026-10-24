@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignSnE08WeightedL1Duality.lean`
 
 - file: [lean4/CampaignSnE08WeightedL1Duality.lean](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- sha256 (`bytes`): `2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff`
+- sha256 (`bytes`): `f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687`
 - cited in: node.lean, receipt dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json (CampaignSnE08WeightedL1Duality), record TFQ-0522
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json) (module `CampaignSnE08WeightedL1Duality`): recorded sha256 `2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json) (module `CampaignSnE08WeightedL1Duality`): recorded sha256 `f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignSnE08WeightedL1Duality`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
