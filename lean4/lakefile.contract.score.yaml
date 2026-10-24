@@ -7,10 +7,11 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/lakefile.lean",
-      "sha256": "35cd0f8326e32ec5ecebfe296489f01e260e7394d43a1bfad65cdb869ded1d61"
+      "sha256": "b54a9961757e8d7ecef0007768cd5724a7d1490cdcbd5880ac74a116237685f6"
     },
     "boundaries": [
-      "Registry only; no mathematical theorem or runtime implementation."
+      "Registry only; no mathematical theorem or runtime implementation.",
+      "Registry only; no mathematical claim."
     ],
     "contract_id": "campaign-fsp-su2-adjoint-real-det-registry",
     "evidence": [
@@ -33,13 +34,26 @@
       {
         "path": "SCORING.md",
         "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      },
+      {
+        "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+        "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
       }
     ],
     "owned_invariants": [
-      "Existing registrations preserved with unique library names; the CampaignFspSu2AdjointRealDet target is non-default."
+      "Existing registrations preserved with unique library names; the CampaignFspSu2AdjointRealDet target is non-default.",
+      "All previous registrations preserved."
     ],
     "purpose": "Declarative non-default target registration; authorized build-file support exception.",
-    "schema_id": "tfqm.source-contract.v1"
+    "schema_id": "tfqm.source-contract.v1",
+    "source_rebinding": {
+      "reason": "Merge of independent non-default campaign registrations; exact-source metadata rebound only.",
+      "parent_source_sha256": [
+        "35cd0f8326e32ec5ecebfe296489f01e260e7394d43a1bfad65cdb869ded1d61",
+        "6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274"
+      ],
+      "validation_boundary": "Parent assessments and replay receipts retained as historical evidence; no fresh build, test or score assessment performed for the merged registry."
+    }
   },
   "contract_history": [
     {
@@ -3596,10 +3610,102 @@
         "schema_id": "tfqm.source-contract.v1"
       },
       "sha256": "fb82213622c10a5ced5afb674f257f8a35406b2968c137f825eeef08a8894938"
+    },
+    {
+      "bytes": 670,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#campaign-fsp-imaginary-mu-real-det-registry"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical claim.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All previous registrations preserved.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"purpose\": \"Adds a single non-default CampaignFspImaginaryMuRealDet target.\",\n  \"schema_version\": \"2.0.0\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274"
+        },
+        "boundaries": [
+          "Registry only; no mathematical claim."
+        ],
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+            "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
+          }
+        ],
+        "owned_invariants": [
+          "All previous registrations preserved."
+        ],
+        "profile": "Non-Numeric",
+        "purpose": "Adds a single non-default CampaignFspImaginaryMuRealDet target.",
+        "schema_version": "2.0.0"
+      },
+      "sha256": "8af0fb90a17fd95e5144f5afab19bd3969e560bb5f7e3e3e2a436750ee645271"
+    },
+    {
+      "bytes": 2287,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#merge-registry-rebinding"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"b54a9961757e8d7ecef0007768cd5724a7d1490cdcbd5880ac74a116237685f6\"\n  },\n  \"boundaries\": [\n    \"Registry only; no mathematical theorem or runtime implementation.\",\n    \"Registry only; no mathematical claim.\"\n  ],\n  \"contract_id\": \"campaign-fsp-su2-adjoint-real-det-registry\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-su2-adjoint-real-det_lean_replay.json\",\n      \"sha256\": \"780ebad4f7816e60a3f4cdecda248ec7b8be6647999bebc1000015ab2fd83bde\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-su2-adjoint-real-det_lean_mutation.json\",\n      \"sha256\": \"5c763459fcec4d4074e191c6d8feae4c1285ceb618174726c7340eca7ace4cd9\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-su2-adjoint-real-det_independent.json\",\n      \"sha256\": \"fb5df83587ec0e5b5b561ab92ae76c6c02fb09be2bc7aa605d558fc208cc2187\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-fsp-su2-adjoint-real-det-precommit.md\",\n      \"sha256\": \"b48a2e9ea770711ca33b648956534abc9689a3cc5b08b0e81f72aa01ecc4a2be\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Existing registrations preserved with unique library names; the CampaignFspSu2AdjointRealDet target is non-default.\",\n    \"All previous registrations preserved.\"\n  ],\n  \"purpose\": \"Declarative non-default target registration; authorized build-file support exception.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_rebinding\": {\n    \"parent_source_sha256\": [\n      \"35cd0f8326e32ec5ecebfe296489f01e260e7394d43a1bfad65cdb869ded1d61\",\n      \"6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274\"\n    ],\n    \"reason\": \"Merge of independent non-default campaign registrations; exact-source metadata rebound only.\",\n    \"validation_boundary\": \"Parent assessments and replay receipts retained as historical evidence; no fresh build, test or score assessment performed for the merged registry.\"\n  }\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "b54a9961757e8d7ecef0007768cd5724a7d1490cdcbd5880ac74a116237685f6"
+        },
+        "boundaries": [
+          "Registry only; no mathematical theorem or runtime implementation.",
+          "Registry only; no mathematical claim."
+        ],
+        "contract_id": "campaign-fsp-su2-adjoint-real-det-registry",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-su2-adjoint-real-det_lean_replay.json",
+            "sha256": "780ebad4f7816e60a3f4cdecda248ec7b8be6647999bebc1000015ab2fd83bde"
+          },
+          {
+            "path": "dag/research/campaign_fsp-su2-adjoint-real-det_lean_mutation.json",
+            "sha256": "5c763459fcec4d4074e191c6d8feae4c1285ceb618174726c7340eca7ace4cd9"
+          },
+          {
+            "path": "dag/research/campaign_fsp-su2-adjoint-real-det_independent.json",
+            "sha256": "fb5df83587ec0e5b5b561ab92ae76c6c02fb09be2bc7aa605d558fc208cc2187"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-fsp-su2-adjoint-real-det-precommit.md",
+            "sha256": "b48a2e9ea770711ca33b648956534abc9689a3cc5b08b0e81f72aa01ecc4a2be"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+            "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
+          }
+        ],
+        "owned_invariants": [
+          "Existing registrations preserved with unique library names; the CampaignFspSu2AdjointRealDet target is non-default.",
+          "All previous registrations preserved."
+        ],
+        "purpose": "Declarative non-default target registration; authorized build-file support exception.",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_rebinding": {
+          "reason": "Merge of independent non-default campaign registrations; exact-source metadata rebound only.",
+          "parent_source_sha256": [
+            "35cd0f8326e32ec5ecebfe296489f01e260e7394d43a1bfad65cdb869ded1d61",
+            "6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274"
+          ],
+          "validation_boundary": "Parent assessments and replay receipts retained as historical evidence; no fresh build, test or score assessment performed for the merged registry."
+        }
+      },
+      "sha256": "338c7a7b93e0c4576f69f5152713f127cb0f9182de5c7fd00a5fc3a8eb51bfb1"
     }
   ],
-  "current_contract": "fb82213622c10a5ced5afb674f257f8a35406b2968c137f825eeef08a8894938",
-  "current_scoring": "be0b82ec71d284aef3caabd5e4f3b0d3b4df6df7633de3b1b8382dc26a670610",
+  "current_contract": "338c7a7b93e0c4576f69f5152713f127cb0f9182de5c7fd00a5fc3a8eb51bfb1",
+  "current_scoring": "a5aeaa08c0766a598d4f9f08a4bb862d525008e50b7324c51249f32e6963b270",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "lean4/lakefile.contract.score.yaml#campaign-pgw-minimal-or-initial-refused-contract": "11ffff4efa0db03d85581c8aa3ea568044c9a63143fe43adbd33e476cbfa0b4e",
@@ -8983,6 +9089,135 @@
         "support_exception": true
       },
       "sha256": "be0b82ec71d284aef3caabd5e4f3b0d3b4df6df7633de3b1b8382dc26a670610"
+    },
+    {
+      "bytes": 1469,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#campaign-fsp-imaginary-mu-real-det-registry"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274\"\n  },\n  \"assessment_id\": \"campaign-fsp-imaginary-mu-real-det-registry\",\n  \"basis\": {\n    \"G1\": \"Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.\",\n    \"G2\": \"Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.\",\n    \"G3\": \"Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.\",\n    \"G4\": \"Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.\",\n    \"G5\": \"Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T00:29:36.958060+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative target registration.\",\n  \"profile\": \"Non-Numeric\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274"
+        },
+        "assessment_id": "campaign-fsp-imaginary-mu-real-det-registry",
+        "basis": {
+          "G1": "Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.",
+          "G2": "Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.",
+          "G3": "Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.",
+          "G4": "Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed.",
+          "G5": "Fresh scoped build resolves the added target; existing registrations preserved; no higher capability claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T00:29:36.958060+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+            "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Declarative target registration.",
+        "profile": "Non-Numeric",
+        "schema_version": "2.0.0",
+        "score_token": "L1D"
+      },
+      "sha256": "79b6b23b70d3f05de29a74acd8667dca73fc9aa117cd6e62b4a6c85609c8bde4"
+    },
+    {
+      "bytes": 2994,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#merge-registry-rebinding"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"b54a9961757e8d7ecef0007768cd5724a7d1490cdcbd5880ac74a116237685f6\"\n  },\n  \"assessment_id\": \"campaign-fsp-su2-adjoint-real-det-registry\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Preserves both parents' existing and non-default campaign registrations.\",\n    \"G2\": \"Parent replay receipts retained; the merged registry has not been rebuilt.\",\n    \"G3\": \"Does not alter default build targets or axioms.\",\n    \"G4\": \"Historical replay evidence from both parents retained; no fresh validation run.\",\n    \"G5\": \"Combines the parents' declarative target registrations.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T23:49:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-su2-adjoint-real-det_lean_replay.json\",\n      \"sha256\": \"780ebad4f7816e60a3f4cdecda248ec7b8be6647999bebc1000015ab2fd83bde\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-su2-adjoint-real-det_lean_mutation.json\",\n      \"sha256\": \"5c763459fcec4d4074e191c6d8feae4c1285ceb618174726c7340eca7ace4cd9\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-su2-adjoint-real-det_independent.json\",\n      \"sha256\": \"fb5df83587ec0e5b5b561ab92ae76c6c02fb09be2bc7aa605d558fc208cc2187\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-fsp-su2-adjoint-real-det-precommit.md\",\n      \"sha256\": \"b48a2e9ea770711ca33b648956534abc9689a3cc5b08b0e81f72aa01ecc4a2be\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json\",\n      \"sha256\": \"7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Declarative Lake build configuration registering non-default campaign target CampaignFspSu2AdjointRealDet.\",\n  \"open_higher_grade_findings\": [\n    \"Declarative build file only; mathematical proofs reside in the registered Lean module.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\",\n  \"source_rebinding\": {\n    \"parent_source_sha256\": [\n      \"35cd0f8326e32ec5ecebfe296489f01e260e7394d43a1bfad65cdb869ded1d61\",\n      \"6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274\"\n    ],\n    \"reason\": \"Merge of independent non-default campaign registrations; exact-source metadata rebound only.\",\n    \"validation_boundary\": \"Parent assessments and replay receipts retained as historical evidence; no fresh build, test or score assessment performed for the merged registry.\"\n  },\n  \"support_exception\": true\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "b54a9961757e8d7ecef0007768cd5724a7d1490cdcbd5880ac74a116237685f6"
+        },
+        "assessment_id": "campaign-fsp-su2-adjoint-real-det-registry",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Preserves both parents' existing and non-default campaign registrations.",
+          "G2": "Parent replay receipts retained; the merged registry has not been rebuilt.",
+          "G3": "Does not alter default build targets or axioms.",
+          "G4": "Historical replay evidence from both parents retained; no fresh validation run.",
+          "G5": "Combines the parents' declarative target registrations."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T23:49:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-su2-adjoint-real-det_lean_replay.json",
+            "sha256": "780ebad4f7816e60a3f4cdecda248ec7b8be6647999bebc1000015ab2fd83bde"
+          },
+          {
+            "path": "dag/research/campaign_fsp-su2-adjoint-real-det_lean_mutation.json",
+            "sha256": "5c763459fcec4d4074e191c6d8feae4c1285ceb618174726c7340eca7ace4cd9"
+          },
+          {
+            "path": "dag/research/campaign_fsp-su2-adjoint-real-det_independent.json",
+            "sha256": "fb5df83587ec0e5b5b561ab92ae76c6c02fb09be2bc7aa605d558fc208cc2187"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-fsp-su2-adjoint-real-det-precommit.md",
+            "sha256": "b48a2e9ea770711ca33b648956534abc9689a3cc5b08b0e81f72aa01ecc4a2be"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json",
+            "sha256": "7496dbfac950c82c43ab1d06fbe9c748ea0f2893216f2c64c646e3c810ba76d9"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Declarative Lake build configuration registering non-default campaign target CampaignFspSu2AdjointRealDet.",
+        "open_higher_grade_findings": [
+          "Declarative build file only; mathematical proofs reside in the registered Lean module."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L1D",
+        "support_exception": true,
+        "source_rebinding": {
+          "reason": "Merge of independent non-default campaign registrations; exact-source metadata rebound only.",
+          "parent_source_sha256": [
+            "35cd0f8326e32ec5ecebfe296489f01e260e7394d43a1bfad65cdb869ded1d61",
+            "6ead9275a423aa3894f5f44d1a2e083865851d7a8aa5e8b65824f3a1eecb8274"
+          ],
+          "validation_boundary": "Parent assessments and replay receipts retained as historical evidence; no fresh build, test or score assessment performed for the merged registry."
+        }
+      },
+      "sha256": "a5aeaa08c0766a598d4f9f08a4bb862d525008e50b7324c51249f32e6963b270"
     }
   ]
 }
