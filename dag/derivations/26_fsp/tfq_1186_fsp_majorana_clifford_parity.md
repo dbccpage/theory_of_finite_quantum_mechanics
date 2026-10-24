@@ -36,13 +36,13 @@ Cited MajoranaGinCore.lean::majorana_clifford_anticommutation does not exist; Ma
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignMajoranaCliffordParity.lean::gamma_star`
-- `lean4/CampaignMajoranaCliffordParity.lean::gamma_ac`
-- `lean4/CampaignMajoranaCliffordParity.lean::generated_algebra`
-- `lean4/CampaignMajoranaCliffordParity.lean::occupation_sq`
-- `lean4/CampaignMajoranaCliffordParity.lean::localParity_pair`
-- `lean4/CampaignMajoranaCliffordParity.lean::parity_action`
-- `lean4/CampaignMajoranaCliffordParity.lean::parity_superselection_not_forced`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced`
 
 ### Rust Certifiers
 - *none*

@@ -189,8 +189,8 @@ def lean_module(path: str) -> str | None:
     return None
 
 
-def lake_roots(files: Files) -> set[str]:
-    code = "\n".join(line.split("--")[0] for line in files.text("lean4/lakefile.lean").splitlines())
+def lake_roots(files: Files, config: str = "lean4/lakefile.lean") -> set[str]:
+    code = "\n".join(line.split("--")[0] for line in files.text(config).splitlines())
     roots: set[str] = set()
     for block in re.findall(r"roots\s*:=\s*#\[(.*?)\]", code, flags=re.S):
         roots.update(re.findall(r"`([\w.«»]+)", block))
@@ -372,6 +372,13 @@ class Builder:
         self.nodes = {n["id"]: n for n in self.dag["nodes"]}
         self.crates = Crates(self.files)
         self.roots = lake_roots(self.files)
+        self.scoped_configs: dict[str, list[str]] = collections.defaultdict(list)
+        for config in sorted((ROOT / "lean4").glob("lakefile.*.lean")):
+            # Render commands from local configuration names, never arbitrary
+            # shell text in a receipt. Ambiguous providers retain the fallback.
+            if re.fullmatch(r"lakefile\.[A-Za-z0-9_-]+\.lean", config.name):
+                for module in lake_roots(self.files, config.relative_to(ROOT).as_posix()):
+                    self.scoped_configs[module].append(config.name)
         self.receipts, self.skipped_receipts = load_receipts(self.files)
         self.receipts_by_path: dict[str, list[dict]] = collections.defaultdict(list)
         for receipt in self.receipts:
@@ -483,6 +490,9 @@ class Builder:
             module = lean_module(path)
             if module and module in self.roots:
                 build = f"cd lean4 && lake build {module}"
+            elif module and len(self.scoped_configs.get(module, [])) == 1:
+                config = self.scoped_configs[module][0]
+                build = f"cd lean4 && lake --file={config} build {module}"
             else:
                 build = f"cd lean4 && lake build   # the library that contains {path}"
             if symbol and module:

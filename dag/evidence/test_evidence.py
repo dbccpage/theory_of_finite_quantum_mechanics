@@ -234,6 +234,49 @@ def test_module_sizes_stay_under_the_limit():
         assert len((HERE / name).read_text(encoding="utf-8").splitlines()) < 1000, name
 
 
+def test_build_commands_use_unique_scoped_config_and_preserve_default_and_fallback():
+    """Scoped roots need a selected Lake file; unknown or ambiguous roots do not."""
+    builder = be.Builder.__new__(be.Builder)
+    builder.roots = {"Default"}
+    builder.scoped_configs = {"Default": ["lakefile.other.lean"],
+                              "Scoped": ["lakefile.scoped.lean"],
+                              "Ambiguous": ["lakefile.a.lean", "lakefile.b.lean"]}
+    for module, expected in {
+        "Default": "cd lean4 && lake build Default",
+        "Scoped": "cd lean4 && lake --file=lakefile.scoped.lean build Scoped",
+        "Ambiguous": "cd lean4 && lake build   # the library that contains lean4/Ambiguous.lean",
+        "Unknown": "cd lean4 && lake build   # the library that contains lean4/Unknown.lean",
+    }.items():
+        command, note = builder._command(item(path=f"lean4/{module}.lean", symbol=f"{module}.t"))
+        assert command == expected
+        assert note == f"then, in a scratch file that imports {module}: #print axioms {module}.t"
+
+
+def test_scoped_root_discovery_ignores_comments_and_unsafe_config_names(tmp_path, monkeypatch):
+    """Only literal roots in a simple local Lake filename become commands."""
+    monkeypatch.setattr(be, "ROOT", tmp_path)
+    (tmp_path / "lean4").mkdir()
+    (tmp_path / "lean4/lakefile.safe.lean").write_text(
+        "-- roots := #[`Ignored]\nlean_lib Safe where\n  roots := #[`Scoped]\n", encoding="utf-8")
+    (tmp_path / "lean4/lakefile.unsafe&name.lean").write_text(
+        "roots := #[`Unsafe]\n", encoding="utf-8")
+    monkeypatch.setattr(be, "load_json", lambda _: {"nodes": [], "records": []})
+    builder = be.Builder()
+    assert dict(builder.scoped_configs) == {"Scoped": ["lakefile.safe.lean"]}
+
+
+def test_majorana_citations_are_qualified_unique_and_reproduce_the_scoped_build():
+    """TFQ-1186 must not double-count bare aliases of the audited declarations."""
+    row = rows()["FSP-MAJORANA-CLIFFORD-PARITY"]
+    entries = [i for i in row["items"] if i["path"] == "lean4/CampaignMajoranaCliffordParity.lean"
+               and i["symbol"] is not None]
+    names = receipt_names("campaign_fsp-majorana-clifford-parity_lean_replay.json")
+    assert len(entries) == len(set(names)) == 32
+    assert {i["symbol"] for i in entries} == set(names)
+    assert {i["command"] for i in entries} == {
+        "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity"}
+
+
 # ------------------------------------------------------------------ chosen nodes, checked independently
 
 def receipt_entries(name: str) -> list[dict]:

@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "cb93c53434260e00ba1f8c51bca76ff62fb077e17b390a8f468c4882d8dc89d6"
+  "sha256_lf": "efa1fcc0d0ec24081640f548454b7cf2cf18c6a7b756af8c34d2b6b7c1e394f1"
  },
  "files": {
   "checks/independent/dfm-bphz-continuum-fence.py": {
@@ -858,9 +858,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "cb93c53434260e00ba1f8c51bca76ff62fb077e17b390a8f468c4882d8dc89d6",
+   "sha256": "efa1fcc0d0ec24081640f548454b7cf2cf18c6a7b756af8c34d2b6b7c1e394f1",
    "sha256_basis": "lf-normalised",
-   "size": 4558324
+   "size": 4558878
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -4383,9 +4383,9 @@
    "size": 2336
   },
   "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md": {
-   "sha256": "050a132fdcdfcbc959ca88240ae9b5c2646b14261140da205852442658e5ebb5",
+   "sha256": "e5a55297c4cc50123de189293c47564a19fe00cf6759e5e7361a9bc4cbb465bf",
    "sha256_basis": "lf-normalised",
-   "size": 3564
+   "size": 3841
   },
   "dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md": {
    "sha256": "b4a44a3b7a2b76afe46488af6589560d25aecca1e194c9ff1820dc0e8ce71739",
@@ -5978,9 +5978,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "sha256_basis": "lf-normalised",
-   "size": 165111
+   "size": 166435
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -192388,10 +192388,10 @@
    "facts": {
     "cited_code_files_not_tests": 1,
     "counted_files": 3,
-    "lean_receipt_backed": 39,
+    "lean_receipt_backed": 32,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 39
+    "symbols_found": 32
    },
    "flags": [],
    "grade": "E3",
@@ -192401,7 +192401,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": null,
      "counted": true,
      "counts": true,
@@ -192432,7 +192432,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.annihilate_sq",
      "counted": true,
      "counts": true,
@@ -192467,7 +192467,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.dd",
      "counted": true,
      "counts": true,
@@ -192500,9 +192500,11 @@
     },
     {
      "cited_in": [
-      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
      "counted": true,
      "counts": true,
@@ -192535,9 +192537,11 @@
     },
     {
      "cited_in": [
-      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.gamma_star",
      "counted": true,
      "counts": true,
@@ -192570,9 +192574,11 @@
     },
     {
      "cited_in": [
-      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
      "counted": true,
      "counts": true,
@@ -192607,7 +192613,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_action",
      "counted": true,
      "counts": true,
@@ -192640,9 +192646,11 @@
     },
     {
      "cited_in": [
-      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
      "counted": true,
      "counts": true,
@@ -192677,7 +192685,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_sq",
      "counted": true,
      "counts": true,
@@ -192712,7 +192720,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_star",
      "counted": true,
      "counts": true,
@@ -192747,7 +192755,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.mixed_rev",
      "counted": true,
      "counts": true,
@@ -192780,9 +192788,11 @@
     },
     {
      "cited_in": [
-      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
      "counted": true,
      "counts": true,
@@ -192817,7 +192827,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.occupation_star",
      "counted": true,
      "counts": true,
@@ -192850,9 +192860,11 @@
     },
     {
      "cited_in": [
-      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.parity_action",
      "counted": true,
      "counts": true,
@@ -192887,7 +192899,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.parity_product",
      "counted": true,
      "counts": true,
@@ -192922,7 +192934,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.recover_c",
      "counted": true,
      "counts": true,
@@ -192957,7 +192969,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.recover_star_c",
      "counted": true,
      "counts": true,
@@ -192992,7 +193004,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_add_left",
      "counted": true,
      "counts": true,
@@ -193025,7 +193037,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_add_right",
      "counted": true,
      "counts": true,
@@ -193058,7 +193070,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_comm",
      "counted": true,
      "counts": true,
@@ -193089,7 +193101,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_smul_left",
      "counted": true,
      "counts": true,
@@ -193124,7 +193136,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_smul_right",
      "counted": true,
      "counts": true,
@@ -193159,7 +193171,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_sub_left",
      "counted": true,
      "counts": true,
@@ -193192,7 +193204,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_sub_right",
      "counted": true,
      "counts": true,
@@ -193225,7 +193237,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.gamma_index_count",
      "counted": true,
      "counts": true,
@@ -193260,7 +193272,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneCAR",
      "counted": true,
      "counts": true,
@@ -193295,7 +193307,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_gram",
      "counted": true,
      "counts": true,
@@ -193330,7 +193342,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_idempotent",
      "counted": true,
      "counts": true,
@@ -193365,7 +193377,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_posSemidef",
      "counted": true,
      "counts": true,
@@ -193400,7 +193412,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_star",
      "counted": true,
      "counts": true,
@@ -193435,7 +193447,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_trace",
      "counted": true,
      "counts": true,
@@ -193470,7 +193482,7 @@
      "cited_in": [
       "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.one_parity",
      "counted": true,
      "counts": true,
@@ -193503,9 +193515,11 @@
     },
     {
      "cited_in": [
-      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
      ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
      "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.parity_superselection_not_forced",
      "counted": true,
      "counts": true,
@@ -193532,258 +193546,6 @@
      "replay": "verified",
      "resolution": "present",
      "symbol": "CampaignMajoranaCliffordParity.parity_superselection_not_forced",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1186"
-     ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
-     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms gamma_ac",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/CampaignMajoranaCliffordParity.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "gamma_ac",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1186"
-     ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
-     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms gamma_star",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/CampaignMajoranaCliffordParity.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "gamma_star",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1186"
-     ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
-     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms generated_algebra",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/CampaignMajoranaCliffordParity.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "generated_algebra",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1186"
-     ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
-     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms localParity_pair",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/CampaignMajoranaCliffordParity.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "localParity_pair",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1186"
-     ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
-     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms occupation_sq",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/CampaignMajoranaCliffordParity.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "occupation_sq",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1186"
-     ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
-     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms parity_action",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/CampaignMajoranaCliffordParity.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "parity_action",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1186"
-     ],
-     "command": "cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean",
-     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms parity_superselection_not_forced",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Classical.choice",
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/CampaignMajoranaCliffordParity.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "parity_superselection_not_forced",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -264865,7 +264627,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264891,7 +264653,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264917,7 +264679,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264943,7 +264705,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264969,7 +264731,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264995,7 +264757,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265021,7 +264783,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265047,7 +264809,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265073,7 +264835,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265099,7 +264861,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265125,7 +264887,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265151,7 +264913,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265177,7 +264939,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265203,7 +264965,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265229,7 +264991,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "652fc01d4fdcd9abb3efba6524eaadcacb96037617214c65e23ac521977369b0",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"

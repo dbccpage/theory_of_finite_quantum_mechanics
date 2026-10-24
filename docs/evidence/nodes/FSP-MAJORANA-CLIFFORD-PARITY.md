@@ -11,8 +11,8 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 39
-- cited Lean declarations covered by a current replay receipt: 39
+- cited Lean, Rust or Python symbols found in their in-repo files: 32
+- cited Lean declarations covered by a current replay receipt: 32
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity), record TFQ-1186
 - replay: `verified`
   - receipt [dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json](../../../dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json) (module `CampaignMajoranaCliffordParity`): recorded sha256 `8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/CampaignMajoranaCliffordParity.lean`
+- check: `cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -86,13 +86,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignMajoranaCliffordParity.oneRho_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.oneRho_trace` |
 | `CampaignMajoranaCliffordParity.one_parity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.one_parity` |
 | `CampaignMajoranaCliffordParity.parity_superselection_not_forced` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.parity_superselection_not_forced` |
-| `gamma_ac` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms gamma_ac` |
-| `gamma_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms gamma_star` |
-| `generated_algebra` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms generated_algebra` |
-| `localParity_pair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms localParity_pair` |
-| `occupation_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms occupation_sq` |
-| `parity_action` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms parity_action` |
-| `parity_superselection_not_forced` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms parity_superselection_not_forced` |
 - counts toward the grade: yes
 
 ### Python: `checks/independent/fsp-majorana-clifford-parity.py`
@@ -105,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md`
 
 - file: [dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md](../../../dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md)
-- sha256 (`lf-normalised`): `050a132fdcdfcbc959ca88240ae9b5c2646b14261140da205852442658e5ebb5`
+- sha256 (`lf-normalised`): `e5a55297c4cc50123de189293c47564a19fe00cf6759e5e7361a9bc4cbb465bf`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1186
 - counts toward the grade: no
