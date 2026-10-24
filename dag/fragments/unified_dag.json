@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5350,7 +5350,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "In the X-cube model isolated fractons are immobile, fracton dipoles move within planes (planons) and lineons move only along lattice axes.",
-      "obligation": "The claim that these constraints suppress sign-inducing braids has no evidence here and is left open.",
+      "obligation": "Imported literature result; no local stabilizer or excitation-mobility proof exists, and mobility constraints do not by themselves establish fermion-sign freedom. Narrowed in lean4/CampaignFspFractonMobility.lean and checks/independent/fsp-fracton-mobility.py while keeping status IMPORTED_ASSUMPTION to: (1) single-edge Pauli Z_e flips all 4 adjacent cubes (weight 4), so a single-edge hop from an isolated 1-cube fracton produces syndrome weight 3 (creating 2 extra fractons, Delta_E = 4J > 0) and no 1- or 2-edge Z operator can move an isolated fracton without creating additional excitations; (2) rectangular dual membranes excite only the 4 corner cubes while foliation-leaf separation penalty Delta_S = kappa * R grows strictly with R; (3) adjacent 2-cube fracton dipoles move freely in perpendicular 2D planes (Delta_E = 0, 2D planons); (4) single-edge Pauli X_e excites a pair of 1D lineons of vertex weight 2 that move along collinear strings with Delta_E = 0, whereas a 90-degree corner turn leaves an immobile weight-2 orthogonal lineon defect at the corner vertex (raising total vertex weight from 4 to 6, Delta_E = 2 J_A > 0); and (5) explicit scope fences for 2D planon braiding, 1D T-junction 3-step exchange, and non-abelian 2-gauge hinge negative trace.",
       "imported_structure": [
         "X-cube excitation mobility (literature)"
       ],
@@ -5358,17 +5358,35 @@
         "FSP-XCUBE-FRACTON-MODEL"
       ],
       "parent_record": "TFQ-1217",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_single_edge_pauli_z_excites_four_cubes",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_isolated_fracton_hop_creates_two_extra_fractons",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_rectangular_membrane_corner_quadrupole_conservation",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_fracton_dipole_is_2d_planon",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_single_edge_pauli_x_excites_lineon_pair",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_lineon_collinear_string_preserves_weight",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_lineon_corner_turn_creates_immobile_vertex_defect",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.planon_dipole_2d_braiding_obstruction_fence",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.lineon_tjunction_three_step_exchange_fence",
+        "lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.mobility_constraints_do_not_imply_fermion_sign_freedom_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine",
+        "checks/independent/fsp-fracton-mobility.py::main"
+      ],
       "external_witnesses": [
         "external:omega_majorana::hard_invariants::subdimensional_mobility_proof (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:749-761",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:887-929"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:830-865",
+        "dag/derivations/independent/fsp-fracton-mobility.md",
+        "dag/research/campaign_fsp-fracton-mobility_lean_replay.json",
+        "dag/research/campaign_fsp-fracton-mobility_lean_mutation.json",
+        "dag/research/campaign_fsp-fracton-mobility_independent.json"
       ],
-      "audit": "Cited FoliatedFracton2Gauge.lean::fracton_subdimensional_mobility_constraints does not exist; the Mobility inductive type is declared but no mobility theorem is stated. test_mobility_constraints is absent from foliated_fracton_2gauge_defects.py.",
+      "audit": "Replaced missing FoliatedFracton2Gauge.lean::fracton_mobility_restriction_isomorphism with lean4/CampaignFspFractonMobility.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine, and checks/independent/fsp-fracton-mobility.py (6133 exact F_2 syndrome mobility checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

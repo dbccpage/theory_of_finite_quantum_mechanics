@@ -14,10 +14,10 @@
 In the X-cube model isolated fractons are immobile, fracton dipoles move within planes (planons) and lineons move only along lattice axes.
 
 ### Governing Obligation
-The claim that these constraints suppress sign-inducing braids has no evidence here and is left open.
+Imported literature result; no local stabilizer or excitation-mobility proof exists, and mobility constraints do not by themselves establish fermion-sign freedom. Narrowed in lean4/CampaignFspFractonMobility.lean and checks/independent/fsp-fracton-mobility.py while keeping status IMPORTED_ASSUMPTION to: (1) single-edge Pauli Z_e flips all 4 adjacent cubes (weight 4), so a single-edge hop from an isolated 1-cube fracton produces syndrome weight 3 (creating 2 extra fractons, Delta_E = 4J > 0) and no 1- or 2-edge Z operator can move an isolated fracton without creating additional excitations; (2) rectangular dual membranes excite only the 4 corner cubes while foliation-leaf separation penalty Delta_S = kappa * R grows strictly with R; (3) adjacent 2-cube fracton dipoles move freely in perpendicular 2D planes (Delta_E = 0, 2D planons); (4) single-edge Pauli X_e excites a pair of 1D lineons of vertex weight 2 that move along collinear strings with Delta_E = 0, whereas a 90-degree corner turn leaves an immobile weight-2 orthogonal lineon defect at the corner vertex (raising total vertex weight from 4 to 6, Delta_E = 2 J_A > 0); and (5) explicit scope fences for 2D planon braiding, 1D T-junction 3-step exchange, and non-abelian 2-gauge hinge negative trace.
 
 ### Witness Audit
-Cited FoliatedFracton2Gauge.lean::fracton_subdimensional_mobility_constraints does not exist; the Mobility inductive type is declared but no mobility theorem is stated. test_mobility_constraints is absent from foliated_fracton_2gauge_defects.py.
+Replaced missing FoliatedFracton2Gauge.lean::fracton_mobility_restriction_isomorphism with lean4/CampaignFspFractonMobility.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine, and checks/independent/fsp-fracton-mobility.py (6133 exact F_2 syndrome mobility checks, 0 failures).
 
 ---
 
@@ -31,13 +31,23 @@ Cited FoliatedFracton2Gauge.lean::fracton_subdimensional_mobility_constraints do
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_single_edge_pauli_z_excites_four_cubes`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_isolated_fracton_hop_creates_two_extra_fractons`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_rectangular_membrane_corner_quadrupole_conservation`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_fracton_dipole_is_2d_planon`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_single_edge_pauli_x_excites_lineon_pair`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_lineon_collinear_string_preserves_weight`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.xcube_lineon_corner_turn_creates_immobile_vertex_defect`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.planon_dipole_2d_braiding_obstruction_fence`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.lineon_tjunction_three_step_exchange_fence`
+- `lean4/CampaignFspFractonMobility.lean::CampaignFspFractonMobility.mobility_constraints_do_not_imply_fermion_sign_freedom_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine`
+- `checks/independent/fsp-fracton-mobility.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_majorana::hard_invariants::subdimensional_mobility_proof (cited by the source, not in this checkout)`
@@ -54,4 +64,8 @@ Cited FoliatedFracton2Gauge.lean::fracton_subdimensional_mobility_constraints do
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:749-761`
-  - `papers/core/fsp/the_problem_of_the_fermion_sign.md:887-929`
+  - `papers/core/fsp/the_problem_of_the_fermion_sign.md:830-865`
+  - `dag/derivations/independent/fsp-fracton-mobility.md`
+  - `dag/research/campaign_fsp-fracton-mobility_lean_replay.json`
+  - `dag/research/campaign_fsp-fracton-mobility_lean_mutation.json`
+  - `dag/research/campaign_fsp-fracton-mobility_independent.json`

@@ -10326,7 +10326,7 @@ Obligation: Imported literature result; the checkout has no X-cube stabilizer co
 
 In the X-cube model isolated fractons are immobile, fracton dipoles move within planes (planons) and lineons move only along lattice axes.
 
-Obligation: The claim that these constraints suppress sign-inducing braids has no evidence here and is left open.
+Obligation: Imported literature result; no local stabilizer or excitation-mobility proof exists, and mobility constraints do not by themselves establish fermion-sign freedom. Narrowed in lean4/CampaignFspFractonMobility.lean and checks/independent/fsp-fracton-mobility.py while keeping status IMPORTED_ASSUMPTION to: (1) single-edge Pauli Z_e flips all 4 adjacent cubes (weight 4), so a single-edge hop from an isolated 1-cube fracton produces syndrome weight 3 (creating 2 extra fractons, Delta_E = 4J > 0) and no 1- or 2-edge Z operator can move an isolated fracton without creating additional excitations; (2) rectangular dual membranes excite only the 4 corner cubes while foliation-leaf separation penalty Delta_S = kappa * R grows strictly with R; (3) adjacent 2-cube fracton dipoles move freely in perpendicular 2D planes (Delta_E = 0, 2D planons); (4) single-edge Pauli X_e excites a pair of 1D lineons of vertex weight 2 that move along collinear strings with Delta_E = 0, whereas a 90-degree corner turn leaves an immobile weight-2 orthogonal lineon defect at the corner vertex (raising total vertex weight from 4 to 6, Delta_E = 2 J_A > 0); and (5) explicit scope fences for 2D planon braiding, 1D T-junction 3-step exchange, and non-abelian 2-gauge hinge negative trace.
 
 ### TFQ-1219 Hinge-lineon fermion sign elimination (unsupported)
 
