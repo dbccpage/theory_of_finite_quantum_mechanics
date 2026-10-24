@@ -1143,3 +1143,6 @@ lean_lib CampaignTfq0039FiniteQcd where
 
 lean_lib CampaignTfq0050FiniteTopological where
   roots := #[`CampaignTfq0050FiniteTopological]
+
+lean_lib CampaignTfq0010FiniteQed where
+  roots := #[`CampaignTfq0010FiniteQed]
