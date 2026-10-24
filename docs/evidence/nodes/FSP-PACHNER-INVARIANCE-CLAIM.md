@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs. Narrowed in lean4/CampaignFspPachnerInvarianceClaim.lean and checks/independent/fsp-pachner-invariance-claim.py while keeping status OPEN to: (1) Euler-Poincare characteristic chi = N_0 - N_1 + N_2 - N_3 + N_4 invariance, move invertibility, and codimension-1 Dehn-Sommerville invariance 2 N_3 - 5 N_4 = 0 across all 4D bistellar Pachner moves (1\<-\>5, 2\<-\>4, 3\<-\>3); (2) exact surgical face-vector trajectory (6, 15, 20, 15, 6) -\> (7, 20, 30, 25, 10) -\> (7, 21, 34, 30, 12) -\> (7, 21, 34, 30, 12) on partial Delta^5 = S^4 matching Simplicial4DManifold in code/python/src/fsp/regge_pachner_wdw.py; (3) exact counterterm characterization w_0 = 10 w_2 + 15 w_3 + 6 w_4 and w_1 = -4 w_2 - 5 w_3 - 2 w_4 for linear state-sum invariance and vertex normalization invariance G^{-N_0} |Flat| for finite-group flat gauge bundles; and (4) non-invariance of the curved Regge action and curved WDW defect mass 3 N_1 (45 \< 60 \< 63), plus scope fences for signed rational hinge deficit cancellation, unnormalized 4-simplex weight failure, and fermion-sign independence.
+Narrowed algebraic checks only. Five-integer face-vector translations preserve the displayed linear functionals; solving two rational linear equations characterizes invariant count weights. In Lean no simplicial complex, move admissibility, topology, or flat-connection extension count is constructed. The independent checker performs additional finite simplex-set examples, not a general refinement proof. normalizedFlatGaugeSum declares inverse-G cancellation for delta 0 and 1 and returns zero otherwise; it proves no gauge-bundle counting theorem. The Regge shift and WDW mass are supplied scalar formulas, not geometric action differences or constraint solutions. The stated face-count trajectories and arithmetic remain exact. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,24 +45,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFspPachnerInvarianceClaim.lean`
 
 - file: [lean4/CampaignFspPachnerInvarianceClaim.lean](../../../lean4/CampaignFspPachnerInvarianceClaim.lean)
-- sha256 (`bytes`): `b9803f5c9fbf45b32716f9232722785f104440bbd27b79ce5423f2be040407bb`
-- cited in: node.lean, receipt dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json (CampaignFspPachnerInvarianceClaim), record TFQ-1214
+- sha256 (`bytes`): `3675c610049324080f9f9ed57539909efe180f959cebc77fff1c49f6ce6efec1`
+- cited in: node.lean, record TFQ-1214
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json) (module `CampaignFspPachnerInvarianceClaim`): recorded sha256 `b9803f5c9fbf45b32716f9232722785f104440bbd27b79ce5423f2be040407bb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json) (module `CampaignFspPachnerInvarianceClaim`): recorded sha256 `3675c610049324080f9f9ed57539909efe180f959cebc77fff1c49f6ce6efec1` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFspPachnerInvarianceClaim`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves` |
-| `CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves` | yes | yes | yes | propext | `#print axioms CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves` |
-| `CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff` |
-| `CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence` |
-| `CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic` | yes | yes | yes | propext | `#print axioms CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic` |
-| `CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision` |
-| `CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi` | yes | yes | yes | none | `#print axioms CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi` |
-| `CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence` |
-| `CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence` |
-| `CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance` |
+| `CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves` |
+| `CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves` |
+| `CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff` |
+| `CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence` |
+| `CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic` |
+| `CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision` |
+| `CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi` |
+| `CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence` |
+| `CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence` |
+| `CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance` | yes | yes | yes | module-level | `#print axioms CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md`
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-pachner-invariance-claim.md`
 
 - file: [dag/derivations/independent/fsp-pachner-invariance-claim.md](../../../dag/derivations/independent/fsp-pachner-invariance-claim.md)
-- sha256 (`lf-normalised`): `d3715e8c1f627c11ccf35a5c5d4e94e6f9b58f9895cf7e15cb41fef65cf33446`
+- sha256 (`lf-normalised`): `a1e19125518ed3c42912d678e42378c93f6380c99232f93392b52e709f2a7ecb`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json)
-- sha256 (`lf-normalised`): `ddeb60b14042ddc326e980c0cade45a0f9dbb1087a5bb3e711d51b8dca20bfab`
+- sha256 (`lf-normalised`): `dc534f2081828c92447eb58bdccb6cab258c268cbaeef426d1f3aedc81703595`
 - cited in: node.source
 - counts toward the grade: yes
 

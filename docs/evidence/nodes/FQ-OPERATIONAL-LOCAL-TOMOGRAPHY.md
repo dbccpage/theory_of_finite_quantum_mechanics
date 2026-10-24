@@ -10,7 +10,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `IMPORTED_ASSUMPTI
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 10
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
 - cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
@@ -20,7 +20,11 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `broken_reference`: path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md. A cited in-repo path or symbol cannot be found in this checkout.
+- `broken_reference`: path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md. A cited in-repo path or symbol cannot be found in this checkout.
+- `broken_reference`: path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json. A cited in-repo path or symbol cannot be found in this checkout.
+- `broken_reference`: path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md. A cited in-repo path or symbol cannot be found in this checkout.
+- `broken_reference`: path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json. A cited in-repo path or symbol cannot be found in this checkout.
 
 ## Imported structure
 
@@ -115,38 +119,38 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md)
-- sha256 (`lf-normalised`): `8169e62c96e8661ea92e3c0b8252867e82499a28c3daf478576b6932dcaf3d33`
+- file: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md`
+- resolution: `missing` (not found in this checkout)
 - cited in: node.source
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md)
-- sha256 (`lf-normalised`): `9854dc36f40af42797cbdae8a8a115b3ebdc93cf85fd3e0b04dd99bb9f203632`
+- file: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
+- resolution: `missing` (not found in this checkout)
 - cited in: node.source
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json)
-- sha256 (`lf-normalised`): `b6710d3c563d633cd6b634ed85ca691cf9a61ad7d5f675b8755bf497bd234291`
+- file: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json`
+- resolution: `missing` (not found in this checkout)
 - cited in: node.source
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md)
-- sha256 (`lf-normalised`): `d30cabed719b04a2673c7038fef9a5d54c138ae7b23940245e7a8c85a883d440`
+- file: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md`
+- resolution: `missing` (not found in this checkout)
 - cited in: node.source
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json`
 
-- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json)
-- sha256 (`lf-normalised`): `bdd193bfe7eda1ba885e46a8c367090a9d7d1b2c6c673cbadaaaf87ed9342141`
+- file: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json`
+- resolution: `missing` (not found in this checkout)
 - cited in: node.source
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ## Routes
 

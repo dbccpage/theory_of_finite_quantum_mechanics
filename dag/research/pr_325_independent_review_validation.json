@@ -1,0 +1,242 @@
+{
+  "number": 325,
+  "original_head": "7a4887f244bbdcfec55e2ae5d1726ffb4d394a18",
+  "level": "L3",
+  "meaning": "Five-integer face-vector translations preserve the displayed linear functionals; solving two rational linear equations characterizes invariant count weights. In Lean no simplicial complex, move admissibility, topology, or flat-connection extension count is constructed. The independent checker performs additional finite simplex-set examples, not a general refinement proof. normalizedFlatGaugeSum declares inverse-G cancellation for delta 0 and 1 and returns zero otherwise; it proves no gauge-bundle counting theorem. The Regge shift and WDW mass are supplied scalar formulas, not geometric action differences or constraint solutions. The stated face-count trajectories and arithmetic remain exact.",
+  "baseline": {
+    "number": 325,
+    "head": "7a4887f244bbdcfec55e2ae5d1726ffb4d394a18",
+    "source": "lean4/CampaignFspPachnerInvarianceClaim.lean",
+    "sha256": "b9803f5c9fbf45b32716f9232722785f104440bbd27b79ce5423f2be040407bb",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/fsp-pachner-invariance-claim.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.15,
+        "output": "FSP-PACHNER-INVARIANCE-CLAIM independent check: checks=25602 pachner_comb=25011 state_sum=536 fences=55 failures=0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.13,
+        "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 21 paths\nchecked 2: 1 pass, 0 grandfathered, 0 boilerplate, 1 failed\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 0,
+        "seconds": 3.73,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": true,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 2,\r\n    \"invalid_or_missing\": 0,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 0,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {\r\n      \"Non-Numeric\": 1,\r\n      \"Symbolic/Formal\": 1\r\n    },\r\n    \"completed_scores\": 2,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 0,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 1fa451fe1eac), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 0,
+        "seconds": 4.09,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 2,\r\n  \"all_passed\": true,\r\n  \"errors\": [],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 9.3,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=0 LOW=0\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 0,
+        "seconds": 1.25,
+        "output": "nodes=925 routes=934 records=977 failures=0\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignFspPachnerInvarianceClaim"
+        ],
+        "exit_code": 0,
+        "seconds": 61.79,
+        "output": "⚠ [3137/3138] Built CampaignFspPachnerInvarianceClaim (50s)\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspPachnerInvarianceClaim.lean:281:0: 'CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic' depends on axioms: [propext]\ninfo: CampaignFspPachnerInvarianceClaim.lean:282:0: 'CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi' does not depend on any axioms\ninfo: CampaignFspPachnerInvarianceClaim.lean:283:0: 'CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves' depends on axioms: [propext]\ninfo: CampaignFspPachnerInvarianceClaim.lean:284:0: 'CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:285:0: 'CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:286:0: 'CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:287:0: 'CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:288:0: 'CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:289:0: 'CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:290:0: 'CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence' depends on axioms: [propext,\n Quot.sound]\nBuild completed successfully (3138 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignFspPachnerInvarianceClaim"
+      ],
+      "exit_code": 0,
+      "seconds": 33.17,
+      "output": "⚠ [3137/3138] Built CampaignFspPachnerInvarianceClaim (20s)\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspPachnerInvarianceClaim.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspPachnerInvarianceClaim.lean:228:0: 'CampaignFspPachnerInvarianceClaim.pachner_moves_preserve_euler_characteristic' depends on axioms: [propext]\ninfo: CampaignFspPachnerInvarianceClaim.lean:229:0: 'CampaignFspPachnerInvarianceClaim.s4_seed_surgical_sequence_face_vectors_and_chi' does not depend on any axioms\ninfo: CampaignFspPachnerInvarianceClaim.lean:230:0: 'CampaignFspPachnerInvarianceClaim.dehn_sommerville_codim1_invariant_under_pachner_moves' depends on axioms: [propext]\ninfo: CampaignFspPachnerInvarianceClaim.lean:231:0: 'CampaignFspPachnerInvarianceClaim.linear_topological_state_sum_pachner_invariance_iff' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:232:0: 'CampaignFspPachnerInvarianceClaim.z2_gauge_state_sum_vertex_normalization_invariance' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:233:0: 'CampaignFspPachnerInvarianceClaim.regge_action_non_invariant_under_curved_pachner_subdivision' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:234:0: 'CampaignFspPachnerInvarianceClaim.curved_wdw_defect_mass_shifts_under_pachner_moves' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:235:0: 'CampaignFspPachnerInvarianceClaim.signed_hinge_deficits_can_cancel_under_pachner_move_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:236:0: 'CampaignFspPachnerInvarianceClaim.unnormalized_simplex_weight_fails_pachner_invariance_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspPachnerInvarianceClaim.lean:237:0: 'CampaignFspPachnerInvarianceClaim.pachner_moves_independent_of_fermion_sign_fence' depends on axioms: [propext,\n Quot.sound]\nBuild completed successfully (3138 jobs).\n"
+    },
+    "sync_pfp_results": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.26,
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 247, in <module>\r\n    raise SystemExit(main())\r\n                     ~~~~^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 237, in main\r\n    for path, expected in generated_files(ROOT).items():\r\n                          ~~~~~~~~~~~~~~~^^^^^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 194, in generated_files\r\n    errors = apply_decisions(root, dag, decisions)\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 154, in apply_decisions\r\n    obj = review_digest(root, entry, boilerplate)\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 101, in review_digest\r\n    data = path.read_bytes()\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\r\n    with self.open(mode='rb', buffering=0) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\dag\\\\results\\\\DS-CONTINUOUS-TIME-EXP-GENERATOR\\\\reviews\\\\20261019_structure_audit\\\\review_result.json'\r\n"
+    },
+    "sync_unified_dag": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.64,
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 648, in <module>\r\n    raise SystemExit(main())\r\n                     ~~~~^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 449, in main\r\n    for path, expected in generated_files(ROOT).items():\r\n                          ~~~~~~~~~~~~~~~^^^^^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 378, in generated_files\r\n    raise ValueError('unified DAG fragment invalid:\\n  ' + '\\n  '.join(errors))\r\nValueError: unified DAG fragment invalid:\r\n  FSP-DERIV-050: forbidden word ['proves']\r\n  COMP-C1a: reference does not resolve: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean:24-70\r\n  COMP-C2e: reference does not resolve: dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:24-100\r\n"
+    },
+    "sync_application_branches": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.37,
+      "output": "stale=derivation_dag.json,theory_of_finite_qm.jsonl,theory_of_finite_qm.md\r\n"
+    },
+    "sync_pregenesis_to_wdp": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.15,
+      "output": "stale=dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\r\n"
+    },
+    "sync_frontier_branches": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.47,
+      "output": "stale=dag/derivation_dag.json\r\n"
+    },
+    "sync_genesis_to_higher": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.34,
+      "output": "genesis-to-higher synchronized\r\n"
+    },
+    "sync_foc035_observer_presheaf": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.41,
+      "output": "foc035 observer presheaf synchronized\r\n"
+    },
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-pachner-invariance-claim.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.12,
+      "output": "FSP-PACHNER-INVARIANCE-CLAIM independent check: checks=25602 pachner_comb=25011 state_sum=536 fences=55 failures=0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-pachner-invariance-claim.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.24,
+      "output": "FSP-PACHNER-INVARIANCE-CLAIM independent check: checks=25602 pachner_comb=25011 state_sum=536 fences=55 failures=0\r\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "404098572605311efcc9e701ee0c0ad1f86002306ec17701a4acc803d37821e6",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "3675c610049324080f9f9ed57539909efe180f959cebc77fff1c49f6ce6efec1",
+  "axiom_audit_passed": true,
+  "structure_observation": {
+    "source_lines": 239,
+    "theorem_count": 10,
+    "axiom_print_count": 10,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
