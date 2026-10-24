@@ -10194,7 +10194,7 @@ Obligation: Standard result imported; it presupposes an exact lattice supercharg
 
 Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).
 
-Obligation: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.
+Obligation: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit. Narrowed in lean4/CampaignFspKitaevHoneycombSolution.lean and checks/independent/fsp-kitaev-honeycomb-solution.py to the single-site 4x4 Majorana Clifford and Pauli spin algebra, bond spin-product factorization (bj cj)(bk ck) = -(bj bk)(cj ck), hexagonal plaquette local Z2 gauge invariance, closed-surface even vortex parity prod_p W_p = 1, quadratic matter skew-symmetry det(A(u)) = Pf_4(A(u))^2, and explicit fences for 4^N = 2^N * 2^N gauge redundancy, link-flip Pfaffian sign reversal Pf(A(-u_e)) = -Pf(A(u_e)), and physical parity projection filtering (1 + P_matter * P_gauge).
 
 ### TFQ-1208 Laughlin quasihole exchange phase pi/m
 

@@ -1,0 +1,63 @@
+{
+  "schema": "tfqm.lean-mutation-audit.v1",
+  "authority_effect": "None",
+  "node_id": "FSP-KITAEV-HONEYCOMB-SOLUTION",
+  "record_id": "TFQ-1207",
+  "module": "CampaignFspKitaevHoneycombSolution",
+  "source_path": "lean4/CampaignFspKitaevHoneycombSolution.lean",
+  "source_sha256": "def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "all_killed": true,
+  "mutants": [
+    {
+      "id": "M1_flip_ic_square_sign",
+      "theorem": "CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations",
+      "description": "Mutate `(i c)^2 = -I_4` to `+I_4` in `majorana_site_clifford_relations`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M2_flip_chiral_spin_product_sign",
+      "theorem": "CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation",
+      "description": "Flip sign of chiral spin product `tildeSigmaX * tildeSigmaY * tildeSigmaZ = siteGaugeJD`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M3_drop_minus_in_bond_factorization",
+      "theorem": "CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization",
+      "description": "Drop fermion anticommutation minus sign in `abstract_bond_spin_product_factorization`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M4_negate_plaquette_gauge_invariance",
+      "theorem": "CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance",
+      "description": "Mutate Z2 gauge-transformed hexagonal plaquette flux to its negation.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M5_change_pfaffian_power_to_one",
+      "theorem": "CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det",
+      "description": "Replace `Pf(A)^2` with `Pf(A)^1` in `quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det`.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "id": "M6_claim_mismatched_parity_weight_nonzero",
+      "theorem": "CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence",
+      "description": "Claim mismatched parity sector `pMatter = -pGauge` survives physical gauge projection with weight 2.",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "killed": true
+    }
+  ]
+}
