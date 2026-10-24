@@ -1,28 +1,31 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0183
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: witness_verified
 target:
-  source_statement: Tetron wording in the crate outruns the diagnostic fence and must not be promoted.
-    src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes,
-    and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate
-    fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron
-    array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and
-    pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.
+  source_statement: Tetron wording in the crate outruns the diagnostic fence and must
+    not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting
+    island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity
+    channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the
+    playground does not claim physical Majorana modes. The obligation is to keep the
+    tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise
+    modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps
+    are not an authority terminal either.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.
+  source_bottleneck: Do not promote tetron.rs physical wording past the GF(2) diagnostic
+    fence in lib.rs.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
-    before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope
+    and remaining imports before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md
-    sha256: 00e7f6cb94e16c6be5af45c887291b6bb1354403264fd10dfe24c92c38345fd7
+    sha256: 48c84b93b9dc4367cc9c12fb55921ed9ac1ada6de83160074b8b1420c56cd978
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -33,38 +36,46 @@ source_provenance:
 operation_candidates: []
 relation_candidates: []
 source_bindings:
-- original_ref: code/rust/src/majorana/tetron.rs
-  availability: local
-  symbol: null
+- language: lean4
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  symbol: CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas
+  role: Exact Euler characteristic and first Betti formulas for Disk, Cylinder, and
+    Torus tetron grids
+- language: lean4
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  symbol: CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence
+  role: Scope fence withholding physical Majorana hardware claims past the GF(2) diagnostic
+    schedule
+- language: lean4
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  symbol: CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence
+  role: 'Scope fence keeping noise_mc.rs and pauli_noise.rs sweeps as AuthorityEffect:
+    None diagnostics'
+- language: rust
   path: code/rust/src/majorana/tetron.rs
-  repository: this_repository
-  sha256: 0004b6882118db4494c13ccb7683f858f611d702067e4bd3c62dee0a05b84bc0
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/wdp/lib.rs
-  availability: local
-  symbol: null
+  symbol: build_tetron_array
+  role: GF(2) chain-complex builder for Disk, Cylinder, and Torus tetron lattices
+- language: rust
   path: code/rust/src/wdp/lib.rs
-  repository: this_repository
-  sha256: aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/majorana/noise_mc.rs
-  availability: local
-  symbol: null
+  symbol: carrier_manifest
+  role: WDP carrier manifest and diagnostic fence boundary
+- language: rust
   path: code/rust/src/majorana/noise_mc.rs
-  repository: this_repository
-  sha256: 929c1b70f1ea6c5a0e30a59a72e321d34b38bceab39176eeb72d0431ed5bd3f1
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/majorana/pauli_noise.rs
-  availability: local
-  symbol: null
+  symbol: noise_mc_planar_grid
+  role: 'Planar GF(2) syndrome Monte Carlo sweep with AuthorityEffect: None'
+- language: rust
   path: code/rust/src/majorana/pauli_noise.rs
-  repository: this_repository
-  sha256: 26926b14f00cd49d833210c39b7e3531b4b8270752364f1b94c8bcc1687ad7ad
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+  symbol: LocalMajoranaNoise::from_rows
+  role: Exact rational skew-symmetric noise matrix validator
+- language: python
+  path: code/python/src/majorana/majorana_noise_sweep.py
+  symbol: DeterministicRationalNoiseGenerator
+  role: Deterministic rational skew-symmetric noise sweep generator
+- language: python
+  path: checks/independent/tfq-0183.py
+  symbol: run_all_checks
+  role: Independent Python verification of GF(2) tetron homology and rational noise
+    invariants
 presentation:
   colours: []
   generators: []
@@ -80,32 +91,59 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
-    public_input: {}
+    mining_status: VERIFIED
+    carrier: GF(2) chain complex C_2 -> C_1 -> C_0 on RxC Disk, Cylinder, and Torus
+      grids (tetron.rs) and skew-symmetric matrices in Q^{2n x 2n} (pauli_noise.rs)
+    coefficient_ring: GF(2) and Q
+    assumptions:
+    - TetronReport.authority_effect = None and crate GF(2) fence withhold hardware
+      readings
+    - 'noise_mc.rs and pauli_noise.rs sweeps are AuthorityEffect: None diagnostics'
+    source_pins:
+    - path: dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md
+      sha256: 48c84b93b9dc4367cc9c12fb55921ed9ac1ada6de83160074b8b1420c56cd978
+    public_input:
+      node_id: TFQ-0183
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - evaluateTetronWordingUnderFence
+    - classifyNoiseSweepModule
+    composition_plan:
+    - Verify d_1 o d_0 = 0 mod 2 and dim H_1 = 0, 1, 2 across Disk, Cylinder, and
+      Torus grids
+    - Verify skew-symmetric zero-diagonal and quadratic form identities for LocalMajoranaNoise
+    - Enforce GF(2) diagnostic and non-authority-terminal fences on tetron.rs, noise_mc.rs,
+      and pauli_noise.rs
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - (1 + 1) % 2 = 0
+    - dim H_1(Disk) = 0, dim H_1(Cylinder) = 1, dim H_1(Torus) = 2
+    - x * (k * y) + y * (-k * x) = 0
+    rejection_predicates:
+    - evaluateTetronWordingUnderFence true true = Gf2ChainComplexDiagnosticOnly
+    - classifyNoiseSweepModule true = DiagnosticSweepNotAuthorityTerminal
+    - tetronCrateModel.provesPhysicalMajoranaZeroModes = false
+    negative_control_plan:
+    - 6 semantic Lean mutants in dag/research/campaign_tfq-0183_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - tetron_disk_cylinder_torus_euler_and_betti_formulas
+    - tetron_boundary_squares_to_zero_over_gf2
+    - tetron_gf2_ranks_and_first_betti_numbers
+    - local_majorana_noise_skew_symmetry_and_zero_diagonal
+    - tetron_hardware_reading_withheld_by_gf2_diagnostic_fence
+    - noise_sweeps_are_not_authority_terminals_fence
+    - tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence
+    anchors:
+    - lean4/CampaignTfq0183ImplementationSibling.lean
+    - code/rust/src/majorana/tetron.rs
+    - code/rust/src/majorana/pauli_noise.rs
+    - code/rust/src/majorana/noise_mc.rs
+    - checks/independent/tfq-0183.py
     unpaid_imports: []
 stage_history: []
-open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+open_obligations: []
 excluded_relation_leads: []

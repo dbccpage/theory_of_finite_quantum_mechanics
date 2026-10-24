@@ -12187,12 +12187,14 @@
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0183ImplementationSibling.lean"
+      ],
       "rust": [
-        "code/rust/src/majorana/tetron.rs",
-        "code/rust/src/wdp/lib.rs",
         "code/rust/src/majorana/noise_mc.rs",
-        "code/rust/src/majorana/pauli_noise.rs"
+        "code/rust/src/majorana/pauli_noise.rs",
+        "code/rust/src/majorana/tetron.rs",
+        "code/rust/src/wdp/lib.rs"
       ],
       "imported_structure": [],
       "bottleneck": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
@@ -12200,6 +12202,10 @@
         "unified-dag",
         "TFQ-0183",
         "implementation_sibling"
+      ],
+      "python": [
+        "code/python/src/majorana/majorana_noise_sweep.py::DeterministicRationalNoiseGenerator",
+        "checks/independent/tfq-0183.py::run_all_checks"
       ]
     },
     {
@@ -47697,26 +47703,40 @@
         "TFQ-0183"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/README.md"
+        "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md",
+        "dag/derivations/independent/tfq-0183.md",
+        "dag/research/campaign_tfq-0183_lean_replay.json",
+        "dag/research/campaign_tfq-0183_lean_mutation.json",
+        "dag/research/campaign_tfq-0183_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md"
       ],
       "id": "TFQ-0183",
       "lean4": [
-        "absent: not located"
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence"
       ],
       "local_id": "A06-018",
       "name": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in",
       "obligation": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
       "parent_id": "TFQ-0181",
       "python": [
-        "code/python/src/majorana/majorana/carriers/tetron_carrier.py",
-        "code/python/src/majorana/majorana_noise_sweep.py"
+        "code/python/src/majorana/majorana_noise_sweep.py::DeterministicRationalNoiseGenerator",
+        "checks/independent/tfq-0183.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "code/rust/src/majorana/tetron.rs",
-        "code/rust/src/wdp/lib.rs",
-        "code/rust/src/majorana/noise_mc.rs",
-        "code/rust/src/majorana/pauli_noise.rs"
+        "code/rust/src/majorana/tetron.rs::build_tetron_array",
+        "code/rust/src/wdp/lib.rs::carrier_manifest",
+        "code/rust/src/majorana/noise_mc.rs::noise_mc_planar_grid",
+        "code/rust/src/majorana/pauli_noise.rs::LocalMajoranaNoise::from_rows"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",

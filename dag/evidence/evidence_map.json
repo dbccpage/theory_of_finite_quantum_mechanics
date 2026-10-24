@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "0c34660848180880bb28a714647d1e0a195d80558ef4288a7192df9cb05c02d0"
+  "sha256_lf": "8d1530725f9fa73da93cb3b6fac95e233a9c73f07f841ae71360101a1a32c83a"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -286,6 +286,11 @@
    "sha256": "99b922bcaa608fdbff2130fefc70f41cbd0b80b716292146eaa8554946566e10",
    "sha256_basis": "bytes",
    "size": 10967
+  },
+  "checks/independent/tfq-0183.py": {
+   "sha256": "775b8b16164fc995b2d458bd665ec28ce7c28ff241a597f7d64fc59a3172363f",
+   "sha256_basis": "bytes",
+   "size": 9686
   },
   "checks/independent/tfq-0396.py": {
    "sha256": "6d6e92be6e642055941c7828a18305785bda0b7a94f408670a09cf6519633a62",
@@ -1033,9 +1038,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "0c34660848180880bb28a714647d1e0a195d80558ef4288a7192df9cb05c02d0",
+   "sha256": "8d1530725f9fa73da93cb3b6fac95e233a9c73f07f841ae71360101a1a32c83a",
    "sha256_basis": "lf-normalised",
-   "size": 4690659
+   "size": 4692832
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -3723,9 +3728,9 @@
    "size": 2388
   },
   "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md": {
-   "sha256": "637310b9c1388c15a0822d2d9bf66097ca7d1e58d45a9053672a7699b253d433",
+   "sha256": "48c84b93b9dc4367cc9c12fb55921ed9ac1ada6de83160074b8b1420c56cd978",
    "sha256_basis": "lf-normalised",
-   "size": 2493
+   "size": 4420
   },
   "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md": {
    "sha256": "9925cd6319ed59ac82b199b4b26044ccc135f6c14f4585ac14b4d3fe3ccb9cef",
@@ -7056,6 +7061,11 @@
    "sha256": "b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36",
    "sha256_basis": "bytes",
    "size": 12882
+  },
+  "lean4/CampaignTfq0183ImplementationSibling.lean": {
+   "sha256": "b298ffe0b797e4bbfecbdb633eb15176608a876384de84a91d6841da4dc03bf5",
+   "sha256_basis": "bytes",
+   "size": 11482
   },
   "lean4/CampaignTransitionProbability.lean": {
    "sha256": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
@@ -11032,15 +11042,6 @@
    "node": "TFQ-0182",
    "stage": "IMPLEMENTATION_SIBLING",
    "status": "COMPUTATIONALLY_CHECKED"
-  },
-  {
-   "dependents": 0,
-   "detail": "path not found: code/python/src/majorana/majorana/carriers/tetron_carrier.py",
-   "grade": "E1",
-   "kind": "broken_reference",
-   "node": "TFQ-0183",
-   "stage": "IMPLEMENTATION_SIBLING",
-   "status": "OPEN"
   },
   {
    "dependents": 0,
@@ -131770,31 +131771,376 @@
    "status": "COMPUTATIONALLY_CHECKED"
   },
   {
-   "absent_notes": [
-    "TFQ-0183 lean4: not located"
-   ],
+   "absent_notes": [],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 5,
-    "counted_files": 5,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 6,
+    "counted_files": 7,
+    "lean_receipt_backed": 10,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 16
    },
-   "flags": [
-    {
-     "detail": "path not found: code/python/src/majorana/majorana/carriers/tetron_carrier.py",
-     "kind": "broken_reference"
-    }
-   ],
-   "grade": "E1",
+   "flags": [],
+   "grade": "E3",
    "id": "TFQ-0183",
    "items": [
     {
      "cited_in": [
-      "node.rust",
+      "node.lean"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
       "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_majorana",
@@ -131817,8 +132163,30 @@
     },
     {
      "cited_in": [
-      "node.rust",
       "record TFQ-0183"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_majorana",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/majorana/noise_mc.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "noise_mc_planar_grid",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_majorana",
@@ -131841,8 +132209,30 @@
     },
     {
      "cited_in": [
-      "node.rust",
       "record TFQ-0183"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_majorana",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/majorana/pauli_noise.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "LocalMajoranaNoise::from_rows",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_majorana",
@@ -131865,8 +132255,30 @@
     },
     {
      "cited_in": [
-      "node.rust",
       "record TFQ-0183"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_majorana",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/majorana/tetron.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "build_tetron_array",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
      ],
      "command": null,
      "command_note": "no test is cited for this symbol; its crate is tfqm_wdp",
@@ -131892,22 +132304,45 @@
       "record TFQ-0183"
      ],
      "command": null,
-     "command_note": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_wdp",
      "counted": true,
-     "counts": false,
+     "counts": true,
      "decl_ambiguous": false,
      "decl_axioms": null,
      "decl_listed": false,
-     "file_exists": false,
+     "file_exists": true,
      "generated": false,
-     "kind": "python_symbol",
-     "path": "code/python/src/majorana/majorana/carriers/tetron_carrier.py",
+     "kind": "rust_symbol",
+     "path": "code/rust/src/wdp/lib.rs",
      "receipts": [],
      "replay": "n/a",
-     "resolution": "missing",
-     "symbol": null,
-     "symbol_declared": null,
-     "symbol_exists": null,
+     "resolution": "present",
+     "symbol": "carrier_manifest",
+     "symbol_declared": false,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0183"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0183.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "run_all_checks",
+     "symbol_declared": true,
+     "symbol_exists": true,
      "where": null
     },
     {
@@ -131928,9 +132363,9 @@
      "receipts": [],
      "replay": "n/a",
      "resolution": "present",
-     "symbol": null,
-     "symbol_declared": null,
-     "symbol_exists": null,
+     "symbol": "DeterministicRationalNoiseGenerator",
+     "symbol_declared": true,
+     "symbol_exists": true,
      "where": null
     },
     {
@@ -131958,7 +132393,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (6 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0183"
    ],
@@ -274848,6 +275283,32 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": null,
+   "dag_node": null,
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0183_lean_replay.json#0:CampaignTfq0183ImplementationSibling",
+   "lean_version": null,
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0183ImplementationSibling",
+   "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+   "receipt_file": "dag/research/campaign_tfq-0183_lean_replay.json",
+   "receipt_file_sha256": "c65af2a2314e396d2a4a53e015ec2f5e7015009ec9196e178c3db3a9e75b27b1",
+   "recorded_sha256": "b298ffe0b797e4bbfecbdb633eb15176608a876384de84a91d6841da4dc03bf5",
+   "source_unchanged_during_build": null,
+   "toolchain": null
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
     "Quot.sound",
     "propext"
    ],
@@ -285901,9 +286362,9 @@
  "summary": {
   "by_grade": {
    "E0": 169,
-   "E1": 227,
+   "E1": 226,
    "E2": 42,
-   "E3": 487,
+   "E3": 488,
    "E4": 0
   },
   "by_status": {
@@ -285918,7 +286379,7 @@
    "REFUTED": 6,
    "SOURCE_RECORD": 81
   },
-  "cited_symbols_found_but_no_declaration_form": 2,
+  "cited_symbols_found_but_no_declaration_form": 3,
   "e3_nodes_with_review": 166,
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
@@ -285934,9 +286395,9 @@
   "lean_references_cited_in_node_lean_fields": {
    "present": 1971
   },
-  "mismatch_nodes": 192,
+  "mismatch_nodes": 191,
   "mismatches_by_kind": {
-   "broken_reference": 54,
+   "broken_reference": 53,
    "computational_no_runnable_test": 126,
    "proved_lean_below_e3": 0,
    "proved_lean_external_only": 0,
@@ -285944,7 +286405,7 @@
    "receipt_names_uncited_module": 28,
    "receipt_not_current": 35
   },
-  "mismatches_total": 255,
+  "mismatches_total": 254,
   "nodes": 925,
   "proved_lean_lean_references": {
    "present": 1081
@@ -285953,7 +286414,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 510,
+  "receipts_indexed": 511,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -286118,9 +286579,9 @@
    },
    "IMPLEMENTATION_SIBLING": {
     "E0": 2,
-    "E1": 23,
+    "E1": 22,
     "E2": 0,
-    "E3": 1,
+    "E3": 2,
     "E4": 0
    },
    "L1_EMERGENCE": {
@@ -286232,9 +286693,9 @@
    },
    "OPEN": {
     "E0": 34,
-    "E1": 77,
+    "E1": 76,
     "E2": 10,
-    "E3": 54,
+    "E3": 55,
     "E4": 0
    },
    "PROVED_LEAN": {
