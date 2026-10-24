@@ -3,23 +3,23 @@ node_id: PGW-PYTHON-LEAN-CARRIER-BRIDGE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'No refinement proof joins any Python computation to any Lean statement. The sealed
-    Lean is a token-erased abstraction connected to the sealed Python by executable checks only (CL-TOKEN-ERASURE);
-    the Alpha harness''s Lean is about harness datatypes, python_driver_refinement is NOT_PROVED and it
-    does not model the new license binding (D4); attempt two''s Lean speaks of every history of sealed
-    events and switch markers, and that each edge of a Python run is such a history is read, not proved.
-    Rung two track one''s represented state is not bridged to the sealed regime (L-1, which needs an amendment
-    of the seal that is the author''s act), and the reading regimes differ: R2L and R2F in Lean, the sealed
-    genesis histories that stop before the requirement in Python.'
+  source_statement: Narrowed boundary, status left OPEN. The sealed reading-L history has length 7 and
+    replays from genesis to regime R2L. The sealed reading-F history has length 8 and replays from genesis
+    to regime R2F. R2L has data count 2 and requirement list (0, 1). R2F has data count 3 and requirement
+    list (1, 2). Both regimes have empty form, instance, and rule lists. R2L is not R2F, and the two replay
+    results are not equal.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Open; agreement between Python and Lean is evidenced by executable checks on the
-    inputs checked, which is not a refinement proof.
+  source_bottleneck: These two replays are sealed Lean histories. They are not a refinement from a Python
+    computation to a Lean statement. Token erasure, the license binding, rung-two track one, and the Python
+    histories that stop before the requirement stay open. Status stays OPEN.
   source_refs:
   - dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:37-43
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:380
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1077-1080
+  - dag/derivations/independent/pgw-python-lean-carrier-bridge.md:5
+  - dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -35,23 +35,185 @@ source_provenance:
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
 - kind: def
-  name: replayE
-  line: 192
-  signature_excerpt: 'def replayE (h : List Event) (base : Regime) : Option Regime'
-  source: lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean
+  name: pgwHistoryL
+  line: 12
+  signature_excerpt: 'def pgwHistoryL : List Event'
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
   repository: this_repository
-  source_sha256: c88243985ee7dc438aa644b70a3259fd192647a25ee9ce4f3699ab44c130b1b4
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
-relation_candidates: []
-source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean::replayE
-  availability: local
-  symbol: replayE
-  path: lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean
+- kind: def
+  name: pgwHistoryF
+  line: 16
+  signature_excerpt: 'def pgwHistoryF : List Event'
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
   repository: this_repository
-  sha256: c88243985ee7dc438aa644b70a3259fd192647a25ee9ce4f3699ab44c130b1b4
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pgwHistoryL_replays
+  line: 20
+  signature_excerpt: |-
+    theorem pgwHistoryL_replays :
+        replayE pgwHistoryL genesis = some R2L
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwHistoryF_replays
+  line: 24
+  signature_excerpt: |-
+    theorem pgwHistoryF_replays :
+        replayE pgwHistoryF genesis = some R2F
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwR2L_ne_R2F
+  line: 28
+  signature_excerpt: 'theorem pgwR2L_ne_R2F : R2L ≠ R2F'
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwReplay_ne
+  line: 31
+  signature_excerpt: |-
+    theorem pgwReplay_ne :
+        replayE pgwHistoryL genesis ≠ replayE pgwHistoryF genesis
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwData_counts
+  line: 35
+  signature_excerpt: 'theorem pgwData_counts : R2L.data = 2 ∧ R2F.data = 3'
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwReqs
+  line: 38
+  signature_excerpt: 'theorem pgwReqs : R2L.reqs = [(0, 1)] ∧ R2F.reqs = [(1, 2)]'
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwEmpty_carriers
+  line: 41
+  signature_excerpt: |-
+    theorem pgwEmpty_carriers :
+        R2L.forms = [] ∧ R2L.insts = [] ∧ R2L.rules = [] ∧
+          R2F.forms = [] ∧ R2F.insts = [] ∧ R2F.rules = []
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwHistory_lengths
+  line: 46
+  signature_excerpt: |-
+    theorem pgwHistory_lengths :
+        pgwHistoryL.length = 7 ∧ pgwHistoryF.length = 8
+  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryL_replays
+  availability: local
+  symbol: pgwHistoryL_replays
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
-  line: 192
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryF_replays
+  availability: local
+  symbol: pgwHistoryF_replays
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwR2L_ne_R2F
+  availability: local
+  symbol: pgwR2L_ne_R2F
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReplay_ne
+  availability: local
+  symbol: pgwReplay_ne
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwData_counts
+  availability: local
+  symbol: pgwData_counts
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 35
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReqs
+  availability: local
+  symbol: pgwReqs
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 38
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwEmpty_carriers
+  availability: local
+  symbol: pgwEmpty_carriers
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 41
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistory_lengths
+  availability: local
+  symbol: pgwHistory_lengths
+  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  repository: this_repository
+  sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay
   availability: external
