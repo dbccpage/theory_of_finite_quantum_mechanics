@@ -1,0 +1,157 @@
+{
+  "number": 323,
+  "original_head": "f225bc5cf4fd568d9fa84bf8b63c720f84a9438f",
+  "level": "L2",
+  "meaning": "The two-datum imported U0 and U1 regimes have an explicit swap isomorphism and equal exhaustive keys; the supplied binary BL regime is not isomorphic and its key differs. This uses an imported general classification theorem for three closed fixtures. No Python implementation refinement, budget-truncated search soundness, or exported-run orbit comparison is proved.",
+  "baseline": {
+    "number": 323,
+    "head": "f225bc5cf4fd568d9fa84bf8b63c720f84a9438f",
+    "source": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+    "sha256": "c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/pgw-isomorphism-soundness-in-lean.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.1,
+        "output": "checked 32 claims, failures 0\r\nU0 key (2, [1], [(0, [0])], [], [(0, 1)])\r\nBL key (2, [2], [(0, [0, 1])], [], [(0, 1)])\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 2.53,
+        "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 21 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignPgwIsomorphismSoundnessInLean.lean (new or not grandfathered)\n  lean4/CampaignPgwIsomorphismSoundnessInLean.lean: [MISSING_COMPANION] expected companion lean4/CampaignPgwIsomorphismSoundnessInLean.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 7fc7d341b9364e05bff1e812b32ae3790e063a9bf3208ec5e56d97515a9f0519, found 81a117a157f31abd26a003ae13a338d05d2d1e09661778867aab7e5d733cb9fd\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.58,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwIsomorphismSoundnessInLean.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 1fa451fe1eac), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.87,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwIsomorphismSoundnessInLean.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 10.32,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 1.24,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nFAIL view theory_of_finite_qm.jsonl differs from derivation_dag.json; run dag/render_dag_views.py --write\r\nnodes=925 routes=934 records=977 failures=4\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignPgwIsomorphismSoundnessInLean"
+        ],
+        "exit_code": 0,
+        "seconds": 19.55,
+        "output": "✔ [2/19] Built Imported.Genesis19l57g1.Derivation.Pigeonhole (1.3s)\n✔ [3/19] Built Imported.Genesis19l57g1.Derivation.Basic (1.7s)\n✔ [4/19] Built Imported.Genesis19l57g1.Derivation.Inertia (1.2s)\n✔ [5/19] Built Imported.Genesis19l57g1.Derivation.CountTransport (1.2s)\n⚠ [6/19] Built Imported.Genesis19l57g1.Derivation.Ext (1.2s)\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:108:30: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:110:30: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:120:30: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:120:41: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:123:30: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:124:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:130:30: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:130:41: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:133:30: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:134:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\n✔ [7/19] Built Imported.Genesis19l57g1.Derivation.Counting (1.2s)\n⚠ [8/19] Built Imported.Genesis19l57g1.Derivation.Minimality (1.4s)\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:145:16: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:149:16: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:320:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:326:6: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:399:14: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:403:14: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:414:18: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:418:18: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:438:20: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:442:16: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\n⚠ [9/19] Built Imported.Genesis19l57g1.Derivation.TransitionTransport (1.4s)\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:437:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:437:21: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:439:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:439:21: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:449:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:449:21: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:451:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:451:21: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:485:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:485:34: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:499:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:499:50: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:667:6: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:667:25: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:699:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:713:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:734:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\n✔ [10/19] Built Imported.Genesis19l57g1.Derivation.FormRenaming (1.4s)\n✔ [11/19] Built Imported.Genesis19l57g1.Derivation.IsoCollapse (862ms)\n⚠ [12/19] Built Imported.Genesis19l57g1.Derivation.Rounds (964ms)\nwarning: Imported/Genesis19l57g1/Derivation/Rounds.lean:372:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Rounds.lean:380:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\n✔ [13/19] Built Imported.Genesis19l57g1.Derivation.IsoCanon (891ms)\n✔ [14/19] Built Imported.Genesis19l57g1.PaperCanonical (846ms)\n✔ [15/19] Built Imported.Genesis19l57g1.PaperOrbit (1.1s)\n✔ [16/19] Built Imported.Genesis19l57g1.PaperWire (1.1s)\n⚠ [17/19] Built Imported.Genesis19l57g1.PaperSearch (896ms)\nwarning: Imported/Genesis19l57g1/PaperSearch.lean:226:19: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/PaperSearch.lean:233:19: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nℹ [18/19] Built CampaignPgwIsomorphismSoundnessInLean (800ms)\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:114:0: 'pgwIso_U0_U1' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:115:0: 'pgwIso_U0_wf' depends on axioms: [propext]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:116:0: 'pgwIso_U1_wf' depends on axioms: [propext]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:117:0: 'pgwIso_BL_wf' depends on axioms: [propext]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:118:0: 'pgwIso_set_collections' does not depend on any axioms\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:119:0: 'pgwIso_candidate_counts' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:120:0: 'pgwIso_keys_eq' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:121:0: 'pgwIso_keys_ne' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:122:0: 'pgwIso_U0_not_BL' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (19 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-isomorphism-soundness-in-lean.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.14,
+      "output": "checked 32 claims, failures 0\r\nU0 key (2, [1], [(0, [0])], [], [(0, 1)])\r\nBL key (2, [2], [(0, [0, 1])], [], [(0, 1)])\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-isomorphism-soundness-in-lean.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.42,
+      "output": "checked 32 claims, failures 0\r\nU0 key (2, [1], [(0, [0])], [], [(0, 1)])\r\nBL key (2, [2], [(0, [0, 1])], [], [(0, 1)])\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignPgwIsomorphismSoundnessInLean"
+      ],
+      "exit_code": 0,
+      "seconds": 19.55,
+      "output": "✔ [2/19] Built Imported.Genesis19l57g1.Derivation.Pigeonhole (1.3s)\n✔ [3/19] Built Imported.Genesis19l57g1.Derivation.Basic (1.7s)\n✔ [4/19] Built Imported.Genesis19l57g1.Derivation.Inertia (1.2s)\n✔ [5/19] Built Imported.Genesis19l57g1.Derivation.CountTransport (1.2s)\n⚠ [6/19] Built Imported.Genesis19l57g1.Derivation.Ext (1.2s)\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:108:30: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:110:30: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:120:30: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:120:41: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:123:30: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:124:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:130:30: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:130:41: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:133:30: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Ext.lean:134:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\n✔ [7/19] Built Imported.Genesis19l57g1.Derivation.Counting (1.2s)\n⚠ [8/19] Built Imported.Genesis19l57g1.Derivation.Minimality (1.4s)\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:145:16: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:149:16: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:320:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:326:6: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:399:14: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:403:14: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:414:18: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:418:18: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:438:20: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Minimality.lean:442:16: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\n⚠ [9/19] Built Imported.Genesis19l57g1.Derivation.TransitionTransport (1.4s)\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:437:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:437:21: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:439:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:439:21: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:449:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:449:21: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:451:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:451:21: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:485:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:485:34: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:499:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:499:50: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:667:6: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:667:25: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:699:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:713:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:734:8: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\n✔ [10/19] Built Imported.Genesis19l57g1.Derivation.FormRenaming (1.4s)\n✔ [11/19] Built Imported.Genesis19l57g1.Derivation.IsoCollapse (862ms)\n⚠ [12/19] Built Imported.Genesis19l57g1.Derivation.Rounds (964ms)\nwarning: Imported/Genesis19l57g1/Derivation/Rounds.lean:372:10: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/Derivation/Rounds.lean:380:10: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\n✔ [13/19] Built Imported.Genesis19l57g1.Derivation.IsoCanon (891ms)\n✔ [14/19] Built Imported.Genesis19l57g1.PaperCanonical (846ms)\n✔ [15/19] Built Imported.Genesis19l57g1.PaperOrbit (1.1s)\n✔ [16/19] Built Imported.Genesis19l57g1.PaperWire (1.1s)\n⚠ [17/19] Built Imported.Genesis19l57g1.PaperSearch (896ms)\nwarning: Imported/Genesis19l57g1/PaperSearch.lean:226:19: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲\nwarning: Imported/Genesis19l57g1/PaperSearch.lean:233:19: `if_neg` has been deprecated: Use `ite_eq_right` instead\n\nHint: Replace the deprecated name:\n  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲\nℹ [18/19] Built CampaignPgwIsomorphismSoundnessInLean (800ms)\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:114:0: 'pgwIso_U0_U1' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:115:0: 'pgwIso_U0_wf' depends on axioms: [propext]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:116:0: 'pgwIso_U1_wf' depends on axioms: [propext]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:117:0: 'pgwIso_BL_wf' depends on axioms: [propext]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:118:0: 'pgwIso_set_collections' does not depend on any axioms\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:119:0: 'pgwIso_candidate_counts' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:120:0: 'pgwIso_keys_eq' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:121:0: 'pgwIso_keys_ne' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwIsomorphismSoundnessInLean.lean:122:0: 'pgwIso_U0_not_BL' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (19 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "404098572605311efcc9e701ee0c0ad1f86002306ec17701a4acc803d37821e6",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b",
+  "structure_observation": {
+    "source_lines": 122,
+    "theorem_count": 8,
+    "axiom_print_count": 9,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
