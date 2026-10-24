@@ -1039,3 +1039,7 @@ lean_lib CampaignDfmReggeGravityFence where
 
 lean_lib CampaignDfmRelationalTimeFence where
   roots := #[`CampaignDfmRelationalTimeFence]
+
+-- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
+lean_lib CampaignFspImaginaryMuRealDet where
+  roots := #[`CampaignFspImaginaryMuRealDet]
