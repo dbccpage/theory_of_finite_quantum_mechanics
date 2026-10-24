@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 15. Grades: E0 8, E1 7. Statuses: SOURCE_RECORD 11, OPEN 4.
+Nodes: 15. Grades: E0 8, E1 6, E3 1. Statuses: SOURCE_RECORD 11, OPEN 4.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -18,7 +18,7 @@ Nodes: 15. Grades: E0 8, E1 7. Statuses: SOURCE_RECORD 11, OPEN 4.
 | [TFQ-0103](../nodes/TFQ-0103.md) | `SOURCE_RECORD` | E0 | The constraint-closure ledger records a Ponzano-Regge style bound: a fixed-angle linear functional moves by at most the l1 distance of th... | none in this checkout | - |
 | [TFQ-0104](../nodes/TFQ-0104.md) | `SOURCE_RECORD` | E1 | finite_spinfoam.rs holds two finite cyclotomic models of boundary amplitudes and a Pachner constraint. On eight admissible binary boundar... | [finite_spinfoam.rs](../../../code/rust/src/qm/finite_spinfoam.rs) | - |
 | [TFQ-0105](../nodes/TFQ-0105.md) | `SOURCE_RECORD` | E1 | spin_foam.rs computes exact finite recoupling for SU(2) at level 2, with twice-spin labels restricted to 0, 1, and 2 and scalars in a qua... | [spin_foam.rs](../../../code/rust/src/general_relativity/spin_foam.rs)<br>[lib.rs](../../../code/rust/src/wdp/lib.rs) | - |
-| [TFQ-0106](../nodes/TFQ-0106.md) | `OPEN` | E1 | derive_cosmological_constant_residual builds a float mean of hinge terms that mix a deficit angle with a sine and a supplied Immirzi numb... | [cosmological_constant.rs](../../../code/rust/src/general_relativity/cosmological_constant.rs) | - |
+| [TFQ-0106](../nodes/TFQ-0106.md) | `OPEN` | E3 | derive_cosmological_constant_residual builds a float mean of hinge terms that mix a deficit angle with a sine and a supplied Immirzi numb... | [CampaignTfq0106FiniteQg.lean](../../../lean4/CampaignTfq0106FiniteQg.lean): `anisotropic_curvature_vanishing_scalar_mean_fence`, `anisotropic_profile_violates_tensorial_einstein`, `any_target_lambda_achievable_by_cell_volume_calibration` +9<br>[cosmological_constant.rs](../../../code/rust/src/general_relativity/cosmological_constant.rs)<br>[tfq-0106.py](../../../checks/independent/tfq-0106.py)<br>[tfq-0106.md](../../../dag/derivations/independent/tfq-0106.md)<br>+3 more file(s) | - |
 | [TFQ-0107](../nodes/TFQ-0107.md) | `OPEN` | E1 | field_equation.rs and hamiltonian_constraint.rs write discrete Einstein-Regge and Wheeler-DeWitt formulae, including a Lambda term, over... | [field_equation.rs](../../../code/rust/src/general_relativity/field_equation.rs)<br>[hamiltonian_constraint.rs](../../../code/rust/src/general_relativity/hamiltonian_constraint.rs) | - |
 | [TFQ-0109](../nodes/TFQ-0109.md) | `SOURCE_RECORD` | E1 | regge_gravity_ghz_chern_finite_map.md records rational identities: post-Newtonian factors, three-qubit eigenvalues, a four-tick history,... | [FiniteQFTAndGravity.lean](../../../lean4/FiniteQFTAndGravity.lean) | - |
 

@@ -10689,11 +10689,20 @@
       "stage": "FINITE_QG",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 09)",
-      "statement": "derive_cosmological_constant_residual builds a float mean of hinge terms that mix a deficit angle with a sine and a supplied Immirzi number, then divides by a cell-volume parameter. The function's Track B note says a continuum magnitude near the quoted dark-energy scale still needs an external lattice-volume calibration. What is finite is that floating residual on a default valency list. What is not discharged is the physical cosmological constant, which stays GAP, and the Einstein equation. A few hinges are not a measured Lambda and not quantum gravity.",
+      "statement": "derive_cosmological_constant_residual builds a float mean of hinge terms that mix a deficit angle with a sine and a supplied Immirzi number, then divides by a cell-volume parameter. The function's Track B note says a continuum magnitude near the quoted dark-energy scale still needs an external lattice-volume calibration. What is finite is that floating residual on a default valency list. What is not discharged is the physical cosmological constant, which stays GAP, and the Einstein equation. A few hinges are not a measured Lambda and not quantum gravity. Narrowed in Lean 4 and an independent Python verifier to three exact rational algebraic components and scope fences over Q: (1) exact rational replay of CosmologicalCoupling::effective_scalar_curvature and evaluate_action in code/rust/src/general_relativity/cosmological_constant.rs (rust_cosmological_action_unit_test_replay, cosmological_action_zero_iff_curvature_balance, cosmological_action_scaling_and_invariance); (2) the external cell-volume calibration underdetermination fence showing that H / V_cell scales as s^-4 under 4D length rescaling and can match any nonzero target Lambda_target by choosing V_cell = H / Lambda_target (cell_volume_4d_length_rescaling, any_target_lambda_achievable_by_cell_volume_calibration, cell_volume_calibration_injective, immirzi_and_cell_volume_scale_degeneracy, default_valency_scaffold_calibration_spread); and (3) the 1-scalar vs. 10-component 4D symmetric Einstein tensor fence showing that anisotropic profiles (Lambda + delta, Lambda - delta, Lambda, Lambda) have vanishing scalar mean residual while violating the componentwise Einstein equation with squared residual 2 * delta^2 > 0 (four_dim_symmetric_tensor_component_counts, anisotropic_curvature_vanishing_scalar_mean_fence, anisotropic_profile_violates_tensorial_einstein, diagonal_einstein_iff_sq_residual_zero).",
       "source": [
-        "dag/derivations/19_finite_qg/tfq_0106_gap_the_physical_cosmological_constant_is_not_discharged_the_rust_carrier_is.md"
+        "dag/derivations/19_finite_qg/tfq_0106_gap_the_physical_cosmological_constant_is_not_discharged_the_rust_carrier_is.md",
+        "dag/derivations/independent/tfq-0106.md",
+        "checks/independent/tfq-0106.py",
+        "lean4/CampaignTfq0106FiniteQg.lean",
+        "code/rust/src/general_relativity/cosmological_constant.rs",
+        "dag/research/campaign_tfq-0106_lean_replay.json",
+        "dag/research/campaign_tfq-0106_lean_mutation.json",
+        "dag/research/campaign_tfq-0106_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0106FiniteQg.lean"
+      ],
       "rust": [
         "code/rust/src/general_relativity/cosmological_constant.rs"
       ],
@@ -44612,17 +44621,25 @@
         "TFQ-0106"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/l1_topological_defects.py",
-        "omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/tests/test_fermion_and_cosmological_constant_derivations.py"
+        "dag/derivations/19_finite_qg/tfq_0106_gap_the_physical_cosmological_constant_is_not_discharged_the_rust_carrier_is.md",
+        "dag/derivations/independent/tfq-0106.md",
+        "checks/independent/tfq-0106.py",
+        "lean4/CampaignTfq0106FiniteQg.lean",
+        "code/rust/src/general_relativity/cosmological_constant.rs",
+        "dag/research/campaign_tfq-0106_lean_replay.json",
+        "dag/research/campaign_tfq-0106_lean_mutation.json",
+        "dag/research/campaign_tfq-0106_independent.json"
       ],
       "id": "TFQ-0106",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0106FiniteQg.lean"
+      ],
       "local_id": "A09-021",
       "name": "GAP: the physical cosmological constant is not discharged. The Rust carrier is",
       "obligation": "GAP: the physical cosmological constant is not discharged. The Rust carrier is only a degree-and-label scaffold.",
       "parent_id": "TFQ-0105",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/l1_topological_defects.py"
+        "checks/independent/tfq-0106.py"
       ],
       "record_status": "GAP",
       "rust": [
@@ -44630,7 +44647,7 @@
       ],
       "source_slice": "09",
       "stage": "FINITE_QG",
-      "summary": "derive_cosmological_constant_residual builds a float mean of hinge terms that mix a deficit angle with a sine and a supplied Immirzi number, then divides by a cell-volume parameter. The function's Track B note says a continuum magnitude near the quoted dark-energy scale still needs an external lattice-volume calibration. What is finite is that floating residual on a default valency list. What is not discharged is the physical cosmological constant, which stays GAP, and the Einstein equation. A few hinges are not a measured Lambda and not quantum gravity.",
+      "summary": "derive_cosmological_constant_residual builds a float mean of hinge terms that mix a deficit angle with a sine and a supplied Immirzi number, then divides by a cell-volume parameter. The function's Track B note says a continuum magnitude near the quoted dark-energy scale still needs an external lattice-volume calibration. What is finite is that floating residual on a default valency list. What is not discharged is the physical cosmological constant, which stays GAP, and the Einstein equation. A few hinges are not a measured Lambda and not quantum gravity. Narrowed in Lean 4 and an independent Python verifier to three exact rational algebraic components and scope fences over Q: (1) exact rational replay of CosmologicalCoupling::effective_scalar_curvature and evaluate_action in code/rust/src/general_relativity/cosmological_constant.rs (rust_cosmological_action_unit_test_replay, cosmological_action_zero_iff_curvature_balance, cosmological_action_scaling_and_invariance); (2) the external cell-volume calibration underdetermination fence showing that H / V_cell scales as s^-4 under 4D length rescaling and can match any nonzero target Lambda_target by choosing V_cell = H / Lambda_target (cell_volume_4d_length_rescaling, any_target_lambda_achievable_by_cell_volume_calibration, cell_volume_calibration_injective, immirzi_and_cell_volume_scale_degeneracy, default_valency_scaffold_calibration_spread); and (3) the 1-scalar vs. 10-component 4D symmetric Einstein tensor fence showing that anisotropic profiles (Lambda + delta, Lambda - delta, Lambda, Lambda) have vanishing scalar mean residual while violating the componentwise Einstein equation with squared residual 2 * delta^2 > 0 (four_dim_symmetric_tensor_component_counts, anisotropic_curvature_vanishing_scalar_mean_fence, anisotropic_profile_violates_tensorial_einstein, diagonal_einstein_iff_sq_residual_zero).",
       "uuid": "37e6c1a1-38a5-56fc-829b-b07e176cf4a3"
     },
     {
