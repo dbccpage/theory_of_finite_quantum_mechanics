@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -38,7 +38,7 @@ ledger: LEAN PROVED (RECEIPTED); H008/H009 headers: "Candidate only. Not PROVEN.
 
 ## Review
 
-- PFP review: [dag/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-PHASE-FIBER-QUOTIENT/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Source phase-equivalence and relative/global-phase kernel statements are rechecked; the full single-coordinate norm25 integer fiber has twelve points while the declared unit orbit has four.
   - does not support: Relate multi-report unit-group orbits to the intended quotient without identifying an orbit with the full norm fiber. A general finite-group action/quotient operad and coherence proof remain open.
   - next test: Relate multi-report unit-group orbits to the intended quotient without identifying an orbit with the full norm fiber. A general finite-group action/quotient operad and coherence proof remain open.

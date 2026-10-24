@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ paper s13.8.3; ContextualityObstruction.lean compiles a d0^2=0 cochain complex a
 
 ## Review
 
-- PFP review: [dag/results/FQ-CONTEXTUALITY-CECH-F2/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-CONTEXTUALITY-CECH-F2/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-CONTEXTUALITY-CECH-F2/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-CONTEXTUALITY-CECH-F2/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Two explicit degree-two parity covers and a genuine global-section control, exact matrices/ranks and literal source kernel parity/differential signatures.
   - does not support: Conflation of incidence rank with overlap rank, general sheaf equivalence, a kernel proof of the native rank outputs, or physical reconstruction.
   - next test: Challenge a matrix entry, rank, discrepancy, annihilator or global section and preserve actual coordinate maps.

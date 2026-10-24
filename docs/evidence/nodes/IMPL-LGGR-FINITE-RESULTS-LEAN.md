@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ MECHANIZED in LggrFiniteResults.lean (B1, B2', B11, B11', and Part 6 LP dual 2/3
 
 ## Review
 
-- PFP review: [dag/results/IMPL-LGGR-FINITE-RESULTS-LEAN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/IMPL-LGGR-FINITE-RESULTS-LEAN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/IMPL-LGGR-FINITE-RESULTS-LEAN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/IMPL-LGGR-FINITE-RESULTS-LEAN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Actual bounded cycle sections, gate fields, triangle primal mixture and matching2/3 dual controls are exact; the conditional source-model gate equivalence and attainment arithmetic are kernel checked.
   - does not support: Prove the external Rust gate/representation and arbitrary LP/cycle refinements. Proposition II-open and physical-selection claims remain open; a census/route partition is not this proof.
   - next test: Prove the external Rust gate/representation and arbitrary LP/cycle refinements. Proposition II-open and physical-selection claims remain open; a census/route partition is not this proof.

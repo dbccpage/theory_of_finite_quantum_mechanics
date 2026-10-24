@@ -3,25 +3,42 @@ node_id: CT-INFORMATION-MEDIA-INTEROPERABILITY
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563,
-    Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for
-    which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable
-    if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for
-    some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable
-    computation variable, and an information medium is a substrate with at least one information variable
-    (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping
-    into an information variable, avoiding circularity, and every information variable is then shown to
-    be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1
-    + S2 of two substrates with information variables S1 and S2 is an information medium with information
-    variable S1 x S2.'
+  source_statement: 'Imported principle (Deutsch-Marletto Principle III): the composite of two information
+    media is an information medium whose information variable is the Cartesian product of the component
+    information variables, and information can be copied from one medium to another. This gives Cartesian
+    product of attribute sets at the level of information variables, not yet the complex Hilbert tensor
+    product of quantum state spaces. Narrowed in Lean 4 and an independent Python verifier to exact finite/algebraic
+    components and non-selection fences: (1) on ZMod n, cnotClone n (x, y) = (x, x + y) and cnotUnclone
+    n (x, y) = (x, y - x) are two-sided inverses so cnotClone n is a bijection that clones every x from
+    blank 0 and is an involution for n = 2; (2) Fin 1 has 1 permutation and no distinct attributes whereas
+    Fin (n + 2) has distinct attributes 0 != 1 swapped by Equiv.swap 0 1, and any injective encoding separates
+    distinct attributes after cloning; (3) for composite media ZMod n1 x ZMod n2, componentwise cloning
+    compositeClone n1 n2 is bijective with blank (0, 0), |Fin d1 x Fin d2| = d1 * d2, and cross-medium
+    copy composed with any target permutation pi realizes (x1, pi x1); and (4) Principle III does not
+    discharge FQ-GAP-TENSOR-UNIQUENESS because 2-qubit CNOT maps the superposition (1, 0, 1, 0) to the
+    entangled Bell state (1, 0, 0, 1) with Schmidt determinant 1 != 0, the 4-element attribute set Fin
+    2 x Fin 2 is shared by four distinct composite state-space dimensions (classical simplex 3 < real
+    local product 9 < real quantum symmetric 10 < complex Hermitian 16), and the quantum PSD cone and
+    Partially-Transposed (PT) cone agree on all classical diagonal matrices over {0, 1}^2 and all product
+    vectors while differing on the Bell witness evaluated on the singlet vector.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - information medium and interoperability principle (assumption)
-  source_bottleneck: The interoperability principle (Principle III, Section 6 p. 12) constrains composite
-    information variables to include S1 x S2 in the source's framework. It is not shown to select the
-    Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+  source_bottleneck: Narrowed algebraic checks only. Modular-addition maps have explicit inverses; finite-set
+    cardinalities multiply; supplied integer CNOT/Bell/partial-transpose models obey the displayed polynomial
+    identities. ZMod 0 is infinite, so the arbitrary-n theorem is algebraic rather than an exclusively
+    finite-carrier theorem. The dimension functions are declared formulas, not constructed state spaces;
+    normalized and unnormalized dimensions must not be conflated. The integer quadratic-form example does
+    not construct two full physical cone theories satisfying all constructor axioms. Status is unchanged.
+    The original physical or operational bridge remains open.
   source_refs:
   - dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md
+  - dag/derivations/independent/ct-information-media-interoperability.md
+  - checks/independent/ct-information-media-interoperability.py
+  - lean4/CampaignCtInformationMediaInteroperability.lean
+  - dag/research/campaign_ct-information-media-interoperability_lean_replay.json
+  - dag/research/campaign_ct-information-media-interoperability_lean_mutation.json
+  - dag/research/campaign_ct-information-media-interoperability_independent.json
   - external:arXiv:1405.5563
   paper_refs:
   - dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md
@@ -31,7 +48,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md
-    sha256: df0aabf17d37d88bba24f6754060aa1c7c220f393449927c48b5e2ed6a84bd98
+    sha256: 19ad3faea28577b5036c239408c353887c964612eae08be008e6dd0bfb9b1730
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -39,9 +56,397 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/constructor_theory_ct_information_media_interoperability_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: cnotUnclone
+  line: 23
+  signature_excerpt: 'def cnotUnclone (n : ℕ) (p : ZMod n × ZMod n) : ZMod n × ZMod n'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cnotClone
+  line: 19
+  signature_excerpt: 'def cnotClone (n : ℕ) (p : ZMod n × ZMod n) : ZMod n × ZMod n'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: compositeClone
+  line: 78
+  signature_excerpt: |-
+    def compositeClone (n₁ n₂ : ℕ)
+        (p : (ZMod n₁ × ZMod n₂) × (ZMod n₁ × ZMod n₂)) :
+        (ZMod n₁ × ZMod n₂) × (ZMod n₁ × ZMod n₂)
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: crossCopy
+  line: 105
+  signature_excerpt: 'def crossCopy (n : ℕ) (p : ZMod n × ZMod n) : ZMod n × ZMod n'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cnot4
+  line: 119
+  signature_excerpt: 'def cnot4 (v : ℤ × ℤ × ℤ × ℤ) : ℤ × ℤ × ℤ × ℤ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: schmidtDet4
+  line: 123
+  signature_excerpt: 'def schmidtDet4 (v : ℤ × ℤ × ℤ × ℤ) : ℤ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: classicalSimplexDim
+  line: 140
+  signature_excerpt: 'def classicalSimplexDim (d₁ d₂ : ℕ) : ℕ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: realLocalProductDim
+  line: 143
+  signature_excerpt: 'def realLocalProductDim (d₁ d₂ : ℕ) : ℕ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: realQuantumDim
+  line: 146
+  signature_excerpt: 'def realQuantumDim (d₁ d₂ : ℕ) : ℕ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: complexHermitianDim
+  line: 149
+  signature_excerpt: 'def complexHermitianDim (d₁ d₂ : ℕ) : ℕ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: partialTranspose4
+  line: 182
+  signature_excerpt: 'def partialTranspose4 (M : Matrix (Fin 4) (Fin 4) ℤ) : Matrix (Fin 4) (Fin 4) ℤ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: partialTransposeIndex
+  line: 174
+  signature_excerpt: 'def partialTransposeIndex (i j : Fin 4) : Fin 4 × Fin 4'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: prodVec4
+  line: 208
+  signature_excerpt: 'def prodVec4 (u0 u1 v0 v1 : ℤ) : Fin 4 → ℤ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: singletVec
+  line: 205
+  signature_excerpt: 'def singletVec : Fin 4 → ℤ'
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: cnotClone_bijective_and_clones_zero
+  line: 27
+  signature_excerpt: |-
+    theorem cnotClone_bijective_and_clones_zero (n : ℕ) :
+        (∀ p : ZMod n × ZMod n, cnotUnclone n (cnotClone n p) = p) ∧
+        (∀ p : ZMod n × ZMod n, cnotClone n (cnotUnclone n p) = p) ∧
+        Function.Bijective (cnotClone n) ∧
+        (∀ x : ZMod n, cnotClone n (x, 0) = (x, x))
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cnotClone_zmod2_involutive
+  line: 45
+  signature_excerpt: |-
+    theorem cnotClone_zmod2_involutive (p : ZMod 2 × ZMod 2) :
+        cnotClone 2 (cnotClone 2 p) = p
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: singleton_not_computation_variable_fence
+  line: 51
+  signature_excerpt: |-
+    theorem singleton_not_computation_variable_fence (n : ℕ) :
+        (∀ x y : Fin 1, x = y) ∧
+        Fintype.card (Equiv.Perm (Fin 1)) = 1 ∧
+        ((0 : Fin (n + 2)) ≠ (1 : Fin (n + 2))) ∧
+        Equiv.swap (0 : Fin (n + 2)) (1 : Fin (n + 2)) (0 : Fin (n + 2)) = (1 : Fin (n + 2))
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: clonable_computation_implies_distinguishable
+  line: 64
+  signature_excerpt: |-
+    theorem clonable_computation_implies_distinguishable {X Y : Type*} (n : ℕ)
+        (f : X → ZMod n) (g : ZMod n → Y) (x y : X) :
+        (Function.Injective f → x ≠ y → cnotClone n (f x, 0) ≠ cnotClone n (f y, 0)) ∧
+        (f x = f y → g (f x) = g (f y))
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: principle_III_composite_cloning_and_cardinality
+  line: 90
+  signature_excerpt: |-
+    theorem principle_III_composite_cloning_and_cardinality (n₁ n₂ d₁ d₂ : ℕ) :
+        Function.Bijective (compositeClone n₁ n₂) ∧
+        (∀ x₁ : ZMod n₁, ∀ x₂ : ZMod n₂,
+          compositeClone n₁ n₂ ((x₁, x₂), (0, 0)) = ((x₁, x₂), (x₁, x₂))) ∧
+        Fintype.card (Fin d₁ × Fin d₂) = d₁ * d₂
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cross_medium_copy_transfer
+  line: 109
+  signature_excerpt: |-
+    theorem cross_medium_copy_transfer (n : ℕ) (π : Equiv.Perm (ZMod n)) (x₁ : ZMod n) :
+        Function.Bijective (crossCopy n) ∧
+        crossCopy n (x₁, 0) = (x₁, x₁) ∧
+        Prod.map id π (crossCopy n (x₁, 0)) = (x₁, π x₁)
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unitary_cnot_clones_computational_basis_not_superposition_fence
+  line: 127
+  signature_excerpt: |-
+    theorem unitary_cnot_clones_computational_basis_not_superposition_fence
+        (u0 u1 v0 v1 : ℤ) :
+        cnot4 (1, 0, 0, 0) = (1, 0, 0, 0) ∧
+        cnot4 (0, 0, 1, 0) = (0, 0, 0, 1) ∧
+        cnot4 (1, 0, 1, 0) = (1, 0, 0, 1) ∧
+        cnot4 (1, 0, 1, 0) ≠ (1, 1, 1, 1) ∧
+        schmidtDet4 (cnot4 (1, 0, 1, 0)) = 1 ∧
+        schmidtDet4 (u0 * v0, u0 * v1, u1 * v0, u1 * v1) = 0
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: composite_state_space_dimension_trichotomy_fence
+  line: 152
+  signature_excerpt: |-
+    theorem composite_state_space_dimension_trichotomy_fence :
+        Fintype.card (Fin 2 × Fin 2) = 4 ∧
+        classicalSimplexDim 2 2 = 3 ∧
+        realLocalProductDim 2 2 = 9 ∧
+        realQuantumDim 2 2 = 10 ∧
+        complexHermitianDim 2 2 = 16 ∧
+        classicalSimplexDim 2 2 < realLocalProductDim 2 2 ∧
+        realLocalProductDim 2 2 < realQuantumDim 2 2 ∧
+        realQuantumDim 2 2 < complexHermitianDim 2 2
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: real_vs_complex_bilinear_tomography_fence
+  line: 164
+  signature_excerpt: |-
+    theorem real_vs_complex_bilinear_tomography_fence (d₁ d₂ : ℕ) (z₁ z₂ : ℤ) :
+        complexHermitianDim d₁ d₂ = complexHermitianDim d₁ 1 * complexHermitianDim 1 d₂ ∧
+        (z₁ * z₂ * (z₁ * z₂ + 1) * 2 - z₁ * (z₁ + 1) * (z₂ * (z₂ + 1)) =
+          z₁ * z₂ * (z₁ - 1) * (z₂ - 1))
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: psd_vs_pt_cone_classical_interoperability_agreement_fence
+  line: 188
+  signature_excerpt: |-
+    theorem psd_vs_pt_cone_classical_interoperability_agreement_fence (d : Fin 4 → ℤ) :
+        partialTranspose4 (Matrix.diagonal d) = Matrix.diagonal d
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: psd_vs_pt_cone_bell_witness_separation_fence
+  line: 212
+  signature_excerpt: |-
+    theorem psd_vs_pt_cone_bell_witness_separation_fence
+        (w : Fin 4 → ℤ) (u0 u1 v0 v1 : ℤ) :
+        dotProduct w (bellState4.mulVec w) = (w 0 + w 3) ^ 2 ∧
+        0 ≤ dotProduct w (bellState4.mulVec w) ∧
+        dotProduct (prodVec4 u0 u1 v0 v1) (swapWitness4.mulVec (prodVec4 u0 u1 v0 v1)) =
+          (u0 * v0 + u1 * v1) ^ 2 ∧
+        dotProduct singletVec (bellState4.mulVec singletVec) = 0 ∧
+        dotProduct singletVec (swapWitness4.mulVec singletVec) = -2
+  source: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  source_sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.cnotClone_bijective_and_clones_zero
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.cnotClone_bijective_and_clones_zero
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 27
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.cnotClone_zmod2_involutive
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.cnotClone_zmod2_involutive
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 45
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.singleton_not_computation_variable_fence
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.singleton_not_computation_variable_fence
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.clonable_computation_implies_distinguishable
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.clonable_computation_implies_distinguishable
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.principle_III_composite_cloning_and_cardinality
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.principle_III_composite_cloning_and_cardinality
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.cross_medium_copy_transfer
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.cross_medium_copy_transfer
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 109
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.unitary_cnot_clones_computational_basis_not_superposition_fence
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.unitary_cnot_clones_computational_basis_not_superposition_fence
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 127
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.composite_state_space_dimension_trichotomy_fence
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.composite_state_space_dimension_trichotomy_fence
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 152
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.real_vs_complex_bilinear_tomography_fence
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.real_vs_complex_bilinear_tomography_fence
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 164
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_classical_interoperability_agreement_fence
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_classical_interoperability_agreement_fence
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 188
+  role: source_lead_only
+- original_ref: lean4/CampaignCtInformationMediaInteroperability.lean::CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_bell_witness_separation_fence
+  availability: local
+  symbol: CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_bell_witness_separation_fence
+  path: lean4/CampaignCtInformationMediaInteroperability.lean
+  repository: this_repository
+  sha256: 4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4
+  declaration_status: declaration_found_not_proof_checked
+  line: 212
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -81,8 +486,6 @@ operad_slots:
     - information medium and interoperability principle (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

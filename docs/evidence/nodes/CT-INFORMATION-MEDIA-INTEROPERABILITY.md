@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/ct-information-media-interoperability.py`
 
 - file: [checks/independent/ct-information-media-interoperability.py](../../../checks/independent/ct-information-media-interoperability.py)
-- sha256 (`bytes`): `cd347d4c7b547ce220cdc49e07fdf2037a505b25e685ac64cdc7a48570533f9a`
+- sha256 (`bytes`): `2f2eed1e1ff96004a1c1f95b9de7b297f1af2d2e7bfcb88c029a8c6695d3d24d`
 - cited in: node.source, record TFQ-2006
 - counts toward the grade: yes
 
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ct-information-media-interoperability_independent.json`
 
 - file: [dag/research/campaign_ct-information-media-interoperability_independent.json](../../../dag/research/campaign_ct-information-media-interoperability_independent.json)
-- sha256 (`lf-normalised`): `112fe012855df8be9ba74357a58374bb47a201ff04f0aa04271f3323df1fe798`
+- sha256 (`lf-normalised`): `f78e9f05659cd1e05b9d4a0e57548fd25b6635858b267799496450396350c62d`
 - cited in: node.source
 - counts toward the grade: yes
 

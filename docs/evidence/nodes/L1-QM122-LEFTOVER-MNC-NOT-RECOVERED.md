@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ QM-122-C31..C37 eight-extra finish table (3 derived, 4 conditional, 1 false), Z\
 
 ## Review
 
-- PFP review: [dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: All matrix-unit products and noncommutativity are exact, alongside Gaussian unit/nonunit controls; generic matrix-unit scalar multiplication and a commutator control in Lean.
   - does not support: Recover the claimed complex field, circle, Born uniqueness, tensor/CPTP class, continuous time and source carrier maps, or retain them as admitted. A finish table is not completion evidence.
   - next test: Recover the claimed complex field, circle, Born uniqueness, tensor/CPTP class, continuous time and source carrier maps, or retain them as admitted. A finish table is not completion evidence.

@@ -1,32 +1,28 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: ADS-HAPPY-TOY-NOT-DUALITY-GAP
 authority_effect: None
-collection_status: narrowed_finite_stabilizer_non_duality_fences_bound
+collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'No source read for this change derives AdS/CFT, or its continuum
-    entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes
-    are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling
-    with no Lorentzian time, no dynamics, no gravitational action and no large-N limit.
-    Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence
-    fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 =
-    1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi
-    ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n
-    - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1 > 0; (2) on the 20-qubit boundary state
-    of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L>), all 280 contiguous
-    intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths
-    8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A)
-    = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit
-    start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 < 5 = mincut); and
-    (3) disconnected boundary regions exhibit discrete integer mutual-information
-    jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace 2^{nBulk}
-    has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512,
-    33552384 for 1, 6, and 11 pentagons).'
+  source_statement: 'No source read for this change derives AdS/CFT, or its continuum entropy formula,
+    from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the
+    bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational
+    action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact
+    non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1,
+    whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n)
+    = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 > 0 for all n > 1 and S_1
+    > 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed
+    in |0_L>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas
+    lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A)
+    - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and
+    its complement len = 12 (S = 4 < 5 = mincut); and (3) disconnected boundary regions exhibit discrete
+    integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk < nBdry the bulk code subspace
+    2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} > 0 (30, 1048512, 33552384
+    for 1, 6, and 11 pentagons).'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Recorded as an explicit non-claim and non-equivalence fence so
-    that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT;
-    Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and
-    continuum gravitational dynamics remain open.
+  source_bottleneck: Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code
+    checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement
+    spectra, sub-AdS locality, and continuum gravitational dynamics remain open.
   source_refs:
   - dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md
   - dag/derivations/independent/ads-happy-toy-not-duality-gap.md
@@ -38,8 +34,8 @@ target:
   paper_refs:
   - dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md
@@ -112,202 +108,328 @@ relation_candidates:
 - kind: theorem
   name: cftRenyiFactor_one
   line: 68
-  signature_excerpt: "theorem cftRenyiFactor_one :\n    cftRenyiFactor 1 = stabilizerRenyiFactor\
-    \ 1 ∧ cftRenyiFactor 1 = 1"
+  signature_excerpt: |-
+    theorem cftRenyiFactor_one :
+        cftRenyiFactor 1 = stabilizerRenyiFactor 1 ∧ cftRenyiFactor 1 = 1
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: recorded_cft_vs_stabilizer_renyi_factors
   line: 75
-  signature_excerpt: "theorem recorded_cft_vs_stabilizer_renyi_factors :\n    cftRenyiFactor\
-    \ 2 = 3 / 4 ∧\n      cftRenyiFactor 3 = 2 / 3 ∧\n      cftRenyiFactor 4 = 5 /\
-    \ 8 ∧\n      renyiSpectrumDefect 2 1 = 1 / 4 ∧\n      renyiSpectrumDefect 3 1\
-    \ = 1 / 3 ∧\n      renyiSpectrumDefect 4 1 = 3 / 8"
+  signature_excerpt: |-
+    theorem recorded_cft_vs_stabilizer_renyi_factors :
+        cftRenyiFactor 2 = 3 / 4 ∧
+          cftRenyiFactor 3 = 2 / 3 ∧
+          cftRenyiFactor 4 = 5 / 8 ∧
+          renyiSpectrumDefect 2 1 = 1 / 4 ∧
+          renyiSpectrumDefect 3 1 = 1 / 3 ∧
+          renyiSpectrumDefect 4 1 = 3 / 8
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: cftRenyiFactor_sub_half
   line: 87
-  signature_excerpt: "theorem cftRenyiFactor_sub_half (n : ℚ) :\n    cftRenyiFactor\
-    \ n - 1 / 2 = 1 / (2 * n)"
+  signature_excerpt: |-
+    theorem cftRenyiFactor_sub_half (n : ℚ) :
+        cftRenyiFactor n - 1 / 2 = 1 / (2 * n)
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: renyiSpectrumDefect_formula
   line: 94
-  signature_excerpt: "theorem renyiSpectrumDefect_formula (n S1 : ℚ) (hn : n ≠ 0)\
-    \ :\n    renyiSpectrumDefect n S1 = ((n - 1) / (2 * n)) * S1"
+  signature_excerpt: |-
+    theorem renyiSpectrumDefect_formula (n S1 : ℚ) (hn : n ≠ 0) :
+        renyiSpectrumDefect n S1 = ((n - 1) / (2 * n)) * S1
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: renyiSpectrumDefect_pos_of_gt_one
   line: 102
-  signature_excerpt: "theorem renyiSpectrumDefect_pos_of_gt_one (n S1 : ℚ) (hn : 1\
-    \ < n) (hS : 0 < S1) :\n    0 < renyiSpectrumDefect n S1"
+  signature_excerpt: |-
+    theorem renyiSpectrumDefect_pos_of_gt_one (n S1 : ℚ) (hn : 1 < n) (hS : 0 < S1) :
+        0 < renyiSpectrumDefect n S1
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: cft_ne_stabilizer_renyi_of_gt_one
   line: 112
-  signature_excerpt: "theorem cft_ne_stabilizer_renyi_of_gt_one (n S1 : ℚ) (hn : 1\
-    \ < n) (hS : 0 < S1) :\n    cftRenyiFactor n * S1 ≠ stabilizerRenyiFactor n *\
-    \ S1"
+  signature_excerpt: |-
+    theorem cft_ne_stabilizer_renyi_of_gt_one (n S1 : ℚ) (hn : 1 < n) (hS : 0 < S1) :
+        cftRenyiFactor n * S1 ≠ stabilizerRenyiFactor n * S1
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: cftRenyiFactor_strict_anti
   line: 120
-  signature_excerpt: "theorem cftRenyiFactor_strict_anti (m n : ℚ) (hm : 0 < m) (hmn\
-    \ : m < n) :\n    cftRenyiFactor n < cftRenyiFactor m"
+  signature_excerpt: |-
+    theorem cftRenyiFactor_strict_anti (m n : ℚ) (hm : 0 < m) (hmn : m < n) :
+        cftRenyiFactor n < cftRenyiFactor m
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: happy_witness_start2_len8_deficit
   line: 153
-  signature_excerpt: "theorem happy_witness_start2_len8_deficit :\n    intervalEntropy\
-    \ 2 8 = 4 ∧\n      intervalMincut 2 8 = 5 ∧\n      intervalEntropy 2 8 < intervalMincut\
-    \ 2 8"
+  signature_excerpt: |-
+    theorem happy_witness_start2_len8_deficit :
+        intervalEntropy 2 8 = 4 ∧
+          intervalMincut 2 8 = 5 ∧
+          intervalEntropy 2 8 < intervalMincut 2 8
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: happy_witness_start2_len12_deficit
   line: 163
-  signature_excerpt: "theorem happy_witness_start2_len12_deficit :\n    intervalEntropy\
-    \ 2 12 = 4 ∧\n      intervalMincut 2 12 = 5 ∧\n      intervalEntropy 2 12 < intervalMincut\
-    \ 2 12"
+  signature_excerpt: |-
+    theorem happy_witness_start2_len12_deficit :
+        intervalEntropy 2 12 = 4 ∧
+          intervalMincut 2 12 = 5 ∧
+          intervalEntropy 2 12 < intervalMincut 2 12
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: happy_fivefold_rotational_deficit_orbit
   line: 173
-  signature_excerpt: "theorem happy_fivefold_rotational_deficit_orbit :\n    ((List.range\
-    \ 5).all fun k =>\n      intervalEntropy (4 * k + 2) 8 == 4 && intervalMincut\
-    \ (4 * k + 2) 8 == 5) = true"
+  signature_excerpt: |-
+    theorem happy_fivefold_rotational_deficit_orbit :
+        ((List.range 5).all fun k =>
+          intervalEntropy (4 * k + 2) 8 == 4 && intervalMincut (4 * k + 2) 8 == 5) = true
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: happy_short_and_long_intervals_exact_mincut
   line: 182
-  signature_excerpt: "theorem happy_short_and_long_intervals_exact_mincut :\n    (([1,\
-    \ 2, 3, 4, 5, 6, 7, 13, 14, 15, 16, 17, 18, 19] : List Nat).all fun len =>\n \
-    \     exactMincutCountAtLength len == 20 && deficitCountAtLength len == 0) = true"
+  signature_excerpt: |-
+    theorem happy_short_and_long_intervals_exact_mincut :
+        (([1, 2, 3, 4, 5, 6, 7, 13, 14, 15, 16, 17, 18, 19] : List Nat).all fun len =>
+          exactMincutCountAtLength len == 20 && deficitCountAtLength len == 0) = true
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: happy_deficit_distribution_by_length
   line: 192
-  signature_excerpt: "theorem happy_deficit_distribution_by_length :\n    deficitCountAtLength\
-    \ 8 = 5 ∧\n      deficitCountAtLength 9 = 10 ∧\n      deficitCountAtLength 10\
-    \ = 10 ∧\n      deficitCountAtLength 11 = 10 ∧\n      deficitCountAtLength 12\
-    \ = 5 ∧\n      deficitCountAtLength 8 + deficitCountAtLength 9 + deficitCountAtLength\
-    \ 10 +\n        deficitCountAtLength 11 + deficitCountAtLength 12 = 40"
+  signature_excerpt: |-
+    theorem happy_deficit_distribution_by_length :
+        deficitCountAtLength 8 = 5 ∧
+          deficitCountAtLength 9 = 10 ∧
+          deficitCountAtLength 10 = 10 ∧
+          deficitCountAtLength 11 = 10 ∧
+          deficitCountAtLength 12 = 5 ∧
+          deficitCountAtLength 8 + deficitCountAtLength 9 + deficitCountAtLength 10 +
+            deficitCountAtLength 11 + deficitCountAtLength 12 = 40
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: code_subspace_strict_codimension
   line: 258
-  signature_excerpt: "theorem code_subspace_strict_codimension {nBulk nBdry : Nat}\
-    \ (h : nBulk < nBdry) :\n    qubitHilbertDim nBulk < qubitHilbertDim nBdry ∧\n\
-    \      0 < codeOrthogonalCodim nBulk nBdry"
+  signature_excerpt: |-
+    theorem code_subspace_strict_codimension {nBulk nBdry : Nat} (h : nBulk < nBdry) :
+        qubitHilbertDim nBulk < qubitHilbertDim nBdry ∧
+          0 < codeOrthogonalCodim nBulk nBdry
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: recorded_happy_tiling_hilbert_codimensions
   line: 271
-  signature_excerpt: "theorem recorded_happy_tiling_hilbert_codimensions :\n    qubitHilbertDim\
-    \ 1 = 2 ∧ qubitHilbertDim 5 = 32 ∧ codeOrthogonalCodim 1 5 = 30 ∧\n      qubitHilbertDim\
-    \ 6 = 64 ∧ qubitHilbertDim 20 = 1048576 ∧ codeOrthogonalCodim 6 20 = 1048512 ∧\n\
-    \      qubitHilbertDim 11 = 2048 ∧ qubitHilbertDim 25 = 33554432 ∧\n      codeOrthogonalCodim\
-    \ 11 25 = 33552384"
+  signature_excerpt: |-
+    theorem recorded_happy_tiling_hilbert_codimensions :
+        qubitHilbertDim 1 = 2 ∧ qubitHilbertDim 5 = 32 ∧ codeOrthogonalCodim 1 5 = 30 ∧
+          qubitHilbertDim 6 = 64 ∧ qubitHilbertDim 20 = 1048576 ∧ codeOrthogonalCodim 6 20 = 1048512 ∧
+          qubitHilbertDim 11 = 2048 ∧ qubitHilbertDim 25 = 33554432 ∧
+          codeOrthogonalCodim 11 25 = 33552384
   source: lean4/CampaignAdsHappyToyNotDualityGap.lean
   repository: this_repository
   source_sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a
-    file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- language: lean4
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one
   path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 75
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 87
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 94
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one
+  availability: local
   symbol: CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one
-  role: flat_stabilizer_vs_cft_renyi_defect
-  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
-- language: lean4
   path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 112
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 120
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit
+  availability: local
   symbol: CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit
-  role: explicit_contiguous_rt_deficit_witness
-  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
-- language: lean4
   path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 153
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 163
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 173
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 182
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length
+  availability: local
   symbol: CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length
-  role: happy_patch_380_interval_length_resolved_deficit_census
-  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
-- language: lean4
   path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 192
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses
+  availability: local
   symbol: CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses
-  role: disconnected_region_mutual_information_jumps
-  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
-- language: lean4
   path: lean4/CampaignAdsHappyToyNotDualityGap.lean
-  symbol: CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension
-  role: bulk_to_boundary_hilbert_codimension_fence
+  repository: this_repository
   sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
-- language: python
-  path: checks/independent/ads-happy-toy-not-duality-gap.py
-  symbol: main
-  role: independent_rational_and_symplectic_gf2_checker
-  sha256: d123071557f5014d5e2fb57f88969974a8c68ff84a8595dffa0981c2c8f76e2a
+  declaration_status: declaration_found_not_proof_checked
+  line: 233
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 258
+  role: source_lead_only
+- original_ref: lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions
+  availability: local
+  symbol: CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions
+  path: lean4/CampaignAdsHappyToyNotDualityGap.lean
+  repository: this_repository
+  sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
+  declaration_status: declaration_found_not_proof_checked
+  line: 271
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -323,62 +445,31 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: BOUND
-    carrier: Q (Renyi scaling factors), GF(2)^40 (20-qubit symplectic Pauli vectors
-      on the 6-pentagon HaPPY patch), and Nat (Hilbert space dimensions)
-    coefficient_ring: Q and GF(2)
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
     assumptions: []
-    source_pins:
-    - path: lean4/CampaignAdsHappyToyNotDualityGap.lean
-      sha256: 366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff
-    - path: checks/independent/ads-happy-toy-not-duality-gap.py
-      sha256: d123071557f5014d5e2fb57f88969974a8c68ff84a8595dffa0981c2c8f76e2a
-    - path: dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md
-      sha256: f2e4e8b8e39901816ec80749f95fd159f8afdafe015662d54936c8b6bbfb9b77
-    - path: dag/derivations/independent/ads-happy-toy-not-duality-gap.md
-      sha256: a10e6f9630c2c5f30031aa3022cb711fca3c83a6c5d7be7c1b87a820e3f5192a
+    source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: BOUND
-    operations:
-    - CampaignAdsHappyToyNotDualityGap.stabilizerRenyiFactor
-    - CampaignAdsHappyToyNotDualityGap.cftRenyiFactor
-    - CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect
-    - CampaignAdsHappyToyNotDualityGap.deficitCountAtLength
-    - CampaignAdsHappyToyNotDualityGap.regionEntropy
-    - CampaignAdsHappyToyNotDualityGap.regionMutualInformation
-    - CampaignAdsHappyToyNotDualityGap.codeOrthogonalCodim
+    mining_status: UNREVIEWED
+    operations: []
     composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: BOUND
-    algebraic_relations:
-    - renyiSpectrumDefect n S1 = ((n - 1) / (2 * n)) * S1 (for n != 0)
-    - deficitCountAtLength 8 = 5, deficitCountAtLength 9 = 10, deficitCountAtLength
-      10 = 10, deficitCountAtLength 11 = 10, deficitCountAtLength 12 = 5
-    - regionMutualInformation [0, 1, 2, 3] [8, 9, 10, 11] = 0
-    rejection_predicates:
-    - 1 < n and 0 < S1 -> cftRenyiFactor n * S1 != stabilizerRenyiFactor n * S1
-    - intervalEntropy 2 8 = 4 < 5 = intervalMincut 2 8
-    - nBulk < nBdry -> 0 < codeOrthogonalCodim nBulk nBdry
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
     negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: BOUND
+    mining_status: UNREVIEWED
     certificate_predicates: []
-    anchors:
-    - lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one
-    - lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit
-    - lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length
-    - lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses
-    - lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension
-    - checks/independent/ads-happy-toy-not-duality-gap.py
+    anchors: []
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported
-  hypotheses.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified
-  relations.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads:
 - source: lean4/CampaignAdsHappyToyNotDualityGap.lean

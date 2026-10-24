@@ -37,7 +37,7 @@ Schrodinger-Heisenberg trace cyclicity Tr(A B) = Tr(B A) and 1-step unitary conj
 
 ## Review
 
-- PFP review: [dag/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM041-HEISENBERG-PICTURE-FINITE/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The two exact expectation pairings agree on the declared two-state carrier.
   - does not support: Transport the expanded quadratic identity to full Gaussian matrices, and supply any selected time law, Hamiltonian and physical readout.
   - next test: Transport the expanded quadratic identity to full Gaussian matrices, and supply any selected time law, Hamiltonian and physical readout.

@@ -82,23 +82,7 @@ def quad_form(vec: list[Fraction], mat: list[list[Fraction]]) -> Fraction:
     return total
 
 
-def check_cloning_and_computation_variables() -> tuple[int, int]:
-    checks = 0
-    failures = 0
-
-    # 1. Singleton vs >=2 computation variable threshold
-    if math.factorial(1) == 1:
-        checks += 1
-    else:
-        failures += 1
-
-    for d in range(2, 8):
-        if math.factorial(d) >= 2 and d * (d - 1) >= 2:
-            checks += 1
-        else:
-            failures += 1
-
-    # 2. Reversible CNOT cloning on Z_n x Z_n for n in 2..12
+def _check_cloning_and_computation_variables_cases_2(checks, failures):
     for n in range(2, 13):
         image_set = set()
         for x in range(n):
@@ -127,6 +111,27 @@ def check_cloning_and_computation_variables() -> tuple[int, int]:
             checks += 1
         else:
             failures += 1
+    return checks, failures
+
+
+def check_cloning_and_computation_variables() -> tuple[int, int]:
+    checks = 0
+    failures = 0
+
+    # 1. Singleton vs >=2 computation variable threshold
+    if math.factorial(1) == 1:
+        checks += 1
+    else:
+        failures += 1
+
+    for d in range(2, 8):
+        if math.factorial(d) >= 2 and d * (d - 1) >= 2:
+            checks += 1
+        else:
+            failures += 1
+
+    # 2. Reversible CNOT cloning on Z_n x Z_n for n in 2..12
+    checks, failures = _check_cloning_and_computation_variables_cases_2(checks, failures)
 
     # 3. Distinguishability via injective vs non-injective map into clonable variable
     for n in range(3, 8):
@@ -151,46 +156,51 @@ def check_cloning_and_computation_variables() -> tuple[int, int]:
     return checks, failures
 
 
+def _check_principle_iii_interoperability_cases_4(checks, failures, n1):
+    for n2 in range(2, 7):
+        # Cardinality of composite attribute set
+        pairs = list(itertools.product(range(n1), range(n2)))
+        if len(pairs) == n1 * n2:
+            checks += 1
+        else:
+            failures += 1
+
+        # Blank cloning for all joint attributes (x1, x2)
+        for x1, x2 in pairs:
+            cloned0 = composite_clone(n1, n2, x1, x2, 0, 0)
+            if cloned0 == ((x1, x2), (x1, x2)):
+                checks += 1
+            else:
+                failures += 1
+
+        # Full bijectivity and two-sided inverse on (Z_n1 x Z_n2)^2 for n1, n2 <= 4
+        if n1 <= 4 and n2 <= 4:
+            image_set = set()
+            for x1, x2 in pairs:
+                for y1, y2 in pairs:
+                    c = composite_clone(n1, n2, x1, x2, y1, y2)
+                    image_set.add(c)
+                    u = composite_unclone(
+                        n1, n2, c[0][0], c[0][1], c[1][0], c[1][1]
+                    )
+                    if u == ((x1, x2), (y1, y2)):
+                        checks += 1
+                    else:
+                        failures += 1
+            if len(image_set) == (n1 * n2) ** 2:
+                checks += 1
+            else:
+                failures += 1
+    return checks, failures
+
+
 def check_principle_iii_interoperability() -> tuple[int, int]:
     checks = 0
     failures = 0
 
     # Composite media Z_n1 x Z_n2 for n1, n2 in 2..6
     for n1 in range(2, 7):
-        for n2 in range(2, 7):
-            # Cardinality of composite attribute set
-            pairs = list(itertools.product(range(n1), range(n2)))
-            if len(pairs) == n1 * n2:
-                checks += 1
-            else:
-                failures += 1
-
-            # Blank cloning for all joint attributes (x1, x2)
-            for x1, x2 in pairs:
-                cloned0 = composite_clone(n1, n2, x1, x2, 0, 0)
-                if cloned0 == ((x1, x2), (x1, x2)):
-                    checks += 1
-                else:
-                    failures += 1
-
-            # Full bijectivity and two-sided inverse on (Z_n1 x Z_n2)^2 for n1, n2 <= 4
-            if n1 <= 4 and n2 <= 4:
-                image_set = set()
-                for x1, x2 in pairs:
-                    for y1, y2 in pairs:
-                        c = composite_clone(n1, n2, x1, x2, y1, y2)
-                        image_set.add(c)
-                        u = composite_unclone(
-                            n1, n2, c[0][0], c[0][1], c[1][0], c[1][1]
-                        )
-                        if u == ((x1, x2), (y1, y2)):
-                            checks += 1
-                        else:
-                            failures += 1
-                if len(image_set) == (n1 * n2) ** 2:
-                    checks += 1
-                else:
-                    failures += 1
+        checks, failures = _check_principle_iii_interoperability_cases_4(checks, failures, n1)
 
     # Cross-medium copy + permutation recoding on Z_n
     for n in range(2, 6):
@@ -203,6 +213,59 @@ def check_principle_iii_interoperability() -> tuple[int, int]:
                 else:
                     failures += 1
 
+    return checks, failures
+
+
+def _check_fences_cases_1_cases_5(checks, d0, d1, d2, failures):
+    for d3 in range(-2, 3):
+        diag = [
+            [Fraction(d0 if i == 0 and j == 0 else d1 if i == 1 and j == 1 else d2 if i == 2 and j == 2 else d3 if i == 3 and j == 3 else 0) for j in range(4)]
+            for i in range(4)
+        ]
+        if partial_transpose_4x4(diag) == diag:
+            checks += 1
+        else:
+            failures += 1
+    return checks, failures
+
+
+def _check_fences_cases_1(checks, failures):
+    for d0 in range(-2, 3):
+        for d1 in range(-2, 3):
+            for d2 in range(-2, 3):
+                checks, failures = _check_fences_cases_1_cases_5(checks, d0, d1, d2, failures)
+    return checks, failures
+
+
+def _check_fences_cases_3(checks, failures):
+    for d1 in range(2, 9):
+        for d2 in range(2, 9):
+            classical_dim = d1 * d2 - 1
+            real_local_dim = (d1 * (d1 + 1) // 2) * (d2 * (d2 + 1) // 2)
+            real_quantum_dim = (d1 * d2) * (d1 * d2 + 1) // 2
+            complex_dim = (d1 * d2) ** 2
+            complex_local_dim = (d1 ** 2) * (d2 ** 2)
+
+            if (
+                classical_dim < real_local_dim < real_quantum_dim < complex_dim
+                and complex_dim == complex_local_dim
+                and 4 * (real_quantum_dim - real_local_dim)
+                == d1 * d2 * (d1 - 1) * (d2 - 1)
+            ):
+                checks += 1
+            else:
+                failures += 1
+
+            if d1 == 2 and d2 == 2:
+                if (
+                    classical_dim == 3
+                    and real_local_dim == 9
+                    and real_quantum_dim == 10
+                    and complex_dim == 16
+                ):
+                    checks += 1
+                else:
+                    failures += 1
     return checks, failures
 
 
@@ -239,48 +302,10 @@ def check_fences() -> tuple[int, int]:
                         failures += 1
 
     # 2. Composite state-space dimension trichotomy and real holism excess fence
-    for d1 in range(2, 9):
-        for d2 in range(2, 9):
-            classical_dim = d1 * d2 - 1
-            real_local_dim = (d1 * (d1 + 1) // 2) * (d2 * (d2 + 1) // 2)
-            real_quantum_dim = (d1 * d2) * (d1 * d2 + 1) // 2
-            complex_dim = (d1 * d2) ** 2
-            complex_local_dim = (d1 ** 2) * (d2 ** 2)
-
-            if (
-                classical_dim < real_local_dim < real_quantum_dim < complex_dim
-                and complex_dim == complex_local_dim
-                and 4 * (real_quantum_dim - real_local_dim)
-                == d1 * d2 * (d1 - 1) * (d2 - 1)
-            ):
-                checks += 1
-            else:
-                failures += 1
-
-            if d1 == 2 and d2 == 2:
-                if (
-                    classical_dim == 3
-                    and real_local_dim == 9
-                    and real_quantum_dim == 10
-                    and complex_dim == 16
-                ):
-                    checks += 1
-                else:
-                    failures += 1
+    checks, failures = _check_fences_cases_3(checks, failures)
 
     # 3. PSD vs PT cone classical diagonal invariance and Bell witness separation
-    for d0 in range(-2, 3):
-        for d1 in range(-2, 3):
-            for d2 in range(-2, 3):
-                for d3 in range(-2, 3):
-                    diag = [
-                        [Fraction(d0 if i == 0 and j == 0 else d1 if i == 1 and j == 1 else d2 if i == 2 and j == 2 else d3 if i == 3 and j == 3 else 0) for j in range(4)]
-                        for i in range(4)
-                    ]
-                    if partial_transpose_4x4(diag) == diag:
-                        checks += 1
-                    else:
-                        failures += 1
+    checks, failures = _check_fences_cases_1(checks, failures)
 
     bell_state = [
         [Fraction(1), Fraction(0), Fraction(0), Fraction(1)],

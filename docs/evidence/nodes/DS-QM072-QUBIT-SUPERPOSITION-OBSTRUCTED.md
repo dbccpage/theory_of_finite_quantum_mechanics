@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ P7-C1..C4 classical bit-shadow diagonal collapse, P7-C6/C8 Q1-Q4 off-diagonal X-
 
 ## Review
 
-- PFP review: [dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact phase-reversed pure densities and their dephased mixture share populations but differ under an admitted coherent readout; scalar readout/purity differences are kernel checked.
   - does not support: Construct or admit the qubit/coherence carrier, transformations and measurement rule; no generalized Bloch-contraction conjecture is accepted.
   - next test: Construct or admit the qubit/coherence carrier, transformations and measurement rule; no generalized Bloch-contraction conjecture is accepted.
