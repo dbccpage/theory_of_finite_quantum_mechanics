@@ -10819,11 +10819,19 @@
       "stage": "CONTINUUM_INTERFACE",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_ADJOINING (source slice 09)",
-      "statement": "named_adjoining.yaml refuses several promotions. Pi is not minted from an exact rational residual. A circle group is not obtained from l1 mass. The dual of a finite cyclic group is that same finite cyclic group, not a circle. Free integers are not forced by an N equals 3 leftover. Pontryagin duality is not derived in the file, and Haar uniqueness does not select the factor two pi. What is finite is the described rational leftover and the refusal list. What is not discharged is a derived circle gauge group and the continuum limit. The gap stays open, and the Einstein equation is not discharged.",
+      "statement": "named_adjoining.yaml refuses several promotions. Pi is not minted from an exact rational residual. A circle group is not obtained from l1 mass. The dual of a finite cyclic group is that same finite cyclic group, not a circle. Free integers are not forced by an N equals 3 leftover. Pontryagin duality is not derived in the file, and Haar uniqueness does not select the factor two pi. What is finite is the described rational leftover and the refusal list. What is not discharged is a derived circle gauge group and the continuum limit. The gap stays open, and the Einstein equation is not discharged. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and refusal fences: (1) finite cyclic self-duality on Fin N (card = N, N-fold periodicity (N * k * x) % N = 0) and the N = 3 countermodel (|Fin 3| = 3, (1 + 1) % 3 = 2 != 0 yet (x + x + x) % 3 = 0 for all x in Fin 3), showing that a non-exponent-2 N = 3 witness does not force free integers Z or U(1) (finite_cyclic_dual_cardinality, finite_cyclic_periodicity, z3_not_exponent_two_yet_torsion_three_fence); (2) exact character orthogonality over Gaussian rationals Q[i] on Z/4Z (mu4_add_mod4_homomorphism, chi4_unit_gaussian_norm, z4_character_orthogonality_exact, z4_nontrivial_character_sum_zero); and (3) replay of the C_4 cochain holonomy syndrome (400) and sign-fiber destructive cancellation gap (4), together with the Haar period-independence fence showing that unit-mass normalization (1 / P) * P = 1 holds for every nonzero period P != 0 and does not select 2 * pi (c4_cochain_syndrome_and_sign_fiber_gap_replay, haar_normalization_period_independence_fence, haar_period_calibration_injective).",
       "source": [
-        "dag/derivations/20_continuum_interface/tfq_0117_gap_f002_s001_001_remains_open_finite_cyclic_dual_is_not_sold_as_a_circle.md"
+        "dag/derivations/20_continuum_interface/tfq_0117_gap_f002_s001_001_remains_open_finite_cyclic_dual_is_not_sold_as_a_circle.md",
+        "dag/derivations/independent/tfq-0117.md",
+        "checks/independent/tfq-0117.py",
+        "lean4/CampaignTfq0117ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0117_lean_replay.json",
+        "dag/research/campaign_tfq-0117_lean_mutation.json",
+        "dag/research/campaign_tfq-0117_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0117ContinuumInterface.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "GAP-F002-S001-001 remains open. Finite cyclic dual is not sold as a circle group.",
@@ -45051,25 +45059,30 @@
         "TFQ-0117"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/pontryagin_duality.py",
-        "omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/README.md"
+        "dag/derivations/20_continuum_interface/tfq_0117_gap_f002_s001_001_remains_open_finite_cyclic_dual_is_not_sold_as_a_circle.md",
+        "dag/derivations/independent/tfq-0117.md",
+        "checks/independent/tfq-0117.py",
+        "lean4/CampaignTfq0117ContinuumInterface.lean",
+        "dag/research/campaign_tfq-0117_lean_replay.json",
+        "dag/research/campaign_tfq-0117_lean_mutation.json",
+        "dag/research/campaign_tfq-0117_independent.json"
       ],
       "id": "TFQ-0117",
       "lean4": [
-        "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/CharacterOrthogonality.lean"
+        "lean4/CampaignTfq0117ContinuumInterface.lean"
       ],
       "local_id": "A09-032",
       "name": "GAP-F002-S001-001 remains open. Finite cyclic dual is not sold as a circle",
       "obligation": "GAP-F002-S001-001 remains open. Finite cyclic dual is not sold as a circle group.",
       "parent_id": "TFQ-0111",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/coda_2d_pontryagin.py"
+        "checks/independent/tfq-0117.py"
       ],
       "record_status": "OPEN_ADJOINING",
       "rust": [],
       "source_slice": "09",
       "stage": "CONTINUUM_INTERFACE",
-      "summary": "named_adjoining.yaml refuses several promotions. Pi is not minted from an exact rational residual. A circle group is not obtained from l1 mass. The dual of a finite cyclic group is that same finite cyclic group, not a circle. Free integers are not forced by an N equals 3 leftover. Pontryagin duality is not derived in the file, and Haar uniqueness does not select the factor two pi. What is finite is the described rational leftover and the refusal list. What is not discharged is a derived circle gauge group and the continuum limit. The gap stays open, and the Einstein equation is not discharged.",
+      "summary": "named_adjoining.yaml refuses several promotions. Pi is not minted from an exact rational residual. A circle group is not obtained from l1 mass. The dual of a finite cyclic group is that same finite cyclic group, not a circle. Free integers are not forced by an N equals 3 leftover. Pontryagin duality is not derived in the file, and Haar uniqueness does not select the factor two pi. What is finite is the described rational leftover and the refusal list. What is not discharged is a derived circle gauge group and the continuum limit. The gap stays open, and the Einstein equation is not discharged. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and refusal fences: (1) finite cyclic self-duality on Fin N (card = N, N-fold periodicity (N * k * x) % N = 0) and the N = 3 countermodel (|Fin 3| = 3, (1 + 1) % 3 = 2 != 0 yet (x + x + x) % 3 = 0 for all x in Fin 3), showing that a non-exponent-2 N = 3 witness does not force free integers Z or U(1) (finite_cyclic_dual_cardinality, finite_cyclic_periodicity, z3_not_exponent_two_yet_torsion_three_fence); (2) exact character orthogonality over Gaussian rationals Q[i] on Z/4Z (mu4_add_mod4_homomorphism, chi4_unit_gaussian_norm, z4_character_orthogonality_exact, z4_nontrivial_character_sum_zero); and (3) replay of the C_4 cochain holonomy syndrome (400) and sign-fiber destructive cancellation gap (4), together with the Haar period-independence fence showing that unit-mass normalization (1 / P) * P = 1 holds for every nonzero period P != 0 and does not select 2 * pi (c4_cochain_syndrome_and_sign_fiber_gap_replay, haar_normalization_period_independence_fence, haar_period_calibration_injective).",
       "uuid": "ff0ea4fe-c64e-54d1-a76e-00b085d050a7"
     },
     {
