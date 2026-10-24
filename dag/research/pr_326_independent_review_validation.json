@@ -1,0 +1,157 @@
+{
+  "number": 326,
+  "original_head": "7ef3bddde49172d8ea58c16a22bf2f0456e570e9",
+  "level": "L2",
+  "meaning": "A six-constructor case split maps imported events to a supplied list of six distinct names and excludes the literal string Seventh. This does not implement Driver B, a harness refusal, a seal amendment, or sufficiency of these constructors for every lift.",
+  "baseline": {
+    "number": 326,
+    "head": "7ef3bddde49172d8ea58c16a22bf2f0456e570e9",
+    "source": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+    "sha256": "c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/pgw-driver-b-seventh-event.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.12,
+        "output": "checked 20 claims, failures 0\r\nnames ['Supply', 'AdmitDatum', 'AdmitForm', 'AdmitInst', 'AdmitRuleAll', 'Impose']\r\nseventh outside True\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 2.62,
+        "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 21 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignPgwDriverBSeventhEvent.lean (new or not grandfathered)\n  lean4/CampaignPgwDriverBSeventhEvent.lean: [MISSING_COMPANION] expected companion lean4/CampaignPgwDriverBSeventhEvent.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 2d29cbed47aa641b585c853e9d932dc909b3229056999b58f16708c8b2d2ef4f, found 81a117a157f31abd26a003ae13a338d05d2d1e09661778867aab7e5d733cb9fd\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.34,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwDriverBSeventhEvent.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 1fa451fe1eac), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.21,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwDriverBSeventhEvent.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 10.69,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 1.29,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nFAIL view theory_of_finite_qm.jsonl differs from derivation_dag.json; run dag/render_dag_views.py --write\r\nnodes=925 routes=934 records=977 failures=4\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignPgwDriverBSeventhEvent"
+        ],
+        "exit_code": 0,
+        "seconds": 8.11,
+        "output": "ℹ [3/4] Built CampaignPgwDriverBSeventhEvent (922ms)\ninfo: CampaignPgwDriverBSeventhEvent.lean:82:0: 'pgwDrvB_kind_count' does not depend on any axioms\ninfo: CampaignPgwDriverBSeventhEvent.lean:83:0: 'pgwDrvB_kind_nodup' does not depend on any axioms\ninfo: CampaignPgwDriverBSeventhEvent.lean:84:0: 'pgwDrvB_kindName_mem' depends on axioms: [propext]\ninfo: CampaignPgwDriverBSeventhEvent.lean:85:0: 'pgwDrvB_names_realized' does not depend on any axioms\ninfo: CampaignPgwDriverBSeventhEvent.lean:86:0: 'pgwDrvB_seventh_outside' depends on axioms: [propext]\ninfo: CampaignPgwDriverBSeventhEvent.lean:87:0: 'pgwDrvB_no_seventh_name' does not depend on any axioms\nBuild completed successfully (4 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-driver-b-seventh-event.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09,
+      "output": "checked 20 claims, failures 0\r\nnames ['Supply', 'AdmitDatum', 'AdmitForm', 'AdmitInst', 'AdmitRuleAll', 'Impose']\r\nseventh outside True\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-driver-b-seventh-event.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.37,
+      "output": "checked 20 claims, failures 0\r\nnames ['Supply', 'AdmitDatum', 'AdmitForm', 'AdmitInst', 'AdmitRuleAll', 'Impose']\r\nseventh outside True\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignPgwDriverBSeventhEvent"
+      ],
+      "exit_code": 0,
+      "seconds": 8.11,
+      "output": "ℹ [3/4] Built CampaignPgwDriverBSeventhEvent (922ms)\ninfo: CampaignPgwDriverBSeventhEvent.lean:82:0: 'pgwDrvB_kind_count' does not depend on any axioms\ninfo: CampaignPgwDriverBSeventhEvent.lean:83:0: 'pgwDrvB_kind_nodup' does not depend on any axioms\ninfo: CampaignPgwDriverBSeventhEvent.lean:84:0: 'pgwDrvB_kindName_mem' depends on axioms: [propext]\ninfo: CampaignPgwDriverBSeventhEvent.lean:85:0: 'pgwDrvB_names_realized' does not depend on any axioms\ninfo: CampaignPgwDriverBSeventhEvent.lean:86:0: 'pgwDrvB_seventh_outside' depends on axioms: [propext]\ninfo: CampaignPgwDriverBSeventhEvent.lean:87:0: 'pgwDrvB_no_seventh_name' does not depend on any axioms\nBuild completed successfully (4 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "404098572605311efcc9e701ee0c0ad1f86002306ec17701a4acc803d37821e6",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a",
+  "structure_observation": {
+    "source_lines": 87,
+    "theorem_count": 6,
+    "axiom_print_count": 6,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
