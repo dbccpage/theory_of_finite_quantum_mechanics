@@ -3,18 +3,30 @@ node_id: TFQ-0177
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Seven mutually unbiased bases in dimension 6 stay open. The README titled MUB(6):
-    exact reductions, conditional interfaces and open gaps says whether seven mutually unbiased bases
-    exist in dimension six is open, that the deposit does not settle it, and that gap G1 is OPEN. The
-    F004 register repeats that G1 is OPEN, that code/src/main.rs prints a banner and does not run a solver,
-    and that R6 and R7 stay NOT_A_CERTIFICATE. The obligation is to leave MUB(6) existence unresolved.
-    Checked reductions and conditional interfaces in that deposit are not a substitute for the missing
-    global count.'
+  source_statement: 'Narrowed boundary, status left OPEN: at the integer point (1, 1, 1, 1) the quadric
+    piece (1-1)*(1-1) - (1-1)*(1-1) equals 0, the four square pieces (1*1-1) sum to 0, and the cleared
+    collar 0*1000 - 1 equals -1. The comparisons -1 < 0 and 0 < 1000 record -1/1000 < 0. papers/core/mub6/README.md
+    carries the title MUB(6): exact reductions, conditional interfaces and open gaps, and its status block
+    says dimension six is open, that this deposit does not settle it, and that Gap G1 is OPEN. The same
+    README text contains 185 lean files and imports 180. This commit has no directory lean4/research_programs/mub6.
+    papers/core/mub6/code/src/main.rs says the binary prints a banner and does not run a solver, and that
+    Gap G1 stays OPEN while R6 and R7 stay NOT_A_CERTIFICATE. papers/core/mub6/research/mub6_gap_registry.json
+    records G1 with status OPEN and R6 and R7 with status NOT_A_CERTIFICATE, and the R7 note contains
+    -1/1000. Whether seven mutually unbiased bases exist in dimension 6 stays unresolved. Status stays
+    OPEN.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Leave the existence of seven mutually unbiased bases in dimension 6 open.
+  source_bottleneck: The identities in the statement are one integer point of the Segre guard and the
+    deposit texts. The README numerals 185 and 180 are text in that file. A directory census of lean4/research_programs/mub6
+    is absent from this commit. The general identity on every rational point, a global count of mutually
+    unbiased bases in dimension 6, and any reading of checked reductions as that count stay open. Status
+    stays OPEN.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0177_leave_the_existence_of_seven_mutually_unbiased_bases_in_dimension_6_open.md
+  - dag/derivations/independent/tfq-0177.md
+  - dag/research/campaign_tfq-0177_lean_replay.json
+  - papers/core/mub6/README.md
+  - papers/core/mub6/research/mub6_gap_registry.json
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0177_leave_the_existence_of_seven_mutually_unbiased_bases_in_dimension_6_open.md
   source_claim_label: OPEN
@@ -23,7 +35,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0177_leave_the_existence_of_seven_mutually_unbiased_bases_in_dimension_6_open.md
-    sha256: 442482839281f0fc0637a6e6affc590c3b706e0f9979bd99bf9f3a43332c123e
+    sha256: 2b8c582f14cb00e14d588f0277100c3c03b4f77ba2123ef97ca6e79dbe224a42
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -32,14 +44,94 @@ source_provenance:
   path: dag/prompts/implementation_sibling_tfq_0177_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: tfq0177_point_quadric
+  line: 9
+  signature_excerpt: |-
+    theorem tfq0177_point_quadric :
+        ((1 : Int) - 1) * ((1 : Int) - 1) - ((1 : Int) - 1) * ((1 : Int) - 1) = 0
+  source: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  source_sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0177_point_squares
+  line: 13
+  signature_excerpt: |-
+    theorem tfq0177_point_squares :
+        ((1 : Int) * 1 - 1) + (1 * 1 - 1) + (1 * 1 - 1) + (1 * 1 - 1) = 0
+  source: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  source_sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0177_guard_cleared
+  line: 17
+  signature_excerpt: 'theorem tfq0177_guard_cleared : (0 : Int) * 1000 - 1 = -1'
+  source: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  source_sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0177_collar_sign
+  line: 20
+  signature_excerpt: 'theorem tfq0177_collar_sign : (-1 : Int) < 0 ∧ (0 : Int) < 1000'
+  source: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  source_sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- original_ref: code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs
+- original_ref: lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_point_quadric
+  availability: local
+  symbol: tfq0177_point_quadric
+  path: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 9
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_point_squares
+  availability: local
+  symbol: tfq0177_point_squares
+  path: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 13
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_guard_cleared
+  availability: local
+  symbol: tfq0177_guard_cleared
+  path: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 17
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_collar_sign
+  availability: local
+  symbol: tfq0177_collar_sign
+  path: lean4/CampaignTfq0177Mub6OpenFence.lean
+  repository: this_repository
+  sha256: e75f4b2865f8525ec0172db7d09452324e6488298e71206796f119da68be45c9
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: papers/core/mub6/code/src/main.rs
   availability: local
   symbol: null
-  path: code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs
+  path: papers/core/mub6/code/src/main.rs
   repository: this_repository
-  sha256: da2ceff50836ee243220a48aec3654ed63e29ac88f47d1c9562d30bd2a0f0f2a
+  sha256: 411371d18242c7f9361e23ab8bc0c74d9b6a58b22937565ed9bf831c6a25004d
   declaration_status: file_only_no_symbol
   role: source_lead_only
 presentation:
@@ -79,8 +171,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

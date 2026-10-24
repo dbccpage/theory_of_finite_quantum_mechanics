@@ -1,27 +1,32 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0191
 authority_effect: None
-collection_status: witness_verified
+collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Interval evidence is a third kind and is not yet a governance
-    scalar. MeasurementValue::Interval stores lower and upper BigDecimal bounds, and
-    MeasurementError::IntervalRequiresPolicy is the refusal when an interval is asked
-    to decide. BigDecimal::from_f64_unchecked builds a decimal from an f64 with a
-    fixed scale, which is not an exact rational. affine_calibration.rs, finite_response.rs,
-    and finite_chain_clock.rs add further interval clocks and calibrations. The obligation
-    is to keep interval evidence pending a policy decision and to stop that unchecked
-    f64 constructor from authorizing a bound.
+  source_statement: Interval evidence is a third kind and is not yet a governance scalar. MeasurementValue::Interval
+    stores lower and upper BigDecimal bounds, and MeasurementError::IntervalRequiresPolicy is the refusal
+    when an interval is asked to decide. BigDecimal::from_f64_unchecked builds a decimal from an f64 with
+    a fixed scale, which is not an exact rational. affine_calibration.rs, finite_response.rs, and finite_chain_clock.rs
+    add further interval clocks and calibrations. The obligation is to keep interval evidence pending
+    a policy decision and to stop that unchecked f64 constructor from authorizing a bound.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Keep interval measurement evidence distinct, and do not let an
-    f64-built decimal authorize a bound.
+  source_bottleneck: Keep interval measurement evidence distinct, and do not let an f64-built decimal
+    authorize a bound.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md
+  - dag/derivations/independent/tfq-0191.md
+  - dag/research/campaign_tfq-0191_lean_replay.json
+  - dag/research/campaign_tfq-0191_lean_mutation.json
+  - dag/research/campaign_tfq-0191_independent.json
+  - docs/overclaim/reviews/2026-10-24_campaign-tfq-0191-precommit.md
+  - checks/independent/tfq-0191.py
+  - lean4/CampaignTfq0191ImplementationSibling.lean
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md
@@ -33,39 +38,430 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/implementation_sibling_tfq_0191_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: toGovernanceScalarWithoutPolicy
+  line: 102
+  signature_excerpt: |-
+    def toGovernanceScalarWithoutPolicy : MeasurementValueKind → GovernanceScalarConversion
+      | .ExactRational => .AdmittedGovernanceScalar
+      | .Integer => .AdmittedGovernanceScalar
+      | .Interval => .RefusedIntervalRequiresPolicy
+
+    /-- Theorem 5 (`MeasurementValue` Arms vs `GovernanceScalar` Admission Fence):
+    `ExactRational` and `Integer` convert to `AdmittedGovernanceScalar`,
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: MeasurementValueKind
+  line: 90
+  signature_excerpt: |-
+    inductive MeasurementValueKind
+      | ExactRational
+      | Integer
+      | Interval
+      deriving DecidableEq, Repr
+
+    /-- Result of attempting to convert a `MeasurementValue` into a `GovernanceScalar` without policy. -/
+    inductive GovernanceScalarConversion
+      | AdmittedGovernanceScalar
+      | RefusedIntervalRequiresPolicy
+      deriving DecidableEq, Repr
+
+    def toGovernanceScalarWithoutPolicy : MeasurementValueKind → GovernanceScalarConversion
+      | .ExactRational => .AdmittedGovernanceScalar
+      | .Integer => .AdmittedGovernanceScalar
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: GovernanceScalarConversion
+  line: 97
+  signature_excerpt: |-
+    inductive GovernanceScalarConversion
+      | AdmittedGovernanceScalar
+      | RefusedIntervalRequiresPolicy
+      deriving DecidableEq, Repr
+
+    def toGovernanceScalarWithoutPolicy : MeasurementValueKind → GovernanceScalarConversion
+      | .ExactRational => .AdmittedGovernanceScalar
+      | .Integer => .AdmittedGovernanceScalar
+      | .Interval => .RefusedIntervalRequiresPolicy
+
+    /-- Theorem 5 (`MeasurementValue` Arms vs `GovernanceScalar` Admission Fence):
+    `ExactRational` and `Integer` convert to `AdmittedGovernanceScalar`,
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: decideIntervalComparison
+  line: 125
+  signature_excerpt: 'def decideIntervalComparison (hasExplicitPolicy : Bool) : IntervalDecisionOutcome'
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: IntervalDecisionOutcome
+  line: 120
+  signature_excerpt: |-
+    inductive IntervalDecisionOutcome
+      | DecidedScalar
+      | RefusedIntervalRequiresPolicy
+      deriving DecidableEq, Repr
+
+    def decideIntervalComparison (hasExplicitPolicy : Bool) : IntervalDecisionOutcome
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: authorizesGovernanceBound
+  line: 147
+  signature_excerpt: |-
+    def authorizesGovernanceBound : DecimalBoundConstructor → Bool
+      | .ExactRationalPair => true
+      | .BigDecimalFromF64Unchecked => false
+
+    /-- Theorem 7 (`BigDecimal::from_f64_unchecked` Cannot Authorize Exact Bound Fence):
+    `BigDecimalFromF64Unchecked` evaluates `authorizesGovernanceBound = false`. -/
+    theorem f64_unchecked_decimal_cannot_authorize_exact_bound_fence :
+        authorizesGovernanceBound DecimalBoundConstructor.ExactRationalPair = true ∧
+        authorizesGovernanceBound DecimalBoundConstructor.BigDecimalFromF64Unchecked = false
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: DecimalBoundConstructor
+  line: 142
+  signature_excerpt: |-
+    inductive DecimalBoundConstructor
+      | ExactRationalPair
+      | BigDecimalFromF64Unchecked
+      deriving DecidableEq, Repr
+
+    def authorizesGovernanceBound : DecimalBoundConstructor → Bool
+      | .ExactRationalPair => true
+      | .BigDecimalFromF64Unchecked => false
+
+    /-- Theorem 7 (`BigDecimal::from_f64_unchecked` Cannot Authorize Exact Bound Fence):
+    `BigDecimalFromF64Unchecked` evaluates `authorizesGovernanceBound = false`. -/
+    theorem f64_unchecked_decimal_cannot_authorize_exact_bound_fence :
+        authorizesGovernanceBound DecimalBoundConstructor.ExactRationalPair = true ∧
+        authorizesGovernanceBound Decim
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: affineCalibrationStatus
+  line: 182
+  signature_excerpt: 'def affineCalibrationStatus : IntervalModuleOutputStatus'
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: finiteResponseStatus
+  line: 183
+  signature_excerpt: 'def finiteResponseStatus : IntervalModuleOutputStatus'
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: finiteChainClockStatus
+  line: 184
+  signature_excerpt: 'def finiteChainClockStatus : IntervalModuleOutputStatus'
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: IntervalModuleOutputStatus
+  line: 177
+  signature_excerpt: |-
+    inductive IntervalModuleOutputStatus
+      | IntervalPendingPolicy
+      | GovernanceScalarAuthorized
+      deriving DecidableEq, Repr
+
+    def affineCalibrationStatus : IntervalModuleOutputStatus
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: interval_order_straddling_indeterminacy_vs_strict_comparison
+  line: 56
+  signature_excerpt: |-
+    theorem interval_order_straddling_indeterminacy_vs_strict_comparison :
+        (9 / 10 : ℚ) < 1 ∧
+        (1 : ℚ) < 11 / 10 ∧
+        (11 / 10 : ℚ) - 9 / 10 = 1 / 5 ∧
+        (0 : ℚ) < 1 / 5
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: decimal_fixed_scale_cannot_represent_one_third_exactly
+  line: 66
+  signature_excerpt: |-
+    theorem decimal_fixed_scale_cannot_represent_one_third_exactly :
+        (1 / 3 : ℚ) - 3 / 10 = 1 / 30 ∧
+        (1 / 3 : ℚ) - 33 / 100 = 1 / 300 ∧
+        (1 / 3 : ℚ) - 333333 / 1000000 = 1 / 3000000 ∧
+        (333333 / 1000000 : ℚ) ≠ 1 / 3
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth
+  line: 76
+  signature_excerpt: |-
+    theorem ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth :
+        (3602879701896397 : ℚ) / (2 ^ 55) - 1 / 10 = 1 / 180143985094819840 ∧
+        (3602879701896397 : ℚ) / (2 ^ 55) ≠ 1 / 10
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: affine_interval_calibration_and_finite_chain_clock_propagation
+  line: 84
+  signature_excerpt: |-
+    theorem affine_interval_calibration_and_finite_chain_clock_propagation (a b l u k d_min d_max : ℚ) :
+        (a * u + b) - (a * l + b) = a * (u - l) ∧
+        k * d_max - k * d_min = k * (d_max - d_min)
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: measurement_value_arms_vs_governance_scalar_admission_fence
+  line: 110
+  signature_excerpt: |-
+    theorem measurement_value_arms_vs_governance_scalar_admission_fence :
+        toGovernanceScalarWithoutPolicy MeasurementValueKind.ExactRational =
+          GovernanceScalarConversion.AdmittedGovernanceScalar ∧
+        toGovernanceScalarWithoutPolicy MeasurementValueKind.Integer =
+          GovernanceScalarConversion.AdmittedGovernanceScalar ∧
+        toGovernanceScalarWithoutPolicy MeasurementValueKind.Interval =
+          GovernanceScalarConversion.RefusedIntervalRequiresPolicy
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: interval_requires_policy_refusal_fence
+  line: 134
+  signature_excerpt: |-
+    theorem interval_requires_policy_refusal_fence :
+        decideIntervalComparison false =
+          IntervalDecisionOutcome.RefusedIntervalRequiresPolicy ∧
+        decideIntervalComparison false ≠
+          IntervalDecisionOutcome.DecidedScalar
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: f64_unchecked_decimal_cannot_authorize_exact_bound_fence
+  line: 153
+  signature_excerpt: |-
+    theorem f64_unchecked_decimal_cannot_authorize_exact_bound_fence :
+        authorizesGovernanceBound DecimalBoundConstructor.ExactRationalPair = true ∧
+        authorizesGovernanceBound DecimalBoundConstructor.BigDecimalFromF64Unchecked = false
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: missing_local_omega_measurement_crate_recorded_fence
+  line: 170
+  signature_excerpt: |-
+    theorem missing_local_omega_measurement_crate_recorded_fence :
+        repoTfq0191Status.localOmegaMeasurementCratePresent = false ∧
+        repoTfq0191Status.leanIntervalAndFloatFencePresent = true ∧
+        repoTfq0191Status.independentCheckerPresent = true
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: interval_clock_and_calibration_remain_pending_policy_fence
+  line: 188
+  signature_excerpt: |-
+    theorem interval_clock_and_calibration_remain_pending_policy_fence :
+        affineCalibrationStatus = IntervalModuleOutputStatus.IntervalPendingPolicy ∧
+        finiteResponseStatus = IntervalModuleOutputStatus.IntervalPendingPolicy ∧
+        finiteChainClockStatus = IntervalModuleOutputStatus.IntervalPendingPolicy ∧
+        affineCalibrationStatus ≠ IntervalModuleOutputStatus.GovernanceScalarAuthorized
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence
+  line: 211
+  signature_excerpt: |-
+    theorem tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence :
+        tfq0191RepoLedger.keepsIntervalEvidenceDistinct = true ∧
+        tfq0191RepoLedger.enforcesIntervalRequiresPolicyRefusal = true ∧
+        tfq0191RepoLedger.blocksFromF64UncheckedBoundAuthority = true ∧
+        tfq0191RepoLedger.keepsCalibrationAndClocksPendingPolicy = true ∧
+        tfq0191RepoLedger.treatsIntervalAsGovernanceScalar = false ∧
+        tfq0191RepoLedger.allowsF64DecimalToAuthorizeBound = false
+  source: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rat_add_le_add
+  line: 23
+  signature_excerpt: 'theorem rat_add_le_add {a b c d : Rat} (h1 : a ≤ b) (h2 : c ≤ d) : a + c ≤ b + d'
+  source: lean4/H058EffectFrameBusch.lean
+  repository: this_repository
+  source_sha256: 84caf3702b68295713e3dcdcbd92860b9fceb21999b6c3059a8685645afbd698
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- language: lean4
-  path: lean4/CampaignTfq0191ImplementationSibling.lean
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison
+  availability: local
   symbol: CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison
-  role: Exact interval threshold straddling indeterminacy theorem
-- language: lean4
   path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 56
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.decimal_fixed_scale_cannot_represent_one_third_exactly
+  availability: local
+  symbol: CampaignTfq0191ImplementationSibling.decimal_fixed_scale_cannot_represent_one_third_exactly
+  path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 66
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth
+  availability: local
   symbol: CampaignTfq0191ImplementationSibling.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth
-  role: Exact rational discrepancy between IEEE-754 f64(0.1) and 1/10
-- language: lean4
   path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 76
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.affine_interval_calibration_and_finite_chain_clock_propagation
+  availability: local
+  symbol: CampaignTfq0191ImplementationSibling.affine_interval_calibration_and_finite_chain_clock_propagation
+  path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.measurement_value_arms_vs_governance_scalar_admission_fence
+  availability: local
+  symbol: CampaignTfq0191ImplementationSibling.measurement_value_arms_vs_governance_scalar_admission_fence
+  path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 110
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_requires_policy_refusal_fence
+  availability: local
   symbol: CampaignTfq0191ImplementationSibling.interval_requires_policy_refusal_fence
-  role: IntervalRequiresPolicy refusal fence for interval governance comparisons
-- language: lean4
   path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 134
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.f64_unchecked_decimal_cannot_authorize_exact_bound_fence
+  availability: local
   symbol: CampaignTfq0191ImplementationSibling.f64_unchecked_decimal_cannot_authorize_exact_bound_fence
-  role: Scope fence blocking BigDecimal::from_f64_unchecked from authorizing governance
-    bounds
-- language: lean4
-  path: lean4/H058EffectFrameBusch.lean
+  path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 153
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.missing_local_omega_measurement_crate_recorded_fence
+  availability: local
+  symbol: CampaignTfq0191ImplementationSibling.missing_local_omega_measurement_crate_recorded_fence
+  path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 170
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_clock_and_calibration_remain_pending_policy_fence
+  availability: local
+  symbol: CampaignTfq0191ImplementationSibling.interval_clock_and_calibration_remain_pending_policy_fence
+  path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 188
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence
+  availability: local
+  symbol: CampaignTfq0191ImplementationSibling.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence
+  path: lean4/CampaignTfq0191ImplementationSibling.lean
+  repository: this_repository
+  sha256: 16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82
+  declaration_status: declaration_found_not_proof_checked
+  line: 211
+  role: source_lead_only
+- original_ref: lean4/H058EffectFrameBusch.lean::FableHilbertWalk20260819.H058.rat_add_le_add
+  availability: local
   symbol: FableHilbertWalk20260819.H058.rat_add_le_add
-  role: Exact rational inequality addition lemma in H058EffectFrameBusch
-- language: rust
-  path: code/rust/src/wdp/lib.rs
+  path: lean4/H058EffectFrameBusch.lean
+  repository: this_repository
+  sha256: 84caf3702b68295713e3dcdcbd92860b9fceb21999b6c3059a8685645afbd698
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
+- original_ref: code/rust/src/wdp/lib.rs::evaluate_exactness_fraud_criterion
+  availability: local
   symbol: evaluate_exactness_fraud_criterion
-  role: WDP exactness fraud criterion and authority gap boundary
-- language: python
-  path: checks/independent/tfq-0191.py
-  symbol: run_all_checks
-  role: Independent Python verification of interval policy refusal, fixed-scale decimal
-    and f64 discrepancies, and interval clock propagation
+  path: code/rust/src/wdp/lib.rs
+  repository: this_repository
+  sha256: aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c
+  declaration_status: symbol_not_found
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -81,59 +477,30 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: VERIFIED
-    carrier: Rational intervals [l, u] (MeasurementValue::Interval) vs exact GovernanceScalar
-      (ExactRational, Integer, Boolean)
-    coefficient_ring: Q
-    assumptions:
-    - MeasurementValue::Interval requires an explicit policy rule to decide a governance
-      comparison
-    - BigDecimal::from_f64_unchecked is a fixed-scale decimal from an f64 and cannot
-      authorize an exact bound
-    source_pins:
-    - path: dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md
-      sha256: d3b46edb642cce816f20a69625c126dce0b9e9516fd96edbb41076e0cb58178b
-    public_input:
-      node_id: TFQ-0191
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: VERIFIED
-    operations:
-    - toGovernanceScalarWithoutPolicy
-    - decideIntervalComparison
-    - authorizesGovernanceBound
-    composition_plan:
-    - Prove interval straddling indeterminacy and fixed-scale decimal / IEEE-754 f64
-      discrepancies in Lean 4 and Python
-    - Verify affine calibration and finite chain clock interval width propagation
-    - Enforce IntervalRequiresPolicy and from_f64_unchecked non-authority fences
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: VERIFIED
-    algebraic_relations:
-    - 1/3 - 333333/1000000 = 1/3000000 != 0
-    - 3602879701896397 / 2^55 - 1/10 = 1/180143985094819840 != 0
-    - (a*u + b) - (a*l + b) = a*(u - l)
-    rejection_predicates:
-    - toGovernanceScalarWithoutPolicy Interval = RefusedIntervalRequiresPolicy
-    - decideIntervalComparison false = RefusedIntervalRequiresPolicy
-    - authorizesGovernanceBound BigDecimalFromF64Unchecked = false
-    negative_control_plan:
-    - 6 semantic Lean mutants in dag/research/campaign_tfq-0191_lean_mutation.json
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: VERIFIED
-    certificate_predicates:
-    - interval_order_straddling_indeterminacy_vs_strict_comparison
-    - decimal_fixed_scale_cannot_represent_one_third_exactly
-    - ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth
-    - affine_interval_calibration_and_finite_chain_clock_propagation
-    - interval_requires_policy_refusal_fence
-    - f64_unchecked_decimal_cannot_authorize_exact_bound_fence
-    - tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence
-    anchors:
-    - lean4/CampaignTfq0191ImplementationSibling.lean
-    - lean4/H058EffectFrameBusch.lean
-    - code/rust/src/wdp/lib.rs
-    - checks/independent/tfq-0191.py
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads: []
