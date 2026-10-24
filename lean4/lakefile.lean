@@ -1057,3 +1057,6 @@ lean_lib CampaignFspQcdChemicalPotentialDet where
   roots := #[`CampaignFspQcdChemicalPotentialDet]
 
 
+-- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
+lean_lib CampaignFspImaginaryMuRealDet where
+  roots := #[`CampaignFspImaginaryMuRealDet]
