@@ -2403,9 +2403,9 @@ Obligation: Type each requirement by kind (separate, apart, same) with its label
 - Parent: `TFQ-0488`
 - Status: `OPEN_OBLIGATION`
 
-The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.
+Narrowed boundary, status left OPEN: the four declared Challenge 3 lists copied from deltaU0, deltaU1, deltaBL, and deltaBD each have length 2. Their new-form arities are 1, 1, 2, and 2, and the sum of those arities is 6. The argument lists are [0], [1], [0, 1], and [0, 0], and the four lists are pairwise distinct across 6 comparisons. One three-item list has length 3, and 3 > 2. This census is those four named lists. A k-item grammar for k at least 3, an exhaustive cost-two enumeration, and a response-size bound stay open. Status stays OPEN.
 
-Obligation: Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.
+Obligation: Keep the four-list census separate from a k-item grammar. Defining that grammar for k at least 3, with the pruning lemmas it relies on, and certifying a pruned enumeration against the unpruned space stay open.
 
 ### TFQ-0491 capability-stage-counter
 
