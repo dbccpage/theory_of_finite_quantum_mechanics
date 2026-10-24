@@ -1,26 +1,32 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0010
 authority_effect: None
-collection_status: witness_verified
+collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Finite QED here means charged finite transport, a finite Dirac
-    or Clifford shadow, interaction vertices on a finite complex, and finite maps
-    that mirror vacuum polarization, a Lamb shift datum, and an electroweak mixing
-    control. Files under omega_quantum_physics and the finite-QM research notes are
-    computational controls of those maps. The three languages must state the finite
-    identity each control checks. F002 is an interface inventory. Naming a continuum
-    limit on that floor does not derive continuum QED.
+  source_statement: Finite QED here means charged finite transport, a finite Dirac or Clifford shadow,
+    interaction vertices on a finite complex, and finite maps that mirror vacuum polarization, a Lamb
+    shift datum, and an electroweak mixing control. Files under omega_quantum_physics and the finite-QM
+    research notes are computational controls of those maps. The three languages must state the finite
+    identity each control checks. F002 is an interface inventory. Naming a continuum limit on that floor
+    does not derive continuum QED.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Carry finite charged transport, vertices, and Ward shadows without
-    calling the result continuum QED.
+  source_bottleneck: Carry finite charged transport, vertices, and Ward shadows without calling the result
+    continuum QED.
   source_refs:
   - dag/derivations/15_finite_qed/tfq_0010_finite_qed_and_electroweak_shadow.md
+  - dag/derivations/independent/tfq-0010.md
+  - dag/research/campaign_tfq-0010_lean_replay.json
+  - dag/research/campaign_tfq-0010_lean_mutation.json
+  - dag/research/campaign_tfq-0010_independent.json
+  - docs/overclaim/reviews/2026-10-24_campaign-tfq-0010-precommit.md
+  - checks/independent/tfq-0010.py
+  - lean4/CampaignTfq0010FiniteQed.lean
   paper_refs:
   - dag/derivations/15_finite_qed/tfq_0010_finite_qed_and_electroweak_shadow.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/15_finite_qed/tfq_0010_finite_qed_and_electroweak_shadow.md
@@ -32,43 +38,537 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_qed_tfq_0010_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: triangleGaugeCoupling
+  line: 55
+  signature_excerpt: 'def triangleGaugeCoupling (j01 j12 j20 a01 a12 a20 alpha0 alpha1 alpha2 : ℚ) : ℚ'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleDiv0
+  line: 61
+  signature_excerpt: 'def triangleDiv0 (j01 _j12 j20 : ℚ) : ℚ'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleDiv1
+  line: 62
+  signature_excerpt: 'def triangleDiv1 (j01 j12 _j20 : ℚ) : ℚ'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleDiv2
+  line: 63
+  signature_excerpt: 'def triangleDiv2 (_j01 j12 j20 : ℚ) : ℚ'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: GaussRat
+  line: 85
+  signature_excerpt: structure GaussRat
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gaussNormSq
+  line: 99
+  signature_excerpt: 'def gaussNormSq (z : GaussRat) : ℚ'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pythPhase345
+  line: 103
+  signature_excerpt: 'def pythPhase345 : GaussRat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gaussMul
+  line: 90
+  signature_excerpt: 'def gaussMul (z w : GaussRat) : GaussRat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gaussConj
+  line: 96
+  signature_excerpt: 'def gaussConj (z : GaussRat) : GaussRat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mat2Mul
+  line: 132
+  signature_excerpt: 'def mat2Mul (A B : Mat2Rat) : Mat2Rat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: carAnn
+  line: 140
+  signature_excerpt: 'def carAnn : Mat2Rat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mat2Zero
+  line: 128
+  signature_excerpt: 'def mat2Zero : Mat2Rat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: carCre
+  line: 141
+  signature_excerpt: 'def carCre : Mat2Rat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mat2Add
+  line: 130
+  signature_excerpt: 'def mat2Add (A B : Mat2Rat) : Mat2Rat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mat2Id
+  line: 129
+  signature_excerpt: 'def mat2Id : Mat2Rat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: carNum
+  line: 142
+  signature_excerpt: 'def carNum : Mat2Rat'
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: discrete_ward_identity_and_coboundary_gauge_coupling_invariance
+  line: 69
+  signature_excerpt: |-
+    theorem discrete_ward_identity_and_coboundary_gauge_coupling_invariance
+        (j a01 a12 a20 alpha0 alpha1 alpha2 : ℚ) :
+        triangleGaugeCoupling j j j a01 a12 a20 alpha0 alpha1 alpha2 =
+          j * a01 + j * a12 + j * a20 ∧
+        triangleDiv0 j j j = 0 ∧
+        triangleDiv1 j j j = 0 ∧
+        triangleDiv2 j j j = 0 ∧
+        triangleGaugeCoupling 1 0 0 0 0 0 0 1 0 ≠ 0
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: charged_gaussian_rational_link_transport_and_vertex_covariant_difference
+  line: 109
+  signature_excerpt: |-
+    theorem charged_gaussian_rational_link_transport_and_vertex_covariant_difference
+        (d : GaussRat) :
+        gaussNormSq pythPhase345 = 1 ∧
+        gaussMul (gaussConj pythPhase345) pythPhase345 = ⟨1, 0⟩ ∧
+        gaussNormSq (gaussMul pythPhase345 d) = gaussNormSq d
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: finite_clifford_car_nilpotency_and_occupation_number_projector
+  line: 146
+  signature_excerpt: |-
+    theorem finite_clifford_car_nilpotency_and_occupation_number_projector :
+        mat2Mul carAnn carAnn = mat2Zero ∧
+        mat2Mul carCre carCre = mat2Zero ∧
+        mat2Add (mat2Mul carAnn carCre) (mat2Mul carCre carAnn) = mat2Id ∧
+        mat2Mul carNum carNum = carNum ∧
+        mat2Tr carNum = 1 ∧
+        mat2Det carNum = 0
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy
+  line: 165
+  signature_excerpt: |-
+    theorem dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy :
+        let c_1s : ℚ
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum
+  line: 191
+  signature_excerpt: |-
+    theorem qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum :
+        let se_const : ℚ
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weinberg_electroweak_projectors_and_custodial_rho_identity
+  line: 216
+  signature_excerpt: |-
+    theorem weinberg_electroweak_projectors_and_custodial_rho_identity :
+        weinbergSin2Witness = 9 / 25 ∧
+        weinbergCos2Witness = 16 / 25 ∧
+        weinbergSin2Witness + weinbergCos2Witness = 1 ∧
+        mat2Add piGammaWitness piZWitness = mat2Id ∧
+        mat2Mul piGammaWitness piZWitness = mat2Zero ∧
+        mat2Mul neutralMassSqWitness piGammaWitness = mat2Zero ∧
+        mat2Det neutralMassSqWitness = 0
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1
+  line: 235
+  signature_excerpt: |-
+    theorem gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1 :
+        let yQ : ℚ
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: f002_interface_inventory_does_not_derive_continuum_qed_fence
+  line: 280
+  signature_excerpt: |-
+    theorem f002_interface_inventory_does_not_derive_continuum_qed_fence :
+        evaluateF002QedAuthorization f002RepoQedFloor =
+          ContinuumQedAuthorization.OpenInterfaceOnF002 ∧
+        evaluateF002QedAuthorization f002RepoQedFloor ≠
+          ContinuumQedAuthorization.DerivedContinuumQed
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: finite_qed_computational_controls_scope_separation_fence
+  line: 313
+  signature_excerpt: |-
+    theorem finite_qed_computational_controls_scope_separation_fence
+        (c : FiniteQedControlFamily) :
+        checksDeclaredFiniteIdentity c = true ∧
+        claimsContinuumQedDerivation c = false
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0010_finite_qed_and_electroweak_shadow_ledger_fence
+  line: 336
+  signature_excerpt: |-
+    theorem tfq0010_finite_qed_and_electroweak_shadow_ledger_fence :
+        tfq0010RepoLedger.hasChargedFiniteTransport = true ∧
+        tfq0010RepoLedger.hasCliffordDiracShadow = true ∧
+        tfq0010RepoLedger.hasWardVertexConservation = true ∧
+        tfq0010RepoLedger.hasVacuumPolarizationLambDatum = true ∧
+        tfq0010RepoLedger.hasElectroweakMixingControl = true ∧
+        tfq0010RepoLedger.f002IsInterfaceInventoryOnly = true ∧
+        tfq0010RepoLedger.claimsContinuumQedDerived = false
+  source: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  source_sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weinberg_projectors_complete_orthogonal_idempotent
+  line: 476
+  signature_excerpt: "theorem weinberg_projectors_complete_orthogonal_idempotent (g gp v : Rat)\n    (hd\
+    \ : g ^ 2 + gp ^ 2 ≠ 0) :\n    weinbergSin2 g gp + weinbergCos2 g gp = 1 ∧\n    Mat2Rat.add (weinbergPiGamma\
+    \ g gp) (weinbergPiZ g gp) = Mat2Rat.id ∧\n    Mat2Rat.mul (weinbergPiGamma g gp) (weinbergPiZ g gp)\
+    \ = Mat2Rat.zero ∧\n    Mat2Rat.mul (weinbergPiZ g gp) (weinbergPiGamma g gp) = Mat2Rat.zero ∧\n \
+    \   Mat2Rat.mul (weinbergPiGamma g gp) (weinbergPiGamma g gp) = weinbergPiGamma g gp ∧\n    Mat2Rat.mul\
+    \ (weinbergPiZ g gp) (weinbergPiZ g gp) = weinbergPiZ g gp ∧\n    Mat2Rat.mul (ewNeutralMassSqMat\
+    \ g gp v) (weinbergPiGamma "
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ew_custodial_rho_eq_one
+  line: 494
+  signature_excerpt: |-
+    theorem ew_custodial_rho_eq_one (g gp v : Rat)
+        (hg : g ≠ 0) (hv : v ≠ 0) (hd : g ^ 2 + gp ^ 2 ≠ 0) :
+        ewMW2 g v / (ewMZ2 g gp v * weinbergCos2 g gp) = 1
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sm_gell_mann_nishijima_charge_identities
+  line: 507
+  signature_excerpt: |-
+    theorem sm_gell_mann_nishijima_charge_identities :
+        let yQ : Rat
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1
+  line: 540
+  signature_excerpt: |-
+    theorem sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1 :
+        anomalySU3SqU1 3 (1 / 6) (2 / 3) (-1 / 3) = 0 ∧
+        anomalySU2SqU1 3 (1 / 6) (-1 / 2) = 0 ∧
+        anomalyGravSqU1 3 (1 / 6) (2 / 3) (-1 / 3) (-1 / 2) (-1) = 0 ∧
+        anomalyU1CubicQuarks 3 (1 / 6) (2 / 3) (-1 / 3) = -3 / 4 ∧
+        anomalyU1CubicLeptons (-1 / 2) (-1) = 3 / 4 ∧
+        anomalyU1CubicTotal 3 (1 / 6) (2 / 3) (-1 / 3) (-1 / 2) (-1) = 0 ∧
+        anomalySU2SqU1 1 (1 / 6) (-1 / 2) = -1 / 3 ∧
+        anomalyU1CubicTotal 1 (1 / 6) (2 / 3) (-1 / 3) (-1 / 2) (-1) = 1 / 2
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: car_clifford_nilpotency_and_occupation_projector
+  line: 1124
+  signature_excerpt: |-
+    theorem car_clifford_nilpotency_and_occupation_projector :
+        let c_ann : Mat2Rat
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dirac_coulomb_fine_structure_n2_and_darwin_spin_orbit_degeneracy
+  line: 1175
+  signature_excerpt: |-
+    theorem dirac_coulomb_fine_structure_n2_and_darwin_spin_orbit_degeneracy :
+        let c_1s : Rat
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: qed_one_loop_lamb_shift_contact_and_bethe_lifting
+  line: 1196
+  signature_excerpt: |-
+    theorem qed_one_loop_lamb_shift_contact_and_bethe_lifting :
+        let se_const : Rat
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- language: lean4
-  path: lean4/CampaignTfq0010FiniteQed.lean
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.discrete_ward_identity_and_coboundary_gauge_coupling_invariance
+  availability: local
   symbol: CampaignTfq0010FiniteQed.discrete_ward_identity_and_coboundary_gauge_coupling_invariance
-  role: Discrete Ward identity and coboundary gauge coupling invariance
-- language: lean4
   path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.charged_gaussian_rational_link_transport_and_vertex_covariant_difference
+  availability: local
   symbol: CampaignTfq0010FiniteQed.charged_gaussian_rational_link_transport_and_vertex_covariant_difference
-  role: Charged Gaussian-rational U(1) link transport and covariant difference norm
-    invariance
-- language: lean4
   path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 109
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.finite_clifford_car_nilpotency_and_occupation_number_projector
+  availability: local
+  symbol: CampaignTfq0010FiniteQed.finite_clifford_car_nilpotency_and_occupation_number_projector
+  path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 146
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy
+  availability: local
+  symbol: CampaignTfq0010FiniteQed.dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy
+  path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 165
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum
+  availability: local
   symbol: CampaignTfq0010FiniteQed.qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum
-  role: 1-loop QED self-energy, Uehling vacuum polarization, and Lamb shift contact
-    datum
-- language: lean4
   path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 191
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.weinberg_electroweak_projectors_and_custodial_rho_identity
+  availability: local
   symbol: CampaignTfq0010FiniteQed.weinberg_electroweak_projectors_and_custodial_rho_identity
-  role: Weinberg electroweak projectors and massless photon mode
-- language: lean4
   path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 216
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1
+  availability: local
+  symbol: CampaignTfq0010FiniteQed.gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1
+  path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 235
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.f002_interface_inventory_does_not_derive_continuum_qed_fence
+  availability: local
   symbol: CampaignTfq0010FiniteQed.f002_interface_inventory_does_not_derive_continuum_qed_fence
-  role: Scope fence separating F002 interface inventory from continuum QED
-- language: lean4
-  path: lean4/FiniteQM.lean
-  symbol: FiniteQM.qed_one_loop_lamb_shift_contact_and_bethe_lifting
-  role: FiniteQM 1-loop Lamb shift contact and Bethe lifting theorem
-- language: lean4
-  path: lean4/FiniteQM.lean
+  path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 280
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.finite_qed_computational_controls_scope_separation_fence
+  availability: local
+  symbol: CampaignTfq0010FiniteQed.finite_qed_computational_controls_scope_separation_fence
+  path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 313
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.tfq0010_finite_qed_and_electroweak_shadow_ledger_fence
+  availability: local
+  symbol: CampaignTfq0010FiniteQed.tfq0010_finite_qed_and_electroweak_shadow_ledger_fence
+  path: lean4/CampaignTfq0010FiniteQed.lean
+  repository: this_repository
+  sha256: 7c95054c8ed2af2299d98d4404899f01e083069ed60a2d2ee2e2b5a5175fd7a2
+  declaration_status: declaration_found_not_proof_checked
+  line: 336
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.weinberg_projectors_complete_orthogonal_idempotent
+  availability: local
   symbol: FiniteQM.weinberg_projectors_complete_orthogonal_idempotent
-  role: FiniteQM Weinberg projector decomposition theorem
-- language: python
-  path: checks/independent/tfq-0010.py
-  symbol: run_all_checks
-  role: Independent Python checker for TFQ-0010
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 476
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.ew_custodial_rho_eq_one
+  availability: local
+  symbol: FiniteQM.ew_custodial_rho_eq_one
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 494
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.sm_gell_mann_nishijima_charge_identities
+  availability: local
+  symbol: FiniteQM.sm_gell_mann_nishijima_charge_identities
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 507
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1
+  availability: local
+  symbol: FiniteQM.sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 540
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.car_clifford_nilpotency_and_occupation_projector
+  availability: local
+  symbol: FiniteQM.car_clifford_nilpotency_and_occupation_projector
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 1124
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.dirac_coulomb_fine_structure_n2_and_darwin_spin_orbit_degeneracy
+  availability: local
+  symbol: FiniteQM.dirac_coulomb_fine_structure_n2_and_darwin_spin_orbit_degeneracy
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 1175
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.qed_one_loop_lamb_shift_contact_and_bethe_lifting
+  availability: local
+  symbol: FiniteQM.qed_one_loop_lamb_shift_contact_and_bethe_lifting
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 1196
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -84,60 +584,30 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: VERIFIED
-    carrier: Finite triangle complex C_0 -> C_1, Gaussian rationals Q(i), and 2x2
-      rational matrices Mat2Rat
-    coefficient_ring: Q and Q(i)
-    assumptions:
-    - Finite oriented graph / simplicial carrier for discrete Ward and U(1) link transport
-    - Exact rational Dirac-Coulomb, 1-loop QED contact, and Weinberg projector parameters
-    source_pins:
-    - path: dag/derivations/15_finite_qed/tfq_0010_finite_qed_and_electroweak_shadow.md
-      sha256: d92283828bbb879b66f5cad740ca1259a2aefc30db270e417e38e2dc65ce40a5
-    public_input:
-      node_id: TFQ-0010
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: VERIFIED
-    operations:
-    - triangleGaugeCoupling
-    - pythPhase345
-    - qedLambContactCoeff
-    - piGammaWitness
-    - piZWitness
-    - evaluateF002QedAuthorization
-    composition_plan:
-    - Verify discrete Ward coboundary invariance and Gaussian-rational U(1) link transport
-    - Verify 2x2 Clifford/CAR nilpotency, Dirac-Coulomb fine structure, and 1-loop
-      Lamb shift contact datum
-    - Verify Weinberg electroweak projectors, anomaly cancellation at N_c=3, and F002
-      continuum-interface fence
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: VERIFIED
-    algebraic_relations:
-    - <J, A + d0 alpha> = <J, A> when d0* J = 0
-    - '|U_{ab} D|^2 = |D|^2 for |U_{ab}|^2 = 1 in Q(i)'
-    - se_const (5/6) + uehling_vp (-1/5) + mag_diff (1/8) = 91/120
-    - sin^2 theta_W + cos^2 theta_W = 1 and Pi_gamma + Pi_Z = I_2
-    rejection_predicates:
-    - evaluateF002QedAuthorization f002RepoQedFloor != DerivedContinuumQed
-    - claimsContinuumQedDerivation c = false
-    - tfq0010RepoLedger.claimsContinuumQedDerived = false
-    negative_control_plan:
-    - 6 semantic Lean mutants in dag/research/campaign_tfq-0010_lean_mutation.json
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: VERIFIED
-    certificate_predicates:
-    - discrete_ward_identity_and_coboundary_gauge_coupling_invariance
-    - charged_gaussian_rational_link_transport_and_vertex_covariant_difference
-    - qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum
-    - weinberg_electroweak_projectors_and_custodial_rho_identity
-    - f002_interface_inventory_does_not_derive_continuum_qed_fence
-    - tfq0010_finite_qed_and_electroweak_shadow_ledger_fence
-    anchors:
-    - lean4/CampaignTfq0010FiniteQed.lean
-    - lean4/FiniteQM.lean
-    - checks/independent/tfq-0010.py
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads: []

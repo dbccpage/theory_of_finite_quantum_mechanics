@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 9
 - cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
@@ -85,20 +85,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0496
 - counts toward the grade: no
-
-### Documents and data: `dag/derivations/independent/pgw-responder-in-lean.md`
-
-- file: [dag/derivations/independent/pgw-responder-in-lean.md](../../../dag/derivations/independent/pgw-responder-in-lean.md)
-- sha256 (`lf-normalised`): `d63878b869ecd1fab7e1f777254c1c7a6b2669ae79c24923cc0ad8966dd6808c`
-- cited in: node.source
-- counts toward the grade: yes
-
-### Documents and data: `dag/research/campaign_pgw-responder-in-lean_lean_replay.json`
-
-- file: [dag/research/campaign_pgw-responder-in-lean_lean_replay.json](../../../dag/research/campaign_pgw-responder-in-lean_lean_replay.json)
-- sha256 (`lf-normalised`): `b66ab92285e675acab3502a573c93095d9c8935255e46791c22ce4820c98d23b`
-- cited in: node.source
-- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt`
 
