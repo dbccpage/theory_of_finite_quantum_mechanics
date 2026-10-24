@@ -1107,3 +1107,6 @@ lean_lib CampaignTfq0123ContinuumInterface where
 
 lean_lib CampaignTfq0006L1ToL2 where
   roots := #[`CampaignTfq0006L1ToL2]
+
+lean_lib CampaignTfq0008FiniteQmDynamics where
+  roots := #[`CampaignTfq0008FiniteQmDynamics]

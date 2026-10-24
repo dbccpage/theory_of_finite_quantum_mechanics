@@ -9503,11 +9503,19 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "statement": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-equivalence fences over Q: (1) finite projective measurement instruments (outcome projections proj0, proj1 and projective dephasingChannel) trace additivity and idempotence, plus 2-branch finite diamond graph path-sum destructive/constructive interference (finite_instrument_trace_preservation_and_idempotence, diamond_path_sum_interference_identities); (2) rational Cayley unitary norm conservation (1 - t^2)^2 + (2t)^2 = (1 + t^2)^2 vs. first-order Euler generator norm inflation (1 + t^2) - 1 = t^2 > 0 (and 4 at t = 2), plus replay of the FINITE_QM_DYNAMICS C_4 cochain syndromes (cayley_unitary_norm_conservation_exact, euler_first_order_generator_norm_inflation_fence, fq_dynamics_cochain_syndromes_and_shadow_replay); and (3) the stochastic-to-CP gap witness (2x2 matrix transpose preserves trace, determinant, and diagonal stochastic states yet yields negative determinant -1 and negative quadratic form -2 on the 2-qubit Bell partial transpose swap block), the numerical CPTP tolerance false-green fences for trace drift 1 + eps / 2 and negative Choi eigenvalue -eps / 2, and the exact rational 2-Kraus bit-flip channel trace identity (transpose_map_preserves_trace_det_and_diagonal_states, stochastic_to_cp_gap_partial_transpose_bell_witness, numerical_cptp_tolerance_false_green_trace_drift_fence, numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence, exact_kraus_bit_flip_channel_trace_identity).",
       "source": [
-        "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md"
+        "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md",
+        "dag/derivations/independent/tfq-0008.md",
+        "checks/independent/tfq-0008.py",
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+        "dag/research/campaign_tfq-0008_lean_replay.json",
+        "dag/research/campaign_tfq-0008_lean_mutation.json",
+        "dag/research/campaign_tfq-0008_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Separate finite instruments, path sums, and channels from any continuum generator.",
@@ -41135,20 +41143,30 @@
         "TFQ-0008"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift.md"
+        "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md",
+        "dag/derivations/independent/tfq-0008.md",
+        "checks/independent/tfq-0008.py",
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+        "dag/research/campaign_tfq-0008_lean_replay.json",
+        "dag/research/campaign_tfq-0008_lean_mutation.json",
+        "dag/research/campaign_tfq-0008_independent.json"
       ],
       "id": "TFQ-0008",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean"
+      ],
       "local_id": "FINITE_DYNAMICS",
       "name": "Finite dynamics, instruments, and channels",
       "obligation": "Separate finite instruments, path sums, and channels from any continuum generator.",
       "parent_id": "TFQ-0007",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0008.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_QM_DYNAMICS",
-      "summary": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.",
+      "summary": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-equivalence fences over Q: (1) finite projective measurement instruments (outcome projections proj0, proj1 and projective dephasingChannel) trace additivity and idempotence, plus 2-branch finite diamond graph path-sum destructive/constructive interference (finite_instrument_trace_preservation_and_idempotence, diamond_path_sum_interference_identities); (2) rational Cayley unitary norm conservation (1 - t^2)^2 + (2t)^2 = (1 + t^2)^2 vs. first-order Euler generator norm inflation (1 + t^2) - 1 = t^2 > 0 (and 4 at t = 2), plus replay of the FINITE_QM_DYNAMICS C_4 cochain syndromes (cayley_unitary_norm_conservation_exact, euler_first_order_generator_norm_inflation_fence, fq_dynamics_cochain_syndromes_and_shadow_replay); and (3) the stochastic-to-CP gap witness (2x2 matrix transpose preserves trace, determinant, and diagonal stochastic states yet yields negative determinant -1 and negative quadratic form -2 on the 2-qubit Bell partial transpose swap block), the numerical CPTP tolerance false-green fences for trace drift 1 + eps / 2 and negative Choi eigenvalue -eps / 2, and the exact rational 2-Kraus bit-flip channel trace identity (transpose_map_preserves_trace_det_and_diagonal_states, stochastic_to_cp_gap_partial_transpose_bell_witness, numerical_cptp_tolerance_false_green_trace_drift_fence, numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence, exact_kraus_bit_flip_channel_trace_identity).",
       "uuid": "9a3ade1d-15a2-5016-a445-2b42ba90c577"
     },
     {

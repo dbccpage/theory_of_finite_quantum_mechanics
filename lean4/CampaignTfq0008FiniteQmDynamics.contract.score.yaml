@@ -1,0 +1,38 @@
+schema_version: lean_contract_score.v1
+lean_file: lean4/CampaignTfq0008FiniteQmDynamics.lean
+module: CampaignTfq0008FiniteQmDynamics
+dag_node: TFQ-0008
+claim_class: L4D
+theorems:
+  - name: CampaignTfq0008FiniteQmDynamics.finite_instrument_trace_preservation_and_idempotence
+    role: Proves outcome projection trace additivity and idempotence of the projective measurement instrument dephasingChannel on 2x2 rational matrices.
+  - name: CampaignTfq0008FiniteQmDynamics.diamond_path_sum_interference_identities
+    role: Proves destructive cancellation and constructive 4*a^2 amplification for 2-branch finite diamond graph path sums without a continuum path integral.
+  - name: CampaignTfq0008FiniteQmDynamics.cayley_unitary_norm_conservation_exact
+    role: Proves exact norm conservation (1 - t^2)^2 + (2t)^2 = (1 + t^2)^2 for the rational Cayley unitary transform.
+  - name: CampaignTfq0008FiniteQmDynamics.euler_first_order_generator_norm_inflation_fence
+    role: Proves that the first-order Euler generator step inflates squared norm by t^2 > 0 for all t != 0 and by 4 at t = 2.
+  - name: CampaignTfq0008FiniteQmDynamics.fq_dynamics_cochain_syndromes_and_shadow_replay
+    role: Replays the exact C_4 cochain holonomies, shadow invariants, and countermodel defects for FQ-DISCRETE-DYNAMICS-DICHOTOMY, FQ-GAP-REAL-EMBEDDING-CHOICE, and DS-CONTINUOUS-TIME-EXP-GENERATOR.
+  - name: CampaignTfq0008FiniteQmDynamics.transpose_map_preserves_trace_det_and_diagonal_states
+    role: Proves that 2x2 matrix transpose preserves trace, determinant, and diagonal stochastic states.
+  - name: CampaignTfq0008FiniteQmDynamics.stochastic_to_cp_gap_partial_transpose_bell_witness
+    role: Proves that under partial transpose on the 2-qubit unnormalized Bell state, the off-diagonal swap block has determinant -1 < 0 and quadratic form -2 < 0 on (1, -1), witnessing the gap between stochastic/positive maps and completely positive maps.
+  - name: CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_trace_drift_fence
+    role: Proves that for any positive tolerance eps > 0, a trace-drifting factor 1 + eps / 2 passes |residual| <= eps while violating exact unit trace.
+  - name: CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
+    role: Proves that for any positive tolerance eps > 0, a negative Choi eigenvalue -eps / 2 passes |residual| <= eps while violating complete positivity (-eps / 2 < 0).
+  - name: CampaignTfq0008FiniteQmDynamics.exact_kraus_bit_flip_channel_trace_identity
+    role: Proves exact zero-residual trace preservation for the 2-Kraus rational bit-flip channel.
+premises:
+  - name: Mat2Q
+    role: 2x2 rational matrix carrier for finite instruments and channels.
+  - name: dephasingChannel
+    role: Projective diagonal measurement instrument channel on Mat2Q.
+  - name: diamondPathAmplitude
+    role: 2-branch finite graph path-sum amplitude.
+  - name: withinTolerance
+    role: Diagnostic tolerance predicate |residual| <= eps contrasting numerical CPTP checks with exact algebraic channels.
+fences:
+  - id: TFQ-0008-STOCHASTIC-TO-CP-AND-TOLERANCE-FENCE
+    description: Positivity on diagonal stochastic kernels does not imply complete positivity, and numerical CPTP checks at a fixed tolerance eps > 0 do not authorize an exact quantum channel or a continuum generator.

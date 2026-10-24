@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 175, E1 239, E2 42, E3 469.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 174, E1 239, E2 42, E3 470.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,7 +24,7 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 175, E1 239, E2 42, E3 4
 
 Of the 267 `PROVED_LEAN` nodes, 267 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 469 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 470 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
@@ -42,9 +42,9 @@ The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in file
 | `IMPORTED_ASSUMPTION` | 7 | 26 | 1 | 36 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 40 | 89 | 10 | 36 | 0 | 175 |
+| `OPEN` | 39 | 89 | 10 | 37 | 0 | 175 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 175 | 239 | 42 | 469 | 0 | 925 |
+| Total | 174 | 239 | 42 | 470 | 0 | 925 |
 
 ### Stage by evidence grade
 
@@ -57,7 +57,7 @@ The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in file
 | [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 5 | 0 |
 | [L1_TO_L2](stages/L1_TO_L2.md) | 10 | 0 | 0 | 38 | 0 | 48 | 16 | 5 |
 | [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 0 | 32 | 0 | 33 | 18 | 32 |
-| [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 3 | 0 | 0 | 19 | 0 | 22 | 5 | 15 |
+| [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 2 | 0 | 0 | 20 | 0 | 22 | 5 | 15 |
 | [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 0 | 44 | 0 | 44 | 30 | 12 |
 | [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 2 | 0 | 0 | 8 | 0 | 10 | 6 | 3 |
 | [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 10 | 9 | 24 | 0 | 43 | 11 | 2 |
