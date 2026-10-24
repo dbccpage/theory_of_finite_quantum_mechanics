@@ -1,0 +1,141 @@
+{
+  "AuthorityEffect": "None",
+  "reviewed_head": "2e8913a68bcf518c572b778a4db2cf14f2cc5d04",
+  "source_snapshot_blobs_rehashed": 174,
+  "replay_logs_rehashed": 18,
+  "checks": [
+    {
+      "argv": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Rust\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 2\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 5b2232228983), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 2,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "scripts/test_governance_policy.py",
+        "scripts/test_changed_since_contracts.py",
+        "code/python/tests/test_qm_atlas_loc.py",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "../pytest-final"
+      ],
+      "exit_code": 0,
+      "stdout": ".....................                                                    [100%]\n21 passed in 12.01s\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/verify_qm_atlas_loc.py"
+      ],
+      "exit_code": 0,
+      "stdout": "QM_ATLAS_LOC_VERIFIER all_passed=True questions=65 verified_links=403 verified_window_symbols=197 rust_python_parity=True\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 5b2232228983); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "rustfmt",
+        "--edition",
+        "2021",
+        "--check",
+        "code/rust/src/category_theory/functor/functor.rs",
+        "code/rust/src/category_theory/functor/full_functor.rs"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.whitespace=cr-at-eol",
+        "diff",
+        "--check",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "source_and_replay_changed": false,
+  "not_rebuilt": "Category library, original workspace/build hook, external omega packages, Lean and Mathlib were not rebuilt for these metadata-only fixes. Their unchanged category source snapshot and stored raw replay logs were rehashed.",
+  "full_campaign": "The existing 18-command campaign receipt remains historical evidence for the unchanged sources; a full campaign was not rerun from the sparse checkout. Full hosted governance and CodeQL must pass on the repaired head before merge.",
+  "protected_paths_unchanged_since_reviewed_head": [
+    "dag",
+    "lean4",
+    "atlas",
+    "sources",
+    "papers",
+    "governance/policy.json",
+    "governance/baseline.json"
+  ],
+  "base": "5b22322289839eaa308c91b01500225aa31ddaba",
+  "prior_replay_counts_recomputed": {
+    "category": 494,
+    "serde": 7,
+    "selected_mutants": 17
+  },
+  "current_evidence_bindings_valid": true,
+  "repair_script": {
+    "sha256": "627aac89185c715c9eacaafb2d765f85058b3d8b0c0129e96dc89ed32574d725",
+    "raw_utf8": "import copy, hashlib, json, subprocess, sys\nfrom collections import defaultdict\nfrom pathlib import Path\nROOT=Path.cwd()\nsys.path.insert(0,str(ROOT/\"scripts\"))\nimport contract_scores as cs\nPRE=\"2e8913a68bcf518c572b778a4db2cf14f2cc5d04\"\ndef sha(b):return hashlib.sha256(b).hexdigest()\ndef blob(p):return subprocess.check_output([\"git\",\"show\",PRE+\":\"+p],cwd=ROOT)\nassert subprocess.check_output([\"git\",\"rev-parse\",\"HEAD\"],cwd=ROOT,text=True).strip()==PRE\nreport={\"AuthorityEffect\":\"None\",\"reviewed_head\":PRE,\"repairs\":[],\"raw_history_records_unchanged\":True,\"current_contracts_and_scores_unchanged\":True}\nfor name in [\"functor\",\"full_functor\"]:\n rel=f\"code/rust/src/category_theory/functor/{name}.contract.score.yaml\"\n path=ROOT/rel; before=cs.load(path); d=copy.deepcopy(before)\n refs=defaultdict(list)\n for kind in [\"contract_history\",\"scoring_history\"]:\n  for e in d[kind]:\n   for alias in e[\"original_paths\"]:refs[alias].append((kind,e))\n collisions={k:v for k,v in refs.items() if len(v)>1}\n assert len(collisions)==1\n state=(d[\"current_contract\"],d[\"current_scoring\"],copy.deepcopy(d[\"contract\"]))\n for old,owners in collisions.items():\n  assert len(owners)==2 and set(k for k,_ in owners)=={\"contract_history\",\"scoring_history\"}\n  del d[\"legacy_paths\"][old]\n  fixes=[]\n  for kind,e in owners:\n   e[\"original_paths\"].remove(old)\n   new=old.replace(\"\\\\\",\"/\")+\"-\"+(\"contract\" if kind==\"contract_history\" else \"scoring\")\n   assert new not in d[\"legacy_paths\"]\n   cs.add(d,new,e[\"raw_utf8\"].encode(), \"contract\" if kind==\"contract_history\" else \"scoring\")\n   fixes.append({\"kind\":kind,\"alias\":new,\"sha256\":e[\"sha256\"]})\n  report[\"repairs\"].append({\"companion\":rel,\"removed_ambiguous_alias\":old,\"distinct_aliases\":fixes,\"before_sha256\":sha(blob(rel))})\n d[\"current_contract\"],d[\"current_scoring\"],d[\"contract\"]=state\n for kind in [\"contract_history\",\"scoring_history\"]:\n  assert [{k:v for k,v in e.items() if k!=\"original_paths\"} for e in before[kind]]==[{k:v for k,v in e.items() if k!=\"original_paths\"} for e in d[kind]]\n assert d[\"contract\"]==before[\"contract\"]\n assert d[\"current_contract\"]==before[\"current_contract\"] and d[\"current_scoring\"]==before[\"current_scoring\"]\n owners={}\n for kind in [\"contract_history\",\"scoring_history\"]:\n  for e in d[kind]:\n   raw=e[\"raw_utf8\"].encode()\n   assert sha(raw)==e[\"sha256\"] and len(raw)==e[\"bytes\"]\n   for alias in e[\"original_paths\"]:\n    assert \"\\\\\" not in alias and alias not in owners\n    owners[alias]=e[\"sha256\"]\n for alias,digest in d[\"legacy_paths\"].items():assert owners[alias]==digest\n cs.save(path,d)\n loaded=cs.load(path)\n for fix in report[\"repairs\"][-1][\"distinct_aliases\"]:\n  assert loaded[\"legacy_paths\"][fix[\"alias\"]]==fix[\"sha256\"]\n  e=next(e for e in loaded[fix[\"kind\"]] if fix[\"alias\"] in e[\"original_paths\"])\n  assert sha(e[\"raw_utf8\"].encode())==fix[\"sha256\"]\n report[\"repairs\"][-1][\"after_sha256\"]=sha(path.read_bytes())\nreview=\"evidence/quality/full_functor_validation/REVIEW.md\"\nold=blob(review)\naddition=(\n \"\\nSuperseded (2026-10-23): explicit maintainer approval later permitted an\\n\"\n \"exact-source baseline-floor exception for these source bytes; see\\n\"\n \"evidence/quality/functor_shell_pr/exception_authorization.json. The L2D score\\n\"\n \"and the global L4/D floor are unchanged. The assessment above is historical.\\n\")\n(ROOT/review).write_bytes(old+addition.encode())\nassert (ROOT/review).read_bytes().startswith(old)\nreport[\"historical_review\"]={\"path\":review,\"original_committed_prefix_sha256\":sha(old),\"original_prefix_preserved\":True,\"after_sha256\":sha((ROOT/review).read_bytes())}\npins=json.loads((ROOT/\"evidence/quality/functor_shell_pr/exception_authorization.json\").read_bytes())[\"subjects\"]\nfor p,assessment in pins.items():\n raw=(ROOT/p).read_bytes()\n assert raw==blob(p) and b\"\\r\" not in raw and sha(raw)==assessment[\"sha256\"]\nbaseline=ROOT/\"governance/baseline.json\"\nassert baseline.read_bytes()==blob(\"governance/baseline.json\")\nfor p in [\"governance/policy.json\",\"dag/derivation_dag.json\"]:\n assert (ROOT/p).read_bytes()==blob(p)\nreport[\"protected_sources\"]=pins\nreport[\"baseline_sha256\"]=sha(baseline.read_bytes())\nreport[\"scientific_scope_fences_unchanged\"]=True\nreport[\"limits\"]=\"Alias metadata and a superseding process-status note only. No raw assessment, score token, source, baseline exception or scientific scope changed. Fragment aliases are record labels in legacy_paths, not newly introduced filesystem APIs.\"\nout=ROOT/\"evidence/quality/functor_shell_pr/review_fixes.json\"\nout.write_text(json.dumps(report,indent=2)+\"\\n\",encoding=\"utf-8\",newline=\"\\n\")\nprint(json.dumps(report,indent=2))\n"
+  },
+  "historical_attempt": "review_verification_attempt1.json: local environment lacked numpy and sparse checkout initially omitted the DAG scanner loader; repository source was not defective.",
+  "historical_attempts": [
+    "review_verification_attempt1.json",
+    "review_verification_attempt2.json"
+  ],
+  "environment_resolution": "Used the existing fully configured system Python; materialized the scanner loader and required atlas hook source inputs in the sparse checkout. No repository source was modified."
+}
