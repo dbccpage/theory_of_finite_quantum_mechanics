@@ -9,7 +9,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 35 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 12 |
-| `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 53 |
+| `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 70 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 27 |
 
 ## `proved_lean_below_e3` (0)
@@ -218,13 +218,18 @@ PROVED_PROSE with no in-repo source document cited. Ordered by downstream nodes,
 | [PGW-SN-E20-OBSERVER-COMPLETION](nodes/PGW-SN-E20-OBSERVER-COMPLETION.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E21-REPAIR-RANK](nodes/PGW-SN-E21-REPAIR-RANK.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 
-## `broken_reference` (53)
+## `broken_reference` (70)
 
 A cited in-repo path or symbol cannot be found in this checkout. Ordered by downstream nodes, most first.
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
 | [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 501 | path not found: code/python/src/majorana/tests/unit/test_primitive_difference.py |
+| [L1-IMP-COMPLEX-FIELD](nodes/L1-IMP-COMPLEX-FIELD.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 225 | path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md |
+| [L1-IMP-COMPLEX-FIELD](nodes/L1-IMP-COMPLEX-FIELD.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 225 | path not found: dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md |
+| [L1-IMP-COMPLEX-FIELD](nodes/L1-IMP-COMPLEX-FIELD.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 225 | path not found: dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json |
+| [L1-IMP-SECTOR-SYMMETRY-LAW](nodes/L1-IMP-SECTOR-SYMMETRY-LAW.md) | L1_TO_L2 | `IMPORTED_ASSUMPTION` | E3 | 142 | path not found: dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md |
+| [L1-IMP-SECTOR-SYMMETRY-LAW](nodes/L1-IMP-SECTOR-SYMMETRY-LAW.md) | L1_TO_L2 | `IMPORTED_ASSUMPTION` | E3 | 142 | path not found: dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/finite_qm_engine.py |
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/operational_axiom_selection.py |
 | [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 34 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/born_normalization.py |
@@ -233,12 +238,19 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0206](nodes/TFQ-0206.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E0 | 27 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0207](nodes/TFQ-0207.md) | ENGINE_CUSTODY | `OPEN` | E1 | 26 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0208](nodes/TFQ-0208.md) | ENGINE_CUSTODY | `OPEN` | E0 | 25 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
+| [FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION](nodes/FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION.md) | FINITE_QM_CORE | `PROVED_LEAN` | E3 | 20 | path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md |
+| [FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION](nodes/FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION.md) | FINITE_QM_CORE | `PROVED_LEAN` | E3 | 20 | path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md |
+| [FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION](nodes/FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION.md) | FINITE_QM_CORE | `PROVED_LEAN` | E3 | 20 | path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md |
+| [FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION](nodes/FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION.md) | FINITE_QM_CORE | `PROVED_LEAN` | E3 | 20 | path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md |
 | [TFQ-0215](nodes/TFQ-0215.md) | ENGINE_CUSTODY | `OPEN` | E1 | 18 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channel.py |
 | [TFQ-0144](nodes/TFQ-0144.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 9 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/busch_effects.py |
 | [TFQ-0146](nodes/TFQ-0146.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 7 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channel.py |
 | [TFQ-0226](nodes/TFQ-0226.md) | ENGINE_CUSTODY | `OPEN` | E1 | 7 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0137](nodes/TFQ-0137.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 6 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/discrete_dynamics.py |
+| [L1-IMP-TRANSITION-PROBABILITY-LAW](nodes/L1-IMP-TRANSITION-PROBABILITY-LAW.md) | L1_TO_L2 | `IMPORTED_ASSUMPTION` | E3 | 5 | path not found: dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md |
+| [L1-IMP-TRANSITION-PROBABILITY-LAW](nodes/L1-IMP-TRANSITION-PROBABILITY-LAW.md) | L1_TO_L2 | `IMPORTED_ASSUMPTION` | E3 | 5 | path not found: dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md |
 | [TFQ-0147](nodes/TFQ-0147.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 5 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channels_stinespring.py |
+| [L1-IMP-LINEAR-ISOMETRIC-DYNAMICS](nodes/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 4 | path not found: dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md |
 | [TFQ-0149](nodes/TFQ-0149.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 3 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/simplicial_complex_qm.py |
 | [TFQ-0176](nodes/TFQ-0176.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 3 | path not found: code/python/src/mub/mub_verify/a1_collar_swarm.py |
 | [TFQ-0230](nodes/TFQ-0230.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 3 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
@@ -260,6 +272,11 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0140](nodes/TFQ-0140.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/norm_approximation_frontier.py |
 | [TFQ-0151](nodes/TFQ-0151.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/discrete_walk_engines.py |
 | [TFQ-0315](nodes/TFQ-0315.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 1 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
+| [FQ-OPERATIONAL-LOCAL-TOMOGRAPHY](nodes/FQ-OPERATIONAL-LOCAL-TOMOGRAPHY.md) | FINITE_QM_CORE | `IMPORTED_ASSUMPTION` | E3 | 0 | path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md |
+| [FQ-OPERATIONAL-LOCAL-TOMOGRAPHY](nodes/FQ-OPERATIONAL-LOCAL-TOMOGRAPHY.md) | FINITE_QM_CORE | `IMPORTED_ASSUMPTION` | E3 | 0 | path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md |
+| [FQ-OPERATIONAL-LOCAL-TOMOGRAPHY](nodes/FQ-OPERATIONAL-LOCAL-TOMOGRAPHY.md) | FINITE_QM_CORE | `IMPORTED_ASSUMPTION` | E3 | 0 | path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json |
+| [FQ-OPERATIONAL-LOCAL-TOMOGRAPHY](nodes/FQ-OPERATIONAL-LOCAL-TOMOGRAPHY.md) | FINITE_QM_CORE | `IMPORTED_ASSUMPTION` | E3 | 0 | path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md |
+| [FQ-OPERATIONAL-LOCAL-TOMOGRAPHY](nodes/FQ-OPERATIONAL-LOCAL-TOMOGRAPHY.md) | FINITE_QM_CORE | `IMPORTED_ASSUMPTION` | E3 | 0 | path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json |
 | [L1-QM121-LADDER-RUNGS-2-6](nodes/L1-QM121-LADDER-RUNGS-2-6.md) | L1_TO_L2 | `PROVED_LEAN` | E3 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/higher_dim_entanglement.py |
 | [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/quantum_protocols.py |

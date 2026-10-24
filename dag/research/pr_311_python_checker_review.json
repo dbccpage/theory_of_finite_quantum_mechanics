@@ -1,0 +1,120 @@
+{
+  "path": "checks/independent/pgw-context-fidelity.py",
+  "original_sha256": "98856d79779ed2da10320b7ec84bf410c74b464286748ed7f9e7a48dd801bdf0",
+  "sha256": "98856d79779ed2da10320b7ec84bf410c74b464286748ed7f9e7a48dd801bdf0",
+  "original_metrics": {
+    "ccn": 6,
+    "cognitive": 3,
+    "nesting": 1,
+    "functions": 3,
+    "lines": 67,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "current_metrics": {
+    "ccn": 6,
+    "cognitive": 3,
+    "nesting": 1,
+    "functions": 3,
+    "lines": 67,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "source_changed": false,
+  "comparison_and_iteration_AST_multisets_unchanged": true,
+  "rejected_import_harness_attempt": null,
+  "superseded_typing_calibration": null,
+  "checks": {
+    "normal": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-context-fidelity.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09,
+      "output": "checked 23 claims, failures 0\r\n"
+    },
+    "optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-context-fidelity.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.16,
+      "output": "checked 23 claims, failures 0\r\n"
+    },
+    "quiet_import": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "-c",
+        "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\pgw-context-fidelity.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
+      ],
+      "exit_code": 1,
+      "seconds": 0.13,
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 7, in <module>\r\n    with contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\r\n                                                                          ~~~~~~~~~~~~~~~~~~~~^^^\r\n  File \"<frozen importlib._bootstrap_external>\", line 759, in exec_module\r\n  File \"<frozen importlib._bootstrap>\", line 491, in _call_with_frames_removed\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\checks\\independent\\pgw-context-fidelity.py\", line 44, in <module>\r\n    lean = (ROOT / \"lean4\" / \"CampaignPgwContextFidelity.lean\").read_text(encoding=\"utf-8\")\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 787, in read_text\r\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"<string>\", line 5, in audit\r\n    if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\r\n                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nRuntimeError: Import read repository evidence: C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\lean4\\CampaignPgwContextFidelity.lean\r\n"
+    },
+    "typing_tool": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.27,
+      "output": "mypy 1.18.2 (compiled: yes)\r\n"
+    },
+    "strict_typing": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--config-file",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy.ini",
+        "--no-incremental",
+        "--cache-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy-cache",
+        "--explicit-package-bases",
+        "checks/independent/pgw-context-fidelity.py"
+      ],
+      "exit_code": 1,
+      "seconds": 1.06,
+      "output": "checks\\independent\\pgw-context-fidelity.py:11: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\pgw-context-fidelity.py:22: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\pgw-context-fidelity.py:26: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\pgw-context-fidelity.py:30: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:31: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:31: error: Call to untyped function \"empty_claim\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:32: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:32: error: Call to untyped function \"empty_claim\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:33: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:33: error: Call to untyped function \"accept_binding\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:34: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:34: error: Call to untyped function \"accept_binding\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:35: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:35: error: Call to untyped function \"accept_binding\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:36: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:36: error: Call to untyped function \"accept_binding\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:39: error: Call to untyped function \"accept_binding\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:40: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:41: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:42: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:53: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:54: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:55: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:56: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:57: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:58: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:61: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\pgw-context-fidelity.py:62: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nFound 28 errors in 1 file (checked 1 source file)\r\n"
+    }
+  },
+  "score_token": "L2D",
+  "typing_diagnostics_classification": "Any missing typing mechanism is retained as a D-level audit deficit under SCORING section 1.4; no runtime E is inferred merely from missing annotations. Actual E-range structural metrics retain E.",
+  "contract_boundary": "Closed exact finite check program; internal helpers accept only the internally generated carriers. No general public input admission or physical theorem is claimed.",
+  "typing_configuration": "[mypy]\nstrict = True\npython_version = 3.14\n",
+  "structural_change": "None",
+  "mutation_accounting": {
+    "generated": 0,
+    "killed": 0,
+    "survived": 0,
+    "equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "detection_fraction": null
+  },
+  "acceptance": "Blocked below L4; failed checks remain failures."
+}

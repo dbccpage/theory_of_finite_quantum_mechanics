@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 31. Grades: E0 10, E3 21. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINITION 8, ADMITTED_PRIMITIVE 1, SOURCE_RECORD 5, OPEN 3.
+Nodes: 31. Grades: E0 9, E3 22. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINITION 8, ADMITTED_PRIMITIVE 1, SOURCE_RECORD 5, OPEN 3.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -35,6 +35,6 @@ Nodes: 31. Grades: E0 10, E3 21. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINI
 | [PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION](../nodes/PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION.md) | `DEFINITION` | E0 | Asked whether the regime distinguishes \<a\> and \<ab\>, identifies them or cannot decide, Trial 1 answered that the current regime identifie... | none in this checkout | - |
 | [PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE](../nodes/PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE.md) | `PROVED_LEAN` | E3 | Suppose an external task requires \<a\> and \<ab\> to differ while the current regime has \<a\> ≈ₙ \<ab\>. Every operation f on the quotient S_n/... | [Quot.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Quot.lean): `quotient_barrier`<br>[Paper000.lean](../../../lean4/Imported/Genesis19l57g1/Paper000.lean): `separation_not_on_quotient`<br>[Observation.lean](../../../lean4/Imported/PreGenesisToMssn/Observation.lean): `collapsed_quotient_barrier` | - |
 | [PGW-REPLAY-NECESSITY](../nodes/PGW-REPLAY-NECESSITY.md) | `PROVED_LEAN` | E3 | Let H be the possible histories, σ(h) the state that history h produces and π(h) the part of h an auditor sees, for example only the last... | [Paper000.lean](../../../lean4/Imported/Genesis19l57g1/Paper000.lean): `insufficient_history_view`, `no_factor_through_common_view` | - |
-| [PGW-CONTEXT-FIDELITY](../nodes/PGW-CONTEXT-FIDELITY.md) | `OPEN` | E0 | A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed sta... | none in this checkout | - |
+| [PGW-CONTEXT-FIDELITY](../nodes/PGW-CONTEXT-FIDELITY.md) | `OPEN` | E3 | Narrowed boundary, status left OPEN: in the two-code model the stale context is 0 and the replayed context is 1. These codes differ. The... | [CampaignPgwContextFidelity.lean](../../../lean4/CampaignPgwContextFidelity.lean): `pgwContext_accept_count`, `pgwContext_binding_accepts_match`, `pgwContext_binding_refuses_stale` +3<br>[pgw-context-fidelity.py](../../../checks/independent/pgw-context-fidelity.py) | - |
 | [PGW-ADMISSION-BEFORE-DISTINCTION](../nodes/PGW-ADMISSION-BEFORE-DISTINCTION.md) | `DEFINITION` | E3 | Given the corrected state, the full replay answered that the task of making \<a\> and \<ab\> internally distinguishable cannot be evaluated u... | [Paper000.lean](../../../lean4/Imported/Genesis19l57g1/Paper000.lean): `single_admission_does_not_separate` | - |
 

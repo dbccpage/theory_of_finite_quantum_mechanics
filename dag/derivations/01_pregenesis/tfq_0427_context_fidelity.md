@@ -30,14 +30,19 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignPgwContextFidelity.lean`](../../../lean4/CampaignPgwContextFidelity.lean) two-code witness
+- [`lean4/CampaignPgwContextFidelity.lean::pgwContext_accept_count`](../../../lean4/CampaignPgwContextFidelity.lean)
+- [`lean4/CampaignPgwContextFidelity.lean::pgwContext_binding_accepts_match`](../../../lean4/CampaignPgwContextFidelity.lean)
+- [`lean4/CampaignPgwContextFidelity.lean::pgwContext_binding_refuses_stale`](../../../lean4/CampaignPgwContextFidelity.lean)
+- [`lean4/CampaignPgwContextFidelity.lean::pgwContext_codes_differ`](../../../lean4/CampaignPgwContextFidelity.lean)
+- [`lean4/CampaignPgwContextFidelity.lean::pgwContext_empty_claim_on_replay`](../../../lean4/CampaignPgwContextFidelity.lean)
+- [`lean4/CampaignPgwContextFidelity.lean::pgwContext_empty_claim_on_stale`](../../../lean4/CampaignPgwContextFidelity.lean)
 - `missing obligation: no Lean definition of ValidTrace or of the context-fidelity non-implication; Represented.replay_deterministic in 000_genesis_19l57g1/lean4/Derivation/Represented.lean shows only that replay is a function of the history`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`checks/independent/pgw-context-fidelity.py`](../../../checks/independent/pgw-context-fidelity.py) two-code witness
+- [`checks/independent/pgw-context-fidelity.py`](../../../checks/independent/pgw-context-fidelity.py)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py)
 
 ---
