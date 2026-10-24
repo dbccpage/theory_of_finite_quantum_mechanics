@@ -1,0 +1,96 @@
+{
+  "schema_version": "tfqm.scoped-assessment-evidence.v1",
+  "AuthorityEffect": "None",
+  "assessment_id": "dfm-z1-z2-counterterm-fence-governance-review",
+  "evaluation_timestamp": "2026-10-24T03:01:43.936045+00:00",
+  "source_revision": "da94e3d2978fd78904743c447017db05cd69f911",
+  "artifacts": [
+    {
+      "path": "lean4/CampaignDfmZ1Z2CountertermFence.lean",
+      "sha256": "1682fea96d404920c81783da2d5f2370df71a1b323468f725e077f45b78a3412"
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "9418cfe8930778126c72ff725706ceba5911b0e0000beca05123188d203144ca"
+    },
+    {
+      "path": "dag/derivations/independent/dfm-z1-z2-counterterm-fence.md",
+      "sha256": "3f9d01e056e65b241295502fa2c319333206118d167a240ad03b5a465b2fa8b8"
+    },
+    {
+      "path": "checks/independent/dfm-z1-z2-counterterm-fence.py",
+      "sha256": "a5ccfe72d0a135be03328e30e84036db839d646112f5a6c484a83186239ff556"
+    },
+    {
+      "path": "SCORING.md",
+      "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+    },
+    {
+      "path": "governance/policy.json",
+      "sha256": "39552f35ec58b01879c128e2b42356be8c6f83c3f879336eb2de26ce04fcdecb"
+    },
+    {
+      "path": "lean4/lean-toolchain",
+      "sha256": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+    },
+    {
+      "path": "lean4/lake-manifest.json",
+      "sha256": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1"
+    }
+  ],
+  "checks": [
+    {
+      "command": ".venv/bin/python -I -X utf8 checks/independent/dfm-z1-z2-counterterm-fence.py",
+      "working_directory": ".",
+      "tool_version": "Python 3.14.4",
+      "inputs": [
+        {
+          "path": "checks/independent/dfm-z1-z2-counterterm-fence.py",
+          "sha256": "a5ccfe72d0a135be03328e30e84036db839d646112f5a6c484a83186239ff556"
+        }
+      ],
+      "exit_code": 0,
+      "result": "Passed inverse differences, sandwich, lowered contraction and the eight nonzero witness entries using fractions.Fraction; does not compute Z1/Z2."
+    }
+  ],
+  "inspection": [
+    "Only the basis name changes in the note; explicit matrices and both Lean sources are byte-identical to source_revision.",
+    "All five exported theorem names have matching #print axioms lines.",
+    "The integer inverse-propagator identity is universal; the other four theorems concern the stated finite propagators and contraction.",
+    "G and M are raw structures: denominators and shared-denominator conditions are not enforced by the types. gsum4 uses the first denominator. No generic Gaussian-rational matrix algebra is certified.",
+    "eqG checks both denominators are nonzero and cross-multiplies real and imaginary numerators for each theorem entry.",
+    "The module has repeated explicit 16-entry matrix operations and a maxHeartbeats limit of 2000000; no measured heartbeat or asymptotic bound is claimed."
+  ],
+  "historical_lean_evidence": {
+    "receipt": {
+      "path": "dag/research/campaign_dfm-z1-z2-counterterm-fence_lean_replay.json",
+      "sha256": "5eb41eb6808e854d5db2c3590d939b60e3224d1eeeb9c3ae151430ca46f86b0c"
+    },
+    "status": "Existing byte-matching receipt cited; not independently rebuilt in this sandbox.",
+    "binding_checked": true,
+    "module_sha256": "1682fea96d404920c81783da2d5f2370df71a1b323468f725e077f45b78a3412",
+    "lakefile_sha256": "9418cfe8930778126c72ff725706ceba5911b0e0000beca05123188d203144ca",
+    "recorded_command": "cd lean4 && lake build CampaignDfmZ1Z2CountertermFence",
+    "recorded_lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "recorded_lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "recorded_exit_code": 0,
+    "recorded_axioms": {
+      "CampaignDfmZ1Z2CountertermFence.inverse_difference": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "CampaignDfmZ1Z2CountertermFence.propagator_values": [],
+      "CampaignDfmZ1Z2CountertermFence.sandwich": [],
+      "CampaignDfmZ1Z2CountertermFence.contraction": [],
+      "CampaignDfmZ1Z2CountertermFence.contraction_entries": []
+    }
+  },
+  "limitations": [
+    "Fresh Lean/Lake compilation unavailable: no installed toolchain or Mathlib cache; official v4.35.0 binary URL returned HTTP 401.",
+    "No new Lean mutation campaign or alternate proof checker was run.",
+    "Native governance-check unavailable because Rust/Cargo is not installed.",
+    "SCORING.md section 2 supports L3 for the bounded matrix development and L1 for the declarative registry; assessment evidence does not support L4 for either file.",
+    "The existing lakefile support exception pins older bytes. It does not authorize the current hash; policy and baseline are left intact. Both recorded scores remain below the active L4/D acceptance floor."
+  ]
+}

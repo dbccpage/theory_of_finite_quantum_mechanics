@@ -4,16 +4,14 @@
 AuthorityEffect: None.
 Verifies all three finite/algebraic components and non-equivalence fences in
 lean4/CampaignCqftReehSchliederTheoremImport.lean from first principles:
-1. Dimension-independent cyclicity-implies-separating duality (CyclicForA -> SeparatingForAc)
-   via matrix associativity (X * Omega) * Y = X * (Omega * Y), right-kernel non-cyclicity even when
-   dA < dB (e.g. dA = 2 < dB = 4 on single sites), and zero-column non-cyclicity / no-left-inverse.
-2. Complete 3-qubit (|000>, |GHZ_3>, |W_3>) and 4-qubit (|0000>, |GHZ_4>, 2-Bell-pair cluster)
-   subsystem cyclicity and separating census across all single-site, pair-of-sites, half-system,
-   and full-system unfoldings.
-3. Discrete cyclic translation group aliasing on Fin N (cyclicShift N N x = x), vanishing discrete
-   momentum difference (T - I) on translation-invariant constant vectors, and failure of subsystem
-   cyclicity for the translation-invariant product vacuum |000> without continuum Stone / tube
-   analyticity.
+1. A recorded 2x4 integer matrix with a zero column keeps that column under left multiplication,
+   and a recorded right-kernel vector is annihilated. The abstract cyclicity-to-separating proof
+   stays in the Lean module.
+2. Named 3-qubit states |000>, |GHZ_3>, and |W_3>, and named 4-qubit half-system matrices for
+   |0000>, |GHZ_4>, and the 2-Bell-pair state: zero columns, pair left inverses, and full-algebra
+   left inverses.
+3. The product vacuum |000> has the same single-site unfolding at every site. Modular aliasing
+   remains a Lean theorem and is not repeated here. Continuum Stone and tube analyticity stay open.
 """
 
 from __future__ import annotations
@@ -146,18 +144,8 @@ def verify_discrete_translation_fence() -> tuple[int, int]:
             failures += 1
             print(f"FAIL [translation]: {msg}", file=sys.stderr)
 
-    for n in range(1, 12):
-        for k in range(15):
-            for x in range(n):
-                check((x + n) % n == x, f"cyclicShift({n}, {n}, {x}) == {x}")
-                check((x + k + n) % n == (x + k) % n, f"cyclicShift periodic aliasing N={n}")
-        for c in (-3, 0, 1, 7):
-            vec = [c] * n
-            for x in range(n):
-                diff = vec[(x + 1) % n] - vec[x]
-                check(diff == 0, f"constVec zero momentum diff at N={n}, c={c}")
-
-    # Translation invariance of |000> across the 3 sites vs failure of proper-subsystem cyclicity
+    # Modular aliasing and constant-vector momentum are Lean theorems. Repeating
+    # (x + n) % n == x does not test them. The independent witness is the vacuum.
     psi_prod3 = [1 if x == 0 else 0 for x in range(8)]
     check(
         single_site_matrix(psi_prod3, 0)

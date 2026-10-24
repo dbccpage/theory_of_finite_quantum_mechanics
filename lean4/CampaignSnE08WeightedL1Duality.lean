@@ -1018,8 +1018,8 @@ def adjunctionCochainSection (x : ℚ) : ℚ × ℚ := (x, 0)
 /-- First-coordinate projection `(x, y) ↦ x` from `AdjunctionCochain` in `sn_realizations.py`. -/
 def adjunctionCochainProj (p : ℚ × ℚ) : ℚ := p.1
 
-/-- `adjunctionCochainSection` and `adjunctionCochainProj` satisfy the induced triangle equations
-`L (R (L x)) = L x` and `R (L (R p)) = R p`, while `L ∘ R` is not the identity on `ℚ × ℚ`. -/
+/-- `adjunctionCochainProj ∘ adjunctionCochainSection = id` on `ℚ`, and
+`adjunctionCochainSection ∘ adjunctionCochainProj` is not the identity on `ℚ × ℚ`. -/
 theorem adjunctionCochain_section_retraction :
     (∀ x : ℚ, adjunctionCochainProj (adjunctionCochainSection x) = x) ∧
       adjunctionCochainSection (adjunctionCochainProj (0, 1)) ≠ (0, 1) := by
