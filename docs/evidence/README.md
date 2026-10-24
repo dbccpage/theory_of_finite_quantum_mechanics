@@ -62,7 +62,7 @@ The `lean` fields of nodes cite 1608 distinct Lean declarations that lie in file
 | [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 2 | 0 | 0 | 8 | 0 | 10 | 6 | 3 |
 | [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 10 | 9 | 24 | 0 | 43 | 11 | 2 |
 | [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 30 | 3 | 34 | 0 | 67 | 32 | 3 |
-| [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 20 | 7 | 14 | 0 | 41 | 4 | 1 |
+| [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 19 | 7 | 15 | 0 | 41 | 4 | 1 |
 | [TENSOR_COMPOSITION](stages/TENSOR_COMPOSITION.md) | 0 | 0 | 0 | 7 | 0 | 7 | 7 | 0 |
 | [FINITE_OBSTRUCTION](stages/FINITE_OBSTRUCTION.md) | 4 | 5 | 0 | 0 | 0 | 9 | 0 | 1 |
 | [AUTHORIZATION](stages/AUTHORIZATION.md) | 8 | 0 | 0 | 0 | 0 | 8 | 0 | 0 |

@@ -4,7 +4,7 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).
+> S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).
 
 ## Grade
 
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/pgw-sn-protected-answer-transport.py`
 
 - file: [checks/independent/pgw-sn-protected-answer-transport.py](../../../checks/independent/pgw-sn-protected-answer-transport.py)
-- sha256 (`bytes`): `ee96ee345459279a849c15f14dea3bcadcccc2dc6775203859421c0e1c666a92`
+- sha256 (`bytes`): `262b74e9e0f5a17e09bd90e670e10af9525c72548f7272e62848f0f9fad2f0d0`
 - cited in: record TFQ-0519
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md](../../../dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md)
-- sha256 (`lf-normalised`): `1003e5183618f5d990aa29345d1e3d39a3ed3581e367aac57ba4809fb535755e`
+- sha256 (`lf-normalised`): `b1de6ce655bfb88ddb4ffbe21e31cd9ee65667d91bde3d9b23bd6e100de2fe00`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0519
 - counts toward the grade: no
