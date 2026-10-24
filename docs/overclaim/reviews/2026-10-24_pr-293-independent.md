@@ -6,7 +6,7 @@ AuthorityEffect: None. Result: BLOCKED. No status was raised.
 
 ## Statement versus theorem
 
-The Fin 5 norm table and product examples are exhaustive for that carrier. They do not select a coefficient field or derive a general finite-field circle formula.
+The Fin 5 norm-one enumeration is exhaustive. The product power identities are the displayed closed examples. The independent sweep of 625 coefficient tuples checks that coefficient 4 equals subtraction modulo 5; it does not prove all field or product laws. None of these checks selects a coefficient field or derives a general finite-field circle formula.
 
 | Declaration | Checked statement boundary |
 |---|---|

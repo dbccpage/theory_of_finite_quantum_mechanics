@@ -4,19 +4,19 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**
 
 ## Statement
 
-> Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
+> Narrowed finite-field table, status left OPEN: in Z/5Z the pairs (x, y) with x * x + y * y = 1 are exactly (0, 1), (0, 4), (1, 0) and (4, 0); there are 4 such pairs; 4 = 5 - 1; 5 + 1 = 6 and 4 ≠ 6; in Z/5Z the coefficient 4 satisfies 4 + 1 = 0, and the product (a, b) * (c, d) = (a * c + 4 * b * d, a * d + b * c) sends (0, 1) * (0, 1) to (4, 0), (4, 0) * (0, 1) to (0, 4) and (0, 4) * (0, 1) to (1, 0), while (4, 0) ≠ (1, 0); the pair (1, 1) has norm 2, and 2 ≠ 1; the pair (2, 1) ≠ (0, 0) and 2 * 2 + 1 * 1 = 0.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 20
-- cited Lean declarations covered by a current replay receipt: 19
+- counted in-repo evidence files: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 35
+- cited Lean declarations covered by a current replay receipt: 34
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 1
+- counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
+Selection of C and U(1) from finite carriers is not derived. The recorded Gaussian-rational unit-circle torsion (U1SelectorSegment.circle_torsion_iff, mu_4) is not re-discharged in this module. Other finite fields and rings, a general circle-order formula, cyclotomic extensions, completion, continuity, and the QM_028 / QM_062 pointer stay unresolved. The Z/5Z table is one finite field and supplies no selection map.
 
 ## Source status
 
@@ -44,6 +44,34 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignL1U1SelectorFiniteField.lean`
+
+- file: [lean4/CampaignL1U1SelectorFiniteField.lean](../../../lean4/CampaignL1U1SelectorFiniteField.lean)
+- sha256 (`bytes`): `c6923e5a0caf8b78f30dd401f71c13cdb1c9001a75c7a7d30096e3b3965ecbf3`
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json (CampaignL1U1SelectorFiniteField), record TFQ-1003
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json) (module `CampaignL1U1SelectorFiniteField`): recorded sha256 `c6923e5a0caf8b78f30dd401f71c13cdb1c9001a75c7a7d30096e3b3965ecbf3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignL1U1SelectorFiniteField`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `circle_count` | yes | yes | yes | none | `#print axioms circle_count` |
+| `circle_iff` | yes | yes | yes | propext | `#print axioms circle_iff` |
+| `four_eq_pred_five` | yes | yes | yes | none | `#print axioms four_eq_pred_five` |
+| `four_ne_six` | yes | yes | yes | none | `#print axioms four_ne_six` |
+| `four_plus_one_eq_zero` | yes | yes | yes | propext | `#print axioms four_plus_one_eq_zero` |
+| `gen_cube` | yes | yes | yes | propext | `#print axioms gen_cube` |
+| `gen_fourth` | yes | yes | yes | propext | `#print axioms gen_fourth` |
+| `gen_square` | yes | yes | yes | propext | `#print axioms gen_square` |
+| `gen_square_ne_one` | yes | yes | yes | propext | `#print axioms gen_square_ne_one` |
+| `isotropic_nonzero` | yes | yes | yes | propext | `#print axioms isotropic_nonzero` |
+| `isotropic_norm_zero` | yes | yes | yes | propext | `#print axioms isotropic_norm_zero` |
+| `off_circle_one_one` | yes | yes | yes | propext | `#print axioms off_circle_one_one` |
+| `one_one_norm` | yes | yes | yes | propext | `#print axioms one_one_norm` |
+| `six_eq_succ_five` | yes | yes | yes | none | `#print axioms six_eq_succ_five` |
+| `two_ne_one` | yes | yes | yes | none | `#print axioms two_ne_one` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
@@ -135,13 +163,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness` (rust_symbol) | yes | yes | yes | - | - |
 - counts toward the grade: yes
 
+### Python: `checks/independent/l1-u1-selector-other-segment.py`
+
+- file: [checks/independent/l1-u1-selector-other-segment.py](../../../checks/independent/l1-u1-selector-other-segment.py)
+- sha256 (`bytes`): `8e273d8c0fca2db845a4c0bb09264524f8b65fd48fcc8ad8b73dd32a003f5526`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `c1e7086fadfc47e382a61f8f6333e8b6ffc07cee51e2016c307fc92dfdbbc381`
+- sha256 (`lf-normalised`): `81386d0f9654204b55fa8d6d4eb1a40b5c4a177bf1ae33496ce38de54f0709e7`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/l1-u1-selector-other-segment.md`
+
+- file: [dag/derivations/independent/l1-u1-selector-other-segment.md](../../../dag/derivations/independent/l1-u1-selector-other-segment.md)
+- sha256 (`lf-normalised`): `2fe0c58e4981e1c0a6c2b39279919b5ba70432adc3a0a92db17376ca588c6803`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json`
+
+- file: [dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json)
+- sha256 (`lf-normalised`): `1134d403808a4befa5682f7fda7b0cdf505528c603625db95262f72d31532e38`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md`
 
