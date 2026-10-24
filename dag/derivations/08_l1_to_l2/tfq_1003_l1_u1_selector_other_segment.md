@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
+Narrowed finite-field table, status left OPEN: in Z/5Z the pairs (x, y) with x * x + y * y = 1 are exactly (0, 1), (0, 4), (1, 0) and (4, 0); there are 4 such pairs; 4 = 5 - 1; 5 + 1 = 6 and 4 ≠ 6; in Z/5Z the coefficient 4 satisfies 4 + 1 = 0, and the product (a, b) * (c, d) = (a * c + 4 * b * d, a * d + b * c) sends (0, 1) * (0, 1) to (4, 0), (4, 0) * (0, 1) to (0, 4) and (0, 4) * (0, 1) to (1, 0), while (4, 0) ≠ (1, 0); the pair (1, 1) has norm 2, and 2 ≠ 1; the pair (2, 1) ≠ (0, 0) and 2 * 2 + 1 * 1 = 0.
 
 ### Governing Obligation
-Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
+Selection of C and U(1) from finite carriers is not derived. The recorded Gaussian-rational unit-circle torsion (U1SelectorSegment.circle_torsion_iff, mu_4) is not re-discharged in this module. Other finite fields and rings, a general circle-order formula, cyclotomic extensions, completion, continuity, and the QM_028 / QM_062 pointer stay unresolved. The Z/5Z table is one finite field and supplies no selection map.
 
 ### Source Status
 Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
@@ -33,6 +33,21 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- `lean4/CampaignL1U1SelectorFiniteField.lean::circle_iff`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::circle_count`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::four_eq_pred_five`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::six_eq_succ_five`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::four_ne_six`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::four_plus_one_eq_zero`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::gen_square`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::gen_square_ne_one`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::gen_cube`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::gen_fourth`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::off_circle_one_one`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::one_one_norm`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::two_ne_one`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::isotropic_nonzero`
+- `lean4/CampaignL1U1SelectorFiniteField.lean::isotropic_norm_zero`
 - `lean4/H011U1SelectorBoundary.lean::selector_not_free`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle`
@@ -61,3 +76,7 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 
 - **Cited Sources**:
   - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10`
+  - `dag/derivations/independent/l1-u1-selector-other-segment.md`
+  - `checks/independent/l1-u1-selector-other-segment.py`
+  - `lean4/CampaignL1U1SelectorFiniteField.lean`
+  - `dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json`

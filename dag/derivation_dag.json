@@ -4083,11 +4083,30 @@
       "stage": "L1_TO_L2",
       "status": "OPEN",
       "source_status": "Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
+      "statement": "Narrowed finite-field table, status left OPEN: in Z/5Z the pairs (x, y) with x * x + y * y = 1 are exactly (0, 1), (0, 4), (1, 0) and (4, 0); there are 4 such pairs; 4 = 5 - 1; 5 + 1 = 6 and 4 ≠ 6; in Z/5Z the coefficient 4 satisfies 4 + 1 = 0, and the product (a, b) * (c, d) = (a * c + 4 * b * d, a * d + b * c) sends (0, 1) * (0, 1) to (4, 0), (4, 0) * (0, 1) to (0, 4) and (0, 4) * (0, 1) to (1, 0), while (4, 0) ≠ (1, 0); the pair (1, 1) has norm 2, and 2 ≠ 1; the pair (2, 1) ≠ (0, 0) and 2 * 2 + 1 * 1 = 0.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10",
+        "dag/derivations/independent/l1-u1-selector-other-segment.md",
+        "checks/independent/l1-u1-selector-other-segment.py",
+        "lean4/CampaignL1U1SelectorFiniteField.lean",
+        "dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json"
       ],
       "lean": [
+        "lean4/CampaignL1U1SelectorFiniteField.lean::circle_iff",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::circle_count",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::four_eq_pred_five",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::six_eq_succ_five",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::four_ne_six",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::four_plus_one_eq_zero",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_square",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_square_ne_one",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_cube",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_fourth",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::off_circle_one_one",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::one_one_norm",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::two_ne_one",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::isotropic_nonzero",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::isotropic_norm_zero",
         "lean4/H011U1SelectorBoundary.lean::selector_not_free",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
@@ -4105,7 +4124,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "bottleneck": "Selection of C and U(1) from finite carriers is not derived. The recorded Gaussian-rational unit-circle torsion (U1SelectorSegment.circle_torsion_iff, mu_4) is not re-discharged in this module. Other finite fields and rings, a general circle-order formula, cyclotomic extensions, completion, continuity, and the QM_028 / QM_062 pointer stay unresolved. The Z/5Z table is one finite field and supplies no selection map.",
       "tags": [
         "cross-segment"
       ],
@@ -4126,7 +4145,7 @@
         "does_not_support": "Any derivation of C or U(1) from finite carriers, or a proof that no such derivation exists: the node is a pointer to QM_028 / QM_062 owned by another segment and its selection is NOT established here; finite carriers in the sense of finite fields or finite rings (the unit circle over F_p has order p -+ 1, native table only): the theorem is a no-go only for finite subgroups of the unit Gaussian rationals, and the identification of a finite phase carrier with such a subgroup is not argued; larger finite phase groups in cyclotomic extensions (Q(zeta_8), Q(zeta_3), ...) which this result does not treat; completion, continuity, compactness or Haar measure of the circle; that there are infinitely many infinite-order points as a kernel statement (only the instance u345_infinite_order and the native census); the rival split-complex hyperbola x^2 - y^2 = 1 (the H011 flag rival_excluded); the H011 selector pack, whose selector_not_free is rfl on a record with a hand-set Boolean field; any physical reading of phases.",
         "next_test": "Determine the unit circle {x^2 + y^2 = 1} over F_p and over Z/n exactly: prove that it is cyclic of order p - (-1/p) and show which phase orders a finite scalar ring does and does not force, as the finite-carrier counterpart of the Gaussian-rational torsion result; the torsion over Q(i, sqrt 2) and Q(zeta_3) is a secondary item.",
         "scope_effect": "status_lowered",
-        "reason": "The node is a pointer to QM_028/QM_062; its cited Lean witnesses are fixed small instances and a Boolean flag. The only general fact established here is the torsion of the unit Gaussian rationals (mu_4), which does not select C or U(1).",
+        "reason": "The campaign module adds one Z/5Z unit-circle table: four solutions, the powers of (0, 1), one off-circle pair, and one nonzero norm-zero pair. Selection of C and U(1) stays open; status stays OPEN.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Selection of C and U(1) from finite carriers. Referenced only; the derivation or its failure is documented in QM_028 / QM_062, owned by another segment.",
         "prior_bottleneck": "None (derived from parent L1-IMP-U1-PHASES via ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity and ds_qm062_u1_selector_layers_and_ring_iso).",
@@ -55494,10 +55513,29 @@
         "L1-U1-SELECTOR-OTHER-SEGMENT"
       ],
       "f004_refs": [
-        "dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md"
+        "dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md",
+        "dag/derivations/independent/l1-u1-selector-other-segment.md",
+        "checks/independent/l1-u1-selector-other-segment.py",
+        "lean4/CampaignL1U1SelectorFiniteField.lean",
+        "dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json"
       ],
       "id": "TFQ-1003",
       "lean4": [
+        "lean4/CampaignL1U1SelectorFiniteField.lean::circle_iff",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::circle_count",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::four_eq_pred_five",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::six_eq_succ_five",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::four_ne_six",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::four_plus_one_eq_zero",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_square",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_square_ne_one",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_cube",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::gen_fourth",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::off_circle_one_one",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::one_one_norm",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::two_ne_one",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::isotropic_nonzero",
+        "lean4/CampaignL1U1SelectorFiniteField.lean::isotropic_norm_zero",
         "lean4/H011U1SelectorBoundary.lean::selector_not_free",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
@@ -55507,7 +55545,7 @@
       ],
       "local_id": "L1-U1-SELECTOR-OTHER-SEGMENT",
       "name": "l1-u1-selector-other-segment",
-      "obligation": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "obligation": "Selection of C and U(1) from finite carriers is not derived. The recorded Gaussian-rational unit-circle torsion (U1SelectorSegment.circle_torsion_iff, mu_4) is not re-discharged in this module. Other finite fields and rings, a general circle-order formula, cyclotomic extensions, completion, continuity, and the QM_028 / QM_062 pointer stay unresolved. The Z/5Z table is one finite field and supplies no selection map.",
       "parent_id": "TFQ-0312",
       "pfp_review_refs": [
         "dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json"
@@ -55525,7 +55563,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
+      "summary": "Narrowed finite-field table, status left OPEN: in Z/5Z the pairs (x, y) with x * x + y * y = 1 are exactly (0, 1), (0, 4), (1, 0) and (4, 0); there are 4 such pairs; 4 = 5 - 1; 5 + 1 = 6 and 4 ≠ 6; in Z/5Z the coefficient 4 satisfies 4 + 1 = 0, and the product (a, b) * (c, d) = (a * c + 4 * b * d, a * d + b * c) sends (0, 1) * (0, 1) to (4, 0), (4, 0) * (0, 1) to (0, 4) and (0, 4) * (0, 1) to (1, 0), while (4, 0) ≠ (1, 0); the pair (1, 1) has norm 2, and 2 ≠ 1; the pair (2, 1) ≠ (0, 0) and 2 * 2 + 1 * 1 = 0.",
       "uuid": "c4828dd4-6aac-54c5-ae75-507da476dcce"
     },
     {

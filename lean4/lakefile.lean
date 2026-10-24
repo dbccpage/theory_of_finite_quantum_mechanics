@@ -1131,3 +1131,7 @@ lean_lib CampaignTfq0119ContinuumInterface where
 -- Campaign: TFQ-0123. Not a default target.
 lean_lib CampaignTfq0123ContinuumInterface where
   roots := #[`CampaignTfq0123ContinuumInterface]
+
+-- Campaign: L1-U1-SELECTOR-OTHER-SEGMENT. Not a default target.
+lean_lib CampaignL1U1SelectorFiniteField where
+  roots := #[`CampaignL1U1SelectorFiniteField]
