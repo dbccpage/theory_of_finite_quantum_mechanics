@@ -1,0 +1,157 @@
+{
+  "number": 320,
+  "original_head": "84599c5b2b496f913dcce664cfbf8bdf1c2bfd9f",
+  "level": "L2",
+  "meaning": "Two closed imported Lean histories replay to the stated distinct regimes. This is not a refinement proof connecting Python execution to Lean semantics, token erasure, or license binding.",
+  "baseline": {
+    "number": 320,
+    "head": "84599c5b2b496f913dcce664cfbf8bdf1c2bfd9f",
+    "source": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+    "sha256": "096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/pgw-python-lean-carrier-bridge.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.13,
+        "output": "checked 26 claims, failures 0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 3.14,
+        "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 19 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignPgwPythonLeanCarrierBridge.lean (new or not grandfathered)\n  lean4/CampaignPgwPythonLeanCarrierBridge.lean: [MISSING_COMPANION] expected companion lean4/CampaignPgwPythonLeanCarrierBridge.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected b21fbb83c7a4bc6af170a6b13b87ecc961e7a3f25ee1ad0306eb6881df6d5543, found 81a117a157f31abd26a003ae13a338d05d2d1e09661778867aab7e5d733cb9fd\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 5.07,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwPythonLeanCarrierBridge.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 1fa451fe1eac), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 7.88,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignPgwPythonLeanCarrierBridge.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 24.13,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 2.74,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nFAIL view theory_of_finite_qm.jsonl differs from derivation_dag.json; run dag/render_dag_views.py --write\r\nnodes=925 routes=934 records=977 failures=4\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignPgwPythonLeanCarrierBridge"
+        ],
+        "exit_code": 0,
+        "seconds": 23.44,
+        "output": "✔ [2/4] Built Imported.Genesis19l57g1.SecondRun.Kernel (2.7s)\nℹ [3/4] Built CampaignPgwPythonLeanCarrierBridge (2.4s)\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:50:0: 'pgwHistoryL_replays' depends on axioms: [propext]\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:51:0: 'pgwHistoryF_replays' depends on axioms: [propext]\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:52:0: 'pgwR2L_ne_R2F' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:53:0: 'pgwReplay_ne' depends on axioms: [propext]\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:54:0: 'pgwData_counts' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:55:0: 'pgwReqs' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:56:0: 'pgwEmpty_carriers' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:57:0: 'pgwHistory_lengths' does not depend on any axioms\nBuild completed successfully (4 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-python-lean-carrier-bridge.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.36,
+      "output": "checked 26 claims, failures 0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/pgw-python-lean-carrier-bridge.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.23,
+      "output": "checked 26 claims, failures 0\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignPgwPythonLeanCarrierBridge"
+      ],
+      "exit_code": 0,
+      "seconds": 23.44,
+      "output": "✔ [2/4] Built Imported.Genesis19l57g1.SecondRun.Kernel (2.7s)\nℹ [3/4] Built CampaignPgwPythonLeanCarrierBridge (2.4s)\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:50:0: 'pgwHistoryL_replays' depends on axioms: [propext]\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:51:0: 'pgwHistoryF_replays' depends on axioms: [propext]\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:52:0: 'pgwR2L_ne_R2F' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:53:0: 'pgwReplay_ne' depends on axioms: [propext]\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:54:0: 'pgwData_counts' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:55:0: 'pgwReqs' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:56:0: 'pgwEmpty_carriers' does not depend on any axioms\ninfo: CampaignPgwPythonLeanCarrierBridge.lean:57:0: 'pgwHistory_lengths' does not depend on any axioms\nBuild completed successfully (4 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "404098572605311efcc9e701ee0c0ad1f86002306ec17701a4acc803d37821e6",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3",
+  "structure_observation": {
+    "source_lines": 57,
+    "theorem_count": 8,
+    "axiom_print_count": 8,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
