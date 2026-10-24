@@ -152,7 +152,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd`
+- sha256 (`lf-normalised`): `57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82`
 - cited in: node.source
 - counts toward the grade: yes
 

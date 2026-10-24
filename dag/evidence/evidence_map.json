@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "a40fe8829d80ecf494b2bfa2fefc84e6f5c764b26c828ca9c4099901a8baaef1"
+  "sha256_lf": "efa1fcc0d0ec24081640f548454b7cf2cf18c6a7b756af8c34d2b6b7c1e394f1"
  },
  "files": {
   "checks/independent/dfm-bphz-continuum-fence.py": {
@@ -71,6 +71,11 @@
    "sha256": "2a2ad3b9fde58a676054711f0c64c387fab7018ae75754be59cadc668e28aecc",
    "sha256_basis": "bytes",
    "size": 14312
+  },
+  "checks/independent/fsp-majorana-clifford-parity.py": {
+   "sha256": "67027ee66074805b2029dbc9a85eccd0d62d84daaf3ae304a80d4ee739908264",
+   "sha256_basis": "bytes",
+   "size": 5943
   },
   "checks/independent/l1-imp-sector-symmetry-law.py": {
    "sha256": "e5255dab4f44288ed9befbb213e2ce11129ffe522da582450073aa2808fc3c2f",
@@ -853,9 +858,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "a40fe8829d80ecf494b2bfa2fefc84e6f5c764b26c828ca9c4099901a8baaef1",
+   "sha256": "efa1fcc0d0ec24081640f548454b7cf2cf18c6a7b756af8c34d2b6b7c1e394f1",
    "sha256_basis": "lf-normalised",
-   "size": 4555675
+   "size": 4558878
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -4378,9 +4383,9 @@
    "size": 2336
   },
   "dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md": {
-   "sha256": "dea1de965df82e4b16b90a7f726b990d1a873adf02610c15676d06b427a4eb97",
+   "sha256": "e5a55297c4cc50123de189293c47564a19fe00cf6759e5e7361a9bc4cbb465bf",
    "sha256_basis": "lf-normalised",
-   "size": 2491
+   "size": 3841
   },
   "dag/derivations/26_fsp/tfq_1187_fsp_car_dynamics_nonunique.md": {
    "sha256": "b4a44a3b7a2b76afe46488af6589560d25aecca1e194c9ff1820dc0e8ce71739",
@@ -5973,9 +5978,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "sha256_basis": "lf-normalised",
-   "size": 163302
+   "size": 166435
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -6341,6 +6346,11 @@
    "sha256": "da60dc53b31b15c067760c1fdbb9b771cb15d18bd350536c1cdbcd0047e9c86e",
    "sha256_basis": "bytes",
    "size": 26120
+  },
+  "lean4/CampaignMajoranaCliffordParity.lean": {
+   "sha256": "8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e",
+   "sha256_basis": "bytes",
+   "size": 12657
   },
   "lean4/CampaignPgwPresentationLift.lean": {
    "sha256": "034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074",
@@ -192376,17 +192386,1193 @@
    "absent_notes": [],
    "dependents": 14,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 32,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 32
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "FSP-MAJORANA-CLIFFORD-PARITY",
    "items": [
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.annihilate_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.annihilate_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.dd",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.dd",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.gamma_ac",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.gamma_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.gamma_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.generated_algebra",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_action",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.localParity_action",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.localParity_pair",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.localParity_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.localParity_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.mixed_rev",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.mixed_rev",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.occupation_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.occupation_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.occupation_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.parity_action",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.parity_action",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.parity_product",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.parity_product",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.recover_c",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.recover_c",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.CARFamily.recover_star_c",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.CARFamily.recover_star_c",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_add_left",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.ac_add_left",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_add_right",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.ac_add_right",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_comm",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.ac_comm",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_smul_left",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.ac_smul_left",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_smul_right",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.ac_smul_right",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_sub_left",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.ac_sub_left",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.ac_sub_right",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.ac_sub_right",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.gamma_index_count",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.gamma_index_count",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneCAR",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.oneCAR",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_gram",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.oneRho_gram",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_idempotent",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.oneRho_idempotent",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_posSemidef",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.oneRho_posSemidef",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.oneRho_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.oneRho_trace",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.oneRho_trace",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.one_parity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.one_parity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity)",
+      "record TFQ-1186"
+     ],
+     "command": "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity",
+     "command_note": "then, in a scratch file that imports CampaignMajoranaCliffordParity: #print axioms CampaignMajoranaCliffordParity.parity_superselection_not_forced",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajoranaCliffordParity.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajoranaCliffordParity.parity_superselection_not_forced",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-1186"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/fsp-majorana-clifford-parity.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -192435,7 +193621,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1186"
    ],
@@ -252959,6 +254145,32 @@
     "propext"
    ],
    "built_successfully": null,
+   "checked_at": "2026-10-24T01:49:15.853168+00:00",
+   "dag_node": "FSP-MAJORANA-CLIFFORD-PARITY",
+   "decl_count": 32,
+   "exit_code": 0,
+   "id": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json#0:CampaignMajoranaCliffordParity",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignMajoranaCliffordParity",
+   "path": "lean4/CampaignMajoranaCliffordParity.lean",
+   "receipt_file": "dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json",
+   "receipt_file_sha256": "f3bc9241d4f37ef72d7fc551d730fbcde4b5de6be4dea1778bac752ea0b3d831",
+   "recorded_sha256": "8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e",
+   "source_unchanged_during_build": null,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
    "checked_at": "2026-10-23",
    "dag_node": "FSP-U1-WILSON-ACTION",
    "decl_count": 12,
@@ -263415,7 +264627,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263441,7 +264653,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263467,7 +264679,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263493,7 +264705,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263519,7 +264731,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263545,7 +264757,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263571,7 +264783,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263597,7 +264809,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263623,7 +264835,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263649,7 +264861,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263675,7 +264887,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263701,7 +264913,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263727,7 +264939,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263753,7 +264965,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263779,7 +264991,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "57607492a0294957b3c7df077992b8784e57911920d57342cbc36f5577875b82",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264303,6 +265515,10 @@
  ],
  "receipts_not_indexed": [
   {
+   "file": "dag/research/campaign_fsp-majorana-clifford-parity_checks.json",
+   "reason": "records Lean checks without per-module sha256"
+  },
+  {
    "file": "dag/research/campaign_pg-gen-no-return_review_integration.json",
    "reason": "records Lean checks without per-module sha256"
   },
@@ -264369,9 +265585,9 @@
  "summary": {
   "by_grade": {
    "E0": 189,
-   "E1": 243,
+   "E1": 242,
    "E2": 42,
-   "E3": 451,
+   "E3": 452,
    "E4": 0
   },
   "by_status": {
@@ -264391,16 +265607,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1498,
+   "distinct": 1505,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1451,
-   "replay_verified_and_declaration_itemised": 1405,
+   "replay_verified": 1458,
+   "replay_verified_and_declaration_itemised": 1412,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1807
+   "present": 1814
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -264421,7 +265637,7 @@
    "total": 266,
    "with_in_repo_lean": 266
   },
-  "receipts_indexed": 474,
+  "receipts_indexed": 475,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -264481,9 +265697,9 @@
    },
    "FERMION_SIGN": {
     "E0": 0,
-    "E1": 23,
+    "E1": 22,
     "E2": 7,
-    "E3": 11,
+    "E3": 12,
     "E4": 0
    },
    "FINITE_GAUGE": {
@@ -264693,9 +265909,9 @@
    },
    "IMPORTED_ASSUMPTION": {
     "E0": 11,
-    "E1": 27,
+    "E1": 26,
     "E2": 1,
-    "E3": 31,
+    "E3": 32,
     "E4": 0
    },
    "OPEN": {
