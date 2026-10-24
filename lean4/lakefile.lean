@@ -1207,3 +1207,7 @@ lean_lib CampaignTfq0199ImplementationSibling where
 
 lean_lib CampaignTfq0376Pregenesis where
   roots := #[`CampaignTfq0376Pregenesis]
+
+-- Campaign: TFQ-0177. Not a default target.
+lean_lib CampaignTfq0177Mub6OpenFence where
+  roots := #[`CampaignTfq0177Mub6OpenFence]

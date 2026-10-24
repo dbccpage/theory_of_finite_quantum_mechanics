@@ -49,3 +49,13 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+
+---
+
+## 6. Narrowed census (2026-10-24)
+
+Status stays OPEN. The census is the integer point in `dag/derivations/independent/tfq-0177.md` and `lean4/CampaignTfq0177Mub6OpenFence.lean`.
+
+At (1, 1, 1, 1) the quadric piece equals 0 and the four square pieces sum to 0. The cleared collar is `0*1000 - 1 = -1`, and `-1 < 0` with `0 < 1000`, so `-1/1000 < 0`.
+
+The README, the banner in `papers/core/mub6/code/src/main.rs`, and the gap registry record G1 as OPEN and R6 and R7 as `NOT_A_CERTIFICATE`. Whether seven mutually unbiased bases exist in dimension 6 stays unresolved.
