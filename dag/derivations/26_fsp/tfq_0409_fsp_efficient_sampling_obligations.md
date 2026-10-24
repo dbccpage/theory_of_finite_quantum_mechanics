@@ -22,5 +22,8 @@ node leaves algorithmic complexity and unrestricted model coverage open.
 ## Evidence and next obligation
 
 - [papers/core/fsp/README.md](../../../papers/core/fsp/README.md)
+- [lean4/CampaignFspEfficientSamplingObligations.lean](../../../lean4/CampaignFspEfficientSamplingObligations.lean)
+- [checks/independent/fsp-efficient-sampling-obligations.py](../../../checks/independent/fsp-efficient-sampling-obligations.py)
+- [dag/derivations/independent/fsp-efficient-sampling-obligations.md](../independent/fsp-efficient-sampling-obligations.md)
 
 Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.

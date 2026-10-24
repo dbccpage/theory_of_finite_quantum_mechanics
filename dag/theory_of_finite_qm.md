@@ -9906,7 +9906,7 @@ Obligation: Prove the required determinant pairing and Hamiltonian-to-representa
 
 Canonical sign representatives, finite cancellation and nonnegative determinant weights do not establish an efficient sampler or a general fermion sign-problem solution.
 
-Obligation: Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.
+Obligation: Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family. Narrowed in lean4/CampaignFspEfficientSamplingObligations.lean and checks/independent/fsp-efficient-sampling-obligations.py while keeping status OPEN to: (1) exponential Fock/SQL orbit scaling 4^L > L^3 for L >= 3 and half-filled configuration vertex growth comb(2m, m) vs polynomial per-step DQMC rank-1 update (c * Ns^2) and stabilization (c * Ns^3) costs; (2) exact meron zero-sum pair cancellation (+w_m, -w_m) preserving Z = w1 + w2 while reducing Z_abs and raising <Sign> to 1; (3) RREF pivot-zero canonical section non-optimality in L1 norm (||N(c)||_1 = 2 > ||c - d0||_1 = 1 for d0 = (1,1,1), c = (0,1,1) in BQNFSignEvaluator); and (4) explicit scope fences showing that strictly positive weights (p, 1-p) do not bound observable variance 1/p - 1 or bimodal barrier mixing lower bounds W_well / (2b), and separating exact finite identities and protected sign-free weights from polynomial-time sampling and unrestricted FSP solutions.
 
 ### TFQ-1184 Canonical anticommutation relations on the exterior Fock space
 
