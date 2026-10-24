@@ -1,6 +1,6 @@
 # FSP-KITAEV-HONEYCOMB-SOLUTION
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 1
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 12
+- cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.
+A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit. Narrowed in lean4/CampaignFspKitaevHoneycombSolution.lean and checks/independent/fsp-kitaev-honeycomb-solution.py to the single-site 4x4 Majorana Clifford and Pauli spin algebra, bond spin-product factorization (bj cj)(bk ck) = -(bj bk)(cj ck), hexagonal plaquette local Z2 gauge invariance, closed-surface even vortex parity prod_p W_p = 1, quadratic matter skew-symmetry det(A(u)) = Pf_4(A(u))^2, and explicit fences for 4^N = 2^N * 2^N gauge redundancy, link-flip Pfaffian sign reversal Pf(A(-u_e)) = -Pf(A(u_e)), and physical parity projection filtering (1 + P_matter * P_gauge).
 
 ## Source status
 
@@ -41,6 +41,30 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignFspKitaevHoneycombSolution.lean`
+
+- file: [lean4/CampaignFspKitaevHoneycombSolution.lean](../../../lean4/CampaignFspKitaevHoneycombSolution.lean)
+- sha256 (`bytes`): `def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a`
+- cited in: node.lean, receipt dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (CampaignFspKitaevHoneycombSolution), record TFQ-1207
+- replay: `verified`
+  - receipt [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `CampaignFspKitaevHoneycombSolution`): recorded sha256 `def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFspKitaevHoneycombSolution`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization` |
+| `CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one` |
+| `CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one` |
+| `CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation` |
+| `CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence` |
+| `CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations` |
+| `CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence` |
+| `CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance` |
+| `CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det` |
+| `CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes` |
+| `CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence` |
+- counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py`
 
@@ -64,10 +88,38 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md`
 
 - file: [dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md](../../../dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md)
-- sha256 (`lf-normalised`): `0ebd0dfc15b2b70e488dcdd6d206bc1ad34155458ba75abdfb68022cc9ea9fc4`
+- sha256 (`lf-normalised`): `76edc3a55e959f3ef6658e493d977132c3e6fcbe9818d4c390a55b3e93d4a18e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1207
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/fsp-kitaev-honeycomb-solution.md`
+
+- file: [dag/derivations/independent/fsp-kitaev-honeycomb-solution.md](../../../dag/derivations/independent/fsp-kitaev-honeycomb-solution.md)
+- sha256 (`lf-normalised`): `51571f5975294e4d4640495652f137c8917afa5833280e1b0eae71092b3000a3`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json`
+
+- file: [dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json)
+- sha256 (`lf-normalised`): `df17b0c448f81f04a69b8524774196ad7e62ea852131076143190bf3dd54d5af`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json`
+
+- file: [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json)
+- sha256 (`lf-normalised`): `7f151adca99357ff2f55d2cf1c01371a6197ebfea67912940d852a38d57552ff`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
+
+- file: [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json)
+- sha256 (`lf-normalised`): `dbf34fcab7ef807219cb9b053615ff662bbb19217775abea7b9ba9a7ec0c9928`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 

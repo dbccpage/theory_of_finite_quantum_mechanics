@@ -14,10 +14,10 @@
 Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).
 
 ### Governing Obligation
-A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.
+A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit. Narrowed in lean4/CampaignFspKitaevHoneycombSolution.lean and checks/independent/fsp-kitaev-honeycomb-solution.py to the single-site 4x4 Majorana Clifford and Pauli spin algebra, bond spin-product factorization (bj cj)(bk ck) = -(bj bk)(cj ck), hexagonal plaquette local Z2 gauge invariance, closed-surface even vortex parity prod_p W_p = 1, quadratic matter skew-symmetry det(A(u)) = Pf_4(A(u))^2, and explicit fences for 4^N = 2^N * 2^N gauge redundancy, link-flip Pfaffian sign reversal Pf(A(-u_e)) = -Pf(A(u_e)), and physical parity projection filtering (1 + P_matter * P_gauge).
 
 ### Witness Audit
-Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does not exist; the module states u*u = 1 for u in {1, -1}, Int commutativity, and routing rfl facts. KitaevHoneycombEvaluator is absent from kitaev_honeycomb_evaluator.py; the bisimulation bridge tests are finite fixtures.
+Replaced missing KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution citation with lean4/CampaignFspKitaevHoneycombSolution.lean (11 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-kitaev-honeycomb-solution.py (1676 checks, 0 failures).
 
 ---
 
@@ -37,7 +37,17 @@ Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does no
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence`
+- `lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence`
 
 ### Rust Certifiers
 - *none*
@@ -61,3 +71,7 @@ Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does no
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:600-612`
+  - `dag/derivations/independent/fsp-kitaev-honeycomb-solution.md`
+  - `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
+  - `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json`
+  - `dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json`

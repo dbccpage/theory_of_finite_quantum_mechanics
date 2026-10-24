@@ -21837,14 +21837,30 @@
       "statement": "Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).",
       "source": [
         "dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence"
+      ],
       "rust": [],
       "imported_structure": [
         "Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)"
       ],
-      "bottleneck": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "bottleneck": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit. Narrowed in lean4/CampaignFspKitaevHoneycombSolution.lean and checks/independent/fsp-kitaev-honeycomb-solution.py to the single-site 4x4 Majorana Clifford and Pauli spin algebra, bond spin-product factorization (bj cj)(bk ck) = -(bj bk)(cj ck), hexagonal plaquette local Z2 gauge invariance, closed-surface even vortex parity prod_p W_p = 1, quadratic matter skew-symmetry det(A(u)) = Pf_4(A(u))^2, and explicit fences for 4^N = 2^N * 2^N gauge redundancy, link-flip Pfaffian sign reversal Pf(A(-u_e)) = -Pf(A(u_e)), and physical parity projection filtering (1 + P_matter * P_gauge).",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -26938,9 +26954,6 @@
       "see_also": [
         "FQ-GAP-STONE-CONTINUOUS-TIME",
         "FQ-GAP-CONTINUUM-HILBERT-LIFT"
-      ],
-      "python": [
-        "checks/independent/cqft-reeh-schlieder-theorem-import.py"
       ]
     },
     {
@@ -27042,9 +27055,6 @@
       ],
       "see_also": [
         "CQFT-FINITE-STRICT-POSET-SPACELIKE"
-      ],
-      "python": [
-        "checks/independent/cqft-causal-factorization-import.py"
       ]
     },
     {
@@ -27548,9 +27558,6 @@
       "see_also": [
         "TFQ-0084",
         "TFQ-0100"
-      ],
-      "python": [
-        "checks/independent/ads-regge-area-rt-gap.py"
       ]
     },
     {
@@ -37628,10 +37635,11 @@
       ],
       "output": "FSP-KITAEV-HONEYCOMB-SOLUTION",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "mechanism": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit. Narrowed in lean4/CampaignFspKitaevHoneycombSolution.lean and checks/independent/fsp-kitaev-honeycomb-solution.py to the single-site 4x4 Majorana Clifford and Pauli spin algebra, bond spin-product factorization (bj cj)(bk ck) = -(bj bk)(cj ck), hexagonal plaquette local Z2 gauge invariance, closed-surface even vortex parity prod_p W_p = 1, quadratic matter skew-symmetry det(A(u)) = Pf_4(A(u))^2, and explicit fences for 4^N = 2^N * 2^N gauge redundancy, link-flip Pfaffian sign reversal Pf(A(-u_e)) = -Pf(A(u_e)), and physical parity projection filtering (1 + P_matter * P_gauge).",
       "source": [
         "dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md"
       ]
     },
     {
@@ -66359,13 +66367,29 @@
       ],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:600-612"
+        "papers/core/fsp/theory_of_finite_fsp.md:600-612",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json"
       ],
       "id": "TFQ-1207",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence",
+        "lean4/CampaignFspKitaevHoneycombSolution.lean::CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence"
+      ],
       "local_id": "FSP-KITAEV-HONEYCOMB-SOLUTION",
       "name": "Kitaev honeycomb exact Majorana solution",
-      "obligation": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "obligation": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit. Narrowed in lean4/CampaignFspKitaevHoneycombSolution.lean and checks/independent/fsp-kitaev-honeycomb-solution.py to the single-site 4x4 Majorana Clifford and Pauli spin algebra, bond spin-product factorization (bj cj)(bk ck) = -(bj bk)(cj ck), hexagonal plaquette local Z2 gauge invariance, closed-surface even vortex parity prod_p W_p = 1, quadratic matter skew-symmetry det(A(u)) = Pf_4(A(u))^2, and explicit fences for 4^N = 2^N * 2^N gauge redundancy, link-flip Pfaffian sign reversal Pf(A(-u_e)) = -Pf(A(u_e)), and physical parity projection filtering (1 + P_matter * P_gauge).",
       "parent_id": "TFQ-1186",
       "python": [
         "code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py",
