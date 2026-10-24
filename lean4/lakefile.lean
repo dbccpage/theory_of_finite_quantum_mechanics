@@ -1079,3 +1079,7 @@ lean_lib CampaignAdsReggeAreaRtGap where
 -- Campaign: CQFT-CAUSAL-FACTORIZATION-IMPORT. Not a default target.
 lean_lib CampaignCqftCausalFactorizationImport where
   roots := #[`CampaignCqftCausalFactorizationImport]
+
+-- Campaign: CQFT-REEH-SCHLIEDER-THEOREM-IMPORT. Not a default target.
+lean_lib CampaignCqftReehSchliederTheoremImport where
+  roots := #[`CampaignCqftReehSchliederTheoremImport]

@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "14e4435fdbb73c612f6e4abb6c83ed2ba2e8a0e6de5e94ca328c322381ca5cf8"
+  "sha256_lf": "d32541bc23aff54bc877bf5da41791f70182db66f35164d762774ad9ac3f11db"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -36,6 +36,11 @@
    "sha256": "2d3005b22a2c61edb854c646a946300fa29958352f49a7e8ce194a15a3899083",
    "sha256_basis": "bytes",
    "size": 11672
+  },
+  "checks/independent/cqft-reeh-schlieder-theorem-import.py": {
+   "sha256": "0a85f39d9cb5dc5632c2440d1ca9ddaef93d9071d471e8eb0d9b69bc88107a64",
+   "sha256_basis": "bytes",
+   "size": 7505
   },
   "checks/independent/dfm-bphz-continuum-fence.py": {
    "sha256": "0cad33ad25b1937de952b38c978ac1ef1058f91a938dc39efb5ad18f5be27752",
@@ -898,9 +903,9 @@
    "size": 7760
   },
   "dag/derivation_dag.json": {
-   "sha256": "14e4435fdbb73c612f6e4abb6c83ed2ba2e8a0e6de5e94ca328c322381ca5cf8",
+   "sha256": "d32541bc23aff54bc877bf5da41791f70182db66f35164d762774ad9ac3f11db",
    "sha256_basis": "lf-normalised",
-   "size": 4616484
+   "size": 4623627
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5378,9 +5383,9 @@
    "size": 2055
   },
   "dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md": {
-   "sha256": "02c7acd87ac5490bb7230c41036bd3f46f2c56e966ca16edb9dd1050c9c186a6",
+   "sha256": "2078df707d6e398d567d5e620f5630411dc0d80b574f60bd7d287e875e412630",
    "sha256_basis": "lf-normalised",
-   "size": 3103
+   "size": 6678
   },
   "dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md": {
    "sha256": "808575bad0f15e050c33fe4683ec851b7ef4da887a7275521d26756b69507848",
@@ -5812,6 +5817,11 @@
    "sha256_basis": "lf-normalised",
    "size": 6284
   },
+  "dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md": {
+   "sha256": "8a4b43ee3e838b80c12d847ec935ab92d9eff0a73c77d0696735805b0b4d4dc3",
+   "sha256_basis": "lf-normalised",
+   "size": 5999
+  },
   "dag/derivations/independent/ct-local-mediator-entanglement-import.md": {
    "sha256": "3d4655398ffaa1a4c41c4255b2fb0a28a166412327d4a63d943cefd9ff541337",
    "sha256_basis": "lf-normalised",
@@ -6076,6 +6086,21 @@
    "sha256": "33151041a91b005377ae8d776dda04de4f52afabc9a8cb3d84fcf3a082e826c0",
    "sha256_basis": "lf-normalised",
    "size": 4766
+  },
+  "dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json": {
+   "sha256": "c5d3037f7a6b51b58bb187507a9363425c0fab31c8809d2c8e0b26378de96b22",
+   "sha256_basis": "lf-normalised",
+   "size": 823
+  },
+  "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json": {
+   "sha256": "ae36299f26c989729dde20b5a13d1528a9c31e4e5ba8bf09b3ac20278043de53",
+   "sha256_basis": "lf-normalised",
+   "size": 5238
+  },
+  "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json": {
+   "sha256": "91af759fbb224faa31e908367286486568713868f77e1aa81791d8e6af4cddc0",
+   "sha256_basis": "lf-normalised",
+   "size": 5502
   },
   "dag/research/campaign_dfm-hierarchical-borel_lean_replay.json": {
    "sha256": "c20ab61a952bd0349803333b07355aaf50264ce716b46cd3ace112f2778f4b8e",
@@ -6416,6 +6441,11 @@
    "sha256": "5dd49f73d783b5d3b3f732ac46e4431428eb7054132e27bd37e111901cb0549f",
    "sha256_basis": "bytes",
    "size": 17046
+  },
+  "lean4/CampaignCqftReehSchliederTheoremImport.lean": {
+   "sha256": "3025afddf5bbc9feb77c54f947568330fa8fe0f4d8f575a96c560d9422c126f6",
+   "sha256_basis": "bytes",
+   "size": 18791
   },
   "lean4/CampaignCtMediatorEntanglement.lean": {
    "sha256": "e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79",
@@ -243261,17 +243291,514 @@
    "absent_notes": [],
    "dependents": 1,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 6,
+    "lean_receipt_backed": 12,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 12
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "CQFT-REEH-SCHLIEDER-THEOREM-IMPORT",
    "items": [
+    {
+     "cited_in": [
+      "node.source",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.cyclicShift_periodic_aliasing",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.cyclicShift_periodic_aliasing",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.four_qubit_half_system_cyclicity_dichotomy",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.four_qubit_half_system_cyclicity_dichotomy",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.full_three_site_cyclic_all_three_states",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.full_three_site_cyclic_all_three_states",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.ghz3_and_w3_pair_cyclic_and_separating",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.ghz3_and_w3_pair_cyclic_and_separating",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.no_left_inverse_of_zero_column",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.no_left_inverse_of_zero_column",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.not_cyclic_of_zero_column",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.not_cyclic_of_zero_column",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.prod3_pair_not_cyclic_and_no_left_inverse",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.prod3_pair_not_cyclic_and_no_left_inverse",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.single_site_not_cyclic_all_three_states",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.single_site_not_cyclic_all_three_states",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport)",
+      "record TFQ-2106"
+     ],
+     "command": "cd lean4 && lake build CampaignCqftReehSchliederTheoremImport",
+     "command_note": "then, in a scratch file that imports CampaignCqftReehSchliederTheoremImport: #print axioms CampaignCqftReehSchliederTheoremImport.translation_invariant_zero_momentum_diff",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignCqftReehSchliederTheoremImport.translation_invariant_zero_momentum_diff",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source",
+      "record TFQ-2106"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/cqft-reeh-schlieder-theorem-import.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -243288,6 +243815,98 @@
      "generated": true,
      "kind": "paper",
      "path": "dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json",
      "receipts": [],
      "replay": "n/a",
      "resolution": "present",
@@ -243343,7 +243962,7 @@
      "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-2106"
    ],
@@ -259838,6 +260457,32 @@
     "propext"
    ],
    "built_successfully": null,
+   "checked_at": "2026-10-24",
+   "dag_node": "CQFT-REEH-SCHLIEDER-THEOREM-IMPORT",
+   "decl_count": 12,
+   "exit_code": 0,
+   "id": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json#0:CampaignCqftReehSchliederTheoremImport",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignCqftReehSchliederTheoremImport",
+   "path": "lean4/CampaignCqftReehSchliederTheoremImport.lean",
+   "receipt_file": "dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json",
+   "receipt_file_sha256": "91af759fbb224faa31e908367286486568713868f77e1aa81791d8e6af4cddc0",
+   "recorded_sha256": "3025afddf5bbc9feb77c54f947568330fa8fe0f4d8f575a96c560d9422c126f6",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
    "checked_at": "2026-10-22",
    "dag_node": "CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT",
    "decl_count": 17,
@@ -271765,10 +272410,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 182,
+   "E0": 181,
    "E1": 241,
    "E2": 42,
-   "E3": 460,
+   "E3": 461,
    "E4": 0
   },
   "by_status": {
@@ -271788,16 +272433,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1650,
+   "distinct": 1662,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1603,
-   "replay_verified_and_declaration_itemised": 1557,
+   "replay_verified": 1615,
+   "replay_verified_and_declaration_itemised": 1569,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1959
+   "present": 1971
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -271818,7 +272463,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 483,
+  "receipts_indexed": 484,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -271835,10 +272480,10 @@
     "E4": 0
    },
    "CAUSAL_QFT": {
-    "E0": 6,
+    "E0": 5,
     "E1": 0,
     "E2": 0,
-    "E3": 8,
+    "E3": 9,
     "E4": 0
    },
    "COMPUTATION": {
@@ -272089,10 +272734,10 @@
     "E4": 0
    },
    "IMPORTED_ASSUMPTION": {
-    "E0": 8,
+    "E0": 7,
     "E1": 26,
     "E2": 1,
-    "E3": 35,
+    "E3": 36,
     "E4": 0
    },
    "OPEN": {
