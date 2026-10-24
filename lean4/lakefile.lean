@@ -1087,3 +1087,7 @@ lean_lib CampaignCqftReehSchliederTheoremImport where
 -- Campaign: TFQ-0106. Not a default target.
 lean_lib CampaignTfq0106FiniteQg where
   roots := #[`CampaignTfq0106FiniteQg]
+
+-- Campaign: TFQ-0090. Not a default target.
+lean_lib CampaignTfq0090FiniteQg where
+  roots := #[`CampaignTfq0090FiniteQg]
