@@ -10441,14 +10441,31 @@
       "stage": "FINITE_QG",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "A finite gravity shadow is relational point coincidence, a Regge deficit on a finite simplicial complex, a spin-foam or area-spectrum control, and the kinematical shadows named in the quantum-foundations notes. The exact rational proxy that sums squared areas times deficits is not the Einstein-Hilbert action. The float script l1_regge.py is not that proxy. The three languages must say which finite identity they check. A certificate on a small complex is not quantum gravity, and it is not a derivation of the Einstein equation.",
+      "statement": "Narrowed boundary, status left OPEN: on the declared integer pairs (area-square, defect) = (1, 2) and (4, 5), the squared-area sum 1*2+4*5 equals 22, the defect sum 2+5 equals 7, and 22 ≠ 7 and 22 ≠ 0. For the recorded bound inputs, 1/3 - 1/4 has numerator 1*4 - 1*3 = 1 and denominator 3*4 = 12, the squared gap has denominator 144, the allowance 2*(1/16) reduces to 1/8 because 2*8 = 1*16, and (1/8)^2 has denominator 64. The comparison 1*64 < 1*144 records 1/144 < 1/64. On the second recorded inputs the squared gap 1 is greater than (1/4)^2 = 1/16 because 1*16 > 1. The comparison -1 < 0 holds. In code/rust/src/general_relativity/exact_regge/action.rs, rational_regge_proxy adds area_squared * kappa into action and adds kappa into holonomy_defect, einstein_hilbert_fence returns rational_regge_proxy, and flat_einstein_hilbert returns BigRational::zero(). The script papers/core/constraint_closure/code/l1_regge.py imports math, numpy, and scipy, and its text contains math.pi and math.acos. Status stays OPEN.",
       "source": [
-        "dag/derivations/19_finite_qg/tfq_0084_finite_quantum_gravity_shadow.md"
+        "dag/derivations/19_finite_qg/tfq_0084_finite_quantum_gravity_shadow.md",
+        "dag/derivations/independent/tfq-0084.md",
+        "dag/research/campaign_tfq-0084_lean_replay.json",
+        "papers/core/constraint_closure/code/l1_regge.py"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_proxy_sum",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_defect_sum",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_proxy_ne_defects",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_proxy_ne_zero",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_fraction_difference",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_gap_square",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_allowance_reduced",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_allowance_square",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_bound_strict",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_second_gap",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_negative_guard"
+      ],
+      "rust": [
+        "code/rust/src/general_relativity/exact_regge/action.rs"
+      ],
       "imported_structure": [],
-      "bottleneck": "Keep Regge, spin-foam, and relational certificates finite and separate from the Einstein equation.",
+      "bottleneck": "The identities in the statement are the squared-area boundary on two declared integer pairs and the two recorded comparisons. Those pairs are not areas read from a manifold. The fence function returns the squared-area proxy, and that proxy on the declared pairs differs from the zero constant. A continuum Einstein equation, a spin-foam sum, an area spectrum, relational point coincidence as a gravity theorem, and any identification of the squared-area sum with a smooth curvature integral stay open. Status stays OPEN.",
       "tags": [
         "unified-dag",
         "TFQ-0084",
@@ -43962,20 +43979,39 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/README.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_111_general_relativity_kinematical_shadows.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_111_general_relativity_kinematical_shadows.md",
+        "dag/derivations/independent/tfq-0084.md",
+        "dag/research/campaign_tfq-0084_lean_replay.json",
+        "papers/core/constraint_closure/code/l1_regge.py"
       ],
       "id": "TFQ-0084",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_proxy_sum",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_defect_sum",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_proxy_ne_defects",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_proxy_ne_zero",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_fraction_difference",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_gap_square",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_allowance_reduced",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_allowance_square",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_bound_strict",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_second_gap",
+        "lean4/CampaignTfq0084ReggeProxyBoundary.lean::tfq0084_negative_guard"
+      ],
       "local_id": "FINITE_QG",
       "name": "Finite quantum-gravity shadow",
-      "obligation": "Keep Regge, spin-foam, and relational certificates finite and separate from the Einstein equation.",
+      "obligation": "The identities in the statement are the squared-area boundary on two declared integer pairs and the two recorded comparisons. Those pairs are not areas read from a manifold. The fence function returns the squared-area proxy, and that proxy on the declared pairs differs from the zero constant. A continuum Einstein equation, a spin-foam sum, an area spectrum, relational point coincidence as a gravity theorem, and any identification of the squared-area sum with a smooth curvature integral stay open. Status stays OPEN.",
       "parent_id": "TFQ-0008",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0084.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [],
+      "rust": [
+        "code/rust/src/general_relativity/exact_regge/action.rs"
+      ],
       "source_slice": "00",
       "stage": "FINITE_QG",
-      "summary": "A finite gravity shadow is relational point coincidence, a Regge deficit on a finite simplicial complex, a spin-foam or area-spectrum control, and the kinematical shadows named in the quantum-foundations notes. The exact rational proxy that sums squared areas times deficits is not the Einstein-Hilbert action. The float script l1_regge.py is not that proxy. The three languages must say which finite identity they check. A certificate on a small complex is not quantum gravity, and it is not a derivation of the Einstein equation.",
+      "summary": "Narrowed boundary, status left OPEN: on the declared integer pairs (area-square, defect) = (1, 2) and (4, 5), the squared-area sum 1*2+4*5 equals 22, the defect sum 2+5 equals 7, and 22 ≠ 7 and 22 ≠ 0. For the recorded bound inputs, 1/3 - 1/4 has numerator 1*4 - 1*3 = 1 and denominator 3*4 = 12, the squared gap has denominator 144, the allowance 2*(1/16) reduces to 1/8 because 2*8 = 1*16, and (1/8)^2 has denominator 64. The comparison 1*64 < 1*144 records 1/144 < 1/64. On the second recorded inputs the squared gap 1 is greater than (1/4)^2 = 1/16 because 1*16 > 1. The comparison -1 < 0 holds. In code/rust/src/general_relativity/exact_regge/action.rs, rational_regge_proxy adds area_squared * kappa into action and adds kappa into holonomy_defect, einstein_hilbert_fence returns rational_regge_proxy, and flat_einstein_hilbert returns BigRational::zero(). The script papers/core/constraint_closure/code/l1_regge.py imports math, numpy, and scipy, and its text contains math.pi and math.acos. Status stays OPEN.",
       "uuid": "338b3e14-5d40-5f7a-8ed0-e0a22d7c4a63"
     },
     {
