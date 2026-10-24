@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "node_id": "FSP-WITTEN-INDEX-INVARIANCE",
+  "record_id": "TFQ-1206",
+  "AuthorityEffect": "None",
+  "file": "lean4/CampaignFspWittenIndexInvariance.lean",
+  "file_sha256": "d3d542d8c8d79ec7ec1aba98407ee71a913c7639b390bda963b6731dcd08ea84",
+  "total_mutants": 6,
+  "killed_mutants": 6,
+  "survived_mutants": 0,
+  "mutants": [
+    {
+      "id": "M1_intertwine_wrong_power",
+      "target": "    (A : Matrix nF nB R) (B : Matrix nB nF R) (k : \u2115) :\n    (B * A) ^ (k + 1) = B * (A * B) ^ k * A := by",
+      "replacement": "    (A : Matrix nF nB R) (B : Matrix nB nF R) (k : \u2115) :\n    (B * A) ^ (k + 1) = B * (A * B) ^ (k + 1) * A := by",
+      "killed": true,
+      "exit_code": 1
+    },
+    {
+      "id": "M2_supertrace_pow_nonzero",
+      "target": "    (A : Matrix nF nB R) (B : Matrix nB nF R) (k : \u2115) :\n    trace (fermionParity nB nF R * (susyHamiltonian A B) ^ (k + 1)) = 0 := by",
+      "replacement": "    (A : Matrix nF nB R) (B : Matrix nB nF R) (k : \u2115) :\n    trace (fermionParity nB nF R * (susyHamiltonian A B) ^ (k + 1)) = 1 := by",
+      "killed": true,
+      "exit_code": 1
+    },
+    {
+      "id": "M3_parity_trace_plus_instead_of_sub",
+      "target": "theorem supertrace_fermionParity_fin_eq_sub (nB nF : \u2115) {R : Type*} [CommRing R] :\n    trace (fermionParity (Fin nB) (Fin nF) R) = (nB : R) - (nF : R) := by",
+      "replacement": "theorem supertrace_fermionParity_fin_eq_sub (nB nF : \u2115) {R : Type*} [CommRing R] :\n    trace (fermionParity (Fin nB) (Fin nF) R) = (nB : R) + (nF : R) := by",
+      "killed": true,
+      "exit_code": 1
+    },
+    {
+      "id": "M4_witten_index_sum_instead_of_diff",
+      "target": "theorem wittenIndexPaired_eq_zero_mode_diff_for_all_weights (nB0 nF0 : \u2115) (weights : List \u211a) :\n    wittenIndexPaired nB0 nF0 weights = (nB0 : \u211a) - (nF0 : \u211a) := by",
+      "replacement": "theorem wittenIndexPaired_eq_zero_mode_diff_for_all_weights (nB0 nF0 : \u2115) (weights : List \u211a) :\n    wittenIndexPaired nB0 nF0 weights = (nB0 : \u211a) + (nF0 : \u211a) := by",
+      "killed": true,
+      "exit_code": 1
+    },
+    {
+      "id": "M5_rect2x1_index_two_instead_of_one",
+      "target": "    ((A\u1d40 * A).mulVec ![-b, a]) 1 = 0 \u2227\n    trace (fermionParity (Fin 2) (Fin 1) \u211a) = 1 := by",
+      "replacement": "    ((A\u1d40 * A).mulVec ![-b, a]) 1 = 0 \u2227\n    trace (fermionParity (Fin 2) (Fin 1) \u211a) = 2 := by",
+      "killed": true,
+      "exit_code": 1
+    },
+    {
+      "id": "M6_broken_susy_plus_trace_delta",
+      "target": "    (A : Matrix nF nB R) (B : Matrix nB nF R) (\u0394 : Matrix nF nF R) :\n    trace (fermionParity nB nF R * fromBlocks (B * A) 0 0 (A * B + \u0394)) = -trace \u0394 := by",
+      "replacement": "    (A : Matrix nF nB R) (B : Matrix nB nF R) (\u0394 : Matrix nF nF R) :\n    trace (fermionParity nB nF R * fromBlocks (B * A) 0 0 (A * B + \u0394)) = trace \u0394 := by",
+      "killed": true,
+      "exit_code": 1
+    }
+  ]
+}

@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -4950,7 +4950,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.",
-      "obligation": "Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
+      "obligation": "Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself. Narrowed in lean4/CampaignFspWittenIndexInvariance.lean and checks/independent/fsp-witten-index-invariance.py to exact block power intertwining (BA)^(k+1) = B(AB)^k A, vanishing supertrace Tr(Gamma_F H(A,B)^(k+1)) = 0 for all k, beta-independence of truncated Boltzmann polynomials and paired positive-energy doublet sums W(beta) = n_B(0) - n_F(0), forced zero-energy ground states when W != 0, rectangular (2, 1) forced bosonic zero modes, and explicit fences separating W(beta) from the beta-dependent partition function Z(beta) and showing that lattice SUSY breaking Delta shifts Tr(Gamma_F H_broken) by -Tr(Delta).",
       "imported_structure": [
         "exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)"
       ],
@@ -4958,17 +4958,35 @@
         "FSP-LATTICE-WESS-ZUMINO-SUSY"
       ],
       "parent_record": "TFQ-1204",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.susyHamiltonian_eq_fromBlocks",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.boson_fermion_block_pow_intertwine",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.susyHamiltonian_pow_eq_fromBlocks",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.boson_eq_fermion_pow_succ_trace",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_susyHamiltonian_pow_succ_eq_zero",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_fermionParity_fin_eq_sub",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.supertrace_cubic_boltzmann_poly_independent_of_beta",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.wittenIndexPaired_eq_zero_mode_diff_for_all_weights",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.nonzero_witten_index_implies_zero_mode_ground_state",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.rectangular_2x1_supercharge_forced_zero_mode_and_index_one",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.witten_index_vs_partition_function_and_average_sign_fence",
+        "lean4/CampaignFspWittenIndexInvariance.lean::CampaignFspWittenIndexInvariance.broken_lattice_susy_destroys_supertrace_cancellation_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-witten-index-invariance.py::main"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::quantum_state::witten_index_invariance (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:584-597",
-        "papers/core/fsp/lean4/regge_wdw_core.lean:796-800"
+        "dag/derivations/independent/fsp-witten-index-invariance.md",
+        "dag/research/campaign_fsp-witten-index-invariance_lean_replay.json",
+        "dag/research/campaign_fsp-witten-index-invariance_lean_mutation.json",
+        "dag/research/campaign_fsp-witten-index-invariance_independent.json"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py.",
+      "audit": "Replaced missing NonAbelianGaugeSigns.lean::witten_index_beta_independence and trivial regge_wdw_core.lean::witten_index_beta_invariant placeholder with lean4/CampaignFspWittenIndexInvariance.lean (12 theorems, 0 sorrys) and checks/independent/fsp-witten-index-invariance.py (1171 checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

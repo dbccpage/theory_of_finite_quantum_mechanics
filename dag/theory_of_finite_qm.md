@@ -10182,7 +10182,7 @@ Obligation: Give the lattice model, prove det(d xi / d phi) = det D_F, and treat
 
 On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.
 
-Obligation: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.
+Obligation: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself. Narrowed in lean4/CampaignFspWittenIndexInvariance.lean and checks/independent/fsp-witten-index-invariance.py to exact block power intertwining (BA)^(k+1) = B(AB)^k A, vanishing supertrace Tr(Gamma_F H(A,B)^(k+1)) = 0 for all k, beta-independence of truncated Boltzmann polynomials and paired positive-energy doublet sums W(beta) = n_B(0) - n_F(0), forced zero-energy ground states when W != 0, rectangular (2, 1) forced bosonic zero modes, and explicit fences separating W(beta) from the beta-dependent partition function Z(beta) and showing that lattice SUSY breaking Delta shifts Tr(Gamma_F H_broken) by -Tr(Delta).
 
 ### TFQ-1207 Kitaev honeycomb exact Majorana solution
 
